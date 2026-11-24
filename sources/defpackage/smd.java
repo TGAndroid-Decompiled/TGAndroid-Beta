@@ -1,68 +1,64 @@
 package defpackage;
 public abstract class smd {
-    public static boolean a(String str, String str2) {
-        char charAt;
-        char charAt2;
-        char c;
-        int length = str.length();
-        if (str != str2) {
-            if (length == str2.length()) {
-                for (int i = 0; i < length; i++) {
-                    if (str.charAt(i) == str2.charAt(i) || ((c = (char) ((charAt | ' ') - 97)) < 26 && c == ((char) ((charAt2 | ' ') - 97)))) {
-                    }
-                }
+    public boolean a(t2 t2Var, k2 k2Var, k2 k2Var2) {
+        synchronized (t2Var) {
+            if (t2Var.b == k2Var) {
+                t2Var.b = k2Var2;
                 return true;
             }
             return false;
         }
-        return true;
     }
 
-    public static boolean b(char c) {
-        if (c >= 'A' && c <= 'Z') {
-            return true;
-        }
-        return false;
-    }
-
-    public static String c(String str) {
-        int length = str.length();
-        int i = 0;
-        while (i < length) {
-            if (b(str.charAt(i))) {
-                char[] charArray = str.toCharArray();
-                while (i < length) {
-                    char c = charArray[i];
-                    if (b(c)) {
-                        charArray[i] = (char) (c ^ ' ');
-                    }
-                    i++;
-                }
-                return String.valueOf(charArray);
+    public boolean b(t2 t2Var, Object obj, Object obj2) {
+        synchronized (t2Var) {
+            if (t2Var.a == obj) {
+                t2Var.a = obj2;
+                return true;
             }
-            i++;
+            return false;
         }
-        return str;
     }
 
-    public static String d(String str) {
-        int length = str.length();
-        int i = 0;
-        while (i < length) {
-            char charAt = str.charAt(i);
-            if (charAt >= 'a' && charAt <= 'z') {
-                char[] charArray = str.toCharArray();
-                while (i < length) {
-                    char c = charArray[i];
-                    if (c >= 'a' && c <= 'z') {
-                        charArray[i] = (char) (c ^ ' ');
-                    }
-                    i++;
-                }
-                return String.valueOf(charArray);
+    public boolean c(t2 t2Var, s2 s2Var, s2 s2Var2) {
+        synchronized (t2Var) {
+            if (t2Var.c == s2Var) {
+                t2Var.c = s2Var2;
+                return true;
             }
-            i++;
+            return false;
         }
-        return str;
+    }
+
+    public k2 d(t2 t2Var) {
+        k2 k2Var;
+        k2 k2Var2 = k2.d;
+        synchronized (t2Var) {
+            k2Var = t2Var.b;
+            if (k2Var != k2Var2) {
+                t2Var.b = k2Var2;
+            }
+        }
+        return k2Var;
+    }
+
+    public s2 e(t2 t2Var) {
+        s2 s2Var;
+        s2 s2Var2 = s2.c;
+        synchronized (t2Var) {
+            s2Var = t2Var.c;
+            if (s2Var != s2Var2) {
+                t2Var.c = s2Var2;
+            }
+        }
+        return s2Var;
+    }
+
+    public void f(s2 s2Var, s2 s2Var2) {
+        s2Var.b = s2Var2;
+    }
+
+    public void g(s2 s2Var, Thread thread) {
+        s2Var.a = thread;
     }
 }

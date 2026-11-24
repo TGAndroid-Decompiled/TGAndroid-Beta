@@ -1,32 +1,17 @@
 package defpackage;
-public final class xod implements pqd {
-    public pqd[] a;
+public final class xod implements cq7 {
+    public static final xod a = new Object();
 
-    @Override
-    public final boolean zza(Class cls) {
-        for (pqd pqdVar : this.a) {
-            if (pqdVar.zza(cls)) {
-                return true;
-            }
-        }
-        return false;
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)));
     }
 
     @Override
-    public final fud zzb(Class cls) {
-        pqd[] pqdVarArr;
-        String str;
-        for (pqd pqdVar : this.a) {
-            if (pqdVar.zza(cls)) {
-                return pqdVar.zzb(cls);
-            }
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        String name = cls.getName();
-        if (name.length() != 0) {
-            str = "No factory is available for message type: ".concat(name);
-        } else {
-            str = new String("No factory is available for message type: ");
-        }
-        throw new UnsupportedOperationException(str);
+        throw new ClassCastException();
     }
 }

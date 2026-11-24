@@ -1,77 +1,12 @@
 package defpackage;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public abstract class l5f {
-    public static xye a;
-
-    public static String a(String str, Object... objArr) {
-        int length;
-        int indexOf;
-        StringBuilder sb = new StringBuilder(str.length() + (objArr.length << 4));
-        int i = 0;
-        int i2 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i >= length || (indexOf = str.indexOf("%s", i2)) == -1) {
-                break;
+    public static boolean a(Object obj, Object obj2) {
+        if (obj != obj2) {
+            if (obj == null || !obj.equals(obj2)) {
+                return false;
             }
-            sb.append((CharSequence) str, i2, indexOf);
-            sb.append(c(objArr[i]));
-            i2 = indexOf + 2;
-            i++;
+            return true;
         }
-        sb.append((CharSequence) str, i2, str.length());
-        if (i < length) {
-            String str2 = " [";
-            while (i < objArr.length) {
-                sb.append(str2);
-                sb.append(c(objArr[i]));
-                i++;
-                str2 = ", ";
-            }
-            sb.append(']');
-        }
-        return sb.toString();
-    }
-
-    public static synchronized z3f b(g3f g3fVar) {
-        z3f z3fVar;
-        synchronized (l5f.class) {
-            xye xyeVar = a;
-            if (xyeVar == null) {
-                xyeVar = new xye((byte) 2);
-                a = xyeVar;
-            }
-            z3fVar = (z3f) xyeVar.c(g3fVar);
-        }
-        return z3fVar;
-    }
-
-    public static String c(Object obj) {
-        if (obj == null) {
-            return "null";
-        }
-        try {
-            return obj.toString();
-        } catch (Exception e) {
-            String name = obj.getClass().getName();
-            String hexString = Integer.toHexString(System.identityHashCode(obj));
-            String o = ls6.o(name, "@", hexString, new StringBuilder(name.length() + 1 + String.valueOf(hexString).length()));
-            Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(o), (Throwable) e);
-            String name2 = e.getClass().getName();
-            StringBuilder sb = new StringBuilder(o.length() + 8 + name2.length() + 1);
-            ls6.u(sb, "<", o, " threw ", name2);
-            sb.append(">");
-            return sb.toString();
-        }
-    }
-
-    public static synchronized z3f d() {
-        z3f b;
-        synchronized (l5f.class) {
-            b = b(new Object());
-        }
-        return b;
+        return true;
     }
 }

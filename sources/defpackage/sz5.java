@@ -1,53 +1,30 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d;
+import android.animation.ValueAnimator;
 import org.telegram.ui.LaunchActivity;
-public final class sz5 implements ca7 {
-    public final kz5 a;
-    public final boolean[] b;
-    public final Bundle c;
-    public final TLRPC.ChatInvite d;
-    public final LaunchActivity e;
+public final class sz5 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final LaunchActivity b;
 
-    public sz5(LaunchActivity launchActivity, kz5 kz5Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
-        this.e = launchActivity;
-        this.a = kz5Var;
-        this.b = zArr;
-        this.c = bundle;
-        this.d = chatInvite;
+    public sz5(LaunchActivity launchActivity, byte b) {
+        this.a = b;
+        this.b = launchActivity;
     }
 
     @Override
-    public final void a() {
-        LaunchActivity launchActivity = this.e;
-        if (!launchActivity.isFinishing()) {
-            ij.r0((d) b00.f(1, launchActivity.e0), null, k96.M0(2131748883, null), null);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        LaunchActivity launchActivity = this.b;
+        switch (b) {
+            case 0:
+                String str = LaunchActivity.C1;
+                launchActivity.v0.invalidate();
+                return;
+            default:
+                String str2 = LaunchActivity.C1;
+                launchActivity.getClass();
+                launchActivity.D0(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                return;
         }
-        try {
-            this.a.run();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void m(boolean z) {
-        try {
-            this.a.run();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-        if (this.b[0]) {
-            return;
-        }
-        mu1 mu1Var = new mu1(this.c);
-        TLRPC.ChatInvite chatInvite = this.d;
-        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
-            mu1Var.c6 = chatInvite;
-        }
-        ((ActionBarLayout) this.e.N()).S(mu1Var);
     }
 }

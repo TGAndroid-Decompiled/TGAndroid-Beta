@@ -1,21 +1,18 @@
 package defpackage;
+public enum wue implements amd {
+    TYPE_UNKNOWN(0),
+    TYPE_THIN(1),
+    TYPE_THICK(2),
+    TYPE_GMV(3);
+    
+    public final byte a;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.ResolveInfo;
-public abstract class wue {
-    public static boolean a(Context context) {
-        ApplicationInfo applicationInfo;
-        Intent putExtra = new Intent().addFlags(268435456).setAction("com.android.settings.panel.action.MEDIA_OUTPUT").putExtra("com.android.settings.panel.extra.PACKAGE_NAME", context.getPackageName());
-        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(putExtra, 0)) {
-            ActivityInfo activityInfo = resolveInfo.activityInfo;
-            if (activityInfo != null && (applicationInfo = activityInfo.applicationInfo) != null && (applicationInfo.flags & 129) != 0) {
-                context.startActivity(putExtra);
-                return true;
-            }
-        }
-        return false;
+    wue(int i) {
+        this.a = i;
+    }
+
+    @Override
+    public final int zza() {
+        return this.a;
     }
 }

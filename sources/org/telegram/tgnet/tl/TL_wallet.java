@@ -245,7 +245,7 @@ public class TL_wallet {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(readInt32, 1)) {
-                this.stickers = Vector.deserialize(inputSerializedData, new sdb((byte) 15), z);
+                this.stickers = Vector.deserialize(inputSerializedData, new tfb((byte) 21), z);
             }
             if (TLObject.hasFlag(readInt32, 2)) {
                 this.bg_nft_item = nftItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -365,7 +365,7 @@ public class TL_wallet {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.rates = Vector.deserialize(inputSerializedData, new sdb((byte) 16), z);
+            this.rates = Vector.deserialize(inputSerializedData, new tfb((byte) 22), z);
         }
 
         @Override
@@ -435,7 +435,7 @@ public class TL_wallet {
 
         @Override
         public Vector<holderDc> deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserialize(inputSerializedData, i, z, new sdb((byte) 17));
+            return Vector.TLDeserialize(inputSerializedData, i, z, new tfb((byte) 23));
         }
 
         @Override
@@ -732,7 +732,7 @@ public class TL_wallet {
                 this.lottie = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(readInt32, 128)) {
-                this.attributes = Vector.deserialize(inputSerializedData, new sdb((byte) 18), z);
+                this.attributes = Vector.deserialize(inputSerializedData, new tfb((byte) 24), z);
             }
             if (TLObject.hasFlag(readInt32, 256)) {
                 this.extra = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -869,7 +869,7 @@ public class TL_wallet {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
-            this.items = Vector.deserialize(inputSerializedData, new sdb((byte) 19), z);
+            this.items = Vector.deserialize(inputSerializedData, new tfb((byte) 25), z);
             if (TLObject.hasFlag(readInt32, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
@@ -1072,7 +1072,7 @@ public class TL_wallet {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.session = tonConnectSession.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.requests = Vector.deserialize(inputSerializedData, new sdb((byte) 20), z);
+            this.requests = Vector.deserialize(inputSerializedData, new tfb((byte) 26), z);
         }
 
         @Override
@@ -1246,7 +1246,7 @@ public class TL_wallet {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.sessions = Vector.deserialize(inputSerializedData, new sdb((byte) 21), z);
+            this.sessions = Vector.deserialize(inputSerializedData, new tfb((byte) 27), z);
         }
 
         @Override
@@ -1273,8 +1273,8 @@ public class TL_wallet {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.addresses = Vector.deserialize(inputSerializedData, new sdb((byte) 22), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.addresses = Vector.deserialize(inputSerializedData, new tfb((byte) 28), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -1917,7 +1917,7 @@ public class TL_wallet {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             WalletOnchainGiftAction TLdeserialize = WalletOnchainGiftAction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.action = TLdeserialize;
-            this.address = dq7.a(TLdeserialize);
+            this.address = gs7.a(TLdeserialize);
         }
 
         @Override
@@ -2030,12 +2030,12 @@ public class TL_wallet {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.balance = inputSerializedData.readInt64(z);
-            this.transactions = Vector.deserialize(inputSerializedData, new sdb((byte) 23), z);
+            this.transactions = Vector.deserialize(inputSerializedData, new tfb((byte) 29), z);
             if (TLObject.hasFlag(readInt32, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override

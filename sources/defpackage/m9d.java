@@ -1,47 +1,76 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class m9d extends b4 {
-    public static final Parcelable.Creator<m9d> CREATOR = new j9d((byte) 3);
-    public final float a;
-    public final float b;
-    public final float c;
+import java.util.Map;
+public final class m9d extends m3 {
+    public final Object b;
+    public int c;
+    public final dq2 d;
 
-    public m9d(float f, float f2, float f3) {
-        this.a = f;
-        this.b = f2;
-        this.c = f3;
+    public m9d(dq2 dq2Var, int i) {
+        super((byte) 2, false);
+        this.d = dq2Var;
+        Object[] objArr = dq2Var.d;
+        objArr.getClass();
+        this.b = objArr[i];
+        this.c = i;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void a() {
+        int i = this.c;
+        Object obj = this.b;
+        dq2 dq2Var = this.d;
+        if (i != -1 && i < dq2Var.size()) {
+            int i2 = this.c;
+            Object[] objArr = dq2Var.d;
+            objArr.getClass();
+            if (o3f.a(obj, objArr[i2])) {
+                return;
+            }
         }
-        if (!(obj instanceof m9d)) {
-            return false;
-        }
-        m9d m9dVar = (m9d) obj;
-        if (this.a == m9dVar.a && this.b == m9dVar.b && this.c == m9dVar.c) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Float.valueOf(this.a), Float.valueOf(this.b), Float.valueOf(this.c)});
+        Object obj2 = dq2.w;
+        this.c = dq2Var.s(obj);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeFloat(this.a);
-        jte.q(parcel, 3, 4);
-        parcel.writeFloat(this.b);
-        jte.q(parcel, 4, 4);
-        parcel.writeFloat(this.c);
-        jte.s(parcel, r);
+    public final Object getKey() {
+        return this.b;
+    }
+
+    @Override
+    public final Object getValue() {
+        dq2 dq2Var = this.d;
+        Map m = dq2Var.m();
+        if (m != null) {
+            return m.get(this.b);
+        }
+        a();
+        int i = this.c;
+        if (i == -1) {
+            return null;
+        }
+        Object[] objArr = dq2Var.e;
+        objArr.getClass();
+        return objArr[i];
+    }
+
+    @Override
+    public final Object setValue(Object obj) {
+        dq2 dq2Var = this.d;
+        Map m = dq2Var.m();
+        Object obj2 = this.b;
+        if (m != null) {
+            return m.put(obj2, obj);
+        }
+        a();
+        int i = this.c;
+        if (i == -1) {
+            dq2Var.put(obj2, obj);
+            return null;
+        }
+        Object[] objArr = dq2Var.e;
+        objArr.getClass();
+        Object obj3 = objArr[i];
+        objArr[i] = obj;
+        return obj3;
     }
 }

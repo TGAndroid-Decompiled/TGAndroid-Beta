@@ -1,73 +1,47 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.content.Intent;
+import java.util.ArrayList;
 import org.telegram.ui.ActionBar.d;
-public final class k72 extends be0 {
-    public final j72 H;
-    public final d I;
-    public final boolean J;
-    public final wjb K;
-    public final o72 L;
+public final class k72 implements f42 {
+    public final qac a;
+    public final e51 b;
+    public final d c;
 
-    public k72(o72 o72Var, Context context, d dVar, boolean z, wjb wjbVar) {
-        super(context);
-        this.L = o72Var;
-        this.I = dVar;
-        this.J = z;
-        this.K = wjbVar;
-        this.H = new j72(this);
+    public k72(e51 e51Var, qac qacVar, d dVar) {
+        this.a = qacVar;
+        this.b = e51Var;
+        this.c = dVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j;
-        o72 o72Var = this.L;
-        if (o72Var.b && this.e == null) {
-            j72 j72Var = this.H;
-            j72Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            j72Var.a = true;
-            j72Var.v = true;
-            j72Var.J = this.K;
-            Integer num = o72Var.c;
-            if (num != null) {
-                j72Var.z = num.intValue();
-            }
-            mu1 mu1Var = o72Var.H;
-            if (mu1Var != null) {
-                j = mu1Var.a();
-            } else {
-                d dVar = this.I;
-                if (dVar instanceof qvb) {
-                    j = -((qvb) dVar).a;
-                } else {
-                    j = 0;
-                }
-            }
-            x2b.h(j, canvas, this.a, j72Var);
-            return;
+    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, long j2) {
+        if (!arrayList.isEmpty()) {
+            this.a.a(new qf8((String) arrayList.get(0)));
         }
-        super.onDraw(canvas);
+        this.b.a(true);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.J && getImageReceiver().E()) {
-            accessibilityNodeInfo.setText(k96.M0(2131754797, null));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, k96.M0(2131747624, null)));
-            return;
+    public final void m(ArrayList arrayList, boolean z, int i, long j) {
+        if (!arrayList.isEmpty()) {
+            this.a.a(new rf8((z5a) arrayList.get(0)));
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
+        this.b.a(true);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.L.b && this.H.a(this, motionEvent)) {
-            return true;
+    public final void y() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.c.getParentActivity().startActivityForResult(intent, 28);
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
-        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void S() {
     }
 }

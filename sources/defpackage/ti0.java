@@ -1,15 +1,10 @@
 package defpackage;
-public final class ti0 implements co7 {
-    public final byte a;
-    public final aj0 b;
 
-    public ti0(aj0 aj0Var, byte b) {
-        this.a = b;
-        this.b = aj0Var;
-    }
+import java.math.BigInteger;
+public abstract class ti0 {
+    public static final int a = 0;
 
-    @Override
-    public final void D2(java.lang.Object r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ti0.D2(java.lang.Object):void");
+    static {
+        new BigInteger("16a09e667f3bcc908b2fb1366ea957d3e3adec17512775099da2f590b0667322a", 16);
     }
 }

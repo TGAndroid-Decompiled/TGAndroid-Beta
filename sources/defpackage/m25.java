@@ -1,77 +1,73 @@
 package defpackage;
 
-import java.util.Arrays;
+import android.app.Activity;
+import android.net.Uri;
+import java.util.HashSet;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class m25 implements p8c {
-    public final byte a = 1;
-    public final boolean b;
-    public final Object c;
+import org.telegram.ui.Wallet.c;
+public final class m25 implements Runnable {
+    public final byte a;
+    public final int b;
+    public final boolean c;
     public final Object d;
     public final Object e;
     public final Object f;
+    public final Object h;
 
-    public m25(w25 w25Var, s25 s25Var, x15 x15Var, boolean z, y05 y05Var) {
-        this.c = w25Var;
-        this.d = s25Var;
-        this.e = x15Var;
-        this.b = z;
-        this.f = y05Var;
+    public m25(w78 w78Var, String str, int i, TLObject tLObject, boolean z, TLRPC.User user) {
+        this.a = (byte) 1;
+        this.d = w78Var;
+        this.e = str;
+        this.b = i;
+        this.f = tLObject;
+        this.c = z;
+        this.h = user;
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        Object obj2 = this.f;
-        Object obj3 = this.e;
-        Object obj4 = this.d;
-        Object obj5 = this.c;
-        switch (b) {
-            case 0:
-                w25 w25Var = (w25) obj5;
-                s25 s25Var = (s25) obj4;
-                x15 x15Var = (x15) obj3;
-                y05 y05Var = (y05) obj2;
-                byte[] bArr = (byte[]) obj;
-                if (!w25Var.i(s25Var) && w25Var.A(s25Var)) {
-                    TL_wallet.tonConnectClaimRequest tonconnectclaimrequest = new TL_wallet.tonConnectClaimRequest();
-                    tonconnectclaimrequest.session_id = s25Var.a.id;
-                    tonconnectclaimrequest.msg_id = s25Var.b;
-                    tonconnectclaimrequest.app_request_id = s25Var.d;
-                    boolean z = this.b;
-                    tonconnectclaimrequest.declined = z;
-                    tonconnectclaimrequest.challenge_answer = bArr;
-                    w25Var.f.sendRequestTyped(tonconnectclaimrequest, new hc((byte) 0), new n25(w25Var, bArr, s25Var, x15Var, z, y05Var));
-                    return;
-                }
-                if (bArr != null) {
-                    Arrays.fill(bArr, (byte) 0);
-                }
-                x15Var.a("Request expired or wallet changed");
-                return;
-            default:
-                vqa vqaVar = (vqa) obj5;
-                c01 c01Var = (c01) obj4;
-                Runnable runnable = (Runnable) obj3;
-                hd hdVar = (hd) obj2;
-                if (((Boolean) obj).booleanValue()) {
-                    y6c h = y6c.h(vqaVar.a);
-                    h.y = null;
-                    h.u(false);
-                    vqaVar.Z1(this.b, c01Var, runnable);
-                    return;
-                }
-                c01Var.c(false);
-                hdVar.dismiss();
-                runnable.run();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m25.run():void");
     }
 
-    public m25(vqa vqaVar, boolean z, c01 c01Var, Runnable runnable, hd hdVar) {
-        this.c = vqaVar;
-        this.b = z;
-        this.d = c01Var;
-        this.e = runnable;
-        this.f = hdVar;
+    public m25(ch9 ch9Var, Uri uri, boolean z, String str, int i, ll0 ll0Var) {
+        this.a = (byte) 2;
+        this.d = ch9Var;
+        this.e = uri;
+        this.c = z;
+        this.f = str;
+        this.b = i;
+        this.h = ll0Var;
+    }
+
+    public m25(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
+        this.a = (byte) 5;
+        this.d = activity;
+        this.b = i;
+        this.e = inputGroupCall;
+        this.c = z;
+        this.f = groupCall;
+        this.h = hashSet;
+    }
+
+    public m25(Object obj, TLObject tLObject, int i, Object obj2, Object obj3, boolean z, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = tLObject;
+        this.b = i;
+        this.f = obj2;
+        this.h = obj3;
+        this.c = z;
+    }
+
+    public m25(c cVar, boolean z, y25 y25Var, TL_wallet.proofChallenge proofchallenge, int i, jac jacVar) {
+        this.a = (byte) 0;
+        this.d = cVar;
+        this.c = z;
+        this.e = y25Var;
+        this.f = proofchallenge;
+        this.b = i;
+        this.h = jacVar;
     }
 }

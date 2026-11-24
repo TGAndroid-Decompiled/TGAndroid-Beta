@@ -1,27 +1,31 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class ru4 extends b4c {
-    public static final int b = 0;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class ru4 implements mya {
+    public final uac a;
+    public final TaskCompletionSource b;
 
-    static {
-        b4c.h(new b4c());
+    public ru4(uac uacVar, TaskCompletionSource taskCompletionSource) {
+        this.a = uacVar;
+        this.b = taskCompletionSource;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        kz9 kz9Var = (kz9) view;
-        TLRPC.Chat chat = (TLRPC.Chat) c4cVar.H;
-        kz9Var.h(chat.participants_count, chat);
-        kz9Var.setDivider(z);
+    public final boolean a(Exception exc) {
+        this.b.trySetException(exc);
+        return true;
     }
 
     @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        kz9 kz9Var = new kz9(context, false, false, wjbVar, false);
-        kz9Var.setCellBackgroundVisible(false);
-        return kz9Var;
+    public final boolean b(gb0 gb0Var) {
+        if (gb0Var.b == 4 && !this.a.a(gb0Var)) {
+            String str = gb0Var.c;
+            if (str != null) {
+                this.b.setResult(new xa0(gb0Var.e, str, gb0Var.f));
+                return true;
+            }
+            gxc.d("Null token");
+        }
+        return false;
     }
 }

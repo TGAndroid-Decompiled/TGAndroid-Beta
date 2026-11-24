@@ -1,34 +1,59 @@
 package defpackage;
-
-import android.content.Intent;
-import android.content.IntentSender;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class jp5 implements Parcelable {
-    public static final Parcelable.Creator<jp5> CREATOR = new x21((byte) 23);
-    public final IntentSender a;
-    public final Intent b;
+public final class jp5 implements nx9 {
+    public final long a;
+    public final long b;
     public final int c;
-    public final int d;
+    public final ip5 d;
 
-    public jp5(IntentSender intentSender, Intent intent, int i, int i2) {
-        this.a = intentSender;
-        this.b = intent;
-        this.c = i;
-        this.d = i2;
+    public jp5(long j, long j2, long j3) {
+        this.d = new ip5(j, new long[]{j2}, new long[]{0});
+        this.a = j2;
+        this.b = j3;
+        this.c = jre.a(j3 - j2, j);
     }
 
     @Override
-    public final int describeContents() {
-        return 0;
+    public final long a() {
+        return this.b;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.getClass();
-        parcel.writeParcelable(this.a, i);
-        parcel.writeParcelable(this.b, i);
-        parcel.writeInt(this.c);
-        parcel.writeInt(this.d);
+    public final long b() {
+        return this.a;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.d.c();
+    }
+
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final long e(long j) {
+        ip5 ip5Var = this.d;
+        de deVar = ip5Var.b;
+        if (deVar.b == 0) {
+            return -9223372036854775807L;
+        }
+        return deVar.g0(hac.c(ip5Var.a, j));
+    }
+
+    @Override
+    public final hx9 f(long j) {
+        return this.d.f(j);
+    }
+
+    @Override
+    public final int g() {
+        return this.c;
+    }
+
+    @Override
+    public final long h() {
+        return this.d.c;
     }
 }

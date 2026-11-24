@@ -21,7 +21,7 @@ public class MediaStreamTrack {
                     return mediaType;
                 }
             }
-            w26.j(de9.k(i, "Unknown native media type: "));
+            u36.j(hg9.j(i, "Unknown native media type: "));
             return null;
         }
 
@@ -43,7 +43,7 @@ public class MediaStreamTrack {
         if (j != 0) {
             this.nativeTrack = j;
         } else {
-            w26.j("nativeTrack may not be null");
+            u36.j("nativeTrack may not be null");
             throw null;
         }
     }
@@ -52,7 +52,7 @@ public class MediaStreamTrack {
         if (this.nativeTrack != 0) {
             return;
         }
-        sc8.j("MediaStreamTrack has been disposed.");
+        dq9.m("MediaStreamTrack has been disposed.");
     }
 
     public static MediaStreamTrack createMediaStreamTrack(long j) {

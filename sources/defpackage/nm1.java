@@ -1,23 +1,45 @@
 package defpackage;
-
-import android.view.View;
-public final class nm1 implements View.OnLongClickListener {
+public final class nm1 implements Runnable {
     public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
+    public final yv1 b;
+    public final vs9 c;
+    public final String d;
 
-    public nm1(Object obj, Object obj2, Object obj3, Object obj4, byte b) {
+    public nm1(yv1 yv1Var, vs9 vs9Var, String str, byte b) {
         this.a = b;
-        this.b = obj;
-        this.c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+        this.b = yv1Var;
+        this.c = vs9Var;
+        this.d = str;
     }
 
     @Override
-    public final boolean onLongClick(android.view.View r50) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.nm1.onLongClick(android.view.View):boolean");
+    public final void run() {
+        byte b = this.a;
+        String str = this.d;
+        vs9 vs9Var = this.c;
+        yv1 yv1Var = this.b;
+        switch (b) {
+            case 0:
+                vs9Var.dismiss();
+                gm.g(str);
+                c41.b0(yv1Var).i(jb6.M0(2131746068, null)).j();
+                return;
+            case 1:
+                yv1Var.getClass();
+                vs9Var.dismiss();
+                gm.g(str);
+                c41.b0(yv1Var).i(jb6.M0(2131742884, null)).j();
+                return;
+            case 2:
+                vs9Var.dismiss();
+                gm.g("@".concat(str));
+                c41.b0(yv1Var).i(jb6.M0(2131743352, null)).j();
+                return;
+            default:
+                vs9Var.dismiss();
+                gm.g(str);
+                c41.b0(yv1Var).i(jb6.M0(2131752506, null)).j();
+                return;
+        }
     }
 }

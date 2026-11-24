@@ -1,28 +1,31 @@
 package defpackage;
-public final class l36 implements Runnable {
-    public final byte a;
-    public final s36 b;
 
-    public l36(s36 s36Var, byte b) {
+import android.animation.ValueAnimator;
+public final class l36 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final o36 b;
+    public final n36 c;
+
+    public l36(o36 o36Var, n36 n36Var, byte b) {
         this.a = b;
-        this.b = s36Var;
+        this.b = o36Var;
+        this.c = n36Var;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        s36 s36Var = this.b;
+        n36 n36Var = this.c;
+        o36 o36Var = this.b;
         switch (b) {
             case 0:
-                d01.t(s36Var.getParentActivity(), k96.M0(2131745963, null));
-                return;
-            case 1:
-                s36Var.r.d.requestFocus();
-                gl.F3(s36Var.r.d);
+                n36Var.c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o36Var.invalidate();
                 return;
             default:
-                s36Var.r.d.clearFocus();
-                gl.t1(s36Var.r.d);
+                o36Var.getClass();
+                n36Var.c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o36Var.invalidate();
                 return;
         }
     }

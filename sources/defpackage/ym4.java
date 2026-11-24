@@ -1,24 +1,24 @@
 package defpackage;
+public final class ym4 implements jm4 {
+    public final byte a;
+    public final e79 b;
 
-import android.os.Bundle;
-public final class ym4 {
-    public final bn4 a;
-
-    public ym4(bn4 bn4Var) {
-        this.a = bn4Var;
+    public ym4(e79 e79Var, byte b) {
+        this.a = b;
+        this.b = e79Var;
     }
 
-    public final void a() {
-        Bundle bundle;
-        bn4 bn4Var = this.a;
-        bn4Var.h0.e();
-        mcd.b(bn4Var);
-        Bundle bundle2 = bn4Var.b;
-        if (bundle2 != null) {
-            bundle = bundle2.getBundle("registryState");
-        } else {
-            bundle = null;
+    @Override
+    public final Object c(Object obj, px2 px2Var) {
+        byte b = this.a;
+        e79 e79Var = this.b;
+        switch (b) {
+            case 0:
+                e79Var.a = obj;
+                throw new i1(this);
+            default:
+                e79Var.a = obj;
+                throw new i1(this);
         }
-        bn4Var.h0.f(bundle);
     }
 }

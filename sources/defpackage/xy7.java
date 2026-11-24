@@ -1,65 +1,54 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.p;
-public final class xy7 implements Runnable {
-    public final byte a;
-    public final p b;
-    public final TLRPC.TL_error c;
-    public final TLObject d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class xy7 implements TextWatcher {
+    public boolean a;
+    public final EditTextBoldCursor b;
+    public final String c;
+    public final xz7 d;
 
-    public xy7(p pVar, TLRPC.TL_error tL_error, TLObject tLObject, byte b) {
-        this.a = b;
-        this.b = pVar;
-        this.c = tL_error;
-        this.d = tLObject;
+    public xy7(xz7 xz7Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = xz7Var;
+        this.b = editTextBoldCursor;
+        this.c = str;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.c;
-        p pVar = this.b;
-        switch (b) {
-            case 0:
-                pVar.f0 = false;
-                if (tL_error == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject;
-                    pVar.b0 = password;
-                    if (!TwoStepVerificationActivity.a0(password, false)) {
-                        ij.u0(pVar.getParentActivity(), k96.M0(2131743581, null), true);
-                        return;
-                    }
-                    TLRPC.PaymentForm paymentForm = pVar.D0;
-                    if (paymentForm != null && pVar.b0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        pVar.P0();
-                    }
-                    TwoStepVerificationActivity.e0(pVar.b0);
-                    p pVar2 = pVar.g0;
-                    if (pVar2 != null) {
-                        pVar2.H0(pVar.b0);
-                    }
-                    if (!pVar.b0.has_password && pVar.e0 == null) {
-                        vy7 vy7Var = new vy7(pVar, (byte) 2);
-                        pVar.e0 = vy7Var;
-                        gl.e3(vy7Var, 5000L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                pVar.v0(tLObject, tL_error);
-                return;
-            default:
-                pVar.y0(tLObject, tL_error);
-                return;
+    public final void afterTextChanged(Editable editable) {
+        if (this.a) {
+            return;
         }
+        boolean z = true;
+        this.a = true;
+        int i = 0;
+        while (true) {
+            if (i < editable.length()) {
+                char charAt = editable.charAt(i);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
+                }
+                i++;
+            } else {
+                z = false;
+                break;
+            }
+        }
+        this.a = false;
+        EditTextBoldCursor editTextBoldCursor = this.b;
+        if (z) {
+            editTextBoldCursor.setErrorText(jb6.M0(2131747182, null));
+        } else {
+            this.d.P0(editTextBoldCursor, this.c, editable, false);
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

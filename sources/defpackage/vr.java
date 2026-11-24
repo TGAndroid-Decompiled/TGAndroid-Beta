@@ -1,17 +1,23 @@
 package defpackage;
 
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-import org.telegram.messenger.a;
-public final class vr extends ConnectivityManager.NetworkCallback {
-    @Override
-    public final void onAvailable(Network network) {
-        a.r = -1;
-    }
-
-    @Override
-    public final void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
-        a.r = -1;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.util.Log;
+import android.widget.TextView;
+public abstract class vr {
+    public static StaticLayout a(CharSequence charSequence, Layout.Alignment alignment, int i, int i2, TextView textView, TextPaint textPaint, yr yrVar) {
+        StaticLayout.Builder obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i);
+        StaticLayout.Builder hyphenationFrequency = obtain.setAlignment(alignment).setLineSpacing(textView.getLineSpacingExtra(), textView.getLineSpacingMultiplier()).setIncludePad(textView.getIncludeFontPadding()).setBreakStrategy(textView.getBreakStrategy()).setHyphenationFrequency(textView.getHyphenationFrequency());
+        if (i2 == -1) {
+            i2 = Integer.MAX_VALUE;
+        }
+        hyphenationFrequency.setMaxLines(i2);
+        try {
+            yrVar.a(obtain, textView);
+        } catch (ClassCastException unused) {
+            Log.w("ACTVAutoSizeHelper", "Failed to obtain TextDirectionHeuristic, auto size may be incorrect");
+        }
+        return obtain.build();
     }
 }

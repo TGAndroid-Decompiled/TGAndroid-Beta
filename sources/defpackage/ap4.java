@@ -1,12 +1,24 @@
 package defpackage;
-public final class ap4 {
-    public final long a;
-    public final boolean b;
-    public final int c;
 
-    public ap4(int i, long j, boolean z) {
-        this.a = j;
-        this.b = z;
-        this.c = i;
+import android.os.Bundle;
+public final class ap4 {
+    public final dp4 a;
+
+    public ap4(dp4 dp4Var) {
+        this.a = dp4Var;
+    }
+
+    public final void a() {
+        Bundle bundle;
+        dp4 dp4Var = this.a;
+        dp4Var.h0.e();
+        oed.b(dp4Var);
+        Bundle bundle2 = dp4Var.b;
+        if (bundle2 != null) {
+            bundle = bundle2.getBundle("registryState");
+        } else {
+            bundle = null;
+        }
+        dp4Var.h0.f(bundle);
     }
 }

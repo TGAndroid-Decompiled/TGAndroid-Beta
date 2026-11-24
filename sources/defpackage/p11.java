@@ -1,6 +1,47 @@
 package defpackage;
-public interface p11 {
-    void f(q11 q11Var, b11 b11Var, nv0 nv0Var, i42 i42Var);
+public final class p11 extends u11 {
+    @Override
+    public final float a() {
+        return 0.3f;
+    }
 
-    void g(q11 q11Var, b11 b11Var, z01 z01Var, gw gwVar);
+    @Override
+    public final int b() {
+        return -10742;
+    }
+
+    @Override
+    public final float c() {
+        return 0.5f;
+    }
+
+    @Override
+    public final int d() {
+        return 2131624129;
+    }
+
+    @Override
+    public final float e() {
+        return 0.45f;
+    }
+
+    @Override
+    public final float f() {
+        return 0.4f;
+    }
+
+    @Override
+    public final float g() {
+        return 1.5f;
+    }
+
+    @Override
+    public final float j() {
+        return 0.04f;
+    }
+
+    @Override
+    public final int k() {
+        return 2131232526;
+    }
 }

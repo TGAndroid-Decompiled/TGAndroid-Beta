@@ -1,57 +1,222 @@
 package defpackage;
 
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
-import android.widget.TableLayout;
-import android.widget.TextView;
-public final class keb extends TableLayout {
-    public final wjb a;
-    public final meb b;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+public final class keb extends DefaultHandler {
+    public final HashMap E;
+    public boolean F;
+    public boolean G;
+    public StringBuilder H;
+    public boolean I;
+    public int J;
+    public ArrayList K;
+    public Canvas a;
+    public Bitmap b;
+    public final meb c;
+    public final int d;
+    public final int e;
+    public float f;
+    public final Paint h;
+    public final RectF n;
+    public final RectF r;
+    public final Integer s;
+    public final float w;
+    public final int x;
+    public boolean y;
 
-    public keb(meb mebVar, Context context, wjb wjbVar) {
-        super(context);
-        this.b = mebVar;
-        this.a = wjbVar;
+    public keb(int i, int i2, Integer num, boolean z, float f, int i3) {
+        this.f = 1.0f;
+        this.h = new Paint(1);
+        this.n = new RectF();
+        this.r = new RectF();
+        this.w = 1.0f;
+        this.y = false;
+        this.E = new HashMap();
+        this.I = false;
+        this.J = 0;
+        this.w = f;
+        this.d = i;
+        this.e = i2;
+        this.s = num;
+        this.x = i3;
+        if (z) {
+            this.c = new meb();
+        }
+    }
+
+    public final void a(defpackage.xab r2, java.lang.Integer r3, boolean r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.keb.a(xab, java.lang.Integer, boolean):void");
+    }
+
+    public final boolean b(xab xabVar) {
+        if (!"none".equals(xabVar.j("display"))) {
+            String j = xabVar.j("fill");
+            if (j != null && j.startsWith("url(#")) {
+                j.substring(5, j.length() - 1);
+                return false;
+            }
+            Integer k = xabVar.k("fill");
+            Paint paint = this.h;
+            if (k != null) {
+                a(xabVar, k, true);
+                paint.setStyle(Paint.Style.FILL);
+                return true;
+            } else if (xabVar.j("fill") == null && xabVar.j("stroke") == null) {
+                paint.setStyle(Paint.Style.FILL);
+                Integer num = this.s;
+                if (num != null) {
+                    paint.setColor(num.intValue());
+                    return true;
+                }
+                paint.setColor(-16777216);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final boolean c(defpackage.xab r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.keb.c(xab):boolean");
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        int left;
-        meb mebVar = this.b;
-        RectF rectF = mebVar.w;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        Path path = mebVar.s;
-        path.rewind();
-        path.addRoundRect(rectF, gl.L(6.0f), gl.L(6.0f), Path.Direction.CW);
-        super.dispatchDraw(canvas);
-        Paint paint = mebVar.r;
-        paint.setColor(bm2.f(0.1f, bkb.v0(bkb.c7, this.a), -1));
-        paint.setStrokeWidth(gl.L(1.0f));
-        float height = getHeight();
-        if (mebVar.E.getVisibility() == 0) {
-            f = 5.0f;
+    public final void characters(char[] cArr, int i, int i2) {
+        StringBuilder sb = this.H;
+        if (sb != null) {
+            sb.append(cArr, i, i2);
+        }
+    }
+
+    public final Bitmap d() {
+        return this.b;
+    }
+
+    public final List e() {
+        return this.K;
+    }
+
+    @Override
+    public final void endElement(String str, String str2, String str3) {
+        int indexOf;
+        if (this.I) {
+            int i = this.J - 1;
+            this.J = i;
+            if (i == 0) {
+                this.I = false;
+                return;
+            }
+            return;
+        }
+        str2.getClass();
+        char c = 65535;
+        switch (str2.hashCode()) {
+            case 103:
+                if (str2.equals("g")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case 3079438:
+                if (str2.equals("defs")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case 109780401:
+                if (str2.equals("style")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case 917656469:
+                if (str2.equals("clipPath")) {
+                    c = 3;
+                    break;
+                }
+                break;
+        }
+        switch (c) {
+            case 0:
+            case 1:
+            case 3:
+                this.G = false;
+                return;
+            case 2:
+                StringBuilder sb = this.H;
+                if (sb != null) {
+                    String[] split = sb.toString().split("\\}");
+                    for (int i2 = 0; i2 < split.length; i2++) {
+                        String replace = split[i2].trim().replace("\t", "").replace("\n", "");
+                        split[i2] = replace;
+                        if (replace.length() != 0 && split[i2].charAt(0) == '.' && (indexOf = split[i2].indexOf(123)) >= 0) {
+                            this.E.put(split[i2].substring(1, indexOf).trim(), new leb(split[i2].substring(indexOf + 1)));
+                        }
+                    }
+                    this.H = null;
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    public final void f() {
+        if (this.y) {
+            meb mebVar = this.c;
+            if (mebVar != null) {
+                int[] iArr = meb.u;
+                mebVar.a.add(null);
+                return;
+            }
+            this.a.restore();
+        }
+    }
+
+    public final void g(Attributes attributes) {
+        boolean z;
+        String k = neb.k("transform", attributes);
+        if (k != null) {
+            z = true;
         } else {
-            f = 4.0f;
+            z = false;
         }
-        float f2 = height / f;
-        for (int i = 1; i <= 4; i++) {
-            float f3 = f2 * i;
-            canvas.drawLine(0.0f, f3, getWidth(), f3, paint);
-        }
-        boolean z = k96.a0;
-        TextView textView = mebVar.e;
+        this.y = z;
         if (z) {
-            left = textView.getRight();
-        } else {
-            left = textView.getLeft();
+            Matrix n = neb.n(k);
+            meb mebVar = this.c;
+            if (mebVar != null) {
+                int[] iArr = meb.u;
+                mebVar.a.add(n);
+                return;
+            }
+            this.a.save();
+            this.a.concat(n);
         }
-        float f4 = left;
-        canvas.drawLine(f4, 0.0f, f4, getHeight(), paint);
-        paint.setStrokeWidth(gl.L(2.0f));
-        canvas.drawPath(path, paint);
+    }
+
+    @Override
+    public final void startElement(java.lang.String r27, java.lang.String r28, java.lang.String r29, org.xml.sax.Attributes r30) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.keb.startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes):void");
+    }
+
+    @Override
+    public final void endDocument() {
+    }
+
+    @Override
+    public final void startDocument() {
+    }
+
+    public keb(int i, int i2, Integer num, boolean z) {
+        this(i, i2, num, z, 1.0f, 1);
     }
 }

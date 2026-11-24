@@ -1,35 +1,20 @@
 package defpackage;
 
-import java.util.concurrent.Delayed;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-public final class kd3 extends a4 implements ScheduledFuture {
-    public final ScheduledFuture n;
+import java.util.concurrent.Executor;
+import java.util.logging.Logger;
+public final class kd3 {
+    public static final Logger f = Logger.getLogger(i3c.class.getName());
+    public final in3 a;
+    public final Executor b;
+    public final of7 c;
+    public final mq9 d;
+    public final mq9 e;
 
-    public kd3(jd3 jd3Var) {
-        this.n = jd3Var.a(new l69(this, (byte) 28));
-    }
-
-    @Override
-    public final int compareTo(Delayed delayed) {
-        return this.n.compareTo(delayed);
-    }
-
-    @Override
-    public final void d() {
-        boolean z;
-        ScheduledFuture scheduledFuture = this.n;
-        Object obj = this.a;
-        if ((obj instanceof t3) && ((t3) obj).a) {
-            z = true;
-        } else {
-            z = false;
-        }
-        scheduledFuture.cancel(z);
-    }
-
-    @Override
-    public final long getDelay(TimeUnit timeUnit) {
-        return this.n.getDelay(timeUnit);
+    public kd3(Executor executor, of7 of7Var, in3 in3Var, mq9 mq9Var, mq9 mq9Var2) {
+        this.b = executor;
+        this.c = of7Var;
+        this.a = in3Var;
+        this.d = mq9Var;
+        this.e = mq9Var2;
     }
 }

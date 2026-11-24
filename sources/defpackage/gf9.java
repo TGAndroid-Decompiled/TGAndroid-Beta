@@ -1,24 +1,52 @@
 package defpackage;
-public final class gf9 implements ed {
-    public final byte a;
-    public final ve9 b;
 
-    public gf9(ve9 ve9Var, byte b) {
-        this.a = b;
-        this.b = ve9Var;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class gf9 extends Drawable {
+    public boolean c;
+    public final Paint a = new Paint(1);
+    public final ln b = new ln(new pp8(this, (byte) 29), 420, d53.h, 0);
+    public int d = 255;
+
+    public gf9(int i) {
+        a(i);
+    }
+
+    public final void a(int i) {
+        this.a.setColor(i);
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        ve9 ve9Var = this.b;
-        switch (b) {
-            case 0:
-                ve9Var.b();
-                return;
-            default:
-                ve9Var.b();
-                return;
+    public final void draw(Canvas canvas) {
+        float d = this.b.d(this.c);
+        if (d <= 0.0f) {
+            return;
         }
+        Paint paint = this.a;
+        paint.setAlpha((int) (this.d * d));
+        paint.setShadowLayer(gm.L(12.0f) * d, 0.0f, gm.L(3.0f), cmb.p1(d, 805306368));
+        Rect bounds = getBounds();
+        float L = gm.L(8.0f) * d;
+        float L2 = gm.L(0.0f) * d;
+        float L3 = gm.L(12.0f) * d;
+        canvas.drawRoundRect(bounds.left + L, bounds.top + L2, bounds.right - L, (gm.L(6.0f) * d) + (bounds.bottom - L2), L3, L3, paint);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.d = i;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
     }
 }

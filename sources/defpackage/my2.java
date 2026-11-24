@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class my2 {
+public interface my2 {
+    my2 getCallerFrame();
 }

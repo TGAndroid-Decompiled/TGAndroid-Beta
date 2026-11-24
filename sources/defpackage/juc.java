@@ -1,44 +1,15 @@
 package defpackage;
 
-import android.content.pm.PackageInfo;
-import android.net.Uri;
-import android.webkit.WebView;
-import java.util.Set;
-import java.util.WeakHashMap;
+import java.util.TimeZone;
 public abstract class juc {
-    public static final boolean a;
-    public static final WeakHashMap b;
+    public static String a;
+    public static iuc b;
 
-    static {
-        Uri.parse("*");
-        Uri.parse("");
-        a = true;
-        b = new WeakHashMap();
-    }
-
-    public static void a(WebView webView, String str, Set set, iuc iucVar) {
-        if (muc.c.b()) {
-            c(webView).a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new gy0(new u39(iucVar, (byte) 23)));
-            return;
+    public static boolean a() {
+        String id = TimeZone.getDefault().getID();
+        if (!id.startsWith("US/") && !"America/Nassau".equals(id) && !"America/Belize".equals(id) && !"America/Cayman".equals(id) && !"Pacific/Palau".equals(id)) {
+            return true;
         }
-        fyb.i("This method is not supported by the current version of the framework and the current WebView APK");
-    }
-
-    public static PackageInfo b() {
-        return (PackageInfo) Class.forName("android.webkit.WebViewFactory").getMethod("getLoadedPackageInfo", null).invoke(null, null);
-    }
-
-    public static ouc c(WebView webView) {
-        if (muc.e.b() && a) {
-            WeakHashMap weakHashMap = b;
-            ouc oucVar = (ouc) weakHashMap.get(webView);
-            if (oucVar == null) {
-                ouc oucVar2 = new ouc(nuc.a.createWebView(webView));
-                weakHashMap.put(webView, oucVar2);
-                return oucVar2;
-            }
-            return oucVar;
-        }
-        return new ouc(nuc.a.createWebView(webView));
+        return false;
     }
 }

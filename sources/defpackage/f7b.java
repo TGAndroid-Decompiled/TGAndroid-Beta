@@ -1,11 +1,15 @@
 package defpackage;
 
-import android.content.Context;
-public final class f7b extends y23 {
-    public final t7b G;
+import androidx.recyclerview.widget.RecyclerView;
+public final class f7b extends k69 {
+    public final h7b a;
 
-    public f7b(t7b t7bVar, Context context, i7b i7bVar) {
-        super(context, i7bVar);
-        this.G = t7bVar;
+    public f7b(h7b h7bVar) {
+        this.a = h7bVar;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        this.a.b.invalidate();
     }
 }

@@ -1,16 +1,11 @@
 package defpackage;
 
-import java.util.concurrent.Executor;
-public final class hk5 extends fe7 implements gk5 {
-    public final f84 f;
+import android.os.IInterface;
+import android.support.v4.media.session.PlaybackStateCompat;
+public interface hk5 extends IInterface {
+    void N(PlaybackStateCompat playbackStateCompat);
 
-    public hk5(mg6 mg6Var, Executor executor, f84 f84Var) {
-        super(mg6Var, executor);
-        this.f = f84Var;
-    }
+    void g(int i);
 
-    @Override
-    public final f84[] a() {
-        return new f84[]{this.f};
-    }
+    void i(int i);
 }

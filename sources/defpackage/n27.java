@@ -1,6 +1,8 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class n27 extends TLRPC.TL_messageMediaPoll {
-    public int a;
+import android.widget.PopupWindow;
+public abstract class n27 {
+    public static void a(PopupWindow popupWindow, boolean z) {
+        popupWindow.setTouchModal(z);
+    }
 }

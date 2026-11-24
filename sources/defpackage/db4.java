@@ -1,46 +1,30 @@
 package defpackage;
+public final class db4 implements Runnable {
+    public final byte a;
+    public final lb4 b;
+    public final kb4 c;
 
-import java.io.File;
-public final class db4 extends vw5 implements op4 {
-    public final byte b;
-    public final Object c;
-
-    public db4(Object obj, byte b) {
-        super(0);
-        this.b = b;
-        this.c = obj;
+    public db4(lb4 lb4Var, kb4 kb4Var, byte b) {
+        this.a = b;
+        this.b = lb4Var;
+        this.c = kb4Var;
     }
 
     @Override
-    public final Object invoke() {
-        switch (this.b) {
+    public final void run() {
+        byte b = this.a;
+        kb4 kb4Var = this.c;
+        lb4 lb4Var = this.b;
+        switch (b) {
             case 0:
-                Object obj = eb4.e;
-                File file = (File) this.c;
-                synchronized (obj) {
-                    eb4.d.remove(file.getAbsolutePath());
-                }
-                return g5c.a;
-            case 1:
-                ((jc5) this.c).dispose();
-                return g5c.a;
-            case 2:
-                File file2 = (File) ((kg8) this.c).invoke();
-                String name = file2.getName();
-                name.getClass();
-                String str = "";
-                int lastIndexOf = name.lastIndexOf(46, name.length() - 1);
-                if (lastIndexOf != -1) {
-                    str = name.substring(lastIndexOf + 1, name.length());
-                }
-                if (str.equals("preferences_pb")) {
-                    File absoluteFile = file2.getAbsoluteFile();
-                    absoluteFile.getClass();
-                    return absoluteFile;
-                }
-                throw new IllegalStateException(("File extension for file: " + file2 + " does not match required extension for Preferences file: preferences_pb").toString());
+                kb4Var.l = null;
+                lb4Var.H0.remove(kb4Var);
+                kb4Var.k = true;
+                return;
             default:
-                return mcd.c((tdc) this.c);
+                lb4Var.k(kb4Var, null);
+                kb4Var.f.freeResources();
+                return;
         }
     }
 }

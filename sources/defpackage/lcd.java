@@ -1,5 +1,34 @@
 package defpackage;
 public abstract class lcd {
-    public static final float[][] a = {new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 33.0f, 3.8f, 1.0f, -1.0f, 1.0f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 27.0f, 0.79f, 23.0f, 0.86f, 33.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 2.0f, 3.0f}, new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 18.0f, 3.8f, 1.0f, -1.0f, 1.2f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 13.0f, 0.79f, 11.0f, 0.86f, 16.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 1.0f, 1.5f}};
-    public static final float[] b = {20.0f, 10.0f, 17.5f, 6.0f, 85.0f, 55.0f, 26.0f, 50.0f, 40.0f, 5.0f, 7.0f, 9.0f, 33.0f, 46.0f, 24.0f, 0.0f, 30.0f, 45.0f, 67.0f, 15.0f, 70.0f, 139.0f, 100.0f, 61.0f, 193.0f, 4.0f, 2.0f, 100.0f, 55.0f, 0.3f, 100.0f, 30.0f, 1.5f, 2.5f, 0.0f, 1.0f, 1.3f, 200.0f, 0.7f, 207.0f, 0.0f, 0.0f, 3.5f, 0.0f, 1.5f, 2.5f, 34.0f, 27.0f, 360.0f, 780.0f, 1.1f, 920.0f, 1.0f, 10.0f};
+    public static final Class a;
+    public static final boolean b;
+
+    static {
+        Class<?> cls;
+        boolean z;
+        Class<?> cls2 = null;
+        try {
+            cls = Class.forName("libcore.io.Memory");
+        } catch (Throwable unused) {
+            cls = null;
+        }
+        a = cls;
+        try {
+            cls2 = Class.forName("org.robolectric.Robolectric");
+        } catch (Throwable unused2) {
+        }
+        if (cls2 != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        b = z;
+    }
+
+    public static boolean a() {
+        if (a != null && !b) {
+            return true;
+        }
+        return false;
+    }
 }

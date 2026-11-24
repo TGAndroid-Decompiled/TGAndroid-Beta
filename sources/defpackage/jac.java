@@ -1,4 +1,4 @@
 package defpackage;
 public interface jac {
-    void a(td4 td4Var);
+    void a(Object obj, Object obj2);
 }

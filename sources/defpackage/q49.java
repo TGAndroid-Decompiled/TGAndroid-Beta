@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class q49 {
+
+import android.graphics.drawable.Drawable;
+public abstract class q49 extends Drawable {
 }

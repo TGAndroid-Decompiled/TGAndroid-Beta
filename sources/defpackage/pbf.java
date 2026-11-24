@@ -1,19 +1,20 @@
 package defpackage;
 
-import java.util.concurrent.Executor;
-public final class pbf {
-    public static final pbf d = new pbf();
-    public final Runnable a;
-    public final Executor b;
-    public pbf c;
+import java.util.HashMap;
+public abstract class pbf {
+    public static final String[] a = {"text1", "text2", "icon", "intent_action", "intent_data", "intent_data_id", "intent_extra_data", "suggest_large_icon", "intent_activity", "thing_proto"};
+    public static final HashMap b = new HashMap(10);
 
-    public pbf() {
-        this.a = null;
-        this.b = null;
-    }
-
-    public pbf(Runnable runnable, Executor executor) {
-        this.a = runnable;
-        this.b = executor;
+    static {
+        int i = 0;
+        while (true) {
+            String[] strArr = a;
+            if (i < 10) {
+                b.put(strArr[i], Integer.valueOf(i));
+                i++;
+            } else {
+                return;
+            }
+        }
     }
 }

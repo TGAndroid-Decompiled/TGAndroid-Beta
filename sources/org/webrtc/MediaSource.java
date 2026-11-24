@@ -15,7 +15,7 @@ public class MediaSource {
     }
 
     public MediaSource(long j) {
-        this.refCountDelegate = new RefCountDelegate(new px6((byte) 0, j));
+        this.refCountDelegate = new RefCountDelegate(new pz6((byte) 0, j));
         this.nativeSource = j;
     }
 
@@ -23,7 +23,7 @@ public class MediaSource {
         if (this.nativeSource != 0) {
             return;
         }
-        sc8.j("MediaSource has been disposed.");
+        dq9.m("MediaSource has been disposed.");
     }
 
     private static native State nativeGetState(long j);

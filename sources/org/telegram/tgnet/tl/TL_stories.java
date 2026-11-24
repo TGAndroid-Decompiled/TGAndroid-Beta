@@ -225,7 +225,7 @@ public class TL_stories {
         public TLRPC.Document music;
         public boolean noforwards;
         public boolean out;
-        public w5b parsedPrivacy;
+        public y7b parsedPrivacy;
         public boolean pinned;
         public boolean selected_contacts;
         public TLRPC.Reaction sent_reaction;
@@ -386,7 +386,7 @@ public class TL_stories {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.hash = inputSerializedData.readInt64(z);
-            this.albums = Vector.deserialize(inputSerializedData, new rdb((byte) 29), z);
+            this.albums = Vector.deserialize(inputSerializedData, new tfb((byte) 5), z);
         }
 
         @Override
@@ -562,12 +562,12 @@ public class TL_stories {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
-            this.stories = Vector.deserialize(inputSerializedData, new sdb((byte) 0), z);
+            this.stories = Vector.deserialize(inputSerializedData, new tfb((byte) 6), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -672,19 +672,19 @@ public class TL_stories {
             if (this.state == null) {
                 str = "";
             } else {
-                str = b00.j(new StringBuilder("state="), this.state, ", ");
+                str = b10.j(new StringBuilder("state="), this.state, ", ");
             }
             sb.append(str);
             if (this.city == null) {
                 str2 = "";
             } else {
-                str2 = b00.j(new StringBuilder("city="), this.city, ", ");
+                str2 = b10.j(new StringBuilder("city="), this.city, ", ");
             }
             sb.append(str2);
             if (this.street != null) {
                 str3 = "street=" + this.street;
             }
-            return b00.j(sb, str3, "}");
+            return b10.j(sb, str3, "}");
         }
     }
 
@@ -1114,7 +1114,7 @@ public class TL_stories {
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.max_read_id = inputSerializedData.readInt32(z);
             }
-            this.stories = Vector.deserialize(inputSerializedData, new sdb((byte) 1), z);
+            this.stories = Vector.deserialize(inputSerializedData, new tfb((byte) 7), z);
         }
 
         @Override
@@ -1142,7 +1142,7 @@ public class TL_stories {
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.max_read_id = inputSerializedData.readInt32(z);
             }
-            this.stories = Vector.deserialize(inputSerializedData, new sdb((byte) 1), z);
+            this.stories = Vector.deserialize(inputSerializedData, new tfb((byte) 7), z);
         }
 
         @Override
@@ -1201,11 +1201,11 @@ public class TL_stories {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
-            this.boosts = Vector.deserialize(inputSerializedData, new sdb((byte) 2), z);
+            this.boosts = Vector.deserialize(inputSerializedData, new tfb((byte) 8), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -1264,7 +1264,7 @@ public class TL_stories {
             }
             this.boost_url = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.prepaid_giveaways = Vector.deserialize(inputSerializedData, new sdb((byte) 3), z);
+                this.prepaid_giveaways = Vector.deserialize(inputSerializedData, new tfb((byte) 9), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.my_boost_slots = Vector.deserializeInt(inputSerializedData, z);
@@ -1372,9 +1372,9 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.my_boosts = Vector.deserialize(inputSerializedData, new sdb((byte) 4), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.my_boosts = Vector.deserialize(inputSerializedData, new tfb((byte) 10), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -1591,9 +1591,9 @@ public class TL_stories {
             this.has_more = TLObject.hasFlag(readInt32, 1);
             this.count = inputSerializedData.readInt32(z);
             this.state = inputSerializedData.readString(z);
-            this.peer_stories = Vector.deserialize(inputSerializedData, new sdb((byte) 5), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.peer_stories = Vector.deserialize(inputSerializedData, new tfb((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
             this.stealth_mode = TL_storiesStealthMode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
@@ -1790,7 +1790,7 @@ public class TL_stories {
 
         @Override
         public Vector<TLRPC.TL_recentStory> deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserialize(inputSerializedData, i, z, new sdb((byte) 6));
+            return Vector.TLDeserialize(inputSerializedData, i, z, new tfb((byte) 12));
         }
 
         @Override
@@ -1966,8 +1966,8 @@ public class TL_stories {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.stories = PeerStories.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -2150,12 +2150,12 @@ public class TL_stories {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
-            this.stories = Vector.deserialize(inputSerializedData, new sdb((byte) 1), z);
+            this.stories = Vector.deserialize(inputSerializedData, new tfb((byte) 7), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.pinned_to_top = Vector.deserializeInt(inputSerializedData, z);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -2189,8 +2189,8 @@ public class TL_stories {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.views = Vector.deserialize(inputSerializedData, new sdb((byte) 7), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.views = Vector.deserialize(inputSerializedData, new tfb((byte) 13), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -2342,14 +2342,14 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new sdb((byte) 8), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new tfb((byte) 14), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new qdb((byte) 11), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new rfb((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2498,11 +2498,11 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new qdb((byte) 11), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new rfb((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2571,14 +2571,14 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new sdb((byte) 8), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new tfb((byte) 14), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new qdb((byte) 11), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new rfb((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2661,14 +2661,14 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new sdb((byte) 8), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new tfb((byte) 14), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new qdb((byte) 11), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new rfb((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2757,14 +2757,14 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new sdb((byte) 8), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new tfb((byte) 14), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new qdb((byte) 11), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new rfb((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2856,14 +2856,14 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new sdb((byte) 8), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new tfb((byte) 14), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new qdb((byte) 11), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new rfb((byte) 12), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2985,7 +2985,7 @@ public class TL_stories {
             StoryItem TLdeserialize = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.story = TLdeserialize;
             if (TLdeserialize != null) {
-                TLdeserialize.dialogId = cf3.n(this.peer_id);
+                TLdeserialize.dialogId = pg3.n(this.peer_id);
             }
         }
 
@@ -3020,9 +3020,9 @@ public class TL_stories {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
-            this.reactions = Vector.deserialize(inputSerializedData, new sdb((byte) 9), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.reactions = Vector.deserialize(inputSerializedData, new tfb((byte) 15), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
@@ -3137,7 +3137,7 @@ public class TL_stories {
                 this.forwards_count = inputSerializedData.readInt32(z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.reactions = Vector.deserialize(inputSerializedData, new kdb((byte) 29), z);
+                this.reactions = Vector.deserialize(inputSerializedData, new ofb((byte) 0), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.reactions_count = inputSerializedData.readInt32(z);
@@ -3186,9 +3186,9 @@ public class TL_stories {
             this.views_count = inputSerializedData.readInt32(z);
             this.forwards_count = inputSerializedData.readInt32(z);
             this.reactions_count = inputSerializedData.readInt32(z);
-            this.views = Vector.deserialize(inputSerializedData, new sdb((byte) 10), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.views = Vector.deserialize(inputSerializedData, new tfb((byte) 16), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
@@ -3219,8 +3219,8 @@ public class TL_stories {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
             this.reactions_count = inputSerializedData.readInt32(z);
-            this.views = Vector.deserialize(inputSerializedData, new sdb((byte) 10), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.views = Vector.deserialize(inputSerializedData, new tfb((byte) 16), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
@@ -3592,7 +3592,7 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(433646405);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serialize(outputSerializedData, new g9c(outputSerializedData, (byte) 1), this.id);
+            Vector.serialize(outputSerializedData, new hbc(outputSerializedData, (byte) 1), this.id);
             outputSerializedData.writeByteArray(this.option);
             outputSerializedData.writeString(this.message);
         }

@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class c8f {
+
+import android.os.IInterface;
+public interface c8f extends IInterface {
 }

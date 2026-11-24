@@ -1,8 +1,11 @@
 package defpackage;
 
-import android.content.Context;
-public interface bs3 {
-    int a(Context context, String str, boolean z);
+import java.io.IOException;
+public final class bs3 extends IOException {
+    public final int a;
 
-    int b(Context context, String str);
+    public bs3(int i, Throwable th) {
+        super(th);
+        this.a = i;
+    }
 }

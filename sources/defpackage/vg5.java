@@ -1,32 +1,31 @@
 package defpackage;
 
-import android.view.View;
+import android.net.Uri;
 import java.util.ArrayList;
-import org.telegram.messenger.video.VideoPlayerHolderBase;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public abstract class vg5 {
-    public String G;
-    public int H;
-    public m8 I;
-    public fx0 J;
-    public m46 b;
-    public bw d;
-    public int e;
-    public View f;
-    public boolean h;
-    public TLRPC.Chat n;
-    public boolean r;
-    public View s;
-    public r86 w;
-    public VideoPlayerHolderBase x;
-    public xv y;
-    public int a = 0;
-    public final i46 c = new i46();
-    public final vf6 E = new vf6();
-    public ArrayList F = new ArrayList();
+import java.util.HashMap;
+public final class vg5 {
+    public final String a;
+    public Uri c;
+    public Uri d;
+    public boolean j;
+    public Boolean o;
+    public String p;
+    public String q;
+    public String t;
+    public final HashMap b = new HashMap();
+    public long e = -9223372036854775807L;
+    public long f = -9223372036854775807L;
+    public long g = -9223372036854775807L;
+    public long h = -9223372036854775807L;
+    public ArrayList i = new ArrayList();
+    public long k = -9223372036854775807L;
+    public long l = -9223372036854775807L;
+    public ArrayList m = new ArrayList();
+    public ArrayList n = new ArrayList();
+    public long r = -9223372036854775807L;
+    public long s = -9223372036854775807L;
 
-    public abstract void a(dx dxVar, thb thbVar);
-
-    public abstract boolean b(dx dxVar, TL_iv.PageBlock pageBlock);
+    public vg5(String str) {
+        this.a = str;
+    }
 }

@@ -1,79 +1,56 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.ui.Wallet.c;
-public final class poc implements i8c {
-    public final byte a;
-    public final toc b;
-    public final c01 c;
-    public final c d;
+import android.content.Context;
+import android.graphics.Canvas;
+import j$.util.Objects;
+public final class poc extends io {
+    public final byte s;
+    public final soc w;
 
-    public poc(toc tocVar, c01 c01Var, c cVar, byte b) {
-        this.a = b;
-        this.b = tocVar;
-        this.c = c01Var;
-        this.d = cVar;
+    public poc(soc socVar, Context context, byte b) {
+        super(context, false, true, true, true, true);
+        this.s = b;
+        this.w = socVar;
+    }
+
+    public final void e(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    public final void f(Canvas canvas) {
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        byte b = this.a;
-        String str = "NULL_ERROR";
-        c cVar = this.d;
-        c01 c01Var = this.c;
-        toc tocVar = this.b;
+    public final void onDraw(Canvas canvas) {
+        float f;
+        byte b = this.s;
+        soc socVar = this.w;
         switch (b) {
             case 0:
-                y05 y05Var = (y05) obj;
-                String str2 = (String) obj2;
-                c01Var.c(false);
-                if (y05Var == null) {
-                    u21 b0 = u21.b0(tocVar);
-                    if (str2 != null) {
-                        str = str2;
-                    }
-                    b0.f0(str, false);
-                    return;
+                float c = getDrawable().c();
+                float a = socVar.a();
+                if (c > 0.0f) {
+                    f = Math.min(1.0f, socVar.V / c);
+                } else {
+                    f = 1.0f;
                 }
-                bpc bpcVar = new bpc();
-                bpcVar.h = true;
-                ArrayList arrayList = bpcVar.a;
-                arrayList.clear();
-                if (!y05Var.d()) {
-                    arrayList.addAll(y05Var.f());
-                }
-                bpcVar.Z();
-                bpcVar.f = new mhc(tocVar, cVar, (byte) 23);
-                tocVar.presentFragment(bpcVar);
+                float f2 = ((f - a) * socVar.U) + a;
+                socVar.b = f2;
+                int save = canvas.save();
+                canvas.scale(f2, f2, 0.0f, getHeight() / 2.0f);
+                float e = (1.0f - socVar.U) * socVar.g0.e(false, socVar.e0);
+                ho drawable = getDrawable();
+                Objects.requireNonNull(drawable);
+                socVar.c(e, new lcc(drawable, (byte) 6), new qhc(this, canvas, (byte) 17));
+                canvas.restoreToCount(save);
                 return;
             default:
-                v05 v05Var = (v05) obj;
-                String str3 = (String) obj2;
-                c01Var.c(false);
-                if (v05Var == null) {
-                    u21 b02 = u21.b0(tocVar);
-                    if (str3 != null) {
-                        str = str3;
-                    }
-                    b02.f0(str, false);
-                    return;
-                } else if (tocVar.f) {
-                    v05Var.close();
-                    return;
-                } else {
-                    tocVar.e.add(v05Var);
-                    bpc bpcVar2 = new bpc();
-                    y05 y05Var2 = v05Var.b;
-                    ArrayList arrayList2 = bpcVar2.a;
-                    arrayList2.clear();
-                    if (!y05Var2.d()) {
-                        arrayList2.addAll(y05Var2.f());
-                    }
-                    bpcVar2.Z();
-                    bpcVar2.f = new wbc(tocVar, cVar, v05Var, (byte) 18);
-                    tocVar.presentFragment(bpcVar2);
-                    return;
-                }
+                float e2 = (1.0f - socVar.U) * socVar.g0.e(false, socVar.e0);
+                ho drawable2 = getDrawable();
+                Objects.requireNonNull(drawable2);
+                socVar.c(e2, new lcc(drawable2, (byte) 6), new qhc(this, canvas, (byte) 18));
+                return;
         }
     }
 }

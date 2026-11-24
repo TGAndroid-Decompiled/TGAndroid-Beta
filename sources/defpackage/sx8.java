@@ -1,129 +1,98 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Paint;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import org.telegram.messenger.ImageReceiver;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class sx8 implements ValueAnimator.AnimatorUpdateListener {
-    public final vx8 a;
-    public final gb2 b;
-    public final ImageReceiver c;
-    public final long d;
-    public zk0 e;
-    public zk0 f;
-    public Paint g;
-    public final StaticLayout h;
-    public float i;
-    public float j;
-    public ValueAnimator k;
-    public float l;
-    public boolean m;
-    public ValueAnimator n;
-    public float o;
-    public boolean p;
+public final class sx8 extends HorizontalScrollView {
+    public xr8 a;
+    public ay8 b;
+    public final qmb c;
+    public final Paint d;
+    public int e;
+    public float f;
+    public final gy8 h;
 
-    public sx8(vx8 vx8Var, long j) {
-        ImageReceiver imageReceiver;
-        String str;
-        String str2;
-        pb0 pb0Var = new pb0((wjb) null);
-        int i = y6c.t0;
-        this.l = 1.0f;
-        this.m = true;
-        this.o = 0.0f;
-        this.p = false;
-        ImageReceiver imageReceiver2 = new ImageReceiver(vx8Var.a);
-        this.c = imageReceiver2;
-        this.a = vx8Var;
-        gb2 gb2Var = vx8Var.E;
-        this.b = gb2Var;
-        this.d = j;
-        pb0Var.p = 1.0f;
-        if (cf3.D(j)) {
-            TLRPC.User V1 = na7.q1(i).V1(Long.valueOf(j));
-            pb0Var.q(V1);
-            if (l7c.C(V1)) {
-                str2 = k96.M0(2131745709, null);
-                pb0Var.f(1);
-                pb0Var.p = 0.75f;
-                imageReceiver = imageReceiver2;
-                imageReceiver.Z(null, null, null, null, pb0Var, 0L, null, V1, 0);
-                imageReceiver.q0(gl.L(21.0f));
-                imageReceiver.i0(0.0f, 0.0f, gl.L(42.0f), gl.L(42.0f));
-                Paint c2 = gb2Var.c2("paintChatActionText");
-                if (str2 == null && c2 != null) {
-                    int L = gl.L(48.0f);
-                    TextPaint textPaint = new TextPaint(c2);
-                    CharSequence ellipsize = TextUtils.ellipsize(str2, textPaint, gl.q.x - L, TextUtils.TruncateAt.END);
-                    this.h = new StaticLayout(ellipsize, textPaint, (int) Math.ceil(textPaint.measureText(ellipsize, 0, ellipsize.length())), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                    return;
+    public sx8(gy8 gy8Var, Activity activity) {
+        super(activity);
+        this.h = gy8Var;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.e = -1;
+        this.f = Float.NaN;
+        setHorizontalScrollBarEnabled(false);
+        setOverScrollMode(2);
+        setFillViewport(true);
+        setWillNotDraw(false);
+        qmb qmbVar = new qmb((byte) 12, activity, this);
+        this.c = qmbVar;
+        qmbVar.setOrientation(0);
+        qmbVar.setGravity(16);
+        qmbVar.setPadding(gm.L(3.0f), 0, gm.L(3.0f), 0);
+        addView(qmbVar, new FrameLayout.LayoutParams(-2, -1));
+        paint.setColor(1560281087);
+    }
+
+    public final void a(int i, boolean z) {
+        if (i != this.e && i >= 0) {
+            qmb qmbVar = this.c;
+            if (i < qmbVar.getChildCount()) {
+                this.e = i;
+                if (!z) {
+                    this.f = Float.NaN;
                 }
+                View childAt = qmbVar.getChildAt(i);
+                int left = childAt.getLeft() - gm.L(30.0f);
+                int L = gm.L(30.0f) + childAt.getRight();
+                if (left < getScrollX()) {
+                    if (z) {
+                        smoothScrollTo(left, 0);
+                    } else {
+                        scrollTo(left, 0);
+                    }
+                } else {
+                    if (L > getWidth() + getScrollX()) {
+                        if (z) {
+                            smoothScrollTo(L - getWidth(), 0);
+                        } else {
+                            scrollTo(L - getWidth(), 0);
+                        }
+                    }
+                }
+                qmbVar.invalidate();
             }
-            imageReceiver = imageReceiver2;
-            str = V1 != null ? qu2.m(0, V1.first_name, V1.last_name) : "";
-            imageReceiver.U(V1, pb0Var, null);
-        } else {
-            imageReceiver = imageReceiver2;
-            TLRPC.Chat K0 = na7.q1(i).K0(Long.valueOf(-j));
-            str = K0 != null ? K0.title : "";
-            pb0Var.p(K0);
-            imageReceiver.U(K0, pb0Var, null);
         }
-        str2 = str;
-        imageReceiver.q0(gl.L(21.0f));
-        imageReceiver.i0(0.0f, 0.0f, gl.L(42.0f), gl.L(42.0f));
-        Paint c22 = gb2Var.c2("paintChatActionText");
-        if (str2 == null) {
-        }
-    }
-
-    public static float b(float f, float f2, float f3, float f4) {
-        float f5 = f2 / 2.0f;
-        float f6 = f - f5;
-        float f7 = f + f5;
-        float f8 = f4 - f3;
-        if (f2 > f8) {
-            float f9 = (f3 + f4) / 2.0f;
-            float f10 = f2 - f8;
-            float max = Math.max(0.0f, f3 - f6);
-            float max2 = Math.max(0.0f, f7 - f4);
-            float f11 = max + max2;
-            if (f11 < 0.1f) {
-                return f9;
-            }
-            return b00.A(f10, 2.0f, (max - max2) / f11, f9);
-        } else if (f6 < f3) {
-            return f3 + f5;
-        } else {
-            if (f7 > f4) {
-                return f4 - f5;
-            }
-            return f;
-        }
-    }
-
-    public final void a(float f, float f2, float f3, float f4, Canvas canvas) {
-        canvas.save();
-        canvas.translate(f - f3, f2 - f3);
-        canvas.scale(f3 / gl.L(21.0f), f3 / gl.L(21.0f));
-        ImageReceiver imageReceiver = this.c;
-        imageReceiver.setAlpha(((this.l * 0.25f) + 0.75f) * f4);
-        imageReceiver.h(canvas, null);
-        canvas.restore();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        if (valueAnimator == this.n) {
-            this.o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        } else if (valueAnimator == this.k) {
-            this.l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+    public final void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sx8.draw(android.graphics.Canvas):void");
+    }
+
+    public void setSections(ArrayList<qx8> arrayList) {
+        TLRPC.Document document;
+        qmb qmbVar = this.c;
+        qmbVar.removeAllViews();
+        for (int i = 0; i < arrayList.size(); i++) {
+            qx8 qx8Var = arrayList.get(i);
+            Context context = getContext();
+            byte b = qx8Var.a;
+            if (b == 2) {
+                document = (TLRPC.Document) qx8Var.c.get(0);
+            } else {
+                document = null;
+            }
+            rx8 rx8Var = new rx8(this.h, context, b, document);
+            rx8Var.setOnClickListener(new v0(this, i, (byte) 19));
+            rx8Var.setContentDescription(qx8Var.b);
+            qmbVar.addView(rx8Var, new LinearLayout.LayoutParams(gm.L(34.0f), gm.L(30.0f)));
         }
-        this.a.invalidateSelf();
+        this.e = -1;
+        this.f = Float.NaN;
     }
 }

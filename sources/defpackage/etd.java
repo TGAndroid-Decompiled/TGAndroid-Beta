@@ -1,3 +1,17 @@
 package defpackage;
-public final class etd extends ezc {
+public final class etd implements cq7 {
+    public static final etd a = new Object();
+
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)), 5)), 6)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

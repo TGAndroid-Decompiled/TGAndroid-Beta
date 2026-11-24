@@ -1,162 +1,96 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.util.SparseArray;
-public final class oq2 extends ru3 {
-    public static final Paint i = new Paint(2);
-    public static final Rect j = new Rect();
-    public pq2 c;
-    public pq2 d;
-    public lm e;
-    public lm f;
-    public pq2 g;
-    public pq2 h;
+import java.util.concurrent.CancellationException;
+public final class oq2 {
+    public final Object a;
+    public final rb1 b;
+    public final hs4 c;
+    public final Object d;
+    public final Throwable e;
 
-    public static void c(Canvas canvas, pq2 pq2Var, Rect rect, float f) {
-        Paint paint;
-        int i2;
-        Bitmap bitmap = (Bitmap) pq2.e.get(pq2Var.c);
-        if (bitmap != null) {
-            if (pq2Var.d) {
-                paint = qq2.b;
-            } else {
-                paint = i;
-            }
-            int i3 = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
-            if (i3 < 0) {
-                i2 = paint.getAlpha();
-                paint.setAlpha((int) (i2 * f));
-            } else {
-                i2 = 255;
-            }
-            canvas.drawBitmap(bitmap, (Rect) null, rect, paint);
-            if (i3 < 0) {
-                paint.setAlpha(i2);
-            }
-        }
+    public oq2(java.lang.Object r3, defpackage.rb1 r4, defpackage.hs4 r5, java.util.concurrent.CancellationException r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.oq2.<init>(java.lang.Object, rb1, hs4, java.util.concurrent.CancellationException, int):void");
     }
 
-    @Override
-    public final boolean a() {
-        pq2 pq2Var = this.c;
-        SparseArray sparseArray = pq2.e;
-        if (sparseArray.indexOfKey(pq2Var.c) >= 0 && sparseArray.indexOfKey(this.d.c) >= 0) {
+    public static oq2 a(oq2 oq2Var, rb1 rb1Var, CancellationException cancellationException, int i) {
+        Object obj = oq2Var.a;
+        if ((i & 2) != 0) {
+            rb1Var = oq2Var.b;
+        }
+        rb1 rb1Var2 = rb1Var;
+        hs4 hs4Var = oq2Var.c;
+        Object obj2 = oq2Var.d;
+        CancellationException cancellationException2 = cancellationException;
+        if ((i & 16) != 0) {
+            cancellationException2 = oq2Var.e;
+        }
+        return new oq2(obj, rb1Var2, hs4Var, obj2, cancellationException2);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof oq2)) {
+            return false;
+        }
+        oq2 oq2Var = (oq2) obj;
+        if (rr5.a(this.a, oq2Var.a) && rr5.a(this.b, oq2Var.b) && rr5.a(this.c, oq2Var.c) && rr5.a(this.d, oq2Var.d) && rr5.a(this.e, oq2Var.e)) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final void b() {
-        if (!a()) {
-            this.c.a();
-            this.d.a();
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds;
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        if (!a()) {
-            b();
-            Paint paint = vu3.d;
-            paint.setColor(this.b);
-            Rect bounds2 = getBounds();
-            canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), bounds2.width() * 0.4f, paint);
-            return;
-        }
-        if (this.a) {
-            Rect bounds3 = getBounds();
-            int centerX = bounds3.centerX();
-            int centerY = bounds3.centerY();
-            boolean z = this.a;
-            if (z) {
-                i2 = vu3.c;
-            } else {
-                i2 = vu3.b;
-            }
-            bounds = j;
-            bounds.left = centerX - (i2 / 2);
-            if (z) {
-                i3 = vu3.c;
-            } else {
-                i3 = vu3.b;
-            }
-            bounds.right = (i3 / 2) + centerX;
-            if (z) {
-                i4 = vu3.c;
-            } else {
-                i4 = vu3.b;
-            }
-            bounds.top = centerY - (i4 / 2);
-            if (z) {
-                i5 = vu3.c;
-            } else {
-                i5 = vu3.b;
-            }
-            bounds.bottom = (i5 / 2) + centerY;
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2;
+        int hashCode3;
+        int hashCode4;
+        int i = 0;
+        Object obj = this.a;
+        if (obj == null) {
+            hashCode = 0;
         } else {
-            bounds = getBounds();
+            hashCode = obj.hashCode();
         }
-        Rect rect = bounds;
-        if (!canvas.quickReject(rect.left, rect.top, rect.right, rect.bottom, Canvas.EdgeType.AA)) {
-            if (this.g != null) {
-                lm lmVar = this.e;
-                if (lmVar == null) {
-                    lm lmVar2 = new lm(0.0f, new mk2(this, (byte) 7), 0L, 320L, s33.g);
-                    this.e = lmVar2;
-                    lmVar = lmVar2;
-                }
-                float e = lmVar.e(false, 1.0f);
-                c(canvas, this.g, rect, Math.min(1.0f, e * 1.5f));
-                c(canvas, this.c, rect, 1.0f - e);
-                if (e >= 1.0f) {
-                    this.c = this.g;
-                    this.g = null;
-                }
-            } else {
-                c(canvas, this.c, rect, 1.0f);
-            }
-            if (this.h != null) {
-                lm lmVar3 = this.f;
-                if (lmVar3 == null) {
-                    lm lmVar4 = new lm(0.0f, new mk2(this, (byte) 7), 0L, 320L, s33.g);
-                    this.f = lmVar4;
-                    lmVar3 = lmVar4;
-                }
-                float e2 = lmVar3.e(false, 1.0f);
-                c(canvas, this.h, rect, Math.min(1.0f, 1.5f * e2));
-                c(canvas, this.d, rect, 1.0f - e2);
-                if (e2 >= 1.0f) {
-                    this.d = this.h;
-                    this.h = null;
-                    return;
-                }
-                return;
-            }
-            c(canvas, this.d, rect, 1.0f);
+        int i2 = hashCode * 31;
+        rb1 rb1Var = this.b;
+        if (rb1Var == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = rb1Var.hashCode();
         }
+        int i3 = (i2 + hashCode2) * 31;
+        hs4 hs4Var = this.c;
+        if (hs4Var == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = hs4Var.hashCode();
+        }
+        int i4 = (i3 + hashCode3) * 31;
+        Object obj2 = this.d;
+        if (obj2 == null) {
+            hashCode4 = 0;
+        } else {
+            hashCode4 = obj2.hashCode();
+        }
+        int i5 = (i4 + hashCode4) * 31;
+        Throwable th = this.e;
+        if (th != null) {
+            i = th.hashCode();
+        }
+        return i5 + i;
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
+    public final String toString() {
+        return "CompletedContinuation(result=" + this.a + ", cancelHandler=" + this.b + ", onCancellation=" + this.c + ", idempotentResume=" + this.d + ", cancelCause=" + this.e + ')';
     }
 
-    @Override
-    public final void setAlpha(int i2) {
-        i.setAlpha(i2);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public oq2(Object obj, rb1 rb1Var, hs4 hs4Var, Object obj2, Throwable th) {
+        this.a = obj;
+        this.b = rb1Var;
+        this.c = hs4Var;
+        this.d = obj2;
+        this.e = th;
     }
 }

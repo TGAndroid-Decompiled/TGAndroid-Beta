@@ -1,19 +1,29 @@
 package defpackage;
 
-import java.util.Comparator;
-public final class st2 implements Comparator {
+import org.telegram.tgnet.ConnectionsManager;
+public final class st2 implements Runnable {
     public final byte a;
-    public final na7 b;
+    public final ConnectionsManager b;
     public final int c;
 
-    public st2(na7 na7Var, int i, byte b) {
+    public st2(ConnectionsManager connectionsManager, int i, byte b) {
         this.a = b;
-        this.b = na7Var;
+        this.b = connectionsManager;
         this.c = i;
     }
 
     @Override
-    public final int compare(java.lang.Object r10, java.lang.Object r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.st2.compare(java.lang.Object, java.lang.Object):int");
+    public final void run() {
+        byte b = this.a;
+        int i = this.c;
+        ConnectionsManager connectionsManager = this.b;
+        switch (b) {
+            case 0:
+                ConnectionsManager.D(connectionsManager, i);
+                return;
+            default:
+                ConnectionsManager.l(connectionsManager, i);
+                return;
+        }
     }
 }

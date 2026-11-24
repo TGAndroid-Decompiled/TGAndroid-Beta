@@ -13,7 +13,7 @@ import org.webrtc.EncodedImage;
 import org.webrtc.ThreadUtils;
 import org.webrtc.VideoDecoder;
 import org.webrtc.VideoFrame;
-public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
+class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     private static final int DEQUEUE_INPUT_TIMEOUT_US = 500000;
     private static final int DEQUEUE_OUTPUT_BUFFER_TIMEOUT_US = 100000;
     private static final int MEDIA_CODEC_RELEASE_TIMEOUT_MS = 5000;
@@ -74,7 +74,7 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             this.frameInfos = new LinkedBlockingDeque();
             return;
         }
-        w26.j(de9.k(i, "Unsupported color format: "));
+        u36.j(hg9.j(i, "Unsupported color format: "));
         throw null;
     }
 
@@ -94,8 +94,8 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             int i10 = i * i2;
             int i11 = i8 * i7;
             int i12 = i10 + i11;
-            int y = ls6.y(i8, i2, 2, i10);
-            int i13 = y + i11;
+            int z2 = kt6.z(i8, i2, 2, i10);
+            int i13 = z2 + i11;
             VideoFrame.I420Buffer allocateI420Buffer = allocateI420Buffer(i3, i4);
             try {
                 byteBuffer.limit(i9);
@@ -113,10 +113,10 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                         dataU.put(byteBuffer);
                     }
                     byteBuffer.limit(i13);
-                    byteBuffer.position(y);
+                    byteBuffer.position(z2);
                     copyPlane(byteBuffer.slice(), i8, allocateI420Buffer.getDataV(), allocateI420Buffer.getStrideV(), i6, i7);
                     if (i2 % 2 == 1) {
-                        byteBuffer.position(((i7 - 1) * i8) + y);
+                        byteBuffer.position(((i7 - 1) * i8) + z2);
                         ByteBuffer dataV = allocateI420Buffer.getDataV();
                         dataV.position(allocateI420Buffer.getStrideV() * i7);
                         dataV.put(byteBuffer);
@@ -124,7 +124,7 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                     return allocateI420Buffer;
                 } catch (Throwable th) {
                     th = th;
-                    fa4.g(th, z);
+                    fc4.g(th, z);
                     return allocateI420Buffer;
                 }
             } catch (Throwable th2) {
@@ -132,7 +132,7 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 z = true;
             }
         } else {
-            fi7.g(de9.k(i, "Stride is not divisible by two: "));
+            bh7.j(hg9.j(i, "Stride is not divisible by two: "));
             return null;
         }
     }

@@ -1,67 +1,34 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.ui.DataAutoDownloadActivity;
-public final class v53 extends rj6 {
-    public final int e;
-    public final mhb f;
-    public final ahb[] h;
-    public final AnimatorSet[] n;
-    public final DataAutoDownloadActivity r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.Utilities;
+public final class v53 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final x53 b;
 
-    public v53(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i, mhb mhbVar, ahb[] ahbVarArr, AnimatorSet[] animatorSetArr) {
-        super(activity);
-        int i2;
-        int i3;
-        int i4;
-        this.r = dataAutoDownloadActivity;
-        this.e = i;
-        this.f = mhbVar;
-        this.h = ahbVarArr;
-        this.n = animatorSetArr;
-        setWillNotDraw(false);
-        TextView textView = new TextView(activity);
-        this.a = textView;
-        zkb.X(textView, bkb.i5, null);
-        ug8.w(textView, 1, 16.0f, 1, 1);
-        textView.setSingleLine(true);
-        if (k96.a0) {
-            i2 = 5;
-        } else {
-            i2 = 3;
+    public v53(x53 x53Var, byte b) {
+        this.a = b;
+        this.b = x53Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        x53 x53Var = this.b;
+        switch (b) {
+            case 0:
+                x53Var.f();
+                return;
+            default:
+                x53Var.a(false);
+                x53Var.j = 0.0f;
+                v29 v29Var = x53Var.n;
+                v29Var.setCustomEmojiEnterProgress(Utilities.i(0.0f, 1.0f, 0.0f));
+                v29Var.setSkipDraw(false);
+                x53Var.c.setVisibility(8);
+                x53Var.f();
+                return;
         }
-        textView.setGravity(i2 | 48);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setImportantForAccessibility(2);
-        if (k96.a0) {
-            i3 = 5;
-        } else {
-            i3 = 3;
-        }
-        addView(textView, nme.d(-1, -1.0f, i3 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(activity);
-        this.b = textView2;
-        zkb.X(textView2, bkb.m5, null);
-        ug8.w(textView2, 1, 16.0f, 1, 1);
-        textView2.setSingleLine(true);
-        if (k96.a0) {
-            i4 = 3;
-        } else {
-            i4 = 5;
-        }
-        textView2.setGravity(i4 | 48);
-        textView2.setImportantForAccessibility(2);
-        addView(textView2, nme.d(-2, -1.0f, (k96.a0 ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-        ty0 ty0Var = new ty0(activity);
-        this.c = ty0Var;
-        ty0Var.setReportChanges(true);
-        ty0Var.setDelegate(new gi3(this));
-        ty0Var.setImportantForAccessibility(2);
-        addView(ty0Var, nme.d(-1, 38.0f, 51, 6.0f, 36.0f, 6.0f, 0.0f));
-        setImportantForAccessibility(1);
-        setAccessibilityDelegate(ty0Var.getSeekBarAccessibilityDelegate());
     }
 }

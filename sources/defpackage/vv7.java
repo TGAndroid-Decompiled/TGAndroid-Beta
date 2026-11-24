@@ -1,93 +1,118 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.graphics.PorterDuff;
+import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-public final class vv7 extends FrameLayout {
-    public final ImageView a;
-    public final TextView b;
-    public final TextView c;
+public final class vv7 extends LinearLayout {
+    public final TextView a;
+    public final su b;
+    public ImageView c;
+    public ImageView d;
+    public float e;
+    public boolean f;
+    public ValueAnimator h;
+    public final ImageView n;
+    public final xv7 r;
 
-    public vv7(Context context) {
+    public vv7(xv7 xv7Var, Context context) {
         super(context);
+        this.r = xv7Var;
+        setOrientation(0);
+        int i = cmb.h6;
+        rk5 rk5Var = xv7Var.w1;
+        setBackground(cmb.f0(cmb.v0(i, rk5Var), 2, -1));
+        su suVar = new su(this, context);
+        this.b = suVar;
+        addView(suVar, qoe.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131231192);
-        addView(imageView, nme.e(-1, -1, 119));
+        this.c = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        ImageView imageView2 = this.c;
+        int i2 = cmb.D8;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
+        anb.s(imageView2, i2, rk5Var, mode);
+        suVar.addView(this.c, qoe.e(-2, -2, 17));
+        ImageView imageView3 = new ImageView(context);
+        this.d = imageView3;
+        imageView3.setScaleType(scaleType);
+        anb.s(this.d, i2, rk5Var, mode);
+        this.d.setVisibility(8);
+        suVar.addView(this.d, qoe.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.b = textView;
-        textView.setTypeface(gl.o());
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 26.0f);
-        textView.setGravity(17);
-        addView(textView, nme.d(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.c = textView2;
-        textView2.setTypeface(gl.o());
-        textView2.setTextSize(1, 10.0f);
-        textView2.setTextColor(Integer.MAX_VALUE);
-        textView2.setGravity(17);
-        addView(textView2, nme.d(-1, -2.0f, 17, 0.0f, 14.0f, 0.0f, 0.0f));
+        this.a = textView;
+        anb.X(textView, i2, rk5Var);
+        textView.setTextSize(1, 16.0f);
+        addView(textView, qoe.t(-2, -2, 19, 0, 0, 16, 0));
+        ImageView imageView4 = new ImageView(context);
+        this.n = imageView4;
+        imageView4.setImageResource(2131232404);
+        imageView4.setScaleType(scaleType);
+        anb.s(imageView4, cmb.g7, rk5Var, PorterDuff.Mode.MULTIPLY);
+        imageView4.setVisibility(8);
+        addView(imageView4, qoe.o(50, -1));
+    }
+
+    public final void a(int i, boolean z, boolean z2) {
+        if (z2) {
+            ValueAnimator valueAnimator = this.h;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.h = null;
+                a(i, false, false);
+                return;
+            }
+            this.f = z;
+            this.d.setImageResource(i);
+            this.d.setVisibility(0);
+            this.d.setAlpha(1.0f);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.h = ofFloat;
+            ofFloat.addUpdateListener(new d30((byte) 7, this, z));
+            this.h.addListener(new v85(this, (byte) 25));
+            this.h.setInterpolator(d53.h);
+            this.h.setDuration(420L);
+            this.h.start();
+            return;
+        }
+        this.c.setImageResource(i);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
     }
 
-    public void setImage(int i) {
-        ImageView imageView = this.a;
-        imageView.setVisibility(0);
-        this.b.setVisibility(8);
-        this.c.setVisibility(8);
-        imageView.setImageResource(i);
-    }
-
-    public void setNum(int i) {
-        String str;
-        this.a.setVisibility(8);
-        TextView textView = this.b;
-        textView.setVisibility(0);
-        TextView textView2 = this.c;
-        textView2.setVisibility(0);
-        textView.setText(String.valueOf(i));
-        if (i != 0) {
-            switch (i) {
-                case 2:
-                    str = "ABC";
-                    break;
-                case 3:
-                    str = "DEF";
-                    break;
-                case 4:
-                    str = "GHI";
-                    break;
-                case 5:
-                    str = "JKL";
-                    break;
-                case 6:
-                    str = "MNO";
-                    break;
-                case 7:
-                    str = "PQRS";
-                    break;
-                case 8:
-                    str = "TUV";
-                    break;
-                case 9:
-                    str = "WXYZ";
-                    break;
-                default:
-                    str = "";
-                    break;
-            }
-        } else {
-            str = "+";
+    @Override
+    public final boolean performClick() {
+        xv7 xv7Var = this.r;
+        m8 m8Var = xv7Var.x1;
+        if (m8Var != null && m8Var.isShowing()) {
+            xv7Var.x1.d(true);
         }
-        textView2.setText(str);
+        return super.performClick();
+    }
+
+    public void setIcon(int i) {
+        a(i, true, false);
+    }
+
+    @Override
+    public void setSelected(boolean z) {
+        int i;
+        if (z) {
+            i = 0;
+        } else {
+            i = 8;
+        }
+        this.n.setVisibility(i);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.a.setText(charSequence);
     }
 }

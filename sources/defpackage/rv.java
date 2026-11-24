@@ -1,162 +1,99 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.view.MotionEvent;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_iv;
+import android.webkit.WebChromeClient;
+import android.widget.FrameLayout;
+import org.telegram.ui.j;
 import org.telegram.ui.o;
-public final class rv extends View implements eib, dw {
-    public final vg5 a;
-    public final dx b;
-    public bw c;
-    public int d;
-    public int e;
-    public TL_iv.pageBlockSubtitle f;
+public final class rv extends WebChromeClient {
+    public final byte a;
+    public final KeyEvent.Callback b;
 
-    public rv(Activity activity, vg5 vg5Var, dx dxVar) {
-        super(activity);
-        this.a = vg5Var;
-        this.b = dxVar;
+    public rv(KeyEvent.Callback callback, byte b) {
+        this.a = b;
+        this.b = callback;
     }
 
     @Override
-    public int getBoundLeft() {
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return -1;
-        }
-        int i = bwVar.s;
-        return ug8.h(this.a, 18.0f, bwVar.k() + i);
-    }
-
-    @Override
-    public int getBoundRight() {
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return -1;
-        }
-        int i = bwVar.s;
-        return ug8.C(this.a, 18.0f, bwVar.l() + i);
-    }
-
-    @Override
-    public int getLastLineBoundRight() {
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return -1;
-        }
-        int i = bwVar.s;
-        return ug8.C(this.a, 18.0f, bwVar.m() + i);
-    }
-
-    public int getMinWidth() {
-        return ug8.a(this);
-    }
-
-    @Override
-    public final void k(ArrayList arrayList) {
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            arrayList.add(bwVar);
+    public final void onHideCustomView() {
+        byte b = this.a;
+        KeyEvent.Callback callback = this.b;
+        switch (b) {
+            case 0:
+                super.onHideCustomView();
+                o oVar = ((j) callback).y;
+                if (oVar.P != null) {
+                    oVar.Q.setVisibility(4);
+                    oVar.Q.removeView(oVar.P);
+                    WebChromeClient.CustomViewCallback customViewCallback = oVar.T;
+                    if (customViewCallback != null && !customViewCallback.getClass().getName().contains(".chromium.")) {
+                        oVar.T.onCustomViewHidden();
+                    }
+                    oVar.P = null;
+                    return;
+                }
+                return;
+            default:
+                super.onHideCustomView();
+                zv3 zv3Var = (zv3) callback;
+                FrameLayout frameLayout = zv3Var.o1;
+                if (zv3Var.n1 != null) {
+                    zv3Var.b.setVisibility(0);
+                    frameLayout.setVisibility(4);
+                    frameLayout.removeView(zv3Var.n1);
+                    WebChromeClient.CustomViewCallback customViewCallback2 = zv3Var.p1;
+                    if (customViewCallback2 != null && !customViewCallback2.getClass().getName().contains(".chromium.")) {
+                        zv3Var.p1.onCustomViewHidden();
+                    }
+                    zv3Var.n1 = null;
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.i(this);
+    public final void onShowCustomView(View view, WebChromeClient.CustomViewCallback customViewCallback) {
+        byte b = this.a;
+        KeyEvent.Callback callback = this.b;
+        switch (b) {
+            case 0:
+                o oVar = ((j) callback).y;
+                if (oVar.P != null) {
+                    customViewCallback.onCustomViewHidden();
+                    return;
+                }
+                oVar.P = view;
+                oVar.T = customViewCallback;
+                gm.d3(new b1(this, (byte) 23), 100L);
+                return;
+            default:
+                zv3 zv3Var = (zv3) callback;
+                FrameLayout frameLayout = zv3Var.o1;
+                if (zv3Var.n1 == null && !zv3Var.H0()) {
+                    zv3Var.F0();
+                    zv3Var.n1 = view;
+                    zv3Var.b.setVisibility(4);
+                    frameLayout.setVisibility(0);
+                    frameLayout.addView(view, qoe.c(-1.0f, -1));
+                    zv3Var.p1 = customViewCallback;
+                    return;
+                }
+                customViewCallback.onCustomViewHidden();
+                return;
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.f(this);
+    public final void onShowCustomView(View view, int i, WebChromeClient.CustomViewCallback customViewCallback) {
+        switch (this.a) {
+            case 0:
+                onShowCustomView(view, customViewCallback);
+                return;
+            default:
+                onShowCustomView(view, customViewCallback);
+                return;
         }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f != null && this.c != null) {
-            canvas.save();
-            canvas.translate(this.d, this.e);
-            o.s(this.a, canvas, this, 0);
-            this.c.d(canvas, this);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return;
-        }
-        accessibilityNodeInfo.setText(o.f(2131754862, o.g(this.a, this.b, bwVar)));
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        rv rvVar;
-        int i3;
-        Layout.Alignment alignment;
-        int size = View.MeasureSpec.getSize(i);
-        vg5 vg5Var = this.a;
-        vg5Var.getClass();
-        this.d = gl.L(18.0f);
-        vg5Var.getClass();
-        this.e = gl.L(8.0f);
-        TL_iv.pageBlockSubtitle pageblocksubtitle = this.f;
-        if (pageblocksubtitle != null) {
-            TL_iv.RichText richText = pageblocksubtitle.text;
-            vg5 vg5Var2 = this.a;
-            int h = ug8.h(vg5Var2, 36.0f, size);
-            TL_iv.pageBlockSubtitle pageblocksubtitle2 = this.f;
-            dx dxVar = this.b;
-            if (dxVar != null && dxVar.H) {
-                alignment = lwa.a();
-            } else {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
-            }
-            rvVar = this;
-            bw n = o.n(vg5Var2, rvVar, null, richText, h, 0, pageblocksubtitle2, alignment, 0, this.b);
-            rvVar.c = n;
-            if (n != null) {
-                vg5Var.getClass();
-                i3 = rvVar.c.d.getHeight() + gl.L(16.0f);
-                bw bwVar = rvVar.c;
-                bwVar.s = rvVar.d;
-                bwVar.w = rvVar.e;
-            } else {
-                i3 = 0;
-            }
-        } else {
-            rvVar = this;
-            i3 = 1;
-        }
-        rvVar.setMeasuredDimension(size, i3);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void setBlock(TL_iv.pageBlockSubtitle pageblocksubtitle) {
-        this.f = pageblocksubtitle;
-        requestLayout();
     }
 }

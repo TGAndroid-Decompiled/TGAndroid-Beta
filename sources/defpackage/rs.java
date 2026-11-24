@@ -1,368 +1,240 @@
 package defpackage;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.RemoteInput;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.content.LocusId;
+import android.graphics.Insets;
+import android.media.AudioAttributes;
+import android.media.AudioFormat;
+import android.media.AudioTrack;
+import android.media.MediaCodecInfo;
+import android.os.Binder;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Process;
+import android.text.TextUtils;
+import android.util.Log;
 import java.util.List;
-import java.util.Set;
-public final class rs implements Collection, Set {
-    public int[] a;
-    public Object[] b;
-    public int c;
-
-    public rs(int i) {
-        this.a = yp3.c;
-        this.b = yp3.e;
-        if (i > 0) {
-            this.a = new int[i];
-            this.b = new Object[i];
-        }
-    }
-
-    @Override
-    public final boolean add(Object obj) {
-        int i;
-        int a;
-        int i2 = this.c;
-        if (obj == null) {
-            a = mmd.a(this, null, 0);
-            i = 0;
-        } else {
-            int hashCode = obj.hashCode();
-            i = hashCode;
-            a = mmd.a(this, obj, hashCode);
-        }
-        if (a >= 0) {
-            return false;
-        }
-        int i3 = ~a;
-        int[] iArr = this.a;
-        if (i2 >= iArr.length) {
-            int i4 = 8;
-            if (i2 >= 8) {
-                i4 = (i2 >> 1) + i2;
-            } else if (i2 < 4) {
-                i4 = 4;
-            }
-            Object[] objArr = this.b;
-            int[] iArr2 = new int[i4];
-            this.a = iArr2;
-            this.b = new Object[i4];
-            if (i2 == this.c) {
-                if (iArr2.length != 0) {
-                    ss.b(0, 0, iArr.length, iArr, iArr2);
-                    ss.d(0, objArr.length, 6, objArr, this.b);
-                }
-            } else {
-                ag.b();
-                return false;
-            }
-        }
-        if (i3 < i2) {
-            int[] iArr3 = this.a;
-            int i5 = i3 + 1;
-            ss.b(i5, i3, i2, iArr3, iArr3);
-            Object[] objArr2 = this.b;
-            ss.c(i5, i3, i2, objArr2, objArr2);
-        }
-        int i6 = this.c;
-        if (i2 == i6) {
-            int[] iArr4 = this.a;
-            if (i3 < iArr4.length) {
-                iArr4[i3] = i;
-                this.b[i3] = obj;
-                this.c = i6 + 1;
-                return true;
-            }
-        }
-        ag.b();
-        return false;
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        collection.getClass();
-        int size = collection.size() + this.c;
-        int i = this.c;
-        int[] iArr = this.a;
-        boolean z = false;
-        if (iArr.length < size) {
-            Object[] objArr = this.b;
-            int[] iArr2 = new int[size];
-            this.a = iArr2;
-            this.b = new Object[size];
-            if (i > 0) {
-                ss.b(0, 0, i, iArr, iArr2);
-                ss.d(0, this.c, 6, objArr, this.b);
-            }
-        }
-        if (this.c == i) {
-            for (Object obj : collection) {
-                z |= add(obj);
-            }
-            return z;
-        }
-        ag.b();
-        return false;
-    }
-
-    @Override
-    public final void clear() {
-        int i = this.c;
-        if (i != 0) {
-            this.a = yp3.c;
-            this.b = yp3.e;
-            i = 0;
-            this.c = 0;
-        }
-        if (i == 0) {
-            return;
-        }
-        ag.b();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        int a;
-        if (obj == null) {
-            a = mmd.a(this, null, 0);
-        } else {
-            a = mmd.a(this, obj, obj.hashCode());
-        }
-        if (a < 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        collection.getClass();
-        for (Object obj : collection) {
-            if (!contains(obj)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Set) || this.c != ((Set) obj).size()) {
-            return false;
-        }
-        try {
-            int i = this.c;
-            for (int i2 = 0; i2 < i; i2++) {
-                if (!((Set) obj).contains(this.b[i2])) {
-                    return false;
-                }
-            }
-            return true;
-        } catch (ClassCastException | NullPointerException unused) {
-            return false;
-        }
-    }
-
-    public final void h(int i) {
-        int i2 = this.c;
-        Object[] objArr = this.b;
-        Object obj = objArr[i];
-        if (i2 <= 1) {
-            clear();
-            return;
-        }
-        int i3 = i2 - 1;
-        int[] iArr = this.a;
-        int i4 = 8;
-        if (iArr.length > 8 && i2 < iArr.length / 3) {
-            if (i2 > 8) {
-                i4 = i2 + (i2 >> 1);
-            }
-            int[] iArr2 = new int[i4];
-            this.a = iArr2;
-            this.b = new Object[i4];
-            if (i > 0) {
-                ss.b(0, 0, i, iArr, iArr2);
-                ss.d(0, i, 6, objArr, this.b);
-            }
-            if (i < i3) {
-                int i5 = i + 1;
-                ss.b(i, i5, i2, iArr, this.a);
-                ss.c(i, i5, i2, objArr, this.b);
-            }
-        } else {
-            if (i < i3) {
-                int i6 = i + 1;
-                ss.b(i, i6, i2, iArr, iArr);
-                Object[] objArr2 = this.b;
-                ss.c(i, i6, i2, objArr2, objArr2);
-            }
-            this.b[i3] = null;
-        }
-        if (i2 == this.c) {
-            this.c = i3;
-        } else {
-            ag.b();
-        }
-    }
-
-    @Override
-    public final int hashCode() {
-        int[] iArr = this.a;
-        int i = this.c;
-        int i2 = 0;
-        for (int i3 = 0; i3 < i; i3++) {
-            i2 += iArr[i3];
-        }
-        return i2;
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        if (this.c <= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new ms(this);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        int a;
-        if (obj == null) {
-            a = mmd.a(this, null, 0);
-        } else {
-            a = mmd.a(this, obj, obj.hashCode());
-        }
-        if (a < 0) {
-            return false;
-        }
-        h(a);
-        return true;
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        collection.getClass();
-        boolean z = false;
-        for (Object obj : collection) {
-            z |= remove(obj);
-        }
-        return z;
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
+import java.util.concurrent.Executor;
+public abstract class rs {
+    public static int a(MediaCodecInfo.VideoCapabilities videoCapabilities, int i, int i2, double d) {
         boolean z;
-        collection.getClass();
-        int i = this.c - 1;
-        boolean z2 = false;
-        while (true) {
-            int i2 = -1;
-            if (-1 < i) {
-                Object obj = this.b[i];
-                Collection collection2 = collection;
-                if (collection2 instanceof Collection) {
-                    z = collection2.contains(obj);
+        int i3;
+        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints();
+        if (supportedPerformancePoints != null && !supportedPerformancePoints.isEmpty()) {
+            ul1.n();
+            MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(i, i2, (int) d);
+            int i4 = 0;
+            while (true) {
+                z = true;
+                if (i4 < supportedPerformancePoints.size()) {
+                    if (u36.e(supportedPerformancePoints.get(i4)).covers(performancePoint)) {
+                        i3 = 2;
+                        break;
+                    }
+                    i4++;
                 } else {
-                    if (collection2 instanceof List) {
-                        i2 = ((List) collection2).indexOf(obj);
+                    i3 = 1;
+                    break;
+                }
+            }
+            if (i3 == 1 && qqe.a == null) {
+                int i5 = Build.VERSION.SDK_INT;
+                if (i5 < 37) {
+                    int d2 = d(true);
+                    if (i5 < 35) {
+                        qqe.a = Boolean.valueOf(z);
+                        if (!z) {
+                        }
                     } else {
-                        Iterator it = collection2.iterator();
-                        int i3 = 0;
-                        while (true) {
-                            if (!it.hasNext()) {
-                                break;
-                            }
-                            Object next = it.next();
-                            if (i3 >= 0) {
-                                if (rp5.a(obj, next)) {
-                                    i2 = i3;
-                                    break;
-                                }
-                                i3++;
-                            } else {
-                                throw new ArithmeticException("Index overflow has happened.");
-                            }
+                        qqe.a = Boolean.valueOf(z);
+                        if (!z) {
                         }
                     }
-                    if (i2 >= 0) {
-                        z = true;
-                    } else {
-                        z = false;
+                }
+                z = false;
+                qqe.a = Boolean.valueOf(z);
+                if (!z) {
+                }
+            }
+            return i3;
+        }
+        return 0;
+    }
+
+    public static int b(Context context, String str) {
+        if (str != null) {
+            if (Build.VERSION.SDK_INT < 33 && TextUtils.equals("android.permission.POST_NOTIFICATIONS", str)) {
+                if (new sn7(context).a()) {
+                    return 0;
+                }
+                return -1;
+            }
+            return context.checkPermission(str, Process.myPid(), Process.myUid());
+        }
+        gxc.d("permission must be non-null");
+        return 0;
+    }
+
+    public static LocusId c(String str) {
+        return new LocusId(str);
+    }
+
+    public static int d(boolean z) {
+        MediaCodecInfo.VideoCapabilities videoCapabilities;
+        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
+        try {
+            fo4 fo4Var = new fo4();
+            fo4Var.s = wf7.n("video/avc");
+            go4 go4Var = new go4(fo4Var);
+            if (go4Var.t != null) {
+                y79 g = tm6.g(go4Var, z, false);
+                for (int i = 0; i < g.d; i++) {
+                    if (((lm6) g.get(i)).d != null && (videoCapabilities = ((lm6) g.get(i)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
+                        ul1.n();
+                        MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(1280, 720, 60);
+                        for (int i2 = 0; i2 < supportedPerformancePoints.size(); i2++) {
+                            if (u36.e(supportedPerformancePoints.get(i2)).covers(performancePoint)) {
+                                return 2;
+                            }
+                        }
+                        return 1;
                     }
                 }
-                if (!z) {
-                    h(i);
-                    z2 = true;
+            }
+        } catch (qm6 unused) {
+        }
+        return 0;
+    }
+
+    public static android.content.res.ColorStateList e(android.content.Context r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rs.e(android.content.Context, int):android.content.res.ColorStateList");
+    }
+
+    public static y79 f(o00 o00Var) {
+        jo5 p = mo5.p();
+        qo5 qo5Var = r00.h;
+        yo5 yo5Var = qo5Var.b;
+        if (yo5Var == null) {
+            yo5Var = qo5Var.d();
+            qo5Var.b = yo5Var;
+        }
+        v7c n = yo5Var.n();
+        while (n.hasNext()) {
+            Integer num = (Integer) n.next();
+            int intValue = num.intValue();
+            if (Build.VERSION.SDK_INT >= hac.s(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), o00Var.b())) {
+                p.c(num);
+            }
+        }
+        p.c(2);
+        return p.f();
+    }
+
+    public static Executor g(Context context) {
+        if (Build.VERSION.SDK_INT >= 28) {
+            return fp.i(context);
+        }
+        return new yj0(new Handler(context.getMainLooper()), (byte) 2);
+    }
+
+    public static int h(int i, int i2, o00 o00Var) {
+        for (int i3 = 10; i3 > 0; i3--) {
+            int t = hac.t(i3);
+            if (t != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i).setSampleRate(i2).setChannelMask(t).build(), o00Var.b())) {
+                return i3;
+            }
+        }
+        return 0;
+    }
+
+    public static String i(Context context) {
+        return context.getOpPackageName();
+    }
+
+    public static void j(android.content.Context r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rs.j(android.content.Context):void");
+    }
+
+    public static boolean k(Context context) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            if (Binder.getCallingUid() == context.getApplicationInfo().uid) {
+                if ("com.google.android.gms".equals(((NotificationManager) context.getSystemService(NotificationManager.class)).getNotificationDelegate())) {
+                    if (Log.isLoggable("FirebaseMessaging", 3)) {
+                        Log.d("FirebaseMessaging", "GMS core is set for proxying");
+                        return true;
+                    }
+                    return true;
                 }
-                i--;
             } else {
-                return z2;
+                Log.e("FirebaseMessaging", "error retrieving notification delegate for package " + context.getPackageName());
+                return false;
             }
+        } else if (Log.isLoggable("FirebaseMessaging", 3)) {
+            Log.d("FirebaseMessaging", "Platform doesn't support proxying.");
         }
+        return false;
     }
 
-    @Override
-    public final int size() {
-        return this.c;
-    }
-
-    @Override
-    public final Object[] toArray() {
-        Object[] objArr = this.b;
-        int i = this.c;
-        objArr.getClass();
-        int length = objArr.length;
-        if (i <= length) {
-            Object[] copyOfRange = Arrays.copyOfRange(objArr, 0, i);
-            copyOfRange.getClass();
-            return copyOfRange;
-        }
-        throw new IndexOutOfBoundsException("toIndex (" + i + ") is greater than size (" + length + ").");
-    }
-
-    public final String toString() {
-        if (isEmpty()) {
-            return "{}";
-        }
-        StringBuilder sb = new StringBuilder(this.c * 14);
-        sb.append('{');
-        int i = this.c;
-        for (int i2 = 0; i2 < i; i2++) {
-            if (i2 > 0) {
-                sb.append(", ");
+    public static String l(Context context) {
+        String str = context.getApplicationContext().getPackageName() + ".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION";
+        if (tse.b(context, str) != 0) {
+            if (Build.VERSION.SDK_INT >= 29) {
+                str = context.getOpPackageName() + ".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION";
+                if (tse.b(context, str) == 0) {
+                    return str;
+                }
             }
-            Object obj = this.b[i2];
-            if (obj != this) {
-                sb.append(obj);
-            } else {
-                sb.append("(this Set)");
-            }
+            zo4.k(kt6.o("Permission ", str, " is required by your application to receive broadcasts, please add it to your manifest"));
+            return null;
         }
-        sb.append('}');
-        return sb.toString();
+        return str;
     }
 
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int i = this.c;
-        if (objArr.length < i) {
-            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i);
-        } else if (objArr.length > i) {
-            objArr[i] = null;
+    public static Insets m(int i, int i2, int i3, int i4) {
+        return Insets.of(i, i2, i3, i4);
+    }
+
+    public static void n(Context context, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 33) {
+            nq5.g(context, broadcastReceiver, intentFilter, 2);
+        } else if (i >= 26) {
+            i10.h(context, broadcastReceiver, intentFilter, 2);
+        } else {
+            context.registerReceiver(broadcastReceiver, intentFilter, null, null);
         }
-        ss.c(0, 0, this.c, this.b, objArr);
-        return objArr;
+    }
+
+    public static void o(Notification.Builder builder, boolean z) {
+        builder.setAllowSystemGeneratedContextualActions(z);
+    }
+
+    public static void p(AudioAttributes.Builder builder, int i) {
+        builder.setAllowedCapturePolicy(i);
+    }
+
+    public static void q(Notification.Builder builder, Notification.BubbleMetadata bubbleMetadata) {
+        builder.setBubbleMetadata(bubbleMetadata);
+    }
+
+    public static void r(Notification.Action.Builder builder) {
+        builder.setContextual(false);
+    }
+
+    public static void s(RemoteInput.Builder builder) {
+        builder.setEditChoicesBeforeSending(0);
+    }
+
+    public static void t(AudioAttributes.Builder builder, boolean z) {
+        builder.setHapticChannelsMuted(z);
+    }
+
+    public static void u(Notification.Builder builder, Object obj) {
+        builder.setLocusId((LocusId) obj);
     }
 }

@@ -1,100 +1,66 @@
 package defpackage;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class bs extends ka {
-    public final cs d;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+public final class bs implements View.OnClickListener {
+    public final View a;
+    public final String b;
+    public Method c;
+    public Context d;
 
-    public bs(cs csVar) {
-        this.d = csVar;
+    public bs(View view, String str) {
+        this.a = view;
+        this.b = str;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        int i = s49Var.f;
-        if (i != 2 && i != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.h.size();
-    }
-
-    @Override
-    public final int d(int i) {
-        ArrayList arrayList = this.d.h;
-        if (i >= 0 && i < arrayList.size()) {
-            return ((as) arrayList.get(i)).a;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        boolean z;
-        boolean z2;
-        if (i >= 0 && i < this.d.h.size()) {
-            as asVar = (as) this.d.h.get(i);
-            int i2 = i + 1;
-            int i3 = 0;
-            if (i2 < this.d.h.size() && ((as) this.d.h.get(i2)).a == asVar.a) {
-                z = true;
-            } else {
-                z = false;
-            }
-            int i4 = s49Var.f;
-            if (i4 == 0) {
-                ((ld5) s49Var.a).setText(asVar.c);
-            } else if (i4 == 2) {
-                mhb mhbVar = (mhb) s49Var.a;
-                if (TextUtils.isEmpty(asVar.c)) {
-                    mhbVar.setFixedSize(12);
-                    mhbVar.setText(null);
-                    return;
-                }
-                mhbVar.setFixedSize(0);
-                mhbVar.setText(asVar.c);
-            } else if (i4 == 1) {
-                ahb ahbVar = (ahb) s49Var.a;
-                byte b = asVar.d;
-                if (b == 1) {
-                    z2 = this.d.d.keep_archived_unmuted;
-                    ahbVar.setCheckBoxIcon(0);
-                } else if (b == 4) {
-                    z2 = this.d.d.keep_archived_folders;
-                    ahbVar.setCheckBoxIcon(0);
-                } else if (b == 7) {
-                    cs csVar = this.d;
-                    boolean z3 = csVar.d.archive_and_mute_new_noncontact_peers;
-                    if (!csVar.getUserConfig().p() && !this.d.getMessagesController().k4.L0.f) {
-                        i3 = 2131232518;
+    public final void onClick(View view) {
+        int id;
+        String str;
+        Method method;
+        Method method2 = this.c;
+        if (method2 == null) {
+            View view2 = this.a;
+            Context context = view2.getContext();
+            while (true) {
+                String str2 = this.b;
+                if (context != null) {
+                    try {
+                        if (!context.isRestricted() && (method = context.getClass().getMethod(str2, View.class)) != null) {
+                            this.c = method;
+                            this.d = context;
+                            method2 = method;
+                            break;
+                        }
+                    } catch (NoSuchMethodException unused) {
                     }
-                    ahbVar.setCheckBoxIcon(i3);
-                    z2 = z3;
+                    if (context instanceof ContextWrapper) {
+                        context = ((ContextWrapper) context).getBaseContext();
+                    } else {
+                        context = null;
+                    }
                 } else {
-                    return;
+                    if (view2.getId() == -1) {
+                        str = "";
+                    } else {
+                        str = " with id '" + view2.getContext().getResources().getResourceEntryName(id) + "'";
+                    }
+                    StringBuilder p = wi8.p("Could not find method ", str2, "(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
+                    p.append(view2.getClass());
+                    p.append(str);
+                    throw new IllegalStateException(p.toString());
                 }
-                ahbVar.f(asVar.c, z2, z);
             }
         }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        View mhbVar;
-        cs csVar = this.d;
-        if (i == 0) {
-            mhbVar = new ld5(csVar.getParentActivity());
-        } else if (i == 1) {
-            mhbVar = new ahb(csVar.getParentActivity());
-        } else {
-            mhbVar = new mhb(csVar.getParentActivity());
+        try {
+            method2.invoke(this.d, view);
+        } catch (IllegalAccessException e) {
+            wa3.h("Could not execute non-public method for android:onClick", e);
+        } catch (InvocationTargetException e2) {
+            wa3.h("Could not execute method for android:onClick", e2);
         }
-        return new s49(mhbVar);
     }
 }

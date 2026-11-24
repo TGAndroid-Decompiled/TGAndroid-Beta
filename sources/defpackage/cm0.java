@@ -1,332 +1,165 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.text.TextUtils;
-import android.util.Property;
+import android.graphics.Outline;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.ActionBar.a;
 import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class cm0 extends n7 {
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class cm0 extends ViewOutlineProvider {
     public final byte a;
-    public Object b;
-    public final Object c;
+    public final Object b;
 
-    public cm0(dm0 dm0Var) {
-        this.a = (byte) 0;
-        this.c = dm0Var;
-        this.b = new oz(this, (byte) 13);
-    }
-
-    public static boolean n(String str, String str2) {
-        if (str != null && str2 != null) {
-            String lowerCase = str.toLowerCase();
-            String lowerCase2 = str2.toLowerCase();
-            if (!lowerCase.startsWith(lowerCase2) && !de9.t(" ", lowerCase2, lowerCase) && !de9.t(".", lowerCase2, lowerCase)) {
-                String J3 = gl.J3(lowerCase);
-                String J32 = gl.J3(lowerCase2);
-                if (J3.startsWith(J32) || J3.contains(" ".concat(J32)) || J3.contains(".".concat(J32))) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return false;
+    public cm0(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final boolean b() {
-        switch (this.a) {
-            case 3:
-                ((u58) this.c).finishFragment();
-                return false;
-            default:
-                return super.b();
-        }
-    }
-
-    @Override
-    public final void h() {
-        int i;
+    public final void getOutline(View view, Outline outline) {
+        float f;
+        a aVar;
         byte b = this.a;
-        Object obj = this.c;
+        float f2 = 0.0f;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                dm0 dm0Var = (dm0) obj;
-                dm0Var.w = null;
-                gl.r((oz) this.b);
-                cb cbVar = dm0Var.f;
-                if (cbVar != null) {
-                    cbVar.c();
-                    dm0Var.f = null;
-                }
-                va vaVar = dm0Var.a;
-                if (vaVar != null) {
-                    vaVar.g3.O(true);
-                    dm0Var.a.f3.g1(0, 0);
-                    return;
-                }
+                ((im0) obj).getOutline(outline);
                 return;
             case 1:
-                sr4 sr4Var = (sr4) obj;
-                fu fuVar = sr4Var.d;
-                w42 w42Var = sr4Var.G;
-                AnimatorSet animatorSet = (AnimatorSet) this.b;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
+                su suVar = (su) obj;
+                rs0 rs0Var = (rs0) suVar.c;
+                RectF rectF = (RectF) suVar.b;
+                d53 d53Var = rs0.F;
+                rs0Var.i0(rectF);
+                eq eqVar = rs0Var.s;
+                if (eqVar != null) {
+                    float height = ((RectF) eqVar.a).height() / 2.0f;
+                    float m0 = rs0Var.m0();
+                    f2 = Math.min(gm.R1(height, m0, rs0Var.x), Math.max(height, m0));
                 }
-                ArrayList arrayList = new ArrayList();
-                w42Var.setVisibility(0);
-                Property property = View.SCALE_X;
-                arrayList.add(ObjectAnimator.ofFloat(w42Var, property, 1.0f));
-                Property property2 = View.SCALE_Y;
-                arrayList.add(ObjectAnimator.ofFloat(w42Var, property2, 1.0f));
-                Property property3 = View.ALPHA;
-                arrayList.add(ObjectAnimator.ofFloat(w42Var, property3, 1.0f));
-                EditTextBoldCursor searchField = sr4Var.H.getSearchField();
-                if (searchField != null) {
-                    arrayList.add(ObjectAnimator.ofFloat(searchField, property, 0.8f));
-                    arrayList.add(ObjectAnimator.ofFloat(searchField, property2, 0.8f));
-                    arrayList.add(ObjectAnimator.ofFloat(searchField, property3, 0.0f));
-                }
-                fuVar.setVisibility(0);
-                arrayList.add(ObjectAnimator.ofFloat(fuVar, property3, 1.0f));
-                fuVar.setFastScrollVisible(true);
-                arrayList.add(ObjectAnimator.ofFloat(sr4Var.h, property3, 0.0f));
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new ir4(this, (byte) 1));
-                arrayList.add(ofFloat);
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                this.b = animatorSet2;
-                animatorSet2.setDuration(320L);
-                ((AnimatorSet) this.b).setInterpolator(s33.h);
-                ((AnimatorSet) this.b).playTogether(arrayList);
-                ((AnimatorSet) this.b).addListener(new u5(this, searchField, (byte) 24));
-                ((AnimatorSet) this.b).start();
+                outline.setRoundRect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom, f2);
                 return;
             case 2:
-                me5 me5Var = (me5) obj;
-                me5Var.r = null;
-                me5Var.n = false;
-                gl.r((iu4) this.b);
-                va vaVar2 = me5Var.a;
-                if (vaVar2 != null) {
-                    vaVar2.g3.O(true);
-                    me5Var.a.f3.g1(0, 0);
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), ((oa1) obj).d);
+                return;
+            case 3:
+                yv1 yv1Var = (yv1) obj;
+                ImageReceiver imageReceiver = (ImageReceiver) view.getTag(2131296593);
+                if (imageReceiver != null) {
+                    int[] iArr = imageReceiver.X0;
+                    int i = 0;
+                    for (int i2 = 0; i2 < 4; i2++) {
+                        i = Math.max(i, iArr[i2]);
+                    }
+                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i);
+                    return;
                 }
-                wla wlaVar = me5Var.y.d;
-                if (TextUtils.isEmpty(me5Var.r)) {
-                    i = 2131742655;
+                outline.setOval(0, 0, gm.b3(yv1Var.f8(), yv1Var.U7()), gm.b3(yv1Var.f8(), yv1Var.U7()));
+                return;
+            case 4:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
+                i22 i22Var = chatAttachAlertPhotoLayout.b;
+                float f3 = i22Var.D2[1];
+                lc1 lc1Var = i22Var.B4;
+                if (lc1Var != null) {
+                    f = lc1Var.d() + gm.L(16.0f);
                 } else {
-                    i = 2131742654;
+                    f = 0.0f;
                 }
-                wlaVar.setText(k96.M0(i, null));
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void i() {
-        switch (this.a) {
-            case 0:
-                return;
-            case 1:
-                sr4 sr4Var = (sr4) this.c;
-                fu fuVar = sr4Var.d;
-                FrameLayout frameLayout = sr4Var.h;
-                w42 w42Var = sr4Var.G;
-                AnimatorSet animatorSet = (AnimatorSet) this.b;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
+                int min = (int) Math.min((i22Var.b.getTranslationY() + ((f3 - f) + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY(), view.getMeasuredHeight());
+                if (chatAttachAlertPhotoLayout.c0) {
+                    min = view.getMeasuredHeight();
+                } else if (chatAttachAlertPhotoLayout.e0) {
+                    min = gm.U1(chatAttachAlertPhotoLayout.f0, min, view.getMeasuredHeight());
                 }
-                ArrayList arrayList = new ArrayList();
-                Property property = View.SCALE_X;
-                arrayList.add(ObjectAnimator.ofFloat(w42Var, property, 0.8f));
-                Property property2 = View.SCALE_Y;
-                arrayList.add(ObjectAnimator.ofFloat(w42Var, property2, 0.8f));
-                Property property3 = View.ALPHA;
-                arrayList.add(ObjectAnimator.ofFloat(w42Var, property3, 0.0f));
-                EditTextBoldCursor searchField = sr4Var.H.getSearchField();
-                if (searchField != null) {
-                    searchField.setVisibility(0);
-                    searchField.setHandlesColor(-1);
-                    arrayList.add(ObjectAnimator.ofFloat(searchField, property, 1.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(searchField, property2, 1.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(searchField, property3, 1.0f));
+                boolean z = chatAttachAlertPhotoLayout.e0;
+                if (z) {
+                    RectF rectF2 = gm.P;
+                    float f4 = chatAttachAlertPhotoLayout.o1;
+                    float f5 = 1.0f - chatAttachAlertPhotoLayout.f0;
+                    rectF2.set((0.0f * f5) + f4, (f5 * chatAttachAlertPhotoLayout.a0) + chatAttachAlertPhotoLayout.l1, chatAttachAlertPhotoLayout.n1, chatAttachAlertPhotoLayout.m1);
+                    outline.setRect((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, Math.min(min, (int) rectF2.bottom));
+                    return;
+                } else if (!z && !chatAttachAlertPhotoLayout.c0) {
+                    int L = gm.L(16.0f);
+                    outline.setRoundRect(0, (int) chatAttachAlertPhotoLayout.a0, view.getMeasuredWidth() + L, Math.min(min, view.getMeasuredHeight()) + L, L);
+                    return;
+                } else {
+                    outline.setRect(0, 0, view.getMeasuredWidth(), Math.min(min, view.getMeasuredHeight()));
+                    return;
                 }
-                frameLayout.setVisibility(0);
-                arrayList.add(ObjectAnimator.ofFloat(fuVar, property3, 0.0f));
-                fuVar.setFastScrollVisible(false);
-                arrayList.add(ObjectAnimator.ofFloat(frameLayout, property3, 1.0f));
-                sr4Var.s.setVisibility(0);
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new ir4(this, (byte) 0));
-                arrayList.add(ofFloat);
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                this.b = animatorSet2;
-                animatorSet2.setDuration(320L);
-                ((AnimatorSet) this.b).setInterpolator(s33.h);
-                ((AnimatorSet) this.b).playTogether(arrayList);
-                ((AnimatorSet) this.b).addListener(new im2(this, (byte) 25));
-                ((AnimatorSet) this.b).start();
-                return;
-            case 2:
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void k(EditTextBoldCursor editTextBoldCursor) {
-        switch (this.a) {
-            case 3:
-                ((u58) this.c).f0(editTextBoldCursor);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void l(EditTextBoldCursor editTextBoldCursor) {
-        int i;
-        int i2;
-        byte b = this.a;
-        Object obj = this.c;
-        switch (b) {
-            case 0:
-                dm0 dm0Var = (dm0) obj;
-                boolean z = !TextUtils.isEmpty(dm0Var.w);
-                String obj2 = editTextBoldCursor.getText().toString();
-                if (!TextUtils.equals(dm0Var.w, obj2)) {
-                    dm0Var.w = obj2;
-                    cb cbVar = dm0Var.f;
-                    if (cbVar != null) {
-                        cbVar.c();
+            case 5:
+                q68 q68Var = (q68) view;
+                if (q68Var.getTag() != null) {
+                    int intValue = ((Integer) q68Var.getTag()).intValue();
+                    p62 p62Var = (p62) obj;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = p62Var.w;
+                    if (p62Var.d && chatAttachAlertPhotoLayout2.U0 == chatAttachAlertPhotoLayout2.V0 && !chatAttachAlertPhotoLayout2.P0) {
+                        intValue++;
                     }
-                    cb cbVar2 = new cb(obj2, dm0.e0(dm0Var), new zl0(dm0Var, (byte) 1));
-                    dm0Var.f = cbVar2;
-                    cbVar2.a();
-                    oz ozVar = (oz) this.b;
-                    gl.r(ozVar);
-                    gl.e3(ozVar, 500L);
-                }
-                va vaVar = dm0Var.a;
-                if (vaVar != null) {
-                    vaVar.g3.O(true);
-                    if (z != (!TextUtils.isEmpty(obj2))) {
-                        dm0Var.a.f3.g1(0, 0);
+                    if (chatAttachAlertPhotoLayout2.h1) {
+                        intValue++;
+                    }
+                    if (intValue == 0) {
+                        int L2 = gm.L(16.0f);
+                        outline.setRoundRect(0, 0, view.getMeasuredWidth() + L2, view.getMeasuredHeight() + L2, L2);
                         return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                String obj3 = editTextBoldCursor.getText().toString();
-                kr4 kr4Var = ((sr4) obj).r;
-                s54 s54Var = kr4Var.w;
-                if (!TextUtils.equals(kr4Var.f, obj3)) {
-                    if (kr4Var.e != -1) {
-                        ConnectionsManager.getInstance(kr4Var.x.a).cancelRequest(kr4Var.e, true);
-                        kr4Var.e = -1;
-                    }
-                    kr4Var.d = false;
-                    kr4Var.h = null;
-                }
-                kr4Var.f = obj3;
-                gl.r(s54Var);
-                if (TextUtils.isEmpty(obj3)) {
-                    kr4Var.c.clear();
-                    kr4Var.F(false);
-                    kr4Var.f();
-                    return;
-                }
-                kr4Var.F(true);
-                gl.e3(s54Var, 1500L);
-                return;
-            case 2:
-                me5 me5Var = (me5) obj;
-                boolean z2 = !TextUtils.isEmpty(me5Var.r);
-                String obj4 = editTextBoldCursor.getText().toString();
-                if (!TextUtils.equals(me5Var.r, obj4)) {
-                    me5Var.r = obj4;
-                    me5Var.n = true;
-                    iu4 iu4Var = (iu4) this.b;
-                    gl.r(iu4Var);
-                    gl.e3(iu4Var, 500L);
-                    wla wlaVar = me5Var.y.d;
-                    if (TextUtils.isEmpty(obj4)) {
-                        i = 2131742655;
+                    } else if (intValue == chatAttachAlertPhotoLayout2.N0 - 1) {
+                        int L3 = gm.L(16.0f);
+                        outline.setRoundRect(-L3, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + L3, L3);
+                        return;
                     } else {
-                        i = 2131742654;
-                    }
-                    wlaVar.setText(k96.M0(i, null));
-                }
-                va vaVar2 = me5Var.a;
-                if (vaVar2 != null) {
-                    vaVar2.g3.O(true);
-                    if (z2 != (!TextUtils.isEmpty(obj4))) {
-                        me5Var.a.f3.g1(0, 0);
+                        outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
                         return;
                     }
-                    return;
                 }
                 return;
-            default:
-                oq7 oq7Var = (oq7) this.b;
-                u58 u58Var = (u58) obj;
-                if (editTextBoldCursor.getText().length() == 0) {
-                    u58Var.f.clear();
-                    u58Var.h.clear();
-                    u58Var.w = null;
-                    u58Var.s = true;
-                    u58Var.r = false;
-                    if (u58Var.y != 0) {
-                        i2 = ((d) u58Var).currentAccount;
-                        ConnectionsManager.getInstance(i2).cancelRequest(u58Var.y, true);
-                        u58Var.y = 0;
+            case 6:
+                outline.setRoundRect(0, ((f57) obj).U + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), gm.L(8.0f));
+                return;
+            case 7:
+                int L4 = gm.L(12.0f);
+                aVar = ((d) ((PremiumPreviewFragment) obj)).actionBar;
+                outline.setRoundRect(L4, gm.L(12.0f) + aVar.getBottom(), view.getWidth() - gm.L(12.0f), gm.L(16.0f) + view.getMeasuredHeight(), gm.L(16.0f));
+                return;
+            case 8:
+                phc phcVar = (phc) obj;
+                float f6 = phcVar.R;
+                if (f6 >= 0.0f) {
+                    if (f6 < 1.0f) {
+                        outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                        return;
+                    } else {
+                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), phcVar.R);
+                        return;
                     }
-                    u58Var.O.d.setText(k96.M0(2131747977, null));
-                    u58Var.O.e(false, true);
-                    u58Var.n0();
+                } else if (!phcVar.N) {
+                    outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                    return;
+                } else {
+                    int measuredWidth = view.getMeasuredWidth();
+                    int measuredHeight = view.getMeasuredHeight();
+                    if (phcVar.N) {
+                        f2 = gm.L(4.0f);
+                    }
+                    outline.setRoundRect(0, 0, measuredWidth, measuredHeight, f2);
                     return;
                 }
-                gl.r(oq7Var);
-                gl.e3(oq7Var, 1200L);
-                return;
+            default:
+                akc akcVar = (akc) obj;
+                int i3 = (akcVar.b > 1.0f ? 1 : (akcVar.b == 1.0f ? 0 : -1));
+                float f7 = akcVar.P;
+                if (i3 < 0) {
+                    outline.setRect((int) f7, (int) akcVar.O, (int) (view.getMeasuredWidth() - akcVar.P), (int) (view.getMeasuredHeight() - akcVar.O));
+                    return;
+                } else {
+                    outline.setRoundRect((int) f7, (int) akcVar.O, (int) (view.getMeasuredWidth() - akcVar.P), (int) (view.getMeasuredHeight() - akcVar.O), akcVar.b);
+                    return;
+                }
         }
-    }
-
-    public cm0(sr4 sr4Var) {
-        this.a = (byte) 1;
-        this.c = sr4Var;
-    }
-
-    public cm0(me5 me5Var) {
-        this.a = (byte) 2;
-        this.c = me5Var;
-        this.b = new iu4(this, (byte) 23);
-    }
-
-    public cm0(u58 u58Var) {
-        this.a = (byte) 3;
-        this.c = u58Var;
-        this.b = new oq7(this, (byte) 22);
-    }
-
-    private final void o() {
-    }
-
-    private final void p() {
-    }
-
-    private final void q() {
     }
 }

@@ -1,116 +1,88 @@
 package defpackage;
 
 import android.content.Context;
-import android.content.Intent;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PasscodeActivity;
-import org.telegram.ui.ProxyListActivity;
-public final class iv7 extends c6 {
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class iv7 extends FrameLayout {
     public final byte a;
-    public final Object b;
-    public final d c;
+    public final z8b b;
 
-    public iv7(d dVar, Object obj, byte b) {
+    public iv7(z8b z8bVar, Context context, byte b) {
+        super(context);
         this.a = b;
-        this.c = dVar;
-        this.b = obj;
+        switch (b) {
+            case 1:
+                this.b = z8bVar;
+                super(context);
+                return;
+            default:
+                this.b = z8bVar;
+                setWillNotDraw(false);
+                return;
+        }
     }
 
     @Override
-    public final void b(int i) {
-        int i2;
-        int i3;
-        byte b = this.a;
-        Object obj = this.b;
-        int i4 = 0;
-        d dVar = this.c;
-        switch (b) {
-            case 0:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) dVar;
-                if (i == -1) {
-                    passcodeActivity.finishFragment();
-                    return;
-                } else if (i == 1) {
-                    passcodeActivity.E = !passcodeActivity.E;
-                    gl.e3(new bj7(this, (a8) obj, (byte) 18), 150L);
-                    passcodeActivity.h.setText("");
-                    sj2[] sj2VarArr = passcodeActivity.n.f;
-                    int length = sj2VarArr.length;
-                    while (i4 < length) {
-                        sj2VarArr[i4].setText("");
-                        i4++;
-                    }
-                    passcodeActivity.x0();
-                    return;
-                } else {
-                    return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.a) {
+            case 1:
+                if (this.b.g2) {
+                    return false;
                 }
+                return super.dispatchTouchEvent(motionEvent);
             default:
-                ProxyListActivity proxyListActivity = (ProxyListActivity) dVar;
-                ArrayList arrayList = proxyListActivity.F;
-                if (i != -1) {
-                    if (i != 0) {
-                        if (i == 1) {
-                            StringBuilder sb = new StringBuilder();
-                            int size = arrayList.size();
-                            while (i4 < size) {
-                                Object obj2 = arrayList.get(i4);
-                                i4++;
-                                fba fbaVar = (fba) obj2;
-                                if (sb.length() > 0) {
-                                    sb.append("\n\n");
-                                }
-                                sb.append(fbaVar.a.e());
-                            }
-                            Intent intent = new Intent("android.intent.action.SEND");
-                            intent.setType("text/plain");
-                            intent.putExtra("android.intent.extra.TEXT", sb.toString());
-                            if (arrayList.size() > 1) {
-                                i3 = 2131745265;
-                            } else {
-                                i3 = 2131745266;
-                            }
-                            Intent createChooser = Intent.createChooser(intent, k96.M0(i3, null));
-                            createChooser.setFlags(268435456);
-                            ((Context) obj).startActivity(createChooser);
-                            s20 s20Var = proxyListActivity.a;
-                            if (s20Var != null) {
-                                s20Var.F();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.a) {
+            case 0:
+                super.onDraw(canvas);
+                z8b z8bVar = this.b;
+                Paint paint = z8bVar.h1;
+                iu7 iu7Var = z8bVar.b1;
+                paint.setAlpha((int) ((1.0f - z8bVar.j1) * iu7Var.getAlpha() * 20.0f));
+                RectF rectF = gm.P;
+                iu7Var.b(rectF);
+                uv7 uv7Var = z8bVar.J0;
+                int top = uv7Var.getTop();
+                float translationY = iu7Var.getTranslationY() + uv7Var.getTranslationY() + iu7Var.getTop() + top;
+                float f = rectF.left;
+                tu7 tu7Var = z8bVar.c1;
+                rectF.set(gm.R1(f, tu7Var.getLeft(), z8bVar.j1), gm.R1(rectF.top + translationY, tu7Var.getTop() - tu7Var.getTranslationY(), z8bVar.j1), gm.R1(rectF.right, tu7Var.getRight(), z8bVar.j1), gm.R1(translationY + rectF.bottom, tu7Var.getBottom() - tu7Var.getTranslationY(), z8bVar.j1));
+                float L = gm.L(gm.U1(z8bVar.j1, 32, 16));
+                Paint paint2 = z8bVar.i1;
+                int alpha = paint2.getAlpha();
+                paint2.setAlpha((int) (alpha * z8bVar.j1));
+                canvas.drawRoundRect(rectF, L, L, paint2);
+                paint2.setAlpha(alpha);
+                canvas.drawRoundRect(rectF, L, L, paint);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.a) {
+            case 0:
+                if (motionEvent.getActionMasked() == 0) {
+                    z8b z8bVar = this.b;
+                    if (z8bVar.k1) {
+                        z8bVar.P0(false);
+                        return true;
                     }
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(proxyListActivity.getParentActivity());
-                    if (arrayList.size() > 1) {
-                        i2 = 2131751498;
-                    } else {
-                        i2 = 2131751499;
-                    }
-                    String M0 = k96.M0(i2, null);
-                    hd hdVar = alertDialog$Builder.a;
-                    hdVar.U = M0;
-                    alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                    hdVar.S = k96.M0(2131751497, null);
-                    alertDialog$Builder.j(k96.M0(2131751586, null), new k88(this, (byte) 15));
-                    proxyListActivity.showDialog(hdVar);
-                    TextView textView = (TextView) hdVar.c(-1);
-                    if (textView != null) {
-                        zkb.X(textView, bkb.p7, null);
-                        return;
-                    }
-                    return;
-                } else if (arrayList.isEmpty()) {
-                    proxyListActivity.finishFragment();
-                    return;
-                } else {
-                    proxyListActivity.a.F();
-                    return;
                 }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return false;
         }
     }
 }

@@ -1,98 +1,169 @@
 package defpackage;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Binder;
-import android.os.Build;
-import android.os.Process;
-public abstract class g6d {
-    public static final Object f = new Object();
-    public static Context g;
-    public static volatile Boolean h;
-    public final vk9 a;
-    public final String b;
-    public final String c;
-    public final Object d;
-    public volatile p5d e = null;
+import j$.util.List;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+import java.util.function.UnaryOperator;
+public abstract class g6d extends l1d implements List, RandomAccess, j$.util.List {
+    public static final d6d n = new d6d(i6d.w, 0);
 
-    public g6d(vk9 vk9Var, String str, Object obj) {
-        String str2;
-        String str3;
-        if (((Uri) vk9Var.b) != null) {
-            this.a = vk9Var;
-            String valueOf = String.valueOf((String) vk9Var.c);
-            if (str.length() != 0) {
-                str2 = valueOf.concat(str);
-            } else {
-                str2 = new String(valueOf);
-            }
-            this.c = str2;
-            String valueOf2 = String.valueOf((String) vk9Var.d);
-            if (str.length() != 0) {
-                str3 = valueOf2.concat(str);
-            } else {
-                str3 = new String(valueOf2);
-            }
-            this.b = str3;
-            this.d = obj;
-            return;
-        }
-        w26.j("Must pass a valid SharedPreferences file name or ContentProvider URI");
-        throw null;
+    @Override
+    public final void add(int i, Object obj) {
+        throw new UnsupportedOperationException();
     }
 
-    public static void b(Context context) {
-        Context applicationContext;
-        if (g == null) {
-            synchronized (f) {
-                if ((Build.VERSION.SDK_INT < 24 || !context.isDeviceProtectedStorage()) && (applicationContext = context.getApplicationContext()) != null) {
-                    context = applicationContext;
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        Object next;
+        Object next2;
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i = 0; i < size; i++) {
+                            Object obj2 = get(i);
+                            Object obj3 = list.get(i);
+                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
+                            }
+                        }
+                        return true;
+                    }
+                    d6d listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
                 }
-                if (g != context) {
-                    h = null;
-                }
-                g = context;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int hashCode() {
+        int size = size();
+        int i = 1;
+        for (int i2 = 0; i2 < size; i2++) {
+            i = (i * 31) + get(i2).hashCode();
+        }
+        return i;
+    }
+
+    @Override
+    public final int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            if (obj.equals(get(i))) {
+                return i;
             }
         }
+        return -1;
     }
 
-    public static Object c(g8d g8dVar) {
-        try {
-            return g8dVar.zzp();
-        } catch (SecurityException unused) {
-            long clearCallingIdentity = Binder.clearCallingIdentity();
-            try {
-                return g8dVar.zzp();
-            } finally {
-                Binder.restoreCallingIdentity(clearCallingIdentity);
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public int l(Object[] objArr) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            objArr[i] = get(i);
+        }
+        return size;
+    }
+
+    @Override
+    public final int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
             }
         }
+        return -1;
     }
 
-    public static boolean e() {
-        String str;
-        if (h == null) {
-            Context context = g;
-            boolean z = false;
-            if (context == null) {
-                return false;
-            }
-            if (Binder.getCallingPid() == Process.myPid()) {
-                str = context.getPackageName();
-            } else {
-                str = null;
-            }
-            if (qqe.a(context, "com.google.android.providers.gsf.permission.READ_GSERVICES", Binder.getCallingPid(), Binder.getCallingUid(), str) == 0) {
-                z = true;
-            }
-            h = Boolean.valueOf(z);
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final Object remove(int i) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void replaceAll(UnaryOperator unaryOperator) {
+        List.CC.$default$replaceAll(this, unaryOperator);
+    }
+
+    @Override
+    public final Object set(int i, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void sort(Comparator comparator) {
+        List.CC.$default$sort(this, comparator);
+    }
+
+    @Override
+    public g6d subList(int i, int i2) {
+        a1f.b(i, i2, size());
+        int i3 = i2 - i;
+        if (i3 == size()) {
+            return this;
         }
-        return h.booleanValue();
+        if (i3 == 0) {
+            return i6d.w;
+        }
+        return new f6d(this, i, i3);
     }
 
-    public final java.lang.Object a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.g6d.a():java.lang.Object");
+    @Override
+    public final d6d listIterator(int i) {
+        int size = size();
+        if (i >= 0 && i <= size) {
+            if (isEmpty()) {
+                return n;
+            }
+            return new d6d(this, i);
+        }
+        wa3.i(a1f.c(i, size, "index"));
+        return null;
     }
-
-    public abstract Object d(String str);
 }

@@ -1,26 +1,48 @@
 package defpackage;
-public final class o73 extends ccb implements qp4 {
-    public Throwable a;
-    public byte b;
-    public final v73 c;
 
-    public o73(v73 v73Var, fw2 fw2Var) {
-        super(1, fw2Var);
-        this.c = v73Var;
+import java.nio.ByteBuffer;
+import java.nio.channels.WritableByteChannel;
+public final class o73 extends a2 {
+    public final byte f;
+
+    public o73(String str, byte b) {
+        super(str);
+        this.f = b;
     }
 
     @Override
-    public final fw2 create(fw2 fw2Var) {
-        return new o73(this.c, fw2Var);
+    public final void getBox(WritableByteChannel writableByteChannel) {
+        switch (this.f) {
+            case 1:
+                writableByteChannel.write(d());
+                ByteBuffer allocate = ByteBuffer.allocate(8);
+                kne.f(0, allocate);
+                kne.e(0, allocate);
+                allocate.putInt(this.b.size());
+                writableByteChannel.write((ByteBuffer) allocate.rewind());
+                c(writableByteChannel);
+                return;
+            default:
+                super.getBox(writableByteChannel);
+                return;
+        }
     }
 
     @Override
-    public final Object invoke(Object obj) {
-        return ((o73) create((fw2) obj)).invokeSuspend(g5c.a);
-    }
-
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o73.invokeSuspend(java.lang.Object):java.lang.Object");
+    public final long getSize() {
+        int i;
+        switch (this.f) {
+            case 1:
+                long b = b();
+                long j = 8 + b;
+                if (b + 16 >= 4294967296L) {
+                    i = 16;
+                } else {
+                    i = 8;
+                }
+                return j + i;
+            default:
+                return super.getSize();
+        }
     }
 }

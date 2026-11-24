@@ -1,29 +1,20 @@
 package defpackage;
-public final class vn5 implements Runnable {
-    public final byte a;
-    public final yn5 b;
 
-    public vn5(yn5 yn5Var, byte b) {
-        this.a = b;
-        this.b = yn5Var;
-    }
+import org.telegram.tgnet.TLRPC;
+public interface vn5 {
+    void H(float f);
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        yn5 yn5Var = this.b;
-        switch (b) {
-            case 0:
-                m01 m01Var = yn5Var.A;
-                if (m01Var != null) {
-                    yn5Var.a.g(m01Var);
-                    yn5Var.A = null;
-                    return;
-                }
-                return;
-            default:
-                yn5Var.a(null, true, null);
-                return;
-        }
-    }
+    void O(boolean z, boolean z2);
+
+    void T();
+
+    void U(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize);
+
+    boolean c();
+
+    qb8 getCloseIntoObject();
+
+    String getInitialSearchString();
+
+    boolean w();
 }

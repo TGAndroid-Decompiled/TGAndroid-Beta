@@ -1,14 +1,17 @@
 package defpackage;
+public final class vle implements cq7 {
+    public static final vle a = new Object();
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-public abstract class vle {
-    public static boolean a = false;
-    public static Method b = null;
-    public static boolean c = false;
-    public static Field d;
+    static {
+        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)));
+    }
 
-    public static boolean a(defpackage.kv5 r7, android.view.View r8, android.view.Window.Callback r9, android.view.KeyEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vle.a(kv5, android.view.View, android.view.Window$Callback, android.view.KeyEvent):boolean");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

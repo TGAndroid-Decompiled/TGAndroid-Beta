@@ -1,17 +1,16 @@
 package defpackage;
-public final class zse implements zn7 {
-    public static final zse a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)));
-    }
+import android.app.AppOpsManager;
+import android.content.Context;
+import android.os.Build;
+import android.os.Process;
+public abstract class zse {
+    public static xc8 a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static boolean a(Context context) {
+        if (Build.VERSION.SDK_INT < 26 || !context.getPackageManager().hasSystemFeature("android.software.picture_in_picture") || ((AppOpsManager) context.getSystemService("appops")).checkOpNoThrow("android:picture_in_picture", Process.myUid(), context.getPackageName()) != 0) {
+            return false;
         }
-        throw new ClassCastException();
+        return true;
     }
 }

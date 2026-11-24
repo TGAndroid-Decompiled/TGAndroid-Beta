@@ -1,33 +1,54 @@
 package defpackage;
-public final class r3f extends vef {
-    private static final r3f zzb;
-    private int zzd;
-    private int zze;
-
-    static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(r3f.class, vefVar);
+public abstract class r3f {
+    public static void a(int i, int i2) {
+        String a;
+        if (i >= 0 && i < i2) {
+            return;
+        }
+        if (i >= 0) {
+            if (i2 < 0) {
+                u36.j(hg9.j(i2, "negative size: "));
+                return;
+            }
+            a = u3f.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
+        } else {
+            a = u3f.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
+        }
+        throw new IndexOutOfBoundsException(a);
     }
 
-    @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new vef();
-            }
-            return new sgf(zzb, "\u0001\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001᠌\u0000", new Object[]{"zzd", "zze", cff.r});
+    public static void b(int i, int i2) {
+        if (i >= 0 && i <= i2) {
+            return;
         }
-        return (byte) 1;
+        wa3.i(d(i, i2, "index"));
+    }
+
+    public static void c(int i, int i2, int i3) {
+        String d;
+        if (i >= 0 && i2 >= i && i2 <= i3) {
+            return;
+        }
+        if (i >= 0 && i <= i3) {
+            if (i2 >= 0 && i2 <= i3) {
+                d = u3f.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
+            } else {
+                d = d(i2, i3, "end index");
+            }
+        } else {
+            d = d(i, i3, "start index");
+        }
+        throw new IndexOutOfBoundsException(d);
+    }
+
+    public static String d(int i, int i2, String str) {
+        if (i < 0) {
+            return u3f.a("%s (%s) must not be negative", str, Integer.valueOf(i));
+        }
+        if (i2 >= 0) {
+            return u3f.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
+        }
+        u36.j(hg9.j(i2, "negative size: "));
+        return null;
     }
 }

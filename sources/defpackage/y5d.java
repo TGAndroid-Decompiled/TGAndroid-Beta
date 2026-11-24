@@ -1,23 +1,36 @@
 package defpackage;
 
-import android.content.Intent;
-import android.os.Bundle;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-public final class y5d implements Continuation, yyb, zef {
-    public static final y5d a = new Object();
+import android.os.BadParcelableException;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class y5d {
+    public static final int a = 0;
 
-    @Override
-    public final Object apply(Object obj) {
-        return ((toe) obj).a();
+    static {
+        y5d.class.getClassLoader();
     }
 
-    @Override
-    public final Object then(Task task) {
-        Intent intent = (Intent) ((Bundle) task.getResult()).getParcelable("notification_data");
-        if (intent != null) {
-            return new aj2(intent);
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        return null;
+        return (Parcelable) creator.createFromParcel(parcel);
+    }
+
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        throw new BadParcelableException(hg9.j(dataAvail, "Parcel data not fully consumed, unread size: "));
+    }
+
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 }

@@ -1,20 +1,18 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class owe extends b4 {
-    public static final Parcelable.Creator<owe> CREATOR = new c0f((byte) 3);
-    public final int a;
-
-    public owe(int i) {
-        this.a = i;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.s(parcel, r);
+public abstract class owe {
+    public static String a(String str, String str2) {
+        int length = str.length() - str2.length();
+        if (length >= 0 && length <= 1) {
+            StringBuilder sb = new StringBuilder(str2.length() + str.length());
+            for (int i = 0; i < str.length(); i++) {
+                sb.append(str.charAt(i));
+                if (str2.length() > i) {
+                    sb.append(str2.charAt(i));
+                }
+            }
+            return sb.toString();
+        }
+        u36.j("Invalid input received");
+        return null;
     }
 }

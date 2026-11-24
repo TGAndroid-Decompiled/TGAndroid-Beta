@@ -9,7 +9,7 @@ public final class da {
     public final ba[] b;
 
     static {
-        ba baVar = new ba(-1, new int[0], new br6[0], new long[0], new String[0], new ca[0]);
+        ba baVar = new ba(-1, new int[0], new bt6[0], new long[0], new String[0], new ca[0]);
         int[] iArr = baVar.d;
         int length = iArr.length;
         int max = Math.max(0, length);
@@ -20,11 +20,11 @@ public final class da {
         int max2 = Math.max(0, length2);
         long[] copyOf2 = Arrays.copyOf(jArr, max2);
         Arrays.fill(copyOf2, length2, max2, -9223372036854775807L);
-        br6[] br6VarArr = (br6[]) Arrays.copyOf(baVar.c, 0);
+        bt6[] bt6VarArr = (bt6[]) Arrays.copyOf(baVar.c, 0);
         String[] strArr = (String[]) Arrays.copyOf(baVar.f, 0);
         ca[] caVarArr = baVar.g;
-        d = new ba(0, copyOf, br6VarArr, copyOf2, strArr, (ca[]) Arrays.copyOf(caVarArr, Math.max(0, caVarArr.length)));
-        String str = g8c.a;
+        d = new ba(0, copyOf, bt6VarArr, copyOf2, strArr, (ca[]) Arrays.copyOf(caVarArr, Math.max(0, caVarArr.length)));
+        String str = hac.a;
         e = "1";
     }
 

@@ -1,48 +1,28 @@
 package defpackage;
 
-import java.util.Arrays;
-import java.util.Collection;
-public abstract class em5 extends fm5 {
-    public Object[] a;
-    public int b;
-    public boolean c;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class em5 extends b4 {
+    public static final Parcelable.Creator<em5> CREATOR = new t0e((byte) 21);
+    public final int a;
+    public final int b;
+    public final int c;
 
-    public em5(int i) {
-        krd.b(i, "initialCapacity");
-        this.a = new Object[i];
-        this.b = 0;
+    public em5(int i, int i2, int i3) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
     }
 
-    public final void c(Object obj) {
-        obj.getClass();
-        e(1);
-        Object[] objArr = this.a;
-        int i = this.b;
-        this.b = i + 1;
-        objArr[i] = obj;
-    }
-
-    public final void d(Iterable iterable) {
-        if (iterable instanceof Collection) {
-            Collection collection = (Collection) iterable;
-            e(collection.size());
-            if (collection instanceof gm5) {
-                this.b = ((gm5) collection).i(this.b, this.a);
-                return;
-            }
-        }
-        for (Object obj : iterable) {
-            a(obj);
-        }
-    }
-
-    public final void e(int i) {
-        Object[] objArr = this.a;
-        int b = fm5.b(objArr.length, this.b + i);
-        if (b <= objArr.length && !this.c) {
-            return;
-        }
-        this.a = Arrays.copyOf(this.a, b);
-        this.c = false;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        mve.q(parcel, 3, 4);
+        parcel.writeInt(this.b);
+        mve.q(parcel, 4, 4);
+        parcel.writeInt(this.c);
+        mve.s(parcel, r);
     }
 }

@@ -1,215 +1,202 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t37 extends FrameLayout implements tjb {
-    public final ArrayList a;
-    public final ArrayList b;
-    public final ArrayList c;
-    public final hc0 d;
-    public final jia e;
-    public final int f;
-    public final boolean h;
-    public final pi4 n;
-    public boolean r;
-    public rkb s;
-    public int w;
+import android.text.TextPaint;
+public final class t37 implements ylb {
+    public final TextPaint a;
+    public final TextPaint b;
+    public final TextPaint c;
+    public final Paint d;
+    public final Paint e;
+    public final pv7 f;
 
-    public t37(Context context, int i, k27 k27Var, TLRPC.Chat chat) {
-        super(context);
-        boolean z;
-        int i2;
-        long j;
-        this.a = new ArrayList();
-        this.b = new ArrayList();
-        this.c = new ArrayList();
-        this.f = i;
-        if (!k27Var.g4() && !k27.Q4(k27Var.k)) {
-            z = false;
-        } else {
-            z = true;
-        }
-        this.h = z;
-        pi4 pi4Var = new pi4(context, null);
-        this.n = pi4Var;
-        pi4Var.e(bkb.F8, bkb.h6, -1);
-        pi4Var.setViewType(13);
-        pi4Var.setIsSingleCell(false);
-        addView(pi4Var, nme.c(-1.0f, -2));
-        jia jiaVar = new jia(context);
-        this.e = jiaVar;
-        jiaVar.setTextSize(16);
-        jiaVar.setEllipsizeByGradient(true);
-        jiaVar.setRightPadding(gl.L(62.0f));
-        addView(jiaVar, nme.d(0, -2.0f, 19, 40.0f, 0.0f, 0.0f, 0.0f));
-        hc0 hc0Var = new hc0(context, false);
-        this.d = hc0Var;
-        hc0Var.setStyle(11);
-        hc0Var.setAvatarsTextSize(gl.L(22.0f));
-        addView(hc0Var, nme.d(56, -1.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
-        zkb.W(jiaVar, bkb.D8, null);
-        TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
-        tL_messages_getMessageReadParticipants.msg_id = k27Var.e1();
-        tL_messages_getMessageReadParticipants.peer = na7.q1(i).h1(k27.B0(k27Var.k));
-        ImageView imageView = new ImageView(context);
-        addView(imageView, nme.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
-        if (z) {
-            i2 = 2131232303;
-        } else {
-            i2 = 2131232361;
-        }
-        Drawable mutate = context.getDrawable(i2).mutate();
-        zkb.x(this, mutate, bkb.E8, null, PorterDuff.Mode.MULTIPLY);
-        imageView.setImageDrawable(mutate);
-        hc0Var.setAlpha(0.0f);
-        jiaVar.setAlpha(0.0f);
-        TLRPC.Peer peer = k27Var.k.from_id;
-        if (peer != null) {
-            j = peer.user_id;
-        } else {
-            j = 0;
-        }
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getMessageReadParticipants, new tg(this, j, i, chat));
-        int w0 = bkb.w0(null, bkb.H5, false);
-        this.w = w0;
-        setBackground(bkb.Y(w0, 6, 0));
-        setEnabled(false);
+    public t37(pv7 pv7Var) {
+        this.f = pv7Var;
+        TextPaint textPaint = new TextPaint();
+        this.a = textPaint;
+        TextPaint textPaint2 = new TextPaint();
+        this.b = textPaint2;
+        TextPaint textPaint3 = new TextPaint();
+        this.c = textPaint3;
+        new Paint(3);
+        this.d = new Paint(3);
+        Paint paint = new Paint(3);
+        this.e = paint;
+        textPaint.setTextSize(gm.L(Math.max(16, gda.S0) - 2));
+        textPaint2.setTextSize(gm.L(Math.max(16, gda.S0) - 2));
+        textPaint3.setTextSize(gm.L(15.0f));
+        textPaint3.setTypeface(gm.o());
+        paint.setColor(352321536);
     }
 
-    public final o39 a() {
-        rkb rkbVar = this.s;
-        if (rkbVar != null) {
-            return rkbVar;
-        }
-        rkb rkbVar2 = new rkb(getContext(), null, (byte) 9);
-        this.s = rkbVar2;
-        getContext();
-        rkbVar2.setLayoutManager(new t26());
-        this.s.i(new kr(this, (byte) 6));
-        this.s.setAdapter(new gx0(this, (byte) 4));
-        return this.s;
+    @Override
+    public final boolean a() {
+        return this.f.D0;
     }
 
-    public final void b() {
-        boolean z;
-        hc0 hc0Var;
-        String str;
-        ArrayList arrayList = this.c;
-        if (arrayList.size() > 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        setEnabled(z);
-        int i = 0;
-        while (true) {
-            hc0Var = this.d;
-            if (i >= 3) {
+    @Override
+    public final void b(float f, float f2, int i, int i2) {
+        cmb.q(f, f2, i, i2);
+    }
+
+    @Override
+    public final ColorFilter c() {
+        return cmb.u3;
+    }
+
+    @Override
+    public final Paint d(String str) {
+        str.getClass();
+        char c = 65535;
+        switch (str.hashCode()) {
+            case -1490966183:
+                if (str.equals("paintChatActionText2")) {
+                    c = 0;
+                    break;
+                }
                 break;
-            }
-            int size = arrayList.size();
-            int i2 = this.f;
-            if (i < size) {
-                hc0Var.b(i, i2, (TLObject) arrayList.get(i));
-            } else {
-                hc0Var.b(i, i2, null);
-            }
-            i++;
+            case 1712385955:
+                if (str.equals("paintChatBotButton")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case 1790254137:
+                if (str.equals("paintChatActionBackgroundDarken")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case 1897339317:
+                if (str.equals("paintChatActionBackgroundSelected")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case 2030114297:
+                if (str.equals("paintChatActionText")) {
+                    c = 4;
+                    break;
+                }
+                break;
         }
-        if (arrayList.size() == 1) {
-            hc0Var.setTranslationX(gl.L(24.0f));
-        } else if (arrayList.size() == 2) {
-            hc0Var.setTranslationX(gl.L(12.0f));
+        switch (c) {
+            case 0:
+                return this.b;
+            case 1:
+                return this.c;
+            case 2:
+                return this.e;
+            case 3:
+                return this.d;
+            case 4:
+                return this.a;
+            default:
+                return cmb.T0(str);
+        }
+    }
+
+    @Override
+    public final boolean e() {
+        return gda.D0;
+    }
+
+    @Override
+    public final int f(int i) {
+        return h(i);
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final Drawable getDrawable(String str) {
+        pv7 pv7Var = this.f;
+        t37 t37Var = pv7Var.F0;
+        if (str.equals("drawableMsgIn")) {
+            m37 m37Var = pv7Var.G0;
+            if (m37Var == null) {
+                m37 m37Var2 = new m37(0, false, false, t37Var);
+                pv7Var.G0 = m37Var2;
+                return m37Var2;
+            }
+            return m37Var;
+        } else if (str.equals("drawableMsgInSelected")) {
+            m37 m37Var3 = pv7Var.H0;
+            if (m37Var3 == null) {
+                m37 m37Var4 = new m37(0, false, true, t37Var);
+                pv7Var.H0 = m37Var4;
+                return m37Var4;
+            }
+            return m37Var3;
+        } else if (str.equals("drawableMsgOut")) {
+            m37 m37Var5 = pv7Var.I0;
+            if (m37Var5 == null) {
+                m37 m37Var6 = new m37(0, true, false, t37Var);
+                pv7Var.I0 = m37Var6;
+                return m37Var6;
+            }
+            return m37Var5;
+        } else if (str.equals("drawableMsgOutSelected")) {
+            m37 m37Var7 = pv7Var.J0;
+            if (m37Var7 == null) {
+                m37 m37Var8 = new m37(0, true, true, t37Var);
+                pv7Var.J0 = m37Var8;
+                return m37Var8;
+            }
+            return m37Var7;
+        } else if (str.equals("drawableMsgInMedia")) {
+            m37 m37Var9 = pv7Var.K0;
+            if (m37Var9 == null) {
+                m37Var9 = new m37(1, false, false, t37Var);
+                pv7Var.K0 = m37Var9;
+            }
+            m37Var9.invalidateSelf();
+            return pv7Var.K0;
+        } else if (str.equals("drawableMsgInMediaSelected")) {
+            m37 m37Var10 = pv7Var.L0;
+            if (m37Var10 == null) {
+                m37 m37Var11 = new m37(1, false, true, t37Var);
+                pv7Var.L0 = m37Var11;
+                return m37Var11;
+            }
+            return m37Var10;
+        } else if (str.equals("drawableMsgOutMedia")) {
+            m37 m37Var12 = pv7Var.M0;
+            if (m37Var12 == null) {
+                m37 m37Var13 = new m37(1, true, false, t37Var);
+                pv7Var.M0 = m37Var13;
+                return m37Var13;
+            }
+            return m37Var12;
+        } else if (str.equals("drawableMsgOutMediaSelected")) {
+            m37 m37Var14 = pv7Var.N0;
+            if (m37Var14 == null) {
+                m37 m37Var15 = new m37(1, true, true, t37Var);
+                pv7Var.N0 = m37Var15;
+                return m37Var15;
+            }
+            return m37Var14;
         } else {
-            hc0Var.setTranslationX(0.0f);
-        }
-        int L = gl.L((Math.min(2, arrayList.size() - 1) * 12) + 38);
-        jia jiaVar = this.e;
-        jiaVar.setRightPadding(L);
-        hc0Var.a(false);
-        ArrayList arrayList2 = this.a;
-        if (arrayList2.size() == 1 && arrayList.get(0) != null) {
-            jiaVar.l(qu2.o((TLObject) arrayList.get(0)), false);
-        } else if (arrayList2.size() == 0) {
-            jiaVar.l(k96.M0(2131747932, null), false);
-        } else {
-            if (this.h) {
-                str = "MessagePlayed";
-            } else {
-                str = "MessageSeen";
-            }
-            jiaVar.l(k96.G(arrayList2.size(), str, new Object[0]), false);
-        }
-        jiaVar.animate().alpha(1.0f).setDuration(220L).start();
-        hc0Var.animate().alpha(1.0f).setDuration(220L).start();
-        pi4 pi4Var = this.n;
-        pi4Var.animate().alpha(0.0f).setDuration(220L).setListener(new id4(pi4Var)).start();
-        rkb rkbVar = this.s;
-        if (rkbVar != null) {
-            rkbVar.getAdapter();
+            return cmb.P0(str);
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        View view = (View) getParent();
-        if (view != null && view.getWidth() > 0) {
-            i = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
-        }
-        boolean z = true;
-        this.r = true;
-        pi4 pi4Var = this.n;
-        if (pi4Var.getVisibility() != 0) {
-            z = false;
-        }
-        jia jiaVar = this.e;
-        jiaVar.setVisibility(8);
-        if (z) {
-            pi4Var.setVisibility(8);
-        }
-        super.onMeasure(i, i2);
-        if (z) {
-            pi4Var.getLayoutParams().width = getMeasuredWidth();
-            pi4Var.setVisibility(0);
-        }
-        jiaVar.setVisibility(0);
-        jiaVar.getLayoutParams().width = getMeasuredWidth() - gl.L(40.0f);
-        this.r = false;
-        super.onMeasure(i, i2);
+    public final int h(int i) {
+        return this.f.E0.get(i, cmb.w0(null, i, false));
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.r) {
-            return;
-        }
-        super.requestLayout();
+    public final int j(int i) {
+        return h(i);
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            int w0 = bkb.w0(null, bkb.H5, false);
-            if (getBackground() != null && w0 != this.w) {
-                this.w = w0;
-                bkb.F1(getBackground(), w0, true);
-            }
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void i(int i, int i2) {
     }
 }

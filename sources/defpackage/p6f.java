@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class p6f {
+public final class p6f extends vgf {
 }

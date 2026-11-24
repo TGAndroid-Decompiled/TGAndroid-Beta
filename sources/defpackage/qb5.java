@@ -1,126 +1,211 @@
 package defpackage;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-public final class qb5 extends n39 {
-    public final Context c;
-    public final zr9 d;
-    public ob5 e;
-    public int f;
-    public boolean h;
-    public int n;
-    public int r;
-    public int s;
-    public int w;
-    public final rb5 x;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import java.util.HashSet;
+public abstract class qb5 extends FrameLayout implements vlb {
+    public lka a;
+    public lka b;
+    public ImageView c;
+    public ImageView d;
+    public byte e;
+    public boolean f;
+    public int h;
+    public byte n;
+    public Paint r;
 
-    public qb5(rb5 rb5Var, Context context) {
-        this.x = rb5Var;
-        this.c = context;
-        zr9 zr9Var = new zr9(true);
-        this.d = zr9Var;
-        zr9Var.a = new pb5(this);
+    public final void a(int i, int i2) {
+        lka lkaVar = this.a;
+        anb.q(lkaVar);
+        ImageView imageView = this.c;
+        anb.q(imageView);
+        lkaVar.setTextColor(i2);
+        lkaVar.setTag(null);
+        imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+        imageView.setTag(null);
+    }
+
+    public final void b(int i, String str, boolean z) {
+        this.a.l(str, false);
+        lka lkaVar = this.b;
+        lkaVar.l(null, false);
+        ImageView imageView = this.c;
+        imageView.setImageResource(i);
+        imageView.setVisibility(0);
+        lkaVar.setVisibility(8);
+        this.d.setVisibility(8);
+        imageView.setPadding(0, gm.L(7.0f), 0, 0);
+        this.f = z;
+        setWillNotDraw(!z);
+    }
+
+    public lka getTextView() {
+        return this.a;
+    }
+
+    public ImageView getValueImageView() {
+        return this.d;
+    }
+
+    public lka getValueTextView() {
+        return this.b;
     }
 
     @Override
-    public final void A(s49 s49Var) {
-        View view = s49Var.a;
-        if (view instanceof gh6) {
-            ((gh6) view).a();
-        }
-    }
-
-    @Override
-    public final boolean D(s49 s49Var) {
-        View view = s49Var.a;
-        if ((!(view instanceof gh6) || !this.x.Z1.contains(Long.valueOf(((gh6) view).getUserId()))) && s49Var.f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.f;
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i == 0) {
-            return 2;
-        }
-        if (i == this.r) {
-            return 3;
-        }
-        if (i != this.w && i != this.s) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void f() {
-        this.f = 1;
-        zr9 zr9Var = this.d;
-        int size = zr9Var.g.size();
-        if (size != 0) {
-            int i = this.f;
-            this.s = i;
-            this.f = size + 1 + i;
-        } else {
-            this.s = -1;
-        }
-        int size2 = zr9Var.e.size();
-        if (size2 != 0) {
-            int i2 = this.f;
-            this.w = i2;
-            this.f = size2 + 1 + i2;
-        } else {
-            this.w = -1;
-        }
-        int i3 = this.f;
-        this.f = i3 + 1;
-        this.r = i3;
-        super.f();
-    }
-
-    @Override
-    public final void t(defpackage.s49 r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qb5.t(s49, int):void");
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        gh6 gh6Var;
-        if (i != 0) {
-            Context context = this.c;
-            if (i != 1) {
-                if (i != 2) {
-                    gh6Var = new View(context);
-                } else {
-                    ?? view = new View(context);
-                    view.setLayoutParams(new e49(-1, gl.L(56.0f)));
-                    gh6Var = view;
-                }
+    public final void onDraw(Canvas canvas) {
+        float f;
+        float L;
+        int i;
+        ImageView imageView = this.c;
+        if (this.f) {
+            float f2 = 20.0f;
+            if (jb6.a0) {
+                L = 0.0f;
             } else {
-                ?? l35Var = new l35(context, null);
-                zkb.h(bkb.Zg, null, l35Var);
-                l35Var.setTextColor(bkb.Gh);
-                gh6Var = l35Var;
+                if (imageView.getVisibility() == 0) {
+                    f = 68.0f;
+                } else {
+                    f = 20.0f;
+                }
+                L = gm.L(f);
             }
-        } else {
-            gh6 gh6Var2 = new gh6(this.c, 2, 2, false, null);
-            gh6Var2.setCustomRightImage(2131232197);
-            gh6Var2.setNameColor(bkb.w0(null, bkb.dh, false));
-            int w0 = bkb.w0(null, bkb.bh, false);
-            int w02 = bkb.w0(null, bkb.fh, false);
-            gh6Var2.P = true;
-            gh6Var2.I = w0;
-            gh6Var2.J = w02;
-            gh6Var2.setDividerColor(bkb.jh);
-            gh6Var = gh6Var2;
+            float f3 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (jb6.a0) {
+                if (imageView.getVisibility() == 0) {
+                    f2 = 68.0f;
+                }
+                i = gm.L(f2);
+            } else {
+                i = 0;
+            }
+            canvas.drawLine(f3, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, this.r);
         }
-        return new s49(gh6Var);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        CharSequence text = this.a.getText();
+        if (!TextUtils.isEmpty(text)) {
+            CharSequence text2 = this.b.getText();
+            if (!TextUtils.isEmpty(text2)) {
+                accessibilityNodeInfo.setText(((Object) text) + ": " + ((Object) text2));
+                return;
+            }
+            accessibilityNodeInfo.setText(text);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int i5;
+        float f;
+        int L;
+        int measuredWidth;
+        int measuredWidth2;
+        float f2;
+        byte b = this.n;
+        byte b2 = this.e;
+        lka lkaVar = this.a;
+        ImageView imageView = this.d;
+        ImageView imageView2 = this.c;
+        int i6 = i4 - i2;
+        int i7 = i3 - i;
+        lka lkaVar2 = this.b;
+        int textHeight = (i6 - lkaVar2.getTextHeight()) / 2;
+        if (jb6.a0) {
+            i5 = gm.L(b2);
+        } else {
+            i5 = 0;
+        }
+        lkaVar2.layout(i5, textHeight, lkaVar2.getMeasuredWidth() + i5, lkaVar2.getMeasuredHeight() + textHeight);
+        int textHeight2 = (i6 - lkaVar.getTextHeight()) / 2;
+        if (jb6.a0) {
+            int measuredWidth3 = getMeasuredWidth() - lkaVar.getMeasuredWidth();
+            if (imageView2.getVisibility() == 0) {
+                f2 = this.h;
+            } else {
+                f2 = b2;
+            }
+            L = measuredWidth3 - gm.L(f2);
+        } else {
+            if (imageView2.getVisibility() == 0) {
+                f = this.h;
+            } else {
+                f = b2;
+            }
+            L = gm.L(f);
+        }
+        lkaVar.layout(L, textHeight2, lkaVar.getMeasuredWidth() + L, lkaVar.getMeasuredHeight() + textHeight2);
+        if (imageView2.getVisibility() == 0) {
+            int L2 = gm.L(5.0f);
+            if (!jb6.a0) {
+                measuredWidth2 = gm.L(b);
+            } else {
+                measuredWidth2 = (i7 - imageView2.getMeasuredWidth()) - gm.L(b);
+            }
+            imageView2.layout(measuredWidth2, L2, imageView2.getMeasuredWidth() + measuredWidth2, imageView2.getMeasuredHeight() + L2);
+        }
+        if (imageView.getVisibility() == 0) {
+            int measuredHeight = (i6 - imageView.getMeasuredHeight()) / 2;
+            if (jb6.a0) {
+                measuredWidth = gm.L(23.0f);
+            } else {
+                measuredWidth = (i7 - imageView.getMeasuredWidth()) - gm.L(23.0f);
+            }
+            imageView.layout(measuredWidth, measuredHeight, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight() + measuredHeight);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        ImageView imageView = this.d;
+        int size = View.MeasureSpec.getSize(i);
+        int L = gm.L(48.0f);
+        lka lkaVar = this.b;
+        byte b = this.e;
+        lkaVar.measure(wi8.f(b, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gm.L(20.0f), 1073741824));
+        this.a.measure(View.MeasureSpec.makeMeasureSpec((size - gm.L(b + 71)) - lkaVar.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gm.L(20.0f), 1073741824));
+        ImageView imageView2 = this.c;
+        if (imageView2.getVisibility() == 0) {
+            imageView2.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE));
+        }
+        if (imageView.getVisibility() == 0) {
+            imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE));
+        }
+        setMeasuredDimension(size, gm.L(50.0f) + (this.f ? 1 : 0));
+    }
+
+    public void setOffsetFromImage(int i) {
+        this.h = i;
+    }
+
+    public void setTextColor(int i) {
+        lka lkaVar = this.a;
+        anb.q(lkaVar);
+        lkaVar.setTextColor(i);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.r.setColor(cmb.w0(null, cmb.Wg, false));
+            invalidate();
+        } catch (Exception e) {
+            fc4.g(e, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

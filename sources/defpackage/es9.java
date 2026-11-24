@@ -1,13 +1,4 @@
 package defpackage;
-
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-public final class es9 extends FrameLayout {
-    public iba a;
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.a.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-    }
+public interface es9 extends e36 {
+    op g();
 }

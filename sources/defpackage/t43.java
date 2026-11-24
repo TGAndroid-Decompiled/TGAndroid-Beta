@@ -1,10 +1,10 @@
 package defpackage;
+public interface t43 {
+    void H0(boolean z);
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-public final class t43 extends GestureDetector.SimpleOnGestureListener {
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        return true;
-    }
+    void R0(boolean z);
+
+    void W0();
+
+    void c0();
 }

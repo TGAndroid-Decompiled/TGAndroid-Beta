@@ -48,7 +48,7 @@ public final class o extends Binder {
             if (Build.VERSION.SDK_INT >= 29) {
                 try {
                     for (Font font : SystemFonts.getAvailableFonts()) {
-                        File file = fi7.f(font).getFile();
+                        File file = bh7.i(font).getFile();
                         if (file != null && file.getParent() != null) {
                             linkedHashSet.add(file.getParent());
                         }

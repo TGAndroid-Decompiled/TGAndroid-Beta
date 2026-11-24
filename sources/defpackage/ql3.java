@@ -1,36 +1,57 @@
 package defpackage;
 
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class ql3 implements Runnable {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ql3 extends AnimatorListenerAdapter {
     public final byte a;
+    public final u69 b;
+    public final hg3 c;
+    public final ki3 d;
 
-    public ql3(byte b) {
+    public ql3(ki3 ki3Var, u69 u69Var, hg3 hg3Var, byte b) {
         this.a = b;
+        this.d = ki3Var;
+        this.b = u69Var;
+        this.c = hg3Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ql3.run():void");
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        u69 u69Var = this.b;
+        ki3 ki3Var = this.d;
+        hg3 hg3Var = this.c;
+        switch (b) {
+            case 0:
+                animator.removeAllListeners();
+                hg3Var.setClipProgress(0.0f);
+                hg3Var.setElevation(0.0f);
+                ki3Var.d(u69Var);
+                ki3Var.x.remove(u69Var);
+                ki3Var.A();
+                return;
+            default:
+                animator.removeAllListeners();
+                hg3Var.setClipProgress(0.0f);
+                hg3Var.setElevation(0.0f);
+                ki3Var.d(u69Var);
+                ki3Var.x.remove(u69Var);
+                ki3Var.A();
+                return;
+        }
     }
 
-    public ql3(View view, m46 m46Var, ClickableSpan clickableSpan, byte b) {
-        this.a = b;
-    }
-
-    public ql3(Object obj, byte b) {
-        this.a = b;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        byte b = this.a;
+        ki3 ki3Var = this.d;
+        switch (b) {
+            case 0:
+                ki3Var.y();
+                return;
+            default:
+                ki3Var.y();
+                return;
+        }
     }
 }

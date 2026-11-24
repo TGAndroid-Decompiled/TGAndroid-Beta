@@ -1,8 +1,10 @@
 package defpackage;
-public final class k69 {
-    public final mt8 a;
 
-    public k69(mt8 mt8Var) {
-        this.a = mt8Var;
+import androidx.recyclerview.widget.RecyclerView;
+public abstract class k69 {
+    public void a(RecyclerView recyclerView, int i) {
+    }
+
+    public void b(RecyclerView recyclerView, int i, int i2) {
     }
 }

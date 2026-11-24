@@ -1,62 +1,62 @@
 package defpackage;
 
-import android.util.Base64;
-import org.json.JSONObject;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
-public final class u25 {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final String d;
-    public final long e;
-    public final boolean f;
+import org.telegram.ui.Wallet.a;
+import org.telegram.ui.Wallet.c;
+public final class u25 implements jac {
+    public final byte a;
+    public final a b;
 
-    public u25(JSONObject jSONObject) {
-        String str;
-        String str2;
-        String string = jSONObject.getString("address");
-        this.a = string;
-        if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
-            this.f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
-            Object obj = jSONObject.get("amount");
-            if (obj instanceof String) {
-                String str3 = (String) obj;
-                if (str3.matches("[0-9]+")) {
-                    long parseLong = Long.parseLong(str3);
-                    this.e = parseLong;
-                    if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
-                        w26.j("Extra currencies are not supported");
-                        throw null;
-                    } else if (parseLong >= 0) {
-                        if (jSONObject.has("payload")) {
-                            str = jSONObject.getString("payload");
-                        } else {
-                            str = null;
-                        }
-                        this.b = str;
-                        if (jSONObject.has("stateInit")) {
-                            str2 = jSONObject.getString("stateInit");
-                        } else {
-                            str2 = null;
-                        }
-                        this.c = str2;
-                        if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (str2 != null && !WalletEngine2.isValidCellBoc(str2))) {
-                            w26.j("Invalid transaction cell");
-                            throw null;
-                        } else {
-                            this.d = WalletEngine2.textCommentFromBody(str);
-                            return;
-                        }
-                    } else {
-                        w26.j("Transfer amount must not be negative");
-                        throw null;
+    public u25(a aVar, byte b) {
+        this.a = b;
+        this.b = aVar;
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        byte b = this.a;
+        String str = "NULL_ERROR";
+        a aVar = this.b;
+        switch (b) {
+            case 0:
+                WalletEngine2.ImportedWalletProof importedWalletProof = (WalletEngine2.ImportedWalletProof) obj;
+                String str2 = (String) obj2;
+                c cVar = aVar.d;
+                if (importedWalletProof == null) {
+                    if (str2 != null) {
+                        str = str2;
                     }
+                    c.m("disable backup: failed to prove challenge: ".concat(str));
+                    return;
                 }
-            }
-            w26.j("Invalid transfer amount");
-            throw null;
+                TL_wallet.disableBackup disablebackup = new TL_wallet.disableBackup();
+                disablebackup.new_public_key = aVar.c;
+                TL_wallet.walletOwnershipProof walletownershipproof = new TL_wallet.walletOwnershipProof();
+                disablebackup.proof = walletownershipproof;
+                walletownershipproof.signature = importedWalletProof.signature;
+                walletownershipproof.timestamp = importedWalletProof.timestamp;
+                ConnectionsManager.getInstance(cVar.a).sendRequestTyped(disablebackup, new kc((byte) 0), new u25(aVar, (byte) 1));
+                return;
+            default:
+                TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
+                ?? r5 = (TLRPC.TL_error) obj2;
+                c cVar2 = aVar.d;
+                if (walletState == null) {
+                    StringBuilder sb = new StringBuilder("disable backup: failed to disable backup on server: ");
+                    if (r5 != 0) {
+                        str = r5;
+                    }
+                    sb.append((Object) str);
+                    c.m(sb.toString());
+                    return;
+                }
+                cVar2.w0(walletState);
+                cVar2.Y();
+                gm.d3(new bn3((byte) 8), 1000L);
+                return;
         }
-        w26.j("Expected a friendly destination address");
-        throw null;
     }
 }

@@ -1,40 +1,38 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-public final class hjc extends View {
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hjc implements RequestDelegate {
     public final byte a;
-    public final jjc b;
+    public final VoIPService b;
+    public final long c;
+    public final HashSet d;
+    public final AtomicInteger e;
+    public final int f;
+    public final String g;
 
-    public hjc(jjc jjcVar, Context context, byte b) {
-        super(context);
+    public hjc(VoIPService voIPService, long j, HashSet hashSet, AtomicInteger atomicInteger, int i, String str, byte b) {
         this.a = b;
-        this.b = jjcVar;
+        this.b = voIPService;
+        this.c = j;
+        this.d = hashSet;
+        this.e = atomicInteger;
+        this.f = i;
+        this.g = str;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        byte b = this.a;
-        int i = -1;
-        jjc jjcVar = this.b;
-        switch (b) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.a) {
             case 0:
-                RectF rectF = gl.P;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                if (!jjcVar.g0) {
-                    i = jjcVar.h0;
-                }
-                jjcVar.j(canvas, rectF, i, 1.0f);
+                this.b.lambda$startConferenceGroupCall$54(this.c, this.d, this.e, this.f, this.g, tLObject, tL_error);
                 return;
             default:
-                RectF rectF2 = gl.P;
-                rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                if (!jjcVar.g0) {
-                    i = jjcVar.h0;
-                }
-                jjcVar.e(canvas, rectF2, i, 1.0f);
+                this.b.lambda$startConferenceGroupCall$46(this.c, this.d, this.e, this.f, this.g, tLObject, tL_error);
                 return;
         }
     }

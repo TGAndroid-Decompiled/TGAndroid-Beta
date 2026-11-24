@@ -1,5 +1,6 @@
 package defpackage;
+public interface cp5 {
+    void a(int i);
 
-import java.util.RandomAccess;
-public abstract class cp5 extends s3 implements RandomAccess {
+    void b(float f);
 }

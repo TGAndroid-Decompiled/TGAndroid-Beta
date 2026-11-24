@@ -1,30 +1,46 @@
 package defpackage;
-
-import android.content.Context;
-import android.util.Log;
-public abstract class g5f {
-    public static final lnd a;
-    public static final lnd b;
-    public static Context c;
+public final class g5f extends wgf {
+    private static final g5f zzb;
+    private int zzd;
+    private int zze;
+    private boolean zzf;
+    private int zzg;
+    private boolean zzh;
+    private ehf zzi;
+    private ehf zzj;
+    private String zzk;
 
     static {
-        new lnd(wme.U("0\u0082\u0005È0\u0082\u0003° \u0003\u0002\u0001\u0002\u0002\u0014\u007f¢fú§p\u0085xb±"), (byte) 0);
-        new lnd(wme.U("0\u0082\u0006\u00040\u0082\u0003ì \u0003\u0002\u0001\u0002\u0002\u0014QÕÛ\u0004÷XçB\u0086<"), (byte) 1);
-        new lnd(wme.U("0\u0082\u0005È0\u0082\u0003° \u0003\u0002\u0001\u0002\u0002\u0014\u0010\u008ae\bsù/\u008eQí"), (byte) 2);
-        new lnd(wme.U("0\u0082\u0006\u00040\u0082\u0003ì \u0003\u0002\u0001\u0002\u0002\u0014\u0003£²\u00ad×árÊkì"), (byte) 3);
-        a = new lnd(wme.U("0\u0082\u0004C0\u0082\u0003+ \u0003\u0002\u0001\u0002\u0002\t\u0000Âà\u0087FdJ0\u008d0"), (byte) 4);
-        b = new lnd(wme.U("0\u0082\u0004¨0\u0082\u0003\u0090 \u0003\u0002\u0001\u0002\u0002\t\u0000Õ\u0085¸l}ÓNõ0"), (byte) 5);
+        g5f g5fVar = new g5f();
+        zzb = g5fVar;
+        wgf.e(g5f.class, g5fVar);
     }
 
-    public static synchronized void a(Context context) {
-        synchronized (g5f.class) {
-            if (c == null) {
-                if (context != null) {
-                    c = context.getApplicationContext();
+    public g5f() {
+        sif sifVar = sif.d;
+        this.zzi = sifVar;
+        this.zzj = sifVar;
+        this.zzk = "";
+    }
+
+    @Override
+    public final Object h(int i, wgf wgfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new vgf(zzb);
                 }
-                return;
+                return new g5f();
             }
-            Log.w("GoogleCertificates", "GoogleCertificates has been initialized already");
+            return new tif(zzb, "\u0001\u0007\u0000\u0001\u0001\t\u0007\u0000\u0002\u0000\u0001᠌\u0000\u0002ဇ\u0001\u0003᠌\u0002\u0004ဇ\u0003\u0007\u001b\b\u001b\tဈ\u0004", new Object[]{"zzd", "zze", kg7.h, "zzf", "zzg", jk2.r, "zzh", "zzi", zaf.class, "zzj", zaf.class, "zzk"});
         }
+        return (byte) 1;
     }
 }

@@ -10,29 +10,29 @@ public final class VoIPPendingCall {
     private j5 accountInstance;
     private final Activity activity;
     private Handler handler;
-    private kk7 notificationCenter;
-    private final gk7 observer;
+    private nm7 notificationCenter;
+    private final jm7 observer;
     private final Runnable releaseRunnable;
     private boolean released;
     private final long userId;
     private final boolean video;
 
     private VoIPPendingCall(Activity activity, long j, boolean z, long j2, j5 j5Var) {
-        su2 su2Var = new su2(this, (byte) 5);
-        this.observer = su2Var;
-        kbc kbcVar = new kbc(this, (byte) 11);
-        this.releaseRunnable = kbcVar;
+        dw2 dw2Var = new dw2(this, (byte) 5);
+        this.observer = dw2Var;
+        f8c f8cVar = new f8c(this, (byte) 19);
+        this.releaseRunnable = f8cVar;
         this.activity = activity;
         this.userId = j;
         this.video = z;
         this.accountInstance = j5Var;
         if (!onConnectionStateUpdated(false)) {
-            kk7 f = kk7.f(y6c.t0);
+            nm7 f = nm7.f(z8c.t0);
             this.notificationCenter = f;
-            f.a(su2Var, kk7.S1);
+            f.a(dw2Var, nm7.T1);
             Handler handler = new Handler(Looper.myLooper());
             this.handler = handler;
-            handler.postDelayed(kbcVar, j2);
+            handler.postDelayed(f8cVar, j2);
         }
     }
 
@@ -51,7 +51,7 @@ public final class VoIPPendingCall {
     }
 
     public void lambda$new$0(int i, int i2, Object[] objArr) {
-        if (i == kk7.S1) {
+        if (i == nm7.T1) {
             onConnectionStateUpdated(false);
         }
     }
@@ -65,19 +65,19 @@ public final class VoIPPendingCall {
         if (this.released || (!z && !isConnected(this.accountInstance) && !isAirplaneMode())) {
             return false;
         }
-        na7 q1 = na7.q1(this.accountInstance.a);
-        TLRPC.User V1 = q1.V1(Long.valueOf(this.userId));
-        if (V1 != null) {
-            TLRPC.UserFull W1 = q1.W1(V1.id);
+        oc7 r1 = oc7.r1(this.accountInstance.a);
+        TLRPC.User W1 = r1.W1(Long.valueOf(this.userId));
+        if (W1 != null) {
+            TLRPC.UserFull X1 = r1.X1(W1.id);
             boolean z3 = this.video;
-            if (W1 != null && W1.video_calls_available) {
+            if (X1 != null && X1.video_calls_available) {
                 z2 = true;
             } else {
                 z2 = false;
             }
-            rgc.m(V1, z3, z2, this.activity, W1, this.accountInstance);
+            sic.m(W1, z3, z2, this.activity, X1, this.accountInstance);
         } else if (isAirplaneMode()) {
-            rgc.m(null, this.video, false, this.activity, null, this.accountInstance);
+            sic.m(null, this.video, false, this.activity, null, this.accountInstance);
         }
         release();
         return true;
@@ -89,9 +89,9 @@ public final class VoIPPendingCall {
 
     public void release() {
         if (!this.released) {
-            kk7 kk7Var = this.notificationCenter;
-            if (kk7Var != null) {
-                kk7Var.n(this.observer, kk7.S1);
+            nm7 nm7Var = this.notificationCenter;
+            if (nm7Var != null) {
+                nm7Var.n(this.observer, nm7.T1);
             }
             Handler handler = this.handler;
             if (handler != null) {

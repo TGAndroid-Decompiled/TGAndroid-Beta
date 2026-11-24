@@ -1,27 +1,25 @@
 package defpackage;
+public final class at extends ja {
+    public final String c;
+    public final byte d;
 
-import android.content.DialogInterface;
-import org.telegram.ui.o;
-public final class at implements DialogInterface.OnDismissListener {
-    public final byte a;
-    public final o b;
-
-    public at(o oVar, byte b) {
-        this.a = b;
-        this.b = oVar;
+    public at(int i, int i2, String str) {
+        super(i, false);
+        this.d = i2;
+        this.c = str;
     }
 
-    @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        byte b = this.a;
-        o oVar = this.b;
-        switch (b) {
-            case 0:
-                oVar.c.e(true);
-                return;
-            default:
-                oVar.l0 = null;
-                return;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && at.class == obj.getClass()) {
+                at atVar = (at) obj;
+                if (this.d == atVar.d && this.c.equals(atVar.c)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 }

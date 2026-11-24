@@ -1,7 +1,7 @@
 package defpackage;
 
 import java.util.ArrayList;
-public abstract class ka extends n39 {
+public abstract class ka extends q59 {
     public final ia c = new ia();
 
     public final void E(ArrayList arrayList, ArrayList arrayList2) {
@@ -11,6 +11,6 @@ public abstract class ka extends n39 {
         ia iaVar = this.c;
         iaVar.b = arrayList;
         iaVar.c = arrayList2;
-        vu7.a(iaVar, true).c(this);
+        ww7.a(iaVar, true).c(this);
     }
 }

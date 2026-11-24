@@ -1,5 +1,3 @@
 package defpackage;
-
-import java.io.IOException;
-public class t3e extends IOException {
+public final class t3e extends mpe {
 }

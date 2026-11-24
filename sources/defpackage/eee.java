@@ -1,41 +1,30 @@
 package defpackage;
-public abstract class eee {
-    public static final void a(na1 na1Var, fw2 fw2Var, boolean z) {
-        Object g;
-        y4c y4cVar;
-        Object r = na1Var.r();
-        Throwable f = na1Var.f(r);
-        if (f != null) {
-            g = new sa9(f);
-        } else {
-            g = na1Var.g(r);
-        }
-        if (z) {
-            fw2Var.getClass();
-            ho3 ho3Var = (ho3) fw2Var;
-            gw2 gw2Var = ho3Var.e;
-            Object obj = ho3Var.h;
-            sw2 context = gw2Var.getContext();
-            Object c = edd.c(context, obj);
-            if (c != edd.a) {
-                y4cVar = qzd.c(gw2Var, context, c);
-            } else {
-                y4cVar = null;
-            }
-            try {
-                gw2Var.resumeWith(g);
-                if (y4cVar != null && !y4cVar.S()) {
-                    return;
-                }
-                edd.a(context, c);
-                return;
-            } catch (Throwable th) {
-                if (y4cVar == null || y4cVar.S()) {
-                    edd.a(context, c);
-                }
-                throw th;
-            }
-        }
-        fw2Var.resumeWith(g);
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class eee extends b4 {
+    public static final Parcelable.Creator<eee> CREATOR = new t0e((byte) 29);
+    public final String a;
+    public final String b;
+    public final float c;
+    public final int d;
+
+    public eee(float f, int i, String str, String str2) {
+        this.b = str2;
+        this.c = f;
+        this.a = str;
+        this.d = i;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.l(parcel, 2, this.b);
+        mve.q(parcel, 3, 4);
+        parcel.writeFloat(this.c);
+        mve.l(parcel, 4, this.a);
+        mve.q(parcel, 5, 4);
+        parcel.writeInt(this.d);
+        mve.s(parcel, r);
     }
 }

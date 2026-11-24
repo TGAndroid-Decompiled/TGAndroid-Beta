@@ -19,7 +19,7 @@ public final class v6 implements View.OnClickListener {
 
     @Override
     public final void onClick(View view) {
-        j47 j47Var;
+        j67 j67Var;
         boolean z;
         int i;
         int i2;
@@ -50,89 +50,89 @@ public final class v6 implements View.OnClickListener {
                 return;
             case 1:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
-                int i3 = ChatActivityEnterView.r7;
-                uv1 uv1Var = chatActivityEnterView.e6;
+                int i3 = ChatActivityEnterView.z7;
+                mw1 mw1Var = chatActivityEnterView.e6;
                 chatActivityEnterView.N0 = System.currentTimeMillis();
-                boolean u1 = chatActivityEnterView.u1();
-                if (!z2 && (j47Var = chatActivityEnterView.M0) != null) {
-                    j47Var.f(!u1);
+                boolean w1 = chatActivityEnterView.w1();
+                if (!z2 && (j67Var = chatActivityEnterView.M0) != null) {
+                    j67Var.f(!w1);
                     chatActivityEnterView.M0 = null;
                     return;
                 }
-                chatActivityEnterView.d6 = !u1;
-                gl.r(uv1Var);
-                gl.e3(uv1Var, 500L);
+                chatActivityEnterView.d6 = !w1;
+                gm.r(mw1Var);
+                gm.d3(mw1Var, 500L);
                 return;
             case 2:
-                x02 x02Var = (x02) obj;
-                d dVar = x02Var.Z1;
-                if (x02Var.N2 != 0) {
-                    x02Var.W3.y0();
-                    x02Var.dismiss();
+                i22 i22Var = (i22) obj;
+                d dVar = i22Var.Z1;
+                if (i22Var.N2 != 0) {
+                    i22Var.W3.I();
+                    i22Var.dismiss();
                     return;
                 }
                 HashMap hashMap = new HashMap();
                 ArrayList arrayList = new ArrayList();
-                b68 b68Var = new b68(hashMap, arrayList, 0, true, (mu1) dVar);
-                m02 m02Var = new m02(x02Var, hashMap, arrayList);
-                u58 u58Var = b68Var.a;
-                u58Var.t0 = m02Var;
-                u58 u58Var2 = b68Var.b;
-                u58Var2.t0 = m02Var;
-                u58Var.u0 = new s34(b68Var, (byte) 23);
-                u58Var2.u0 = new pj4(b68Var, (byte) 24);
-                int i4 = x02Var.P3;
-                boolean z3 = x02Var.Q3;
-                u58Var.j0(i4, z3);
-                u58Var2.j0(i4, z3);
+                d88 d88Var = new d88(hashMap, arrayList, 0, true, (yv1) dVar);
+                x12 x12Var = new x12(i22Var, hashMap, arrayList);
+                w78 w78Var = d88Var.a;
+                w78Var.t0 = x12Var;
+                w78 w78Var2 = d88Var.b;
+                w78Var2.t0 = x12Var;
+                w78Var.u0 = new fk3(d88Var);
+                w78Var2.u0 = new k44(d88Var, (byte) 25);
+                int i4 = i22Var.P3;
+                boolean z3 = i22Var.Q3;
+                w78Var.k0(i4, z3);
+                w78Var2.k0(i4, z3);
                 if (z2) {
-                    dVar.showAsSheet(b68Var);
+                    dVar.showAsSheet(d88Var);
                 } else {
-                    dVar.presentFragment(b68Var);
+                    dVar.presentFragment(d88Var);
                 }
-                x02Var.dismiss();
+                i22Var.dismiss();
                 return;
             case 3:
-                pkb pkbVar = (pkb) obj;
+                qmb qmbVar = (qmb) obj;
                 for (int i5 = 0; i5 < 2; i5++) {
-                    z92 z92Var = ((z92[]) pkbVar.b)[i5];
-                    y92 y92Var = (y92) z92Var.d;
-                    if (z92Var == view) {
+                    kb2 kb2Var = ((kb2[]) qmbVar.b)[i5];
+                    jb2 jb2Var = (jb2) kb2Var.d;
+                    if (kb2Var == view) {
                         z = true;
                     } else {
                         z = false;
                     }
-                    y92Var.a(z, true);
+                    jb2Var.a(z, true);
                 }
-                gba.m1 = z2;
-                SharedPreferences.Editor edit = na7.c1().edit();
-                edit.putBoolean("useThreeLinesLayout", gba.m1);
+                gda.l1 = z2;
+                SharedPreferences.Editor edit = oc7.d1().edit();
+                edit.putBoolean("useThreeLinesLayout", gda.l1);
                 edit.apply();
-                kk7.e().k(3, Boolean.TRUE);
+                nm7.e().k(3, Boolean.TRUE);
                 return;
             case 4:
-                s36 s36Var = (s36) obj;
+                s56 s56Var = (s56) obj;
                 if (!z2) {
-                    ahb ahbVar = s36Var.n;
-                    if (ahbVar != null && ahbVar.e.h) {
-                        int i6 = -s36Var.N;
-                        s36Var.N = i6;
-                        gl.B3(i6, ahbVar, null);
+                    bjb bjbVar = s56Var.n;
+                    if (bjbVar != null && bjbVar.e.h) {
+                        int i6 = -s56Var.N;
+                        s56Var.N = i6;
+                        gm.A3(i6, bjbVar, null);
                         return;
                     }
-                    ahb ahbVar2 = (ahb) view;
-                    boolean z4 = ahbVar2.e.h;
-                    ahbVar2.setChecked(!z4);
-                    s36Var.d0(z4);
-                    ahb ahbVar3 = s36Var.n;
-                    if (ahbVar3 != null) {
-                        if (ahbVar2.e.h) {
-                            ahbVar3.setChecked(false);
-                            s36Var.n.setCheckBoxIcon(2131232518);
-                            s36Var.r.setVisibility(8);
+                    bjb bjbVar2 = (bjb) view;
+                    boolean z4 = bjbVar2.e.h;
+                    bjbVar2.setChecked(!z4);
+                    s56Var.e0(z4);
+                    bjb bjbVar3 = s56Var.n;
+                    if (bjbVar3 != null) {
+                        if (bjbVar2.e.h) {
+                            bjbVar3.setChecked(false);
+                            s56Var.n.setCheckBoxIcon(2131232530);
+                            s56Var.r.setVisibility(8);
                             return;
-                        } else if (s36Var.e == null) {
-                            ahbVar3.setCheckBoxIcon(0);
+                        } else if (s56Var.e == null) {
+                            bjbVar3.setCheckBoxIcon(0);
                             return;
                         } else {
                             return;
@@ -142,43 +142,43 @@ public final class v6 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                y28 y28Var = (y28) obj;
+                a58 a58Var = (a58) obj;
                 boolean z5 = !z2;
-                na7 q1 = na7.q1(y28Var.s2);
-                if (q1.Q3 != z5) {
-                    SharedPreferences.Editor edit2 = q1.X3.edit();
-                    q1.Q3 = z5;
+                oc7 r1 = oc7.r1(a58Var.s2);
+                if (r1.Q3 != z5) {
+                    SharedPreferences.Editor edit2 = r1.X3.edit();
+                    r1.Q3 = z5;
                     edit2.putBoolean("storyQualityFull", z5).apply();
-                    q1.getNotificationCenter().k(211, new Object[0]);
+                    r1.getNotificationCenter().k(212, new Object[0]);
                 }
-                u21 u21Var = new u21(y28Var.S0, y28Var.r0);
+                c41 c41Var = new c41(a58Var.S0, a58Var.r0);
                 if (!z2) {
-                    i = 2131744267;
+                    i = 2131744193;
                 } else {
-                    i = 2131744270;
+                    i = 2131744196;
                 }
-                String M0 = k96.M0(i, null);
+                String M0 = jb6.M0(i, null);
                 if (!z2) {
-                    i2 = 2131744268;
+                    i2 = 2131744194;
                 } else {
-                    i2 = 2131744271;
+                    i2 = 2131744197;
                 }
-                u21Var.I(2131623982, M0, k96.M0(i2, null)).j();
-                s28 s28Var = y28Var.j1;
-                if (s28Var != null) {
-                    s28Var.a();
+                c41Var.I(2131623982, M0, jb6.M0(i2, null)).j();
+                v48 v48Var = a58Var.j1;
+                if (v48Var != null) {
+                    v48Var.a();
                     return;
                 }
                 return;
             default:
-                s28 s28Var2 = (s28) obj;
-                t76 t76Var = t76.N;
-                if (t76Var != null) {
-                    t76Var.D(!z2);
+                v48 v48Var2 = (v48) obj;
+                s96 s96Var = s96.N;
+                if (s96Var != null) {
+                    s96Var.D(!z2);
                 }
-                s28 s28Var3 = s28Var2.x.j1;
-                if (s28Var3 != null) {
-                    s28Var3.a();
+                v48 v48Var3 = v48Var2.x.j1;
+                if (v48Var3 != null) {
+                    v48Var3.a();
                     return;
                 }
                 return;

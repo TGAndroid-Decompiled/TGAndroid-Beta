@@ -1,17 +1,36 @@
 package defpackage;
-public final class nae implements zn7 {
-    public static final nae a = new Object();
+
+import java.util.Comparator;
+public final class nae implements Comparator {
+    public static final nae a;
+    public static final nae[] b;
 
     static {
-        yjb.y(yjb.q(kkd.class, new cjd(1)));
+        ?? r0 = new Enum("INSTANCE", 0);
+        a = r0;
+        b = new nae[]{r0};
+    }
+
+    public static nae[] values() {
+        return (nae[]) b.clone();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final int compare(Object obj, Object obj2) {
+        byte[] bArr = (byte[]) obj;
+        byte[] bArr2 = (byte[]) obj2;
+        int min = Math.min(bArr.length, bArr2.length);
+        for (int i = 0; i < min; i++) {
+            int i2 = (bArr[i] & 255) - (bArr2[i] & 255);
+            if (i2 != 0) {
+                return i2;
+            }
         }
-        throw new ClassCastException();
+        return bArr.length - bArr2.length;
+    }
+
+    @Override
+    public final String toString() {
+        return "UnsignedBytes.lexicographicalComparator() (pure Java version)";
     }
 }

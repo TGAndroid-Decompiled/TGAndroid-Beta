@@ -1,8 +1,10 @@
 package defpackage;
+public final class yj7 {
+    public final int a;
+    public final boolean b;
 
-import java.util.List;
-public interface yj7 {
-    void a(int i);
-
-    List b();
+    public yj7(int i, int i2, boolean z) {
+        this.a = i2;
+        this.b = z;
+    }
 }

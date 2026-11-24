@@ -1,25 +1,20 @@
 package defpackage;
-public final class q5f extends vef {
+public final class q5f extends wgf {
     private static final q5f zzb;
     private int zzd;
-    private long zzf;
-    private long zzg;
-    private int zzi;
-    private boolean zzj;
-    private long zzl;
-    private long zzm;
-    private String zze = "";
-    private dff zzh = rgf.d;
-    private String zzk = "";
+    private int zze;
+    private int zzf;
+    private int zzg;
+    private int zzh;
 
     static {
-        q5f q5fVar = new q5f();
-        zzb = q5fVar;
-        vef.e(q5f.class, q5fVar);
+        ?? wgfVar = new wgf();
+        zzb = wgfVar;
+        wgf.e(q5f.class, wgfVar);
     }
 
     @Override
-    public final Object h(int i, vef vefVar) {
+    public final Object h(int i, wgf wgfVar) {
         int i2 = i - 1;
         if (i2 != 0) {
             if (i2 != 2) {
@@ -30,11 +25,11 @@ public final class q5f extends vef {
                         }
                         return zzb;
                     }
-                    return new uef(zzb);
+                    return new vgf(zzb);
                 }
-                return new q5f();
+                return new wgf();
             }
-            return new sgf(zzb, "\u0001\t\u0000\u0001\u0001\t\t\u0000\u0001\u0000\u0001ဈ\u0000\u0002ဂ\u0001\u0003ဂ\u0002\u0004\u001b\u0005င\u0003\u0006ဇ\u0004\u0007ဈ\u0005\bဂ\u0006\tဂ\u0007", new Object[]{"zzd", "zze", "zzf", "zzg", "zzh", n5f.class, "zzi", "zzj", "zzk", "zzl", "zzm"});
+            return new tif(zzb, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0000\u0000\u0001ဋ\u0000\u0002ဋ\u0001\u0003᠌\u0002\u0004င\u0003", new Object[]{"zzd", "zze", "zzf", "zzg", jk2.s, "zzh"});
         }
         return (byte) 1;
     }

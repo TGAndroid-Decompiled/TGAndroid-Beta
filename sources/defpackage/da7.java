@@ -1,262 +1,203 @@
 package defpackage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class da7 {
-    public boolean b;
-    public int c;
-    public boolean d;
-    public int e;
-    public int f;
-    public int a = 0;
-    public final int[] g = new int[6];
-    public final int[] h = new int[6];
+import org.telegram.tgnet.Vector;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class da7 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
 
-    public static da7 a(TLRPC.EmojiStatus emojiStatus) {
-        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
-            return null;
-        }
-        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        da7 da7Var = new da7();
-        da7Var.c = -1;
-        da7Var.d = true;
-        int i = tL_emojiStatusCollectible.edge_color | (-16777216);
-        int[] iArr = da7Var.g;
-        iArr[0] = i;
-        int i2 = tL_emojiStatusCollectible.center_color | (-16777216);
-        iArr[1] = i2;
-        iArr[2] = i;
-        iArr[3] = i2;
-        int i3 = tL_emojiStatusCollectible.text_color | (-16777216);
-        iArr[4] = i3;
-        iArr[5] = i3;
-        System.arraycopy(iArr, 0, da7Var.h, 0, 6);
-        da7Var.a = tL_emojiStatusCollectible.pattern_color | (-16777216);
-        return da7Var;
+    public da7(qw0 qw0Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, he heVar) {
+        this.a = (byte) 8;
+        this.b = qw0Var;
+        this.d = tLObject;
+        this.e = strArr;
+        this.c = tL_error;
+        this.f = heVar;
     }
 
-    public static da7 b(TLRPC.TL_help_peerColorOption tL_help_peerColorOption) {
-        if (tL_help_peerColorOption == null) {
-            return null;
+    private final void a() {
+        vg2 vg2Var = (vg2) this.b;
+        ArrayList arrayList = (ArrayList) this.d;
+        vh6 vh6Var = (vh6) this.e;
+        ArrayList arrayList2 = (ArrayList) this.f;
+        ArrayList arrayList3 = (ArrayList) this.c;
+        bu9 bu9Var = vg2Var.h;
+        wg2 wg2Var = vg2Var.E;
+        if (wg2Var.o1) {
+            vg2Var.s = false;
+            vg2Var.d = arrayList;
+            vg2Var.e = vh6Var;
+            vg2Var.f = arrayList2;
+            bu9Var.f(arrayList, null);
+            if (!sd2.T(wg2Var.n)) {
+                ArrayList arrayList4 = bu9Var.g;
+                arrayList4.clear();
+                arrayList4.addAll(arrayList3);
+            }
+            int i = vg2Var.r;
+            vg2Var.f();
+            if (vg2Var.r > i) {
+                wg2Var.C0(i);
+            }
+            if (!bu9Var.e() && vg2Var.r == 0) {
+                wg2Var.b.e(false, true);
+            }
         }
-        da7 da7Var = new da7();
-        da7Var.c = tL_help_peerColorOption.color_id;
-        da7Var.d = tL_help_peerColorOption.hidden;
-        int i = tL_help_peerColorOption.flags;
-        if ((i & 8) != 0) {
-            da7Var.e = tL_help_peerColorOption.channel_min_level;
-        }
-        if ((i & 16) != 0) {
-            da7Var.f = tL_help_peerColorOption.group_min_level;
-        }
-        System.arraycopy(p(tL_help_peerColorOption.colors), 0, da7Var.g, 0, 6);
-        System.arraycopy(p(tL_help_peerColorOption.dark_colors), 0, da7Var.h, 0, 6);
-        return da7Var;
     }
 
-    public static int[] p(TLRPC.help_PeerColorSet help_peercolorset) {
-        ArrayList<Integer> arrayList;
-        int[] iArr = new int[6];
-        iArr[0] = 0;
-        iArr[1] = 0;
-        iArr[2] = 0;
-        iArr[3] = 0;
-        iArr[4] = 0;
-        iArr[5] = 0;
-        if (help_peercolorset instanceof TLRPC.TL_help_peerColorSet) {
-            arrayList = ((TLRPC.TL_help_peerColorSet) help_peercolorset).colors;
-        } else if (help_peercolorset instanceof TLRPC.TL_help_peerColorProfileSet) {
-            TLRPC.TL_help_peerColorProfileSet tL_help_peerColorProfileSet = (TLRPC.TL_help_peerColorProfileSet) help_peercolorset;
-            ArrayList<Integer> arrayList2 = tL_help_peerColorProfileSet.palette_colors;
-            ArrayList<Integer> arrayList3 = tL_help_peerColorProfileSet.bg_colors;
-            ArrayList<Integer> arrayList4 = tL_help_peerColorProfileSet.story_colors;
-            ArrayList<Integer> arrayList5 = new ArrayList<>();
-            if (arrayList2 != null) {
-                for (int i = 0; i < Math.min(2, arrayList2.size()); i++) {
-                    arrayList5.add(arrayList2.get(i));
+    private final void b() {
+        hx2 hx2Var = (hx2) this.b;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.c;
+        TLObject tLObject = (TLObject) this.d;
+        ArrayList arrayList = (ArrayList) this.e;
+        TLRPC.TL_messages_getMyStickers tL_messages_getMyStickers = (TLRPC.TL_messages_getMyStickers) this.f;
+        if (tL_error == null && (tLObject instanceof TLRPC.TL_messages_myStickers)) {
+            TLRPC.TL_messages_myStickers tL_messages_myStickers = (TLRPC.TL_messages_myStickers) tLObject;
+            ArrayList<TLRPC.StickerSetCovered> arrayList2 = tL_messages_myStickers.sets;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.StickerSetCovered stickerSetCovered = arrayList2.get(i);
+                i++;
+                TLRPC.StickerSetCovered stickerSetCovered2 = stickerSetCovered;
+                TLRPC.StickerSet stickerSet = stickerSetCovered2.set;
+                if (!stickerSet.emojis && !stickerSet.masks) {
+                    TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                    tL_inputStickerSetID.id = stickerSetCovered2.set.id;
+                    TLRPC.TL_messages_stickerSet n0 = hs6.d0(hx2Var.r).n0(tL_inputStickerSetID, true);
+                    if (n0 == null || n0.documents.size() < 120) {
+                        arrayList.add(stickerSetCovered2);
+                    }
                 }
             }
-            if (arrayList3 != null) {
-                for (int i2 = 0; i2 < Math.min(2, arrayList3.size()); i2++) {
-                    arrayList5.add(arrayList3.get(i2));
+            if (tL_messages_myStickers.sets.size() == tL_messages_getMyStickers.limit) {
+                tL_messages_getMyStickers.offset_id = ((TLRPC.StickerSetCovered) b10.f(1, tL_messages_myStickers.sets)).set.id;
+                ConnectionsManager.getInstance(hx2Var.r).sendRequest(tL_messages_getMyStickers, new eo0(hx2Var, arrayList, tL_messages_getMyStickers, (byte) 20));
+            }
+        }
+    }
+
+    private final void c() {
+        e94 e94Var = (e94) this.b;
+        TLObject tLObject = (TLObject) this.d;
+        TLRPC.TL_getFactCheck tL_getFactCheck = (TLRPC.TL_getFactCheck) this.e;
+        ArrayList arrayList = (ArrayList) this.f;
+        HashMap hashMap = (HashMap) this.c;
+        ArrayList arrayList2 = new ArrayList();
+        if (tLObject instanceof Vector) {
+            ArrayList<T> arrayList3 = ((Vector) tLObject).objects;
+            for (int i = 0; i < arrayList3.size(); i++) {
+                if (arrayList3.get(i) instanceof TLRPC.TL_factCheck) {
+                    arrayList2.add((TLRPC.TL_factCheck) arrayList3.get(i));
                 }
             }
-            if (arrayList4 != null) {
-                for (int i3 = 0; i3 < Math.min(2, arrayList4.size()); i3++) {
-                    arrayList5.add(arrayList4.get(i3));
-                }
+        }
+        HashMap hashMap2 = new HashMap();
+        for (int i2 = 0; i2 < Math.min(tL_getFactCheck.msg_id.size(), arrayList2.size()); i2++) {
+            Integer num = tL_getFactCheck.msg_id.get(i2);
+            num.getClass();
+            hashMap2.put(num, (TLRPC.TL_factCheck) arrayList2.get(i2));
+        }
+        int i3 = 0;
+        for (int i4 = 0; i4 < tL_getFactCheck.msg_id.size(); i4++) {
+            d94 d94Var = (d94) arrayList.get(i4);
+            Integer num2 = tL_getFactCheck.msg_id.get(i4);
+            num2.getClass();
+            TLRPC.TL_factCheck tL_factCheck = (TLRPC.TL_factCheck) hashMap2.get(num2);
+            qac qacVar = (qac) hashMap.get(d94Var);
+            if (tL_factCheck != null && !tL_factCheck.need_check && qacVar != null) {
+                qacVar.a(tL_factCheck);
+                i3++;
+                e94Var.d.remove(d94Var);
             }
-            arrayList = arrayList5;
-        } else {
-            arrayList = null;
         }
-        if (arrayList != null) {
-            if (arrayList.size() > 0) {
-                Arrays.fill(iArr, arrayList.get(0).intValue() | (-16777216));
+        if (i3 > 0) {
+            nm7.f(e94Var.a).k(nm7.D3, new Object[0]);
+        }
+    }
+
+    private final void d() {
+        mw4 mw4Var = (mw4) this.b;
+        k11 k11Var = (k11) this.d;
+        he heVar = (he) this.e;
+        TLRPC.Updates updates = (TLRPC.Updates) this.f;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.c;
+        npa npaVar = mw4Var.D1;
+        if (npaVar != null) {
+            npaVar.run();
+        }
+        k11Var.c(false);
+        heVar.dismiss();
+        mw4Var.dismiss();
+        d S = LaunchActivity.S();
+        if (S != null) {
+            if (updates != null) {
+                u31 I = c41.b0(S).I(2131624029, jb6.M0(2131749632, null), gm.S2(jb6.a0(null, null, 2131749633, mw4Var.n1, pg3.s(mw4Var.o1))));
+                I.u = true;
+                I.j();
+                return;
             }
-            for (int i4 = 0; i4 < Math.min(6, arrayList.size()); i4++) {
-                iArr[i4] = arrayList.get(i4).intValue() | (-16777216);
-            }
+            c41.b0(S).g0(tL_error, false);
         }
-        return iArr;
     }
 
-    public final int c(boolean z) {
-        if (o(z)) {
-            return j(z);
-        }
-        return h(z);
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.da7.run():void");
     }
 
-    public final int d(boolean z) {
-        int[] iArr;
-        if (o(z)) {
-            if (z) {
-                iArr = this.h;
-            } else {
-                iArr = this.g;
-            }
-            return iArr[3];
-        }
-        return h(z);
+    public da7(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f = obj4;
+        this.c = obj5;
     }
 
-    public final int e(int i, wjb wjbVar) {
-        boolean o;
-        int[] iArr;
-        int i2;
-        if (i >= 0 && i <= 5) {
-            if (this.b && (i2 = this.c) >= 0 && i2 < 7) {
-                return bkb.v0(bkb.q8[i2], wjbVar);
-            }
-            if (wjbVar != null) {
-                o = wjbVar.a();
-            } else {
-                o = bkb.I.o();
-            }
-            if (o) {
-                iArr = this.h;
-            } else {
-                iArr = this.g;
-            }
-            return iArr[i];
-        }
-        return 0;
+    public da7(Object obj, TLRPC.TL_error tL_error, Object obj2, Object obj3, Object obj4, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = tL_error;
+        this.d = obj2;
+        this.e = obj3;
+        this.f = obj4;
     }
 
-    public final int f() {
-        int[] iArr;
-        if (bkb.I.o()) {
-            iArr = this.h;
-        } else {
-            iArr = this.g;
-        }
-        return iArr[0];
+    public da7(TLObject tLObject, oc7 oc7Var, jv0 jv0Var, vn0 vn0Var, TLRPC.TL_error tL_error) {
+        this.a = (byte) 4;
+        this.d = tLObject;
+        this.b = oc7Var;
+        this.e = jv0Var;
+        this.f = vn0Var;
+        this.c = tL_error;
     }
 
-    public final int g() {
-        int[] iArr;
-        if (bkb.I.o()) {
-            iArr = this.h;
-        } else {
-            iArr = this.g;
-        }
-        return iArr[1];
+    public da7(TLRPC.TL_error tL_error, qac qacVar, TLObject tLObject, oc7 oc7Var, qac qacVar2, byte b) {
+        this.a = b;
+        this.c = tL_error;
+        this.d = qacVar;
+        this.e = tLObject;
+        this.b = oc7Var;
+        this.f = qacVar2;
     }
 
-    public final int h(boolean z) {
-        int[] iArr;
-        if (z) {
-            iArr = this.h;
-        } else {
-            iArr = this.g;
-        }
-        return iArr[1];
-    }
-
-    public final int i() {
-        int[] iArr;
-        if (bkb.I.o()) {
-            iArr = this.h;
-        } else {
-            iArr = this.g;
-        }
-        return iArr[2];
-    }
-
-    public final int j(boolean z) {
-        int[] iArr;
-        if (z) {
-            iArr = this.h;
-        } else {
-            iArr = this.g;
-        }
-        return iArr[2];
-    }
-
-    public final int k() {
-        int[] iArr;
-        if (bkb.I.o()) {
-            iArr = this.h;
-        } else {
-            iArr = this.g;
-        }
-        return iArr[4];
-    }
-
-    public final int l(boolean z) {
-        if (z) {
-            return this.f;
-        }
-        return this.e;
-    }
-
-    public final int m(boolean z) {
-        int[] iArr;
-        if (o(z)) {
-            if (z) {
-                iArr = this.h;
-            } else {
-                iArr = this.g;
-            }
-            return iArr[4];
-        }
-        return j(z);
-    }
-
-    public final int n(boolean z) {
-        boolean o = o(z);
-        int[] iArr = this.g;
-        int[] iArr2 = this.h;
-        if (o) {
-            if (z) {
-                iArr = iArr2;
-            }
-            return iArr[5];
-        }
-        if (z) {
-            iArr = iArr2;
-        }
-        return iArr[3];
-    }
-
-    public final boolean o(boolean z) {
-        int[] iArr;
-        int[] iArr2 = this.g;
-        int[] iArr3 = this.h;
-        if (z) {
-            iArr = iArr3;
-        } else {
-            iArr = iArr2;
-        }
-        int i = iArr[5];
-        if (z) {
-            iArr2 = iArr3;
-        }
-        if (i == iArr2[0]) {
-            return false;
-        }
-        return true;
+    public da7(d dVar, String str, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, byte b) {
+        this.a = b;
+        this.b = dVar;
+        this.d = str;
+        this.c = tL_error;
+        this.e = tLObject;
+        this.f = tLObject2;
     }
 }

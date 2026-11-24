@@ -2,550 +2,622 @@ package defpackage;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Matrix;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
-public final class mmc extends FrameLayout implements SensorEventListener {
-    public static final Object o0 = new Object();
-    public final boolean E;
-    public final float[] F;
-    public final float[] G;
-    public final vmc H;
-    public final int I;
-    public float J;
-    public float K;
-    public float L;
-    public float M;
-    public float N;
-    public float O;
-    public float P;
-    public int Q;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Stack;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Wallet.c;
+public final class mmc {
+    public float A;
+    public float B;
+    public boolean D;
+    public boolean E;
+    public zna F;
+    public ValueAnimator G;
+    public boolean H;
+    public final jmc I;
+    public final ln J;
+    public final ln K;
+    public final Paint L;
+    public boolean M;
+    public long N;
+    public final Paint O;
+    public long P;
+    public final ln Q;
     public float R;
-    public float S;
-    public float T;
-    public float U;
-    public boolean V;
-    public long W;
-    public boolean a;
-    public boolean a0;
-    public jmc b;
-    public boolean b0;
-    public int c;
-    public ValueAnimator c0;
-    public ds8 d;
-    public float d0;
-    public final z92 e;
-    public float e0;
-    public final zab f;
-    public float f0;
-    public float g0;
-    public final s71 h;
-    public float h0;
-    public float i0;
-    public int j0;
-    public int k0;
-    public final xia l0;
-    public float m0;
-    public final lmc n;
-    public float n0;
-    public final zab r;
-    public final ntb s;
-    public final float[] w;
-    public final SensorManager x;
-    public final Sensor y;
+    public long S;
+    public int T;
+    public int U;
+    public int V;
+    public final Path W;
+    public final Paint X;
+    public final u51 Y;
+    public zna Z;
+    public final cm1 a;
+    public float a0;
+    public final ylb b;
+    public zna b0;
+    public float c0;
+    public kmc d0;
+    public boolean e;
+    public long e0;
+    public boolean f0;
+    public boolean g0;
+    public boolean h0;
+    public final Drawable i;
+    public boolean i0;
+    public ValueAnimator j0;
+    public final uoc k;
+    public ho1 k0;
+    public final p09 l;
+    public TLRPC.TL_messageActionGramTransfer l0;
+    public lmc m;
+    public boolean m0;
+    public boolean n;
+    public uib n0;
+    public boolean o;
+    public uib o0;
+    public float p;
+    public uib p0;
+    public float q;
+    public uib q0;
+    public float r;
+    public boolean r0;
+    public float s;
+    public vl1 s0;
+    public float t;
+    public int t0;
+    public final yl u0;
+    public long v;
+    public int v0;
+    public final ln w0;
+    public final hmc x0;
+    public float y;
+    public boolean y0;
+    public float z;
+    public final ArrayList c = new ArrayList();
+    public final Stack d = new Stack();
+    public final RectF f = new RectF();
+    public final RectF g = new RectF();
+    public final Path h = new Path();
+    public final Path j = new Path();
+    public final trc u = new trc();
+    public final Rect w = new Rect();
+    public int x = -1;
+    public float C = 1.0f;
 
-    public mmc(Context context, int i, int i2) {
-        super(context);
-        this.s = new ntb();
-        this.w = new float[8];
-        this.F = new float[9];
-        this.G = new float[3];
-        this.H = new Object();
-        this.J = -0.22f;
-        this.K = -0.28f;
-        this.Q = -1;
-        this.f0 = 1.0f;
-        this.h0 = Float.NaN;
-        this.i0 = Float.NaN;
-        this.l0 = new xia(this, (byte) 16);
-        this.c = i;
-        boolean z = false;
-        setClipChildren(false);
-        setClipToPadding(false);
-        setWillNotDraw(false);
-        setCameraDistance(gl.L(4800.0f));
-        ote.b(this, 0.02f, 1.2f);
-        z92 z92Var = new z92(this, context);
-        this.e = z92Var;
-        addView(z92Var, nme.e(-1, -1, 17));
-        zab zabVar = new zab(context);
-        this.f = zabVar;
-        zabVar.setPadding(2, 2, 2, 2);
-        zabVar.setLayerType(2, null);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
-        layoutParams.setMargins(-2, -2, -2, -2);
-        z92Var.addView(zabVar, layoutParams);
-        s71 s71Var = new s71(this, context);
-        this.h = s71Var;
-        zabVar.addView(s71Var, nme.e(-1, -1, 17));
-        lmc lmcVar = new lmc(this, context);
-        this.n = lmcVar;
-        zabVar.addView(lmcVar, nme.e(-1, -1, 17));
-        zab zabVar2 = new zab((byte) 6, context, this);
-        this.r = zabVar2;
-        zabVar2.setClipChildren(false);
-        zabVar2.setClipToPadding(false);
-        zabVar2.setLayerType(2, null);
-        zabVar2.setPivotX(0.0f);
-        zabVar2.setPivotY(0.0f);
-        zabVar.addView(zabVar2, nme.e(336, 205, 51));
-        this.I = ViewConfiguration.get(context).getScaledTouchSlop();
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.x = sensorManager;
-        Sensor defaultSensor = sensorManager.getDefaultSensor(15);
-        defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(11) : defaultSensor;
-        defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(4) : defaultSensor;
-        this.y = defaultSensor;
-        if (defaultSensor != null && defaultSensor.getType() != 4) {
-            z = true;
+    public mmc(cm1 cm1Var, ylb ylbVar) {
+        Paint paint = new Paint(1);
+        this.L = paint;
+        Paint paint2 = new Paint(1);
+        this.O = paint2;
+        Path path = new Path();
+        this.W = path;
+        Paint paint3 = new Paint(1);
+        this.X = paint3;
+        this.a0 = 1.0f;
+        this.t0 = -10624001;
+        this.u0 = new yl(this, (byte) 3);
+        this.v0 = -1;
+        new Paint(1);
+        new Paint(1);
+        this.x0 = new Object();
+        this.a = cm1Var;
+        this.b = ylbVar;
+        this.i = cm1Var.getResources().getDrawable(2131232824).mutate();
+        Context context = cm1Var.getContext();
+        uoc uocVar = uoc.H;
+        if (uocVar == null) {
+            uocVar = new uoc(context.getApplicationContext());
+            uoc.H = uocVar;
         }
-        this.E = z;
-        kmc kmcVar = new kmc(this, (byte) 1);
-        if (jmc.j0 && jmc.p0.get(Integer.valueOf(i)) != null) {
-            this.b = new jmc(context.getApplicationContext(), i, i2, kmcVar);
-            return;
-        }
-        z92Var.setVisibility(4);
-        jmc.l0.postRunnable(new ql1(this, context, i, i2, kmcVar));
+        this.k = uocVar;
+        p09 p09Var = new p09(2131624352, gm.L(42.0f), gm.L(42.0f), false, null);
+        this.l = p09Var;
+        p09Var.M(cm1Var);
+        p09Var.F(0);
+        cm1Var.addOnAttachStateChangeListener(new um0(this, cm1Var, (byte) 2));
+        paint2.setColor(-10033409);
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(gm.N(1.0f));
+        vl1 vl1Var = new vl1(cm1Var, (byte) 7);
+        d53 d53Var = d53.h;
+        this.Q = new ln(1.0f, vl1Var, 0L, 180L, d53Var);
+        this.K = new ln(new vl1(cm1Var, (byte) 7), 320L, d53Var, 0);
+        this.J = new ln(new vl1(cm1Var, (byte) 7), 320L, d53Var, 0);
+        jmc jmcVar = new jmc(cm1Var, cm1Var);
+        this.I = jmcVar;
+        jmcVar.y = -1;
+        rx4.d(path, 1.0f, false);
+        paint3.setStyle(style);
+        paint3.setStrokeWidth(gm.N(4.0f));
+        paint3.setPathEffect(new CornerPathEffect(gm.L(2.33f)));
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        paint3.setShader(new LinearGradient(0.0f, 0.0f, gm.L(48.0f), gm.L(48.0f), new int[]{16777215, cmb.p1(0.35f, 16777215), 16777215}, new float[]{0.0f, 0.5f, 1.0f}, tileMode));
+        paint.setShader(new LinearGradient(-gm.L(10.0f), 0.0f, gm.L(10.0f), 0.0f, new int[]{16777215, -2130706433, 16777215}, new float[]{0.0f, 0.5f, 1.0f}, tileMode));
+        u51 u51Var = new u51(cm1Var);
+        this.Y = u51Var;
+        u51Var.f = new imc(this, (byte) 0);
+        this.w0 = new ln(1.0f, new vl1(cm1Var, (byte) 7), 0L, 400L, d53Var);
     }
 
-    public static float c(float f, float f2, float f3) {
-        return Math.max(f2, Math.min(f3, f));
+    public static int h() {
+        return gm.L(206.0f);
     }
 
-    public final void a() {
-        ValueAnimator valueAnimator = this.c0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.c0.cancel();
-            this.c0 = null;
+    public final void a(float f) {
+        if (this.F == null) {
+            zna znaVar = new zna(new xk4(this.C));
+            this.F = znaVar;
+            aoa aoaVar = new aoa(f);
+            aoaVar.a(0.55f);
+            aoaVar.b(280.0f);
+            znaVar.m = aoaVar;
+            this.F.f(0.001f);
+            this.F.b(new gmc(this, (byte) 0));
         }
-        float f = this.O;
-        float f2 = this.P;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.c0 = ofFloat;
-        ofFloat.setDuration(600L);
-        b00.n(1.2f, this.c0);
-        this.c0.addUpdateListener(new qx1(this, f, f2, (byte) 8));
-        this.c0.addListener(new iab(this, (byte) 28));
-        this.c0.start();
+        this.F.c(f);
     }
 
-    public final void b(float f, float f2) {
-        boolean z;
-        float[] fArr;
-        this.d0 = f;
-        this.g0 = f2;
-        float f3 = f + this.m0;
-        float f4 = f2 + this.n0;
-        if (Math.cos(Math.toRadians(f4)) * Math.cos(Math.toRadians(f3)) < 0.0d) {
-            z = true;
-        } else {
-            z = false;
+    public final void b() {
+        cm1 cm1Var = this.a;
+        if (cm1Var.isShown()) {
+            gm.W3(cm1Var);
         }
-        boolean z2 = this.a;
-        lmc lmcVar = this.n;
-        if (z2 != z) {
-            this.a = z;
-            this.r.invalidate();
-            lmcVar.invalidate();
+        zna znaVar = this.Z;
+        if (znaVar != null) {
+            znaVar.d();
         }
-        int width = getWidth();
-        int height = getHeight();
-        if (this.h0 == f3 && this.i0 == f4 && this.j0 == width && this.k0 == height) {
-            return;
-        }
-        this.h0 = f3;
-        this.i0 = f4;
-        this.j0 = width;
-        this.k0 = height;
-        if (width > 0 && height > 0) {
-            this.s.a(width, height, f3, f4, z, this.w);
-            jmc jmcVar = this.b;
-            if (jmcVar != null) {
-                float[] fArr2 = jmcVar.n;
-                float[] fArr3 = jmcVar.m;
-                float[] fArr4 = jmcVar.k;
-                float[] fArr5 = jmcVar.l;
-                int[] iArr = jmcVar.o;
-                jmcVar.r = z;
-                float[] fArr6 = jmcVar.i;
-                if (z) {
-                    fArr = fArr5;
-                } else {
-                    fArr = fArr4;
-                    fArr4 = fArr5;
-                }
-                ntb ntbVar = this.s;
-                ntbVar.getClass();
-                int i = 0;
-                while (i < fArr6.length / 2) {
-                    int i2 = i << 1;
-                    float f5 = (fArr6[i2 + 1] * (-1.212122f)) + 0.618561f;
-                    float f6 = ((fArr6[i2] * 2.0f) - 1.0f) * 1.0f;
-                    float b = ntbVar.b(-0.0125f, f5, f6, width, height, fArr, i2);
-                    float[] fArr7 = fArr;
-                    float[] fArr8 = fArr4;
-                    fArr3[i] = (b + ntbVar.b(0.0125f, f5, f6, width, height, fArr8, i2)) * 0.5f;
-                    i++;
-                    ntbVar = ntbVar;
-                    fArr4 = fArr8;
-                    fArr6 = fArr6;
-                    iArr = iArr;
-                    fArr = fArr7;
-                }
-                int[] iArr2 = iArr;
-                jmcVar.q = width / 336.0f;
-                int i3 = 0;
-                while (i3 < 76) {
-                    int i4 = i3 + 1;
-                    fArr2[i3] = (fArr3[i3] + fArr3[i4 % 76]) * 0.5f;
-                    iArr2[i3] = i3;
-                    i3 = i4;
-                }
-                for (int i5 = 1; i5 < 76; i5++) {
-                    int i6 = iArr2[i5];
-                    int i7 = i5 - 1;
-                    while (i7 >= 0) {
-                        int i8 = iArr2[i7];
-                        if (fArr2[i8] < fArr2[i6]) {
-                            iArr2[i7 + 1] = i8;
-                            i7--;
-                        }
-                    }
-                    iArr2[i7 + 1] = i6;
-                }
-            }
-            z92 z92Var = this.e;
-            int width2 = z92Var.getWidth();
-            int height2 = z92Var.getHeight();
-            if (width2 != 0 && height2 != 0) {
-                float[] fArr9 = (float[]) z92Var.b;
-                fArr9[0] = 0.0f;
-                fArr9[1] = 0.0f;
-                float f7 = width2;
-                fArr9[2] = f7;
-                fArr9[3] = 0.0f;
-                fArr9[4] = f7;
-                float f8 = height2;
-                fArr9[5] = f8;
-                fArr9[6] = 0.0f;
-                fArr9[7] = f8;
-                z92Var.c = ((Matrix) z92Var.d).setPolyToPoly(fArr9, 0, this.w, 0, 4);
-                z92Var.invalidate();
-            }
-        }
-        jmc jmcVar2 = this.b;
-        if (jmcVar2 != null) {
-            jmcVar2.k(f3, f4);
-        }
-        this.h.invalidate();
-        lmcVar.invalidate();
+        zna znaVar2 = new zna(new xk4(this.a0));
+        this.Z = znaVar2;
+        aoa aoaVar = new aoa(1.0f);
+        aoaVar.a(0.55f);
+        aoaVar.b(280.0f);
+        znaVar2.m = aoaVar;
+        this.Z.f(0.001f);
+        zna znaVar3 = this.Z;
+        znaVar3.a = -3.0f;
+        znaVar3.b(new gmc(this, (byte) 2));
+        this.Z.h();
     }
 
-    public final void d(int i, MotionEvent motionEvent) {
-        this.Q = motionEvent.getPointerId(i);
-        this.R = motionEvent.getX(i);
-        this.S = motionEvent.getY(i);
-        this.T = this.O;
-        this.U = this.P;
+    public final void c(Canvas canvas, float f, float f2) {
+        canvas.translate(0.0f, gm.L(4.0f) * this.c0);
+        u51 u51Var = this.Y;
+        canvas.scale(mlb.A(this.c0, 0.012f, 1.0f, u51Var.a(0.025f) * this.a0), mlb.B(this.c0, 0.04f, 1.0f, u51Var.a(0.025f) * this.a0), (gm.L(206.0f) / 2.0f) + f, f2 + gm.L(70.0f));
+    }
+
+    public final void d(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mmc.d(android.graphics.Canvas):void");
     }
 
     public final void e() {
-        boolean z;
-        SensorManager sensorManager = this.x;
-        if (sensorManager != null) {
-            if (this.a0 && isShown() && getWindowVisibility() == 0 && hasWindowFocus()) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (this.b0 != z) {
-                this.b0 = z;
-                xia xiaVar = this.l0;
-                removeCallbacks(xiaVar);
-                if (z) {
-                    this.W = 0L;
-                    Sensor sensor = this.y;
-                    if (sensor != null) {
-                        sensorManager.registerListener(this, sensor, 1);
-                    }
-                    postOnAnimation(xiaVar);
-                    return;
-                }
-                sensorManager.unregisterListener(this);
-            }
+        if (this.d0 != null) {
+            return;
         }
+        kmc kmcVar = new kmc(this, this.b);
+        this.d0 = kmcVar;
+        kmcVar.g(4969977, cmb.p1(0.125f, -11807239), 4969977, cmb.p1(0.75f, -11807239));
+        this.d0.x.setStrokeWidth(gm.N(2.0f));
+        kmc kmcVar2 = this.d0;
+        kmcVar2.t = 2.0f;
+        kmcVar2.y = this.h;
+        kmcVar2.D = true;
     }
 
-    public float getCardRotationX() {
-        return this.d0;
-    }
-
-    public float getCardRotationY() {
-        return this.g0;
-    }
-
-    public FrameLayout getFrontFace() {
-        return this.r;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.a0 = true;
-        this.W = 0L;
-        vmc vmcVar = this.H;
-        vmcVar.a = false;
-        vmcVar.h = 0L;
-        vmcVar.i = 0L;
-        vmcVar.j = 0L;
-        this.L = 0.0f;
-        this.M = 0.0f;
-        this.N = 0.0f;
-        e();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        this.a0 = false;
-        e();
-        ValueAnimator valueAnimator = this.c0;
+    public final void f() {
+        ValueAnimator valueAnimator = this.j0;
         if (valueAnimator != null) {
+            this.j0 = null;
             valueAnimator.removeAllListeners();
-            this.c0.cancel();
-            this.c0 = null;
-        }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.round(size / 1.64f), 1073741824));
-    }
-
-    @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        if (this.E) {
-            float[] fArr = sensorEvent.values;
-            float[] fArr2 = this.F;
-            SensorManager.getRotationMatrixFromVector(fArr2, fArr);
-            float[] fArr3 = this.G;
-            SensorManager.getOrientation(fArr2, fArr3);
-            if (!Float.isNaN(fArr3[1]) && !Float.isNaN(fArr3[2])) {
-                this.J = c((float) Math.sin(fArr3[2]), -0.82f, 0.82f);
-                this.K = c(-((float) Math.sin(fArr3[1])), -0.82f, 0.82f);
-            } else {
-                return;
+            valueAnimator.cancel();
+            ln lnVar = this.K;
+            if (lnVar.i) {
+                this.M = false;
+                this.N = 0L;
             }
+            lnVar.e(true, 1.0f);
+            this.t = 0.0f;
+            ((ArrayList) this.u.b).clear();
+            ho1 ho1Var = this.k0;
+            this.k0 = null;
+            this.a.invalidate();
+            if (ho1Var != null) {
+                gm.d3(ho1Var, 1L);
+            }
+        }
+    }
+
+    public final float g() {
+        float f;
+        long uptimeMillis = SystemClock.uptimeMillis();
+        long j = this.v;
+        if (j != 0) {
+            float min = Math.min(0.1f, ((float) (uptimeMillis - j)) / 1000.0f);
+            if (this.h0) {
+                f = 1.7883515f;
+            } else {
+                f = 0.0f;
+            }
+            float f2 = -min;
+            float exp = (float) Math.exp(f2 / 0.2f);
+            float f3 = (min * f) + this.r;
+            float f4 = this.s - f;
+            this.r = (((1.0f - exp) * (0.2f * f4)) + f3) % 6.2831855f;
+            this.s = (f4 * exp) + f;
+            float exp2 = (float) Math.exp(f2 / 0.75f);
+            float f5 = this.r;
+            float f6 = this.t;
+            this.r = (((1.0f - exp2) * (0.75f * f6)) + f5) % 6.2831855f;
+            float f7 = f6 * exp2;
+            this.t = f7;
+            if (f7 < 0.001f) {
+                this.t = 0.0f;
+            }
+        }
+        this.v = uptimeMillis;
+        return (this.k.E * 0.14f) + ((float) (((uptimeMillis / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.r;
+    }
+
+    public final void i(boolean z) {
+        float f = 0.0f;
+        if (z) {
+            this.Q.e(true, 0.0f);
+        } else if (this.E && this.h0) {
+            this.P = SystemClock.elapsedRealtime();
+        }
+        this.E = z;
+        lmc lmcVar = this.m;
+        if (lmcVar != null) {
+            if (!z) {
+                f = 1.0f;
+            }
+            lmcVar.setAlpha(f);
+        }
+        this.a.invalidate();
+    }
+
+    public final void j() {
+        this.x = -1;
+        cm1 cm1Var = this.a;
+        if (cm1Var.getParent() != null) {
+            cm1Var.getParent().requestDisallowInterceptTouchEvent(false);
+        }
+        this.D = true;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.G = ofFloat;
+        ofFloat.setDuration(350L);
+        this.G.setInterpolator(d53.h);
+        this.G.addUpdateListener(new dz1(this, (float) Math.IEEEremainder(this.A - g(), 6.283185307179586d), (float) Math.IEEEremainder(this.B - (this.k.F * 0.14f), 6.283185307179586d), (byte) 7));
+        this.G.start();
+        a(1.0f);
+    }
+
+    public final void k() {
+        i(false);
+        this.Q.e(true, 1.0f);
+        if (this.x != -1) {
+            cm1 cm1Var = this.a;
+            if (cm1Var.getParent() != null) {
+                cm1Var.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+        }
+        this.x = -1;
+        ValueAnimator valueAnimator = this.G;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.G = null;
+        }
+        zna znaVar = this.F;
+        if (znaVar != null) {
+            znaVar.d();
+            this.F = null;
+        }
+        this.D = false;
+        this.C = 1.0f;
+        this.B = 0.0f;
+        this.v = 0L;
+        this.t = 0.0f;
+        this.s = 0.0f;
+        this.r = 0.0f;
+        ((ArrayList) this.u.b).clear();
+        lmc lmcVar = this.m;
+        if (lmcVar != null) {
+            lmcVar.setScaleX(1.0f);
+            this.m.setScaleY(1.0f);
+        }
+    }
+
+    public final void l() {
+        zna znaVar = this.b0;
+        if (znaVar != null) {
+            znaVar.d();
+            this.b0 = null;
+        }
+        this.c0 = 0.0f;
+        cm1 cm1Var = this.a;
+        cm1Var.invalidate();
+        if (cm1Var.getParent() instanceof View) {
+            ((View) cm1Var.getParent()).invalidate();
+        }
+    }
+
+    public final void m(boolean z, TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer, String str, int i, boolean z2, boolean z3) {
+        boolean z4;
+        boolean z5;
+        boolean z6;
+        long j;
+        int i2;
+        String M0;
+        String str2;
+        cm1 cm1Var = this.a;
+        if (z2) {
+            f();
+            this.M = false;
+            this.N = 0L;
+            this.h0 = false;
+            k();
+            zna znaVar = this.Z;
+            if (znaVar != null) {
+                znaVar.d();
+                this.Z = null;
+            }
+            this.a0 = 1.0f;
+            cm1Var.invalidate();
+            if (cm1Var.getParent() instanceof View) {
+                ((View) cm1Var.getParent()).invalidate();
+            }
+            l();
+            this.R = 0.0f;
+            this.S = 0L;
+            this.l.stop();
+            this.H = false;
+        }
+        this.g0 = z;
+        this.l0 = tL_messageActionGramTransfer;
+        if (!z && z3) {
+            z4 = true;
         } else {
-            long j = this.W;
-            if (j != 0) {
-                float f = ((float) (sensorEvent.timestamp - j)) * 1.0E-9f;
-                if (f > 0.0f && f < 0.1f) {
-                    this.J = c(oo1.v(sensorEvent.values[1], f, -0.75f, this.J), -0.82f, 0.82f);
-                    this.K = c(b00.w(sensorEvent.values[0], f, -0.75f, this.K), -0.82f, 0.82f);
-                }
-            }
-            this.W = sensorEvent.timestamp;
+            z4 = false;
         }
-        float f2 = ((-this.K) / 0.82f) * 15.0f;
-        float f3 = (this.J / 0.82f) * 15.0f;
-        long j2 = sensorEvent.timestamp;
-        vmc vmcVar = this.H;
-        vmcVar.getClass();
-        if (!Float.isNaN(f2) && !Float.isInfinite(f2) && !Float.isNaN(f3) && !Float.isInfinite(f3)) {
-            vmcVar.b = f2;
-            vmcVar.c = f3;
-            vmcVar.i = j2;
-            if (!vmcVar.a) {
-                vmcVar.a = true;
-                vmcVar.d = f2;
-                vmcVar.e = f3;
-                vmcVar.f = f2;
-                vmcVar.g = f3;
-                vmcVar.h = j2;
-                return;
+        this.i0 = z4;
+        ln lnVar = this.K;
+        if (z4) {
+            lnVar.e(true, 0.0f);
+            this.M = false;
+            this.N = 0L;
+        } else if (z2) {
+            lnVar.e(true, 1.0f);
+            this.M = false;
+            this.N = 0L;
+        }
+        this.m0 = false;
+        if (z && i == 2) {
+            z5 = true;
+        } else {
+            z5 = false;
+        }
+        if (z && i == 1) {
+            z6 = true;
+        } else {
+            z6 = false;
+        }
+        if (this.h0 && z && i == 0) {
+            b();
+            g();
+            this.t = 18.0f;
+            this.u.z();
+            cm1Var.invalidate();
+        }
+        if (z6) {
+            if (!this.h0) {
+                this.P = SystemClock.elapsedRealtime();
             }
-            float f4 = f2 - vmcVar.f;
-            float f5 = f3 - vmcVar.g;
-            if ((f5 * f5) + (f4 * f4) > 1.265625f) {
-                vmcVar.f = f2;
-                vmcVar.g = f3;
-                vmcVar.h = j2;
+            lnVar.e(true, 0.0f);
+            this.M = false;
+            this.N = 0L;
+        } else if (z5) {
+            lnVar.e(true, 1.0f);
+            this.M = false;
+            this.N = 0L;
+        }
+        q();
+        this.h0 = z6;
+        if (z6) {
+            j = SystemClock.elapsedRealtime();
+        } else {
+            j = 0;
+        }
+        this.S = j;
+        if (z6) {
+            e();
+            kmc kmcVar = this.d0;
+            kmcVar.v = 0L;
+            if (kmcVar.d() || this.d0.c()) {
+                kmc kmcVar2 = this.d0;
+                kmcVar2.b = -1L;
+                kmcVar2.c = -1L;
+            }
+            cm1Var.invalidate();
+        } else {
+            kmc kmcVar3 = this.d0;
+            if (kmcVar3 != null && this.e0 == 0 && !kmcVar3.d() && !this.d0.c()) {
+                this.d0.a();
+                cm1Var.invalidate();
             }
         }
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        float L = i / gl.L(336.0f);
-        zab zabVar = this.r;
-        zabVar.setScaleX(L);
-        zabVar.setScaleY(i2 / gl.L(205.0f));
-        b(this.d0, this.g0);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked != 0) {
-            if (actionMasked != 1) {
-                if (actionMasked != 2) {
-                    if (actionMasked != 3) {
-                        if (actionMasked != 5) {
-                            if (actionMasked == 6 && motionEvent.getPointerId(motionEvent.getActionIndex()) == this.Q) {
-                                for (int i = 0; i < motionEvent.getPointerCount(); i++) {
-                                    if (i != motionEvent.getActionIndex()) {
-                                        d(i, motionEvent);
-                                        return true;
-                                    }
-                                }
-                            }
-                        } else {
-                            d(motionEvent.getActionIndex(), motionEvent);
-                            this.V = true;
-                            setPressed(false);
-                            return true;
-                        }
-                    } else {
-                        this.Q = -1;
-                        getParent().requestDisallowInterceptTouchEvent(false);
-                        setPressed(false);
-                        if (this.V) {
-                            a();
-                            return true;
-                        }
-                    }
-                } else {
-                    int findPointerIndex = motionEvent.findPointerIndex(this.Q);
-                    if (findPointerIndex >= 0) {
-                        float x = motionEvent.getX(findPointerIndex);
-                        float y = motionEvent.getY(findPointerIndex);
-                        float abs = Math.abs(x - this.R);
-                        float f = this.I;
-                        if (abs > f || Math.abs(y - this.S) > f) {
-                            this.V = true;
-                            setPressed(false);
-                        }
-                        if (this.V) {
-                            float f2 = this.U;
-                            this.P = c(ls6.B(x, this.R, 0.03f, f2), f2 - 32.0f, f2 + 32.0f);
-                            float f3 = this.T;
-                            this.O = c(ls6.B(y, this.S, 0.03f, f3), f3 - 22.0f, f3 + 22.0f);
-                        }
-                    }
-                }
-                return true;
-            }
-            this.Q = -1;
-            getParent().requestDisallowInterceptTouchEvent(false);
-            setPressed(false);
-            if (this.V) {
-                a();
-                return true;
-            }
-            postDelayed(new kmc(this, (byte) 0), Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
-            return true;
+        if (z5) {
+            i2 = cmb.v0(cmb.p7, this.b);
+        } else if (z) {
+            i2 = -15352320;
+        } else {
+            i2 = -11814402;
         }
-        ValueAnimator valueAnimator = this.c0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.c0.cancel();
-            this.c0 = null;
+        this.y0 = z5;
+        int i3 = this.U;
+        if (i3 == 0) {
+            this.V = i2;
+            this.U = i2;
+            this.T = i2;
+        } else if (i2 != i3) {
+            this.T = this.V;
+            this.U = i2;
+            this.J.e(true, 0.0f);
+            cm1Var.invalidate();
         }
-        getParent().requestDisallowInterceptTouchEvent(true);
-        d(0, motionEvent);
-        this.V = false;
-        setPressed(true);
-        return true;
-    }
-
-    @Override
-    public final void onVisibilityChanged(View view, int i) {
-        super.onVisibilityChanged(view, i);
-        e();
-    }
-
-    @Override
-    public final void onWindowFocusChanged(boolean z) {
-        super.onWindowFocusChanged(z);
-        e();
-    }
-
-    @Override
-    public final void onWindowVisibilityChanged(int i) {
-        super.onWindowVisibilityChanged(i);
-        e();
-    }
-
-    @Override
-    public final boolean performClick() {
-        super.performClick();
-        return true;
-    }
-
-    public void setAdditionalTilt(float f) {
-        float f2 = this.e0;
-        if (f2 == f) {
+        if (z5) {
+            M0 = jb6.M0(2131742642, null);
+        } else if (z) {
+            M0 = jb6.M0(2131742640, null);
+        } else {
+            M0 = jb6.M0(2131742641, null);
+        }
+        jmc jmcVar = this.I;
+        if (z6) {
+            jmcVar.g(10, M0, true);
+        } else {
+            jmcVar.h(10, M0);
+        }
+        SpannableStringBuilder u = c.u(c.s(Math.abs(tL_messageActionGramTransfer.amount), false), 0.75f);
+        for (RelativeSizeSpan relativeSizeSpan : (RelativeSizeSpan[]) u.getSpans(0, u.length(), RelativeSizeSpan.class)) {
+            u.removeSpan(relativeSizeSpan);
+        }
+        if (z) {
+            str2 = "–";
+        } else {
+            str2 = "+";
+        }
+        u.insert(0, (CharSequence) str2);
+        int indexOf = u.toString().indexOf(46);
+        if (indexOf >= 0) {
+            u.setSpan(new RelativeSizeSpan(0.75f), indexOf, u.length(), 33);
+        }
+        Object obj = new Object();
+        u.setSpan(obj, 0, u.length(), 33);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(c.p("Grams", u, 2131749264));
+        int spanStart = spannableStringBuilder.getSpanStart(obj);
+        int spanEnd = spannableStringBuilder.getSpanEnd(obj);
+        spannableStringBuilder.removeSpan(obj);
+        yl ylVar = this.u0;
+        if (spanStart > 0) {
+            spannableStringBuilder.setSpan(CharacterStyle.wrap(ylVar), 0, spanStart, 33);
+        }
+        if (spanEnd >= 0 && spanEnd < spannableStringBuilder.length()) {
+            spannableStringBuilder.setSpan(CharacterStyle.wrap(ylVar), spanEnd, spannableStringBuilder.length(), 33);
+        }
+        this.n0 = new uib(spannableStringBuilder, 16.0f, gm.o());
+        String str3 = tL_messageActionGramTransfer.peer_address;
+        Locale locale = Locale.US;
+        String f = soc.f(soc.d(str3.toUpperCase(locale)));
+        uib uibVar = new uib("", 9.3f, gm.n1("fonts/rmono.ttf"));
+        uibVar.l(2);
+        this.o0 = uibVar;
+        uibVar.p(f);
+        if (TextUtils.isEmpty(str)) {
+            this.p0 = null;
+        } else {
+            uib uibVar2 = new uib("", 10.0f, Typeface.create(gm.n1("fonts/rmono.ttf"), 1));
+            this.p0 = uibVar2;
+            uibVar2.p(TextUtils.ellipsize(gm.J2(str.toUpperCase(locale)), this.p0.a, gm.L(206.0f) - gm.L(24.0f), TextUtils.TruncateAt.END));
+        }
+        Stack stack = this.d;
+        ArrayList arrayList = this.c;
+        stack.addAll(arrayList);
+        arrayList.clear();
+        if (TextUtils.isEmpty(tL_messageActionGramTransfer.comment)) {
+            this.q0 = null;
             return;
         }
-        this.e0 = f;
-        b((this.d0 + f) - f2, this.g0);
-    }
-
-    public void setCardIcon(int i) {
-        lmc lmcVar = this.n;
-        mmc mmcVar = lmcVar.b;
-        mmcVar.c = i;
-        jmc jmcVar = mmcVar.b;
-        if (jmcVar != null) {
-            jmcVar.j(i);
-        }
-        lmcVar.invalidate();
-    }
-
-    public void setHasCardNumber(boolean z) {
-        lmc lmcVar = this.n;
-        lmcVar.a = z;
-        lmcVar.invalidate();
-    }
-
-    public void setStickerStyle(float[] fArr) {
-        s71 s71Var = this.h;
-        s71Var.b = fArr;
-        this.e.invalidate();
-        s71Var.invalidate();
-        this.n.invalidate();
-    }
-
-    public void setUseGyroscope(float f) {
-        if (this.f0 == f) {
+        uib uibVar3 = new uib("", 12.0f, null);
+        uibVar3.l(Integer.MAX_VALUE);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        uibVar3.a();
+        uibVar3.o(gm.L(184.0f));
+        this.q0 = uibVar3;
+        if ((tL_messageActionGramTransfer.comment_encrypted || tL_messageActionGramTransfer.comment_encrypted_preparing) && !this.m0) {
+            StringBuilder sb = new StringBuilder(25);
+            for (int i4 = 0; i4 < 25; i4++) {
+                sb.append("a");
+            }
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(sb.toString());
+            ?? obj2 = new Object();
+            obj2.a |= 256;
+            spannableStringBuilder2.setSpan(new xkb(obj2, 0), 0, spannableStringBuilder2.length(), 33);
+            this.q0.p(spannableStringBuilder2);
+            rna.c(cm1Var, this.q0.b, stack, arrayList);
+            n(this.e);
             return;
         }
-        this.f0 = f;
-        b((this.M * f) + this.O + this.e0, (this.N * f) + this.P);
+        uibVar3.p(gw3.m(tL_messageActionGramTransfer.comment, uibVar3.a.getFontMetricsInt(), false, null, 0));
     }
 
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i) {
+    public final void n(boolean z) {
+        this.e = z;
+        ArrayList arrayList = this.c;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((rna) obj).invalidateSelf();
+        }
+    }
+
+    public final void o(float f, float f2) {
+        this.p = f;
+        this.q = f2;
+    }
+
+    public final void p() {
+        boolean z;
+        if (this.m == null) {
+            return;
+        }
+        if (this.x == -1 && !this.D) {
+            this.A = g();
+            this.B = this.k.F * 0.14f;
+        }
+        boolean z2 = true;
+        if (this.x == -1 && !this.D && this.C <= 1.001f) {
+            z = false;
+        } else {
+            z = true;
+        }
+        lmc lmcVar = this.m;
+        float f = this.A;
+        float f2 = this.B;
+        if (!z && !this.h0 && this.r == 0.0f && this.s == 0.0f && this.t == 0.0f) {
+            z2 = false;
+        }
+        lmcVar.r = f;
+        lmcVar.s = f2;
+        lmcVar.w = z2;
+        lmcVar.x = z;
+    }
+
+    public final void q() {
+        if (this.h0 && this.S != 0) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            this.R = (((((float) (elapsedRealtime - this.S)) * 360.0f) / 4000.0f) + this.R) % 360.0f;
+            this.S = elapsedRealtime;
+        }
     }
 }

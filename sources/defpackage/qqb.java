@@ -1,38 +1,27 @@
 package defpackage;
-public enum qqb extends qsb {
-    public qqb() {
-        super("ScriptDataEscapedDashDash", 23);
+public class qqb {
+    public final String c;
+    public int d;
+    public final rqb e;
+    public long b = -1;
+    public final long a = System.currentTimeMillis();
+
+    public qqb(rqb rqbVar, String str) {
+        this.e = rqbVar;
+        this.c = str;
+        rqbVar.a++;
     }
 
-    @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        if (zj1Var.j()) {
-            aqbVar.l(this);
-            aqbVar.c = qsb.a;
-            return;
+    public String toString() {
+        String q;
+        StringBuilder sb = new StringBuilder(this.c);
+        sb.append(": ");
+        if (this.b < 0) {
+            q = "not done";
+        } else {
+            q = kt6.q(new StringBuilder(), this.b - this.a, "ms");
         }
-        char d = zj1Var.d();
-        oqb oqbVar = qsb.L;
-        if (d != 0) {
-            if (d != '-') {
-                if (d != '<') {
-                    if (d != '>') {
-                        aqbVar.f(d);
-                        aqbVar.c = oqbVar;
-                        return;
-                    }
-                    aqbVar.f(d);
-                    aqbVar.c = qsb.f;
-                    return;
-                }
-                aqbVar.c = qsb.O;
-                return;
-            }
-            aqbVar.f(d);
-            return;
-        }
-        aqbVar.m(this);
-        aqbVar.f((char) 65533);
-        aqbVar.c = oqbVar;
+        sb.append(q);
+        return sb.toString();
     }
 }

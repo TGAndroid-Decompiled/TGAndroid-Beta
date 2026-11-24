@@ -1,107 +1,122 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.media.AudioManager;
-import android.os.Build;
-import android.view.KeyEvent;
-import android.view.View;
-public final class c3b extends View {
-    public Paint a;
-    public boolean b;
-    public xia c;
-    public lm d;
-    public lm e;
-    public float f;
-
-    public final void a(boolean z) {
-        xia xiaVar = this.c;
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        int streamVolume = audioManager.getStreamVolume(3);
-        float f = streamMaxVolume;
-        int max = (int) Math.max(1.0f, f / 15.0f);
-        if (z) {
-            int i = streamVolume + max;
-            if (i <= streamMaxVolume) {
-                streamMaxVolume = i;
-            }
+import android.content.Context;
+import android.text.InputFilter;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.NumberTextView;
+public abstract class c3b {
+    public static void a(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, d dVar, ylb ylbVar) {
+        int i = z8c.t0;
+        Context context = dVar.getContext();
+        px3 px3Var = new px3(ylbVar, context, true, false);
+        px3Var.y1 = new yg(i, context, tL_messages_stickerSet);
+        if (dVar.visibleDialog != null) {
+            px3Var.show();
         } else {
-            streamMaxVolume = streamVolume - max;
-            if (streamMaxVolume < 0) {
-                streamMaxVolume = 0;
-            }
+            dVar.showDialog(px3Var);
         }
-        audioManager.setStreamVolume(3, streamMaxVolume, 0);
-        float f2 = streamMaxVolume / f;
-        this.f = f2;
-        if (!this.b) {
-            this.e.e(true, f2);
-        }
-        invalidate();
-        this.b = true;
-        gl.r(xiaVar);
-        gl.e3(xiaVar, 2000L);
     }
 
-    public final void b() {
+    public static void b(TLRPC.StickerSet stickerSet, ylb ylbVar, Context context, Runnable runnable) {
+        if (stickerSet != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ylbVar, context);
+            String M0 = jb6.M0(2131744548, null);
+            he heVar = alertDialog$Builder.a;
+            heVar.S = M0;
+            heVar.U = jb6.M0(2131744549, null);
+            alertDialog$Builder.j(jb6.M0(2131751535, null), new xr8(runnable, stickerSet, (byte) 21));
+            alertDialog$Builder.g(jb6.M0(2131752542, null), null);
+            heVar.show();
+            TextView textView = (TextView) heVar.c(-1);
+            if (textView != null) {
+                anb.X(textView, cmb.p7, ylbVar);
+            }
+        }
+    }
+
+    public static void c(TLRPC.StickerSet stickerSet, ylb ylbVar, Context context, jac jacVar) {
+        boolean z;
         int i;
-        xia xiaVar = this.c;
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        if (Build.VERSION.SDK_INT >= 28) {
-            i = audioManager.getStreamMinVolume(3);
-        } else {
-            i = 0;
-        }
-        int streamVolume = audioManager.getStreamVolume(3);
-        if (streamVolume <= i) {
-            a(true);
-        } else if (!this.b) {
-            float f = streamVolume / streamMaxVolume;
-            this.f = f;
-            this.e.e(true, f);
-            this.b = true;
-            invalidate();
-            gl.r(xiaVar);
-            gl.e3(xiaVar, 2000L);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
         float f;
-        Paint paint = this.a;
-        super.onDraw(canvas);
-        lm lmVar = this.e;
-        lmVar.e(false, this.f);
-        lm lmVar2 = this.d;
-        if (this.b) {
-            f = 1.0f;
+        int i2;
+        int i3;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ylbVar, context);
+        if (stickerSet != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z) {
+            i = 2131751159;
+        } else {
+            i = 2131748019;
+        }
+        String M0 = jb6.M0(i, null);
+        he heVar = alertDialog$Builder.a;
+        heVar.S = M0;
+        heVar.U = jb6.M0(2131744553, null);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setPadding(gm.L(24.0f), 0, gm.L(20.0f), 0);
+        ?? editTextBoldCursor = new EditTextBoldCursor(context);
+        int i4 = cmb.i5;
+        anb.X(editTextBoldCursor, i4, ylbVar);
+        editTextBoldCursor.setInputType(16385);
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        anb.X(editTextBoldCursor, i4, ylbVar);
+        anb.l(editTextBoldCursor, 36, cmb.lg, ylbVar);
+        anb.l(editTextBoldCursor, 35, cmb.K6, ylbVar);
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setFocusable(true);
+        editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50), new s42(editTextBoldCursor, (byte) 2)});
+        anb.F(editTextBoldCursor, cmb.j6, cmb.k6, cmb.o7, ylbVar);
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setBackground(null);
+        editTextBoldCursor.requestFocus();
+        float f2 = 0.0f;
+        if (jb6.a0) {
+            f = 28.0f;
         } else {
             f = 0.0f;
         }
-        lmVar2.e(false, f);
-        if (lmVar2.c != 0.0f) {
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (lmVar2.c * 255.0f));
-            RectF rectF = gl.P;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * lmVar.c, getMeasuredHeight());
-            canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
+        int L = gm.L(f);
+        if (!jb6.a0) {
+            f2 = 28.0f;
         }
-    }
-
-    @Override
-    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
-        if (keyEvent.getAction() == 0 && i == 24) {
-            a(true);
-            return true;
-        } else if (keyEvent.getAction() == 0 && i == 25) {
-            a(false);
-            return true;
+        editTextBoldCursor.setPadding(L, 0, gm.L(f2), 0);
+        frameLayout.addView(editTextBoldCursor);
+        NumberTextView numberTextView = new NumberTextView(context);
+        numberTextView.setCenterAlign(true);
+        numberTextView.setTextSize(15);
+        numberTextView.a(50, false);
+        numberTextView.setTextColor(cmb.w0(null, cmb.A6, false));
+        numberTextView.setImportantForAccessibility(2);
+        if (jb6.a0) {
+            i2 = 3;
         } else {
-            return super.onKeyDown(i, keyEvent);
+            i2 = 5;
         }
+        frameLayout.addView(numberTextView, qoe.d(26, 20.0f, i2 | 16, 0.0f, 2.0f, 4.0f, 0.0f));
+        editTextBoldCursor.addTextChangedListener(new b3b(numberTextView, editTextBoldCursor));
+        if (z) {
+            editTextBoldCursor.setText(stickerSet.title);
+            editTextBoldCursor.setSelection(stickerSet.title.length());
+        }
+        alertDialog$Builder.n(frameLayout);
+        heVar.H = (byte) 4;
+        if (z) {
+            i3 = 2131751291;
+        } else {
+            i3 = 2131751690;
+        }
+        alertDialog$Builder.j(jb6.M0(i3, null), new wg(editTextBoldCursor, jacVar, context, z));
+        alertDialog$Builder.g(jb6.M0(2131752542, null), new wta(editTextBoldCursor, (byte) 7));
+        he o = alertDialog$Builder.o();
+        o.k0 = false;
+        editTextBoldCursor.setOnEditorActionListener(new dp9(o, (byte) 1));
     }
 }

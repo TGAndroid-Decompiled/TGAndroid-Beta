@@ -1,82 +1,98 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public class t11 extends h11 {
-    public final ry8 a;
-    public TextView b;
-    public int c;
+import java.util.Arrays;
+import java.util.List;
+public final class t11 extends u11 {
+    public static final List c = Arrays.asList(new t11((byte) 2), new t11((byte) 3), new t11((byte) 4), new t11((byte) 1), new t11((byte) 0));
+    public final byte b;
 
-    public t11(Context context, wjb wjbVar) {
-        super(context, wjbVar);
-        ?? imageView = new ImageView(context);
-        this.a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, nme.h(56.0f, 48.0f, 8388627));
-        s11 s11Var = new s11(context, null, (byte) 0);
-        s11Var.setDisablePaddingsOffset(true);
-        this.b = s11Var;
-        kk7.i(s11Var);
-        this.b.setSingleLine();
-        this.b.setTypeface(Typeface.SANS_SERIF);
-        this.b.setTextSize(1, 15.0f);
-        this.b.setEllipsize(TextUtils.TruncateAt.END);
-        this.b.setPadding(0, gl.L(8.0f), 0, gl.L(8.0f));
-        addView(this.b, nme.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        zkb.G(this.b, bkb.wj, wjbVar);
-        setTextColor(getThemedColor(bkb.xj));
-        setBackground(getThemedColor(bkb.vj));
+    public t11(byte b) {
+        this.b = b;
     }
 
-    public final void c(int i, int i2, int i3, String... strArr) {
-        ry8 ry8Var = this.a;
-        ry8Var.f(i, i2, i3, null);
-        for (String str : strArr) {
-            ry8Var.h(this.c, str);
+    public static t11 o(int i) {
+        List list = c;
+        if (i >= 0 && i <= list.size()) {
+            return (t11) list.get(i);
         }
+        zo4.m("Shape type must be in range from 0 to ", list.size() - 1, ", but got ", i);
+        return null;
     }
 
-    public final void d(int i, String... strArr) {
-        c(i, 32, 32, strArr);
+    @Override
+    public final float a() {
+        return 1.0f;
     }
 
-    public final void e(TLRPC.Document document, String... strArr) {
-        ry8 ry8Var = this.a;
-        ry8Var.setAutoRepeat(true);
-        ry8Var.g(36, 36, document);
-        for (String str : strArr) {
-            ry8Var.h(this.c, str);
+    @Override
+    public final int d() {
+        switch (this.b) {
+            case 0:
+                return 2131232536;
+            case 1:
+                return 2131232259;
+            case 2:
+                return 2131232537;
+            case 3:
+                return 2131232542;
+            default:
+                return 2131232544;
         }
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.b.getText();
+    public final String h(int i) {
+        if (i != 0 && i != 1) {
+            if (i != 2) {
+                return null;
+            }
+            return "brush";
+        }
+        return "shape";
     }
 
-    @Override
-    public final void onShow() {
-        super.onShow();
-        this.a.d();
+    public final int l() {
+        switch (this.b) {
+            case 0:
+                return 2131232536;
+            case 1:
+                return 2131232260;
+            case 2:
+                return 2131232538;
+            case 3:
+                return 2131232543;
+            default:
+                return 2131232545;
+        }
     }
 
-    public void setIconPaddingBottom(int i) {
-        this.a.setLayoutParams(nme.i(56.0f, 48 - i, 8388627, 0.0f, 0.0f, 0.0f, i));
+    public final String m() {
+        switch (this.b) {
+            case 0:
+                return jb6.M0(2131747409, null);
+            case 1:
+                return jb6.M0(2131747407, null);
+            case 2:
+                return jb6.M0(2131747406, null);
+            case 3:
+                return jb6.M0(2131747395, null);
+            default:
+                return jb6.M0(2131747394, null);
+        }
     }
 
-    public void setTextColor(int i) {
-        this.c = i;
-        this.b.setTextColor(i);
-    }
-
-    public t11(int i, int i2, wjb wjbVar, Context context) {
-        this(context, wjbVar);
-        setBackground(i);
-        setTextColor(i2);
+    public final int n() {
+        switch (this.b) {
+            case 0:
+                return 4;
+            case 1:
+                return 3;
+            case 2:
+                return 0;
+            case 3:
+                return 1;
+            default:
+                return 2;
+        }
     }
 }

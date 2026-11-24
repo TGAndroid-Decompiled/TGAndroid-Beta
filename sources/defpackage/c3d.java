@@ -1,26 +1,37 @@
 package defpackage;
 
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
-public final class c3d extends b4 {
-    public static final Parcelable.Creator<c3d> CREATOR = new b1d((byte) 12);
+import com.google.android.gms.common.api.Status;
+public final class c3d extends b4 implements uc9 {
+    public static final Parcelable.Creator<c3d> CREATOR = new d3d((byte) 2);
     public final int a;
-    public final ds2 b;
-    public final l3d c;
+    public final int b;
+    public final Intent c;
 
-    public c3d(int i, ds2 ds2Var, l3d l3dVar) {
+    public c3d(int i, int i2, Intent intent) {
         this.a = i;
-        this.b = ds2Var;
-        this.c = l3dVar;
+        this.b = i2;
+        this.c = intent;
+    }
+
+    @Override
+    public final Status a() {
+        if (this.b == 0) {
+            return Status.e;
+        }
+        return Status.r;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 1, 4);
         parcel.writeInt(this.a);
-        jte.k(parcel, 2, this.b, i);
-        jte.k(parcel, 3, this.c, i);
-        jte.s(parcel, r);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        mve.k(parcel, 3, this.c, i);
+        mve.s(parcel, r);
     }
 }

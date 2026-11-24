@@ -1,51 +1,58 @@
 package defpackage;
 
-import java.io.IOException;
-import java.io.InputStream;
-public final class ug2 extends InputStream {
-    public final o63 a;
-    public final byte[] b = new byte[1];
-    public long c;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ug2 implements hj6, au9 {
+    public final vg2 a;
 
-    public ug2(o63 o63Var, u63 u63Var) {
-        this.a = o63Var;
-        try {
-            this.c = o63Var.open(u63Var);
-        } catch (IOException e) {
-            sdb.b(e);
-            throw null;
+    public ug2(vg2 vg2Var) {
+        this.a = vg2Var;
+    }
+
+    @Override
+    public final boolean F1(int i) {
+        return true;
+    }
+
+    @Override
+    public final vh6 G0() {
+        return null;
+    }
+
+    @Override
+    public final boolean a(ij6 ij6Var, boolean z) {
+        int intValue = ((Integer) ij6Var.getTag()).intValue();
+        vg2 vg2Var = this.a;
+        TLObject E = vg2Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            return vg2Var.E.i0((TLRPC.ChannelParticipant) E, !z, ij6Var);
+        }
+        return false;
+    }
+
+    @Override
+    public final vh6 e1() {
+        return null;
+    }
+
+    @Override
+    public final void o(int i) {
+        vg2 vg2Var = this.a;
+        wg2 wg2Var = vg2Var.E;
+        if (!vg2Var.h.e()) {
+            int i2 = vg2Var.r;
+            vg2Var.f();
+            if (vg2Var.r > i2) {
+                wg2Var.C0(i2);
+            }
+            if (!vg2Var.s && vg2Var.r == 0 && i != 0) {
+                wg2Var.b.e(false, true);
+            }
         }
     }
 
     @Override
-    public final int available() {
-        return (int) this.c;
-    }
-
-    @Override
-    public final void close() {
-        this.a.close();
-    }
-
-    @Override
-    public final int read() {
-        o63 o63Var = this.a;
-        byte[] bArr = this.b;
-        int read = o63Var.read(bArr, 0, 1);
-        this.c--;
-        if (read == -1) {
-            return -1;
-        }
-        return bArr[0] & 255;
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i, int i2) {
-        if (i2 == 0) {
-            return 0;
-        }
-        int read = this.a.read(bArr, i, i2);
-        this.c -= read;
-        return read;
+    public final void a2(ArrayList arrayList) {
     }
 }

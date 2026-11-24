@@ -1,46 +1,78 @@
 package defpackage;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.ConnectionsManager;
-public final class gs2 implements Runnable {
-    public final byte a;
-    public final int b;
-    public final int c;
+import android.os.SystemClock;
+public final class gs2 {
+    public final bfb a;
+    public boolean b;
 
-    public gs2(int i, int i2, byte b) {
-        this.a = b;
-        this.b = i;
-        this.c = i2;
+    public gs2() {
+        this(bfb.a);
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        int i2 = this.b;
-        switch (b) {
-            case 0:
-                ConnectionsManager.lambda$onConnectionStateChanged$15(i2, i);
-                return;
-            case 1:
-                ConnectionsManager.lambda$onRequestNewServerIpAndPort$18(i2, i);
-                return;
-            case 2:
-                ConnectionsManager.getInstance(i2).cancelRequest(i, true);
-                return;
-            case 3:
-                ConnectionsManager.getInstance(i2).cancelRequest(i, true);
-                return;
-            case 4:
-                ConnectionsManager.getInstance(i2).cancelRequest(i, true);
-                return;
-            case 5:
-                String[] strArr = MediaController.W1;
-                kk7.f(i2).k(156, Integer.valueOf(i));
-                return;
-            default:
-                ConnectionsManager.getInstance(i2).cancelRequest(i, true);
-                return;
+    public final synchronized void a() {
+        while (!this.b) {
+            this.a.getClass();
+            wait();
         }
+    }
+
+    public final synchronized void b() {
+        boolean z = false;
+        while (!this.b) {
+            try {
+                this.a.getClass();
+                wait();
+            } catch (InterruptedException unused) {
+                z = true;
+            }
+        }
+        if (z) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public final synchronized boolean c(long j) {
+        if (j <= 0) {
+            return this.b;
+        }
+        this.a.getClass();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j2 = j + elapsedRealtime;
+        if (j2 < elapsedRealtime) {
+            b();
+        } else {
+            boolean z = false;
+            while (!this.b && elapsedRealtime < j2) {
+                try {
+                    this.a.getClass();
+                    wait(j2 - elapsedRealtime);
+                } catch (InterruptedException unused) {
+                    z = true;
+                }
+                this.a.getClass();
+                elapsedRealtime = SystemClock.elapsedRealtime();
+            }
+            if (z) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        return this.b;
+    }
+
+    public final synchronized void d() {
+        this.b = false;
+    }
+
+    public final synchronized boolean e() {
+        if (this.b) {
+            return false;
+        }
+        this.b = true;
+        notifyAll();
+        return true;
+    }
+
+    public gs2(bfb bfbVar) {
+        this.a = bfbVar;
     }
 }

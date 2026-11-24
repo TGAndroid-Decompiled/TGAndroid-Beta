@@ -1,33 +1,53 @@
 package defpackage;
-public final class of implements fn7 {
-    public final byte a;
-    public final hn7 b;
-    public final hn7 c;
-    public final hn7 d;
 
-    public of(hn7 hn7Var, hn7 hn7Var2, hn7 hn7Var3, byte b) {
-        this.a = b;
-        this.b = hn7Var;
-        this.c = hn7Var2;
-        this.d = hn7Var3;
+import android.app.Activity;
+import android.content.Context;
+public final class of implements Runnable {
+    public final byte a;
+    public final he b;
+    public final Context c;
+
+    public of(he heVar, Context context) {
+        this.a = (byte) 2;
+        this.c = context;
+        this.b = heVar;
     }
 
     @Override
-    public final void i(hn7 hn7Var, int i) {
+    public final void run() {
         byte b = this.a;
-        hn7 hn7Var2 = this.d;
-        hn7 hn7Var3 = this.c;
-        hn7 hn7Var4 = this.b;
+        he heVar = this.b;
+        Context context = this.c;
         switch (b) {
             case 0:
-                ij.v0(hn7Var4, hn7Var3, hn7Var2);
+                if (heVar != null) {
+                    heVar.dismiss();
+                }
+                l11.u(context, jb6.M0(2131752848, null));
                 return;
             case 1:
-                ij.v0(hn7Var4, hn7Var3, hn7Var2);
+                if (heVar != null) {
+                    heVar.dismiss();
+                }
+                l11.u(context, jb6.M0(2131752848, null));
                 return;
             default:
-                ij.b(hn7Var4, hn7Var3, hn7Var2);
+                if (!((Activity) context).isFinishing()) {
+                    try {
+                        heVar.dismiss();
+                        return;
+                    } catch (Exception e) {
+                        fc4.g(e, true);
+                        return;
+                    }
+                }
                 return;
         }
+    }
+
+    public of(he heVar, Context context, byte b) {
+        this.a = b;
+        this.b = heVar;
+        this.c = context;
     }
 }

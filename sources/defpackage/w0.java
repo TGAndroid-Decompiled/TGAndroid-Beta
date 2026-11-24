@@ -15,13 +15,13 @@ public final class w0 extends LinearLayout {
     public final RectF c;
     public final RectF d;
     public final Paint e;
-    public final wjb f;
+    public final ylb f;
     public final FrameLayout h;
 
-    public w0(z0 z0Var, Context context, wjb wjbVar) {
+    public w0(z0 z0Var, Context context, ylb ylbVar) {
         super(context);
         this.h = z0Var;
-        this.f = wjbVar;
+        this.f = ylbVar;
         this.b = new RectF();
         this.c = new RectF();
         this.d = new RectF();
@@ -37,7 +37,7 @@ public final class w0 extends LinearLayout {
         float f3;
         float f4;
         byte b = this.a;
-        wjb wjbVar = this.f;
+        ylb ylbVar = this.f;
         FrameLayout frameLayout = this.h;
         RectF rectF = this.b;
         RectF rectF2 = this.c;
@@ -46,8 +46,8 @@ public final class w0 extends LinearLayout {
         switch (b) {
             case 0:
                 z0 z0Var = (z0) frameLayout;
-                lm lmVar = z0Var.s;
-                if (lmVar == null) {
+                ln lnVar = z0Var.s;
+                if (lnVar == null) {
                     e = 1.0f;
                 } else {
                     if (z0Var.h >= 0) {
@@ -55,17 +55,17 @@ public final class w0 extends LinearLayout {
                     } else {
                         f = 0.0f;
                     }
-                    e = lmVar.e(false, f);
+                    e = lnVar.e(false, f);
                 }
-                lm lmVar2 = z0Var.n;
-                if (lmVar2 == null) {
+                ln lnVar2 = z0Var.n;
+                if (lnVar2 == null) {
                     e2 = 0.0f;
                 } else {
                     int i = z0Var.h;
                     if (i < 0) {
                         i = z0Var.r;
                     }
-                    e2 = lmVar2.e(false, i);
+                    e2 = lnVar2.e(false, i);
                 }
                 double d = e2;
                 float f5 = e2;
@@ -85,10 +85,10 @@ public final class w0 extends LinearLayout {
                     View childAt2 = getChildAt(ceil);
                     rectF2.set(childAt2.getLeft(), childAt2.getTop(), childAt2.getRight(), childAt2.getBottom());
                 }
-                gl.X1(rectF, rectF2, f6, rectF3);
-                paint.setColor(bkb.p1(e * 0.1f, bkb.v0(bkb.Ei, wjbVar)));
+                gm.X1(rectF, rectF2, f6, rectF3);
+                paint.setColor(cmb.p1(e * 0.1f, cmb.v0(cmb.Ei, ylbVar)));
                 if (e > f2) {
-                    canvas.drawRoundRect(rectF3, gl.L(z0Var.e), gl.L(z0Var.e), paint);
+                    canvas.drawRoundRect(rectF3, gm.L(z0Var.e), gm.L(z0Var.e), paint);
                 }
                 int i2 = 0;
                 while (i2 < getChildCount()) {
@@ -105,10 +105,10 @@ public final class w0 extends LinearLayout {
                 super.dispatchDraw(canvas);
                 return;
             default:
-                cmc cmcVar = (cmc) frameLayout;
-                float e3 = cmcVar.f.e(false, cmcVar.d);
+                boc bocVar = (boc) frameLayout;
+                float e3 = bocVar.f.e(false, bocVar.d);
                 double d2 = e3;
-                TextView[] textViewArr = cmcVar.c;
+                TextView[] textViewArr = bocVar.c;
                 int j = Utilities.j((int) Math.floor(d2), textViewArr.length, 0);
                 int j2 = Utilities.j((int) Math.ceil(d2), textViewArr.length, 0);
                 if (j >= 0 && j < textViewArr.length) {
@@ -119,9 +119,9 @@ public final class w0 extends LinearLayout {
                     TextView textView2 = textViewArr[j2];
                     rectF2.set(textView2.getX(), textView2.getY(), textView2.getX() + textView2.getWidth(), textView2.getY() + textView2.getHeight());
                 }
-                gl.X1(rectF, rectF2, e3 - j, rectF3);
-                paint.setColor(bkb.p1(0.1f, bkb.v0(bkb.Ei, wjbVar)));
-                canvas.drawRoundRect(rectF3, gl.L(14.0f), gl.L(14.0f), paint);
+                gm.X1(rectF, rectF2, e3 - j, rectF3);
+                paint.setColor(cmb.p1(0.1f, cmb.v0(cmb.Ei, ylbVar)));
+                canvas.drawRoundRect(rectF3, gm.L(14.0f), gm.L(14.0f), paint);
                 super.dispatchDraw(canvas);
                 return;
         }
@@ -151,7 +151,7 @@ public final class w0 extends LinearLayout {
                 int i6 = 0;
                 for (int i7 = 0; i7 < getChildCount(); i7++) {
                     View childAt = getChildAt(i7);
-                    childAt.setPadding(gl.L(10.0f), 0, gl.L(10.0f), 0);
+                    childAt.setPadding(gm.L(10.0f), 0, gm.L(10.0f), 0);
                     if (z) {
                         i4 = i2;
                         i3 = 0;
@@ -172,7 +172,7 @@ public final class w0 extends LinearLayout {
                 for (int i8 = 0; i8 < getChildCount(); i8++) {
                     View childAt2 = getChildAt(i8);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
-                    childAt2.setPadding(gl.L(10.0f), 0, gl.L(10.0f), 0);
+                    childAt2.setPadding(gm.L(10.0f), 0, gm.L(10.0f), 0);
                     if (z2) {
                         if (z) {
                             layoutParams.width = 0;
@@ -197,10 +197,10 @@ public final class w0 extends LinearLayout {
         }
     }
 
-    public w0(cmc cmcVar, Context context, wjb wjbVar) {
+    public w0(boc bocVar, Context context, ylb ylbVar) {
         super(context);
-        this.h = cmcVar;
-        this.f = wjbVar;
+        this.h = bocVar;
+        this.f = ylbVar;
         this.b = new RectF();
         this.c = new RectF();
         this.d = new RectF();

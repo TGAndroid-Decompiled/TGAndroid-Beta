@@ -1,49 +1,39 @@
 package defpackage;
+public final class wp1 implements Runnable {
+    public final byte a = 1;
+    public final byte b;
+    public final yv1 c;
+    public final boolean d;
 
-import org.telegram.ui.ActionBar.d;
-public final class wp1 extends bl0 {
-    public final byte s;
-    public final mu1 w;
-
-    public wp1(mu1 mu1Var, wjb wjbVar, int i, byte b) {
-        super(i, wjbVar);
-        this.s = b;
-        this.w = mu1Var;
+    public wp1(int i, yv1 yv1Var, boolean z) {
+        this.b = i;
+        this.c = yv1Var;
+        this.d = z;
     }
 
     @Override
-    public final int t1() {
-        int i;
-        int i2;
-        byte b = this.s;
-        mu1 mu1Var = this.w;
+    public final void run() {
+        byte b = this.a;
+        boolean z = this.d;
+        yv1 yv1Var = this.c;
+        byte b2 = this.b;
         switch (b) {
             case 0:
-                i = ((d) mu1Var).currentAccount;
-                if (!nod.d(i, mu1Var.Ba)) {
-                    return bm2.o(mu1Var.getThemedColor(bkb.Ie), 255);
-                }
-                ku1 ku1Var = mu1Var.Ba;
-                if (ku1Var != null && !ku1Var.a()) {
-                    a();
-                    return bm2.o(this.d, 216);
-                }
-                a();
-                return this.d;
-            case 1:
-                return mu1Var.x.t1();
+                yv1Var.gd(b2, z);
+                return;
             default:
-                i2 = ((d) mu1Var).currentAccount;
-                if (!nod.d(i2, mu1Var.Ba)) {
-                    return bm2.o(mu1Var.getThemedColor(bkb.c6), 255);
+                if (b2 != 2) {
+                    yv1Var.ja();
+                    yv1Var.Dc();
                 }
-                ku1 ku1Var2 = mu1Var.Ba;
-                if (ku1Var2 != null && !ku1Var2.a()) {
-                    a();
-                    return bm2.o(this.d, 216);
-                }
-                a();
-                return this.d;
+                yp2.f(c41.b0(yv1Var), b2, z);
+                return;
         }
+    }
+
+    public wp1(yv1 yv1Var, boolean z, int i) {
+        this.c = yv1Var;
+        this.d = z;
+        this.b = i;
     }
 }

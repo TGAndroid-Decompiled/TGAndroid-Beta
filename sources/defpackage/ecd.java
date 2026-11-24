@@ -1,3 +1,4 @@
 package defpackage;
-public final class ecd extends Exception {
+public abstract class ecd extends e1d implements icd {
+    public static final int b = 0;
 }

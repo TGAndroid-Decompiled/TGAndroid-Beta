@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.tgnet.tl.TL_aicompose;
-public final class m implements p8c {
+public final class m implements qac {
     public final byte a;
     public final a1 b;
     public final z0 c;

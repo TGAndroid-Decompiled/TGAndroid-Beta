@@ -3,7 +3,7 @@ package defpackage;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
-public final class cb implements gk7 {
+public final class cb implements jm7 {
     public final int b;
     public final Runnable c;
     public final String d;
@@ -23,8 +23,8 @@ public final class cb implements gk7 {
         if (!this.h) {
             this.h = true;
             int i = this.b;
-            kk7.f(i).b(this, kk7.U);
-            kk7.f(i).b(this, kk7.G1);
+            nm7.f(i).b(this, nm7.V);
+            nm7.f(i).b(this, nm7.H1);
             if (TextUtils.isEmpty(this.d)) {
                 d();
             }
@@ -36,7 +36,7 @@ public final class cb implements gk7 {
         while (true) {
             ArrayList arrayList2 = this.a;
             if (i < arrayList2.size()) {
-                if (arrayList.contains(Integer.valueOf(((k27) arrayList2.get(i)).e1()))) {
+                if (arrayList.contains(Integer.valueOf(((k47) arrayList2.get(i)).e1()))) {
                     arrayList2.remove(i);
                     i--;
                 }
@@ -53,8 +53,8 @@ public final class cb implements gk7 {
         }
         this.h = false;
         int i = this.b;
-        kk7.f(i).n(this, kk7.U);
-        kk7.f(i).n(this, kk7.G1);
+        nm7.f(i).n(this, nm7.V);
+        nm7.f(i).n(this, nm7.H1);
         ConnectionsManager.getInstance(i).cancelRequestsForGuid(this.e);
         this.n = false;
     }
@@ -65,7 +65,7 @@ public final class cb implements gk7 {
         if (!this.n && !this.f) {
             this.n = true;
             int i2 = this.b;
-            long e = y6c.h(i2).e();
+            long e = z8c.h(i2).e();
             int i3 = 0;
             int i4 = Integer.MAX_VALUE;
             while (true) {
@@ -73,10 +73,10 @@ public final class cb implements gk7 {
                 if (i3 >= arrayList.size()) {
                     break;
                 }
-                i4 = Math.min(i4, ((k27) arrayList.get(i3)).e1());
+                i4 = Math.min(i4, ((k47) arrayList.get(i3)).e1());
                 i3++;
             }
-            hq6 d0 = hq6.d0(i2);
+            hs6 d0 = hs6.d0(i2);
             if (arrayList.isEmpty()) {
                 i = 30;
             } else {
@@ -91,7 +91,7 @@ public final class cb implements gk7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        int i3 = kk7.U;
+        int i3 = nm7.V;
         ArrayList arrayList = this.a;
         if (i == i3) {
             if (((Integer) objArr[3]).intValue() == this.e) {
@@ -100,8 +100,8 @@ public final class cb implements gk7 {
                 arrayList.addAll((ArrayList) objArr[2]);
                 this.c.run();
             }
-        } else if (i == kk7.G1) {
-            arrayList.add(0, (k27) objArr[0]);
+        } else if (i == nm7.H1) {
+            arrayList.add(0, (k47) objArr[0]);
         }
     }
 }

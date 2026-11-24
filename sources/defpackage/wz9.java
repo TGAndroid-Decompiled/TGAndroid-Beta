@@ -1,190 +1,140 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class wz9 extends f9 {
-    public final xz9 c;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.a;
+public final class wz9 implements jac {
+    public final byte a;
+    public final zz9 b;
 
-    public wz9(xz9 xz9Var, Context context, f53 f53Var) {
-        super(context, f53Var, false);
-        this.c = xz9Var;
+    public wz9(zz9 zz9Var, byte b) {
+        this.a = b;
+        this.b = zz9Var;
     }
 
     @Override
-    public final void j(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        boolean z;
+    public final void a(Object obj, Object obj2) {
         int i;
         int i2;
-        int i3;
-        int i4;
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setBackgroundColor(bm2.f(0.18f, -16777216, -1));
-        xz9 xz9Var = this.c;
-        g0a g0aVar = xz9Var.y;
-        f0a f0aVar = g0aVar.F;
-        if (f0aVar != null && f0aVar.f) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z) {
-            i = 2131231926;
-        } else if (g0aVar.P.a) {
-            i = 2131231921;
-        } else {
-            i = 2131231920;
-        }
-        int i5 = i;
-        if (z) {
-            i2 = 2131745097;
-        } else {
-            i2 = 2131745098;
-        }
-        a8 c = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i5, k96.M0(i2, null), false, g0aVar.s);
-        if (!g0aVar.P.a) {
-            c.setAlpha(0.5f);
-        }
-        c.setOnClickListener(new View.OnClickListener(this) {
-            public final wz9 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                byte b = r2;
-                wz9 wz9Var = this.b;
-                switch (b) {
-                    case 0:
-                        g0a g0aVar2 = wz9Var.c.y;
-                        tz9 tz9Var = g0aVar2.P;
-                        if (!tz9Var.a) {
-                            tz9 tz9Var2 = g0aVar2.N;
-                            if (tz9Var2 != null) {
-                                tz9Var.a = true;
-                                tz9Var2.a = true;
-                            } else {
-                                tz9Var.a = true;
-                            }
-                            g0aVar2.g(true);
-                            g0aVar2.e();
-                            g0aVar2.O.a(g0aVar2);
-                        }
-                        wz9 wz9Var2 = g0aVar2.f;
-                        if (wz9Var2 != null) {
-                            wz9Var2.a();
-                            return;
-                        }
-                        return;
-                    default:
-                        g0a g0aVar3 = wz9Var.c.y;
-                        tz9 tz9Var3 = g0aVar3.P;
-                        if (tz9Var3.a) {
-                            tz9 tz9Var4 = g0aVar3.N;
-                            if (tz9Var4 != null) {
-                                tz9Var3.a = false;
-                                tz9Var4.a = false;
-                            } else {
-                                tz9Var3.a = false;
-                            }
-                            g0aVar3.g(true);
-                            g0aVar3.e();
-                            g0aVar3.O.a(g0aVar3);
-                        }
-                        wz9 wz9Var3 = g0aVar3.f;
-                        if (wz9Var3 != null) {
-                            wz9Var3.a();
-                            return;
-                        }
-                        return;
+        boolean z;
+        boolean z2;
+        boolean z3 = false;
+        switch (this.a) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                l7c l7cVar = (l7c) obj2;
+                zz9 zz9Var = this.b;
+                jc7 jc7Var = zz9Var.Z1;
+                l7cVar.G = true;
+                int L = gm.L(64.0f);
+                arrayList.add(c6c.D(gm.L(64.0f)));
+                if (zz9Var.U1 || zz9Var.c2) {
+                    L += zz9Var.Y0(true, arrayList, jb6.M0(2131753870, null), zz9Var.W1, false, false, -1);
                 }
-            }
-        });
-        if (!g0aVar.P.a) {
-            i3 = 2131231924;
-        } else {
-            i3 = 2131231923;
-        }
-        a8 c2 = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i3, k96.M0(2131745096, null), false, g0aVar.s);
-        if (g0aVar.P.a) {
-            c2.setAlpha(0.5f);
-        }
-        c2.setOnClickListener(new View.OnClickListener(this) {
-            public final wz9 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                byte b = r2;
-                wz9 wz9Var = this.b;
-                switch (b) {
-                    case 0:
-                        g0a g0aVar2 = wz9Var.c.y;
-                        tz9 tz9Var = g0aVar2.P;
-                        if (!tz9Var.a) {
-                            tz9 tz9Var2 = g0aVar2.N;
-                            if (tz9Var2 != null) {
-                                tz9Var.a = true;
-                                tz9Var2.a = true;
-                            } else {
-                                tz9Var.a = true;
-                            }
-                            g0aVar2.g(true);
-                            g0aVar2.e();
-                            g0aVar2.O.a(g0aVar2);
-                        }
-                        wz9 wz9Var2 = g0aVar2.f;
-                        if (wz9Var2 != null) {
-                            wz9Var2.a();
-                            return;
-                        }
-                        return;
-                    default:
-                        g0a g0aVar3 = wz9Var.c.y;
-                        tz9 tz9Var3 = g0aVar3.P;
-                        if (tz9Var3.a) {
-                            tz9 tz9Var4 = g0aVar3.N;
-                            if (tz9Var4 != null) {
-                                tz9Var3.a = false;
-                                tz9Var4.a = false;
-                            } else {
-                                tz9Var3.a = false;
-                            }
-                            g0aVar3.g(true);
-                            g0aVar3.e();
-                            g0aVar3.O.a(g0aVar3);
-                        }
-                        wz9 wz9Var3 = g0aVar3.f;
-                        if (wz9Var3 != null) {
-                            wz9Var3.a();
-                            return;
-                        }
-                        return;
+                if (!zz9Var.U1) {
+                    if (TextUtils.isEmpty(zz9Var.l2) && !zz9Var.c2) {
+                        l7cVar.V();
+                        c6c c = c6c.c(1, 2131232032, jb6.M0(2131744295, null));
+                        c.r = true;
+                        arrayList.add(c);
+                        l7cVar.U();
+                        L += gm.L(50.0f);
+                    }
+                    if (!zz9Var.c2 && jc7Var != null) {
+                        L += zz9Var.Y0(true, arrayList, jb6.M0(2131753869, null), jc7Var.c, jc7Var.f, !jc7Var.e, 2);
+                    }
+                    String M0 = jb6.M0(2131753872, null);
+                    ArrayList arrayList2 = zz9Var.X1;
+                    if (!zz9Var.p2 && !zz9Var.o2) {
+                        z = false;
+                    } else {
+                        z = true;
+                    }
+                    int Y0 = L + zz9Var.Y0(false, arrayList, M0, arrayList2, z, zz9Var.n2, 3);
+                    String M02 = jb6.M0(2131753871, null);
+                    ArrayList arrayList3 = zz9Var.Y1;
+                    if (!zz9Var.w2 && !zz9Var.v2) {
+                        z2 = false;
+                    } else {
+                        z2 = true;
+                    }
+                    L = Y0 + zz9Var.Y0(false, arrayList, M02, arrayList3, z2, zz9Var.u2, 4);
                 }
-            }
-        });
-        View j8Var = new j8(bkb.G8, g0aVar.s, xz9Var.getContext());
-        j8Var.setTag(2131296439, 1);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.a(j8Var, nme.o(-1, 8));
-        if (z) {
-            i4 = 2131744262;
-        } else {
-            i4 = 2131744205;
+                int size = arrayList.size();
+                if (!zz9Var.U1 && TextUtils.isEmpty(zz9Var.l2) && !zz9Var.c2) {
+                    i = 2;
+                } else {
+                    i = 1;
+                }
+                if (size <= i) {
+                    if (TextUtils.isEmpty(zz9Var.l2)) {
+                        arrayList.add(q22.i(jb6.M0(2131747978, null), jb6.M0(2131747977, null)));
+                    } else {
+                        String M03 = jb6.M0(2131747977, null);
+                        if (zz9Var.l2.length() >= 3) {
+                            i2 = 2131747975;
+                        } else {
+                            i2 = 2131747976;
+                        }
+                        arrayList.add(q22.i(gm.S2(jb6.a0(null, null, i2, zz9Var.l2)), M03));
+                    }
+                }
+                arrayList.add(c6c.C(null));
+                arrayList.add(c6c.D(Math.max(0, gm.L(24.0f) + (((gm.q.y - (gm.L(12.0f) + L)) - gm.m) - a.getCurrentActionBarHeight()))));
+                return;
+            default:
+                TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                zz9 zz9Var2 = this.b;
+                ArrayList arrayList4 = zz9Var2.Y1;
+                zz9Var2.v2 = false;
+                zz9Var2.w2 = false;
+                if (messages_botresults != null) {
+                    oc7.r1(zz9Var2.a).d4(messages_botresults.users, false);
+                    ArrayList<TLRPC.BotInlineResult> arrayList5 = messages_botresults.results;
+                    int size2 = arrayList5.size();
+                    int i3 = 0;
+                    while (i3 < size2) {
+                        TLRPC.BotInlineResult botInlineResult = arrayList5.get(i3);
+                        i3++;
+                        TLRPC.BotInlineResult botInlineResult2 = botInlineResult;
+                        if (botInlineResult2 instanceof TLRPC.TL_botInlineMediaResult) {
+                            TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult2;
+                            if (tL_botInlineMediaResult.document != null) {
+                                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                                tL_message.out = true;
+                                int i4 = zz9Var2.C2;
+                                zz9Var2.C2 = i4 - 1;
+                                tL_message.id = i4;
+                                tL_message.peer_id = new TLRPC.TL_peerUser();
+                                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                                tL_message.from_id = tL_peerUser;
+                                TLRPC.Peer peer = tL_message.peer_id;
+                                long e = z8c.h(zz9Var2.a).e();
+                                tL_peerUser.user_id = e;
+                                peer.user_id = e;
+                                tL_message.date = (int) (System.currentTimeMillis() / 1000);
+                                tL_message.message = "";
+                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                                tL_message.media = tL_messageMediaDocument;
+                                tL_messageMediaDocument.flags |= 3;
+                                tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
+                                tL_message.flags |= 768;
+                                arrayList4.add(new k47(zz9Var2.a, tL_message, false, true));
+                            }
+                        }
+                    }
+                    zz9Var2.t2 = messages_botresults.next_offset;
+                    if (!arrayList4.isEmpty() && !TextUtils.isEmpty(zz9Var2.t2)) {
+                        z3 = true;
+                    }
+                    zz9Var2.u2 = z3;
+                    zz9Var2.j2.O(true);
+                    return;
+                }
+                zz9Var2.j2.O(true);
+                return;
         }
-        String M0 = k96.M0(i4, null);
-        f53 f53Var = g0aVar.s;
-        TextView textView = new TextView(actionBarPopupWindow$ActionBarPopupWindowLayout.getContext());
-        textView.setTextSize(1, 13.0f);
-        zkb.X(textView, bkb.i5, f53Var);
-        textView.setPadding(gl.L(13.0f), gl.L(8.0f), gl.L(13.0f), gl.L(8.0f));
-        textView.setText(M0);
-        textView.setTag(2131296439, 1);
-        textView.setMaxWidth(gl.L(200.0f));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.a(textView, nme.o(-1, -2));
     }
 }

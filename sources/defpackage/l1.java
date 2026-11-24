@@ -10,9 +10,9 @@ public final class l1 extends TextView {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.a) {
-            RectF rectF = gl.P;
+            RectF rectF = gm.P;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, gl.L(4.0f), gl.L(4.0f), bkb.T1);
+            canvas.drawRoundRect(rectF, gm.L(4.0f), gm.L(4.0f), cmb.T1);
         }
         super.onDraw(canvas);
     }

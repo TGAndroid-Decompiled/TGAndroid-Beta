@@ -1,35 +1,29 @@
 package defpackage;
 
 import android.content.Context;
-public final class vi extends hn7 {
-    public final int[] z0;
+import android.os.Vibrator;
+import android.text.Spanned;
+import org.telegram.ui.Components.NumberTextView;
+public final class vi extends ql2 {
+    public final Context b;
+    public final NumberTextView c;
 
-    public vi(Context context, wjb wjbVar, int[] iArr) {
-        super(context, wjbVar);
-        this.z0 = iArr;
+    public vi(int i, Context context, NumberTextView numberTextView) {
+        super(i);
+        this.b = context;
+        this.c = numberTextView;
     }
 
     @Override
-    public final CharSequence d(int i) {
-        int i2 = this.z0[i];
-        if (i2 == 0) {
-            return k96.M0(2131748115, null);
+    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+        CharSequence filter = super.filter(charSequence, i, i2, spanned, i3, i4);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
+            Vibrator vibrator = (Vibrator) this.b.getSystemService("vibrator");
+            if (vibrator != null) {
+                vibrator.vibrate(200L);
+            }
+            gm.z3(this.c);
         }
-        if (i2 < 60) {
-            return k96.G(i2, "Minutes", new Object[0]);
-        }
-        if (i2 < 1440) {
-            return k96.G(i2 / 60, "Hours", new Object[0]);
-        }
-        if (i2 < 10080) {
-            return k96.G(i2 / 1440, "Days", new Object[0]);
-        }
-        if (i2 < 44640) {
-            return k96.G(i2 / 10080, "Weeks", new Object[0]);
-        }
-        if (i2 < 525600) {
-            return k96.G(i2 / 44640, "Months", new Object[0]);
-        }
-        return k96.G(i2 / 525600, "Years", new Object[0]);
+        return filter;
     }
 }

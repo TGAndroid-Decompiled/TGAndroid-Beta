@@ -1,17 +1,63 @@
 package defpackage;
-public final class lhe implements zn7 {
-    public static final lhe a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)));
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.zip.Deflater;
+import java.util.zip.DeflaterOutputStream;
+public abstract class lhe {
+    public static byte[] a(byte[] bArr) {
+        Deflater deflater = new Deflater(1);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream, deflater);
+            deflaterOutputStream.write(bArr);
+            deflaterOutputStream.close();
+            deflater.end();
+            return byteArrayOutputStream.toByteArray();
+        } catch (Throwable th) {
+            deflater.end();
+            throw th;
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static byte[] b(int i, InputStream inputStream) {
+        byte[] bArr = new byte[i];
+        int i2 = 0;
+        while (i2 < i) {
+            int read = inputStream.read(bArr, i2, i - i2);
+            if (read >= 0) {
+                i2 += read;
+            } else {
+                dq9.m(hg9.j(i, "Not enough bytes to read: "));
+                return null;
+            }
         }
-        throw new ClassCastException();
+        return bArr;
+    }
+
+    public static byte[] c(java.io.FileInputStream r8, int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lhe.c(java.io.FileInputStream, int, int):byte[]");
+    }
+
+    public static long d(int i, InputStream inputStream) {
+        byte[] b = b(i, inputStream);
+        long j = 0;
+        for (int i2 = 0; i2 < i; i2++) {
+            j += (b[i2] & 255) << (i2 << 3);
+        }
+        return j;
+    }
+
+    public static void e(OutputStream outputStream, long j, int i) {
+        byte[] bArr = new byte[i];
+        for (int i2 = 0; i2 < i; i2++) {
+            bArr[i2] = (byte) ((j >> (i2 << 3)) & 255);
+        }
+        outputStream.write(bArr);
+    }
+
+    public static void f(ByteArrayOutputStream byteArrayOutputStream, int i) {
+        e(byteArrayOutputStream, i, 2);
     }
 }

@@ -1,16 +1,20 @@
 package defpackage;
-
-import android.graphics.RectF;
-import android.view.ViewGroup;
 public final class yec {
-    public final ViewGroup a;
-    public final xec b;
-    public final RectF c = new RectF();
-    public boolean d;
-    public boolean e;
+    public final int a;
+    public final Class b;
+    public final byte c;
+    public final byte d;
+    public final byte e;
 
-    public yec(ViewGroup viewGroup, xec xecVar) {
-        this.a = viewGroup;
-        this.b = xecVar;
+    public yec(int i, Class cls, int i2, int i3, byte b) {
+        this.e = b;
+        this.a = i;
+        this.b = cls;
+        this.d = i2;
+        this.c = i3;
+    }
+
+    public final void a(android.view.View r7, java.lang.Object r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.yec.a(android.view.View, java.lang.Object):void");
     }
 }

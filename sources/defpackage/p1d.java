@@ -1,18 +1,36 @@
 package defpackage;
 
-import android.os.Bundle;
-public interface p1d {
-    boolean S0();
+import j$.util.Objects;
+public final class p1d extends o1d {
+    public static final p1d s = new p1d(new Object[0]);
+    public final transient Object[] r;
 
-    void a();
+    public p1d(Object[] objArr) {
+        super((byte) 0);
+        this.r = objArr;
+    }
 
-    void a1(ds2 ds2Var, yn ynVar, boolean z);
+    @Override
+    public final Object get(int i) {
+        s0f.a(i, 0);
+        Object obj = this.r[i];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
 
-    ig0 e(ig0 ig0Var);
+    @Override
+    public final int h(Object[] objArr) {
+        System.arraycopy(this.r, 0, objArr, 0, 0);
+        return 0;
+    }
 
-    void g1();
+    @Override
+    public final Object[] k() {
+        return this.r;
+    }
 
-    void i(Bundle bundle);
-
-    void t0(int i);
+    @Override
+    public final int size() {
+        return 0;
+    }
 }

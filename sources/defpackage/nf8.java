@@ -1,45 +1,24 @@
 package defpackage;
 
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.PopupNotificationActivity;
-public final class nf8 implements ViewTreeObserver.OnPreDrawListener {
-    public final byte a;
-    public final PopupNotificationActivity b;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public abstract class nf8 {
+    public final ImageReceiver a = new ImageReceiver(null);
 
-    public nf8(PopupNotificationActivity popupNotificationActivity, byte b) {
-        this.a = b;
-        this.b = popupNotificationActivity;
+    public void a(View view) {
+        ImageReceiver imageReceiver = this.a;
+        imageReceiver.p0(view);
+        imageReceiver.I();
     }
 
-    @Override
-    public final boolean onPreDraw() {
-        byte b = this.a;
-        PopupNotificationActivity popupNotificationActivity = this.b;
-        switch (b) {
-            case 0:
-                FrameLayout frameLayout = popupNotificationActivity.f;
-                if (frameLayout != null) {
-                    frameLayout.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                int D = ug8.D(48.0f, a.getCurrentActionBarHeight(), 2);
-                FrameLayout frameLayout2 = popupNotificationActivity.f;
-                frameLayout2.setPadding(frameLayout2.getPaddingLeft(), D, popupNotificationActivity.f.getPaddingRight(), D);
-                return true;
-            default:
-                popupNotificationActivity.n.getViewTreeObserver().removeOnPreDrawListener(this);
-                if (!popupNotificationActivity.c() && !popupNotificationActivity.Y) {
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity.n.getLayoutParams();
-                    marginLayoutParams.topMargin = a.getCurrentActionBarHeight();
-                    marginLayoutParams.bottomMargin = gl.L(48.0f);
-                    marginLayoutParams.width = -1;
-                    marginLayoutParams.height = -1;
-                    popupNotificationActivity.n.setLayoutParams(marginLayoutParams);
-                    popupNotificationActivity.a(0);
-                }
-                return true;
-        }
+    public void b() {
+        this.a.K();
+    }
+
+    public void c(Canvas canvas, int i, int i2) {
+        ImageReceiver imageReceiver = this.a;
+        imageReceiver.i0(0.0f, 0.0f, i, i2);
+        imageReceiver.h(canvas, null);
     }
 }

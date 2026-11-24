@@ -1,20 +1,33 @@
 package defpackage;
 
-import android.view.View;
-import java.util.ArrayList;
-public final class y16 implements View.OnClickListener {
-    public final z16 a;
+import android.window.OnBackInvokedCallback;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.LaunchActivity;
+public final class y16 implements OnBackInvokedCallback {
+    public final LaunchActivity a;
 
-    public y16(z16 z16Var) {
-        this.a = z16Var;
+    public y16(LaunchActivity launchActivity) {
+        this.a = launchActivity;
     }
 
-    @Override
-    public final void onClick(View view) {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(((jb) view.getParent()).getCurrentChannel());
-        h26 h26Var = this.a.c;
-        int i = h26.R2;
-        h26Var.o1(arrayList);
+    public final void onBackInvoked() {
+        boolean O1 = gm.O1();
+        LaunchActivity launchActivity = this.a;
+        if (O1) {
+            launchActivity.onBackPressed();
+        } else if (!launchActivity.d0(true)) {
+        } else {
+            ActionBarLayout actionBarLayout = launchActivity.p0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.j1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.j1 = false;
+                actionBarLayout.d(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
     }
 }

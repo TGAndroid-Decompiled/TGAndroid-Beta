@@ -1,39 +1,62 @@
 package defpackage;
-public final class y0a implements Runnable {
-    public final byte a;
-    public final h1a b;
 
-    public y0a(h1a h1aVar, byte b) {
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.List;
+public final class y0a implements qac {
+    public final byte a;
+    public final b1a b;
+
+    public y0a(b1a b1aVar, byte b) {
         this.a = b;
-        this.b = h1aVar;
+        this.b = b1aVar;
     }
 
     @Override
-    public final void run() {
+    public final void a(Object obj) {
         byte b = this.a;
-        h1a h1aVar = this.b;
+        b1a b1aVar = this.b;
         switch (b) {
             case 0:
-                h1aVar.a1(false);
-                return;
-            case 1:
-                h1aVar.a1(true);
-                return;
-            case 2:
-                vqa vqaVar = new vqa(h1aVar.getContext(), h1aVar.T1, h1aVar.U1, h1aVar.J0, null);
-                long j = h1aVar.X1.id;
-                String str = h1aVar.a2;
-                vqaVar.l3 = true;
-                gta.v(vqaVar.a, false).H(j, new nu9(vqaVar, str, (byte) 8));
-                return;
-            case 3:
-                ez.b1(h1aVar.J0, h1aVar.getContext(), h1aVar.X1);
-                return;
-            case 4:
-                new ava(h1aVar.getContext(), h1aVar.J0).show();
+                String str = (String) obj;
+                ArrayList arrayList = b1aVar.b2;
+                ei7 ei7Var = b1aVar.q2;
+                b1aVar.i2 = str;
+                byte b2 = b1aVar.m2;
+                if (b2 != 1) {
+                    if (b2 != 2) {
+                        if (b2 == 3) {
+                            b1aVar.h1(false, true);
+                            b1aVar.e1(true);
+                            return;
+                        }
+                        return;
+                    } else if (TextUtils.isEmpty(str)) {
+                        gm.r(ei7Var);
+                        arrayList.clear();
+                        arrayList.addAll(oo0.f(b1aVar.l2.id));
+                        b1aVar.h1(false, true);
+                        b1aVar.e1(true);
+                        return;
+                    } else {
+                        gm.r(ei7Var);
+                        gm.d3(ei7Var, 350L);
+                        return;
+                    }
+                }
+                gm.r(ei7Var);
+                gm.d3(ei7Var, 350L);
                 return;
             default:
-                h1aVar.dismiss();
+                List list = (List) obj;
+                ArrayList arrayList2 = b1aVar.b2;
+                if (!TextUtils.isEmpty(b1aVar.i2)) {
+                    arrayList2.clear();
+                    arrayList2.addAll(list);
+                    b1aVar.i1(true, true);
+                    b1aVar.e1(true);
+                    return;
+                }
                 return;
         }
     }

@@ -1,10 +1,17 @@
 package defpackage;
-public final class vhd extends dzc {
-    public final h7f b;
+public final class vhd implements cq7 {
+    public static final vhd a = new Object();
 
-    public vhd(h7f h7fVar) {
-        super((byte) 3, false);
-        attachInterface(this, "com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideServiceCallback");
-        this.b = h7fVar;
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)), 5)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,19 +1,25 @@
 package defpackage;
-
-import java.util.ArrayList;
 public final class lz0 {
-    public final long a;
-    public final int b;
-    public final byte[] c;
-    public final int d;
-    public final int e;
-    public final ArrayList f = new ArrayList();
+    public boolean a;
+    public int b;
+    public boolean c;
+    public boolean d;
+    public boolean e;
+    public int f;
+    public ylb g;
 
-    public lz0(long j, int i, byte[] bArr, int i2, int i3) {
-        this.a = j;
-        this.b = i;
-        this.c = bArr;
-        this.d = i2;
-        this.e = i3;
+    public lz0(lz0 lz0Var) {
+        this.a = lz0Var.a;
+        this.b = lz0Var.b;
+        this.c = lz0Var.c;
+        this.d = lz0Var.d;
+        this.e = lz0Var.e;
+        this.f = lz0Var.f;
+        this.g = lz0Var.g;
+    }
+
+    public lz0() {
+        this.b = 1;
+        this.f = 1;
     }
 }

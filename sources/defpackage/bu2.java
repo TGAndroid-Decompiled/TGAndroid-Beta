@@ -1,94 +1,55 @@
 package defpackage;
+public final class bu2 extends au2 implements nx9 {
+    public final long i;
+    public final long j;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bu2 implements RequestDelegate {
-    public final byte a;
-    public final qu2 b;
-
-    public bu2(qu2 qu2Var, byte b) {
-        this.a = b;
-        this.b = qu2Var;
+    public bu2(long j, long j2, int i, int i2, boolean z, boolean z2, long j3) {
+        super(j, j2, i, i2, z, z2);
+        this.i = j3;
+        this.j = j == -1 ? -1L : j;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        final qu2 qu2Var = this.b;
-        switch (b) {
-            case 0:
-                if (tLObject != null) {
-                    TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
-                    if (tL_help_inviteText.message.length() != 0) {
-                        gl.d3(new ee2(qu2Var, tL_help_inviteText, (byte) 1));
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        qu2 qu2Var2 = qu2Var;
-                        switch (b2) {
-                            case 0:
-                                if (tL_error2 == null) {
-                                    qu2Var2.Y = (TLRPC.GlobalPrivacySettings) tLObject2;
-                                    qu2Var2.G = (byte) 2;
-                                } else {
-                                    qu2Var2.G = (byte) 0;
-                                }
-                                qu2Var2.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                            default:
-                                if (tL_error2 == null) {
-                                    qu2Var2.I = ((TLRPC.TL_accountDaysTTL) tLObject2).days;
-                                    qu2Var2.H = (byte) 2;
-                                } else {
-                                    qu2Var2.H = (byte) 0;
-                                }
-                                qu2Var2.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        qu2 qu2Var2 = qu2Var;
-                        switch (b2) {
-                            case 0:
-                                if (tL_error2 == null) {
-                                    qu2Var2.Y = (TLRPC.GlobalPrivacySettings) tLObject2;
-                                    qu2Var2.G = (byte) 2;
-                                } else {
-                                    qu2Var2.G = (byte) 0;
-                                }
-                                qu2Var2.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                            default:
-                                if (tL_error2 == null) {
-                                    qu2Var2.I = ((TLRPC.TL_accountDaysTTL) tLObject2).days;
-                                    qu2Var2.H = (byte) 2;
-                                } else {
-                                    qu2Var2.H = (byte) 0;
-                                }
-                                qu2Var2.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final long a() {
+        return this.j;
+    }
+
+    @Override
+    public final long b() {
+        return this.b;
+    }
+
+    @Override
+    public final long e(long j) {
+        return ((Math.max(0L, j - this.b) << 3) * 1000000) / this.e;
+    }
+
+    @Override
+    public final hx9 f(long j) {
+        long j2 = this.i;
+        if (j2 != -9223372036854775807L && j >= j2) {
+            long j3 = this.j;
+            if (j3 != -1) {
+                long j4 = this.c;
+                long j5 = this.b;
+                kx9 kx9Var = new kx9(Math.max(0L, j2 - (((Math.max(0L, (j4 + j5) - j5) << 3) * 1000000) / this.e)), Math.max(j5, j3 - j4));
+                return new hx9(kx9Var, kx9Var);
+            }
         }
+        return super.f(j);
+    }
+
+    @Override
+    public final int g() {
+        return this.e;
+    }
+
+    @Override
+    public final long h() {
+        long j = this.i;
+        if (j != -9223372036854775807L) {
+            return j;
+        }
+        return this.f;
     }
 }

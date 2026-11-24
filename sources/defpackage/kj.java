@@ -1,9 +1,7 @@
 package defpackage;
-public final class kj extends wa9 {
-    public final float c;
-
-    public kj(float f, float f2, float f3) {
-        super(f, f2);
-        this.c = f3;
+public final class kj extends lp7 {
+    @Override
+    public final CharSequence d(int i) {
+        return jb6.G(i, "Hours", new Object[0]);
     }
 }

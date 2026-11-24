@@ -1,34 +1,16 @@
 package defpackage;
-public final class q80 {
-    public long a;
-    public String b;
-    public t80 c;
-    public d90 d;
-    public e90 e;
-    public i90 f;
-    public byte g;
+public final class q80 implements cq7 {
+    public static final q80 a = new Object();
+    public static final wa4 b = wa4.c("performance");
+    public static final wa4 c = wa4.c("crashlytics");
+    public static final wa4 d = wa4.c("sessionSamplingRate");
 
-    public final r80 a() {
-        String str;
-        t80 t80Var;
-        d90 d90Var;
-        if (this.g == 1 && (str = this.b) != null && (t80Var = this.c) != null && (d90Var = this.d) != null) {
-            return new r80(this.a, str, t80Var, d90Var, this.e, this.f);
-        }
-        StringBuilder sb = new StringBuilder();
-        if ((this.g & 1) == 0) {
-            sb.append(" timestamp");
-        }
-        if (this.b == null) {
-            sb.append(" type");
-        }
-        if (this.c == null) {
-            sb.append(" app");
-        }
-        if (this.d == null) {
-            sb.append(" device");
-        }
-        sc8.j(ir2.o("Missing required properties:", sb));
-        return null;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        m73 m73Var = (m73) obj;
+        dq7 dq7Var = (dq7) obj2;
+        dq7Var.a(b, m73Var.a);
+        dq7Var.a(c, m73Var.b);
+        dq7Var.f(d, m73Var.c);
     }
 }

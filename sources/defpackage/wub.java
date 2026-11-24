@@ -1,22 +1,31 @@
 package defpackage;
 
-import android.view.View;
-public final class wub implements View.OnClickListener {
-    public final qvb a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wub extends AnimatorListenerAdapter {
+    public final byte a;
+    public final avb b;
 
-    public wub(qvb qvbVar) {
-        this.a = qvbVar;
+    public wub(avb avbVar, byte b) {
+        this.a = b;
+        this.b = avbVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        qvb qvbVar = this.a;
-        if (qvbVar.N) {
-            ij.g0(qvbVar, -qvbVar.a, null, qvbVar.f(), null, false, qvbVar.K, new re1(this, (byte) 7), qvbVar.getResourceProvider());
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        avb avbVar = this.b;
+        switch (b) {
+            case 0:
+                avbVar.w = 0;
+                avbVar.n.setVisibility(8);
+                return;
+            case 1:
+                avbVar.w = 0;
+                return;
+            default:
+                avbVar.G.setVisibility(8);
+                return;
         }
-        qvbVar.getMessagesController().j(qvbVar.a, qvbVar.getUserConfig().f(), 0, null, qvbVar, false, new km4(qvbVar, (byte) 3), new rub(qvbVar), null);
-        kk7.e().k(kk7.K4, new Object[0]);
-        qvbVar.R0(false);
     }
 }

@@ -1,50 +1,40 @@
 package defpackage;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class fjd extends mid {
-    public final njd s;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.SparseArray;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.atomic.AtomicInteger;
+public final class fjd implements OnCompleteListener, Runnable {
+    public static final q79 d = new Handler(Looper.getMainLooper());
+    public static final SparseArray e = new SparseArray(2);
+    public static final AtomicInteger f = new AtomicInteger();
+    public int a;
+    public jpd b;
+    public Task c;
 
-    public fjd(njd njdVar) {
-        super((byte) 4);
-        this.s = njdVar;
-    }
-
-    @Override
-    public final xhd B() {
-        return new zid(this);
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object obj2 = this.s.get(entry.getKey());
-            if (obj2 != null && obj2.equals(entry.getValue())) {
-                return true;
+    public final void a() {
+        if (this.c != null && this.b != null) {
+            e.delete(this.a);
+            d.removeCallbacks(this);
+            jpd jpdVar = this.b;
+            if (jpdVar != null) {
+                Task task = this.c;
+                int i = jpd.d;
+                jpdVar.a(task);
             }
-            return false;
         }
-        return false;
     }
 
     @Override
-    public final int hashCode() {
-        return a1f.a(this.s.entrySet());
+    public final void onComplete(Task task) {
+        this.c = task;
+        a();
     }
 
     @Override
-    public final Iterator iterator() {
-        return A().listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.s.d.size();
-    }
-
-    @Override
-    public final v5c u() {
-        return A().listIterator(0);
+    public final void run() {
+        e.delete(this.a);
     }
 }

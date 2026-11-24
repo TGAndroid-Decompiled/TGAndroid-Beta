@@ -1,119 +1,69 @@
 package defpackage;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.WeakHashMap;
-public final class ul0 implements View.OnAttachStateChangeListener {
-    public final byte a;
-    public final Object b;
-    public final Object c;
+import org.telegram.messenger.Utilities;
+public final class ul0 implements Runnable {
+    public boolean a;
+    public int b;
+    public int c;
+    public final vl0 d;
 
-    public ul0(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = obj2;
+    public ul0(vl0 vl0Var) {
+        this.d = vl0Var;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        byte b = this.a;
-        Object obj = this.b;
-        Object obj2 = this.c;
-        switch (b) {
-            case 0:
-                sl0 sl0Var = (sl0) obj;
-                if (sl0Var != null) {
-                    sl0Var.d.add((wl0) obj2);
-                    return;
-                }
-                return;
-            case 1:
-                tgb tgbVar = (tgb) obj2;
-                tgbVar.k = gm.update(tgbVar.l, (View) obj, tgbVar.k, tgbVar.b);
-                return;
-            default:
-                nkc nkcVar = (nkc) obj2;
-                mkc mkcVar = nkcVar.m;
-                if (mkcVar != null) {
-                    mkcVar.setPaused(!nkcVar.n);
-                }
-                nkcVar.a.isAttachedToWindow();
-                int i = nkcVar.v0;
-                if (-1 != i) {
-                    if (i >= 0) {
-                        kk7.f(i).n(nkcVar.x0, 67);
-                    }
-                    nkcVar.v0 = -1;
-                    return;
-                }
-                return;
+    public final void run() {
+        int i;
+        Bitmap bitmap;
+        vl0 vl0Var = this.d;
+        Paint paint = vl0Var.w;
+        if (vl0Var.f == null) {
+            vl0Var.f = new Bitmap[2];
+            vl0Var.i = new Canvas[2];
         }
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        byte b = this.a;
-        Object obj = this.b;
-        Object obj2 = this.c;
-        switch (b) {
-            case 0:
-                wl0 wl0Var = (wl0) obj2;
-                sl0 sl0Var = (sl0) obj;
-                if (sl0Var != null) {
-                    ArrayList arrayList = sl0Var.d;
-                    arrayList.remove(wl0Var);
-                    if (sl0Var.e.isEmpty() && arrayList.isEmpty()) {
-                        sl0Var.n.a();
-                    }
+        int i2 = (int) (this.b / 15.0f);
+        for (int i3 = 0; i3 < 2; i3++) {
+            if (i3 == 0) {
+                i = vl0Var.s;
+            } else {
+                i = this.c;
+            }
+            int i4 = (int) (i / 15.0f);
+            Bitmap bitmap2 = vl0Var.f[i3];
+            if (bitmap2 != null && ((bitmap2.getHeight() != i4 || vl0Var.f[i3].getWidth() != i2) && (bitmap = vl0Var.f[i3]) != null)) {
+                bitmap.recycle();
+                vl0Var.f[i3] = null;
+            }
+            System.currentTimeMillis();
+            Bitmap[] bitmapArr = vl0Var.f;
+            if (bitmapArr[i3] == null) {
+                try {
+                    bitmapArr[i3] = Bitmap.createBitmap(i2, i4, Bitmap.Config.ARGB_8888);
+                    vl0Var.i[i3] = new Canvas(vl0Var.f[i3]);
+                    vl0Var.i[i3].scale(i2 / vl0Var.e[i3].getWidth(), i4 / vl0Var.e[i3].getHeight());
+                } catch (Throwable th) {
+                    fc4.g(th, true);
                 }
-                wl0Var.n = null;
-                Paint paint = wl0Var.h;
-                wl0Var.o = null;
-                paint.setShader(null);
+            }
+            Bitmap[] bitmapArr2 = vl0Var.f;
+            if (i3 == 1) {
+                bitmapArr2[i3].eraseColor(cmb.v0(cmb.c6, vl0Var.y));
+            } else {
+                bitmapArr2[i3].eraseColor(0);
+            }
+            paint.setAlpha(255);
+            Utilities.stackBlurBitmap(vl0Var.e[i3], 15);
+            Canvas canvas = vl0Var.i[i3];
+            if (canvas != null) {
+                canvas.drawBitmap(vl0Var.e[i3], 0.0f, 0.0f, paint);
+            }
+            if (this.a) {
                 return;
-            case 1:
-                gm.release((View) obj, ((tgb) obj2).k);
-                return;
-            default:
-                nkc nkcVar = (nkc) obj2;
-                uk1 uk1Var = nkcVar.a;
-                nkcVar.f();
-                nkcVar.M = false;
-                nkcVar.N = 0L;
-                nkcVar.k();
-                yla ylaVar = nkcVar.Z;
-                if (ylaVar != null) {
-                    ylaVar.d();
-                    nkcVar.Z = null;
-                }
-                nkcVar.a0 = 1.0f;
-                uk1Var.invalidate();
-                if (uk1Var.getParent() instanceof View) {
-                    ((View) uk1Var.getParent()).invalidate();
-                }
-                nkcVar.l();
-                umc umcVar = nkcVar.k;
-                WeakHashMap weakHashMap = umcVar.e;
-                weakHashMap.remove((uk1) obj);
-                if (weakHashMap.isEmpty()) {
-                    umcVar.a();
-                }
-                uk1Var.isAttachedToWindow();
-                int i = nkcVar.v0;
-                if (-1 != i) {
-                    if (i >= 0) {
-                        kk7.f(i).n(nkcVar.x0, 67);
-                    }
-                    nkcVar.v0 = -1;
-                }
-                mkc mkcVar = nkcVar.m;
-                if (mkcVar != null) {
-                    mkcVar.setPaused(true);
-                }
-                nkcVar.l.stop();
-                nkcVar.H = false;
-                return;
+            }
         }
+        gm.c3(new f00(this, (byte) 12));
     }
 }

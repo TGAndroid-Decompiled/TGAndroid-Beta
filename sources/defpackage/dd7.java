@@ -1,18 +1,17 @@
 package defpackage;
-public enum dd7 implements ct8 {
-    UNKNOWN_OS(0),
-    ANDROID(1),
-    IOS(2),
-    WEB(3);
-    
+public final class dd7 implements Runnable {
     public final byte a;
+    public final cf7 b;
+    public final vh6 c;
 
-    dd7(int i) {
-        this.a = i;
+    public dd7(cf7 cf7Var, vh6 vh6Var, byte b) {
+        this.a = b;
+        this.b = cf7Var;
+        this.c = vh6Var;
     }
 
     @Override
-    public final int a() {
-        return this.a;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.dd7.run():void");
     }
 }

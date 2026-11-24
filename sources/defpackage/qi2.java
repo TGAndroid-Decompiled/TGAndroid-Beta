@@ -1,93 +1,78 @@
 package defpackage;
-public final class qi2 extends sm4 {
-    public final long f;
-    public final long g;
-    public final long h;
-    public final boolean i;
 
-    public qi2(aob aobVar, long j, long j2, boolean z) {
-        super(aobVar);
-        long max;
-        int i = (j2 > Long.MIN_VALUE ? 1 : (j2 == Long.MIN_VALUE ? 0 : -1));
-        if (i != 0 && j2 < j) {
-            throw new ri2(j, 2, j2);
+import java.math.RoundingMode;
+public final class qi2 {
+    public final sd0 a;
+    public final yzb b;
+    public final int c;
+    public final int d;
+    public final long e;
+    public final boolean f;
+    public int g;
+    public int h;
+    public int i;
+    public int j;
+    public int k;
+    public int l;
+    public long m;
+    public long[] n;
+    public int[] o;
+
+    public qi2(int i, sd0 sd0Var, yzb yzbVar, boolean z) {
+        int i2;
+        int i3;
+        int i4 = sd0Var.d;
+        this.a = sd0Var;
+        this.f = z;
+        int a = sd0Var.a();
+        boolean z2 = true;
+        if (a != 1 && a != 2) {
+            z2 = false;
         }
-        boolean z2 = false;
-        if (aobVar.h() == 1) {
-            znb m = aobVar.m(0, new znb(), 0L);
-            long max2 = Math.max(0L, j);
-            if (!z && !m.j && max2 != 0 && !m.g) {
-                throw new ri2(1);
-            }
-            if (i == 0) {
-                max = m.l;
-            } else {
-                max = Math.max(0L, j2);
-            }
-            long j3 = m.l;
-            int i2 = (j3 > (-9223372036854775807L) ? 1 : (j3 == (-9223372036854775807L) ? 0 : -1));
-            if (i2 != 0) {
-                max = max > j3 ? j3 : max;
-                if (max2 > max) {
-                    max2 = max;
-                }
-            }
-            this.f = max2;
-            this.g = max;
-            int i3 = (max > (-9223372036854775807L) ? 1 : (max == (-9223372036854775807L) ? 0 : -1));
-            this.h = i3 != 0 ? max - max2 : -9223372036854775807L;
-            if (m.h && (i3 == 0 || (i2 != 0 && max == j3))) {
-                z2 = true;
-            }
-            this.i = z2;
-            return;
+        jte.f(z2);
+        if (a == 2) {
+            i2 = 1667497984;
+        } else {
+            i2 = 1651965952;
         }
-        throw new ri2(0);
+        int i5 = (((i % 10) + 48) << 8) | ((i / 10) + 48);
+        this.c = i2 | i5;
+        long j = sd0Var.c;
+        String str = hac.a;
+        this.e = hac.b0(i4, sd0Var.b * 1000000, j, RoundingMode.DOWN);
+        this.b = yzbVar;
+        if (a == 2) {
+            i3 = i5 | 1650720768;
+        } else {
+            i3 = -1;
+        }
+        this.d = i3;
+        this.m = -1L;
+        this.n = new long[512];
+        this.o = new int[512];
+        this.g = i4;
     }
 
-    @Override
-    public final xnb f(int i, xnb xnbVar, boolean z) {
-        this.e.f(0, xnbVar, z);
-        long j = xnbVar.e - this.f;
-        long j2 = this.h;
-        long j3 = -9223372036854775807L;
-        if (j2 != -9223372036854775807L) {
-            j3 = j2 - j;
-        }
-        Object obj = xnbVar.a;
-        Object obj2 = xnbVar.b;
-        da daVar = da.c;
-        xnbVar.h(obj, obj2, 0, j3, j, xnbVar.f);
-        return xnbVar;
+    public final kx9 a(int i) {
+        return new kx9((this.e / this.g) * this.o[i], this.n[i]);
     }
 
-    @Override
-    public final znb m(int i, znb znbVar, long j) {
-        this.e.m(0, znbVar, 0L);
-        long j2 = znbVar.o;
-        long j3 = this.f;
-        znbVar.o = j2 + j3;
-        znbVar.l = this.h;
-        znbVar.h = this.i;
-        long j4 = znbVar.k;
-        if (j4 != -9223372036854775807L) {
-            long max = Math.max(j4, j3);
-            znbVar.k = max;
-            long j5 = this.g;
-            if (j5 != -9223372036854775807L) {
-                max = Math.min(max, j5);
-            }
-            znbVar.k = max - j3;
+    public final hx9 b(long j) {
+        if (this.l == 0) {
+            kx9 kx9Var = new kx9(0L, this.m);
+            return new hx9(kx9Var, kx9Var);
         }
-        long i0 = g8c.i0(j3);
-        long j6 = znbVar.d;
-        if (j6 != -9223372036854775807L) {
-            znbVar.d = j6 + i0;
+        int i = (int) (j / (this.e / this.g));
+        int e = hac.e(this.o, i, true, true);
+        if (this.o[e] == i) {
+            kx9 a = a(e);
+            return new hx9(a, a);
         }
-        long j7 = znbVar.e;
-        if (j7 != -9223372036854775807L) {
-            znbVar.e = j7 + i0;
+        kx9 a2 = a(e);
+        int i2 = e + 1;
+        if (i2 < this.n.length) {
+            return new hx9(a2, a(i2));
         }
-        return znbVar;
+        return new hx9(a2, a2);
     }
 }

@@ -1,48 +1,62 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.Intent;
-import org.json.JSONObject;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.utils.twidget.z;
-public final class gj2 implements Runnable {
-    public final byte a = 1;
-    public final int b;
-    public final long c;
-    public final boolean d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+public final class gj2 extends FilterInputStream {
+    public int a;
+    public int b;
 
-    public gj2(pj2 pj2Var, long j, mj2 mj2Var, int i, boolean z, wk4 wk4Var) {
-        this.e = pj2Var;
-        this.c = j;
-        this.f = mj2Var;
-        this.b = i;
-        this.d = z;
-        this.h = wk4Var;
+    public gj2(InputStream inputStream) {
+        super(inputStream);
+        this.a = -1;
+        this.b = -1;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gj2.run():void");
+    public final boolean markSupported() {
+        return false;
     }
 
-    public gj2(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i, long j, boolean z) {
-        this.e = intent;
-        this.f = phoneCall;
-        this.h = context;
-        this.b = i;
-        this.c = j;
-        this.d = z;
+    @Override
+    public final int read(byte[] bArr, int i, int i2) {
+        bArr.getClass();
+        if (i >= 0 && i2 >= 0 && i2 <= bArr.length - i) {
+            if (i2 == 0) {
+                return 0;
+            }
+            int read = read();
+            if (read == -1) {
+                return -1;
+            }
+            bArr[i] = (byte) read;
+            int i3 = 1;
+            while (i3 < i2) {
+                try {
+                    int read2 = read();
+                    if (read2 == -1) {
+                        break;
+                    }
+                    bArr[i + i3] = (byte) read2;
+                    i3++;
+                } catch (IOException unused) {
+                }
+            }
+            return i3;
+        }
+        throw new IndexOutOfBoundsException();
     }
 
-    public gj2(z zVar, int i, long j, JSONObject jSONObject, String str, boolean z) {
-        this.e = zVar;
-        this.b = i;
-        this.c = j;
-        this.f = jSONObject;
-        this.h = str;
-        this.d = z;
+    @Override
+    public final int read() {
+        int read = super.read();
+        if (read == 3 && this.a == 0 && this.b == 0) {
+            this.a = -1;
+            this.b = -1;
+            read = super.read();
+        }
+        this.a = this.b;
+        this.b = read;
+        return read;
     }
 }

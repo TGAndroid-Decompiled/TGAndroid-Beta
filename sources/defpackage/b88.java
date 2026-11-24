@@ -1,317 +1,275 @@
 package defpackage;
 
-import android.graphics.Bitmap;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import java.io.File;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public final class b88 implements vv2 {
-    public final String a;
-    public final oac b;
-    public final jm6 c;
-    public final boolean d;
-    public final int e;
-    public final int f;
-    public final boolean h;
-    public final PhotoViewer n;
+import android.graphics.Paint;
+import android.util.Property;
+import android.util.SparseIntArray;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+public final class b88 extends ela {
+    public int m0;
+    public boolean n0;
+    public boolean o0;
+    public int p0;
+    public int q0;
+    public VelocityTracker r0;
+    public boolean s0;
+    public final d88 t0;
 
-    public b88(PhotoViewer photoViewer, String str, oac oacVar, jm6 jm6Var, boolean z, int i, int i2, boolean z2) {
-        this.n = photoViewer;
-        this.a = str;
-        this.b = oacVar;
-        this.c = jm6Var;
-        this.d = z;
-        this.e = i;
-        this.f = i2;
-        this.h = z2;
+    public b88(d88 d88Var, Context context) {
+        super(context, null);
+        this.t0 = d88Var;
     }
 
-    @Override
-    public final boolean A(TLRPC.Document document) {
-        return false;
+    public final boolean X() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b88.X():boolean");
     }
 
-    @Override
-    public final String C(boolean z) {
-        return null;
-    }
-
-    @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final cs5 F(ViewGroup viewGroup) {
-        return null;
-    }
-
-    public final void G() {
-        xv2 e = xv2.e();
-        ImageReceiver imageReceiver = e.A;
-        jm6 jm6Var = this.c;
-        if (jm6Var.c != null) {
-            try {
-                new File(jm6Var.c).delete();
-            } catch (Exception e2) {
-                fa4.g(e2, true);
-            }
-            jm6Var.c = null;
+    public final boolean Y(MotionEvent motionEvent, boolean z) {
+        int i;
+        a aVar;
+        d88 d88Var = this.t0;
+        c88[] c88VarArr = d88Var.n;
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = d88Var.h;
+        SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.P;
+        int i2 = scrollSlidingTextTabStrip.n;
+        if (z) {
+            i = 1;
+        } else {
+            i = -1;
         }
-        Bitmap createBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        imageReceiver.setAlpha(1.0f);
-        imageReceiver.i0(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
-        imageReceiver.h(canvas, null);
-        if (e.C != null) {
-            canvas.save();
-            canvas.scale(createBitmap.getWidth() / e.C.getWidth(), createBitmap.getHeight() / e.C.getHeight());
-            e.C.setAlpha(1.0f);
-            Path path = new Path();
-            path.rewind();
-            RectF rectF = gl.P;
-            rectF.set(0.0f, 0.0f, e.C.getWidth(), e.C.getHeight());
-            path.addRoundRect(rectF, e.C.getWidth() / 8.0f, e.C.getHeight() / 8.0f, Path.Direction.CW);
-            canvas.clipPath(path);
-            e.C.draw(canvas);
-            canvas.restore();
-        }
-        Drawable[] drawableArr = PhotoViewer.f9;
-        PhotoViewer photoViewer = this.n;
-        TLRPC.PhotoSize V = fl5.V(createBitmap, photoViewer.e0(), 512.0f, 512.0f, 83);
-        ba4.G(photoViewer.U);
-        jm6Var.c = ba4.J(V, null, true, true).toString();
-    }
-
-    @Override
-    public final boolean K() {
-        if (this.n.z7 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean O(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final void P(String str) {
-        PhotoViewer photoViewer = this.n;
-        photoViewer.C7 = true;
-        G();
-        photoViewer.p5.o(this.a, this.b, str, null, true, 0L, null, null, photoViewer.t0(), this.c.c, null, null);
-    }
-
-    @Override
-    public final void Q(CharSequence charSequence, String str, pz1 pz1Var) {
-        PhotoViewer photoViewer = this.n;
-        photoViewer.C7 = true;
-        G();
-        photoViewer.p5.o(this.a, this.b, str, charSequence, false, 0L, null, null, photoViewer.t0(), this.c.c, pz1Var, null);
-    }
-
-    @Override
-    public final Boolean R(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean S() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return this.n.E5;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h() {
-        return true;
-    }
-
-    @Override
-    public final boolean i() {
-        return false;
-    }
-
-    @Override
-    public final boolean j(int i) {
-        return false;
-    }
-
-    @Override
-    public final void l(String str) {
-        PhotoViewer photoViewer = this.n;
-        photoViewer.C7 = true;
-        G();
-        photoViewer.p5.o(this.a, this.b, str, null, false, 0L, null, null, photoViewer.t0(), this.c.c, null, photoViewer.D7);
-    }
-
-    @Override
-    public final boolean n() {
-        return true;
-    }
-
-    @Override
-    public final void s(TLRPC.StickerSet stickerSet, String str) {
-        PhotoViewer photoViewer = this.n;
-        photoViewer.C7 = true;
-        G();
-        photoViewer.p5.o(this.a, this.b, str, null, false, 0L, stickerSet, photoViewer.z7, photoViewer.t0(), this.c.c, null, null);
-    }
-
-    @Override
-    public final boolean t() {
-        o98 o98Var;
-        TLRPC.Chat chat;
-        PhotoViewer photoViewer = this.n;
-        mu1 mu1Var = photoViewer.l4;
-        if ((mu1Var == null || (chat = mu1Var.e) == null || hc2.t(chat)) && (o98Var = photoViewer.d) != null) {
-            if (!o98Var.Q() || photoViewer.l4 != null) {
-                return true;
-            }
+        int i3 = sparseIntArray.get(i2 + i, -1);
+        if (i3 < 0) {
             return false;
         }
-        return false;
-    }
-
-    @Override
-    public final void v(String str) {
-        PhotoViewer photoViewer = this.n;
-        o98 o98Var = photoViewer.d;
-        if (o98Var != null) {
-            boolean Q = o98Var.Q();
-            jm6 jm6Var = this.c;
-            if (Q) {
-                if (photoViewer.l4 == null) {
-                    return;
-                }
-                photoViewer.C7 = true;
-                G();
-                photoViewer.p5.o(this.a, this.b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.t0(), jm6Var.c, null, null);
-                return;
-            }
-            photoViewer.C7 = true;
-            G();
-            jm6Var.h = this.a;
-            photoViewer.d.L(photoViewer.P4, this.b, this.d, this.e, this.f, this.h);
-            kk7.f(y6c.t0).m(kk7.t3, Boolean.TRUE);
-        }
-    }
-
-    @Override
-    public final k27 w() {
-        return null;
-    }
-
-    @Override
-    public final boolean x() {
-        if (this.n.D7 != null) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.o0 = false;
+        this.n0 = true;
+        this.p0 = (int) motionEvent.getX();
+        aVar = ((d) d88Var).actionBar;
+        aVar.setEnabled(false);
+        d88Var.h.setEnabled(false);
+        c88 c88Var = c88VarArr[1];
+        c88Var.b = i3;
+        c88Var.setVisibility(0);
+        d88Var.w = z;
+        d88Var.o0(true);
+        if (z) {
+            c88VarArr[1].setTranslationX(c88VarArr[0].getMeasuredWidth());
             return true;
         }
-        return false;
+        c88VarArr[1].setTranslationX(-c88VarArr[0].getMeasuredWidth());
+        return true;
     }
 
     @Override
-    public final boolean z() {
-        return false;
+    public final void dispatchDraw(Canvas canvas) {
+        a aVar;
+        a aVar2;
+        super.dispatchDraw(canvas);
+        d88 d88Var = this.t0;
+        aVar = ((d) d88Var).actionBar;
+        int measuredHeight = aVar.getMeasuredHeight();
+        aVar2 = ((d) d88Var).actionBar;
+        float translationY = measuredHeight + ((int) aVar2.getTranslationY());
+        canvas.drawLine(0.0f, translationY, getWidth(), translationY, cmb.j0);
     }
 
     @Override
-    public final void L() {
+    public final void onDraw(Canvas canvas) {
+        a aVar;
+        a aVar2;
+        d88 d88Var = this.t0;
+        Paint paint = d88Var.f;
+        paint.setColor(cmb.w0(null, cmb.Z6, false));
+        aVar = ((d) d88Var).actionBar;
+        aVar2 = ((d) d88Var).actionBar;
+        canvas.drawRect(0.0f, aVar2.getTranslationY() + aVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight(), paint);
     }
 
     @Override
-    public final void M() {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!X() && !this.t0.h.I && !onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void p() {
+    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b88.onLayout(boolean, int, int, int, int):void");
     }
 
     @Override
-    public final void q() {
+    public final void onMeasure(int r15, int r16) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b88.onMeasure(int, int):void");
     }
 
     @Override
-    public final void B(TLRPC.Document document) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        tk5 tk5Var;
+        float f;
+        float f2;
+        a aVar;
+        boolean z;
+        float measuredWidth;
+        c88 c88Var;
+        c88 c88Var2;
+        int measuredWidth2;
+        c88 c88Var3;
+        c88 c88Var4;
+        boolean z2;
+        boolean z3;
+        int i;
+        d88 d88Var = this.t0;
+        c88[] c88VarArr = d88Var.n;
+        tk5Var = ((d) d88Var).parentLayout;
+        boolean z4 = false;
+        if (((ActionBarLayout) tk5Var).h() || X()) {
+            return false;
+        }
+        if (motionEvent != null) {
+            VelocityTracker velocityTracker = this.r0;
+            if (velocityTracker == null) {
+                velocityTracker = VelocityTracker.obtain();
+                this.r0 = velocityTracker;
+            }
+            velocityTracker.addMovement(motionEvent);
+        }
+        if (motionEvent != null && motionEvent.getAction() == 0 && !this.n0 && !this.o0) {
+            this.m0 = motionEvent.getPointerId(0);
+            this.o0 = true;
+            this.p0 = (int) motionEvent.getX();
+            this.q0 = (int) motionEvent.getY();
+            this.r0.clear();
+        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.m0) {
+            int x = (int) (motionEvent.getX() - this.p0);
+            int abs = Math.abs(((int) motionEvent.getY()) - this.q0);
+            if (this.n0 && (!d88Var.w ? x < 0 : x > 0)) {
+                if (x < 0) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                if (!Y(motionEvent, z3)) {
+                    this.o0 = true;
+                    this.n0 = false;
+                    c88VarArr[0].setTranslationX(0.0f);
+                    c88 c88Var5 = c88VarArr[1];
+                    if (d88Var.w) {
+                        i = c88VarArr[0].getMeasuredWidth();
+                    } else {
+                        i = -c88VarArr[0].getMeasuredWidth();
+                    }
+                    c88Var5.setTranslationX(i);
+                    d88Var.h.i(0.0f, c88VarArr[1].b);
+                }
+            }
+            if (this.o0 && !this.n0) {
+                if (Math.abs(x) >= gm.Z0(true, 0.3f) && Math.abs(x) > abs) {
+                    if (x < 0) {
+                        z4 = true;
+                    }
+                    Y(motionEvent, z4);
+                }
+            } else if (this.n0) {
+                c88VarArr[0].setTranslationX(x);
+                if (d88Var.w) {
+                    c88VarArr[1].setTranslationX(c88VarArr[0].getMeasuredWidth() + x);
+                } else {
+                    c88VarArr[1].setTranslationX(x - c88VarArr[0].getMeasuredWidth());
+                }
+                d88Var.h.i(Math.abs(x) / c88VarArr[0].getMeasuredWidth(), c88VarArr[1].b);
+            }
+        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.m0 && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+            this.r0.computeCurrentVelocity(1000, d88Var.y);
+            if (motionEvent != null && motionEvent.getAction() != 3) {
+                f = this.r0.getXVelocity();
+                f2 = this.r0.getYVelocity();
+                if (!this.n0 && Math.abs(f) >= 3000.0f && Math.abs(f) > Math.abs(f2)) {
+                    if (f < 0.0f) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    Y(motionEvent, z2);
+                }
+            } else {
+                f = 0.0f;
+                f2 = 0.0f;
+            }
+            if (this.n0) {
+                float x2 = c88VarArr[0].getX();
+                d88Var.r = new AnimatorSet();
+                if (Math.abs(x2) < c88VarArr[0].getMeasuredWidth() / 3.0f && (Math.abs(f) < 3500.0f || Math.abs(f) < Math.abs(f2))) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                d88Var.x = z;
+                Property property = View.TRANSLATION_X;
+                if (z) {
+                    measuredWidth = Math.abs(x2);
+                    boolean z5 = d88Var.w;
+                    AnimatorSet animatorSet = d88Var.r;
+                    if (z5) {
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(c88VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(c88VarArr[1], property, c88Var4.getMeasuredWidth()));
+                    } else {
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(c88VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(c88VarArr[1], property, -c88Var3.getMeasuredWidth()));
+                    }
+                } else {
+                    measuredWidth = c88VarArr[0].getMeasuredWidth() - Math.abs(x2);
+                    boolean z6 = d88Var.w;
+                    AnimatorSet animatorSet2 = d88Var.r;
+                    if (z6) {
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(c88VarArr[0], property, -c88Var2.getMeasuredWidth()), ObjectAnimator.ofFloat(c88VarArr[1], property, 0.0f));
+                    } else {
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(c88VarArr[0], property, c88Var.getMeasuredWidth()), ObjectAnimator.ofFloat(c88VarArr[1], property, 0.0f));
+                    }
+                }
+                d88Var.r.setInterpolator(d88.E);
+                int measuredWidth3 = getMeasuredWidth();
+                float f3 = measuredWidth3 / 2;
+                float I = (gm.I(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f3) + f3;
+                float abs2 = Math.abs(f);
+                if (abs2 > 0.0f) {
+                    measuredWidth2 = Math.round(Math.abs(I / abs2) * 1000.0f) << 2;
+                } else {
+                    measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
+                }
+                d88Var.r.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
+                d88Var.r.addListener(new s38(this, (byte) 5));
+                d88Var.r.start();
+                d88Var.s = true;
+                this.n0 = false;
+            } else {
+                this.o0 = false;
+                aVar = ((d) d88Var).actionBar;
+                aVar.setEnabled(true);
+                d88Var.h.setEnabled(true);
+            }
+            VelocityTracker velocityTracker2 = this.r0;
+            if (velocityTracker2 != null) {
+                velocityTracker2.recycle();
+                this.r0 = null;
+            }
+        }
+        return this.n0;
     }
 
     @Override
-    public final void D(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(s3a s3aVar) {
-    }
-
-    @Override
-    public final void m(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void o(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void y(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void I(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void N(TLRPC.InputStickerSet inputStickerSet, boolean z) {
-    }
-
-    @Override
-    public final void u(Object obj, Object obj2, boolean z, int i, int i2) {
-    }
-
-    @Override
-    public final void k(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
+    public final void requestLayout() {
+        if (this.s0) {
+            return;
+        }
+        super.requestLayout();
     }
 }

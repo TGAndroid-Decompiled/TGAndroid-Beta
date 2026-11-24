@@ -1,28 +1,88 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class sza extends LinearLayout {
-    public TextView a;
-    public boolean b;
+import java.util.Locale;
+import org.telegram.tgnet.tl.TL_stats;
+public final class sza {
+    public String A;
+    public boolean B;
+    public boolean C;
+    public String D;
+    public String E;
+    public String F;
+    public boolean G;
+    public boolean H;
+    public String a;
+    public String b;
+    public String c;
+    public boolean d;
+    public String e;
+    public String f;
+    public String g;
+    public boolean h;
+    public String i;
+    public String j;
+    public String k;
+    public boolean l;
+    public String m;
+    public String n;
+    public String o;
+    public String p;
+    public String q;
+    public boolean r;
+    public boolean s;
+    public String t;
+    public String u;
+    public String v;
+    public boolean w;
+    public boolean x;
+    public String y;
+    public String z;
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        View view;
-        int measuredHeight;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-        if (this.b && (view = (View) getParent()) != null && getMeasuredHeight() < (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - gl.L(24.0f))) {
-            setMeasuredDimension(getMeasuredWidth(), measuredHeight);
+    public static xvc a(TL_stats.TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev) {
+        float abs;
+        boolean z;
+        double d = tL_statsAbsValueAndPrev.current;
+        double d2 = tL_statsAbsValueAndPrev.previous;
+        int i = (int) (d - d2);
+        if (d2 == 0.0d) {
+            abs = 0.0f;
+        } else {
+            abs = Math.abs((i / ((float) d2)) * 100.0f);
         }
-    }
-
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.a.setOnClickListener(onClickListener);
-    }
-
-    public void setIsLast(boolean z) {
-        this.b = z;
-        requestLayout();
+        String o0 = gm.o0((int) tL_statsAbsValueAndPrev.current, 0);
+        boolean z2 = true;
+        String str = "";
+        if (i != 0 && abs != 0.0f) {
+            int i2 = (int) abs;
+            if (abs == i2) {
+                Locale locale = Locale.ENGLISH;
+                if (i > 0) {
+                    str = "+";
+                }
+                str = (str + gm.o0(i, 0)) + " (" + i2 + "%)";
+            } else {
+                Locale locale2 = Locale.ENGLISH;
+                if (i > 0) {
+                    str = "+";
+                }
+                str = String.format(locale2, "%s (%.1f%s)", str + gm.o0(i, 0), Float.valueOf(abs), "%");
+            }
+        }
+        if (i >= 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (i == 0 && tL_statsAbsValueAndPrev.current == 0.0d) {
+            z2 = false;
+        }
+        Boolean valueOf = Boolean.valueOf(z);
+        Boolean valueOf2 = Boolean.valueOf(z2);
+        xvc xvcVar = new xvc((byte) 15, false);
+        xvcVar.b = o0;
+        xvcVar.c = str;
+        xvcVar.d = valueOf;
+        xvcVar.e = valueOf2;
+        return xvcVar;
     }
 }

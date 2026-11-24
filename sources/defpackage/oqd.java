@@ -1,24 +1,17 @@
 package defpackage;
+public final class oqd implements cq7 {
+    public static final oqd a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-public final class oqd extends b4 {
-    public static final Parcelable.Creator<oqd> CREATOR = new rpd((byte) 2);
-    public final int a;
-    public final ArrayList b;
-
-    public oqd(int i, ArrayList arrayList) {
-        this.a = i;
-        this.b = arrayList;
+    static {
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.p(parcel, 3, this.b);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

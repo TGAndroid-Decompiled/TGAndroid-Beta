@@ -1,17 +1,13 @@
 package defpackage;
-public final class p45 extends gb3 {
-    public final h75 F;
+public final class p45 extends vqd {
+    public final b61 a;
 
-    public p45(h75 h75Var) {
-        this.F = h75Var;
+    public p45(b61 b61Var) {
+        this.a = b61Var;
     }
 
     @Override
-    public final void P(s49 s49Var) {
-        h75 h75Var = this.F;
-        h75Var.J1.invalidate();
-        h75Var.T3.invalidate();
-        h75Var.b.invalidate();
-        h75Var.F1();
+    public final boolean x() {
+        return !this.a.R;
     }
 }

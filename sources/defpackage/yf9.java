@@ -1,192 +1,372 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.TextureView;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.function.IntSupplier;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.RadialProgress2;
-public final class yf9 {
-    public static ColorMatrixColorFilter f;
-    public final ImageReceiver a;
-    public final ImageReceiver b;
-    public Bitmap c;
-    public final RadialProgress2 d;
-    public iy6 e;
+import org.telegram.ui.Components.CheckBoxBase;
+public final class yf9 implements oac, ee, hk3, zw9, ou3, lk9, ch0, mm0, ln5, h59, i99, g59, p4b, lh2, af7, ctc, kac, wv4, qy2, g94, w18 {
+    public final byte a;
+    public final Object b;
 
-    public yf9(vf9 vf9Var, wjb wjbVar) {
-        this.a = new ImageReceiver(vf9Var);
-        this.b = new ImageReceiver(vf9Var);
-        RadialProgress2 radialProgress2 = new RadialProgress2(vf9Var, wjbVar);
-        this.d = radialProgress2;
-        radialProgress2.d = -1;
-        radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
-        radialProgress2.setIcon(3, false, false);
+    public yf9(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
-    public final void a() {
-        String str;
-        String sb;
-        TLRPC.Photo photo;
-        TLRPC.Document document;
-        TLRPC.PhotoSize photoSize;
-        int abs;
-        iy6 iy6Var = this.e;
-        TLRPC.PhotoSize photoSize2 = null;
-        ImageReceiver imageReceiver = this.a;
-        if (iy6Var == null) {
-            imageReceiver.g0(null);
-            return;
-        }
-        int i = gl.q.x;
-        String m = tb4.m(i, i, "_");
-        StringBuilder sb2 = new StringBuilder();
-        iy6 iy6Var2 = this.e;
-        if (iy6Var2 == null) {
-            sb = "null";
+    @Override
+    public final void B0(int i, Drawable drawable) {
+        byte b = this.a;
+    }
+
+    @Override
+    public final void D(int i, float f, float f2, h94 h94Var) {
+        View view = ((ysa) this.b).b;
+        if (view instanceof cm1) {
+            ((cm1) view).T();
         } else {
-            if (iy6Var2.b) {
-                str = "v";
-            } else if (iy6Var2.c) {
-                str = "a";
-            } else {
-                str = "p";
-            }
-            if (iy6Var2.e != null) {
-                StringBuilder k = b00.k(str, ":local:");
-                k.append(this.e.e);
-                sb = k.toString();
-            } else {
-                long j = 0;
-                if (iy6Var2.b()) {
-                    iy6 iy6Var3 = this.e;
-                    TLRPC.Document document2 = iy6Var3.h;
-                    if (document2 != null) {
-                        j = document2.id;
-                    } else {
-                        TLRPC.Photo photo2 = iy6Var3.g;
-                        if (photo2 != null) {
-                            j = photo2.id;
-                        }
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final boolean E() {
+        byte b = this.a;
+        return false;
+    }
+
+    @Override
+    public final void L(ImageReceiver imageReceiver) {
+        byte b = this.a;
+    }
+
+    @Override
+    public final void a(String str) {
+        h4b storiesController;
+        nha nhaVar = ((nea) this.b).d;
+        storiesController = nhaVar.getStoriesController();
+        storiesController.q(nhaVar.m1, str, new nda(nhaVar, (byte) 1));
+    }
+
+    @Override
+    public final void b(Canvas canvas) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 8:
+                op9 op9Var = (op9) obj;
+                Paint paint = op9Var.K;
+                RectF rectF = op9Var.d;
+                op9Var.d(canvas);
+                pp9 pp9Var = op9Var.P;
+                FrameLayout frameLayout = pp9Var.h;
+                TextureView textureView = pp9Var.n;
+                if (frameLayout.getVisibility() == 0 && frameLayout.getWidth() > 0) {
+                    canvas.save();
+                    canvas.translate(frameLayout.getLeft(), frameLayout.getTop());
+                    canvas.concat(frameLayout.getMatrix());
+                    float L = (1.0f - pp9Var.U) * gm.L(12.0f);
+                    rectF.set(0.0f, 0.0f, frameLayout.getWidth(), frameLayout.getHeight());
+                    canvas.clipRect(rectF);
+                    paint.setColor(-16777216);
+                    canvas.drawRoundRect(rectF, L, L, paint);
+                    if (textureView.isAvailable() && textureView.isAttachedToWindow()) {
+                        canvas.translate(textureView.getLeft(), textureView.getTop());
+                        canvas.concat(textureView.getMatrix());
+                        textureView.draw(canvas);
                     }
+                    canvas.restore();
+                    return;
                 }
-                StringBuilder k2 = b00.k(str, ":");
-                k2.append((int) this.e.a);
-                k2.append(":");
-                k2.append(j);
-                sb = k2.toString();
-            }
+                return;
+            default:
+                ana anaVar = (ana) obj;
+                canvas.save();
+                canvas.translate(anaVar.a.getX(), anaVar.a.getY());
+                anaVar.a.draw(canvas);
+                canvas.restore();
+                return;
         }
-        sb2.append(sb);
-        sb2.append("@");
-        sb2.append(m);
-        if (sb2.toString().equals(null)) {
-            return;
+    }
+
+    @Override
+    public final void b0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        int v;
+        k47 k47Var;
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 10:
+                rp9 rp9Var = (rp9) obj;
+                if (z && !z2) {
+                    rp9Var.a();
+                    return;
+                }
+                return;
+            default:
+                sha shaVar = (sha) obj;
+                ImageReceiver imageReceiver2 = shaVar.d;
+                ImageReceiver imageReceiver3 = shaVar.c;
+                if (z && !z2 && (k47Var = shaVar.n) != null && k47Var.t2() && imageReceiver3.n() != null) {
+                    if (imageReceiver2.n() != null) {
+                        imageReceiver2.n().recycle();
+                    }
+                    imageReceiver2.f0(Utilities.D(imageReceiver3.n(), false));
+                }
+                if (z && !z2 && shaVar.x0 && imageReceiver3.n() != null) {
+                    int I0 = gm.I0(imageReceiver3.n());
+                    shaVar.a = I0;
+                    CheckBoxBase checkBoxBase = shaVar.Q;
+                    if (checkBoxBase != null && checkBoxBase.x != (v = cmb.v(I0, cmb.p1(0.25f, -1)))) {
+                        checkBoxBase.x = v;
+                        checkBoxBase.b();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        this.e.getClass();
-        iy6 iy6Var4 = this.e;
-        boolean z = iy6Var4.b;
-        String str2 = iy6Var4.e;
-        if (z) {
-            if (str2 != null) {
-                imageReceiver.o0(0, 0, false);
-                imageReceiver.Y(gl5.o(this.e.e), "g", null, m, null, m, null, 0L, null, null, 0);
-            } else if (iy6Var4.b() && (document = this.e.h) != null) {
-                ArrayList<TLRPC.PhotoSize> arrayList = document.thumbs;
-                int Y0 = gl.Y0(false);
-                if (arrayList == null) {
-                    photoSize = null;
+    }
+
+    @Override
+    public final void c(int i) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 28:
+                jac jacVar = (jac) obj;
+                if (i == 1) {
+                    jacVar.a(Boolean.TRUE, null);
+                    return;
+                } else if (i != 3) {
+                    jacVar.a(Boolean.FALSE, null);
+                    return;
                 } else {
-                    int i2 = Integer.MAX_VALUE;
-                    photoSize = null;
-                    for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                        TLRPC.PhotoSize photoSize3 = arrayList.get(i3);
-                        if (!(photoSize3 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize3 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize3.w, photoSize3.h) - Y0)) < i2) {
-                            photoSize = photoSize3;
-                            i2 = abs;
-                        }
+                    return;
+                }
+            default:
+                lf2 lf2Var = (lf2) obj;
+                if (i == 1) {
+                    lf2Var.a(Boolean.TRUE, null);
+                    return;
+                } else if (i != 3) {
+                    lf2Var.a(Boolean.FALSE, null);
+                    return;
+                } else {
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final void d(float r19, float r20, int r21, android.view.View r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.yf9.d(float, float, int, android.view.View):void");
+    }
+
+    @Override
+    public final void e(boolean z) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 17:
+                h2a h2aVar = (h2a) obj;
+                if (h2aVar != null) {
+                    h2aVar.c();
+                    return;
+                }
+                return;
+            default:
+                z3b z3bVar = (z3b) obj;
+                if (z) {
+                    z3bVar.p(30, false);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void f(float f) {
+        k47 k47Var = ((pi9) this.b).X;
+        if (k47Var == null) {
+            return;
+        }
+        k47Var.b0 = f;
+        MediaController.w().h0(k47Var, f);
+    }
+
+    @Override
+    public final boolean g(int i, View view) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 12:
+                ju9 ju9Var = (ju9) obj;
+                ny0 ny0Var = ju9Var.c;
+                k47 E = ny0Var.E(i);
+                ju9 ju9Var2 = (ju9) ny0Var.d;
+                if (E == null) {
+                    return false;
+                }
+                if (!ju9Var.J.u()) {
+                    ju9Var.J.f();
+                    ny0Var.l(0, ju9Var2.r);
+                }
+                if (ju9Var.J.u()) {
+                    ju9Var.J.i(E, view, 0);
+                    if (!ju9Var.J.u()) {
+                        ny0Var.l(0, ju9Var2.r);
                     }
+                    ug4 ug4Var = ju9Var.K;
+                    int e1 = E.e1();
+                    ug4Var.a = k47.B0(E.k);
+                    ug4Var.b = e1;
                 }
-                ArrayList<TLRPC.PhotoSize> arrayList2 = this.e.h.thumbs;
-                if (arrayList2 != null) {
-                    int i4 = 0;
-                    while (true) {
-                        if (i4 >= arrayList2.size()) {
-                            break;
-                        } else if (arrayList2.get(i4) instanceof TLRPC.TL_photoStrippedSize) {
-                            photoSize2 = arrayList2.get(i4);
-                            break;
-                        } else {
-                            i4++;
-                        }
-                    }
-                }
-                imageReceiver.o0(0, 0, false);
-                imageReceiver.Y(gl5.b(this.e.h), "g", gl5.c(photoSize, this.e.h), m, gl5.c(photoSize2, this.e.h), m, null, 0L, null, this.e.h, 0);
-            } else {
-                imageReceiver.g0(null);
-            }
-        } else if (str2 != null) {
-            imageReceiver.o0(iy6Var4.l, iy6Var4.m, true);
-            imageReceiver.d0(gl5.g(this.e.e), m, null, null, null, 0);
-        } else if (iy6Var4.b() && (photo = this.e.g) != null) {
-            TLRPC.PhotoSize w = ba4.w(photo.sizes, gl.Y0(false), false, null, false);
-            TLRPC.PhotoSize w2 = ba4.w(this.e.g.sizes, 100, false, null, false);
-            imageReceiver.o0(0, 0, false);
-            imageReceiver.Z(gl5.i(w, this.e.g), m, gl5.i(w2, this.e.g), m, null, 0L, null, this.e.g, 0);
-        } else {
-            imageReceiver.g0(null);
+                return true;
+            default:
+                return ((s0a) obj).Z0(i, view);
         }
     }
 
-    public final boolean b() {
-        ImageReceiver imageReceiver;
-        Bitmap n;
-        if (c() && (n = (imageReceiver = this.a).n()) != null && !n.isRecycled()) {
-            ImageReceiver imageReceiver2 = this.b;
-            if ((imageReceiver2.n() == null || imageReceiver.m() == null) && (n != this.c || imageReceiver2.n() == null)) {
-                this.c = n;
-                imageReceiver2.f0(Utilities.D(n, false));
-                ColorMatrixColorFilter colorMatrixColorFilter = f;
-                if (colorMatrixColorFilter == null) {
-                    ColorMatrix colorMatrix = new ColorMatrix();
-                    gl.l2(colorMatrix, 0.9f);
-                    gl.i(colorMatrix, 0.6f);
-                    ColorMatrixColorFilter colorMatrixColorFilter2 = new ColorMatrixColorFilter(colorMatrix);
-                    f = colorMatrixColorFilter2;
-                    colorMatrixColorFilter = colorMatrixColorFilter2;
+    @Override
+    public final void i() {
+        wca wcaVar = (wca) this.b;
+        float progress = 1.0f - (wcaVar.d.getProgress() * 0.143f);
+        bf0 bf0Var = wcaVar.a;
+        bf0Var.setScaleX(progress);
+        bf0Var.setScaleY(progress);
+        wcaVar.invalidate();
+    }
+
+    @Override
+    public final Object j(Integer num, Object obj) {
+        return (CharSequence) ((pb) this.b).a((Integer) obj);
+    }
+
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        byte b = this.a;
+        Object obj3 = this.b;
+        switch (b) {
+            case 0:
+                c6c c6cVar = (c6c) obj;
+                View view = (View) obj2;
+                Integer num = (Integer) number;
+                Float f = (Float) serializable;
+                Float f2 = (Float) serializable2;
+                if (((ch9[]) obj3)[0] != null && (view instanceof xk9)) {
+                    ((xk9) view).A();
+                    return;
                 }
-                imageReceiver2.p1 = colorMatrixColorFilter;
-            }
-            if (imageReceiver2.n() != null) {
-                return true;
-            }
+                return;
+            default:
+                ((jva) obj3).R((ArrayList) obj, (Integer) obj2, (Long) number, (ArrayList) serializable, (ArrayList) serializable2);
+                return;
         }
+    }
+
+    @Override
+    public final void l(int i, int i2) {
+        ela elaVar = (ela) this.b;
+        elaVar.x = i;
+        elaVar.y = i2;
+        xd9 xd9Var = elaVar.M;
+        if (xd9Var != null) {
+            xd9Var.invalidate();
+        }
+    }
+
+    @Override
+    public final void m() {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 4:
+                ((ck9) obj).g();
+                return;
+            default:
+                kk9 kk9Var = (kk9) obj;
+                ll0 ll0Var = kk9Var.a;
+                if (ll0Var != null) {
+                    ll0Var.s = true;
+                    ll0Var.r = kk9Var.r.q2;
+                }
+                kk9Var.w();
+                kg9 kg9Var = kk9Var.F;
+                if (kg9Var != null && kk9Var.a != null) {
+                    kg9Var.a.W3();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void n(long j) {
+        ((jsa) this.b).f();
+    }
+
+    @Override
+    public final int o(ylb ylbVar, boolean z) {
+        return ((IntSupplier) this.b).getAsInt();
+    }
+
+    @Override
+    public final boolean q(defpackage.nk3 r24, java.util.ArrayList r25, java.lang.CharSequence r26, boolean r27, boolean r28, int r29, int r30, defpackage.sxb r31) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.yf9.q(nk3, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, int, sxb):boolean");
+    }
+
+    @Override
+    public final void r(he heVar, int i) {
+        ((eb7) this.b).run();
+    }
+
+    @Override
+    public final boolean s(nk3 nk3Var) {
+        byte b = this.a;
         return false;
     }
 
-    public final boolean c() {
-        iy6 iy6Var = this.e;
-        if (iy6Var != null) {
-            if (iy6Var.e != null || iy6Var.b()) {
-                return true;
-            }
-            return false;
-        }
+    @Override
+    public final void t(long j, yw7 yw7Var) {
+        vsd.a(j, yw7Var, ((xx9) this.b).c);
+    }
+
+    @Override
+    public final boolean u(View view) {
         return false;
     }
 
-    public final boolean d() {
-        iy6 iy6Var = this.e;
-        if (iy6Var != null && !iy6Var.b && !iy6Var.b()) {
-            int i = this.e.l;
-            if (i == 90 || i == 270) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    private final void x(ImageReceiver imageReceiver) {
+    }
+
+    private final void y(ImageReceiver imageReceiver) {
+    }
+
+    @Override
+    public final void h(float f) {
+    }
+
+    private final void v(int i, Drawable drawable) {
+    }
+
+    private final void w(int i, Drawable drawable) {
+    }
+
+    @Override
+    public final void V(float f, int i) {
+    }
+
+    @Override
+    public final void p(View view, float f, float f2) {
     }
 }

@@ -1,67 +1,140 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.os.SystemClock;
-public final class o6a {
-    public static final String e;
-    public static final String f;
-    public static final String g;
-    public static final String h;
-    public final int a;
-    public final Bundle b;
-    public final long c;
-    public final b6a d;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+public final class o6a extends e0b {
+    public boolean a = false;
+    public long b = 0;
+    public boolean c = false;
+    public float d;
+    public final Paint e;
 
-    static {
-        String str = g8c.a;
-        e = "0";
-        f = "1";
-        g = "2";
-        h = "3";
+    public o6a(boolean z) {
+        if (z) {
+            Paint paint = new Paint(1);
+            this.e = paint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeWidth(gm.L(2.0f));
+        }
     }
 
-    public o6a(int i, Bundle bundle, long j, b6a b6aVar) {
-        boolean z = true;
-        if (b6aVar != null && i >= 0 && i != 1) {
-            z = false;
+    @Override
+    public final void b(int i) {
+        Paint paint = this.e;
+        if (paint != null) {
+            paint.setColor(i);
         }
-        gre.f(z);
-        this.a = i;
-        this.b = new Bundle(bundle);
-        this.c = j;
-        if (b6aVar == null && i < 0) {
-            b6aVar = new b6a(i);
-        }
-        this.d = b6aVar;
     }
 
-    public static o6a a(Bundle bundle) {
-        b6a b6aVar;
-        int i = bundle.getInt(e, -1);
-        Bundle o = g8c.o(bundle.getBundle(f));
-        long j = bundle.getLong(g, SystemClock.elapsedRealtime());
-        Bundle bundle2 = bundle.getBundle(h);
-        if (bundle2 != null) {
-            int i2 = bundle2.getInt(b6a.d, 1000);
-            String string = bundle2.getString(b6a.e, "");
-            Bundle o2 = g8c.o(bundle2.getBundle(b6a.f));
-            if (o2 == null) {
-                o2 = Bundle.EMPTY;
+    @Override
+    public final void c(boolean z) {
+        this.a = z;
+    }
+
+    @Override
+    public final void d() {
+        this.b = System.currentTimeMillis();
+        this.c = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f;
+        float f2;
+        float f3;
+        Paint paint = this.e;
+        if (paint == null) {
+            paint = cmb.c2;
+        }
+        Paint paint2 = paint;
+        int i = 0;
+        while (i < 3) {
+            if (i == 0) {
+                paint2.setAlpha((int) (this.d * 255.0f));
+            } else if (i == 2) {
+                paint2.setAlpha((int) ((1.0f - this.d) * 255.0f));
+            } else {
+                paint2.setAlpha(255);
             }
-            b6aVar = new b6a(string, i2, o2);
-        } else if (i != 0) {
-            b6aVar = new b6a(i);
-        } else {
-            b6aVar = null;
+            float L = (gm.L(5.0f) * i) + (gm.L(5.0f) * this.d);
+            if (this.a) {
+                f = 3.0f;
+            } else {
+                f = 4.0f;
+            }
+            float L2 = gm.L(f);
+            float L3 = L + gm.L(4.0f);
+            float f4 = 8.0f;
+            if (this.a) {
+                f2 = 7.0f;
+            } else {
+                f2 = 8.0f;
+            }
+            float L4 = gm.L(f2);
+            Canvas canvas2 = canvas;
+            canvas2.drawLine(L, L2, L3, L4, paint2);
+            if (this.a) {
+                f3 = 11.0f;
+            } else {
+                f3 = 12.0f;
+            }
+            float L5 = gm.L(f3);
+            float L6 = L + gm.L(4.0f);
+            if (this.a) {
+                f4 = 7.0f;
+            }
+            canvas2.drawLine(L, L5, L6, gm.L(f4), paint2);
+            i++;
+            canvas = canvas2;
         }
-        b6a b6aVar2 = b6aVar;
-        if (o == null) {
-            o = Bundle.EMPTY;
+        if (this.c) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j = currentTimeMillis - this.b;
+            this.b = currentTimeMillis;
+            if (j > 50) {
+                j = 50;
+            }
+            this.d = (((float) j) / 500.0f) + this.d;
+            while (true) {
+                float f5 = this.d;
+                if (f5 > 1.0f) {
+                    this.d = f5 - 1.0f;
+                } else {
+                    a();
+                    return;
+                }
+            }
         }
-        return new o6a(i, o, j, b6aVar2);
     }
 
-    public o6a(int i) {
-        this(i, Bundle.EMPTY, SystemClock.elapsedRealtime(), null);
+    @Override
+    public final void e() {
+        this.c = false;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return gm.L(14.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return gm.L(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,58 +1,66 @@
 package defpackage;
 
-import android.view.View;
-public final class ne2 implements vc7, ed, d39, e39 {
-    public final byte a;
-    public final kf2 b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public abstract class ne2 extends FrameLayout {
+    public vgc a;
+    public float b;
+    public boolean c;
+    public float d;
+    public ValueAnimator e;
 
-    public ne2(kf2 kf2Var, byte b) {
-        this.a = b;
-        this.b = kf2Var;
-    }
+    public abstract void a(boolean z);
 
-    @Override
-    public final boolean d(int i, View view) {
-        kf2 kf2Var = this.b;
-        if (kf2Var.getParentActivity() != null) {
-            w39 adapter = kf2Var.c.getAdapter();
-            gf2 gf2Var = kf2Var.a;
-            if (adapter == gf2Var) {
-                return kf2Var.h0(gf2Var.E(i), false, view);
-            }
+    public final void b(boolean z) {
+        float f;
+        this.c = z;
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            this.e = null;
+            valueAnimator.cancel();
         }
-        return false;
-    }
-
-    @Override
-    public final void e(float f, float f2, int i, View view) {
-        this.b.r0(i, view);
-    }
-
-    @Override
-    public final boolean q(View view) {
-        return false;
-    }
-
-    @Override
-    public final void run(long j) {
-        this.b.s0(j);
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        kf2 kf2Var = this.b;
-        switch (b) {
-            case 1:
-                kf2Var.x0();
-                return;
-            default:
-                kf2Var.finishFragment();
-                return;
+        if (z) {
+            setVisibility(0);
         }
+        float f2 = this.d;
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
+        this.e = ofFloat;
+        ofFloat.addUpdateListener(new et1(this, (byte) 9));
+        this.e.setInterpolator(d53.h);
+        this.e.setDuration(320L);
+        this.e.addListener(new y7((byte) 19, this, z));
+        this.e.start();
+    }
+
+    public int getCurrentHeight() {
+        return (int) (getMeasuredHeight() * this.b);
     }
 
     @Override
-    public final void l(View view, float f, float f2) {
+    public final boolean isShown() {
+        return this.c;
+    }
+
+    public void setShown(float f) {
+        this.b = f;
+        vgc vgcVar = this.a;
+        if (vgcVar != null) {
+            vgcVar.setPivotX(vgcVar.getWidth() / 2.0f);
+            this.a.setPivotY(0.0f);
+            this.a.setScaleX(gm.R1(0.8f, 1.0f, f));
+            this.a.setScaleY(gm.R1(0.8f, 1.0f, f));
+        }
+        setAlpha(f);
+        invalidate();
+    }
+
+    public void setTabs(vgc vgcVar) {
+        this.a = vgcVar;
+        addView(vgcVar, qoe.c(-1.0f, -1));
     }
 }

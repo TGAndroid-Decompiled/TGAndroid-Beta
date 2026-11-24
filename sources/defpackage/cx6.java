@@ -1,26 +1,26 @@
 package defpackage;
-public final class cx6 implements lx6 {
-    public final byte a;
-    public final lx6 b;
 
-    public cx6(lx6 lx6Var, byte b) {
-        this.a = b;
-        this.b = lx6Var;
+import android.media.session.MediaSessionManager;
+import android.text.TextUtils;
+public class cx6 extends bx6 {
+    @Override
+    public final my6 c() {
+        MediaSessionManager.RemoteUserInfo currentControllerInfo = this.a.getCurrentControllerInfo();
+        ?? obj = new Object();
+        String packageName = currentControllerInfo.getPackageName();
+        if (packageName != null) {
+            if (!TextUtils.isEmpty(packageName)) {
+                obj.a = new py6(currentControllerInfo.getPackageName(), currentControllerInfo.getPid(), currentControllerInfo.getUid());
+                return obj;
+            }
+            u36.j("packageName should be nonempty");
+            return null;
+        }
+        gxc.d("package shouldn't be null");
+        return null;
     }
 
     @Override
-    public final Object p(tv6 tv6Var, su6 su6Var, int i) {
-        byte b = this.a;
-        lx6 lx6Var = this.b;
-        switch (b) {
-            case 0:
-                if (tv6Var == null) {
-                    ox6.e(null, su6Var, i, lx6Var, new jh(su6Var, i, (byte) 14));
-                    throw null;
-                }
-                throw new ClassCastException();
-            default:
-                return ox6.e(tv6Var, su6Var, i, lx6Var, new zf(tv6Var, su6Var, i, (byte) 8));
-        }
+    public final void d(my6 my6Var) {
     }
 }

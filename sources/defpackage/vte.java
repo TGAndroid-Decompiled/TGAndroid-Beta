@@ -1,24 +1,13 @@
 package defpackage;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 public abstract class vte {
-    public final byte a = 1;
-
-    public final int hashCode() {
-        switch (this.a) {
-            case 1:
-                return toString().hashCode();
-            default:
-                return super.hashCode();
+    public static SharedPreferences a(Context context) {
+        Context applicationContext = context.getApplicationContext();
+        if (applicationContext != null) {
+            context = applicationContext;
         }
-    }
-
-    public final String toString() {
-        switch (this.a) {
-            case 1:
-                String b = f59.a(getClass()).b();
-                b.getClass();
-                return b;
-            default:
-                return super.toString();
-        }
+        return context.getSharedPreferences("com.google.firebase.messaging", 0);
     }
 }

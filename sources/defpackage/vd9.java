@@ -1,4 +1,4 @@
 package defpackage;
-public final class vd9 {
-    public final ye9 a;
+public interface vd9 {
+    bu5 d(ne9 ne9Var);
 }

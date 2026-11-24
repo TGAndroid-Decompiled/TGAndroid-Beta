@@ -1,40 +1,80 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public final class t18 implements rz6 {
-    public final y28 a;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.p;
+public final class t18 extends FrameLayout {
+    public final Paint a;
+    public float b;
+    public zna c;
+    public final p d;
 
-    public t18(y28 y28Var) {
-        this.a = y28Var;
+    public t18(p pVar, Context context) {
+        super(context);
+        this.d = pVar;
+        this.a = new Paint(1);
+        setWillNotDraw(false);
+    }
+
+    public final void a(boolean z, boolean z2) {
+        float f;
+        float f2;
+        zna znaVar = this.c;
+        if (znaVar != null) {
+            znaVar.d();
+        }
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        if (z2) {
+            float f3 = this.b;
+            if (f3 == f) {
+                return;
+            }
+            zna znaVar2 = new zna(new xk4(f3 * 100.0f));
+            aoa aoaVar = new aoa(f * 100.0f);
+            if (z) {
+                f2 = 500.0f;
+            } else {
+                f2 = 650.0f;
+            }
+            aoaVar.b(f2);
+            aoaVar.a(1.0f);
+            znaVar2.m = aoaVar;
+            this.c = znaVar2;
+            znaVar2.b(new h20(this, (byte) 10));
+            this.c.a(new hx0(this, (byte) 5));
+            this.c.h();
+            return;
+        }
+        this.b = f;
+        TextView textView = this.d.V;
+        if (textView != null) {
+            textView.setAlpha((f * 0.2f) + 0.8f);
+        }
+        invalidate();
     }
 
     @Override
-    public final void c(TLRPC.BotInlineResult botInlineResult, boolean z, int i) {
-        y28 y28Var = this.a;
-        ij.X(y28Var.s2, y28Var.r1, 1, new p22(this, i, botInlineResult, z, (byte) 1));
-    }
-
-    @Override
-    public final Paint.FontMetricsInt d() {
-        return this.a.R1.getEditField().getPaint().getFontMetricsInt();
-    }
-
-    @Override
-    public final void h(TLRPC.TL_document tL_document, String str, Object obj) {
-        y28 y28Var = this.a;
-        ij.X(y28Var.s2, y28Var.r1, 1, new au0(this, tL_document, str, obj, (byte) 13));
-    }
-
-    @Override
-    public final void k(int i, int i2, CharSequence charSequence, boolean z) {
-        this.a.R1.o1(i, i2, charSequence, z);
-    }
-
-    @Override
-    public final void m(String str) {
-        q18 q18Var = this.a.R1;
-        q18Var.X();
-        q18Var.V0.d(str);
+    public final void onDraw(Canvas canvas) {
+        int L;
+        super.onDraw(canvas);
+        int i = cmb.N6;
+        p pVar = this.d;
+        canvas.drawColor(pVar.getThemedColor(i));
+        int themedColor = pVar.getThemedColor(cmb.Ui);
+        Paint paint = this.a;
+        paint.setColor(themedColor);
+        if (jb6.a0) {
+            L = getWidth() - gm.L(28.0f);
+        } else {
+            L = gm.L(28.0f);
+        }
+        canvas.drawCircle(L, -gm.L(28.0f), Math.max(getWidth(), getHeight()) * this.b, paint);
     }
 }

@@ -16,21 +16,21 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
             this.F = extras.getInt("appWidgetId", 0);
         }
         if (this.F != 0) {
-            tb4.j(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            zt3 zt3Var = new zt3(1, this.F);
-            zt3Var.E = new vu2(this, (byte) 0);
-            if (gl.O1()) {
+            td4.j(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            kv3 kv3Var = new kv3(1, this.F);
+            kv3Var.E = new wm2(this, (byte) 3);
+            if (gm.O1()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.b(-1, zt3Var);
+                    this.d.b(-1, kv3Var);
                 }
             } else if (this.c.getFragmentStack().isEmpty()) {
-                this.c.b(-1, zt3Var);
+                this.c.b(-1, kv3Var);
             }
-            if (!gl.O1()) {
+            if (!gm.O1()) {
                 this.e.setVisibility(8);
             }
             this.c.e0();
-            if (gl.O1()) {
+            if (gm.O1()) {
                 this.d.e0();
             }
             intent.setAction(null);

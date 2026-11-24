@@ -1,4 +1,3 @@
 package defpackage;
-public abstract class e9d extends dzc implements n9d {
-    public static final int b = 0;
+public final class e9d extends f1d implements o9d {
 }

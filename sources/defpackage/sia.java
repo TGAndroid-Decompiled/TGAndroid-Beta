@@ -1,23 +1,21 @@
 package defpackage;
-public final class sia implements fv9 {
-    @Override
-    public final boolean c() {
-        return true;
+
+import java.util.ArrayList;
+import java.util.List;
+public abstract class sia {
+    public Object a(List list) {
+        return null;
     }
 
-    @Override
-    public final boolean d() {
-        return false;
+    public List b() {
+        return new ArrayList();
     }
 
-    @Override
-    public final ev9 f(long j) {
-        hv9 hv9Var = new hv9(j, 0L);
-        return new ev9(hv9Var, hv9Var);
+    public Object c() {
+        return null;
     }
 
-    @Override
-    public final long h() {
-        return -9223372036854775807L;
+    public Object d(List list) {
+        return null;
     }
 }

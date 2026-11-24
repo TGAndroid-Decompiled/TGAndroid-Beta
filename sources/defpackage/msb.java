@@ -1,11 +1,11 @@
 package defpackage;
-public enum msb extends qsb {
+public enum msb extends rub {
     public msb() {
-        super("ScriptData", 5);
+        super("Data", 0);
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        qsb.d(aqbVar, zj1Var, this, qsb.G);
+    public final void c(defpackage.bsb r7, defpackage.hl1 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.msb.c(bsb, hl1):void");
     }
 }

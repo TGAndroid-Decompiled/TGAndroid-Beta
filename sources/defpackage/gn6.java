@@ -1,32 +1,69 @@
 package defpackage;
+
+import org.telegram.messenger.MediaController;
 public final class gn6 implements Runnable {
     public final byte a;
-    public final hq6 b;
-    public final boolean c;
-    public final int d;
+    public final boolean[] b;
+    public final he c;
 
-    public gn6(hq6 hq6Var, boolean z, int i, byte b) {
+    public gn6(he heVar, boolean[] zArr, byte b) {
         this.a = b;
-        this.b = hq6Var;
-        this.c = z;
-        this.d = i;
+        this.c = heVar;
+        this.b = zArr;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        int i = this.d;
-        boolean z = this.c;
-        hq6 hq6Var = this.b;
+        boolean[] zArr = this.b;
+        he heVar = this.c;
         switch (b) {
             case 0:
-                hq6Var.x0[z ? 1 : 0] = false;
-                hq6Var.y0[z ? 1 : 0] = true;
-                hq6Var.r0[z ? 1 : 0] = i;
+                String[] strArr = MediaController.W1;
+                if (!zArr[0]) {
+                    heVar.show();
+                    return;
+                }
                 return;
+            case 1:
+                String[] strArr2 = MediaController.W1;
+                if (!zArr[0]) {
+                    heVar.show();
+                    return;
+                }
+                return;
+            case 2:
+                String[] strArr3 = MediaController.W1;
+                try {
+                    if (heVar.isShowing()) {
+                        heVar.dismiss();
+                    } else {
+                        zArr[0] = true;
+                    }
+                    return;
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return;
+                }
             default:
-                hq6Var.r0[z ? 1 : 0] = i;
-                return;
+                String[] strArr4 = MediaController.W1;
+                try {
+                    if (heVar.isShowing()) {
+                        heVar.dismiss();
+                    } else {
+                        zArr[0] = true;
+                    }
+                    return;
+                } catch (Exception e2) {
+                    fc4.g(e2, true);
+                    return;
+                }
         }
+    }
+
+    public gn6(boolean[] zArr, he heVar, byte b) {
+        this.a = b;
+        this.b = zArr;
+        this.c = heVar;
     }
 }

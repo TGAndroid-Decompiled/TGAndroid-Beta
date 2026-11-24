@@ -1,79 +1,116 @@
 package defpackage;
 
 import android.content.Context;
-import org.telegram.tgnet.TLObject;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class sr0 implements Runnable {
-    public final byte a = 2;
-    public final Object b;
-    public final long c;
-    public final int d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
-    public final Object n;
-    public final Object r;
+public final class sr0 extends Drawable implements zy {
+    public final Paint a;
+    public final Paint b;
+    public final Paint c;
+    public final ImageReceiver d;
+    public final ImageReceiver e;
+    public final Drawable f;
+    public int h;
 
-    public sr0(int i, TLRPC.TL_error tL_error, is0 is0Var, TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, wy wyVar, d dVar, long j) {
-        this.d = i;
-        this.b = tL_error;
-        this.e = is0Var;
-        this.f = tL_inputCheckPasswordSRP;
-        this.h = twoStepVerificationActivity;
-        this.n = wyVar;
-        this.r = dVar;
-        this.c = j;
+    public sr0(Context context, TLRPC.User user, TLRPC.User user2) {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        this.b = new Paint(1);
+        Paint paint2 = new Paint(1);
+        this.c = paint2;
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.d = imageReceiver;
+        ImageReceiver imageReceiver2 = new ImageReceiver(null);
+        this.e = imageReceiver2;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(gm.L(2.0f));
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-1);
+        Drawable mutate = context.getResources().getDrawable(2131231132).mutate();
+        this.f = mutate;
+        int w0 = cmb.w0(null, cmb.K5, false);
+        this.h = w0;
+        mutate.setColorFilter(new PorterDuffColorFilter(w0, PorterDuff.Mode.SRC_IN));
+        pc0 pc0Var = new pc0((ylb) null);
+        pc0Var.q(user);
+        imageReceiver.U(user, pc0Var, null);
+        imageReceiver.q0(gm.L(25.0f));
+        pc0 pc0Var2 = new pc0((ylb) null);
+        pc0Var2.q(user2);
+        imageReceiver2.U(user2, pc0Var2, null);
+        imageReceiver2.q0(gm.L(25.0f));
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sr0.run():void");
+    public final void a(s09 s09Var) {
+        this.e.p0(s09Var);
+        this.d.p0(s09Var);
     }
 
-    public sr0(pk5 pk5Var, int i, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j) {
-        this.b = pk5Var;
-        this.d = i;
-        this.e = str;
-        this.f = inputFile;
-        this.h = inputEncryptedFile;
-        this.n = bArr;
-        this.r = bArr2;
-        this.c = j;
+    @Override
+    public final void b(ImageReceiver imageReceiver) {
+        this.d.K();
+        this.e.K();
     }
 
-    public sr0(TLObject tLObject, int i, hd hdVar, Context context, long j, wjb wjbVar, st0 st0Var, p pVar) {
-        this.b = tLObject;
-        this.d = i;
-        this.e = hdVar;
-        this.f = context;
-        this.c = j;
-        this.h = wjbVar;
-        this.n = st0Var;
-        this.r = pVar;
+    @Override
+    public final void c(ImageReceiver imageReceiver) {
+        this.d.I();
+        this.e.I();
     }
 
-    public sr0(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, d dVar, long j, is0 is0Var, wy wyVar, int i) {
-        this.e = tL_error;
-        this.b = tLObject;
-        this.f = twoStepVerificationActivity;
-        this.h = dVar;
-        this.c = j;
-        this.n = is0Var;
-        this.r = wyVar;
-        this.d = i;
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int i = cmb.K5;
+        int w0 = cmb.w0(null, i, false);
+        Paint paint = this.b;
+        paint.setColor(w0);
+        float L = gm.L(136.0f) / 2.0f;
+        ImageReceiver imageReceiver = this.d;
+        imageReceiver.i0(bounds.centerX() - L, bounds.centerY() - gm.L(25.0f), gm.L(50.0f), gm.L(50.0f));
+        imageReceiver.h(canvas, null);
+        float centerX = (bounds.centerX() - L) + gm.L(41.0f);
+        float L2 = gm.L(16.0f) + bounds.centerY();
+        canvas.drawCircle(centerX, L2, gm.L(14.0f), paint);
+        canvas.drawCircle(centerX, L2, gm.L(12.0f), this.c);
+        int w02 = cmb.w0(null, i, false);
+        int i2 = this.h;
+        Drawable drawable = this.f;
+        if (w02 != i2) {
+            this.h = w02;
+            drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+        }
+        drawable.setBounds((int) (centerX - gm.L(9.0f)), (int) (L2 - gm.L(9.0f)), (int) (centerX + gm.L(9.0f)), (int) (L2 + gm.L(9.0f)));
+        drawable.draw(canvas);
+        int centerX2 = bounds.centerX();
+        Paint paint2 = this.a;
+        canvas.drawLine(bounds.centerX() - gm.L(3.33f), bounds.centerY() - gm.L(7.0f), gm.L(3.33f) + centerX2, bounds.centerY(), paint2);
+        canvas.drawLine(bounds.centerX() - gm.L(3.33f), gm.L(7.0f) + bounds.centerY(), gm.L(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
+        ImageReceiver imageReceiver2 = this.e;
+        imageReceiver2.i0((bounds.centerX() + L) - gm.L(50.0f), bounds.centerY() - gm.L(25.0f), gm.L(50.0f), gm.L(50.0f));
+        imageReceiver2.h(canvas, null);
     }
 
-    public sr0(LaunchActivity launchActivity, TLObject tLObject, int i, String str, String str2, TLRPC.User user, String str3, long j) {
-        this.e = launchActivity;
-        this.b = tLObject;
-        this.d = i;
-        this.f = str;
-        this.h = str2;
-        this.n = user;
-        this.r = str3;
-        this.c = j;
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

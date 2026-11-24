@@ -1,285 +1,236 @@
 package defpackage;
 
-import android.graphics.Path;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.ClippingImageView;
-import org.telegram.ui.Components.PollVotesAlert$UserCell;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.SecretMediaViewer;
-public final class pm extends qn {
-    public final byte b;
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.concurrent.Executor;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class pm implements RequestDelegate {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public pm(String str, byte b) {
-        super(str, (byte) 0);
-        this.b = b;
+    public pm(String str, ArrayList arrayList) {
+        this.a = (byte) 4;
+        this.c = arrayList;
+        this.b = str;
     }
 
     @Override
-    public final void c(Object obj, float f) {
-        vx8 vx8Var;
-        double sqrt;
-        boolean z;
-        boolean z2;
-        float f2;
-        jia jiaVar;
-        jia jiaVar2;
-        switch (this.b) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i;
+        int indexOf;
+        switch (this.a) {
             case 0:
-                qm qmVar = (qm) obj;
-                if (qmVar.e != f) {
-                    qmVar.e = f;
-                    qmVar.g.invalidate();
-                    return;
-                }
+                rm rmVar = (rm) this.b;
+                nm7.f(rmVar.e).d(new qm(rmVar, (ArrayList) this.c, tLObject, (byte) 0));
                 return;
             case 1:
-                ((ImageReceiver) obj).i1 = f;
+                gm.c3(new op6((i30) this.b, (he) this.c, tLObject, (byte) 10));
                 return;
             case 2:
-                ((ClippingImageView) obj).setAnimationProgress(f);
+                gm.c3(new op6(tLObject, (oc7) this.b, (z0a) this.c));
                 return;
             case 3:
-                ((PhotoViewer) obj).setAnimationValue(f);
-                return;
-            case 4:
-                ((ue3) obj).setClipProgress(f);
-                return;
-            case 5:
-                ((q11) obj).setInOutOffset(f);
-                return;
-            case 6:
-                mu1.md = (int) f;
-                return;
-            case 7:
-                ((gb2) obj).setTimeAlpha(f);
-                return;
-            case 8:
-                ((g27) obj).d = f;
-                return;
-            case 9:
-                ((PollVotesAlert$UserCell) obj).setPlaceholderAlpha(f);
-                return;
-            case 10:
-                ((wn8) obj).setCrossfadeProgress(f);
-                return;
-            case 11:
-                vx8 vx8Var2 = (vx8) obj;
-                vx8Var2.H = f;
-                RectF rectF = vx8Var2.w;
-                RectF rectF2 = vx8Var2.s;
-                float interpolation = 1.0f - ux8.p.getInterpolation(f);
-                float interpolation2 = (ux8.h.getInterpolation(vx8Var2.H) - ux8.i.getInterpolation(vx8Var2.H)) * gl.L(13.0f);
-                RectF rectF3 = vx8Var2.n;
-                RectF rectF4 = vx8Var2.h;
-                rectF3.set(rectF4);
-                rectF3.offset(0.0f, -interpolation2);
-                float g = vx8.g(rectF3.height(), (gl.L(2.0f) * interpolation) + gl.L(56), ux8.l.getInterpolation(vx8Var2.H)) / 2.0f;
-                tx8 tx8Var = ux8.m;
-                float g2 = vx8.g(rectF3.width(), (gl.L(10.0f) * interpolation) + vx8Var2.h(), tx8Var.getInterpolation(vx8Var2.H));
-                float f3 = g * 2.0f;
-                float max = Math.max(g2, f3);
-                float interpolation3 = (tx8Var.getInterpolation(vx8Var2.H) * Math.min(gl.L(-12.0f) + vx8Var2.G, (max - Math.max(rectF3.width(), f3)) / 2.0f)) + rectF4.centerX() + g;
-                float interpolation4 = ((rectF4.bottom - g) - 1.0f) - (ux8.n.getInterpolation(vx8Var2.H) * ((gl.L(6.0f) * interpolation) + gl.L(38.0f)));
-                RectF rectF5 = vx8Var2.r;
-                rectF5.left = interpolation3 - max;
-                rectF5.top = interpolation4 - g;
-                rectF5.right = interpolation3;
-                rectF5.bottom = interpolation4 + g;
-                if (vx8Var2.R && !vx8Var2.N) {
-                    float g3 = vx8.g(gl.L(5.0f), gl.L(3.0f), ux8.o.getInterpolation(vx8Var2.H));
-                    float f4 = rectF5.bottom + g3;
-                    double width = (rectF3.width() / 2.0f) + g3;
-                    double abs = Math.abs(f4 - rectF3.centerY());
-                    if (width <= abs) {
-                        sqrt = 0.0d;
-                    } else {
-                        sqrt = Math.sqrt((width * width) - (abs * abs));
-                    }
-                    float f5 = (float) sqrt;
-                    float centerX = rectF3.centerX() - f5;
-                    if (centerX < (rectF5.height() / 2.0f) + rectF5.left) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    if (z) {
-                        PointF f6 = vx8.f(rectF3.centerX(), rectF3.centerY(), (rectF3.height() / 2.0f) + g3, (rectF5.height() / 2.0f) + rectF5.left, rectF5.centerY(), (rectF5.height() / 2.0f) + g3, true);
-                        if (f6 != null) {
-                            centerX = f6.x;
-                            f4 = f6.y;
-                        } else {
-                            vx8Var2.R = false;
+                oc7 oc7Var = (oc7) this.b;
+                u35 u35Var = (u35) this.c;
+                if (tLObject instanceof TLRPC.TL_contacts_found) {
+                    TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
+                    oc7Var.d4(tL_contacts_found.users, false);
+                    ArrayList arrayList = new ArrayList();
+                    for (int i2 = 0; i2 < tL_contacts_found.users.size(); i2++) {
+                        TLRPC.User user = tL_contacts_found.users.get(i2);
+                        if (!user.self && !m9c.z(user) && !m9c.C(user.id)) {
+                            arrayList.add(user);
                         }
                     }
-                    rectF2.set(centerX - g3, f4 - g3, centerX + g3, f4 + g3);
-                    float f7 = rectF5.bottom + g3;
-                    float centerX2 = rectF3.centerX() + f5;
-                    if (centerX2 > rectF5.right - (rectF5.height() / 2.0f)) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                    if (z2) {
-                        PointF f8 = vx8.f(rectF3.centerX(), rectF3.centerY(), (rectF3.height() / 2.0f) + g3, rectF5.right - (rectF5.height() / 2.0f), rectF5.centerY(), (rectF5.height() / 2.0f) + g3, false);
-                        if (f8 != null) {
-                            centerX2 = f8.x;
-                            f7 = f8.y;
-                        } else {
-                            vx8Var2.R = false;
-                        }
-                    }
-                    rectF.set(centerX2 - g3, f7 - g3, centerX2 + g3, f7 + g3);
-                    float abs2 = Math.abs(rectF2.centerX() - rectF.centerX());
-                    float abs3 = Math.abs(rectF2.centerY() - rectF.centerY());
-                    if (Math.sqrt((abs3 * abs3) + (abs2 * abs2)) <= (rectF.width() + rectF2.width()) / 2.0f && vx8Var2.R) {
-                        vx8Var2.R = false;
-                    }
-                    if (vx8Var2.R) {
-                        Path path = vx8Var2.e;
-                        path.reset();
-                        float b = vx8.b(rectF3.centerX(), rectF3.centerY(), rectF.centerX(), rectF.centerY());
-                        float b2 = vx8.b(rectF3.centerX(), rectF3.centerY(), rectF2.centerX(), rectF2.centerY());
-                        vx8Var = vx8Var2;
-                        vx8Var.a(path, rectF3, b, b2, false, false);
-                        float f9 = -90.0f;
-                        if (z) {
-                            f2 = vx8.b(rectF2.centerX(), rectF2.centerY(), (rectF5.height() / 2.0f) + rectF5.left, rectF5.centerY());
-                        } else {
-                            f2 = -90.0f;
-                        }
-                        float j = vx8.j(b2);
-                        float f10 = f2;
-                        vx8Var.a(path, rectF2, j, f10, true, true);
-                        if (!z) {
-                            path.lineTo((rectF5.height() / 2.0f) + rectF5.left, rectF5.bottom);
-                        }
-                        RectF rectF6 = vx8.c0;
-                        float f11 = rectF5.left;
-                        rectF6.set(f11, rectF5.top, rectF5.height() + f11, rectF5.bottom);
-                        vx8Var.a(path, rectF6, vx8.j(f10), -90.0f, false, false);
-                        path.lineTo(rectF5.right - (rectF5.height() / 2.0f), rectF5.top);
-                        if (z2) {
-                            f9 = vx8.b(rectF.centerX(), rectF.centerY(), rectF5.right - (rectF5.height() / 2.0f), rectF5.centerY());
-                        }
-                        rectF6.set(rectF5.right - rectF5.height(), rectF5.top, rectF5.right, rectF5.bottom);
-                        vx8Var.a(path, rectF6, -90.0f, vx8.j(f9), false, false);
-                        if (!z2) {
-                            path.lineTo(rectF.centerX(), rectF5.bottom);
-                        }
-                        vx8Var.a(path, rectF, f9, vx8.j(b), true, true);
-                        path.close();
-                        vx8Var.invalidateSelf();
-                        return;
-                    }
-                }
-                vx8Var = vx8Var2;
-                vx8Var.invalidateSelf();
-                return;
-            case 12:
-                vx8 vx8Var3 = (vx8) obj;
-                vx8Var3.I = f;
-                vx8Var3.invalidateSelf();
-                return;
-            case 13:
-                ((SecretMediaViewer) obj).setVideoCrossfadeAlpha(f);
-                return;
-            case 14:
-                ((SecretMediaViewer) obj).setAnimationValue(f);
-                return;
-            case 15:
-                ju9 ju9Var = (ju9) obj;
-                if (ju9Var.a != f) {
-                    ju9Var.a = f;
-                    SecretMediaViewer secretMediaViewer = ju9Var.r;
-                    secretMediaViewer.R.setAlpha(f);
-                    if (ju9Var.b) {
-                        secretMediaViewer.R.setPivotX(jiaVar.getWidth());
-                        secretMediaViewer.R.setPivotY(jiaVar2.getHeight());
-                        float f12 = 1.0f - f;
-                        float f13 = 1.0f - (0.1f * f12);
-                        secretMediaViewer.R.setScaleX(f13);
-                        secretMediaViewer.R.setScaleY(f13);
-                        tbc tbcVar = secretMediaViewer.P;
-                        if (tbcVar.y != f12) {
-                            tbcVar.y = f12;
-                            tbcVar.v.invalidate();
-                            return;
-                        }
-                        return;
-                    }
-                    if (ju9Var.c) {
-                        ju9Var.setTranslationY((1.0f - f) * gl.N(24.0f));
-                    }
-                    secretMediaViewer.Q.setAlpha(f);
+                    gm.c3(new x30(u35Var, arrayList, (byte) 11));
                     return;
                 }
                 return;
+            case 4:
+                gm.c3(new l97(tLObject, (ArrayList) this.c, (String) this.b, tL_error, (byte) 12));
+                return;
+            case 5:
+                gm.c3(new op6((Object) ((au0) this.b), tLObject, (Object) ((Context) this.c), (byte) 26));
+                return;
+            case 6:
+                gm.c3(new l97((zt0) this.b, tLObject, (String) this.c, tL_error, (byte) 13));
+                return;
+            case 7:
+                gm.c3(new op6((Object) ((boolean[]) this.b), tLObject, (Object) ((qu0) this.c), (byte) 27));
+                return;
+            case 8:
+                gm.c3(new tv0((q51) this.b, tLObject, (TL_account.TL_businessChatLink) this.c, (byte) 7));
+                return;
+            case 9:
+                gm.c3(new l97((k91) this.b, tL_error, tLObject, (Calendar) this.c, (byte) 19));
+                return;
+            case 10:
+                mh1 mh1Var = (mh1) this.b;
+                mh1Var.getClass();
+                gm.c3(new tv0(mh1Var, tLObject, (he) this.c, (byte) 18));
+                return;
+            case 11:
+                gm.c3(new tv0((ti1) this.b, tLObject, (bmb) this.c, (byte) 19));
+                return;
+            case 12:
+                gm.c3(new tv0((ik1) this.b, tLObject, (Activity) this.c, (byte) 22));
+                return;
+            case 13:
+                yv1 yv1Var = (yv1) this.b;
+                TLObject tLObject2 = (TLObject) this.c;
+                yv1Var.getClass();
+                if (tLObject instanceof TLRPC.messages_Messages) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    if (!messages_messages.messages.isEmpty()) {
+                        i = ((TLRPC.messages_Messages) tLObject2).offset_id_offset - messages_messages.offset_id_offset;
+                    } else {
+                        i = ((TLRPC.messages_Messages) tLObject2).offset_id_offset;
+                    }
+                    gm.c3(new vm1(yv1Var, i, (byte) 5));
+                    return;
+                }
+                return;
+            case 14:
+                gm.c3(new co1((yv1) this.b, tLObject, (TLRPC.User) this.c, (byte) 3));
+                return;
+            case 15:
+                yv1 yv1Var2 = (yv1) this.b;
+                TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages = (TLRPC.TL_messages_sendScheduledMessages) this.c;
+                yv1Var2.getClass();
+                if (tL_error == null) {
+                    yv1Var2.getMessagesController().T3((TLRPC.Updates) tLObject, false);
+                    gm.c3(new uj1(yv1Var2, tL_messages_sendScheduledMessages, (byte) 15));
+                    return;
+                } else if (tL_error.text != null) {
+                    gm.c3(new uj1(yv1Var2, tL_error, (byte) 16));
+                    return;
+                } else {
+                    return;
+                }
             case 16:
-                ahb ahbVar = (ahb) obj;
-                ahbVar.setAnimationProgress(f);
-                ahbVar.invalidate();
+                gm.c3(new xo1((yv1) this.b, tLObject, tL_error, (cf7) this.c, (byte) 1));
                 return;
             case 17:
-                bhb bhbVar = (bhb) obj;
-                bhb.a(bhbVar, f);
-                bhbVar.invalidate();
+                gm.c3(new co1((bu1) this.b, tLObject, (k47) this.c, (byte) 5));
                 return;
             case 18:
-                yhb yhbVar = (yhb) obj;
-                yhb.a(yhbVar, f);
-                yhbVar.invalidate();
+                gm.c3(new lx1((i22) this.b, (TLRPC.TL_attachMenuBot) this.c, (byte) 9));
+                return;
+            case 19:
+                gm.c3(new lx1((i22) this.b, (b22) this.c, (byte) 8));
+                return;
+            case 20:
+                ba2 ba2Var = (ba2) this.b;
+                TL_bots.setBotInfo setbotinfo = (TL_bots.setBotInfo) this.c;
+                TLRPC.UserFull userFull = ba2Var.E0;
+                if (userFull != null) {
+                    userFull.about = setbotinfo.about;
+                    ba2Var.getMessagesStorage().g2(ba2Var.E0, false);
+                }
+                gm.c3(new v92(ba2Var, (byte) 2));
+                return;
+            case 21:
+                gm.c3(new ra2((ib2) this.b, (he[]) this.c, (byte) 1));
+                return;
+            case 22:
+                ke2 ke2Var = (ke2) this.b;
+                ke2Var.getClass();
+                gm.c3(new xo1(ke2Var, tL_error, tLObject, (TwoStepVerificationActivity) this.c, (byte) 9));
+                return;
+            case 23:
+                gm.c3(new co1((gf2) this.b, tLObject, (bmb) this.c, (byte) 20));
+                return;
+            case 24:
+                gm.c3(new ra2((yg2) this.b, (ge7) this.c, (byte) 19));
+                return;
+            case 25:
+                ConnectionsManager.lambda$sendRequestTyped$3((Executor) this.b, (jac) this.c, tLObject, tL_error);
+                return;
+            case 26:
+                bw2 bw2Var = (bw2) this.b;
+                dm8 dm8Var = (dm8) this.c;
+                if (tL_error == null) {
+                    bw2Var.a0.clear();
+                    bw2Var.Z.clear();
+                    bw2Var.n0 = 0;
+                    bw2Var.s = false;
+                    bw2Var.e = false;
+                    bw2Var.h = false;
+                    bw2Var.b = false;
+                    bw2Var.r = false;
+                    bw2Var.w = "";
+                    gm.c3(new mv2(bw2Var, dm8Var, (byte) 1));
+                    return;
+                }
+                gm.c3(dm8Var);
+                return;
+            case 27:
+                bw2 bw2Var2 = (bw2) this.b;
+                TLRPC.User user2 = (TLRPC.User) this.c;
+                if (tL_error == null) {
+                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                    TLRPC.UserProfilePhoto userProfilePhoto = user2.photo;
+                    if (userProfilePhoto != null && userProfilePhoto.personal) {
+                        for (int i3 = 0; i3 < updates.users.size(); i3++) {
+                            if (updates.users.get(i3).id == user2.id) {
+                                updates.users.get(i3).photo = user2.photo;
+                            }
+                        }
+                    }
+                    bw2Var2.getMessagesController().T3(updates, false);
+                    for (int i4 = 0; i4 < updates.users.size(); i4++) {
+                        TLRPC.User user3 = updates.users.get(i4);
+                        if (user3.id == user2.id) {
+                            Utilities.h.c(new mv2(bw2Var2, user3, (byte) 2));
+                            TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
+                            tL_contact.user_id = user3.id;
+                            ArrayList arrayList2 = new ArrayList();
+                            arrayList2.add(tL_contact);
+                            bw2Var2.getMessagesStorage().Z0(arrayList2, false);
+                            if (!TextUtils.isEmpty(user3.phone)) {
+                                bw2.m(0, user3.first_name, user3.last_name);
+                                bw2Var2.getMessagesStorage().e(user3.phone, "");
+                                yv2 yv2Var = (yv2) bw2Var2.a0.get(user3.phone);
+                                if (yv2Var != null && (indexOf = yv2Var.g.indexOf(user3.phone)) != -1) {
+                                    yv2Var.h.set(indexOf, 0);
+                                }
+                            }
+                        }
+                    }
+                    gm.c3(new co1(bw2Var2, updates, user2, (byte) 29));
+                    return;
+                }
+                return;
+            case 28:
+                bw2 bw2Var3 = (bw2) this.b;
+                SharedPreferences.Editor editor = (SharedPreferences.Editor) this.c;
+                if (tLObject instanceof Vector) {
+                    gm.c3(new co1(bw2Var3, editor, (Vector) tLObject, (byte) 27));
+                    return;
+                }
                 return;
             default:
-                ((x7c) obj).H0(f);
+                gm.c3(new pz2((kw3) this.b, tLObject, (k47) this.c, (byte) 17));
                 return;
         }
     }
 
-    @Override
-    public final Object get(Object obj) {
-        switch (this.b) {
-            case 0:
-                return Float.valueOf(((qm) obj).e);
-            case 1:
-                return Float.valueOf(((ImageReceiver) obj).i1);
-            case 2:
-                return Float.valueOf(((ClippingImageView) obj).getAnimationProgress());
-            case 3:
-                return Float.valueOf(((PhotoViewer) obj).getAnimationValue());
-            case 4:
-                return Float.valueOf(((ue3) obj).getClipProgress());
-            case 5:
-                return Float.valueOf(((q11) obj).inOutOffset);
-            case 6:
-                return Float.valueOf(mu1.md);
-            case 7:
-                return Float.valueOf(((gb2) obj).getTimeAlpha());
-            case 8:
-                return Float.valueOf(((g27) obj).d);
-            case 9:
-                return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
-            case 10:
-                return Float.valueOf(((wn8) obj).T);
-            case 11:
-                return Float.valueOf(((vx8) obj).H);
-            case 12:
-                return Float.valueOf(((vx8) obj).I);
-            case 13:
-                return Float.valueOf(((SecretMediaViewer) obj).getVideoCrossfadeAlpha());
-            case 14:
-                return Float.valueOf(((SecretMediaViewer) obj).getAnimationValue());
-            case 15:
-                return Float.valueOf(((ju9) obj).a);
-            case 16:
-                return Float.valueOf(((ahb) obj).s);
-            case 17:
-                return Float.valueOf(((bhb) obj).h);
-            case 18:
-                return Float.valueOf(((yhb) obj).f);
-            default:
-                return Float.valueOf(((x7c) obj).y1);
-        }
+    public pm(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 }

@@ -1,38 +1,41 @@
 package defpackage;
 
-import android.content.Context;
-import androidx.core.widget.NestedScrollView;
-public final class i6c extends NestedScrollView {
-    public boolean W;
-    public final j6c a0;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class i6c extends URLSpan {
+    public final wkb a;
+    public boolean b;
 
-    public i6c(j6c j6cVar, Context context) {
-        super(context);
-        this.a0 = j6cVar;
+    public i6c(String str, wkb wkbVar) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.a = wkbVar;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.a0.E0();
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.i6c.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i, int i2, int i3, int i4) {
-        super.onScrollChanged(i, i2, i3, i4);
-        this.a0.E0();
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W) {
-            return;
+    public final void onClick(View view) {
+        if (this.b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
         }
-        super.requestLayout();
+        l11.r(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        wkb wkbVar = this.a;
+        if (wkbVar != null) {
+            wkbVar.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z = true;
+            } else {
+                z = false;
+            }
+            textPaint.setUnderlineText(z);
+        }
     }
 }

@@ -1,8 +1,13 @@
 package defpackage;
-public abstract class c8e {
-    public static final int a = 0;
+public final class c8e {
+    public final Throwable a;
 
     static {
-        jae jaeVar = jae.c;
+        new c8e(new i2("Failure occurred while trying to finish a future.", (byte) 3));
+    }
+
+    public c8e(Throwable th) {
+        boolean z = a7f.d;
+        this.a = th;
     }
 }

@@ -1,167 +1,68 @@
 package defpackage;
 
-import android.graphics.Color;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.RuntimeShader;
-import java.util.Arrays;
+import android.view.View;
+import java.util.List;
 public final class s46 {
-    public float A;
-    public boolean B;
-    public final RenderNode a;
-    public final RuntimeShader b;
-    public RuntimeShader c;
-    public RuntimeShader d;
-    public RenderEffect e;
-    public RenderEffect[] f;
-    public float[] g;
-    public float[] h;
+    public boolean a;
+    public int b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+    public int g;
+    public int h;
     public int i;
-    public float j;
-    public float k;
-    public float l;
-    public float m;
-    public float n;
-    public float o;
-    public float p;
-    public float q;
-    public float r;
-    public int s;
-    public float t;
-    public float u;
-    public float v;
-    public float w;
-    public float x;
-    public float y;
-    public float z;
+    public int j;
+    public List k;
+    public boolean l;
 
-    public s46(RenderNode renderNode) {
-        this.a = renderNode;
-        RuntimeShader b = nm3.b(gl.v2(null, 2131624083));
-        this.b = b;
-        this.d = b;
-        RenderEffect createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(b, "img");
-        this.e = createRuntimeShaderEffect;
-        renderNode.setRenderEffect(createRuntimeShaderEffect);
-    }
-
-    public final void a(float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8) {
-        if (this.x == f && this.y == f2 && this.z == f3 && this.A == f4 && this.t == f5 && this.u == f6 && this.v == f7 && this.w == f8) {
-            return;
-        }
-        this.x = f;
-        this.y = f2;
-        this.z = f3;
-        this.A = f4;
-        this.t = f5;
-        this.u = f6;
-        this.v = f7;
-        this.w = f8;
-        this.B = true;
-    }
-
-    public final void b(float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10, float f11, int i, float f12, float f13, int i2) {
-        float f14;
-        float f15;
-        float f16;
-        float f17;
-        int length;
-        float f18 = f5 + f8;
-        if (f18 > f2) {
-            float f19 = f5 / f18;
-            f14 = f2 * f19;
-            f15 = (1.0f - f19) * f2;
-        } else {
-            f14 = f5;
-            f15 = f8;
-        }
-        float f20 = f6 + f7;
-        if (f20 > f2) {
-            float f21 = f6 / f20;
-            f16 = f2 * f21;
-            f17 = (1.0f - f21) * f2;
-        } else {
-            f16 = f6;
-            f17 = f7;
-        }
-        if (this.i != i2 || Math.abs(this.j - f) > 0.1f || Math.abs(this.k - f2) > 0.1f || Math.abs(this.l - f14) > 0.1f || Math.abs(this.m - f16) > 0.1f || Math.abs(this.n - f17) > 0.1f || Math.abs(this.o - f15) > 0.1f || Math.abs(this.p - f9) > 0.1f || Math.abs(this.q - f10) > 0.1f || Math.abs(this.r - f11) > 0.1f || this.s != i || this.B) {
-            this.B = false;
-            if (this.t > 0.0f) {
-                RuntimeShader runtimeShader = this.c;
-                if (runtimeShader == null) {
-                    nm3.c();
-                    runtimeShader = nm3.b(gl.v2(null, 2131624082));
-                    this.c = runtimeShader;
+    public final void a(View view) {
+        int b;
+        int size = this.k.size();
+        View view2 = null;
+        int i = Integer.MAX_VALUE;
+        for (int i2 = 0; i2 < size; i2++) {
+            View view3 = ((u69) this.k.get(i2)).a;
+            g69 g69Var = (g69) view3.getLayoutParams();
+            if (view3 != view && !g69Var.a.j() && (b = (g69Var.b() - this.d) * this.e) >= 0 && b < i) {
+                view2 = view3;
+                if (b == 0) {
+                    break;
                 }
-                this.d = runtimeShader;
-            } else {
-                this.d = this.b;
-            }
-            this.s = i;
-            float alpha = Color.alpha(i) / 255.0f;
-            float f22 = 1.0f / i2;
-            this.i = i2;
-            this.j = f;
-            this.k = f2;
-            this.n = f17;
-            this.m = f16;
-            this.o = f15;
-            this.l = f14;
-            this.p = f9;
-            this.d.setFloatUniform("size", (f / 2.0f) * f22, (f2 / 2.0f) * f22);
-            this.d.setFloatUniform("radius", f17 * f22, f16 * f22, f15 * f22, f14 * f22);
-            this.d.setFloatUniform("thickness", f9 * f22);
-            RuntimeShader runtimeShader2 = this.d;
-            this.q = f10;
-            runtimeShader2.setFloatUniform("refract_intensity", f10);
-            RuntimeShader runtimeShader3 = this.d;
-            this.r = f11;
-            runtimeShader3.setFloatUniform("refract_index", f11);
-            this.d.setFloatUniform("foreground_color_premultiplied", (Color.red(i) / 255.0f) * alpha, (Color.green(i) / 255.0f) * alpha, (Color.blue(i) / 255.0f) * alpha, alpha);
-            RuntimeShader runtimeShader4 = this.d;
-            if (runtimeShader4 == this.c) {
-                runtimeShader4.setFloatUniform("arrow", this.t * f22, this.u * f22, this.v * f22, this.w * f22);
-                this.d.setFloatUniform("arrow_axis", this.x * f22, this.y * f22, this.z, this.A);
-            }
-            int i3 = (i2 * i2) + 1;
-            RenderEffect[] renderEffectArr = this.f;
-            if (renderEffectArr != null && renderEffectArr.length == i3) {
-                Arrays.fill(renderEffectArr, (Object) null);
-            } else {
-                this.f = new RenderEffect[i3];
-                this.g = new float[i3];
-                this.h = new float[i3];
+                i = b;
             }
         }
-        float f23 = i2;
-        float f24 = (((f / 2.0f) + f3) - f12) / f23;
-        float f25 = (((f2 / 2.0f) + f4) - f13) / f23;
-        if (f12 == ((int) f12) && f13 == ((int) f13)) {
-            int i4 = (int) (-f13);
-            int i5 = i4 % i2;
-            if (i5 == 0) {
-                i5 = 0;
-            } else if ((((i4 ^ i2) >> 31) | 1) <= 0) {
-                i5 += i2;
-            }
-            int i6 = (int) (-f12);
-            int i7 = i6 % i2;
-            length = (i5 * i2) + (i7 == 0 ? 0 : (((i6 ^ i2) >> 31) | 1) > 0 ? i7 : i7 + i2);
+        if (view2 == null) {
+            this.d = -1;
         } else {
-            length = this.f.length - 1;
+            this.d = ((g69) view2.getLayoutParams()).b();
         }
-        RenderEffect renderEffect = this.f[length];
-        if (renderEffect == null || this.g[length] != f24 || this.h[length] != f25) {
-            this.d.setFloatUniform("center", f24, f25);
-            renderEffect = RenderEffect.createRuntimeShaderEffect(this.d, "img");
-            this.f[length] = renderEffect;
-            this.g[length] = f24;
-            this.h[length] = f25;
+    }
+
+    public final boolean b(r69 r69Var) {
+        int i = this.d;
+        if (i >= 0 && i < r69Var.b()) {
+            return true;
         }
-        if (this.e != renderEffect) {
-            RenderNode renderNode = this.a;
-            this.e = renderEffect;
-            renderNode.setRenderEffect(renderEffect);
+        return false;
+    }
+
+    public final View c(ki2 ki2Var) {
+        List list = this.k;
+        if (list != null) {
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                View view = ((u69) this.k.get(i)).a;
+                g69 g69Var = (g69) view.getLayoutParams();
+                if (!g69Var.a.j() && this.d == g69Var.b()) {
+                    a(view);
+                    return view;
+                }
+            }
+            return null;
         }
+        View view2 = ki2Var.k(this.d, Long.MAX_VALUE).a;
+        this.d += this.e;
+        return view2;
     }
 }

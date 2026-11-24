@@ -2,97 +2,201 @@ package defpackage;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class io2 extends b4c {
-    static {
-        b4c.h(new b4c());
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.d;
+public final class io2 extends d implements jm7 {
+    public kz4 a;
+    public long b;
+    public TLRPC.Chat c;
+    public TLRPC.User d;
+    public FrameLayout e;
+    public q7c f;
+    public ho2 h;
+    public ArrayList n;
+    public e7a r;
+
+    public final void Z(String str, boolean z) {
+        if (!sd2.T(this.c) && this.d == null) {
+            he heVar = new he(3, null, getParentActivity());
+            heVar.q(250L);
+            getMessagesController().P(getParentActivity(), -this.b, this, new wg(this, heVar, str, z, (byte) 2), null);
+            return;
+        }
+        oc7 messagesController = getMessagesController();
+        long j = this.b;
+        eo2 eo2Var = new eo2(this, (byte) 1);
+        messagesController.getClass();
+        TL_communities.TL_communities_create tL_communities_create = new TL_communities.TL_communities_create();
+        tL_communities_create.title = str;
+        tL_communities_create.peer = messagesController.i1(j);
+        tL_communities_create.hidden = z;
+        messagesController.getConnectionsManager().sendRequestTypedAndProcessUpdates(tL_communities_create, new kc((byte) 0), new vt4(eo2Var, (byte) 19));
     }
 
-    public static c4c i(s97 s97Var, qe3 qe3Var) {
-        long j;
-        TLRPC.User user = s97Var.c;
-        if (user != null) {
-            c4c K = c4c.K(io2.class);
-            long j2 = user.id;
-            K.C = j2;
-            K.d = (int) (j2 ^ (j2 >>> 32));
-            K.H = user;
-            K.I = qe3Var;
-            return K;
+    public final void a0(long j, boolean z) {
+        if (!sd2.T(this.c) && this.d == null) {
+            he heVar = new he(3, null, getParentActivity());
+            heVar.q(250L);
+            getMessagesController().P(getParentActivity(), -this.b, this, new go2(this, heVar, j, z, (byte) 0), null);
+            return;
         }
-        TLRPC.Chat chat = s97Var.b;
-        c4c K2 = c4c.K(io2.class);
-        if (chat != null) {
-            j = -chat.id;
+        int i = this.currentAccount;
+        long j2 = -this.b;
+        oc7.r1(i).V2(-j2, j, false, z, new jz(this, j2, (byte) 1));
+    }
+
+    public final void b0(c6c c6cVar) {
+        io2 io2Var;
+        if (c6cVar.d == 1) {
+            io2Var = this;
+            ik.O(getParentActivity(), io2Var, jb6.M0(2131751843, null), null, jb6.M0(2131751844, null), null, Integer.MAX_VALUE, jb6.M0(2131751690, null), this.resourceProvider, new fo2(this));
         } else {
-            j = 0;
+            io2Var = this;
         }
-        K2.C = j;
-        K2.d = (int) (j ^ (j >>> 32));
-        K2.H = chat;
-        K2.I = qe3Var;
-        return K2;
-    }
-
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        ue3 ue3Var = (ue3) view;
-        ue3Var.setDialogCellDelegate((qe3) c4cVar.I);
-        Object obj = c4cVar.H;
-        boolean z2 = true;
+        Object obj = c6cVar.H;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            ue3Var.R0 = hc2.e0(y6c.t0, chat);
-            TLRPC.Dialog Q0 = na7.q1(y6c.t0).Q0(-chat.id);
-            if (Q0 != null) {
-                z2 = false;
+            io2Var.getMessagesController().L0(Long.valueOf(-io2Var.b));
+            io2Var.showDialog(new co2(io2Var.getParentActivity(), chat, io2Var.b, new qy1(io2Var, chat, (byte) 8)));
+        }
+    }
+
+    @Override
+    public final View createView(Context context) {
+        int i;
+        setHasOwnBackground(true);
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setAllowOverlayTitle(false);
+        this.actionBar.setBackButtonDrawable(new ee0(false));
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setActionBarMenuOnItemClick(new fh2(this, (byte) 1));
+        kz4 kz4Var = new kz4();
+        kz4Var.a(getThemedColor(cmb.c6));
+        this.a = kz4Var;
+        km0 km0Var = new km0(kz4Var, kz4Var, kz4Var);
+        this.actionBar.setBackground(null);
+        this.actionBar.P(km0Var, qqd.o(this.resourceProvider), false);
+        this.actionBar.R0 = true;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.e = frameLayout;
+        anb.h(cmb.Z6, null, frameLayout);
+        ho2 ho2Var = new ho2(context, this.resourceProvider);
+        this.h = ho2Var;
+        ho2Var.setTitle(jb6.M0(2131751784, null));
+        ho2 ho2Var2 = this.h;
+        if (this.d != null) {
+            i = 2131751870;
+        } else if (sd2.V(this.c)) {
+            i = 2131751869;
+        } else {
+            i = 2131751868;
+        }
+        ho2Var2.setSubtitle(jb6.M0(i, null));
+        this.h.setTag(-33024);
+        TLRPC.User user = this.d;
+        if (user != null) {
+            this.h.a.f(user, new pc0(0, this.d));
+        } else {
+            TLRPC.Chat chat = this.c;
+            if (chat != null) {
+                this.h.a.f(chat, new pc0(this.c));
             }
-            ue3Var.Q0 = z2;
-            if (Q0 != null) {
-                ue3Var.setCustomMessageWithoutRebuild(null);
-                ue3Var.g0(Q0, 0, 0);
+        }
+        q7c q7cVar = new q7c(this, new eo2(this, (byte) 0), new fo2(this), new a32(this, (byte) 21));
+        this.f = q7cVar;
+        q7cVar.setClipToPadding(false);
+        q7c q7cVar2 = this.f;
+        l7c l7cVar = q7cVar2.g3;
+        l7cVar.r = false;
+        l7cVar.s = true;
+        q7cVar2.r1();
+        this.e.addView(this.f, qoe.c(-1.0f, -1));
+        this.e.addView(this.actionBar, qoe.e(-1, -2, 48));
+        FrameLayout frameLayout2 = this.e;
+        this.fragmentView = frameLayout2;
+        return frameLayout2;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3;
+        if (i == nm7.T) {
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+            long j = chatFull.id;
+            View B1 = this.f.B1((int) (j ^ (j >>> 32)));
+            if (B1 instanceof ut8) {
+                ut8 ut8Var = (ut8) B1;
+                ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
+                if (arrayList != null) {
+                    i3 = arrayList.size();
+                } else {
+                    i3 = 0;
+                }
+                ut8Var.setSubLabel(jb6.G(i3, "Chats", new Object[0]));
                 return;
             }
-            ue3Var.setCustomMessageWithoutRebuild(k96.G(chat.participants_count, "Members", new Object[0]));
-            ue3Var.f0(-chat.id, null, 0, false, false);
-        } else if (obj instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) obj;
-            ue3Var.R0 = hc2.f0(y6c.t0, user);
-            TLRPC.Dialog Q02 = na7.q1(y6c.t0).Q0(user.id);
-            if (Q02 != null) {
-                z2 = false;
+            this.f.g3.O(false);
+        }
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        this.b = this.arguments.getLong("dialog_id", 0L);
+        this.c = getMessagesController().L0(Long.valueOf(-this.b));
+        this.d = getMessagesController().W1(Long.valueOf(this.b));
+        this.n = getMessagesController().G4;
+        oc7 messagesController = getMessagesController();
+        mf2 mf2Var = new mf2(this, (byte) 26);
+        int i = this.classGuid;
+        messagesController.getClass();
+        messagesController.getConnectionsManager().bindRequestToGuid(messagesController.getConnectionsManager().sendRequestTyped(new TL_communities.TL_communities_getJoinedCommunities(), new kc((byte) 0), new s87(messagesController, mf2Var, (byte) 3)), i);
+        nm7 notificationCenter = getNotificationCenter();
+        notificationCenter.getClass();
+        e7a e7aVar = new e7a(notificationCenter, this);
+        e7aVar.b(nm7.T);
+        this.r = e7aVar;
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        e7a e7aVar = this.r;
+        if (e7aVar != null) {
+            e7aVar.a();
+            this.r = null;
+        }
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final void onInsets(int i, int i2, int i3, int i4) {
+        super.onInsets(i, i2, i3, i4);
+        this.f.setPadding(0, i2, 0, i4);
+    }
+
+    @Override
+    public final void onThemeColorsChanged() {
+        super.onThemeColorsChanged();
+        try {
+            kz4 kz4Var = this.a;
+            if (kz4Var != null) {
+                kz4Var.a(getThemedColor(cmb.c6));
             }
-            ue3Var.Q0 = z2;
-            if (Q02 != null) {
-                ue3Var.setCustomMessageWithoutRebuild(null);
-                ue3Var.g0(Q02, 0, 0);
-                return;
+            a aVar = this.actionBar;
+            if (aVar != null) {
+                aVar.invalidate();
             }
-            ue3Var.setCustomMessageWithoutRebuild(k96.M0(2131753153, null));
-            ue3Var.f0(user.id, null, 0, false, false);
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
-    }
-
-    @Override
-    public final boolean c(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.d == c4cVar2.d) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        ue3 ue3Var = new ue3(null, context, false, i, wjbVar);
-        ue3Var.P0 = true;
-        return ue3Var;
-    }
-
-    @Override
-    public final boolean e(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.d == c4cVar2.d) {
-            return true;
-        }
-        return false;
     }
 }

@@ -1,24 +1,14 @@
 package defpackage;
-public final class n70 {
-    public short a;
-    public short b;
-    public float c;
-    public long d;
-    public long e;
-    public long f;
-    public float g;
-    public int h;
+public final class n70 implements cq7 {
+    public static final n70 a = new Object();
+    public static final wa4 b = wa4.c("rolloutId");
+    public static final wa4 c = wa4.c("variantId");
 
-    public final float a(long j) {
-        long j2 = this.d;
-        if (j < j2) {
-            return 0.0f;
-        }
-        long j3 = this.f;
-        if (j3 >= 0 && j >= j3) {
-            float f = this.g;
-            return (s56.b(((float) (j - j3)) / this.h, 0.0f, 1.0f) * f) + (1.0f - f);
-        }
-        return s56.b(((float) (j - j2)) / this.a, 0.0f, 1.0f) * 0.5f;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        l03 l03Var = (l03) obj;
+        dq7 dq7Var = (dq7) obj2;
+        dq7Var.a(b, ((ha0) l03Var).a);
+        dq7Var.a(c, ((ha0) l03Var).b);
     }
 }

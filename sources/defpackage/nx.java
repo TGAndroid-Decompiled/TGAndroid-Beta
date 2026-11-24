@@ -1,52 +1,63 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-public final class nx implements Runnable {
-    public static Handler f;
-    public final v3d e;
-    public volatile int b = 1;
-    public final AtomicBoolean c = new AtomicBoolean();
-    public final AtomicBoolean d = new AtomicBoolean();
-    public final le7 a = new le7(this, new ke7(this, (byte) 0));
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.util.SparseArray;
+public final class nx {
+    public TextPaint a;
+    public final SparseArray b = new SparseArray();
+    public final SparseArray c = new SparseArray();
+    public final SparseArray d = new SparseArray();
+    public final SparseArray e = new SparseArray();
+    public final SparseArray f = new SparseArray();
+    public final SparseArray g = new SparseArray();
+    public final SparseArray h = new SparseArray();
+    public final SparseArray i = new SparseArray();
+    public final SparseArray j = new SparseArray();
+    public final SparseArray k = new SparseArray();
+    public final SparseArray l = new SparseArray();
+    public final SparseArray m = new SparseArray();
+    public final SparseArray n = new SparseArray();
+    public final SparseArray o = new SparseArray();
+    public final SparseArray p = new SparseArray();
+    public final SparseArray q = new SparseArray();
+    public final SparseArray r = new SparseArray();
+    public final SparseArray s = new SparseArray();
+    public final SparseArray t = new SparseArray();
+    public final SparseArray u = new SparseArray();
+    public final SparseArray v = new SparseArray();
+    public final SparseArray w = new SparseArray();
+    public final SparseArray x = new SparseArray();
+    public final SparseArray y = new SparseArray();
+    public final SparseArray z = new SparseArray();
+    public final SparseArray A = new SparseArray();
 
-    public nx(v3d v3dVar) {
-        this.e = v3dVar;
-    }
-
-    public final void a() {
-        v3d v3dVar = this.e;
-        int i = 0;
-        for (gy4 gy4Var : v3dVar.j) {
-            if (gy4Var.a(v3dVar)) {
-                i++;
+    public static void a(ui5 ui5Var, SparseArray sparseArray) {
+        for (int i = 0; i < sparseArray.size(); i++) {
+            int keyAt = sparseArray.keyAt(i);
+            TextPaint textPaint = (TextPaint) sparseArray.valueAt(i);
+            if (textPaint != null) {
+                if ((keyAt & 8) == 0 && (keyAt & 512) == 0) {
+                    textPaint.setColor(cmb.w0(null, cmb.F6, false));
+                } else {
+                    textPaint.setColor(cmb.w0(null, cmb.I6, false));
+                }
             }
         }
-        try {
-            v3dVar.i.tryAcquire(i, 5L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
-            Thread.currentThread().interrupt();
-        }
     }
 
-    public final void b(Object obj) {
-        Handler handler;
-        synchronized (nx.class) {
-            handler = f;
-            if (handler == null) {
-                handler = new Handler(Looper.getMainLooper());
-                f = handler;
+    public static void b(int i, TextPaint textPaint, Typeface typeface, Typeface typeface2, Typeface typeface3, Typeface typeface4) {
+        if ((i & 1) != 0) {
+            if ((i & 2) != 0) {
+                textPaint.setTypeface(typeface2);
+            } else {
+                textPaint.setTypeface(typeface3);
             }
+        } else if ((i & 2) != 0) {
+            textPaint.setTypeface(typeface4);
+        } else if ((i & 4) != 0) {
+        } else {
+            textPaint.setTypeface(typeface);
         }
-        handler.post(new rld((Object) this, obj, false, (byte) 7));
-    }
-
-    @Override
-    public final void run() {
-        this.e.a();
     }
 }

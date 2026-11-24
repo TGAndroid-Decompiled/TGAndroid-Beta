@@ -1,6 +1,4 @@
 package defpackage;
-
-import android.view.GestureDetector;
-public abstract class ps4 extends GestureDetector.SimpleOnGestureListener {
-    public abstract boolean a();
+public interface ps4 extends gs4 {
+    int getArity();
 }

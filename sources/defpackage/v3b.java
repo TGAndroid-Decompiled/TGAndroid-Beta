@@ -1,51 +1,113 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class v3b extends b4c {
-    public static final int c = 0;
-    public jb4 b;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stories;
+public final class v3b {
+    public final int a;
+    public final long b;
+    public final boolean c;
+    public boolean d;
+    public boolean e;
+    public boolean f;
+    public final ArrayList g = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public boolean i;
+    public final h4b j;
 
-    static {
-        b4c.h(new b4c());
-    }
-
-    @Override
-    public final void a(o39 o39Var, View view, c4c c4cVar) {
+    public v3b(int i, long j, h4b h4bVar) {
         boolean z;
-        qfa qfaVar = (qfa) view;
-        if (c4cVar != null && c4cVar.h) {
+        this.j = h4bVar;
+        this.a = i;
+        this.b = j;
+        if (j == z8c.h(i).e()) {
             z = true;
         } else {
             z = false;
         }
-        qfaVar.l(z, false);
+        this.c = z;
+        d();
     }
 
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        qfa qfaVar = (qfa) view;
-        qfaVar.k((k27) c4cVar.H, c4cVar.w, false);
-        qfaVar.i(c4cVar.e, false);
-        qfaVar.l(c4cVar.h, false);
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        if (this.b == null) {
-            this.b = new jb4(context, wjbVar);
-        }
-        qfa qfaVar = new qfa(context, this.b, i);
-        qfaVar.x0 = true;
-        qfaVar.e0 = true;
-        return qfaVar;
-    }
-
-    @Override
-    public final boolean e(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.r == c4cVar2.r && c4cVar.e == c4cVar2.e && c4cVar.C == c4cVar2.C) {
+    public final boolean a() {
+        if ((this.c || this.j.h(this.b)) && this.f && this.h.size() < oc7.r1(this.a).l4.y.f()) {
             return true;
         }
         return false;
+    }
+
+    public final a4b b(int i) {
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.h;
+            if (i2 < arrayList.size()) {
+                a4b a4bVar = (a4b) arrayList.get(i2);
+                if (i == a4bVar.a) {
+                    return a4bVar;
+                }
+                i2++;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    public final int c(int i) {
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.h;
+            if (i2 < arrayList.size()) {
+                if (i == ((a4b) arrayList.get(i2)).a) {
+                    return i2;
+                }
+                i2++;
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public final void d() {
+        if (!this.e && !this.f) {
+            this.e = true;
+            boolean z = this.d;
+            long j = this.b;
+            int i = this.a;
+            if (!z) {
+                cf7 Y = cf7.Y(i);
+                Y.a.c(new hq6(Y, j, new jo8(this, (byte) 1), (byte) 11));
+                return;
+            }
+            TL_stories.TL_getAlbums tL_getAlbums = new TL_stories.TL_getAlbums();
+            tL_getAlbums.peer = oc7.r1(i).i1(j);
+            ConnectionsManager.getInstance(i).sendRequest(tL_getAlbums, new go9(this, (byte) 11));
+        }
+    }
+
+    public final void e() {
+        TL_stories.TL_reorderAlbums tL_reorderAlbums = new TL_stories.TL_reorderAlbums();
+        int i = this.a;
+        tL_reorderAlbums.peer = oc7.r1(i).i1(this.b);
+        tL_reorderAlbums.order = new ArrayList<>();
+        ArrayList arrayList = this.h;
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            tL_reorderAlbums.order.add(Integer.valueOf(((a4b) obj).a));
+        }
+        ConnectionsManager.getInstance(i).sendRequest(tL_reorderAlbums, null);
+    }
+
+    public final void f(boolean z) {
+        int i = this.a;
+        cf7 Y = cf7.Y(i);
+        mp3 mp3Var = Y.a;
+        long j = this.b;
+        mp3Var.c(new me7(Y, j, this.h, (byte) 4));
+        if (z) {
+            nm7.f(i).k(nm7.l3, Long.valueOf(j), this);
+        }
     }
 }

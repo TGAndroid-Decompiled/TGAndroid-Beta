@@ -1,42 +1,48 @@
 package defpackage;
 
-import android.content.DialogInterface;
-import java.util.Iterator;
-import java.util.Map;
-import org.telegram.tgnet.ConnectionsManager;
-public final class a01 implements DialogInterface.OnCancelListener {
-    public final byte a;
-    public final int b;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class a01 extends dx9 {
+    public final byte n0;
 
-    public a01(int i, byte b) {
-        this.a = b;
-        this.b = i;
+    public a01(Context context, tnb tnbVar) {
+        super(tnbVar, context, false);
+        this.n0 = (byte) 3;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        byte b = this.a;
-        int i = this.b;
-        switch (b) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.n0) {
             case 0:
-                ConnectionsManager.getInstance(y6c.t0).cancelRequest(i, true);
-                return;
-            default:
-                k96 D0 = k96.D0();
-                if (i != 0) {
-                    Iterator it = D0.T.entrySet().iterator();
-                    while (it.hasNext()) {
-                        h96 h96Var = (h96) ((Map.Entry) it.next()).getValue();
-                        if (h96Var.c == i) {
-                            ConnectionsManager.getInstance(h96Var.d).cancelRequest(i, true);
-                            it.remove();
-                            h96Var.a();
-                            return;
-                        }
-                    }
-                    return;
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
                 }
-                return;
+                return d(motionEvent);
+            case 1:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return d(motionEvent);
+            case 2:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return d(motionEvent);
+            default:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return d(motionEvent);
         }
+    }
+
+    public a01(Context context, boolean z, ylb ylbVar, byte b) {
+        super(ylbVar, context, z);
+        this.n0 = b;
+    }
+
+    public a01(Context context) {
+        super(context);
+        this.n0 = (byte) 1;
     }
 }

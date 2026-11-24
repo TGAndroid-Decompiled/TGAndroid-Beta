@@ -1,29 +1,40 @@
 package defpackage;
-public final class kma implements fw2, cx2 {
-    public final fw2 a;
-    public final sw2 b;
 
-    public kma(fw2 fw2Var, sw2 sw2Var) {
-        this.a = fw2Var;
-        this.b = sw2Var;
-    }
+import java.nio.ByteBuffer;
+public interface kma {
+    void a(int i, ByteBuffer byteBuffer);
 
-    @Override
-    public final cx2 getCallerFrame() {
-        fw2 fw2Var = this.a;
-        if (fw2Var instanceof cx2) {
-            return (cx2) fw2Var;
-        }
-        return null;
-    }
+    void b(int i, ByteBuffer byteBuffer);
 
-    @Override
-    public final sw2 getContext() {
-        return this.b;
-    }
+    void c(int i, int i2);
 
-    @Override
-    public final void resumeWith(Object obj) {
-        this.a.resumeWith(obj);
-    }
+    void d(int i, int i2);
+
+    int e(int i, int i2, int i3);
+
+    void f();
+
+    void flush();
+
+    Object g();
+
+    Object h();
+
+    void i(int i);
+
+    boolean j();
+
+    void k(long j, int i, long j2);
+
+    Object l();
+
+    void m(int i, int i2, int i3, int i4, int i5);
+
+    void n(int i);
+
+    int o();
+
+    void p(int i);
+
+    int q(int i, int i2);
 }

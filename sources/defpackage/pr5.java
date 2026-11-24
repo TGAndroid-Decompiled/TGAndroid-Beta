@@ -1,3 +1,15 @@
 package defpackage;
-public interface pr5 {
+
+import android.os.IInterface;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class pr5 extends e1d implements IInterface {
+    public final byte b;
+    public final TaskCompletionSource c;
+
+    public pr5(TaskCompletionSource taskCompletionSource, byte b) {
+        super((byte) 7, false);
+        this.b = b;
+        this.c = taskCompletionSource;
+        attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
+    }
 }

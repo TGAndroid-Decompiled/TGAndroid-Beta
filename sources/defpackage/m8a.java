@@ -1,27 +1,20 @@
 package defpackage;
+public interface m8a {
+    void B(f7a f7aVar, boolean z);
 
-import android.content.Context;
-import android.view.View;
-public final class m8a extends b4c {
-    public static final int b = 0;
+    void C(f7a f7aVar, int i);
 
-    static {
-        b4c.h(new b4c());
-    }
+    void L(f7a f7aVar, int i);
 
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        Object obj = c4cVar.H;
-        if (obj instanceof so8) {
-            so8 so8Var = (so8) obj;
-            ((o8a) view).b(c4cVar.m, so8Var.d, so8Var.e, z);
-        } else if (obj instanceof aa7) {
-            ((o8a) view).a(c4cVar.m, ((aa7) obj).b, true, z);
-        }
-    }
+    void P(f7a f7aVar, String str);
 
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new o8a(context);
-    }
+    void R(f7a f7aVar, String str);
+
+    void l(f7a f7aVar, int i);
+
+    void o(f7a f7aVar);
+
+    void q(f7a f7aVar, int i);
+
+    void z(f7a f7aVar);
 }

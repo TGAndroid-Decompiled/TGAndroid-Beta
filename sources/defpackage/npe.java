@@ -1,17 +1,22 @@
 package defpackage;
-public final class npe implements zn7 {
-    public static final npe a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class npe {
+    public static final void a(pfc pfcVar, op opVar, w26 w26Var) {
+        AutoCloseable autoCloseable;
+        opVar.getClass();
+        w26Var.getClass();
+        qfc qfcVar = pfcVar.a;
+        synchronized (qfcVar.a) {
+            autoCloseable = (AutoCloseable) qfcVar.b.get("androidx.lifecycle.savedstate.vm.tag");
         }
-        throw new ClassCastException();
+        yr9 yr9Var = (yr9) autoCloseable;
+        if (yr9Var != null && !yr9Var.c) {
+            yr9Var.a(opVar, w26Var);
+            v26 v26Var = ((g36) w26Var).b;
+            if (v26Var != v26.b && v26Var.compareTo(v26.d) < 0) {
+                w26Var.a(new uc3(w26Var, opVar, (byte) 1));
+            } else {
+                opVar.g();
+            }
+        }
     }
 }

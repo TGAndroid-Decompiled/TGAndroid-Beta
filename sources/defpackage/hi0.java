@@ -1,57 +1,61 @@
 package defpackage;
 
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Iterator;
-import org.json.JSONObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC;
-public abstract class hi0 {
-    public static void a(HashMap hashMap) {
-        if (!hashMap.isEmpty()) {
-            return;
-        }
-        try {
-            InputStream open = a.b.getAssets().open("currencies.json");
-            String str = g8c.a;
-            JSONObject jSONObject = new JSONObject(new String(b51.b(open), ck1.a));
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
-                hashMap.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
-            }
-            open.close();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class hi0 extends b4 {
+    public static final Parcelable.Creator<hi0> CREATOR = new d3d((byte) 17);
+    public final gi0 a;
+    public final di0 b;
+    public final String c;
+    public final boolean d;
+    public final int e;
+    public final fi0 f;
+    public final ei0 h;
+    public final boolean n;
+
+    public hi0(gi0 gi0Var, di0 di0Var, String str, boolean z, int i, fi0 fi0Var, ei0 ei0Var, boolean z2) {
+        ite.h(gi0Var);
+        this.a = gi0Var;
+        ite.h(di0Var);
+        this.b = di0Var;
+        this.c = str;
+        this.d = z;
+        this.e = i;
+        this.f = fi0Var == null ? new fi0(false, null, null) : fi0Var;
+        this.h = ei0Var == null ? new ei0(null, false) : ei0Var;
+        this.n = z2;
     }
 
-    public static TLRPC.InputStorePaymentPurpose b(String str) {
-        fa4.b("BillingUtilities.getPurpose " + str);
-        SerializedData serializedData = new SerializedData(Utilities.v(str));
-        gi0 a = gi0.a(serializedData.readInt32(true), serializedData);
-        serializedData.cleanup();
-        if (a.c != null) {
-            fa4.b("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a.c;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof hi0)) {
+            return false;
         }
-        SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a.b);
-        String f = Utilities.f(serializedData2.toByteArray());
-        serializedData2.cleanup();
-        fa4.b("BillingUtilities.getPurpose: searching purpose under ".concat(f));
-        String string = a.b.getSharedPreferences("purchases", 0).getString(f, null);
-        if (string != null) {
-            fa4.b("BillingUtilities.getPurpose: got {" + string + "} under " + f);
-            SerializedData serializedData3 = new SerializedData(Utilities.v(string));
-            gi0 a2 = gi0.a(serializedData3.readInt32(true), serializedData3);
-            serializedData3.cleanup();
-            return a2.c;
+        hi0 hi0Var = (hi0) obj;
+        if (!fse.a(this.a, hi0Var.a) || !fse.a(this.b, hi0Var.b) || !fse.a(this.f, hi0Var.f) || !fse.a(this.h, hi0Var.h) || !fse.a(this.c, hi0Var.c) || this.d != hi0Var.d || this.e != hi0Var.e || this.n != hi0Var.n) {
+            return false;
         }
-        fa4.b("BillingUtilities.getPurpose: purpose under " + f + " not found");
-        wn4.j(tb4.y("no purpose under ", f, " found :("));
-        return null;
+        return true;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b, this.f, this.h, this.c, Boolean.valueOf(this.d), Integer.valueOf(this.e), Boolean.valueOf(this.n)});
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.k(parcel, 1, this.a, i);
+        mve.k(parcel, 2, this.b, i);
+        mve.l(parcel, 3, this.c);
+        mve.q(parcel, 4, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        mve.q(parcel, 5, 4);
+        parcel.writeInt(this.e);
+        mve.k(parcel, 6, this.f, i);
+        mve.k(parcel, 7, this.h, i);
+        mve.q(parcel, 8, 4);
+        parcel.writeInt(this.n ? 1 : 0);
+        mve.s(parcel, r);
     }
 }

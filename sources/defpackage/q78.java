@@ -1,539 +1,266 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-import android.view.View;
+import android.graphics.drawable.Drawable;
+import android.provider.Settings;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import java.util.ArrayList;
-import org.telegram.messenger.BringAppForegroundService;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.a;
-import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.b0;
+import org.telegram.ui.v;
 import org.telegram.ui.z;
-public final class q78 implements o7, sa8 {
-    public final PhotoViewer a;
+public final class q78 implements Runnable {
+    public final byte a;
+    public final Object b;
 
-    public q78(PhotoViewer photoViewer) {
-        this.a = photoViewer;
+    public q78(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void A0(SurfaceTexture surfaceTexture) {
-        PhotoViewer photoViewer = this.a;
-        photoViewer.Y8 = false;
-        try {
-            z zVar = photoViewer.h0;
-            if (zVar != null && zVar.getParent() == null) {
-                ((WindowManager) photoViewer.E.getSystemService("window")).addView(photoViewer.h0, photoViewer.e0);
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-        if (photoViewer.E2) {
-            lbc lbcVar = photoViewer.G2;
-            if (lbcVar != null) {
-                lbcVar.z0(null);
-                photoViewer.G2.y0(photoViewer.D2);
-            }
-            surfaceTexture.release();
-            return;
-        }
-        TextureView textureView = photoViewer.C2;
-        if (textureView != null && photoViewer.z2 != null) {
-            textureView.setSurfaceTexture(surfaceTexture);
-            gl.B2(photoViewer.C2);
-            photoViewer.z2.addView(photoViewer.C2, 0, nme.e(-1, -1, 17));
-        }
-    }
-
-    @Override
-    public final View C0() {
-        if (a()) {
-            return this.a.g0.getWebView();
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean F2() {
-        if (a() && !this.a.g0.y) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean G0() {
-        z zVar;
-        PhotoViewer photoViewer = PhotoViewer.l9;
-        PhotoViewer photoViewer2 = this.a;
-        if (photoViewer == photoViewer2 && photoViewer2.e && !photoViewer2.J3 && !photoViewer2.Y8 && (zVar = photoViewer2.h0) != null && zVar.getParent() != null) {
-            PhotoViewer photoViewer3 = this.a;
-            if (!photoViewer3.B3 && photoViewer3.n4 == 0) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void H0(ya8 ya8Var) {
-        PhotoViewer photoViewer = this.a;
-        photoViewer.Y8 = true;
-        if (photoViewer.E2) {
-            lbc lbcVar = photoViewer.G2;
-            if (lbcVar != null) {
-                lbcVar.y0(null);
-                photoViewer.G2.z0(null);
-                photoViewer.G2.z0(ya8Var);
-            }
-        } else {
-            TextureView textureView = photoViewer.C2;
-            if (textureView != null) {
-                photoViewer.W8 = ya8Var;
-                gl.B2(textureView);
-                photoViewer.W8 = null;
-            }
-        }
-        try {
-            z zVar = photoViewer.h0;
-            if (zVar != null && zVar.getParent() != null) {
-                ((WindowManager) photoViewer.E.getSystemService("window")).removeViewImmediate(photoViewer.h0);
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void L0() {
-        this.a.c4.cancelRewind();
-    }
-
-    @Override
-    public final void N() {
-        PhotoViewer photoViewer = this.a;
-        if (photoViewer.l3 && photoViewer.P3) {
-            gl.r(photoViewer.y2);
-        }
-    }
-
-    @Override
-    public final void P1() {
-        View view;
-        PhotoViewer photoViewer = this.a;
-        if (photoViewer.J3) {
-            if (PhotoViewer.l9 != null) {
-                PhotoViewer.l9.B(false, true);
-            }
-            x88 x88Var = photoViewer.g0;
-            if (x88Var != null && x88Var.f != null) {
-                if (a.x) {
-                    try {
-                        x88Var.getContext().startService(new Intent(a.b, BringAppForegroundService.class));
-                    } catch (Throwable th) {
-                        fa4.g(th, true);
-                    }
-                }
-                x88Var.h.setVisibility(0);
-                ViewGroup viewGroup = (ViewGroup) x88Var.f.getParent();
-                if (viewGroup != null) {
-                    viewGroup.removeView(x88Var.f);
-                }
-                x88Var.addView(x88Var.f, 0, nme.e(-1, -1, 51));
-                xa8 xa8Var = x88Var.b.V8;
-                if (xa8Var != null) {
-                    xa8Var.a(new bm0((byte) 21));
-                }
-            }
-            PhotoViewer.l9 = PhotoViewer.m9;
-            PhotoViewer.m9 = null;
-            if (photoViewer.g0 == null) {
-                photoViewer.L3 = true;
-                Bitmap bitmap = photoViewer.C3;
-                if (bitmap != null) {
-                    bitmap.recycle();
-                    photoViewer.C3 = null;
-                }
-                photoViewer.F3 = true;
-            }
-            photoViewer.J3 = false;
-            if (photoViewer.E2) {
-                view = photoViewer.D2;
-            } else {
-                view = photoViewer.C2;
-            }
-            if (photoViewer.g0 == null && view != null) {
-                gl.B2(view);
-                view.setVisibility(4);
-                photoViewer.z2.addView(view);
-            }
-            if (a.x) {
-                try {
-                    photoViewer.E.startService(new Intent(a.b, BringAppForegroundService.class));
-                } catch (Throwable th2) {
-                    fa4.g(th2, true);
-                }
-            }
-            if (photoViewer.g0 == null) {
-                if (view != null) {
-                    photoViewer.B3 = true;
-                    l29 u0 = photoViewer.u0(false);
-                    float f = u0.c / photoViewer.x3.getLayoutParams().width;
-                    photoViewer.x3.setScaleX(f);
-                    photoViewer.x3.setScaleY(f);
-                    photoViewer.x3.setTranslationX(u0.a);
-                    photoViewer.x3.setTranslationY(u0.b);
-                    view.setScaleX(f);
-                    view.setScaleY(f);
-                    view.setTranslationX(u0.a - photoViewer.z2.getX());
-                    view.setTranslationY(u0.b - photoViewer.z2.getY());
-                    j98 j98Var = photoViewer.F2;
-                    if (j98Var != null) {
-                        j98Var.setScaleX(f);
-                        photoViewer.F2.setScaleY(f);
-                        photoViewer.F2.setTranslationX(view.getTranslationX());
-                        photoViewer.F2.setTranslationY(view.getTranslationY());
-                    }
-                    photoViewer.X = 0.0f;
-                    d88 d88Var = new d88(photoViewer, f, (byte) 1);
-                    view.setOutlineProvider(d88Var);
-                    view.setClipToOutline(true);
-                    photoViewer.x3.setOutlineProvider(d88Var);
-                    photoViewer.x3.setClipToOutline(true);
-                    j98 j98Var2 = photoViewer.F2;
-                    if (j98Var2 != null) {
-                        j98Var2.setOutlineProvider(d88Var);
-                        photoViewer.F2.setClipToOutline(true);
-                    }
-                }
-            } else {
-                photoViewer.m6 = 0.0f;
-            }
-            try {
-                photoViewer.e = true;
-                photoViewer.f = true;
-                ((WindowManager) photoViewer.E.getSystemService("window")).addView(photoViewer.h0, photoViewer.e0);
-                Activity activity = photoViewer.E;
-                if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).a1.add(photoViewer.t1);
-                }
-                p98 p98Var = photoViewer.d5;
-                if (p98Var != null && !p98Var.s) {
-                    p98Var.a.v0(false, false);
-                }
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
-            if (photoViewer.E2) {
-                y54 y54Var = photoViewer.G2.d;
-                if (y54Var != null) {
-                    y54Var.s1(null);
-                }
-                photoViewer.G2.y0(photoViewer.D2);
-                photoViewer.D2.setVisibility(4);
-                photoViewer.G3 = (byte) 2;
-                photoViewer.F3 = false;
-                photoViewer.f0.invalidate();
-                photoViewer.v3 = 4;
+    public final void run() {
+        ms1 ms1Var;
+        int i;
+        boolean z;
+        byte b = this.a;
+        int i2 = 0;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                ((r78) obj).p0.M.f();
                 return;
-            }
-            photoViewer.v3 = 4;
-        }
-    }
-
-    @Override
-    public final int Q0() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            return photoViewer.g0.getEmbedWidth();
-        }
-        m88 m88Var = photoViewer.z2;
-        if (m88Var != null && m88Var.getAspectRatio() > 0.0f) {
-            return Math.round(photoViewer.z2.getAspectRatio() * 1000.0f);
-        }
-        return photoViewer.V;
-    }
-
-    @Override
-    public final void S0(float f) {
-        this.a.c4.setX(f);
-    }
-
-    @Override
-    public final int S1() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            return photoViewer.g0.getEmbedHeight();
-        }
-        m88 m88Var = photoViewer.z2;
-        if (m88Var != null && m88Var.getAspectRatio() > 0.0f) {
-            return 1000;
-        }
-        return photoViewer.W;
-    }
-
-    @Override
-    public final boolean T() {
-        if (a() && this.a.g0.c()) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean Z(boolean z, float f, iv9 iv9Var) {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            photoViewer.c4.startRewind(photoViewer.g0, z, f, photoViewer.u1, iv9Var);
-            return true;
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar == null) {
-            return false;
-        }
-        photoViewer.c4.startRewind(lbcVar, z, f, photoViewer.u1, iv9Var);
-        return true;
-    }
-
-    public final boolean a() {
-        PhotoViewer photoViewer = this.a;
-        if (photoViewer.t4 && photoViewer.g0 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean a0() {
-        return this.a.c4.rewinding;
-    }
-
-    @Override
-    public final boolean a1() {
-        PhotoViewer photoViewer = this.a;
-        if (photoViewer.s2 && j() && !photoViewer.t4) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final float a2() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            return photoViewer.g0.getBufferedPosition();
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar != null && lbcVar.U() > 0) {
-            return Math.max(photoViewer.X8, ((float) photoViewer.G2.N()) / ((float) photoViewer.G2.U()));
-        }
-        return photoViewer.X8;
-    }
-
-    @Override
-    public final boolean d1() {
-        return false;
-    }
-
-    @Override
-    public final void e() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            photoViewer.g0.e();
-            return;
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar != null) {
-            lbcVar.f0();
-        }
-    }
-
-    @Override
-    public final void f(long j) {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            photoViewer.g0.i(j);
-            return;
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar != null) {
-            lbcVar.o0(j);
-        }
-    }
-
-    @Override
-    public final long getDuration() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            return photoViewer.g0.getVideoDuration();
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar != null) {
-            return lbcVar.U();
-        }
-        return 0L;
-    }
-
-    @Override
-    public final boolean j() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            return photoViewer.g0.H;
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar != null && lbcVar.c0()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void k() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            photoViewer.g0.f();
-            return;
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar != null) {
-            lbcVar.g0();
-        }
-    }
-
-    @Override
-    public final oc8 k1() {
-        lbc lbcVar;
-        if (!a() && (lbcVar = this.a.G2) != null) {
-            return lbcVar.d;
-        }
-        return null;
-    }
-
-    @Override
-    public final long m() {
-        boolean a = a();
-        PhotoViewer photoViewer = this.a;
-        if (a) {
-            return photoViewer.g0.getCurrentPosition();
-        }
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar != null) {
-            return lbcVar.S();
-        }
-        return 0L;
-    }
-
-    @Override
-    public final void m0(Rect rect) {
-        k98 k98Var;
-        PhotoViewer photoViewer = this.a;
-        RectF rectF = photoViewer.Z8;
-        if (photoViewer.a9 && (k98Var = photoViewer.f0) != null && k98Var.isAttachedToWindow()) {
-            int[] iArr = new int[2];
-            photoViewer.f0.getLocationOnScreen(iArr);
-            rect.set(Math.round(rectF.left + iArr[0]), Math.round(rectF.top + iArr[1]), Math.round(rectF.right + iArr[0]), Math.round(rectF.bottom + iArr[1]));
-            return;
-        }
-        rect.setEmpty();
-    }
-
-    @Override
-    public final View o0(LaunchActivity launchActivity) {
-        return null;
-    }
-
-    @Override
-    public final boolean p1() {
-        return false;
-    }
-
-    @Override
-    public final void r2(Canvas canvas, int i, int i2) {
-        this.a.b4.draw(canvas, i, i2);
-    }
-
-    @Override
-    public final int u() {
-        return 0;
-    }
-
-    @Override
-    public final void u1() {
-        this.a.V8 = null;
-        PhotoViewer photoViewer = PhotoViewer.m9;
-        PhotoViewer photoViewer2 = this.a;
-        if (photoViewer == photoViewer2) {
-            photoViewer2.M();
-            MediaController.w().E0();
-            return;
-        }
-        PhotoViewer photoViewer3 = PhotoViewer.l9;
-        PhotoViewer photoViewer4 = this.a;
-        if (photoViewer3 == photoViewer4) {
-            if (photoViewer4.Y8) {
-                photoViewer4.Y8 = false;
-                try {
-                    z zVar = photoViewer4.h0;
-                    if (zVar != null && zVar.getParent() == null) {
-                        PhotoViewer photoViewer5 = this.a;
-                        ((WindowManager) this.a.E.getSystemService("window")).addView(photoViewer5.h0, photoViewer5.e0);
+            case 1:
+                ((lb8) obj).invalidate();
+                return;
+            case 2:
+                uz0 uz0Var = (uz0) obj;
+                PhotoViewer photoViewer = (PhotoViewer) uz0Var.d;
+                long j = uz0Var.a;
+                Drawable[] drawableArr = PhotoViewer.d9;
+                photoViewer.C1(j);
+                if (photoViewer.d2 == 1) {
+                    long j2 = uz0Var.a;
+                    photoViewer.c8 = j2;
+                    if (photoViewer.b8 != j2) {
+                        photoViewer.b8 = -1L;
                     }
-                } catch (Exception e) {
-                    fa4.g(e, true);
                 }
-            }
-            this.a.B(false, false);
+                uz0Var.c = null;
+                return;
+            case 3:
+                PhotoViewer photoViewer2 = (PhotoViewer) ((kg3) obj).b;
+                ImageView imageView = photoViewer2.E3;
+                if (imageView != null && imageView.getParent() != null) {
+                    ((ViewGroup) photoViewer2.E3.getParent()).removeView(photoViewer2.E3);
+                    if (photoViewer2.D3 != null) {
+                        ImageView imageView2 = photoViewer2.E3;
+                        if (imageView2 != null) {
+                            imageView2.setBackground(null);
+                        }
+                        gm.w2(photoViewer2.D3);
+                        photoViewer2.D3 = null;
+                    }
+                    photoViewer2.E3 = null;
+                    return;
+                }
+                return;
+            case 4:
+                yv1 yv1Var = ((ea8) obj).W2.k4;
+                if (yv1Var != null && (ms1Var = yv1Var.a0) != null) {
+                    ms1Var.j1();
+                    return;
+                }
+                return;
+            case 5:
+                PhotoViewer photoViewer3 = (PhotoViewer) ((u5) ((s38) obj).b).c;
+                photoViewer3.H2 = false;
+                ndc ndcVar = photoViewer3.G2;
+                if (ndcVar != null) {
+                    ndcVar.g0();
+                }
+                photoViewer3.I2 = null;
+                return;
+            case 6:
+                PhotoViewer photoViewer4 = ((e98) obj).a;
+                photoViewer4.H2 = false;
+                ndc ndcVar2 = photoViewer4.G2;
+                if (ndcVar2 != null) {
+                    ndcVar2.g0();
+                }
+                photoViewer4.I2 = null;
+                return;
+            case 7:
+                PhotoViewer photoViewer5 = ((v) ((s38) obj).b).r;
+                photoViewer5.q7.e();
+                Runnable runnable = photoViewer5.o4;
+                if (runnable != null) {
+                    runnable.run();
+                    photoViewer5.o4 = null;
+                }
+                photoViewer5.H1(true);
+                return;
+            case 8:
+                PhotoViewer photoViewer6 = ((ha8) obj).b;
+                Runnable runnable2 = photoViewer6.o4;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    photoViewer6.o4 = null;
+                    return;
+                }
+                return;
+            case 9:
+                ((gb8) obj).y.e(true);
+                return;
+            case 10:
+                ((kb8) obj).d = true;
+                return;
+            case 11:
+                z zVar = (z) obj;
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) zVar.a.O0.getLayoutParams();
+                ((WindowManager) a.b.getSystemService("window")).getDefaultDisplay().getRotation();
+                int D = wi8.D(34.0f, org.telegram.ui.ActionBar.a.getCurrentActionBarHeight(), 2);
+                PhotoViewer photoViewer7 = zVar.a;
+                if (!photoViewer7.s) {
+                    i = gm.m;
+                } else {
+                    i = 0;
+                }
+                int i3 = D + i;
+                if (i3 != layoutParams.topMargin) {
+                    layoutParams.topMargin = i3;
+                    photoViewer7.O0.setLayoutParams(layoutParams);
+                }
+                FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) zVar.a.P0.getLayoutParams();
+                int D2 = wi8.D(40.0f, org.telegram.ui.ActionBar.a.getCurrentActionBarHeight(), 2);
+                PhotoViewer photoViewer8 = zVar.a;
+                if (!photoViewer8.s) {
+                    i2 = gm.m;
+                }
+                int i4 = D2 + i2;
+                if (layoutParams2.topMargin != i4) {
+                    layoutParams2.topMargin = i4;
+                    photoViewer8.P0.setLayoutParams(layoutParams2);
+                    return;
+                }
+                return;
+            case 12:
+                ((wb8) obj).h = null;
+                return;
+            case 13:
+                wb8 wb8Var = (wb8) ((wm4) obj).c;
+                wb8Var.d.p0(wb8Var.e, false);
+                return;
+            case 14:
+                ya8 ya8Var = (ya8) obj;
+                if (ya8Var.y) {
+                    ya8Var.h("pollPosition();");
+                }
+                if (ya8Var.H) {
+                    gm.d3(ya8Var.M, 500L);
+                    return;
+                }
+                return;
+            case 15:
+                yc3 yc3Var = (yc3) obj;
+                ArrayList arrayList = (ArrayList) yc3Var.c;
+                for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                    ad8 ad8Var = (ad8) arrayList.get(i5);
+                    tl4 tl4Var = ad8Var.e;
+                    if (tl4Var != null && ad8Var.c == 1 && tl4Var.g && !tl4Var.K) {
+                        if (tl4Var.b.D() && Settings.canDrawOverlays(tl4Var.c)) {
+                            z = true;
+                        } else {
+                            z = false;
+                        }
+                        if (z != tl4Var.f) {
+                            tl4Var.l();
+                            tl4Var.a();
+                        }
+                    }
+                }
+                yc3Var.d();
+                return;
+            case 16:
+                ((vc8) obj).e0();
+                return;
+            case 17:
+                ad8 ad8Var2 = (ad8) obj;
+                if (ad8Var2.c == 1) {
+                    ad8Var2.a.n0();
+                    return;
+                }
+                return;
+            case 18:
+                ((le8) obj).m--;
+                return;
+            case 19:
+                ((df8) obj).f();
+                return;
+            case 20:
+                gm.E3(((lf8) obj).a);
+                return;
+            case 21:
+                s09 s09Var = ((cj8) obj).G;
+                s09Var.getAnimatedDrawable().I(0, true, false);
+                s09Var.d();
+                return;
+            case 22:
+                ((kj8) ((ij8) obj).c).D0();
+                return;
+            case 23:
+                PremiumPreviewFragment premiumPreviewFragment = ((b0) obj).c;
+                premiumPreviewFragment.showDialog(new cd9(premiumPreviewFragment.getParentActivity(), false, premiumPreviewFragment.getResourceProvider(), null));
+                return;
+            case 24:
+                sk8 sk8Var = (sk8) obj;
+                int size = 1073741823 - (1073741823 % sk8Var.f3.size());
+                u46 u46Var = sk8Var.g3;
+                sk8Var.t3 = size;
+                u46Var.g1(size, (sk8Var.getMeasuredHeight() - sk8Var.getChildAt(0).getMeasuredHeight()) >> 1);
+                sk8Var.z1(null, false);
+                return;
+            case 25:
+                ((k9b) obj).r();
+                return;
+            case 26:
+                fn8 fn8Var = (fn8) obj;
+                g36 g36Var = fn8Var.f;
+                if (fn8Var.b == 0) {
+                    fn8Var.c = true;
+                    g36Var.e(u26.ON_PAUSE);
+                }
+                if (fn8Var.a == 0 && fn8Var.c) {
+                    g36Var.e(u26.ON_STOP);
+                    fn8Var.d = true;
+                    return;
+                }
+                return;
+            case 27:
+                RectF rectF = ProfileActivity.e7;
+                ((un8) obj).a(0);
+                return;
+            case 28:
+                qo8 qo8Var = (qo8) obj;
+                qo8Var.G.getNotificationCenter().j(qo8Var.F);
+                return;
+            default:
+                ProfileActivity profileActivity = (ProfileActivity) ((su) obj).c;
+                if (profileActivity.y5 != 1.0f) {
+                    zo8 zo8Var = profileActivity.o0;
+                    while (zo8Var.E0.k(i2) != zo8Var.getRealCount() - 1) {
+                        i2++;
+                    }
+                    zo8Var.x(i2, true);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void z() {
-        PhotoViewer photoViewer = this.a;
-        if (photoViewer.l3 && photoViewer.P3) {
-            photoViewer.z1();
-        }
-    }
-
-    @Override
-    public final void G2(int i) {
-    }
-
-    @Override
-    public final void L1(View view) {
-    }
-
-    @Override
-    public final void n(View view) {
-    }
-
-    @Override
-    public final void p0(View view) {
-    }
-
-    @Override
-    public final void x0(View view) {
-    }
-
-    @Override
-    public final void o2(int i, ArrayList arrayList) {
     }
 }

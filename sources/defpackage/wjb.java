@@ -1,28 +1,33 @@
 package defpackage;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-public interface wjb {
-    boolean a();
+import android.content.Context;
+import android.view.MotionEvent;
+public final class wjb extends dv3 {
+    public final xjb h2;
 
-    void b(float f, float f2, int i, int i2);
+    public wjb(xjb xjbVar, Context context) {
+        super(context);
+        this.h2 = xjbVar;
+    }
 
-    ColorFilter c();
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        v44 v44Var = this.h2.J;
+        if (v44Var != null && v44Var.getVisibility() == 0) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        return false;
+    }
 
-    Paint d(String str);
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        this.h2.m();
+    }
 
-    boolean e();
-
-    int f(int i);
-
-    boolean g();
-
-    Drawable getDrawable(String str);
-
-    int h(int i);
-
-    void i(int i, int i2);
-
-    int j(int i);
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.h2.m();
+    }
 }

@@ -1,42 +1,62 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class s41 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final u41 b;
+import android.util.Log;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Iterator;
+public final class s41 implements AutoCloseable {
+    public final String[] a;
+    public final ArrayDeque b;
 
-    public s41(u41 u41Var, byte b) {
-        this.a = b;
-        this.b = u41Var;
+    public s41(Object obj, String str, ArrayDeque arrayDeque) {
+        this.b = arrayDeque;
+        if (obj != null) {
+            arrayDeque.addFirst(new r41(obj, str));
+            if (Log.isLoggable("CarApp.Bun", 2)) {
+                int min = Math.min(arrayDeque.size(), 11);
+                String[] strArr = this.a;
+                if (strArr == null) {
+                    strArr = new String[12];
+                    this.a = strArr;
+                }
+                String str2 = strArr[min];
+                if (str2 == null) {
+                    char[] cArr = new char[min];
+                    Arrays.fill(cArr, ' ');
+                    String str3 = new String(cArr);
+                    if (min == 11) {
+                        str2 = str3.concat("...");
+                    } else {
+                        str2 = str3;
+                    }
+                    this.a[min] = str2;
+                }
+                Log.v("CarApp.Bun", str2.concat(u41.i(obj.getClass()) + " " + str));
+            }
+        }
+    }
+
+    public final String a() {
+        StringBuilder sb = new StringBuilder();
+        ArrayDeque arrayDeque = this.b;
+        int min = Math.min(arrayDeque.size(), 8);
+        Iterator descendingIterator = arrayDeque.descendingIterator();
+        while (descendingIterator.hasNext()) {
+            int i = min - 1;
+            if (min <= 0) {
+                break;
+            }
+            sb.append(((r41) descendingIterator.next()).a());
+            min = i;
+        }
+        if (descendingIterator.hasNext()) {
+            sb.append("[...]");
+        }
+        return sb.toString();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        u41 u41Var = this.b;
-        switch (b) {
-            case 0:
-                u41Var.U = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                u41Var.invalidate();
-                return;
-            case 1:
-                u41Var.d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u41Var.invalidate();
-                return;
-            case 2:
-                u41Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u41Var.invalidate();
-                return;
-            case 3:
-                u41Var.getClass();
-                u41Var.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u41Var.invalidate();
-                return;
-            default:
-                u41Var.getClass();
-                u41Var.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u41Var.invalidate();
-                return;
-        }
+    public final void close() {
+        this.b.removeFirst();
     }
 }

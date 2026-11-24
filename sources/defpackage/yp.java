@@ -1,121 +1,120 @@
 package defpackage;
 
-import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-import android.widget.ListAdapter;
-import androidx.appcompat.app.AlertController$RecycleListView;
-public final class yp implements eq, DialogInterface.OnClickListener {
-    public id a;
-    public zp b;
-    public CharSequence c;
-    public final fq d;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.util.SparseIntArray;
+import android.view.MenuItem;
+public abstract class yp {
+    public Object a;
+    public Object b;
 
-    public yp(fq fqVar) {
-        this.d = fqVar;
+    public yp() {
+        this.a = new SparseIntArray();
+        this.b = new SparseIntArray();
     }
 
-    @Override
-    public final boolean a() {
-        id idVar = this.a;
-        if (idVar != null) {
-            return idVar.isShowing();
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return 0;
-    }
-
-    @Override
-    public final void c(int i) {
-        Log.e("AppCompatSpinner", "Cannot set horizontal offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final CharSequence d() {
-        return this.c;
-    }
-
-    @Override
-    public final void dismiss() {
-        id idVar = this.a;
-        if (idVar != null) {
-            idVar.dismiss();
+    public final void c() {
+        zk zkVar = (zk) this.a;
+        if (zkVar != null) {
+            try {
+                ((bq) this.b).e.unregisterReceiver(zkVar);
+            } catch (IllegalArgumentException unused) {
+            }
             this.a = null;
         }
     }
 
-    @Override
-    public final Drawable g() {
-        return null;
-    }
+    public abstract IntentFilter d();
 
-    @Override
-    public final void h(CharSequence charSequence) {
-        this.c = charSequence;
-    }
+    public abstract int e();
 
-    @Override
-    public final void j(Drawable drawable) {
-        Log.e("AppCompatSpinner", "Cannot set popup background for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void k(int i) {
-        Log.e("AppCompatSpinner", "Cannot set vertical offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void l(int i) {
-        Log.e("AppCompatSpinner", "Cannot set horizontal (original) offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void m(int i, int i2) {
-        if (this.b == null) {
-            return;
+    public final MenuItem f(MenuItem menuItem) {
+        if (menuItem instanceof aeb) {
+            aeb aebVar = (aeb) menuItem;
+            cka ckaVar = (cka) this.b;
+            if (ckaVar == null) {
+                ckaVar = new cka(0);
+                this.b = ckaVar;
+            }
+            MenuItem menuItem2 = (MenuItem) ckaVar.get(aebVar);
+            if (menuItem2 == null) {
+                g27 g27Var = new g27((Context) this.a, aebVar);
+                ((cka) this.b).put(aebVar, g27Var);
+                return g27Var;
+            }
+            return menuItem2;
         }
-        fq fqVar = this.d;
-        dd ddVar = new dd(fqVar.getPopupContext(), (byte) 0);
-        pc pcVar = (pc) ddVar.c;
-        CharSequence charSequence = this.c;
-        if (charSequence != null) {
-            pcVar.f = charSequence;
-        }
-        zp zpVar = this.b;
-        int selectedItemPosition = fqVar.getSelectedItemPosition();
-        pcVar.l = zpVar;
-        pcVar.m = this;
-        pcVar.b = selectedItemPosition;
-        pcVar.a = true;
-        id Y = ddVar.Y();
-        this.a = Y;
-        AlertController$RecycleListView alertController$RecycleListView = Y.f.e;
-        wp.d(alertController$RecycleListView, i);
-        wp.c(alertController$RecycleListView, i2);
-        this.a.show();
+        return menuItem;
     }
 
-    @Override
-    public final int n() {
+    public final int g(int i, int i2) {
+        int i3 = i(i);
+        int i4 = 0;
+        int i5 = 0;
+        for (int i6 = 0; i6 < i; i6++) {
+            int i7 = i(i6);
+            i4 += i7;
+            if (i4 == i2) {
+                i5++;
+                i4 = 0;
+            } else if (i4 > i2) {
+                i5++;
+                i4 = i7;
+            }
+        }
+        if (i4 + i3 > i2) {
+            return i5 + 1;
+        }
+        return i5;
+    }
+
+    public int h(int i, int i2) {
+        int i3 = i(i);
+        if (i3 != i2) {
+            int i4 = 0;
+            for (int i5 = 0; i5 < i; i5++) {
+                int i6 = i(i5);
+                i4 += i6;
+                if (i4 == i2) {
+                    i4 = 0;
+                } else if (i4 > i2) {
+                    i4 = i6;
+                }
+            }
+            if (i3 + i4 <= i2) {
+                return i4;
+            }
+        }
         return 0;
     }
 
-    @Override
-    public final void o(ListAdapter listAdapter) {
-        this.b = (zp) listAdapter;
+    public abstract int i(int i);
+
+    public final void j() {
+        ((SparseIntArray) this.a).clear();
     }
 
-    @Override
-    public final void onClick(DialogInterface dialogInterface, int i) {
-        fq fqVar = this.d;
-        fqVar.setSelection(i);
-        if (fqVar.getOnItemClickListener() != null) {
-            fqVar.performItemClick(null, i, this.b.getItemId(i));
+    public abstract void k();
+
+    public final void l() {
+        c();
+        IntentFilter d = d();
+        if (d.countActions() == 0) {
+            return;
         }
-        dismiss();
+        zk zkVar = (zk) this.a;
+        if (zkVar == null) {
+            zkVar = new zk(this, (byte) 1);
+            this.a = zkVar;
+        }
+        ((bq) this.b).e.registerReceiver(zkVar, d);
+    }
+
+    public yp(Context context) {
+        this.a = context;
+    }
+
+    public yp(bq bqVar) {
+        this.b = bqVar;
     }
 }

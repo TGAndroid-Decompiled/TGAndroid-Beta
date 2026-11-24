@@ -1,10 +1,29 @@
 package defpackage;
 
-import android.view.TextureView;
-public interface ka8 {
-    TextureView j0();
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.PhotoViewer;
+public final class ka8 extends fec {
+    public final PhotoViewer i0;
 
-    void t0(k27 k27Var);
+    public ka8(PhotoViewer photoViewer, Context context, u88 u88Var) {
+        super(context, u88Var);
+        this.i0 = photoViewer;
+    }
 
-    void y(k27 k27Var);
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        Drawable[] drawableArr = PhotoViewer.d9;
+        this.i0.R2();
+    }
+
+    @Override
+    public final void setVisibility(int i) {
+        super.setVisibility(i);
+        if (i == 0) {
+            Drawable[] drawableArr = PhotoViewer.d9;
+            this.i0.R2();
+        }
+    }
 }

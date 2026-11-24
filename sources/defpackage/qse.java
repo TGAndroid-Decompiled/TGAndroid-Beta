@@ -1,14 +1,17 @@
 package defpackage;
-public abstract class qse {
-    public static final sa9 a(Throwable th) {
-        th.getClass();
-        return new sa9(th);
+public final class qse implements cq7 {
+    public static final qse a = new Object();
+
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
     }
 
-    public static final void b(Object obj) {
-        if (!(obj instanceof sa9)) {
-            return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        throw ((sa9) obj).a;
+        throw new ClassCastException();
     }
 }

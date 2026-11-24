@@ -1,369 +1,207 @@
 package defpackage;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.IntentFilter;
-import android.media.MediaRouter;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Display;
-import java.util.ArrayList;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import java.util.Locale;
-public class vb8 extends wt6 implements ku6 {
-    public static final ArrayList J;
-    public static final ArrayList K;
-    public int E;
-    public boolean F;
-    public boolean G;
-    public final ArrayList H;
-    public final ArrayList I;
-    public final ux4 r;
-    public final MediaRouter s;
-    public final ju6 w;
-    public final MediaRouter.VolumeCallback x;
-    public final MediaRouter.RouteCategory y;
+import org.telegram.ui.PhotoViewer;
+public final class vb8 extends FrameLayout {
+    public float a;
+    public boolean b;
+    public boolean c;
+    public boolean d;
+    public int e;
+    public int f;
+    public int h;
+    public final xk4 n;
+    public final zna r;
+    public final PhotoViewer s;
 
-    static {
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addCategory("android.media.intent.category.LIVE_AUDIO");
-        ArrayList arrayList = new ArrayList();
-        J = arrayList;
-        arrayList.add(intentFilter);
-        IntentFilter intentFilter2 = new IntentFilter();
-        intentFilter2.addCategory("android.media.intent.category.LIVE_VIDEO");
-        ArrayList arrayList2 = new ArrayList();
-        K = arrayList2;
-        arrayList2.add(intentFilter2);
+    public vb8(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.s = photoViewer;
+        this.a = 1.0f;
+        this.c = true;
+        xk4 xk4Var = new xk4(0.0f);
+        this.n = xk4Var;
+        zna znaVar = new zna(xk4Var);
+        znaVar.m = aq1.j(0.0f, 750.0f, 1.0f);
+        znaVar.b(new h20(this, (byte) 12));
+        this.r = znaVar;
+        setWillNotDraw(false);
     }
 
-    public vb8(Context context, ux4 ux4Var) {
-        super(context, new z24(new ComponentName("android", vb8.class.getName()), (byte) 18));
-        this.H = new ArrayList();
-        this.I = new ArrayList();
-        this.r = ux4Var;
-        MediaRouter mediaRouter = (MediaRouter) context.getSystemService("media_router");
-        this.s = mediaRouter;
-        this.w = new ju6(this);
-        this.x = mu6.a(this);
-        this.y = mediaRouter.createRouteCategory((CharSequence) context.getResources().getString(2131689667), false);
-        B();
-    }
-
-    public static ub8 s(MediaRouter.RouteInfo routeInfo) {
-        Object tag = routeInfo.getTag();
-        if (tag instanceof ub8) {
-            return (ub8) tag;
-        }
-        return null;
-    }
-
-    public void A() {
-        boolean z = this.G;
-        ju6 ju6Var = this.w;
-        MediaRouter mediaRouter = this.s;
-        if (z) {
-            mediaRouter.removeCallback(ju6Var);
-        }
-        this.G = true;
-        mediaRouter.addCallback(this.E, ju6Var, (this.F ? 1 : 0) | 2);
-    }
-
-    public final void B() {
-        A();
-        MediaRouter mediaRouter = this.s;
-        int routeCount = mediaRouter.getRouteCount();
-        ArrayList arrayList = new ArrayList(routeCount);
-        boolean z = false;
-        for (int i = 0; i < routeCount; i++) {
-            arrayList.add(mediaRouter.getRouteAt(i));
-        }
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            z |= n((MediaRouter.RouteInfo) obj);
-        }
-        if (z) {
-            y();
-        }
-    }
-
-    public void C(ub8 ub8Var) {
-        int i;
-        MediaRouter.UserRouteInfo userRouteInfo = ub8Var.b;
-        eu6 eu6Var = ub8Var.a;
-        userRouteInfo.setName(eu6Var.d);
-        userRouteInfo.setPlaybackType(eu6Var.l);
-        userRouteInfo.setPlaybackStream(eu6Var.m);
-        userRouteInfo.setVolume(eu6Var.p);
-        userRouteInfo.setVolumeMax(eu6Var.q);
-        if (eu6Var.e() && !gu6.g()) {
-            i = 0;
-        } else {
-            i = eu6Var.o;
-        }
-        userRouteInfo.setVolumeHandling(i);
-        userRouteInfo.setDescription(eu6Var.e);
-    }
-
-    @Override
-    public final void a(MediaRouter.RouteInfo routeInfo, int i) {
-        ub8 s = s(routeInfo);
-        if (s != null) {
-            s.a.j(i);
-        }
-    }
-
-    @Override
-    public final void b(MediaRouter.RouteInfo routeInfo, int i) {
-        ub8 s = s(routeInfo);
-        if (s != null) {
-            s.a.k(i);
-        }
-    }
-
-    @Override
-    public final vt6 d(String str) {
-        int p = p(str);
-        if (p >= 0) {
-            return new sb8(((tb8) this.H.get(p)).a);
-        }
-        return null;
-    }
-
-    @Override
-    public final void f(bt6 bt6Var) {
-        boolean z;
-        int i = 0;
-        if (bt6Var != null) {
-            bt6Var.a();
-            ArrayList c = bt6Var.b.c();
-            int size = c.size();
-            int i2 = 0;
-            while (i < size) {
-                String str = (String) c.get(i);
-                if (str.equals("android.media.intent.category.LIVE_AUDIO")) {
-                    i2 |= 1;
-                } else if (str.equals("android.media.intent.category.LIVE_VIDEO")) {
-                    i2 |= 2;
-                } else {
-                    i2 |= 8388608;
-                }
-                i++;
+    public final void a(float f) {
+        PhotoViewer photoViewer = this.s;
+        photoViewer.o3.setAlpha(f);
+        photoViewer.p3.setAlpha(f);
+        if (this.b) {
+            lka lkaVar = photoViewer.o3;
+            lkaVar.setPivotX(lkaVar.getWidth());
+            lka lkaVar2 = photoViewer.o3;
+            lkaVar2.setPivotY(lkaVar2.getHeight());
+            float f2 = 1.0f - f;
+            float f3 = 1.0f - (0.1f * f2);
+            photoViewer.o3.setScaleX(f3);
+            photoViewer.o3.setScaleY(f3);
+            vdc vdcVar = photoViewer.q3;
+            if (vdcVar.y != f2) {
+                vdcVar.y = f2;
+                vdcVar.v.invalidate();
+                return;
             }
-            z = bt6Var.b();
-            i = i2;
-        } else {
-            z = false;
-        }
-        if (this.E == i && this.F == z) {
             return;
         }
-        this.E = i;
-        this.F = z;
-        B();
+        if (this.c) {
+            setTranslationY((1.0f - f) * gm.N(24.0f));
+        }
+        photoViewer.r3.setAlpha(f);
     }
 
-    public final boolean n(MediaRouter.RouteInfo routeInfo) {
-        String str;
+    public final void b(float f) {
+        if (this.a != f) {
+            this.a = f;
+            a(f);
+        }
+    }
+
+    public final void c(boolean z) {
+        if (this.b != z) {
+            this.b = z;
+            PhotoViewer photoViewer = this.s;
+            if (z) {
+                setTranslationY(0.0f);
+                photoViewer.r3.setAlpha(1.0f);
+            } else {
+                photoViewer.o3.setScaleX(1.0f);
+                photoViewer.o3.setScaleY(1.0f);
+                vdc vdcVar = photoViewer.q3;
+                if (vdcVar.y != 0.0f) {
+                    vdcVar.y = 0.0f;
+                    vdcVar.v.invalidate();
+                }
+            }
+            a(this.a);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.n.a = 0.0f;
+        this.h = 0;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        float f;
+        super.onLayout(z, i, i2, i3, i4);
+        PhotoViewer photoViewer = this.s;
+        ndc ndcVar = photoViewer.G2;
+        if (ndcVar != null) {
+            f = ((float) ndcVar.S()) / ((float) photoViewer.G2.U());
+        } else {
+            f = 0.0f;
+        }
+        if (photoViewer.W2) {
+            photoViewer.q3.h(false, f);
+        }
+        photoViewer.X7.setProgress(f);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3;
+        Locale locale;
         String format;
-        String str2;
-        if (s(routeInfo) != null || o(routeInfo) >= 0) {
+        this.d = true;
+        PhotoViewer photoViewer = this.s;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) photoViewer.o3.getLayoutParams();
+        int i4 = this.e;
+        int i5 = this.f;
+        ImageView imageView = photoViewer.p3;
+        if (i4 > i5) {
+            if (imageView.getVisibility() != 0) {
+                photoViewer.p3.setVisibility(0);
+            }
+            i3 = gm.L(48.0f);
+            layoutParams.rightMargin = gm.L(47.0f);
+        } else {
+            if (imageView.getVisibility() != 4) {
+                photoViewer.p3.setVisibility(4);
+            }
+            layoutParams.rightMargin = gm.L(12.0f);
+            i3 = 0;
+        }
+        this.d = false;
+        super.onMeasure(i, i2);
+        ndc ndcVar = photoViewer.G2;
+        long j = 0;
+        if (ndcVar != null) {
+            long U = ndcVar.U();
+            if (U != -9223372036854775807L) {
+                j = U;
+            }
+        } else {
+            ya8 ya8Var = photoViewer.g0;
+            if (ya8Var != null && ya8Var.y) {
+                j = ya8Var.getVideoDuration();
+            }
+        }
+        long j2 = j / 1000;
+        long j3 = j2 / 60;
+        if (j3 > 60) {
+            locale = Locale.ROOT;
+            format = String.format(locale, "%02d:%02d:%02d", Long.valueOf(j3 / 60), Long.valueOf(j3 % 60), Long.valueOf(j2 % 60));
+        } else {
+            locale = Locale.ROOT;
+            format = String.format(locale, "%02d:%02d", Long.valueOf(j3), Long.valueOf(j2 % 60));
+        }
+        int ceil = (int) Math.ceil(photoViewer.o3.getPaint().measureText(String.format(locale, "%1$s / %1$s", format)));
+        zna znaVar = this.r;
+        znaVar.d();
+        int i6 = this.h;
+        xk4 xk4Var = this.n;
+        if (i6 != 0) {
+            float f = ceil;
+            if (xk4Var.a != f) {
+                znaVar.m.i = f;
+                znaVar.h();
+                this.h = ceil;
+            }
+        }
+        vdc vdcVar = photoViewer.q3;
+        int measuredHeight = getMeasuredHeight();
+        vdcVar.h = ((getMeasuredWidth() - gm.L(16.0f)) - ceil) - i3;
+        vdcVar.i = measuredHeight;
+        View view = vdcVar.v;
+        if (view != null) {
+            view.invalidate();
+        }
+        xk4Var.a = ceil;
+        this.h = ceil;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.a < 1.0f) {
             return false;
         }
-        MediaRouter.RouteInfo r = r();
-        String str3 = "";
-        Context context = this.a;
-        if (r == routeInfo) {
-            format = "DEFAULT_ROUTE";
-        } else {
-            Locale locale = Locale.US;
-            CharSequence name = routeInfo.getName(context);
-            if (name == null) {
-                str = "";
-            } else {
-                str = name.toString();
-            }
-            format = String.format(locale, "ROUTE_%08x", Integer.valueOf(str.hashCode()));
+        PhotoViewer photoViewer = this.s;
+        if (photoViewer.q3.e(motionEvent.getX() - gm.L(2.0f), motionEvent.getY(), motionEvent.getAction())) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+            photoViewer.r3.invalidate();
         }
-        if (p(format) >= 0) {
-            int i = 2;
-            while (true) {
-                Locale locale2 = Locale.US;
-                str2 = format + "_" + i;
-                if (p(str2) < 0) {
-                    break;
-                }
-                i++;
-            }
-            format = str2;
-        }
-        tb8 tb8Var = new tb8(routeInfo, format);
-        CharSequence name2 = routeInfo.getName(context);
-        if (name2 != null) {
-            str3 = name2.toString();
-        }
-        ys6 ys6Var = new ys6(format, str3);
-        u(tb8Var, ys6Var);
-        tb8Var.c = ys6Var.b();
-        this.H.add(tb8Var);
         return true;
     }
 
-    public final int o(MediaRouter.RouteInfo routeInfo) {
-        ArrayList arrayList = this.H;
-        int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            if (((tb8) arrayList.get(i)).a == routeInfo) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public final int p(String str) {
-        ArrayList arrayList = this.H;
-        int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            if (((tb8) arrayList.get(i)).b.equals(str)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public final int q(eu6 eu6Var) {
-        ArrayList arrayList = this.I;
-        int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            if (((ub8) arrayList.get(i)).a == eu6Var) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public MediaRouter.RouteInfo r() {
-        return this.s.getDefaultRoute();
-    }
-
-    public boolean t(tb8 tb8Var) {
-        return tb8Var.a.isConnecting();
-    }
-
-    public void u(tb8 tb8Var, ys6 ys6Var) {
-        boolean z;
-        MediaRouter.RouteInfo routeInfo = tb8Var.a;
-        int supportedTypes = routeInfo.getSupportedTypes();
-        if ((supportedTypes & 1) != 0) {
-            ys6Var.a(J);
-        }
-        if ((supportedTypes & 2) != 0) {
-            ys6Var.a(K);
-        }
-        int playbackType = routeInfo.getPlaybackType();
-        Bundle bundle = ys6Var.a;
-        Bundle bundle2 = ys6Var.a;
-        bundle.putInt("playbackType", playbackType);
-        bundle2.putInt("playbackStream", routeInfo.getPlaybackStream());
-        bundle2.putInt("volume", routeInfo.getVolume());
-        bundle2.putInt("volumeMax", routeInfo.getVolumeMax());
-        bundle2.putInt("volumeHandling", routeInfo.getVolumeHandling());
-        if ((supportedTypes & 8388608) == 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        bundle2.putBoolean("isSystemRoute", z);
-        if (!routeInfo.isEnabled()) {
-            bundle2.putBoolean("enabled", false);
-        }
-        if (t(tb8Var)) {
-            bundle2.putInt("connectionState", 1);
-        }
-        Display presentationDisplay = routeInfo.getPresentationDisplay();
-        if (presentationDisplay != null) {
-            bundle2.putInt("presentationDisplayId", presentationDisplay.getDisplayId());
-        }
-        CharSequence description = routeInfo.getDescription();
-        if (description != null) {
-            bundle2.putString("status", description.toString());
-        }
-    }
-
-    public final void v(eu6 eu6Var) {
-        wt6 c = eu6Var.c();
-        MediaRouter mediaRouter = this.s;
-        if (c != this) {
-            MediaRouter.UserRouteInfo createUserRoute = mediaRouter.createUserRoute(this.y);
-            ub8 ub8Var = new ub8(eu6Var, createUserRoute);
-            createUserRoute.setTag(ub8Var);
-            createUserRoute.setVolumeCallback(this.x);
-            C(ub8Var);
-            this.I.add(ub8Var);
-            mediaRouter.addUserRoute(createUserRoute);
+    @Override
+    public final void requestLayout() {
+        if (this.d) {
             return;
         }
-        int o = o(mediaRouter.getSelectedRoute(8388611));
-        if (o >= 0 && ((tb8) this.H.get(o)).b.equals(eu6Var.b)) {
-            eu6Var.l();
-        }
-    }
-
-    public final void w(eu6 eu6Var) {
-        int q;
-        if (eu6Var.c() != this && (q = q(eu6Var)) >= 0) {
-            MediaRouter.UserRouteInfo userRouteInfo = ((ub8) this.I.remove(q)).b;
-            userRouteInfo.setTag(null);
-            userRouteInfo.setVolumeCallback(null);
-            try {
-                this.s.removeUserRoute(userRouteInfo);
-            } catch (IllegalArgumentException e) {
-                Log.w("AxSysMediaRouteProvider", "Failed to remove user route", e);
-            }
-        }
-    }
-
-    public final void x(eu6 eu6Var) {
-        if (eu6Var.g()) {
-            if (eu6Var.c() != this) {
-                int q = q(eu6Var);
-                if (q >= 0) {
-                    z(((ub8) this.I.get(q)).b);
-                    return;
-                }
-                return;
-            }
-            int p = p(eu6Var.b);
-            if (p >= 0) {
-                z(((tb8) this.H.get(p)).a);
-            }
-        }
-    }
-
-    public final void y() {
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = this.H;
-        int size = arrayList2.size();
-        for (int i = 0; i < size; i++) {
-            zs6 zs6Var = ((tb8) arrayList2.get(i)).c;
-            if (zs6Var != null) {
-                if (!arrayList.contains(zs6Var)) {
-                    arrayList.add(zs6Var);
-                } else {
-                    w26.j("route descriptor already added");
-                    return;
-                }
-            } else {
-                w26.j("route must not be null");
-                return;
-            }
-        }
-        g(new am4(arrayList, false));
-    }
-
-    public void z(MediaRouter.RouteInfo routeInfo) {
-        this.s.selectRoute(8388611, routeInfo);
+        super.requestLayout();
     }
 }

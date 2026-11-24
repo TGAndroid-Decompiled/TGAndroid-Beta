@@ -1,39 +1,85 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ns2 implements Runnable {
-    public final byte a;
-    public final i8c b;
-    public final TLObject c;
-    public final TLRPC.TL_error d;
+import android.view.View;
+import java.util.HashMap;
+public abstract class ns2 {
+    public int a = 1;
+    public Object b;
+    public Object c;
 
-    public ns2(i8c i8cVar, TLObject tLObject, TLRPC.TL_error tL_error, byte b) {
-        this.a = b;
-        this.b = i8cVar;
-        this.c = tLObject;
-        this.d = tL_error;
+    public abstract int a(View view);
+
+    public abstract int b(View view);
+
+    public abstract int c(View view);
+
+    public abstract int d(View view);
+
+    public abstract int e();
+
+    public abstract int f();
+
+    public abstract int g();
+
+    public abstract int h();
+
+    public abstract int i();
+
+    public abstract int j();
+
+    public abstract int k();
+
+    public abstract int l(View view);
+
+    public abstract int m(View view);
+
+    public final void n() {
+        this.a = 2;
     }
 
-    @Override
-    public final void run() {
-        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
-        byte b = this.a;
-        TLRPC.TL_error tL_error = this.d;
-        TLObject tLObject = this.c;
-        i8c i8cVar = this.b;
-        switch (b) {
-            case 0:
-                i8cVar.a(tLObject, tL_error);
-                return;
-            default:
-                if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
-                    tL_starsRevenueStatus = ((TLRPC.TL_payments_starsRevenueStats) tLObject).status;
-                } else {
-                    tL_starsRevenueStatus = null;
-                }
-                i8cVar.a(tL_starsRevenueStatus, tL_error);
-                return;
+    public final void o(String str) {
+        this.b = str;
+    }
+
+    public abstract void p(int i);
+
+    public final void q(bt2 bt2Var, qs2 qs2Var) {
+        String str = (String) this.c;
+        if (str != null && !str.isEmpty()) {
+            qs2Var.b = (String) this.c;
         }
+        HashMap hashMap = bt2Var.a;
+        String str2 = qs2Var.a;
+        if (!hashMap.containsKey(str2)) {
+            if (bt2Var.b.add(qs2Var.e())) {
+                hashMap.put(str2, qs2Var);
+                return;
+            } else {
+                zo4.r(qs2Var.e(), "Config storage key used twice: ");
+                return;
+            }
+        }
+        dq9.m(b10.h("Config key registered twice: ", str2));
+    }
+
+    public final void r(boolean z, Number number) {
+        if (z) {
+            return;
+        }
+        String s = s();
+        throw new IllegalStateException("Config key " + s + ": default " + number + " is outside its range");
+    }
+
+    public final String s() {
+        String str = (String) this.b;
+        if (str != null && !str.isEmpty()) {
+            return (String) this.b;
+        }
+        dq9.m("Config key without a name");
+        return null;
+    }
+
+    public final void t(String str) {
+        this.c = str;
     }
 }

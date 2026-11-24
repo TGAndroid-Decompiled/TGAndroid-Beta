@@ -1,186 +1,198 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.util.Date;
-public final class uxb extends g2 {
-    public static final z24 F;
-    public static final z24 G;
-    public static final z24 H;
-    public static final z24 I;
-    public static final z24 J;
-    public static final z24 K;
-    public static final z24 L;
-    public static final z24 M;
-    public static final z24 N;
-    public static final z24 O;
-    public static final z24 P;
-    public static final z24 Q;
-    public static final z24 R;
-    public static final z24 S;
-    public static final z24 T;
-    public static final z24 U;
-    public static final z24 V;
-    public static final z24 W;
-    public static final z24 X;
-    public static final z24 Y;
-    public static final z24 Z;
-    public static final z24 a0;
-    public static final z24 b0;
-    public static final z24 c0;
-    public double E;
-    public Date e;
-    public Date f;
-    public long h;
-    public long n;
-    public int r;
-    public int s;
-    public float w;
-    public jj6 x;
-    public double y;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import com.google.android.gms.tasks.OnSuccessListener;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Wallet.c;
+import org.telegram.utils.twidget.w;
+public final class uxb implements rt8, h59, ee, g59, i59, yeb, OnSuccessListener, yxc {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    static {
-        z74 z74Var = new z74(uxb.class, "TrackHeaderBox.java");
-        F = z74Var.e(z74Var.d("getCreationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "java.util.Date"));
-        G = z74Var.e(z74Var.d("getModificationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "java.util.Date"));
-        O = z74Var.e(z74Var.d("getContent", "com.coremedia.iso.boxes.TrackHeaderBox", "java.nio.ByteBuffer", "byteBuffer", "void"));
-        P = z74Var.e(z74Var.d("toString", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "java.lang.String"));
-        Q = z74Var.e(z74Var.d("setCreationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "java.util.Date", "creationTime", "void"));
-        R = z74Var.e(z74Var.d("setModificationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "java.util.Date", "modificationTime", "void"));
-        S = z74Var.e(z74Var.d("setTrackId", "com.coremedia.iso.boxes.TrackHeaderBox", "long", "trackId", "void"));
-        T = z74Var.e(z74Var.d("setDuration", "com.coremedia.iso.boxes.TrackHeaderBox", "long", "duration", "void"));
-        U = z74Var.e(z74Var.d("setLayer", "com.coremedia.iso.boxes.TrackHeaderBox", "int", "layer", "void"));
-        V = z74Var.e(z74Var.d("setAlternateGroup", "com.coremedia.iso.boxes.TrackHeaderBox", "int", "alternateGroup", "void"));
-        W = z74Var.e(z74Var.d("setVolume", "com.coremedia.iso.boxes.TrackHeaderBox", "float", "volume", "void"));
-        X = z74Var.e(z74Var.d("setMatrix", "com.coremedia.iso.boxes.TrackHeaderBox", "com.googlecode.mp4parser.util.Matrix", "matrix", "void"));
-        H = z74Var.e(z74Var.d("getTrackId", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "long"));
-        Y = z74Var.e(z74Var.d("setWidth", "com.coremedia.iso.boxes.TrackHeaderBox", "double", "width", "void"));
-        Z = z74Var.e(z74Var.d("setHeight", "com.coremedia.iso.boxes.TrackHeaderBox", "double", "height", "void"));
-        z74Var.e(z74Var.d("isEnabled", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        z74Var.e(z74Var.d("isInMovie", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        z74Var.e(z74Var.d("isInPreview", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        z74Var.e(z74Var.d("isInPoster", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        a0 = z74Var.e(z74Var.d("setEnabled", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "enabled", "void"));
-        b0 = z74Var.e(z74Var.d("setInMovie", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inMovie", "void"));
-        c0 = z74Var.e(z74Var.d("setInPreview", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inPreview", "void"));
-        z74Var.e(z74Var.d("setInPoster", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inPoster", "void"));
-        I = z74Var.e(z74Var.d("getDuration", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "long"));
-        J = z74Var.e(z74Var.d("getLayer", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "int"));
-        K = z74Var.e(z74Var.d("getAlternateGroup", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "int"));
-        L = z74Var.e(z74Var.d("getVolume", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "float"));
-        z74Var.e(z74Var.d("getMatrix", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "com.googlecode.mp4parser.util.Matrix"));
-        M = z74Var.e(z74Var.d("getWidth", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "double"));
-        N = z74Var.e(z74Var.d("getHeight", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "double"));
+    public uxb(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        f(byteBuffer);
-        if (e() == 1) {
-            this.e = nce.b(hle.h(byteBuffer));
-            this.f = nce.b(hle.h(byteBuffer));
-            this.h = hle.g(byteBuffer);
-            hle.g(byteBuffer);
-            long j = byteBuffer.getLong();
-            this.n = j;
-            if (j < -1) {
-                wn4.j("The tracks duration is bigger than Long.MAX_VALUE");
+    public final boolean mo14d(float f, float f2, int i, View view) {
+        pac pacVar = (pac) this.c;
+        c6c G = ((q7c) this.b).g3.G(i);
+        if (G == null) {
+            return false;
+        }
+        return ((Boolean) pacVar.b(G, view, Integer.valueOf(i), Float.valueOf(f), Float.valueOf(f2))).booleanValue();
+    }
+
+    @Override
+    public final Object e() {
+        byte b = this.a;
+        Object obj = this.c;
+        za0 za0Var = (za0) this.b;
+        switch (b) {
+            case 5:
+                Iterable iterable = (Iterable) obj;
+                mq9 mq9Var = (mq9) za0Var.c;
+                mq9Var.getClass();
+                if (iterable.iterator().hasNext()) {
+                    mq9Var.a().compileStatement("DELETE FROM events WHERE _id in ".concat(mq9.g(iterable))).execute();
+                }
+                return null;
+            default:
+                for (Map.Entry entry : ((HashMap) obj).entrySet()) {
+                    ((mq9) za0Var.i).e(((Integer) entry.getValue()).intValue(), wd6.INVALID_PAYLOD, (String) entry.getKey());
+                }
+                return null;
+        }
+    }
+
+    @Override
+    public final void f(zo7 zo7Var) {
+        zxb zxbVar = ((wxb) this.b).a;
+        zxbVar.e.add(Integer.valueOf(((TLRPC.TL_forumTopic) this.c).id));
+        zxbVar.a0();
+    }
+
+    @Override
+    public final boolean g(int i, View view) {
+        mzb mzbVar;
+        bt1 bt1Var = (bt1) this.c;
+        TLRPC.TL_forumTopic tL_forumTopic = ((kyb) ((oyb) this.b).s.c.get(i)).a;
+        if (tL_forumTopic != null && (mzbVar = bt1Var.a.g2) != null && mzbVar.l(tL_forumTopic, view, true)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onSuccess(Object obj) {
+        Integer num = (Integer) obj;
+        fc4.b("wear-auth: /token delivered to " + ((String) ((sm2) this.b).e));
+        ((b61) this.c).setLoading(false);
+        auc.d = null;
+        my0 my0Var = auc.c;
+        if (my0Var != null) {
+            my0Var.dismiss();
+            auc.c = null;
+        }
+    }
+
+    @Override
+    public final void r(he heVar, int i) {
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.b;
+        switch (b) {
+            case 2:
+                ((p5c) obj2).y0((byte[]) obj);
                 return;
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            default:
+                l11.r((Activity) obj2, Uri.parse((String) obj), true, false);
+                return;
+            case 7:
+                iic iicVar = (iic) obj2;
+                ((boolean[]) obj)[0] = true;
+                iicVar.p0 = 17;
+                Intent intent = new Intent(iicVar.b, VoIPService.class);
+                intent.putExtra("user_id", iicVar.d.id);
+                intent.putExtra("is_outgoing", true);
+                intent.putExtra("start_incall_activity", false);
+                intent.putExtra("video_call", false);
+                intent.putExtra("can_video_call", false);
+                intent.putExtra("account", iicVar.a);
+                try {
+                    iicVar.b.startService(intent);
+                    return;
+                } catch (Throwable th) {
+                    fc4.g(th, true);
+                    return;
+                }
+            case 8:
+                Activity activity = (Activity) obj2;
+                Intent intent2 = new Intent(activity, LaunchActivity.class);
+                intent2.setAction("android.intent.action.SEND");
+                intent2.putExtra("android.intent.extra.STREAM", Uri.fromFile((File) obj));
+                activity.startActivity(intent2);
+                return;
+            case 9:
+                heVar.dismiss();
+                pqc pqcVar = new pqc();
+                pqcVar.r = !((Boolean) obj).booleanValue();
+                ((vqc) obj2).presentFragment(pqcVar);
+                return;
+            case 10:
+                ((qhc) obj2).run();
+                ((my0) obj).dismiss();
+                return;
+            case 11:
+                c cVar = (c) obj;
+                k11 g = heVar.g(i, true, true);
+                g.d();
+                sqc sqcVar = new sqc((vqc) obj2, g, (byte) 1);
+                c.O("disableBackupWithoutUpdatingPhrase");
+                cVar.x0(new bb1((Object) cVar, (Object) new qy1(cVar, sqcVar, (byte) 29), true, false, (byte) 3));
+                return;
+        }
+    }
+
+    @Override
+    public final Object run() {
+        w wVar = (w) this.b;
+        byte[] bArr = (byte[]) this.c;
+        synchronized (wVar) {
+            if (bArr != null) {
+                if (wVar.d.size() + bArr.length <= 16777216) {
+                    wVar.d.write(bArr, 0, bArr.length);
+                }
             }
-        } else {
-            this.e = nce.b(hle.g(byteBuffer));
-            this.f = nce.b(hle.g(byteBuffer));
-            this.h = hle.g(byteBuffer);
-            hle.g(byteBuffer);
-            this.n = hle.g(byteBuffer);
+            wVar.d.reset();
+            throw new IllegalStateException("Widget engine: argument too large");
         }
-        hle.g(byteBuffer);
-        hle.g(byteBuffer);
-        this.r = hle.f(byteBuffer);
-        this.s = hle.f(byteBuffer);
-        this.w = hle.e(byteBuffer);
-        hle.f(byteBuffer);
-        this.x = jj6.a(byteBuffer);
-        this.y = hle.d(byteBuffer);
-        this.E = hle.d(byteBuffer);
+        return null;
     }
 
     @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        c5a c = z74.c(O, this, this, byteBuffer);
-        n89.a().getClass();
-        n89.b(c);
-        i(byteBuffer);
-        int e = e();
-        Date date = this.e;
-        if (e == 1) {
-            byteBuffer.putLong(nce.a(date));
-            byteBuffer.putLong(nce.a(this.f));
-            byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt(0);
-            byteBuffer.putLong(this.n);
-        } else {
-            byteBuffer.putInt((int) nce.a(date));
-            byteBuffer.putInt((int) nce.a(this.f));
-            byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt(0);
-            byteBuffer.putInt((int) this.n);
-        }
-        byteBuffer.putInt(0);
-        byteBuffer.putInt(0);
-        ile.d(this.r, byteBuffer);
-        ile.d(this.s, byteBuffer);
-        ile.c(byteBuffer, this.w);
-        ile.d(0, byteBuffer);
-        this.x.b(byteBuffer);
-        ile.b(byteBuffer, this.y);
-        ile.b(byteBuffer, this.E);
+    public final boolean u(View view) {
+        return false;
     }
 
     @Override
-    public final long getContentSize() {
-        long j;
-        if (e() == 1) {
-            j = 36;
-        } else {
-            j = 24;
-        }
-        return j + 60;
+    public final void i() {
     }
 
-    public final String toString() {
-        c5a b = z74.b(P, this, this);
-        n89.a().getClass();
-        n89.b(b);
-        StringBuilder sb = new StringBuilder("TrackHeaderBox[creationTime=");
-        oo1.r(z74.b(F, this, this));
-        sb.append(this.e);
-        sb.append(";modificationTime=");
-        oo1.r(z74.b(G, this, this));
-        sb.append(this.f);
-        sb.append(";trackId=");
-        oo1.r(z74.b(H, this, this));
-        sb.append(this.h);
-        sb.append(";duration=");
-        oo1.r(z74.b(I, this, this));
-        sb.append(this.n);
-        sb.append(";layer=");
-        oo1.r(z74.b(J, this, this));
-        sb.append(this.r);
-        sb.append(";alternateGroup=");
-        oo1.r(z74.b(K, this, this));
-        sb.append(this.s);
-        sb.append(";volume=");
-        oo1.r(z74.b(L, this, this));
-        sb.append(this.w);
-        sb.append(";matrix=");
-        sb.append(this.x);
-        sb.append(";width=");
-        oo1.r(z74.b(M, this, this));
-        sb.append(this.y);
-        sb.append(";height=");
-        oo1.r(z74.b(N, this, this));
-        sb.append(this.E);
-        sb.append("]");
-        return sb.toString();
+    @Override
+    public final void k(float f) {
+    }
+
+    @Override
+    public final void v() {
+    }
+
+    @Override
+    public final void d(float f, float f2, int i, View view) {
+        oac oacVar = (oac) this.c;
+        c6c G = ((q7c) this.b).g3.G(i);
+        if (G == null) {
+            return;
+        }
+        oacVar.k(G, view, Integer.valueOf(i), Float.valueOf(f), Float.valueOf(f2));
+    }
+
+    @Override
+    public final void p(View view, float f, float f2) {
     }
 }

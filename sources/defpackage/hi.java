@@ -1,50 +1,55 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.widget.LinearLayout;
-public final class hi extends LinearLayout {
-    public boolean a;
-    public final hn7 b;
-    public final hn7 c;
-    public final hn7 d;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.FragmentContextView;
+import org.telegram.ui.PhotoViewer;
+public final class hi implements Runnable {
+    public final byte a;
+    public final hg5 b;
 
-    public hi(Context context, hn7 hn7Var, hn7 hn7Var2, hn7 hn7Var3) {
-        super(context);
-        this.b = hn7Var;
-        this.c = hn7Var2;
-        this.d = hn7Var3;
-        this.a = false;
+    public hi(hg5 hg5Var, byte b) {
+        this.a = b;
+        this.b = hg5Var;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        this.a = true;
-        Point point = gl.q;
-        if (point.x > point.y) {
-            i3 = 3;
-        } else {
-            i3 = 5;
+    public final void run() {
+        byte b = this.a;
+        hg5 hg5Var = this.b;
+        switch (b) {
+            case 0:
+                gm.B2(hg5Var);
+                return;
+            case 1:
+                gm.B2(hg5Var);
+                return;
+            case 2:
+                gm.B2(hg5Var);
+                return;
+            case 3:
+                float[] fArr = FragmentContextView.W0;
+                gm.B2(hg5Var);
+                return;
+            case 4:
+            case 7:
+                hg5Var.f(true);
+                return;
+            case 5:
+                hg5Var.y();
+                return;
+            case 6:
+                Drawable[] drawableArr = PhotoViewer.d9;
+                gm.B2(hg5Var);
+                return;
+            case 8:
+                gm.B2(hg5Var);
+                return;
+            case 9:
+                gm.B2(hg5Var);
+                return;
+            default:
+                gm.B2(hg5Var);
+                return;
         }
-        hn7 hn7Var = this.b;
-        hn7Var.setItemCount(i3);
-        hn7 hn7Var2 = this.c;
-        hn7Var2.setItemCount(i3);
-        hn7 hn7Var3 = this.d;
-        hn7Var3.setItemCount(i3);
-        hn7Var.getLayoutParams().height = gl.L(42.0f) * i3;
-        hn7Var2.getLayoutParams().height = gl.L(42.0f) * i3;
-        hn7Var3.getLayoutParams().height = gl.L(42.0f) * i3;
-        this.a = false;
-        super.onMeasure(i, i2);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.a) {
-            return;
-        }
-        super.requestLayout();
     }
 }

@@ -1,17 +1,14 @@
 package defpackage;
-public final class ike implements zn7 {
-    public static final ike a = new Object();
+public final class ike {
+    public final eve a;
+    public final kje b;
+    public final wie c;
+    public final jqe d;
 
-    static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public ike(e7a e7aVar) {
+        this.a = (eve) e7aVar.a;
+        this.b = (kje) e7aVar.b;
+        this.c = (wie) e7aVar.c;
+        this.d = (jqe) e7aVar.d;
     }
 }

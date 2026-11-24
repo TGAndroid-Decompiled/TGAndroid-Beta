@@ -1,16 +1,8 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class h5d implements IInterface {
-    public final IBinder a;
+import android.content.DialogInterface;
+public abstract class h5d extends y26 implements DialogInterface.OnCancelListener {
+    public abstract void a(ot2 ot2Var, int i);
 
-    public h5d(IBinder iBinder) {
-        this.a = iBinder;
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.a;
-    }
+    public abstract void b();
 }

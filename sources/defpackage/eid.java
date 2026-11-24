@@ -1,17 +1,83 @@
 package defpackage;
-public final class eid implements zn7 {
-    public static final eid a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)), 6)));
+import java.util.ListIterator;
+public final class eid extends v7c implements ListIterator {
+    public final int b;
+    public int c;
+    public final yjd d;
+
+    public eid(yjd yjdVar, int i) {
+        super((byte) 10);
+        int size = yjdVar.size();
+        if (i >= 0 && i <= size) {
+            this.b = size;
+            this.c = i;
+            this.d = yjdVar;
+            return;
+        }
+        wa3.i(m2f.c(i, size, "index"));
+        throw null;
+    }
+
+    public final Object a(int i) {
+        return this.d.get(i);
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.c < this.b) {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.c > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i = this.c;
+            this.c = i + 1;
+            return a(i);
+        }
+        u36.g();
+        return null;
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i = this.c - 1;
+            this.c = i;
+            return a(i);
+        }
+        u36.g();
+        return null;
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

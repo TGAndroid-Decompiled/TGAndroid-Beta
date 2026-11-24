@@ -1,58 +1,23 @@
 package defpackage;
-public abstract class sm4 extends aob {
-    public final aob e;
 
-    public sm4(aob aobVar) {
-        this.e = aobVar;
+import java.io.Serializable;
+public final class sm4 implements jm4 {
+    public final byte a = 0;
+    public final jm4 b;
+    public final Serializable c;
+
+    public sm4(jm4 jm4Var, e79 e79Var) {
+        this.b = jm4Var;
+        this.c = e79Var;
     }
 
     @Override
-    public final int a(boolean z) {
-        return this.e.a(z);
+    public final java.lang.Object c(java.lang.Object r10, defpackage.px2 r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sm4.c(java.lang.Object, px2):java.lang.Object");
     }
 
-    @Override
-    public int b(Object obj) {
-        return this.e.b(obj);
-    }
-
-    @Override
-    public final int c(boolean z) {
-        return this.e.c(z);
-    }
-
-    @Override
-    public int e(int i, int i2, boolean z) {
-        return this.e.e(i, i2, z);
-    }
-
-    @Override
-    public xnb f(int i, xnb xnbVar, boolean z) {
-        return this.e.f(i, xnbVar, z);
-    }
-
-    @Override
-    public final int h() {
-        return this.e.h();
-    }
-
-    @Override
-    public int k(int i, int i2, boolean z) {
-        return this.e.k(i, i2, z);
-    }
-
-    @Override
-    public Object l(int i) {
-        return this.e.l(i);
-    }
-
-    @Override
-    public znb m(int i, znb znbVar, long j) {
-        return this.e.m(i, znbVar, j);
-    }
-
-    @Override
-    public final int o() {
-        return this.e.o();
+    public sm4(o83 o83Var, jm4 jm4Var) {
+        this.c = o83Var;
+        this.b = jm4Var;
     }
 }

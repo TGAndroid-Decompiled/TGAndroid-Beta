@@ -1,44 +1,39 @@
 package defpackage;
 
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.view.View;
-public final class am1 implements View.OnLongClickListener {
-    public final byte a;
-    public final mu1 b;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
+public final class am1 {
+    public float a;
+    public float b;
+    public int c;
+    public StaticLayout d;
+    public TextPaint e;
+    public final ArrayList f = new ArrayList();
+    public final AtomicReference g = new AtomicReference();
+    public cn h;
+    public final cm1 i;
 
-    public am1(mu1 mu1Var, byte b) {
-        this.a = b;
-        this.b = mu1Var;
+    public am1(cm1 cm1Var) {
+        this.i = cm1Var;
     }
 
-    @Override
-    public final boolean onLongClick(View view) {
-        k27 k27Var;
-        k27 k27Var2;
-        byte b = this.a;
-        mu1 mu1Var = this.b;
-        switch (b) {
-            case 0:
-                k27 k27Var3 = mu1Var.v5;
-                if (k27Var3 == null) {
-                    return false;
-                }
-                if (gl.g(k27Var3.T0)) {
-                    new u21(f11.a(mu1Var.getParentActivity()), mu1Var.Ba).k(false).j();
-                }
-                return true;
-            case 1:
-                return mu1Var.A9();
-            default:
-                mu1 mu1Var2 = this.b;
-                byte b2 = mu1Var2.Sb;
-                if (b2 == 1 && (k27Var2 = mu1Var2.H5) != null) {
-                    mu1Var2.J(k27Var2.e1(), 0, 0, 0, true, true);
-                } else if (mu1Var2.x5 == null || b2 != 2 || (k27Var = mu1Var2.F5) == null) {
-                    return false;
-                } else {
-                    mu1Var2.J(k27Var.e1(), 0, 0, 0, true, true);
-                }
-                return true;
+    public final void a(int i, TextPaint textPaint, CharSequence charSequence) {
+        this.e = textPaint;
+        this.c = i;
+        StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i, Layout.Alignment.ALIGN_CENTER, 1.1f, 0.0f, false);
+        this.d = staticLayout;
+        cm1 cm1Var = this.i;
+        k47 k47Var = cm1Var.Q0;
+        ArrayList arrayList = this.f;
+        if (k47Var != null && k47Var.N0) {
+            arrayList.clear();
+        } else {
+            rna.b(cm1Var, staticLayout, -1, i, null, arrayList);
         }
+        this.h = gn.update(0, (View) cm1Var, false, this.h, this.d);
     }
 }

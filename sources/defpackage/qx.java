@@ -1,441 +1,319 @@
 package defpackage;
 
-import android.graphics.RectF;
-import android.media.MediaCodec;
-import android.media.MediaCrypto;
-import android.media.MediaFormat;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.HandlerThread;
-import android.os.Trace;
-import android.view.Surface;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import j$.util.Objects;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.zip.Deflater;
-import org.telegram.messenger.a;
-public final class qx implements dk6, f69 {
+public final class qx extends AnimatorListenerAdapter {
     public final byte a;
     public boolean b;
-    public Object c;
-    public Object d;
+    public final Object c;
+    public final Object d;
 
-    public qx(ByteBuffer byteBuffer, int i, RectF rectF) {
-        this.a = (byte) 8;
-        this.c = rectF;
-        this.b = i;
-        try {
-            this.d = File.createTempFile("paint", ".bin", a.b.getCacheDir());
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-        if (((File) this.d) != null) {
-            try {
-                byte[] array = byteBuffer.array();
-                FileOutputStream fileOutputStream = new FileOutputStream((File) this.d);
-                Deflater deflater = new Deflater(1, true);
-                deflater.setInput(array, byteBuffer.arrayOffset(), byteBuffer.remaining());
-                deflater.finish();
-                byte[] bArr = new byte[1024];
-                while (!deflater.finished()) {
-                    fileOutputStream.write(bArr, 0, deflater.deflate(bArr));
-                }
-                deflater.end();
-                fileOutputStream.close();
-            } catch (Exception e2) {
-                fa4.g(e2, true);
-            }
-        }
-    }
-
-    @Override
-    public final void accept(Object obj, Object obj2) {
-        u56 u56Var;
-        boolean z;
-        qnd qndVar = (qnd) obj;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        synchronized (this) {
-            u56Var = ((w56) this.c).b;
-            z = this.b;
-            ((w56) this.c).b = null;
-        }
-        if (u56Var == null) {
-            taskCompletionSource.setResult(Boolean.FALSE);
-        } else {
-            eef.T3(qndVar, u56Var, z, taskCompletionSource);
-        }
-    }
-
-    public final void b(int i) {
-        String str;
-        boolean z = this.b;
-        if (i == z) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder("Wrong data accessor type detected. ");
-        String str2 = "String";
-        if (!z) {
-            str = "String";
-        } else if (z) {
-            str = "ArrayBuffer";
-        } else {
-            str = "Unknown";
-        }
-        sb.append(str);
-        sb.append(" expected, but got ");
-        if (i != 0) {
-            if (i == 1) {
-                str2 = "ArrayBuffer";
-            } else {
-                str2 = "Unknown";
-            }
-        }
-        sb.append(str2);
-        throw new IllegalStateException(sb.toString());
-    }
-
-    @Override
-    public final rx a(ep epVar) {
-        MediaCodec mediaCodec;
-        gk6 txVar;
-        int i;
-        rx rxVar;
-        String str = ((ik6) epVar.a).a;
-        rx rxVar2 = null;
-        try {
-            Trace.beginSection("createCodec:" + str);
-            mediaCodec = MediaCodec.createByCodecName(str);
-            try {
-                if (this.b && Build.VERSION.SDK_INT >= 36) {
-                    txVar = new g29(mediaCodec, (byte) 16);
-                    i = 4;
-                } else {
-                    txVar = new tx(mediaCodec, (HandlerThread) ((px) this.d).get());
-                    i = 0;
-                }
-                rxVar = new rx(mediaCodec, (HandlerThread) ((px) this.c).get(), txVar, (bg6) epVar.f);
-            } catch (Exception e) {
-                e = e;
-            }
-        } catch (Exception e2) {
-            e = e2;
-            mediaCodec = null;
-        }
-        try {
-            Trace.endSection();
-            Surface surface = (Surface) epVar.d;
-            if (surface == null && ((ik6) epVar.a).h && Build.VERSION.SDK_INT >= 35) {
-                i |= 8;
-            }
-            rxVar.p((MediaFormat) epVar.b, surface, (MediaCrypto) epVar.e, i);
-            return rxVar;
-        } catch (Exception e3) {
-            e = e3;
-            rxVar2 = rxVar;
-            if (rxVar2 == null) {
-                if (mediaCodec != null) {
-                    mediaCodec.release();
-                }
-            } else {
-                rxVar2.release();
-            }
-            throw e;
-        }
-    }
-
-    public final void d() {
-        switch (this.a) {
-            case 5:
-                this.b = false;
-                return;
-            default:
-                this.b = false;
-                return;
-        }
-    }
-
-    public final void e() {
-        dq9 dq9Var = (dq9) this.c;
-        g16 m = dq9Var.m();
-        if (m.b == v06.b) {
-            m.a(new k29(dq9Var, (byte) 0));
-            final oo ooVar = (oo) this.d;
-            if (!ooVar.c) {
-                m.a(new b16() {
-                    @Override
-                    public final void b(e16 e16Var, u06 u06Var) {
-                        u06 u06Var2 = u06.ON_START;
-                        oo ooVar2 = oo.this;
-                        if (u06Var == u06Var2) {
-                            ooVar2.e = true;
-                        } else if (u06Var == u06.ON_STOP) {
-                            ooVar2.e = false;
-                        }
-                    }
-                });
-                ooVar.c = true;
-                this.b = true;
-                return;
-            }
-            sc8.j("SavedStateRegistry was already attached.");
-            return;
-        }
-        sc8.j("Restarter must be created only during owner's initialization stage");
-    }
-
-    public final void f(Bundle bundle) {
-        Bundle bundle2;
-        if (!this.b) {
-            e();
-        }
-        g16 m = ((dq9) this.c).m();
-        if (m.b.compareTo(v06.d) < 0) {
-            oo ooVar = (oo) this.d;
-            if (ooVar.c) {
-                if (!ooVar.d) {
-                    if (bundle != null) {
-                        bundle2 = bundle.getBundle("androidx.lifecycle.BundlableSavedStateRegistry.key");
-                    } else {
-                        bundle2 = null;
-                    }
-                    ooVar.a = bundle2;
-                    ooVar.d = true;
-                    return;
-                }
-                sc8.j("SavedStateRegistry was already restored.");
-                return;
-            }
-            sc8.j("You must call performAttach() before calling performRestore(Bundle).");
-            return;
-        }
-        v06 v06Var = m.b;
-        throw new IllegalStateException(("performRestore cannot be called when owner is " + v06Var).toString());
-    }
-
-    public final void g(Bundle bundle) {
-        oo ooVar = (oo) this.d;
-        Bundle bundle2 = new Bundle();
-        Bundle bundle3 = (Bundle) ooVar.a;
-        if (bundle3 != null) {
-            bundle2.putAll(bundle3);
-        }
-        wo9 wo9Var = (wo9) ooVar.f;
-        uo9 uo9Var = new uo9(wo9Var);
-        wo9Var.c.put(uo9Var, Boolean.FALSE);
-        while (uo9Var.hasNext()) {
-            Map.Entry entry = (Map.Entry) uo9Var.next();
-            bundle2.putBundle((String) entry.getKey(), ((cq9) entry.getValue()).c());
-        }
-        if (!bundle2.isEmpty()) {
-            bundle.putBundle("androidx.lifecycle.BundlableSavedStateRegistry.key", bundle2);
-        }
-    }
-
-    public final synchronized w56 h() {
-        return (w56) this.c;
-    }
-
-    public final byte[] i() {
-        o8d o8dVar;
-        zn7 zn7Var;
-        tkd tkdVar;
-        zn7 zn7Var2;
-        pid pidVar;
-        zn7 zn7Var3;
-        switch (this.a) {
-            case 12:
-                ize izeVar = ize.h;
-                wtc wtcVar = (wtc) this.c;
-                ((pse) this.d).h = false;
-                pse pseVar = (pse) this.d;
-                pseVar.f = Boolean.FALSE;
-                wtcVar.a = new bte(pseVar);
-                try {
-                    ize.k();
-                    hie hieVar = new hie(wtcVar);
-                    it8 it8Var = new it8((byte) 1);
-                    izeVar.a(it8Var);
-                    HashMap hashMap = new HashMap(it8Var.b);
-                    HashMap hashMap2 = new HashMap(it8Var.c);
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    try {
-                        o8dVar = new o8d(byteArrayOutputStream, hashMap, hashMap2);
-                        zn7Var = (zn7) hashMap.get(hie.class);
-                    } catch (IOException unused) {
-                    }
-                    if (zn7Var != null) {
-                        zn7Var.a(hieVar, o8dVar);
-                        return byteArrayOutputStream.toByteArray();
-                    }
-                    throw new RuntimeException("No encoder for ".concat(String.valueOf(hie.class)));
-                } catch (UnsupportedEncodingException e) {
-                    throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e);
-                }
-            case 13:
-                pd5 pd5Var = pd5.r;
-                ep epVar = (ep) this.c;
-                ((pse) this.d).h = false;
-                pse pseVar2 = (pse) this.d;
-                pseVar2.f = Boolean.FALSE;
-                epVar.a = new d1f(pseVar2);
-                try {
-                    o5f.t0();
-                    pte pteVar = new pte(epVar);
-                    it8 it8Var2 = new it8((byte) 3);
-                    pd5Var.g(it8Var2);
-                    HashMap hashMap3 = new HashMap(it8Var2.b);
-                    HashMap hashMap4 = new HashMap(it8Var2.c);
-                    ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
-                    try {
-                        tkdVar = new tkd(byteArrayOutputStream2, hashMap3, hashMap4);
-                        zn7Var2 = (zn7) hashMap3.get(pte.class);
-                    } catch (IOException unused2) {
-                    }
-                    if (zn7Var2 != null) {
-                        zn7Var2.a(pteVar, tkdVar);
-                        return byteArrayOutputStream2.toByteArray();
-                    }
-                    throw new RuntimeException("No encoder for ".concat(String.valueOf(pte.class)));
-                } catch (UnsupportedEncodingException e2) {
-                    throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e2);
-                }
-            default:
-                cff cffVar = cff.E;
-                ntb ntbVar = (ntb) this.c;
-                ((pse) this.d).h = false;
-                pse pseVar3 = (pse) this.d;
-                pseVar3.f = Boolean.FALSE;
-                ntbVar.a = new bdf(pseVar3);
-                try {
-                    cff.R();
-                    r5f r5fVar = new r5f(ntbVar);
-                    it8 it8Var3 = new it8((byte) 2);
-                    cffVar.z(it8Var3);
-                    HashMap hashMap5 = new HashMap(it8Var3.b);
-                    HashMap hashMap6 = new HashMap(it8Var3.c);
-                    ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
-                    try {
-                        pidVar = new pid(byteArrayOutputStream3, hashMap5, hashMap6);
-                        zn7Var3 = (zn7) hashMap5.get(r5f.class);
-                    } catch (IOException unused3) {
-                    }
-                    if (zn7Var3 != null) {
-                        zn7Var3.a(r5fVar, pidVar);
-                        return byteArrayOutputStream3.toByteArray();
-                    }
-                    throw new RuntimeException("No encoder for ".concat(String.valueOf(r5f.class)));
-                } catch (UnsupportedEncodingException e3) {
-                    throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e3);
-                }
-        }
-    }
-
-    public qx(u84 u84Var, w56 w56Var) {
-        this.a = (byte) 11;
-        this.d = u84Var;
-        this.b = true;
-        this.c = w56Var;
-    }
-
-    public qx(dja djaVar, Object obj, byte b) {
+    public qx(Object obj, Object obj2, boolean z, byte b) {
         this.a = b;
-        this.d = djaVar;
-        this.c = obj;
-    }
-
-    public qx(String str, String str2, boolean z) {
-        this.a = (byte) 14;
-        this.d = str;
-        this.c = str2;
+        this.d = obj;
+        this.c = obj2;
         this.b = z;
     }
 
-    public qx(ep epVar, int i) {
-        this.a = (byte) 13;
-        this.d = new Object();
-        this.c = epVar;
-        o5f.t0();
-        this.b = i;
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.a) {
+            case 8:
+                this.b = true;
+                return;
+            case 9:
+            default:
+                super.onAnimationCancel(animator);
+                return;
+            case 10:
+                this.b = true;
+                return;
+        }
     }
 
-    public qx(ntb ntbVar, int i) {
-        this.a = (byte) 15;
-        this.d = new Object();
-        this.c = ntbVar;
-        cff.R();
-        this.b = i;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        float f;
+        wo9 wo9Var;
+        rw9 rw9Var;
+        byte b = this.a;
+        int i = 8;
+        float f2 = 1.0f;
+        float f3 = 0.0f;
+        Object obj = this.c;
+        Object obj2 = this.d;
+        switch (b) {
+            case 0:
+                sx sxVar = (sx) obj2;
+                if (!this.b) {
+                    f2 = 0.0f;
+                }
+                sxVar.y = f2;
+                if (!sxVar.n) {
+                    sxVar.A();
+                }
+                sxVar.u();
+                b1 b1Var = (b1) obj;
+                if (b1Var != null) {
+                    b1Var.run();
+                }
+                sxVar.r();
+                return;
+            case 1:
+                yv1 yv1Var = (yv1) obj2;
+                if (!this.b) {
+                    Bitmap bitmap = yv1Var.R8;
+                    if (bitmap != null) {
+                        yv1Var.S8 = null;
+                        yv1Var.T8 = null;
+                        bitmap.recycle();
+                        yv1Var.R8 = null;
+                    }
+                    rc2 rc2Var = (rc2) obj;
+                    if (rc2Var != null) {
+                        rc2Var.invalidate();
+                    }
+                    yv1Var.Mb(null);
+                    yv1Var.c9 = null;
+                    yv1Var.m1.invalidate();
+                    yv1Var.A0.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                ArrayList arrayList = (ArrayList) obj;
+                xib xibVar = ((ba2) obj2).O;
+                if (this.b) {
+                    i = 0;
+                }
+                xibVar.setVisibility(i);
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    ((View) arrayList.get(i2)).setTranslationY(0.0f);
+                }
+                return;
+            case 3:
+                super.onAnimationEnd(animator);
+                x53 x53Var = (x53) obj2;
+                x53Var.E.remove((ValueAnimator) obj);
+                x53Var.a(this.b);
+                return;
+            case 4:
+                g95 g95Var = (g95) obj2;
+                g75 g75Var = g95Var.s4;
+                ha5 ha5Var = (ha5) obj;
+                if (ha5Var != null) {
+                    ha5Var.f = false;
+                }
+                nm7.f(g95Var.n1.a).j(g95Var.S4);
+                g95Var.R4 = false;
+                boolean z = this.b;
+                if (z) {
+                    f = 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+                g95Var.W3 = f;
+                g95Var.T3.n = f;
+                if (!z) {
+                    g95Var.L4.setAlpha(0);
+                    g95Var.R0();
+                    if (g95Var.X3.getParent() != null) {
+                        g95Var.b.removeView(g95Var.X3);
+                    }
+                    g95Var.X3 = null;
+                    g75Var.setVisibility(8);
+                    g95Var.Y3 = false;
+                    g95Var.R1.X = true;
+                    g95Var.U3.setVisibility(8);
+                    if (g95Var.l2) {
+                        g95Var.l2 = false;
+                        g95Var.D0(true);
+                    }
+                    ha5 ha5Var2 = g95Var.O4;
+                    if (ha5Var2 != null) {
+                        ha5Var2.a.setRoundCorners(0.0f);
+                    }
+                } else {
+                    g75Var.setAlpha(1.0f);
+                    g75Var.setScaleX(1.0f);
+                    g75Var.setScaleY(1.0f);
+                    g75Var.setTranslationX(0.0f);
+                    g75Var.setTranslationY(0.0f);
+                }
+                g95Var.I0();
+                g95Var.b.invalidate();
+                g95Var.l1.invalidate();
+                g95Var.J1.invalidate();
+                return;
+            case 5:
+                ha5 ha5Var3 = (ha5) obj2;
+                ha5 ha5Var4 = (ha5) obj;
+                ha5Var4.setScaleX(1.0f);
+                ha5Var4.setScaleY(1.0f);
+                ha5Var4.setAlpha(1.0f);
+                if (this.b) {
+                    ha5Var3.y.removeView(ha5Var4);
+                    ha5Var3.e();
+                }
+                ha5Var4.setVisibility(8);
+                return;
+            case 6:
+                kla klaVar = (kla) obj;
+                mh6 mh6Var = (mh6) obj2;
+                if (!mh6Var.K && this.b) {
+                    mh6Var.K1(true, true);
+                }
+                klaVar.setVisibility(8);
+                klaVar.g();
+                klaVar.setX(0.0f);
+                return;
+            case 7:
+                xg8 xg8Var = (xg8) obj2;
+                if (!this.b) {
+                    f2 = 0.0f;
+                }
+                xg8Var.E = f2;
+                xg8Var.c.invalidate();
+                xg8Var.d.invalidate();
+                xg8Var.e();
+                pg8 pg8Var = (pg8) obj;
+                if (pg8Var != null) {
+                    pg8Var.run();
+                    return;
+                }
+                return;
+            case 8:
+                zx8 zx8Var = (zx8) obj2;
+                if (zx8Var.U == animator) {
+                    zx8Var.U = null;
+                }
+                if (!this.b) {
+                    ((Runnable) obj).run();
+                    return;
+                }
+                return;
+            case 9:
+                iy8 iy8Var = (iy8) obj2;
+                iy8Var.l0();
+                wy8 wy8Var = iy8Var.d;
+                if (!this.b) {
+                    f2 = 0.0f;
+                }
+                wy8Var.setReveal(f2);
+                ((Runnable) obj).run();
+                return;
+            case 10:
+                ((op9) obj2).P.k0 = null;
+                if (!this.b && (wo9Var = (wo9) obj) != null) {
+                    wo9Var.run();
+                    return;
+                }
+                return;
+            case 11:
+                vs9 vs9Var = (vs9) obj2;
+                if (this.b) {
+                    f3 = 1.0f;
+                }
+                vs9Var.r = f3;
+                vs9Var.E.setScaleX(gm.R1(0.8f, 1.0f, f3));
+                vs9Var.E.setScaleY(gm.R1(0.8f, 1.0f, vs9Var.r));
+                vs9Var.E.setAlpha(vs9Var.r);
+                vs9Var.s.invalidate();
+                vs9Var.w.invalidate();
+                Runnable runnable = (Runnable) obj;
+                if (runnable != null) {
+                    gm.c3(runnable);
+                    return;
+                }
+                return;
+            case 12:
+                tw9 tw9Var = (tw9) obj2;
+                if (!this.b) {
+                    f2 = 0.0f;
+                }
+                tw9Var.s = f2;
+                tw9Var.b.invalidate();
+                tw9Var.c.invalidate();
+                tw9Var.e();
+                TextView textView = tw9Var.E;
+                if (textView != null) {
+                    textView.setAlpha(tw9Var.s);
+                }
+                if (tw9Var.T) {
+                    tw9Var.O.invalidate();
+                }
+                if (!tw9Var.T && (rw9Var = tw9Var.O) != null && rw9Var.getSeekBarWaveform() != null) {
+                    gx9 seekBarWaveform = tw9Var.O.getSeekBarWaveform();
+                    seekBarWaveform.L = tw9Var.s;
+                    rc2 rc2Var2 = seekBarWaveform.n;
+                    if (rc2Var2 != null) {
+                        rc2Var2.invalidate();
+                    }
+                }
+                nw9 nw9Var = (nw9) obj;
+                if (nw9Var != null) {
+                    nw9Var.run();
+                    return;
+                }
+                return;
+            case 13:
+                n6b n6bVar = (n6b) obj2;
+                t1 t1Var = n6bVar.c;
+                if (this.b) {
+                    f3 = 1.0f;
+                }
+                n6bVar.E = f3;
+                t1Var.setAlpha(f3);
+                t1Var.setScaleX(gm.R1(0.9f, 1.0f, n6bVar.E));
+                t1Var.setScaleY(gm.R1(0.9f, 1.0f, n6bVar.E));
+                n6bVar.b.invalidate();
+                j6b j6bVar = (j6b) obj;
+                if (j6bVar != null) {
+                    gm.c3(j6bVar);
+                    return;
+                }
+                return;
+            case 14:
+                ((v9b) obj2).m0();
+                if (!this.b) {
+                    ((View) obj).setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                krb krbVar = (krb) obj2;
+                if (!this.b) {
+                    f2 = 0.0f;
+                }
+                krbVar.y = f2;
+                krbVar.b.invalidate();
+                krbVar.c.invalidate();
+                krbVar.e();
+                n28 n28Var = (n28) obj;
+                if (n28Var != null) {
+                    n28Var.run();
+                    return;
+                }
+                return;
+        }
     }
 
-    public qx(wtc wtcVar, int i) {
-        this.a = (byte) 12;
-        this.d = new Object();
-        this.c = wtcVar;
-        ize.k();
-        this.b = i;
+    public qx(FrameLayout frameLayout, Runnable runnable, byte b) {
+        this.a = b;
+        this.d = frameLayout;
+        this.c = runnable;
     }
 
-    public qx() {
-        this.a = (byte) 4;
-    }
-
-    public qx(dq9 dq9Var) {
-        this.a = (byte) 7;
-        this.c = dq9Var;
-        this.d = new oo();
-    }
-
-    public qx(up2 up2Var, np2 np2Var) {
-        this.a = (byte) 3;
-        this.c = new Object();
-        this.d = new ArrayList();
-    }
-
-    public qx(qg0 qg0Var) {
-        this.a = (byte) 2;
-        qg0Var.getClass();
-        this.c = qg0Var;
-        this.d = new qq6();
-    }
-
-    public qx(String str) {
-        this.a = (byte) 10;
-        this.c = str;
-        this.d = null;
-        this.b = false;
-    }
-
-    public qx(px pxVar, px pxVar2) {
-        this.a = (byte) 0;
-        this.c = pxVar;
-        this.d = pxVar2;
-        this.b = true;
-    }
-
-    public qx(byte[] bArr) {
-        this.a = (byte) 10;
-        Objects.requireNonNull(bArr);
-        this.d = bArr;
-        this.c = null;
-        this.b = true;
-    }
-
-    public qx(ou1 ou1Var, fm0 fm0Var) {
-        this.a = (byte) 1;
-        this.c = ou1Var;
-        this.d = fm0Var;
-    }
-
-    public qx(yic yicVar) {
-        this.a = (byte) 9;
-        this.d = yicVar;
-        this.c = new int[2];
+    public qx(Object obj, boolean z, Object obj2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = z;
+        this.c = obj2;
     }
 }

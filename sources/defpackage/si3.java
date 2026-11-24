@@ -1,100 +1,50 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class si3 extends Drawable {
-    public final byte a;
-    public Paint b;
-    public RectF c;
+import android.view.View;
+public final class si3 extends ro {
+    public final byte b;
+    public final nk3 c;
 
-    public si3(byte b) {
-        this.a = b;
+    public si3(nk3 nk3Var, byte b) {
+        super("animationValue", (byte) 0);
+        this.b = b;
         switch (b) {
-            case 2:
-                this.c = new RectF();
-                this.b = new Paint(1);
+            case 1:
+                this.c = nk3Var;
+                super("viewPagerTranslation", (byte) 0);
                 return;
             default:
+                this.c = nk3Var;
                 return;
         }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.a) {
+    public final void c(Object obj, float f) {
+        switch (this.b) {
             case 0:
-                RectF rectF = this.c;
-                rectF.set(getBounds());
-                rectF.inset(0.0f, (rectF.height() - gl.L(28.0f)) / 2.0f);
-                canvas.drawRoundRect(rectF, gl.L(14.0f), gl.L(14.0f), this.b);
-                return;
-            case 1:
-                RectF rectF2 = this.c;
-                rectF2.set(0.0f, 0.0f, gl.L(30.0f), gl.L(30.0f));
-                canvas.drawRoundRect(rectF2, gl.N(8.0f), gl.N(8.0f), this.b);
+                ((nk3) obj).W4(f);
                 return;
             default:
-                RectF rectF3 = this.c;
-                rectF3.set(getBounds());
-                float height = rectF3.height() * 0.2f;
-                canvas.drawRoundRect(rectF3, height, height, this.b);
+                nk3 nk3Var = this.c;
+                nk3Var.J0 = f;
+                ((View) obj).setTranslationY(nk3Var.K0 + f);
+                nk3Var.b3();
                 return;
         }
     }
 
     @Override
-    public final int getOpacity() {
-        switch (this.a) {
+    public final Object get(Object obj) {
+        byte b = this.b;
+        nk3 nk3Var = this.c;
+        switch (b) {
             case 0:
-                return -2;
-            case 1:
+                nk3 nk3Var2 = (nk3) obj;
+                return Float.valueOf(nk3Var.O);
             default:
-                return -3;
+                View view = (View) obj;
+                return Float.valueOf(nk3Var.J0);
         }
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        switch (this.a) {
-            case 0:
-                this.b.setAlpha(i);
-                return;
-            case 1:
-                this.b.setAlpha(i);
-                return;
-            default:
-                this.b.setAlpha(i);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.a) {
-            case 0:
-            case 1:
-                return;
-            default:
-                this.b.setColorFilter(colorFilter);
-                return;
-        }
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
-    }
-
-    public si3(int i) {
-        this.a = (byte) 1;
-        Paint paint = new Paint();
-        this.b = paint;
-        this.c = new RectF();
-        paint.setAlpha(45);
-        paint.setColor(i);
     }
 }

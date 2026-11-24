@@ -1,10 +1,8 @@
 package defpackage;
-public final class ck0 {
-    public final int a;
-    public int b;
-    public int c;
 
-    public ck0(int i) {
-        this.a = i;
+import android.hardware.biometrics.BiometricManager;
+public abstract class ck0 {
+    public static int a(BiometricManager biometricManager, int i) {
+        return biometricManager.canAuthenticate(i);
     }
 }

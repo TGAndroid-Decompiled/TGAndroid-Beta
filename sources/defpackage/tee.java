@@ -1,17 +1,27 @@
 package defpackage;
-public final class tee implements zn7 {
-    public static final tee a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class tee extends b4 {
+    public static final Parcelable.Creator<tee> CREATOR = new t0e((byte) 26);
+    public final int a;
+    public final int b;
+    public final byte[] c;
+
+    public tee(int i, int i2, byte[] bArr) {
+        this.a = i;
+        this.b = i2;
+        this.c = bArr;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        mve.c(parcel, 3, this.c);
+        mve.s(parcel, r);
     }
 }

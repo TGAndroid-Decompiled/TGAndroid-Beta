@@ -1,17 +1,75 @@
 package defpackage;
-public final class g8e implements zn7 {
-    public static final g8e a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)));
+import android.content.Context;
+import com.google.mlkit.nl.languageid.IdentifiedLanguage;
+import com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdentifier;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
+public final class g8e extends lg7 {
+    public ThickLanguageIdentifier d;
+    public final Context e;
+    public final w5d f;
+
+    public g8e(Context context, w5d w5dVar) {
+        this.e = context;
+        this.f = w5dVar;
+        w5dVar.getClass();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final void b() {
+        ite.k(Thread.currentThread().equals(((AtomicReference) this.a.d).get()));
+        if (this.d == null) {
+            this.f.getClass();
+            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.e);
+            this.d = thickLanguageIdentifier;
+            thickLanguageIdentifier.b();
         }
-        throw new ClassCastException();
+    }
+
+    @Override
+    public final void c() {
+        ite.k(Thread.currentThread().equals(((AtomicReference) this.a.d).get()));
+        ThickLanguageIdentifier thickLanguageIdentifier = this.d;
+        if (thickLanguageIdentifier != null) {
+            thickLanguageIdentifier.c();
+            this.d = null;
+        }
+    }
+
+    public final String e(String str) {
+        String str2;
+        if (this.d == null) {
+            b();
+        }
+        if (!str.isEmpty()) {
+            ThickLanguageIdentifier thickLanguageIdentifier = this.d;
+            ite.h(thickLanguageIdentifier);
+            ArrayList a = thickLanguageIdentifier.a(str);
+            int size = a.size();
+            int i = 0;
+            while (true) {
+                if (i < size) {
+                    Object obj = a.get(i);
+                    i++;
+                    IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
+                    if (!"unknown".equals(identifiedLanguage.a)) {
+                        str2 = identifiedLanguage.a;
+                        break;
+                    }
+                } else {
+                    str2 = "";
+                    break;
+                }
+            }
+            if (str2.isEmpty()) {
+                return "und";
+            }
+            if ("iw".equals(str2)) {
+                return "he";
+            }
+            return str2;
+        }
+        return "und";
     }
 }

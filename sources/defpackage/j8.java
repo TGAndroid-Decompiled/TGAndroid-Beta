@@ -7,11 +7,11 @@ import android.widget.FrameLayout;
 public final class j8 extends FrameLayout {
     public final Drawable a;
 
-    public j8(int i, wjb wjbVar, Context context) {
+    public j8(int i, ylb ylbVar, Context context) {
         super(context);
-        int v0 = bkb.v0(i, wjbVar);
-        int v02 = bkb.v0(bkb.a7, wjbVar);
-        this.a = bkb.V0(getContext(), 2131231232, v02);
+        int v0 = cmb.v0(i, ylbVar);
+        int v02 = cmb.v0(cmb.a7, ylbVar);
+        this.a = cmb.V0(getContext(), 2131231233, v02);
         setBackgroundColor(v0);
     }
 
@@ -29,7 +29,7 @@ public final class j8 extends FrameLayout {
         setBackgroundColor(i);
     }
 
-    public j8(Context context, wjb wjbVar) {
-        this(bkb.G8, wjbVar, context);
+    public j8(Context context, ylb ylbVar) {
+        this(cmb.G8, ylbVar, context);
     }
 }

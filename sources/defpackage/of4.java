@@ -1,59 +1,108 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class of4 extends zde {
-    public final tf4 a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+public class of4 extends ReplacementSpan {
+    public final TextPaint a;
+    public final Paint b;
+    public StaticLayout c;
+    public float d;
+    public float e;
+    public int f;
+    public final int h;
+    public boolean n;
+    public int r;
+    public ylb s;
+    public String w;
 
-    public of4(tf4 tf4Var) {
-        this.a = tf4Var;
-    }
-
-    @Override
-    public final boolean b(int i, int i2) {
-        tf4 tf4Var = this.a;
-        rf4 rf4Var = (rf4) tf4Var.g3.get(i);
-        rf4 rf4Var2 = (rf4) tf4Var.f3.get(i2);
-        if (rf4Var.b(rf4Var2)) {
-            byte b = rf4Var.d;
-            if (b == 4) {
-                TLObject tLObject = rf4Var.f;
-                if (tLObject instanceof TLRPC.User) {
-                    TLObject tLObject2 = rf4Var2.f;
-                    if (tLObject2 instanceof TLRPC.User) {
-                        if (((TLRPC.User) tLObject).id == ((TLRPC.User) tLObject2).id) {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-                if (tLObject instanceof TLRPC.Chat) {
-                    TLObject tLObject3 = rf4Var2.f;
-                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).id == ((TLRPC.Chat) tLObject3).id) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            } else if (b == 6) {
-                return rf4Var.c.equals(rf4Var2.c);
-            } else {
-                if (b == 7) {
-                    return true;
-                }
-                return false;
-            }
+    public of4(int i) {
+        float f;
+        TextPaint textPaint = new TextPaint(1);
+        this.a = textPaint;
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.w = "NEW";
+        this.h = i;
+        textPaint.setTypeface(gm.o());
+        paint.setStyle(Paint.Style.FILL);
+        if (i < 0) {
+            f = 12.0f;
+        } else {
+            f = i;
         }
-        return false;
+        textPaint.setTextSize(gm.L(f));
+    }
+
+    public final void a() {
+        if (this.c == null) {
+            StaticLayout staticLayout = new StaticLayout(this.w, this.a, gm.q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.c = staticLayout;
+            this.d = staticLayout.getLineWidth(0);
+            this.e = this.c.getHeight();
+        }
     }
 
     @Override
-    public final int c() {
-        return this.a.f3.size();
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        int i6;
+        float f2;
+        a();
+        if (this.n) {
+            this.f = cmb.v0(this.r, this.s);
+        }
+        int i7 = this.f;
+        if (i7 == 0) {
+            i7 = paint.getColor();
+        }
+        Paint paint2 = this.b;
+        paint2.setColor(i7);
+        if (gm.B(i7) > 0.721f) {
+            i6 = -16777216;
+        } else {
+            i6 = -1;
+        }
+        TextPaint textPaint = this.a;
+        textPaint.setColor(i6);
+        paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
+        textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
+        float L = f + gm.L(2.0f);
+        float L2 = (i4 - this.e) + gm.L(1.0f);
+        RectF rectF = gm.P;
+        rectF.set(L, L2, this.d + L, this.e + L2);
+        float L3 = gm.L(4.4f);
+        float L4 = gm.L(-4.0f);
+        if (this.h == 8) {
+            f2 = -3.66f;
+        } else {
+            f2 = -2.33f;
+        }
+        rectF.inset(L4, gm.L(f2));
+        canvas.drawRoundRect(rectF, L3, L3, paint2);
+        canvas.save();
+        canvas.translate(L, L2);
+        this.c.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final int d() {
-        return this.a.g3.size();
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        a();
+        return (int) (gm.L(10.0f) + this.d);
+    }
+
+    public of4() {
+        TextPaint textPaint = new TextPaint(1);
+        this.a = textPaint;
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.w = "NEW";
+        textPaint.setTypeface(gm.o());
+        paint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(gm.L(10.0f));
     }
 }

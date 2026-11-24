@@ -1,259 +1,394 @@
 package defpackage;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.LinkProperties;
-import android.net.Network;
-import android.net.NetworkRequest;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.RemoteException;
-import android.text.TextUtils;
-import android.util.Log;
-import j$.util.DesugarCollections;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import org.telegram.messenger.chromecast.ChromecastOptionsProvider;
-public final class ad1 {
-    public static final dc6 l = new dc6("CastContext", null);
-    public static final Object m = new Object();
-    public static volatile ad1 n;
-    public final Context a;
-    public final m7d b;
-    public final j6a c;
-    public final w5d d;
-    public final dd1 e;
-    public final u84 f;
-    public final p6d g;
-    public final rad h;
-    public final List i;
-    public final ydd j;
-    public final e7d k;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class ad1 extends View {
+    public Layout.Alignment E;
+    public int F;
+    public float G;
+    public float H;
+    public float I;
+    public int J;
+    public float K;
+    public float L;
+    public float M;
+    public final StaticLayout[] N;
+    public final String[] O;
+    public final float[] P;
+    public long Q;
+    public zc1 R;
+    public String S;
+    public String T;
+    public qac U;
+    public qac V;
+    public final zc1[] a;
+    public final Paint b;
+    public final TextPaint c;
+    public zc1 d;
+    public float e;
+    public float f;
+    public float h;
+    public float n;
+    public float r;
+    public float s;
+    public float w;
+    public float x;
+    public float y;
 
-    public ad1(Context context, dd1 dd1Var, List list, ocd ocdVar, u84 u84Var) {
-        q8d q8dVar;
-        nad nadVar;
-        ncf ncfVar;
-        ncf ncfVar2;
-        LinkProperties linkProperties;
-        this.a = context;
-        this.e = dd1Var;
-        this.f = u84Var;
-        this.i = list;
-        this.h = new rad(context);
-        this.j = ocdVar.e;
-        if (!TextUtils.isEmpty(dd1Var.a)) {
-            this.k = new e7d(context, dd1Var, ocdVar);
+    public ad1(Context context) {
+        super(context);
+        this.a = new zc1[]{new zc1(this, -1), new zc1(this, 1)};
+        this.b = new Paint(1);
+        this.c = new TextPaint(1);
+        this.s = 1.0f;
+        this.E = Layout.Alignment.ALIGN_CENTER;
+        this.F = -1;
+        this.N = new StaticLayout[2];
+        this.O = new String[2];
+        this.P = new float[4];
+    }
+
+    public static float c(float f, float f2, float f3) {
+        return Utilities.i((f - f2) / (f3 - f2), 1.0f, 0.0f);
+    }
+
+    public final void a(android.graphics.Canvas r14, int r15, java.lang.String r16, defpackage.zc1 r17, float r18, float r19, float r20, float r21, float r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ad1.a(android.graphics.Canvas, int, java.lang.String, zc1, float, float, float, float, float):void");
+    }
+
+    public final void b() {
+        zc1[] zc1VarArr;
+        float j;
+        if (this.R == null) {
+            return;
+        }
+        this.R = null;
+        for (zc1 zc1Var : this.a) {
+            zc1Var.i = null;
+            ln lnVar = zc1Var.e;
+            uib uibVar = zc1Var.h;
+            if (uibVar == null) {
+                j = 0.0f;
+            } else {
+                j = uibVar.j() + gm.L(31.0f) + gm.L(31.0f);
+            }
+            lnVar.e(true, j);
+        }
+        qac qacVar = this.V;
+        if (qacVar != null) {
+            qacVar.a(Float.valueOf(1.0f));
+        }
+        invalidate();
+    }
+
+    public final void d(float f, float f2, float f3, float f4, float f5, float f6, TextPaint textPaint, int i, float f7, float f8, float f9, Layout.Alignment alignment) {
+        boolean z;
+        if (this.e == f && this.f == f2 && this.h == f3 && this.n == f4) {
+            z = false;
         } else {
-            this.k = null;
+            z = true;
         }
-        HashMap hashMap = new HashMap();
-        e7d e7dVar = this.k;
-        if (e7dVar != null) {
-            hashMap.put(e7dVar.b, e7dVar.c);
+        this.e = f;
+        this.f = f2;
+        this.h = f3;
+        this.n = f4;
+        this.r = f5;
+        this.s = f6;
+        this.w = f7;
+        this.x = f8;
+        this.y = f9;
+        if (alignment != null && alignment != this.E) {
+            this.E = alignment;
+            StaticLayout[] staticLayoutArr = this.N;
+            staticLayoutArr[1] = null;
+            staticLayoutArr[0] = null;
         }
-        if (list != null) {
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                e7d e7dVar2 = (e7d) it.next();
-                fre.i(e7dVar2, "Additional SessionProvider must not be null.");
-                String str = e7dVar2.b;
-                fre.g(str, "Category for SessionProvider must not be null or empty string.");
-                fre.a("SessionProvider for category " + str + " already added", !hashMap.containsKey(str));
-                hashMap.put(str, e7dVar2.c);
+        this.F = i;
+        TextPaint textPaint2 = this.c;
+        textPaint2.set(textPaint);
+        textPaint2.setTextAlign(Paint.Align.LEFT);
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.G = textPaint.getShadowLayerRadius();
+            this.H = textPaint.getShadowLayerDx();
+            this.I = textPaint.getShadowLayerDy();
+            this.J = textPaint.getShadowLayerColor();
+        } else {
+            this.G = 0.0f;
+        }
+        if (!z && this.R == null) {
+            return;
+        }
+        invalidate();
+    }
+
+    public final void e(CharSequence charSequence, CharSequence charSequence2) {
+        String charSequence3;
+        if (this.R != null) {
+            return;
+        }
+        zc1[] zc1VarArr = this.a;
+        zc1 zc1Var = zc1VarArr[0];
+        String str = null;
+        if (charSequence == null) {
+            charSequence3 = null;
+        } else {
+            charSequence3 = charSequence.toString();
+        }
+        zc1Var.b(charSequence3);
+        zc1 zc1Var2 = zc1VarArr[1];
+        if (charSequence2 != null) {
+            str = charSequence2.toString();
+        }
+        zc1Var2.b(str);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        boolean z;
+        boolean z2;
+        float f;
+        char c;
+        boolean z3;
+        float j;
+        float f2;
+        boolean z4;
+        float e;
+        float f3;
+        float f4;
+        boolean z5;
+        zc1[] zc1VarArr;
+        zc1 zc1Var;
+        float f5;
+        float L;
+        float f6;
+        float c2;
+        Canvas canvas2 = canvas;
+        boolean z6 = true;
+        if (this.R != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        float f7 = 1.0f;
+        if (z) {
+            float elapsedRealtime = ((float) (SystemClock.elapsedRealtime() - this.Q)) / 320.0f;
+            if (elapsedRealtime >= 1.0f) {
+                b();
+                f = 1.0f;
+                z2 = false;
+            } else {
+                float interpolation = d53.h.getInterpolation(elapsedRealtime);
+                qac qacVar = this.V;
+                if (qacVar != null) {
+                    qacVar.a(Float.valueOf(interpolation));
+                }
+                invalidate();
+                z2 = z;
+                f = interpolation;
             }
+        } else {
+            z2 = z;
+            f = 1.0f;
         }
-        dd1Var.G = new owe(1);
-        try {
-            m7d a = t6d.a(context, dd1Var, ocdVar, hashMap);
-            this.b = a;
-            try {
-                c7d c7dVar = (c7d) a;
-                Parcel T = c7dVar.T(c7dVar.R(), 6);
-                IBinder readStrongBinder = T.readStrongBinder();
-                if (readStrongBinder == null) {
-                    q8dVar = 0;
+        zc1[] zc1VarArr2 = this.a;
+        int length = zc1VarArr2.length;
+        int i = 0;
+        while (i < length) {
+            zc1 zc1Var2 = zc1VarArr2[i];
+            ln lnVar = zc1Var2.d;
+            ln lnVar2 = zc1Var2.e;
+            Drawable drawable = zc1Var2.b;
+            RectF rectF = zc1Var2.f;
+            float f8 = f7;
+            if (zc1Var2.h != null) {
+                z3 = z6;
+            } else {
+                z3 = false;
+            }
+            float d = lnVar.d(z3);
+            uib uibVar = zc1Var2.h;
+            if (uibVar == null) {
+                j = 0.0f;
+            } else {
+                j = uibVar.j() + gm.L(31.0f) + gm.L(31.0f);
+            }
+            if (z2) {
+                if (zc1Var2.k) {
+                    f6 = zc1Var2.j;
                 } else {
-                    IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.cast.framework.IDiscoveryManager");
-                    if (queryLocalInterface instanceof q8d) {
-                        q8dVar = (q8d) queryLocalInterface;
-                    } else {
-                        q8dVar = new ezc(readStrongBinder, "com.google.android.gms.cast.framework.IDiscoveryManager", (byte) 3);
-                    }
+                    f6 = j;
                 }
-                T.recycle();
-                this.d = new w5d(q8dVar);
-                try {
-                    c7d c7dVar2 = (c7d) a;
-                    Parcel T2 = c7dVar2.T(c7dVar2.R(), 5);
-                    IBinder readStrongBinder2 = T2.readStrongBinder();
-                    if (readStrongBinder2 == null) {
-                        nadVar = 0;
-                    } else {
-                        IInterface queryLocalInterface2 = readStrongBinder2.queryLocalInterface("com.google.android.gms.cast.framework.ISessionManager");
-                        if (queryLocalInterface2 instanceof nad) {
-                            nadVar = (nad) queryLocalInterface2;
-                        } else {
-                            nadVar = new ezc(readStrongBinder2, "com.google.android.gms.cast.framework.ISessionManager", (byte) 3);
-                        }
-                    }
-                    T2.recycle();
-                    j6a j6aVar = new j6a(nadVar, context);
-                    this.c = j6aVar;
-                    fre.g("PrecacheManager", "The log tag cannot be null or empty.");
-                    ydd yddVar = this.j;
-                    if (yddVar != null) {
-                        yddVar.f = j6aVar;
-                        yddVar.c.post(new idd(yddVar, (byte) 1));
-                    }
-                    ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(3);
-                    if (newFixedThreadPool instanceof ncf) {
-                        ncfVar2 = (ncf) newFixedThreadPool;
-                    } else {
-                        if (newFixedThreadPool instanceof ScheduledExecutorService) {
-                            ncfVar = new adf((ScheduledExecutorService) newFixedThreadPool);
-                        } else {
-                            ncfVar = new ncf(newFixedThreadPool);
-                        }
-                        ncfVar2 = ncfVar;
-                    }
-                    ood oodVar = new ood(context, ncfVar2);
-                    fre.g("BaseNetUtils", "The log tag cannot be null or empty.");
-                    ConnectivityManager connectivityManager = oodVar.c;
-                    ood.j.b("Start monitoring connectivity changes", new Object[0]);
-                    if (!oodVar.f && connectivityManager != null && rr.b(oodVar.g, "android.permission.ACCESS_NETWORK_STATE") == 0) {
-                        Network activeNetwork = connectivityManager.getActiveNetwork();
-                        if (activeNetwork != null && (linkProperties = connectivityManager.getLinkProperties(activeNetwork)) != null) {
-                            oodVar.a(activeNetwork, linkProperties);
-                        }
-                        connectivityManager.registerNetworkCallback(new NetworkRequest.Builder().addTransportType(1).build(), oodVar.b);
-                        oodVar.f = true;
-                    }
-                    p6d p6dVar = new p6d();
-                    this.g = p6dVar;
-                    try {
-                        c7d c7dVar3 = (c7d) a;
-                        Parcel R = c7dVar3.R();
-                        jgd.d(R, p6dVar);
-                        c7dVar3.V(R, 3);
-                        p6dVar.b.add(this.h.a);
-                        if (!DesugarCollections.unmodifiableList(dd1Var.x).isEmpty()) {
-                            dc6 dc6Var = l;
-                            Log.i(dc6Var.a, dc6Var.d("Setting Route Discovery for appIds: ".concat(String.valueOf(DesugarCollections.unmodifiableList(this.e.x))), new Object[0]));
-                            rad radVar = this.h;
-                            List<String> unmodifiableList = DesugarCollections.unmodifiableList(this.e.x);
-                            radVar.getClass();
-                            rad.f.b(tb4.n(unmodifiableList.size(), "SetRouteDiscovery for ", " IDs"), new Object[0]);
-                            LinkedHashSet<String> linkedHashSet = new LinkedHashSet();
-                            for (String str2 : unmodifiableList) {
-                                linkedHashSet.add(n1f.a(str2));
-                            }
-                            rad.f.b("resetting routes. appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(radVar.c.keySet())), new Object[0]);
-                            HashMap hashMap2 = new HashMap();
-                            synchronized (radVar.c) {
-                                for (String str3 : linkedHashSet) {
-                                    iad iadVar = (iad) radVar.c.get(n1f.a(str3));
-                                    if (iadVar != null) {
-                                        hashMap2.put(str3, iadVar);
-                                    }
-                                }
-                                radVar.c.clear();
-                                radVar.c.putAll(hashMap2);
-                            }
-                            rad.f.b("Routes reset. appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(radVar.c.keySet())), new Object[0]);
-                            synchronized (radVar.d) {
-                                radVar.d.clear();
-                                radVar.d.addAll(linkedHashSet);
-                            }
-                            radVar.m();
-                        }
-                        u84Var.m(new String[]{"com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED", "com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE", "com.google.android.gms.cast.FLAG_FIRELOG_UPLOAD_MODE", "com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE", "com.google.android.gms.cast.FLAG_CLIENT_FEATURE_USAGE_ANALYTICS_ENABLED"}).addOnSuccessListener(new sld(this));
-                        agb b = bgb.b();
-                        b.a = new g6e(u84Var, new String[]{"com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES"});
-                        b.c = new f84[]{ied.d};
-                        b.b = false;
-                        b.d = (char) 8427;
-                        u84Var.e(0, b.a()).addOnSuccessListener(new z4d(this));
-                    } catch (RemoteException e) {
-                        k93.h("Failed to call addAppVisibilityListener", e);
-                        throw null;
-                    }
-                } catch (RemoteException e2) {
-                    k93.h("Failed to call getSessionManagerImpl", e2);
-                    throw null;
+                if (zc1Var2.h == null) {
+                    j = zc1Var2.j;
                 }
-            } catch (RemoteException e3) {
-                k93.h("Failed to call getDiscoveryManagerImpl", e3);
-                throw null;
+                e = gm.R1(f6, j, f);
+                lnVar2.e(z6, e);
+                if (zc1Var2 == this.R) {
+                    f2 = 0.0f;
+                    c2 = f8 - c(f, 0.0f, 0.25f);
+                    f4 = c(f, 0.5f, f8);
+                } else {
+                    f2 = 0.0f;
+                    c2 = f8 - c(f, 0.0f, 0.4f);
+                    f4 = c(f, 0.75f, f8);
+                }
+                f3 = c2;
+            } else {
+                f2 = 0.0f;
+                if (d <= 0.0f) {
+                    z4 = z6;
+                } else {
+                    z4 = false;
+                }
+                e = lnVar2.e(z4, j);
+                f3 = 0.0f;
+                f4 = 1.0f;
             }
-        } catch (RemoteException e4) {
-            k93.h("Failed to call newCastContextImpl", e4);
-            throw null;
+            if (d > f2 && e > f2) {
+                float a = zc1Var2.a();
+                float f9 = e / 2.0f;
+                float f10 = f3;
+                float i2 = Utilities.i(this.e, (getWidth() - gm.L(8.0f)) - f9, gm.L(8.0f) + f9);
+                float L2 = gm.L(30.0f) / 2.0f;
+                z5 = z2;
+                float f11 = i2 + f9;
+                zc1VarArr = zc1VarArr2;
+                rectF.set(i2 - f9, a - L2, f11, a + L2);
+                float R1 = gm.R1(0.8f, 1.0f, d) * zc1Var2.c.a(0.04f);
+                canvas2.save();
+                canvas2.scale(R1, R1, i2, a);
+                int p1 = cmb.p1(d, -1946157056);
+                Paint paint = this.b;
+                paint.setColor(p1);
+                canvas2.drawRoundRect(rectF, L2, L2, paint);
+                int L3 = gm.L(14.0f);
+                drawable.setAlpha((int) (217.0f * d));
+                int i3 = 0;
+                while (i3 < 2) {
+                    if (i3 == 0) {
+                        L = rectF.left + gm.L(10.0f);
+                    } else {
+                        L = (rectF.right - gm.L(10.0f)) - L3;
+                    }
+                    int i4 = (int) L;
+                    int i5 = (int) (a - (L3 / 2.0f));
+                    int i6 = L3;
+                    drawable.setBounds(i4, i5, i4 + L3, i5 + i6);
+                    drawable.draw(canvas2);
+                    i3++;
+                    L3 = i6;
+                }
+                canvas2.save();
+                canvas2.clipRect(rectF.left + gm.L(24.0f), rectF.top, rectF.right - gm.L(24.0f), rectF.bottom);
+                uib uibVar2 = zc1Var2.i;
+                if (uibVar2 != null) {
+                    if (f10 > 0.0f) {
+                        zc1Var = zc1Var2;
+                        f5 = 0.0f;
+                        uibVar2.c(i2 - (uibVar2.j() / 2.0f), a, d * 0.85f * f10, -1, canvas);
+                    } else {
+                        zc1Var = zc1Var2;
+                        f5 = 0.0f;
+                    }
+                } else {
+                    zc1Var = zc1Var2;
+                    f5 = 0.0f;
+                }
+                uib uibVar3 = zc1Var.h;
+                if (uibVar3 != null && f4 > f5) {
+                    uibVar3.c(i2 - (uibVar3.j() / 2.0f), a, d * 0.85f * f4, -1, canvas);
+                }
+                canvas.restore();
+                canvas.restore();
+            } else {
+                z5 = z2;
+                zc1VarArr = zc1VarArr2;
+                rectF.setEmpty();
+            }
+            i++;
+            canvas2 = canvas;
+            z2 = z5;
+            zc1VarArr2 = zc1VarArr;
+            z6 = true;
+            f7 = 1.0f;
+        }
+        zc1[] zc1VarArr3 = zc1VarArr2;
+        if (z2) {
+            zc1 zc1Var3 = this.R;
+            if (zc1Var3 == zc1VarArr3[0]) {
+                c = 1;
+            } else {
+                c = 0;
+            }
+            zc1 zc1Var4 = zc1VarArr3[c];
+            a(canvas, 0, this.S, zc1Var3, 1.0f - f, this.w, this.x, this.y, c(f, 0.0f, 0.25f));
+            a(canvas, 1, this.T, zc1Var4, f, this.K, this.L, this.M, 1.0f - c(f, 0.75f, 1.0f));
         }
     }
 
-    public static ad1 c(Context context) {
-        fre.e("Must be called from the main thread.");
-        if (n == null) {
-            synchronized (m) {
-                if (n == null) {
-                    Context applicationContext = context.getApplicationContext();
-                    ChromecastOptionsProvider d = d(applicationContext);
-                    dd1 castOptions = d.getCastOptions(applicationContext);
-                    ?? by4Var = new by4(applicationContext, u84.u, vn.g, ay4.c);
-                    try {
-                        n = new ad1(applicationContext, castOptions, d.getAdditionalSessionProviders(applicationContext), new ocd(applicationContext, gu6.d(applicationContext), castOptions, by4Var), by4Var);
-                    } catch (qe7 e) {
-                        throw new RuntimeException(e);
-                    }
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        zc1[] zc1VarArr;
+        super.onSizeChanged(i, i2, i3, i4);
+        if (i != i3) {
+            for (zc1 zc1Var : this.a) {
+                String str = zc1Var.g;
+                zc1Var.g = null;
+                zc1Var.h = null;
+                zc1Var.b(str);
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        qac qacVar;
+        zc1[] zc1VarArr;
+        if (motionEvent.getAction() == 0) {
+            this.d = null;
+            for (zc1 zc1Var : this.a) {
+                if (zc1Var.h != null && zc1Var.f.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.d = zc1Var;
+                    zc1Var.c.c(true);
+                    return true;
                 }
             }
-        }
-        return n;
-    }
-
-    public static ChromecastOptionsProvider d(Context context) {
-        try {
-            p13 a = ryc.a(context);
-            Bundle bundle = a.a.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
-            if (bundle == null) {
-                l.c(new Object[0]);
+        } else if (this.d != null) {
+            if (motionEvent.getAction() == 2) {
+                if (!this.d.f.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.d.c.c(false);
+                    this.d = null;
+                    return true;
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                zc1 zc1Var2 = this.d;
+                this.d = null;
+                zc1Var2.c.c(false);
+                if (motionEvent.getAction() == 1 && (qacVar = this.U) != null) {
+                    qacVar.a(Integer.valueOf(zc1Var2.a));
+                }
             }
-            String string = bundle.getString("com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME");
-            if (string != null) {
-                return (ChromecastOptionsProvider) Class.forName(string).asSubclass(ChromecastOptionsProvider.class).getDeclaredConstructor(null).newInstance(null);
-            }
-            throw new IllegalStateException("The fully qualified name of the implementation of OptionsProvider must be provided as a metadata in the AndroidManifest.xml with key com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME.");
-        } catch (PackageManager.NameNotFoundException | ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | NullPointerException | InvocationTargetException e) {
-            k93.h("Failed to initialize CastContext.", e);
-            return null;
+            return true;
         }
+        return false;
     }
 
-    public final yt6 a() {
-        fre.e("Must be called from the main thread.");
-        try {
-            c7d c7dVar = (c7d) this.b;
-            Parcel T = c7dVar.T(c7dVar.R(), 1);
-            T.recycle();
-            return yt6.b((Bundle) jgd.a(T, Bundle.CREATOR));
-        } catch (RemoteException e) {
-            l.a(e, "Unable to call %s on %s.", "getMergedSelectorAsBundle", m7d.class.getSimpleName());
-            return null;
-        }
+    public void setOnClick(qac qacVar) {
+        this.U = qacVar;
     }
 
-    public final j6a b() {
-        fre.e("Must be called from the main thread.");
-        return this.c;
+    public void setOnSwitchProgress(qac qacVar) {
+        this.V = qacVar;
     }
 }

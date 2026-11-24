@@ -1,35 +1,174 @@
 package defpackage;
-public enum xqb extends qsb {
-    public xqb() {
-        super("ScriptDataDoubleEscapedDash", 29);
+
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import j$.time.Instant;
+import j$.time.ZoneId;
+import j$.time.format.TextStyle;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+public final class xqb {
+    public static volatile xqb[] e = new xqb[4];
+    public static final Object[] f = new Object[4];
+    public final int a;
+    public boolean b;
+    public boolean c;
+    public final ArrayList d = new ArrayList();
+
+    static {
+        for (int i = 0; i < 4; i++) {
+            f[i] = new Object();
+        }
     }
 
-    @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char d = zj1Var.d();
-        vqb vqbVar = qsb.S;
-        if (d != 0) {
-            if (d != '-') {
-                if (d != '<') {
-                    if (d != 65535) {
-                        aqbVar.f(d);
-                        aqbVar.c = vqbVar;
-                        return;
-                    }
-                    aqbVar.l(this);
-                    aqbVar.c = qsb.a;
-                    return;
+    public xqb(int i) {
+        this.a = i;
+    }
+
+    public static xqb b(int i) {
+        xqb xqbVar;
+        xqb xqbVar2 = e[i];
+        if (xqbVar2 == null) {
+            synchronized (f[i]) {
+                xqbVar = e[i];
+                if (xqbVar == null) {
+                    xqb[] xqbVarArr = e;
+                    xqb xqbVar3 = new xqb(i);
+                    xqbVarArr[i] = xqbVar3;
+                    xqbVar = xqbVar3;
                 }
-                aqbVar.f(d);
-                aqbVar.c = qsb.V;
-                return;
             }
-            aqbVar.f(d);
-            aqbVar.c = qsb.U;
-            return;
+            return xqbVar;
         }
-        aqbVar.m(this);
-        aqbVar.f((char) 65533);
-        aqbVar.c = vqbVar;
+        return xqbVar2;
+    }
+
+    public static String e(TLRPC.TL_timezone tL_timezone, boolean z) {
+        if (tL_timezone == null) {
+            return null;
+        }
+        String str = tL_timezone.name;
+        if (z) {
+            return str + ", " + f(tL_timezone);
+        }
+        return str;
+    }
+
+    public static String f(TLRPC.TL_timezone tL_timezone) {
+        String str;
+        String str2;
+        int i = tL_timezone.utc_offset;
+        if (i == 0) {
+            return "GMT";
+        }
+        if (i < 0) {
+            str = "-";
+        } else {
+            str = "+";
+        }
+        String concat = "GMT".concat(str);
+        int abs = Math.abs(tL_timezone.utc_offset) / 60;
+        int i2 = abs / 60;
+        int i3 = abs % 60;
+        StringBuilder sb = new StringBuilder(concat);
+        String str3 = "";
+        if (i2 >= 10) {
+            str2 = "";
+        } else {
+            str2 = "0";
+        }
+        sb.append(str2);
+        sb.append(i2);
+        StringBuilder sb2 = new StringBuilder(sb.toString().concat(":"));
+        if (i3 < 10) {
+            str3 = "0";
+        }
+        sb2.append(str3);
+        sb2.append(i3);
+        return sb2.toString();
+    }
+
+    public final TLRPC.TL_timezone a(String str) {
+        if (str != null) {
+            g();
+            int i = 0;
+            while (true) {
+                ArrayList arrayList = this.d;
+                if (i < arrayList.size()) {
+                    TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i);
+                    if (TextUtils.equals(tL_timezone.id, str)) {
+                        return tL_timezone;
+                    }
+                    i++;
+                } else {
+                    return null;
+                }
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public final java.lang.String c() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xqb.c():java.lang.String");
+    }
+
+    public final String d(String str, boolean z) {
+        String str2;
+        TLRPC.TL_timezone a = a(str);
+        if (a != null) {
+            return e(a, z);
+        }
+        ZoneId of = ZoneId.of(str);
+        String str3 = "";
+        if (of == null) {
+            return "";
+        }
+        if (z) {
+            String displayName = of.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, jb6.D0().y);
+            str2 = "GMT";
+            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
+                str2 = "GMT".concat(displayName);
+            }
+        } else {
+            str2 = null;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(of.getId().replace("/", ", ").replace("_", " "));
+        if (str2 != null) {
+            str3 = ", ".concat(str2);
+        }
+        sb.append(str3);
+        return sb.toString();
+    }
+
+    public final void g() {
+        if (!this.b && !this.c) {
+            this.b = true;
+            int i = this.a;
+            SharedPreferences sharedPreferences = oc7.r1(i).X3;
+            TLRPC.help_timezonesList help_timezoneslist = null;
+            String string = sharedPreferences.getString("timezones", null);
+            int i2 = 0;
+            if (string != null) {
+                SerializedData serializedData = new SerializedData(Utilities.v(string));
+                help_timezoneslist = TLRPC.help_timezonesList.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+            }
+            ArrayList arrayList = this.d;
+            arrayList.clear();
+            if (help_timezoneslist != null) {
+                arrayList.addAll(help_timezoneslist.timezones);
+            }
+            nm7.f(i).k(nm7.t3, new Object[0]);
+            TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
+            if (help_timezoneslist != null) {
+                i2 = help_timezoneslist.hash;
+            }
+            tL_help_getTimezonesList.hash = i2;
+            ConnectionsManager.getInstance(i).sendRequest(tL_help_getTimezonesList, new ara(this, sharedPreferences, (byte) 15));
+        }
     }
 }

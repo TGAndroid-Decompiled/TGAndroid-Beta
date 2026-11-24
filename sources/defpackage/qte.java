@@ -1,17 +1,6 @@
 package defpackage;
-public final class qte implements zn7 {
-    public static final qte a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+public abstract class qte {
+    public static final java.lang.Object a(defpackage.hn8 r4, defpackage.dd4 r5, defpackage.qx2 r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qte.a(hn8, dd4, qx2):java.lang.Object");
     }
 }

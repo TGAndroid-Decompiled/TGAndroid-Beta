@@ -1,14 +1,11 @@
 package defpackage;
-public final class dh8 extends qi8 {
-    @Override
-    public final void setOffset(float f) {
-        boolean z;
-        if (f == 0.0f) {
-            z = true;
-        } else {
-            z = false;
-        }
-        setAutoPlayEnabled(z);
-        super.setOffset(f);
+
+import android.content.Context;
+public final class dh8 extends gh8 {
+    public final eh8 e;
+
+    public dh8(eh8 eh8Var, Context context) {
+        super(eh8Var.s, context);
+        this.e = eh8Var;
     }
 }

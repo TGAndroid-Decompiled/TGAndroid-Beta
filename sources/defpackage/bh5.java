@@ -1,17 +1,16 @@
 package defpackage;
+public final class bh5 {
+    public final long a;
+    public final boolean b;
+    public final long c;
+    public final long d;
+    public final boolean e;
 
-import java.nio.charset.Charset;
-public enum bh5 {
-    ISO_8859_1(Charset.forName("ISO-8859-1"), 1),
-    UTF_16(Charset.forName("UTF-16"), 2),
-    UTF_16BE(Charset.forName("UTF-16BE"), 2),
-    UTF_8(Charset.forName("UTF-8"), 1);
-    
-    public final Charset a;
-    public final byte b;
-
-    bh5(Charset charset, int i) {
-        this.a = charset;
-        this.b = i;
+    public bh5(long j, boolean z, long j2, long j3, boolean z2) {
+        this.a = j;
+        this.b = z;
+        this.c = j2;
+        this.d = j3;
+        this.e = z2;
     }
 }

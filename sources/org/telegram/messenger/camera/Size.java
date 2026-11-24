@@ -9,7 +9,7 @@ public final class Size {
     }
 
     private static NumberFormatException invalidSize(String str) {
-        throw new NumberFormatException(tb4.y("Invalid Size: \"", str, "\""));
+        throw new NumberFormatException(kt6.o("Invalid Size: \"", str, "\""));
     }
 
     public static Size parseSize(String str) {

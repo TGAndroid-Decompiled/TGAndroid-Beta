@@ -1,22 +1,29 @@
 package defpackage;
 
-import java.util.Comparator;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ja5 implements Comparator {
-    public static String a(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) tLObject;
-            return qu2.m(0, user.first_name, user.last_name);
-        } else if (tLObject instanceof TLRPC.Chat) {
-            return ((TLRPC.Chat) tLObject).title;
-        } else {
-            return "";
-        }
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ja5 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final oa5 b;
+
+    public ja5(oa5 oa5Var, byte b) {
+        this.a = b;
+        this.b = oa5Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        return a((TLObject) obj).compareTo(a((TLObject) obj2));
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        oa5 oa5Var = this.b;
+        switch (b) {
+            case 0:
+                oa5Var.b.setVisibility(8);
+                oa5Var.F = false;
+                oa5Var.G = 0.0f;
+                return;
+            default:
+                oa5Var.e.setVisibility(8);
+                return;
+        }
     }
 }

@@ -1,5 +1,42 @@
 package defpackage;
-public abstract class bed {
-    public static final f84 a = new f84("is_user_verifying_platform_authenticator_available_for_credential", 1);
-    public static final f84 b = new f84("is_user_verifying_platform_authenticator_available", 1);
+public final class bed implements nh1 {
+    public final tad a;
+
+    public bed(tad tadVar) {
+        this.a = tadVar;
+    }
+
+    @Override
+    public final void a(pgd pgdVar) {
+        ite.i(pgdVar, "channel must not be null");
+    }
+
+    @Override
+    public final void b(pgd pgdVar) {
+        ite.i(pgdVar, "channel must not be null");
+    }
+
+    @Override
+    public final void c(pgd pgdVar) {
+        ite.i(pgdVar, "channel must not be null");
+    }
+
+    @Override
+    public final void d(pgd pgdVar) {
+        ite.i(pgdVar, "channel must not be null");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && bed.class == obj.getClass() && this.a == ((bed) obj).a) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
+    }
 }

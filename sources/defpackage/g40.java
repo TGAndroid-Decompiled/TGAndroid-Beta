@@ -1,19 +1,16 @@
 package defpackage;
 
-import android.os.Handler;
-import java.util.concurrent.Executor;
-public final class g40 implements Executor {
-    public final byte a;
-    public final Handler b;
+import android.content.Context;
+public final class g40 implements lt3 {
+    public int a;
 
-    public g40(Handler handler, byte b) {
-        this.a = b;
-        this.b = handler;
+    @Override
+    public final int a(Context context, String str, boolean z) {
+        return 0;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        byte b = this.a;
-        this.b.post(runnable);
+    public final int b(Context context, String str) {
+        return this.a;
     }
 }

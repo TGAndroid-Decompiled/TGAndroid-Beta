@@ -1,43 +1,114 @@
 package defpackage;
 
-import com.google.android.gms.tasks.CancellationTokenSource;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import java.io.Closeable;
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicBoolean;
-public abstract class fe7 implements Closeable, d16 {
-    public static final ce3 e = new ce3("MobileVisionBase", "");
-    public final AtomicBoolean a = new AtomicBoolean(false);
-    public final mg6 b;
-    public final CancellationTokenSource c;
-    public final Executor d;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+public final class fe7 implements Runnable {
+    public final byte a;
+    public final cf7 b;
+    public final long c;
+    public final we7 d;
 
-    public fe7(mg6 mg6Var, Executor executor) {
-        this.b = mg6Var;
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        this.c = cancellationTokenSource;
-        this.d = executor;
-        mg6Var.b.incrementAndGet();
-        mg6Var.a(executor, mbd.a, cancellationTokenSource.getToken()).addOnFailureListener(i2f.f);
-    }
-
-    public final synchronized Task c(go5 go5Var) {
-        if (this.a.get()) {
-            return Tasks.forException(new be7("This detector is already closed!", 14));
-        } else if (go5Var.b >= 32 && go5Var.c >= 32) {
-            return this.b.a(this.d, new sga(this, go5Var), this.c.getToken());
-        } else {
-            return Tasks.forException(new be7("InputImage width and height should be at least 32!", 3));
-        }
+    public fe7(cf7 cf7Var, long j, we7 we7Var, byte b) {
+        this.a = b;
+        this.b = cf7Var;
+        this.c = j;
+        this.d = we7Var;
     }
 
     @Override
-    @ep7(u06.ON_DESTROY)
-    public synchronized void close() {
-        if (!this.a.getAndSet(true)) {
-            this.c.cancel();
-            this.b.d(this.d);
+    public final void run() {
+        byte b = this.a;
+        SQLiteCursor sQLiteCursor = null;
+        final we7 we7Var = this.d;
+        long j = this.c;
+        cf7 cf7Var = this.b;
+        final int i = 0;
+        switch (b) {
+            case 0:
+                try {
+                    try {
+                        SQLiteDatabase sQLiteDatabase = cf7Var.b;
+                        Locale locale = Locale.US;
+                        sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT COUNT(mid) FROM messages_v2 WHERE uid = " + j, new Object[0]);
+                        if (sQLiteCursor.next()) {
+                            i = sQLiteCursor.intValue(0);
+                        }
+                        sQLiteCursor.dispose();
+                        gm.c3(new Runnable() {
+                            @Override
+                            public final void run() {
+                                byte b2 = r3;
+                                int i2 = i;
+                                we7 we7Var2 = we7Var;
+                                switch (b2) {
+                                    case 0:
+                                        we7Var2.a(i2);
+                                        return;
+                                    default:
+                                        we7Var2.a(i2);
+                                        return;
+                                }
+                            }
+                        });
+                    } catch (Exception e) {
+                        cf7Var.n(e, true);
+                        if (sQLiteCursor == null) {
+                            return;
+                        }
+                    }
+                    sQLiteCursor.dispose();
+                    return;
+                } catch (Throwable th) {
+                    if (sQLiteCursor != null) {
+                        sQLiteCursor.dispose();
+                    }
+                    throw th;
+                }
+            default:
+                try {
+                    try {
+                        final int i2 = -1;
+                        if (cf7Var.K.f(j) == null) {
+                            sQLiteCursor = cf7Var.b.queryFinalized("SELECT folder_id FROM dialogs WHERE did = ?", Long.valueOf(j));
+                            if (sQLiteCursor.next()) {
+                                i2 = sQLiteCursor.intValue(0);
+                            }
+                            sQLiteCursor.dispose();
+                        }
+                        gm.c3(new Runnable() {
+                            @Override
+                            public final void run() {
+                                byte b2 = r3;
+                                int i22 = i2;
+                                we7 we7Var2 = we7Var;
+                                switch (b2) {
+                                    case 0:
+                                        we7Var2.a(i22);
+                                        return;
+                                    default:
+                                        we7Var2.a(i22);
+                                        return;
+                                }
+                            }
+                        });
+                        if (sQLiteCursor == null) {
+                            return;
+                        }
+                    } catch (Exception e2) {
+                        cf7Var.n(e2, true);
+                        if (sQLiteCursor == null) {
+                            return;
+                        }
+                    }
+                    sQLiteCursor.dispose();
+                    return;
+                } catch (Throwable th2) {
+                    if (sQLiteCursor != null) {
+                        sQLiteCursor.dispose();
+                    }
+                    throw th2;
+                }
         }
     }
 }

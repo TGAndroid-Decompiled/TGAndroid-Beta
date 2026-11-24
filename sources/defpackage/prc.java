@@ -1,96 +1,140 @@
 package defpackage;
 
-import java.math.RoundingMode;
-public final class prc implements qrc {
-    public static final int[] m = {-1, -1, -1, -1, 2, 4, 6, 8, -1, -1, -1, -1, 2, 4, 6, 8};
-    public static final int[] n = {7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23, 25, 28, 31, 34, 37, 41, 45, 50, 55, 60, 66, 73, 80, 88, 97, 107, 118, 130, 143, 157, 173, 190, 209, 230, 253, 279, 307, 337, 371, 408, 449, 494, 544, 598, 658, 724, 796, 876, 963, 1060, 1166, 1282, 1411, 1552, 1707, 1878, 2066, 2272, 2499, 2749, 3024, 3327, 3660, 4026, 4428, 4871, 5358, 5894, 6484, 7132, 7845, 8630, 9493, 10442, 11487, 12635, 13899, 15289, 16818, 18500, 20350, 22385, 24623, 27086, 29794, 32767};
-    public final l74 a;
-    public final wxb b;
-    public final sk9 c;
-    public final int d;
-    public final byte[] e;
-    public final xu7 f;
-    public final int g;
-    public final fm4 h;
-    public int i;
-    public long j;
-    public int k;
-    public long l;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.os.SystemClock;
+public final class prc {
+    public final float a;
+    public final float b;
+    public final float c;
+    public final float d;
+    public final float e;
+    public final boolean f;
+    public final long g;
+    public final qrc h;
 
-    public prc(l74 l74Var, wxb wxbVar, sk9 sk9Var) {
-        int i;
-        this.a = l74Var;
-        this.b = wxbVar;
-        this.c = sk9Var;
-        int i2 = sk9Var.b;
-        int max = Math.max(1, i2 / 10);
-        this.g = max;
-        xu7 xu7Var = new xu7((byte[]) sk9Var.f);
-        xu7Var.t();
-        int t = xu7Var.t();
-        this.d = t;
-        int i3 = sk9Var.a;
-        int i4 = sk9Var.c;
-        int i5 = (((i4 - (i3 << 2)) << 3) / (sk9Var.d * i3)) + 1;
-        if (t == i5) {
-            int g = g8c.g(max, t);
-            this.e = new byte[g * i4];
-            this.f = new xu7((t << 1) * i3 * g);
-            int i6 = ((i4 * i2) << 3) / t;
-            em4 em4Var = new em4();
-            em4Var.s = ud7.n("audio/raw");
-            em4Var.i = i6;
-            em4Var.j = i6;
-            em4Var.t = (max << 1) * i3;
-            em4Var.M = i3;
-            int i7 = sk9Var.e;
-            if (i7 == 0) {
-                i = -1;
-            } else {
-                i = i7 << 2;
-            }
-            em4Var.N = i;
-            em4Var.O = i2;
-            em4Var.P = 2;
-            this.h = new fm4(em4Var);
+    public prc(qrc qrcVar, prc prcVar, float f, boolean z) {
+        long uptimeMillis;
+        float f2;
+        float A;
+        float f3;
+        this.h = qrcVar;
+        this.f = z;
+        this.b = f;
+        this.a = prcVar != null ? prcVar.a : f;
+        if (prcVar != null && !z) {
+            uptimeMillis = prcVar.g;
+        } else {
+            uptimeMillis = SystemClock.uptimeMillis();
+        }
+        this.g = uptimeMillis;
+        float f4 = 0.0f;
+        if (prcVar != null && z) {
+            f2 = prcVar.a();
+        } else {
+            f2 = 0.0f;
+        }
+        if (prcVar != null) {
+            float f5 = prcVar.c;
+            f4 = td4.A(1.0f, f5, f2, f5);
+        }
+        this.c = f4;
+        if (prcVar == null) {
+            A = qrcVar.P;
+        } else {
+            float f6 = prcVar.d;
+            A = td4.A(1.0f, f6, f2, f6);
+        }
+        this.d = A;
+        if (prcVar == null) {
+            f3 = (-gm.N(44.0f)) * 0.1f;
+        } else {
+            f3 = prcVar.e * (1.0f - f2);
+        }
+        this.e = f3;
+    }
+
+    public final float a() {
+        if (this.h.J >= 1.0f) {
+            return 1.0f;
+        }
+        return qrc.T.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.g)) / 320.0f));
+    }
+
+    public final void b(Canvas canvas, Paint paint, String str, float f, int i) {
+        float f2;
+        float f3;
+        float a = a();
+        float f4 = 1.0f;
+        boolean z = this.f;
+        if (z) {
+            f2 = 0.0f;
+        } else {
+            f2 = 1.0f;
+        }
+        float f5 = this.c;
+        float A = td4.A(f2, f5, a, f5);
+        if (A <= 0.0f) {
             return;
         }
-        throw av7.a("Expected frames per block: " + i5 + "; got: " + t, null);
+        int alpha = paint.getAlpha();
+        float measureText = paint.measureText(str);
+        canvas.save();
+        float d = d() + f;
+        float f6 = i;
+        float f7 = this.e;
+        float f8 = f6 + f7;
+        if (z) {
+            f3 = gm.N(44.0f) * 0.1f;
+        } else {
+            f3 = 0.0f;
+        }
+        canvas.translate(d, td4.A(f3, f7, a, f8));
+        if (z) {
+            f4 = this.h.P;
+        }
+        float f9 = this.d;
+        float A2 = td4.A(f4, f9, a, f9);
+        canvas.scale(A2, A2, measureText / 2.0f, (paint.descent() + paint.ascent()) / 2.0f);
+        paint.setAlpha(Math.round(alpha * A));
+        canvas.drawText(str, 0.0f, 0.0f, paint);
+        paint.setAlpha(alpha);
+        canvas.restore();
     }
 
-    @Override
-    public final boolean a(defpackage.ja3 r26, long r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.prc.a(ja3, long):boolean");
+    public final prc c() {
+        qrc qrcVar = this.h;
+        if (qrcVar.J >= 1.0f) {
+            return new prc(qrcVar, d());
+        }
+        return new prc(qrcVar, d(), this);
     }
 
-    @Override
-    public final void b(long j) {
-        this.i = 0;
-        this.j = j;
-        this.k = 0;
-        this.l = 0L;
+    public final float d() {
+        float f = this.b;
+        float f2 = this.a;
+        return (qrc.T.getInterpolation(this.h.J) * (f - f2)) + f2;
     }
 
-    @Override
-    public final void c(int i, long j) {
-        urc urcVar = new urc(this.c, this.d, i, j);
-        this.a.f0(urcVar);
-        fm4 fm4Var = this.h;
-        wxb wxbVar = this.b;
-        wxbVar.g(fm4Var);
-        wxbVar.d(urcVar.e);
+    public prc(qrc qrcVar, float f) {
+        this.h = qrcVar;
+        this.f = false;
+        this.b = f;
+        this.a = f;
+        this.c = 1.0f;
+        this.d = 1.0f;
+        this.e = 0.0f;
+        this.g = SystemClock.uptimeMillis();
     }
 
-    public final void d(int i) {
-        long j = this.j;
-        long j2 = this.l;
-        sk9 sk9Var = this.c;
-        long j3 = sk9Var.b;
-        String str = g8c.a;
-        long b0 = j + g8c.b0(j2, 1000000L, j3, RoundingMode.DOWN);
-        int i2 = (i << 1) * sk9Var.a;
-        this.b.a(b0, 1, i2, this.k - i2, null);
-        this.l += i;
-        this.k -= i2;
+    public prc(qrc qrcVar, float f, prc prcVar) {
+        this.h = qrcVar;
+        this.f = prcVar.f;
+        this.b = f;
+        this.a = f;
+        this.c = prcVar.c;
+        this.d = prcVar.d;
+        this.e = prcVar.e;
+        this.g = prcVar.g;
     }
 }

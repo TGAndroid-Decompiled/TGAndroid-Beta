@@ -1,41 +1,29 @@
 package defpackage;
-public final class s90 extends h74 {
-    public final Integer a;
 
-    public s90(Integer num) {
-        this.a = num;
-    }
+import java.util.List;
+public final class s90 {
+    public u90 a;
+    public List b;
+    public List c;
+    public Boolean d;
+    public h03 e;
+    public List f;
+    public int g;
+    public byte h;
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final t90 a() {
+        u90 u90Var;
+        if (this.h == 1 && (u90Var = this.a) != null) {
+            return new t90(u90Var, this.b, this.c, this.d, this.e, this.f, this.g);
         }
-        if (!(obj instanceof h74)) {
-            return false;
+        StringBuilder sb = new StringBuilder();
+        if (this.a == null) {
+            sb.append(" execution");
         }
-        Integer num = this.a;
-        s90 s90Var = (s90) ((h74) obj);
-        if (num == null) {
-            if (s90Var.a == null) {
-                return true;
-            }
-            return false;
+        if ((this.h & 1) == 0) {
+            sb.append(" uiOrientation");
         }
-        return num.equals(s90Var.a);
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        Integer num = this.a;
-        if (num == null) {
-            hashCode = 0;
-        } else {
-            hashCode = num.hashCode();
-        }
-        return 1000003 ^ hashCode;
-    }
-
-    public final String toString() {
-        return "ExternalPRequestContext{originAssociatedProductId=" + this.a + "}";
+        dq9.m(ts2.n("Missing required properties:", sb));
+        return null;
     }
 }

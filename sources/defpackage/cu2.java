@@ -1,31 +1,21 @@
 package defpackage;
 
-import java.text.Collator;
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class cu2 implements Comparator {
-    public final byte a;
-    public final Collator b;
-    public final Object c;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
+public final class cu2 implements p6a {
+    public final AtomicReference a;
 
-    public cu2(Object obj, Collator collator, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = collator;
+    public cu2(v6a v6aVar) {
+        this.a = new AtomicReference(v6aVar);
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        byte b = this.a;
-        Collator collator = this.b;
-        Object obj3 = this.c;
-        switch (b) {
-            case 0:
-                qu2 qu2Var = (qu2) obj3;
-                return collator.compare(l7c.k(qu2Var.getMessagesController().V1(Long.valueOf(((TLRPC.TL_contact) obj).user_id)), true), l7c.k(qu2Var.getMessagesController().V1(Long.valueOf(((TLRPC.TL_contact) obj2).user_id)), true));
-            default:
-                vf6 vf6Var = (vf6) obj3;
-                return collator.compare(l7c.k((TLRPC.User) vf6Var.f(((TLRPC.TL_contact) obj).user_id), true), l7c.k((TLRPC.User) vf6Var.f(((TLRPC.TL_contact) obj2).user_id), true));
+    public final Iterator iterator() {
+        p6a p6aVar = (p6a) this.a.getAndSet(null);
+        if (p6aVar != null) {
+            return p6aVar.iterator();
         }
+        dq9.m("This sequence can be consumed only once.");
+        return null;
     }
 }

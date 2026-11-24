@@ -1,10 +1,9 @@
 package defpackage;
-public final class ph7 {
-    public final int a;
-    public final int b;
+public final class ph7 extends eu5 {
+    public final yw7 e;
 
-    public ph7(int i, int i2) {
-        this.a = i;
-        this.b = i2;
+    public ph7(int i, yw7 yw7Var) {
+        super(i, (byte) 1);
+        this.e = yw7Var;
     }
 }

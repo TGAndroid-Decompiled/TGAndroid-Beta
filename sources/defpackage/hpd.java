@@ -1,17 +1,16 @@
 package defpackage;
-public final class hpd implements zn7 {
-    public static final hpd a = new Object();
+
+import android.os.Build;
+public abstract class hpd {
+    public static final int a;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+        int i;
+        if (Build.VERSION.SDK_INT >= 31) {
+            i = 33554432;
+        } else {
+            i = 0;
         }
-        throw new ClassCastException();
+        a = i;
     }
 }

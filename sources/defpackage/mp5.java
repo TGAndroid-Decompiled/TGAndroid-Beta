@@ -1,33 +1,23 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-public abstract class mp5 {
-    public static final Charset a;
-    public static final byte[] b;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class mp5 extends b4 {
+    public static final Parcelable.Creator<mp5> CREATOR = new t0e((byte) 0);
 
-    static {
-        Charset.forName("US-ASCII");
-        a = Charset.forName("UTF-8");
-        Charset.forName("ISO-8859-1");
-        byte[] bArr = new byte[0];
-        b = bArr;
-        ByteBuffer.wrap(bArr);
-        try {
-            new yj2(bArr, 0, 0, false).e(0);
-        } catch (zp5 e) {
-            throw new IllegalArgumentException(e);
+    public final boolean equals(Object obj) {
+        if (this == obj || (obj instanceof mp5)) {
+            return true;
         }
+        return false;
     }
 
-    public static void a(Object obj, String str) {
-        if (obj != null) {
-            return;
-        }
-        fvc.f(str);
+    public final int hashCode() {
+        return 0;
     }
 
-    public static int b(long j) {
-        return (int) (j ^ (j >>> 32));
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        mve.s(parcel, mve.r(parcel, 20293));
     }
 }

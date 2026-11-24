@@ -1,42 +1,54 @@
 package defpackage;
-public abstract class wj1 implements bg8 {
-    public static wj1 a(String str) {
-        int length = str.length();
-        if (length != 0) {
-            if (length != 1) {
-                if (length != 2) {
-                    return new rj1(str);
-                }
-                return new uj1(str.charAt(0), str.charAt(1));
-            }
-            return new tj1(str.charAt(0), (byte) 0);
-        }
-        return qj1.f;
-    }
 
-    public static String d(char c) {
-        char[] cArr = new char[6];
-        cArr[0] = '\\';
-        cArr[1] = 'u';
-        cArr[2] = 0;
-        cArr[3] = 0;
-        cArr[4] = 0;
-        cArr[5] = 0;
-        for (int i = 0; i < 4; i++) {
-            cArr[5 - i] = "0123456789ABCDEF".charAt(c & 15);
-            c = (char) (c >> 4);
-        }
-        return String.copyValueOf(cArr);
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class wj1 implements TextWatcher {
+    public final ik1 a;
+
+    public wj1(ik1 ik1Var) {
+        this.a = ik1Var;
     }
 
     @Override
-    public final boolean apply(Object obj) {
-        return b(((Character) obj).charValue());
+    public final void afterTextChanged(Editable editable) {
+        long parseLong;
+        ik1 ik1Var = this.a;
+        nj1 nj1Var = ik1Var.f1;
+        vc vcVar = ik1Var.O0;
+        if (ik1Var.L0) {
+            return;
+        }
+        if (TextUtils.isEmpty(editable)) {
+            parseLong = 0;
+        } else {
+            parseLong = Long.parseLong(editable.toString());
+        }
+        ik1Var.N0 = parseLong;
+        long j = ik1Var.D0.amount;
+        int i = (parseLong > j ? 1 : (parseLong == j ? 0 : -1));
+        boolean z = true;
+        if (i > 0) {
+            ik1Var.N0 = j;
+            ik1Var.L0 = true;
+            vcVar.setText(Long.toString(j));
+            vcVar.setSelection(vcVar.getText().length());
+            ik1Var.L0 = false;
+        }
+        if (ik1Var.N0 != ik1Var.D0.amount) {
+            z = false;
+        }
+        ik1Var.M0 = z;
+        gm.r(nj1Var);
+        nj1Var.run();
+        ik1Var.M0 = false;
     }
 
-    public abstract boolean b(char c);
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
 
-    public wj1 c() {
-        return new rj1(this);
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

@@ -1,61 +1,59 @@
 package defpackage;
-public final class dre extends c2e {
-    private static final dre zzb;
-    private int zzd;
-    private int zze;
-    private boolean zzf;
-    private long zzg;
-    private boolean zzh;
-    private int zzi;
 
-    static {
-        ?? c2eVar = new c2e();
-        zzb = c2eVar;
-        c2e.k(dre.class, c2eVar);
-    }
-
-    public static void n(dre dreVar, boolean z) {
-        dreVar.zzd |= 8;
-        dreVar.zzh = z;
-    }
-
-    public static void o(dre dreVar) {
-        dreVar.zzd |= 16;
-        dreVar.zzi = 0;
-    }
-
-    public static void p(dre dreVar, long j) {
-        dreVar.zzd |= 4;
-        dreVar.zzg = j;
-    }
-
-    public static void q(dre dreVar) {
-        dreVar.zzd |= 2;
-        dreVar.zzf = true;
-    }
-
-    public static vqe r() {
-        return (vqe) zzb.f();
-    }
-
-    @Override
-    public final Object d(int i) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 == 5) {
-                            return zzb;
-                        }
-                        throw null;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.MappedByteBuffer;
+public abstract class dre {
+    public static rf7 a(MappedByteBuffer mappedByteBuffer) {
+        long j;
+        ByteBuffer duplicate = mappedByteBuffer.duplicate();
+        duplicate.order(ByteOrder.BIG_ENDIAN);
+        duplicate.position(duplicate.position() + 4);
+        int i = duplicate.getShort() & 65535;
+        if (i <= 100) {
+            duplicate.position(duplicate.position() + 6);
+            int i2 = 0;
+            while (true) {
+                if (i2 < i) {
+                    int i3 = duplicate.getInt();
+                    duplicate.position(duplicate.position() + 4);
+                    j = duplicate.getInt() & 4294967295L;
+                    duplicate.position(duplicate.position() + 4);
+                    if (1835365473 == i3) {
+                        break;
                     }
-                    return new e0e(zzb);
+                    i2++;
+                } else {
+                    j = -1;
+                    break;
                 }
-                return new c2e();
             }
-            return new vae(zzb, "\u0004\u0005\u0000\u0001\u0001\u0005\u0005\u0000\u0000\u0000\u0001င\u0000\u0002ဇ\u0001\u0003ဂ\u0002\u0004ဇ\u0003\u0005င\u0004", new Object[]{"zzd", "zze", "zzf", "zzg", "zzh", "zzi"});
+            if (j != -1) {
+                duplicate.position(duplicate.position() + ((int) (j - duplicate.position())));
+                duplicate.position(duplicate.position() + 12);
+                long j2 = duplicate.getInt() & 4294967295L;
+                for (int i4 = 0; i4 < j2; i4++) {
+                    int i5 = duplicate.getInt();
+                    long j3 = duplicate.getInt() & 4294967295L;
+                    duplicate.getInt();
+                    if (1164798569 == i5 || 1701669481 == i5) {
+                        duplicate.position((int) (j3 + j));
+                        ?? egbVar = new egb();
+                        duplicate.order(ByteOrder.LITTLE_ENDIAN);
+                        int position = duplicate.position() + duplicate.getInt(duplicate.position());
+                        egbVar.b = duplicate;
+                        egbVar.a = position;
+                        int i6 = position - duplicate.getInt(position);
+                        egbVar.c = i6;
+                        egbVar.d = egbVar.b.getShort(i6);
+                        return egbVar;
+                    }
+                }
+            }
+            wa3.d("Cannot read metadata.");
+            return null;
         }
-        return (byte) 1;
+        wa3.d("Cannot read metadata.");
+        return null;
     }
 }

@@ -16,10 +16,10 @@ public class l3 extends AbstractCollection implements List {
     public final Serializable f;
     public final Serializable h;
 
-    public l3(j7d j7dVar, Object obj, List list, l3 l3Var) {
+    public l3(l9d l9dVar, Object obj, List list, l3 l3Var) {
         Collection collection;
-        this.h = j7dVar;
-        this.f = j7dVar;
+        this.h = l9dVar;
+        this.f = l9dVar;
         this.b = obj;
         this.c = list;
         this.e = l3Var;
@@ -41,7 +41,7 @@ public class l3 extends AbstractCollection implements List {
                 boolean isEmpty = this.c.isEmpty();
                 boolean add = this.c.add(obj);
                 if (add) {
-                    ((wg7) serializable).f++;
+                    ((zi7) serializable).f++;
                     if (isEmpty) {
                         h();
                     }
@@ -52,7 +52,7 @@ public class l3 extends AbstractCollection implements List {
                 boolean isEmpty2 = this.c.isEmpty();
                 boolean add2 = this.c.add(obj);
                 if (add2) {
-                    ((j7d) serializable).d++;
+                    ((l9d) serializable).d++;
                     if (isEmpty2) {
                         k();
                         return true;
@@ -82,7 +82,7 @@ public class l3 extends AbstractCollection implements List {
                     int size = size();
                     z = ((List) this.c).addAll(i, collection);
                     if (z) {
-                        ((wg7) serializable).f += this.c.size() - size;
+                        ((zi7) serializable).f += this.c.size() - size;
                         if (size == 0) {
                             h();
                         }
@@ -96,7 +96,7 @@ public class l3 extends AbstractCollection implements List {
                 int size2 = size();
                 boolean addAll = ((List) this.c).addAll(i, collection);
                 if (addAll) {
-                    ((j7d) serializable).d += this.c.size() - size2;
+                    ((l9d) serializable).d += this.c.size() - size2;
                     if (size2 == 0) {
                         k();
                         return true;
@@ -129,7 +129,7 @@ public class l3 extends AbstractCollection implements List {
                 int size = size();
                 if (size != 0) {
                     this.c.clear();
-                    ((wg7) serializable).f -= size;
+                    ((zi7) serializable).f -= size;
                     j();
                     return;
                 }
@@ -138,7 +138,7 @@ public class l3 extends AbstractCollection implements List {
                 int size2 = size();
                 if (size2 != 0) {
                     this.c.clear();
-                    ((j7d) serializable).d -= size2;
+                    ((l9d) serializable).d -= size2;
                     l();
                     return;
                 }
@@ -227,7 +227,7 @@ public class l3 extends AbstractCollection implements List {
         if (l3Var != null) {
             l3Var.h();
         } else {
-            ((wg7) this.f).e.put(this.b, this.c);
+            ((zi7) this.f).e.put(this.b, this.c);
         }
     }
 
@@ -252,9 +252,9 @@ public class l3 extends AbstractCollection implements List {
         if (l3Var != null) {
             l3Var.i();
             if (l3Var.c != this.d) {
-                ag.b();
+                zg.b();
             }
-        } else if (this.c.isEmpty() && (collection = (Collection) ((wg7) this.f).e.get(this.b)) != null) {
+        } else if (this.c.isEmpty() && (collection = (Collection) ((zi7) this.f).e.get(this.b)) != null) {
             this.c = collection;
         }
     }
@@ -294,7 +294,7 @@ public class l3 extends AbstractCollection implements List {
         if (l3Var != null) {
             l3Var.j();
         } else if (this.c.isEmpty()) {
-            ((wg7) this.f).e.remove(this.b);
+            ((zi7) this.f).e.remove(this.b);
         }
     }
 
@@ -310,7 +310,7 @@ public class l3 extends AbstractCollection implements List {
                     l3Var.k();
                     return;
                 } else {
-                    ((j7d) serializable).c.put(obj, this.c);
+                    ((l9d) serializable).c.put(obj, this.c);
                     return;
                 }
             default:
@@ -319,7 +319,7 @@ public class l3 extends AbstractCollection implements List {
                     l3Var2.k();
                     return;
                 } else {
-                    ((vhf) serializable).c.put(obj, this.c);
+                    ((wjf) serializable).c.put(obj, this.c);
                     return;
                 }
         }
@@ -337,7 +337,7 @@ public class l3 extends AbstractCollection implements List {
                     l3Var.l();
                     return;
                 } else if (this.c.isEmpty()) {
-                    ((j7d) serializable).c.remove(obj);
+                    ((l9d) serializable).c.remove(obj);
                     return;
                 } else {
                     return;
@@ -348,7 +348,7 @@ public class l3 extends AbstractCollection implements List {
                     l3Var2.l();
                     return;
                 } else if (this.c.isEmpty()) {
-                    ((vhf) serializable).c.remove(obj);
+                    ((wjf) serializable).c.remove(obj);
                     return;
                 } else {
                     return;
@@ -379,10 +379,10 @@ public class l3 extends AbstractCollection implements List {
                 return new k3(this);
             case 1:
                 zzb();
-                return new k6d(this);
+                return new m8d(this);
             default:
                 zzb();
-                return new gff(this);
+                return new hhf(this);
         }
     }
 
@@ -394,15 +394,15 @@ public class l3 extends AbstractCollection implements List {
             case 0:
                 i();
                 Object remove = ((List) this.c).remove(i);
-                wg7 wg7Var = (wg7) serializable;
-                wg7Var.f--;
+                zi7 zi7Var = (zi7) serializable;
+                zi7Var.f--;
                 j();
                 return remove;
             case 1:
                 zzb();
                 Object remove2 = ((List) this.c).remove(i);
-                j7d j7dVar = (j7d) serializable;
-                j7dVar.d--;
+                l9d l9dVar = (l9d) serializable;
+                l9dVar.d--;
                 l();
                 return remove2;
             default:
@@ -424,7 +424,7 @@ public class l3 extends AbstractCollection implements List {
                     int size = size();
                     z = this.c.removeAll(collection);
                     if (z) {
-                        ((wg7) serializable).f += this.c.size() - size;
+                        ((zi7) serializable).f += this.c.size() - size;
                         j();
                     }
                 }
@@ -434,7 +434,7 @@ public class l3 extends AbstractCollection implements List {
                     int size2 = size();
                     z = this.c.removeAll(collection);
                     if (z) {
-                        ((j7d) serializable).d += this.c.size() - size2;
+                        ((l9d) serializable).d += this.c.size() - size2;
                         l();
                     }
                 }
@@ -462,7 +462,7 @@ public class l3 extends AbstractCollection implements List {
                 int size = size();
                 boolean retainAll = this.c.retainAll(collection);
                 if (retainAll) {
-                    ((wg7) serializable).f += this.c.size() - size;
+                    ((zi7) serializable).f += this.c.size() - size;
                     j();
                 }
                 return retainAll;
@@ -471,7 +471,7 @@ public class l3 extends AbstractCollection implements List {
                 int size2 = size();
                 boolean retainAll2 = this.c.retainAll(collection);
                 if (retainAll2) {
-                    ((j7d) serializable).d += this.c.size() - size2;
+                    ((l9d) serializable).d += this.c.size() - size2;
                     l();
                 }
                 return retainAll2;
@@ -526,28 +526,28 @@ public class l3 extends AbstractCollection implements List {
         switch (b) {
             case 0:
                 i();
-                wg7 wg7Var = (wg7) serializable;
+                zi7 zi7Var = (zi7) serializable;
                 List subList = ((List) this.c).subList(i, i2);
                 l3 l3Var = (l3) abstractCollection;
                 if (l3Var != null) {
                     this = l3Var;
                 }
                 if (subList instanceof RandomAccess) {
-                    return new l3(wg7Var, obj, subList, this);
+                    return new l3(zi7Var, obj, subList, this);
                 }
-                return new l3(wg7Var, obj, subList, this);
+                return new l3(zi7Var, obj, subList, this);
             case 1:
                 zzb();
-                j7d j7dVar = (j7d) serializable;
+                l9d l9dVar = (l9d) serializable;
                 List subList2 = ((List) this.c).subList(i, i2);
                 l3 l3Var2 = (l3) abstractCollection;
                 if (l3Var2 != null) {
                     this = l3Var2;
                 }
                 if (subList2 instanceof RandomAccess) {
-                    return new l3(j7dVar, obj, subList2, this);
+                    return new l3(l9dVar, obj, subList2, this);
                 }
-                return new l3(j7dVar, obj, subList2, this);
+                return new l3(l9dVar, obj, subList2, this);
             default:
                 zzb();
                 List subList3 = ((List) this.c).subList(i, i2);
@@ -555,11 +555,11 @@ public class l3 extends AbstractCollection implements List {
                 if (l3Var3 != null) {
                     this = l3Var3;
                 }
-                vhf vhfVar = (vhf) serializable;
+                wjf wjfVar = (wjf) serializable;
                 if (subList3 instanceof RandomAccess) {
-                    return new l3(vhfVar, obj, subList3, this);
+                    return new l3(wjfVar, obj, subList3, this);
                 }
-                return new l3(vhfVar, obj, subList3, this);
+                return new l3(wjfVar, obj, subList3, this);
         }
     }
 
@@ -592,11 +592,11 @@ public class l3 extends AbstractCollection implements List {
                 if (l3Var != null) {
                     l3Var.zzb();
                     if (l3Var.c != collection3) {
-                        ag.b();
+                        zg.b();
                         return;
                     }
                     return;
-                } else if (this.c.isEmpty() && (collection = (Collection) ((j7d) serializable).c.get(obj)) != null) {
+                } else if (this.c.isEmpty() && (collection = (Collection) ((l9d) serializable).c.get(obj)) != null) {
                     this.c = collection;
                     return;
                 } else {
@@ -607,11 +607,11 @@ public class l3 extends AbstractCollection implements List {
                 if (l3Var2 != null) {
                     l3Var2.zzb();
                     if (l3Var2.c != collection3) {
-                        ag.b();
+                        zg.b();
                         return;
                     }
                     return;
-                } else if (this.c.isEmpty() && (collection2 = (Collection) ((vhf) serializable).c.get(obj)) != null) {
+                } else if (this.c.isEmpty() && (collection2 = (Collection) ((wjf) serializable).c.get(obj)) != null) {
                     this.c = collection2;
                     return;
                 } else {
@@ -620,18 +620,18 @@ public class l3 extends AbstractCollection implements List {
         }
     }
 
-    public l3(vhf vhfVar, Object obj, List list, l3 l3Var) {
-        this.h = vhfVar;
-        this.f = vhfVar;
+    public l3(wjf wjfVar, Object obj, List list, l3 l3Var) {
+        this.h = wjfVar;
+        this.f = wjfVar;
         this.b = obj;
         this.c = list;
         this.e = l3Var;
         this.d = l3Var == null ? null : l3Var.c;
     }
 
-    public l3(wg7 wg7Var, Object obj, List list, l3 l3Var) {
-        this.h = wg7Var;
-        this.f = wg7Var;
+    public l3(zi7 zi7Var, Object obj, List list, l3 l3Var) {
+        this.h = zi7Var;
+        this.f = zi7Var;
         this.b = obj;
         this.c = list;
         this.e = l3Var;
@@ -646,10 +646,10 @@ public class l3 extends AbstractCollection implements List {
                 return new k3(this, i);
             case 1:
                 zzb();
-                return new k6d(this, i);
+                return new m8d(this, i);
             default:
                 zzb();
-                return new gff(this, i);
+                return new hhf(this, i);
         }
     }
 
@@ -662,8 +662,8 @@ public class l3 extends AbstractCollection implements List {
                 i();
                 boolean remove = this.c.remove(obj);
                 if (remove) {
-                    wg7 wg7Var = (wg7) serializable;
-                    wg7Var.f--;
+                    zi7 zi7Var = (zi7) serializable;
+                    zi7Var.f--;
                     j();
                 }
                 return remove;
@@ -671,8 +671,8 @@ public class l3 extends AbstractCollection implements List {
                 zzb();
                 boolean remove2 = this.c.remove(obj);
                 if (remove2) {
-                    j7d j7dVar = (j7d) serializable;
-                    j7dVar.d--;
+                    l9d l9dVar = (l9d) serializable;
+                    l9dVar.d--;
                     l();
                 }
                 return remove2;
@@ -695,7 +695,7 @@ public class l3 extends AbstractCollection implements List {
                 i();
                 boolean isEmpty = this.c.isEmpty();
                 ((List) this.c).add(i, obj);
-                ((wg7) serializable).f++;
+                ((zi7) serializable).f++;
                 if (isEmpty) {
                     h();
                     return;
@@ -705,7 +705,7 @@ public class l3 extends AbstractCollection implements List {
                 zzb();
                 boolean isEmpty2 = this.c.isEmpty();
                 ((List) this.c).add(i, obj);
-                ((j7d) serializable).d++;
+                ((l9d) serializable).d++;
                 if (isEmpty2) {
                     k();
                     return;
@@ -734,7 +734,7 @@ public class l3 extends AbstractCollection implements List {
                     int size = size();
                     z = this.c.addAll(collection);
                     if (z) {
-                        ((wg7) serializable).f += this.c.size() - size;
+                        ((zi7) serializable).f += this.c.size() - size;
                         if (size == 0) {
                             h();
                         }
@@ -748,7 +748,7 @@ public class l3 extends AbstractCollection implements List {
                 int size2 = size();
                 boolean addAll = this.c.addAll(collection);
                 if (addAll) {
-                    ((j7d) serializable).d += this.c.size() - size2;
+                    ((l9d) serializable).d += this.c.size() - size2;
                     if (size2 == 0) {
                         k();
                         return true;

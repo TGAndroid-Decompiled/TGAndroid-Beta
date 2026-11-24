@@ -1,13 +1,11 @@
 package defpackage;
-public final class s8b implements nc0 {
-    public final fm4 a;
 
-    public s8b(fm4 fm4Var) {
-        this.a = fm4Var;
-    }
+import android.app.Activity;
+public final class s8b extends a7b {
+    public final v9b E;
 
-    @Override
-    public final int getType() {
-        return 1718776947;
+    public s8b(v9b v9bVar, Activity activity) {
+        super(activity);
+        this.E = v9bVar;
     }
 }

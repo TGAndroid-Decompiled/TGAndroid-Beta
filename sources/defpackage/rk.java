@@ -1,44 +1,22 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class rk extends CharacterStyle {
-    public final byte a;
-    public int b;
+import android.util.Log;
+import java.util.ArrayList;
+public final class rk {
+    public final sk a;
 
-    public rk() {
-        this.a = (byte) 2;
-        this.b = 0;
+    public rk(sk skVar) {
+        this.a = skVar;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.a) {
-            case 0:
-                textPaint.setUnderlineText(false);
-                textPaint.setTypeface(gl.o());
-                textPaint.setColor(this.b);
-                return;
-            case 1:
-                textPaint.setUnderlineText(false);
-                textPaint.setColor(this.b);
-                return;
-            case 2:
-                textPaint.setAlpha((int) ((this.b / 255.0f) * textPaint.getAlpha()));
-                return;
-            default:
-                textPaint.setColor(bkb.p1(textPaint.getAlpha() / 255.0f, this.b));
-                return;
+    public final void a(a32 a32Var) {
+        sk skVar = this.a;
+        synchronized (skVar) {
+            ((ArrayList) skVar.b).add(a32Var);
+            Object obj = skVar.c;
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", "Could not register handler for breadcrumbs events.", null);
+            }
         }
-    }
-
-    public rk(int i, byte b) {
-        this.a = b;
-        this.b = i;
-    }
-
-    public rk(byte b, int i, boolean z) {
-        this.a = b;
-        this.b = i;
     }
 }

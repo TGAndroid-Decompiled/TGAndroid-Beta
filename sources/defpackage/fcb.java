@@ -1,10 +1,10 @@
 package defpackage;
 
-import android.graphics.RectF;
+import java.util.ArrayList;
 public final class fcb {
-    public final RectF a;
+    public final ArrayList a;
 
-    public fcb(RectF rectF) {
-        this.a = rectF;
+    public fcb(ArrayList arrayList) {
+        this.a = arrayList;
     }
 }

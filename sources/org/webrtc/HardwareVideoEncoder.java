@@ -237,7 +237,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
     }
 
     private VideoCodecStatus resetCodec(int i, int i2, boolean z) {
-        fa4.b("resetCodec " + i + "x" + i2);
+        fc4.b("resetCodec " + i + "x" + i2);
         this.encodeThreadChecker.checkIsOnValidThread();
         VideoCodecStatus release = release();
         if (release != VideoCodecStatus.OK) {
@@ -516,7 +516,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
     public boolean isSemiPlanar(int i) {
         if (i != 19) {
             if (i != 21 && i != 2141391872 && i != 2141391876) {
-                w26.j(de9.k(i, "Unsupported colorFormat: "));
+                u36.j(hg9.j(i, "Unsupported colorFormat: "));
                 return false;
             }
             return true;

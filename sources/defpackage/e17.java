@@ -1,68 +1,61 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-public abstract class e17 extends FrameLayout implements tjb {
-    public TLRPC.User a;
-    public l46 b;
-    public pi4 c;
-    public boolean d;
-    public int e;
+public final class e17 implements Comparator {
+    public final ArrayList a;
+    public final ArrayList b;
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        l46 l46Var = this.b;
-        pi4 pi4Var = this.c;
-        View view = (View) getParent();
-        if (view != null && view.getWidth() > 0) {
-            i = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
-        }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(gl.L(36.0f), 1073741824);
-        boolean z = true;
-        this.d = true;
-        if (pi4Var.getVisibility() != 0) {
-            z = false;
-        }
-        l46Var.setVisibility(8);
-        if (z) {
-            pi4Var.setVisibility(8);
-        }
-        super.onMeasure(i, makeMeasureSpec);
-        if (z) {
-            pi4Var.getLayoutParams().width = getMeasuredWidth();
-            pi4Var.setVisibility(0);
-        }
-        l46Var.setVisibility(0);
-        l46Var.getLayoutParams().width = getMeasuredWidth() - gl.L(24.0f);
-        this.d = false;
-        super.onMeasure(i, makeMeasureSpec);
+    public e17(ArrayList arrayList, ArrayList arrayList2) {
+        this.a = arrayList;
+        this.b = arrayList2;
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.d) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            int w0 = bkb.w0(null, bkb.H5, false);
-            if (w0 != this.e) {
-                this.e = w0;
-                bkb.F1(getBackground(), w0, true);
+    public final int a(j17 j17Var) {
+        TLRPC.Document document = j17Var.a;
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.a;
+            if (i2 >= arrayList.size()) {
+                while (true) {
+                    ArrayList arrayList2 = this.b;
+                    if (i < Math.min(20, arrayList2.size())) {
+                        if (((TLRPC.Document) arrayList2.get(i)).id == document.id) {
+                            return (arrayList2.size() - i) + 1000000;
+                        }
+                        i++;
+                    } else {
+                        return -1;
+                    }
+                }
+            } else if (((TLRPC.Document) arrayList.get(i2)).id == document.id) {
+                return i2 + 2000000;
+            } else {
+                i2++;
             }
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int compare(Object obj, Object obj2) {
+        j17 j17Var = (j17) obj;
+        j17 j17Var2 = (j17) obj2;
+        boolean K2 = k47.K2(j17Var.a, true);
+        if (K2 == k47.K2(j17Var2.a, true)) {
+            int a = a(j17Var);
+            int a2 = a(j17Var2);
+            if (a <= a2) {
+                if (a >= a2) {
+                    return 0;
+                }
+            } else {
+                return -1;
+            }
+        } else if (K2) {
+            return -1;
+        }
+        return 1;
     }
 }

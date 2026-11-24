@@ -1,52 +1,71 @@
 package defpackage;
 
-import android.view.ViewPropertyAnimator;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d;
-public final class y72 extends gb {
-    public final st x;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class y72 extends q59 {
+    public final Context c;
+    public final ArrayList d = new ArrayList();
+    public String e;
+    public final a82 f;
 
-    public y72(st stVar, st stVar2) {
-        super(stVar2);
-        this.x = stVar;
+    public y72(a82 a82Var, Context context) {
+        this.f = a82Var;
+        this.c = context;
     }
 
     @Override
-    public final boolean b() {
-        boolean z;
-        boolean z2;
-        c82 c82Var = (c82) this.x.c;
-        ui5 parentLayout = c82Var.getParentLayout();
-        z = ((d) c82Var).inPreviewMode;
-        if (!z && !gl.O1()) {
-            z2 = ((d) c82Var).inBubbleMode;
-            if (!z2 && !gl.E && parentLayout != null) {
-                return true;
-            }
-            return false;
+    public final boolean D(u69 u69Var) {
+        if (u69Var.f == 0) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public final void e(float f, float f2, boolean z) {
-        c82 c82Var = (c82) this.x.c;
-        if (c82Var.getParentLayout() != null) {
-            boolean z2 = ((ActionBarLayout) c82Var.getParentLayout()).n;
-        }
+    public final int b() {
+        return this.d.size() + 2;
     }
 
     @Override
-    public final void g(int i, boolean z) {
-        float f;
-        c82 c82Var = (c82) this.x.c;
-        c82Var.w.setVisibility(0);
-        ViewPropertyAnimator animate = c82Var.w.animate();
-        if (!z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
+    public final int d(int i) {
+        if (i == 0) {
+            return 1;
         }
-        animate.alpha(f).withEndAction(new x6c((byte) 10, this, z)).start();
+        if (i == b() - 1) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        this.f.P();
+    }
+
+    @Override
+    public final void t(defpackage.u69 r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.y72.t(u69, int):void");
+    }
+
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        View kz8Var;
+        Context context = this.c;
+        if (i != 0) {
+            if (i != 1) {
+                kz8Var = new View(context);
+                kz8Var.setTag(-33024);
+            } else {
+                kz8Var = new View(context);
+                kz8Var.setLayoutParams(new g69(-1, gm.L(56.0f)));
+                kz8Var.setTag(-33024);
+            }
+        } else {
+            kz8Var = new kz8(this.f.a, context, false);
+        }
+        return new u69(kz8Var);
     }
 }

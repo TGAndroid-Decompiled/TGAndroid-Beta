@@ -1,15 +1,15 @@
 package defpackage;
-public final class h4e implements zn7 {
+public final class h4e implements cq7 {
     public static final h4e a = new Object();
 
     static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(3)), 4)), 5)));
+        mlb.z(mlb.o(i9d.class, new f8d(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
+            dq7 dq7Var = (dq7) obj2;
             throw null;
         }
         throw new ClassCastException();

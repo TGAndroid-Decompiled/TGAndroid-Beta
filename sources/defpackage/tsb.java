@@ -1,27 +1,22 @@
 package defpackage;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class tsb extends AnimatorListenerAdapter {
-    public final byte a;
-    public final usb b;
-
-    public tsb(usb usbVar, byte b) {
-        this.a = b;
-        this.b = usbVar;
+public enum tsb extends rub {
+    public tsb() {
+        super("ScriptDataEscapedEndTagOpen", 25);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        usb usbVar = this.b;
-        switch (b) {
-            case 0:
-                usbVar.b.s.setVisibility(8);
-                return;
-            default:
-                usbVar.b.a.setVisibility(8);
-                return;
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        if (hl1Var.o()) {
+            bsbVar.d(false);
+            wrb wrbVar = bsbVar.i;
+            char i = hl1Var.i();
+            wrbVar.getClass();
+            wrbVar.y(String.valueOf(i));
+            bsbVar.h.append(hl1Var.i());
+            bsbVar.a(rub.Q);
+            return;
         }
+        bsbVar.h("</");
+        bsbVar.c = rub.L;
     }
 }

@@ -1,8 +1,7 @@
 package defpackage;
 
 import java.util.List;
-public interface omd extends List {
-    List c();
-
-    omd g();
+import java.util.RandomAccess;
+public interface omd extends List, RandomAccess {
+    omd f(int i);
 }

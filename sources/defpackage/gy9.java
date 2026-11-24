@@ -1,35 +1,39 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
-public final class gy9 extends View {
-    public final Paint a;
-    public int b;
-    public LinearGradient c;
-    public final iy9 d;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import org.telegram.tgnet.TLRPC;
+public final class gy9 implements qac {
+    public final byte a;
+    public final LinkedHashSet b;
+    public final Runnable c;
 
-    public gy9(iy9 iy9Var, Context context) {
-        super(context);
-        this.d = iy9Var;
-        this.a = new Paint(1);
-        this.b = bkb.v0(bkb.g5, iy9Var.J0);
-        this.c = new LinearGradient(0.0f, 0.0f, 0.0f, gl.L(68.0f), new int[]{bkb.p1(0.0f, this.b), this.b}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public gy9(LinkedHashSet linkedHashSet, Runnable runnable, byte b) {
+        this.a = b;
+        this.b = linkedHashSet;
+        this.c = runnable;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int v0 = bkb.v0(bkb.g5, this.d.J0);
-        if (v0 != this.b) {
-            this.b = v0;
-            this.c = new LinearGradient(0.0f, 0.0f, 0.0f, gl.L(68.0f), new int[]{bkb.p1(0.0f, v0), v0}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public final void a(Object obj) {
+        byte b = this.a;
+        Runnable runnable = this.c;
+        LinkedHashSet linkedHashSet = this.b;
+        switch (b) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                if (arrayList != null) {
+                    linkedHashSet.addAll(arrayList);
+                }
+                runnable.run();
+                return;
+            default:
+                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
+                if (tL_emojiList != null) {
+                    linkedHashSet.addAll(tL_emojiList.document_id);
+                }
+                runnable.run();
+                return;
         }
-        LinearGradient linearGradient = this.c;
-        Paint paint = this.a;
-        paint.setShader(linearGradient);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

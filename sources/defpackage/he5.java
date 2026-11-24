@@ -1,31 +1,37 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class he5 extends AnimatorListenerAdapter {
+import java.util.LinkedHashMap;
+public final class he5 implements xp3 {
     public final byte a;
-    public final ke5 b;
+    public final Object b;
+    public final Object c;
 
-    public he5(ke5 ke5Var, byte b) {
+    public he5(Object obj, Object obj2, byte b) {
         this.a = b;
-        this.b = ke5Var;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        ke5 ke5Var = this.b;
-        switch (b) {
+    public final void dispose() {
+        switch (this.a) {
             case 0:
-                ke5Var.d = null;
-                iu4 iu4Var = new iu4(this, (byte) 22);
-                ke5Var.e = iu4Var;
-                gl.e3(iu4Var, ke5Var.w);
+                ((ie5) this.b).c.removeCallbacks((oqb) this.c);
                 return;
             default:
-                ke5Var.setVisibility(4);
-                ke5Var.c = null;
-                ke5Var.d = null;
+                String str = (String) this.b;
+                wi7 wi7Var = (wi7) this.c;
+                synchronized (xi7.b) {
+                    LinkedHashMap linkedHashMap = xi7.c;
+                    xi7 xi7Var = (xi7) linkedHashMap.get(str);
+                    if (xi7Var != null) {
+                        xi7Var.a.remove(wi7Var);
+                        if (xi7Var.a.isEmpty()) {
+                            linkedHashMap.remove(str);
+                            xi7Var.stopWatching();
+                        }
+                    }
+                }
                 return;
         }
     }

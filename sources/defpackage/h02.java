@@ -1,81 +1,65 @@
 package defpackage;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-public final class h02 implements t22 {
-    public final x02 a;
+import android.content.Context;
+import android.view.View;
+public final class h02 extends hd0 {
+    public final byte e;
 
-    public h02(x02 x02Var) {
-        this.a = x02Var;
+    public h02(byte b, Context context, boolean z) {
+        super(context, z);
+        this.e = b;
     }
 
     @Override
-    public final void S() {
-        this.a.k1(true);
-    }
-
-    @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, long j2) {
-        x02 x02Var = this.a;
-        t22 t22Var = x02Var.R1;
-        if (t22Var != null) {
-            t22Var.k(arrayList, str, arrayList2, arrayList3, z, i, j, z2, j2);
-            return;
-        }
-        d dVar = x02Var.Z1;
-        if (dVar instanceof t22) {
-            ((t22) dVar).k(arrayList, str, arrayList2, arrayList3, z, i, j, z2, j2);
-        } else if (dVar instanceof vx7) {
-            vx7 vx7Var = (vx7) dVar;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i2 = 0; i2 < size; i2++) {
-                ?? obj = new Object();
-                obj.c = (String) arrayList.get(i2);
-                arrayList4.add(obj);
-            }
-            vx7Var.I1(arrayList4);
+    public final void invalidate() {
+        switch (this.e) {
+            case 1:
+                if (pi5.c) {
+                    pi5.b.add(this);
+                    return;
+                } else {
+                    super.invalidate();
+                    return;
+                }
+            default:
+                super.invalidate();
+                return;
         }
     }
 
     @Override
-    public final void m(ArrayList arrayList, boolean z, int i, long j) {
-        x02 x02Var = this.a;
-        t22 t22Var = x02Var.R1;
-        if (t22Var != null) {
-            t22Var.m(arrayList, z, i, j);
-            return;
-        }
-        d dVar = x02Var.Z1;
-        if (dVar instanceof mu1) {
-            ((mu1) dVar).m(arrayList, z, i, j);
-        } else if (dVar instanceof vx7) {
-            ((vx7) dVar).I1(arrayList);
+    public final void onMeasure(int i, int i2) {
+        int h;
+        switch (this.e) {
+            case 0:
+                int i3 = this.a.n;
+                if (i3 == 0) {
+                    h = 0;
+                } else {
+                    h = aq1.h(i3, 1, 20, 24);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(gm.L(h), 1073741824), i2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
         }
     }
 
     @Override
-    public final void z() {
-        x02 x02Var = this.a;
-        t22 t22Var = x02Var.R1;
-        if (t22Var != null) {
-            t22Var.z();
-            return;
-        }
-        d dVar = x02Var.Z1;
-        if (dVar instanceof t22) {
-            ((t22) dVar).z();
-        } else if (dVar instanceof vx7) {
-            vx7 vx7Var = (vx7) dVar;
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                vx7Var.startActivityForResult(intent, 21);
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
+    public final void invalidate(int i, int i2, int i3, int i4) {
+        switch (this.e) {
+            case 1:
+                if (pi5.c) {
+                    pi5.b.add(this);
+                    return;
+                } else {
+                    super.invalidate(i, i2, i3, i4);
+                    return;
+                }
+            default:
+                super.invalidate(i, i2, i3, i4);
+                return;
         }
     }
 }

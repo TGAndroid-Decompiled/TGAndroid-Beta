@@ -1,53 +1,110 @@
 package defpackage;
-public final class lra implements i8c {
-    public final byte a = 0;
-    public final boolean[] b;
-    public final i8c c;
-    public final p8c d;
 
-    public lra(p8c p8cVar, boolean[] zArr, i8c i8cVar) {
-        this.d = p8cVar;
-        this.b = zArr;
-        this.c = i8cVar;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+public final class lra extends Drawable {
+    public final Paint a;
+    public final LinearGradient[] b;
+    public final Matrix c;
+    public final ln d;
+    public final Path e;
+    public final yxa f;
+    public int g;
+    public int h;
+
+    public lra() {
+        Paint paint = new Paint(1);
+        Paint paint2 = new Paint(1);
+        this.a = new Paint(1);
+        this.b = new LinearGradient[2];
+        this.c = new Matrix();
+        this.d = new ln(1.0f, new c0a(this, (byte) 26), 0L, 420L, d53.h);
+        this.e = new Path();
+        this.f = new yxa(1, 45);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setColor(117440511);
+        paint.setStrokeWidth(gm.N(1.0f));
+        paint2.setStyle(style);
+        paint2.setColor(301989887);
+        paint2.setStrokeWidth(gm.N(0.6666667f));
+    }
+
+    public final void a(int i, int i2) {
+        if (this.g == i && this.h == i2) {
+            return;
+        }
+        LinearGradient[] linearGradientArr = this.b;
+        linearGradientArr[0] = linearGradientArr[1];
+        this.g = i;
+        this.h = i2;
+        linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.d.e(true, 0.0f);
+        invalidateSelf();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        byte b = this.a;
-        String str = "failed";
-        p8c p8cVar = this.d;
-        i8c i8cVar = this.c;
-        boolean[] zArr = this.b;
-        Long l = (Long) obj;
-        Boolean bool = (Boolean) obj2;
-        switch (b) {
-            case 0:
-                if (p8cVar != null) {
-                    p8cVar.a(Boolean.TRUE);
+    public final void draw(Canvas canvas) {
+        gm.P.set(getBounds());
+        float L = gm.L(24.0f);
+        int i = 0;
+        float e = this.d.e(false, 1.0f);
+        while (true) {
+            LinearGradient[] linearGradientArr = this.b;
+            if (i < linearGradientArr.length) {
+                if (linearGradientArr[i] != null) {
+                    float pow = (float) Math.pow(1.0f - Math.abs(i - e), 0.5d);
+                    if (pow > 0.0f) {
+                        Matrix matrix = this.c;
+                        matrix.reset();
+                        RectF rectF = gm.P;
+                        matrix.postScale(rectF.width() / 100.0f, 1.0f);
+                        linearGradientArr[i].setLocalMatrix(matrix);
+                        LinearGradient linearGradient = linearGradientArr[i];
+                        Paint paint = this.a;
+                        paint.setShader(linearGradient);
+                        paint.setAlpha((int) (pow * 255.0f));
+                        canvas.drawRoundRect(rectF, L, L, paint);
+                    }
                 }
-                zArr[0] = true;
-                if (bool.booleanValue()) {
-                    str = "paid";
-                }
-                i8cVar.a(str, l);
+                i++;
+            } else {
+                Path path = this.e;
+                path.rewind();
+                RectF rectF2 = gm.P;
+                path.addRoundRect(rectF2, L, L, Path.Direction.CW);
+                canvas.save();
+                canvas.clipPath(path);
+                yxa yxaVar = this.f;
+                yxaVar.g(rectF2);
+                yxaVar.h = 30.0f;
+                yxaVar.d();
+                yxaVar.a(canvas, cmb.p1(0.6f, -1));
+                invalidateSelf();
+                canvas.restore();
+                gm.P(canvas, rectF2, L);
                 return;
-            default:
-                zArr[0] = true;
-                if (bool.booleanValue()) {
-                    str = "paid";
-                }
-                i8cVar.a(str, l);
-                if (p8cVar != null) {
-                    p8cVar.a(Boolean.TRUE);
-                    return;
-                }
-                return;
+            }
         }
     }
 
-    public lra(boolean[] zArr, i8c i8cVar, p8c p8cVar) {
-        this.b = zArr;
-        this.c = i8cVar;
-        this.d = p8cVar;
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

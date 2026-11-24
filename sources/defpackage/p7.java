@@ -6,14 +6,14 @@ public final class p7 {
     public final byte a;
     public byte b;
     public int c;
-    public oy8 d;
+    public p09 d;
     public CharSequence e;
     public boolean f;
     public View g;
-    public fo1 h;
+    public sp1 h;
     public byte i;
     public View j;
-    public do1 k;
+    public qp1 k;
     public byte l = 0;
     public byte m = 0;
     public Integer n;
@@ -45,11 +45,11 @@ public final class p7 {
         }
     }
 
-    public final void c(do1 do1Var) {
-        this.k = do1Var;
+    public final void c(qp1 qp1Var) {
+        this.k = qp1Var;
         View view = this.j;
         if (view != null) {
-            view.setOnClickListener(do1Var);
+            view.setOnClickListener(qp1Var);
         }
     }
 

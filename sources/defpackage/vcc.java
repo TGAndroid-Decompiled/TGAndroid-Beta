@@ -1,14 +1,6 @@
 package defpackage;
 
-import android.view.View;
+import android.media.MediaFormat;
 public interface vcc {
-    int D();
-
-    int M();
-
-    View Z(int i);
-
-    int d0(View view);
-
-    int u(View view);
+    void c(long j, long j2, go4 go4Var, MediaFormat mediaFormat);
 }

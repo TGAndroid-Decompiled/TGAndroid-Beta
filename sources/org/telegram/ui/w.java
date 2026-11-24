@@ -14,17 +14,17 @@ public final class w extends AnimatorListenerAdapter {
         super.onAnimationEnd(animator);
         x xVar = this.a;
         PhotoViewer photoViewer = xVar.c;
-        photoViewer.n4 = (byte) 0;
-        photoViewer.G0();
+        photoViewer.m4 = (byte) 0;
+        photoViewer.H0();
         photoViewer.M0.setAlpha(255);
         photoViewer.f0.invalidate();
         photoViewer.Q0.setTranslationY(0.0f);
-        if (photoViewer.t4) {
-            photoViewer.F0(xVar.b.intValue());
+        if (photoViewer.s4) {
+            photoViewer.G0(xVar.b.intValue());
         }
-        o98 o98Var = xVar.a;
-        if (o98Var != null) {
-            o98Var.e();
+        pb8 pb8Var = xVar.a;
+        if (pb8Var != null) {
+            pb8Var.e();
         }
     }
 }

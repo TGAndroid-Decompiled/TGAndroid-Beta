@@ -1,65 +1,58 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.TextView;
-import java.util.HashMap;
-public final class eq7 implements View.OnClickListener {
-    public final byte a;
-    public final iq7 b;
+import android.os.IBinder;
+import android.os.IInterface;
+import java.lang.reflect.Field;
+public final class eq7 extends e1d implements xk5 {
+    public final Object b;
 
-    public eq7(iq7 iq7Var, byte b) {
-        this.a = b;
-        this.b = iq7Var;
+    public eq7(Object obj) {
+        super("com.google.android.gms.dynamic.IObjectWrapper", (byte) 6);
+        this.b = obj;
     }
 
-    @Override
-    public final void onClick(View view) {
-        boolean z;
-        byte b = this.a;
-        iq7 iq7Var = this.b;
-        switch (b) {
-            case 0:
-                TextView textView = iq7Var.u1;
-                cs5 G = cs5.G(iq7Var.c, iq7Var.J0, textView);
-                int[] iArr = iq7.z1;
-                for (int i = 0; i < 6; i++) {
-                    int i2 = iArr[i];
-                    if (i2 == iq7Var.x1) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    G.h(new on7(iq7Var, i2, (byte) 1), k96.G(i2 / 3600, "GiftOfferHours", new Object[0]), z);
-                }
-                G.W(5);
-                iq7Var.B0(textView, G, true);
-                return;
-            case 1:
-                iq7 iq7Var2 = this.b;
-                u41 u41Var = iq7Var2.v1;
-                if (u41Var.e0 && !u41Var.R) {
-                    if (na7.q1(iq7Var2.a).t2()) {
-                        h5.b(iq7Var2.a);
-                        return;
-                    }
-                    gl.t1(iq7Var2.r1);
-                    long j = iq7Var2.w1;
-                    int i3 = iq7Var2.x1;
-                    u41Var.setLoading(true);
-                    int i4 = iq7Var2.a;
-                    String str = iq7Var2.l1.slug;
-                    gq7 gq7Var = new gq7(iq7Var2, j, i3, (byte) 0);
-                    HashMap hashMap = vp7.a;
-                    z3a.B(i4);
-                    long D = z3a.D();
-                    ad7 Y = ad7.Y(i4);
-                    Y.a.c(new sb2(Y, D, str, j, i3, gq7Var));
-                    return;
-                }
-                return;
-            default:
-                hmc.L0(iq7Var.a, iq7Var.J0, iq7Var.getContext());
-                return;
+    public static xk5 T(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
         }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.dynamic.IObjectWrapper");
+        if (queryLocalInterface instanceof xk5) {
+            return (xk5) queryLocalInterface;
+        }
+        return new f1d(iBinder, "com.google.android.gms.dynamic.IObjectWrapper", (byte) 4);
+    }
+
+    public static Object U(xk5 xk5Var) {
+        if (xk5Var instanceof eq7) {
+            return ((eq7) xk5Var).b;
+        }
+        IBinder asBinder = xk5Var.asBinder();
+        Field[] declaredFields = asBinder.getClass().getDeclaredFields();
+        Field field = null;
+        int i = 0;
+        for (Field field2 : declaredFields) {
+            if (!field2.isSynthetic()) {
+                i++;
+                field = field2;
+            }
+        }
+        if (i == 1) {
+            ite.h(field);
+            if (!field.isAccessible()) {
+                field.setAccessible(true);
+                try {
+                    return field.get(asBinder);
+                } catch (IllegalAccessException e) {
+                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e);
+                } catch (NullPointerException e2) {
+                    throw new IllegalArgumentException("Binder object is null.", e2);
+                }
+            }
+            u36.j("IObjectWrapper declared field not private!");
+            return null;
+        }
+        int length = declaredFields.length;
+        i2d.c(String.valueOf(length).length() + 53, length, "Unexpected number of IObjectWrapper declared fields: ");
+        return null;
     }
 }

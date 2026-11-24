@@ -1,47 +1,36 @@
 package defpackage;
 
 import org.telegram.tgnet.TLRPC;
-public final class rd2 implements imb {
-    public final xd2 a;
+public final class rd2 {
+    public TLRPC.GroupCallParticipant a;
+    public boolean b;
+    public float c;
 
-    public rd2(xd2 xd2Var) {
-        this.a = xd2Var;
+    public rd2(TLRPC.GroupCallParticipant groupCallParticipant, boolean z) {
+        this.a = groupCallParticipant;
+        this.b = z;
     }
 
-    @Override
-    public final void E(boolean z) {
-        TLRPC.WallPaper wallPaper;
-        xd2 xd2Var = this.a;
-        mu1 mu1Var = xd2Var.u1;
-        xd2Var.G1 = !xd2Var.G1;
-        if (xd2Var.F1 != null) {
-            xd2Var.I1 = true;
-            mu1Var.w7 = true;
-            if (xd2Var.J0()) {
-                wallPaper = null;
-            } else {
-                wallPaper = xd2Var.r1.g;
+    public final void a(int i, int i2, qd2 qd2Var) {
+        float f = i / i2;
+        if (this.c != f) {
+            this.c = f;
+            if (!g95.u5 && qd2Var.f.size() % 2 == 1) {
+                qd2Var.D();
             }
-            TLRPC.WallPaper wallPaper2 = wallPaper;
-            jy3 jy3Var = xd2Var.F1.a;
-            boolean z2 = jy3Var.a;
-            ku1 ku1Var = xd2Var.r1;
-            if (z2) {
-                ku1Var.q(null, wallPaper2, z, Boolean.valueOf(xd2Var.G1), false);
-            } else {
-                ku1Var.q(jy3Var, wallPaper2, z, Boolean.valueOf(xd2Var.G1), false);
-            }
-            mu1Var.w7 = false;
         }
     }
 
-    @Override
-    public final boolean a() {
-        return this.a.G1;
-    }
-
-    @Override
-    public final boolean w() {
-        return true;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && rd2.class == obj.getClass()) {
+            rd2 rd2Var = (rd2) obj;
+            if (this.b == rd2Var.b && k47.B1(this.a.peer) == k47.B1(rd2Var.a.peer)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

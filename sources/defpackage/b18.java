@@ -1,177 +1,410 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class b18 implements ed, o41 {
-    public final byte a;
-    public final y28 b;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.p;
+public final class b18 implements TextWatcher {
+    public boolean a;
+    public String b;
+    public boolean c;
+    public int d;
+    public int e;
+    public boolean f;
+    public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
+    public final p n;
 
-    public b18(y28 y28Var, byte b) {
-        this.a = b;
-        this.b = y28Var;
+    public b18(p pVar) {
+        this.n = pVar;
     }
 
-    @Override
-    public final void g(int i) {
-        if (i == 0) {
-            this.b.J0();
+    public final int a(String str) {
+        int i = 0;
+        while (true) {
+            char[] cArr = this.h;
+            if (i < cArr.length) {
+                int indexOf = str.indexOf(cArr[i]);
+                if (indexOf >= 0) {
+                    return indexOf;
+                }
+                i++;
+            } else {
+                return -1;
+            }
         }
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        TLRPC.ChatFull chatFull;
-        TL_stories.PeerStories peerStories;
-        TLRPC.UserFull userFull;
-        TL_stories.StoryItem storyItem;
-        byte b = this.a;
-        y28 y28Var = this.b;
-        switch (b) {
+    public final void afterTextChanged(Editable editable) {
+        long j;
+        boolean z;
+        String str;
+        String str2;
+        String substring;
+        p pVar = this.n;
+        if (pVar.n0) {
+            return;
+        }
+        Long l = pVar.I0;
+        if (l != null) {
+            j = l.longValue();
+        } else {
+            j = 0;
+        }
+        String str3 = this.b;
+        if (str3 == null) {
+            str3 = jb6.n(editable.toString());
+        }
+        int a = a(str3);
+        if (a >= 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        String str4 = pVar.D0.invoice.currency;
+        str4.getClass();
+        int i = 10;
+        char c = 65535;
+        switch (str4.hashCode()) {
+            case 65726:
+                if (str4.equals("BHD")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case 65759:
+                if (str4.equals("BIF")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case 66267:
+                if (str4.equals("BYR")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case 66813:
+                if (str4.equals("CLF")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case 66823:
+                if (str4.equals("CLP")) {
+                    c = 4;
+                    break;
+                }
+                break;
+            case 67122:
+                if (str4.equals("CVE")) {
+                    c = 5;
+                    break;
+                }
+                break;
+            case 67712:
+                if (str4.equals("DJF")) {
+                    c = 6;
+                    break;
+                }
+                break;
+            case 70719:
+                if (str4.equals("GNF")) {
+                    c = 7;
+                    break;
+                }
+                break;
+            case 72732:
+                if (str4.equals("IQD")) {
+                    c = '\b';
+                    break;
+                }
+                break;
+            case 72801:
+                if (str4.equals("ISK")) {
+                    c = '\t';
+                    break;
+                }
+                break;
+            case 73631:
+                if (str4.equals("JOD")) {
+                    c = '\n';
+                    break;
+                }
+                break;
+            case 73683:
+                if (str4.equals("JPY")) {
+                    c = 11;
+                    break;
+                }
+                break;
+            case 74532:
+                if (str4.equals("KMF")) {
+                    c = '\f';
+                    break;
+                }
+                break;
+            case 74704:
+                if (str4.equals("KRW")) {
+                    c = '\r';
+                    break;
+                }
+                break;
+            case 74840:
+                if (str4.equals("KWD")) {
+                    c = 14;
+                    break;
+                }
+                break;
+            case 75863:
+                if (str4.equals("LYD")) {
+                    c = 15;
+                    break;
+                }
+                break;
+            case 76263:
+                if (str4.equals("MGA")) {
+                    c = 16;
+                    break;
+                }
+                break;
+            case 76618:
+                if (str4.equals("MRO")) {
+                    c = 17;
+                    break;
+                }
+                break;
+            case 78388:
+                if (str4.equals("OMR")) {
+                    c = 18;
+                    break;
+                }
+                break;
+            case 79710:
+                if (str4.equals("PYG")) {
+                    c = 19;
+                    break;
+                }
+                break;
+            case 81569:
+                if (str4.equals("RWF")) {
+                    c = 20;
+                    break;
+                }
+                break;
+            case 83210:
+                if (str4.equals("TND")) {
+                    c = 21;
+                    break;
+                }
+                break;
+            case 83974:
+                if (str4.equals("UGX")) {
+                    c = 22;
+                    break;
+                }
+                break;
+            case 84517:
+                if (str4.equals("UYI")) {
+                    c = 23;
+                    break;
+                }
+                break;
+            case 85132:
+                if (str4.equals("VND")) {
+                    c = 24;
+                    break;
+                }
+                break;
+            case 85367:
+                if (str4.equals("VUV")) {
+                    c = 25;
+                    break;
+                }
+                break;
+            case 86653:
+                if (str4.equals("XAF")) {
+                    c = 26;
+                    break;
+                }
+                break;
+            case 87087:
+                if (str4.equals("XOF")) {
+                    c = 27;
+                    break;
+                }
+                break;
+            case 87118:
+                if (str4.equals("XPF")) {
+                    c = 28;
+                    break;
+                }
+                break;
+        }
+        switch (c) {
             case 0:
-                q18 q18Var = y28Var.R1;
-                if (q18Var != null) {
-                    q18Var.F();
-                    return;
-                }
-                return;
+            case '\b':
+            case '\n':
+            case 14:
+            case 15:
+            case 18:
+            case 21:
+                i = 1000;
+                break;
+            case 1:
+            case 2:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case '\t':
+            case 11:
+            case '\f':
+            case '\r':
+            case 16:
+            case 19:
+            case 20:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+                i = 1;
+                break;
+            case 3:
+                i = 10000;
+                break;
+            case 17:
+                break;
             default:
-                x28 x28Var = y28Var.E1;
-                TLRPC.ChatFull chatFull2 = null;
-                if (x28Var.f && (storyItem = x28Var.a) != null) {
-                    TLRPC.MessageMedia messageMedia = storyItem.media;
-                    if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
-                        TLRPC.InputGroupCall inputGroupCall = ((TLRPC.TL_messageMediaVideoStream) messageMedia).call;
-                        t76 t76Var = t76.N;
-                        if (t76Var != null && t76Var.i(inputGroupCall)) {
-                            t76.N.h();
-                            if (t76.N != null) {
-                                t76.N = null;
-                                kk7.f(y28Var.s2).k(176, Long.valueOf(t76.N.j()));
-                            }
-                        }
-                    }
-                }
-                TL_stories.StoryItem storyItem2 = x28Var.a;
-                if (storyItem2 instanceof q1b) {
-                    s1b s1bVar = ((q1b) storyItem2).a;
-                    TLRPC.MessageMedia messageMedia2 = storyItem2.media;
-                    s1bVar.getClass();
-                    s1bVar.F(new ArrayList(Arrays.asList(messageMedia2)));
-                } else if (storyItem2 != null) {
-                    y28 y28Var2 = x28Var.k;
-                    g2b g2bVar = y28Var2.I1;
-                    long j = y28Var2.r1;
-                    vf6 vf6Var = g2bVar.i;
-                    int i2 = g2bVar.a;
-                    if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
-                        int i3 = 0;
-                        while (i3 < 2) {
-                            if (i3 == 0) {
-                                TLRPC.ChatFull chatFull3 = chatFull2;
-                                chatFull = chatFull3;
-                                peerStories = (TL_stories.PeerStories) vf6Var.f(j);
-                                userFull = chatFull3;
-                            } else if (j >= 0) {
-                                TLRPC.UserFull W1 = na7.q1(i2).W1(j);
-                                if (W1 != null) {
-                                    userFull = W1;
-                                    peerStories = W1.stories;
-                                    chatFull = chatFull2;
-                                } else {
-                                    chatFull = chatFull2;
-                                    userFull = W1;
-                                    peerStories = chatFull;
-                                }
-                            } else {
-                                TLRPC.ChatFull L0 = na7.q1(i2).L0(-j);
-                                if (L0 != null) {
-                                    chatFull = L0;
-                                    peerStories = L0.stories;
-                                    userFull = chatFull2;
-                                } else {
-                                    TLRPC.ChatFull chatFull4 = chatFull2;
-                                    chatFull = L0;
-                                    peerStories = chatFull4;
-                                    userFull = chatFull4;
-                                }
-                            }
-                            if (peerStories != null) {
-                                int i4 = 0;
-                                while (true) {
-                                    if (i4 < peerStories.stories.size()) {
-                                        if (peerStories.stories.get(i4).id == storyItem2.id) {
-                                            peerStories.stories.remove(i4);
-                                            if (peerStories.stories.size() == 0) {
-                                                if (!g2bVar.L(j)) {
-                                                    vf6Var.l(j);
-                                                    g2bVar.g.remove(peerStories);
-                                                    g2bVar.h.remove(peerStories);
-                                                }
-                                                if (j > 0) {
-                                                    TLRPC.User V1 = na7.q1(i2).V1(Long.valueOf(j));
-                                                    if (V1 != null) {
-                                                        V1.stories_unavailable = true;
-                                                    }
-                                                } else {
-                                                    TLRPC.Chat K0 = na7.q1(i2).K0(Long.valueOf(-j));
-                                                    if (K0 != null) {
-                                                        K0.stories_unavailable = true;
-                                                    }
-                                                }
-                                            }
-                                        } else {
-                                            i4++;
-                                        }
-                                    }
-                                }
-                            }
-                            if (chatFull != null) {
-                                ad7.Y(i2).K1(chatFull, false);
-                            }
-                            if (userFull != 0) {
-                                ad7.Y(i2).g2(userFull, false);
-                            }
-                            i3++;
-                            chatFull2 = null;
-                        }
-                        TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
-                        tL_stories_deleteStories.peer = na7.q1(i2).h1(j);
-                        tL_stories_deleteStories.id.add(Integer.valueOf(storyItem2.id));
-                        ConnectionsManager.getInstance(i2).sendRequest(tL_stories_deleteStories, new i1b(g2bVar, (byte) 4));
-                        s2b s2bVar = g2bVar.k;
-                        s2bVar.b.a.c(new q2b(s2bVar, j, storyItem2.id, (byte) 1));
-                        kk7.f(i2).k(327, new Object[0]);
-                        na7.q1(i2).z();
-                        g2bVar.n0(j, Arrays.asList(storyItem2));
-                    }
-                } else {
-                    f2b f2bVar = x28Var.b;
-                    if (f2bVar != null) {
-                        f2bVar.a();
-                    }
-                }
-                y28Var.h1();
-                if (y28Var.A1 && y28Var.q1 == 0) {
-                    ((d8b) y28Var.G1).j();
-                    return;
-                }
-                int i5 = y28Var.z1;
-                int i6 = y28Var.q1;
-                if (i5 >= i6) {
-                    y28Var.z1 = i6 - 1;
-                } else if (i5 < 0) {
-                    y28Var.z1 = 0;
-                }
-                y28Var.c1(false);
-                m8b m8bVar = y28Var.z0;
-                if (m8bVar != null) {
-                    m8bVar.m();
-                    return;
-                }
-                return;
+                i = 100;
+                break;
         }
+        String str5 = "";
+        if (a >= 0) {
+            str = str3.substring(0, a);
+            str2 = str3.substring(a + 1);
+        } else {
+            str = str3;
+            str2 = "";
+        }
+        long longValue = Utilities.A(r58.h(str, false)).longValue() * i;
+        long longValue2 = Utilities.A(r58.h(str2, false)).longValue();
+        String valueOf = String.valueOf(longValue2);
+        String valueOf2 = String.valueOf(i - 1);
+        if (a > 0 && valueOf.length() > valueOf2.length()) {
+            if (this.e - a < valueOf.length()) {
+                substring = valueOf.substring(0, valueOf2.length());
+            } else {
+                substring = valueOf.substring(valueOf.length() - valueOf2.length());
+            }
+            longValue2 = Utilities.A(substring).longValue();
+        }
+        Long valueOf3 = Long.valueOf(longValue + longValue2);
+        pVar.I0 = valueOf3;
+        if (pVar.D0.invoice.max_tip_amount != 0) {
+            long longValue3 = valueOf3.longValue();
+            long j2 = pVar.D0.invoice.max_tip_amount;
+            if (longValue3 > j2) {
+                pVar.I0 = Long.valueOf(j2);
+            }
+        }
+        int selectionStart = pVar.f[0].getSelectionStart();
+        pVar.n0 = true;
+        int i2 = (pVar.I0.longValue() > 0L ? 1 : (pVar.I0.longValue() == 0L ? 0 : -1));
+        EditTextBoldCursor[] editTextBoldCursorArr = pVar.f;
+        if (i2 == 0) {
+            editTextBoldCursorArr[0].setText("");
+        } else {
+            EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
+            str5 = jb6.D0().q(pVar.I0.longValue(), false, z, true, pVar.D0.invoice.currency);
+            editTextBoldCursor.setText(str5);
+        }
+        if (j < pVar.I0.longValue() && j != 0 && this.a && selectionStart >= 0) {
+            EditTextBoldCursor editTextBoldCursor2 = pVar.f[0];
+            editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
+        } else if (this.c && this.d != pVar.f[0].length()) {
+            EditTextBoldCursor editTextBoldCursor3 = pVar.f[0];
+            editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
+        } else if (!this.f && z && a >= 0) {
+            int a2 = a(str5);
+            EditTextBoldCursor[] editTextBoldCursorArr2 = pVar.f;
+            if (a2 > 0) {
+                editTextBoldCursorArr2[0].setSelection(a2 + 1);
+            } else {
+                EditTextBoldCursor editTextBoldCursor4 = editTextBoldCursorArr2[0];
+                editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
+            }
+        } else {
+            EditTextBoldCursor editTextBoldCursor5 = pVar.f[0];
+            editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
+        }
+        this.f = z;
+        pVar.R0();
+        this.b = null;
+        pVar.n0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        int length;
+        boolean z;
+        String str;
+        if (!this.n.n0) {
+            this.a = !TextUtils.isEmpty(charSequence);
+            this.b = null;
+            if (charSequence == null) {
+                length = 0;
+            } else {
+                length = charSequence.length();
+            }
+            this.d = length;
+            this.e = i;
+            if (i2 == 1 && i3 == 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            this.c = z;
+            if (z) {
+                String n = jb6.n(charSequence);
+                char charAt = n.charAt(i);
+                int a = a(n);
+                if (a >= 0) {
+                    str = n.substring(a + 1);
+                } else {
+                    str = "";
+                }
+                long longValue = Utilities.A(r58.h(str, false)).longValue();
+                if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
+                    if (a > 0 && i > a && longValue == 0) {
+                        this.b = n.substring(0, a - 1);
+                        return;
+                    }
+                    return;
+                }
+                while (true) {
+                    int i4 = i - 1;
+                    if (i4 >= 0) {
+                        char charAt2 = n.charAt(i4);
+                        if (charAt2 >= '0' && charAt2 <= '9') {
+                            this.b = n.substring(0, i4).concat(n.substring(i));
+                            return;
+                        }
+                        i = i4;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

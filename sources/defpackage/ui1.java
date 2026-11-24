@@ -1,73 +1,108 @@
 package defpackage;
 
-import android.app.Activity;
-import android.view.View;
-import java.util.ArrayList;
-public final class ui1 extends oec {
-    public final Activity a;
-    public final int b;
-    public final int c;
-    public final wjb d;
-    public final ArrayList e = new ArrayList();
-    public final vi1 f;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.util.SparseIntArray;
+public final class ui1 implements ylb {
+    public final vi1 a;
 
-    public ui1(vi1 vi1Var, Activity activity, int i, long j, int i2, wjb wjbVar) {
-        this.f = vi1Var;
-        this.a = activity;
-        this.b = i;
-        this.c = i2;
-        this.d = wjbVar;
-        i();
+    public ui1(vi1 vi1Var) {
+        this.a = vi1Var;
     }
 
     @Override
-    public final void b(View view, int i, int i2) {
-        this.f.b.L(view);
+    public final boolean a() {
+        return this.a.K;
     }
 
     @Override
-    public final View d(int i) {
-        return new ti1(this.f, this.a, i, this.b, this.c, new eg(this, i, (byte) 13), this.d);
+    public final void b(float f, float f2, int i, int i2) {
+        cmb.q(f, f2, i, i2);
     }
 
     @Override
-    public final int e() {
-        return this.e.size();
+    public final ColorFilter c() {
+        return cmb.u3;
     }
 
     @Override
-    public final CharSequence g(int i) {
-        int h = h(i);
-        if (h != 0) {
-            if (h != 1) {
-                return "";
-            }
-            return k96.M0(2131748160, null);
+    public final Paint d(String str) {
+        if (str.equals("paintDivider")) {
+            return this.a.z0;
         }
-        return k96.M0(2131748161, null);
+        return cmb.T0(str);
+    }
+
+    @Override
+    public final boolean e() {
+        return gda.D0;
+    }
+
+    @Override
+    public final int f(int i) {
+        return h(i);
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final Drawable getDrawable(String str) {
+        vi1 vi1Var = this.a;
+        Drawable drawable = vi1Var.y0;
+        Drawable drawable2 = vi1Var.x0;
+        if (str.equals("drawableMsgIn")) {
+            return vi1Var.t0;
+        }
+        if (str.equals("drawableMsgInSelected")) {
+            return vi1Var.u0;
+        }
+        if (str.equals("drawableMsgOut")) {
+            return vi1Var.v0;
+        }
+        if (str.equals("drawableMsgOutSelected")) {
+            return vi1Var.w0;
+        }
+        if (str.equals("drawableMsgOutCheckRead")) {
+            drawable2.setColorFilter(h(cmb.Bb), PorterDuff.Mode.MULTIPLY);
+            return drawable2;
+        } else if (str.equals("drawableMsgOutHalfCheck")) {
+            drawable.setColorFilter(h(cmb.Bb), PorterDuff.Mode.MULTIPLY);
+            return drawable;
+        } else {
+            ylb ylbVar = vi1Var.r0;
+            if (ylbVar != null) {
+                return ylbVar.getDrawable(str);
+            }
+            return cmb.P0(str);
+        }
     }
 
     @Override
     public final int h(int i) {
-        if (i >= 0) {
-            ArrayList arrayList = this.e;
-            if (i < arrayList.size()) {
-                return ((c4c) arrayList.get(i)).A;
-            }
-            return 1;
+        vi1 vi1Var = this.a;
+        SparseIntArray sparseIntArray = vi1Var.s0;
+        int indexOfKey = sparseIntArray.indexOfKey(i);
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
         }
-        return 1;
+        ylb ylbVar = vi1Var.r0;
+        if (ylbVar != null) {
+            return ylbVar.h(i);
+        }
+        return cmb.w0(null, i, false);
     }
 
-    public final void i() {
-        ArrayList arrayList = this.e;
-        arrayList.clear();
-        vi1 vi1Var = this.f;
-        if (!vi1Var.n.isEmpty()) {
-            arrayList.add(c4c.D(1));
-        }
-        if (!vi1Var.r.isEmpty()) {
-            arrayList.add(c4c.D(0));
-        }
+    @Override
+    public final int j(int i) {
+        return h(i);
+    }
+
+    @Override
+    public final void i(int i, int i2) {
     }
 }

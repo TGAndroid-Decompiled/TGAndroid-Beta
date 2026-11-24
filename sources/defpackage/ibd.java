@@ -1,5 +1,5 @@
 package defpackage;
-public final class ibd {
-    public final Object a = new Object();
-    public long b = Long.MIN_VALUE;
+public abstract class ibd {
+    private static boolean zzey = false;
+    protected int zzex;
 }

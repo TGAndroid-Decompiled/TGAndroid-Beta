@@ -1,84 +1,67 @@
 package defpackage;
-public final class in5 implements fv9 {
-    public final dd a;
-    public final dd b;
+
+import android.graphics.BitmapShader;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class in5 {
+    public Paint A;
+    public Path B;
+    public boolean a;
+    public float b;
     public long c;
+    public int d;
+    public BitmapShader e;
+    public kn f;
+    public p09 g;
+    public int[] h;
+    public BitmapShader i;
+    public Drawable j;
+    public BitmapShader k;
+    public Drawable l;
+    public Drawable m;
+    public BitmapShader n;
+    public Drawable o;
+    public float p;
+    public float q;
+    public BitmapShader r;
+    public float s;
+    public float t;
+    public float u;
+    public float v;
+    public boolean w;
+    public Drawable x;
+    public RectF y;
+    public ColorFilter z;
 
-    public in5(long j, long[] jArr, long[] jArr2) {
-        boolean z;
-        dd ddVar;
-        dd ddVar2;
-        if (jArr.length == jArr2.length) {
-            z = true;
-        } else {
-            z = false;
+    public final void a() {
+        this.f = null;
+        this.g = null;
+        for (int i = 0; i < 4; i++) {
+            int[] iArr = this.h;
+            iArr[i] = iArr[i];
         }
-        gre.f(z);
-        int length = jArr2.length;
-        if (length > 0 && jArr2[0] > 0) {
-            int i = length + 1;
-            ddVar = new dd(i, (byte) 9);
-            this.a = ddVar;
-            ddVar2 = new dd(i, (byte) 9);
-            this.b = ddVar2;
-            ddVar.V(0L);
-            ddVar2.V(0L);
-        } else {
-            ddVar = new dd(length, (byte) 9);
-            this.a = ddVar;
-            ddVar2 = new dd(length, (byte) 9);
-            this.b = ddVar2;
-        }
-        ddVar.W(jArr);
-        ddVar2.W(jArr2);
-        this.c = j;
+        this.j = null;
+        this.i = null;
+        this.l = null;
+        this.k = null;
+        this.m = null;
+        this.n = null;
+        this.e = null;
+        this.o = null;
+        this.x = null;
+        this.z = null;
     }
 
-    @Override
-    public final boolean c() {
-        if (this.b.b > 0) {
-            return true;
+    public final void b(Rect rect) {
+        if (rect != null) {
+            this.u = rect.left;
+            this.v = rect.top;
+            this.t = rect.width();
+            this.s = rect.height();
         }
-        return false;
-    }
-
-    @Override
-    public final boolean d() {
-        return false;
-    }
-
-    @Override
-    public final ev9 f(long j) {
-        dd ddVar = this.b;
-        if (ddVar.b == 0) {
-            hv9 hv9Var = hv9.c;
-            return new ev9(hv9Var, hv9Var);
-        }
-        int c = g8c.c(ddVar, j);
-        long f0 = ddVar.f0(c);
-        dd ddVar2 = this.a;
-        hv9 hv9Var2 = new hv9(f0, ddVar2.f0(c));
-        if (f0 != j && c != ddVar.b - 1) {
-            int i = c + 1;
-            return new ev9(hv9Var2, new hv9(ddVar.f0(i), ddVar2.f0(i)));
-        }
-        return new ev9(hv9Var2, hv9Var2);
-    }
-
-    @Override
-    public final long h() {
-        return this.c;
-    }
-
-    public final void i(long j, long j2) {
-        dd ddVar = this.b;
-        int i = ddVar.b;
-        dd ddVar2 = this.a;
-        if (i == 0 && j > 0) {
-            ddVar2.V(0L);
-            ddVar.V(0L);
-        }
-        ddVar2.V(j2);
-        ddVar.V(j);
     }
 }

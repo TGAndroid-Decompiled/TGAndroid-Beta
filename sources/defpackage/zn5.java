@@ -1,3 +1,3 @@
 package defpackage;
-public interface zn5 {
+public final class zn5 extends p2 {
 }

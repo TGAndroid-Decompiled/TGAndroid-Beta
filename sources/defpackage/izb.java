@@ -1,19 +1,25 @@
 package defpackage;
+public final class izb {
+    public static final izb a;
+    public static final izb b;
+    public static final izb c;
+    public static final izb[] d;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class izb extends rzb {
-    public final vm1 T1;
-
-    public izb(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i, TL_iv.RichMessage richMessage, vm1 vm1Var) {
-        super(activity, str, str2, null, inputPeer, i, false, richMessage);
-        this.T1 = vm1Var;
+    static {
+        ?? r0 = new Enum("TOP", 0);
+        a = r0;
+        ?? r1 = new Enum("LEFT", 1);
+        b = r1;
+        ?? r3 = new Enum("BOTTOM", 2);
+        c = r3;
+        d = new izb[]{r0, r1, r3};
     }
 
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T1.run();
+    public static izb valueOf(String str) {
+        return (izb) Enum.valueOf(izb.class, str);
+    }
+
+    public static izb[] values() {
+        return (izb[]) d.clone();
     }
 }

@@ -158,7 +158,7 @@ public class TL_ephemeral {
             this.date = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -291,7 +291,7 @@ public class TL_ephemeral {
             this.date = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -384,7 +384,7 @@ public class TL_ephemeral {
             this.date = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+                this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -481,7 +481,7 @@ public class TL_ephemeral {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.hash = inputSerializedData.readInt64(z);
-            this.messages = Vector.deserialize(inputSerializedData, new yw6((byte) 26), z);
+            this.messages = Vector.deserialize(inputSerializedData, new yy6((byte) 28), z);
         }
 
         @Override

@@ -1,12 +1,35 @@
 package defpackage;
-public interface sp3 {
-    void B(boolean z);
 
-    void N(String str);
+import sun.misc.Unsafe;
+public final class sp3 extends ss9 {
+    public static final long f = fy.a.objectFieldOffset(sp3.class.getDeclaredField("_decision$volatile"));
+    private volatile int _decision$volatile;
 
-    int getObserverTag();
+    @Override
+    public final void f(Object obj) {
+        g(obj);
+    }
 
-    void i(long j, long j2);
-
-    void l(long j, long j2);
+    @Override
+    public final void g(Object obj) {
+        while (true) {
+            Unsafe unsafe = fy.a;
+            long j = f;
+            int intVolatile = unsafe.getIntVolatile(this, j);
+            if (intVolatile != 0) {
+                if (intVolatile == 1) {
+                    r5c.c(fne.a(this.e), cvd.a(obj));
+                    return;
+                } else {
+                    dq9.m("Already resumed");
+                    return;
+                }
+            }
+            sp3 sp3Var = this;
+            if (unsafe.compareAndSwapInt(sp3Var, j, 0, 2)) {
+                return;
+            }
+            this = sp3Var;
+        }
+    }
 }

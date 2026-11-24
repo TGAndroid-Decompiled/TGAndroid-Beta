@@ -14,7 +14,7 @@ public final class f extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         o oVar = this.a;
         ArticleViewer$WindowView articleViewer$WindowView = oVar.g0;
-        sw swVar = oVar.L;
+        sx sxVar = oVar.L;
         if (articleViewer$WindowView.e) {
             oVar.v0[0].setBackgroundDrawable(null);
             m[] mVarArr = oVar.v0;
@@ -24,26 +24,26 @@ public final class f extends AnimatorListenerAdapter {
             oVar.i0.i();
             oVar.b1.a(oVar.v0[0].getBackgroundColor(), true);
             oVar.c1.a(oVar.v0[1].getBackgroundColor(), true);
-            if (swVar != null) {
-                swVar.y();
+            if (sxVar != null) {
+                sxVar.z();
             }
-            Object l = tb4.l(1, oVar.e0);
+            Object m = td4.m(1, oVar.e0);
             oVar.Q0.Q(oVar.v0[0].b);
-            fib fibVar = oVar.Q0;
-            fibVar.z0 = oVar.v0[0].d;
-            fibVar.e(true);
+            gkb gkbVar = oVar.Q0;
+            gkbVar.z0 = oVar.v0[0].d;
+            gkbVar.e(true);
             oVar.g0(false);
             oVar.d0();
             oVar.v0[1].a();
             oVar.v0[1].setVisibility(8);
-            if (l instanceof zv) {
-                ((zv) l).a();
+            if (m instanceof zw) {
+                ((zw) m).a();
             }
-            if (l instanceof TLRPC.WebPage) {
-                ctc.o((TLRPC.WebPage) l);
+            if (m instanceof TLRPC.WebPage) {
+                dvc.o((TLRPC.WebPage) m);
             }
-        } else if (swVar != null) {
-            swVar.release();
+        } else if (sxVar != null) {
+            sxVar.release();
             oVar.p();
         } else {
             oVar.S();

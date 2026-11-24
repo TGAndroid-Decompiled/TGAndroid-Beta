@@ -1,32 +1,54 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.util.Log;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.SuccessContinuation;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import java.util.Arrays;
-public final class e6d implements SuccessContinuation, ohe, OnFailureListener {
-    public static final e6d a = new Object();
+import android.os.IInterface;
+import android.os.Parcel;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.Status;
+public final class e6d extends e1d implements IInterface {
+    public final byte b;
+    public final h6d c;
 
-    @Override
-    public final byte[] a(int i, int i2, byte[] bArr) {
-        return Arrays.copyOfRange(bArr, i, i2 + i);
+    public e6d(h6d h6dVar, byte b) {
+        super("com.google.android.gms.auth.api.signin.internal.ISignInCallbacks", (byte) 2);
+        this.b = b;
+        this.c = h6dVar;
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        Log.e("OptionalModuleUtils", "Failed to check feature availability", exc);
-    }
-
-    @Override
-    public final Task then(Object obj) {
-        Bundle bundle = (Bundle) obj;
-        int i = fm9.h;
-        if (bundle != null && bundle.containsKey("google.messenger")) {
-            return Tasks.forResult(null);
+    public final boolean c(int i, Parcel parcel, Parcel parcel2) {
+        h6d h6dVar = this.c;
+        byte b = this.b;
+        switch (i) {
+            case 101:
+                GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) y5d.a(parcel, GoogleSignInAccount.CREATOR);
+                Status status = (Status) y5d.a(parcel, Status.CREATOR);
+                y5d.b(parcel);
+                gxc.b();
+                return false;
+            case 102:
+                Status status2 = (Status) y5d.a(parcel, Status.CREATOR);
+                y5d.b(parcel);
+                switch (b) {
+                    case 0:
+                        h6dVar.a(status2);
+                        break;
+                    default:
+                        throw new UnsupportedOperationException();
+                }
+            case 103:
+                Status status3 = (Status) y5d.a(parcel, Status.CREATOR);
+                y5d.b(parcel);
+                switch (b) {
+                    case 1:
+                        h6dVar.a(status3);
+                        break;
+                    default:
+                        throw new UnsupportedOperationException();
+                }
+            default:
+                return false;
         }
-        return Tasks.forResult(bundle);
+        parcel2.writeNoException();
+        return true;
     }
 }

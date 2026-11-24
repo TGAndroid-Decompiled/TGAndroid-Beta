@@ -1,37 +1,28 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class iff extends b4 {
-    public static final Parcelable.Creator<iff> CREATOR = new xff((byte) 5);
-    public final boolean a;
+import android.content.Context;
+import j$.util.Objects;
+public final class iff {
+    public static final xad b = xad.c(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
+    public final String a;
 
-    public iff(boolean z) {
-        this.a = z;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public iff(Context context, uha uhaVar) {
+        context.getPackageName();
+        ao2.a(context);
+        synchronized (fgf.class) {
+            if (fgf.b == null) {
+                fgf.b = new fgf((byte) 0);
+            }
         }
-        if ((obj instanceof iff) && this.a == ((iff) obj).a) {
-            return true;
+        this.a = "common";
+        ni6.q();
+        ni6.E(new mg7(this, (byte) 8));
+        ni6.q();
+        Objects.requireNonNull(uhaVar);
+        ni6.E(new kze(uhaVar, (byte) 3));
+        xad xadVar = b;
+        if (xadVar.containsKey("common")) {
+            nt3.d(context, (String) xadVar.get("common"), false);
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        if (this.a) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(this.a ? 1 : 0);
-        jte.s(parcel, r);
     }
 }

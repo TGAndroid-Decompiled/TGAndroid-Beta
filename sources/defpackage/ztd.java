@@ -1,63 +1,24 @@
 package defpackage;
 
-import java.util.AbstractList;
-import java.util.ArrayList;
-public final class ztd extends dad {
-    public static final ztd c;
-    public final ArrayList b;
+import android.os.Parcel;
+import android.os.ParcelFileDescriptor;
+import android.os.Parcelable;
+public final class ztd extends b4 {
+    public static final Parcelable.Creator<ztd> CREATOR = new urd((byte) 8);
+    public final int a;
+    public final ParcelFileDescriptor b;
 
-    static {
-        ztd ztdVar = new ztd(new ArrayList(10));
-        c = ztdVar;
-        ztdVar.a = false;
-    }
-
-    public ztd(ArrayList arrayList) {
-        this.b = arrayList;
+    public ztd(int i, ParcelFileDescriptor parcelFileDescriptor) {
+        this.a = i;
+        this.b = parcelFileDescriptor;
     }
 
     @Override
-    public final void add(int i, Object obj) {
-        h();
-        this.b.add(i, obj);
-        ((AbstractList) this).modCount++;
-    }
-
-    @Override
-    public final mkd f(int i) {
-        ArrayList arrayList = this.b;
-        if (i >= arrayList.size()) {
-            ArrayList arrayList2 = new ArrayList(i);
-            arrayList2.addAll(arrayList);
-            return new ztd(arrayList2);
-        }
-        sc8.e();
-        return null;
-    }
-
-    @Override
-    public final Object get(int i) {
-        return this.b.get(i);
-    }
-
-    @Override
-    public final Object remove(int i) {
-        h();
-        Object remove = this.b.remove(i);
-        ((AbstractList) this).modCount++;
-        return remove;
-    }
-
-    @Override
-    public final Object set(int i, Object obj) {
-        h();
-        Object obj2 = this.b.set(i, obj);
-        ((AbstractList) this).modCount++;
-        return obj2;
-    }
-
-    @Override
-    public final int size() {
-        return this.b.size();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        mve.k(parcel, 3, this.b, i);
+        mve.s(parcel, r);
     }
 }

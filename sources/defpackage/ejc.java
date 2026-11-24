@@ -1,14 +1,30 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class ejc {
-    public final ArrayList a = new ArrayList();
-    public long b;
-    public float c;
-    public float d;
-    public String e;
-    public String f;
-    public int g;
-    public boolean h;
-    public String i;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class ejc implements Runnable {
+    public final byte a;
+    public final VoIPService b;
+    public final TLRPC.GroupCallParticipant c;
+
+    public ejc(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant, byte b) {
+        this.a = b;
+        this.b = voIPService;
+        this.c = groupCallParticipant;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        TLRPC.GroupCallParticipant groupCallParticipant = this.c;
+        VoIPService voIPService = this.b;
+        switch (b) {
+            case 0:
+                voIPService.lambda$startGroupCall$29(groupCallParticipant);
+                return;
+            default:
+                voIPService.lambda$startConferenceGroupCall$40(groupCallParticipant);
+                return;
+        }
+    }
 }

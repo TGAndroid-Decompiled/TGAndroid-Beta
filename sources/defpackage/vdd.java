@@ -1,11 +1,28 @@
 package defpackage;
-public abstract class vdd {
-    public static final f84 a;
-    public static final f84[] b;
 
-    static {
-        f84 f84Var = new f84("moduleinstall", 7L);
-        a = f84Var;
-        b = new f84[]{f84Var};
+import java.io.Serializable;
+public final class vdd extends m3 implements Serializable {
+    public final Object b;
+    public final l3 c;
+
+    public vdd(Object obj, l3 l3Var) {
+        super((byte) 1, false);
+        this.b = obj;
+        this.c = l3Var;
+    }
+
+    @Override
+    public final Object getKey() {
+        return this.b;
+    }
+
+    @Override
+    public final Object getValue() {
+        return this.c;
+    }
+
+    @Override
+    public final Object setValue(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

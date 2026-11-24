@@ -1,57 +1,63 @@
 package defpackage;
 
-import java.math.RoundingMode;
-public final class urc implements fv9 {
-    public final sk9 a;
-    public final int b;
-    public final long c;
-    public final long d;
-    public final long e;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.TextUtils;
+import android.view.View;
+public final class urc implements View.OnClickListener {
+    public final byte a;
+    public final asc b;
 
-    public urc(sk9 sk9Var, int i, long j, long j2) {
-        this.a = sk9Var;
-        this.b = i;
-        this.c = j;
-        long j3 = (j2 - j) / sk9Var.c;
-        this.d = j3;
-        this.e = i(j3);
+    public urc(asc ascVar, byte b) {
+        this.a = b;
+        this.b = ascVar;
     }
 
     @Override
-    public final boolean c() {
-        return true;
-    }
-
-    @Override
-    public final boolean d() {
-        return false;
-    }
-
-    @Override
-    public final ev9 f(long j) {
-        sk9 sk9Var = this.a;
-        long j2 = (sk9Var.b * j) / (this.b * 1000000);
-        long j3 = this.d - 1;
-        long j4 = g8c.j(j2, 0L, j3);
-        int i = sk9Var.c;
-        long j5 = this.c;
-        long i2 = i(j4);
-        hv9 hv9Var = new hv9(i2, (i * j4) + j5);
-        if (i2 < j && j4 != j3) {
-            long j6 = j4 + 1;
-            return new ev9(hv9Var, new hv9(i(j6), (i * j6) + j5));
+    public final void onClick(View view) {
+        byte b = this.a;
+        asc ascVar = this.b;
+        switch (b) {
+            case 0:
+                if (ascVar.y != null) {
+                    gm.t1(ascVar.O);
+                    ascVar.m0(ascVar.y, null);
+                    return;
+                }
+                return;
+            case 1:
+                if (ascVar.y != null) {
+                    gm.t1(ascVar.O);
+                    ascVar.m0(ascVar.y, null);
+                    return;
+                }
+                return;
+            case 2:
+                ClipboardManager clipboardManager = (ClipboardManager) ascVar.getParentActivity().getSystemService("clipboard");
+                if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+                    ClipData primaryClip = clipboardManager.getPrimaryClip();
+                    if (primaryClip != null && primaryClip.getItemCount() != 0) {
+                        CharSequence coerceToText = primaryClip.getItemAt(0).coerceToText(ascVar.getParentActivity());
+                        if (!TextUtils.isEmpty(coerceToText)) {
+                            ascVar.O.setText(coerceToText.toString().trim());
+                            l7 l7Var = ascVar.O;
+                            l7Var.setSelection(l7Var.length());
+                            return;
+                        }
+                        ascVar.T = false;
+                        ascVar.p0(true);
+                        return;
+                    }
+                    ascVar.T = false;
+                    ascVar.p0(true);
+                    return;
+                }
+                ascVar.T = false;
+                ascVar.p0(true);
+                return;
+            default:
+                ascVar.i0();
+                return;
         }
-        return new ev9(hv9Var, hv9Var);
-    }
-
-    @Override
-    public final long h() {
-        return this.e;
-    }
-
-    public final long i(long j) {
-        long j2 = this.a.b;
-        String str = g8c.a;
-        return g8c.b0(j * this.b, 1000000L, j2, RoundingMode.DOWN);
     }
 }

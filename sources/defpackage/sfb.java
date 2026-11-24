@@ -1,34 +1,85 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class sfb extends ReplacementSpan {
-    public float a;
-    public final String b;
-    public final int c;
-    public final Paint d;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stats;
+public final class sfb implements Vector.TLDeserializer {
+    public final byte a;
 
-    public sfb(int i, Paint paint, String str) {
-        this.b = str;
-        this.c = i;
-        this.d = paint;
+    public sfb(byte b) {
+        this.a = b;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        float f2 = (i3 + i5) / 2.0f;
-        paint.setColor(this.c);
-        float L = gl.L(19.0f) / 2.0f;
-        canvas.drawRoundRect(f, f2 - L, f + this.a + gl.L(11.33f), f2 + L, L, L, this.d);
-        canvas.drawText(this.b, gl.N(5.66f) + f, i5 - gl.L(6.0f), paint);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        float N = gl.N(11.33f);
-        float measureText = paint.measureText(this.b);
-        this.a = measureText;
-        return (int) (N + measureText);
+    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        switch (this.a) {
+            case 0:
+                return TL_iv.pageTableRow.TLdeserialize(inputSerializedData, i, z);
+            case 1:
+                return TL_iv.pageTableCell.TLdeserialize(inputSerializedData, i, z);
+            case 2:
+                return TL_keyboard.KeyboardButton.TLdeserialize(inputSerializedData, i, z);
+            case 3:
+                return TL_keyboard.KeyboardInlineButton.TLdeserialize(inputSerializedData, i, z);
+            case 4:
+                return TL_stars.TL_StarGiftAuctionAcquiredGift.TLdeserialize(inputSerializedData, i, z);
+            case 5:
+                return TL_stars.TL_StarGiftActiveAuctionState.TLdeserialize(inputSerializedData, i, z);
+            case 6:
+                return TL_payments.connectedBotStarRef.TLdeserialize(inputSerializedData, i, z);
+            case 7:
+                return TL_payments.starRefProgram.TLdeserialize(inputSerializedData, i, z);
+            case 8:
+                return TLRPC.PhoneConnection.TLdeserialize(inputSerializedData, i, z);
+            case 9:
+                return TLRPC.GroupCallParticipant.TLdeserialize(inputSerializedData, i, z);
+            case 10:
+                return TL_phone.groupCallDonor.TLdeserialize(inputSerializedData, i, z);
+            case 11:
+                return TL_phone.TL_groupCallStreamChannel.TLdeserialize(inputSerializedData, i, z);
+            case 12:
+                return TL_stars.TL_starsGiftOption.TLdeserialize(inputSerializedData, i, z);
+            case 13:
+                return TL_stars.TL_starsGiveawayOption.TLdeserialize(inputSerializedData, i, z);
+            case 14:
+                return TL_stars.TL_starsTopupOption.TLdeserialize(inputSerializedData, i, z);
+            case 15:
+                return TL_stars.SavedStarGift.TLdeserialize(inputSerializedData, i, z);
+            case 16:
+                return TL_stars.TL_payments_starGiftOnchainOfferTxMessage.TLdeserialize(inputSerializedData, i, z);
+            case 17:
+                return TL_stars.StarsSubscription.TLdeserialize(inputSerializedData, i, z);
+            case 18:
+                return TL_stars.StarsTransaction.TLdeserialize(inputSerializedData, i, z);
+            case 19:
+                return TL_stars.TL_AuctionBidLevel.TLdeserialize(inputSerializedData, i, z);
+            case 20:
+                return TL_stars.StarGiftAuctionRound.TLdeserialize(inputSerializedData, i, z);
+            case 21:
+                return TL_stars.TL_starGiftCollection.TLdeserialize(inputSerializedData, i, z);
+            case 22:
+                return TL_stars.StarGiftAttribute.TLdeserialize(inputSerializedData, i, z);
+            case 23:
+                return TL_stars.StarsAmount.TLdeserialize(inputSerializedData, i, z);
+            case 24:
+                return TL_stars.StarGift.TLdeserialize(inputSerializedData, i, z);
+            case 25:
+                return TL_stars.TL_starsGiveawayWinnersOption.TLdeserialize(inputSerializedData, i, z);
+            case 26:
+                return TLRPC.MessageMedia.TLdeserialize(inputSerializedData, i, z);
+            case 27:
+                return TL_stars.starGiftAttributeCounter.TLdeserialize(inputSerializedData, i, z);
+            case 28:
+                return TL_stars.StarGiftUpgradePrice.TLdeserialize(inputSerializedData, i, z);
+            default:
+                return TL_stats.BroadcastRevenueTransaction.TLdeserialize(inputSerializedData, i, z);
+        }
     }
 }

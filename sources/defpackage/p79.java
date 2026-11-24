@@ -1,7 +1,8 @@
 package defpackage;
+public interface p79 {
+    int a();
 
-import org.telegram.ui.Components.EditTextBoldCursor;
-public abstract class p79 extends fx0 {
-    public o79 l1;
-    public EditTextBoldCursor m1;
+    void b(o79 o79Var);
+
+    void c();
 }

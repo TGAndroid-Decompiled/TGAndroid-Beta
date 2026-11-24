@@ -38,7 +38,7 @@ public final class m9 implements Runnable {
                                 Application application = activity.getApplication();
                                 o9 o9Var = new o9(activity);
                                 application.registerActivityLifecycleCallbacks(o9Var);
-                                handler.post(new rld(o9Var, obj2, (byte) 1));
+                                handler.post(new tnd(o9Var, obj2, (byte) 1));
                                 if (i != 26 && i != 27) {
                                     z = false;
                                 } else {
@@ -50,7 +50,7 @@ public final class m9 implements Runnable {
                                 } else {
                                     activity.recreate();
                                 }
-                                handler.post(new tq4(application, o9Var, (byte) 2));
+                                handler.post(new us4(application, o9Var, (byte) 2));
                                 return;
                             }
                         } catch (Throwable unused) {
@@ -61,20 +61,20 @@ public final class m9 implements Runnable {
                 }
                 return;
             case 1:
-                int i2 = ChatActivityEnterView.r7;
-                gl.L3(activity);
+                int i2 = ChatActivityEnterView.z7;
+                gm.K3(activity);
                 return;
             case 2:
-                d01.t(activity, "https://promote.telegram.org/guidelines");
+                l11.u(activity, "https://promote.telegram.org/guidelines");
                 return;
             case 3:
-                d01.t(activity, "https://promote.telegram.org/guidelines");
+                l11.u(activity, "https://promote.telegram.org/guidelines");
                 return;
             case 4:
-                d01.t(activity, "https://promote.telegram.org/guidelines");
+                l11.u(activity, "https://promote.telegram.org/guidelines");
                 return;
             default:
-                d01.t(activity, k96.M0(2131744729, null));
+                l11.u(activity, jb6.M0(2131744655, null));
                 return;
         }
     }

@@ -1,26 +1,31 @@
 package defpackage;
-public abstract class w8e {
-    public static final void a(sw2 sw2Var, Throwable th) {
-        Throwable runtimeException;
-        for (dk dkVar : ww2.a) {
-            try {
-                dkVar.c(th);
-            } catch (Throwable th2) {
-                if (th == th2) {
-                    runtimeException = th;
-                } else {
-                    runtimeException = new RuntimeException("Exception while trying to handle coroutine exception", th2);
-                    tfe.a(runtimeException, th);
-                }
-                Thread currentThread = Thread.currentThread();
-                currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, runtimeException);
+public final class w8e extends n9e {
+    public final char[] e;
+
+    public w8e(q8e q8eVar) {
+        super(q8eVar, (Character) null);
+        this.e = new char[512];
+        if (q8eVar.b.length == 16) {
+            for (int i = 0; i < 256; i++) {
+                char[] cArr = this.e;
+                char[] cArr2 = q8eVar.b;
+                cArr[i] = cArr2[i >>> 4];
+                cArr[i | 256] = cArr2[i & 15];
             }
+            return;
         }
-        try {
-            tfe.a(th, new ge3(sw2Var));
-        } catch (Throwable unused) {
+        i98.g();
+        throw null;
+    }
+
+    @Override
+    public final void a(StringBuilder sb, byte[] bArr, int i) {
+        m2f.b(0, i, bArr.length);
+        for (int i2 = 0; i2 < i; i2++) {
+            int i3 = bArr[i2] & 255;
+            char[] cArr = this.e;
+            sb.append(cArr[i3]);
+            sb.append(cArr[i3 | 256]);
         }
-        Thread currentThread2 = Thread.currentThread();
-        currentThread2.getUncaughtExceptionHandler().uncaughtException(currentThread2, th);
     }
 }

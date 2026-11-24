@@ -1,10 +1,18 @@
 package defpackage;
-public final class ko9 {
-    public final String a;
-    public final String b;
 
-    public ko9(String str, String str2) {
-        this.a = str;
-        this.b = str2;
+import org.telegram.messenger.voip.NativeInstance;
+public final class ko9 implements Runnable {
+    public final byte a;
+    public final NativeInstance b;
+
+    public ko9(NativeInstance nativeInstance, byte b) {
+        this.a = b;
+        this.b = nativeInstance;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        this.b.stopGroup();
     }
 }

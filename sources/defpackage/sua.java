@@ -1,72 +1,76 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.ImageView;
-public final class sua extends b4c {
-    public static final int b = 0;
+import org.telegram.tgnet.TLRPC;
+public final class sua implements qac {
+    public final jva a;
+    public final long b;
+    public final boolean[] c;
+    public final qac d;
+    public final Context e;
+    public final ylb f;
+    public final boolean g;
+    public final String h;
+    public final k47 i;
+    public final TLRPC.InputInvoice j;
+    public final TLRPC.TL_payments_paymentFormStars k;
+    public final int l;
+    public final long m;
 
-    static {
-        b4c.h(new b4c());
+    public sua(jva jvaVar, long j, boolean[] zArr, qac qacVar, Context context, ylb ylbVar, boolean z, String str, k47 k47Var, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, int i, long j2) {
+        this.a = jvaVar;
+        this.b = j;
+        this.c = zArr;
+        this.d = qacVar;
+        this.e = context;
+        this.f = ylbVar;
+        this.g = z;
+        this.h = str;
+        this.i = k47Var;
+        this.j = inputInvoice;
+        this.k = tL_payments_paymentFormStars;
+        this.l = i;
+        this.m = j2;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        boolean z2;
-        int i;
-        int i2;
-        int i3;
-        tua tuaVar = (tua) view;
-        ImageView imageView = tuaVar.b;
-        hn hnVar = tuaVar.a;
-        int i4 = tuaVar.c;
-        int i5 = c4cVar.d;
-        if (i4 == i5) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        tuaVar.c = i5;
-        hnVar.c(c4cVar.m, z2, true);
-        if (c4cVar.r) {
-            i = bkb.n6;
-        } else {
-            i = bkb.F6;
-        }
-        bkb.u0(i);
-        if (c4cVar.r) {
-            i2 = bkb.n6;
-        } else {
-            i2 = bkb.F6;
-        }
-        zkb.U(hnVar, i2, null);
-        if (c4cVar.r) {
-            i3 = bkb.n6;
-        } else {
-            i3 = bkb.F6;
-        }
-        zkb.s(imageView, i3, null, PorterDuff.Mode.SRC_IN);
-        float f = 180.0f;
-        if (z2) {
-            ViewPropertyAnimator animate = imageView.animate();
-            if (c4cVar.f) {
-                f = 0.0f;
+    public final void a(Object obj) {
+        qac qacVar = (qac) obj;
+        jva jvaVar = this.a;
+        long j = jvaVar.f.amount;
+        long j2 = this.b;
+        int i = (j > j2 ? 1 : (j == j2 ? 0 : -1));
+        boolean[] zArr = this.c;
+        qac qacVar2 = this.d;
+        k47 k47Var = this.i;
+        TLRPC.InputInvoice inputInvoice = this.j;
+        TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = this.k;
+        int i2 = this.l;
+        if (i < 0) {
+            boolean c5 = oc7.r1(jvaVar.a).c5();
+            Context context = this.e;
+            ylb ylbVar = this.f;
+            int i3 = 0;
+            if (!c5) {
+                if (qacVar != null) {
+                    qacVar.a(Boolean.FALSE);
+                }
+                if (!zArr[0] && qacVar2 != null) {
+                    qacVar2.a("cancelled");
+                    zArr[0] = true;
+                }
+                jva.c0(context, ylbVar);
+                return;
             }
-            animate.rotation(f).setDuration(340L).setInterpolator(s33.h);
-        } else {
-            if (c4cVar.f) {
-                f = 0.0f;
+            boolean[] zArr2 = {false};
+            if (this.g) {
+                i3 = 9;
             }
-            imageView.setRotation(f);
+            dxa dxaVar = new dxa(context, ylbVar, j2, i3, this.h, new az1(jvaVar, zArr2, k47Var, inputInvoice, tL_payments_paymentFormStars, zArr, i2, qacVar2, qacVar), this.m);
+            dxaVar.setOnDismissListener(new lv0(jvaVar, qacVar, zArr2, zArr, qacVar2, (byte) 3));
+            dxaVar.show();
+            return;
         }
-        tuaVar.d = z;
-        tuaVar.setWillNotDraw(!z);
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new tua(context);
+        jvaVar.X(k47Var, inputInvoice, tL_payments_paymentFormStars, new pta(jvaVar, i2, qacVar, zArr, qacVar2));
     }
 }

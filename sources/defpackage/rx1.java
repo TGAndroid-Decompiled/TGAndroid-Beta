@@ -1,41 +1,65 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.view.ViewTreeObserver;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import org.telegram.ui.Components.ChatActivityEnterView;
-public final class rx1 implements ViewTreeObserver.OnPreDrawListener {
-    public final ex1 a;
-    public final float b;
-    public final float c;
-    public final ChatActivityEnterView d;
+public final class rx1 extends d02 {
+    public final ChatActivityEnterView G;
 
-    public rx1(ChatActivityEnterView chatActivityEnterView, ex1 ex1Var, float f, float f2) {
-        this.d = chatActivityEnterView;
-        this.a = ex1Var;
-        this.b = f;
-        this.c = f2;
+    public rx1(ChatActivityEnterView chatActivityEnterView, Activity activity) {
+        super(activity);
+        this.G = chatActivityEnterView;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        k4a k4aVar;
-        ex1 ex1Var = this.a;
-        ex1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        ChatActivityEnterView chatActivityEnterView = this.d;
-        ew1 ew1Var = chatActivityEnterView.R0;
-        if (chatActivityEnterView.F0 == ex1Var && (k4aVar = chatActivityEnterView.q0) != null && k4aVar.getVisibility() != 0) {
-            float left = (this.b - ex1Var.getLeft()) - chatActivityEnterView.I;
-            float left2 = this.c - ew1Var.getLeft();
-            ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-            duration.setInterpolator(s33.f);
-            duration.addUpdateListener(new qx1(this, left, left2, (byte) 0));
-            duration.addListener(new u5(this, duration, (byte) 10));
-            chatActivityEnterView.q0.setTag(duration);
-            chatActivityEnterView.H = left;
-            chatActivityEnterView.p2();
-            ew1Var.setTranslationX(left2);
-            duration.start();
+    public final void onDraw(Canvas canvas) {
+        float f;
+        ChatActivityEnterView chatActivityEnterView = this.G;
+        Paint paint = chatActivityEnterView.G2;
+        float[] fArr = chatActivityEnterView.G6;
+        float[] fArr2 = chatActivityEnterView.F6;
+        int i = ChatActivityEnterView.z7;
+        if (chatActivityEnterView.n0()) {
+            if (chatActivityEnterView.E6 == null) {
+                p09 p09Var = new p09(2131623977, gm.L(28.0f), gm.L(28.0f), false, null);
+                chatActivityEnterView.E6 = p09Var;
+                p09Var.E(true);
+                chatActivityEnterView.E6.p0 = false;
+                int F0 = chatActivityEnterView.F0(cmb.Uf);
+                p09 p09Var2 = chatActivityEnterView.E6;
+                p09Var2.a0 = true;
+                p09Var2.L(F0, "Cup Grey");
+                chatActivityEnterView.E6.L(F0, "Box_Grey 2");
+                chatActivityEnterView.E6.L(F0, "Box Grey");
+                chatActivityEnterView.E6.j();
+                chatActivityEnterView.E6.M(this);
+                chatActivityEnterView.E6.O(true, 0.0f);
+            }
+            p09 p09Var3 = chatActivityEnterView.E6;
+            float width = getWidth() / 2.0f;
+            float height = getHeight() / 2.0f;
+            float f2 = 1.0f;
+            if (getScaleX() != 0.0f) {
+                f = getScaleX();
+            } else {
+                f = 1.0f;
+            }
+            if (getScaleY() != 0.0f) {
+                f2 = getScaleY();
+            }
+            if (chatActivityEnterView.h0(chatActivityEnterView.b2, fArr2) && chatActivityEnterView.h0(this, fArr)) {
+                width = aq1.z(fArr2[0], fArr[0], f, width);
+            }
+            float L = gm.L(14.0f) / f;
+            float L2 = gm.L(14.0f) / f2;
+            p09Var3.setBounds(Math.round(width - L), Math.round(height - L2), Math.round(width + L), Math.round(height + L2));
+            p09Var3.draw(canvas);
+            return;
         }
-        return true;
+        super.onDraw(canvas);
+        if (getTag() != null && chatActivityEnterView.f2 != null && !chatActivityEnterView.X0 && !this.x && !hs6.d0(chatActivityEnterView.R).v0[0].isEmpty() && paint != null) {
+            canvas.drawCircle(gm.L(9.0f) + (getWidth() / 2), (getHeight() / 2) - gm.L(8.0f), gm.L(5.0f), paint);
+        }
     }
 }

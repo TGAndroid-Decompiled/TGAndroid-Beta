@@ -1,17 +1,15 @@
 package defpackage;
-public final class rxe implements zn7 {
-    public static final rxe a = new Object();
+public abstract class rxe {
+    public static final vxe a;
+    public static final vxe b;
 
     static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+        vxe vxeVar = null;
+        try {
+            vxeVar = (vxe) Class.forName("com.google.protobuf.NewInstanceSchemaFull").getDeclaredConstructor(null).newInstance(null);
+        } catch (Exception unused) {
         }
-        throw new ClassCastException();
+        a = vxeVar;
+        b = new Object();
     }
 }

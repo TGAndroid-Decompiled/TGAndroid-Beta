@@ -1,17 +1,24 @@
 package defpackage;
-public final class fsd implements zn7 {
-    public static final fsd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+public abstract class fsd {
+    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
+        inputStream.getClass();
+        byte[] bArr = new byte[8192];
+        int read = inputStream.read(bArr);
+        while (read >= 0) {
+            byteArrayOutputStream.write(bArr, 0, read);
+            read = inputStream.read(bArr);
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public static final byte[] b(InputStream inputStream) {
+        inputStream.getClass();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(Math.max(8192, inputStream.available()));
+        a(inputStream, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        byteArray.getClass();
+        return byteArray;
     }
 }

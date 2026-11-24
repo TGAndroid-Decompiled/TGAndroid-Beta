@@ -1,126 +1,89 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.nio.charset.Charset;
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.RandomAccess;
-public final class cmd extends dad implements omd, RandomAccess {
-    public final ArrayList b;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public abstract class cmd implements bpd {
+    public static final Object d = new Object();
+    public static final f26 e = new f26(wqd.class, (byte) 3);
+    public static final boolean f;
+    public static final x2f h;
+    public volatile Object a;
+    public volatile old b;
+    public volatile wld c;
 
     static {
-        new cmd(10).a = false;
-    }
-
-    public cmd(int i) {
-        this(new ArrayList(i));
-    }
-
-    @Override
-    public final void add(int i, Object obj) {
-        h();
-        this.b.add(i, (String) obj);
-        ((AbstractList) this).modCount++;
-    }
-
-    @Override
-    public final boolean addAll(int i, Collection collection) {
-        h();
-        if (collection instanceof omd) {
-            collection = ((omd) collection).c();
+        boolean z;
+        Object obj;
+        Throwable th;
+        Throwable th2;
+        ?? r0;
+        Object obj2;
+        try {
+            z = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", "false"));
+        } catch (SecurityException unused) {
+            z = false;
         }
-        boolean addAll = this.b.addAll(i, collection);
-        ((AbstractList) this).modCount++;
-        return addAll;
-    }
-
-    @Override
-    public final List c() {
-        return DesugarCollections.unmodifiableList(this.b);
-    }
-
-    @Override
-    public final void clear() {
-        h();
-        this.b.clear();
-        ((AbstractList) this).modCount++;
-    }
-
-    @Override
-    public final mkd f(int i) {
-        ArrayList arrayList = this.b;
-        if (i >= arrayList.size()) {
-            ArrayList arrayList2 = new ArrayList(i);
-            arrayList2.addAll(arrayList);
-            return new cmd(arrayList2);
-        }
-        sc8.e();
-        return null;
-    }
-
-    @Override
-    public final omd g() {
-        if (this.a) {
-            return new ezd(this);
-        }
-        return this;
-    }
-
-    @Override
-    public final java.lang.Object get(int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.cmd.get(int):java.lang.Object");
-    }
-
-    @Override
-    public final Object remove(int i) {
-        h();
-        Object remove = this.b.remove(i);
-        ((AbstractList) this).modCount++;
-        if (remove instanceof String) {
-            return (String) remove;
-        }
-        if (remove instanceof cdd) {
-            cdd cddVar = (cdd) remove;
-            Charset charset = ejd.a;
-            if (cddVar.size() == 0) {
-                return "";
+        f = z;
+        String property = System.getProperty("java.runtime.name", "");
+        Throwable th3 = null;
+        if (property != null && !property.contains("Android")) {
+            try {
+                obj2 = new Object();
+            } catch (NoClassDefFoundError unused2) {
+                obj2 = new Object();
             }
-            return new String(cddVar.b, cddVar.h(), cddVar.size(), charset);
-        }
-        return new String((byte[]) remove, ejd.a);
-    }
-
-    @Override
-    public final Object set(int i, Object obj) {
-        h();
-        Object obj2 = this.b.set(i, (String) obj);
-        if (obj2 instanceof String) {
-            return (String) obj2;
-        }
-        if (obj2 instanceof cdd) {
-            cdd cddVar = (cdd) obj2;
-            Charset charset = ejd.a;
-            if (cddVar.size() == 0) {
-                return "";
+        } else {
+            try {
+                obj2 = new Object();
+            } catch (Error | Exception e2) {
+                try {
+                    obj = new Object();
+                } catch (Error | Exception e3) {
+                    th3 = e3;
+                    obj = new Object();
+                }
+                th = th3;
+                th2 = e2;
+                r0 = obj;
             }
-            return new String(cddVar.b, cddVar.h(), cddVar.size(), charset);
         }
-        return new String((byte[]) obj2, ejd.a);
+        th = null;
+        th2 = null;
+        r0 = obj2;
+        h = r0;
+        if (th != null) {
+            f26 f26Var = e;
+            Logger c = f26Var.c();
+            Level level = Level.SEVERE;
+            c.logp(level, "com.google.common.util.concurrent.AbstractFutureState", "<clinit>", "UnsafeAtomicHelper is broken!", th2);
+            f26Var.c().logp(level, "com.google.common.util.concurrent.AbstractFutureState", "<clinit>", "AtomicReferenceFieldUpdaterAtomicHelper is broken!", th);
+        }
     }
 
-    @Override
-    public final int size() {
-        return this.b.size();
+    public final void a(wld wldVar) {
+        wldVar.a = null;
+        while (true) {
+            wld wldVar2 = this.c;
+            if (wldVar2 != wld.c) {
+                wld wldVar3 = null;
+                while (wldVar2 != null) {
+                    wld wldVar4 = wldVar2.b;
+                    if (wldVar2.a != null) {
+                        wldVar3 = wldVar2;
+                    } else if (wldVar3 != null) {
+                        wldVar3.b = wldVar4;
+                        if (wldVar3.a == null) {
+                            break;
+                        }
+                    } else if (h.g(this, wldVar2, wldVar4)) {
+                    }
+                    wldVar2 = wldVar4;
+                }
+                return;
+            }
+            return;
+        }
     }
 
-    public cmd(ArrayList arrayList) {
-        this.b = arrayList;
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        return addAll(this.b.size(), collection);
-    }
+    public abstract Throwable d();
 }

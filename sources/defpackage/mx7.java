@@ -1,25 +1,46 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class mx7 extends ClickableSpan {
-    public final vx7 a;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class mx7 implements ActionMode.Callback {
+    public final byte a;
 
-    public mx7(vx7 vx7Var) {
-        this.a = vx7Var;
+    @Override
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        byte b = this.a;
+        return false;
     }
 
     @Override
-    public final void onClick(View view) {
-        vx7 vx7Var = this.a;
-        d01.t(vx7Var.getParentActivity(), vx7Var.E.privacy_policy_url);
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        byte b = this.a;
+        return false;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(true);
-        textPaint.setTypeface(gl.o());
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        byte b = this.a;
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        byte b = this.a;
+        return false;
+    }
+
+    private final void a(ActionMode actionMode) {
+    }
+
+    private final void b(ActionMode actionMode) {
+    }
+
+    private final void c(ActionMode actionMode) {
+    }
+
+    private final void d(ActionMode actionMode) {
+    }
+
+    private final void e(ActionMode actionMode) {
     }
 }

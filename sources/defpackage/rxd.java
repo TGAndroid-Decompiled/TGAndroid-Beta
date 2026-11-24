@@ -1,17 +1,23 @@
 package defpackage;
-public final class rxd implements zn7 {
-    public static final rxd a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class rxd extends b4 {
+    public static final Parcelable.Creator<rxd> CREATOR = new urd((byte) 24);
+    public final int a;
+    public final nrd b;
+
+    public rxd(int i, nrd nrdVar) {
+        this.a = i;
+        this.b = nrdVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        mve.k(parcel, 3, this.b, i);
+        mve.s(parcel, r);
     }
 }

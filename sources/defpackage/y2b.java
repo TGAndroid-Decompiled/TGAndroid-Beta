@@ -1,38 +1,44 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class y2b extends y28 {
-    public final z2b V3;
+import android.app.Activity;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class y2b extends q59 {
+    public final Activity c;
+    public final z2b d;
 
-    public y2b(z2b z2bVar, Context context, m8b m8bVar, w28 w28Var, f53 f53Var) {
-        super(context, m8bVar, w28Var, f53Var);
-        this.V3 = z2bVar;
+    public y2b(z2b z2bVar, Activity activity) {
+        this.d = z2bVar;
+        this.c = activity;
     }
 
     @Override
-    public final boolean C0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.V3.f.getCurrentItem()) {
-            return true;
-        }
+    public final boolean D(u69 u69Var) {
         return false;
     }
 
     @Override
-    public final void invalidate() {
-        if (qg5.c) {
-            qg5.b.add(this);
-        } else {
-            super.invalidate();
-        }
+    public final int b() {
+        return this.d.c.size();
     }
 
     @Override
-    public final void invalidate(int i, int i2, int i3, int i4) {
-        if (qg5.c) {
-            qg5.b.add(this);
-        } else {
-            super.invalidate(i, i2, i3, i4);
+    public final void t(u69 u69Var, int i) {
+        et etVar = (et) u69Var.a;
+        ArrayList arrayList = this.d.c;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i);
+        boolean z = true;
+        if (i == arrayList.size() - 1) {
+            z = false;
         }
+        etVar.b(stickerSetCovered, z);
+    }
+
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        et etVar = new et(this.c, false);
+        etVar.setLayoutParams(new g69(-1, gm.L(82.0f)));
+        return new u69(etVar);
     }
 }

@@ -1,87 +1,178 @@
 package defpackage;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_aicompose;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.tgnet.tl.TL_chatlists;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.tgnet.tl.TL_stars;
-public final class qdb implements Vector.TLDeserializer {
-    public final byte a;
+import android.graphics.RenderEffect;
+import android.graphics.RuntimeShader;
+import android.view.RoundedCorner;
+import android.view.View;
+import android.view.WindowInsets;
+import java.util.ArrayList;
+public final class qdb extends x23 {
+    public final ArrayList b;
+    public final RuntimeShader c;
+    public RenderEffect d;
+    public int e;
+    public int f;
+    public int g;
+    public float h;
+    public final float[] i;
+    public final float[] j;
+    public final float[] k;
+    public final float[] l;
 
-    public qdb(byte b) {
-        this.a = b;
+    public qdb(View view) {
+        super(view);
+        this.b = new ArrayList();
+        this.i = new float[7];
+        this.j = new float[7];
+        this.k = new float[7];
+        this.l = new float[7];
+        RuntimeShader b = yn3.b(gm.v2(null, 2131624236));
+        this.c = b;
+        h(true);
+        this.d = RenderEffect.createRuntimeShaderEffect(b, "img");
     }
 
-    @Override
-    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-        switch (this.a) {
-            case 0:
-                return TLRPC.Theme.TLdeserialize(inputSerializedData, i, z);
-            case 1:
-                return TLRPC.WallPaper.TLdeserialize(inputSerializedData, i, z);
-            case 2:
-                return TL_account.WebDomainException.TLdeserialize(inputSerializedData, i, z);
-            case 3:
-                return TLRPC.ChatTheme.TLdeserialize(inputSerializedData, i, z);
-            case 4:
-                return TLRPC.TL_secureValue.TLdeserialize(inputSerializedData, i, z);
-            case 5:
-                return TLRPC.SecureValueError.TLdeserialize(inputSerializedData, i, z);
-            case 6:
-                return TLRPC.TL_authorization.TLdeserialize(inputSerializedData, i, z);
-            case 7:
-                return TL_account.TL_businessChatLink.TLdeserialize(inputSerializedData, i, z);
-            case 8:
-                return TL_account.TL_connectedBot.TLdeserialize(inputSerializedData, i, z);
-            case 9:
-                return TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, i, z);
-            case 10:
-                return TL_account.RequirementToContact.TLdeserialize(inputSerializedData, i, z);
-            case 11:
-                return TLRPC.PrivacyRule.TLdeserialize(inputSerializedData, i, z);
-            case 12:
-                return TLRPC.TL_webAuthorization.TLdeserialize(inputSerializedData, i, z);
-            case 13:
-                return TL_aicompose.AiComposeTone.TLdeserialize(inputSerializedData, i, z);
-            case 14:
-                return TLRPC.BotCommand.TLdeserialize(inputSerializedData, i, z);
-            case 15:
-                return TL_bots.botPreviewMedia.TLdeserialize(inputSerializedData, i, z);
-            case 16:
-                return TL_chatlists.TL_exportedChatlistInvite.TLdeserialize(inputSerializedData, i, z);
-            case 17:
-                return TL_communities.CommunityPeerRequest.TLdeserialize(inputSerializedData, i, z);
-            case 18:
-                return TL_iv.PageBlock.TLdeserialize(inputSerializedData, i, z);
-            case 19:
-                return TLRPC.InputPhoto.TLdeserialize(inputSerializedData, i, z);
-            case 20:
-                return TL_keyboard.PageButton.TLdeserialize(inputSerializedData, i, z);
-            case 21:
-                return TL_iv.PageListItem.TLdeserialize(inputSerializedData, i, z);
-            case 22:
-                return TL_iv.PageListOrderedItem.TLdeserialize(inputSerializedData, i, z);
-            case 23:
-                return TL_iv.pageRelatedArticle.TLdeserialize(inputSerializedData, i, z);
-            case 24:
-                return TL_iv.pageTableRow.TLdeserialize(inputSerializedData, i, z);
-            case 25:
-                return TL_iv.pageTableCell.TLdeserialize(inputSerializedData, i, z);
-            case 26:
-                return TL_keyboard.KeyboardButton.TLdeserialize(inputSerializedData, i, z);
-            case 27:
-                return TL_keyboard.KeyboardInlineButton.TLdeserialize(inputSerializedData, i, z);
-            case 28:
-                return TL_stars.TL_StarGiftAuctionAcquiredGift.TLdeserialize(inputSerializedData, i, z);
-            default:
-                return TL_stars.TL_StarGiftActiveAuctionState.TLdeserialize(inputSerializedData, i, z);
+    public final void h(boolean z) {
+        RoundedCorner roundedCorner;
+        RoundedCorner roundedCorner2;
+        RoundedCorner roundedCorner3;
+        RoundedCorner roundedCorner4;
+        float f;
+        float radius;
+        float f2;
+        View view = (View) this.a;
+        if (!z && this.f == view.getWidth() && this.g == view.getHeight() && Math.abs(this.h - gm.p) <= 0.01f) {
+            return;
+        }
+        RuntimeShader runtimeShader = this.c;
+        int width = view.getWidth();
+        this.f = width;
+        int height = view.getHeight();
+        this.g = height;
+        runtimeShader.setFloatUniform("size", width, height);
+        RuntimeShader runtimeShader2 = this.c;
+        float f3 = gm.p;
+        this.h = f3;
+        runtimeShader2.setFloatUniform("density", f3);
+        WindowInsets rootWindowInsets = view.getRootWindowInsets();
+        if (rootWindowInsets == null) {
+            roundedCorner4 = null;
+            roundedCorner = null;
+            roundedCorner2 = null;
+            roundedCorner3 = null;
+        } else {
+            roundedCorner = rootWindowInsets.getRoundedCorner(0);
+            roundedCorner2 = rootWindowInsets.getRoundedCorner(1);
+            roundedCorner3 = rootWindowInsets.getRoundedCorner(3);
+            roundedCorner4 = rootWindowInsets.getRoundedCorner(2);
+        }
+        RuntimeShader runtimeShader3 = this.c;
+        float f4 = 0.0f;
+        if (roundedCorner4 != null && (view == view.getRootView() || gm.n <= 0)) {
+            f = roundedCorner4.getRadius();
+        } else {
+            f = 0.0f;
+        }
+        if (roundedCorner2 == null) {
+            radius = 0.0f;
+        } else {
+            radius = roundedCorner2.getRadius();
+        }
+        if (roundedCorner3 != null && (view == view.getRootView() || gm.n <= 0)) {
+            f2 = roundedCorner3.getRadius();
+        } else {
+            f2 = 0.0f;
+        }
+        if (roundedCorner != null) {
+            f4 = roundedCorner.getRadius();
+        }
+        runtimeShader3.setFloatUniform("radius", f, radius, f2, f4);
+    }
+
+    public final void i() {
+        RenderEffect renderEffect;
+        boolean z;
+        float[] fArr;
+        float[] fArr2;
+        float[] fArr3;
+        float[] fArr4;
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        View view = (View) this.a;
+        ArrayList arrayList = this.b;
+        boolean z5 = false;
+        if (!arrayList.isEmpty()) {
+            boolean z6 = true;
+            if (this.e != Math.min(7, arrayList.size())) {
+                z = true;
+            } else {
+                z = false;
+            }
+            this.e = Math.min(7, arrayList.size());
+            int i = 0;
+            while (true) {
+                int i2 = this.e;
+                fArr = this.l;
+                fArr2 = this.k;
+                fArr3 = this.j;
+                fArr4 = this.i;
+                if (i >= i2) {
+                    break;
+                }
+                pdb pdbVar = (pdb) arrayList.get(i);
+                if (!z && Math.abs(fArr4[i] - pdbVar.d) <= 0.001f) {
+                    z2 = false;
+                } else {
+                    z2 = true;
+                }
+                float f = pdbVar.d;
+                float f2 = pdbVar.c;
+                float f3 = pdbVar.b;
+                float f4 = pdbVar.a;
+                fArr4[i] = f;
+                if (!z2 && Math.abs(fArr3[i] - f4) <= 0.001f) {
+                    z3 = false;
+                } else {
+                    z3 = true;
+                }
+                fArr3[i] = f4;
+                if (!z3 && Math.abs(fArr2[i] - f3) <= 0.001f) {
+                    z4 = false;
+                } else {
+                    z4 = true;
+                }
+                fArr2[i] = f3;
+                if (!z4 && Math.abs(fArr[i] - f2) <= 0.001f) {
+                    z = false;
+                } else {
+                    z = true;
+                }
+                fArr[i] = f2;
+                i++;
+            }
+            if (!z && this.f == view.getWidth() && this.g == view.getHeight() && Math.abs(this.h - gm.p) <= 0.01f) {
+                z6 = false;
+            }
+            if (z6) {
+                this.c.setIntUniform("count", this.e);
+                this.c.setFloatUniform("t", fArr4);
+                this.c.setFloatUniform("centerX", fArr3);
+                this.c.setFloatUniform("centerY", fArr2);
+                this.c.setFloatUniform("intensity", fArr);
+                h(false);
+                this.d = RenderEffect.createRuntimeShaderEffect(this.c, "img");
+            }
+            z5 = z6;
+        }
+        if (arrayList.isEmpty()) {
+            renderEffect = null;
+        } else {
+            renderEffect = this.d;
+        }
+        view.setRenderEffect(renderEffect);
+        if (z5) {
+            view.invalidate();
         }
     }
 }

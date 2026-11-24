@@ -1,51 +1,74 @@
 package defpackage;
 
-import android.app.Notification;
-import android.os.Parcel;
-public final class ll7 {
-    public final String a;
-    public final int b;
-    public final String c;
-    public final Notification d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class ll7 extends AnimatedPhoneNumberEditText {
+    public final byte c2;
+    public final ml7 d2;
 
-    public ll7(String str, int i, String str2, Notification notification) {
-        this.a = str;
-        this.b = i;
-        this.c = str2;
-        this.d = notification;
+    public ll7(ml7 ml7Var, Context context, byte b) {
+        super(context);
+        this.c2 = b;
+        this.d2 = ml7Var;
     }
 
-    public final void a(xi5 xi5Var) {
-        String str = this.a;
-        int i = this.b;
-        String str2 = this.c;
-        vi5 vi5Var = (vi5) xi5Var;
-        vi5Var.getClass();
-        Parcel obtain = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken(xi5.g);
-            obtain.writeString(str);
-            obtain.writeInt(i);
-            obtain.writeString(str2);
-            Notification notification = this.d;
-            if (notification != null) {
-                obtain.writeInt(1);
-                notification.writeToParcel(obtain, 0);
-            } else {
-                obtain.writeInt(0);
-            }
-            vi5Var.a.transact(1, obtain, null, 1);
-        } finally {
-            obtain.recycle();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.c2) {
+            case 1:
+                this.M1.setColor(cmb.w0(null, cmb.G6, false));
+                super.onDraw(canvas);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("NotifyTask[packageName:");
-        sb.append(this.a);
-        sb.append(", id:");
-        sb.append(this.b);
-        sb.append(", tag:");
-        return b00.j(sb, this.c, "]");
+    @Override
+    public final void onFocusChanged(boolean z, int i, Rect rect) {
+        byte b = this.c2;
+        float f = 1.0f;
+        ml7 ml7Var = this.d2;
+        switch (b) {
+            case 0:
+                super.onFocusChanged(z, i, rect);
+                gt7 gt7Var = ml7Var.s1;
+                if (!z && !ml7Var.J1.isFocused()) {
+                    f = 0.0f;
+                }
+                gt7Var.b(f, f, true);
+                return;
+            default:
+                super.onFocusChanged(z, i, rect);
+                gt7 gt7Var2 = ml7Var.s1;
+                if (!z && !ml7Var.H1.isFocused()) {
+                    f = 0.0f;
+                }
+                gt7Var2.b(f, f, true);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
+        switch (this.c2) {
+            case 1:
+                if (i == 67) {
+                    ml7 ml7Var = this.d2;
+                    if (ml7Var.J1.length() == 0) {
+                        ml7Var.H1.requestFocus();
+                        ll7 ll7Var = ml7Var.H1;
+                        ll7Var.setSelection(ll7Var.length());
+                        ml7Var.H1.dispatchKeyEvent(keyEvent);
+                    }
+                }
+                return super.onKeyDown(i, keyEvent);
+            default:
+                return super.onKeyDown(i, keyEvent);
+        }
     }
 }

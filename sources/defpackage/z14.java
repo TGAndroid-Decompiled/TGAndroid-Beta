@@ -1,37 +1,31 @@
 package defpackage;
 
-import java.io.Serializable;
-public final class z14 implements sw2, Serializable {
-    public static final z14 a = new Object();
-
-    @Override
-    public final qw2 get(rw2 rw2Var) {
-        rw2Var.getClass();
-        return null;
+import android.content.Context;
+import android.view.View;
+public final class z14 extends q7c {
+    public z14(Context context, int i, jac jacVar, oac oacVar, ylb ylbVar) {
+        super(context, i, -1, false, jacVar, oacVar, null, ylbVar, -1, 0);
+        this.z2 = true;
+        setOverScrollMode(2);
     }
 
-    public final int hashCode() {
-        return 0;
-    }
-
-    @Override
-    public final sw2 minusKey(rw2 rw2Var) {
-        rw2Var.getClass();
-        return this;
-    }
-
-    @Override
-    public final sw2 plus(sw2 sw2Var) {
-        sw2Var.getClass();
-        return sw2Var;
-    }
-
-    public final String toString() {
-        return "EmptyCoroutineContext";
-    }
-
-    @Override
-    public final Object fold(Object obj, eq4 eq4Var) {
-        return obj;
+    public final void L1(View view) {
+        int i;
+        if (view != null) {
+            float L = gm.L(92.0f);
+            float width = getWidth() - L;
+            float x = view.getX();
+            float width2 = view.getWidth() + x;
+            if (x < L) {
+                i = (int) (x - L);
+            } else if (width2 > width) {
+                i = (int) (width2 - width);
+            } else {
+                i = 0;
+            }
+            if (i != 0) {
+                gm.J(this, new wc7(this, view, i, (byte) 28));
+            }
+        }
     }
 }

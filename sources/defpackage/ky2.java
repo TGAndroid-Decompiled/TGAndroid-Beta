@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class ky2 {
+public interface ky2 {
+    cy2 c();
 }

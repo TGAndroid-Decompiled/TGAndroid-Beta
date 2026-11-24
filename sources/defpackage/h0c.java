@@ -1,24 +1,18 @@
 package defpackage;
-public final class h0c implements zw5, yw5 {
-    public final b1c a;
-    public final k27 b;
-    public final m11 c;
-    public final go2 d;
 
-    public h0c(b1c b1cVar, k27 k27Var, m11 m11Var, go2 go2Var) {
-        this.a = b1cVar;
-        this.b = k27Var;
-        this.c = m11Var;
-        this.d = go2Var;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.ShapeDrawable;
+public final class h0c extends ShapeDrawable.ShaderFactory {
+    public final ll5 a;
+
+    public h0c(ll5 ll5Var) {
+        this.a = ll5Var;
     }
 
     @Override
-    public final void a(String str) {
-        gl.d3(new tsa(this.a, this.b, str, this.c, this.d, (byte) 7));
-    }
-
-    @Override
-    public final void n(Exception exc) {
-        gl.d3(new exa(this.a, this.b, this.c, this.d, (byte) 15));
+    public final Shader resize(int i, int i2) {
+        ll5 ll5Var = this.a;
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i2, ll5Var.a, ll5Var.b, Shader.TileMode.CLAMP);
     }
 }

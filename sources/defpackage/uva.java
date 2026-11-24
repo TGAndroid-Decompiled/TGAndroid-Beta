@@ -1,17 +1,17 @@
 package defpackage;
-public final class uva {
-    public float a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-    public long f;
-    public long g;
-    public float h;
-    public float i;
-    public final vva j;
+public final class uva implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public uva(vva vvaVar) {
-        this.j = vvaVar;
+    public uva(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.uva.run():void");
     }
 }

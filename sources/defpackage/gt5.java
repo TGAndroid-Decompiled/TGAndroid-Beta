@@ -1,27 +1,29 @@
 package defpackage;
-public final class gt5 extends na1 {
-    public final pt5 r;
 
-    public gt5(fw2 fw2Var, pt5 pt5Var) {
-        super(1, fw2Var);
-        this.r = pt5Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class gt5 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final ht5 b;
+
+    public gt5(ht5 ht5Var, byte b) {
+        this.a = b;
+        this.b = ht5Var;
     }
 
     @Override
-    public final Throwable p(pt5 pt5Var) {
-        Throwable c;
-        Object v = this.r.v();
-        if ((v instanceof it5) && (c = ((it5) v).c()) != null) {
-            return c;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        ht5 ht5Var = this.b;
+        switch (b) {
+            case 0:
+                ht5Var.e.X1 = null;
+                ht5Var.requestLayout();
+                return;
+            default:
+                ht5Var.e.X1 = null;
+                ht5Var.a = false;
+                return;
         }
-        if (v instanceof fp2) {
-            return ((fp2) v).a;
-        }
-        return pt5Var.getCancellationException();
-    }
-
-    @Override
-    public final String y() {
-        return "AwaitContinuation";
     }
 }

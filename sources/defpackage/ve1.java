@@ -1,67 +1,208 @@
 package defpackage;
 
-import j$.util.function.Function$CC;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
-import org.telegram.tgnet.TLRPC;
-public final class ve1 implements Function {
-    public final byte a;
-    public final Object b;
+public final class ve1 extends cf1 {
+    public final byte i;
+    public final boolean j;
+    public final boolean k;
+    public List o;
+    public List p;
+    public byte q;
+    public byte r;
+    public boolean s;
+    public boolean t;
+    public byte u;
+    public byte v;
+    public boolean x;
+    public long y;
+    public static final int[] z = {11, 1, 3, 12, 14, 5, 7, 9};
+    public static final int[] A = {0, 4, 8, 12, 16, 20, 24, 28};
+    public static final int[] B = {-1, -16711936, -16776961, -16711681, -65536, -256, -65281};
+    public static final int[] C = {32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 225, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 233, 93, 237, 243, 250, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 231, 247, 209, 241, 9632};
+    public static final int[] D = {174, 176, 189, 191, 8482, 162, 163, 9834, 224, 32, 232, 226, 234, 238, 244, 251};
+    public static final int[] E = {193, 201, 211, 218, 220, 252, 8216, 161, 42, 39, 8212, 169, 8480, 8226, 8220, 8221, 192, 194, 199, 200, 202, 203, 235, 206, 207, 239, 212, 217, 249, 219, 171, 187};
+    public static final int[] F = {195, 227, 205, 204, 236, 210, 242, 213, 245, 123, 125, 92, 94, 95, 124, 126, 196, 228, 214, 246, 223, 165, 164, 9474, 197, 229, 216, 248, 9484, 9488, 9492, 9496};
+    public static final boolean[] G = {false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false};
+    public final yw7 h = new yw7();
+    public final ArrayList m = new ArrayList();
+    public ue1 n = new ue1(0, 4);
+    public int w = 0;
+    public final long l = 16000000;
 
-    public ve1(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
-    }
-
-    public final Function andThen(Function function) {
-        byte b = this.a;
-        return Function$CC.$default$andThen(this, function);
+    public ve1(String str, int i) {
+        byte b;
+        if ("application/x-mp4-cea-608".equals(str)) {
+            b = 2;
+        } else {
+            b = 3;
+        }
+        this.i = b;
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        ncd.f("Cea608Decoder", "Invalid channel. Defaulting to CC1.");
+                        this.k = false;
+                        this.j = false;
+                    } else {
+                        this.k = true;
+                        this.j = true;
+                    }
+                } else {
+                    this.k = false;
+                    this.j = true;
+                }
+            } else {
+                this.k = true;
+                this.j = false;
+            }
+        } else {
+            this.k = false;
+            this.j = false;
+        }
+        l(0);
+        k();
+        this.x = true;
+        this.y = -9223372036854775807L;
     }
 
     @Override
-    public final Object apply(Object obj) {
-        byte b = this.a;
-        Object obj2 = this.b;
-        switch (b) {
-            case 0:
-                nf1 nf1Var = (nf1) obj2;
-                Long l = (Long) obj;
-                if (l.longValue() < 0) {
-                    TLRPC.Chat K0 = nf1Var.getMessagesController().K0(Long.valueOf(-l.longValue()));
-                    if (K0 == null) {
-                        return null;
-                    }
-                    return K0.title;
+    public final sz4 f() {
+        List list = this.o;
+        this.p = list;
+        list.getClass();
+        return new sz4(list);
+    }
+
+    @Override
+    public final void flush() {
+        super.flush();
+        this.o = null;
+        this.p = null;
+        l(0);
+        this.r = (byte) 4;
+        this.n.h = (byte) 4;
+        k();
+        this.s = false;
+        this.t = false;
+        this.u = (byte) 0;
+        this.v = (byte) 0;
+        this.w = 0;
+        this.x = true;
+        this.y = -9223372036854775807L;
+    }
+
+    @Override
+    public final void g(defpackage.af1 r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ve1.g(af1):void");
+    }
+
+    @Override
+    public final String getName() {
+        return "Cea608Decoder";
+    }
+
+    @Override
+    public final scb c() {
+        scb scbVar;
+        scb c = super.c();
+        if (c != null) {
+            return c;
+        }
+        long j = this.l;
+        if (j != -9223372036854775807L) {
+            long j2 = this.y;
+            if (j2 != -9223372036854775807L && this.e - j2 >= j && (scbVar = (scb) this.b.pollFirst()) != null) {
+                this.o = Collections.EMPTY_LIST;
+                this.y = -9223372036854775807L;
+                sz4 f = f();
+                long j3 = this.e;
+                scbVar.timeUs = j3;
+                scbVar.a = f;
+                scbVar.b = j3;
+                return scbVar;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean i() {
+        if (this.o != this.p) {
+            return true;
+        }
+        return false;
+    }
+
+    public final ArrayList j() {
+        ArrayList arrayList = this.m;
+        int size = arrayList.size();
+        ArrayList arrayList2 = new ArrayList(size);
+        int i = 2;
+        for (int i2 = 0; i2 < size; i2++) {
+            f53 c = ((ue1) arrayList.get(i2)).c(Integer.MIN_VALUE);
+            arrayList2.add(c);
+            if (c != null) {
+                i = Math.min(i, c.i);
+            }
+        }
+        ArrayList arrayList3 = new ArrayList(size);
+        for (int i3 = 0; i3 < size; i3++) {
+            f53 f53Var = (f53) arrayList2.get(i3);
+            if (f53Var != null) {
+                if (f53Var.i != i) {
+                    f53Var = ((ue1) arrayList.get(i3)).c(i);
+                    f53Var.getClass();
                 }
-                return l7c.l(nf1Var.getMessagesController().V1(l));
-            default:
-                r80 r80Var = (r80) obj2;
-                my2 my2Var = (my2) obj;
-                q80 a = r80Var.a();
-                t80 t80Var = r80Var.c;
-                s80 a2 = t80Var.a();
-                u80 u80Var = t80Var.a;
-                List list = u80Var.a;
-                w80 w80Var = u80Var.b;
-                hy2 hy2Var = u80Var.c;
-                x80 x80Var = u80Var.e;
-                List list2 = u80Var.f;
-                if (list2 == null) {
-                    StringBuilder sb = new StringBuilder();
-                    if (list2 == null) {
-                        sb.append(" binaries");
+                arrayList3.add(f53Var);
+            }
+        }
+        return arrayList3;
+    }
+
+    public final void k() {
+        ue1 ue1Var = this.n;
+        ue1Var.g = this.q;
+        ue1Var.a.clear();
+        ue1Var.b.clear();
+        ue1Var.c.setLength(0);
+        ue1Var.d = 15;
+        ue1Var.e = 0;
+        ue1Var.f = 0;
+        ArrayList arrayList = this.m;
+        arrayList.clear();
+        arrayList.add(this.n);
+    }
+
+    public final void l(int i) {
+        byte b = this.q;
+        if (b != i) {
+            this.q = i;
+            if (i == 3) {
+                int i2 = 0;
+                while (true) {
+                    ArrayList arrayList = this.m;
+                    if (i2 < arrayList.size()) {
+                        ((ue1) arrayList.get(i2)).g = i;
+                        i2++;
+                    } else {
+                        return;
                     }
-                    sc8.j(ir2.o("Missing required properties:", sb));
-                    return null;
                 }
-                a2.a = new u80(list, w80Var, hy2Var, my2Var, x80Var, list2);
-                a.c = a2.a();
-                return a.a();
+            } else {
+                k();
+                if (b != 3 && i != 1 && i != 0) {
+                    return;
+                }
+                this.o = Collections.EMPTY_LIST;
+            }
         }
     }
 
-    public final Function compose(Function function) {
-        byte b = this.a;
-        return Function$CC.$default$compose(this, function);
+    @Override
+    public final void release() {
     }
 }

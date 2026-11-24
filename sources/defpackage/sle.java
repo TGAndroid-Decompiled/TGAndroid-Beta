@@ -1,17 +1,12 @@
 package defpackage;
-public final class sle implements zn7 {
-    public static final sle a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.content.SharedPreferences;
+public abstract class sle {
+    public static void a() {
+        SharedPreferences.Editor edit = oc7.d1().edit();
+        for (jg5 jg5Var : jg5.values()) {
+            edit.remove(jg5Var.a);
         }
-        throw new ClassCastException();
+        edit.apply();
     }
 }

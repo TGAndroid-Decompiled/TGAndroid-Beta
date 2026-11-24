@@ -1,58 +1,46 @@
 package defpackage;
 
-import android.graphics.RectF;
-public final class b9c {
-    public final RectF e = new RectF();
-    public final a9c a = new a9c(0.0f);
-    public final a9c b = new a9c(0.0f);
-    public final a9c c = new a9c(0.0f);
-    public final a9c d = new a9c(0.0f);
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.UserInfoActivity;
+public final class b9c implements qac {
+    public final byte a;
+    public final UserInfoActivity b;
 
-    public final boolean a(float f) {
-        boolean z;
-        boolean z2;
-        boolean a = this.a.a(f);
-        if (!this.b.a(f) && !a) {
-            z = false;
-        } else {
-            z = true;
-        }
-        if (!this.c.a(f) && !z) {
-            z2 = false;
-        } else {
-            z2 = true;
-        }
-        if (this.d.a(f) || z2) {
-            return true;
-        }
-        return false;
+    public b9c(UserInfoActivity userInfoActivity, byte b) {
+        this.a = b;
+        this.b = userInfoActivity;
     }
 
-    public final boolean b(float f, float f2, float f3, float f4) {
-        if (!this.a.b(f) && !this.b.b(f2) && !this.c.b(f3) && !this.d.b(f4)) {
-            return false;
+    @Override
+    public final void a(Object obj) {
+        byte b = this.a;
+        UserInfoActivity userInfoActivity = this.b;
+        switch (b) {
+            case 0:
+                userInfoActivity.K = (TL_account.TL_birthday) obj;
+                va vaVar = userInfoActivity.y;
+                if (vaVar != null) {
+                    vaVar.g3.O(true);
+                }
+                userInfoActivity.f0(true);
+                return;
+            default:
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
+                if (userInfoActivity.L != chat) {
+                    userInfoActivity.L = chat;
+                    if (chat != null) {
+                        ts2.u(null, 2131751170, c41.b0(userInfoActivity), 2131623990, 36);
+                    }
+                    userInfoActivity.f0(true);
+                    va vaVar2 = userInfoActivity.y;
+                    if (vaVar2 != null) {
+                        vaVar2.g3.O(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    public final void c(boolean z) {
-        this.a.c(z);
-        this.b.c(z);
-        this.c.c(z);
-        this.d.c(z);
-    }
-
-    public final void d(float f, float f2, float f3, float f4) {
-        this.a.d(f);
-        this.b.d(f2);
-        this.c.d(f3);
-        this.d.d(f4);
-    }
-
-    public final void e(float f, float f2, float f3, float f4) {
-        this.a.c = f;
-        this.b.c = f2;
-        this.c.c = f3;
-        this.d.c = f4;
     }
 }

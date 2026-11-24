@@ -1,23 +1,45 @@
 package defpackage;
-public final class ja4 implements Runnable {
-    public final la4 a;
-    public final long b;
-    public final int c;
-    public final byte d;
-    public final String e;
-    public final boolean f;
+public final class ja4 {
+    public final Long a;
+    public final int b;
+    public final String c;
 
-    public ja4(la4 la4Var, long j, int i, int i2, String str, int i3) {
-        this.a = la4Var;
-        this.b = j;
-        this.c = i;
-        this.d = i2;
-        this.e = str;
-        this.f = i3;
+    public ja4(Long l, int i, String str) {
+        this.a = l;
+        this.b = i;
+        this.c = str;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ja4.run():void");
+    public final boolean equals(Object obj) {
+        if ((obj instanceof ja4) && obj.toString().equals(toString())) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return toString().hashCode();
+    }
+
+    public final String toString() {
+        String l;
+        StringBuilder sb = new StringBuilder();
+        String str = "-";
+        Long l2 = this.a;
+        if (l2 == null) {
+            l = "-";
+        } else {
+            l = l2.toString();
+        }
+        sb.append(l);
+        sb.append("#");
+        sb.append(this.b);
+        sb.append(" ");
+        String str2 = this.c;
+        if (str2 != null) {
+            str = str2;
+        }
+        sb.append(str);
+        return sb.toString();
     }
 }

@@ -26,14 +26,14 @@ public final class s5 extends AnimatorListenerAdapter {
                     f = 1.0f;
                 }
                 aVar.E1 = f;
-                aVar.i();
+                aVar.j();
                 return;
             default:
                 if (z) {
                     f = 1.0f;
                 }
                 aVar.E1 = f;
-                aVar.i();
+                aVar.j();
                 return;
         }
     }

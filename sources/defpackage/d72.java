@@ -5,11 +5,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class d72 implements u04 {
-    public final e72 a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class d72 implements f24 {
+    public final v72 a;
 
-    public d72(e72 e72Var) {
-        this.a = e72Var;
+    public d72(v72 v72Var) {
+        this.a = v72Var;
     }
 
     @Override
@@ -44,18 +46,15 @@ public final class d72 implements u04 {
 
     @Override
     public final void j(int i) {
-        mc9 focusedEditTextOrNull;
-        boolean z = false;
-        e72 e72Var = this.a;
-        if (i != 0 && (focusedEditTextOrNull = e72Var.r.getFocusedEditTextOrNull()) != null) {
-            e72Var.G = focusedEditTextOrNull;
-            e72Var.H = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
-        }
+        boolean z;
         if (i != 0) {
             z = true;
+        } else {
+            z = false;
         }
-        e72Var.E = z;
-        e72Var.S();
+        v72 v72Var = this.a;
+        v72Var.i1 = z;
+        v72Var.b.o3.requestLayout();
     }
 
     @Override
@@ -65,31 +64,47 @@ public final class d72 implements u04 {
 
     @Override
     public final boolean l() {
-        mc9 V = this.a.V();
-        if (V == null || V.length() == 0) {
+        EditTextBoldCursor editField;
+        ng8 ng8Var = this.a.h1;
+        if (ng8Var == null || (editField = ng8Var.getEditField()) == null) {
             return false;
         }
-        V.dispatchKeyEvent(new KeyEvent(0, 67));
+        editField.dispatchKeyEvent(new KeyEvent(0, 67));
         return true;
     }
 
     @Override
     public final void m(String str) {
-        e72 e72Var = this.a;
-        mc9 V = e72Var.V();
-        if (V != null) {
-            int W = e72Var.W(V);
-            try {
-                CharSequence m = vu3.m(str, V.getPaint().getFontMetricsInt(), false, null, 0);
-                V.setText(V.getText().insert(W, m));
-                int length = W + m.length();
-                V.setSelection(length, length);
-                if (V == e72Var.G) {
-                    e72Var.H = length;
-                }
-            } catch (Exception unused) {
-            }
+        EditTextBoldCursor editField;
+        ng8 ng8Var = this.a.h1;
+        if (ng8Var == null || (editField = ng8Var.getEditField()) == null) {
+            return;
         }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence m = gw3.m(str, editField.getPaint().getFontMetricsInt(), false, null, 0);
+            editField.setText(editField.getText().insert(selectionEnd, m));
+            int length = selectionEnd + m.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            fc4.g(e, true);
+        }
+    }
+
+    @Override
+    public final void n() {
+        v72 v72Var = this.a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, v72Var.a, v72Var.getContext());
+        String M0 = jb6.M0(2131752005, null);
+        he heVar = alertDialog$Builder.a;
+        heVar.S = M0;
+        heVar.U = jb6.M0(2131752006, null);
+        alertDialog$Builder.j(jb6.M0(2131752036, null), new cd1(this, (byte) 21));
+        alertDialog$Builder.g(jb6.M0(2131752542, null), null);
+        alertDialog$Builder.o();
     }
 
     @Override
@@ -99,61 +114,48 @@ public final class d72 implements u04 {
 
     @Override
     public final void w(long j, TLRPC.Document document, String str, boolean z) {
-        gm gmVar;
-        e72 e72Var = this.a;
-        mc9 V = e72Var.V();
-        if (V != null) {
-            int W = e72Var.W(V);
-            try {
-                if (str == null) {
-                    str = "😀";
-                }
-                SpannableString spannableString = new SpannableString(str);
-                if (document != null) {
-                    gmVar = new gm(document, V.getPaint().getFontMetricsInt());
-                } else {
-                    gmVar = new gm(j, V.getPaint().getFontMetricsInt());
-                }
-                gmVar.cacheType = vl.f();
-                spannableString.setSpan(gmVar, 0, spannableString.length(), 33);
-                V.setText(V.getText().insert(W, spannableString));
-                int length = W + spannableString.length();
-                V.setSelection(length, length);
-                if (V == e72Var.G) {
-                    e72Var.H = length;
-                }
-            } catch (Exception unused) {
+        EditTextBoldCursor editField;
+        gn gnVar;
+        ng8 ng8Var = this.a.h1;
+        if (ng8Var == null || (editField = ng8Var.getEditField()) == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                gnVar = new gn(document, editField.getPaint().getFontMetricsInt());
+            } else {
+                gnVar = new gn(j, editField.getPaint().getFontMetricsInt());
             }
+            gnVar.cacheType = 3;
+            spannableString.setSpan(gnVar, 0, spannableString.length(), 33);
+            editField.setText(editField.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
     }
 
     @Override
     public final boolean z() {
-        return this.a.E;
+        return this.a.i1;
     }
 
     @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void p() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void v() {
-    }
-
-    @Override
-    public final void g(d2c d2cVar) {
+    public final void g(d4c d4cVar) {
     }
 
     @Override
     public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void p() {
     }
 
     @Override
@@ -166,6 +168,14 @@ public final class d72 implements u04 {
 
     @Override
     public final void s(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void v() {
     }
 
     @Override
@@ -185,6 +195,6 @@ public final class d72 implements u04 {
     }
 
     @Override
-    public final void x(View view, TLRPC.Document document, String str, Object obj, g27 g27Var, boolean z, int i) {
+    public final void x(View view, TLRPC.Document document, String str, Object obj, g47 g47Var, boolean z, int i) {
     }
 }

@@ -1,27 +1,29 @@
 package defpackage;
-
-import java.nio.ByteBuffer;
-import org.webrtc.JavaI420Buffer;
-import org.webrtc.YuvConverter;
 public final class ys5 implements Runnable {
     public final byte a;
-    public final ByteBuffer b;
+    public final l7 b;
 
-    public ys5(ByteBuffer byteBuffer, byte b) {
+    public ys5(l7 l7Var, byte b) {
         this.a = b;
-        this.b = byteBuffer;
+        this.b = l7Var;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        ByteBuffer byteBuffer = this.b;
+        l7 l7Var = this.b;
         switch (b) {
             case 0:
-                JavaI420Buffer.a(byteBuffer);
+                gm.E3(l7Var);
+                return;
+            case 1:
+                gm.E3(l7Var);
+                return;
+            case 2:
+                gm.E3(l7Var);
                 return;
             default:
-                YuvConverter.a(byteBuffer);
+                gm.E3(l7Var);
                 return;
         }
     }

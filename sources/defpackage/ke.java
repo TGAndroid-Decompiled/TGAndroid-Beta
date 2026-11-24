@@ -1,37 +1,36 @@
 package defpackage;
 
-import android.view.View;
-public final class ke implements View.OnClickListener {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.DialogInterface;
+public final class ke extends AnimatorListenerAdapter {
     public final byte a;
-    public final ag2 b;
+    public final ne b;
 
-    public ke(ag2 ag2Var, byte b) {
+    public ke(ne neVar, byte b) {
         this.a = b;
-        this.b = ag2Var;
+        this.b = neVar;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void onAnimationEnd(Animator animator) {
         byte b = this.a;
-        ag2 ag2Var = this.b;
+        ne neVar = this.b;
         switch (b) {
             case 0:
-                ag2Var.c(!ag2Var.b(), true);
-                return;
-            case 1:
-                ag2Var.c(!ag2Var.b(), true);
-                return;
-            case 2:
-                ag2Var.c(!ag2Var.b(), true);
-                return;
-            case 3:
-                ag2Var.c(!ag2Var.b(), true);
-                return;
-            case 4:
-                ag2Var.c(!ag2Var.b(), true);
+                DialogInterface.OnShowListener onShowListener = neVar.q1;
+                if (onShowListener != null) {
+                    onShowListener.onShow(neVar);
+                    return;
+                }
                 return;
             default:
-                ag2Var.c(!ag2Var.b(), true);
+                neVar.t().removeView(neVar.n1);
+                DialogInterface.OnDismissListener onDismissListener = neVar.r1;
+                if (onDismissListener != null) {
+                    onDismissListener.onDismiss(neVar);
+                    return;
+                }
                 return;
         }
     }

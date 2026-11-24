@@ -24,7 +24,7 @@ class WebRtcAudioEffects {
         if (z) {
             return;
         }
-        fi7.g("Expected condition to be true");
+        bh7.j("Expected condition to be true");
     }
 
     private boolean effectTypeIsVoIP(UUID uuid) {

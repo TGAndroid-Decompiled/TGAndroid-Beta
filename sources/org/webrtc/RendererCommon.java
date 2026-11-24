@@ -56,7 +56,7 @@ public class RendererCommon {
                 if (ordinal == 2) {
                     return BALANCED_VISIBLE_FRACTION;
                 }
-                sc8.e();
+                i98.g();
                 return 0.0f;
             }
             return 0.0f;

@@ -2,11 +2,11 @@ package defpackage;
 
 import android.util.Log;
 import java.util.concurrent.Executor;
-public final class z1 implements qp4 {
+public final class z1 implements rr4 {
     public final byte a;
     public final Object b;
 
-    public z1(td5 td5Var, String str) {
+    public z1(rf5 rf5Var, String str) {
         this.a = (byte) 5;
         this.b = str;
     }
@@ -14,7 +14,7 @@ public final class z1 implements qp4 {
     @Override
     public final Object invoke(Object obj) {
         byte b = this.a;
-        g5c g5cVar = g5c.a;
+        g7c g7cVar = g7c.a;
         Object obj2 = this.b;
         switch (b) {
             case 0:
@@ -23,58 +23,58 @@ public final class z1 implements qp4 {
                 }
                 return String.valueOf(obj);
             case 1:
-                y03 y03Var = (y03) obj2;
-                d03 d03Var = (d03) obj;
-                d03Var.getClass();
-                Executor executor = y03Var.g;
+                k23 k23Var = (k23) obj2;
+                o13 o13Var = (o13) obj;
+                o13Var.getClass();
+                Executor executor = k23Var.g;
                 if (executor != null) {
-                    executor.execute(new u03(y03Var, d03Var, (byte) 0));
-                    return g5cVar;
+                    executor.execute(new g23(k23Var, o13Var, (byte) 0));
+                    return g7cVar;
                 }
-                rp5.e("executor");
+                rr5.e("executor");
                 throw null;
             case 2:
-                w13 w13Var = (w13) obj2;
-                us4 us4Var = (us4) obj;
-                us4Var.getClass();
-                w13Var.f().execute(new v13(w13Var, us4Var, (byte) 2));
-                return g5cVar;
+                h33 h33Var = (h33) obj2;
+                vu4 vu4Var = (vu4) obj;
+                vu4Var.getClass();
+                h33Var.f().execute(new g33(h33Var, vu4Var, (byte) 2));
+                return g7cVar;
             case 3:
-                d23 d23Var = (d23) obj2;
-                d03 d03Var2 = (d03) obj;
-                d03Var2.getClass();
-                Executor executor2 = d23Var.g;
+                o33 o33Var = (o33) obj2;
+                o13 o13Var2 = (o13) obj;
+                o13Var2.getClass();
+                Executor executor2 = o33Var.g;
                 if (executor2 != null) {
-                    executor2.execute(new c23(d23Var, d03Var2, (byte) 2));
-                    return g5cVar;
+                    executor2.execute(new n33(o33Var, o13Var2, (byte) 2));
+                    return g7cVar;
                 }
-                rp5.e("executor");
+                rr5.e("executor");
                 throw null;
             case 4:
-                fx2 fx2Var = (fx2) obj;
-                fx2Var.getClass();
-                Log.w("FirebaseSessions", "CorruptionException in session data DataStore", fx2Var);
-                return new w5a(((x5a) obj2).a.a(null), null, null);
+                py2 py2Var = (py2) obj;
+                py2Var.getClass();
+                Log.w("FirebaseSessions", "CorruptionException in session data DataStore", py2Var);
+                return new y7a(((z7a) obj2).a.a(null), null, null);
             case 5:
                 String str = (String) obj2;
-                ih7 ih7Var = (ih7) obj;
-                ih7Var.c(td5.d, str);
-                td5.f(ih7Var, str);
+                lj7 lj7Var = (lj7) obj;
+                lj7Var.c(rf5.d, str);
+                rf5.f(lj7Var, str);
                 return null;
             case 6:
                 Throwable th = (Throwable) obj;
-                ((nh7) obj2).f(null);
-                return g5cVar;
+                ((qj7) obj2).f(null);
+                return g7cVar;
             default:
-                gd8 gd8Var = (gd8) obj2;
+                if8 if8Var = (if8) obj2;
                 int intValue = ((Integer) obj).intValue();
-                return gd8Var.e[intValue] + ": " + gd8Var.i(intValue).a();
+                return if8Var.e[intValue] + ": " + if8Var.i(intValue).a();
         }
     }
 
-    public z1(nh7 nh7Var, mh7 mh7Var) {
+    public z1(qj7 qj7Var, pj7 pj7Var) {
         this.a = (byte) 6;
-        this.b = nh7Var;
+        this.b = qj7Var;
     }
 
     public z1(Object obj, byte b) {

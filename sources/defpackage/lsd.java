@@ -1,30 +1,52 @@
 package defpackage;
-public final class lsd implements zn7 {
-    public static final lsd a = new Object();
-    public static final w84 b = new w84("durationMs", b00.m(yjb.o(i8d.class, new b7d(1))));
-    public static final w84 c = new w84("errorCode", b00.m(yjb.o(i8d.class, new b7d(2))));
-    public static final w84 d = new w84("isColdCall", b00.m(yjb.o(i8d.class, new b7d(3))));
-    public static final w84 e = new w84("autoManageModelOnBackground", b00.m(yjb.o(i8d.class, new b7d(4))));
-    public static final w84 f = new w84("autoManageModelOnLowMemory", b00.m(yjb.o(i8d.class, new b7d(5))));
-    public static final w84 g = new w84("isNnApiEnabled", b00.m(yjb.o(i8d.class, new b7d(6))));
-    public static final w84 h = new w84("eventsCount", b00.m(yjb.o(i8d.class, new b7d(7))));
-    public static final w84 i = new w84("otherErrors", b00.m(yjb.o(i8d.class, new b7d(8))));
-    public static final w84 j = new w84("remoteConfigValueForAcceleration", b00.m(yjb.o(i8d.class, new b7d(9))));
-    public static final w84 k = new w84("isAccelerated", b00.m(yjb.o(i8d.class, new b7d(10))));
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        jfe jfeVar = (jfe) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, jfeVar.a);
-        ao7Var.a(c, jfeVar.b);
-        ao7Var.a(d, jfeVar.c);
-        ao7Var.a(e, null);
-        ao7Var.a(f, null);
-        ao7Var.a(g, null);
-        ao7Var.a(h, null);
-        ao7Var.a(i, null);
-        ao7Var.a(j, null);
-        ao7Var.a(k, null);
+import sun.misc.Unsafe;
+public abstract class lsd {
+    public static final vb1 a(px2 px2Var) {
+        Unsafe unsafe;
+        vb1 vb1Var;
+        vb1 vb1Var2;
+        if (!(px2Var instanceof rp3)) {
+            return new vb1(1, px2Var);
+        }
+        rp3 rp3Var = (rp3) px2Var;
+        long j = rp3.n;
+        loop0: while (true) {
+            unsafe = fy.a;
+            Object objectVolatile = unsafe.getObjectVolatile(rp3Var, j);
+            vb1Var = null;
+            du2 du2Var = r5c.b;
+            if (objectVolatile == null) {
+                unsafe.putObjectVolatile(rp3Var, j, du2Var);
+                vb1Var2 = null;
+                break;
+            } else if (objectVolatile instanceof vb1) {
+                do {
+                    unsafe = fy.a;
+                    if (unsafe.compareAndSwapObject(rp3Var, rp3.n, objectVolatile, du2Var)) {
+                        vb1Var2 = (vb1) objectVolatile;
+                        break loop0;
+                    }
+                } while (unsafe.getObjectVolatile(rp3Var, j) == objectVolatile);
+            } else if (objectVolatile != du2Var && !(objectVolatile instanceof Throwable)) {
+                zo4.p(objectVolatile, "Inconsistent state ");
+                return null;
+            }
+        }
+        if (vb1Var2 != null) {
+            long j2 = vb1.n;
+            Object objectVolatile2 = unsafe.getObjectVolatile(vb1Var2, j2);
+            if ((objectVolatile2 instanceof oq2) && ((oq2) objectVolatile2).d != null) {
+                vb1Var2.n();
+            } else {
+                unsafe.putIntVolatile(vb1Var2, vb1.f, 536870911);
+                unsafe.putObjectVolatile(vb1Var2, j2, h9.a);
+                vb1Var = vb1Var2;
+            }
+            if (vb1Var != null) {
+                return vb1Var;
+            }
+        }
+        return new vb1(2, px2Var);
     }
 }

@@ -1,29 +1,21 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class qc7 implements Runnable {
-    public final ad7 a;
-    public final String b;
-    public final long c;
-    public final TLRPC.Reaction d;
-    public final short e;
-    public final int f;
-    public final boolean h;
-    public final m8c n;
+import android.content.Context;
+import android.view.View;
+public final class qc7 extends b6c {
+    public static final int b = 0;
 
-    public qc7(ad7 ad7Var, String str, long j, TLRPC.Reaction reaction, int i, int i2, boolean z, m8c m8cVar) {
-        this.a = ad7Var;
-        this.b = str;
-        this.c = j;
-        this.d = reaction;
-        this.e = i;
-        this.f = i2;
-        this.h = z;
-        this.n = m8cVar;
+    static {
+        b6c.h(new b6c());
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qc7.run():void");
+    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
+        ((rc7) view).a((u3b) c6cVar.H);
+    }
+
+    @Override
+    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
+        return new rc7(context, ylbVar);
     }
 }

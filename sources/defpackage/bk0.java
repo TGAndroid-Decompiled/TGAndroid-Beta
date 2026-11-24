@@ -1,10 +1,23 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-public interface bk0 {
-    int a(Bitmap bitmap);
+import android.content.Context;
+import android.hardware.biometrics.BiometricManager;
+import android.hardware.biometrics.BiometricPrompt;
+import java.lang.reflect.Method;
+public abstract class bk0 {
+    public static int a(BiometricManager biometricManager) {
+        return biometricManager.canAuthenticate();
+    }
 
-    void b();
+    public static BiometricManager b(Context context) {
+        return (BiometricManager) context.getSystemService(BiometricManager.class);
+    }
 
-    void c();
+    public static Method c() {
+        try {
+            return BiometricManager.class.getMethod("canAuthenticate", BiometricPrompt.CryptoObject.class);
+        } catch (NoSuchMethodException unused) {
+            return null;
+        }
+    }
 }

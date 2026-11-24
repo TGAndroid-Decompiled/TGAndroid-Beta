@@ -1,22 +1,24 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.view.View;
-public final class ap {
-    public int a;
-    public int b;
-    public byte c;
-    public int d;
-    public zo e;
-    public View f;
-    public View g;
-    public yz6 h;
-    public i56 i;
-    public ew2 j;
-    public boolean k;
-    public boolean l;
-    public boolean m;
-    public boolean n;
-    public boolean o;
-    public Bundle p;
+import com.google.android.gms.common.api.Status;
+public class ap extends Exception {
+    @Deprecated
+    protected final Status mStatus;
+
+    public ap(com.google.android.gms.common.api.Status r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ap.<init>(com.google.android.gms.common.api.Status):void");
+    }
+
+    public Status getStatus() {
+        return this.mStatus;
+    }
+
+    public int getStatusCode() {
+        return this.mStatus.a;
+    }
+
+    @Deprecated
+    public String getStatusMessage() {
+        return this.mStatus.b;
+    }
 }

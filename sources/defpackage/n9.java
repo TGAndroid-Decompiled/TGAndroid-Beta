@@ -5,7 +5,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import java.util.Arrays;
 import java.util.HashSet;
-public abstract class n9 extends rr {
+public abstract class n9 extends rs {
     public static void v(Activity activity, String[] strArr, int i) {
         String[] strArr2;
         HashSet hashSet = new HashSet();
@@ -15,7 +15,7 @@ public abstract class n9 extends rr {
                     hashSet.add(Integer.valueOf(i2));
                 }
             } else {
-                w26.j(b00.j(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
+                u36.j(b10.j(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
                 return;
             }
         }

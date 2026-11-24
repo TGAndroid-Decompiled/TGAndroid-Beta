@@ -1,79 +1,65 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.SystemClock;
-import com.google.android.gms.tasks.Task;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class sef {
-    public static tdd k;
-    public static final med l;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class sef extends b4 {
+    public static final Parcelable.Creator<sef> CREATOR = new e2f((byte) 26);
     public final String a;
     public final String b;
-    public final nef c;
-    public final sfa d;
-    public final Task e;
-    public final Task f;
-    public final String g;
-    public final int h;
-    public final HashMap i = new HashMap();
-    public final HashMap j = new HashMap();
+    public final boolean c;
+    public final int d;
+    public final boolean e;
+    public final String f;
+    public final y1f[] h;
+    public final String n;
+    public final jhf r;
 
-    static {
-        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
-        objArr[0].getClass();
-        objArr[1].getClass();
-        l = new med(objArr);
+    public sef(String str, String str2, boolean z, int i, boolean z2, String str3, y1f[] y1fVarArr, String str4, jhf jhfVar) {
+        this.a = str;
+        this.b = str2;
+        this.c = z;
+        this.d = i;
+        this.e = z2;
+        this.f = str3;
+        this.h = y1fVarArr;
+        this.n = str4;
+        this.r = jhfVar;
     }
 
-    public sef(Context context, sfa sfaVar, nef nefVar) {
-        int i;
-        this.a = context.getPackageName();
-        this.b = om2.a(context);
-        this.d = sfaVar;
-        this.c = nefVar;
-        cff.R();
-        this.g = "subject-segmentation";
-        l69.x();
-        this.e = l69.I(new ke7(this, (byte) 9));
-        l69.x();
-        sfaVar.getClass();
-        this.f = l69.I(new ixe(sfaVar, (byte) 4));
-        med medVar = l;
-        if (medVar.containsKey("subject-segmentation")) {
-            i = ds3.d(context, (String) medVar.get("subject-segmentation"), false);
-        } else {
-            i = -1;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        this.h = i;
-    }
-
-    public static long a(ArrayList arrayList, double d) {
-        return ((Long) arrayList.get(Math.max(((int) Math.ceil((d / 100.0d) * arrayList.size())) - 1, 0))).longValue();
-    }
-
-    public final void b(qef qefVar, p5f p5fVar) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (!d(p5fVar, elapsedRealtime)) {
-            return;
+        if (!(obj instanceof sef)) {
+            return false;
         }
-        this.i.put(p5fVar, Long.valueOf(elapsedRealtime));
-        yjb.c(1, new vc1(this, qefVar.zza(), p5fVar, c(), (byte) 4));
-    }
-
-    public final String c() {
-        Task task = this.e;
-        if (task.isSuccessful()) {
-            return (String) task.getResult();
-        }
-        return r06.c.a(this.g);
-    }
-
-    public final boolean d(p5f p5fVar, long j) {
-        HashMap hashMap = this.i;
-        if (hashMap.get(p5fVar) == null || j - ((Long) hashMap.get(p5fVar)).longValue() > 30000) {
+        sef sefVar = (sef) obj;
+        if (this.c == sefVar.c && this.d == sefVar.d && this.e == sefVar.e && fse.a(this.a, sefVar.a) && fse.a(this.b, sefVar.b) && fse.a(this.f, sefVar.f) && fse.a(this.n, sefVar.n) && fse.a(this.r, sefVar.r) && Arrays.equals(this.h, sefVar.h)) {
             return true;
         }
         return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b, Boolean.valueOf(this.c), Integer.valueOf(this.d), Boolean.valueOf(this.e), this.f, Integer.valueOf(Arrays.hashCode(this.h)), this.n, this.r});
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.l(parcel, 1, this.a);
+        mve.l(parcel, 2, this.b);
+        mve.q(parcel, 3, 4);
+        parcel.writeInt(this.c ? 1 : 0);
+        mve.q(parcel, 4, 4);
+        parcel.writeInt(this.d);
+        mve.q(parcel, 5, 4);
+        parcel.writeInt(this.e ? 1 : 0);
+        mve.l(parcel, 6, this.f);
+        mve.o(parcel, 7, this.h, i);
+        mve.l(parcel, 11, this.n);
+        mve.k(parcel, 12, this.r, i);
+        mve.s(parcel, r);
     }
 }

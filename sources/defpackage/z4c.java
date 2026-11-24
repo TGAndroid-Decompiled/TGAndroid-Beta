@@ -1,29 +1,11 @@
 package defpackage;
-public final class z4c implements qw2, rw2 {
-    public static final z4c a = new Object();
 
+import android.view.ViewGroup;
+import org.telegram.ui.Components.RadialProgressView;
+public final class z4c extends RadialProgressView {
     @Override
-    public final Object fold(Object obj, eq4 eq4Var) {
-        return eq4Var.invoke(obj, this);
-    }
-
-    @Override
-    public final qw2 get(rw2 rw2Var) {
-        return kud.a(this, rw2Var);
-    }
-
-    @Override
-    public final sw2 minusKey(rw2 rw2Var) {
-        return kud.b(this, rw2Var);
-    }
-
-    @Override
-    public final sw2 plus(sw2 sw2Var) {
-        return kud.c(this, sw2Var);
-    }
-
-    @Override
-    public final rw2 getKey() {
-        return this;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = gm.m / 2;
     }
 }

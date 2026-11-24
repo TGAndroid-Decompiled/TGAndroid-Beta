@@ -1,284 +1,364 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-public final class wc implements View.OnAttachStateChangeListener {
-    public final byte a;
-    public Object b;
+import org.telegram.tgnet.tl.TL_agent;
+public final class wc extends LinearLayout {
+    public final vc a;
+    public final r59 b;
+    public final uc c;
+    public final View d;
+    public final View e;
+    public final LinearLayout f;
+    public final io h;
+    public final rc n;
+    public int r;
+    public final ad s;
 
-    public wc(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public wc(ad adVar, Context context) {
+        super(context);
+        int i;
+        int i2;
+        boolean o;
+        int i3;
+        int i4;
+        int i5;
+        this.s = adVar;
+        this.r = -1;
+        setOrientation(1);
+        int i6 = cmb.D8;
+        ylb ylbVar = adVar.d;
+        int v0 = cmb.v0(i6, ylbVar);
+        int p1 = cmb.p1(0.5f, v0);
+        FrameLayout frameLayout = new FrameLayout(context);
+        ImageView k = td4.k(context, 2131232754);
+        k.setScaleType(ImageView.ScaleType.CENTER);
+        k.setColorFilter(new PorterDuffColorFilter(p1, PorterDuff.Mode.SRC_IN));
+        if (jb6.a0) {
+            i = 5;
+        } else {
+            i = 3;
+        }
+        frameLayout.addView(k, qoe.d(24, 24.0f, i | 16, 14.0f, 0.0f, 14.0f, 0.0f));
+        vc vcVar = new vc(context, (byte) 0);
+        this.a = vcVar;
+        vcVar.setTextSize(1, 16.0f);
+        vcVar.setTextColor(v0);
+        vcVar.setHintTextColor(p1);
+        vcVar.setCursorColor(cmb.v0(cmb.Ei, ylbVar));
+        vcVar.setCursorSize(gm.L(18.0f));
+        vcVar.setCursorWidth(1.5f);
+        vcVar.setBackground(null);
+        vcVar.setPadding(0, 0, 0, 0);
+        vcVar.setSingleLine();
+        vcVar.setInputType(524289);
+        vcVar.setImeOptions(268435459);
+        vcVar.setHint(jb6.M0(2131754284, null));
+        if (jb6.a0) {
+            i2 = 5;
+        } else {
+            i2 = 3;
+        }
+        vcVar.setGravity(i2 | 16);
+        vcVar.setOnEditorActionListener(new j(this, (byte) 2));
+        vcVar.addTextChangedListener(new b7(this, (byte) 1));
+        frameLayout.addView(vcVar, qoe.d(-1, -1.0f, 119, 52.0f, 0.0f, 16.0f, 0.0f));
+        addView(frameLayout, qoe.o(-1, 48));
+        View view = new View(context);
+        this.d = view;
+        view.setBackgroundColor(cmb.p1(0.1f, v0));
+        addView(view, new LinearLayout.LayoutParams(-1, Math.max(1, gm.L(0.5f))));
+        r59 r59Var = new r59(context, ylbVar);
+        this.b = r59Var;
+        r59Var.setLayoutManager(new u46());
+        uc ucVar = new uc(adVar);
+        this.c = ucVar;
+        r59Var.setAdapter(ucVar);
+        r59Var.setVerticalScrollBarEnabled(false);
+        r59Var.setOverScrollMode(2);
+        r59Var.setItemAnimator(null);
+        r59Var.setClipToPadding(false);
+        r59Var.setPadding(0, gm.L(2.0f), 0, gm.L(2.0f));
+        r59Var.setSelectorDrawableColor(cmb.p1(0.06f, v0));
+        r59Var.setOnItemClickListener(new u(this, (byte) 3));
+        r59Var.j(new y(this, (byte) 2));
+        addView(r59Var, qoe.o(-1, 0));
+        View view2 = new View(context);
+        this.e = view2;
+        if (ylbVar != null) {
+            o = ylbVar.a();
+        } else {
+            o = cmb.I.o();
+        }
+        if (o) {
+            i3 = 1023410176;
+        } else {
+            i3 = 251658240;
+        }
+        view2.setBackgroundColor(i3);
+        addView(view2, qoe.k(0.0f, 4.0f, 0.0f, 0.0f, -1, 8));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(gm.L(16.0f), gm.L(12.0f), gm.L(16.0f), gm.L(14.0f));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 15.0f);
+        textView.setTextColor(v0);
+        textView.setText(jb6.M0(2131754292, null));
+        if (jb6.a0) {
+            i4 = 5;
+        } else {
+            i4 = 3;
+        }
+        frameLayout2.addView(textView, qoe.e(-2, -2, i4 | 16));
+        io ioVar = new io(context, false, true, true);
+        this.h = ioVar;
+        ioVar.setTextSize(gm.L(15.0f));
+        ioVar.setTextColor(v0);
+        if (jb6.a0) {
+            i5 = 3;
+        } else {
+            i5 = 5;
+        }
+        ioVar.setGravity(i5);
+        ioVar.b(0.6f, 240L, d53.h);
+        frameLayout2.addView(ioVar, qoe.e(120, 20, (jb6.a0 ? 3 : 5) | 16));
+        linearLayout.addView(frameLayout2, qoe.o(-1, 20));
+        rc rcVar = new rc(context, ylbVar);
+        this.n = rcVar;
+        rcVar.setListener(new l0(this, (byte) 9));
+        linearLayout.addView(rcVar, qoe.k(-14.0f, -4.0f, -14.0f, -14.0f, -1, 56));
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        addView(linearLayout, qoe.o(-1, 84));
     }
 
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        int i = 0;
-        switch (this.a) {
+    public final void a() {
+        u46 u46Var;
+        ad adVar = this.s;
+        if (!adVar.K && !adVar.J && (u46Var = (u46) this.b.getLayoutManager()) != null && u46Var.M0() >= this.c.b() - 4) {
+            adVar.j(false);
+        }
+    }
+
+    public final void b(int i, boolean z) {
+        boolean z2;
+        String M0;
+        int i2 = this.r;
+        if (i2 == i) {
+            return;
+        }
+        boolean z3 = false;
+        if (i > i2) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        this.r = i;
+        String str = mc.i[i];
+        str.getClass();
+        char c = 65535;
+        switch (str.hashCode()) {
+            case -1289163222:
+                if (str.equals("expert")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case 3135580:
+                if (str.equals("fast")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case 111384492:
+                if (str.equals("ultra")) {
+                    c = 2;
+                    break;
+                }
+                break;
+        }
+        switch (c) {
             case 0:
-                ((yx) this.b).c(null);
-                return;
+                M0 = jb6.M0(2131754291, null);
+                break;
             case 1:
-                ((nq8) this.b).b(view);
-                return;
+                M0 = jb6.M0(2131754290, null);
+                break;
             case 2:
-                ((ec0) this.b).b.I();
-                return;
-            case 3:
-                sl0 sl0Var = (sl0) this.b;
-                ArrayList arrayList = sl0Var.c;
-                arrayList.clear();
-                for (View view2 = sl0Var.b; view2 != null; view2 = (View) view2.getParent()) {
-                    arrayList.add(0, view2);
-                    if (!(view2.getParent() instanceof View)) {
-                        return;
-                    }
-                }
-                return;
-            case 4:
-            case 5:
-                return;
-            case 6:
-                ((yo2) this.b).a();
-                return;
-            case 7:
-                kk7.e().b((su2) this.b, 262);
-                return;
-            case 8:
-                ((o77) this.b).run();
-                return;
-            case 9:
-                ((kv4) this.b).l.a();
-                return;
-            case 10:
-                ((ol5) this.b).b.I();
-                return;
-            case 11:
-                ((ur7) this.b).f.I();
-                return;
-            case 12:
-                tl tlVar = ((u08) this.b).i;
-                if (tlVar != null) {
-                    tlVar.a();
-                    return;
-                }
-                return;
-            case 13:
-                n79 n79Var = (n79) this.b;
-                tl tlVar2 = n79Var.t;
-                if (tlVar2 != null) {
-                    tlVar2.a();
-                }
-                tl tlVar3 = n79Var.u;
-                if (tlVar3 != null) {
-                    tlVar3.a();
-                    return;
-                }
-                return;
-            case 14:
-                l99 l99Var = (l99) this.b;
-                j99 j99Var = l99Var.b0;
-                if (j99Var != null) {
-                    j99Var.b(l99Var.c);
-                    return;
-                }
-                return;
-            case 15:
-                o99 o99Var = (o99) this.b;
-                m99 m99Var = o99Var.b0;
-                if (m99Var != null) {
-                    m99Var.b(o99Var.c);
-                    return;
-                }
-                return;
-            case 16:
-                return;
-            case 17:
-                y7a y7aVar = (y7a) this.b;
-                y7aVar.h.a();
-                y7aVar.n.a();
-                return;
-            case 18:
-                return;
-            case 19:
-                ArrayList arrayList2 = ((hqa) this.b).e;
-                int size = arrayList2.size();
-                while (i < size) {
-                    Object obj = arrayList2.get(i);
-                    i++;
-                    fqa fqaVar = (fqa) obj;
-                    if (fqaVar.c) {
-                        fqaVar.d.I();
-                    }
-                }
-                return;
+                M0 = jb6.M0(2131754287, null);
+                break;
             default:
-                vk9 vk9Var = (vk9) this.b;
-                zec zecVar = (zec) vk9Var.c;
-                ViewTreeObserver viewTreeObserver = ((View) vk9Var.b).getViewTreeObserver();
-                ViewTreeObserver viewTreeObserver2 = (ViewTreeObserver) vk9Var.d;
-                if (viewTreeObserver2 != viewTreeObserver) {
-                    if (viewTreeObserver2 != null) {
-                        if (viewTreeObserver2.isAlive()) {
-                            ((ViewTreeObserver) vk9Var.d).removeOnPreDrawListener(zecVar);
-                        }
-                        vk9Var.d = null;
-                    }
-                    vk9Var.d = viewTreeObserver;
-                    if (viewTreeObserver.isAlive()) {
-                        viewTreeObserver.addOnPreDrawListener(zecVar);
+                M0 = jb6.M0(2131754289, null);
+                break;
+        }
+        if (z && isAttachedToWindow()) {
+            z3 = true;
+        }
+        this.h.c(M0, z3, !z2);
+    }
+
+    public final void c() {
+        boolean z;
+        ad adVar = this.s;
+        ArrayList arrayList = adVar.Q;
+        ArrayList arrayList2 = adVar.S;
+        arrayList2.clear();
+        if (TextUtils.isEmpty(adVar.H) && !arrayList.isEmpty()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z) {
+            arrayList2.add(new xc(3, null, jb6.M0(2131754281, null)));
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                TL_agent.agentModel agentmodel = (TL_agent.agentModel) obj;
+                TL_agent.agentModel e = ad.e(agentmodel.id, adVar.N);
+                if (e != null) {
+                    agentmodel = e;
+                }
+                arrayList2.add(new xc(0, agentmodel, null));
+            }
+            arrayList2.add(new xc(3, null, jb6.M0(2131754283, null)));
+        }
+        ArrayList arrayList3 = adVar.G;
+        int size2 = arrayList3.size();
+        int i2 = 0;
+        int i3 = 0;
+        while (i3 < size2) {
+            Object obj2 = arrayList3.get(i3);
+            i3++;
+            TL_agent.agentModel agentmodel2 = (TL_agent.agentModel) obj2;
+            if (!z || ad.e(agentmodel2.id, arrayList) == null) {
+                arrayList2.add(new xc(0, agentmodel2, null));
+                i2++;
+            }
+        }
+        if (!adVar.K && adVar.J) {
+            if (i2 == 0 && !z) {
+                arrayList2.add(new xc(2, null, null));
+            }
+        } else {
+            arrayList2.add(new xc(1, null, null));
+        }
+        this.c.f();
+        requestLayout();
+    }
+
+    public final void d(boolean z) {
+        int i;
+        float f;
+        ad adVar = this.s;
+        TL_agent.settings settingsVar = adVar.y.d;
+        boolean z2 = false;
+        if (settingsVar != null && settingsVar.effort_supported) {
+            i = 0;
+        } else {
+            i = 8;
+        }
+        LinearLayout linearLayout = this.f;
+        if (linearLayout.getVisibility() != i) {
+            this.e.setVisibility(i);
+            linearLayout.setVisibility(i);
+            requestLayout();
+        }
+        String b = adVar.y.b();
+        int i2 = 0;
+        while (true) {
+            if (i2 < 4) {
+                if (TextUtils.equals(mc.i[i2], b)) {
+                    break;
+                }
+                i2++;
+            } else {
+                i2 = 1;
+                break;
+            }
+        }
+        b(i2, z);
+        rc rcVar = this.n;
+        if (!rcVar.E && !rcVar.F) {
+            ValueAnimator valueAnimator = rcVar.s;
+            if (valueAnimator == null || !valueAnimator.isRunning()) {
+                float f2 = i2;
+                if (Math.abs(rcVar.e - f2) >= 0.001f) {
+                    if (z) {
+                        rcVar.a(i2);
                         return;
                     }
-                    return;
+                    rcVar.e = f2;
+                    if (f2 > rcVar.b - 1.5f) {
+                        z2 = true;
+                    }
+                    rcVar.r = z2;
+                    if (z2) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.0f;
+                    }
+                    rcVar.n = f;
+                    rcVar.invalidate();
                 }
-                return;
+            }
         }
     }
 
     @Override
-    public final void onViewDetachedFromWindow(View view) {
-        int i = 0;
-        switch (this.a) {
-            case 0:
-                ((yx) this.b).b(null);
-                return;
-            case 1:
-                ((nq8) this.b).o(view);
-                return;
-            case 2:
-                ((ec0) this.b).b.K();
-                return;
-            case 3:
-                ((sl0) this.b).c.clear();
-                return;
-            case 4:
-                m21 m21Var = (m21) this.b;
-                m21Var.e.removeOnAttachStateChangeListener(this);
-                m21Var.c(0L, false);
-                return;
-            case 5:
-                xc1 xc1Var = (xc1) this.b;
-                ViewTreeObserver viewTreeObserver = xc1Var.O;
-                if (viewTreeObserver != null) {
-                    if (!viewTreeObserver.isAlive()) {
-                        xc1Var.O = view.getViewTreeObserver();
-                    }
-                    xc1Var.O.removeGlobalOnLayoutListener(xc1Var.r);
-                }
-                view.removeOnAttachStateChangeListener(this);
-                return;
-            case 6:
-                ((yo2) this.b).b();
-                return;
-            case 7:
-                kk7.e().n((su2) this.b, 262);
-                return;
-            case 8:
-                return;
-            case 9:
-                ((kv4) this.b).l.b();
-                return;
-            case 10:
-                ((ol5) this.b).b.K();
-                return;
-            case 11:
-                ((ur7) this.b).f.K();
-                return;
-            case 12:
-                tl tlVar = ((u08) this.b).i;
-                if (tlVar != null) {
-                    tlVar.b();
-                    return;
-                }
-                return;
-            case 13:
-                n79 n79Var = (n79) this.b;
-                tl tlVar2 = n79Var.t;
-                if (tlVar2 != null) {
-                    tlVar2.b();
-                }
-                tl tlVar3 = n79Var.u;
-                if (tlVar3 != null) {
-                    tlVar3.a();
-                    return;
-                }
-                return;
-            case 14:
-                l99 l99Var = (l99) this.b;
-                j99 j99Var = l99Var.b0;
-                if (j99Var != null) {
-                    j99Var.o(l99Var.c);
-                    return;
-                }
-                return;
-            case 15:
-                o99 o99Var = (o99) this.b;
-                m99 m99Var = o99Var.b0;
-                if (m99Var != null) {
-                    m99Var.o(o99Var.c);
-                    return;
-                }
-                return;
-            case 16:
-                view.removeCallbacks((Runnable) ((yu9) this.b).a.remove(view));
-                view.removeOnAttachStateChangeListener(this);
-                return;
-            case 17:
-                y7a y7aVar = (y7a) this.b;
-                y7aVar.h.b();
-                y7aVar.n.b();
-                return;
-            case 18:
-                yma ymaVar = (yma) this.b;
-                ViewTreeObserver viewTreeObserver2 = ymaVar.F;
-                if (viewTreeObserver2 != null) {
-                    if (!viewTreeObserver2.isAlive()) {
-                        ymaVar.F = view.getViewTreeObserver();
-                    }
-                    ymaVar.F.removeGlobalOnLayoutListener(ymaVar.r);
-                }
-                view.removeOnAttachStateChangeListener(this);
-                return;
-            case 19:
-                ArrayList arrayList = ((hqa) this.b).e;
-                int size = arrayList.size();
-                while (i < size) {
-                    Object obj = arrayList.get(i);
-                    i++;
-                    ((fqa) obj).a();
-                }
-                return;
-            default:
-                vk9 vk9Var = (vk9) this.b;
-                ViewTreeObserver viewTreeObserver3 = (ViewTreeObserver) vk9Var.d;
-                if (viewTreeObserver3 != null) {
-                    if (viewTreeObserver3.isAlive()) {
-                        ((ViewTreeObserver) vk9Var.d).removeOnPreDrawListener((zec) vk9Var.c);
-                    }
-                    vk9Var.d = null;
-                    return;
-                }
-                return;
+    public final void onMeasure(int i, int i2) {
+        int size;
+        int L;
+        int max = Math.max(1, gm.L(0.5f)) + gm.L(48.0f);
+        ad adVar = this.s;
+        TL_agent.settings settingsVar = adVar.y.d;
+        if (settingsVar != null && settingsVar.effort_supported) {
+            max += gm.L(96.0f);
         }
-    }
-
-    public wc() {
-        this.a = (byte) 7;
-    }
-
-    private final void a(View view) {
-    }
-
-    private final void b(View view) {
-    }
-
-    private final void c(View view) {
-    }
-
-    private final void d(View view) {
-    }
-
-    private final void e(View view) {
+        if (View.MeasureSpec.getMode(i2) == 0) {
+            size = Integer.MAX_VALUE;
+        } else {
+            size = View.MeasureSpec.getSize(i2);
+        }
+        int L2 = gm.L(4.0f);
+        ArrayList arrayList = adVar.S;
+        int size2 = arrayList.size();
+        int i3 = 0;
+        while (i3 < size2) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            byte b = ((xc) obj).a;
+            if (b != 2) {
+                if (b != 3) {
+                    L = gm.L(55.0f);
+                } else {
+                    L = gm.L(26.0f);
+                }
+            } else {
+                L = gm.L(48.0f);
+            }
+            L2 += L;
+            if (L2 > gm.L(305.0f)) {
+                break;
+            }
+        }
+        if (!adVar.J || adVar.K) {
+            L2 = gm.L(305.0f);
+        }
+        int max2 = Math.max(gm.L(55.0f), Math.min(Math.min(L2, gm.L(305.0f)), size - max));
+        this.b.getLayoutParams().height = max2;
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(max + max2, 1073741824));
     }
 }

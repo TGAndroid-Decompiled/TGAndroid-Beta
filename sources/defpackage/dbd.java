@@ -1,60 +1,20 @@
 package defpackage;
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
+import android.os.Bundle;
 import android.os.Parcel;
-public abstract class dbd extends Binder implements IInterface {
-    @Override
-    public boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
-        if (i > 16777215) {
-            if (super.onTransact(i, parcel, parcel2, i2)) {
-                return true;
-            }
-        } else {
-            parcel.enforceInterface(getInterfaceDescriptor());
-        }
-        pnd pndVar = (pnd) this;
-        if (i != 1) {
-            boolean z = false;
-            if (i != 2) {
-                if (i != 3) {
-                    if (i != 4) {
-                        if (i != 5) {
-                            return false;
-                        }
-                        String stringFlagValue = pndVar.getStringFlagValue(parcel.readString(), parcel.readString(), parcel.readInt());
-                        parcel2.writeNoException();
-                        parcel2.writeString(stringFlagValue);
-                        return true;
-                    }
-                    long longFlagValue = pndVar.getLongFlagValue(parcel.readString(), parcel.readLong(), parcel.readInt());
-                    parcel2.writeNoException();
-                    parcel2.writeLong(longFlagValue);
-                    return true;
-                }
-                int intFlagValue = pndVar.getIntFlagValue(parcel.readString(), parcel.readInt(), parcel.readInt());
-                parcel2.writeNoException();
-                parcel2.writeInt(intFlagValue);
-                return true;
-            }
-            String readString = parcel.readString();
-            int i3 = ogd.a;
-            if (parcel.readInt() != 0) {
-                z = true;
-            }
-            boolean booleanFlagValue = pndVar.getBooleanFlagValue(readString, z, parcel.readInt());
-            parcel2.writeNoException();
-            parcel2.writeInt(booleanFlagValue ? 1 : 0);
-            return true;
-        }
-        pndVar.init(bo7.T(parcel.readStrongBinder()));
-        parcel2.writeNoException();
-        return true;
+import android.os.Parcelable;
+public abstract class dbd {
+    public static final int a = 0;
+
+    static {
+        dbd.class.getClassLoader();
     }
 
-    @Override
-    public IBinder asBinder() {
-        return this;
+    public static Parcelable a(Parcel parcel) {
+        Parcelable.Creator creator = Bundle.CREATOR;
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

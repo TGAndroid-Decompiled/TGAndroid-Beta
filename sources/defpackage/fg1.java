@@ -1,10 +1,8 @@
 package defpackage;
-public interface fg1 {
-    void a(oed oedVar);
+public final class fg1 {
+    public final vg1 a;
 
-    void b(oed oedVar);
-
-    void c(oed oedVar);
-
-    void d(oed oedVar);
+    public fg1(vg1 vg1Var) {
+        this.a = vg1Var;
+    }
 }

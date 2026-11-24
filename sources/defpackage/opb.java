@@ -1,7 +1,6 @@
 package defpackage;
-public final class opb extends ppb {
-    @Override
-    public final String toString() {
-        return b00.j(new StringBuilder("<![CDATA["), this.e, "]]>");
+public final class opb {
+    public final cx5 serializer() {
+        return npb.a;
     }
 }

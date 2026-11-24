@@ -1,51 +1,49 @@
 package defpackage;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
-public final class syb implements ul3 {
-    public final Integer a;
-    public final k27 b;
-    public final int c;
-    public final long d;
-    public final long e;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import android.util.Log;
+import java.util.concurrent.TimeUnit;
+public final class syb extends BroadcastReceiver {
+    public tyb a;
+    public final tyb b;
 
-    public syb(Integer num, k27 k27Var, int i, long j, long j2) {
-        this.a = num;
-        this.b = k27Var;
-        this.c = i;
-        this.d = j;
-        this.e = j2;
+    public syb(tyb tybVar, tyb tybVar2) {
+        this.b = tybVar;
+        this.a = tybVar2;
+    }
+
+    public final void a() {
+        if (Log.isLoggable("FirebaseMessaging", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3))) {
+            Log.d("FirebaseMessaging", "Connectivity change received registered");
+        }
+        this.b.a.registerReceiver(this, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
     }
 
     @Override
-    public final void a(String str, int[] iArr, boolean z) {
+    public final synchronized void onReceive(Context context, Intent intent) {
+        boolean z;
+        tyb tybVar = this.a;
+        if (tybVar == null) {
+            return;
+        }
+        if (!tybVar.d()) {
+            return;
+        }
+        if (!Log.isLoggable("FirebaseMessaging", 3) && (Build.VERSION.SDK_INT != 23 || !Log.isLoggable("FirebaseMessaging", 3))) {
+            z = false;
+        } else {
+            z = true;
+        }
         if (z) {
-            HashMap hashMap = uyb.S;
-            Integer num = this.a;
-            hashMap.remove(num);
-            uyb.R.remove(num);
+            Log.d("FirebaseMessaging", "Connectivity changed. Starting background sync.");
         }
-        k27 k27Var = this.b;
-        if (str == null) {
-            uyb.n(k27Var);
-            return;
-        }
-        TLRPC.Message message = k27Var.k;
-        if (!z) {
-            if (TextUtils.isEmpty(str)) {
-                return;
-            }
-            message.voiceTranscription = str;
-            message.voiceTranscriptionWords = iArr;
-            message.voiceTranscriptionLocal = true;
-            message.voiceTranscriptionFinal = false;
-            message.voiceTranscriptionOpen = true;
-            uyb.q(k27Var);
-            kk7.f(this.c).k(kk7.z1, k27Var, null, null, Boolean.TRUE, Boolean.FALSE);
-            return;
-        }
-        gl.e3(new qe(k27Var, message, str, iArr, this.c, this.d, (byte) 6), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.e)));
+        tyb tybVar2 = this.a;
+        tybVar2.d.e.schedule(tybVar2, 0L, TimeUnit.SECONDS);
+        context.unregisterReceiver(this);
+        this.a = null;
     }
 }

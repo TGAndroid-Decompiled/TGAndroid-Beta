@@ -1,21 +1,33 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-public final class kz extends FrameLayout {
-    public final float a;
+import android.view.View;
+public final class kz implements View.OnClickListener {
+    public final byte a;
+    public final Context b;
+    public final ylb c;
 
-    public kz(Context context, float f) {
-        super(context);
-        this.a = f;
+    public kz(Context context, ylb ylbVar, byte b) {
+        this.a = b;
+        this.b = context;
+        this.c = ylbVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth() * this.a, getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public final void onClick(View view) {
+        switch (this.a) {
+            case 0:
+                new exa(this.b, this.c).show();
+                return;
+            case 1:
+                new exa(this.b, this.c).show();
+                return;
+            case 2:
+                new exa(this.b, this.c).show();
+                return;
+            default:
+                new exa(this.b, this.c).show();
+                return;
+        }
     }
 }

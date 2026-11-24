@@ -5,17 +5,17 @@ import android.content.AbstractThreadedSyncAdapter;
 import android.content.Intent;
 import android.os.IBinder;
 public class ContactsSyncAdapterService extends Service {
-    public static uu2 a;
+    public static fw2 a;
 
     @Override
     public final IBinder onBind(Intent intent) {
-        uu2 uu2Var = a;
-        uu2 uu2Var2 = uu2Var;
-        if (uu2Var == null) {
+        fw2 fw2Var = a;
+        fw2 fw2Var2 = fw2Var;
+        if (fw2Var == null) {
             ?? abstractThreadedSyncAdapter = new AbstractThreadedSyncAdapter(this, true);
             a = abstractThreadedSyncAdapter;
-            uu2Var2 = abstractThreadedSyncAdapter;
+            fw2Var2 = abstractThreadedSyncAdapter;
         }
-        return uu2Var2.getSyncAdapterBinder();
+        return fw2Var2.getSyncAdapterBinder();
     }
 }

@@ -1,4 +1,11 @@
 package defpackage;
-public interface ed {
-    void u(hd hdVar, int i);
+
+import org.telegram.tgnet.tl.TL_aicompose;
+public final class ed {
+    public boolean a;
+    public boolean b;
+    public String c;
+    public TL_aicompose.InputAiComposeTone d;
+    public String e;
+    public int f;
 }

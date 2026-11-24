@@ -1,83 +1,49 @@
 package defpackage;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.security.keystore.KeyGenParameterSpec;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.KeyPairGenerator;
-import java.util.Iterator;
-import java.util.Locale;
-import org.telegram.messenger.a;
-public final class yf4 implements Runnable {
-    public final byte a;
-    public final boolean b;
+import android.graphics.RectF;
+import android.view.View;
+public final class yf4 implements g59, h59 {
+    public final ig4 a;
 
-    public yf4(byte b, boolean z) {
-        this.a = b;
-        this.b = z;
+    public yf4(ig4 ig4Var) {
+        this.a = ig4Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        boolean z = this.b;
-        switch (b) {
-            case 0:
-                KeyPairGenerator keyPairGenerator = ige.b;
-                if (keyPairGenerator == null) {
-                    try {
-                        keyPairGenerator = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
-                        ige.b = keyPairGenerator;
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                        keyPairGenerator = null;
+    public final void d(float f, float f2, int i, View view) {
+        ig4 ig4Var = this.a;
+        dg4 dg4Var = ig4Var.K;
+        if (!((dk3) dg4Var).b.l2) {
+            gg4 gg4Var = (gg4) view;
+            if (ig4Var.n) {
+                if (i != 0) {
+                    int L = gm.L(6.0f);
+                    RectF rectF = gg4Var.f;
+                    float f3 = L;
+                    if (rectF.left - f3 < f && rectF.right + f3 > f) {
+                        dk3 dk3Var = (dk3) ig4Var.K;
+                        dk3Var.d((ub7) dk3Var.b.getMessagesController().S0().get(gg4Var.b.a));
                     }
                 }
-                if (keyPairGenerator != null) {
-                    try {
-                        Locale locale = Locale.getDefault();
-                        Locale locale2 = Locale.ENGLISH;
-                        Locale.setDefault(locale2);
-                        Resources resources = a.b.getResources();
-                        Configuration configuration = resources.getConfiguration();
-                        configuration.setLocale(locale2);
-                        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-                        keyPairGenerator.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
-                        keyPairGenerator.generateKeyPair();
-                        Locale.setDefault(locale);
-                        Resources resources2 = a.b.getResources();
-                        Configuration configuration2 = resources2.getConfiguration();
-                        configuration2.setLocale(locale);
-                        resources2.updateConfiguration(configuration2, resources2.getDisplayMetrics());
-                        gl.d3(new yf4((byte) 1, z));
-                        return;
-                    } catch (InvalidAlgorithmParameterException e2) {
-                        fa4.g(e2, true);
-                        return;
-                    } catch (Exception e3) {
-                        if (!e3.getClass().getName().equals("android.security.KeyStoreException")) {
-                            fa4.g(e3, true);
-                            return;
-                        }
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                kk7.e().k(132, Boolean.valueOf(z));
-                return;
-            case 2:
-                Iterator it = e66.n.iterator();
-                while (it.hasNext()) {
-                    p8c p8cVar = (p8c) it.next();
-                    if (p8cVar != null) {
-                        p8cVar.a(Boolean.valueOf(z));
-                    }
-                }
-                return;
-            default:
-                kk7.e().k(267, Boolean.FALSE, Boolean.valueOf(z));
-                return;
+            } else if (i == ig4Var.L && dg4Var != null) {
+                ((dk3) dg4Var).b.R4(true, false);
+            } else {
+                ig4Var.g(gg4Var.b, i);
+            }
         }
+    }
+
+    @Override
+    public final boolean g(int r24, android.view.View r25) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.yf4.g(int, android.view.View):boolean");
+    }
+
+    @Override
+    public final boolean u(View view) {
+        return false;
+    }
+
+    @Override
+    public final void p(View view, float f, float f2) {
     }
 }

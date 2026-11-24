@@ -1,19 +1,17 @@
 package defpackage;
-public abstract class krd {
-    public static void a(Object obj, Object obj2) {
-        if (obj != null) {
-            if (obj2 != null) {
-                return;
-            }
-            throw new NullPointerException("null value in entry: " + obj + "=null");
-        }
-        throw new NullPointerException("null key in entry: null=" + obj2);
+public final class krd implements cq7 {
+    public static final krd a = new Object();
+
+    static {
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)));
     }
 
-    public static void b(int i, String str) {
-        if (i >= 0) {
-            return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        throw new IllegalArgumentException(str + " cannot be negative but was: " + i);
+        throw new ClassCastException();
     }
 }

@@ -1,43 +1,97 @@
 package defpackage;
-public final class wt4 implements Runnable {
-    public final byte a;
-    public final du4 b;
 
-    public wt4(du4 du4Var, byte b) {
-        this.a = b;
-        this.b = du4Var;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.Utilities;
+public final class wt4 extends tt4 {
+    public final byte l0 = 0;
+    public final Object m0;
+
+    public wt4(int i, Context context, r63 r63Var, float f, String str) {
+        super(i, context, r63Var, null, true, f, false, false);
+        this.m0 = str;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        du4 du4Var = this.b;
-        switch (b) {
-            case 0:
-                fyc fycVar = du4Var.q1;
-                j92 j92Var = du4Var.p1;
-                if (j92Var != null) {
-                    j92Var.d();
-                }
-                bu4 bu4Var = du4Var.B1;
-                if (bu4Var != null) {
-                    bu4Var.setTranslationY(-fycVar.d());
-                }
-                hn hnVar = du4Var.v1;
-                if (hnVar != null) {
-                    hnVar.setTranslationY(-fycVar.d());
-                }
-                du4Var.D0();
-                return;
+    public final void a() {
+        switch (this.l0) {
             case 1:
-                du4Var.B1.performClick();
-                return;
-            case 2:
-                du4Var.r1.i1();
+                v9b v9bVar = (v9b) this.m0;
+                v9bVar.N0.setTranslationY(v9bVar.n.getMeasuredHeight() - v9bVar.N0.g());
+                n8b n8bVar = v9bVar.r2;
+                if (n8bVar != null) {
+                    n8bVar.run();
+                    v9bVar.r2 = null;
+                    return;
+                }
                 return;
             default:
-                du4Var.dismiss();
                 return;
         }
+    }
+
+    @Override
+    public final void c(boolean z) {
+        switch (this.l0) {
+            case 1:
+                if (((v9b) this.m0).g0 == 0 && z) {
+                    gm.c3(new nsa(this, (byte) 25));
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.l0) {
+            case 1:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
+                    v9b v9bVar = (v9b) this.m0;
+                    v9bVar.M0 = true;
+                    v9bVar.c(false);
+                    return true;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final String getTitle() {
+        switch (this.l0) {
+            case 0:
+                return (String) this.m0;
+            default:
+                return super.getTitle();
+        }
+    }
+
+    @Override
+    public final void setTranslationY(float f) {
+        switch (this.l0) {
+            case 1:
+                super.setTranslationY(f);
+                v9b v9bVar = (v9b) this.m0;
+                if (v9bVar.l2) {
+                    float i = Utilities.i(1.0f - (f / (v9bVar.n.getMeasuredHeight() - v9bVar.N0.g())), 1.0f, 0.0f);
+                    v9bVar.r.b(gm.L(-32.0f) * i);
+                    v9bVar.r.setAlpha(1.0f - (0.6f * i));
+                    v9bVar.j0.setAlpha(1.0f - i);
+                    return;
+                }
+                return;
+            default:
+                super.setTranslationY(f);
+                return;
+        }
+    }
+
+    public wt4(v9b v9bVar, int i, Context context, r63 r63Var, yn6 yn6Var, boolean z, boolean z2, boolean z3) {
+        super(i, context, r63Var, yn6Var, z, 1.39f, z2, z3);
+        this.m0 = v9bVar;
     }
 }

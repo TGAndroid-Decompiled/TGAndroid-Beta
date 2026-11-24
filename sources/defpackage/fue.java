@@ -1,19 +1,31 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-public abstract class fue {
-    public final ld7 a(nd7 nd7Var) {
-        boolean z;
-        ByteBuffer byteBuffer = nd7Var.c;
-        byteBuffer.getClass();
-        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gre.f(z);
-        return b(nd7Var, byteBuffer);
+import android.os.Bundle;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class fue extends n8d {
+    public final byte c;
+    public final TaskCompletionSource d;
+
+    public fue(TaskCompletionSource taskCompletionSource, byte b) {
+        super((byte) 0);
+        this.c = b;
+        this.d = taskCompletionSource;
     }
 
-    public abstract ld7 b(nd7 nd7Var, ByteBuffer byteBuffer);
+    @Override
+    public final void U(Bundle bundle) {
+        byte b = this.c;
+        TaskCompletionSource taskCompletionSource = this.d;
+        switch (b) {
+            case 0:
+                taskCompletionSource.setResult(bundle);
+                return;
+            case 1:
+                taskCompletionSource.setResult(bundle);
+                return;
+            default:
+                taskCompletionSource.setResult(bundle);
+                return;
+        }
+    }
 }

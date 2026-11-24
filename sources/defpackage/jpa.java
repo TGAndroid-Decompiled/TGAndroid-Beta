@@ -1,175 +1,76 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stars;
-public final class jpa implements View.OnClickListener {
-    public final byte a;
-    public final upa b;
+import android.content.Context;
+import android.graphics.Rect;
+public final class jpa extends rz4 implements g94 {
+    public static final int w = 0;
+    public final h94 f;
+    public final eg9 h;
+    public final qz4[] n;
+    public final ylb r;
+    public int s;
 
-    public jpa(upa upaVar, byte b) {
-        this.a = b;
-        this.b = upaVar;
+    public jpa(Context context, ylb ylbVar, eg9 eg9Var) {
+        super(context);
+        this.f = new h94(0, this, d53.h, 1600L);
+        this.h = eg9Var;
+        this.r = ylbVar;
+        int i = cmb.Ml;
+        int p1 = cmb.p1(0.09411765f, cmb.v0(i, ylbVar));
+        cmb.p1(0.1254902f, cmb.v0(i, ylbVar));
+        this.e.setColor(p1);
+        this.n = new qz4[]{qz4.c(context, ylbVar, pz4.G, 2131749402), qz4.c(context, ylbVar, pz4.s, 2131749419), qz4.c(context, ylbVar, pz4.J, 2131749400)};
+        int i2 = 0;
+        while (true) {
+            qz4[] qz4VarArr = this.n;
+            if (i2 < qz4VarArr.length) {
+                this.a.addView(qz4VarArr[i2], qoe.l(1.0f, 0, -1));
+                this.n[i2].setOnClickListener(new v0(this, i2, (byte) 24));
+                i2++;
+            } else {
+                qz4VarArr[0].f(true, false);
+                return;
+            }
+        }
     }
 
     @Override
-    public final void onClick(View view) {
-        TL_stars.StarGift starGift;
-        TL_stars.StarGift starGift2;
-        TL_stars.StarGift starGift3;
-        spa spaVar;
-        byte b = this.a;
-        boolean z = true;
-        upa upaVar = this.b;
-        switch (b) {
-            case 0:
-                if (upaVar.Q.getAlpha() >= 1.0f) {
-                    upaVar.h0.run();
-                    return;
-                }
-                return;
-            case 1:
-                if (upaVar.Q.getAlpha() >= 1.0f) {
-                    upaVar.h0.run();
-                    return;
-                }
-                return;
-            case 2:
-                upaVar.b((kpa) view);
-                return;
-            case 3:
-                upaVar.b((kpa) view);
-                return;
-            case 4:
-                upa upaVar2 = this.b;
-                LinearLayout linearLayout = upaVar2.H;
-                spa[] spaVarArr = upaVar2.n;
-                if (upaVar2.getAlpha() >= 1.0f && !upaVar2.i0) {
-                    if (upaVar2.k0) {
-                        upaVar2.a(upaVar2.a0, upaVar2.b0, upaVar2.c0, upaVar2.d0);
-                        return;
-                    }
-                    ArrayList arrayList = new ArrayList();
-                    for (spa spaVar2 : spaVarArr) {
-                        if (spaVar2 != null) {
-                            TL_stars.StarGift starGift4 = spaVar2.h;
-                            if (starGift4 != null) {
-                                starGift3 = starGift4;
-                            } else {
-                                starGift3 = null;
-                            }
-                            if (starGift3 != null) {
-                                if (starGift4 == null) {
-                                    starGift4 = null;
-                                }
-                                arrayList.add(starGift4);
-                            }
-                        }
-                    }
-                    if (!arrayList.isEmpty() && upaVar2.f0 != null) {
-                        TextView textView = upaVar2.L;
-                        upaVar2.i0 = true;
-                        upaVar2.k0 = false;
-                        je5 je5Var = upaVar2.U;
-                        if (je5Var != null) {
-                            je5Var.f(true);
-                            upaVar2.U = null;
-                        }
-                        textView.setText("");
-                        upaVar2.M.setText(k96.a0(null, null, 2131749760, bc.I0(upaVar2.getGiftsSuccessChance())));
-                        for (int i = 0; i < spaVarArr.length; i++) {
-                            spa spaVar3 = spaVarArr[i];
-                            if (spaVar3 != null) {
-                                spaVar3.setClickable(false);
-                                spa spaVar4 = spaVarArr[i];
-                                TL_stars.StarGift starGift5 = spaVar4.h;
-                                if (starGift5 == null) {
-                                    starGift5 = null;
-                                }
-                                if (starGift5 == null) {
-                                    spaVar4.animate().alpha(0.0f).start();
-                                }
-                            }
-                        }
-                        int i2 = 0;
-                        while (true) {
-                            if (i2 < spaVarArr.length) {
-                                spa spaVar5 = spaVarArr[i2];
-                                if (spaVar5 != null) {
-                                    TL_stars.StarGift starGift6 = spaVar5.h;
-                                    if (starGift6 != null) {
-                                        starGift2 = starGift6;
-                                    } else {
-                                        starGift2 = null;
-                                    }
-                                    if (starGift2 != null) {
-                                        if (starGift6 == null) {
-                                            starGift6 = null;
-                                        }
-                                        textView.setText(starGift6.title + " #" + k96.E(starGift6.num, ','));
-                                    }
-                                }
-                                i2++;
-                            }
-                        }
-                        upaVar2.R.animate().alpha(0.0f).start();
-                        linearLayout.animate().alpha(0.0f).start();
-                        upaVar2.S.animate().alpha(1.0f).start();
-                        upaVar2.Q.animate().alpha(0.25f).start();
-                        upaVar2.K.d();
-                        ArrayList arrayList2 = new ArrayList();
-                        for (spa spaVar6 : spaVarArr) {
-                            TL_stars.StarGift starGift7 = spaVar6.h;
-                            if (starGift7 != null) {
-                                starGift = starGift7;
-                            } else {
-                                starGift = null;
-                            }
-                            if (starGift != null) {
-                                if (starGift7 == null) {
-                                    starGift7 = null;
-                                }
-                                arrayList2.add(starGift7);
-                            }
-                        }
-                        upaVar2.f0.a(arrayList2, new w77(upaVar2, arrayList2, (byte) 11), new z6a(upaVar2, (byte) 17));
-                        return;
-                    }
-                    gl.C3(linearLayout);
-                    return;
-                }
-                return;
-            default:
-                spa spaVar7 = (spa) view;
-                TL_stars.StarGift starGift8 = spaVar7.h;
-                if (starGift8 == null) {
-                    starGift8 = null;
-                }
-                if (starGift8 != null && !spaVar7.n) {
-                    spaVar7.a(null, true);
-                    upaVar.d(true);
-                    return;
-                }
-                int i3 = 0;
-                while (true) {
-                    spa[] spaVarArr2 = upaVar.n;
-                    if (i3 < spaVarArr2.length && (spaVar = spaVarArr2[i3]) != view) {
-                        if (spaVar != null) {
-                            TL_stars.StarGift starGift9 = spaVar.h;
-                            if (starGift9 == null) {
-                                starGift9 = null;
-                            }
-                            if (starGift9 != null) {
-                                z = false;
-                            }
-                        }
-                        i3++;
-                    }
-                }
-                upaVar.g0.a(new nu9(upaVar, spaVar7, (byte) 10), Boolean.valueOf(z));
-                return;
+    public final void D(int i, float f, float f2, h94 h94Var) {
+        b();
+        invalidate();
+    }
+
+    public final void a(int i) {
+        int i2 = this.s;
+        if (i2 != i) {
+            qz4[] qz4VarArr = this.n;
+            qz4VarArr[i2].f(false, true);
+            qz4VarArr[i].f(true, true);
+            this.s = i;
+            this.f.a(i);
+            this.h.a(Integer.valueOf(i));
         }
+    }
+
+    public final void b() {
+        float f = this.f.f;
+        int measuredHeight = getMeasuredHeight() - gm.L(8.0f);
+        Rect rect = this.c;
+        rect.set(gm.U1(f / 3.0f, gm.L(8.0f), getMeasuredWidth() - gm.L(8.0f)), gm.L(8.0f), gm.U1((f + 1.0f) / 3.0f, gm.L(8.0f), getMeasuredWidth() - gm.L(8.0f)), measuredHeight);
+        int L = gm.L(this.b * 7.0f);
+        Rect rect2 = this.d;
+        rect2.set(rect);
+        int i = -L;
+        rect2.inset(i, i);
+    }
+
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        b();
+    }
+
+    @Override
+    public final void V(float f, int i) {
     }
 }

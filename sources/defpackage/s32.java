@@ -1,66 +1,112 @@
 package defpackage;
 
-import android.location.Location;
+import android.content.Context;
 import android.view.View;
-public final class s32 implements Runnable {
-    public final byte a;
-    public final c42 b;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class s32 extends q59 {
+    public final Context c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public r32 f;
+    public int h;
+    public final w32 n;
 
-    public s32(c42 c42Var, byte b) {
-        this.a = b;
-        this.b = c42Var;
+    public s32(w32 w32Var, Context context) {
+        this.n = w32Var;
+        this.c = context;
     }
 
     @Override
-    public final void run() {
-        Location location;
-        byte b = this.a;
-        c42 c42Var = this.b;
-        switch (b) {
-            case 0:
-            case 2:
-                c42Var.P();
-                return;
-            case 1:
-                c42Var.c0();
-                return;
-            case 3:
-                double[] dArr = c42Var.b.x4;
-                c42Var.g0(dArr[0], dArr[1]);
-                return;
-            case 4:
-                c42Var.getClass();
-                gl.d3(new s32(c42Var, (byte) 7));
-                return;
-            case 5:
-                ra6 ra6Var = c42Var.L;
-                if (c42Var.l0) {
-                    c42Var.l0 = false;
-                    return;
-                }
-                ty4 ty4Var = c42Var.E;
-                if (ty4Var != null && (location = c42Var.j0) != null) {
-                    location.setLatitude(((yh5) ty4Var.d().b).a);
-                    c42Var.j0.setLongitude(((yh5) c42Var.E.d().b).b);
-                }
-                ra6Var.L(c42Var.j0);
-                ra6Var.H();
-                return;
-            case 6:
-                View view = c42Var.J;
-                if (view.getTag() == null) {
-                    view.animate().alpha(0.0f).setDuration(180L).start();
-                    return;
-                }
-                return;
-            case 7:
-                View view2 = c42Var.J;
-                view2.setTag(1);
-                view2.animate().alpha(0.0f).setDuration(180L).start();
-                return;
-            default:
-                c42Var.g0(0.0d, 0.0d);
-                return;
+    public final boolean D(u69 u69Var) {
+        if (u69Var.f == 0) {
+            return true;
         }
+        return false;
+    }
+
+    public final Object E(int i) {
+        int i2 = i - 1;
+        if (i2 >= 0 && i2 < this.d.size()) {
+            return this.d.get(i2);
+        }
+        return null;
+    }
+
+    @Override
+    public final int b() {
+        return this.d.size() + 2;
+    }
+
+    @Override
+    public final int d(int i) {
+        if (i == 0) {
+            return 1;
+        }
+        if (i == b() - 1) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        this.n.R();
+    }
+
+    @Override
+    public final void t(u69 u69Var, int i) {
+        boolean z;
+        TLRPC.User user;
+        if (u69Var.f == 0) {
+            v32 v32Var = (v32) u69Var.a;
+            if (i != b() - 2) {
+                z = true;
+            } else {
+                z = false;
+            }
+            Object E = E(i);
+            if (E instanceof yv2) {
+                yv2 yv2Var = (yv2) E;
+                user = yv2Var.m;
+                if (user == null) {
+                    v32Var.setCurrentId(yv2Var.a);
+                    v32Var.a(null, (CharSequence) this.e.get(i - 1), new o32(yv2Var, (byte) 1), z);
+                    user = null;
+                }
+            } else {
+                user = (TLRPC.User) E;
+            }
+            if (user != null) {
+                v32Var.a(user, (CharSequence) this.e.get(i - 1), new p32(user, (byte) 1), z);
+            }
+            boolean containsKey = this.n.x.containsKey(m32.a(E));
+            jh2 jh2Var = v32Var.d;
+            if (jh2Var.getVisibility() != 0) {
+                jh2Var.setVisibility(0);
+            }
+            jh2Var.a(containsKey, false);
+        }
+    }
+
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        View v32Var;
+        Context context = this.c;
+        if (i != 0) {
+            if (i != 1) {
+                v32Var = new View(context);
+                v32Var.setTag(-33024);
+            } else {
+                v32Var = new View(context);
+                v32Var.setLayoutParams(new g69(-1, gm.L(56.0f)));
+                v32Var.setTag(-33024);
+            }
+        } else {
+            v32Var = new v32(context, this.n.a);
+        }
+        return new u69(v32Var);
     }
 }

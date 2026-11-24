@@ -1,35 +1,31 @@
 package defpackage;
+public final class rr1 implements o7, iu1 {
+    public final yv1 a;
 
-import android.animation.LayoutTransition;
-import android.view.View;
-import android.view.ViewGroup;
-public final class rr1 implements LayoutTransition.TransitionListener {
-    public qr1 a;
-    public int b;
-    public final r6 c;
-    public final mu1 d;
-
-    public rr1(mu1 mu1Var, r6 r6Var) {
-        this.d = mu1Var;
-        this.c = r6Var;
+    public rr1(yv1 yv1Var) {
+        this.a = yv1Var;
     }
 
     @Override
-    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i) {
-        int i2 = this.b - 1;
-        this.b = i2;
-        if (i2 == 0 && this.a != null) {
-            this.c.getViewTreeObserver().removeOnPreDrawListener(this.a);
-            this.a = null;
-        }
+    public final void N(String str) {
+        this.a.sa(str, false);
     }
 
     @Override
-    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i) {
-        if (this.b == 0 && this.a == null) {
-            this.a = new qr1(this, (byte) 0);
-            this.c.getViewTreeObserver().addOnPreDrawListener(this.a);
-        }
-        this.b++;
+    public final void Z(int i) {
+        this.a.J(i, 0, 0, 0, true, true);
+    }
+
+    @Override
+    public final void h2() {
+        vs9.d(new pm1(this.a, (byte) 2));
+    }
+
+    @Override
+    public final void z0() {
+    }
+
+    @Override
+    public final void E(boolean z, boolean z2) {
     }
 }

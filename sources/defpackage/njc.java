@@ -1,14 +1,33 @@
 package defpackage;
-public final class njc {
-    public static final String b;
-    public final String a;
 
-    static {
-        String str = g8c.a;
-        b = "0";
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class njc implements Runnable {
+    public final byte a;
+    public final VoIPService b;
+    public final TLRPC.Updates c;
+    public final long d;
+
+    public njc(VoIPService voIPService, TLRPC.Updates updates, long j, byte b) {
+        this.a = b;
+        this.b = voIPService;
+        this.c = updates;
+        this.d = j;
     }
 
-    public njc(String str) {
-        this.a = str;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        long j = this.d;
+        TLRPC.Updates updates = this.c;
+        VoIPService voIPService = this.b;
+        switch (b) {
+            case 0:
+                voIPService.lambda$startConferenceGroupCall$49(updates, j);
+                return;
+            default:
+                voIPService.lambda$startConferenceGroupCall$41(updates, j);
+                return;
+        }
     }
 }

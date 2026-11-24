@@ -1,56 +1,68 @@
 package defpackage;
-public final class u06 {
-    private static final u06[] $VALUES;
-    public static final s06 Companion;
-    public static final u06 ON_ANY;
-    public static final u06 ON_CREATE;
-    public static final u06 ON_DESTROY;
-    public static final u06 ON_PAUSE;
-    public static final u06 ON_RESUME;
-    public static final u06 ON_START;
-    public static final u06 ON_STOP;
 
-    static {
-        ?? r0 = new Enum("ON_CREATE", 0);
-        ON_CREATE = r0;
-        ?? r1 = new Enum("ON_START", 1);
-        ON_START = r1;
-        ?? r3 = new Enum("ON_RESUME", 2);
-        ON_RESUME = r3;
-        ?? r5 = new Enum("ON_PAUSE", 3);
-        ON_PAUSE = r5;
-        ?? r7 = new Enum("ON_STOP", 4);
-        ON_STOP = r7;
-        ?? r9 = new Enum("ON_DESTROY", 5);
-        ON_DESTROY = r9;
-        ?? r11 = new Enum("ON_ANY", 6);
-        ON_ANY = r11;
-        $VALUES = new u06[]{r0, r1, r3, r5, r7, r9, r11};
-        Companion = new Object();
+import android.content.Context;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.LaunchActivity;
+public final class u06 implements Runnable {
+    public final byte a = 2;
+    public final int b;
+    public final boolean c;
+    public final long d;
+    public final Object e;
+    public final Object f;
+    public final Object h;
+    public final Object n;
+    public final Object r;
+    public final Object s;
+    public final Object w;
+    public final Object x;
+
+    public u06(hs6 hs6Var, qqb qqbVar, vh6 vh6Var, AtomicInteger atomicInteger, Runnable runnable, int i, rqb rqbVar, vh6 vh6Var2, vh6 vh6Var3, boolean z, long j) {
+        this.e = hs6Var;
+        this.f = qqbVar;
+        this.h = vh6Var;
+        this.n = atomicInteger;
+        this.r = runnable;
+        this.b = i;
+        this.s = rqbVar;
+        this.w = vh6Var2;
+        this.x = vh6Var3;
+        this.c = z;
+        this.d = j;
     }
 
-    public static u06 valueOf(String str) {
-        return (u06) Enum.valueOf(u06.class, str);
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.u06.run():void");
     }
 
-    public static u06[] values() {
-        return (u06[]) $VALUES.clone();
+    public u06(Context context, int i, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, ylb ylbVar, ts9 ts9Var, c41 c41Var, e6a e6aVar, e6a e6aVar2) {
+        this.e = context;
+        this.b = i;
+        this.f = tL_starGiftUnique;
+        this.d = j;
+        this.h = tL_textWithEntities;
+        this.c = z;
+        this.n = ylbVar;
+        this.r = ts9Var;
+        this.s = c41Var;
+        this.w = e6aVar;
+        this.x = e6aVar2;
     }
 
-    public final v06 a() {
-        switch (t06.a[ordinal()]) {
-            case 1:
-            case 2:
-                return v06.c;
-            case 3:
-            case 4:
-                return v06.d;
-            case 5:
-                return v06.e;
-            case 6:
-                return v06.a;
-            default:
-                throw new IllegalArgumentException(this + " has no target state");
-        }
+    public u06(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z, String str2, int i, TLRPC.Chat chat, nk3 nk3Var, TLRPC.User user, long j, String str3) {
+        this.e = launchActivity;
+        this.f = str;
+        this.r = tL_chatAdminRights;
+        this.c = z;
+        this.h = str2;
+        this.b = i;
+        this.s = chat;
+        this.w = nk3Var;
+        this.x = user;
+        this.d = j;
+        this.n = str3;
     }
 }

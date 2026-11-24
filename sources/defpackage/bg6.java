@@ -1,50 +1,31 @@
 package defpackage;
 
-import android.media.LoudnessCodecController;
-import android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener;
-import android.media.MediaCodec;
-import java.util.HashSet;
-import java.util.Iterator;
-public final class bg6 {
-    public final HashSet a = new HashSet();
-    public LoudnessCodecController b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class bg6 implements Runnable {
+    public final byte a;
+    public final cg6 b;
 
-    public final void a(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController = this.b;
-        if (loudnessCodecController != null && !loudnessCodecController.addMediaCodec(mediaCodec)) {
-            return;
-        }
-        gre.p(this.a.add(mediaCodec));
+    public bg6(cg6 cg6Var, byte b) {
+        this.a = b;
+        this.b = cg6Var;
     }
 
-    public final void b() {
-        this.a.clear();
-        LoudnessCodecController loudnessCodecController = this.b;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-        }
-    }
-
-    public final void c(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController;
-        if (this.a.remove(mediaCodec) && (loudnessCodecController = this.b) != null) {
-            loudnessCodecController.removeMediaCodec(mediaCodec);
-        }
-    }
-
-    public final void d(int i) {
-        LoudnessCodecController loudnessCodecController = this.b;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-            this.b = null;
-        }
-        LoudnessCodecController create = LoudnessCodecController.create(i, vn3.a, (LoudnessCodecController$OnLoudnessCodecUpdateListener) new Object());
-        this.b = create;
-        Iterator it = this.a.iterator();
-        while (it.hasNext()) {
-            if (!create.addMediaCodec((MediaCodec) it.next())) {
-                it.remove();
-            }
+    @Override
+    public final void run() {
+        byte b = this.a;
+        cg6 cg6Var = this.b;
+        switch (b) {
+            case 0:
+                s09 s09Var = cg6Var.h;
+                s09Var.getAnimatedDrawable().I(0, false, false);
+                s09Var.d();
+                EditTextBoldCursor editTextBoldCursor = cg6Var.b;
+                editTextBoldCursor.requestFocus();
+                gm.E3(editTextBoldCursor);
+                return;
+            default:
+                cg6Var.b.requestFocus();
+                return;
         }
     }
 }

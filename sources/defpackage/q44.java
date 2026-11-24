@@ -1,35 +1,20 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class q44 extends b4 {
-    public static final Parcelable.Creator<q44> CREATOR = new j9d((byte) 12);
-    public String a;
-    public String b;
+import java.util.regex.Pattern;
+public final class q44 extends tp5 {
+    public static final Pattern e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final ui6 b() {
+        String a = a(e);
+        if (a != null) {
+            return e(ai5.a(a));
         }
-        if (obj instanceof q44) {
-            q44 q44Var = (q44) obj;
-            if (cqe.a(this.a, q44Var.a) && cqe.a(this.b, q44Var.b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b});
+        return null;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 1, this.a);
-        jte.l(parcel, 2, this.b);
-        jte.s(parcel, r);
+    public final char c() {
+        return '&';
     }
 }

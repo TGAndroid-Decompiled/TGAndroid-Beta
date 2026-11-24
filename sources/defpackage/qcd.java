@@ -1,3 +1,8 @@
 package defpackage;
-public final class qcd extends vk9 {
+public final class qcd {
+    public final tcd a;
+
+    public qcd(tcd tcdVar) {
+        this.a = tcdVar;
+    }
 }

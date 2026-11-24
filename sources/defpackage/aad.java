@@ -1,163 +1,243 @@
 package defpackage;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-public abstract class aad extends x8d implements List, RandomAccess {
-    public static final k9d f = new k9d(tdd.r, 0);
+import java.util.HashMap;
+import java.util.Map;
+public final class aad implements dq7 {
+    public static final Charset e = Charset.forName("UTF-8");
+    public static final wa4 f = new wa4("key", b10.m(mlb.o(i9d.class, new f8d(1))));
+    public static final wa4 g = new wa4("value", b10.m(mlb.o(i9d.class, new f8d(2))));
+    public static final u9d h = u9d.b;
+    public OutputStream a;
+    public final HashMap b;
+    public final HashMap c;
+    public final kv8 d = new kv8(this, (byte) 1);
 
-    public static tdd m(int i, Object[] objArr) {
-        if (i == 0) {
-            return tdd.r;
+    public aad(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2) {
+        this.a = byteArrayOutputStream;
+        this.b = hashMap;
+        this.c = hashMap2;
+    }
+
+    public static int j(wa4 wa4Var) {
+        i9d i9dVar = (i9d) wa4Var.b(i9d.class);
+        if (i9dVar != null) {
+            return i9dVar.zza();
         }
-        return new tdd(i, objArr);
+        throw new RuntimeException("Field has no @Protobuf config");
     }
 
     @Override
-    public final void add(int i, Object obj) {
-        throw new UnsupportedOperationException();
+    public final dq7 a(wa4 wa4Var, Object obj) {
+        c(wa4Var, obj, true);
+        return this;
     }
 
-    @Override
-    public final boolean addAll(int i, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
-            return true;
+    public final void b(wa4 wa4Var, double d, boolean z) {
+        if (z && d == 0.0d) {
+            return;
         }
-        return false;
+        l((j(wa4Var) << 3) | 1);
+        this.a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
     }
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i = 0; i < size; i++) {
-                            if (m1f.a(get(i), list.get(i))) {
-                            }
-                        }
-                        return true;
-                    }
-                    k9d listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (it.hasNext()) {
-                                if (!m1f.a(listIterator.next(), it.next())) {
-                                    break;
-                                }
-                            } else {
-                                break;
-                            }
-                        } else if (!it.hasNext()) {
-                            return true;
-                        }
-                    }
+    public final void c(wa4 wa4Var, Object obj, boolean z) {
+        if (obj != null) {
+            if (obj instanceof CharSequence) {
+                CharSequence charSequence = (CharSequence) obj;
+                if (!z || charSequence.length() != 0) {
+                    l((j(wa4Var) << 3) | 2);
+                    byte[] bytes = charSequence.toString().getBytes(e);
+                    l(bytes.length);
+                    this.a.write(bytes);
+                }
+            } else if (obj instanceof Collection) {
+                for (Object obj2 : (Collection) obj) {
+                    c(wa4Var, obj2, false);
+                }
+            } else if (obj instanceof Map) {
+                for (Map.Entry entry : ((Map) obj).entrySet()) {
+                    k(h, wa4Var, entry, false);
+                }
+            } else if (obj instanceof Double) {
+                b(wa4Var, ((Double) obj).doubleValue(), z);
+            } else if (obj instanceof Float) {
+                float floatValue = ((Float) obj).floatValue();
+                if (!z || floatValue != 0.0f) {
+                    l((j(wa4Var) << 3) | 5);
+                    this.a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                }
+            } else if (obj instanceof Number) {
+                i(wa4Var, ((Number) obj).longValue(), z);
+            } else if (obj instanceof Boolean) {
+                h(wa4Var, ((Boolean) obj).booleanValue() ? 1 : 0, z);
+            } else if (obj instanceof byte[]) {
+                byte[] bArr = (byte[]) obj;
+                if (z && bArr.length == 0) {
+                    return;
+                }
+                l((j(wa4Var) << 3) | 2);
+                l(bArr.length);
+                this.a.write(bArr);
+            } else {
+                cq7 cq7Var = (cq7) this.b.get(obj.getClass());
+                if (cq7Var != null) {
+                    k(cq7Var, wa4Var, obj, z);
+                    return;
+                }
+                zac zacVar = (zac) this.c.get(obj.getClass());
+                if (zacVar != null) {
+                    kv8 kv8Var = this.d;
+                    kv8Var.b = false;
+                    kv8Var.d = wa4Var;
+                    kv8Var.c = z;
+                    zacVar.a(obj, kv8Var);
+                } else if (obj instanceof y8d) {
+                    h(wa4Var, ((y8d) obj).zza(), true);
+                } else if (obj instanceof Enum) {
+                    h(wa4Var, ((Enum) obj).ordinal(), true);
+                } else {
+                    k(u9d.c, wa4Var, obj, z);
                 }
             }
-            return false;
         }
-        return true;
     }
 
     @Override
-    public int h(Object[] objArr) {
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            objArr[i] = get(i);
-        }
-        return size;
+    public final dq7 d(wa4 wa4Var, boolean z) {
+        h(wa4Var, z ? 1 : 0, true);
+        return this;
     }
 
     @Override
-    public final int hashCode() {
-        int size = size();
-        int i = 1;
-        for (int i2 = 0; i2 < size; i2++) {
-            i = (i * 31) + get(i2).hashCode();
-        }
-        return i;
+    public final dq7 e(wa4 wa4Var, int i) {
+        h(wa4Var, i, true);
+        return this;
     }
 
     @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
+    public final dq7 f(wa4 wa4Var, double d) {
+        b(wa4Var, d, true);
+        return this;
+    }
+
+    @Override
+    public final dq7 g(wa4 wa4Var, long j) {
+        i(wa4Var, j, true);
+        return this;
+    }
+
+    public final void h(wa4 wa4Var, int i, boolean z) {
+        if (!z || i != 0) {
+            i9d i9dVar = (i9d) wa4Var.b(i9d.class);
+            if (i9dVar != null) {
+                int ordinal = i9dVar.zzb().ordinal();
+                if (ordinal != 0) {
+                    if (ordinal != 1) {
+                        if (ordinal != 2) {
+                            return;
+                        }
+                        l((i9dVar.zza() << 3) | 5);
+                        this.a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(i).array());
+                        return;
+                    }
+                    l(i9dVar.zza() << 3);
+                    l((i << 1) ^ (i >> 31));
+                    return;
+                }
+                l(i9dVar.zza() << 3);
+                l(i);
+                return;
+            }
+            throw new RuntimeException("Field has no @Protobuf config");
         }
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            if (obj.equals(get(i))) {
-                return i;
+    }
+
+    public final void i(wa4 wa4Var, long j, boolean z) {
+        if (!z || j != 0) {
+            i9d i9dVar = (i9d) wa4Var.b(i9d.class);
+            if (i9dVar != null) {
+                int ordinal = i9dVar.zzb().ordinal();
+                if (ordinal != 0) {
+                    if (ordinal != 1) {
+                        if (ordinal != 2) {
+                            return;
+                        }
+                        l((i9dVar.zza() << 3) | 1);
+                        this.a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putLong(j).array());
+                        return;
+                    }
+                    l(i9dVar.zza() << 3);
+                    m((j << 1) ^ (j >> 63));
+                    return;
+                }
+                l(i9dVar.zza() << 3);
+                m(j);
+                return;
+            }
+            throw new RuntimeException("Field has no @Protobuf config");
+        }
+    }
+
+    public final void k(cq7 cq7Var, wa4 wa4Var, Object obj, boolean z) {
+        n26 n26Var = new n26((byte) 1);
+        n26Var.b = 0L;
+        try {
+            OutputStream outputStream = this.a;
+            this.a = n26Var;
+            cq7Var.a(obj, this);
+            this.a = outputStream;
+            long j = n26Var.b;
+            n26Var.close();
+            if (z && j == 0) {
+                return;
+            }
+            l((j(wa4Var) << 3) | 2);
+            m(j);
+            cq7Var.a(obj, this);
+        } catch (Throwable th) {
+            try {
+                n26Var.close();
+            } catch (Throwable th2) {
+                try {
+                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th, th2);
+                } catch (Exception unused) {
+                }
+            }
+            throw th;
+        }
+    }
+
+    public final void l(int i) {
+        while (true) {
+            int i2 = ((i & (-128)) > 0L ? 1 : ((i & (-128)) == 0L ? 0 : -1));
+            OutputStream outputStream = this.a;
+            if (i2 != 0) {
+                outputStream.write((i & 127) | 128);
+                i >>>= 7;
+            } else {
+                outputStream.write(i & 127);
+                return;
             }
         }
-        return -1;
     }
 
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public aad subList(int i, int i2) {
-        l2f.b(i, i2, size());
-        int i3 = i2 - i;
-        if (i3 == size()) {
-            return this;
-        }
-        if (i3 == 0) {
-            return tdd.r;
-        }
-        return new y9d(this, i, i3);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
+    public final void m(long j) {
+        while (true) {
+            int i = (((-128) & j) > 0L ? 1 : (((-128) & j) == 0L ? 0 : -1));
+            OutputStream outputStream = this.a;
+            if (i != 0) {
+                outputStream.write((((int) j) & 127) | 128);
+                j >>>= 7;
+            } else {
+                outputStream.write(((int) j) & 127);
+                return;
             }
         }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final k9d listIterator(int i) {
-        int size = size();
-        if (i >= 0 && i <= size) {
-            if (isEmpty()) {
-                return f;
-            }
-            return new k9d(this, i);
-        }
-        k93.i(l2f.c(i, size, "index"));
-        return null;
-    }
-
-    @Override
-    public final Object remove(int i) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object set(int i, Object obj) {
-        throw new UnsupportedOperationException();
     }
 }

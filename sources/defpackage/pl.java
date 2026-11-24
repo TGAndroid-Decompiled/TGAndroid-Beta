@@ -1,236 +1,334 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
+import android.animation.ValueAnimator;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.concurrent.Executor;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class pl implements RequestDelegate {
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class pl implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
     public final Object b;
     public final Object c;
-
-    public pl(String str, ArrayList arrayList) {
-        this.a = (byte) 4;
-        this.c = arrayList;
-        this.b = str;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i;
-        int indexOf;
-        switch (this.a) {
-            case 0:
-                rl rlVar = (rl) this.b;
-                kk7.f(rlVar.e).d(new ql(rlVar, (ArrayList) this.c, tLObject, (byte) 0));
-                return;
-            case 1:
-                gl.d3(new nn6((i20) this.b, (hd) this.c, tLObject, (byte) 10));
-                return;
-            case 2:
-                gl.d3(new nn6(tLObject, (na7) this.b, (xy9) this.c));
-                return;
-            case 3:
-                na7 na7Var = (na7) this.b;
-                x15 x15Var = (x15) this.c;
-                if (tLObject instanceof TLRPC.TL_contacts_found) {
-                    TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
-                    na7Var.a4(tL_contacts_found.users, false);
-                    ArrayList arrayList = new ArrayList();
-                    for (int i2 = 0; i2 < tL_contacts_found.users.size(); i2++) {
-                        TLRPC.User user = tL_contacts_found.users.get(i2);
-                        if (!user.self && !l7c.y(user) && !l7c.B(user.id)) {
-                            arrayList.add(user);
-                        }
-                    }
-                    gl.d3(new z20(x15Var, arrayList, (byte) 10));
-                    return;
-                }
-                return;
-            case 4:
-                gl.d3(new s67(tLObject, (ArrayList) this.c, (String) this.b, tL_error, (byte) 12));
-                return;
-            case 5:
-                gl.d3(new nn6((byte) 25, (ss0) this.b, (Context) this.c, tLObject));
-                return;
-            case 6:
-                gl.d3(new s67((rs0) this.b, tLObject, (String) this.c, tL_error, (byte) 13));
-                return;
-            case 7:
-                gl.d3(new nn6((byte) 26, (boolean[]) this.b, (it0) this.c, tLObject));
-                return;
-            case 8:
-                gl.d3(new fv0((j41) this.b, tLObject, (TL_account.TL_businessChatLink) this.c, (byte) 6));
-                return;
-            case 9:
-                gl.d3(new s67((b81) this.b, tL_error, tLObject, (Calendar) this.c, (byte) 19));
-                return;
-            case 10:
-                eg1 eg1Var = (eg1) this.b;
-                eg1Var.getClass();
-                gl.d3(new fv0(eg1Var, tLObject, (hd) this.c, (byte) 17));
-                return;
-            case 11:
-                gl.d3(new fv0((lh1) this.b, tLObject, (akb) this.c, (byte) 18));
-                return;
-            case 12:
-                gl.d3(new fv0((zi1) this.b, tLObject, (Activity) this.c, (byte) 21));
-                return;
-            case 13:
-                mu1 mu1Var = (mu1) this.b;
-                TLObject tLObject2 = (TLObject) this.c;
-                mu1Var.getClass();
-                if (tLObject instanceof TLRPC.messages_Messages) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    if (!messages_messages.messages.isEmpty()) {
-                        i = ((TLRPC.messages_Messages) tLObject2).offset_id_offset - messages_messages.offset_id_offset;
-                    } else {
-                        i = ((TLRPC.messages_Messages) tLObject2).offset_id_offset;
-                    }
-                    gl.d3(new ml1(mu1Var, i, (byte) 5));
-                    return;
-                }
-                return;
-            case 14:
-                gl.d3(new jn1((mu1) this.b, tLObject, (TLRPC.User) this.c, (byte) 1));
-                return;
-            case 15:
-                gl.d3(new hn1((mu1) this.b, tLObject, tL_error, (ad7) this.c, (byte) 1));
-                return;
-            case 16:
-                mu1 mu1Var2 = (mu1) this.b;
-                TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages = (TLRPC.TL_messages_sendScheduledMessages) this.c;
-                mu1Var2.getClass();
-                if (tL_error == null) {
-                    mu1Var2.getMessagesController().Q3((TLRPC.Updates) tLObject, false);
-                    gl.d3(new aj1(mu1Var2, tL_messages_sendScheduledMessages, (byte) 14));
-                    return;
-                } else if (tL_error.text != null) {
-                    gl.d3(new aj1(mu1Var2, tL_error, (byte) 15));
-                    return;
-                } else {
-                    return;
-                }
-            case 17:
-                gl.d3(new jn1((ps1) this.b, tLObject, (k27) this.c, (byte) 3));
-                return;
-            case 18:
-                gl.d3(new kx1((x02) this.b, (TLRPC.TL_attachMenuBot) this.c, (byte) 8));
-                return;
-            case 19:
-                gl.d3(new kx1((x02) this.b, (q02) this.c, (byte) 7));
-                return;
-            case 20:
-                p82 p82Var = (p82) this.b;
-                TL_bots.setBotInfo setbotinfo = (TL_bots.setBotInfo) this.c;
-                TLRPC.UserFull userFull = p82Var.E0;
-                if (userFull != null) {
-                    userFull.about = setbotinfo.about;
-                    p82Var.getMessagesStorage().g2(p82Var.E0, false);
-                }
-                gl.d3(new k82(p82Var, (byte) 2));
-                return;
-            case 21:
-                gl.d3(new n92((x92) this.b, (hd[]) this.c, (byte) 0));
-                return;
-            case 22:
-                zc2 zc2Var = (zc2) this.b;
-                zc2Var.getClass();
-                gl.d3(new hn1(zc2Var, tL_error, tLObject, (TwoStepVerificationActivity) this.c, (byte) 9));
-                return;
-            case 23:
-                gl.d3(new jn1((vd2) this.b, tLObject, (akb) this.c, (byte) 18));
-                return;
-            case 24:
-                gl.d3(new n92((mf2) this.b, (on7) this.c, (byte) 18));
-                return;
-            case 25:
-                ConnectionsManager.lambda$sendRequestTyped$3((Executor) this.b, (i8c) this.c, tLObject, tL_error);
-                return;
-            case 26:
-                qu2 qu2Var = (qu2) this.b;
-                ak8 ak8Var = (ak8) this.c;
-                if (tL_error == null) {
-                    qu2Var.a0.clear();
-                    qu2Var.Z.clear();
-                    qu2Var.n0 = 0;
-                    qu2Var.s = false;
-                    qu2Var.e = false;
-                    qu2Var.h = false;
-                    qu2Var.b = false;
-                    qu2Var.r = false;
-                    qu2Var.w = "";
-                    gl.d3(new gu2(qu2Var, ak8Var, (byte) 0));
-                    return;
-                }
-                gl.d3(ak8Var);
-                return;
-            case 27:
-                qu2 qu2Var2 = (qu2) this.b;
-                TLRPC.User user2 = (TLRPC.User) this.c;
-                if (tL_error == null) {
-                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    TLRPC.UserProfilePhoto userProfilePhoto = user2.photo;
-                    if (userProfilePhoto != null && userProfilePhoto.personal) {
-                        for (int i3 = 0; i3 < updates.users.size(); i3++) {
-                            if (updates.users.get(i3).id == user2.id) {
-                                updates.users.get(i3).photo = user2.photo;
-                            }
-                        }
-                    }
-                    qu2Var2.getMessagesController().Q3(updates, false);
-                    for (int i4 = 0; i4 < updates.users.size(); i4++) {
-                        TLRPC.User user3 = updates.users.get(i4);
-                        if (user3.id == user2.id) {
-                            Utilities.h.c(new gu2(qu2Var2, user3, (byte) 1));
-                            TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                            tL_contact.user_id = user3.id;
-                            ArrayList arrayList2 = new ArrayList();
-                            arrayList2.add(tL_contact);
-                            qu2Var2.getMessagesStorage().Z0(arrayList2, false);
-                            if (!TextUtils.isEmpty(user3.phone)) {
-                                qu2.m(0, user3.first_name, user3.last_name);
-                                qu2Var2.getMessagesStorage().e(user3.phone, "");
-                                nu2 nu2Var = (nu2) qu2Var2.a0.get(user3.phone);
-                                if (nu2Var != null && (indexOf = nu2Var.g.indexOf(user3.phone)) != -1) {
-                                    nu2Var.h.set(indexOf, 0);
-                                }
-                            }
-                        }
-                    }
-                    gl.d3(new jn1(qu2Var2, updates, user2, (byte) 27));
-                    return;
-                }
-                return;
-            case 28:
-                qu2 qu2Var3 = (qu2) this.b;
-                SharedPreferences.Editor editor = (SharedPreferences.Editor) this.c;
-                if (tLObject instanceof Vector) {
-                    gl.d3(new jn1(qu2Var3, editor, (Vector) tLObject, (byte) 25));
-                    return;
-                }
-                return;
-            default:
-                gl.d3(new mg3((zu3) this.b, tLObject, (k27) this.c, (byte) 15));
-                return;
-        }
-    }
 
     public pl(Object obj, Object obj2, byte b) {
         this.a = b;
         this.b = obj;
         this.c = obj2;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        xib xibVar;
+        float f = 0.2f;
+        int i = 0;
+        switch (this.a) {
+            case 0:
+                s02 s02Var = (s02) this.b;
+                Window window = (Window) this.c;
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                if (s02Var != null) {
+                    i22 i22Var = s02Var.b;
+                    i22Var.G0 = -1;
+                    i22Var.H0 = intValue;
+                    i22Var.b.invalidate();
+                }
+                try {
+                    window.setNavigationBarColor(intValue);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            case 1:
+                bf0 bf0Var = (bf0) this.b;
+                bf0 bf0Var2 = (bf0) this.c;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bf0Var.setScaleX(floatValue);
+                bf0Var.setScaleY(floatValue);
+                float animatedFraction = valueAnimator.getAnimatedFraction();
+                if (animatedFraction > 0.25f && !bf0Var2.getImageReceiver().B()) {
+                    bf0Var.setAlpha(1.0f - ((animatedFraction - 0.25f) * 1.3333334f));
+                    return;
+                }
+                return;
+            case 2:
+                ng0 ng0Var = (ng0) this.b;
+                ql1 ql1Var = (ql1) this.c;
+                ql1Var.f = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ArrayList arrayList = ng0Var.b;
+                int size = arrayList.size();
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    ql1 ql1Var2 = (ql1) obj;
+                    if (ql1Var2 != ql1Var) {
+                        ql1Var2.f = (int) ((ql1Var2.g / 255.0f) * (255 - ql1Var.f));
+                    }
+                }
+                ng0Var.invalidate();
+                return;
+            case 3:
+                ng0 ng0Var2 = (ng0) this.b;
+                ll1 ll1Var = (ll1) this.c;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ArrayList arrayList2 = ng0Var2.c;
+                int size2 = arrayList2.size();
+                while (i < size2) {
+                    Object obj2 = arrayList2.get(i);
+                    i++;
+                    ll1 ll1Var2 = (ll1) obj2;
+                    if (ll1Var2 == ll1Var) {
+                        ll1Var.d = (int) (floatValue2 * 255.0f);
+                    } else {
+                        ll1Var2.d = (int) ((1.0f - floatValue2) * ll1Var2.e);
+                    }
+                }
+                ng0Var2.invalidate();
+                return;
+            case 4:
+                ((gx) this.b).accept(Float.valueOf(((y21) this.c).getTranslationY()));
+                return;
+            case 5:
+                ((t52) this.b).accept(Float.valueOf(((y21) this.c).getTranslationY()));
+                return;
+            case 6:
+                yv1 yv1Var = (yv1) this.b;
+                yv1 yv1Var2 = (yv1) this.c;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                yv1Var2.ra = floatValue3;
+                yv1Var2.fragmentView.invalidate();
+                yv1Var2.A0.invalidate();
+                float f2 = 1.0f - floatValue3;
+                float L = gm.L(8.0f) * f2;
+                yv1Var.p1.setTranslationY(L);
+                yv1Var.p1.getAvatarImageView().setTranslationY(-L);
+                float f3 = (-gm.L(8.0f)) * floatValue3;
+                yv1Var2.p1.setTranslationY(f3);
+                yv1Var2.p1.getAvatarImageView().setTranslationY(-f3);
+                float f4 = (floatValue3 * 0.2f) + 0.8f;
+                yv1Var.p1.getAvatarImageView().setScaleX(f4);
+                yv1Var.p1.getAvatarImageView().setScaleY(f4);
+                yv1Var.p1.getAvatarImageView().setAlpha(floatValue3);
+                float f5 = (0.2f * f2) + 0.8f;
+                yv1Var2.p1.getAvatarImageView().setScaleX(f5);
+                yv1Var2.p1.getAvatarImageView().setScaleY(f5);
+                yv1Var2.p1.getAvatarImageView().setAlpha(f2);
+                r02 r02Var = yv1Var2.b1;
+                if (r02Var != null) {
+                    r02Var.setAlpha(f2);
+                    return;
+                }
+                return;
+            case 7:
+                ((qu3) this.c).setOffsetY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                i22 i22Var2 = ((k12) this.b).d0;
+                i22Var2.E1();
+                a22 a22Var = i22Var2.v2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = i22Var2.d2;
+                if (a22Var == chatAttachAlertPhotoLayout) {
+                    chatAttachAlertPhotoLayout.m(i22Var2.i4);
+                    return;
+                }
+                return;
+            case 8:
+                ba2 ba2Var = (ba2) this.b;
+                ArrayList arrayList3 = (ArrayList) this.c;
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ba2Var.O.setAlpha(floatValue4);
+                float f6 = 1.0f - floatValue4;
+                ba2Var.O.setTranslationY(((-xibVar.getHeight()) / 2.0f) * f6);
+                ba2Var.O.setScaleY((floatValue4 * 0.8f) + 0.2f);
+                while (i < arrayList3.size()) {
+                    ((View) arrayList3.get(i)).setTranslationY((-ba2Var.O.getHeight()) * f6);
+                    i++;
+                }
+                return;
+            case 9:
+                ((bm1) this.b).c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((cm1) this.c).invalidate();
+                return;
+            case 10:
+                x53 x53Var = (x53) this.b;
+                ArrayList arrayList4 = (ArrayList) this.c;
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                while (i < arrayList4.size()) {
+                    x53.g((View) arrayList4.get(i), floatValue5);
+                    i++;
+                }
+                x53Var.m.l0.invalidate();
+                return;
+            case 11:
+                ((sc3) this.b).P((u69) this.c);
+                return;
+            case 12:
+                hh3 hh3Var = (hh3) this.b;
+                lka lkaVar = (lka) this.c;
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f7 = 1.0f - floatValue6;
+                lkaVar.setAlpha(f7);
+                lkaVar.setTranslationY((-gm.L(5.0f)) * floatValue6);
+                hh3Var.E.setAlpha(floatValue6);
+                hh3Var.E.setTranslationY(gm.L(5.0f) * f7);
+                return;
+            case 13:
+                ((mi3) this.b).M.a5((mk3) this.c, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 14:
+                yh4 yh4Var = (yh4) this.b;
+                ((rl) this.c).b = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                while (i < ((ArrayList) yh4Var.c).size()) {
+                    if (!oi5.b) {
+                        ((View) ((ArrayList) yh4Var.c).get(i)).invalidate();
+                    }
+                    i++;
+                }
+                return;
+            case 15:
+                ko4 ko4Var = (ko4) this.b;
+                int[] iArr = (int[]) this.c;
+                ko4Var.getClass();
+                float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                Paint paint = new Paint(1);
+                LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{on2.f(floatValue7, iArr[0], ko4Var.h[0]), on2.f(floatValue7, iArr[1], ko4Var.h[1])}, (float[]) null, Shader.TileMode.CLAMP);
+                ko4Var.b = linearGradient;
+                linearGradient.setLocalMatrix(ko4Var.c);
+                paint.setShader(ko4Var.b);
+                ko4Var.a.r.put(0, paint);
+                ko4Var.g.setColor(on2.f(0.1f, on2.f(floatValue7, iArr[1], ko4Var.h[1]), -1));
+                ko4Var.f.setColor(on2.f(0.1f, on2.f(floatValue7, iArr[0], ko4Var.h[0]), -16777216));
+                ko4Var.invalidateSelf();
+                return;
+            case 16:
+                jb5 jb5Var = (jb5) this.b;
+                jb5Var.getClass();
+                ((ha5) this.c).setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                jb5Var.invalidate();
+                return;
+            case 17:
+                ndc ndcVar = (ndc) this.c;
+                String[] strArr = MediaController.W1;
+                if (((MediaController) this.b).Y != 1) {
+                    f = 1.0f;
+                }
+                ndcVar.A0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f);
+                return;
+            case 18:
+                PhotoViewer photoViewer = (PhotoViewer) this.b;
+                Drawable[] drawableArr = PhotoViewer.d9;
+                photoViewer.X = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((View) this.c).invalidateOutline();
+                ImageView imageView = photoViewer.x3;
+                if (imageView != null) {
+                    imageView.invalidateOutline();
+                }
+                kb8 kb8Var = photoViewer.F2;
+                if (kb8Var != null) {
+                    kb8Var.invalidateOutline();
+                    return;
+                }
+                return;
+            case 19:
+                ((fc8) this.c).r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((ec8) this.b).invalidate();
+                return;
+            case 20:
+                ((Drawable) this.c).setAlpha(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                View view = ((yj8) ((ic8) this.b).c).v2;
+                if (view instanceof rc2) {
+                    ((rc2) view).r2();
+                    return;
+                } else {
+                    view.invalidate();
+                    return;
+                }
+            case 21:
+                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.b;
+                boolean[] zArr = (boolean[]) this.c;
+                int i2 = ProfileStoriesView.t0;
+                float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!zArr[0] && floatValue8 > 0.2f) {
+                    zArr[0] = true;
+                    if (gda.o() > 0) {
+                        gm.W3(profileStoriesView);
+                        gm.d3(new pp8(profileStoriesView, (byte) 9), 180L);
+                    }
+                }
+                profileStoriesView.a0 = Math.max(1.0f, floatValue8);
+                profileStoriesView.invalidate();
+                return;
+            case 22:
+                ((TextView) this.b).setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((TextView) this.c).setAlpha(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 23:
+                g29 g29Var = (g29) this.b;
+                boolean[] zArr2 = (boolean[]) this.c;
+                float floatValue9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (floatValue9 < 0.5f) {
+                    float f8 = floatValue9 / 0.5f;
+                    g29Var.setRotationY(90.0f * f8);
+                    g29Var.B0 = ((1.0f - f8) * 0.3f) + 0.7f;
+                    g29Var.invalidate();
+                    return;
+                }
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    g29Var.t0.b(g29Var.A0, false);
+                }
+                float f9 = (floatValue9 - 0.5f) / 0.5f;
+                g29Var.setRotationY((1.0f - f9) * (-90.0f));
+                g29Var.B0 = (f9 * 0.3f) + 0.7f;
+                g29Var.invalidate();
+                return;
+            case 24:
+                kq kqVar = (kq) this.b;
+                int[] iArr2 = (int[]) this.c;
+                int intValue2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                int i3 = intValue2 - kqVar.b;
+                ((r59) kqVar.d).scrollBy(0, i3);
+                iArr2[0] = iArr2[0] + i3;
+                kqVar.b = intValue2;
+                return;
+            case 25:
+                int intValue3 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                ((re1) this.b).a = intValue3;
+                ((h68) this.c).c(intValue3);
+                return;
+            case 26:
+                View view2 = (View) this.c;
+                ((qj9) this.b).a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (view2 != null) {
+                    view2.invalidate();
+                    return;
+                }
+                return;
+            case 27:
+                g3b g3bVar = (g3b) this.b;
+                f35[] f35VarArr = (f35[]) this.c;
+                float floatValue10 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                while (i < f35VarArr.length) {
+                    g3bVar.c[i] = (g3bVar.d[i] * floatValue10) + ((1.0f - floatValue10) * g3bVar.e[i]);
+                    i++;
+                }
+                g3bVar.invalidate();
+                return;
+            case 28:
+                qdb qdbVar = (qdb) this.b;
+                qdbVar.getClass();
+                ((pdb) this.c).d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qdbVar.i();
+                return;
+            default:
+                ((View) ((azc) ((et8) this.b).b).d.getParent()).invalidate();
+                return;
+        }
     }
 }

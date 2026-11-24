@@ -1,76 +1,38 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class wo0 {
-    public final Runnable a;
-    public boolean b;
-    public float c;
-    public int d;
-    public float e;
-    public int f;
-    public int g;
-    public tgb h;
-    public TL_keyboard.KeyboardInlineButton i;
-    public iq0 j;
-    public gq0 k;
-    public boolean l;
-    public boolean m;
-    public final Path n = new Path();
-    public final Paint o = new Paint(1);
-    public final RectF p = new RectF();
-    public final float[] q = new float[8];
-    public r86 r;
-    public ff0 s;
-    public Drawable t;
-    public vl u;
-    public boolean v;
-    public float w;
-    public ValueAnimator x;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class wo0 implements qac {
+    public final ap0 a;
+    public final TL_stories.TL_prepaidStarsGiveaway b;
+    public final long c;
+    public final long d;
+    public final TL_stories.PrepaidGiveaway e;
 
-    public wo0(Runnable runnable) {
-        this.a = runnable;
+    public wo0(ap0 ap0Var, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j, long j2, TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        this.a = ap0Var;
+        this.b = tL_prepaidStarsGiveaway;
+        this.c = j;
+        this.d = j2;
+        this.e = prepaidGiveaway;
     }
 
-    public final float a() {
-        if (this.v) {
-            float f = this.w;
-            if (f != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / gl.r) / 100.0f) + f;
-                this.w = min;
-                this.w = Utilities.i(min, 1.0f, 0.0f);
-                this.a.run();
+    @Override
+    public final void a(Object obj) {
+        Void r6 = (Void) obj;
+        ap0 ap0Var = this.a;
+        ap0Var.dismiss();
+        if (this.b != null) {
+            d S = LaunchActivity.S();
+            if (S != null) {
+                yv1 ga = yv1.ga(this.c);
+                ga.whenFullyVisible(new xo0(ga, this.d, (byte) 0));
+                S.presentFragment(ga);
+                return;
             }
+            return;
         }
-        return tb4.A(1.0f, this.w, 0.04f, 0.96f);
-    }
-
-    public final void b(boolean z) {
-        ValueAnimator valueAnimator;
-        if (this.v != z) {
-            this.v = z;
-            this.a.run();
-            if (z && (valueAnimator = this.x) != null) {
-                valueAnimator.removeAllListeners();
-                this.x.cancel();
-            }
-            if (!z) {
-                float f = this.w;
-                if (f != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
-                    this.x = ofFloat;
-                    ofFloat.addUpdateListener(new f0(this, (byte) 16));
-                    this.x.addListener(new g0(this, (byte) 22));
-                    b00.n(2.0f, this.x);
-                    this.x.setDuration(350L);
-                    this.x.start();
-                }
-            }
-        }
+        gm.d3(new x30(ap0Var, this.e, (byte) 14), 220L);
     }
 }

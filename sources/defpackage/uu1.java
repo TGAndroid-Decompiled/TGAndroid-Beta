@@ -1,69 +1,35 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-public abstract class uu1 extends FrameLayout {
-    public final tu1 a;
-    public final ui5 b;
-    public View c;
-    public int d;
-    public boolean e;
+import org.telegram.tgnet.TLRPC;
+public final class uu1 implements Runnable {
+    public final byte a;
+    public final iv1 b;
+    public final TLRPC.Chat c;
 
-    public uu1(Context context, ui5 ui5Var, Bundle bundle) {
-        super(context);
-        this.e = true;
-        this.b = ui5Var;
-        tu1 tu1Var = new tu1(this, bundle);
-        this.a = tu1Var;
-        tu1Var.mb = true;
+    public uu1(iv1 iv1Var, TLRPC.Chat chat, byte b) {
+        this.a = b;
+        this.b = iv1Var;
+        this.c = chat;
     }
 
-    public void a() {
-        int i;
-        tu1 tu1Var = this.a;
-        if (tu1Var.onFragmentCreate()) {
-            this.c = tu1Var.fragmentView;
-            tu1Var.setParentLayout(this.b);
-            View view = this.c;
-            if (view == null) {
-                this.c = tu1Var.createView(getContext());
-            } else {
-                ViewGroup viewGroup = (ViewGroup) view.getParent();
-                if (viewGroup != null) {
-                    tu1Var.onRemoveFromParent();
-                    viewGroup.removeView(this.c);
-                }
-            }
-            jq1 jq1Var = tu1Var.A0;
-            if (jq1Var != null && (i = this.d) != 0) {
-                jq1Var.setPadding(0, i, 0, 0);
-            }
-            tu1Var.ua();
-            addView(this.c, nme.c(-1.0f, -1));
-            if (this.e) {
-                tu1Var.onResume();
-            }
+    @Override
+    public final void run() {
+        byte b = this.a;
+        TLRPC.Chat chat = this.c;
+        iv1 iv1Var = this.b;
+        switch (b) {
+            case 0:
+                iv1Var.n(chat);
+                return;
+            case 1:
+                iv1Var.a(chat);
+                return;
+            case 2:
+                iv1Var.a.Aa(chat);
+                return;
+            default:
+                c41.b0(iv1Var.a).Q(2131623990, 36, jb6.a0(null, null, 2131742499, chat.title)).k(true);
+                return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-    }
-
-    public void setTopPadding(int i) {
-        this.d = i;
-    }
-
-    public void b(boolean z) {
     }
 }

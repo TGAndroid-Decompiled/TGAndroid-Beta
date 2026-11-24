@@ -1,52 +1,36 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import org.telegram.messenger.a;
-import ru.noties.jlatexmath.JLatexMathAndroid;
-import ru.noties.jlatexmath.JLatexMathDrawable;
-public final class lx5 {
-    public static volatile boolean e = false;
-    public final Bitmap a;
-    public final int b;
-    public final int c;
-    public final int d;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class lx5 implements View.OnAttachStateChangeListener {
+    public final boolean a;
+    public final View b;
+    public final mx5 c;
 
-    public lx5(Bitmap bitmap, int i, int i2, int i3) {
-        this.a = bitmap;
-        this.b = i;
-        this.c = i2;
-        this.d = i3;
+    public lx5(mx5 mx5Var, boolean z, View view) {
+        this.c = mx5Var;
+        this.a = z;
+        this.b = view;
     }
 
-    public static lx5 a(String str, float f, boolean z) {
-        if (str != null && !str.isEmpty()) {
-            try {
-                if (!e) {
-                    synchronized (lx5.class) {
-                        if (!e) {
-                            JLatexMathAndroid.init(a.b);
-                            e = true;
-                        }
-                    }
-                }
-                JLatexMathDrawable build = JLatexMathDrawable.builder(str).textSize(f).build();
-                int intrinsicWidth = build.getIntrinsicWidth();
-                int intrinsicHeight = build.getIntrinsicHeight();
-                if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-                    Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
-                    int i = 0;
-                    build.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-                    build.draw(new Canvas(createBitmap));
-                    if (z) {
-                        i = build.icon().getIconDepth();
-                    }
-                    return new lx5(createBitmap, intrinsicWidth, intrinsicHeight, i);
-                }
-            } catch (Throwable th) {
-                fa4.g(th, true);
-            }
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        boolean z = this.a;
+        mx5 mx5Var = this.c;
+        if (z) {
+            mx5Var.b = view.getRootView();
         }
-        return null;
+        View view2 = this.b;
+        view2.getViewTreeObserver().addOnGlobalLayoutListener(mx5Var.j);
+        view2.addOnLayoutChangeListener(mx5Var.i);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        View view2 = this.b;
+        ViewTreeObserver viewTreeObserver = view2.getViewTreeObserver();
+        mx5 mx5Var = this.c;
+        viewTreeObserver.removeOnGlobalLayoutListener(mx5Var.j);
+        view2.removeOnLayoutChangeListener(mx5Var.i);
     }
 }

@@ -3,14 +3,14 @@ package defpackage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
-public abstract class y1 implements iy0 {
+public abstract class y1 implements pz0 {
     static final boolean $assertionsDisabled = false;
-    private static cc6 LOG = cc6.a(y1.class);
+    private static be6 LOG = be6.a(y1.class);
     private ByteBuffer content;
     long contentStartPosition;
-    n63 dataSource;
+    z73 dataSource;
     long offset;
-    private wu2 parent;
+    private gw2 parent;
     protected String type;
     private byte[] userType;
     long memMapSize = -1;
@@ -25,10 +25,10 @@ public abstract class y1 implements iy0 {
     public final void a(ByteBuffer byteBuffer) {
         if (b()) {
             byteBuffer.putInt((int) getSize());
-            byteBuffer.put(or5.d(getType()));
+            byteBuffer.put(nt5.d(getType()));
         } else {
             byteBuffer.putInt(1);
-            byteBuffer.put(or5.d(getType()));
+            byteBuffer.put(nt5.d(getType()));
             byteBuffer.putLong(getSize());
         }
         if ("uuid".equals(getType())) {
@@ -72,8 +72,8 @@ public abstract class y1 implements iy0 {
     public final synchronized void c() {
         if (!this.isRead) {
             try {
-                cc6 cc6Var = LOG;
-                cc6Var.b("mem mapping " + getType());
+                be6 be6Var = LOG;
+                be6Var.b("mem mapping " + getType());
                 throw null;
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -88,7 +88,7 @@ public abstract class y1 implements iy0 {
         int i3 = 16;
         if (this.isRead) {
             if (this.isParsed) {
-                ByteBuffer allocate = ByteBuffer.allocate(mqd.a(getSize()));
+                ByteBuffer allocate = ByteBuffer.allocate(psd.a(getSize()));
                 a(allocate);
                 getContent(allocate);
                 ByteBuffer byteBuffer = this.deadBytes;
@@ -134,12 +134,12 @@ public abstract class y1 implements iy0 {
     }
 
     @Override
-    public wu2 getParent() {
+    public gw2 getParent() {
         return this.parent;
     }
 
     public String getPath() {
-        return ey7.a(this, "");
+        return g08.a(this, "");
     }
 
     @Override
@@ -196,21 +196,21 @@ public abstract class y1 implements iy0 {
         return this.isParsed;
     }
 
-    public void parse(n63 n63Var, ByteBuffer byteBuffer, long j, qy0 qy0Var) {
-        long position = n63Var.position();
+    public void parse(z73 z73Var, ByteBuffer byteBuffer, long j, xz0 xz0Var) {
+        long position = z73Var.position();
         this.contentStartPosition = position;
         this.offset = position - byteBuffer.remaining();
         this.memMapSize = j;
-        n63Var.position();
-        n63Var.m16position();
+        z73Var.position();
+        z73Var.m23position();
         this.isRead = false;
         this.isParsed = false;
     }
 
     public final synchronized void parseDetails() {
         c();
-        cc6 cc6Var = LOG;
-        cc6Var.b("parsing details of " + getType());
+        be6 be6Var = LOG;
+        be6Var.b("parsing details of " + getType());
         ByteBuffer byteBuffer = this.content;
         if (byteBuffer != null) {
             this.isParsed = true;
@@ -228,8 +228,8 @@ public abstract class y1 implements iy0 {
     }
 
     @Override
-    public void setParent(wu2 wu2Var) {
-        this.parent = wu2Var;
+    public void setParent(gw2 gw2Var) {
+        this.parent = gw2Var;
     }
 
     public void _parseDetails(ByteBuffer byteBuffer) {

@@ -1,26 +1,13 @@
 package defpackage;
-public final class x85 implements Runnable {
-    public final byte a;
-    public final z85 b;
 
-    public x85(z85 z85Var, byte b) {
-        this.a = b;
-        this.b = z85Var;
-    }
-
+import android.view.View;
+public final class x85 extends qb5 {
     @Override
-    public final void run() {
-        byte b = this.a;
-        z85 z85Var = this.b;
-        switch (b) {
-            case 0:
-                int i = z85.W;
-                z85Var.a();
-                return;
-            default:
-                int i2 = z85.W;
-                z85Var.a();
-                return;
+    public final void onMeasure(int i, int i2) {
+        if (gm.O1()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(gm.L(420.0f), View.MeasureSpec.getSize(i)), 1073741824), i2);
+        } else {
+            super.onMeasure(i, i2);
         }
     }
 }

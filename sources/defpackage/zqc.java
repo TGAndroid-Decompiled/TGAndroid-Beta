@@ -1,272 +1,158 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.Point;
-import android.graphics.RectF;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.zip.GZIPOutputStream;
-import javax.xml.parsers.SAXParserFactory;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.SerializedData;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-public abstract class zqc {
-    public static final ConcurrentHashMap a = new ConcurrentHashMap();
-    public static volatile File b;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class zqc extends FrameLayout {
+    public final ylb a;
+    public final FrameLayout b;
+    public final pc0 c;
+    public final bf0 d;
+    public ShapeDrawable e;
+    public final TextView f;
+    public final yqc h;
+    public final ImageView n;
+    public TLRPC.User r;
+    public String s;
 
-    public static ArrayList a(String str) {
-        byte[] v = Utilities.v(str);
-        int length = v.length / 52;
-        SerializedData serializedData = new SerializedData(v);
-        ArrayList arrayList = new ArrayList(length);
-        for (int i = 0; i < length; i++) {
-            float readFloat = serializedData.readFloat(true);
-            float readFloat2 = serializedData.readFloat(true);
-            RectF rectF = new RectF(readFloat, readFloat2, serializedData.readFloat(true) + readFloat, serializedData.readFloat(true) + readFloat2);
-            Matrix matrix = new Matrix();
-            matrix.setValues(new float[]{serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true), serializedData.readFloat(true)});
-            arrayList.add(new uqc(rectF, matrix));
-        }
-        serializedData.cleanup();
-        return arrayList;
+    public zqc(ylb ylbVar, Context context, Runnable runnable, Runnable runnable2) {
+        super(context);
+        this.c = new pc0((ylb) null);
+        this.a = ylbVar;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.b = frameLayout;
+        frameLayout.setDuplicateParentStateEnabled(true);
+        frameLayout.setPivotX(0.0f);
+        frameLayout.setPivotY(0.0f);
+        addView(frameLayout, qoe.c(-1.0f, -1));
+        int i = cmb.Z6;
+        int v0 = cmb.v0(i, ylbVar);
+        int v02 = cmb.v0(i, ylbVar);
+        int i2 = cmb.h6;
+        fg0 Z = cmb.Z(v0, cmb.v(v02, cmb.v0(i2, ylbVar)), gm.L(32.0f), gm.L(32.0f));
+        wmb M = anb.M(i);
+        wmb p = anb.p(i, i2);
+        frameLayout.setBackground(Z);
+        anb.j(frameLayout, Z, M, p, ylbVar);
+        rve.b(this, 0.02f, 1.2f);
+        bf0 bf0Var = new bf0(context);
+        this.d = bf0Var;
+        bf0Var.setRoundRadius(gm.L(18.0f));
+        frameLayout.addView(bf0Var, qoe.d(34, 34.0f, 19, 15.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f = textView;
+        textView.setTextSize(1, 14.0f);
+        anb.X(textView, cmb.F6, ylbVar);
+        textView.setSingleLine();
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setTypeface(gm.o());
+        frameLayout.addView(textView, qoe.d(-1, -2.0f, 51, 60.0f, 7.0f, 52.0f, 0.0f));
+        yqc yqcVar = new yqc(this, context);
+        this.h = yqcVar;
+        frameLayout.addView(yqcVar, qoe.d(-1, -2.0f, 51, 60.0f, 26.0f, 52.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.n = imageView;
+        imageView.setImageResource(2131232034);
+        anb.s(imageView, cmb.C6, ylbVar, PorterDuff.Mode.SRC_IN);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setScaleX(0.9f);
+        imageView.setScaleY(0.9f);
+        frameLayout.addView(imageView, qoe.d(24, 24.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
+        setOnClickListener(new ef(this, ylbVar, runnable, runnable2, (byte) 20));
     }
 
-    public static File b(ng5 ng5Var) {
-        File file = b;
-        if (file == null) {
-            file = new File(a.b.getCacheDir(), "wallpaper/mask");
-            b = file;
-            Pattern pattern = sqc.a;
-            SharedPreferences c1 = na7.c1();
-            if (c1.getInt("wallpaperFilesCleanup", 0) < 1) {
-                Utilities.e.c(new kbc(c1, (byte) 29));
-            }
-        }
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return new File(file, ng5Var.a());
-    }
-
-    public static mqc c() {
-        Point point = gl.q;
-        return e(new ng5("r-default_pattern", Math.min(1440, Math.min(point.x, point.y))), new fyb((byte) 19));
-    }
-
-    public static mqc d(String str) {
-        mqc g;
-        Object putIfAbsent;
-        if ("fqv01SQemVIBAAAApND8LDRUhRU".equals(str)) {
-            return c();
-        }
-        ng5 c = ng5.c(str);
-        String a2 = c.a();
-        ConcurrentHashMap concurrentHashMap = a;
-        Object obj = concurrentHashMap.get(a2);
-        if (obj == null && (putIfAbsent = concurrentHashMap.putIfAbsent(a2, (obj = new Object()))) != null) {
-            obj = putIfAbsent;
-        }
-        synchronized (obj) {
-            g = g(b(c));
-        }
-        return g;
-    }
-
-    public static mqc e(ng5 ng5Var, yqc yqcVar) {
-        Object putIfAbsent;
-        String a2 = ng5Var.a();
-        ConcurrentHashMap concurrentHashMap = a;
-        Object obj = concurrentHashMap.get(a2);
-        if (obj == null && (putIfAbsent = concurrentHashMap.putIfAbsent(a2, (obj = new Object()))) != null) {
-            obj = putIfAbsent;
-        }
-        synchronized (obj) {
-            File b2 = b(ng5Var);
-            mqc g = g(b2);
-            if (g != null) {
-                return g;
-            }
-            mqc f = f(ng5Var, yqcVar);
-            if (f != null) {
-                i(b2, f);
-            }
-            return f;
-        }
-    }
-
-    public static mqc f(ng5 ng5Var, yqc yqcVar) {
-        icb icbVar;
-        Bitmap bitmap;
+    public final void a(String str, TLRPC.User user) {
+        long j;
         boolean z;
-        Bitmap extractAlpha;
-        mqc mqcVar;
-        try {
-            InputStream b2 = yqcVar.b();
-            if (b2 == null) {
-                if (b2 != null) {
-                    b2.close();
-                    return null;
-                }
-            } else {
-                BufferedInputStream bufferedInputStream = new BufferedInputStream(b2, 65536);
-                byte[] bArr = new byte[4];
-                bufferedInputStream.mark(4);
-                int read = bufferedInputStream.read(bArr);
-                bufferedInputStream.reset();
-                if (read >= 4) {
-                    boolean z2 = false;
-                    byte b3 = bArr[0];
-                    if (b3 == -119 && bArr[1] == 80 && bArr[2] == 78 && bArr[3] == 71) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    if (b3 == -1 && bArr[1] == -40) {
-                        z2 = true;
-                    }
-                    if (z || z2) {
-                        int i = ng5Var.b;
-                        Bitmap decodeStream = BitmapFactory.decodeStream(bufferedInputStream);
-                        if (decodeStream == null) {
-                            extractAlpha = null;
-                        } else {
-                            if (decodeStream.getWidth() != i) {
-                                Bitmap createScaledBitmap = Bitmap.createScaledBitmap(decodeStream, i, Math.max(1, Math.round((i / decodeStream.getWidth()) * decodeStream.getHeight())), true);
-                                if (createScaledBitmap != decodeStream) {
-                                    decodeStream.recycle();
-                                    decodeStream = createScaledBitmap;
-                                }
-                            }
-                            extractAlpha = decodeStream.extractAlpha();
-                            decodeStream.recycle();
-                        }
-                        if (extractAlpha != null) {
-                            mqcVar = new mqc(extractAlpha, 1, null);
-                        } else {
-                            mqcVar = null;
-                        }
-                        b2.close();
-                        return mqcVar;
-                    }
-                }
-                int i2 = ng5Var.b;
-                double[] dArr = lcb.a;
-                try {
-                    XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                    icbVar = new icb(i2, i2, null, false, 1.0f, 2);
-                    icbVar.F = true;
-                    xMLReader.setContentHandler(icbVar);
-                    xMLReader.parse(new InputSource(bufferedInputStream));
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    icbVar = null;
-                }
-                if (icbVar != null) {
-                    bitmap = icbVar.b;
-                } else {
-                    bitmap = null;
-                }
-                if (bitmap == null) {
-                    b2.close();
-                } else {
-                    mqc mqcVar2 = new mqc(bitmap, 1, icbVar.K);
-                    b2.close();
-                    return mqcVar2;
-                }
+        TLRPC.User user2 = this.r;
+        long j2 = 0;
+        if (user2 == null) {
+            j = 0;
+        } else {
+            j = user2.id;
+        }
+        if (user != null) {
+            j2 = user.id;
+        }
+        if (j != j2) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.r = user;
+        this.s = str;
+        setClickable(!TextUtils.isEmpty(str));
+        TLRPC.User user3 = this.r;
+        TextView textView = this.f;
+        ImageView imageView = this.n;
+        yqc yqcVar = this.h;
+        bf0 bf0Var = this.d;
+        if (user3 != null) {
+            setClickable(true);
+            setVisibility(0);
+            TLRPC.User user4 = this.r;
+            pc0 pc0Var = this.c;
+            pc0Var.q(user4);
+            bf0Var.f(this.r, pc0Var);
+            textView.setText(m9c.r(this.r));
+            if (!TextUtils.isEmpty(str)) {
+                yqcVar.c(str, z);
+                imageView.setVisibility(0);
+                return;
             }
-            return null;
-        } catch (Throwable th) {
-            fa4.g(th, true);
-            return null;
+            yqcVar.c(null, z);
+            imageView.setVisibility(8);
+        } else if (!TextUtils.isEmpty(str)) {
+            setClickable(false);
+            setVisibility(0);
+            if (this.e == null) {
+                ShapeDrawable K = cmb.K(gm.L(34.0f), -1);
+                this.e = K;
+                anb.x(bf0Var, K, cmb.Ei, this.a, PorterDuff.Mode.SRC_IN);
+            }
+            bf0Var.setImageDrawable(new sn2(this.e, getContext().getResources().getDrawable(2131231834).mutate()));
+            textView.setText(jb6.M0(2131742781, null));
+            yqcVar.c(str, z);
+            imageView.setVisibility(8);
+        } else {
+            setClickable(false);
+            setVisibility(8);
+            yqcVar.c(null, true);
         }
     }
 
-    public static defpackage.mqc g(java.io.File r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zqc.g(java.io.File):mqc");
+    public float getContentBottom() {
+        FrameLayout frameLayout = this.b;
+        return (frameLayout.getScaleY() * (frameLayout.getHeight() - frameLayout.getPivotY())) + frameLayout.getPivotY() + frameLayout.getY();
     }
 
-    public static String h(List list) {
-        SerializedData serializedData = new SerializedData(list.size() * 52);
-        int size = list.size();
-        for (int i = 0; i < size; i++) {
-            uqc uqcVar = (uqc) list.get(i);
-            RectF rectF = uqcVar.a;
-            serializedData.writeFloat(rectF.left);
-            serializedData.writeFloat(rectF.top);
-            serializedData.writeFloat(rectF.width());
-            serializedData.writeFloat(rectF.height());
-            float[] fArr = new float[9];
-            uqcVar.b.getValues(fArr);
-            for (int i2 = 0; i2 < 9; i2++) {
-                serializedData.writeFloat(fArr[i2]);
-            }
-        }
-        String f = Utilities.f(serializedData.toByteArray());
-        serializedData.cleanup();
-        return f;
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        FrameLayout frameLayout = this.b;
+        int round = Math.round((getMeasuredHeight() - (frameLayout.getScaleY() * frameLayout.getMeasuredHeight())) / 2.0f);
+        frameLayout.layout(0, round, frameLayout.getMeasuredWidth(), frameLayout.getMeasuredHeight() + round);
     }
 
-    public static void i(File file, mqc mqcVar) {
-        Bitmap bitmap;
-        Bitmap bitmap2 = mqcVar.a;
-        File file2 = new File(file.getParentFile(), file.getName() + ".tmp");
-        Bitmap bitmap3 = null;
-        r3 = null;
-        List singletonList = null;
-        try {
-            List list = mqcVar.b;
-            if (bitmap2.getConfig() == Bitmap.Config.ALPHA_8) {
-                bitmap = null;
-            } else {
-                bitmap2 = bitmap2.extractAlpha();
-                bitmap = bitmap2;
-            }
-            if (list != null) {
-                try {
-                    if (!list.isEmpty()) {
-                        singletonList = Collections.singletonList("patterns = ".concat(h(list)));
-                    }
-                } catch (Throwable th) {
-                    th = th;
-                    bitmap3 = bitmap;
-                    try {
-                        fa4.g(th, true);
-                    } finally {
-                        if (bitmap3 != null) {
-                            bitmap3.recycle();
-                        }
-                        file2.delete();
-                    }
-                }
-            }
-            FileOutputStream fileOutputStream = new FileOutputStream(file2);
-            GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(new BufferedOutputStream(fileOutputStream, 65536));
-            iqe.e(bitmap2, gZIPOutputStream, singletonList);
-            gZIPOutputStream.finish();
-            gZIPOutputStream.flush();
-            fileOutputStream.getFD().sync();
-            fileOutputStream.close();
-            boolean renameTo = file2.renameTo(file);
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-            if (renameTo) {
-            }
-        } catch (Throwable th2) {
-            th = th2;
-        }
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        yqc yqcVar = this.h;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) yqcVar.getLayoutParams();
+        int ceil = ((int) Math.ceil(yqcVar.a())) + 1 + layoutParams.leftMargin + layoutParams.rightMargin;
+        setMeasuredDimension(View.resolveSize(Math.max(getMeasuredWidth(), ceil), i), getMeasuredHeight());
+        int max = Math.max(getMeasuredWidth(), ceil);
+        float measuredWidth = getMeasuredWidth() / max;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(max, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
+        FrameLayout frameLayout = this.b;
+        frameLayout.measure(makeMeasureSpec, makeMeasureSpec2);
+        frameLayout.setScaleX(measuredWidth);
+        frameLayout.setScaleY(measuredWidth);
     }
 }

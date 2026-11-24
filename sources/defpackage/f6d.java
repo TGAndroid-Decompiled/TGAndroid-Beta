@@ -1,53 +1,46 @@
 package defpackage;
+public final class f6d extends g6d {
+    public final transient int r;
+    public final transient int s;
+    public final g6d w;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import java.io.IOException;
-public final class f6d implements Continuation, v56, aq2, ohe {
-    public static final f6d b = new f6d((byte) 0);
-    public final byte a;
-
-    public f6d(byte b2) {
-        this.a = b2;
+    public f6d(g6d g6dVar, int i, int i2) {
+        super((byte) 1);
+        this.w = g6dVar;
+        this.r = i;
+        this.s = i2;
     }
 
     @Override
-    public final void G(Object obj) {
-        ((ly4) obj).getClass();
+    public final Object get(int i) {
+        a1f.a(i, this.s);
+        return this.w.get(i + this.r);
     }
 
     @Override
-    public final Object K(gl2 gl2Var) {
-        switch (this.a) {
-            case 2:
-                ae7 ae7Var = (ae7) gl2Var.a(ae7.class);
-                synchronized (zdf.class) {
-                    zdf.a(new Object());
-                }
-                return new Object();
-            default:
-                return new sfa((Context) gl2Var.a(Context.class));
-        }
+    public final int m() {
+        return this.w.n() + this.r + this.s;
     }
 
     @Override
-    public final byte[] a(int i, int i2, byte[] bArr) {
-        byte[] bArr2 = new byte[i2];
-        System.arraycopy(bArr, i, bArr2, 0, i2);
-        return bArr2;
+    public final int n() {
+        return this.w.n() + this.r;
     }
 
     @Override
-    public final Object then(Task task) {
-        if (task.isSuccessful()) {
-            return (Bundle) task.getResult();
-        }
-        if (Log.isLoggable("Rpc", 3)) {
-            Log.d("Rpc", "Error making request: ".concat(String.valueOf(task.getException())));
-        }
-        throw new IOException("SERVICE_NOT_AVAILABLE", task.getException());
+    public final Object[] o() {
+        return this.w.o();
+    }
+
+    @Override
+    public final int size() {
+        return this.s;
+    }
+
+    @Override
+    public final g6d subList(int i, int i2) {
+        a1f.b(i, i2, this.s);
+        int i3 = this.r;
+        return this.w.subList(i + i3, i2 + i3);
     }
 }

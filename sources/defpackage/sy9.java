@@ -1,132 +1,102 @@
 package defpackage;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class sy9 extends ja {
-    public TLRPC.User c;
-    public TLRPC.InputPeer d;
-    public TLRPC.TL_help_country e;
-    public String f;
-    public String g;
-    public byte h;
-    public int i;
-    public boolean j;
-    public int k;
-    public vzb l;
-    public vzb m;
-    public o7c n;
-    public o7c o;
-    public View p;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.ColorFilter;
+import android.util.SparseIntArray;
+public final class sy9 extends mz3 {
+    public final int g0;
+    public final vz9 h0;
 
-    public sy9(int i, boolean z) {
-        super(i, z);
-        this.k = -1;
-    }
-
-    public static sy9 b(String str) {
-        sy9 sy9Var = new sy9(8, false);
-        sy9Var.f = str;
-        return sy9Var;
-    }
-
-    public static sy9 c(TLRPC.User user, boolean z) {
-        sy9 sy9Var = new sy9(3, true);
-        sy9Var.c = user;
-        sy9Var.d = null;
-        sy9Var.j = z;
-        return sy9Var;
+    public sy9(vz9 vz9Var, Context context, ylb ylbVar, boolean z, boolean z2, int i, il9 il9Var, int i2, int i3) {
+        super(context, ylbVar, z, z2, false, true, i, il9Var, i2, false);
+        this.h0 = vz9Var;
+        this.g0 = i3;
     }
 
     @Override
-    public final boolean a(ja jaVar) {
-        boolean z;
-        boolean z2;
-        if (this != jaVar) {
-            if (sy9.class == jaVar.getClass()) {
-                sy9 sy9Var = (sy9) jaVar;
-                if (this.j == sy9Var.j) {
-                    if (this.a == 8) {
-                        if (TextUtils.equals(this.g, sy9Var.g)) {
-                            if (this.l == null) {
-                                z = true;
-                            } else {
-                                z = false;
-                            }
-                            if (sy9Var.l == null) {
-                                z2 = true;
-                            } else {
-                                z2 = false;
-                            }
-                            if (z != z2) {
-                            }
-                        }
-                    }
+    public final ColorFilter getEmojiColorFilter() {
+        return this.h0.l1;
+    }
+
+    @Override
+    public final boolean h(int i) {
+        int i2;
+        int i3;
+        kz9 kz9Var;
+        int i4;
+        int i5;
+        vz9 vz9Var = this.h0;
+        SparseIntArray sparseIntArray = vz9Var.y0;
+        int i6 = 0;
+        if (vz9Var.y1) {
+            return false;
+        }
+        int i7 = this.g0;
+        if (i7 == 4 && i == 0) {
+            vz9Var.R = !vz9Var.R;
+            vz9Var.e0.setVisibility(8);
+            mz3 mz3Var = vz9Var.d0[vz9Var.R ? 1 : 0];
+            vz9Var.e0 = mz3Var;
+            mz3Var.setVisibility(0);
+            jz3 jz3Var = vz9Var.e0.x;
+            Context context = getContext();
+            if (vz9Var.R) {
+                i4 = 2131232133;
+            } else {
+                i4 = 2131232132;
+            }
+            jz3Var.setDrawable(context.getDrawable(i4));
+            jz3 jz3Var2 = vz9Var.e0.x;
+            if (vz9Var.R) {
+                i5 = 2131754755;
+            } else {
+                i5 = 2131751133;
+            }
+            jz3Var2.setContentDescription(jb6.M0(i5, null));
+            vz9Var.B(true, false, false);
+            vz9Var.s0.g1(0, 0);
+            return true;
+        }
+        jz3 jz3Var3 = this.E;
+        if (jz3Var3 != null && this.b0) {
+            i2 = 1;
+        } else {
+            i2 = 0;
+        }
+        int i8 = i2 + 1;
+        if (jz3Var3 != null && this.b0 && i == 1) {
+            i3 = vz9Var.n;
+        } else {
+            if ((i7 != 4 || i != 0) && i > 0) {
+                int i9 = i - i8;
+                if (sparseIntArray.indexOfKey(i9) >= 0) {
+                    i3 = sparseIntArray.get(i9);
                 }
             }
-            return false;
+            i3 = 0;
+        }
+        if (i7 == 6) {
+            i6 = 7;
+        }
+        vz9Var.u(i3, gm.L(i6 - 2));
+        vz9Var.e0.j(i, true);
+        vz9Var.i0.K1 = true;
+        vz9Var.v(null, true, true);
+        ny9 ny9Var = vz9Var.g0;
+        if (ny9Var != null && (kz9Var = ny9Var.n) != null) {
+            kz9Var.I1(null);
         }
         return true;
     }
 
-    public final boolean equals(Object obj) {
-        long j;
-        if (this != obj) {
-            if (obj != null && sy9.class == obj.getClass()) {
-                sy9 sy9Var = (sy9) obj;
-                int i = this.a;
-                if (i == sy9Var.a) {
-                    if (i != -1 || this.k == sy9Var.k) {
-                        if (i == 3) {
-                            TLRPC.User user = this.c;
-                            long j2 = 0;
-                            if (user != null) {
-                                j = user.id;
-                            } else {
-                                TLRPC.InputPeer inputPeer = this.d;
-                                if (inputPeer != null) {
-                                    j = cf3.m(inputPeer);
-                                } else {
-                                    j = 0;
-                                }
-                            }
-                            TLRPC.User user2 = sy9Var.c;
-                            if (user2 != null) {
-                                j2 = user2.id;
-                            } else {
-                                TLRPC.InputPeer inputPeer2 = sy9Var.d;
-                                if (inputPeer2 != null) {
-                                    j2 = cf3.m(inputPeer2);
-                                }
-                            }
-                            if (j != j2) {
-                                return false;
-                            }
-                        }
-                        int i2 = this.a;
-                        if (i2 != 6 || this.e == sy9Var.e) {
-                            if (i2 != 7 || TextUtils.equals(this.f, sy9Var.f)) {
-                                if (this.a != 8 || TextUtils.equals(this.f, sy9Var.f)) {
-                                    if (this.a != 9 || (TextUtils.equals(this.f, sy9Var.f) && this.h == sy9Var.h && this.i == sy9Var.i)) {
-                                        if (this.a != 10 || this.p == sy9Var.p) {
-                                            return true;
-                                        }
-                                        return false;
-                                    }
-                                    return false;
-                                }
-                                return false;
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void i(jz3 jz3Var) {
+        ValueAnimator valueAnimator = this.h0.W1;
+        if (valueAnimator != null && !valueAnimator.isRunning()) {
+            return;
         }
-        return true;
+        jz3Var.setScaleX(0.0f);
+        jz3Var.setScaleY(0.0f);
     }
 }

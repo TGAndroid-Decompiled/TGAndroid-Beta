@@ -33,8 +33,8 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
     public boolean W;
     public boolean X;
     public long Y;
-    public s20 a;
-    public fu b;
+    public s30 a;
+    public fv b;
     public ArrayList c;
     private int clearDraftsRow;
     public int d;
@@ -66,65 +66,65 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
     @Override
     public final void addThemeColorKeys(HashSet hashSet) {
         super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(bkb.A6));
-        hashSet.add(Integer.valueOf(bkb.y6));
-        hashSet.add(Integer.valueOf(bkb.F6));
-        hashSet.add(Integer.valueOf(bkb.K6));
-        hashSet.add(Integer.valueOf(bkb.H6));
-        hashSet.add(Integer.valueOf(bkb.c7));
-        hashSet.add(Integer.valueOf(bkb.h6));
-        hashSet.add(Integer.valueOf(bkb.s8));
-        hashSet.add(Integer.valueOf(bkb.z8));
-        hashSet.add(Integer.valueOf(bkb.u8));
-        hashSet.add(Integer.valueOf(bkb.r8));
+        hashSet.add(Integer.valueOf(cmb.A6));
+        hashSet.add(Integer.valueOf(cmb.y6));
+        hashSet.add(Integer.valueOf(cmb.F6));
+        hashSet.add(Integer.valueOf(cmb.K6));
+        hashSet.add(Integer.valueOf(cmb.H6));
+        hashSet.add(Integer.valueOf(cmb.c7));
+        hashSet.add(Integer.valueOf(cmb.h6));
+        hashSet.add(Integer.valueOf(cmb.s8));
+        hashSet.add(Integer.valueOf(cmb.z8));
+        hashSet.add(Integer.valueOf(cmb.u8));
+        hashSet.add(Integer.valueOf(cmb.r8));
     }
 
     @Override
     public final View createView(Context context) {
         setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231243);
-        this.simpleActionBar.setTitle(k96.M0(2131751665, null));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new vm2(this, (byte) 9));
-        ui5 ui5Var = this.parentLayout;
-        if (ui5Var != null && ((ActionBarLayout) ui5Var).U0) {
-            this.simpleActionBar.setBackButtonImage(2131231244);
+        this.simpleActionBar.setBackButtonImage(2131231244);
+        this.simpleActionBar.setTitle(jb6.M0(2131751614, null));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new fh2(this, (byte) 10));
+        tk5 tk5Var = this.parentLayout;
+        if (tk5Var != null && ((ActionBarLayout) tk5Var).U0) {
+            this.simpleActionBar.setBackButtonImage(2131231245);
         }
-        this.a = new s20(this, context, (byte) 3);
+        this.a = new s30(this, context, (byte) 3);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        fu fuVar = new fu((byte) 14, context, this);
-        this.b = fuVar;
-        fuVar.r1();
+        fv fvVar = new fv((byte) 14, context, this);
+        this.b = fvVar;
+        fvVar.r1();
         this.b.setVerticalScrollBarEnabled(false);
-        this.b.setLayoutManager(new t26(1, false));
-        frameLayout.addView(this.b, nme.e(-1, -1, 51));
+        this.b.setLayoutManager(new u46(1, false));
+        frameLayout.addView(this.b, qoe.e(-1, -1, 51));
         this.b.setAdapter(this.a);
         this.b.setSectionsDrawBackground(true);
-        this.b.setOnItemClickListener(new v82(this, context, (byte) 14));
-        gb3 gb3Var = new gb3();
-        gb3Var.n(350L);
-        gb3Var.o(s33.h);
-        gb3Var.C = false;
-        gb3Var.m = false;
-        this.b.setItemAnimator(gb3Var);
+        this.b.setOnItemClickListener(new x92(this, context, (byte) 15));
+        sc3 sc3Var = new sc3();
+        sc3Var.n(350L);
+        sc3Var.o(d53.h);
+        sc3Var.C = false;
+        sc3Var.m = false;
+        this.b.setItemAnimator(sc3Var);
         return this.fragmentView;
     }
 
     @Override
-    public final o39 getListViewForSimpleGlass() {
+    public final r59 getListViewForSimpleGlass() {
         return this.b;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new blb(this.b, 16, new Class[]{uib.class, ahb.class, ld5.class, vl7.class}, (Paint) null, (Drawable[]) null, (alb) null, bkb.c6));
-        int i = bkb.L6;
-        arrayList.add(new blb(this.b, 0, new Class[]{vl7.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, i));
-        int i2 = bkb.M6;
-        arrayList.add(new blb(this.b, 0, new Class[]{vl7.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, i2));
-        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, i));
-        arrayList.add(new blb(this.b, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, i2));
+        arrayList.add(new cnb(this.b, 16, new Class[]{vkb.class, bjb.class, jf5.class, yn7.class}, (Paint) null, (Drawable[]) null, (bnb) null, cmb.c6));
+        int i = cmb.L6;
+        arrayList.add(new cnb(this.b, 0, new Class[]{yn7.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, i));
+        int i2 = cmb.M6;
+        arrayList.add(new cnb(this.b, 0, new Class[]{yn7.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, i2));
+        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, i));
+        arrayList.add(new cnb(this.b, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, i2));
         return arrayList;
     }
 
@@ -135,90 +135,90 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
 
     @Override
     public final void onDialogDismiss(Dialog dialog) {
-        up3.q(this.currentAccount).g();
+        er3.q(this.currentAccount).g();
     }
 
     @Override
     public final boolean onFragmentCreate() {
         super.onFragmentCreate();
-        up3.q(this.currentAccount).s(true);
-        s0(true);
+        er3.q(this.currentAccount).s(true);
+        t0(true);
         return true;
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        r61.i0 = true;
+        y71.i0 = true;
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        i63 i63Var = new i63(this, (byte) 1);
-        gl.e3(i63Var, 100L);
-        r61.c0(new p0c(this, i63Var, System.currentTimeMillis(), (byte) 1));
+        u73 u73Var = new u73(this, (byte) 1);
+        gm.d3(u73Var, 100L);
+        y71.d0(new p2c(this, u73Var, System.currentTimeMillis(), (byte) 1));
         if (this.b != null && this.a != null) {
             for (int i = 0; i < this.b.getChildCount(); i++) {
                 View childAt = this.b.getChildAt(i);
-                s49 T = this.b.T(childAt);
+                u69 T = this.b.T(childAt);
                 if (T != null) {
-                    s20 s20Var = this.a;
+                    s30 s30Var = this.a;
                     this.b.getClass();
-                    s20Var.t(T, RecyclerView.R(childAt));
+                    s30Var.t(T, RecyclerView.R(childAt));
                 }
             }
         }
-        s0(false);
+        t0(false);
     }
 
-    public final void p0() {
-        tp3 tp3Var;
-        tp3 tp3Var2;
+    public final void q0() {
+        dr3 dr3Var;
+        dr3 dr3Var2;
         String str;
-        SharedPreferences.Editor edit = na7.q1(this.currentAccount).X3.edit();
+        SharedPreferences.Editor edit = oc7.r1(this.currentAccount).X3.edit();
         for (int i = 0; i < 3; i++) {
             int i2 = this.currentAccount;
             if (i == 0) {
-                tp3Var = up3.q(i2).N;
-                tp3Var2 = up3.q(this.currentAccount).L;
+                dr3Var = er3.q(i2).N;
+                dr3Var2 = er3.q(this.currentAccount).L;
                 str = "mobilePreset";
             } else if (i == 1) {
-                tp3Var = up3.q(i2).O;
-                tp3Var2 = up3.q(this.currentAccount).M;
+                dr3Var = er3.q(i2).O;
+                dr3Var2 = er3.q(this.currentAccount).M;
                 str = "wifiPreset";
             } else {
-                tp3Var = up3.q(i2).P;
-                tp3Var2 = up3.q(this.currentAccount).K;
+                dr3Var = er3.q(i2).P;
+                dr3Var2 = er3.q(this.currentAccount).K;
                 str = "roamingPreset";
             }
-            tp3Var.c(tp3Var2);
-            tp3Var.g = tp3Var2.b();
-            up3.q(this.currentAccount).Q = 3;
+            dr3Var.c(dr3Var2);
+            dr3Var.g = dr3Var2.b();
+            er3.q(this.currentAccount).Q = 3;
             edit.putInt("currentMobilePreset", 3);
-            up3.q(this.currentAccount).R = 3;
+            er3.q(this.currentAccount).R = 3;
             edit.putInt("currentWifiPreset", 3);
-            up3.q(this.currentAccount).S = 3;
+            er3.q(this.currentAccount).S = 3;
             edit.putInt("currentRoamingPreset", 3);
-            edit.putString(str, tp3Var.toString());
+            edit.putString(str, dr3Var.toString());
         }
         edit.commit();
-        up3.q(this.currentAccount).g();
+        er3.q(this.currentAccount).g();
         for (int i3 = 0; i3 < 3; i3++) {
-            up3.q(this.currentAccount).w(i3);
+            er3.q(this.currentAccount).w(i3);
         }
         this.a.l(this.e, 4);
-        s0(false);
+        t0(false);
     }
 
-    public final void q0(android.content.Context r19, android.view.View r20, int r21, float r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.q0(android.content.Context, android.view.View, int, float):void");
+    public final void r0(android.content.Context r19, android.view.View r20, int r21, float r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.r0(android.content.Context, android.view.View, int, float):void");
     }
 
-    public final void r0(int i) {
+    public final void s0(int i) {
         if (this.b != null && this.a != null) {
             for (int i2 = 0; i2 < this.b.getChildCount(); i2++) {
-                s49 T = this.b.T(this.b.getChildAt(i2));
+                u69 T = this.b.T(this.b.getChildAt(i2));
                 if (T != null && T.b() == i) {
                     this.a.t(T, i);
                     return;
@@ -227,14 +227,14 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
         }
     }
 
-    public final void s0(boolean z) {
+    public final void t0(boolean z) {
         boolean z2;
         int i;
         this.s = true;
         this.U = 3;
         this.w = 2;
         this.n = -1;
-        ArrayList c1 = gl.c1();
+        ArrayList c1 = gm.c1();
         this.c = c1;
         if (c1.size() > 1) {
             int i2 = this.U;
@@ -248,11 +248,11 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
         this.h = i3 + 3;
         this.U = i3 + 5;
         this.f = i3 + 4;
-        up3 downloadController = getDownloadController();
-        tp3 tp3Var = downloadController.K;
-        tp3 tp3Var2 = downloadController.M;
-        tp3 tp3Var3 = downloadController.L;
-        if (tp3Var.a(downloadController.o()) && downloadController.K.b() == downloadController.P.g && tp3Var3.a(downloadController.n()) && tp3Var3.b() == downloadController.N.g && tp3Var2.a(downloadController.p()) && tp3Var2.b() == downloadController.O.g) {
+        er3 downloadController = getDownloadController();
+        dr3 dr3Var = downloadController.K;
+        dr3 dr3Var2 = downloadController.M;
+        dr3 dr3Var3 = downloadController.L;
+        if (dr3Var.a(downloadController.o()) && downloadController.K.b() == downloadController.P.g && dr3Var3.a(downloadController.n()) && dr3Var3.b() == downloadController.N.g && dr3Var2.a(downloadController.p()) && dr3Var2.b() == downloadController.O.g) {
             z2 = true;
         } else {
             z2 = false;
@@ -265,18 +265,18 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
             this.U = i + 1;
         }
         this.resetDownloadRow = i;
-        s20 s20Var = this.a;
-        if (s20Var != null && !z) {
+        s30 s30Var = this.a;
+        if (s30Var != null && !z) {
             if (i4 < 0) {
                 if (i >= 0) {
-                    s20Var.g(this.f);
+                    s30Var.g(this.f);
                     this.a.i(this.resetDownloadRow);
                 }
                 z = true;
             } else {
                 if (i < 0) {
-                    s20Var.g(this.f);
-                    this.a.r(i4);
+                    s30Var.g(this.f);
+                    this.a.s(i4);
                 }
                 z = true;
             }
@@ -292,7 +292,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
         int i6 = i5 + 8;
         this.U = i6;
         this.E = i5 + 7;
-        boolean z3 = w01.a;
+        boolean z3 = e21.a;
         this.H = i6;
         this.G = i5 + 9;
         this.I = i5 + 10;
@@ -306,9 +306,9 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.d {
         this.clearDraftsRow = i5 + 17;
         this.U = i5 + 19;
         this.R = i5 + 18;
-        s20 s20Var2 = this.a;
-        if (s20Var2 != null && z) {
-            s20Var2.f();
+        s30 s30Var2 = this.a;
+        if (s30Var2 != null && z) {
+            s30Var2.f();
         }
     }
 

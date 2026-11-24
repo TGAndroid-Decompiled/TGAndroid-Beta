@@ -1,28 +1,17 @@
 package defpackage;
+public final class pyd implements cq7 {
+    public static final pyd a = new Object();
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class pyd implements IInterface {
-    public final IBinder a;
-
-    public pyd(IBinder iBinder) {
-        this.a = iBinder;
-    }
-
-    public final void a(Parcel parcel, int i) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            this.a.transact(i, parcel, obtain, 0);
-            obtain.readException();
-        } finally {
-            parcel.recycle();
-            obtain.recycle();
-        }
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)), 5)));
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this.a;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

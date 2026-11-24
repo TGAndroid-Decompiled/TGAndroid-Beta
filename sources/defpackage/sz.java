@@ -1,25 +1,14 @@
 package defpackage;
 
-import android.media.AudioDeviceCallback;
-import android.media.AudioDeviceInfo;
-public final class sz extends AudioDeviceCallback {
-    public final uz a;
+import org.telegram.tgnet.TLRPC;
+public final class sz {
+    public final long a;
+    public final boolean b;
+    public final TLRPC.TL_textWithEntities c;
 
-    public sz(uz uzVar) {
-        this.a = uzVar;
-    }
-
-    @Override
-    public final void onAudioDevicesAdded(AudioDeviceInfo[] audioDeviceInfoArr) {
-        this.a.c();
-    }
-
-    @Override
-    public final void onAudioDevicesRemoved(AudioDeviceInfo[] audioDeviceInfoArr) {
-        uz uzVar = this.a;
-        if (g8c.l(audioDeviceInfoArr, uzVar.i)) {
-            uzVar.i = null;
-        }
-        uzVar.c();
+    public sz(long j, boolean z, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.a = j;
+        this.b = z;
+        this.c = tL_textWithEntities;
     }
 }

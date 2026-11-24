@@ -1,35 +1,15 @@
 package defpackage;
 
-import android.window.BackEvent;
-import android.window.OnBackAnimationCallback;
-public final class ro7 implements OnBackAnimationCallback {
-    public final qp4 a;
-    public final qp4 b;
-    public final op4 c;
-    public final op4 d;
+import org.telegram.ui.NotificationsCustomSettingsActivity;
+public final class ro7 extends sc3 {
+    public final NotificationsCustomSettingsActivity F;
 
-    public ro7(qp4 qp4Var, qp4 qp4Var2, op4 op4Var, op4 op4Var2) {
-        this.a = qp4Var;
-        this.b = qp4Var2;
-        this.c = op4Var;
-        this.d = op4Var2;
+    public ro7(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
+        this.F = notificationsCustomSettingsActivity;
     }
 
-    public final void onBackCancelled() {
-        this.d.invoke();
-    }
-
-    public final void onBackInvoked() {
-        this.c.invoke();
-    }
-
-    public final void onBackProgressed(BackEvent backEvent) {
-        backEvent.getClass();
-        this.b.invoke(new fd0(backEvent));
-    }
-
-    public final void onBackStarted(BackEvent backEvent) {
-        backEvent.getClass();
-        this.a.invoke(new fd0(backEvent));
+    @Override
+    public final void P(u69 u69Var) {
+        this.F.a.invalidate();
     }
 }

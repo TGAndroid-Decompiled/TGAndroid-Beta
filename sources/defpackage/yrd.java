@@ -1,17 +1,10 @@
 package defpackage;
-public final class yrd implements zn7 {
-    public static final yrd a = new Object();
-
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class yrd {
+    public static final cx5 a(cx5 cx5Var) {
+        cx5Var.getClass();
+        if (cx5Var.d().c()) {
+            return cx5Var;
         }
-        throw new ClassCastException();
+        return new fp7(cx5Var);
     }
 }

@@ -7,7 +7,9 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_ephemeral;
+import org.telegram.tgnet.tl.TL_feed;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
@@ -41,7 +43,7 @@ public class TL_update {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.bot_id = inputSerializedData.readInt64(z);
-            this.commands = Vector.deserialize(inputSerializedData, new qdb((byte) 14), z);
+            this.commands = Vector.deserialize(inputSerializedData, new rfb((byte) 18), z);
         }
 
         @Override
@@ -50,6 +52,104 @@ public class TL_update {
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.bot_id);
             Vector.serialize(outputSerializedData, this.commands);
+        }
+    }
+
+    public static class TL_updateBotProfileWidget extends TLRPC.Update {
+        public static final int constructor = -1899234323;
+        public long bot_id;
+        public int flags;
+        public TL_bots.TL_botProfileWidget widget;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.bot_id = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.widget = TL_bots.TL_botProfileWidget.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z;
+            outputSerializedData.writeInt32(-1899234323);
+            int i = this.flags;
+            if (this.widget != null) {
+                z = true;
+            } else {
+                z = false;
+            }
+            int flag = TLObject.setFlag(i, 1, z);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.bot_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.widget.serializeToStream(outputSerializedData);
+            }
+        }
+    }
+
+    public static class TL_updateBotProfileWidgetData extends TLRPC.Update {
+        public static final int constructor = -389670232;
+        public long bot_id;
+        public String chat_data;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.bot_id = inputSerializedData.readInt64(z);
+            this.chat_data = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-389670232);
+            outputSerializedData.writeInt64(this.bot_id);
+            outputSerializedData.writeString(this.chat_data);
+        }
+    }
+
+    public static class TL_updateBotProfileWidgetQuery extends TLRPC.Update {
+        public static final int constructor = -1444874970;
+        public byte[] data;
+        public int flags;
+        public long query_id;
+        public TLRPC.WidgetQueryType query_type;
+        public long user_id;
+        public TL_wallet.card wallet_card;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.query_id = inputSerializedData.readInt64(z);
+            this.query_type = TLRPC.WidgetQueryType.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.user_id = inputSerializedData.readInt64(z);
+            this.data = inputSerializedData.readByteArray(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.wallet_card = TL_wallet.card.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z;
+            outputSerializedData.writeInt32(-1444874970);
+            int i = this.flags;
+            if (this.wallet_card != null) {
+                z = true;
+            } else {
+                z = false;
+            }
+            int flag = TLObject.setFlag(i, 1, z);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.query_id);
+            this.query_type.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeByteArray(this.data);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.wallet_card.serializeToStream(outputSerializedData);
+            }
         }
     }
 
@@ -733,7 +833,7 @@ public class TL_update {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.dc_options = Vector.deserialize(inputSerializedData, new v0b((byte) 25), z);
+            this.dc_options = Vector.deserialize(inputSerializedData, new c1b((byte) 26), z);
         }
 
         @Override
@@ -1301,7 +1401,7 @@ public class TL_update {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.folder_peers = Vector.deserialize(inputSerializedData, new sdb((byte) 13), z);
+            this.folder_peers = Vector.deserialize(inputSerializedData, new tfb((byte) 19), z);
             this.pts = inputSerializedData.readInt32(z);
             this.pts_count = inputSerializedData.readInt32(z);
         }
@@ -1385,7 +1485,7 @@ public class TL_update {
             outputSerializedData.writeInt32(-1535694705);
             this.call.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.sub_chain_id);
-            Vector.serialize(outputSerializedData, new g9c(outputSerializedData, (byte) 2), this.blocks);
+            Vector.serialize(outputSerializedData, new hbc(outputSerializedData, (byte) 2), this.blocks);
             outputSerializedData.writeInt32(this.next_offset);
         }
     }
@@ -1464,7 +1564,7 @@ public class TL_update {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.participants = Vector.deserialize(inputSerializedData, new rdb((byte) 3), z);
+            this.participants = Vector.deserialize(inputSerializedData, new sfb((byte) 9), z);
             this.version = inputSerializedData.readInt32(z);
         }
 
@@ -1501,7 +1601,7 @@ public class TL_update {
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt64(-cf3.n(this.peer));
+                outputSerializedData.writeInt64(-pg3.n(this.peer));
             }
             this.call.serializeToStream(outputSerializedData);
         }
@@ -1686,7 +1786,7 @@ public class TL_update {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.msg_id = inputSerializedData.readInt32(z);
-            this.extended_media = Vector.deserialize(inputSerializedData, new kdb((byte) 27), z);
+            this.extended_media = Vector.deserialize(inputSerializedData, new lfb((byte) 28), z);
         }
 
         @Override
@@ -2278,7 +2378,7 @@ public class TL_update {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peers = Vector.deserialize(inputSerializedData, new sdb((byte) 14), z);
+            this.peers = Vector.deserialize(inputSerializedData, new tfb((byte) 20), z);
         }
 
         @Override
@@ -2442,7 +2542,7 @@ public class TL_update {
                 this.folder_id = inputSerializedData.readInt32(z);
             }
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.order = Vector.deserialize(inputSerializedData, new ndb((byte) 17), z);
+                this.order = Vector.deserialize(inputSerializedData, new ofb((byte) 18), z);
             }
         }
 
@@ -2550,7 +2650,7 @@ public class TL_update {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
             if (TLObject.hasFlag(readInt32, 1)) {
-                this.order = Vector.deserialize(inputSerializedData, new ndb((byte) 17), z);
+                this.order = Vector.deserialize(inputSerializedData, new ofb((byte) 18), z);
             }
         }
 
@@ -2572,7 +2672,7 @@ public class TL_update {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.key = TLRPC.PrivacyKey.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.rules = Vector.deserialize(inputSerializedData, new qdb((byte) 11), z);
+            this.rules = Vector.deserialize(inputSerializedData, new rfb((byte) 12), z);
         }
 
         @Override
@@ -2589,7 +2689,7 @@ public class TL_update {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.quick_replies = Vector.deserialize(inputSerializedData, new ndb((byte) 27), z);
+            this.quick_replies = Vector.deserialize(inputSerializedData, new ofb((byte) 28), z);
         }
 
         @Override
@@ -2746,6 +2846,38 @@ public class TL_update {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1461528386);
+        }
+    }
+
+    public static class TL_updateReadFeed extends TLRPC.Update {
+        public static final int constructor = 1951948721;
+        public int filter_id;
+        public int flags;
+        public TL_feed.FeedPosition max_position;
+        public int unread_count;
+        public int unread_muted_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.filter_id = inputSerializedData.readInt32(z);
+            this.max_position = TL_feed.FeedPosition.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.unread_count = inputSerializedData.readInt32(z);
+                this.unread_muted_count = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1951948721);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(this.filter_id);
+            this.max_position.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.unread_count);
+                outputSerializedData.writeInt32(this.unread_muted_count);
+            }
         }
     }
 
@@ -3076,7 +3208,7 @@ public class TL_update {
             this.type = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.entities = Vector.deserialize(inputSerializedData, new yw6((byte) 25), z);
+            this.entities = Vector.deserialize(inputSerializedData, new yy6((byte) 27), z);
         }
 
         @Override
@@ -3406,7 +3538,7 @@ public class TL_update {
             this.user_id = inputSerializedData.readInt64(z);
             this.first_name = inputSerializedData.readString(z);
             this.last_name = inputSerializedData.readString(z);
-            this.usernames = Vector.deserialize(inputSerializedData, new v0b((byte) 13), z);
+            this.usernames = Vector.deserialize(inputSerializedData, new c1b((byte) 14), z);
         }
 
         @Override

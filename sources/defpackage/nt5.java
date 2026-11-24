@@ -1,14 +1,16 @@
 package defpackage;
-public final class nt5 extends qq4 implements gq4 {
-    public static final nt5 a = new qq4(3, pt5.class, "onAwaitInternalProcessResFunc", "onAwaitInternalProcessResFunc(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;", 0);
+public abstract class nt5 extends yh0 {
+    static {
+        be6.a(nt5.class);
+    }
 
-    @Override
-    public final Object a(Object obj, Object obj2, Object obj3) {
-        int i = pt5.c;
-        ((pt5) obj).getClass();
-        if (!(obj3 instanceof fp2)) {
-            return obj3;
+    public static byte[] d(String str) {
+        byte[] bArr = new byte[4];
+        if (str != null) {
+            for (int i = 0; i < Math.min(4, str.length()); i++) {
+                bArr[i] = (byte) str.charAt(i);
+            }
         }
-        throw ((fp2) obj3).a;
+        return bArr;
     }
 }

@@ -1,15 +1,15 @@
 package defpackage;
-public final class tvd implements zn7 {
+public final class tvd implements cq7 {
     public static final tvd a = new Object();
 
     static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)));
+        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
+            dq7 dq7Var = (dq7) obj2;
             throw null;
         }
         throw new ClassCastException();

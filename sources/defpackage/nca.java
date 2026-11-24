@@ -1,17 +1,26 @@
 package defpackage;
+public final class nca implements Runnable {
+    public final byte a;
+    public final qca b;
+    public final int c;
+    public final String d;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.d;
-public final class nca {
-    public final Context a;
-    public final d b;
-    public final wjb c;
-    public final nfa d;
+    public nca(qca qcaVar, int i, String str) {
+        this.a = (byte) 1;
+        this.b = qcaVar;
+        this.c = i;
+        this.d = str;
+    }
 
-    public nca(nfa nfaVar, Context context, d dVar, wjb wjbVar) {
-        this.d = nfaVar;
-        this.a = context;
-        this.b = dVar;
-        this.c = wjbVar;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nca.run():void");
+    }
+
+    public nca(qca qcaVar, String str, int i, byte b) {
+        this.a = b;
+        this.b = qcaVar;
+        this.d = str;
+        this.c = i;
     }
 }

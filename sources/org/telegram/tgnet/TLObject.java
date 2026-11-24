@@ -63,11 +63,11 @@ public class TLObject {
     }
 
     public static boolean hasFlag(int i, int i2) {
-        return fod.a(i, i2);
+        return iqd.a(i, i2);
     }
 
     public static int setFlag(int i, int i2, boolean z) {
-        return fod.b(i, i2, z);
+        return iqd.b(i, i2, z);
     }
 
     public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {

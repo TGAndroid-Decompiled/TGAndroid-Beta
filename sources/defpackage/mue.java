@@ -1,30 +1,17 @@
 package defpackage;
+public final class mue implements cq7 {
+    public static final mue a = new Object();
 
-import com.google.android.recaptcha.internal.zzqv;
-import java.util.ArrayList;
-public abstract class mue {
-    public static int a(int i, int i2, int i3) {
-        return (lje.m(i) * i2) + i3;
+    static {
+        mlb.z(mlb.q(ikd.class, new cid(1)));
     }
 
-    public static int b(int i, int i2, int i3, int i4) {
-        return lje.t(i) + i2 + i3 + i4;
-    }
-
-    public static int c(int i, int i2, long j, ArrayList arrayList) {
-        arrayList.add(Long.valueOf(j));
-        return i + i2;
-    }
-
-    public static String d(String str, int i, String str2, String str3) {
-        return str + i + str2 + str3;
-    }
-
-    public static int e(int i, int i2, int i3) {
-        return zzqv.zzA(i) + i2 + i3;
-    }
-
-    public static int f(int i, int i2, int i3) {
-        return hef.o(i) + i2 + i3;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

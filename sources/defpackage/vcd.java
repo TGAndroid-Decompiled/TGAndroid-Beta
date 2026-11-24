@@ -1,18 +1,5 @@
 package defpackage;
-
-import com.google.android.gms.common.api.Status;
-public final class vcd implements ua9 {
-    public final byte a;
-    public final Status b;
-
-    public vcd(Status status, byte b) {
-        this.a = b;
-        this.b = status;
-    }
-
-    @Override
-    public final Status a() {
-        byte b = this.a;
-        return this.b;
-    }
+public abstract class vcd {
+    public static final rg7 a = new rg7(null, null, null);
+    public static rg7 b;
 }

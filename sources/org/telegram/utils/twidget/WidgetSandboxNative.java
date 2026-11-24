@@ -34,9 +34,9 @@ final class WidgetSandboxNative {
         }
     }
 
-    public static native void prepare(byte[] bArr, boolean z);
+    public static native void prepare(byte[] bArr);
 
-    public static native void registerResources(byte[] bArr, byte[] bArr2, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6);
+    public static native void registerResources(byte[] bArr, byte[] bArr2, byte[] bArr3, byte[] bArr4);
 
     public static native void repaint(long j);
 

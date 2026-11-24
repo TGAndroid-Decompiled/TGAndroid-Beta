@@ -1,45 +1,44 @@
 package defpackage;
 
 import android.animation.ValueAnimator;
-import android.graphics.RectF;
-import org.telegram.ui.ProfileActivity;
-public final class pm8 extends gb3 {
-    public int F = -1;
-    public final ProfileActivity G;
+public final class pm8 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final um8 b;
 
-    public pm8(ProfileActivity profileActivity) {
-        this.G = profileActivity;
+    public pm8(um8 um8Var, byte b) {
+        this.a = b;
+        this.b = um8Var;
     }
 
     @Override
-    public final long K(long j, long j2, long j3) {
-        return 0L;
-    }
-
-    @Override
-    public final void N() {
-        gl.d3(new w88(this, (byte) 20));
-    }
-
-    @Override
-    public final void P(s49 s49Var) {
-        RectF rectF = ProfileActivity.Z6;
-        this.G.I3();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.p.isEmpty();
-        boolean isEmpty2 = this.r.isEmpty();
-        boolean isEmpty3 = this.s.isEmpty();
-        boolean isEmpty4 = this.q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new u28(this, (byte) 13));
-            ofFloat.setDuration(this.e);
-            ofFloat.start();
-            this.F = this.G.getNotificationCenter().q(null, this.F, true);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        um8 um8Var = this.b;
+        switch (b) {
+            case 0:
+                um8Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                um8Var.invalidate();
+                return;
+            case 1:
+                um8Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float L = um8Var.J + gm.L(28.0f);
+                float L2 = um8Var.K + gm.L(52.0f);
+                float f = um8Var.E;
+                um8Var.H = L - (L * f);
+                um8Var.I = L2 - (f * L2);
+                um8Var.invalidate();
+                return;
+            case 2:
+                um8Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int L3 = (gm.q.x - gm.L(36.0f)) - gm.L(52.0f);
+                sm8 sm8Var = um8Var.c;
+                sm8Var.getLayoutParams().width = gm.L(52.0f) + ((int) (L3 * um8Var.F));
+                sm8Var.requestLayout();
+                return;
+            default:
+                um8Var.s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                um8Var.e();
+                return;
         }
-        super.m();
     }
 }

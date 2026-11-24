@@ -1,17 +1,13 @@
 package defpackage;
 
-import android.content.Context;
-public final class c36 extends zu8 {
-    public final f36 t1;
+import android.app.Activity;
+import android.content.Intent;
+public interface c36 {
+    void a(String str, y26 y26Var);
 
-    public c36(f36 f36Var, Context context, String str, String str2, String str3) {
-        super(context, str, str2, str3, false);
-        this.t1 = f36Var;
-    }
+    y26 b(Class cls, String str);
 
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.t1.F = null;
-    }
+    Activity e();
+
+    void startActivityForResult(Intent intent, int i);
 }

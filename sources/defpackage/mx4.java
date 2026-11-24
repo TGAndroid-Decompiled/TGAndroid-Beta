@@ -1,14 +1,33 @@
 package defpackage;
+public final class mx4 implements Runnable {
+    public final byte a;
+    public final ox4 b;
+    public final boolean c;
 
-import android.graphics.Canvas;
-public final class mx4 implements gx4 {
-    public gx4 a;
+    public mx4(ox4 ox4Var, boolean z, byte b) {
+        this.a = b;
+        this.b = ox4Var;
+        this.c = z;
+    }
 
     @Override
-    public final void e(float f, float f2, float f3, float f4, Canvas canvas) {
-        gx4 gx4Var = this.a;
-        if (gx4Var != null) {
-            gx4Var.e(f, f2, f3, f4, canvas);
+    public final void run() {
+        byte b = this.a;
+        boolean z = this.c;
+        ox4 ox4Var = this.b;
+        switch (b) {
+            case 0:
+                if (!z) {
+                    ox4Var.H.setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                if (!z) {
+                    ox4Var.w.setVisibility(8);
+                    return;
+                }
+                return;
         }
     }
 }

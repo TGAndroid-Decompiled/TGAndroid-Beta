@@ -1,17 +1,13 @@
 package defpackage;
-public final class fgd implements zn7 {
-    public static final fgd a = new Object();
+public abstract class fgd {
+    public static final o94 a;
+    public static final o94[] b;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        o94 o94Var = new o94("sms_code_autofill", 2L);
+        o94 o94Var2 = new o94("sms_code_browser", 2L);
+        o94 o94Var3 = new o94("sms_retrieve", 1L);
+        a = o94Var3;
+        b = new o94[]{o94Var, o94Var2, o94Var3, new o94("user_consent", 3L)};
     }
 }

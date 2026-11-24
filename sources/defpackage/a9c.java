@@ -1,43 +1,38 @@
 package defpackage;
-public final class a9c {
-    public float a;
-    public float b;
-    public float c;
 
-    public a9c(float f) {
-        d(f);
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.PrivacyControlActivity;
+import org.telegram.ui.UserInfoActivity;
+public final class a9c implements Runnable {
+    public final byte a;
+    public final UserInfoActivity b;
+
+    public a9c(UserInfoActivity userInfoActivity, byte b) {
+        this.a = b;
+        this.b = userInfoActivity;
     }
 
-    public final boolean a(float f) {
-        float f2 = this.b;
-        float A = tb4.A(this.c, f2, f, f2);
-        if (this.a != A) {
-            this.a = A;
-            return true;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        UserInfoActivity userInfoActivity = this.b;
+        switch (b) {
+            case 0:
+                userInfoActivity.presentFragment(new PrivacyControlActivity(9, true));
+                return;
+            case 1:
+                va vaVar = userInfoActivity.y;
+                if (vaVar != null) {
+                    vaVar.g3.O(true);
+                    return;
+                }
+                return;
+            case 2:
+                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
+                return;
+            default:
+                userInfoActivity.presentFragment(new PremiumPreviewFragment(0, "add_account"));
+                return;
         }
-        return false;
-    }
-
-    public final boolean b(float f) {
-        if (this.c != f) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void c(boolean z) {
-        if (z) {
-            float f = this.c;
-            this.a = f;
-            this.b = f;
-            return;
-        }
-        this.b = this.a;
-    }
-
-    public final void d(float f) {
-        this.b = f;
-        this.c = f;
-        this.a = f;
     }
 }

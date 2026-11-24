@@ -1,29 +1,13 @@
 package defpackage;
+public final class ex5 {
+    public static final ex5[] a = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
+    ex5 EF5;
 
-import org.telegram.ui.LanguageSelectActivity;
-public final class ex5 implements Runnable {
-    public final byte a;
-    public final LanguageSelectActivity b;
-
-    public ex5(LanguageSelectActivity languageSelectActivity, byte b) {
-        this.a = b;
-        this.b = languageSelectActivity;
+    public static ex5 valueOf(String str) {
+        return (ex5) Enum.valueOf(ex5.class, str);
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        LanguageSelectActivity languageSelectActivity = this.b;
-        switch (b) {
-            case 0:
-                languageSelectActivity.k0();
-                return;
-            case 1:
-                languageSelectActivity.g0();
-                return;
-            default:
-                languageSelectActivity.a.f();
-                return;
-        }
+    public static ex5[] values() {
+        return (ex5[]) a.clone();
     }
 }

@@ -1,15 +1,15 @@
 package defpackage;
-public final class mne implements zn7 {
+public final class mne implements cq7 {
     public static final mne a = new Object();
 
     static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
+            dq7 dq7Var = (dq7) obj2;
             throw null;
         }
         throw new ClassCastException();

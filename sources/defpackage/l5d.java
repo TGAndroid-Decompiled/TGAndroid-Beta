@@ -1,55 +1,32 @@
 package defpackage;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class l5d extends dzc {
-    public final byte b;
-    public final TaskCompletionSource c;
+import android.accounts.Account;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+public final class l5d extends b4 {
+    public static final Parcelable.Creator<l5d> CREATOR = new d3d((byte) 14);
+    public final int a;
+    public final Account b;
+    public final int c;
+    public final GoogleSignInAccount d;
 
-    public l5d(TaskCompletionSource taskCompletionSource, byte b) {
-        super((byte) 14);
-        this.b = b;
-        this.c = taskCompletionSource;
+    public l5d(int i, Account account, int i2, GoogleSignInAccount googleSignInAccount) {
+        this.a = i;
+        this.b = account;
+        this.c = i2;
+        this.d = googleSignInAccount;
     }
 
     @Override
-    public final void Q(Status status, boolean z) {
-        switch (this.b) {
-            case 1:
-                dve.a(status, Boolean.valueOf(z), this.c);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void R(Status status, oy7 oy7Var) {
-        switch (this.b) {
-            case 0:
-                int i = l70.b;
-                boolean b = status.b();
-                TaskCompletionSource taskCompletionSource = this.c;
-                if (b) {
-                    taskCompletionSource.setResult(oy7Var);
-                    return;
-                } else {
-                    taskCompletionSource.setException(bmd.a(status));
-                    return;
-                }
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void S(int i, boolean z) {
-        switch (this.b) {
-            case 1:
-                dve.a(new Status(i, null, null, null), Boolean.valueOf(z), this.c);
-                return;
-            default:
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        mve.k(parcel, 2, this.b, i);
+        mve.q(parcel, 3, 4);
+        parcel.writeInt(this.c);
+        mve.k(parcel, 4, this.d, i);
+        mve.s(parcel, r);
     }
 }

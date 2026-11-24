@@ -167,7 +167,7 @@ public final class Instance {
                 this.password = str4;
             } else if (bArr != null) {
                 this.username = "reflector";
-                this.password = g8c.g0(bArr);
+                this.password = hac.g0(bArr);
             } else {
                 this.username = null;
                 this.password = null;
@@ -251,7 +251,7 @@ public final class Instance {
             sb.append(", login='");
             sb.append(this.login);
             sb.append("', password='");
-            return b00.j(sb, this.password, "'}");
+            return b10.j(sb, this.password, "'}");
         }
     }
 
@@ -280,7 +280,7 @@ public final class Instance {
         if (instance != null) {
             return;
         }
-        sc8.j("tgvoip version is not set");
+        dq9.m("tgvoip version is not set");
     }
 
     public static void destroyInstance() {
@@ -321,8 +321,8 @@ public final class Instance {
                 nativeInstance.setGlobalServerConfig(str);
             }
         } catch (JSONException e) {
-            if (w01.a) {
-                fa4.e("failed to parse tgvoip server config", e);
+            if (e21.a) {
+                fc4.e("failed to parse tgvoip server config", e);
             }
         }
     }

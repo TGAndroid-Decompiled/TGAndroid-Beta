@@ -1,12 +1,5 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class zje {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
-        }
-        return null;
-    }
+public final class zje {
+    public static final zje b = new zje();
+    public final wgd a = new wgd(new Object());
 }

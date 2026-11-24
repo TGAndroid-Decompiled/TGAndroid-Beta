@@ -1,79 +1,46 @@
 package defpackage;
 
-import android.net.Uri;
-import android.os.Bundle;
-import j$.util.Objects;
-public final class yq6 {
-    public static final yq6 d = new yq6(new xl3((byte) 16, false));
-    public static final String e;
-    public static final String f;
-    public static final String g;
-    public final Uri a;
-    public final String b;
-    public final Bundle c;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class yq6 implements Runnable {
+    public final byte a;
+    public final hs6 b;
+    public final ArrayList c;
 
-    static {
-        String str = g8c.a;
-        e = "0";
-        f = "1";
-        g = "2";
+    public yq6(hs6 hs6Var, ArrayList arrayList, byte b) {
+        this.a = b;
+        this.b = hs6Var;
+        this.c = arrayList;
     }
 
-    public yq6(xl3 xl3Var) {
-        this.a = (Uri) xl3Var.b;
-        this.b = (String) xl3Var.c;
-        this.c = (Bundle) xl3Var.d;
-    }
-
-    public final boolean equals(Object obj) {
-        boolean z;
-        boolean z2;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ArrayList arrayList = this.c;
+        hs6 hs6Var = this.b;
+        switch (b) {
+            case 0:
+                hs6Var.getNotificationCenter().k(57, Long.valueOf(k47.B0(((k47) arrayList.get(0)).k)), null, Boolean.TRUE, arrayList, null, 0, -1, Boolean.FALSE);
+                return;
+            default:
+                try {
+                    ArrayList arrayList2 = new ArrayList();
+                    ArrayList arrayList3 = new ArrayList();
+                    vh6 vh6Var = new vh6();
+                    vh6 vh6Var2 = new vh6();
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        try {
+                            cf7.c((TLRPC.Message) arrayList.get(i), vh6Var, vh6Var2);
+                        } catch (Exception e) {
+                            hs6Var.getMessagesStorage().n(e, true);
+                        }
+                    }
+                    hs6Var.getMessagesStorage().H0(vh6Var, vh6Var2, arrayList2, arrayList3, 0);
+                    return;
+                } catch (Exception e2) {
+                    fc4.g(e2, true);
+                    return;
+                }
         }
-        if (!(obj instanceof yq6)) {
-            return false;
-        }
-        yq6 yq6Var = (yq6) obj;
-        if (Objects.equals(this.a, yq6Var.a) && Objects.equals(this.b, yq6Var.b)) {
-            if (this.c == null) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (yq6Var.c == null) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            if (z == z2) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        int i = 0;
-        Uri uri = this.a;
-        if (uri == null) {
-            hashCode = 0;
-        } else {
-            hashCode = uri.hashCode();
-        }
-        int i2 = hashCode * 31;
-        String str = this.b;
-        if (str == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = str.hashCode();
-        }
-        int i3 = (i2 + hashCode2) * 31;
-        if (this.c != null) {
-            i = 1;
-        }
-        return i3 + i;
     }
 }

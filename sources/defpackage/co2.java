@@ -3,63 +3,76 @@ package defpackage;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.a;
-public abstract class co2 extends FrameLayout {
-    public a a;
-    public final ry1 b;
-    public final FrameLayout c;
-    public q5c d;
-    public boolean e;
-    public final eo2 f;
+public final class co2 extends mz0 {
+    public l7c S1;
+    public boolean T1;
+    public final FrameLayout U1;
+    public final boolean V1;
+    public final boolean W1;
+    public int X1;
 
-    public co2(eo2 eo2Var, Context context) {
-        super(context);
-        this.f = eo2Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.c = frameLayout;
-        frameLayout.setPadding(0, 0, 0, 0);
-        frameLayout.setClipToPadding(true);
-        addView(frameLayout, nme.e(-1, -1, 119));
-        ry1 ry1Var = new ry1(getContext());
-        this.b = ry1Var;
-        ry1Var.setupColorKey(bkb.Z6);
-        ry1Var.setFadeZoneBottom(gl.L(72.0f) + gl.n);
-        ry1Var.setFadeHeightBottom(gl.L(24.0f));
-        ry1Var.setFadeZoneTop(gl.L(64.0f) + gl.m);
-        ry1Var.a.b(-gl.L(20.0f), false);
-        frameLayout.addView(ry1Var, nme.g());
+    public co2(android.content.Context r17, org.telegram.tgnet.TLRPC.Chat r18, long r19, defpackage.qac r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.co2.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat, long, qac):void");
     }
 
-    public final void a() {
-        this.d.j(new ao2(this, (byte) 0));
-        bo2 bo2Var = new bo2(this);
-        bo2Var.n(350L);
-        bo2Var.o(s33.h);
-        bo2Var.C = false;
-        bo2Var.m = false;
-        this.d.setItemAnimator(bo2Var);
+    @Override
+    public final q59 G0(r59 r59Var) {
+        l7c l7cVar = new l7c(this.n1, getContext(), this.a, 0, false, new h92(this, (byte) 7), this.J0);
+        this.S1 = l7cVar;
+        l7cVar.r = false;
+        return l7cVar;
     }
 
-    public float b() {
-        float f = gl.q.y;
-        for (int i = 0; i < this.d.getChildCount(); i++) {
-            View childAt = this.d.getChildAt(i);
-            s49 T = this.d.T(childAt);
-            if (T != null) {
-                c4c G = this.d.g3.G(T.b());
-                if (G != null && G.d != 99) {
-                    f = Math.min(childAt.getY() + this.c.getPaddingTop(), f);
-                }
-            }
+    @Override
+    public final CharSequence J0() {
+        int i;
+        if (this.W1) {
+            i = 2131751919;
+        } else {
+            i = 2131751914;
         }
-        return f;
+        return jb6.M0(i, null);
     }
 
-    public void c() {
-        float b = b();
-        a aVar = this.a;
-        if (aVar != null) {
-            aVar.setTranslationY(Math.max(gl.m, b));
+    public final void Y0(qac qacVar, boolean z, boolean z2) {
+        int i;
+        if (z2 && !z && !this.W1) {
+            Context context = getContext();
+            ylb ylbVar = this.J0;
+            String M0 = jb6.M0(2131751907, null);
+            if (this.V1) {
+                i = 2131751910;
+            } else {
+                i = 2131751909;
+            }
+            ik.M(context, ylbVar, M0, jb6.M0(i, null), jb6.M0(2131754483, null), new np6(this, qacVar, z, (byte) 16)).show();
+            return;
+        }
+        qacVar.a(Boolean.valueOf(z));
+        dismiss();
+    }
+
+    public final void Z0(boolean z) {
+        boolean z2;
+        if (this.T1 != z) {
+            this.T1 = z;
+            r59 r59Var = this.n1;
+            View U0 = r59Var.U0(this.X1 + 1);
+            if (U0 instanceof v09) {
+                ((v09) U0).a(!z);
+                z2 = false;
+            } else {
+                z2 = true;
+            }
+            View U02 = r59Var.U0(this.X1 + 2);
+            if (U02 instanceof v09) {
+                ((v09) U02).a(z);
+            } else {
+                z2 = true;
+            }
+            if (z2) {
+                this.S1.O(true);
+            }
         }
     }
 }

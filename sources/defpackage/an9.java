@@ -1,29 +1,37 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.messenger.voip.VoIPService;
-public final class an9 implements ed, no7 {
-    public final on9 a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import org.telegram.messenger.camera.CameraView;
+public final class an9 extends CameraView {
+    public final Path a;
+    public final bn9 b;
 
-    public an9(on9 on9Var) {
-        this.a = on9Var;
+    public an9(bn9 bn9Var, Context context) {
+        super(context, true, false);
+        this.b = bn9Var;
+        this.a = new Path();
     }
 
     @Override
-    public final vxc W(View view, vxc vxcVar) {
-        io5 g = vxcVar.a.g(647);
-        on9 on9Var = this.a;
-        on9Var.R = g;
-        on9Var.f.requestLayout();
-        return vxc.b;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.a;
+        path.rewind();
+        path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth() / 2.0f, getHeight() / 2.0f), Path.Direction.CW);
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        if (VoIPService.getSharedInstance() != null) {
-            VoIPService.getSharedInstance().hangUp(1);
-        }
-        this.a.dismiss();
-        kk7.e().k(kk7.u2, new Object[0]);
+    public final void receivedAmplitude(double d) {
+        ((wc1) this.b).G.setAmplitude(d);
+    }
+
+    @Override
+    public final boolean square() {
+        return true;
     }
 }

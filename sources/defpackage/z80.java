@@ -1,31 +1,43 @@
 package defpackage;
 public final class z80 {
-    public long a;
+    public String a;
     public String b;
-    public String c;
-    public long d;
-    public int e;
-    public byte f;
+    public int c;
+    public String d;
+    public String e;
+    public String f;
+    public String g;
+    public String h;
+    public String i;
+    public l90 j;
+    public g90 k;
+    public d90 l;
+    public byte m;
 
     public final a90 a() {
-        String str;
-        if (this.f == 7 && (str = this.b) != null) {
-            return new a90(str, this.e, this.c, this.a, this.d);
+        if (this.m == 1 && this.a != null && this.b != null && this.d != null && this.h != null && this.i != null) {
+            return new a90(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.l);
         }
         StringBuilder sb = new StringBuilder();
-        if ((this.f & 1) == 0) {
-            sb.append(" pc");
+        if (this.a == null) {
+            sb.append(" sdkVersion");
         }
         if (this.b == null) {
-            sb.append(" symbol");
+            sb.append(" gmpAppId");
         }
-        if ((this.f & 2) == 0) {
-            sb.append(" offset");
+        if ((this.m & 1) == 0) {
+            sb.append(" platform");
         }
-        if ((this.f & 4) == 0) {
-            sb.append(" importance");
+        if (this.d == null) {
+            sb.append(" installationUuid");
         }
-        sc8.j(ir2.o("Missing required properties:", sb));
+        if (this.h == null) {
+            sb.append(" buildVersion");
+        }
+        if (this.i == null) {
+            sb.append(" displayVersion");
+        }
+        dq9.m(ts2.n("Missing required properties:", sb));
         return null;
     }
 }

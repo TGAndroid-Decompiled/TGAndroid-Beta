@@ -1,57 +1,39 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class px7 implements TextWatcher {
-    public final int a;
-    public final rx7 b;
+import android.animation.ValueAnimator;
+import android.widget.TextView;
+public final class px7 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final by7 b;
 
-    public px7(rx7 rx7Var, int i) {
-        this.b = rx7Var;
-        this.a = i;
+    public px7(by7 by7Var, byte b) {
+        this.a = b;
+        this.b = by7Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int length;
-        String code;
-        rx7 rx7Var = this.b;
-        if (!rx7Var.I && (length = editable.length()) >= 1) {
-            int i = this.a;
-            if (length > 1) {
-                String obj = editable.toString();
-                rx7Var.I = true;
-                for (int i2 = 0; i2 < Math.min(rx7Var.P - i, length); i2++) {
-                    if (i2 == 0) {
-                        editable.replace(0, length, obj.substring(i2, i2 + 1));
-                    } else {
-                        rx7Var.d[i + i2].setText(obj.substring(i2, i2 + 1));
-                    }
-                }
-                rx7Var.I = false;
-            }
-            if (i != rx7Var.P - 1) {
-                int i3 = i + 1;
-                EditTextBoldCursor editTextBoldCursor = rx7Var.d[i3];
-                editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                rx7Var.d[i3].requestFocus();
-            }
-            int i4 = rx7Var.P;
-            if (i == i4 - 1 || (i == i4 - 2 && length >= 2)) {
-                code = rx7Var.getCode();
-                if (code.length() == rx7Var.P) {
-                    rx7Var.h(null);
-                }
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        by7 by7Var = this.b;
+        switch (b) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a6 a6Var = by7Var.e;
+                a6Var.setScaleX(gm.R1(0.8f, 1.0f, floatValue));
+                a6Var.setScaleY(gm.R1(0.8f, 1.0f, floatValue));
+                a6Var.setAlpha(gm.R1(0.0f, 1.0f, floatValue));
+                TextView textView = by7Var.x;
+                textView.setScaleX(gm.R1(1.0f, 0.9f, floatValue));
+                textView.setScaleY(gm.R1(1.0f, 0.9f, floatValue));
+                textView.setAlpha(gm.R1(1.0f, 0.0f, floatValue));
+                by7Var.s.setAlpha(gm.R1(0.0f, 1.0f, floatValue));
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                by7Var.b0 = floatValue2;
+                by7Var.h(floatValue2);
+                by7Var.setAlpha(by7Var.b0);
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

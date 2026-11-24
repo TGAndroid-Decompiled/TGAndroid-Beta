@@ -1,34 +1,29 @@
 package defpackage;
+public final class kj0 {
+    public final long a;
+    public final long b;
+    public final long c;
+    public long d = 0;
+    public long e;
+    public long f;
+    public long g;
+    public long h;
 
-import android.content.DialogInterface;
-import java.lang.ref.WeakReference;
-public final class kj0 implements DialogInterface.OnClickListener {
-    public final byte a = 1;
-    public final Object b;
-
-    public kj0(lj0 lj0Var) {
-        this.b = new WeakReference(lj0Var);
+    public kj0(long j, long j2, long j3, long j4, long j5, long j6) {
+        this.a = j;
+        this.b = j2;
+        this.e = j3;
+        this.f = j4;
+        this.g = j5;
+        this.c = j6;
+        this.h = a(j2, 0L, j3, j4, j5, j6);
     }
 
-    @Override
-    public final void onClick(DialogInterface dialogInterface, int i) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                WeakReference weakReference = (WeakReference) obj;
-                if (weakReference.get() != null) {
-                    ((lj0) weakReference.get()).e(true);
-                    return;
-                }
-                return;
-            default:
-                ((bg4) obj).D0.e(true);
-                return;
+    public static long a(long j, long j2, long j3, long j4, long j5, long j6) {
+        if (j4 + 1 < j5 && j2 + 1 < j3) {
+            long j7 = ((float) (j - j2)) * (((float) (j5 - j4)) / ((float) (j3 - j2)));
+            return hac.j(((j7 + j4) - j6) - (j7 / 20), j4, j5 - 1);
         }
-    }
-
-    public kj0(bg4 bg4Var) {
-        this.b = bg4Var;
+        return j4;
     }
 }

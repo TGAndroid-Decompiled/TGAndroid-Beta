@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class c0 extends n39 {
+public final class c0 extends q59 {
     public final Context c;
     public int d;
     public ArrayList e = new ArrayList();
     public ArrayList f = new ArrayList();
-    public t79 h;
+    public v99 h;
     public String n;
     public final ThemeEditorView.EditorAlert r;
 
@@ -60,7 +60,7 @@ public final class c0 extends n39 {
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
+    public final boolean D(u69 u69Var) {
         return true;
     }
 
@@ -81,39 +81,39 @@ public final class c0 extends n39 {
     }
 
     @Override
-    public final void t(s49 s49Var, int i) {
+    public final void t(u69 u69Var, int i) {
         int c;
-        if (s49Var.f == 0) {
+        if (u69Var.f == 0) {
             boolean z = true;
             int i2 = i - 1;
-            blb blbVar = (blb) ((ArrayList) this.e.get(i2)).get(0);
-            if (blbVar.e == bkb.De) {
+            cnb cnbVar = (cnb) ((ArrayList) this.e.get(i2)).get(0);
+            if (cnbVar.e == cmb.De) {
                 c = 0;
             } else {
-                c = blbVar.c();
+                c = cnbVar.c();
             }
-            dhb dhbVar = (dhb) s49Var.a;
-            dhbVar.a.setText((CharSequence) this.f.get(i2));
-            dhbVar.b = c;
+            ejb ejbVar = (ejb) u69Var.a;
+            ejbVar.a.setText((CharSequence) this.f.get(i2));
+            ejbVar.b = c;
             if (c != 0) {
                 z = false;
             }
-            dhbVar.setWillNotDraw(z);
-            dhbVar.invalidate();
+            ejbVar.setWillNotDraw(z);
+            ejbVar.invalidate();
         }
     }
 
     @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        View dhbVar;
+    public final u69 x(ViewGroup viewGroup, int i) {
+        View ejbVar;
         Context context = this.c;
         if (i != 0) {
-            dhbVar = new View(context);
-            dhbVar.setLayoutParams(new e49(-1, gl.L(56.0f)));
+            ejbVar = new View(context);
+            ejbVar.setLayoutParams(new g69(-1, gm.L(56.0f)));
         } else {
-            dhbVar = new dhb(context);
-            dhbVar.setLayoutParams(new e49(-1, -2));
+            ejbVar = new ejb(context);
+            ejbVar.setLayoutParams(new g69(-1, -2));
         }
-        return new s49(dhbVar);
+        return new u69(ejbVar);
     }
 }

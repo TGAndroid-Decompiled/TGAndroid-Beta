@@ -1,6 +1,8 @@
 package defpackage;
-public interface aq4 {
-    Object apply(Object obj);
+public final class aq4 {
+    public final hq4 a;
 
-    boolean equals(Object obj);
+    public aq4(hq4 hq4Var) {
+        this.a = hq4Var;
+    }
 }

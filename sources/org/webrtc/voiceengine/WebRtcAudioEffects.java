@@ -26,7 +26,7 @@ public class WebRtcAudioEffects {
         if (z) {
             return;
         }
-        fi7.g("Expected condition to be true");
+        bh7.j("Expected condition to be true");
     }
 
     public static boolean canUseAcousticEchoCanceler() {
@@ -171,7 +171,7 @@ public class WebRtcAudioEffects {
             this.aec = create;
             if (create != null) {
                 boolean enabled = create.getEnabled();
-                if (this.shouldEnableAec && canUseAcousticEchoCanceler() && !gba.U) {
+                if (this.shouldEnableAec && canUseAcousticEchoCanceler() && !gda.U) {
                     z3 = true;
                 } else {
                     z3 = false;
@@ -205,7 +205,7 @@ public class WebRtcAudioEffects {
             this.ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
-                if (this.shouldEnableNs && canUseNoiseSuppressor() && !gba.U) {
+                if (this.shouldEnableNs && canUseNoiseSuppressor() && !gda.U) {
                     z4 = true;
                 }
                 if (this.ns.setEnabled(z4) != 0) {

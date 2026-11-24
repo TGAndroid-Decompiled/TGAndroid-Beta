@@ -1,38 +1,29 @@
 package defpackage;
+public final class z6c implements ay2, by2 {
+    public static final z6c a = new Object();
 
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.UserInfoActivity;
-public final class z6c implements Runnable {
-    public final byte a;
-    public final UserInfoActivity b;
-
-    public z6c(UserInfoActivity userInfoActivity, byte b) {
-        this.a = b;
-        this.b = userInfoActivity;
+    @Override
+    public final Object fold(Object obj, fs4 fs4Var) {
+        return fs4Var.invoke(obj, this);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        UserInfoActivity userInfoActivity = this.b;
-        switch (b) {
-            case 0:
-                userInfoActivity.presentFragment(new PrivacyControlActivity(9, true));
-                return;
-            case 1:
-                va vaVar = userInfoActivity.y;
-                if (vaVar != null) {
-                    vaVar.g3.O(true);
-                    return;
-                }
-                return;
-            case 2:
-                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
-                return;
-            default:
-                userInfoActivity.presentFragment(new PremiumPreviewFragment(0, "add_account"));
-                return;
-        }
+    public final ay2 get(by2 by2Var) {
+        return nwd.a(this, by2Var);
+    }
+
+    @Override
+    public final cy2 minusKey(by2 by2Var) {
+        return nwd.b(this, by2Var);
+    }
+
+    @Override
+    public final cy2 plus(cy2 cy2Var) {
+        return nwd.c(this, cy2Var);
+    }
+
+    @Override
+    public final by2 getKey() {
+        return this;
     }
 }

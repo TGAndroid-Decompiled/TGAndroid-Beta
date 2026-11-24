@@ -1,45 +1,28 @@
 package defpackage;
+public final class lq3 extends nl1 {
+    public float[] l;
 
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-public abstract class lq3 {
-    public static final int[] a = {16842912};
-    public static final int[] b = new int[0];
-
-    public static void a(Drawable drawable) {
-        String name = drawable.getClass().getName();
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 29 && i < 31 && "android.graphics.drawable.ColorStateListDrawable".equals(name)) {
-            int[] state = drawable.getState();
-            if (state != null && state.length != 0) {
-                drawable.setState(b);
+    @Override
+    public final void e() {
+        super.e();
+        int size = this.d.size();
+        long j = 0;
+        for (int i = 0; i < size; i++) {
+            long j2 = ((ml1) this.d.get(i)).e;
+            if (j2 > j) {
+                j = j2;
+            }
+        }
+        this.l = new float[size];
+        for (int i2 = 0; i2 < size; i2++) {
+            long j3 = ((ml1) this.d.get(i2)).e;
+            int i3 = (j > j3 ? 1 : (j == j3 ? 0 : -1));
+            float[] fArr = this.l;
+            if (i3 == 0) {
+                fArr[i2] = 1.0f;
             } else {
-                drawable.setState(a);
+                fArr[i2] = (float) (j / j3);
             }
-            drawable.setState(state);
         }
-    }
-
-    public static PorterDuff.Mode b(int i, PorterDuff.Mode mode) {
-        if (i != 3) {
-            if (i != 5) {
-                if (i != 9) {
-                    switch (i) {
-                        case 14:
-                            return PorterDuff.Mode.MULTIPLY;
-                        case 15:
-                            return PorterDuff.Mode.SCREEN;
-                        case 16:
-                            return PorterDuff.Mode.ADD;
-                        default:
-                            return mode;
-                    }
-                }
-                return PorterDuff.Mode.SRC_ATOP;
-            }
-            return PorterDuff.Mode.SRC_IN;
-        }
-        return PorterDuff.Mode.SRC_OVER;
     }
 }

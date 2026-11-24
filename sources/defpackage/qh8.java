@@ -1,33 +1,28 @@
 package defpackage;
 
-import android.content.Context;
-public final class qh8 implements Runnable {
+import android.animation.ValueAnimator;
+public final class qh8 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final xh8 b;
+    public final th8 b;
 
-    public qh8(xh8 xh8Var, byte b) {
+    public qh8(th8 th8Var, byte b) {
         this.a = b;
-        this.b = xh8Var;
+        this.b = th8Var;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        xh8 xh8Var = this.b;
+        th8 th8Var = this.b;
         switch (b) {
             case 0:
-                Context context = xh8Var.getContext();
-                d01.t(context, "https://" + na7.q1(xh8Var.T1).N2 + "/nft/" + xh8Var.y2.slug);
-                return;
-            case 1:
-                try {
-                    xh8Var.c.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                xh8Var.j2.c(xh8Var.F2);
+                th8Var.b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                th8Var.c(true);
                 return;
             default:
-                xh8Var.J2[0].setVisibility(8);
+                th8Var.getClass();
+                th8Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                th8Var.c(true);
                 return;
         }
     }

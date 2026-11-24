@@ -1,35 +1,23 @@
 package defpackage;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class fo2 implements DialogInterface.OnCancelListener {
-    public final byte a;
-    public final int b;
-    public final int c;
-    public final Object d;
+import android.view.View;
+import java.io.Serializable;
+public final class fo2 implements oac, af7 {
+    public final io2 a;
 
-    public fo2(int i, int i2, Object obj, byte b) {
-        this.a = b;
-        this.b = i;
-        this.c = i2;
-        this.d = obj;
+    @Override
+    public final void a(String str) {
+        io2 io2Var = this.a;
+        io2Var.getMessagesController().L0(Long.valueOf(-io2Var.b));
+        io2Var.showDialog(new co2(io2Var.getParentActivity(), null, io2Var.b, new qy1(io2Var, str, (byte) 9)));
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        byte b = this.a;
-        Object obj = this.d;
-        int i = this.c;
-        int i2 = this.b;
-        switch (b) {
-            case 0:
-                ConnectionsManager.getInstance(i2).cancelRequest(i, true);
-                ((hd[]) obj)[0] = null;
-                return;
-            default:
-                ConnectionsManager.getInstance(i2).cancelRequest(i, true);
-                ((i8c) obj).a(null, "CANCELLED");
-                return;
-        }
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        this.a.b0((c6c) obj);
     }
 }

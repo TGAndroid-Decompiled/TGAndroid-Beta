@@ -1,35 +1,20 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.net.Uri;
+import java.util.Collections;
+import java.util.Map;
 public abstract class mde {
-    public static Boolean a;
-    public static Boolean b;
-    public static Boolean c;
-    public static Boolean d;
-
-    public static boolean a(Context context) {
-        PackageManager packageManager = context.getPackageManager();
-        Boolean bool = a;
-        if (bool == null) {
-            bool = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
-            a = bool;
+    public static g83 a(ka9 ka9Var, String str, b19 b19Var, int i) {
+        Map map = Collections.EMPTY_MAP;
+        Uri d = lze.d(str, b19Var.c);
+        long j = b19Var.a;
+        long j2 = b19Var.b;
+        String a = ka9Var.a();
+        if (a == null) {
+            a = lze.d(((wh0) ka9Var.b.get(0)).a, b19Var.c).toString();
         }
-        if (!bool.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            Boolean bool2 = b;
-            if (bool2 == null) {
-                bool2 = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
-                b = bool2;
-            }
-            if (bool2.booleanValue()) {
-                if (!xqe.a() || Build.VERSION.SDK_INT >= 30) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+        String str2 = a;
+        jte.l(d, "The uri must be set.");
+        return new g83(d, 1, null, d89.h, j, j2, str2, i);
     }
 }

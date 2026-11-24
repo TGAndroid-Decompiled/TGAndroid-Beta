@@ -1,33 +1,15 @@
 package defpackage;
-public final class vwb implements Runnable {
-    public final byte a;
-    public final kxb b;
+public final class vwb extends k69 {
+    public int a;
+    public int b;
+    public final sxb c;
 
-    public vwb(kxb kxbVar, byte b) {
-        this.a = b;
-        this.b = kxbVar;
+    public vwb(sxb sxbVar) {
+        this.c = sxbVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        kxb kxbVar = this.b;
-        switch (b) {
-            case 0:
-                if (kxbVar.i()) {
-                    kxbVar.j();
-                    return;
-                }
-                return;
-            default:
-                axb axbVar = kxbVar.K;
-                axbVar.z1(true);
-                ywb ywbVar = kxbVar.y;
-                ywbVar.z1(true);
-                kxbVar.N.a(true, true);
-                gl.W3(ywbVar);
-                gl.W3(axbVar);
-                return;
-        }
+    public final void b(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vwb.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
     }
 }

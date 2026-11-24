@@ -1,144 +1,54 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-public final class lw3 {
-    public static final Object i = new Object();
-    public static volatile lw3 j;
-    public final ReentrantReadWriteLock a;
-    public final rs b;
-    public volatile byte c;
-    public final Handler d;
-    public final sj e;
-    public final kw3 f;
-    public final boolean g;
-    public final la3 h;
+import android.animation.ValueAnimator;
+public final class lw3 implements qac {
+    public final byte a;
+    public final px3 b;
 
-    public lw3(rl4 rl4Var) {
-        ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
-        this.a = reentrantReadWriteLock;
-        this.c = (byte) 3;
-        kw3 kw3Var = rl4Var.a;
-        this.f = kw3Var;
-        boolean z = rl4Var.b;
-        this.g = z;
-        this.h = rl4Var.c;
-        this.d = new Handler(Looper.getMainLooper());
-        this.b = new rs(0);
-        sj sjVar = new sj(this);
-        this.e = sjVar;
-        reentrantReadWriteLock.writeLock().lock();
-        if (!z) {
-            try {
-                this.c = (byte) 0;
-            } catch (Throwable th) {
-                this.a.writeLock().unlock();
-                throw th;
-            }
-        }
-        reentrantReadWriteLock.writeLock().unlock();
-        if (b() == 0) {
-            try {
-                kw3Var.b(new hw3(sjVar));
-            } catch (Throwable th2) {
-                d(th2);
-            }
-        }
+    public lw3(px3 px3Var, byte b) {
+        this.a = b;
+        this.b = px3Var;
     }
 
-    public static lw3 a() {
-        lw3 lw3Var;
-        boolean z;
-        synchronized (i) {
-            lw3Var = j;
-            if (lw3Var != null) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (!z) {
-                throw new IllegalStateException("EmojiCompat is not initialized.\n\nYou must initialize EmojiCompat prior to referencing the EmojiCompat instance.\n\nThe most likely cause of this error is disabling the EmojiCompatInitializer\neither explicitly in AndroidManifest.xml, or by including\nandroidx.emoji2:emoji2-bundled.\n\nAutomatic initialization is typically performed by EmojiCompatInitializer. If\nyou are not expecting to initialize EmojiCompat manually in your application,\nplease check to ensure it has not been removed from your APK's manifest. You can\ndo this in Android Studio using Build > Analyze APK.\n\nIn the APK Analyzer, ensure that the startup entry for\nEmojiCompatInitializer and InitializationProvider is present in\n AndroidManifest.xml. If it is missing or contains tools:node=\"remove\", and you\nintend to use automatic configuration, verify:\n\n  1. Your application does not include emoji2-bundled\n  2. All modules do not contain an exclusion manifest rule for\n     EmojiCompatInitializer or InitializationProvider. For more information\n     about manifest exclusions see the documentation for the androidx startup\n     library.\n\nIf you intend to use emoji2-bundled, please call EmojiCompat.init. You can\nlearn more in the documentation for BundledEmojiCompatConfig.\n\nIf you intended to perform manual configuration, it is recommended that you call\nEmojiCompat.init immediately on application startup.\n\nIf you still cannot resolve this issue, please open a bug with your specific\nconfiguration to help improve error message.");
-            }
-        }
-        return lw3Var;
-    }
-
-    public final int b() {
-        this.a.readLock().lock();
-        try {
-            return this.c;
-        } finally {
-            this.a.readLock().unlock();
-        }
-    }
-
-    public final void c() {
-        boolean z;
-        if (this.g) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z) {
-            if (b() == 1) {
+    @Override
+    public final void a(Object obj) {
+        byte b = this.a;
+        px3 px3Var = this.b;
+        Integer num = (Integer) obj;
+        switch (b) {
+            case 0:
+                dy0 dy0Var = px3Var.c;
+                boolean z = px3Var.u1;
+                boolean z2 = px3Var.d;
+                if (z != z2) {
+                    px3Var.u1 = z2;
+                    dy0Var.clearAnimation();
+                    float f = 0.0f;
+                    if (px3Var.d) {
+                        int i = gm.q.y;
+                        int i2 = px3Var.f;
+                        f = Math.min(0.0f, Math.max(((i - i2) * 0.3f) - px3Var.x1, (-i2) / 3.0f));
+                    }
+                    dy0Var.animate().translationY(f).setDuration(250L).setInterpolator(gb.w).start();
+                    return;
+                }
                 return;
-            }
-            this.a.writeLock().lock();
-            try {
-                if (this.c == 0) {
+            case 1:
+                hs1 hs1Var = px3Var.p1;
+                ValueAnimator valueAnimator = hs1Var.T;
+                if ((valueAnimator == null || !valueAnimator.isRunning()) && hs1Var.getCurrentPosition() != num.intValue()) {
+                    hs1Var.E(num.intValue());
+                    ox3 ox3Var = px3Var.q1;
+                    ox3Var.G = num.intValue();
+                    ox3Var.invalidate();
                     return;
                 }
-                this.c = (byte) 0;
-                this.a.writeLock().unlock();
-                sj sjVar = this.e;
-                lw3 lw3Var = (lw3) sjVar.b;
-                try {
-                    lw3Var.f.b(new hw3(sjVar));
-                    return;
-                } catch (Throwable th) {
-                    lw3Var.d(th);
-                    return;
-                }
-            } finally {
-                this.a.writeLock().unlock();
-            }
-        }
-        sc8.j("Set metadataLoadStrategy to LOAD_STRATEGY_MANUAL to execute manual loading");
-    }
-
-    public final void d(Throwable th) {
-        ArrayList arrayList = new ArrayList();
-        this.a.writeLock().lock();
-        try {
-            this.c = (byte) 2;
-            arrayList.addAll(this.b);
-            this.b.clear();
-            this.a.writeLock().unlock();
-            this.d.post(new jw3(arrayList, this.c, th));
-        } catch (Throwable th2) {
-            this.a.writeLock().unlock();
-            throw th2;
-        }
-    }
-
-    public final java.lang.CharSequence e(int r11, int r12, java.lang.CharSequence r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lw3.e(int, int, java.lang.CharSequence):java.lang.CharSequence");
-    }
-
-    public final void f(iw3 iw3Var) {
-        kre.a(iw3Var, "initCallback cannot be null");
-        this.a.writeLock().lock();
-        try {
-            if (this.c != 1 && this.c != 2) {
-                this.b.add(iw3Var);
-            } else {
-                this.d.post(new jw3(Arrays.asList(iw3Var), this.c, null));
-            }
-        } finally {
-            this.a.writeLock().unlock();
+                return;
+            default:
+                int intValue = num.intValue();
+                int i3 = px3.C1;
+                px3Var.H0(intValue);
+                return;
         }
     }
 }

@@ -1,14 +1,10 @@
 package defpackage;
-public interface b79 {
-    void P();
 
-    void S();
+import java.io.Serializable;
+public final class b79 implements Serializable {
+    public boolean a;
 
-    void q();
-
-    void r();
-
-    void s();
-
-    boolean x();
+    public final String toString() {
+        return String.valueOf(this.a);
+    }
 }

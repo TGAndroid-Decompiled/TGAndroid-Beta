@@ -1,66 +1,43 @@
 package defpackage;
 
-import android.os.Handler;
-import java.util.ArrayList;
-public final class cdb {
-    public static final ArrayList b = new ArrayList(50);
-    public final Handler a;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class cdb extends r59 {
+    public boolean f3;
+    public boolean g3;
+    public final fdb h3;
 
-    public cdb(Handler handler) {
-        this.a = handler;
+    public cdb(fdb fdbVar, Context context) {
+        super(context, null);
+        this.h3 = fdbVar;
     }
 
-    public static bdb d() {
-        bdb bdbVar;
-        ArrayList arrayList = b;
-        synchronized (arrayList) {
-            if (arrayList.isEmpty()) {
-                bdbVar = new Object();
-            } else {
-                bdbVar = (bdb) arrayList.remove(arrayList.size() - 1);
-            }
+    @Override
+    public final void m0(int i) {
+        boolean canScrollHorizontally = canScrollHorizontally(-1);
+        boolean canScrollHorizontally2 = canScrollHorizontally(1);
+        if (this.f3 == canScrollHorizontally && this.g3 == canScrollHorizontally2) {
+            return;
         }
-        return bdbVar;
-    }
-
-    public final bdb a(int i) {
-        bdb d = d();
-        d.a = this.a.obtainMessage(i);
-        return d;
-    }
-
-    public final bdb b(int i, int i2, int i3) {
-        bdb d = d();
-        d.a = this.a.obtainMessage(i, i2, i3);
-        return d;
-    }
-
-    public final bdb c(int i, Object obj) {
-        bdb d = d();
-        d.a = this.a.obtainMessage(i, obj);
-        return d;
-    }
-
-    public final void e(Runnable runnable) {
-        this.a.post(runnable);
-    }
-
-    public final void f() {
-        this.a.removeCallbacksAndMessages(null);
-    }
-
-    public final void g(int i) {
-        boolean z;
-        if (i != 0) {
-            z = true;
-        } else {
-            z = false;
+        bdb bdbVar = this.h3.d;
+        if (bdbVar != null) {
+            bdbVar.invalidate();
         }
-        gre.f(z);
-        this.a.removeMessages(i);
+        this.f3 = canScrollHorizontally;
+        this.g3 = canScrollHorizontally2;
     }
 
-    public final void h(int i) {
-        this.a.sendEmptyMessage(i);
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        fx2 previewDelegate;
+        hx2 e = hx2.e();
+        fdb fdbVar = this.h3;
+        cdb cdbVar = fdbVar.e;
+        previewDelegate = fdbVar.getPreviewDelegate();
+        boolean g = e.g(motionEvent, cdbVar, previewDelegate, this.o2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !g) {
+            return false;
+        }
+        return true;
     }
 }

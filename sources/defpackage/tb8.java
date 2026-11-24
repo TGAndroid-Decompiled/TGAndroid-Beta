@@ -1,13 +1,13 @@
 package defpackage;
+public final class tb8 extends sc3 {
+    public final ub8 F;
 
-import android.media.MediaRouter;
-public final class tb8 {
-    public final MediaRouter.RouteInfo a;
-    public final String b;
-    public zs6 c;
+    public tb8(ub8 ub8Var) {
+        this.F = ub8Var;
+    }
 
-    public tb8(MediaRouter.RouteInfo routeInfo, String str) {
-        this.a = routeInfo;
-        this.b = str;
+    @Override
+    public final void P(u69 u69Var) {
+        this.F.invalidate();
     }
 }

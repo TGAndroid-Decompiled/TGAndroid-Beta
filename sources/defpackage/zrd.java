@@ -1,17 +1,18 @@
 package defpackage;
-public final class zrd implements zn7 {
-    public static final zrd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, new d6d(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
+public abstract class zrd {
+    public static Object a(Bundle bundle) {
+        if (Build.VERSION.SDK_INT >= 34) {
+            return s4.g(bundle);
         }
-        throw new ClassCastException();
+        Parcelable parcelable = bundle.getParcelable("RESULT_DATA");
+        if (Intent.class.isInstance(parcelable)) {
+            return parcelable;
+        }
+        return null;
     }
 }

@@ -1,124 +1,62 @@
 package defpackage;
 
-import android.os.Build;
-public abstract class gi7 {
-    public static volatile boolean a = false;
-    public static final StringBuilder b = new StringBuilder();
-    public static final int[] c = {2002, 2000, 1920, 1601, 1600, 1001, 1000, 960, 800, 800, 480, 400, 400, 2048};
+import android.content.Context;
+public final class gi7 extends j1a {
+    public final byte L;
+    public boolean M;
+    public final mz0 N;
 
-    public static String a() {
-        String str = "mips";
-        String str2 = "armeabi";
-        try {
-            String str3 = Build.CPU_ABI;
-            if (str3.equalsIgnoreCase("x86_64")) {
-                str = "x86_64";
-            } else if (str3.equalsIgnoreCase("arm64-v8a")) {
-                str = "arm64-v8a";
-            } else if (str3.equalsIgnoreCase("armeabi-v7a")) {
-                str = "armeabi-v7a";
-            } else {
-                if (!str3.equalsIgnoreCase("armeabi")) {
-                    if (str3.equalsIgnoreCase("x86")) {
-                        str = "x86";
-                    } else if (!str3.equalsIgnoreCase("mips")) {
-                        if (w01.a) {
-                            fa4.d("Unsupported arch: ".concat(str3));
-                        }
+    public gi7(mz0 mz0Var, Context context, ylb ylbVar, byte b) {
+        super(context, ylbVar);
+        this.L = b;
+        this.N = mz0Var;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        byte b = this.L;
+        mz0 mz0Var = this.N;
+        switch (b) {
+            case 0:
+                super.onLayout(z, i, i2, i3, i4);
+                ji7 ji7Var = (ji7) mz0Var;
+                ji7Var.g2 = gm.L(64.0f) + getMeasuredHeight();
+                ji7Var.f2.G();
+                boolean z2 = this.M;
+                boolean z3 = ji7Var.d;
+                if (z2 != z3) {
+                    this.M = z3;
+                    if (z3) {
+                        r59 r59Var = ji7Var.n1;
+                        w46 w46Var = new w46(ji7Var.getContext(), 2, 0.6f);
+                        w46Var.a = 1;
+                        w46Var.p = gm.L(36.0f);
+                        r59Var.getLayoutManager().v0(w46Var);
+                        return;
                     }
+                    return;
                 }
-                str = "armeabi";
-            }
-            str2 = str;
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-        String property = System.getProperty("os.arch");
-        if (property != null && property.contains("686")) {
-            return "x86";
-        }
-        return str2;
-    }
-
-    public static void b(int i, xu7 xu7Var) {
-        xu7Var.K(7);
-        byte[] bArr = xu7Var.a;
-        bArr[0] = -84;
-        bArr[1] = 64;
-        bArr[2] = -1;
-        bArr[3] = -1;
-        bArr[4] = (byte) ((i >> 16) & 255);
-        bArr[5] = (byte) ((i >> 8) & 255);
-        bArr[6] = (byte) (i & 255);
-    }
-
-    public static synchronized void c(android.content.Context r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gi7.c(android.content.Context):void");
-    }
-
-    public static boolean d(android.content.Context r6, java.io.File r7, java.io.File r8, java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gi7.d(android.content.Context, java.io.File, java.io.File, java.lang.String):boolean");
-    }
-
-    public static defpackage.i4 e(defpackage.qd1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gi7.e(qd1):i4");
-    }
-
-    public static void f(qd1 qd1Var, h4 h4Var) {
-        int f = qd1Var.f(5);
-        qd1Var.n(2);
-        if (qd1Var.e()) {
-            qd1Var.n(5);
-        }
-        if (f >= 7 && f <= 10) {
-            qd1Var.m();
-        }
-        if (qd1Var.e()) {
-            int f2 = qd1Var.f(3);
-            if (h4Var.b == -1 && f >= 0 && f <= 15 && (f2 == 0 || f2 == 1)) {
-                h4Var.b = f;
-            }
-            if (qd1Var.e()) {
-                h(qd1Var);
-            }
-        }
-    }
-
-    public static void g(qd1 qd1Var, h4 h4Var) {
-        qd1Var.n(2);
-        boolean e = qd1Var.e();
-        int f = qd1Var.f(8);
-        for (int i = 0; i < f; i++) {
-            qd1Var.n(2);
-            if (qd1Var.e()) {
-                qd1Var.n(5);
-            }
-            if (e) {
-                qd1Var.n(24);
-            } else {
-                if (qd1Var.e()) {
-                    if (!qd1Var.e()) {
-                        qd1Var.n(4);
+                return;
+            default:
+                super.onLayout(z, i, i2, i3, i4);
+                t9c t9cVar = (t9c) mz0Var;
+                t9cVar.k2 = gm.L(64.0f) + getMeasuredHeight();
+                t9cVar.j2.G();
+                boolean z4 = this.M;
+                boolean z5 = t9cVar.d;
+                if (z4 != z5) {
+                    this.M = z5;
+                    if (z5) {
+                        r59 r59Var2 = t9cVar.n1;
+                        w46 w46Var2 = new w46(t9cVar.getContext(), 2, 0.6f);
+                        w46Var2.a = 1;
+                        w46Var2.p = gm.L(36.0f);
+                        r59Var2.getLayoutManager().v0(w46Var2);
+                        return;
                     }
-                    h4Var.c = qd1Var.f(6) + 1;
+                    return;
                 }
-                qd1Var.n(4);
-            }
+                return;
         }
-        if (qd1Var.e()) {
-            qd1Var.n(3);
-            if (qd1Var.e()) {
-                h(qd1Var);
-            }
-        }
-    }
-
-    public static void h(qd1 qd1Var) {
-        int f = qd1Var.f(6);
-        if (f >= 2 && f <= 42) {
-            qd1Var.n(f << 3);
-            return;
-        }
-        throw av7.d(String.format("Invalid language tag bytes number: %d. Must be between 2 and 42.", Integer.valueOf(f)));
     }
 }

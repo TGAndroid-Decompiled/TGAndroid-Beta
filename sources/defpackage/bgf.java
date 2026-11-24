@@ -1,3 +1,3 @@
 package defpackage;
-public final class bgf {
+public abstract class bgf {
 }

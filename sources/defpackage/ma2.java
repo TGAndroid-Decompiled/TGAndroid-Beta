@@ -1,79 +1,96 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import org.telegram.ui.Components.RadialProgressView;
-public final class ma2 extends FrameLayout implements tjb {
-    public final st a;
-    public final RadialProgressView b;
-    public final wjb c;
-    public float d;
-    public int e;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d;
+public final class ma2 extends iw5 {
+    public final Context x;
+    public final qa2 y;
 
-    public ma2(Context context, wjb wjbVar) {
-        super(context);
-        int i;
-        this.c = wjbVar;
-        st stVar = new st(this, context);
-        this.a = stVar;
-        stVar.setWillNotDraw(false);
-        addView(stVar, nme.e(36, 36, 17));
-        RadialProgressView radialProgressView = new RadialProgressView(context, wjbVar);
-        this.b = radialProgressView;
-        radialProgressView.setSize(gl.L(28.0f));
-        if (bkb.g1(wjbVar)) {
-            i = bkb.Ja;
-        } else {
-            i = bkb.Yc;
-        }
-        radialProgressView.setProgressColor(bkb.v0(i, wjbVar));
-        stVar.addView(radialProgressView, nme.e(32, 32, 17));
-    }
-
-    public final void a(float f, int i) {
-        if (this.d != f) {
-            invalidate();
-        }
-        this.d = f;
-        this.e = i;
+    public ma2(qa2 qa2Var, Context context, TLRPC.Chat chat, Context context2) {
+        super(context, chat);
+        this.y = qa2Var;
+        this.x = context2;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(44.0f), 1073741824));
-    }
-
-    public void setProgressVisible(boolean z) {
+    public final boolean a(final boolean z, gw5 gw5Var) {
+        TLRPC.ChatFull chatFull;
         int i;
-        if (z) {
-            i = 0;
-        } else {
-            i = 4;
+        String str;
+        ylb ylbVar;
+        qa2 qa2Var = this.y;
+        if (!qa2Var.W || (chatFull = qa2Var.Z) == null || (i = chatFull.invitesCount) == 0) {
+            return true;
         }
-        this.a.setVisibility(i);
-    }
-
-    @Override
-    public final void updateColors() {
-        int i;
-        wjb wjbVar = this.c;
-        try {
-            RadialProgressView radialProgressView = this.b;
-            if (bkb.g1(wjbVar)) {
-                i = bkb.Ja;
+        if (qa2Var.b0) {
+            if (z) {
+                str = "ApproveNewMembersEnableForLinksChannel";
             } else {
-                i = bkb.Yc;
+                str = "ApproveNewMembersDisableForLinksChannel";
             }
-            radialProgressView.setProgressColor(bkb.v0(i, wjbVar));
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+        } else if (z) {
+            str = "ApproveNewMembersEnableForLinks";
+        } else {
+            str = "ApproveNewMembersDisableForLinks";
         }
-    }
+        Context context = this.x;
+        ylbVar = ((d) qa2Var).resourceProvider;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ylbVar, context);
+        String M0 = jb6.M0(2131754169, null);
+        he heVar = alertDialog$Builder.a;
+        heVar.S = M0;
+        heVar.U = gm.S2(jb6.G(i, str, new Object[0]));
+        alertDialog$Builder.j(jb6.M0(2131754171, null), new ee(this) {
+            public final ma2 b;
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void r(he heVar2, int i2) {
+                byte b = r3;
+                boolean z2 = z;
+                ma2 ma2Var = this.b;
+                switch (b) {
+                    case 0:
+                        ma2Var.setJoinRequest(z2);
+                        ma2Var.y.X = true;
+                        return;
+                    default:
+                        ma2Var.setJoinRequest(z2);
+                        ma2Var.y.X = false;
+                        return;
+                }
+            }
+        });
+        alertDialog$Builder.g(jb6.M0(2131754170, null), new ee(this) {
+            public final ma2 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void r(he heVar2, int i2) {
+                byte b = r3;
+                boolean z2 = z;
+                ma2 ma2Var = this.b;
+                switch (b) {
+                    case 0:
+                        ma2Var.setJoinRequest(z2);
+                        ma2Var.y.X = true;
+                        return;
+                    default:
+                        ma2Var.setJoinRequest(z2);
+                        ma2Var.y.X = false;
+                        return;
+                }
+            }
+        });
+        qa2Var.showDialog(heVar);
+        return false;
     }
 }

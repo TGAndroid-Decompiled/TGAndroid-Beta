@@ -1,133 +1,202 @@
 package defpackage;
 
-import java.io.File;
-import java.util.Set;
-import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class xk6 implements Runnable {
-    public final byte a = 1;
-    public final MediaController b;
-    public final int c;
-    public final int d;
-    public final long e;
-    public final long f;
-    public final u47 h;
-    public final k27 n;
-    public final k27 r;
-    public final TL_stories.StoryItem s;
-    public final Object w;
+import org.telegram.tgnet.tl.TL_iv;
+public final class xk6 extends knd {
+    public int a;
+    public final TL_iv.PageBlock b;
+    public TL_iv.textConcat c = new TL_iv.textConcat();
 
-    public xk6(MediaController mediaController, int i, int i2, long j, long j2, u47 u47Var, k27 k27Var, k27 k27Var2, TL_stories.StoryItem storyItem, j1a j1aVar) {
-        this.b = mediaController;
-        this.c = i;
-        this.d = i2;
-        this.e = j;
-        this.f = j2;
-        this.h = u47Var;
-        this.n = k27Var;
-        this.r = k27Var2;
-        this.s = storyItem;
-        this.w = j1aVar;
+    public xk6(TL_iv.PageBlock pageBlock) {
+        this.b = pageBlock;
+    }
+
+    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
+        if (textconcat.texts.isEmpty()) {
+            return new TL_iv.textEmpty();
+        }
+        if (textconcat.texts.size() == 1) {
+            return textconcat.texts.get(0);
+        }
+        return textconcat;
     }
 
     @Override
-    public final void run() {
-        long b2;
-        String absolutePath;
-        byte b = this.a;
-        Object obj = this.w;
-        switch (b) {
-            case 0:
-                cq6 cq6Var = (cq6) obj;
-                long j = this.e;
-                long j2 = this.f;
-                u47 u47Var = this.h;
-                k27 k27Var = this.r;
-                TL_stories.StoryItem storyItem = this.s;
-                MediaController.i0(true);
-                MediaController mediaController = this.b;
-                mediaController.C1 = (byte) 0;
-                TLRPC.TL_document tL_document = new TLRPC.TL_document();
-                mediaController.g1 = tL_document;
-                mediaController.h1 = this.c;
-                tL_document.dc_id = Integer.MIN_VALUE;
-                tL_document.id = cq6Var.e;
-                int i = this.d;
-                tL_document.user_id = y6c.h(i).e();
-                TLRPC.TL_document tL_document2 = mediaController.g1;
-                tL_document2.mime_type = "audio/ogg";
-                tL_document2.file_reference = new byte[0];
-                gba.x();
-                mediaController.k1 = new File(cq6Var.a);
-                ba4.z(4).mkdirs();
-                File file = mediaController.k1;
-                Set set = s60.a;
-                if (file != null && (absolutePath = file.getAbsolutePath()) != null) {
-                    s60.a.add(absolutePath);
-                }
-                byte[] bArr = null;
-                try {
-                    mediaController.e1 = true;
-                    mediaController.l1 = cq6Var.d;
-                    mediaController.m1 = cq6Var.c;
-                    mediaController.w1 = cq6Var.b;
-                    mediaController.v1 = cq6Var.f;
-                    mediaController.n1 = j;
-                    mediaController.p1 = j2;
-                    mediaController.q1 = u47Var;
-                    k27 k27Var2 = this.n;
-                    if (k27Var2 == null) {
-                        b2 = 0;
-                    } else {
-                        b2 = k27.b2(mediaController.i1, k27Var2.k, false, false);
-                    }
-                    mediaController.o1 = b2;
-                    mediaController.i1 = i;
-                    mediaController.r1 = k27Var;
-                    mediaController.s1 = k27Var2;
-                    mediaController.t1 = storyItem;
-                    mediaController.u1 = mediaController.u1;
-                    TLRPC.TL_document tL_document3 = mediaController.g1;
-                    File file2 = mediaController.k1;
-                    if (file2.exists()) {
-                        bArr = MediaController.getWaveform(file2.getAbsolutePath());
-                    }
-                    gl.d3(new vz4(mediaController, file2, tL_document3, bArr, cq6Var, (byte) 19));
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    mediaController.g1 = null;
-                    s60.b(mediaController.k1);
-                    mediaController.k1.delete();
-                    mediaController.k1 = null;
-                    try {
-                        mediaController.f1.release();
-                        mediaController.f1 = null;
-                    } catch (Exception e2) {
-                        fa4.g(e2, true);
-                    }
-                    MediaController.i0(false);
-                    gl.d3(new va2(mediaController, i, j, (byte) 2));
-                    return;
-                }
-            default:
-                String[] strArr = MediaController.W1;
-                this.b.J(this.c, this.d, this.e, this.f, this.h, this.n, this.r, this.s, (j1a) obj);
-                return;
+    public final void a(il0 il0Var) {
+        int i = this.a;
+        if (i >= 64) {
+            return;
+        }
+        this.a = i + 1;
+        try {
+            v(il0Var);
+        } finally {
+            this.a--;
         }
     }
 
-    public xk6(MediaController mediaController, int i, cq6 cq6Var, int i2, long j, long j2, u47 u47Var, k27 k27Var, k27 k27Var2, TL_stories.StoryItem storyItem) {
-        this.b = mediaController;
-        this.c = i;
-        this.w = cq6Var;
-        this.d = i2;
-        this.e = j;
-        this.f = j2;
-        this.h = u47Var;
-        this.n = k27Var;
-        this.r = k27Var2;
-        this.s = storyItem;
+    @Override
+    public final void b(f21 f21Var) {
+        int i = this.a;
+        if (i >= 64) {
+            return;
+        }
+        this.a = i + 1;
+        try {
+            v(f21Var);
+        } finally {
+            this.a--;
+        }
+    }
+
+    @Override
+    public final void c(qk2 qk2Var) {
+        TL_iv.textFixed textfixed = new TL_iv.textFixed();
+        textfixed.text = al6.l(qk2Var.h);
+        w(textfixed);
+    }
+
+    @Override
+    public final void d(z53 z53Var) {
+        if (z53Var instanceof zab) {
+            TL_iv.textStrike textstrike = new TL_iv.textStrike();
+            textstrike.text = y(z53Var);
+            w(textstrike);
+        } else if (z53Var instanceof su5) {
+            w(al6.h(((su5) z53Var).g));
+        } else {
+            v(z53Var);
+        }
+    }
+
+    @Override
+    public final void e(f34 f34Var) {
+        TL_iv.textItalic textitalic = new TL_iv.textItalic();
+        textitalic.text = y(f34Var);
+        w(textitalic);
+    }
+
+    @Override
+    public final void i(bm5 bm5Var) {
+        w(y(bm5Var));
+    }
+
+    @Override
+    public final void k(y66 y66Var) {
+        if (y66Var instanceof pu5) {
+            if (!this.c.texts.isEmpty()) {
+                w(al6.l("\n"));
+            }
+            w(al6.h(((pu5) y66Var).g));
+            w(al6.l("\n"));
+            return;
+        }
+        v(y66Var);
+    }
+
+    @Override
+    public final void l(f76 f76Var) {
+        int i = this.a;
+        if (i >= 64) {
+            return;
+        }
+        this.a = i + 1;
+        try {
+            v(f76Var);
+        } finally {
+            this.a--;
+        }
+    }
+
+    @Override
+    public final void m(zs7 zs7Var) {
+        int i = this.a;
+        if (i >= 64) {
+            return;
+        }
+        this.a = i + 1;
+        try {
+            v(zs7Var);
+        } finally {
+            this.a--;
+        }
+    }
+
+    @Override
+    public final void n(uw7 uw7Var) {
+        if (!this.c.texts.isEmpty()) {
+            w(al6.l("\n\n"));
+        }
+        v(uw7Var);
+    }
+
+    @Override
+    public final void o(vib vibVar) {
+        w(al6.l(vibVar.g));
+    }
+
+    @Override
+    public final void q(qk2 qk2Var) {
+        w(al6.l(qk2Var.h));
+    }
+
+    @Override
+    public final void r(f34 f34Var) {
+        w(al6.l("\n"));
+    }
+
+    @Override
+    public final void s(bm5 bm5Var) {
+        String str = bm5Var.h;
+        if (str == null) {
+            str = "";
+        }
+        String trim = str.trim();
+        if (trim.startsWith("mailto:")) {
+            TL_iv.RichText textemail = new TL_iv.textEmail();
+            textemail.text = y(bm5Var);
+            textemail.email = trim.substring(7);
+            w(textemail);
+        } else if (trim.startsWith("tel:")) {
+            TL_iv.textPhone textphone = new TL_iv.textPhone();
+            textphone.text = y(bm5Var);
+            textphone.phone = trim.substring(4);
+            w(textphone);
+        } else {
+            TL_iv.RichText texturl = new TL_iv.textUrl();
+            texturl.text = y(bm5Var);
+            texturl.url = trim;
+            w(texturl);
+        }
+    }
+
+    @Override
+    public final void t(f34 f34Var) {
+        String str;
+        if (this.b instanceof TL_iv.pageBlockBlockquote) {
+            str = "\n";
+        } else {
+            str = " ";
+        }
+        w(al6.l(str));
+    }
+
+    @Override
+    public final void u(f34 f34Var) {
+        TL_iv.textBold textbold = new TL_iv.textBold();
+        textbold.text = y(f34Var);
+        w(textbold);
+    }
+
+    public final void w(TL_iv.RichText richText) {
+        this.c.texts.add(richText);
+    }
+
+    public final TL_iv.RichText y(ui6 ui6Var) {
+        TL_iv.textConcat textconcat = this.c;
+        this.c = new TL_iv.textConcat();
+        v(ui6Var);
+        TL_iv.RichText x = x(this.c);
+        this.c = textconcat;
+        return x;
     }
 }

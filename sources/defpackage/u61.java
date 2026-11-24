@@ -1,15 +1,11 @@
 package defpackage;
 
 import java.io.File;
-public final class u61 {
+public class u61 {
     public final File a;
-    public long b;
-    public long c;
-    public byte d;
-    public gn5 e;
-    public k27 f;
-    public int g;
-    public int h;
+    public int b = -1;
+    public int c = 2;
+    public boolean d;
 
     public u61(File file) {
         this.a = file;

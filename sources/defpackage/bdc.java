@@ -1,73 +1,62 @@
 package defpackage;
 
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowInsets;
-public abstract class bdc {
-    public static void a(WindowInsets windowInsets, View view) {
-        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296700);
-        if (onApplyWindowInsetsListener != null) {
-            onApplyWindowInsetsListener.onApplyWindowInsets(view, windowInsets);
+import android.hardware.display.DisplayManager;
+import android.os.Handler;
+import android.view.Choreographer;
+import android.view.Choreographer$VsyncCallback;
+public final class bdc extends zcc implements Choreographer$VsyncCallback {
+    public final Handler e;
+
+    public bdc(Choreographer choreographer, DisplayManager displayManager) {
+        super(choreographer, displayManager);
+        this.e = hac.q(null);
+    }
+
+    @Override
+    public final void a() {
+        this.b.registerDisplayListener(this, hac.q(null));
+        Choreographer choreographer = this.a;
+        choreographer.removeVsyncCallback(this);
+        choreographer.postVsyncCallback(this);
+    }
+
+    @Override
+    public final void b() {
+        this.b.unregisterDisplayListener(this);
+        this.e.removeCallbacksAndMessages(null);
+        this.a.removeVsyncCallback(this);
+        this.c = -9223372036854775807L;
+        this.d = -9223372036854775807L;
+    }
+
+    public final void c() {
+        this.a.postVsyncCallback(this);
+    }
+
+    @Override
+    public final void onDisplayChanged(int i) {
+        if (i == 0) {
+            this.e.removeCallbacksAndMessages(null);
+            Choreographer choreographer = this.a;
+            choreographer.removeVsyncCallback(this);
+            choreographer.postVsyncCallback(this);
         }
     }
 
-    public static vxc b(View view, vxc vxcVar, Rect rect) {
-        WindowInsets g = vxcVar.g();
-        if (g != null) {
-            return vxc.h(view, view.computeSystemWindowInsets(g, rect));
-        }
-        rect.setEmpty();
-        return vxcVar;
-    }
-
-    public static ColorStateList c(View view) {
-        return view.getBackgroundTintList();
-    }
-
-    public static PorterDuff.Mode d(View view) {
-        return view.getBackgroundTintMode();
-    }
-
-    public static float e(View view) {
-        return view.getElevation();
-    }
-
-    public static void f(View view, ColorStateList colorStateList) {
-        view.setBackgroundTintList(colorStateList);
-    }
-
-    public static void g(View view, PorterDuff.Mode mode) {
-        view.setBackgroundTintMode(mode);
-    }
-
-    public static void h(View view, float f) {
-        view.setElevation(f);
-    }
-
-    public static void i(View view, no7 no7Var) {
-        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener;
-        if (no7Var != null) {
-            onApplyWindowInsetsListener = new adc(view, no7Var);
+    public final void onVsync(Choreographer.FrameData frameData) {
+        this.c = frameData.getFrameTimeNanos();
+        Choreographer.FrameTimeline[] frameTimelines = frameData.getFrameTimelines();
+        long j = -9223372036854775807L;
+        if (frameTimelines.length >= 2) {
+            long expectedPresentationTimeNanos = frameTimelines[1].getExpectedPresentationTimeNanos() - frameTimelines[0].getExpectedPresentationTimeNanos();
+            if (expectedPresentationTimeNanos != 0) {
+                j = expectedPresentationTimeNanos;
+            }
+            this.d = j;
         } else {
-            onApplyWindowInsetsListener = null;
+            this.d = -9223372036854775807L;
         }
-        if (Build.VERSION.SDK_INT < 30) {
-            view.setTag(2131296689, onApplyWindowInsetsListener);
-        }
-        if (view.getTag(2131296688) != null) {
-            return;
-        }
-        if (onApplyWindowInsetsListener != null) {
-            view.setOnApplyWindowInsetsListener(onApplyWindowInsetsListener);
-        } else {
-            view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296700));
-        }
-    }
-
-    public static void j(View view) {
-        view.stopNestedScroll();
+        this.e.removeCallbacksAndMessages(null);
+        this.e.postDelayed(new f8c(this, (byte) 5), 500L);
     }
 }

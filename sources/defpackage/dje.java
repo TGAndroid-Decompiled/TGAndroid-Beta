@@ -1,17 +1,6 @@
 package defpackage;
-public final class dje implements zn7 {
-    public static final dje a = new Object();
-
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+public abstract class dje {
+    public static final java.lang.Object a(defpackage.jpb r4, defpackage.q83 r5, java.lang.Throwable r6, defpackage.px2 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.dje.a(jpb, q83, java.lang.Throwable, px2):java.lang.Object");
     }
 }

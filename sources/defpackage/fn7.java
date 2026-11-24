@@ -1,4 +1,13 @@
 package defpackage;
-public interface fn7 {
-    void i(hn7 hn7Var, int i);
+
+import android.app.Notification;
+import android.net.Uri;
+public abstract class fn7 {
+    public static Notification.MessagingStyle.Message a(CharSequence charSequence, long j, CharSequence charSequence2) {
+        return new Notification.MessagingStyle.Message(charSequence, j, charSequence2);
+    }
+
+    public static Notification.MessagingStyle.Message b(Notification.MessagingStyle.Message message, String str, Uri uri) {
+        return message.setData(str, uri);
+    }
 }

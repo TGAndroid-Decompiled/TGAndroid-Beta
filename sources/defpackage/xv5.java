@@ -1,26 +1,18 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class xv5 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final rw5 b;
-
-    public xv5(rw5 rw5Var, byte b) {
-        this.a = b;
-        this.b = rw5Var;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class xv5 extends FrameLayout {
+    public View a;
+    public TextView b;
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        rw5 rw5Var = this.b;
-        switch (b) {
-            case 0:
-                rw5Var.Z1.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                rw5Var.Z1.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.b.setText(charSequence);
     }
 }

@@ -1,13 +1,23 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_wallet;
-public final class v05 implements AutoCloseable {
-    public TL_wallet.sendTransfer a;
-    public y05 b;
-    public byte[] c;
+import android.view.MotionEvent;
+public final class v05 {
+    public final byte a;
+    public final su b;
 
-    @Override
-    public final void close() {
-        this.b.close();
+    public v05(su suVar, byte b) {
+        this.a = b;
+        this.b = suVar;
+    }
+
+    public final Boolean a(MotionEvent motionEvent) {
+        byte b = this.a;
+        su suVar = this.b;
+        switch (b) {
+            case 0:
+                return suVar.c(motionEvent);
+            default:
+                return suVar.d(motionEvent);
+        }
     }
 }

@@ -1,182 +1,225 @@
 package defpackage;
 
-import j$.util.List;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.zip.CRC32;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public abstract class apb {
-    public static void a(TLRPC.GroupCall groupCall, TLRPC.GroupCall groupCall2) {
-        if ((groupCall2 instanceof TLRPC.TL_groupCall) && (groupCall instanceof TLRPC.TL_groupCall)) {
-            TLRPC.TL_groupCall tL_groupCall = (TLRPC.TL_groupCall) groupCall2;
-            TLRPC.TL_groupCall tL_groupCall2 = (TLRPC.TL_groupCall) groupCall;
-            int i = tL_groupCall.flags;
-            if ((i & 16) == 0 && (tL_groupCall2.flags & 16) != 0 && tL_groupCall.id == tL_groupCall2.id) {
-                tL_groupCall.stream_dc_id = tL_groupCall2.stream_dc_id;
-                tL_groupCall.flags = i | 16;
-            }
-            if (tL_groupCall.min) {
-                tL_groupCall.can_change_join_muted = tL_groupCall2.can_change_join_muted;
-                tL_groupCall.can_start_video = tL_groupCall2.can_start_video;
-                tL_groupCall.creator = tL_groupCall2.creator;
-                tL_groupCall.can_change_messages_enabled = tL_groupCall2.can_change_messages_enabled;
-            }
-        }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.text.StaticLayout;
+import org.telegram.messenger.ImageReceiver;
+public final class apb {
+    public final Paint a;
+    public final Paint b;
+    public final Paint c;
+    public Drawable d;
+    public Drawable e;
+    public final bpb f;
+
+    public apb(bpb bpbVar) {
+        this.f = bpbVar;
+        Paint paint = new Paint(1);
+        this.a = paint;
+        this.b = new Paint(1);
+        this.c = new Paint(1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(gm.L(2.0f));
     }
 
-    public static void b(TLRPC.Poll poll, long j) {
-        if (poll != null) {
-            int size = poll.answers.size();
-            for (int i = 0; i < size; i++) {
-                poll.answers.get(i).unshuffled_index = i;
-            }
-            if (!poll.creator && poll.shuffle_answers) {
-                CRC32 crc32 = new CRC32();
-                int size2 = poll.answers.size();
-                for (int i2 = 0; i2 < size2; i2++) {
-                    TLRPC.PollAnswer pollAnswer = poll.answers.get(i2);
-                    if (pollAnswer.option != null) {
-                        crc32.reset();
-                        String l = Long.toString(j);
-                        Charset charset = StandardCharsets.UTF_8;
-                        crc32.update(l.getBytes(charset));
-                        crc32.update(pollAnswer.option);
-                        crc32.update(Long.toString(poll.id).getBytes(charset));
-                        pollAnswer.shuffle_hash = crc32.getValue();
-                    }
-                }
-                ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(poll.answers);
-                poll.shuffled_answers = arrayList;
-                List.EL.sort(arrayList, new pva((byte) 7));
-            }
-        }
-    }
-
-    public static ArrayList c(Class cls, java.util.List list) {
-        ArrayList arrayList = new ArrayList();
-        if (list != null) {
-            for (Object obj : list) {
-                if (cls.isInstance(obj)) {
-                    arrayList.add(cls.cast(obj));
-                }
-            }
-        }
-        return arrayList;
-    }
-
-    public static Object d(ArrayList arrayList, Class cls) {
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                if (cls.isInstance(obj)) {
-                    return cls.cast(obj);
-                }
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public static TLRPC.Document e(TL_stars.StarGift starGift) {
-        TLRPC.Document document = starGift.sticker;
-        ArrayList<TL_stars.StarGiftAttribute> arrayList = starGift.attributes;
-        if (arrayList != null && document == null) {
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                TL_stars.StarGiftAttribute starGiftAttribute = arrayList.get(i);
-                i++;
-                TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
-                if (starGiftAttribute2 instanceof TL_stars.starGiftAttributeModel) {
-                    return ((TL_stars.starGiftAttributeModel) starGiftAttribute2).document;
-                }
-            }
-        }
-        return document;
-    }
-
-    public static String f(TLRPC.ChatTheme chatTheme) {
-        if (chatTheme instanceof TLRPC.TL_chatTheme) {
-            return ((TLRPC.TL_chatTheme) chatTheme).emoticon;
-        }
-        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
-            return ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift.title;
-        }
-        return null;
-    }
-
-    public static boolean g(Object obj, Class... clsArr) {
-        if (obj != null) {
-            for (Class cls : clsArr) {
-                if (cls.isInstance(obj)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public static TLRPC.InputMedia h(TLRPC.MessageMedia messageMedia) {
-        TLRPC.InputMedia tL_inputMediaGeoPoint;
-        if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
-            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaVenue();
-            tL_inputMediaGeoPoint.address = messageMedia.address;
-            tL_inputMediaGeoPoint.title = messageMedia.title;
-            tL_inputMediaGeoPoint.provider = messageMedia.provider;
-            tL_inputMediaGeoPoint.venue_id = messageMedia.venue_id;
-            tL_inputMediaGeoPoint.venue_type = "";
-        } else if (messageMedia instanceof TLRPC.TL_messageMediaGeoLive) {
-            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoLive();
-            tL_inputMediaGeoPoint.period = messageMedia.period;
-            int i = tL_inputMediaGeoPoint.flags;
-            int i2 = i | 2;
-            tL_inputMediaGeoPoint.flags = i2;
-            int i3 = messageMedia.heading;
-            if (i3 != 0) {
-                tL_inputMediaGeoPoint.heading = i3;
-                i2 = i | 6;
-                tL_inputMediaGeoPoint.flags = i2;
-            }
-            int i4 = messageMedia.proximity_notification_radius;
-            if (i4 != 0) {
-                tL_inputMediaGeoPoint.proximity_notification_radius = i4;
-                tL_inputMediaGeoPoint.flags = i2 | 8;
-            }
-        } else {
-            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoPoint();
-        }
-        TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
-        tL_inputMediaGeoPoint.geo_point = tL_inputGeoPoint;
-        TLRPC.GeoPoint geoPoint = messageMedia.geo;
-        tL_inputGeoPoint.lat = geoPoint.lat;
-        tL_inputGeoPoint._long = geoPoint._long;
-        return tL_inputMediaGeoPoint;
-    }
-
-    public static void i(String str, ArrayList arrayList) {
+    public final void a(Canvas canvas, float f) {
+        float f2;
         int i;
-        int i2;
-        int i3;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            a.l();
-            if (str != null) {
-                i = str.length();
+        float f3;
+        float f4;
+        StaticLayout noThemeStaticLayout;
+        float f5;
+        float f6;
+        float f7;
+        float f8;
+        float f9;
+        byte b;
+        float f10;
+        bpb bpbVar = this.f;
+        ImageReceiver imageReceiver = bpbVar.Q;
+        float f11 = bpbVar.e;
+        m37 m37Var = bpbVar.T;
+        m37 m37Var2 = bpbVar.S;
+        float f12 = bpbVar.d;
+        float f13 = bpbVar.c;
+        byte b2 = bpbVar.L;
+        RectF rectF = bpbVar.w;
+        if (!bpbVar.a0 && bpbVar.E == null) {
+            f4 = 0.5f;
+            f2 = 255.0f;
+            f3 = 4.0f;
+        } else {
+            hf2 hf2Var = bpbVar.H;
+            f2 = 255.0f;
+            sz3 sz3Var = (sz3) hf2Var.a.f.get(hf2Var.c);
+            if (bpbVar.H.a.l()) {
+                i = cmb.v0(cmb.Ei, bpbVar.y);
             } else {
-                i = 0;
+                i = sz3Var.j;
             }
-            for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                TLRPC.MessageEntity messageEntity = (TLRPC.MessageEntity) arrayList.get(i4);
-                if (messageEntity == null || (i2 = messageEntity.offset) < 0 || i2 > i || (i3 = messageEntity.length) <= 0 || i3 > i - i2) {
-                    arrayList.clear();
+            Paint paint = this.a;
+            paint.setColor(i);
+            paint.setAlpha((int) (bpbVar.N * f * 255.0f));
+            f3 = 4.0f;
+            f4 = 0.5f;
+            float A = td4.A(1.0f, bpbVar.N, gm.L(4.0f), paint.getStrokeWidth() * 0.5f);
+            rectF.set(A, A, bpbVar.getWidth() - A, bpbVar.getHeight() - A);
+            float f14 = bpbVar.a;
+            canvas.drawRoundRect(rectF, f14, f14, paint);
+        }
+        int i2 = (int) (f * f2);
+        Paint paint2 = this.b;
+        paint2.setAlpha(i2);
+        Paint paint3 = this.c;
+        paint3.setAlpha(i2);
+        rectF.set(f13, f13, bpbVar.getWidth() - f13, bpbVar.getHeight() - f13);
+        tz3 tz3Var = bpbVar.H.a;
+        if (tz3Var != null) {
+            if (tz3Var.l()) {
+                bpbVar.H.a.getClass();
+            } else if (b2 != 4) {
+                if (b2 == 2) {
+                    bpbVar.H.getClass();
                     return;
                 }
+                float L = gm.L(8.0f) + f13;
+                if (b2 == 3) {
+                    f5 = 5.0f;
+                } else {
+                    f5 = 22.0f;
+                }
+                float L2 = gm.L(f5) + f13;
+                if (b2 != 0 && b2 != 3) {
+                    L = 0.12f * bpbVar.getMeasuredHeight();
+                    f6 = f11;
+                    rectF.set(bpbVar.getMeasuredWidth() - (bpbVar.getMeasuredWidth() * 0.65f), L, bpbVar.getMeasuredWidth() - (bpbVar.getMeasuredWidth() * 0.1f), bpbVar.getMeasuredHeight() * 0.32f);
+                } else {
+                    f6 = f11;
+                    if (b2 == 3) {
+                        f7 = 1.2f;
+                    } else {
+                        f7 = 1.0f;
+                    }
+                    rectF.set(L2, L, (f7 * f6) + L2, L + f12);
+                }
+                if (b2 == 3) {
+                    paint2 = paint3;
+                }
+                if (b2 != 0 && b2 != 3) {
+                    f9 = 2.0f;
+                    f8 = f12;
+                    m37Var2.setBounds((int) rectF.left, ((int) rectF.top) - gm.L(2.0f), gm.L(f3) + ((int) rectF.right), gm.L(2.0f) + ((int) rectF.bottom));
+                    m37Var2.Q = (int) (rectF.height() * f4);
+                    m37Var2.c(canvas, paint2);
+                } else {
+                    f8 = f12;
+                    f9 = 2.0f;
+                    canvas.drawRoundRect(rectF, rectF.height() * f4, rectF.height() * f4, paint2);
+                }
+                if (b2 != 0 && b2 != 3) {
+                    rectF.set(bpbVar.getMeasuredWidth() * 0.1f, bpbVar.getMeasuredHeight() * 0.35f, bpbVar.getMeasuredWidth() * 0.65f, bpbVar.getMeasuredHeight() * 0.55f);
+                    b = 3;
+                } else {
+                    float L3 = f13 + gm.L(5.0f);
+                    float L4 = f8 + gm.L(f3) + L;
+                    b = 3;
+                    if (b2 == 3) {
+                        f10 = 0.8f;
+                    } else {
+                        f10 = 1.0f;
+                    }
+                    rectF.set(L3, L4, (f6 * f10) + L3, L4 + f8);
+                }
+                if (b2 != 0 && b2 != b) {
+                    m37Var.setBounds(((int) rectF.left) - gm.L(f3), ((int) rectF.top) - gm.L(f9), (int) rectF.right, gm.L(f9) + ((int) rectF.bottom));
+                    m37Var.Q = (int) (rectF.height() * f4);
+                    m37Var.c(canvas, paint3);
+                    return;
+                }
+                canvas.drawRoundRect(rectF, rectF.height() * f4, rectF.height() * f4, paint3);
+                if (bpbVar.V != 0) {
+                    float centerY = rectF.centerY();
+                    float height = (rectF.height() / f9) + rectF.left;
+                    float height2 = rectF.right - (rectF.height() / f9);
+                    rectF.set(height - gm.L(8.0f), centerY - gm.L(8.0f), height + gm.L(8.0f), gm.L(8.0f) + centerY);
+                    imageReceiver.k0(rectF);
+                    imageReceiver.h(canvas, null);
+                    Drawable drawable = this.e;
+                    if (drawable == null) {
+                        drawable = bpbVar.getContext().getDrawable(2131231973).mutate();
+                        this.e = drawable;
+                    }
+                    int i3 = (int) height2;
+                    int i4 = (int) centerY;
+                    drawable.setBounds(i3 - gm.L(8.0f), i4 - gm.L(8.0f), gm.L(8.0f) + i3, gm.L(8.0f) + i4);
+                    this.e.draw(canvas);
+                    return;
+                }
+                return;
+            } else {
+                return;
             }
         }
+        if (bpbVar.U == null) {
+            float f15 = bpbVar.b;
+            canvas.drawRoundRect(rectF, f15, f15, bpbVar.s);
+            canvas.save();
+            noThemeStaticLayout = bpbVar.getNoThemeStaticLayout();
+            canvas.translate((bpbVar.getWidth() - noThemeStaticLayout.getWidth()) * f4, gm.L(18.0f));
+            noThemeStaticLayout.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    public final void b(Canvas canvas, float f) {
+        tz3 tz3Var;
+        int[] iArr;
+        int i;
+        bpb bpbVar = this.f;
+        float f2 = bpbVar.b;
+        Paint paint = bpbVar.r;
+        if (this.d != null) {
+            canvas.save();
+            canvas.clipPath(bpbVar.x);
+            Drawable drawable = this.d;
+            if (drawable instanceof BitmapDrawable) {
+                float intrinsicWidth = drawable.getIntrinsicWidth();
+                float intrinsicHeight = this.d.getIntrinsicHeight();
+                if (intrinsicWidth / intrinsicHeight > bpbVar.getWidth() / bpbVar.getHeight()) {
+                    int width = (int) ((bpbVar.getWidth() * intrinsicHeight) / intrinsicWidth);
+                    int width2 = (width - bpbVar.getWidth()) / 2;
+                    this.d.setBounds(width2, 0, width + width2, bpbVar.getHeight());
+                } else {
+                    int height = (int) ((bpbVar.getHeight() * intrinsicHeight) / intrinsicWidth);
+                    int height2 = (bpbVar.getHeight() - height) / 2;
+                    this.d.setBounds(0, height2, bpbVar.getWidth(), height + height2);
+                }
+            } else {
+                drawable.setBounds(0, 0, bpbVar.getWidth(), bpbVar.getHeight());
+            }
+            this.d.setAlpha((int) (255.0f * f));
+            this.d.draw(canvas);
+            Drawable drawable2 = this.d;
+            if ((drawable2 instanceof ColorDrawable) || ((drawable2 instanceof ah7) && (i = (iArr = ((ah7) drawable2).a)[0]) == iArr[1] && i == iArr[2] && i == iArr[3])) {
+                int alpha = paint.getAlpha();
+                paint.setAlpha((int) (alpha * f));
+                float f3 = bpbVar.c;
+                RectF rectF = gm.P;
+                rectF.set(f3, f3, bpbVar.getWidth() - f3, bpbVar.getHeight() - f3);
+                canvas.drawRoundRect(rectF, f2, f2, paint);
+                paint.setAlpha(alpha);
+            }
+            canvas.restore();
+            return;
+        }
+        hf2 hf2Var = bpbVar.H;
+        if (hf2Var != null && (tz3Var = hf2Var.a) != null && tz3Var.l() && bpbVar.O != null) {
+            return;
+        }
+        canvas.drawRoundRect(bpbVar.w, f2, f2, bpbVar.s);
     }
 }

@@ -1,70 +1,96 @@
 package defpackage;
 
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-public final class fo4 implements do4 {
-    public final go4 a;
+import java.util.List;
+public final class fo4 {
+    public int A;
+    public int B;
+    public int C;
+    public int D;
+    public float E;
+    public int F;
+    public boolean G;
+    public float H;
+    public byte[] I;
+    public int J;
+    public tm2 K;
+    public int L;
+    public int M;
+    public int N;
+    public int O;
+    public int P;
+    public int Q;
+    public int R;
+    public int S;
+    public int T;
+    public int U;
+    public int V;
+    public int W;
+    public String a;
+    public String b;
+    public mo5 c;
+    public String d;
+    public int e;
+    public int f;
+    public float g;
+    public int h;
+    public int i;
+    public int j;
+    public String k;
+    public nf7 l;
+    public String m;
+    public boolean n;
+    public long o;
+    public String p;
+    public int q;
+    public String r;
+    public String s;
+    public int t;
+    public int u;
+    public List v;
+    public as3 w;
+    public long x;
+    public boolean y;
+    public int z;
 
-    public fo4(go4 go4Var) {
-        this.a = go4Var;
+    public fo4() {
+        ko5 ko5Var = mo5.b;
+        this.c = y79.e;
+        this.g = -1.0f;
+        this.i = -1;
+        this.j = -1;
+        this.t = -1;
+        this.u = -1;
+        this.x = Long.MAX_VALUE;
+        this.z = -1;
+        this.A = -1;
+        this.B = -1;
+        this.C = -1;
+        this.D = -1;
+        this.E = -1.0f;
+        this.H = 1.0f;
+        this.J = -1;
+        this.L = -1;
+        this.M = -1;
+        this.N = -1;
+        this.O = -1;
+        this.P = -1;
+        this.S = -1;
+        this.T = 1;
+        this.U = -1;
+        this.V = -1;
+        this.W = 0;
+        this.h = 0;
+        this.n = false;
     }
 
-    @Override
-    public final boolean a(ArrayList arrayList, ArrayList arrayList2) {
-        boolean U;
-        go4 go4Var = this.a;
-        ArrayList arrayList3 = go4Var.n;
-        if (go4.K(2)) {
-            Log.v("FragmentManager", "FragmentManager has the following pending actions inside of prepareBackStackState: " + go4Var.a);
-        }
-        if (go4Var.d.isEmpty()) {
-            Log.i("FragmentManager", "Ignoring call to start back stack pop because the back stack is empty.");
-            U = false;
+    public final void a(float f) {
+        boolean z;
+        if (f != -1.0f && f <= 0.0f) {
+            z = false;
         } else {
-            id0 id0Var = (id0) b00.f(1, go4Var.d);
-            go4Var.h = id0Var;
-            ArrayList arrayList4 = id0Var.a;
-            int size = arrayList4.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList4.get(i);
-                i++;
-                bn4 bn4Var = ((wo4) obj).b;
-                if (bn4Var != null) {
-                    bn4Var.y = true;
-                }
-            }
-            U = go4Var.U(arrayList, arrayList2, -1, 0);
+            z = true;
         }
-        if (!arrayList3.isEmpty() && arrayList.size() > 0) {
-            ((Boolean) arrayList2.get(arrayList.size() - 1)).getClass();
-            LinkedHashSet linkedHashSet = new LinkedHashSet();
-            int size2 = arrayList.size();
-            int i2 = 0;
-            while (i2 < size2) {
-                Object obj2 = arrayList.get(i2);
-                i2++;
-                linkedHashSet.addAll(go4.F((id0) obj2));
-            }
-            int size3 = arrayList3.size();
-            int i3 = 0;
-            while (i3 < size3) {
-                Object obj3 = arrayList3.get(i3);
-                i3++;
-                if (obj3 == null) {
-                    Iterator it = linkedHashSet.iterator();
-                    if (it.hasNext()) {
-                        bn4 bn4Var2 = (bn4) it.next();
-                        throw null;
-                    }
-                } else {
-                    fyb.g();
-                    return false;
-                }
-            }
-        }
-        return U;
+        jte.f(z);
+        this.E = f;
     }
 }

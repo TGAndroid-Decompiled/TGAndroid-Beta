@@ -1,72 +1,116 @@
 package defpackage;
 
-import android.util.Pair;
-import j$.util.Objects;
-import java.util.Locale;
-import java.util.regex.Pattern;
-public abstract class wj2 {
-    public static final byte[] a = {0, 0, 0, 1};
-    public static final String[] b = {"", "A", "B", "C"};
-    public static final Pattern c = Pattern.compile("^\\D?(\\d+)$");
-    public static final byte[] d = {-75, 0, -112, 0, 1};
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.util.StateSet;
+import android.view.MotionEvent;
+public final class wj2 extends io {
+    public final Rect s;
+    public Drawable w;
+    public boolean x;
 
-    public static String a(int i, int i2, int i3, int i4, boolean z, int[] iArr) {
-        char c2;
-        String str = b[i];
-        Integer valueOf = Integer.valueOf(i2);
-        Integer valueOf2 = Integer.valueOf(i3);
-        if (z) {
-            c2 = 'H';
-        } else {
-            c2 = 'L';
-        }
-        Object[] objArr = {str, valueOf, valueOf2, Character.valueOf(c2), Integer.valueOf(i4)};
-        String str2 = g8c.a;
-        StringBuilder sb = new StringBuilder(String.format(Locale.US, "hvc1.%s%d.%X.%c%d", objArr));
-        int length = iArr.length;
-        while (length > 0 && iArr[length - 1] == 0) {
-            length--;
-        }
-        for (int i5 = 0; i5 < length; i5++) {
-            sb.append(String.format(".%02X", Integer.valueOf(iArr[i5])));
-        }
-        return sb.toString();
+    public wj2(Context context) {
+        super(context, false, false, false);
+        this.s = new Rect();
     }
 
-    public static Pair b(fm4 fm4Var) {
-        boolean z;
-        vj2 d2 = d(fm4Var);
-        if (d2 != null && (z = d2.c)) {
-            gre.p(z);
-            Integer valueOf = Integer.valueOf(d2.a);
-            gre.p(z);
-            return new Pair(valueOf, Integer.valueOf(d2.b));
+    public Rect getClickBounds() {
+        return this.s;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.w != null) {
+            Rect bounds = getDrawable().getBounds();
+            Rect rect = this.s;
+            rect.set(bounds);
+            int ceil = (int) Math.ceil(getDrawable().c());
+            if (getDrawable().b == 3) {
+                rect.right = rect.left + ceil;
+            } else if (getDrawable().b == 5) {
+                rect.left = rect.right - ceil;
+            } else if (getDrawable().b == 17) {
+                int i = (rect.left + rect.right) / 2;
+                int i2 = ceil / 2;
+                rect.left = i - i2;
+                rect.right = i + i2;
+            }
+            rect.left -= getPaddingLeft();
+            rect.top -= getPaddingTop();
+            rect.right = getPaddingRight() + rect.right;
+            rect.bottom = getPaddingBottom() + rect.bottom;
+            this.w.setBounds(rect);
+            this.w.draw(canvas);
         }
-        return null;
+        super.onDraw(canvas);
     }
 
-    public static defpackage.vj2 c(java.lang.String r12, java.lang.String[] r13, defpackage.hl2 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.wj2.c(java.lang.String, java.lang.String[], hl2):vj2");
-    }
-
-    public static defpackage.vj2 d(defpackage.fm4 r33) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.wj2.d(fm4):vj2");
-    }
-
-    public static boolean e(fm4 fm4Var) {
-        if (Objects.equals(fm4Var.t, "application/x-itut-t35")) {
-            for (byte[] bArr : fm4Var.w) {
-                int length = bArr.length;
-                byte[] bArr2 = d;
-                if (length >= bArr2.length) {
-                    for (int i = 0; i < bArr2.length; i++) {
-                        if (bArr[i] == bArr2[i]) {
-                        }
-                    }
-                    return true;
-                }
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (motionEvent.getAction() == 0 && contains) {
+            this.x = true;
+            Drawable drawable = this.w;
+            if (drawable != null) {
+                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.w.setState(new int[]{16842919, 16842910});
+            }
+            invalidate();
+            return contains;
+        }
+        if (motionEvent.getAction() == 1) {
+            if (this.x && contains) {
+                callOnClick();
+            }
+            this.x = false;
+            Drawable drawable2 = this.w;
+            if (drawable2 != null) {
+                drawable2.setState(StateSet.NOTHING);
+                return contains;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            this.x = false;
+            Drawable drawable3 = this.w;
+            if (drawable3 != null) {
+                drawable3.setState(StateSet.NOTHING);
             }
         }
-        return false;
+        return contains;
+    }
+
+    @Override
+    public void setBackground(Drawable drawable) {
+        Drawable drawable2 = this.w;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.w = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        Drawable drawable2 = this.w;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.w = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.w && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

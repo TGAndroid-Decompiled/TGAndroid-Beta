@@ -60,10 +60,10 @@ public class Camera1Enumerator implements CameraEnumerator {
                     Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i, e);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder m = de9.m(i, "Get supported formats for camera index ", " done. Time spent: ");
-                m.append(elapsedRealtime2 - elapsedRealtime);
-                m.append(" ms.");
-                Logging.d("Camera1Enumerator", m.toString());
+                StringBuilder l = hg9.l(i, "Get supported formats for camera index ", " done. Time spent: ");
+                l.append(elapsedRealtime2 - elapsedRealtime);
+                l.append(" ms.");
+                Logging.d("Camera1Enumerator", l.toString());
                 return arrayList;
             } catch (RuntimeException e2) {
                 Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i, e2);
@@ -88,7 +88,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i;
             }
         }
-        w26.j(b00.h("No such camera: ", str));
+        u36.j(b10.h("No such camera: ", str));
         return 0;
     }
 

@@ -1,15 +1,31 @@
 package defpackage;
-public final class zv2 implements Runnable {
-    public final boolean a;
+
+import android.database.ContentObserver;
+import org.telegram.messenger.Utilities;
+public final class zv2 extends ContentObserver {
+    public final jd a;
     public final bw2 b;
 
-    public zv2(bw2 bw2Var, boolean z) {
+    public zv2(bw2 bw2Var) {
+        super(null);
         this.b = bw2Var;
-        this.a = z;
+        this.a = new jd((byte) 26);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zv2.run():void");
+    public final boolean deliverSelfNotifications() {
+        return false;
+    }
+
+    @Override
+    public final void onChange(boolean z) {
+        super.onChange(z);
+        synchronized (this.b.f) {
+            if (this.b.d) {
+                return;
+            }
+            Utilities.e.a(this.a);
+            Utilities.e.d(this.a, 500L);
+        }
     }
 }

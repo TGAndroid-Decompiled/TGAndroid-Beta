@@ -1,48 +1,15 @@
 package defpackage;
 
-import java.lang.annotation.Annotation;
-import java.util.Collections;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
 public final class w84 {
-    public final String a;
-    public final Map b;
+    public final int a;
+    public final List b;
+    public final List c;
 
-    public w84(String str, Map map) {
-        this.a = str;
-        this.b = map;
-    }
-
-    public static lv6 a(String str) {
-        return new lv6(str, (byte) 26);
-    }
-
-    public static w84 c(String str) {
-        return new w84(str, Collections.EMPTY_MAP);
-    }
-
-    public final Annotation b(Class cls) {
-        return (Annotation) this.b.get(cls);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof w84) {
-                w84 w84Var = (w84) obj;
-                if (this.a.equals(w84Var.a) && this.b.equals(w84Var.b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return this.b.hashCode() + (this.a.hashCode() * 31);
-    }
-
-    public final String toString() {
-        return "FieldDescriptor{name=" + this.a + ", properties=" + this.b.values() + "}";
+    public w84(int i, wy5[] wy5VarArr, fgf[] fgfVarArr) {
+        this.a = i;
+        this.b = Arrays.asList(wy5VarArr);
+        this.c = Arrays.asList(fgfVarArr);
     }
 }

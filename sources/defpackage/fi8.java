@@ -1,15 +1,16 @@
 package defpackage;
-public final class fi8 {
-    public final byte a;
-    public final int b;
-    public final String c;
-    public final String d;
-    public int e;
+public enum fi8 extends ji8 {
+    public fi8() {
+        super("ALWAYS_TRUE", 0);
+    }
 
-    public fi8(int i, int i2, String str, String str2) {
-        this.a = i;
-        this.b = i2;
-        this.c = str;
-        this.d = str2;
+    @Override
+    public final boolean apply(Object obj) {
+        return true;
+    }
+
+    @Override
+    public final String toString() {
+        return "Predicates.alwaysTrue()";
     }
 }

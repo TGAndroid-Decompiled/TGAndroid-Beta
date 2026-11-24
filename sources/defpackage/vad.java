@@ -1,41 +1,53 @@
 package defpackage;
 
-import java.util.Set;
-public abstract class vad extends x8d implements Set {
-    public transient aad f;
+import android.text.TextUtils;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+public abstract class vad {
+    public static final String[] a = {"bluestacks", "memuhyperv", "virtualbox"};
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
+    public static boolean a() {
+        File file = new File("/proc/bus/input/devices");
+        ArrayList arrayList = null;
+        if (file.canRead()) {
             try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
+                ArrayList arrayList2 = new ArrayList();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+                while (true) {
+                    String readLine = bufferedReader.readLine();
+                    if (readLine == null) {
+                        break;
+                    } else if (readLine.startsWith("N: Name=\"")) {
+                        String substring = readLine.substring(9, readLine.length() - 1);
+                        if (!TextUtils.isEmpty(substring)) {
+                            arrayList2.add(substring);
+                        }
+                    }
+                }
+                bufferedReader.close();
+                arrayList = arrayList2;
+            } catch (IOException e) {
+                fc4.g(e, true);
+            }
+        }
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                String str = (String) obj;
+                for (int i2 = 0; i2 < 3; i2++) {
+                    if (str.toLowerCase().contains(a[i2])) {
                         return true;
                     }
-                    return false;
                 }
-            } catch (ClassCastException | NullPointerException unused) {
             }
         }
         return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        int i;
-        int i2 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i = obj.hashCode();
-            } else {
-                i = 0;
-            }
-            i2 += i;
-        }
-        return i2;
     }
 }

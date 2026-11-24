@@ -1,18 +1,12 @@
 package defpackage;
+public final class ag9 implements hk9, le9 {
+    public final ch9 a;
 
-import org.telegram.tgnet.TLRPC;
-public interface ag9 {
-    void a();
+    public ag9(ch9 ch9Var) {
+        this.a = ch9Var;
+    }
 
-    void b(int i, int i2);
-
-    void c(TLRPC.Photo photo);
-
-    void d(TLRPC.Document document);
-
-    void e(TLRPC.Document document);
-
-    void f(TLRPC.Document document);
-
-    void g(float f);
+    public final void a(defpackage.ne9 r11, defpackage.qh9 r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ag9.a(ne9, qh9, boolean):void");
+    }
 }

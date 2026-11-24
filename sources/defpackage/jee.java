@@ -1,34 +1,24 @@
 package defpackage;
-public abstract class jee {
-    public static final Class a;
-    public static final boolean b;
 
-    static {
-        Class<?> cls;
-        boolean z;
-        Class<?> cls2 = null;
-        try {
-            cls = Class.forName("libcore.io.Memory");
-        } catch (Throwable unused) {
-            cls = null;
-        }
-        a = cls;
-        try {
-            cls2 = Class.forName("org.robolectric.Robolectric");
-        } catch (Throwable unused2) {
-        }
-        if (cls2 != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = z;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class jee extends b4 {
+    public static final Parcelable.Creator<jee> CREATOR = new sje((byte) 1);
+    public final int a;
+    public final boolean b;
+
+    public jee(int i, boolean z) {
+        this.a = i;
+        this.b = z;
     }
 
-    public static boolean a() {
-        if (a != null && !b) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        mve.q(parcel, 3, 4);
+        parcel.writeInt(this.b ? 1 : 0);
+        mve.s(parcel, r);
     }
 }

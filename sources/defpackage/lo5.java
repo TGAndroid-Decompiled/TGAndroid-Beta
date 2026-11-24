@@ -1,46 +1,68 @@
 package defpackage;
-public final class lo5 implements gs3 {
-    public final byte a;
-    public String b;
 
-    public lo5(String str) {
-        this.a = (byte) 2;
-        this.b = str;
+import java.util.Iterator;
+import java.util.ListIterator;
+public final class lo5 extends mo5 {
+    public final transient int c;
+    public final transient int d;
+    public final mo5 e;
+
+    public lo5(mo5 mo5Var, int i, int i2) {
+        this.e = mo5Var;
+        this.c = i;
+        this.d = i2;
     }
 
     @Override
-    public final int b(int i) {
-        return -1;
+    public final Object get(int i) {
+        jte.j(i, this.d);
+        return this.e.get(i + this.c);
     }
 
     @Override
-    public final boolean c(int i) {
-        return false;
+    public final Iterator iterator() {
+        return listIterator(0);
     }
 
     @Override
-    public final char charAt(int i) {
-        return this.b.charAt(i);
+    public final Object[] j() {
+        return this.e.j();
     }
 
     @Override
-    public final int length() {
-        return this.b.length();
+    public final int k() {
+        return this.e.l() + this.c + this.d;
     }
 
     @Override
-    public final CharSequence subSequence(int i, int i2) {
-        return this.b.subSequence(i, i2);
+    public final int l() {
+        return this.e.l() + this.c;
     }
 
-    public final String toString() {
-        switch (this.a) {
-            case 1:
-                return this.b;
-            case 2:
-                return "<" + this.b + '>';
-            default:
-                return super.toString();
-        }
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final boolean m() {
+        return true;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
+    }
+
+    @Override
+    public final mo5 subList(int i, int i2) {
+        jte.n(i, i2, this.d);
+        int i3 = this.c;
+        return this.e.subList(i + i3, i2 + i3);
+    }
+
+    @Override
+    public final ListIterator listIterator(int i) {
+        return listIterator(i);
     }
 }

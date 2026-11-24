@@ -1,149 +1,142 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.drawable.GradientDrawable;
-import android.util.Property;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.TLRPC;
-public final class rk0 extends FrameLayout implements gk7, tjb {
-    public boolean E;
-    public int F;
-    public int G;
-    public TextView a;
-    public TextView b;
-    public yc c;
-    public yc d;
-    public ty8 e;
-    public ScrollView f;
-    public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate n;
-    public String r;
-    public int s;
-    public int w;
-    public GradientDrawable x;
-    public GradientDrawable y;
+import android.util.SparseArray;
+import java.lang.reflect.Array;
+public final class rk0 implements tz0 {
+    public final byte a = 2;
+    public int b;
+    public int c;
+    public final Object d;
 
-    public final void a(boolean z) {
-        yc ycVar = this.d;
-        TextView textView = this.b;
-        yc ycVar2 = this.c;
-        AnimatorSet animatorSet = this.h;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.h = new AnimatorSet();
-        Property property = View.ALPHA;
-        Property property2 = View.SCALE_Y;
-        Property property3 = View.SCALE_X;
-        if (z) {
-            ycVar2.setVisibility(0);
-            ycVar.setEnabled(false);
-            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(ycVar2, property3, 1.0f), ObjectAnimator.ofFloat(ycVar2, property2, 1.0f), ObjectAnimator.ofFloat(ycVar2, property, 1.0f));
-        } else {
-            textView.setVisibility(0);
-            ycVar.setEnabled(true);
-            this.h.playTogether(ObjectAnimator.ofFloat(ycVar2, property3, 0.1f), ObjectAnimator.ofFloat(ycVar2, property2, 0.1f), ObjectAnimator.ofFloat(ycVar2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
-        }
-        this.h.addListener(new y7((byte) 5, this, z));
-        this.h.setDuration(150L);
-        this.h.start();
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.X1) {
-            String str = (String) objArr[0];
-            String str2 = this.r;
-            if (str2 != null && str2.equals(str)) {
-                a(false);
-                a.a.u((Activity) getContext(), this.n.document);
-            }
-        } else if (i == kk7.Y1) {
-            String str3 = (String) objArr[0];
-            String str4 = this.r;
-            if (str4 != null && str4.equals(str3)) {
-                a(false);
-            }
-        } else if (i == kk7.W1) {
-            String str5 = (String) objArr[0];
-            String str6 = this.r;
-            if (str6 != null && str6.equals(str5)) {
-                this.e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
+    public rk0(ph7 ph7Var, go4 go4Var) {
+        yw7 yw7Var = ph7Var.e;
+        this.d = yw7Var;
+        yw7Var.N(12);
+        int E = yw7Var.E();
+        if ("audio/raw".equals(go4Var.t)) {
+            int u = hac.u(go4Var.Q) * go4Var.N;
+            if (E % u != 0) {
+                ncd.f("BoxParsers", "Audio sample size mismatch. stsd sample size: " + u + ", stsz sample size: " + E);
+                E = u;
             }
         }
+        this.b = E == 0 ? -1 : E;
+        this.c = yw7Var.E();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.x;
-        ScrollView scrollView = this.f;
-        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), gl.L(16.0f) + scrollView.getTop());
-        gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.y;
-        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - gl.L(18.0f), scrollView.getRight(), scrollView.getBottom());
-        gradientDrawable2.draw(canvas);
+    public final int a() {
+        return this.b;
     }
 
     @Override
-    public void setVisibility(int i) {
-        super.setVisibility(i);
-        if (i == 8) {
-            kk7.f(this.s).n(this, kk7.X1);
-            kk7.f(this.s).n(this, kk7.Y1);
-            kk7.f(this.s).n(this, kk7.W1);
+    public final int b() {
+        return this.c;
+    }
+
+    @Override
+    public final int c() {
+        int i = this.b;
+        if (i == -1) {
+            return ((yw7) this.d).E();
         }
+        return i;
     }
 
-    @Override
-    public final void updateColors() {
-        boolean z;
-        boolean z2;
-        GradientDrawable gradientDrawable = this.y;
-        GradientDrawable gradientDrawable2 = this.x;
-        try {
-            int w0 = bkb.w0(null, bkb.c6, false);
-            if (!this.E || w0 != this.F) {
-                this.F = w0;
-                if (gradientDrawable2 != null) {
-                    z = true;
-                } else {
-                    z = false;
+    public final int d() {
+        return ((((byte[]) this.d).length - this.b) << 3) - this.c;
+    }
+
+    public final byte e(int i, int i2) {
+        return ((byte[][]) this.d)[i2][i];
+    }
+
+    public final int f(int i) {
+        byte[] bArr = (byte[]) this.d;
+        int i2 = 0;
+        if (i >= 1 && i <= 32 && i <= d()) {
+            int i3 = this.c;
+            if (i3 > 0) {
+                int i4 = 8 - i3;
+                int min = Math.min(i, i4);
+                int i5 = i4 - min;
+                int i6 = this.b;
+                int i7 = (bArr[i6] & ((255 >> (8 - min)) << i5)) >> i5;
+                i -= min;
+                int i8 = this.c + min;
+                this.c = i8;
+                if (i8 == 8) {
+                    this.c = 0;
+                    this.b = i6 + 1;
                 }
-                if (z) {
-                    gradientDrawable2.setColors(new int[]{w0, 0});
-                }
-                if (gradientDrawable != null) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                if (z2) {
-                    gradientDrawable.setColors(new int[]{w0, 0});
-                }
+                i2 = i7;
             }
-            int w02 = bkb.w0(null, bkb.r8, false);
-            ScrollView scrollView = this.f;
-            if (scrollView != null && (!this.E || w02 != this.G)) {
-                this.G = w02;
-                gl.v3(scrollView, w02);
+            if (i > 0) {
+                while (i >= 8) {
+                    int i9 = this.b;
+                    i2 = (i2 << 8) | (bArr[i9] & 255);
+                    this.b = i9 + 1;
+                    i -= 8;
+                }
+                if (i > 0) {
+                    int i10 = 8 - i;
+                    int i11 = (i2 << i) | ((bArr[this.b] & ((255 >> i10) << i10)) >> i10);
+                    this.c += i;
+                    return i11;
+                }
+                return i2;
             }
-            this.E = true;
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+            return i2;
+        }
+        u36.j(String.valueOf(i));
+        return 0;
+    }
+
+    public final void g(int i, int i2, int i3) {
+        ((byte[][]) this.d)[i2][i] = (byte) i3;
+    }
+
+    public final String toString() {
+        switch (this.a) {
+            case 2:
+                int i = this.b;
+                int i2 = this.c;
+                StringBuilder sb = new StringBuilder(((i << 1) * i2) + 2);
+                for (int i3 = 0; i3 < i2; i3++) {
+                    byte[] bArr = ((byte[][]) this.d)[i3];
+                    for (int i4 = 0; i4 < i; i4++) {
+                        byte b = bArr[i4];
+                        if (b != 0) {
+                            if (b != 1) {
+                                sb.append("  ");
+                            } else {
+                                sb.append(" 1");
+                            }
+                        } else {
+                            sb.append(" 0");
+                        }
+                    }
+                    sb.append('\n');
+                }
+                return sb.toString();
+            default:
+                return super.toString();
         }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public rk0(byte[] bArr) {
+        this.d = bArr;
+    }
+
+    public rk0(int i, int i2, SparseArray sparseArray) {
+        this.b = i;
+        this.c = i2;
+        this.d = sparseArray;
+    }
+
+    public rk0(int i, int i2) {
+        this.d = (byte[][]) Array.newInstance(Byte.TYPE, i2, i);
+        this.b = i;
+        this.c = i2;
     }
 }

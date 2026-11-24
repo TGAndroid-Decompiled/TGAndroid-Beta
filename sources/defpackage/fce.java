@@ -1,10 +1,8 @@
 package defpackage;
-
-import java.util.logging.Logger;
 public abstract class fce {
     public static final int a = 0;
 
     static {
-        Logger.getLogger(fce.class.getName());
+        kce kceVar = kce.c;
     }
 }

@@ -1,6 +1,8 @@
 package defpackage;
-public interface ga4 {
-    void a();
+public final class ga4 {
+    public final String a;
 
-    String b();
+    public ga4(String str) {
+        this.a = str;
+    }
 }

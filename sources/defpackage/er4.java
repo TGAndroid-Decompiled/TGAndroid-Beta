@@ -1,600 +1,327 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
-import android.opengl.GLUtils;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.TextureView;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
+import android.util.Pair;
+import android.util.SparseArray;
+import j$.util.DesugarCollections;
+import java.math.RoundingMode;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
-import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLSurface;
-import javax.microedition.khronos.opengles.GL10;
-import org.telegram.messenger.Utilities;
-public class er4 extends TextureView implements TextureView.SurfaceTextureListener, tjb {
-    public volatile int E;
+import java.util.Arrays;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.UUID;
+public final class er4 implements s84 {
+    public static final byte[] P = {-94, 57, 79, 82, 90, -101, 79, 20, -94, 68, 108, 66, 124, 100, -115, -12};
+    public static final go4 Q;
+    public long A;
+    public long B;
+    public dr4 C;
+    public int D;
+    public int E;
     public int F;
-    public int G;
-    public volatile boolean H;
-    public volatile boolean I;
-    public boolean J;
-    public volatile dr4 K;
-    public final int L;
-    public final short M;
-    public boolean N;
-    public final byte O;
-    public int P;
-    public final ArrayList Q;
-    public boolean R;
-    public cra S;
-    public final byte T;
-    public volatile boolean U;
-    public final int[] V;
-    public final int[] W;
-    public boolean a;
-    public volatile boolean a0;
-    public uq4 b;
-    public volatile Runnable b0;
-    public SurfaceTexture c;
-    public final GestureDetector c0;
-    public final Object d;
-    public ValueAnimator d0;
-    public uq4 e;
-    public AnimatorSet e0;
-    public EGLDisplay f;
-    public final ar4 f0;
-    public final wq4 g0;
-    public EGLSurface h;
-    public final wq4 h0;
-    public final wq4 i0;
-    public EGLContext n;
-    public EGL10 r;
-    public EGLConfig s;
-    public GL10 w;
+    public boolean G;
+    public boolean H;
+    public u84 I;
+    public yzb[] J;
+    public yzb[] K;
+    public boolean L;
+    public boolean M;
+    public long N;
+    public long O;
+    public final tcb a;
+    public final int b;
+    public final List c;
+    public final byte[] h;
+    public final yw7 i;
+    public final vqb j;
+    public final kp o;
+    public final te8 p;
+    public final sz4 q;
+    public y79 r;
+    public byte s;
+    public int t;
+    public long u;
+    public int v;
+    public yw7 w;
     public long x;
-    public volatile int y;
+    public int y;
+    public long z;
+    public final hi2 k = new hi2((byte) 27);
+    public final yw7 l = new yw7(16);
+    public final yw7 e = new yw7(add.a);
+    public final yw7 f = new yw7(6);
+    public final yw7 g = new yw7();
+    public final ArrayDeque m = new ArrayDeque();
+    public final ArrayDeque n = new ArrayDeque();
+    public final SparseArray d = new SparseArray();
 
-    public er4(Context context, int i, int i2) {
-        super(context);
-        byte b;
-        long j;
-        this.d = new Object();
-        this.H = true;
-        int i3 = 0;
-        this.I = false;
-        this.J = false;
-        this.N = true;
-        this.Q = new ArrayList();
-        this.V = new int[1];
-        this.W = new int[1];
-        this.e0 = new AnimatorSet();
-        this.f0 = new ar4(this, (byte) 0);
-        this.g0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final er4 b;
+    static {
+        fo4 fo4Var = new fo4();
+        fo4Var.s = wf7.n("application/x-emsg");
+        Q = new go4(fo4Var);
+    }
 
-            {
-                this.b = this;
-            }
+    public er4(tcb tcbVar, int i, vqb vqbVar, List list, te8 te8Var) {
+        this.a = tcbVar;
+        this.b = i;
+        this.j = vqbVar;
+        this.c = DesugarCollections.unmodifiableList(list);
+        this.p = te8Var;
+        byte[] bArr = new byte[16];
+        this.h = bArr;
+        this.i = new yw7(bArr);
+        ko5 ko5Var = mo5.b;
+        this.r = y79.e;
+        this.A = -9223372036854775807L;
+        this.z = -9223372036854775807L;
+        this.B = -9223372036854775807L;
+        this.I = u84.v;
+        this.J = new yzb[0];
+        this.K = new yzb[0];
+        this.o = new kp(new yu3(this, (byte) 24));
+        this.q = new sz4((byte) 19);
+        this.N = -1L;
+        this.O = -1L;
+    }
 
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                byte b2 = r2;
-                er4 er4Var = this.b;
-                switch (b2) {
-                    case 0:
-                        er4Var.b.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        er4Var.b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        er4Var.b.i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.h0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final er4 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                byte b2 = r2;
-                er4 er4Var = this.b;
-                switch (b2) {
-                    case 0:
-                        er4Var.b.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        er4Var.b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        er4Var.b.i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.i0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final er4 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                byte b2 = r2;
-                er4 er4Var = this.b;
-                switch (b2) {
-                    case 0:
-                        er4Var.b.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        er4Var.b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        er4Var.b.i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.T = i2;
-        if (i2 != 1 && i2 != 4 && i2 != 3) {
-            b = 5;
+    public static int g(int i) {
+        int i2;
+        if ((i & 1) != 0) {
+            i2 = 64;
         } else {
-            b = 1;
+            i2 = 0;
         }
-        this.O = b;
-        if (i2 == 4) {
-            j = 0;
-        } else {
-            j = 2000;
+        if ((i & 2) != 0) {
+            return i2 | 128;
         }
-        this.M = (int) j;
-        setOpaque(false);
-        setRenderer(new uq4(context, i, i2));
-        this.L = (int) gl.r;
-        setSurfaceTextureListener(this);
-        GestureDetector gestureDetector = new GestureDetector(context, new zq4(this, i2));
-        this.c0 = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(true);
-        while (true) {
-            byte b2 = this.O;
-            ArrayList arrayList = this.Q;
-            if (i3 < b2) {
-                i3 = tb4.g(i3, i3, 1, arrayList);
+        return i2;
+    }
+
+    public static as3 i(ArrayList arrayList) {
+        UUID uuid;
+        int size = arrayList.size();
+        ArrayList arrayList2 = null;
+        for (int i = 0; i < size; i++) {
+            ph7 ph7Var = (ph7) arrayList.get(i);
+            if (ph7Var.b == 1886614376) {
+                if (arrayList2 == null) {
+                    arrayList2 = new ArrayList();
+                }
+                byte[] bArr = ph7Var.e.a;
+                kw8 b = wte.b(bArr);
+                if (b == null) {
+                    uuid = null;
+                } else {
+                    uuid = (UUID) b.c;
+                }
+                if (uuid == null) {
+                    ncd.f("FragmentedMp4Extractor", "Skipped pssh atom (failed to extract uuid)");
+                } else {
+                    arrayList2.add(new zr3(uuid, null, "video/mp4", bArr));
+                }
+            }
+        }
+        if (arrayList2 == null) {
+            return null;
+        }
+        return new as3(null, false, (zr3[]) arrayList2.toArray(new zr3[0]));
+    }
+
+    public static void k(yw7 yw7Var, int i, tzb tzbVar) {
+        boolean z;
+        yw7Var.N(i + 8);
+        int m = yw7Var.m();
+        byte[] bArr = yz0.a;
+        if ((m & 1) == 0) {
+            if ((m & 2) != 0) {
+                z = true;
             } else {
-                Collections.shuffle(arrayList);
+                z = false;
+            }
+            int E = yw7Var.E();
+            if (E == 0) {
+                Arrays.fill(tzbVar.l, 0, tzbVar.e, false);
                 return;
             }
+            int i2 = tzbVar.e;
+            yw7 yw7Var2 = tzbVar.n;
+            if (E == i2) {
+                Arrays.fill(tzbVar.l, 0, E, z);
+                yw7Var2.K(yw7Var.a());
+                tzbVar.k = true;
+                tzbVar.o = true;
+                yw7Var.k(0, yw7Var2.c, yw7Var2.a);
+                yw7Var2.N(0);
+                tzbVar.o = false;
+                return;
+            }
+            StringBuilder l = hg9.l(E, "Senc sample count ", " is different from fragment sample count");
+            l.append(tzbVar.e);
+            throw bx7.a(l.toString(), null);
         }
+        throw bx7.d("Overriding TrackEncryptionBox parameters is unsupported.");
     }
 
-    public final void a() {
-        ValueAnimator valueAnimator = this.d0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.d0.cancel();
-            this.d0 = null;
-        }
-        AnimatorSet animatorSet = this.e0;
-        if (animatorSet != null) {
-            animatorSet.removeAllListeners();
-            this.e0.cancel();
-            this.e0 = null;
-        }
-    }
-
-    public final void b() {
-        if (this.n.equals(this.r.eglGetCurrentContext()) && this.h.equals(this.r.eglGetCurrentSurface(12377))) {
-            return;
-        }
-        c();
-        EGL10 egl10 = this.r;
-        EGLDisplay eGLDisplay = this.f;
-        EGLSurface eGLSurface = this.h;
-        if (egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.n)) {
-            c();
+    public static Pair l(long j, yw7 yw7Var) {
+        long G;
+        long G2;
+        yw7 yw7Var2 = yw7Var;
+        yw7Var2.N(8);
+        int e = yz0.e(yw7Var2.m());
+        yw7Var2.O(4);
+        long C = yw7Var2.C();
+        if (e == 0) {
+            G = yw7Var2.C();
+            G2 = yw7Var2.C();
         } else {
-            k93.c(GLUtils.getEGLErrorString(this.r.eglGetError()), "eglMakeCurrent failed ");
+            G = yw7Var2.G();
+            G2 = yw7Var2.G();
         }
-    }
-
-    public final void c() {
-        if (this.r.eglGetError() != 12288) {
-            fa4.d("cannot swap buffers!");
-        }
-    }
-
-    public final void d() {
-        int glGetError = this.w.glGetError();
-        if (glGetError != 0 && this.T == 4) {
-            wn4.p(Integer.toHexString(glGetError), "Diamond GL error: 0x");
-        }
-    }
-
-    public final synchronized void e(float f) {
-        int i;
-        b();
-        if (this.b != null) {
-            int i2 = this.E;
-            int i3 = this.y;
-            if (this.U) {
-                this.r.eglQuerySurface(this.f, this.h, 12375, this.V);
-                this.r.eglQuerySurface(this.f, this.h, 12374, this.W);
-                int i4 = this.V[0];
-                if (i4 > 0 && (i = this.W[0]) > 0 && (i4 != i2 || i != i3)) {
-                    this.c.setDefaultBufferSize(i2, i3);
-                    i2 = this.V[0];
-                    i3 = this.W[0];
-                }
-            }
-            if (i2 != this.F || i3 != this.G) {
-                this.F = i2;
-                this.G = i3;
-                this.b.onSurfaceChanged(this.w, i2, i3);
-            }
-            uq4 uq4Var = this.b;
-            uq4Var.G = f;
-            uq4Var.onDrawFrame(this.w);
-        }
-        d();
-        if (!this.r.eglSwapBuffers(this.f, this.h) && this.T == 4) {
-            throw new IllegalStateException("Diamond buffer swap failed: " + this.r.eglGetError());
-        }
-    }
-
-    public final synchronized void f(uq4 uq4Var) {
-        if (uq4Var != null) {
-            this.e = uq4Var;
-            uq4Var.onSurfaceCreated(this.w, this.s);
-            this.F = this.E;
-            int i = this.y;
-            this.G = i;
-            uq4Var.onSurfaceChanged(this.w, this.F, i);
-        }
-    }
-
-    public int getMaxFrameRate() {
-        if (this.T == 4) {
-            if (gba.o() == 2) {
-                return 60;
-            }
-            return 30;
-        }
-        return this.L;
-    }
-
-    public int getMsaaSamples() {
-        return 4;
-    }
-
-    public float getRenderScale() {
-        return 1.0f;
-    }
-
-    public final void i() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.er4.i():void");
-    }
-
-    public final void j(long j) {
-        ar4 ar4Var = this.f0;
-        gl.r(ar4Var);
-        if (!this.J && this.N) {
-            gl.e3(ar4Var, j);
-        }
-    }
-
-    public final void k(SurfaceTexture surfaceTexture, int i, int i2) {
-        boolean z;
-        float renderScale = getRenderScale();
-        int i3 = (renderScale > 1.0f ? 1 : (renderScale == 1.0f ? 0 : -1));
-        if (i3 < 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.U = z;
-        if (i3 < 0 && i > 0 && i2 > 0) {
-            i = Math.max(1, Math.round(i * renderScale));
-            i2 = Math.max(1, Math.round(i2 * renderScale));
-            surfaceTexture.setDefaultBufferSize(i, i2);
-        }
-        this.E = i;
-        this.y = i2;
-    }
-
-    public final void l() {
-        a();
-        uq4 uq4Var = this.b;
-        float f = uq4Var.d;
-        float f2 = uq4Var.i;
-        float f3 = uq4Var.e;
-        float f4 = f + f2;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-        this.d0 = ofFloat;
-        ofFloat.addUpdateListener(new xq4(this, f, f3, f2, (byte) 0));
-        this.d0.setDuration(600L);
-        this.d0.setInterpolator(new OvershootInterpolator());
-        this.d0.start();
-        cra craVar = this.S;
-        if (craVar != null) {
-            craVar.b(Math.abs(f4));
-        }
-        j(this.M);
-    }
-
-    public final void m(long j) {
-        uq4 uq4Var = this.b;
-        if (uq4Var != null) {
-            uq4Var.d = -180.0f;
-            gl.e3(new ar4(this, (byte) 1), j);
-        }
-    }
-
-    public void n() {
-        int i;
-        if (this.R && this.N) {
-            int i2 = this.P;
-            ArrayList arrayList = this.Q;
-            int intValue = ((Integer) arrayList.get(i2)).intValue();
-            int i3 = this.P + 1;
-            this.P = i3;
-            if (i3 >= arrayList.size()) {
-                Collections.shuffle(arrayList);
-                this.P = 0;
-            }
-            wq4 wq4Var = this.i0;
-            wq4 wq4Var2 = this.h0;
-            if (intValue == 0) {
-                int abs = Math.abs(Utilities.b.nextInt() % 4);
-                this.e0 = new AnimatorSet();
-                byte b = this.T;
-                if (b == 4) {
-                    float f = this.b.d;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 360.0f + f);
-                    ofFloat.addUpdateListener(wq4Var2);
-                    ofFloat.setDuration(12000L);
-                    ofFloat.setInterpolator(new LinearInterpolator());
-                    this.e0.playTogether(ofFloat);
-                } else if (abs == 0 && b != 1 && b != 3) {
-                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.b.i, 48.0f);
-                    ofFloat2.addUpdateListener(wq4Var);
-                    ofFloat2.setDuration(2300L);
-                    ofFloat2.setInterpolator(s33.h);
-                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(48.0f, 0.0f);
-                    ofFloat3.addUpdateListener(wq4Var);
-                    ofFloat3.setDuration(500L);
-                    ofFloat3.setStartDelay(2300L);
-                    ofFloat3.setInterpolator(gl.H);
-                    this.e0.playTogether(ofFloat2, ofFloat3);
-                } else {
-                    if (b != 1 && b != 3) {
-                        i = 485;
-                    } else {
-                        i = 360;
-                    }
-                    if (abs == 2) {
-                        i = -i;
-                    }
-                    float f2 = i;
-                    ValueAnimator ofFloat4 = ValueAnimator.ofFloat(this.b.i, f2);
-                    ofFloat4.addUpdateListener(wq4Var2);
-                    ofFloat4.setDuration(3000L);
-                    ofFloat4.setInterpolator(s33.h);
-                    ValueAnimator ofFloat5 = ValueAnimator.ofFloat(f2, 0.0f);
-                    ofFloat5.addUpdateListener(wq4Var2);
-                    ofFloat5.setDuration(1000L);
-                    ofFloat5.setStartDelay(3000L);
-                    ofFloat5.setInterpolator(gl.H);
-                    this.e0.playTogether(ofFloat4, ofFloat5);
-                }
-                this.e0.addListener(new br4(this, (byte) 1));
-                this.e0.start();
-            } else if (intValue == 1) {
-                this.e0 = new AnimatorSet();
-                ValueAnimator ofFloat6 = ValueAnimator.ofFloat(this.b.d, 360.0f);
-                ofFloat6.addUpdateListener(wq4Var2);
-                ofFloat6.setDuration(8000L);
-                ofFloat6.setInterpolator(s33.f);
-                this.e0.playTogether(ofFloat6);
-                this.e0.addListener(new br4(this, (byte) 0));
-                this.e0.start();
-            } else if (intValue == 2) {
-                this.e0 = new AnimatorSet();
-                ValueAnimator ofFloat7 = ValueAnimator.ofFloat(this.b.d, 184.0f);
-                ofFloat7.addUpdateListener(wq4Var2);
-                ofFloat7.setDuration(600L);
-                s33 s33Var = s33.g;
-                ofFloat7.setInterpolator(s33Var);
-                ValueAnimator ofFloat8 = ValueAnimator.ofFloat(this.b.i, 50.0f);
-                ofFloat8.addUpdateListener(wq4Var);
-                ofFloat8.setDuration(600L);
-                ofFloat8.setInterpolator(s33Var);
-                ValueAnimator ofFloat9 = ValueAnimator.ofFloat(180.0f, 0.0f);
-                ofFloat9.addUpdateListener(wq4Var2);
-                ofFloat9.setDuration(800L);
-                ofFloat9.setStartDelay(10000L);
-                OvershootInterpolator overshootInterpolator = gl.H;
-                ofFloat9.setInterpolator(overshootInterpolator);
-                ValueAnimator ofFloat10 = ValueAnimator.ofFloat(60.0f, 0.0f);
-                ofFloat10.addUpdateListener(wq4Var);
-                ofFloat10.setDuration(800L);
-                ofFloat10.setStartDelay(10000L);
-                ofFloat10.setInterpolator(overshootInterpolator);
-                ValueAnimator ofFloat11 = ValueAnimator.ofFloat(0.0f, 2.0f, -3.0f, 2.0f, -1.0f, 2.0f, -3.0f, 2.0f, -1.0f, 0.0f);
-                ofFloat11.addUpdateListener(this.g0);
-                ofFloat11.setDuration(10000L);
-                ofFloat11.setInterpolator(new LinearInterpolator());
-                this.e0.playTogether(ofFloat7, ofFloat8, ofFloat9, ofFloat10, ofFloat11);
-                this.e0.addListener(new br4(this, (byte) 3));
-                this.e0.start();
+        long j2 = G2 + j;
+        String str = hac.a;
+        long b0 = hac.b0(G, 1000000L, C, RoundingMode.DOWN);
+        yw7Var2.O(2);
+        int H = yw7Var2.H();
+        int[] iArr = new int[H];
+        long[] jArr = new long[H];
+        long[] jArr2 = new long[H];
+        long[] jArr3 = new long[H];
+        long j3 = j2;
+        long j4 = b0;
+        int i = 0;
+        while (i < H) {
+            int m = yw7Var2.m();
+            if ((Integer.MIN_VALUE & m) == 0) {
+                long C2 = yw7Var2.C();
+                iArr[i] = m & Integer.MAX_VALUE;
+                jArr[i] = j3;
+                jArr3[i] = j4;
+                G += C2;
+                long[] jArr4 = jArr2;
+                long[] jArr5 = jArr3;
+                long b02 = hac.b0(G, 1000000L, C, RoundingMode.DOWN);
+                jArr4[i] = b02 - jArr5[i];
+                yw7Var2.O(4);
+                j3 += iArr[i];
+                i++;
+                H = H;
+                yw7Var2 = yw7Var;
+                j4 = b02;
+                jArr2 = jArr4;
+                jArr3 = jArr5;
             } else {
-                this.e0 = new AnimatorSet();
-                ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.b.d, 180.0f);
-                ofFloat12.addUpdateListener(wq4Var2);
-                ofFloat12.setDuration(600L);
-                s33 s33Var2 = s33.f;
-                ofFloat12.setInterpolator(s33Var2);
-                ValueAnimator ofFloat13 = ValueAnimator.ofFloat(180.0f, 360.0f);
-                ofFloat13.addUpdateListener(wq4Var2);
-                ofFloat13.setDuration(600L);
-                ofFloat13.setStartDelay(2000L);
-                ofFloat13.setInterpolator(s33Var2);
-                this.e0.playTogether(ofFloat12, ofFloat13);
-                this.e0.addListener(new br4(this, (byte) 2));
-                this.e0.start();
+                throw bx7.a("Unhandled indirect reference", null);
             }
         }
+        return Pair.create(Long.valueOf(b0), new oi2(iArr, jArr, jArr2, jArr3));
     }
 
-    public final void o() {
-        dr4 dr4Var = this.K;
-        this.K = null;
-        this.a0 = false;
-        if (dr4Var != null) {
-            dr4Var.b = true;
-            dr4Var.interrupt();
+    @Override
+    public final int b(defpackage.t84 r50, defpackage.u21 r51) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.er4.b(t84, u21):int");
+    }
+
+    @Override
+    public final boolean c(t84 t84Var) {
+        y79 y79Var;
+        bma a = zed.a(t84Var, true);
+        if (a != null) {
+            y79Var = mo5.u(a);
+        } else {
+            ko5 ko5Var = mo5.b;
+            y79Var = y79.e;
+        }
+        this.r = y79Var;
+        if (a == null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void d(long j, long j2) {
+        SparseArray sparseArray = this.d;
+        int size = sparseArray.size();
+        for (int i = 0; i < size; i++) {
+            ((dr4) sparseArray.valueAt(i)).e();
+        }
+        this.n.clear();
+        this.y = 0;
+        ((PriorityQueue) this.o.e).clear();
+        this.z = j2;
+        this.m.clear();
+        this.O = -1L;
+        h();
+    }
+
+    @Override
+    public final List e() {
+        return this.r;
+    }
+
+    @Override
+    public final void f(u84 u84Var) {
+        int i;
+        int i2 = this.b;
+        if ((i2 & 32) == 0) {
+            u84Var = new yh4(u84Var, this.a);
+        }
+        this.I = u84Var;
+        h();
+        yzb[] yzbVarArr = new yzb[2];
+        this.J = yzbVarArr;
+        int i3 = 0;
+        te8 te8Var = this.p;
+        if (te8Var != null) {
+            yzbVarArr[0] = te8Var;
+            i = 1;
+        } else {
+            i = 0;
+        }
+        int i4 = 100;
+        if ((i2 & 4) != 0) {
+            yzbVarArr[i] = this.I.c0(100, 5);
+            i4 = 101;
+            i++;
+        }
+        yzb[] yzbVarArr2 = (yzb[]) hac.V(i, this.J);
+        this.J = yzbVarArr2;
+        for (yzb yzbVar : yzbVarArr2) {
+            yzbVar.g(Q);
+        }
+        List list = this.c;
+        this.K = new yzb[list.size()];
+        while (i3 < this.K.length) {
+            yzb c0 = this.I.c0(i4, 3);
+            c0.g((go4) list.get(i3));
+            this.K[i3] = c0;
+            i3++;
+            i4++;
         }
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.R = true;
-        this.I = true;
-        j(this.M);
+    public final void h() {
+        this.s = (byte) 0;
+        this.v = 0;
+    }
+
+    public final void j(ix9 ix9Var, u21 u21Var) {
+        this.I.f0(ix9Var);
+        this.L = true;
+        u21Var.a = this.O;
+        h();
+    }
+
+    public final void m(long r56) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.er4.m(long):void");
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        a();
-        uq4 uq4Var = this.b;
-        if (uq4Var != null) {
-            uq4Var.d = 0.0f;
-            uq4Var.i = 0.0f;
-            uq4Var.e = 0.0f;
-        }
-        this.R = false;
+    public final s84 a() {
+        return this;
     }
 
     @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-        o();
-        this.a0 = false;
-        this.K = new dr4(this, surfaceTexture);
-        k(surfaceTexture, i, i2);
-        this.x = 1000000000 / Math.max(1, Math.min(this.L, getMaxFrameRate()));
-        this.K.start();
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.a0 = false;
-        o();
-        return true;
-    }
-
-    @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-        k(surfaceTexture, i, i2);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.a = false;
-            l();
-            getParent().requestDisallowInterceptTouchEvent(false);
-        }
-        return this.c0.onTouchEvent(motionEvent);
-    }
-
-    public void setBackgroundBitmap(Bitmap bitmap) {
-        uq4 uq4Var = this.b;
-        lj5 lj5Var = uq4Var.c;
-        if (lj5Var != null && lj5Var.a == null) {
-            lj5Var.Z = bitmap;
-        }
-        uq4Var.r = bitmap;
-    }
-
-    public void setDialogVisible(boolean z) {
-        this.J = z;
-        if (z) {
-            gl.r(this.f0);
-            l();
-            return;
-        }
-        j(this.M);
-    }
-
-    public void setIdleAnimationEnabled(boolean z) {
-        this.N = z;
-        if (z) {
-            j(this.M);
-            return;
-        }
-        gl.r(this.f0);
-        a();
-    }
-
-    public void setPaused(boolean z) {
-        boolean z2 = this.H;
-        this.H = z;
-        if (z2 && !z && this.K != null) {
-            this.K.interrupt();
-        }
-    }
-
-    public synchronized void setRenderer(uq4 uq4Var) {
-        this.b = uq4Var;
-        this.I = true;
-    }
-
-    public void setStarParticlesView(cra craVar) {
-        this.S = craVar;
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            uq4 uq4Var = this.b;
-            if (uq4Var != null) {
-                uq4Var.b();
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    public void g() {
-    }
-
-    public void h() {
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    public final void release() {
     }
 }

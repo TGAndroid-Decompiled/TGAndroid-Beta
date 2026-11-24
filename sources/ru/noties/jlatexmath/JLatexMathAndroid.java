@@ -17,7 +17,7 @@ public abstract class JLatexMathAndroid {
         if (context != null) {
             return context;
         }
-        fvc.f("Please call `#init(Context)` method to initialize jLatexMath");
+        gxc.d("Please call `#init(Context)` method to initialize jLatexMath");
         return null;
     }
 
@@ -26,7 +26,7 @@ public abstract class JLatexMathAndroid {
             AssetManager assets = context().getAssets();
             return assets.open("org/scilab/forge/jlatexmath/" + str);
         } catch (IOException e) {
-            sdb.b(e);
+            rjb.m(e);
             return null;
         }
     }

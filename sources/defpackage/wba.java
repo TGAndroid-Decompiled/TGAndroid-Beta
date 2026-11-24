@@ -1,30 +1,34 @@
 package defpackage;
-public final class wba implements Runnable {
-    public final byte a;
-    public final iea b;
-    public final int c;
+public final class wba extends yp {
+    public final byte c;
+    public final tca d;
 
-    public wba(iea ieaVar, int i, byte b) {
-        this.a = b;
-        this.b = ieaVar;
-        this.c = i;
+    public wba(tca tcaVar, byte b) {
+        this.c = b;
+        this.d = tcaVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        iea ieaVar = this.b;
+    public final int i(int i) {
+        byte b = this.c;
+        tca tcaVar = this.d;
         switch (b) {
             case 0:
-                ieaVar.h.scrollBy(0, i);
-                return;
+                if (i != 0) {
+                    return 1;
+                }
+                return tcaVar.C1.J;
             case 1:
-                ieaVar.h.scrollBy(0, i);
-                return;
+                qca qcaVar = tcaVar.H1;
+                if (i != qcaVar.x && i != qcaVar.y && i != qcaVar.E && i != qcaVar.G && qcaVar.d(i) != 0) {
+                    return 1;
+                }
+                return 4;
             default:
-                ieaVar.h.scrollBy(0, i);
-                return;
+                if (i != 0) {
+                    return 1;
+                }
+                return tcaVar.D1.J;
         }
     }
 }

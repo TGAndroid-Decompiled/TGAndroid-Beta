@@ -1,13 +1,20 @@
 package defpackage;
+public final class ylc {
+    public final short a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final byte[] g;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.text.style.UpdateAppearance;
-public final class ylc extends CharacterStyle implements UpdateAppearance {
-    public int a;
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(this.a);
+    public ylc(int i, int i2, int i3, int i4, int i5, int i6, byte[] bArr) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
+        this.e = i5;
+        this.f = i6;
+        this.g = bArr;
     }
 }

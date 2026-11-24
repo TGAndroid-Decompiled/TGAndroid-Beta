@@ -1,8 +1,38 @@
 package defpackage;
-public final class a13 extends i03 {
-    public final String d;
 
-    public a13(java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a13.<init>(java.lang.String):void");
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+public final class a13 implements Executor {
+    public final ExecutorService a;
+    public final Object b = new Object();
+    public Task c = Tasks.forResult(null);
+
+    public a13(ExecutorService executorService) {
+        this.a = executorService;
+    }
+
+    public final Task a(Runnable runnable) {
+        Task continueWithTask;
+        synchronized (this.b) {
+            continueWithTask = this.c.continueWithTask(this.a, new cf(runnable, (byte) 6));
+            this.c = continueWithTask;
+        }
+        return continueWithTask;
+    }
+
+    public final Task b(lz2 lz2Var) {
+        Task continueWithTask;
+        synchronized (this.b) {
+            continueWithTask = this.c.continueWithTask(this.a, new wm2(lz2Var, (byte) 6));
+            this.c = continueWithTask;
+        }
+        return continueWithTask;
+    }
+
+    @Override
+    public final void execute(Runnable runnable) {
+        this.a.execute(runnable);
     }
 }

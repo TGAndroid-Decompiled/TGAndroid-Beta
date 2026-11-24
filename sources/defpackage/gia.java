@@ -1,21 +1,20 @@
 package defpackage;
-public final class gia extends ri4 {
-    public final eia a;
-    public final fia b;
-    public float c = 1.0f;
+public final class gia extends qx2 {
+    public String a;
+    public eia b;
+    public Object c;
+    public final hia d;
+    public int e;
 
-    public gia(eia eiaVar, fia fiaVar) {
-        this.a = eiaVar;
-        this.b = fiaVar;
+    public gia(hia hiaVar, px2 px2Var) {
+        super(px2Var);
+        this.d = hiaVar;
     }
 
     @Override
-    public final float a(Object obj) {
-        return this.a.get(obj) * this.c;
-    }
-
-    @Override
-    public final void b(Object obj, float f) {
-        this.b.b(obj, f / this.c);
+    public final Object invokeSuspend(Object obj) {
+        this.c = obj;
+        this.e |= Integer.MIN_VALUE;
+        return this.d.e(null, null, this);
     }
 }

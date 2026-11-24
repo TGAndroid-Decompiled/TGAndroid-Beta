@@ -1,21 +1,19 @@
 package defpackage;
-public final class m70 implements zn7 {
+public final class m70 implements cq7 {
     public static final m70 a = new Object();
-    public static final w84 b = w84.c("rolloutId");
-    public static final w84 c = w84.c("parameterKey");
-    public static final w84 d = w84.c("parameterValue");
-    public static final w84 e = w84.c("variantId");
-    public static final w84 f = w84.c("templateVersion");
+    public static final wa4 b = wa4.c("rolloutVariant");
+    public static final wa4 c = wa4.c("parameterKey");
+    public static final wa4 d = wa4.c("parameterValue");
+    public static final wa4 e = wa4.c("templateVersion");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        kj9 kj9Var = (kj9) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ((ia0) kj9Var).b);
-        ia0 ia0Var = (ia0) kj9Var;
-        ao7Var.a(c, ia0Var.c);
-        ao7Var.a(d, ia0Var.d);
-        ao7Var.a(e, ia0Var.e);
-        ao7Var.g(f, ia0Var.f);
+        m03 m03Var = (m03) obj;
+        dq7 dq7Var = (dq7) obj2;
+        dq7Var.a(b, ((ga0) m03Var).a);
+        ga0 ga0Var = (ga0) m03Var;
+        dq7Var.a(c, ga0Var.b);
+        dq7Var.a(d, ga0Var.c);
+        dq7Var.g(e, ga0Var.d);
     }
 }

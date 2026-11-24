@@ -1,18 +1,46 @@
 package defpackage;
-public final class r5e implements zn7 {
-    public static final r5e a = new Object();
-    public static final w84 b = new w84("imageFormat", b00.m(yjb.q(kkd.class, new cjd(1))));
-    public static final w84 c = new w84("originalImageSize", b00.m(yjb.q(kkd.class, new cjd(2))));
-    public static final w84 d = new w84("compressedImageSize", b00.m(yjb.q(kkd.class, new cjd(3))));
-    public static final w84 e = new w84("isOdmlImage", b00.m(yjb.q(kkd.class, new cjd(4))));
+public final class r5e extends x5e {
+    public final transient int r;
+    public final transient int s;
+    public final x5e w;
+
+    public r5e(x5e x5eVar, int i, int i2) {
+        super((byte) 5);
+        this.w = x5eVar;
+        this.r = i;
+        this.s = i2;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        tqe tqeVar = (tqe) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, tqeVar.a);
-        ao7Var.a(c, tqeVar.b);
-        ao7Var.a(d, null);
-        ao7Var.a(e, null);
+    public final Object get(int i) {
+        r3f.a(i, this.s);
+        return this.w.get(i + this.r);
+    }
+
+    @Override
+    public final int q() {
+        return this.w.s() + this.r + this.s;
+    }
+
+    @Override
+    public final int s() {
+        return this.w.s() + this.r;
+    }
+
+    @Override
+    public final int size() {
+        return this.s;
+    }
+
+    @Override
+    public final Object[] x() {
+        return this.w.x();
+    }
+
+    @Override
+    public final x5e subList(int i, int i2) {
+        r3f.c(i, i2, this.s);
+        int i3 = this.r;
+        return this.w.subList(i + i3, i2 + i3);
     }
 }

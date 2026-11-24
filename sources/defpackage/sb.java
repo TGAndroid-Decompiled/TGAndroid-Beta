@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
+import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.ui.LaunchActivity;
@@ -17,45 +18,45 @@ public final class sb extends View {
     public final byte a;
     public Object b;
 
-    public sb(LaunchActivity launchActivity, pc pcVar) {
+    public sb(LaunchActivity launchActivity, pd pdVar) {
         super(launchActivity);
-        this.a = (byte) 14;
-        this.b = pcVar;
-        kk7.i(this);
-        setOnClickListener(new xf3(this, launchActivity, (byte) 21));
+        this.a = (byte) 15;
+        this.b = pdVar;
+        nm7.i(this);
+        setOnClickListener(new tf3(this, launchActivity, (byte) 22));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         switch (this.a) {
-            case 7:
-                ql0 ql0Var = ((j92) this.b).L;
-                if (ql0Var != null) {
-                    ql0Var.draw(canvas);
+            case 8:
+                qm0 qm0Var = ((va2) this.b).L;
+                if (qm0Var != null) {
+                    qm0Var.draw(canvas);
                 }
                 super.dispatchDraw(canvas);
                 return;
-            case 14:
+            case 15:
                 super.dispatchDraw(canvas);
-                pc pcVar = (pc) this.b;
-                if (pcVar != null && pcVar.a(canvas, getMeasuredWidth(), 0.0f)) {
+                pd pdVar = (pd) this.b;
+                if (pdVar != null && pdVar.a(canvas, getMeasuredWidth(), 0.0f)) {
                     invalidate();
                     return;
                 }
                 return;
-            case 18:
+            case 19:
                 super.dispatchDraw(canvas);
-                lw5 lw5Var = ((q88) this.b).M0;
-                if (lw5Var != null) {
-                    lw5Var.d(canvas);
+                ly5 ly5Var = ((sa8) this.b).M0;
+                if (ly5Var != null) {
+                    ly5Var.d(canvas);
                     return;
                 }
                 return;
-            case 22:
+            case 23:
                 super.dispatchDraw(canvas);
-                rt7 rt7Var = ((x6b) this.b).E0;
-                if (rt7Var != null) {
-                    rt7Var.d(canvas);
+                sv7 sv7Var = ((z8b) this.b).E0;
+                if (sv7Var != null) {
+                    sv7Var.d(canvas);
                     return;
                 }
                 return;
@@ -68,9 +69,9 @@ public final class sb extends View {
     @Override
     public final void draw(Canvas canvas) {
         switch (this.a) {
-            case 15:
+            case 16:
                 super.draw(canvas);
-                ((tgb) this.b).e(canvas, (getMeasuredWidth() - ((tgb) this.b).j()) / 2.0f, getMeasuredHeight() / 2.0f);
+                ((uib) this.b).e(canvas, (getMeasuredWidth() - ((uib) this.b).j()) / 2.0f, getMeasuredHeight() / 2.0f);
                 return;
             default:
                 super.draw(canvas);
@@ -81,30 +82,30 @@ public final class sb extends View {
     @Override
     public final void onAttachedToWindow() {
         switch (this.a) {
-            case 12:
+            case 13:
                 super.onAttachedToWindow();
-                sv4 sv4Var = (sv4) this.b;
-                if (sv4Var != null && !sv4Var.i) {
-                    sv4Var.i = true;
-                    sv4Var.a();
-                    hj3 hj3Var = new hj3(sv4Var, (byte) 12);
-                    sv4Var.h = hj3Var;
-                    e66.a(hj3Var);
+                tx4 tx4Var = (tx4) this.b;
+                if (tx4Var != null && !tx4Var.i) {
+                    tx4Var.i = true;
+                    tx4Var.a();
+                    sk3 sk3Var = new sk3(tx4Var, (byte) 12);
+                    tx4Var.h = sk3Var;
+                    e86.a(sk3Var);
                     return;
                 }
                 return;
-            case 14:
+            case 15:
                 super.onAttachedToWindow();
-                pc pcVar = (pc) this.b;
-                if (pcVar != null) {
-                    pcVar.i = this;
+                pd pdVar = (pd) this.b;
+                if (pdVar != null) {
+                    pdVar.i = this;
                     int i = 0;
                     while (true) {
-                        w65[] w65VarArr = (w65[]) pcVar.e;
-                        if (i < w65VarArr.length) {
-                            w65 w65Var = w65VarArr[i];
-                            w65Var.i.add(this);
-                            w65Var.a();
+                        u85[] u85VarArr = (u85[]) pdVar.e;
+                        if (i < u85VarArr.length) {
+                            u85 u85Var = u85VarArr[i];
+                            u85Var.i.add(this);
+                            u85Var.a();
                             i++;
                         } else {
                             return;
@@ -113,9 +114,9 @@ public final class sb extends View {
                 } else {
                     return;
                 }
-            case 21:
+            case 22:
                 super.onAttachedToWindow();
-                ((or7) this.b).f = true;
+                ((pt7) this.b).f = true;
                 return;
             default:
                 super.onAttachedToWindow();
@@ -127,43 +128,43 @@ public final class sb extends View {
     public final void onDetachedFromWindow() {
         int i = 0;
         switch (this.a) {
-            case 12:
+            case 13:
                 super.onDetachedFromWindow();
-                sv4 sv4Var = (sv4) this.b;
-                if (sv4Var != null && sv4Var.i) {
-                    sv4Var.i = false;
-                    sv4Var.a();
-                    hj3 hj3Var = sv4Var.h;
-                    HashSet hashSet = e66.n;
+                tx4 tx4Var = (tx4) this.b;
+                if (tx4Var != null && tx4Var.i) {
+                    tx4Var.i = false;
+                    tx4Var.a();
+                    sk3 sk3Var = tx4Var.h;
+                    HashSet hashSet = e86.n;
                     if (hashSet != null) {
-                        hashSet.remove(hj3Var);
+                        hashSet.remove(sk3Var);
                         return;
                     }
                     return;
                 }
                 return;
-            case 14:
+            case 15:
                 super.onDetachedFromWindow();
-                pc pcVar = (pc) this.b;
-                if (pcVar == null || ((sb) pcVar.i) == this) {
+                pd pdVar = (pd) this.b;
+                if (pdVar == null || ((sb) pdVar.i) == this) {
                     return;
                 }
                 while (true) {
-                    w65[] w65VarArr = (w65[]) pcVar.e;
-                    if (i < w65VarArr.length) {
-                        w65 w65Var = w65VarArr[i];
-                        w65Var.i.remove(this);
-                        w65Var.a();
+                    u85[] u85VarArr = (u85[]) pdVar.e;
+                    if (i < u85VarArr.length) {
+                        u85 u85Var = u85VarArr[i];
+                        u85Var.i.remove(this);
+                        u85Var.a();
                         i++;
                     } else {
-                        pcVar.i = null;
+                        pdVar.i = null;
                         return;
                     }
                 }
                 break;
-            case 21:
+            case 22:
                 super.onDetachedFromWindow();
-                ((or7) this.b).f = false;
+                ((pt7) this.b).f = false;
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -173,7 +174,7 @@ public final class sb extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        o03 o03Var;
+        a23 a23Var;
         int ceil;
         int i;
         int i2;
@@ -181,104 +182,106 @@ public final class sb extends View {
         int i3;
         int i4;
         switch (this.a) {
-            case 8:
-                super.onDraw(canvas);
-                eo2 eo2Var = (eo2) this.b;
-                jz4 jz4Var = eo2Var.E1;
-                float max = Math.max(eo2Var.l1.e, eo2Var.m1.e);
-                jz4 jz4Var2 = eo2Var.D1;
-                jz4Var2.c(gl.L(42.0f) + eo2Var.O1.b, 0);
-                jz4Var2.setBounds(0, 0, getWidth(), gl.L(56.0f) + eo2Var.O1.b);
-                int i5 = bkb.Z6;
-                jz4Var2.b(bkb.p1(gl.R1(1.0f, 0.8f, max), bkb.v0(i5, eo2Var.J0)));
-                jz4Var2.draw(canvas);
-                if (eo2Var.H1) {
-                    max = 1.0f;
-                }
-                int U1 = gl.U1(max, gl.L(48.0f) + eo2Var.O1.d, 0);
-                int U12 = gl.U1(max, gl.L(72.0f), 0) + eo2Var.O1.d;
-                float R1 = gl.R1(0.8f, gl.Q0(eo2Var.O1.d), max);
-                jz4Var.c(0, U1);
-                jz4Var.setBounds(0, getHeight() - U12, getWidth(), getHeight());
-                jz4Var.b(bkb.p1(R1, bkb.v0(i5, eo2Var.J0)));
-                jz4Var.draw(canvas);
-                return;
-            case 9:
-                if (((o03) this.b).U1) {
-                    canvas.drawRect(o03Var.u0, 0.0f, getMeasuredWidth() - o03Var.u0, 1.0f, bkb.j0);
+            case 2:
+                ss0 ss0Var = (ss0) this.b;
+                canvas.drawColor(ss0Var.s);
+                if (ss0Var.e.c(canvas, getWidth())) {
+                    invalidate();
                     return;
                 }
                 return;
-            case 10:
-                tl tlVar = ((ue3) this.b).o4;
-                tlVar.setBounds(0, 0, getWidth(), getHeight());
-                tlVar.draw(canvas);
-                return;
-            case 19:
+            case 9:
                 super.onDraw(canvas);
-                h26 h26Var = (h26) this.b;
-                if (h26Var.k2 - h26Var.j2 > 1) {
-                    Paint U0 = bkb.U0("paintDivider", h26Var.J0);
+                pp2 pp2Var = (pp2) this.b;
+                i15 i15Var = pp2Var.E1;
+                float max = Math.max(pp2Var.l1.e, pp2Var.m1.e);
+                i15 i15Var2 = pp2Var.D1;
+                i15Var2.c(gm.L(42.0f) + pp2Var.O1.b, 0);
+                i15Var2.setBounds(0, 0, getWidth(), gm.L(56.0f) + pp2Var.O1.b);
+                int i5 = cmb.Z6;
+                i15Var2.b(cmb.p1(gm.R1(1.0f, 0.8f, max), cmb.v0(i5, pp2Var.J0)));
+                i15Var2.draw(canvas);
+                if (pp2Var.H1) {
+                    max = 1.0f;
+                }
+                int U1 = gm.U1(max, gm.L(48.0f) + pp2Var.O1.d, 0);
+                int U12 = gm.U1(max, gm.L(72.0f), 0) + pp2Var.O1.d;
+                float R1 = gm.R1(0.8f, gm.Q0(pp2Var.O1.d), max);
+                i15Var.c(0, U1);
+                i15Var.setBounds(0, getHeight() - U12, getWidth(), getHeight());
+                i15Var.b(cmb.p1(R1, cmb.v0(i5, pp2Var.J0)));
+                i15Var.draw(canvas);
+                return;
+            case 10:
+                if (((a23) this.b).U1) {
+                    canvas.drawRect(a23Var.u0, 0.0f, getMeasuredWidth() - a23Var.u0, 1.0f, cmb.j0);
+                    return;
+                }
+                return;
+            case 11:
+                tm tmVar = ((hg3) this.b).o4;
+                tmVar.setBounds(0, 0, getWidth(), getHeight());
+                tmVar.draw(canvas);
+                return;
+            case 20:
+                super.onDraw(canvas);
+                i46 i46Var = (i46) this.b;
+                if (i46Var.k2 - i46Var.j2 > 1) {
+                    Paint U0 = cmb.U0("paintDivider", i46Var.J0);
                     if (U0 == null) {
-                        U0 = bkb.j0;
+                        U0 = cmb.j0;
                     }
                     canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, U0);
                     return;
                 }
                 return;
-            case 20:
-                canvas.drawColor(bkb.v0(bkb.d7, ((gg7) this.b).J0));
-                return;
-            case 23:
-                g48 g48Var = (g48) this.b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, g48Var.c.size())));
-                TextPaint textPaint = g48Var.T;
-                int max2 = Math.max(gl.L(16.0f) + ((int) Math.ceil(textPaint.measureText(format))), gl.L(24.0f));
-                int measuredWidth = getMeasuredWidth() / 2;
-                getMeasuredHeight();
-                textPaint.setColor(bkb.w0(null, bkb.B5, false));
-                Paint paint = g48Var.V;
-                paint.setColor(bkb.w0(null, bkb.g5, false));
-                RectF rectF = g48Var.U;
-                int i6 = max2 / 2;
-                rectF.set(measuredWidth - i6, 0.0f, i6 + measuredWidth, getMeasuredHeight());
-                canvas.drawRoundRect(rectF, gl.L(12.0f), gl.L(12.0f), paint);
-                paint.setColor(bkb.w0(null, bkb.A5, false));
-                rectF.set(gl.L(2.0f) + i, gl.L(2.0f), i2 - gl.L(2.0f), getMeasuredHeight() - gl.L(2.0f));
-                canvas.drawRoundRect(rectF, gl.L(10.0f), gl.L(10.0f), paint);
-                canvas.drawText(format, measuredWidth - (ceil / 2), gl.L(16.2f), textPaint);
+            case 21:
+                canvas.drawColor(cmb.v0(cmb.d7, ((ji7) this.b).J0));
                 return;
             case 24:
-                u58 u58Var = (u58) this.b;
-                String format2 = String.format("%d", Integer.valueOf(Math.max(1, u58Var.c.size())));
-                TextPaint textPaint2 = u58Var.i0;
-                int max3 = Math.max(gl.L(16.0f) + ((int) Math.ceil(textPaint2.measureText(format2))), gl.L(24.0f));
-                int measuredWidth2 = getMeasuredWidth() / 2;
+                j68 j68Var = (j68) this.b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, j68Var.c.size())));
+                TextPaint textPaint = j68Var.T;
+                int max2 = Math.max(gm.L(16.0f) + ((int) Math.ceil(textPaint.measureText(format))), gm.L(24.0f));
+                int measuredWidth = getMeasuredWidth() / 2;
                 getMeasuredHeight();
-                textPaint2.setColor(bkb.w0(null, bkb.B5, false));
-                Paint paint2 = u58Var.k0;
-                paint2.setColor(bkb.w0(null, u58Var.v0, false));
-                RectF rectF2 = u58Var.j0;
-                int i7 = max3 / 2;
-                rectF2.set(measuredWidth2 - i7, 0.0f, i7 + measuredWidth2, getMeasuredHeight());
-                canvas.drawRoundRect(rectF2, gl.L(12.0f), gl.L(12.0f), paint2);
-                paint2.setColor(bkb.w0(null, bkb.A5, false));
-                rectF2.set(gl.L(2.0f) + i3, gl.L(2.0f), i4 - gl.L(2.0f), getMeasuredHeight() - gl.L(2.0f));
-                canvas.drawRoundRect(rectF2, gl.L(10.0f), gl.L(10.0f), paint2);
-                canvas.drawText(format2, measuredWidth2 - (ceil2 / 2), gl.L(16.2f), textPaint2);
+                textPaint.setColor(cmb.w0(null, cmb.B5, false));
+                Paint paint = j68Var.V;
+                paint.setColor(cmb.w0(null, cmb.g5, false));
+                RectF rectF = j68Var.U;
+                int i6 = max2 / 2;
+                rectF.set(measuredWidth - i6, 0.0f, i6 + measuredWidth, getMeasuredHeight());
+                canvas.drawRoundRect(rectF, gm.L(12.0f), gm.L(12.0f), paint);
+                paint.setColor(cmb.w0(null, cmb.A5, false));
+                rectF.set(gm.L(2.0f) + i, gm.L(2.0f), i2 - gm.L(2.0f), getMeasuredHeight() - gm.L(2.0f));
+                canvas.drawRoundRect(rectF, gm.L(10.0f), gm.L(10.0f), paint);
+                canvas.drawText(format, measuredWidth - (ceil / 2), gm.L(16.2f), textPaint);
                 return;
             case 25:
-                ((PhotoViewer) this.b).q3.a(canvas, this);
+                w78 w78Var = (w78) this.b;
+                String format2 = String.format("%d", Integer.valueOf(Math.max(1, w78Var.c.size())));
+                TextPaint textPaint2 = w78Var.i0;
+                int max3 = Math.max(gm.L(16.0f) + ((int) Math.ceil(textPaint2.measureText(format2))), gm.L(24.0f));
+                int measuredWidth2 = getMeasuredWidth() / 2;
+                getMeasuredHeight();
+                textPaint2.setColor(cmb.w0(null, cmb.B5, false));
+                Paint paint2 = w78Var.k0;
+                paint2.setColor(cmb.w0(null, w78Var.v0, false));
+                RectF rectF2 = w78Var.j0;
+                int i7 = max3 / 2;
+                rectF2.set(measuredWidth2 - i7, 0.0f, i7 + measuredWidth2, getMeasuredHeight());
+                canvas.drawRoundRect(rectF2, gm.L(12.0f), gm.L(12.0f), paint2);
+                paint2.setColor(cmb.w0(null, cmb.A5, false));
+                rectF2.set(gm.L(2.0f) + i3, gm.L(2.0f), i4 - gm.L(2.0f), getMeasuredHeight() - gm.L(2.0f));
+                canvas.drawRoundRect(rectF2, gm.L(10.0f), gm.L(10.0f), paint2);
+                canvas.drawText(format2, measuredWidth2 - (ceil2 / 2), gm.L(16.2f), textPaint2);
                 return;
             case 26:
-                super.onDraw(canvas);
-                ((x88) this.b).j(canvas, getMeasuredWidth(), getMeasuredHeight());
+                ((PhotoViewer) this.b).q3.a(canvas, this);
                 return;
-            case 29:
-                canvas.save();
-                canvas.translate(gl.N(22.6f), gl.N(21.66f));
-                ((ac9) this.b).c.draw(canvas);
-                canvas.restore();
+            case 27:
+                super.onDraw(canvas);
+                ((ya8) this.b).j(canvas, getMeasuredWidth(), getMeasuredHeight());
                 return;
             default:
                 super.onDraw(canvas);
@@ -287,9 +290,24 @@ public final class sb extends View {
     }
 
     @Override
+    public final boolean onHoverEvent(MotionEvent motionEvent) {
+        switch (this.a) {
+            case 2:
+                ss0 ss0Var = (ss0) this.b;
+                if (ss0Var.G) {
+                    ss0Var.e.m(motionEvent, true);
+                }
+                return ss0Var.G;
+            default:
+                return super.onHoverEvent(motionEvent);
+        }
+    }
+
+    @Override
     public final void onMeasure(int i, int i2) {
         int i3;
         int i4;
+        int round;
         int i5;
         int i6;
         int i7 = 0;
@@ -297,99 +315,110 @@ public final class sb extends View {
             case 0:
                 bc bcVar = (bc) this.b;
                 if (bcVar.I) {
-                    i3 = (bc.z0(bcVar).getMeasuredHeight() + bcVar.J) - gl.L(16.0f);
+                    i3 = (bc.A0(bcVar).getMeasuredHeight() + bcVar.J) - gm.L(16.0f);
                 } else {
-                    int L = gl.L(140.0f) + bcVar.J;
-                    if (gl.L(24.0f) + bcVar.E.getMeasuredHeight() > L) {
-                        L = gl.L(24.0f) + bcVar.E.getMeasuredHeight();
+                    int L = gm.L(140.0f) + bcVar.J;
+                    if (gm.L(24.0f) + bcVar.E.getMeasuredHeight() > L) {
+                        L = gm.L(24.0f) + bcVar.E.getMeasuredHeight();
                     }
                     i3 = L;
                 }
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (i3 - 0.0f), 1073741824));
                 return;
             case 1:
-                t26 t26Var = ((eo0) this.b).d.G;
-                if (t26Var instanceof wb4) {
-                    i4 = ((wb4) t26Var).J;
+                u46 u46Var = ((ep0) this.b).d.G;
+                if (u46Var instanceof wd4) {
+                    i4 = ((wd4) u46Var).J;
                 } else {
                     i4 = 0;
                 }
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.max(0, i4), 1073741824));
                 return;
             case 2:
-                fy0 fy0Var = (fy0) this.b;
-                int i8 = fy0Var.q1;
-                if (i8 == 0) {
-                    i5 = gl.L(300.0f);
-                } else {
-                    i5 = (int) (i8 * fy0Var.u1);
+                int size = View.MeasureSpec.getSize(i);
+                ss0 ss0Var = (ss0) this.b;
+                int height = ss0Var.getHeight();
+                hyc hycVar = ss0Var.e;
+                cyc cycVar = hycVar.p;
+                if (cycVar == null || (round = cycVar.h) <= 0) {
+                    round = Math.round(hycVar.b * 160.0f);
                 }
-                int i9 = i5 - (((fy0Var.A1 - fy0Var.B1) - fy0Var.C1) - fy0Var.D1);
+                setMeasuredDimension(size, Math.max(height, round));
+                return;
+            case 3:
+                mz0 mz0Var = (mz0) this.b;
+                int i8 = mz0Var.q1;
+                if (i8 == 0) {
+                    i5 = gm.L(300.0f);
+                } else {
+                    i5 = (int) (i8 * mz0Var.u1);
+                }
+                int i9 = i5 - (((mz0Var.A1 - mz0Var.B1) - mz0Var.C1) - mz0Var.D1);
                 if (i9 < 1) {
                     i9 = 1;
                 }
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(i9, 1073741824));
                 return;
-            case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(((e52) this.b).w.K, 1073741824));
-                return;
             case 5:
-                setMeasuredDimension(View.MeasureSpec.getSize(i), ((k62) ((s20) this.b).e).S0);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(((p62) this.b).w.K, 1073741824));
                 return;
             case 6:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(((f72) ((jr) this.b).d).x, 1073741824));
+                setMeasuredDimension(View.MeasureSpec.getSize(i), ((v72) ((s30) this.b).e).S0);
                 return;
-            case 13:
-                iz4 iz4Var = (iz4) this.b;
-                if (iz4Var.I) {
-                    i6 = (iz4Var.o0().getMeasuredHeight() + iz4Var.J) - gl.L(16.0f);
-                    iz4Var.K = i6;
-                } else {
-                    int L2 = gl.L(140.0f) + iz4Var.J;
-                    if (gl.L(24.0f) + iz4Var.E.getMeasuredHeight() > L2) {
-                        L2 = Math.max(L2, (gl.L(24.0f) + iz4Var.E.getMeasuredHeight()) - iz4Var.M);
-                    }
-                    i6 = L2;
-                    iz4Var.K = i6;
-                }
-                int i10 = (int) (i6 - 0.0f);
-                iz4Var.K = i10;
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(i10, 1073741824));
+            case 7:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(((q82) ((js) this.b).d).x, 1073741824));
                 return;
             case 14:
-                setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(38.0f));
+                h15 h15Var = (h15) this.b;
+                if (h15Var.I) {
+                    i6 = (h15Var.p0().getMeasuredHeight() + h15Var.J) - gm.L(16.0f);
+                    h15Var.K = i6;
+                } else {
+                    int L2 = gm.L(140.0f) + h15Var.J;
+                    if (gm.L(24.0f) + h15Var.E.getMeasuredHeight() > L2) {
+                        L2 = Math.max(L2, (gm.L(24.0f) + h15Var.E.getMeasuredHeight()) - h15Var.M);
+                    }
+                    i6 = L2;
+                    h15Var.K = i6;
+                }
+                int i10 = (int) (i6 - 0.0f);
+                h15Var.K = i10;
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(i10, 1073741824));
                 return;
             case 15:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + Math.round(((tgb) this.b).j()), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(getPaddingBottom() + getPaddingTop() + Math.round(((tgb) this.b).h()), gl.L(26.0f)), 1073741824));
+                setMeasuredDimension(View.MeasureSpec.getSize(i), gm.L(38.0f));
                 return;
             case 16:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(48.0f) + ((dr5) this.b).c.i2, 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + Math.round(((uib) this.b).j()), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(getPaddingBottom() + getPaddingTop() + Math.round(((uib) this.b).h()), gm.L(26.0f)), 1073741824));
                 return;
             case 17:
-                int L3 = gl.L(48.0f);
-                jr5 jr5Var = ((fr5) this.b).n;
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(L3 + jr5Var.i2 + jr5Var.o2, 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(48.0f) + ((bt5) this.b).c.i2, 1073741824));
                 return;
-            case 21:
+            case 18:
+                int L3 = gm.L(48.0f);
+                it5 it5Var = ((et5) this.b).n;
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(L3 + it5Var.i2 + it5Var.o2, 1073741824));
+                return;
+            case 22:
                 ((View) getParent()).getMeasuredHeight();
-                or7 or7Var = (or7) this.b;
-                Integer num = or7Var.d;
+                pt7 pt7Var = (pt7) this.b;
+                Integer num = pt7Var.d;
                 if (num != null) {
                     i7 = num.intValue();
-                    or7Var.h = i7;
+                    pt7Var.h = i7;
                 } else {
-                    or7Var.h = 0;
+                    pt7Var.h = 0;
                 }
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(i7, 1073741824));
                 return;
-            case 27:
+            case 28:
                 PremiumPreviewFragment premiumPreviewFragment = ((b0) this.b).c;
                 if (premiumPreviewFragment.X) {
                     premiumPreviewFragment.Z = 0;
                 } else {
-                    int L4 = gl.L(64.0f);
-                    if (gl.L(8.0f) + premiumPreviewFragment.V.getMeasuredHeight() > L4) {
-                        L4 = premiumPreviewFragment.V.getMeasuredHeight() + gl.L(8.0f);
+                    int L4 = gm.L(64.0f);
+                    if (gm.L(8.0f) + premiumPreviewFragment.V.getMeasuredHeight() > L4) {
+                        L4 = premiumPreviewFragment.V.getMeasuredHeight() + gm.L(8.0f);
                     }
                     premiumPreviewFragment.Z = L4;
                 }
@@ -402,25 +431,39 @@ public final class sb extends View {
     }
 
     @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.a) {
+            case 2:
+                ss0 ss0Var = (ss0) this.b;
+                if (ss0Var.G && ss0Var.e.n(motionEvent)) {
+                    return true;
+                }
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
     public final void setAlpha(float f) {
         switch (this.a) {
-            case 3:
+            case 4:
                 super.setAlpha(f);
-                View view = ((w71) this.b).b.y.fragmentView;
+                View view = ((f91) this.b).b.y.fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
-            case 11:
+            case 12:
                 super.setAlpha(f);
-                View view2 = ((cj3) this.b).fragmentView;
+                View view2 = ((nk3) this.b).fragmentView;
                 if (view2 != null) {
                     view2.invalidate();
                     return;
                 }
                 return;
-            case 28:
+            case 29:
                 super.setAlpha(f);
                 View view3 = ((ProfileActivity) this.b).fragmentView;
                 if (view3 != null) {
@@ -437,33 +480,33 @@ public final class sb extends View {
     @Override
     public final void setBackground(Drawable drawable) {
         switch (this.a) {
-            case 12:
-                if (((sv4) this.b) != null) {
+            case 13:
+                if (((tx4) this.b) != null) {
                     if (isAttachedToWindow()) {
-                        sv4 sv4Var = (sv4) this.b;
-                        if (sv4Var.i) {
-                            sv4Var.i = false;
-                            sv4Var.a();
-                            hj3 hj3Var = sv4Var.h;
-                            HashSet hashSet = e66.n;
+                        tx4 tx4Var = (tx4) this.b;
+                        if (tx4Var.i) {
+                            tx4Var.i = false;
+                            tx4Var.a();
+                            sk3 sk3Var = tx4Var.h;
+                            HashSet hashSet = e86.n;
                             if (hashSet != null) {
-                                hashSet.remove(hj3Var);
+                                hashSet.remove(sk3Var);
                             }
                         }
                     }
                     this.b = null;
                 }
                 super.setBackground(drawable);
-                if (drawable instanceof sv4) {
-                    this.b = (sv4) drawable;
+                if (drawable instanceof tx4) {
+                    this.b = (tx4) drawable;
                     if (isAttachedToWindow()) {
-                        sv4 sv4Var2 = (sv4) this.b;
-                        if (!sv4Var2.i) {
-                            sv4Var2.i = true;
-                            sv4Var2.a();
-                            hj3 hj3Var2 = new hj3(sv4Var2, (byte) 12);
-                            sv4Var2.h = hj3Var2;
-                            e66.a(hj3Var2);
+                        tx4 tx4Var2 = (tx4) this.b;
+                        if (!tx4Var2.i) {
+                            tx4Var2.i = true;
+                            tx4Var2.a();
+                            sk3 sk3Var2 = new sk3(tx4Var2, (byte) 12);
+                            tx4Var2.h = sk3Var2;
+                            e86.a(sk3Var2);
                             return;
                         }
                         return;
@@ -480,10 +523,10 @@ public final class sb extends View {
     @Override
     public final void setTranslationY(float f) {
         switch (this.a) {
-            case 2:
+            case 3:
                 super.setTranslationY(f);
-                int i = fy0.R1;
-                ((fy0) this.b).b.invalidate();
+                int i = mz0.R1;
+                ((mz0) this.b).b.invalidate();
                 return;
             default:
                 super.setTranslationY(f);
@@ -496,10 +539,10 @@ public final class sb extends View {
         this.a = b;
     }
 
-    public sb(fy0 fy0Var, Context context) {
+    public sb(mz0 mz0Var, Context context) {
         super(context);
-        this.a = (byte) 2;
-        this.b = fy0Var;
+        this.a = (byte) 3;
+        this.b = mz0Var;
         setTag(-33024);
     }
 

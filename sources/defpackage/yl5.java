@@ -1,132 +1,82 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class yl5 extends FrameLayout {
-    public final xl5 a;
-    public final be0 b;
-    public AnimatorSet c;
-    public boolean d;
-    public boolean e;
-    public final boolean f;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+public final class yl5 extends Drawable {
+    public byte[] a;
+    public final Paint b = new Paint();
+    public final int[] c = {-1, -2758925, -13805707, -13657655};
 
-    public yl5(Activity activity) {
-        super(activity);
-        xl5 xl5Var = new xl5(gl.L(104.0f), gl.L(111.0f), gl.L(12.0f), 8);
-        this.a = xl5Var;
-        xl5Var.b(3.0d);
-        if (!xl5Var.e) {
-            invalidate();
-        }
-        xl5Var.e = true;
-        be0 be0Var = new be0(activity);
-        this.b = be0Var;
-        addView(be0Var, nme.e(135, 135, 17));
-        setWillNotDraw(false);
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.c = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
-        this.c.setInterpolator(s33.g);
-        this.c.setDuration(3000L);
-        boolean e = e66.e(512);
-        this.f = e;
-        if (e) {
-            this.c.start();
-        }
-        setClipChildren(false);
-    }
-
-    public final void a() {
-        if (this.d) {
-            return;
-        }
-        AnimatorSet animatorSet = this.c;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.d = true;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.c = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, getScaleX(), 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, getScaleY(), 1.05f, 1.0f));
-        this.c.setInterpolator(s33.g);
-        this.c.setDuration(400L);
-        this.c.start();
-    }
-
-    public final void b(boolean z, boolean z2) {
-        ValueAnimator ofFloat;
-        if (this.e != z) {
-            this.e = z;
-            xl5 xl5Var = this.a;
-            if (z) {
-                xl5Var.b(3.0d);
+    @Override
+    public final void draw(Canvas canvas) {
+        byte[] bArr = this.a;
+        if (bArr != null) {
+            int length = bArr.length;
+            int[] iArr = this.c;
+            Paint paint = this.b;
+            if (length == 16) {
+                float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
+                float f = 8.0f * floor;
+                float f2 = aq1.f(getBounds().width(), f, 2.0f, 0.0f);
+                float f3 = aq1.f(getBounds().height(), f, 2.0f, 0.0f);
+                int i = 0;
+                for (int i2 = 0; i2 < 8; i2++) {
+                    int i3 = 0;
+                    while (i3 < 8) {
+                        int i4 = i + 2;
+                        paint.setColor(iArr[Math.abs((this.a[i / 8] >> (i % 8)) & 3) % 4]);
+                        float f4 = (i3 * floor) + f2;
+                        float f5 = i2 * floor;
+                        canvas.drawRect(f4, f5 + f3, f4 + floor, f5 + floor + f3, paint);
+                        i3++;
+                        i = i4;
+                    }
+                }
+                return;
             }
-            if (xl5Var.h != z) {
-                xl5Var.h = z;
-                ValueAnimator valueAnimator = xl5Var.j;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllUpdateListeners();
-                    xl5Var.j.cancel();
+            float floor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
+            float f6 = 12.0f * floor2;
+            float f7 = aq1.f(getBounds().width(), f6, 2.0f, 0.0f);
+            float f8 = aq1.f(getBounds().height(), f6, 2.0f, 0.0f);
+            int i5 = 0;
+            int i6 = 0;
+            while (i6 < 12) {
+                int i7 = i5;
+                for (int i8 = 0; i8 < 12; i8++) {
+                    paint.setColor(iArr[Math.abs((this.a[i7 / 8] >> (i7 % 8)) & 3) % 4]);
+                    float f9 = (i8 * floor2) + f7;
+                    float f10 = i6 * floor2;
+                    canvas.drawRect(f9, f10 + f8, f9 + floor2, f10 + floor2 + f8, paint);
+                    i7 += 2;
                 }
-                if (z) {
-                    ofFloat = ValueAnimator.ofFloat(xl5Var.i, 0.0f);
-                    xl5Var.j = ofFloat;
-                    xl5Var.k = (int) (2000.0f / gl.t);
-                } else {
-                    xl5Var.k = 0;
-                    ofFloat = ValueAnimator.ofFloat(xl5Var.i, 1.0f);
-                    xl5Var.j = ofFloat;
-                }
-                ofFloat.addUpdateListener(new ni4(xl5Var, (byte) 10));
-                ValueAnimator valueAnimator2 = xl5Var.j;
-                if (z2) {
-                    valueAnimator2.setDuration(150L);
-                } else {
-                    valueAnimator2.setDuration(1000L);
-                }
-                xl5Var.j.start();
-                invalidate();
+                i6++;
+                i5 = i7;
             }
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f) {
-            xl5 xl5Var = this.a;
-            xl5Var.c();
-            xl5Var.a(canvas, getWidth() / 2, getHeight() / 2, this);
-        }
-        super.onDraw(canvas);
+    public final int getIntrinsicHeight() {
+        return gm.L(32.0f);
     }
 
-    public void setAmplitude(double d) {
-        if (this.e) {
-            return;
-        }
-        int i = (d > 1.5d ? 1 : (d == 1.5d ? 0 : -1));
-        xl5 xl5Var = this.a;
-        if (i > 0) {
-            xl5Var.b(d);
-        } else {
-            xl5Var.b(0.0d);
-        }
+    @Override
+    public final int getIntrinsicWidth() {
+        return gm.L(32.0f);
     }
 
-    public void setRoundRadius(int i) {
-        this.b.setRoundRadius(i);
+    @Override
+    public final int getOpacity() {
+        return 0;
     }
 
-    public void setShowWaves(boolean z) {
-        xl5 xl5Var = this.a;
-        if (xl5Var.e != z) {
-            invalidate();
-        }
-        xl5Var.e = z;
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

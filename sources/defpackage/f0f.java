@@ -1,139 +1,82 @@
 package defpackage;
 
-import sun.misc.Unsafe;
-public final class f0f extends c6c {
-    public final byte b;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.io.File;
+import java.io.FileOutputStream;
+import org.telegram.messenger.a;
+public abstract class f0f {
+    public static volatile File a;
 
-    public f0f(Unsafe unsafe, byte b) {
-        super(unsafe);
-        this.b = b;
-    }
-
-    @Override
-    public final byte j(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                if (i0f.g) {
-                    return i0f.n(obj, j);
-                }
-                return i0f.o(obj, j);
-            default:
-                if (i0f.g) {
-                    return i0f.n(obj, j);
-                }
-                return i0f.o(obj, j);
+    public static File a(String str) {
+        File file = a;
+        if (file == null) {
+            file = new File(a.b.getCacheDir(), "wallpaper/image");
+            a = file;
         }
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return new File(file, str);
     }
 
-    @Override
-    public final void l(long j, Object obj, byte b) {
-        switch (this.b) {
-            case 0:
-                if (i0f.g) {
-                    i0f.h(j, obj, b);
-                    return;
+    public static Bitmap b(String str) {
+        File a2 = a(str);
+        Bitmap bitmap = null;
+        if (!a2.exists()) {
+            return null;
+        }
+        try {
+            bitmap = BitmapFactory.decodeFile(a2.getAbsolutePath());
+        } catch (Throwable th) {
+            fc4.g(th, true);
+        }
+        if (bitmap == null) {
+            a2.delete();
+        }
+        return bitmap;
+    }
+
+    public static String c(long j) {
+        StringBuilder o = wi8.o(j, "photo_", "_w");
+        ConcurrentHashMap concurrentHashMap = btc.a;
+        Point point = gm.q;
+        o.append(Math.min(1440, Math.min(point.x, point.y)));
+        return o.toString();
+    }
+
+    public static void d(String str, Bitmap bitmap) {
+        boolean compress;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            File a2 = a(str);
+            File parentFile = a2.getParentFile();
+            StringBuilder k = b10.k(str, ".");
+            k.append(Thread.currentThread().getId());
+            k.append(".tmp");
+            File file = new File(parentFile, k.toString());
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                if (bitmap.hasAlpha()) {
+                    compress = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
                 } else {
-                    i0f.j(obj, j, b);
-                    return;
+                    compress = bitmap.compress(Bitmap.CompressFormat.JPEG, 92, fileOutputStream);
                 }
-            default:
-                if (i0f.g) {
-                    i0f.h(j, obj, b);
-                    return;
+                if (!compress) {
+                    fileOutputStream.close();
                 } else {
-                    i0f.j(obj, j, b);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public final void m(Object obj, long j, double d) {
-        switch (this.b) {
-            case 0:
-                this.a.putLong(obj, j, Double.doubleToLongBits(d));
-                return;
-            default:
-                this.a.putLong(obj, j, Double.doubleToLongBits(d));
-                return;
-        }
-    }
-
-    @Override
-    public final void n(Object obj, long j, float f) {
-        switch (this.b) {
-            case 0:
-                this.a.putInt(obj, j, Float.floatToIntBits(f));
-                return;
-            default:
-                this.a.putInt(obj, j, Float.floatToIntBits(f));
-                return;
-        }
-    }
-
-    @Override
-    public final void o(Object obj, long j, boolean z) {
-        switch (this.b) {
-            case 0:
-                if (i0f.g) {
-                    i0f.h(j, obj, z ? (byte) 1 : (byte) 0);
-                    return;
-                } else {
-                    i0f.j(obj, j, z ? (byte) 1 : (byte) 0);
-                    return;
-                }
-            default:
-                if (i0f.g) {
-                    i0f.h(j, obj, z ? (byte) 1 : (byte) 0);
-                    return;
-                } else {
-                    i0f.j(obj, j, z ? (byte) 1 : (byte) 0);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public final boolean q(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                if (i0f.g) {
-                    if (i0f.n(obj, j) == 0) {
-                        return false;
+                    fileOutputStream.flush();
+                    fileOutputStream.getFD().sync();
+                    fileOutputStream.close();
+                    if (file.renameTo(a2)) {
                     }
-                } else if (i0f.o(obj, j) == 0) {
-                    return false;
                 }
-                return true;
-            default:
-                if (i0f.g) {
-                    if (i0f.n(obj, j) == 0) {
-                        return false;
-                    }
-                } else if (i0f.o(obj, j) == 0) {
-                    return false;
+            } finally {
+                try {
+                } finally {
                 }
-                return true;
-        }
-    }
-
-    @Override
-    public final float r(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                return Float.intBitsToFloat(this.a.getInt(obj, j));
-            default:
-                return Float.intBitsToFloat(this.a.getInt(obj, j));
-        }
-    }
-
-    @Override
-    public final double t(Object obj, long j) {
-        switch (this.b) {
-            case 0:
-                return Double.longBitsToDouble(this.a.getLong(obj, j));
-            default:
-                return Double.longBitsToDouble(this.a.getLong(obj, j));
+            }
         }
     }
 }

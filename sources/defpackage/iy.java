@@ -1,35 +1,35 @@
 package defpackage;
 
-import android.view.View;
-public final class iy implements View.OnClickListener {
+import org.telegram.ui.NotificationsSettingsActivity;
+public final class iy implements Runnable {
     public final byte a;
-    public final ty b;
+    public boolean b;
+    public final Object c;
 
-    public iy(ty tyVar, byte b) {
+    public iy(Object obj, byte b) {
         this.a = b;
-        this.b = tyVar;
+        this.c = obj;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
         byte b = this.a;
-        ty tyVar = this.b;
+        Object obj = this.c;
         switch (b) {
             case 0:
-                tyVar.dismiss();
+                this.b = false;
                 return;
             case 1:
-                int value = tyVar.X1.getValue();
-                int e = (int) tyVar.g2.e();
-                if (value < e) {
-                    gl.A3(tyVar.V1);
-                    b00.u(k96.G(e, "Gift2AuctionMinimumBidIncreased", new Object[0]), new u21(tyVar.c, tyVar.J0), 2131624068, 36);
+                if (!this.b) {
+                    this.b = true;
+                    ((yv1) obj).presentFragment(new NotificationsSettingsActivity());
                     return;
                 }
-                tyVar.b1(value);
                 return;
             default:
-                tyVar.X1.setValueAnimated((int) tyVar.g2.e());
+                lp7 lp7Var = (lp7) obj;
+                lp7Var.a(this.b);
+                lp7Var.postDelayed(this, lp7Var.N);
                 return;
         }
     }

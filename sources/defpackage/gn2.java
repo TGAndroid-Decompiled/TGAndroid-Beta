@@ -2,115 +2,126 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class gn2 extends FrameLayout implements tjb {
-    public final wjb a;
-    public final be0 b;
-    public final TextView c;
-    public final TextView d;
-    public final ImageView e;
+public final class gn2 extends View {
+    public final Paint a;
+    public final Paint b;
+    public byte c;
+    public int d;
+    public final ln2 e;
 
-    public gn2(Context context, wjb wjbVar) {
+    public gn2(ln2 ln2Var, Context context) {
         super(context);
-        this.a = wjbVar;
-        be0 be0Var = new be0(context);
-        this.b = be0Var;
-        be0Var.setRoundRadius(gl.L(7.3125f));
-        addView(be0Var, nme.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setGravity(16);
-        TextView textView = new TextView(context);
-        this.c = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, nme.o(-1, -2));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 13.0f);
-        textView2.setSingleLine(true);
-        textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, nme.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        addView(linearLayout, nme.d(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
-        ImageView imageView = new ImageView(context);
-        this.e = imageView;
-        imageView.setImageResource(2131232194);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, nme.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors();
+        this.e = ln2Var;
+        this.a = new Paint(1);
+        Paint paint = new Paint(1);
+        this.b = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeWidth(gm.L(3.0f));
     }
 
-    public final void a(int i, TLRPC.Chat chat) {
-        int i2;
-        if (chat == null) {
-            return;
-        }
-        TLRPC.ChatFull L0 = na7.q1(i).L0(chat.id);
-        setTitle(cf3.t(chat));
-        if (L0 != null) {
-            i2 = L0.linked_peers.size();
+    public final void a() {
+        int argb;
+        int argb2;
+        byte b = this.c;
+        ln2 ln2Var = this.e;
+        if (b != 1) {
+            int i = ln2Var.p1;
+            if (b != 2) {
+                argb = Color.argb(255, 0, Color.green(i), Color.blue(ln2Var.p1));
+                argb2 = Color.argb(255, 255, Color.green(ln2Var.p1), Color.blue(ln2Var.p1));
+            } else {
+                argb = Color.argb(255, Color.red(i), Color.green(ln2Var.p1), 0);
+                argb2 = Color.argb(255, Color.red(ln2Var.p1), Color.green(ln2Var.p1), 255);
+            }
         } else {
-            i2 = 0;
+            argb = Color.argb(255, Color.red(ln2Var.p1), 0, Color.blue(ln2Var.p1));
+            argb2 = Color.argb(255, Color.red(ln2Var.p1), 255, Color.blue(ln2Var.p1));
         }
-        setSubtitle(k96.G(i2, "CommunityWithChats", new Object[0]));
-        this.b.f(chat, new pb0(chat));
+        this.a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.y6));
-        hashSet.add(Integer.valueOf(bkb.F6));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Paint paint;
-        Drawable drawable = bkb.R0;
-        be0 be0Var = this.b;
-        kq3.a(canvas, drawable, (be0Var.getWidth() / 2.0f) + be0Var.getLeft(), (be0Var.getHeight() / 2.0f) + be0Var.getTop(), be0Var.getHeight());
-        super.dispatchDraw(canvas);
-        wjb wjbVar = this.a;
-        if (wjbVar != null) {
-            paint = wjbVar.d("paintDivider");
+    public final void b(float f) {
+        int argb;
+        float L = gm.L(6.0f);
+        float a = pqe.a(((f - L) + (gm.L(13.0f) - (this.b.getStrokeWidth() / 2.0f))) / (getWidth() - (L * 2.0f)), 0.0f, 1.0f);
+        byte b = this.c;
+        ln2 ln2Var = this.e;
+        if (b != 1) {
+            int i = ln2Var.p1;
+            if (b != 2) {
+                argb = Color.argb(255, (int) (a * 255.0f), Color.green(i), Color.blue(ln2Var.p1));
+            } else {
+                argb = Color.argb(255, Color.red(i), Color.green(ln2Var.p1), (int) (a * 255.0f));
+            }
         } else {
-            paint = null;
+            argb = Color.argb(255, Color.red(ln2Var.p1), (int) (a * 255.0f), Color.blue(ln2Var.p1));
         }
-        if (paint == null) {
-            paint = bkb.j0;
-        }
-        canvas.drawLine(gl.L(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
+        ln2Var.D0(on2.p(argb, Color.alpha(ln2Var.p1)), 4);
+        invalidate();
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(56.0f), 1073741824));
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.c.setText(charSequence);
+    public final void onDraw(Canvas canvas) {
+        int green;
+        super.onDraw(canvas);
+        float height = getHeight() / 2.0f;
+        float L = gm.L(6.0f);
+        RectF rectF = gm.P;
+        rectF.set(L, height - L, getWidth() - L, height + L);
+        canvas.drawRoundRect(rectF, gm.L(16.0f), gm.L(16.0f), this.a);
+        byte b = this.c;
+        ln2 ln2Var = this.e;
+        if (b != 1) {
+            int i = ln2Var.p1;
+            if (b != 2) {
+                green = Color.red(i);
+            } else {
+                green = Color.blue(i);
+            }
+        } else {
+            green = Color.green(ln2Var.p1);
+        }
+        float f = green / 255.0f;
+        float L2 = gm.L(13.0f);
+        Paint paint = this.b;
+        float strokeWidth = L2 - (paint.getStrokeWidth() / 2.0f);
+        float max = Math.max(L + strokeWidth, (((getWidth() - (2.0f * L)) * f) + L) - strokeWidth);
+        canvas.drawCircle(max, height, L2, paint);
+        bu7.A1(max, height, strokeWidth, this.d, canvas);
     }
 
     @Override
-    public final void updateColors() {
-        int i = bkb.y6;
-        wjb wjbVar = this.a;
-        this.e.setColorFilter(bkb.v0(i, wjbVar));
-        this.c.setTextColor(bkb.v0(bkb.F6, wjbVar));
-        this.d.setTextColor(bkb.v0(i, wjbVar));
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        a();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                }
+            } else {
+                b(motionEvent.getX());
+                getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return true;
+        }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        b(motionEvent.getX());
+        return true;
     }
 }

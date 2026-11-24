@@ -1,41 +1,36 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class dz9 extends FrameLayout {
-    public final wjb a;
-    public final TextView b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class dz9 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final fz9 b;
 
-    public dz9(Context context, wjb wjbVar) {
-        super(context);
-        int i;
-        this.a = wjbVar;
-        zkb.h(bkb.d7, wjbVar, this);
-        TextView textView = new TextView(getContext());
-        this.b = textView;
-        ir2.t(textView, 1, 14.0f);
-        zkb.X(textView, bkb.e7, wjbVar);
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
-        }
-        textView.setGravity(i | 16);
-        addView(textView, nme.d(-1, -1.0f, (k96.a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+    public dz9(fz9 fz9Var, byte b) {
+        this.a = b;
+        this.b = fz9Var;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(32.0f), 1073741824));
-    }
-
-    public void setLetter(CharSequence charSequence) {
-        this.b.setText(charSequence);
-    }
-
-    public void setTextColor(int i) {
-        zkb.X(this.b, i, this.a);
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        fz9 fz9Var = this.b;
+        switch (b) {
+            case 0:
+                super.onAnimationEnd(animator);
+                fz9Var.J = null;
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                fz9Var.J = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                fz9Var.O = 0.0f;
+                fz9Var.J = null;
+                fz9Var.N = false;
+                fz9Var.d(true, false);
+                return;
+        }
     }
 }

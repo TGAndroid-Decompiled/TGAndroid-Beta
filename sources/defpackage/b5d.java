@@ -1,56 +1,38 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-public abstract class b5d {
-    public static final dc6 a = new dc6("MetadataUtils", null);
-    public static final String[] b;
-    public static final String c;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class b5d extends b3d {
+    public final byte c;
+    public final TaskCompletionSource d;
 
-    static {
-        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
-        b = strArr;
-        c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
+    public b5d(ua4 ua4Var, TaskCompletionSource taskCompletionSource, byte b) {
+        super((byte) 0);
+        this.c = b;
+        this.d = taskCompletionSource;
     }
 
-    public static java.util.Calendar a(java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.b5d.a(java.lang.String):java.util.Calendar");
-    }
-
-    public static JSONArray b(ArrayList arrayList) {
-        arrayList.getClass();
-        JSONArray jSONArray = new JSONArray();
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            vsc vscVar = (vsc) obj;
-            vscVar.getClass();
-            JSONObject jSONObject = new JSONObject();
-            try {
-                jSONObject.put("url", vscVar.b.toString());
-                jSONObject.put("width", vscVar.c);
-                jSONObject.put("height", vscVar.d);
-            } catch (JSONException unused) {
-            }
-            jSONArray.put(jSONObject);
+    @Override
+    public final void T(Status status, og7 og7Var) {
+        switch (this.c) {
+            case 0:
+                fxe.b(status, og7Var, this.d);
+                return;
+            default:
+                super.T(status, og7Var);
+                return;
         }
-        return jSONArray;
     }
 
-    public static void c(ArrayList arrayList, JSONArray jSONArray) {
-        try {
-            arrayList.clear();
-            for (int i = 0; i < jSONArray.length(); i++) {
-                try {
-                    arrayList.add(new vsc(jSONArray.getJSONObject(i)));
-                } catch (IllegalArgumentException unused) {
-                }
-            }
-        } catch (JSONException unused2) {
+    @Override
+    public final void V(Status status, qg7 qg7Var) {
+        switch (this.c) {
+            case 1:
+                fxe.b(status, qg7Var, this.d);
+                return;
+            default:
+                super.V(status, qg7Var);
+                return;
         }
     }
 }

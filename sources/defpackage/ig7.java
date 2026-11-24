@@ -1,25 +1,34 @@
 package defpackage;
+public enum ig7 {
+    TERMINATOR(new int[]{0, 0, 0}, 0),
+    NUMERIC(new int[]{10, 12, 14}, 1),
+    ALPHANUMERIC(new int[]{9, 11, 13}, 2),
+    STRUCTURED_APPEND(new int[]{0, 0, 0}, 3),
+    BYTE(new int[]{8, 16, 16}, 4),
+    ECI(new int[]{0, 0, 0}, 7),
+    KANJI(new int[]{8, 10, 12}, 8),
+    FNC1_FIRST_POSITION(new int[]{0, 0, 0}, 5),
+    FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 9),
+    HANZI(new int[]{8, 10, 12}, 13);
+    
+    public final int[] a;
+    public final byte b;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
-public final class ig7 {
-    public final HashMap a = new HashMap();
+    ig7(int[] iArr, int i) {
+        this.a = iArr;
+        this.b = i;
+    }
 
-    public ig7(Set set) {
-        HashMap hashMap = new HashMap();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            hg7 hg7Var = (hg7) it.next();
-            hg7Var.getClass();
-            if (this.a.containsKey(ik5.class)) {
-                Integer num = (Integer) hashMap.get(ik5.class);
-                fre.h(num);
-                if (num.intValue() <= 0) {
-                }
-            }
-            this.a.put(ik5.class, hg7Var.a);
-            hashMap.put(ik5.class, 0);
+    public final int a(ybc ybcVar) {
+        char c;
+        byte b = ybcVar.a;
+        if (b <= 9) {
+            c = 0;
+        } else if (b <= 26) {
+            c = 1;
+        } else {
+            c = 2;
         }
+        return this.a[c];
     }
 }

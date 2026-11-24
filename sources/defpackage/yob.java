@@ -1,3 +1,8 @@
 package defpackage;
-public abstract class yob extends ma9 {
+
+import android.content.DialogInterface;
+public final class yob implements DialogInterface.OnCancelListener {
+    @Override
+    public final void onCancel(DialogInterface dialogInterface) {
+    }
 }

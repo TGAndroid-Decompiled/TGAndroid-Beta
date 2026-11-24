@@ -1,437 +1,643 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
+import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.InsetDrawable;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MotionEvent;
+import android.text.method.PasswordTransformationMethod;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.d;
-public class gw8 extends d {
-    public boolean E;
-    public boolean F;
-    public yv8 G;
-    public boolean H;
-    public final cw8 I;
-    public int J;
-    public final Paint K;
-    public float L;
-    public final int[] M;
-    public final int[] N;
-    public LinearGradient O;
-    public final Paint P;
-    public final Matrix Q;
-    public final Paint R;
-    public final RectF S;
-    public final float[] T;
-    public final int[] U;
-    public final int[] V;
-    public LinearGradient W;
-    public int X;
-    public int Y;
-    public int Z;
-    public long a;
-    public nv8 a0;
-    public long b;
-    public int b0;
-    public gi3 c;
-    public int c0;
-    public vw8 d;
-    public int d0;
-    public kw8 e;
-    public float e0;
-    public FrameLayout f;
-    public boolean f0;
-    public LinearGradient g0;
-    public ew8 h;
-    public final Paint h0;
-    public final RectF i0;
-    public final int[] j0;
-    public final int[] k0;
-    public final int[] l0;
-    public final Path m0;
-    public float n;
-    public final RectF n0;
-    public Paint o0;
-    public final nm4 p0;
-    public final RectF q0;
-    public float r;
-    public boolean r0;
-    public float s;
-    public Boolean s0;
-    public float w;
-    public float x;
-    public sx3 y;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class gw8 extends d {
+    public float E;
+    public float[] F;
+    public boolean G;
+    public ValueAnimator H;
+    public ClipboardManager I;
+    public final boolean J;
+    public fda K;
+    public boolean L;
+    public ClipboardManager.OnPrimaryClipChangedListener M;
+    public int N;
+    public EditTextBoldCursor[] a;
+    public ew8 b;
+    public m56 c;
+    public LinearLayout d;
+    public bba[] e;
+    public njb[] f;
+    public vkb h;
+    public vkb n;
+    public uja r;
+    public w09[] s;
+    public int w;
+    public bw8 x;
+    public String y;
 
-    public gw8(Bundle bundle) {
-        super(bundle);
-        this.I = new cw8(this, (byte) 0);
-        this.K = new Paint();
-        this.L = Float.NaN;
-        this.M = new int[2];
-        this.N = new int[2];
-        this.P = new Paint();
-        this.Q = new Matrix();
-        this.R = new Paint(1);
-        this.S = new RectF();
-        this.T = new float[2];
-        this.U = new int[2];
-        this.V = new int[2];
-        this.X = -1;
-        this.Y = -1;
-        this.Z = -1;
-        this.h0 = new Paint();
-        this.i0 = new RectF();
-        this.j0 = new int[2];
-        this.k0 = new int[2];
-        this.l0 = new int[2];
-        this.m0 = new Path();
-        this.n0 = new RectF();
-        this.p0 = new nm4();
-        this.q0 = new RectF();
-        this.hasOwnBackground = true;
+    public gw8() {
+        super(null);
+        this.e = new bba[3];
+        this.f = new njb[2];
+        this.s = new w09[3];
+        this.E = 1.0f;
+        this.F = new float[2];
+        this.G = true;
+        this.M = new cw8(this, (byte) 0);
+        this.K = new fda(bw8.i);
+        this.J = true;
     }
 
-    public static void Z(View view) {
-        view.setVerticalScrollBarEnabled(false);
-        view.setHorizontalScrollBarEnabled(false);
-        if (view instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                Z(viewGroup.getChildAt(i));
+    public final void Z(boolean z) {
+        EditTextBoldCursor[] editTextBoldCursorArr;
+        EditTextBoldCursor editTextBoldCursor;
+        boolean z2;
+        int i;
+        if (this.h != null && this.r != null && (editTextBoldCursor = (editTextBoldCursorArr = this.a)[0]) != null && editTextBoldCursorArr[1] != null) {
+            if (this.w != 3 ? !(editTextBoldCursor.length() == 0 || Utilities.z(this.a[1].getText().toString()).intValue() == 0) : !(TextUtils.isEmpty(bwc.l(editTextBoldCursor.getText().toString())) || bwc.f(this.a[4].getText().toString()) == null)) {
+                z2 = true;
+            } else {
+                z2 = false;
             }
-        }
-    }
-
-    public static void c0(d dVar) {
-        da1.i0(dVar.getParentActivity(), 1, new dd(dVar.getCurrentAccount(), dVar, (byte) 14));
-    }
-
-    public static LinearGradient i0(boolean z) {
-        int[] iArr = new int[9];
-        float[] fArr = new float[9];
-        for (int i = 0; i < 9; i++) {
-            float f = i / 8.0f;
-            float B = yjb.B(f, 2.0f, 3.0f, f * f);
-            if (!z) {
-                B = 1.0f - B;
-            }
-            iArr[i] = ((int) ((B * 255.0f) + 0.5f)) << 24;
-            fArr[i] = f;
-        }
-        return new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, iArr, fArr, Shader.TileMode.CLAMP);
-    }
-
-    public final void Y() {
-        Activity parentActivity = getParentActivity();
-        if (parentActivity != null) {
-            Window window = parentActivity.getWindow();
-            gl.i3(parentActivity, false);
-            gl.o3(window, false);
-            if (Build.VERSION.SDK_INT >= 29) {
-                if (this.s0 == null) {
-                    this.s0 = Boolean.valueOf(window.isNavigationBarContrastEnforced());
+            if (this.G != z2) {
+                ValueAnimator valueAnimator = this.H;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                } else if (z) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    this.H = ofFloat;
+                    ofFloat.setDuration(200L);
+                    this.H.addUpdateListener(new fx7(this, (byte) 22));
                 }
-                window.setNavigationBarContrastEnforced(false);
+                float f = 1.0f;
+                if (z) {
+                    float[] fArr = this.F;
+                    fArr[0] = this.E;
+                    if (!z2) {
+                        f = 0.0f;
+                    }
+                    fArr[1] = f;
+                    this.H.start();
+                } else {
+                    if (!z2) {
+                        f = 0.0f;
+                    }
+                    this.E = f;
+                    TextView textView = this.h.getTextView();
+                    if (z2) {
+                        i = cmb.p6;
+                    } else {
+                        i = cmb.y6;
+                    }
+                    anb.X(textView, i, null);
+                }
+                this.h.setEnabled(z2);
+                this.r.a(z2, z);
+                this.G = z2;
             }
         }
     }
 
-    public final void a0(AnimatorSet animatorSet) {
-        k0();
-        boolean z = !this.E;
-        int i = this.currentAccount;
-        this.Z = i;
-        this.X = kk7.f(i).q(null, -1, z);
-        this.Y = kk7.e().q(null, -1, z);
-        animatorSet.start();
-    }
-
-    public final void b0() {
-        vw8 vw8Var;
-        if (this.h != null && (vw8Var = this.d) != null && vw8Var.getWidth() != 0) {
-            int max = Math.max(1, (int) (this.d.a1() - ((int) this.d.H0())));
-            this.d.getClass();
-            int width = (int) (this.f.getWidth() - (this.d.getWidth() - gl.L(10.0f)));
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.h.getLayoutParams();
-            if (layoutParams.height != max || layoutParams.leftMargin != r2 || layoutParams.rightMargin != width) {
-                layoutParams.height = max;
-                layoutParams.leftMargin = r2;
-                layoutParams.rightMargin = width;
-                this.h.setLayoutParams(layoutParams);
+    public final void a0(int i, boolean z, ge7 ge7Var) {
+        boolean z2;
+        boolean z3;
+        w09[] w09VarArr = this.s;
+        njb[] njbVarArr = this.f;
+        if (this.w != i) {
+            this.w = i;
+            TransitionManager.endTransitions(this.c);
+            boolean z4 = true;
+            if (z) {
+                TransitionSet duration = new TransitionSet().addTransition(new Fade(2)).addTransition(new ChangeBounds()).addTransition(new Fade(1)).setInterpolator((TimeInterpolator) d53.f).setDuration(250L);
+                if (ge7Var != null) {
+                    duration.addListener((Transition.TransitionListener) new i7(ge7Var, (byte) 2));
+                }
+                TransitionManager.beginDelayedTransition(this.c, duration);
             }
+            int i2 = this.w;
+            if (i2 == 1) {
+                njbVarArr[0].setVisibility(0);
+                njbVarArr[1].setVisibility(8);
+                ((View) this.a[4].getParent()).setVisibility(8);
+                ((View) this.a[3].getParent()).setVisibility(0);
+                ((View) this.a[2].getParent()).setVisibility(0);
+                ((View) this.a[1].getParent()).setVisibility(0);
+            } else if (i2 == 2) {
+                njbVarArr[0].setVisibility(8);
+                njbVarArr[1].setVisibility(0);
+                njbVarArr[1].setText(jb6.M0(2131743464, null) + "\n\n" + jb6.M0(2131743463, null));
+                ((View) this.a[4].getParent()).setVisibility(0);
+                ((View) this.a[3].getParent()).setVisibility(8);
+                ((View) this.a[2].getParent()).setVisibility(8);
+                ((View) this.a[1].getParent()).setVisibility(0);
+            } else if (i2 == 3) {
+                njbVarArr[0].setVisibility(8);
+                njbVarArr[1].setVisibility(0);
+                njbVarArr[1].setText(jb6.M0(2131743459, null));
+                ((View) this.a[4].getParent()).setVisibility(0);
+                ((View) this.a[3].getParent()).setVisibility(8);
+                ((View) this.a[2].getParent()).setVisibility(8);
+                ((View) this.a[1].getParent()).setVisibility(8);
+                this.a[1].setText("443");
+            }
+            w09 w09Var = w09VarArr[0];
+            if (this.w == 1) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            w09Var.a(z2, z);
+            w09 w09Var2 = w09VarArr[1];
+            if (this.w == 2) {
+                z3 = true;
+            } else {
+                z3 = false;
+            }
+            w09Var2.a(z3, z);
+            w09 w09Var3 = w09VarArr[2];
+            if (this.w != 3) {
+                z4 = false;
+            }
+            w09Var3.a(z4, z);
+            Z(z);
         }
     }
 
     @Override
-    public final boolean canBeginSlide() {
-        return false;
+    public final void addThemeColorKeys(HashSet hashSet) {
+        super.addThemeColorKeys(hashSet);
+        hashSet.add(Integer.valueOf(cmb.I6));
+        hashSet.add(Integer.valueOf(cmb.A6));
+        hashSet.add(Integer.valueOf(cmb.a7));
+        hashSet.add(Integer.valueOf(cmb.g7));
+        hashSet.add(Integer.valueOf(cmb.f7));
+        hashSet.add(Integer.valueOf(cmb.c7));
+        hashSet.add(Integer.valueOf(cmb.s8));
+        hashSet.add(Integer.valueOf(cmb.z8));
+        hashSet.add(Integer.valueOf(cmb.u8));
+        hashSet.add(Integer.valueOf(cmb.r8));
+    }
+
+    public final void b0(Context context, String str) {
+        ax8 ax8Var = new ax8(context, jb6.M0(2131745182, null), str, jb6.M0(2131746237, null), true);
+        ax8Var.q1.setImageBitmap(neb.e(gm.L(60.0f), gm.L(60.0f), gm.v2(null, 2131624168)));
+        showDialog(ax8Var);
+    }
+
+    public final void c0() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gw8.c0():void");
     }
 
     @Override
-    public final void clearViews() {
-        FrameLayout frameLayout = this.f;
-        if (frameLayout != null) {
-            frameLayout.removeCallbacks(this.I);
+    public final View createView(Context context) {
+        int i;
+        float f;
+        boolean z;
+        boolean z2;
+        boolean z3;
+        njb[] njbVarArr = this.f;
+        fda fdaVar = this.K;
+        bba[] bbaVarArr = this.e;
+        w09[] w09VarArr = this.s;
+        setHasOwnBackground(true);
+        this.simpleActionBar.setTitle(jb6.M0(2131746337, null));
+        this.simpleActionBar.setBackButtonImage(2131231244);
+        tk5 tk5Var = this.parentLayout;
+        if (tk5Var != null && ((ActionBarLayout) tk5Var).T0) {
+            this.simpleActionBar.setOccupyStatusBar(false);
         }
-        yv8 yv8Var = this.G;
-        if (yv8Var != null) {
-            yv8Var.g();
-            this.G = null;
+        this.simpleActionBar.setActionBarMenuOnItemClick(new im8(this, (byte) 5));
+        this.r = this.simpleActionBar.s(jb6.M0(2131745680, null));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        this.c = new m56(context);
+        ?? ww9Var = new ww9(context, this.c, this.resourceProvider, true);
+        this.b = ww9Var;
+        ww9Var.setDrawBackground(true);
+        this.b.setFillViewport(true);
+        this.b.setOverScrollMode(0);
+        gm.u3(this.b, cmb.w0(null, cmb.r8, false));
+        int i2 = -1;
+        frameLayout.addView(this.b, qoe.c(-1.0f, -1));
+        this.c.setOrientation(1);
+        this.b.addView(this.c, new FrameLayout.LayoutParams(-1, -2));
+        View.OnClickListener onClickListener = new View.OnClickListener(this) {
+            public final gw8 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                String str;
+                byte b = r2;
+                gw8 gw8Var = this.b;
+                switch (b) {
+                    case 0:
+                        gw8Var.a0(bw8.f(((Integer) view.getTag()).intValue()), true, null);
+                        return;
+                    default:
+                        bw8 bw8Var = gw8Var.x;
+                        if (bw8Var != null) {
+                            int i3 = bw8Var.a;
+                            int i4 = 0;
+                            while (true) {
+                                EditTextBoldCursor[] editTextBoldCursorArr = gw8Var.a;
+                                if (i4 < editTextBoldCursorArr.length) {
+                                    if ((i3 != 1 || i4 != 4) && (i3 != 2 || (i4 != 2 && i4 != 3))) {
+                                        if (i4 == 0) {
+                                            str = gw8Var.x.b;
+                                        } else if (i4 == 1) {
+                                            int i5 = gw8Var.x.c;
+                                            if (i5 != 0) {
+                                                str = Integer.toString(i5);
+                                            }
+                                            str = null;
+                                        } else if (i4 == 2) {
+                                            str = gw8Var.x.d;
+                                        } else if (i4 == 3) {
+                                            str = gw8Var.x.e;
+                                        } else {
+                                            if (i4 == 4) {
+                                                str = gw8Var.x.f;
+                                            }
+                                            str = null;
+                                        }
+                                        if (!TextUtils.isEmpty(str)) {
+                                            try {
+                                                gw8Var.a[i4].setText(URLDecoder.decode(str, "UTF-8"));
+                                            } catch (UnsupportedEncodingException unused) {
+                                                gw8Var.a[i4].setText(str);
+                                            }
+                                        } else {
+                                            gw8Var.a[i4].setText((CharSequence) null);
+                                        }
+                                    }
+                                    i4++;
+                                } else {
+                                    EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
+                                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                                    gw8Var.a0(i3, true, new ge7(gw8Var, i3, (byte) 9));
+                                    return;
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                        break;
+                }
+            }
+        };
+        int i3 = 0;
+        while (i3 < 3) {
+            int f2 = bw8.f(i3);
+            w09 w09Var = new w09(context, null);
+            w09VarArr[i3] = w09Var;
+            anb.R(w09Var, cmb.L0(true), anb.M(cmb.c6), anb.M(cmb.h6), null);
+            w09VarArr[i3].setTag(Integer.valueOf(i3));
+            if (i3 == 0) {
+                w09 w09Var2 = w09VarArr[i3];
+                String M0 = jb6.M0(2131743469, null);
+                if (f2 == this.w) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                w09Var2.c(M0, z3, true);
+            } else if (i3 == 1) {
+                w09 w09Var3 = w09VarArr[i3];
+                String M02 = jb6.M0(2131743466, null);
+                if (f2 == this.w) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                w09Var3.c(M02, z2, true);
+            } else {
+                w09 w09Var4 = w09VarArr[i3];
+                String M03 = jb6.M0(2131743460, null);
+                if (f2 == this.w) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                w09Var4.c(M03, z, false);
+            }
+            this.c.addView(w09VarArr[i3], qoe.o(-1, 50));
+            w09VarArr[i3].setOnClickListener(onClickListener);
+            i3++;
+            i2 = -1;
         }
-        kw8 kw8Var = this.e;
-        if (kw8Var != null) {
-            kw8Var.l();
-            this.e = null;
+        bba bbaVar = new bba(context, (hg9) null);
+        bbaVarArr[0] = bbaVar;
+        this.c.addView(bbaVar, qoe.o(i2, -2));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.d = linearLayout;
+        linearLayout.setOrientation(1);
+        this.d.setElevation(gm.L(1.0f));
+        this.d.setOutlineProvider(null);
+        int i4 = -1;
+        this.c.addView(this.d, qoe.o(-1, -2));
+        int i5 = 5;
+        this.a = new EditTextBoldCursor[5];
+        int i6 = 0;
+        while (i6 < i5) {
+            FrameLayout frameLayout2 = new FrameLayout(context);
+            this.d.addView(frameLayout2, qoe.o(i4, 64));
+            this.a[i6] = new EditTextBoldCursor(context);
+            this.a[i6].setTag(Integer.valueOf(i6));
+            this.a[i6].setTextSize(1, 16.0f);
+            anb.A(this.a[i6], cmb.G6, null);
+            EditTextBoldCursor editTextBoldCursor = this.a[i6];
+            int i7 = cmb.F6;
+            anb.X(editTextBoldCursor, i7, null);
+            this.a[i6].setBackground(null);
+            anb.v(this.a[i6], i7, null);
+            this.a[i6].setCursorSize(gm.L(20.0f));
+            this.a[i6].setCursorWidth(1.5f);
+            this.a[i6].setSingleLine(true);
+            EditTextBoldCursor editTextBoldCursor2 = this.a[i6];
+            if (jb6.a0) {
+                i = 5;
+            } else {
+                i = 3;
+            }
+            editTextBoldCursor2.setGravity(i | 16);
+            anb.z(this.a[i6], cmb.K6, null);
+            this.a[i6].setTransformHintToHeader(true);
+            anb.F(this.a[i6], cmb.j6, cmb.k6, cmb.o7, null);
+            if (i6 == 0) {
+                this.a[i6].setInputType(524305);
+                this.a[i6].addTextChangedListener(new fw8(this, (byte) 0));
+            } else {
+                EditTextBoldCursor[] editTextBoldCursorArr = this.a;
+                if (i6 == 1) {
+                    editTextBoldCursorArr[i6].setInputType(2);
+                    this.a[i6].addTextChangedListener(new fw8(this, (byte) 1));
+                } else if (i6 == 3) {
+                    editTextBoldCursorArr[i6].setInputType(129);
+                    this.a[i6].setTypeface(Typeface.DEFAULT);
+                    this.a[i6].setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    editTextBoldCursorArr[i6].setInputType(524289);
+                }
+            }
+            if (i6 == 4) {
+                this.a[i6].addTextChangedListener(new fw8(this, (byte) 2));
+            }
+            this.a[i6].setImeOptions(268435461);
+            if (i6 != 0) {
+                if (i6 != 1) {
+                    if (i6 != 2) {
+                        if (i6 != 3) {
+                            if (i6 == 4) {
+                                this.a[i6].setHintText(jb6.M0(2131743471, null));
+                                this.a[i6].setText(fdaVar.a.f);
+                            }
+                        } else {
+                            this.a[i6].setHintText(jb6.M0(2131743474, null));
+                            this.a[i6].setText(fdaVar.a.e);
+                        }
+                    } else {
+                        this.a[i6].setHintText(jb6.M0(2131743461, null));
+                        this.a[i6].setText(fdaVar.a.d);
+                    }
+                } else {
+                    this.a[i6].setHintText(jb6.M0(2131743473, null));
+                    this.a[i6].setText(Integer.toString(fdaVar.a.c));
+                }
+            } else {
+                this.a[i6].setHintText(jb6.M0(2131743478, null));
+                this.a[i6].setText(fdaVar.a.b);
+            }
+            EditTextBoldCursor editTextBoldCursor3 = this.a[i6];
+            editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
+            this.a[i6].setPadding(0, 0, 0, 0);
+            EditTextBoldCursor editTextBoldCursor4 = this.a[i6];
+            if (i6 == 0) {
+                f = 12.0f;
+            } else {
+                f = 0.0f;
+            }
+            frameLayout2.addView(editTextBoldCursor4, qoe.d(-1, -1.0f, 51, 17.0f, f, 17.0f, 0.0f));
+            this.a[i6].setOnEditorActionListener(new j(this, (byte) 20));
+            i6++;
+            i5 = 5;
+            i4 = -1;
         }
-        super.clearViews();
-        vw8 vw8Var = this.d;
-        if (vw8Var != null) {
-            vw8Var.O0();
-            this.d = null;
+        for (int i8 = 0; i8 < 2; i8++) {
+            njb njbVar = new njb(context);
+            njbVarArr[i8] = njbVar;
+            if (i8 == 0) {
+                njbVar.setText(jb6.M0(2131743475, null));
+            } else {
+                njbVar.setText(jb6.M0(2131743464, null) + "\n\n" + jb6.M0(2131743463, null));
+                njbVarArr[i8].setVisibility(8);
+            }
+            this.c.addView(njbVarArr[i8], qoe.o(-1, -2));
         }
-        this.f = null;
-        this.h = null;
+        vkb vkbVar = new vkb(this.fragmentView.getContext());
+        this.n = vkbVar;
+        fg0 L0 = cmb.L0(true);
+        int i9 = cmb.c6;
+        wmb M = anb.M(i9);
+        int i10 = cmb.h6;
+        wmb M2 = anb.M(i10);
+        vkbVar.setBackground(L0);
+        anb.j(vkbVar, L0, M, M2, null);
+        this.n.b(jb6.M0(2131747167, null), false);
+        TextView textView = this.n.getTextView();
+        int i11 = cmb.p6;
+        anb.X(textView, i11, null);
+        this.n.setOnClickListener(new View.OnClickListener(this) {
+            public final gw8 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                String str;
+                byte b = r2;
+                gw8 gw8Var = this.b;
+                switch (b) {
+                    case 0:
+                        gw8Var.a0(bw8.f(((Integer) view.getTag()).intValue()), true, null);
+                        return;
+                    default:
+                        bw8 bw8Var = gw8Var.x;
+                        if (bw8Var != null) {
+                            int i32 = bw8Var.a;
+                            int i42 = 0;
+                            while (true) {
+                                EditTextBoldCursor[] editTextBoldCursorArr2 = gw8Var.a;
+                                if (i42 < editTextBoldCursorArr2.length) {
+                                    if ((i32 != 1 || i42 != 4) && (i32 != 2 || (i42 != 2 && i42 != 3))) {
+                                        if (i42 == 0) {
+                                            str = gw8Var.x.b;
+                                        } else if (i42 == 1) {
+                                            int i52 = gw8Var.x.c;
+                                            if (i52 != 0) {
+                                                str = Integer.toString(i52);
+                                            }
+                                            str = null;
+                                        } else if (i42 == 2) {
+                                            str = gw8Var.x.d;
+                                        } else if (i42 == 3) {
+                                            str = gw8Var.x.e;
+                                        } else {
+                                            if (i42 == 4) {
+                                                str = gw8Var.x.f;
+                                            }
+                                            str = null;
+                                        }
+                                        if (!TextUtils.isEmpty(str)) {
+                                            try {
+                                                gw8Var.a[i42].setText(URLDecoder.decode(str, "UTF-8"));
+                                            } catch (UnsupportedEncodingException unused) {
+                                                gw8Var.a[i42].setText(str);
+                                            }
+                                        } else {
+                                            gw8Var.a[i42].setText((CharSequence) null);
+                                        }
+                                    }
+                                    i42++;
+                                } else {
+                                    EditTextBoldCursor editTextBoldCursor5 = editTextBoldCursorArr2[0];
+                                    editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
+                                    gw8Var.a0(i32, true, new ge7(gw8Var, i32, (byte) 9));
+                                    return;
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                        break;
+                }
+            }
+        });
+        this.c.addView(this.n, 0, qoe.o(-1, -2));
+        this.n.setVisibility(8);
+        bba bbaVar2 = new bba(this.fragmentView.getContext(), (hg9) null);
+        bbaVarArr[2] = bbaVar2;
+        this.c.addView(bbaVar2, 1, qoe.o(-1, -2));
+        bbaVarArr[2].setVisibility(8);
+        vkb vkbVar2 = new vkb(context);
+        this.h = vkbVar2;
+        fg0 L02 = cmb.L0(true);
+        wmb M3 = anb.M(i9);
+        wmb M4 = anb.M(i10);
+        vkbVar2.setBackground(L02);
+        anb.j(vkbVar2, L02, M3, M4, null);
+        this.h.b(jb6.M0(2131745193, null), false);
+        anb.X(this.h.getTextView(), i11, null);
+        this.c.addView(this.h, qoe.o(-1, -2));
+        this.h.setOnClickListener(new n06(this, context, (byte) 27));
+        bba bbaVar3 = new bba(context, (hg9) null);
+        bbaVarArr[1] = bbaVar3;
+        this.c.addView(bbaVar3, qoe.o(-1, -2));
+        this.I = (ClipboardManager) context.getSystemService("clipboard");
+        this.G = true;
+        this.E = 1.0f;
+        Z(false);
+        this.w = 0;
+        a0(fdaVar.a.a, false, null);
+        this.x = null;
         this.y = null;
-        this.a0 = null;
-    }
-
-    @Override
-    public final a createActionBar(Context context) {
-        return null;
-    }
-
-    @Override
-    public final android.view.View createView(android.content.Context r28) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gw8.createView(android.content.Context):android.view.View");
+        c0();
+        return this.fragmentView;
     }
 
     public final void d0() {
-        if (getParentActivity() == null) {
-            return;
-        }
-        tv4 tv4Var = new tv4(getParentActivity(), this.currentAccount, getUserConfig().e(), null, null);
-        if (!tv4Var.n2) {
-            tv4Var.n2 = true;
-            qua quaVar = tv4Var.p2;
-            if (quaVar != null && (quaVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) tv4Var.p2.getParent();
-                int indexOfChild = viewGroup.indexOfChild(tv4Var.p2);
-                viewGroup.removeView(tv4Var.p2);
-                qua quaVar2 = new qua(tv4Var.getContext(), 250, 2);
-                tv4Var.p2 = quaVar2;
-                viewGroup.addView(quaVar2, indexOfChild, nme.c(-1.0f, -1));
+        int w0;
+        try {
+            int i = 0;
+            if (this.b != null && (w0 = cmb.w0(null, cmb.r8, false)) != this.N) {
+                this.N = w0;
+                gm.u3(this.b, w0);
             }
-            l46 l46Var = tv4Var.q2;
-            if (l46Var != null) {
-                String M0 = k96.M0(2131750272, null);
-                s11 s11Var = tv4Var.e2;
-                s11Var.setText(M0);
-                s11Var.setBreakStrategy(2);
-                l46Var.setVisibility(8);
+            if (this.a != null) {
+                cmb.u0(cmb.G6);
+                cmb.u0(cmb.F6);
+                cmb.u0(cmb.K6);
+                while (true) {
+                    EditTextBoldCursor[] editTextBoldCursorArr = this.a;
+                    if (i < editTextBoldCursorArr.length) {
+                        EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[i];
+                        if (editTextBoldCursor != null) {
+                            anb.l(editTextBoldCursor, 34, cmb.G6, null);
+                            anb.v(this.a[i], cmb.F6, null);
+                            anb.z(this.a[i], cmb.K6, null);
+                        }
+                        i++;
+                    } else {
+                        return;
+                    }
+                }
             }
-            tv4Var.T1.O(false);
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
-        tv4Var.show();
     }
 
     @Override
-    public final boolean drawEdgeNavigationBar() {
-        return false;
+    public final ww9 getScrollViewForSimpleGlass() {
+        return this.b;
     }
 
-    public final void e0() {
-        if (this.G == null && this.d != null && this.f != null && getParentActivity() != null) {
-            RectF rectF = new RectF();
-            RectF rectF2 = new RectF();
-            rectF.set(this.d.j7);
-            rectF2.set(this.d.g7);
-            if (rectF.isEmpty()) {
-                rectF.set((this.f.getWidth() / 2.0f) - gl.L(20.0f), (this.f.getHeight() / 2.0f) - gl.L(20.0f), (this.f.getWidth() / 2.0f) + gl.L(20.0f), (this.f.getHeight() / 2.0f) + gl.L(20.0f));
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new cnb(this.b, 32768, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.r8));
+        arrayList.add(new cnb(this.d, 1, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.c6));
+        for (int i = 0; i < this.s.length; i++) {
+        }
+        if (this.a != null) {
+            int i2 = 0;
+            while (true) {
+                EditTextBoldCursor[] editTextBoldCursorArr = this.a;
+                if (i2 >= editTextBoldCursorArr.length) {
+                    break;
+                }
+                arrayList.add(new cnb(editTextBoldCursorArr[i2], 8388608, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.G6));
+                arrayList.add(new cnb(this.a[i2], 8390656, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.K6));
+                i2++;
             }
-            this.d.setScanHidden(true);
-            yv8 yv8Var = new yv8(getParentActivity(), rectF, rectF2, new s34(this, (byte) 29));
-            this.G = yv8Var;
-            yv8Var.setButtonLabel(k96.M0(2131746277, null));
-            yv8 yv8Var2 = this.G;
-            yv8Var2.setOnGallery(new ll8(this, yv8Var2, (byte) 28));
-            this.f.addView(this.G, nme.c(-1.0f, -1));
-        }
-    }
-
-    public final void f0(float f, float f2, boolean z) {
-        int i;
-        int i2;
-        ew8 ew8Var = this.h;
-        if (!z) {
-            if (ew8Var != null && ew8Var.getVisibility() == 0) {
-                this.h.setVisibility(4);
-            }
-            sx3 sx3Var = this.y;
-            if (sx3Var != null && sx3Var.getVisibility() == 0) {
-                this.y.setVisibility(4);
-                return;
-            }
-            return;
-        }
-        if (ew8Var == null) {
-            if (getParentActivity() != null) {
-                ew8 ew8Var2 = new ew8(this, getParentActivity(), this.currentAccount, new dw8(this));
-                this.h = ew8Var2;
-                ew8Var2.setOutlineProvider(new fw8(this, (byte) 0));
-                this.h.setClipToOutline(true);
-                sx3 sx3Var2 = new sx3(getParentActivity(), new pj4(this, (byte) 29));
-                this.y = sx3Var2;
-                sx3Var2.b = this.h;
-                this.d.setOnPicksChanged(new cw8(this, (byte) 1));
-                this.y.setOutlineProvider(this.h.getOutlineProvider());
-                this.y.setClipToOutline(true);
-                this.f.addView(this.h, nme.e(-1, -1, 48));
-                b0();
-                this.f.post(new cw8(this, (byte) 2));
-            } else {
-                return;
-            }
-        }
-        b0();
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.h.getLayoutParams();
-        int i3 = layoutParams.height;
-        int i4 = layoutParams.leftMargin;
-        int i5 = layoutParams.rightMargin;
-        if (this.y.getParent() == null) {
-            this.f.addView(this.y, nme.e(-1, -1, 48));
-        }
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.y.getLayoutParams();
-        if (layoutParams2.height != i3 || layoutParams2.leftMargin != i4 || layoutParams2.rightMargin != i5) {
-            layoutParams2.height = i3;
-            layoutParams2.leftMargin = i4;
-            layoutParams2.rightMargin = i5;
-            this.y.setLayoutParams(layoutParams2);
-        }
-        this.y.setTranslationY(f);
-        this.y.setAlpha(f2);
-        this.y.invalidateOutline();
-        this.y.invalidate();
-        if (this.y.getVisibility() != 0) {
-            this.y.setVisibility(0);
-        }
-        int t0 = this.d.t0();
-        tw8 tw8Var = this.d.n;
-        if (tw8Var != null) {
-            i = tw8Var.h;
         } else {
-            i = 872415231;
+            arrayList.add(new cnb((View) null, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.F6));
+            arrayList.add(new cnb((View) null, 8388608, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.G6));
         }
-        int i6 = t0 ^ i;
-        if (this.h.getTranslationY() != f || i6 != this.J) {
-            this.h.setTranslationY(f);
-            this.J = i6;
-            this.h.getTabs().invalidate();
-        }
-        this.h.invalidateOutline();
-        this.h.setAlpha(f2);
-        ew8 ew8Var3 = this.h;
-        vw8 vw8Var = this.d;
-        tw8 tw8Var2 = vw8Var.n;
-        if (tw8Var2 != null) {
-            i2 = tw8Var2.b;
-        } else {
-            i2 = -16777216;
-        }
-        if (i2 != vw8Var.b2) {
-            vw8Var.b2 = i2;
-            vw8Var.c2 = (bm2.f(0.13f, -1, vw8.D0(0.75f, 1.3f, 0.16f, i2)) & 16777215) | (-1728053248);
-        }
-        ew8Var3.setHeaderColor(vw8Var.c2);
-        if (this.h.getVisibility() != 0) {
-            ew8 ew8Var4 = this.h;
-            if (ew8Var4.K) {
-                ew8Var4.K = false;
-                ew8Var4.e();
+        arrayList.add(new cnb((View) null, 1, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.c6));
+        int i3 = 0;
+        while (true) {
+            bba[] bbaVarArr = this.e;
+            if (i3 >= bbaVarArr.length) {
+                break;
             }
-            this.h.setVisibility(0);
+            bba bbaVar = bbaVarArr[i3];
+            i3++;
         }
-        if (!this.r0) {
-            j0();
+        for (int i4 = 0; i4 < this.f.length; i4++) {
         }
-    }
-
-    public final void g0() {
-        vw8 vw8Var;
-        Activity parentActivity = getParentActivity();
-        if (parentActivity != null && (vw8Var = this.d) != null && vw8Var.getCurrentLink() != null) {
-            if ((Build.VERSION.SDK_INT <= 28 || w01.b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
-                this.F = true;
-                parentActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 4);
-                return;
-            }
-            Bitmap T0 = this.d.T0();
-            if (T0 != null) {
-                Utilities.e.c(new ll8(this, T0, (byte) 27));
-            }
-        }
-    }
-
-    @Override
-    public final int getNavigationBarColor() {
-        return -16777216;
-    }
-
-    public final void h0(String str) {
-        vw8 vw8Var;
-        Uri uri;
-        if (getParentActivity() != null && (vw8Var = this.d) != null && vw8Var.getCurrentLink() != null) {
-            Bitmap T0 = this.d.T0();
-            if (T0 != null) {
-                uri = gl.B0(T0, "qr_tmp.jpg", Bitmap.CompressFormat.JPEG);
-            } else {
-                uri = null;
-            }
-            Intent intent = new Intent("android.intent.action.SEND");
-            if (uri != null) {
-                intent.setType("image/*");
-                intent.putExtra("android.intent.extra.STREAM", uri);
-                intent.addFlags(1);
-            } else if (!TextUtils.isEmpty(str)) {
-                intent.setType("text/plain");
-                intent.putExtra("android.intent.extra.TEXT", str);
-            } else {
-                return;
-            }
-            try {
-                getParentActivity().startActivity(Intent.createChooser(intent, k96.M0(2131748978, null)));
-            } catch (ActivityNotFoundException e) {
-                fa4.g(e, true);
-            }
-        }
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        return false;
+        return arrayList;
     }
 
     @Override
@@ -440,306 +646,50 @@ public class gw8 extends d {
     }
 
     @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
-    }
-
-    public final void j0() {
-        ew8 ew8Var;
-        if (this.r0 || (ew8Var = this.h) == null) {
-            return;
-        }
-        rv8 tabs = ew8Var.getTabs();
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setColor(872415231);
-        gradientDrawable.setCornerRadius(gl.L(20.0f));
-        float[] fArr = lcd.a[0];
-        int ceil = (int) Math.ceil(gl.N(Math.max(0.0f, -fArr[8]) + fArr[4]));
-        int i = ceil - 3;
-        this.b0 = Math.max(0, i);
-        this.c0 = Math.max(0, i);
-        this.d0 = Math.max(0, ceil - 4);
-        tabs.a = new kq8(this, tabs, (byte) 3);
-        tabs.b = new zv8(this);
-        int paddingLeft = tabs.getPaddingLeft();
-        int paddingTop = tabs.getPaddingTop();
-        int paddingRight = tabs.getPaddingRight();
-        int paddingBottom = tabs.getPaddingBottom();
-        int i2 = this.b0;
-        tabs.setBackground(new InsetDrawable((Drawable) gradientDrawable, i2, this.c0, i2, this.d0));
-        tabs.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
-        tabs.setOutlineProvider(new fw8(this, (byte) 1));
-        tabs.setClipToOutline(true);
-        if (tabs.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) tabs.getLayoutParams();
-            int L = gl.L(10.0f);
-            int L2 = gl.L(2.0f);
-            if (marginLayoutParams.leftMargin != L || marginLayoutParams.rightMargin != L || marginLayoutParams.topMargin != L2) {
-                marginLayoutParams.leftMargin = L;
-                marginLayoutParams.rightMargin = L;
-                marginLayoutParams.topMargin = L2;
-                tabs.setLayoutParams(marginLayoutParams);
-            }
-        }
-        nv8 grid = this.h.getGrid();
-        this.r0 = true;
-        grid.g3 = new aw8(this, grid, tabs);
-        grid.f3 = new ay2(this, grid, (byte) 2);
-        sx3 sx3Var = this.y;
-        if (sx3Var.U != grid) {
-            sx3Var.U = grid;
-            grid.setVerticalScrollBarEnabled(false);
-            grid.j(new ao2(sx3Var, (byte) 9));
-        }
-        int L3 = gl.L(44.0f);
-        this.a0 = grid;
-        grid.setPadding(grid.getPaddingLeft(), L3, gl.L(5.0f) + grid.getPaddingRight(), grid.getPaddingBottom());
-        l0();
-        grid.setClipToPadding(false);
-        grid.j(new si1(this, tabs, (byte) 9));
-        tabs.bringToFront();
-    }
-
-    public final void k0() {
-        if (this.X >= 0) {
-            kk7.f(this.Z).j(this.X);
-        }
-        if (this.Y >= 0) {
-            kk7.e().j(this.Y);
-        }
-        this.Y = -1;
-        this.X = -1;
-    }
-
-    public final void l0() {
-        vw8 vw8Var;
-        float f;
-        nv8 nv8Var = this.a0;
-        if (nv8Var != null && (vw8Var = this.d) != null) {
-            if (vw8Var.J.isEmpty()) {
-                f = 12.0f;
-            } else {
-                f = 73.0f;
-            }
-            int L = gl.L(f);
-            if (nv8Var.getPaddingBottom() != L) {
-                nv8Var.setPadding(nv8Var.getPaddingLeft(), nv8Var.getPaddingTop(), nv8Var.getPaddingRight(), L);
-            }
-        }
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z) {
-        yv8 yv8Var = this.G;
-        if (yv8Var != null) {
-            if (z) {
-                yv8Var.e();
-            }
-            return false;
-        }
-        vw8 vw8Var = this.d;
-        if (vw8Var != null) {
-            float f = vw8Var.l1;
-            if (f > 0.5f || vw8Var.g1 > 0.5f) {
-                if (z) {
-                    if (f > 0.5f) {
-                        vw8Var.m1 = 0.0f;
-                    } else if (vw8Var.g1 > 0.5f) {
-                        vw8Var.h1 = 0.0f;
-                    }
-                }
-                return false;
-            }
-        }
-        return super.onBackPressed(z);
-    }
-
-    @Override
-    public final AnimatorSet onCustomTransitionAnimation(boolean z, Runnable runnable) {
-        float f;
-        long j;
-        if (this.d != null && !gl.O1()) {
-            this.d.setRevealOpening(z);
-            vw8 vw8Var = this.d;
-            float f2 = 1.0f;
-            float f3 = 0.0f;
-            if (z) {
-                f = 0.0f;
-            } else {
-                f = 1.0f;
-            }
-            vw8Var.setReveal(f);
-            if (!z) {
-                f3 = 1.0f;
-                f2 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f3, f2);
-            ofFloat.addUpdateListener(new u28(this, (byte) 22));
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(ofFloat);
-            if (z) {
-                j = 860;
-            } else {
-                j = 200;
-            }
-            animatorSet.setDuration(j);
-            animatorSet.setInterpolator(new LinearInterpolator());
-            animatorSet.addListener(new qw(this, z, runnable, (byte) 9));
-            gl.d3(new ll8(this, animatorSet, (byte) 26));
-            return animatorSet;
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        long j;
-        long j2;
-        boolean z;
-        Bundle bundle = this.arguments;
-        if (bundle != null) {
-            j = bundle.getLong("user_id");
-        } else {
-            j = 0;
-        }
-        this.a = j;
-        Bundle bundle2 = this.arguments;
-        if (bundle2 != null) {
-            j2 = bundle2.getLong("chat_id");
-        } else {
-            j2 = 0;
-        }
-        this.b = j2;
-        Bundle bundle3 = this.arguments;
-        if (bundle3 != null && bundle3.getBoolean("immediate") && gba.o() == 2) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.E = z;
-        if (this.a == 0 && this.b == 0) {
-            this.a = getUserConfig().e();
-        }
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        k0();
-        gi3 gi3Var = this.c;
-        if (gi3Var != null) {
-            zq7 zq7Var = (zq7) gi3Var.a;
-            if (zq7Var.b.remove(gi3Var)) {
-                zq7Var.a();
-            }
-            this.c = null;
-        }
-        FrameLayout frameLayout = this.f;
-        if (frameLayout != null) {
-            frameLayout.removeCallbacks(this.I);
-        }
-        yv8 yv8Var = this.G;
-        if (yv8Var != null) {
-            yv8Var.g();
-            this.G = null;
-        }
-        kw8 kw8Var = this.e;
-        if (kw8Var != null) {
-            kw8Var.l();
-            this.e = null;
-        }
-        vw8 vw8Var = this.d;
-        if (vw8Var != null) {
-            vw8Var.O0();
-        }
-    }
-
-    @Override
     public final void onPause() {
         super.onPause();
-        yv8 yv8Var = this.G;
-        if (yv8Var != null) {
-            yv8Var.g();
-            yv8 yv8Var2 = this.G;
-            FrameLayout frameLayout = this.f;
-            if (frameLayout != null) {
-                frameLayout.removeView(yv8Var2);
-            }
-            if (this.G == yv8Var2) {
-                this.G = null;
-            }
-            vw8 vw8Var = this.d;
-            if (vw8Var != null) {
-                vw8Var.setScanHidden(false);
-            }
-        }
-        Activity parentActivity = getParentActivity();
-        if (parentActivity != null && Build.VERSION.SDK_INT >= 29 && this.s0 != null) {
-            parentActivity.getWindow().setNavigationBarContrastEnforced(this.s0.booleanValue());
-            this.s0 = null;
-        }
-    }
-
-    @Override
-    public final void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
-        boolean z;
-        if (i == 4) {
-            if (iArr.length > 0 && iArr[0] == 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (this.F && z) {
-                this.F = false;
-                g0();
-            }
-            this.F = false;
-        } else if (getParentActivity() != null && i == 34) {
-            if (iArr.length > 0 && iArr[0] == 0) {
-                e0();
-                return;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.a.U = gl.T2(k96.M0(2131746310, null));
-            alertDialog$Builder.j(k96.M0(2131747107, null), new zv8(this));
-            alertDialog$Builder.g(k96.M0(2131751760, null), null);
-            int i2 = bkb.K5;
-            alertDialog$Builder.l(2131624117, 72, bkb.w0(null, i2, false), null);
-            alertDialog$Builder.m(i2, null);
-            alertDialog$Builder.o();
-        }
+        this.I.removePrimaryClipChangedListener(this.M);
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        Y();
-        if (getParentActivity() != null) {
-            gl.i3(getParentActivity(), false);
+        gm.V2(getParentActivity(), this.classGuid);
+        this.I.addPrimaryClipChangedListener(this.M);
+        c0();
+    }
+
+    @Override
+    public final void onThemeColorsChanged() {
+        ValueAnimator valueAnimator;
+        int i;
+        try {
+            super.onThemeColorsChanged();
+            if (this.h != null && ((valueAnimator = this.H) == null || !valueAnimator.isRunning())) {
+                TextView textView = this.h.getTextView();
+                if (this.G) {
+                    i = cmb.p6;
+                } else {
+                    i = cmb.y6;
+                }
+                anb.X(textView, i, null);
+            }
+            d0();
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
     }
 
     @Override
     public final void onTransitionAnimationEnd(boolean z, boolean z2) {
-        super.onTransitionAnimationEnd(z, z2);
-        if (z) {
-            this.H = true;
-            vw8 vw8Var = this.d;
-            if (vw8Var != null) {
-                vw8Var.setReveal(1.0f);
-            }
+        if (z && !z2 && this.J) {
+            this.a[0].requestFocus();
+            gm.E3(this.a[0]);
         }
-        if (z && !z2 && this.f != null) {
-            float f = hv8.S;
-            long j = 0;
-            if (Build.VERSION.SDK_INT >= 29 && gba.o() == 2) {
-                j = Math.max(0L, Math.round(lcd.b[51]) - 860);
-            }
-            FrameLayout frameLayout = this.f;
-            cw8 cw8Var = this.I;
-            frameLayout.removeCallbacks(cw8Var);
-            this.f.postDelayed(cw8Var, j + 680);
-        }
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

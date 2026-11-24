@@ -1,32 +1,10 @@
 package defpackage;
-
-import android.view.View;
-public final class w60 implements View.OnClickListener {
-    public final byte a;
-    public final rf8 b;
-
-    public w60(rf8 rf8Var, byte b) {
-        this.a = b;
-        this.b = rf8Var;
-    }
+public final class w60 implements cq7 {
+    public static final w60 a = new Object();
+    public static final wa4 b = wa4.c("trigger");
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        rf8 rf8Var = this.b;
-        switch (b) {
-            case 0:
-                rf8Var.b(true);
-                return;
-            case 1:
-                rf8Var.b(true);
-                return;
-            case 2:
-                rf8Var.b(true);
-                return;
-            default:
-                rf8Var.b(true);
-                return;
-        }
+    public final void a(Object obj, Object obj2) {
+        ((dq7) obj2).e(b, ((j90) ((wz2) obj)).a);
     }
 }

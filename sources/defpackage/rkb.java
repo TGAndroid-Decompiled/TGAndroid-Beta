@@ -1,159 +1,325 @@
 package defpackage;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Build;
+import android.text.Layout;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewParent;
-public final class rkb extends o39 {
-    public final byte f3;
+import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
+import java.util.ArrayList;
+public final class rkb extends View {
+    public final Paint a;
+    public float b;
+    public float c;
+    public long d;
+    public final Path e;
+    public final ArrayList f;
+    public float h;
+    public float n;
+    public final skb r;
 
-    public rkb(Context context) {
+    public rkb(skb skbVar, Context context) {
         super(context);
-        this.f3 = (byte) 12;
+        this.r = skbVar;
+        Paint paint = new Paint(1);
+        this.a = paint;
+        this.d = 0L;
+        this.e = new Path();
+        this.f = new ArrayList();
+        paint.setStyle(Paint.Style.FILL);
     }
 
-    @Override
-    public final Integer W0(int i) {
-        switch (this.f3) {
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            case 5:
-                return 0;
-            case 8:
-                return 0;
-            case 13:
-                return 0;
-            default:
-                return super.W0(i);
+    public final void a(RectF rectF) {
+        if (rectF.isEmpty()) {
+            return;
+        }
+        this.f.add(new Rect((int) Math.floor(rectF.left), (int) Math.floor(rectF.top), (int) Math.ceil(rectF.right), (int) Math.ceil(rectF.bottom)));
+    }
+
+    public final boolean b(MotionEvent motionEvent) {
+        skb skbVar = this.r;
+        if (skbVar.w() && !skbVar.i) {
+            int action = motionEvent.getAction();
+            if (action != 0) {
+                if (action == 1 && System.currentTimeMillis() - this.d < 200 && oqe.b((int) this.b, (int) this.c, (int) motionEvent.getX(), (int) motionEvent.getY()) < skbVar.m) {
+                    skbVar.J(motionEvent.getRawX(), motionEvent.getRawY());
+                    skbVar.t();
+                    skbVar.e(false);
+                    return true;
+                }
+            } else {
+                this.b = motionEvent.getX();
+                this.c = motionEvent.getY();
+                this.d = System.currentTimeMillis();
+            }
+        }
+        return false;
+    }
+
+    public final void c() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            ArrayList arrayList = this.f;
+            if (!arrayList.isEmpty()) {
+                arrayList.clear();
+                setSystemGestureExclusionRects(arrayList);
+            }
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3) {
-            case 0:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+    public final void invalidate() {
+        ViewGroup viewGroup;
+        super.invalidate();
+        skb skbVar = this.r;
+        if (skbVar.i0 && (viewGroup = skbVar.F) != null) {
+            viewGroup.invalidate();
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        zcb zcbVar;
+        int i;
+        char c;
+        float f;
+        int i2;
+        boolean isRtlCharAt;
+        k47 k47Var;
+        float f2;
+        boolean z;
+        int i3;
+        skb skbVar = this.r;
+        zcb zcbVar2 = skbVar.m0;
+        OvershootInterpolator overshootInterpolator = skbVar.c0;
+        RectF rectF = skbVar.S;
+        RectF rectF2 = skbVar.T;
+        vj2 vj2Var = skbVar.a0;
+        if (skbVar.w()) {
+            int L = gm.L(22.0f);
+            int i4 = skbVar.x;
+            skbVar.M();
+            nkb nkbVar = skbVar.W;
+            Paint paint = this.a;
+            Path path = this.e;
+            if (nkbVar != null) {
+                canvas.save();
+                int[] k = skbVar.k();
+                c = 1;
+                float f3 = k[1] + skbVar.b;
+                f = 8.0f;
+                float f4 = k[0] + skbVar.a;
+                canvas.translate(f4, f3);
+                nkb nkbVar2 = skbVar.W;
+                if (nkbVar2 instanceof rc2) {
+                    k47Var = ((rc2) nkbVar2).getMessageObject();
+                } else {
+                    k47Var = null;
                 }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 6:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent = getParent().getParent();
-                    boolean z = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z = false;
+                if (k47Var != null && k47Var.O3()) {
+                    paint.setColor(skbVar.s(cmb.Mc));
+                } else {
+                    paint.setColor(skbVar.s(cmb.lg));
+                }
+                int length = skbVar.r(skbVar.W, false).length();
+                int i5 = skbVar.v;
+                if (i5 >= 0 && i5 <= length) {
+                    skbVar.h(i5, vj2Var, false);
+                    Layout layout = (Layout) vj2Var.d;
+                    if (layout != null) {
+                        zcbVar = zcbVar2;
+                        int i6 = skbVar.v - vj2Var.a;
+                        int length2 = layout.getText().length();
+                        if (i6 > length2) {
+                            i6 = length2;
+                        }
+                        int lineForOffset = layout.getLineForOffset(i6);
+                        float primaryHorizontal = layout.getPrimaryHorizontal(i6);
+                        int lineBottom = (int) (layout.getLineBottom(lineForOffset) + vj2Var.b);
+                        float f5 = primaryHorizontal + vj2Var.c;
+                        Rect rect = (Rect) vj2Var.e;
+                        if (rect != null) {
+                            float f6 = rect.right - skbVar.a;
+                            i3 = rect.bottom - skbVar.b;
+                            f2 = f6;
+                            z = false;
+                        } else {
+                            boolean isRtlCharAt2 = layout.isRtlCharAt(skbVar.v);
+                            f2 = f5;
+                            z = isRtlCharAt2;
+                            i3 = lineBottom;
+                        }
+                        float f7 = i3;
+                        float f8 = f3 + f7;
+                        i = i4;
+                        if (f8 > i + skbVar.d0 && f8 < skbVar.F.getMeasuredHeight()) {
+                            if (!z) {
+                                canvas.save();
+                                canvas.translate(f2, f7);
+                                float interpolation = overshootInterpolator.getInterpolation(skbVar.V);
+                                float f9 = L;
+                                float f10 = f9 / 2.0f;
+                                canvas.scale(interpolation, interpolation, f10, f10);
+                                path.reset();
+                                Path.Direction direction = Path.Direction.CCW;
+                                path.addCircle(f10, f10, f10, direction);
+                                path.addRect(0.0f, 0.0f, f10, f10, direction);
+                                canvas.drawPath(path, paint);
+                                canvas.restore();
+                                float f11 = f4 + f2;
+                                rectF2.set(f11, f8 - f9, f11 + f9, f8 + f9);
+                                rectF2.inset(-gm.L(8.0f), -gm.L(8.0f));
+                                i2 = 1;
+                                canvas.restore();
+                            } else {
+                                canvas.save();
+                                float f12 = L;
+                                canvas.translate(f2 - f12, f7);
+                                float interpolation2 = overshootInterpolator.getInterpolation(skbVar.V);
+                                float f13 = f12 / 2.0f;
+                                canvas.scale(interpolation2, interpolation2, f13, f13);
+                                path.reset();
+                                Path.Direction direction2 = Path.Direction.CCW;
+                                path.addCircle(f13, f13, f13, direction2);
+                                path.addRect(f13, 0.0f, f12, f13, direction2);
+                                canvas.drawPath(path, paint);
+                                canvas.restore();
+                                float f14 = f4 + f2;
+                                rectF2.set(f14 - f12, f8 - f12, f14, f8 + f12);
+                                rectF2.inset(-gm.L(8.0f), -gm.L(8.0f));
+                            }
+                        } else {
+                            rectF2.setEmpty();
+                        }
+                        i2 = 0;
+                        canvas.restore();
                     }
-                    parent.requestDisallowInterceptTouchEvent(z);
                 }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 11:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent2 = getParent().getParent();
-                    boolean z2 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z2 = false;
+                zcbVar = zcbVar2;
+                i = i4;
+                i2 = 0;
+                canvas.restore();
+            } else {
+                zcbVar = zcbVar2;
+                i = i4;
+                c = 1;
+                f = 8.0f;
+                i2 = 0;
+            }
+            skbVar.N();
+            if (skbVar.W != null) {
+                canvas.save();
+                int[] k2 = skbVar.k();
+                float f15 = k2[c] + skbVar.b;
+                float f16 = k2[0] + skbVar.a;
+                canvas.translate(f16, f15);
+                int length3 = skbVar.r(skbVar.W, false).length();
+                int i7 = skbVar.u;
+                if (i7 >= 0 && i7 <= length3) {
+                    skbVar.h(i7, vj2Var, false);
+                    Layout layout2 = (Layout) vj2Var.d;
+                    if (layout2 != null) {
+                        int i8 = skbVar.u - vj2Var.a;
+                        int lineForOffset2 = layout2.getLineForOffset(i8);
+                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(i8);
+                        int lineBottom2 = (int) (layout2.getLineBottom(lineForOffset2) + vj2Var.b);
+                        float f17 = primaryHorizontal2 + vj2Var.c;
+                        Rect rect2 = (Rect) vj2Var.e;
+                        if (rect2 != null) {
+                            f17 = rect2.left - skbVar.a;
+                            lineBottom2 = rect2.bottom - skbVar.b;
+                            isRtlCharAt = false;
+                        } else {
+                            isRtlCharAt = layout2.isRtlCharAt(skbVar.u);
+                        }
+                        float f18 = lineBottom2;
+                        float f19 = f15 + f18;
+                        if (f19 > i + skbVar.d0 && f19 < skbVar.F.getMeasuredHeight()) {
+                            if (!isRtlCharAt) {
+                                canvas.save();
+                                float f20 = L;
+                                canvas.translate(f17 - f20, f18);
+                                float interpolation3 = overshootInterpolator.getInterpolation(skbVar.V);
+                                float f21 = f20 / 2.0f;
+                                canvas.scale(interpolation3, interpolation3, f21, f21);
+                                path.reset();
+                                Path.Direction direction3 = Path.Direction.CCW;
+                                path.addCircle(f21, f21, f21, direction3);
+                                path.addRect(f21, 0.0f, f20, f21, direction3);
+                                canvas.drawPath(path, paint);
+                                canvas.restore();
+                                float f22 = f16 + f17;
+                                rectF.set(f22 - f20, f19 - f20, f22, f19 + f20);
+                                rectF.inset(-gm.L(f), -gm.L(f));
+                                i2++;
+                            } else {
+                                canvas.save();
+                                canvas.translate(f17, f18);
+                                float interpolation4 = overshootInterpolator.getInterpolation(skbVar.V);
+                                float f23 = L;
+                                float f24 = f23 / 2.0f;
+                                canvas.scale(interpolation4, interpolation4, f24, f24);
+                                path.reset();
+                                Path.Direction direction4 = Path.Direction.CCW;
+                                path.addCircle(f24, f24, f24, direction4);
+                                path.addRect(0.0f, 0.0f, f24, f24, direction4);
+                                canvas.drawPath(path, paint);
+                                canvas.restore();
+                                float f25 = f16 + f17;
+                                rectF.set(f25, f19 - f23, f25 + f23, f19 + f23);
+                                rectF.inset(-gm.L(f), -gm.L(f));
+                            }
+                        } else {
+                            if (f19 > 0.0f && f19 - skbVar.l() < skbVar.F.getMeasuredHeight()) {
+                                i2++;
+                            }
+                            rectF.setEmpty();
+                        }
                     }
-                    parent2.requestDisallowInterceptTouchEvent(z2);
                 }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 14:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                canvas.restore();
+            }
+            if (Build.VERSION.SDK_INT >= 29) {
+                ArrayList arrayList = this.f;
+                arrayList.clear();
+                a(rectF);
+                a(rectF2);
+                setSystemGestureExclusionRects(arrayList);
+            }
+            if (i2 != 0 && skbVar.i) {
+                if (!skbVar.j) {
+                    skbVar.M();
                 }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
+                skbVar.T(skbVar.b0);
+                if (skbVar.I != skbVar.H || skbVar.L != skbVar.K) {
+                    invalidate();
+                }
+            }
+            if (!skbVar.Q) {
+                gm.r(zcbVar);
+                gm.c3(zcbVar);
+            }
+            cl4 cl4Var = skbVar.Y;
+            if (cl4Var != null) {
+                cl4Var.invalidateContentRect();
+                cl4 cl4Var2 = skbVar.Y;
+                if (cl4Var2 != null) {
+                    cl4Var2.c();
+                }
+            }
+            if (skbVar.k) {
+                invalidate();
+            }
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.f3) {
-            case 4:
-                int size = View.MeasureSpec.getSize(i2);
-                int b = (getAdapter().b() * gl.L(50.0f)) + gl.L(4.0f);
-                if (b <= size) {
-                    size = b;
-                }
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-                return;
-            case 9:
-                int size2 = View.MeasureSpec.getSize(i2);
-                int b2 = (getAdapter().b() * gl.L(50.0f)) + gl.L(4.0f);
-                if (b2 <= size2) {
-                    size2 = b2;
-                }
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3) {
-            case 12:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
-        switch (this.f3) {
-            case 3:
-                rect.bottom = gl.L(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z);
-            case 10:
-                rect.bottom = gl.L(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z);
-        }
-    }
-
-    @Override
-    public final boolean requestFocus(int i, Rect rect) {
-        switch (this.f3) {
-            case 7:
-                return false;
-            default:
-                return super.requestFocus(i, rect);
-        }
-    }
-
-    @Override
-    public final void s0(View view, View view2) {
-        switch (this.f3) {
-            case 3:
-                if (view instanceof le8) {
-                    super.s0(view, view2);
-                    return;
-                }
-                return;
-            case 10:
-                if (view instanceof le8) {
-                    super.s0(view, view2);
-                    return;
-                }
-                return;
-            default:
-                super.s0(view, view2);
-                return;
-        }
-    }
-
-    public rkb(Context context, wjb wjbVar, byte b) {
-        super(context, wjbVar);
-        this.f3 = b;
+    public final boolean onTouchEvent(android.view.MotionEvent r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rkb.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

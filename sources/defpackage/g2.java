@@ -2,15 +2,15 @@ package defpackage;
 
 import java.nio.ByteBuffer;
 public abstract class g2 extends y1 {
-    public static final z24 c;
-    public static final z24 d;
+    public static final ai4 c;
+    public static final ai4 d;
     public int a;
     public int b;
 
     static {
-        z74 z74Var = new z74(g2.class, "AbstractFullBox.java");
-        c = z74Var.e(z74Var.d("setVersion", "com.googlecode.mp4parser.AbstractFullBox", "int", "version", "void"));
-        d = z74Var.e(z74Var.d("setFlags", "com.googlecode.mp4parser.AbstractFullBox", "int", "flags", "void"));
+        i94 i94Var = new i94(g2.class, "AbstractFullBox.java");
+        c = i94Var.e(i94Var.d("setVersion", "com.googlecode.mp4parser.AbstractFullBox", "int", "version", "void"));
+        d = i94Var.e(i94Var.d("setFlags", "com.googlecode.mp4parser.AbstractFullBox", "int", "flags", "void"));
     }
 
     @Override
@@ -33,12 +33,12 @@ public abstract class g2 extends y1 {
     }
 
     public final void f(ByteBuffer byteBuffer) {
-        this.a = hle.i(byteBuffer);
-        this.b = hle.a(byteBuffer.get()) + (hle.f(byteBuffer) << 8);
+        this.a = jne.i(byteBuffer);
+        this.b = jne.a(byteBuffer.get()) + (jne.f(byteBuffer) << 8);
     }
 
     public final void g(int i) {
-        oo1.r(z74.c(d, this, this, new Integer(i)));
+        aq1.r(i94.c(d, this, this, new Integer(i)));
         this.b = i;
     }
 
@@ -48,12 +48,12 @@ public abstract class g2 extends y1 {
     }
 
     public final void h() {
-        oo1.r(z74.c(c, this, this, new Integer(1)));
+        aq1.r(i94.c(c, this, this, new Integer(1)));
         this.a = 1;
     }
 
     public final void i(ByteBuffer byteBuffer) {
-        ile.f(this.a, byteBuffer);
-        ile.e(this.b, byteBuffer);
+        kne.f(this.a, byteBuffer);
+        kne.e(this.b, byteBuffer);
     }
 }

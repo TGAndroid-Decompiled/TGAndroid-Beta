@@ -1,18 +1,17 @@
 package defpackage;
+public final class spe implements cq7 {
+    public static final spe a = new Object();
 
-import com.google.android.gms.cast.framework.media.internal.ResourceProvider;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-public abstract class spe {
-    public static int a(String str) {
-        try {
-            Map map = ResourceProvider.a;
-            Integer num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
-            if (num != null) {
-                return num.intValue();
-            }
-        } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        return 0;
+        throw new ClassCastException();
     }
 }

@@ -1,12 +1,26 @@
 package defpackage;
+public interface u40 {
+    void C();
 
-import android.hardware.biometrics.BiometricPrompt$AuthenticationCallback;
-public final class u40 {
-    public BiometricPrompt$AuthenticationCallback a;
-    public i4d b;
-    public final jj0 c;
+    void L(nf5 nf5Var);
 
-    public u40(jj0 jj0Var) {
-        this.c = jj0Var;
-    }
+    void X();
+
+    void b(int i);
+
+    void f(boolean z);
+
+    void f0(Exception exc);
+
+    void h(long j);
+
+    void i0();
+
+    void s0();
+
+    void u(nf5 nf5Var);
+
+    void v();
+
+    void x0(long j, int i, long j2);
 }

@@ -1,96 +1,44 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-public final class b92 extends ju5 {
-    public final Context x;
-    public final f92 y;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+public final class b92 extends LinearLayout {
+    public final ylb a;
+    public final TextView b;
+    public final ArrayList c;
+    public final ArrayList d;
 
-    public b92(f92 f92Var, Context context, TLRPC.Chat chat, Context context2) {
-        super(context, chat);
-        this.y = f92Var;
-        this.x = context2;
+    public b92(android.app.Activity r24, android.view.View r25, int r26, defpackage.ylb r27) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b92.<init>(android.app.Activity, android.view.View, int, ylb):void");
     }
 
-    @Override
-    public final boolean a(final boolean z, hu5 hu5Var) {
-        TLRPC.ChatFull chatFull;
-        int i;
-        String str;
-        wjb wjbVar;
-        f92 f92Var = this.y;
-        if (!f92Var.W || (chatFull = f92Var.Z) == null || (i = chatFull.invitesCount) == 0) {
-            return true;
+    public void setStatusText(CharSequence charSequence) {
+        this.b.setText(charSequence);
+    }
+
+    public void setTextColor(int i) {
+        int i2 = 0;
+        int i3 = 0;
+        while (true) {
+            ArrayList arrayList = this.c;
+            if (i3 >= arrayList.size()) {
+                break;
+            }
+            ((TextView) arrayList.get(i3)).setTextColor(i);
+            i3++;
         }
-        if (f92Var.b0) {
-            if (z) {
-                str = "ApproveNewMembersEnableForLinksChannel";
+        while (true) {
+            ArrayList arrayList2 = this.d;
+            if (i2 < arrayList2.size()) {
+                ((ImageView) arrayList2.get(i2)).setColorFilter(new PorterDuffColorFilter(cmb.v0(cmb.Yc, this.a), PorterDuff.Mode.MULTIPLY));
+                i2++;
             } else {
-                str = "ApproveNewMembersDisableForLinksChannel";
+                return;
             }
-        } else if (z) {
-            str = "ApproveNewMembersEnableForLinks";
-        } else {
-            str = "ApproveNewMembersDisableForLinks";
         }
-        Context context = this.x;
-        wjbVar = ((d) f92Var).resourceProvider;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar, context);
-        String M0 = k96.M0(2131754201, null);
-        hd hdVar = alertDialog$Builder.a;
-        hdVar.S = M0;
-        hdVar.U = gl.T2(k96.G(i, str, new Object[0]));
-        alertDialog$Builder.j(k96.M0(2131754203, null), new ed(this) {
-            public final b92 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void u(hd hdVar2, int i2) {
-                byte b = r3;
-                boolean z2 = z;
-                b92 b92Var = this.b;
-                switch (b) {
-                    case 0:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = true;
-                        return;
-                    default:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = false;
-                        return;
-                }
-            }
-        });
-        alertDialog$Builder.g(k96.M0(2131754202, null), new ed(this) {
-            public final b92 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void u(hd hdVar2, int i2) {
-                byte b = r3;
-                boolean z2 = z;
-                b92 b92Var = this.b;
-                switch (b) {
-                    case 0:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = true;
-                        return;
-                    default:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = false;
-                        return;
-                }
-            }
-        });
-        f92Var.showDialog(hdVar);
-        return false;
     }
 }

@@ -1,35 +1,45 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class pgc extends zt5 {
-    public final TLRPC.User m1;
-    public final TLRPC.Chat n1;
-    public final String o1;
-    public final TLRPC.InputPeer p1;
-    public final boolean q1;
-    public final boolean r1;
-    public final Activity s1;
-    public final d t1;
-    public final j5 u1;
+import android.view.View;
+public final class pgc implements g59, h59 {
+    public final vgc a;
 
-    public pgc(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z, boolean z2, Activity activity, d dVar, j5 j5Var) {
-        super(context, chat);
-        this.m1 = user;
-        this.n1 = chat2;
-        this.o1 = str;
-        this.p1 = inputPeer;
-        this.q1 = z;
-        this.r1 = z2;
-        this.s1 = activity;
-        this.t1 = dVar;
-        this.u1 = j5Var;
+    public pgc(vgc vgcVar) {
+        this.a = vgcVar;
     }
 
     @Override
-    public final void D0() {
-        rgc.b(this.m1, this.n1, this.o1, this.p1, true, this.q1, this.r1, false, this.s1, this.t1, this.u1, false, false, false);
+    public final void d(float f, float f2, int i, View view) {
+        vgc vgcVar = this.a;
+        ugc ugcVar = vgcVar.E;
+        if (ugcVar == null || ugcVar.b()) {
+            tgc tgcVar = (tgc) view;
+            if (i == vgcVar.G && vgcVar.E != null) {
+                return;
+            }
+            kac kacVar = vgcVar.m0;
+            if (kacVar != null && ((Boolean) kacVar.j(Integer.valueOf(tgcVar.a.a), Integer.valueOf(i))).booleanValue()) {
+                return;
+            }
+            vgcVar.e(tgcVar.a.a, i);
+        }
+    }
+
+    @Override
+    public final boolean g(int i, View view) {
+        kac kacVar = this.a.b;
+        if (kacVar == null) {
+            return false;
+        }
+        return ((Boolean) kacVar.j(Integer.valueOf(((tgc) view).a.a), view)).booleanValue();
+    }
+
+    @Override
+    public final boolean u(View view) {
+        return false;
+    }
+
+    @Override
+    public final void p(View view, float f, float f2) {
     }
 }

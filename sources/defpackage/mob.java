@@ -1,11 +1,7 @@
 package defpackage;
-
-import java.util.concurrent.CancellationException;
-public final class mob extends CancellationException {
-    public final transient nob a;
-
-    public mob(String str, nob nobVar) {
-        super(str);
-        this.a = nobVar;
+public final class mob extends k47 {
+    @Override
+    public final boolean j5() {
+        return false;
     }
 }

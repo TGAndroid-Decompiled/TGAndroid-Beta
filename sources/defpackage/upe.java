@@ -1,17 +1,9 @@
 package defpackage;
-public final class upe implements zn7 {
-    public static final upe a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 4)), 5)), 6)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class upe {
+    public static final void a(int i) {
+        if (i >= 1) {
+            return;
         }
-        throw new ClassCastException();
+        c1b.a(hg9.j(i, "Expected positive parallelism level, but got "));
     }
 }

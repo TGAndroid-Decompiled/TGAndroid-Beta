@@ -16,9 +16,9 @@ public class TLParseException extends RuntimeException {
         if (i != -847714938) {
             z2 = true;
         }
-        fa4.g(tLParseException, z2);
+        fc4.g(tLParseException, z2);
         if (i != -847714938 && i != -779361553 && i != -212046591) {
-            gl.d3(new kya(tLParseException, (byte) 24));
+            gm.c3(new zcb(tLParseException, (byte) 2));
         }
         if (!z) {
             return;
@@ -27,6 +27,6 @@ public class TLParseException extends RuntimeException {
     }
 
     public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        kk7.e().k(kk7.O5, tLParseException);
+        nm7.e().k(nm7.Q5, tLParseException);
     }
 }

@@ -1,218 +1,129 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.TLRPC;
-public final class ggb extends yu6 {
-    public final hgb g;
+public final class ggb extends x1 {
+    public final ArrayList c;
+    public final ArrayList d;
+    public final fgb a = new ui6();
+    public final ArrayList b = new ArrayList();
+    public boolean e = true;
 
-    public ggb(hgb hgbVar) {
-        super((byte) 1);
-        this.g = hgbVar;
+    public ggb(ArrayList arrayList, ArrayList arrayList2) {
+        this.c = arrayList;
+        this.d = arrayList2;
     }
 
-    @Override
-    public final void A(String str, Bundle bundle) {
-        t(str);
-    }
-
-    @Override
-    public final void G(long j) {
-        k27 k27Var = MediaController.w().v0;
-        if (k27Var != null) {
-            MediaController.w().h0(k27Var, (float) ((j / 1000.0d) / k27Var.L0()));
+    public static ArrayList i(CharSequence charSequence) {
+        String trim = charSequence.toString().trim();
+        if (trim.startsWith("|")) {
+            trim = trim.substring(1);
         }
-    }
-
-    @Override
-    public final void M(int i) {
-        int i2 = 2;
-        if (i != 1) {
-            if (i != 2 && i != 3) {
-                i2 = 0;
-            } else {
-                i2 = 1;
-            }
-        }
-        gba.D(i2);
-        this.g.f();
-        gl.d3(new kya(this, (byte) 27));
-    }
-
-    @Override
-    public final void P(int i) {
-        int i2 = 0;
-        boolean z = true;
-        if (i != 1 && i != 2) {
-            z = false;
-        }
-        if (z != gba.K0) {
-            MediaController w = MediaController.w();
-            if (z) {
-                i2 = 2;
-            }
-            w.k0(i2);
-        }
-        this.g.b.q0(gba.K0 ? 1 : 0);
-        gl.d3(new kya(this, (byte) 27));
-    }
-
-    @Override
-    public final void S() {
-        k27 k27Var = MediaController.w().v0;
-        if (k27Var != null && k27Var.I3()) {
-            MediaController.w().T(false);
-        }
-    }
-
-    @Override
-    public final void V() {
-        k27 k27Var = MediaController.w().v0;
-        if (k27Var != null && k27Var.I3()) {
-            MediaController.w().U();
-        }
-    }
-
-    @Override
-    public final void Y(long j) {
-        MediaController.w().S((int) j);
-    }
-
-    @Override
-    public final void f(String str) {
-        int i;
-        boolean equals = "org.telegram.android.musicplayer.repeat".equals(str);
-        hgb hgbVar = this.g;
-        if (equals) {
-            gba.D((gba.P0 + 1) % 3);
-            hgbVar.f();
-        } else if ("org.telegram.android.musicplayer.shuffle".equals(str)) {
-            MediaController w = MediaController.w();
-            if (gba.K0) {
-                i = 0;
-            } else {
-                i = 2;
-            }
-            w.k0(i);
-            hgbVar.b.q0(gba.K0 ? 1 : 0);
-        }
-    }
-
-    @Override
-    public final void k() {
-        MediaController.w().Q(MediaController.w().v0, true);
-    }
-
-    @Override
-    public final void n() {
-        k27 k27Var = MediaController.w().v0;
-        if (k27Var == null) {
-            hgb hgbVar = this.g;
-            if (hgbVar.d != 0) {
-                q(ls6.p(new StringBuilder(), hgbVar.d, "_0"), null);
-                return;
-            }
-            return;
-        }
-        MediaController.w().R(k27Var);
-    }
-
-    @Override
-    public final void q(String str, Bundle bundle) {
-        String str2;
-        String str3;
-        hgb hgbVar = this.g;
-        mv6 mv6Var = hgbVar.b;
-        if (!TextUtils.isEmpty(str)) {
-            String[] split = str.split("_");
-            if (split.length == 2) {
-                try {
-                    long parseLong = Long.parseLong(split[0]);
-                    int parseInt = Integer.parseInt(split[1]);
-                    ArrayList arrayList = (ArrayList) hgbVar.j.f(parseLong);
-                    if (arrayList == null) {
-                        hgbVar.e(new r1b(this, str, bundle, (byte) 10), parseLong);
-                        return;
-                    }
-                    ArrayList arrayList2 = (ArrayList) hgbVar.k.f(parseLong);
-                    if (parseInt >= 0 && parseInt < arrayList.size()) {
-                        hgbVar.d = parseLong;
-                        na7.q1(hgbVar.c).W3.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
-                        MediaController.w().n0(arrayList, (k27) arrayList.get(parseInt), 0L, false, null, 0L);
-                        mv6Var.o0(arrayList2);
-                        if (cf3.D(parseLong)) {
-                            TLRPC.User user = (TLRPC.User) hgbVar.h.f(parseLong);
-                            if (user != null) {
-                                str3 = qu2.m(0, user.first_name, user.last_name);
-                            } else {
-                                str3 = "DELETED USER";
-                            }
-                            ((zu6) mv6Var.b).a.setQueueTitle(str3);
-                            return;
-                        }
-                        TLRPC.Chat chat = (TLRPC.Chat) hgbVar.i.f(-parseLong);
-                        if (chat != null) {
-                            str2 = chat.title;
-                        } else {
-                            str2 = "DELETED CHAT";
-                        }
-                        ((zu6) mv6Var.b).a.setQueueTitle(str2);
-                    }
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void t(String str) {
-        String str2;
-        String str3;
-        String str4;
-        hgb hgbVar = this.g;
-        ArrayList arrayList = hgbVar.g;
-        if (str != null && str.length() != 0) {
-            String lowerCase = str.toLowerCase();
-            for (int i = 0; i < arrayList.size(); i++) {
-                long longValue = ((Long) arrayList.get(i)).longValue();
-                if (cf3.D(longValue)) {
-                    TLRPC.User user = (TLRPC.User) hgbVar.h.f(longValue);
-                    if (user == null) {
-                        continue;
-                    } else {
-                        String str5 = user.first_name;
-                        if (str5 != null) {
-                            str3 = str5.toLowerCase();
-                        } else {
-                            str3 = null;
-                        }
-                        String str6 = user.last_name;
-                        if (str6 != null) {
-                            str4 = str6.toLowerCase();
-                        } else {
-                            str4 = null;
-                        }
-                        if ((str3 != null && str3.contains(lowerCase)) || (str4 != null && str4.contains(lowerCase))) {
-                            q(longValue + "_0", null);
-                            return;
-                        }
-                    }
+        ArrayList arrayList = new ArrayList();
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        while (i < trim.length()) {
+            char charAt = trim.charAt(i);
+            if (charAt != '\\') {
+                if (charAt != '|') {
+                    sb.append(charAt);
                 } else {
-                    TLRPC.Chat chat = (TLRPC.Chat) hgbVar.i.f(-longValue);
-                    if (chat != null && (str2 = chat.title) != null && str2.toLowerCase().contains(lowerCase)) {
-                        q(longValue + "_0", null);
-                        return;
-                    }
+                    arrayList.add(sb.toString());
+                    sb.setLength(0);
+                }
+            } else {
+                int i2 = i + 1;
+                if (i2 < trim.length() && trim.charAt(i2) == '|') {
+                    sb.append('|');
+                    i = i2;
+                } else {
+                    sb.append('\\');
                 }
             }
+            i++;
+        }
+        if (sb.length() > 0) {
+            arrayList.add(sb.toString());
+        }
+        return arrayList;
+    }
+
+    @Override
+    public final void a(CharSequence charSequence) {
+        if (this.e) {
+            this.e = false;
+        } else {
+            this.b.add(charSequence);
         }
     }
 
     @Override
-    public final void x(String str, Bundle bundle) {
-        q(str, bundle);
+    public final gl0 e() {
+        return this.a;
+    }
+
+    @Override
+    public final void g(qp5 qp5Var) {
+        ArrayList arrayList;
+        String str;
+        ArrayList arrayList2 = this.d;
+        int size = arrayList2.size();
+        ?? ui6Var = new ui6();
+        ?? r3 = this.a;
+        r3.b(ui6Var);
+        ?? ui6Var2 = new ui6();
+        ui6Var.b(ui6Var2);
+        int i = 0;
+        while (true) {
+            arrayList = this.c;
+            if (i >= size) {
+                break;
+            }
+            String str2 = (String) arrayList2.get(i);
+            ?? ui6Var3 = new ui6();
+            if (i < arrayList.size()) {
+                ui6Var3.h = (lgb) arrayList.get(i);
+            }
+            qp5Var.a(str2.trim(), ui6Var3);
+            ui6Var3.g = true;
+            ui6Var2.b(ui6Var3);
+            i++;
+        }
+        ArrayList arrayList3 = this.b;
+        int size2 = arrayList3.size();
+        ?? r4 = 0;
+        int i2 = 0;
+        while (i2 < size2) {
+            Object obj = arrayList3.get(i2);
+            i2++;
+            ArrayList i3 = i((CharSequence) obj);
+            ?? ui6Var4 = new ui6();
+            for (int i4 = 0; i4 < size; i4++) {
+                if (i4 < i3.size()) {
+                    str = (String) i3.get(i4);
+                } else {
+                    str = "";
+                }
+                ?? ui6Var5 = new ui6();
+                if (i4 < arrayList.size()) {
+                    ui6Var5.h = (lgb) arrayList.get(i4);
+                }
+                qp5Var.a(str.trim(), ui6Var5);
+                ui6Var4.b(ui6Var5);
+            }
+            if (r4 == 0) {
+                r4 = new ui6();
+                r3.b(r4);
+            }
+            r4.b(ui6Var4);
+            r4 = r4;
+        }
+    }
+
+    @Override
+    public final il2 h(fq3 fq3Var) {
+        if (fq3Var.a.toString().contains("|")) {
+            return il2.a(fq3Var.b);
+        }
+        return null;
     }
 }

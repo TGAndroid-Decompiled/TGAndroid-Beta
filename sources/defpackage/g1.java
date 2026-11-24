@@ -4,7 +4,7 @@ public final class g1 {
     public int b;
     public String c;
 
-    public final fi0 a() {
+    public final fj0 a() {
         ?? obj = new Object();
         obj.a = this.a;
         obj.b = this.b;

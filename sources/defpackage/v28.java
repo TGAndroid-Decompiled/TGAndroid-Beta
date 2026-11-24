@@ -1,199 +1,181 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-public final class v28 extends FrameLayout {
-    public final kb0 a;
-    public final df0 b;
-    public final TextView[] c;
-    public ty8 d;
-    public final x28 e;
-    public Paint f;
-    public float h;
-    public boolean n;
-    public boolean r;
-    public ValueAnimator s;
+import java.util.HashSet;
+import org.telegram.ui.ActionBar.d;
+public final class v28 extends FrameLayout implements vlb {
+    public final TextView a;
+    public uib b;
+    public final tm c;
+    public final w28 d;
 
-    public v28(Context context, x28 x28Var) {
+    public v28(w28 w28Var, Context context) {
         super(context);
-        this.c = new TextView[2];
-        this.e = x28Var;
-        kb0 kb0Var = new kb0((byte) 8, context, this);
-        this.a = kb0Var;
-        kb0Var.setRoundRadius(gl.L(16.0f));
-        addView(kb0Var, nme.d(32, 32.0f, 0, 12.0f, 2.0f, 0.0f, 0.0f));
-        setClipChildren(false);
-        df0 df0Var = new df0(context, (byte) 3);
-        this.b = df0Var;
-        df0Var.setTextSize(14);
-        df0Var.setTypeface(gl.o());
-        df0Var.setMaxLines(1);
-        df0Var.setEllipsizeByGradient(gl.L(4.0f));
-        df0Var.setPivotX(0.0f);
-        kk7.i(df0Var);
-        addView(df0Var, nme.d(-2, -2.0f, 0, 54.0f, 0.0f, 86.0f, 0.0f));
-        for (int i = 0; i < 2; i++) {
-            this.c[i] = new TextView(context);
-            this.c[i].setTextSize(1, 12.0f);
-            this.c[i].setMaxLines(1);
-            this.c[i].setSingleLine(true);
-            this.c[i].setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            this.c[i].setTextColor(-1);
-            this.c[i].setPadding(gl.L(3.0f), 0, gl.L(3.0f), gl.L(1.0f));
-            addView(this.c[i], nme.d(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
-        }
-        this.b.setTextColor(-1);
-    }
-
-    public final void a(float f, Canvas canvas, RectF rectF, boolean z) {
-        boolean z2;
-        float f2;
-        boolean z3;
-        float i;
-        f2b f2bVar;
-        x28 x28Var = this.e;
-        if ((x28Var != null && x28Var.b != null) || this.h != 0.0f) {
-            if (x28Var != null && (f2bVar = x28Var.b) != null && !f2bVar.J) {
-                this.h = 1.0f;
-                f2 = f2bVar.h;
-                if (!this.n) {
-                    this.n = true;
-                }
-                z2 = false;
-            } else {
-                if (this.n) {
-                    this.n = false;
-                    if (this.d.f < 0.2f) {
-                        z3 = true;
-                    } else {
-                        z3 = false;
-                    }
-                    this.r = z3;
-                }
-                if (!this.r) {
-                    this.h = Utilities.i(this.h - ((1000.0f / gl.r) / 300.0f), 1.0f, 0.0f);
-                }
-                z2 = true;
-                f2 = 1.0f;
-            }
-            ty8 ty8Var = this.d;
-            kb0 kb0Var = this.a;
-            if (ty8Var == null) {
-                ty8 ty8Var2 = new ty8(kb0Var);
-                this.d = ty8Var2;
-                ty8Var2.d(null, true, false);
-            }
-            this.d.q = 0;
-            ImageReceiver imageReceiver = kb0Var.getImageReceiver();
-            float B = ls6.B(1.0f, this.h, gl.L(6.0f), gl.L(3.0f));
-            this.d.f((int) (rectF.left - B), (int) (rectF.top - B), (int) (rectF.right + B), (int) (rectF.bottom + B));
-            ty8 ty8Var3 = this.d;
-            if (z2) {
-                i = 1.0f;
-            } else {
-                i = Utilities.i(f2, 1.0f, 0.0f);
-            }
-            ty8Var3.e(true, i);
-            if (this.r && z2 && this.d.f >= 0.9f) {
-                this.h = Utilities.i(this.h - ((1000.0f / gl.r) / 300.0f), 1.0f, 0.0f);
-            }
-            if (z) {
-                if (f != 1.0f) {
-                    Paint t = x2b.t(imageReceiver, false);
-                    t.setAlpha((int) (this.h * 255.0f));
-                    ty8 ty8Var4 = this.d;
-                    ty8Var4.r = t;
-                    ty8Var4.a(canvas);
-                }
-                if (this.f == null) {
-                    Paint paint = new Paint(1);
-                    this.f = paint;
-                    paint.setColor(-1);
-                    this.f.setStrokeWidth(gl.L(2.0f));
-                    this.f.setStyle(Paint.Style.STROKE);
-                    this.f.setStrokeCap(Paint.Cap.ROUND);
-                }
-                this.f.setAlpha((int) (255.0f * f * this.h));
-                ty8 ty8Var5 = this.d;
-                ty8Var5.r = this.f;
-                ty8Var5.a(canvas);
-            }
-        }
-    }
-
-    public final void b(CharSequence charSequence, boolean z) {
-        ValueAnimator valueAnimator = this.s;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.s = null;
-        }
-        TextView[] textViewArr = this.c;
+        int i;
+        int i2;
+        this.d = w28Var;
+        int i3 = cmb.c6;
+        d38 d38Var = w28Var.q0;
+        anb.h(i3, d38Var.getResourceProvider(), this);
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setTextSize(1, 16.0f);
+        anb.X(textView, cmb.F6, d38Var.getResourceProvider());
+        boolean z = w28Var.n0;
+        boolean z2 = d38Var.a;
         if (z) {
-            textViewArr[1].setOnClickListener(null);
-            textViewArr[1].setText(textViewArr[0].getText());
-            textViewArr[1].setVisibility(0);
-            textViewArr[1].setAlpha(1.0f);
-            textViewArr[1].setTranslationY(0.0f);
-            textViewArr[0].setText(charSequence);
-            textViewArr[0].setVisibility(0);
-            textViewArr[0].setAlpha(0.0f);
-            textViewArr[0].setTranslationY(-gl.L(4.0f));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.s = ofFloat;
-            ofFloat.addUpdateListener(new u28(this, (byte) 0));
-            this.s.addListener(new v85(this, (byte) 29));
-            this.s.setInterpolator(s33.h);
-            this.s.setDuration(340L);
-            this.s.start();
+            if (z2) {
+                i2 = 2131752250;
+            } else {
+                i2 = 2131743417;
+            }
+            textView.setText(jb6.M0(i2, null));
+        } else {
+            if (z2) {
+                i = 2131752263;
+            } else {
+                i = 2131743420;
+            }
+            textView.setText(jb6.M0(i, null));
+        }
+        addView(textView, qoe.d(-1, -2.0f, 23, 20.0f, 0.0f, 20.0f, 0.0f));
+        this.c = new tm(gm.L(24.0f), 13, this, false);
+    }
+
+    public final int a() {
+        int i;
+        fc7 fc7Var;
+        ec7 d;
+        int i2;
+        ylb ylbVar;
+        ylb ylbVar2;
+        ylb ylbVar3;
+        ylb ylbVar4;
+        w28 w28Var = this.d;
+        d38 d38Var = w28Var.q0;
+        int i3 = w28Var.h;
+        if (i3 < 0) {
+            int i4 = cmb.r8;
+            if (gm.B(d38Var.getThemedColor(i4)) > 0.8f) {
+                int i5 = cmb.m6;
+                ylbVar4 = ((d) d38Var).resourceProvider;
+                return cmb.v0(i5, ylbVar4);
+            } else if (gm.B(d38Var.getThemedColor(i4)) < 0.2f) {
+                int i6 = cmb.z8;
+                ylbVar3 = ((d) d38Var).resourceProvider;
+                return cmb.p1(0.5f, cmb.v0(i6, ylbVar3));
+            } else {
+                int i7 = cmb.c6;
+                ylbVar = ((d) d38Var).resourceProvider;
+                int v0 = cmb.v0(i7, ylbVar);
+                ylbVar2 = ((d) d38Var).resourceProvider;
+                return cmb.v(v0, cmb.p1(0.7f, d38.z0(cmb.v0(i4, ylbVar2))));
+            }
+        } else if (i3 < 7) {
+            return d38Var.getThemedColor(cmb.q8[i3]);
+        } else {
+            if (w28Var.n0) {
+                i2 = ((d) d38Var).currentAccount;
+                fc7Var = oc7.r1(i2).E3;
+            } else {
+                i = ((d) d38Var).currentAccount;
+                fc7Var = oc7.r1(i).F3;
+            }
+            if (fc7Var != null && (d = fc7Var.d(w28Var.h)) != null) {
+                return d.f();
+            }
+            return d38Var.getThemedColor(cmb.q8[0]);
+        }
+    }
+
+    public final void b(boolean z) {
+        int i;
+        w28 w28Var = this.d;
+        long j = w28Var.n;
+        int i2 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+        tm tmVar = this.c;
+        if (i2 != 0) {
+            tmVar.j(j, z);
+            this.b = null;
             return;
         }
-        textViewArr[0].setVisibility(0);
-        textViewArr[0].setAlpha(1.0f);
-        textViewArr[0].setText(charSequence);
-        textViewArr[1].setVisibility(8);
-        textViewArr[1].setAlpha(0.0f);
+        tmVar.g(null, z);
+        if (this.b == null) {
+            if (w28Var.q0.a) {
+                i = 2131752249;
+            } else {
+                i = 2131743416;
+            }
+            this.b = new uib(jb6.M0(i, null), 16.0f, null);
+        }
+    }
+
+    public final void c() {
+        int width;
+        int width2;
+        boolean z = jb6.a0;
+        tm tmVar = this.c;
+        if (z) {
+            width = gm.L(21.0f);
+        } else {
+            width = (getWidth() - tmVar.s) - gm.L(21.0f);
+        }
+        int height = getHeight();
+        int i = tmVar.s;
+        int i2 = tmVar.s;
+        int i3 = (height - i) / 2;
+        if (jb6.a0) {
+            width2 = gm.L(21.0f) + i2;
+        } else {
+            width2 = getWidth() - gm.L(21.0f);
+        }
+        tmVar.setBounds(width, i3, width2, (getHeight() + i2) / 2);
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!isEnabled()) {
-            return false;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        c();
+        Integer valueOf = Integer.valueOf(a());
+        tm tmVar = this.c;
+        tmVar.k(valueOf);
+        uib uibVar = this.b;
+        if (uibVar != null) {
+            uibVar.c((getMeasuredWidth() - this.b.j()) - gm.L(19.0f), getMeasuredHeight() / 2.0f, 1.0f, this.d.q0.getThemedColor(cmb.p6), canvas);
+        } else {
+            tmVar.draw(canvas);
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public void setOnSubtitleClick(View.OnClickListener onClickListener) {
-        boolean z;
-        ff0 f0;
-        TextView[] textViewArr = this.c;
-        textViewArr[0].setOnClickListener(onClickListener);
-        TextView textView = textViewArr[0];
-        if (onClickListener != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        textView.setClickable(z);
-        TextView textView2 = textViewArr[0];
-        if (onClickListener == null) {
-            f0 = null;
-        } else {
-            f0 = bkb.f0(822083583, 7, -1);
-        }
-        textView2.setBackground(f0);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.c.a();
     }
 
-    public void setSubtitle(CharSequence charSequence) {
-        b(charSequence, false);
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.c.b();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(50.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        d38 d38Var = this.d.q0;
+        setBackgroundColor(d38Var.getThemedColor(cmb.c6));
+        this.a.setTextColor(d38Var.getThemedColor(cmb.F6));
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

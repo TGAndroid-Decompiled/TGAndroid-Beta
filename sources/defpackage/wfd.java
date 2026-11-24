@@ -1,37 +1,14 @@
 package defpackage;
+public abstract class wfd {
+    public static final o94 a;
+    public static final o94 b;
+    public static final o94[] c;
 
-import java.util.Iterator;
-public final class wfd extends add {
-    public final transient ggd h;
-    public final transient agd n;
-
-    public wfd(ggd ggdVar, agd agdVar) {
-        super((byte) 1);
-        this.h = ggdVar;
-        this.n = agdVar;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.h.get(obj) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h(Object[] objArr) {
-        return this.n.h(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return this.n.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        this.h.getClass();
-        return 1;
+    static {
+        o94 o94Var = new o94("CLIENT_TELEMETRY", 1L);
+        a = o94Var;
+        o94 o94Var2 = new o94("CLIENT_NOTIFICATION_TELEMETRY", 1L);
+        b = o94Var2;
+        c = new o94[]{o94Var, o94Var2};
     }
 }

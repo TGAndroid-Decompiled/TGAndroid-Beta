@@ -1,6 +1,16 @@
 package defpackage;
-public abstract class afe {
-    public abstract void a(Throwable th);
 
-    public abstract void b(wtc wtcVar);
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+public abstract class afe {
+    public static final byte[] a;
+
+    static {
+        Charset.forName("US-ASCII");
+        Charset.forName("UTF-8");
+        Charset.forName("ISO-8859-1");
+        byte[] bArr = new byte[0];
+        a = bArr;
+        ByteBuffer.wrap(bArr);
+    }
 }

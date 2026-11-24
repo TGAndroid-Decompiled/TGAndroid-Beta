@@ -1,43 +1,29 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class n97 extends t61 {
-    public final na7 e;
+import android.content.DialogInterface;
+public final class n97 implements DialogInterface.OnCancelListener {
+    public final byte a;
+    public final oc7 b;
+    public final int c;
 
-    public n97(na7 na7Var) {
-        this.e = na7Var;
+    public n97(oc7 oc7Var, int i, byte b) {
+        this.a = b;
+        this.b = oc7Var;
+        this.c = i;
     }
 
     @Override
-    public final boolean b(Object obj) {
-        Integer num = (Integer) obj;
-        return true;
-    }
-
-    @Override
-    public final void e(int i, Object obj, i8c i8cVar) {
-        Integer num = (Integer) obj;
-        this.e.getMessagesStorage().a.c(new j97(i, (e) i8cVar, (byte) 1));
-    }
-
-    @Override
-    public final void f(int i, Object obj, long j, s61 s61Var) {
-        Integer num = (Integer) obj;
-        TLRPC.TL_messages_getAvailableEffects tL_messages_getAvailableEffects = new TLRPC.TL_messages_getAvailableEffects();
-        tL_messages_getAvailableEffects.hash = (int) j;
-        this.e.getConnectionsManager().sendRequest(tL_messages_getAvailableEffects, new k97(s61Var, (byte) 1));
-    }
-
-    @Override
-    public final void g(int i, Object obj, Object obj2) {
-        Integer num = (Integer) obj;
-        ad7.Y(i).a.c(new sm3(i, (TLRPC.messages_AvailableEffects) obj2, (byte) 24));
-    }
-
-    @Override
-    public final void h(int i, long j) {
-        SharedPreferences.Editor edit = this.e.X3.edit();
-        edit.putLong("effects_last_" + i, j).apply();
+    public final void onCancel(DialogInterface dialogInterface) {
+        byte b = this.a;
+        int i = this.c;
+        oc7 oc7Var = this.b;
+        switch (b) {
+            case 0:
+                oc7Var.getConnectionsManager().cancelRequest(i, true);
+                return;
+            default:
+                oc7Var.getConnectionsManager().cancelRequest(i, true);
+                return;
+        }
     }
 }

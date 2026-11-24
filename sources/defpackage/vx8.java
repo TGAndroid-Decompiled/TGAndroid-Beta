@@ -1,272 +1,332 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-public final class vx8 extends Drawable implements Animator.AnimatorListener {
-    public static final RectF c0 = new RectF();
-    public static final Rect d0 = new Rect();
-    public static final int[] e0 = new int[2];
-    public static final pm f0 = new pm("openFactor", (byte) 11);
-    public static final pm g0 = new pm("openFactor", (byte) 12);
-    public final gb2 E;
-    public final k27 F;
-    public float G;
-    public Bitmap J;
-    public BitmapShader K;
-    public Paint M;
-    public zk0 Q;
-    public boolean T;
-    public boolean U;
-    public int V;
-    public int W;
-    public t11 X;
-    public float Y;
-    public float Z;
-    public final wx8 a;
-    public final lw8 b;
-    public final LinearGradient f;
-    public final sx8[] x;
-    public final Drawable y;
-    public final Paint c = new Paint(1);
-    public final Matrix d = new Matrix();
-    public final Path e = new Path();
-    public final RectF h = new RectF();
-    public final RectF n = new RectF();
-    public final RectF r = new RectF();
-    public final RectF s = new RectF();
-    public final RectF w = new RectF();
-    public float H = 0.0f;
-    public float I = 0.0f;
-    public final Matrix L = new Matrix();
-    public boolean N = false;
-    public boolean O = false;
-    public boolean P = false;
-    public boolean R = true;
-    public int S = -1;
-    public final ObjectAnimator a0 = ObjectAnimator.ofFloat(this, f0, 1.0f).setDuration(560L);
-    public final ObjectAnimator b0 = ObjectAnimator.ofFloat(this, g0, 1.0f).setDuration(240L);
+import android.graphics.SweepGradient;
+import android.os.Build;
+import java.util.HashMap;
+public abstract class vx8 {
+    public static Bitmap a;
+    public static BitmapShader b;
+    public static final Paint c = new Paint(2);
+    public static final Paint d = new Paint(3);
+    public static final RectF e = new RectF();
+    public static final Matrix f = new Matrix();
+    public static final HashMap g = new HashMap();
+    public static final SweepGradient[] h = new SweepGradient[4];
+    public static int i = -1;
+    public static final Paint j = new Paint(2);
+    public static final Rect k = new Rect();
+    public static final RectF l = new RectF();
+    public static final int[] m = new int[4];
+    public static final int[] n = new int[4];
+    public static final float[] o = new float[4];
+    public static final float[] p = new float[4];
 
-    public vx8(wx8 wx8Var, gb2 gb2Var, ArrayList arrayList, lw8 lw8Var) {
-        this.b = lw8Var;
-        this.a = wx8Var;
-        this.E = gb2Var;
-        this.F = gb2Var.getMessageObject();
-        this.x = new sx8[Math.min(5, arrayList.size())];
-        int i = 0;
-        while (true) {
-            sx8[] sx8VarArr = this.x;
-            if (i < sx8VarArr.length) {
-                sx8VarArr[i] = new sx8(this, ((Long) arrayList.get(i)).longValue());
-                i++;
-            } else {
-                this.c.setStyle(Paint.Style.FILL);
-                Drawable mutate = wx8Var.getContext().getDrawable(2131232678).mutate();
-                this.y = mutate;
-                gb2Var.setHideSideButtonByQuickShare(true);
-                wx8Var.performHapticFeedback(3, 1);
-                int v0 = bkb.v0(bkb.F8, this.E.getResourcesProvider());
-                mutate.setColorFilter(new PorterDuffColorFilter(bkb.w0(null, bkb.Je, false), PorterDuff.Mode.MULTIPLY));
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, gl.L(100.0f), new int[]{v0, 16777215 & v0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                this.f = linearGradient;
-                this.c.setShader(linearGradient);
-                ObjectAnimator objectAnimator = this.a0;
-                LinearInterpolator linearInterpolator = ux8.b;
-                objectAnimator.setInterpolator(linearInterpolator);
-                this.a0.addListener(this);
-                this.b0.setInterpolator(linearInterpolator);
-                this.b0.addListener(this);
-                gl.j2(new zf7(this, (byte) 26), 15.0f);
-                return;
+    public static boolean a(float f2, float f3, int i2, Canvas canvas, RectF rectF) {
+        ?? r13;
+        ?? r15;
+        float f4;
+        float f5;
+        float f6;
+        ?? r33;
+        ?? r22;
+        int i3;
+        int i4;
+        float f7;
+        float f8;
+        long j2;
+        float f9;
+        if (Build.VERSION.SDK_INT >= 29) {
+            float f10 = 0.004f;
+            boolean z = true;
+            if (f3 <= 0.004f) {
+                return true;
             }
-        }
-    }
-
-    public static float b(float f, float f2, float f3, float f4) {
-        return (float) Math.toDegrees((float) Math.atan2(f4 - f2, f3 - f));
-    }
-
-    public static PointF f(float f, float f2, float f3, float f4, float f5, float f6, boolean z) {
-        float f7 = f4 - f;
-        float f8 = f5 - f2;
-        float sqrt = (float) Math.sqrt(Math.pow(f8, 2.0d) + Math.pow(f7, 2.0d));
-        if (sqrt <= f3 + f6 && sqrt >= Math.abs(f3 - f6)) {
-            float f9 = f3 * f3;
-            float f10 = ((sqrt * sqrt) + (f9 - (f6 * f6))) / (2.0f * sqrt);
-            float sqrt2 = (float) Math.sqrt(f9 - (f10 * f10));
-            float d = ls6.d(f10, f7, sqrt, f);
-            float d2 = ls6.d(f10, f8, sqrt, f2);
-            float f11 = (f8 * sqrt2) / sqrt;
-            float f12 = d + f11;
-            float f13 = (sqrt2 * f7) / sqrt;
-            float f14 = d2 - f13;
-            float f15 = d - f11;
-            float f16 = d2 + f13;
-            if (f12 != f15 && f12 < f15) {
-                if (z) {
-                    return new PointF(f12, f14);
-                }
-                return new PointF(f15, f16);
-            } else if (f14 > f16) {
-                return new PointF(f12, f14);
-            } else {
-                return new PointF(f15, f16);
-            }
-        }
-        return null;
-    }
-
-    public static float g(float f, float f2, float f3) {
-        return tb4.A(f2, f, f3, f);
-    }
-
-    public static tx8 i(Interpolator interpolator, int i, int i2, int i3, boolean z) {
-        float f = i3;
-        return new tx8(z, i / f, i2 / f, interpolator);
-    }
-
-    public static float j(float f) {
-        if (f <= 0.0f) {
-            return f + 180.0f;
-        }
-        return f - 180.0f;
-    }
-
-    public final void a(Path path, RectF rectF, float f, float f2, boolean z, boolean z2) {
-        float f3 = f2 - f;
-        if (z) {
-            if (f3 > 0.0f) {
-                f3 -= 360.0f;
-            }
-        } else if (f3 < 0.0f) {
-            f3 += 360.0f;
-        }
-        if (Math.abs(f3) > 270.0f && z2) {
-            this.R = false;
-        }
-        path.arcTo(rectF, f, f3);
-    }
-
-    public final void c() {
-        this.b0.start();
-        this.P = true;
-        if (this.N && !this.U) {
-            zk0 zk0Var = new zk0(new k88(this, (byte) 17));
-            this.Q = zk0Var;
-            RectF rectF = this.r;
-            zk0Var.a((int) rectF.width(), (int) (rectF.height() + gl.L(30.0f)), 4.0f, gl.L(10.0f));
-        }
-        invalidateSelf();
-    }
-
-    public final void d() {
-        sx8[] sx8VarArr;
-        Bitmap bitmap;
-        Bitmap bitmap2;
-        Bitmap bitmap3;
-        this.E.setHideSideButtonByQuickShare(false);
-        if (!this.U) {
-            this.U = true;
-            Bitmap bitmap4 = this.J;
-            if (bitmap4 != null) {
-                bitmap4.recycle();
-            }
-            zk0 zk0Var = this.Q;
-            if (zk0Var != null && (bitmap3 = zk0Var.c) != null) {
-                bitmap3.recycle();
-                zk0Var.c = null;
-            }
-            for (sx8 sx8Var : this.x) {
-                zk0 zk0Var2 = sx8Var.f;
-                if (zk0Var2 != null && (bitmap2 = zk0Var2.c) != null) {
-                    bitmap2.recycle();
-                    zk0Var2.c = null;
-                }
-                zk0 zk0Var3 = sx8Var.e;
-                if (zk0Var3 != null && (bitmap = zk0Var3.c) != null) {
-                    bitmap.recycle();
-                    zk0Var3.c = null;
+            int i5 = i;
+            SweepGradient[] sweepGradientArr = h;
+            float[][] fArr = ned.a;
+            int i6 = 4;
+            HashMap hashMap = g;
+            if (i5 != 1) {
+                i = 1;
+                hashMap.clear();
+                int i7 = 0;
+                while (i7 < i6) {
+                    float[] fArr2 = fArr[i7];
+                    float f11 = f10;
+                    int[] iArr = new int[73];
+                    float[] fArr3 = new float[73];
+                    int i8 = 0;
+                    for (int i9 = 73; i8 < i9; i9 = 73) {
+                        boolean z2 = z;
+                        SweepGradient[] sweepGradientArr2 = sweepGradientArr;
+                        double radians = Math.toRadians(i8 * 5);
+                        int i10 = i6;
+                        HashMap hashMap2 = hashMap;
+                        float pow = (float) Math.pow(Math.abs(Math.cos(radians)), fArr2[6]);
+                        if (((float) Math.sin(radians)) < 0.0f) {
+                            f9 = fArr2[11];
+                        } else {
+                            f9 = fArr2[12];
+                        }
+                        float f12 = f9 / 100.0f;
+                        iArr[i8] = ((int) ((Math.max(0.0f, Math.min(1.0f, (((fArr2[5] / 100.0f) - f12) * pow) + f12)) * 255.0f) + 0.5f)) << 24;
+                        fArr3[i8] = i8 / 72.0f;
+                        i8++;
+                        z = z2;
+                        sweepGradientArr = sweepGradientArr2;
+                        i6 = i10;
+                        hashMap = hashMap2;
+                    }
+                    sweepGradientArr[i7] = new SweepGradient(0.0f, 0.0f, iArr, fArr3);
+                    i7++;
+                    f10 = f11;
+                    z = z;
                 }
             }
+            float f13 = f10;
+            boolean z3 = z;
+            SweepGradient[] sweepGradientArr3 = sweepGradientArr;
+            int i11 = i6;
+            HashMap hashMap3 = hashMap;
+            float[] fArr4 = fArr[i2];
+            float N = gm.N(fArr4[8]);
+            float f14 = rectF.left + N;
+            float f15 = rectF.top + N;
+            float f16 = rectF.right - N;
+            float f17 = rectF.bottom - N;
+            float f18 = f16 - f14;
+            float f19 = f17 - f15;
+            if (f18 >= 1.0f) {
+                if (f19 >= 1.0f) {
+                    float min = Math.min(Math.max(0.0f, f2 - N), Math.min(f18, f19) / 2.0f);
+                    float N2 = gm.N(fArr4[i11]);
+                    float max = Math.max(gm.N(fArr4[0]), gm.N(fArr4[2]));
+                    int ceil = ((int) Math.ceil(N2)) + 2;
+                    int ceil2 = ((int) Math.ceil(max + min)) + 1;
+                    int round = Math.round(f18);
+                    int round2 = Math.round(f19);
+                    int i12 = (ceil2 << 1) + 2;
+                    if (round >= i12) {
+                        r13 = z3 ? 1 : 0;
+                    } else {
+                        r13 = false;
+                    }
+                    if (round2 >= i12) {
+                        r15 = z3 ? 1 : 0;
+                    } else {
+                        r15 = false;
+                    }
+                    if (r13 != false) {
+                        round = i12;
+                    }
+                    if (r15 != false) {
+                        round2 = i12;
+                    }
+                    ?? r12 = r15;
+                    long round3 = (((i2 << 56) ^ (Math.round(4.0f * min) << 32)) ^ (round << 16)) ^ round2;
+                    Bitmap bitmap = (Bitmap) hashMap3.get(Long.valueOf(round3));
+                    if (bitmap == null) {
+                        float[] fArr5 = fArr[i2];
+                        int i13 = ceil << 1;
+                        f4 = f14;
+                        bitmap = Bitmap.createBitmap(round + i13, i13 + round2, Bitmap.Config.ARGB_8888);
+                        Canvas canvas2 = new Canvas(bitmap);
+                        f5 = f15;
+                        float f20 = ceil;
+                        RectF rectF2 = new RectF(f20, f20, round + ceil, round2 + ceil);
+                        float N3 = gm.N(fArr5[i11]);
+                        if (N3 > 0.05f) {
+                            Matrix matrix = new Matrix();
+                            f6 = f16;
+                            matrix.setScale(rectF2.width() / Math.max(1.0f, rectF2.height()), 1.0f);
+                            matrix.postTranslate(rectF2.centerX(), rectF2.centerY());
+                            SweepGradient sweepGradient = sweepGradientArr3[i2];
+                            sweepGradient.setLocalMatrix(matrix);
+                            Paint paint = new Paint(z3 ? 1 : 0);
+                            paint.setStyle(Paint.Style.STROKE);
+                            paint.setStrokeWidth(N3);
+                            paint.setShader(sweepGradient);
+                            RectF rectF3 = new RectF(rectF2);
+                            float f21 = (-N3) / 2.0f;
+                            rectF3.inset(f21, f21);
+                            float f22 = (N3 / 2.0f) + min;
+                            canvas2.drawRoundRect(rectF3, f22, f22, paint);
+                        } else {
+                            f6 = f16;
+                        }
+                        Paint paint2 = new Paint(1);
+                        paint2.setColor(-1);
+                        Path path = new Path();
+                        Path path2 = new Path();
+                        RectF rectF4 = new RectF();
+                        r33 = r12;
+                        r22 = r13;
+                        int i14 = 0;
+                        while (i14 < 2) {
+                            if (i14 == 0) {
+                                float N4 = gm.N(fArr5[0]);
+                                f8 = fArr5[1];
+                                f7 = N4;
+                            } else {
+                                f7 = -gm.N(fArr5[2]);
+                                f8 = fArr5[3];
+                            }
+                            int i15 = i14;
+                            float f23 = f8 / 100.0f;
+                            if (f23 > f13 && Math.abs(f7) >= 0.1f) {
+                                path.rewind();
+                                j2 = round3;
+                                Path.Direction direction = Path.Direction.CW;
+                                path.addRoundRect(rectF2, min, min, direction);
+                                rectF4.set(rectF2);
+                                rectF4.offset(0.0f, f7);
+                                path2.rewind();
+                                path2.addRoundRect(rectF4, min, min, direction);
+                                canvas2.save();
+                                y00.d(canvas2, path2);
+                                paint2.setAlpha(Math.round(Math.min(1.0f, f23) * 255.0f));
+                                canvas2.drawPath(path, paint2);
+                                canvas2.restore();
+                            } else {
+                                j2 = round3;
+                            }
+                            i14 = i15 + 1;
+                            round3 = j2;
+                        }
+                        bitmap.prepareToDraw();
+                        hashMap3.put(Long.valueOf(round3), bitmap);
+                    } else {
+                        f4 = f14;
+                        f5 = f15;
+                        f6 = f16;
+                        r33 = r12;
+                        r22 = r13;
+                    }
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    if (r22 != false) {
+                        i3 = 3;
+                    } else {
+                        i3 = 1;
+                    }
+                    if (r33 != false) {
+                        i4 = 3;
+                    } else {
+                        i4 = 1;
+                    }
+                    int[] iArr2 = m;
+                    iArr2[0] = 0;
+                    float f24 = ceil;
+                    float[] fArr6 = o;
+                    fArr6[0] = f4 - f24;
+                    if (r22 != false) {
+                        iArr2[1] = ceil + ceil2;
+                        iArr2[2] = (width - ceil) - ceil2;
+                        float f25 = ceil2;
+                        fArr6[1] = f4 + f25;
+                        fArr6[2] = f6 - f25;
+                    }
+                    iArr2[i3] = width;
+                    fArr6[i3] = f6 + f24;
+                    int[] iArr3 = n;
+                    iArr3[0] = 0;
+                    float[] fArr7 = p;
+                    fArr7[0] = f5 - f24;
+                    if (r33 != false) {
+                        iArr3[1] = ceil + ceil2;
+                        iArr3[2] = (height - ceil) - ceil2;
+                        float f26 = ceil2;
+                        fArr7[1] = f5 + f26;
+                        fArr7[2] = f17 - f26;
+                    }
+                    iArr3[i4] = height;
+                    fArr7[i4] = f17 + f24;
+                    Paint paint3 = j;
+                    paint3.setAlpha((int) (Math.min(1.0f, f3) * 255.0f));
+                    int i16 = 0;
+                    while (i16 < i4) {
+                        int i17 = 0;
+                        while (i17 < i3) {
+                            int i18 = iArr2[i17];
+                            int i19 = iArr3[i16];
+                            int i20 = i17 + 1;
+                            int i21 = iArr2[i20];
+                            int i22 = i16 + 1;
+                            int i23 = iArr3[i22];
+                            int i24 = i16;
+                            Rect rect = k;
+                            rect.set(i18, i19, i21, i23);
+                            float f27 = fArr6[i17];
+                            float f28 = fArr7[i24];
+                            float f29 = fArr6[i20];
+                            float f30 = fArr7[i22];
+                            RectF rectF5 = l;
+                            rectF5.set(f27, f28, f29, f30);
+                            canvas.drawBitmap(bitmap, rect, rectF5, paint3);
+                            i17 = i20;
+                            i16 = i24;
+                        }
+                        i16++;
+                    }
+                } else {
+                    return z3;
+                }
+            }
+            return true;
         }
+        return false;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        e(canvas, false, 255);
+    public static void b(Canvas canvas, RectF rectF, float f2) {
+        float f3 = rectF.left;
+        float f4 = rectF.top;
+        RectF rectF2 = e;
+        rectF2.set(f3, f4, rectF.right, Math.min(rectF.height(), gm.L(40.0f)) + f4);
+        Paint paint = c;
+        paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f2)) * 255.0f * 0.3125f));
+        canvas.drawBitmap(d(), (Rect) null, rectF2, paint);
     }
 
-    public final void e(android.graphics.Canvas r32, boolean r33, int r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vx8.e(android.graphics.Canvas, boolean, int):void");
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    public final int h() {
-        return gl.L((53 * this.x.length) + 7);
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        ObjectAnimator objectAnimator = this.a0;
-        lw8 lw8Var = this.b;
-        if (animator == objectAnimator) {
-            this.E.setHideSideButtonByQuickShare(false);
-            this.N = true;
-            invalidateSelf();
-            if (this.O) {
-                lw8Var.run();
-            }
-        } else if (animator == this.b0) {
-            this.O = true;
-            invalidateSelf();
-            t11 t11Var = this.X;
-            if (t11Var != null) {
-                t11Var.a.setVisibility(0);
-            }
-            if (this.N) {
-                lw8Var.run();
-            }
+    public static void c(Canvas canvas, RectF rectF, float f2, float f3) {
+        Bitmap d2 = d();
+        BitmapShader bitmapShader = b;
+        Paint paint = d;
+        if (bitmapShader == null) {
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader2 = new BitmapShader(d2, tileMode, tileMode);
+            b = bitmapShader2;
+            paint.setShader(bitmapShader2);
         }
+        float width = rectF.width() / d2.getWidth();
+        float min = Math.min(rectF.height(), gm.L(40.0f)) / d2.getHeight();
+        Matrix matrix = f;
+        matrix.setScale(width, min);
+        matrix.postTranslate(rectF.left, rectF.top);
+        b.setLocalMatrix(matrix);
+        paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f3)) * 255.0f * 0.3125f));
+        canvas.drawRoundRect(rectF, f2, f2, paint);
     }
 
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public static Bitmap d() {
+        Bitmap bitmap = a;
+        if (bitmap == null) {
+            int[] iArr = new int[64];
+            for (int i2 = 0; i2 < 64; i2++) {
+                iArr[i2] = (((int) (((1.0f - ((i2 + 0.5f) / 64.0f)) * 64.0f) + 0.5f)) << 24) | 16777215;
+            }
+            Bitmap createBitmap = Bitmap.createBitmap(iArr, 1, 64, Bitmap.Config.ARGB_8888);
+            a = createBitmap;
+            return createBitmap;
+        }
+        return bitmap;
     }
 }

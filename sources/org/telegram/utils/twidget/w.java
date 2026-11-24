@@ -6,8 +6,8 @@ import android.os.Parcel;
 import android.os.SystemClock;
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.Semaphore;
-public final class w extends Binder implements jj5 {
-    public final yvc a;
+public final class w extends Binder implements il5 {
+    public final zxc a;
     public final WidgetSandboxBackend b;
     public volatile long c;
     public final ByteArrayOutputStream d;
@@ -16,30 +16,25 @@ public final class w extends Binder implements jj5 {
     public long i;
     public final x j;
 
-    public w(x xVar, yvc yvcVar, WidgetSandboxBackend widgetSandboxBackend) {
+    public w(x xVar, zxc zxcVar, WidgetSandboxBackend widgetSandboxBackend) {
         this.j = xVar;
         attachInterface(this, "org.telegram.utils.twidget.IWidgetEngineCallback");
         this.d = new ByteArrayOutputStream();
         this.e = new Semaphore(4);
         this.f = 2000.0d;
         this.i = SystemClock.elapsedRealtime();
-        this.a = yvcVar;
+        this.a = zxcVar;
         this.b = widgetSandboxBackend;
     }
 
     @Override
-    public final void A(int i, int i2, int i3, int[] iArr) {
-        a(new i(this, i, i2, i3, iArr, (byte) 2));
-    }
-
-    @Override
-    public final void C(int i, byte[] bArr) {
+    public final void B(int i, byte[] bArr) {
         a(new s(this, bArr, i, (byte) 0));
     }
 
     @Override
-    public final void F(final int i, final int i2, final byte[] bArr) {
-        a(new xvc() {
+    public final void E(final int i, final int i2, final byte[] bArr) {
+        a(new yxc() {
             @Override
             public final Object run() {
                 w wVar = w.this;
@@ -50,12 +45,12 @@ public final class w extends Binder implements jj5 {
     }
 
     @Override
-    public final void J(byte[] bArr) {
-        a(new cwb(this, bArr, (byte) 13));
+    public final void I(byte[] bArr) {
+        a(new uxb(this, bArr, (byte) 14));
     }
 
     @Override
-    public final void K(int i, float f) {
+    public final void J(int i, float f) {
         try {
             this.b.state(i, f);
         } catch (Throwable unused) {
@@ -67,14 +62,14 @@ public final class w extends Binder implements jj5 {
         a(new q(this, i, (byte) 0));
     }
 
-    public final Object a(xvc xvcVar) {
+    public final Object a(yxc yxcVar) {
         if (this.a.w == 0) {
             this.a.w = Binder.getCallingPid();
         }
         if (this.e.tryAcquire()) {
             try {
                 if (this.j.i.tryAcquire()) {
-                    Object run = xvcVar.run();
+                    Object run = yxcVar.run();
                     this.j.i.release();
                     return run;
                 }
@@ -82,7 +77,7 @@ public final class w extends Binder implements jj5 {
             } finally {
             }
         } else {
-            sc8.j("Widget engine: too many calls at once");
+            dq9.m("Widget engine: too many calls at once");
             return null;
         }
     }
@@ -103,7 +98,7 @@ public final class w extends Binder implements jj5 {
 
     @Override
     public final byte[] n(final int i, final int i2, final int i3, final int i4, final int i5) {
-        return (byte[]) a(new xvc() {
+        return (byte[]) a(new yxc() {
             @Override
             public final Object run() {
                 return w.this.b.canvasRead(i, i2, i3, i4, i5);
@@ -142,9 +137,9 @@ public final class w extends Binder implements jj5 {
                 parcel2.writeFloatArray(q);
                 break;
             case 2:
-                float z2 = z(parcel.readInt(), parcel.createByteArray());
+                float y = y(parcel.readInt(), parcel.createByteArray());
                 parcel2.writeNoException();
-                parcel2.writeFloat(z2);
+                parcel2.writeFloat(y);
                 break;
             case 3:
                 O(parcel.readInt());
@@ -155,7 +150,7 @@ public final class w extends Binder implements jj5 {
                 parcel2.writeNoException();
                 break;
             case 5:
-                J(parcel.createByteArray());
+                I(parcel.createByteArray());
                 parcel2.writeNoException();
                 break;
             case 6:
@@ -163,22 +158,22 @@ public final class w extends Binder implements jj5 {
                 parcel2.writeNoException();
                 break;
             case 7:
-                F(parcel.readInt(), parcel.readInt(), parcel.createByteArray());
+                E(parcel.readInt(), parcel.readInt(), parcel.createByteArray());
                 parcel2.writeNoException();
                 break;
             case 8:
-                x(parcel.createByteArray());
+                w(parcel.createByteArray());
                 parcel2.writeNoException();
                 break;
             case 9:
-                C(parcel.readInt(), parcel.createByteArray());
+                B(parcel.readInt(), parcel.createByteArray());
                 parcel2.writeNoException();
                 break;
             case 10:
-                K(parcel.readInt(), parcel.readFloat());
+                J(parcel.readInt(), parcel.readFloat());
                 break;
             case 11:
-                A(parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.createIntArray());
+                z(parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.createIntArray());
                 parcel2.writeNoException();
                 break;
             case 12:
@@ -198,7 +193,7 @@ public final class w extends Binder implements jj5 {
 
     @Override
     public final void p(final byte[] bArr, final byte[] bArr2, final double d, final int i, final int i2, final float f, final float f2, final int i3, final int i4) {
-        a(new xvc() {
+        a(new yxc() {
             @Override
             public final Object run() {
                 int i5;
@@ -217,7 +212,7 @@ public final class w extends Binder implements jj5 {
                         return null;
                     }
                 }
-                w26.j("Frame size");
+                u36.j("Frame size");
                 return null;
             }
         });
@@ -225,7 +220,7 @@ public final class w extends Binder implements jj5 {
 
     @Override
     public final float[] q(final int i, final byte[] bArr, final float f, final int i2, final boolean z, final byte[] bArr2) {
-        return (float[]) a(new xvc() {
+        return (float[]) a(new yxc() {
             @Override
             public final Object run() {
                 return w.this.b.defineFont(i, bArr, f, i2, z, bArr2);
@@ -234,13 +229,18 @@ public final class w extends Binder implements jj5 {
     }
 
     @Override
-    public final void x(byte[] bArr) {
+    public final void w(byte[] bArr) {
         a(new l(this, bArr, (byte) 2));
     }
 
     @Override
-    public final float z(int i, byte[] bArr) {
+    public final float y(int i, byte[] bArr) {
         return ((Float) a(new s(this, bArr, i, (byte) 1))).floatValue();
+    }
+
+    @Override
+    public final void z(int i, int i2, int i3, int[] iArr) {
+        a(new i(this, i, i2, i3, iArr, (byte) 2));
     }
 
     @Override

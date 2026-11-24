@@ -1,17 +1,17 @@
 package defpackage;
-public final class l3e implements zn7 {
-    public static final l3e a = new Object();
+public enum l3e implements eqe {
+    CLASSIFICATION_UNKNOWN(0),
+    CLASSIFICATION_NONE(1),
+    CLASSIFICATION_ALL(2);
+    
+    public final byte a;
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)));
+    l3e(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final String toString() {
+        return "<" + l3e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

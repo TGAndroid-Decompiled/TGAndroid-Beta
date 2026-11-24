@@ -1,55 +1,118 @@
 package defpackage;
-public final class pb8 extends gg6 {
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
 
-    public pb8(int i, int i2, int i3, int i4, int i5, int i6) {
-        super(i5, i6);
-        if (i5 + i3 <= i && i6 + i4 <= i2) {
-            this.c = i;
-            this.d = i2;
-            this.e = i3;
-            this.f = i4;
-            return;
-        }
-        w26.j("Crop rectangle does not fit within image data.");
-        throw null;
-    }
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public interface pb8 {
+    void A();
 
-    @Override
-    public final byte[] a() {
-        int i = this.a;
-        int i2 = this.b;
-        int i3 = this.c;
-        if (i == i3 && i2 == this.d) {
-            return null;
-        }
-        int i4 = i * i2;
-        byte[] bArr = new byte[i4];
-        int i5 = (this.f * i3) + this.e;
-        if (i != i3) {
-            if (i2 <= 0) {
-                return bArr;
-            }
-            System.arraycopy(null, i5, bArr, 0, i);
-            throw null;
-        }
-        System.arraycopy(null, i5, bArr, 0, i4);
-        throw null;
-    }
+    void B(int i);
 
-    @Override
-    public final byte[] b(int i, byte[] bArr) {
-        if (i >= 0 && i < this.b) {
-            int i2 = this.a;
-            if (bArr == null || bArr.length < i2) {
-                bArr = new byte[i2];
-            }
-            System.arraycopy(null, ((i + this.f) * this.c) + this.e, bArr, 0, i2);
-            throw null;
-        }
-        throw new IllegalArgumentException(de9.k(i, "Requested row is outside the image: "));
-    }
+    CharSequence C(int i);
+
+    void D();
+
+    int E(int i, rcc rccVar);
+
+    void F(boolean z);
+
+    void G();
+
+    int H();
+
+    boolean I();
+
+    void J();
+
+    boolean K();
+
+    boolean L();
+
+    void M(int i, rcc rccVar, boolean z, int i2, int i3, boolean z2);
+
+    qb8 N(k47 k47Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2);
+
+    boolean O();
+
+    boolean P();
+
+    boolean Q();
+
+    boolean R();
+
+    int S(Object obj);
+
+    int T(int i);
+
+    boolean U();
+
+    boolean V();
+
+    k47 W();
+
+    void X();
+
+    void Y(int i);
+
+    void Z(int i);
+
+    long a();
+
+    boolean a0();
+
+    boolean b();
+
+    void b0(int i);
+
+    void c(rcc rccVar);
+
+    String c0();
+
+    ArrayList d();
+
+    CharSequence d0(int i);
+
+    void e();
+
+    void f(CharSequence charSequence);
+
+    void g(String str, String str2, boolean z);
+
+    boolean h();
+
+    boolean i();
+
+    void j();
+
+    jn5 k(int i);
+
+    boolean l();
+
+    void m();
+
+    void n();
+
+    boolean o();
+
+    boolean p();
+
+    boolean q();
+
+    void r();
+
+    boolean s();
+
+    boolean t();
+
+    HashMap u();
+
+    boolean v();
+
+    boolean w(int i);
+
+    int x();
+
+    boolean y();
+
+    boolean z();
 }

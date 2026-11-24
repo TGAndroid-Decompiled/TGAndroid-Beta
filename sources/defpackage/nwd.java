@@ -1,17 +1,26 @@
 package defpackage;
-public final class nwd implements zn7 {
-    public static final nwd a = new Object();
-
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+public abstract class nwd {
+    public static ay2 a(ay2 ay2Var, by2 by2Var) {
+        by2Var.getClass();
+        if (rr5.a(ay2Var.getKey(), by2Var)) {
+            return ay2Var;
+        }
+        return null;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static cy2 b(ay2 ay2Var, by2 by2Var) {
+        by2Var.getClass();
+        if (rr5.a(ay2Var.getKey(), by2Var)) {
+            return k34.a;
         }
-        throw new ClassCastException();
+        return ay2Var;
+    }
+
+    public static cy2 c(ay2 ay2Var, cy2 cy2Var) {
+        cy2Var.getClass();
+        if (cy2Var == k34.a) {
+            return ay2Var;
+        }
+        return (cy2) cy2Var.fold(ay2Var, new qn2((byte) 1));
     }
 }

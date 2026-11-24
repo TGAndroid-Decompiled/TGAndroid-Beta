@@ -1,199 +1,495 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.method.LinkMovementMethod;
-import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
+import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class kd5 extends FrameLayout {
-    public final n84 a;
-    public final hd5 b;
-    public final TextView c;
-    public final l46 d;
-    public final wjb e;
-    public final i46 f;
-    public final Paint[] h;
-    public ValueAnimator n;
+import org.telegram.ui.ActionBar.d;
+public final class kd5 extends d implements jm7 {
+    public int E;
+    public int F;
+    public int G;
+    public int H;
+    public int I;
+    public int J;
+    public int K;
+    public int L;
+    public zja M;
+    public boolean N;
+    public final boolean O;
+    public hd5 P;
+    public FrameLayout a;
+    public a1b b;
+    public tk4 c;
+    public r59 d;
+    public id5 e;
+    public jd5 f;
+    public u46 h;
+    public int n;
+    public TLRPC.TL_messages_stickerSet r;
+    public boolean s;
+    public TLRPC.ChatFull w;
+    public final long x;
+    public int y;
 
-    public kd5(Context context, wjb wjbVar) {
-        super(context);
-        this.e = wjbVar;
-        LinearLayout j = de9.j(context, 1);
-        n84 n84Var = new n84(context, 1, 0, (byte) 1);
-        this.a = n84Var;
-        Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        int i = bkb.Ck;
-        canvas.drawColor(bm2.f(0.5f, bkb.v0(i, wjbVar), bkb.v0(bkb.g5, wjbVar)));
-        n84Var.setBackgroundBitmap(createBitmap);
-        uq4 uq4Var = n84Var.b;
-        uq4Var.z = i;
-        uq4Var.A = bkb.Bk;
-        uq4Var.b();
-        j.addView(n84Var, nme.r(160, 160, 1));
-        hd5 hd5Var = new hd5(this, context);
-        this.b = hd5Var;
-        this.h = new Paint[20];
-        a(0.0f);
-        bra braVar = hd5Var.a;
-        braVar.q = false;
-        braVar.J = false;
-        braVar.K = true;
-        braVar.H = true;
-        braVar.l = new z02(this, (byte) 3);
-        braVar.c();
-        n84Var.setStarParticlesView(hd5Var);
-        TextView textView = new TextView(context);
-        this.c = textView;
-        ug8.v(textView, 1, 22.0f);
-        int i2 = bkb.F6;
-        zkb.X(textView, i2, wjbVar);
-        textView.setGravity(1);
-        j.addView(textView, nme.t(-2, -2, 1, 24, -8, 24, 0));
-        i46 i46Var = new i46(this);
-        this.f = i46Var;
-        l46 l46Var = new l46(context, i46Var, wjbVar);
-        this.d = l46Var;
-        l46Var.setTextSize(1, 15.0f);
-        l46Var.setGravity(17);
-        zkb.X(l46Var, i2, wjbVar);
-        l46Var.setMovementMethod(LinkMovementMethod.getInstance());
-        zkb.G(l46Var, bkb.I6, wjbVar);
-        l46Var.setImportantForAccessibility(2);
-        j.addView(l46Var, nme.d(-1, -2.0f, 17, 24.0f, 8.0f, 24.0f, 18.0f));
-        setClipChildren(false);
-        addView(hd5Var, nme.e(-1, 234, 48));
-        addView(j);
-        setWillNotDraw(false);
+    public kd5(long j, int i) {
+        super(null);
+        this.n = -1;
+        this.x = j;
+        this.O = true;
     }
 
-    public final void a(float f) {
-        int i = bkb.Bk;
-        wjb wjbVar = this.e;
-        int v0 = bkb.v0(i, wjbVar);
-        int v02 = bkb.v0(bkb.Ck, wjbVar);
-        int f2 = bm2.f(f, v0, -371690);
-        int f3 = bm2.f(f, v02, -14281);
-        int i2 = 0;
-        while (true) {
-            Paint[] paintArr = this.h;
-            if (i2 < paintArr.length) {
-                paintArr[i2] = new Paint(1);
-                paintArr[i2].setColorFilter(new PorterDuffColorFilter(bm2.f(i2 / (paintArr.length - 1), f2, f3), PorterDuff.Mode.SRC_IN));
-                i2++;
-            } else {
-                return;
-            }
-        }
+    public static int a0(kd5 kd5Var) {
+        return kd5Var.currentAccount;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        i46 i46Var = this.f;
-        if (i46Var != null) {
-            canvas.save();
-            l46 l46Var = this.d;
-            canvas.translate(l46Var.getLeft(), l46Var.getTop());
-            if (i46Var.g(canvas)) {
-                invalidate();
-            }
-            canvas.restore();
-        }
+    public final void addThemeColorKeys(HashSet hashSet) {
+        super.addThemeColorKeys(hashSet);
+        hashSet.add(Integer.valueOf(cmb.Ki));
+        hashSet.add(Integer.valueOf(cmb.Li));
+        hashSet.add(Integer.valueOf(cmb.y6));
+        hashSet.add(Integer.valueOf(cmb.F6));
+        hashSet.add(Integer.valueOf(cmb.a7));
+        hashSet.add(Integer.valueOf(cmb.H6));
+        hashSet.add(Integer.valueOf(cmb.I6));
+        hashSet.add(Integer.valueOf(cmb.A6));
+        hashSet.add(Integer.valueOf(cmb.c7));
+        hashSet.add(Integer.valueOf(cmb.h6));
+        hashSet.add(Integer.valueOf(cmb.s8));
+        hashSet.add(Integer.valueOf(cmb.z8));
+        hashSet.add(Integer.valueOf(cmb.u8));
+        hashSet.add(Integer.valueOf(cmb.r8));
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        n84 n84Var = this.a;
-        float measuredHeight = n84Var.getMeasuredHeight() / 2.0f;
-        hd5 hd5Var = this.b;
-        hd5Var.setTranslationY((measuredHeight + n84Var.getTop()) - (hd5Var.getMeasuredHeight() / 2.0f));
-    }
-
-    public void setBoostViaGifsText(TLRPC.Chat chat) {
+    public final View createView(Context context) {
         int i;
-        setOutlineProvider(new ViewOutlineProvider());
-        setClipToOutline(true);
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
-        marginLayoutParams.topMargin = -gl.L(6.0f);
-        setLayoutParams(marginLayoutParams);
-        int i2 = bkb.Z6;
-        wjb wjbVar = this.e;
-        zkb.h(i2, wjbVar, this);
-        this.c.setText(k96.a0("BoostingBoostsViaGifts", null, 2131753559, new Object[0]));
-        if (hc2.V(chat)) {
-            i = 2131753507;
+        setHasOwnBackground(true);
+        this.simpleActionBar.setBackButtonImage(2131231244);
+        rja rjaVar = this.simpleActionBar;
+        if (this.O) {
+            i = 2131749200;
         } else {
-            i = 2131753502;
+            i = 2131749154;
         }
-        String a0 = k96.a0(null, null, i, new Object[0]);
-        l46 l46Var = this.d;
-        l46Var.setText(a0);
-        zkb.X(l46Var, bkb.q5, wjbVar);
+        rjaVar.setTitle(jb6.M0(i, null));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new fh2(this, (byte) 27));
+        zja a = this.simpleActionBar.t().a(0, 2131232503);
+        this.M = a;
+        a.N();
+        a.C0 = new q20(this, (byte) 12);
+        this.M.setSearchFieldHint(jb6.M0(2131745570, null));
+        this.e = new id5(this, context);
+        this.f = new jd5(this, context);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        r59 r59Var = new r59(context, null);
+        this.d = r59Var;
+        r59Var.r1();
+        this.d.setSectionsDrawBackground(true);
+        sc3 sc3Var = new sc3();
+        sc3Var.n(200L);
+        sc3Var.m = true;
+        this.d.setItemAnimator(sc3Var);
+        u46 u46Var = new u46();
+        this.h = u46Var;
+        u46Var.i1(1);
+        this.d.setLayoutManager(this.h);
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.a = frameLayout2;
+        anb.h(cmb.c6, null, frameLayout2);
+        tk4 tk4Var = new tk4(context, getResourceProvider());
+        this.c = tk4Var;
+        tk4Var.setViewType(19);
+        this.c.setIsSingleCell(true);
+        this.c.setItemsCount((int) Math.ceil(gm.q.y / gm.N(58.0f)));
+        this.a.addView(this.c, qoe.c(-1.0f, -1));
+        a1b a1bVar = new a1b(context, this.c, 1, null);
+        this.b = a1bVar;
+        wm9.c(a1bVar);
+        this.a.addView(this.b);
+        this.a.setVisibility(8);
+        this.d.setEmptyView(this.a);
+        frameLayout.addView(this.d, qoe.c(-1.0f, -1));
+        frameLayout.addView(this.a);
+        this.d.setAdapter(this.e);
+        this.d.setOnItemClickListener(new kg4(this, (byte) 5));
+        this.d.setOnScrollListener(new ip2(this, (byte) 20));
+        return this.fragmentView;
     }
 
-    public void setPaused(boolean z) {
-        this.a.setPaused(z);
-        this.b.setPaused(z);
+    public final TLRPC.StickerSet d0(TLRPC.ChatFull chatFull) {
+        if (chatFull == null) {
+            return null;
+        }
+        if (this.O) {
+            return chatFull.emojiset;
+        }
+        return chatFull.stickerset;
     }
 
-    public void setStars(final boolean z) {
-        final float f;
-        ValueAnimator valueAnimator = this.n;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        n84 n84Var = this.a;
-        final float f2 = n84Var.b.l;
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        this.n = ValueAnimator.ofFloat(0.0f, 1.0f);
-        final float[] fArr = {0.0f};
-        gl.r(n84Var.f0);
-        n84Var.a();
-        n84Var.l();
-        this.n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                int i;
-                kd5 kd5Var = kd5.this;
-                float[] fArr2 = fArr;
-                float f3 = f2;
-                float f4 = f;
-                boolean z2 = z;
-                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                float f5 = floatValue - fArr2[0];
-                fArr2[0] = floatValue;
-                kd5Var.a.b.l = gl.R1(f3, f4, floatValue);
-                uq4 uq4Var = kd5Var.a.b;
-                float f6 = uq4Var.f;
-                float f7 = f5 * 360.0f;
-                if (z2) {
-                    i = 1;
-                } else {
-                    i = -1;
-                }
-                uq4Var.f = (f7 * i) + f6;
-                kd5Var.a.b.b();
-                kd5Var.a(kd5Var.a.b.l);
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == nm7.x0) {
+            if (((Integer) objArr[0]).intValue() == e0()) {
+                l0(true);
             }
-        });
-        this.n.addListener(new jd5(this, fArr, f2, f, z));
-        this.n.setDuration(680L);
-        this.n.setInterpolator(s33.h);
-        this.n.start();
+        } else if (i == nm7.T) {
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+            if (chatFull.id == this.x) {
+                if (this.w == null && d0(chatFull) != null) {
+                    this.r = hs6.d0(this.currentAccount).a0(d0(chatFull));
+                }
+                this.w = chatFull;
+                l0(true);
+            }
+        } else if (i == nm7.B0) {
+            long longValue = ((Long) objArr[0]).longValue();
+            if (d0(this.w) != null && d0(this.w).id == longValue) {
+                l0(true);
+            }
+        }
+    }
+
+    public final int e0() {
+        if (this.O) {
+            return 5;
+        }
+        return 0;
+    }
+
+    public final void f0(int i, View view) {
+        if (getParentActivity() != null) {
+            if (this.N) {
+                if (i > this.f.d.size()) {
+                    boolean a = ((s1b) view).a();
+                    jd5 jd5Var = this.f;
+                    h0((TLRPC.TL_messages_stickerSet) jd5Var.e.get((i - jd5Var.d.size()) - 1), a, false);
+                    return;
+                } else if (i != this.f.d.size()) {
+                    h0((TLRPC.TL_messages_stickerSet) this.f.d.get(i), ((s1b) view).a(), true);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            if (i >= this.F && i < this.G) {
+                h0((TLRPC.TL_messages_stickerSet) hs6.d0(this.currentAccount).t0(e0()).get(i - this.F), ((s1b) view).a(), false);
+            }
+            if (i == this.K) {
+                h0(this.r, true, false);
+            }
+        }
+    }
+
+    public final void g0(TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.r;
+            boolean z = this.O;
+            if (tL_messages_stickerSet == null) {
+                TLRPC.ChatFull chatFull = this.w;
+                if (z) {
+                    chatFull.emojiset = null;
+                } else {
+                    chatFull.stickerset = null;
+                }
+            } else {
+                TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                TLRPC.ChatFull chatFull2 = this.w;
+                if (z) {
+                    chatFull2.emojiset = stickerSet;
+                } else {
+                    chatFull2.stickerset = stickerSet;
+                }
+                hs6 d0 = hs6.d0(this.currentAccount);
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = this.r;
+                d0.N.k(tL_messages_stickerSet2, tL_messages_stickerSet2.set.id);
+            }
+            m0();
+            TLRPC.ChatFull chatFull3 = this.w;
+            if (z) {
+                TLRPC.StickerSet stickerSet2 = chatFull3.emojiset;
+                int i = chatFull3.flags2;
+                if (stickerSet2 != null) {
+                    chatFull3.flags2 = i | 1024;
+                } else {
+                    chatFull3.flags2 = i & (-1025);
+                }
+            } else {
+                TLRPC.StickerSet stickerSet3 = chatFull3.stickerset;
+                int i2 = chatFull3.flags;
+                if (stickerSet3 == null) {
+                    chatFull3.flags = i2 | 256;
+                } else {
+                    chatFull3.flags = i2 & (-257);
+                }
+            }
+            cf7.Y(this.currentAccount).K1(this.w, false);
+            nm7.f(this.currentAccount).k(nm7.T, this.w, 0, Boolean.TRUE, Boolean.FALSE);
+            nm7.f(this.currentAccount).k(nm7.s3, Long.valueOf(this.w.id), Boolean.valueOf(z));
+            finishFragment();
+        } else if (getParentActivity() != null) {
+            Activity parentActivity = getParentActivity();
+            Toast.makeText(parentActivity, jb6.M0(2131751042, null) + "\n" + tL_error.text, 0).show();
+        }
+    }
+
+    @Override
+    public final r59 getListViewForSimpleGlass() {
+        return this.d;
+    }
+
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        return new ArrayList();
+    }
+
+    public final void h0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, boolean z, boolean z2) {
+        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2;
+        if (z2) {
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName2.short_name = tL_messages_stickerSet.set.short_name;
+            tL_inputStickerSetShortName = tL_inputStickerSetShortName2;
+        } else {
+            tL_inputStickerSetShortName = null;
+        }
+        Activity parentActivity = getParentActivity();
+        if (!z2) {
+            tL_messages_stickerSet2 = tL_messages_stickerSet;
+        } else {
+            tL_messages_stickerSet2 = null;
+        }
+        x2b x2bVar = new x2b(parentActivity, this, tL_inputStickerSetShortName, tL_messages_stickerSet2, null, null);
+        x2bVar.X1 = new ed5(this, z, tL_messages_stickerSet);
+        x2bVar.T0();
+        gm.t1(getParentActivity().getCurrentFocus());
+        x2bVar.show();
+    }
+
+    public final void i0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        int i = this.n;
+        if (tL_messages_stickerSet == null) {
+            if (this.r != null) {
+                ts2.u(null, 2131749135, c41.b0(this), 2131624000, 36);
+            }
+            this.r = null;
+            this.s = true;
+        } else {
+            this.r = tL_messages_stickerSet;
+            this.s = false;
+            ts2.u(null, 2131749135, c41.b0(this), 2131624000, 36);
+        }
+        m0();
+        k0(this.r, false);
+        if (i != -1) {
+            if (!this.N) {
+                for (int i2 = 0; i2 < this.d.getChildCount(); i2++) {
+                    View childAt = this.d.getChildAt(i2);
+                    if (this.d.T(childAt).b() == this.F + i) {
+                        ((s1b) childAt).b(false, true);
+                        break;
+                    }
+                }
+            }
+            this.e.g(this.F + i);
+        }
+        if (this.n != -1) {
+            if (!this.N) {
+                for (int i3 = 0; i3 < this.d.getChildCount(); i3++) {
+                    View childAt2 = this.d.getChildAt(i3);
+                    if (this.d.T(childAt2).b() == this.F + this.n) {
+                        ((s1b) childAt2).b(true, true);
+                        return;
+                    }
+                }
+            }
+            this.e.g(this.F + this.n);
+        }
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    public final void j0(TLRPC.ChatFull chatFull) {
+        this.w = chatFull;
+        if (d0(chatFull) != null) {
+            this.r = hs6.d0(this.currentAccount).a0(d0(this.w));
+        }
+    }
+
+    public final void k0(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, boolean z) {
+        boolean z2;
+        if (!this.O) {
+            return;
+        }
+        int i = this.K;
+        boolean z3 = true;
+        if (tL_messages_stickerSet != null) {
+            if (i == -1) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            this.r = tL_messages_stickerSet;
+            l0(false);
+            id5 id5Var = this.e;
+            int i2 = this.K;
+            if (z2) {
+                id5Var.i(i2);
+            } else {
+                id5Var.g(i2);
+            }
+            if (z) {
+                this.e.g(this.J);
+            }
+            hd5 hd5Var = this.P;
+            hd5Var.b = true;
+            hd5Var.invalidate();
+            return;
+        }
+        if (i <= 0) {
+            z3 = false;
+        }
+        this.r = null;
+        if (z3) {
+            this.e.s(i);
+            if (z) {
+                this.e.g(this.J);
+            }
+        }
+        l0(false);
+        hd5 hd5Var2 = this.P;
+        hd5Var2.b = false;
+        hd5Var2.invalidate();
+    }
+
+    public final void l0(boolean z) {
+        id5 id5Var;
+        this.I = -1;
+        this.J = -1;
+        this.K = -1;
+        this.L = -1;
+        this.H = 0;
+        if (this.O) {
+            this.I = 0;
+            int i = 2;
+            this.H = 2;
+            this.J = 1;
+            if (this.r != null) {
+                this.H = 3;
+                this.K = 2;
+                i = 3;
+            }
+            this.H = i + 1;
+            this.L = i;
+        }
+        ArrayList t0 = hs6.d0(this.currentAccount).t0(e0());
+        if (!t0.isEmpty()) {
+            int i2 = this.H;
+            int i3 = i2 + 1;
+            this.H = i3;
+            this.E = i2;
+            this.F = i3;
+            this.G = t0.size() + i3;
+            this.H = t0.size() + this.H;
+        } else {
+            this.E = -1;
+            this.F = -1;
+            this.G = -1;
+        }
+        int i4 = this.H;
+        this.H = i4 + 1;
+        this.y = i4;
+        m0();
+        if (z && (id5Var = this.e) != null) {
+            id5Var.f();
+        }
+    }
+
+    public final void m0() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kd5.m0():void");
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        super.onFragmentCreate();
+        hs6.d0(this.currentAccount).D(e0());
+        nm7.f(this.currentAccount).b(this, nm7.x0);
+        nm7.f(this.currentAccount).b(this, nm7.T);
+        nm7.f(this.currentAccount).b(this, nm7.B0);
+        l0(true);
+        return true;
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        TLRPC.ChatFull chatFull;
+        TLRPC.TL_channels_setStickers tL_channels_setStickers;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
+        super.onFragmentDestroy();
+        nm7.f(this.currentAccount).n(this, nm7.x0);
+        nm7.f(this.currentAccount).n(this, nm7.T);
+        nm7.f(this.currentAccount).n(this, nm7.B0);
+        if ((this.r != null || this.s) && (chatFull = this.w) != null) {
+            if (d0(chatFull) == null || (tL_messages_stickerSet = this.r) == null || tL_messages_stickerSet.set.id != d0(this.w).id) {
+                if (d0(this.w) != null || this.r != null) {
+                    boolean z = this.O;
+                    long j = this.x;
+                    if (z) {
+                        TLRPC.TL_channels_setEmojiStickers tL_channels_setEmojiStickers = new TLRPC.TL_channels_setEmojiStickers();
+                        tL_channels_setEmojiStickers.channel = oc7.r1(this.currentAccount).g1(j);
+                        if (this.s) {
+                            tL_channels_setEmojiStickers.stickerset = new TLRPC.TL_inputStickerSetEmpty();
+                            tL_channels_setStickers = tL_channels_setEmojiStickers;
+                        } else {
+                            TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                            tL_channels_setEmojiStickers.stickerset = tL_inputStickerSetID;
+                            TLRPC.StickerSet stickerSet = this.r.set;
+                            tL_inputStickerSetID.id = stickerSet.id;
+                            tL_inputStickerSetID.access_hash = stickerSet.access_hash;
+                            tL_channels_setStickers = tL_channels_setEmojiStickers;
+                        }
+                    } else {
+                        TLRPC.TL_channels_setStickers tL_channels_setStickers2 = new TLRPC.TL_channels_setStickers();
+                        tL_channels_setStickers2.channel = oc7.r1(this.currentAccount).g1(j);
+                        if (this.s) {
+                            tL_channels_setStickers2.stickerset = new TLRPC.TL_inputStickerSetEmpty();
+                            tL_channels_setStickers = tL_channels_setStickers2;
+                        } else {
+                            SharedPreferences.Editor edit = oc7.r1(this.currentAccount).Y3.edit();
+                            edit.remove("group_hide_stickers_" + this.w.id).apply();
+                            TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
+                            tL_channels_setStickers2.stickerset = tL_inputStickerSetID2;
+                            TLRPC.StickerSet stickerSet2 = this.r.set;
+                            tL_inputStickerSetID2.id = stickerSet2.id;
+                            tL_inputStickerSetID2.access_hash = stickerSet2.access_hash;
+                            tL_channels_setStickers = tL_channels_setStickers2;
+                        }
+                    }
+                    ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_setStickers, new r15(this, (byte) 3));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
+    }
+
+    public kd5(long j) {
+        super(null);
+        this.n = -1;
+        this.x = j;
     }
 }

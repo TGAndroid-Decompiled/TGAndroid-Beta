@@ -1,17 +1,17 @@
 package defpackage;
-public final class kz5 implements Runnable {
+public final class kz5 {
     public final byte a;
-    public final Object b;
-    public final Object c;
+    public double b;
+    public double c;
+    public double d;
+    public double e;
 
-    public kz5(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kz5.run():void");
+    public final String toString() {
+        switch (this.a) {
+            case 1:
+                return "RectD{left=" + this.b + ", top=" + this.c + ", right=" + this.d + ", bottom=" + this.e + '}';
+            default:
+                return super.toString();
+        }
     }
 }

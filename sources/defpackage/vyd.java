@@ -1,41 +1,17 @@
 package defpackage;
+public final class vyd implements cq7 {
+    public static final vyd a = new Object();
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class vyd extends Binder implements IInterface {
-    public final byte a;
-    public final TaskCompletionSource b;
+    static {
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)));
+    }
 
-    public vyd(TaskCompletionSource taskCompletionSource, byte b) {
-        this.a = b;
-        switch (b) {
-            case 2:
-                this.b = taskCompletionSource;
-                attachInterface(this, "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverResultCallback");
-                return;
-            default:
-                this.b = taskCompletionSource;
-                attachInterface(this, "com.google.android.gms.fido.fido2.internal.regular.IFido2AppCallbacks");
-                return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        byte b = this.a;
-        return this;
-    }
-
-    @Override
-    public final boolean onTransact(int r7, android.os.Parcel r8, android.os.Parcel r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vyd.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
-    }
-
-    public vyd(u84 u84Var, TaskCompletionSource taskCompletionSource) {
-        this.a = (byte) 1;
-        this.b = taskCompletionSource;
-        attachInterface(this, "com.google.android.gms.cloudmessaging.internal.IRegisterCallback");
+        throw new ClassCastException();
     }
 }

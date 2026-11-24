@@ -1,123 +1,257 @@
 package defpackage;
 
-import android.util.Log;
-import com.google.android.gms.cast.MediaError;
-import com.google.android.gms.cast.MediaInfo;
-public final class sg2 extends h69 {
-    public final i69 a;
-    public final j6a b;
-    public final ed1 c;
-    public yg2 d;
-    public int e;
-    public int f;
-    public int g;
-    public int h;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.tgnet.TLObject;
+import org.telegram.ui.ActionBar.d;
+public final class sg2 extends q59 {
+    public final Context c;
+    public final wg2 d;
 
-    public sg2(ed1 ed1Var, j6a j6aVar, i69 i69Var) {
-        this.c = ed1Var;
-        this.b = j6aVar;
-        this.a = i69Var;
+    public sg2(wg2 wg2Var, Context context) {
+        this.d = wg2Var;
+        this.c = context;
     }
 
     @Override
-    public final void a() {
-        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.c.a());
-    }
-
-    @Override
-    public final void b(MediaError mediaError) {
-        int i;
-        StringBuilder sb = new StringBuilder("onMediaError ");
-        sb.append(this.c.a());
-        sb.append(" ");
-        Integer num = mediaError.c;
-        sb.append(num);
-        sb.append(" ");
-        sb.append(mediaError.b);
-        Log.d("CAST_CLIENT", sb.toString());
-        if (num != null) {
-            i = num.intValue();
-        } else {
-            i = -1;
+    public final void A(u69 u69Var) {
+        View view = u69Var.a;
+        if (view instanceof ij6) {
+            ((ij6) view).a();
         }
-        this.e = i;
     }
 
     @Override
-    public final void c() {
-        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.c.a());
+    public final boolean D(defpackage.u69 r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sg2.D(u69):boolean");
+    }
+
+    public final TLObject E(int i) {
+        wg2 wg2Var = this.d;
+        int i2 = wg2Var.E0;
+        if (i >= i2 && i < wg2Var.F0) {
+            return (TLObject) wg2Var.F.get(i - i2);
+        }
+        int i3 = wg2Var.U0;
+        if (i >= i3 && i < wg2Var.V0) {
+            return (TLObject) wg2Var.H.get(i - i3);
+        }
+        int i4 = wg2Var.X0;
+        if (i >= i4 && i < wg2Var.Y0) {
+            return (TLObject) wg2Var.G.get(i - i4);
+        }
+        return null;
     }
 
     @Override
-    public final void d() {
-        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.c.a());
+    public final int b() {
+        return this.d.d1;
     }
 
     @Override
-    public final void e() {
-        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.c.a());
-    }
-
-    @Override
-    public final void f() {
-        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.c.a());
-    }
-
-    @Override
-    public final void g() {
-        Log.d("CAST_CLIENT", "onStatusUpdated " + this.c.a());
-        int b = this.a.b();
-        if (b != this.f) {
-            Log.d("CAST_CLIENT", "idleReason " + b);
-            this.f = b;
-            if (b == 2) {
-                this.b.b(true);
-            } else if (b == 4) {
-                int i = this.e;
-                if (i == 104) {
-                    q(true);
-                } else if (i == 102) {
-                    q(false);
+    public final int d(int i) {
+        wg2 wg2Var = this.d;
+        if (i != wg2Var.z0 && i != wg2Var.A0 && i != wg2Var.v0 && i != wg2Var.t0) {
+            if (i < wg2Var.E0 || i >= wg2Var.F0) {
+                if (i < wg2Var.X0 || i >= wg2Var.Y0) {
+                    if (i < wg2Var.U0 || i >= wg2Var.V0) {
+                        if (i != wg2Var.C0 && i != wg2Var.G0 && i != wg2Var.H0) {
+                            if (i != wg2Var.D0 && i != wg2Var.S && i != wg2Var.N0 && i != wg2Var.s0 && i != wg2Var.p0) {
+                                if (i != wg2Var.b1 && i != wg2Var.P0 && i != wg2Var.R0 && i != wg2Var.u0 && i != wg2Var.y0 && i != wg2Var.K0 && i != wg2Var.M0 && i != wg2Var.j1 && i != wg2Var.o0 && i != wg2Var.r0) {
+                                    if (i == wg2Var.c1) {
+                                        return 4;
+                                    }
+                                    if (i == wg2Var.B0) {
+                                        return 6;
+                                    }
+                                    if (i != wg2Var.g0 && i != wg2Var.h0 && i != wg2Var.m0 && i != wg2Var.i0 && i != wg2Var.j0 && i != wg2Var.T && i != wg2Var.e0 && i != wg2Var.f0 && i != wg2Var.l0 && i != wg2Var.Q0) {
+                                        if (i != wg2Var.Z0 && i != wg2Var.T0 && i != wg2Var.W0 && i != wg2Var.g1) {
+                                            if (i == wg2Var.O0) {
+                                                return 9;
+                                            }
+                                            if (i == wg2Var.a1) {
+                                                return 10;
+                                            }
+                                            if (i == wg2Var.f1) {
+                                                return 11;
+                                            }
+                                            if (i != wg2Var.x0 && i != wg2Var.J0 && i != wg2Var.L0) {
+                                                if (wg2Var.q0(i)) {
+                                                    return 13;
+                                                }
+                                                if (i == wg2Var.U) {
+                                                    return 14;
+                                                }
+                                                if (i == wg2Var.S0) {
+                                                    return 15;
+                                                }
+                                                if (i != wg2Var.h1 && i != wg2Var.i1 && i != wg2Var.n0) {
+                                                    if (i == wg2Var.q0) {
+                                                        return 17;
+                                                    }
+                                                    return 0;
+                                                }
+                                                return 16;
+                                            }
+                                            return 12;
+                                        }
+                                        return 8;
+                                    }
+                                    return 7;
+                                }
+                                return 1;
+                            }
+                            return 5;
+                        }
+                        return 3;
+                    }
+                    return 0;
                 }
+                return 0;
             }
+            return 0;
         }
+        return 2;
     }
 
-    public final void p() {
-        xg2 xg2Var;
-        this.e = -1;
-        if (this.d == null) {
-            this.d = null;
-            return;
-        }
-        String h = vg2.h();
-        if (this.g < this.d.b.size()) {
-            xg2Var = this.d.h(this.g);
-        } else {
-            xg2Var = vg2.l;
-        }
-        gr6 gr6Var = new gr6(new MediaInfo(vg2.i(h, xg2Var.d).concat("?index=" + this.g + "&attempt=" + this.h), 1, xg2Var.a, xg2Var.b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null), null, Boolean.TRUE, -1L, 1.0d, null, null, null, null, null, null, 0L);
-        fre.e("Must be called from the main thread.");
-        i69 i69Var = this.a;
-        if (!i69Var.w()) {
-            i69.t();
-        } else {
-            i69.x(new o9d(i69Var, gr6Var, (byte) 1));
-        }
+    @Override
+    public final void t(defpackage.u69 r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sg2.t(u69, int):void");
     }
 
-    public final void q(boolean z) {
-        if (z) {
-            this.g++;
-        } else {
-            int i = this.h + 1;
-            this.h = i;
-            if (i > 3) {
-                this.h = 0;
-                this.g++;
-            }
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        int i2;
+        boolean z;
+        ylb ylbVar;
+        hla hlaVar;
+        hla hlaVar2;
+        int i3 = 2;
+        int i4 = 0;
+        Context context = this.c;
+        wg2 wg2Var = this.d;
+        switch (i) {
+            case 0:
+                int i5 = wg2Var.O;
+                if (i5 != 0 && i5 != 3) {
+                    i2 = 6;
+                } else {
+                    i2 = 7;
+                }
+                if (i5 == 0 || i5 == 3) {
+                    i3 = 6;
+                }
+                if (wg2Var.e1 == 0) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                ij6 ij6Var = new ij6(this.c, i2, i3, z, null);
+                ij6Var.setDelegate(new rg2(this, (byte) 0));
+                hlaVar2 = ij6Var;
+                hlaVar = hlaVar2;
+                break;
+            case 1:
+                hlaVar = new njb(context);
+                break;
+            case 2:
+                hlaVar = new fj6(context);
+                break;
+            case 3:
+                hlaVar = new bba(context, (hg9) null);
+                break;
+            case 4:
+                njb njbVar = new njb(context);
+                if (wg2Var.s) {
+                    njbVar.setText(jb6.M0(2131747972, null));
+                    hlaVar = njbVar;
+                    break;
+                } else if (wg2Var.w) {
+                    njbVar.setText(jb6.M0(2131747971, null));
+                    hlaVar = njbVar;
+                    break;
+                } else {
+                    njbVar.setText(jb6.M0(2131747970, null));
+                    hlaVar = njbVar;
+                    break;
+                }
+            case 5:
+                jf5 jf5Var = new jf5(this.c, cmb.K6, 21, 11, false, null);
+                jf5Var.setHeight(43);
+                hlaVar2 = jf5Var;
+                hlaVar = hlaVar2;
+                break;
+            case 6:
+                hlaVar = new vkb(context);
+                break;
+            case 7:
+            case 14:
+                hlaVar = new ajb(context);
+                break;
+            case 8:
+                ylbVar = ((d) wg2Var).resourceProvider;
+                View l55Var = new l55(26, ylbVar, context);
+                l55Var.setBackground(null);
+                hlaVar = l55Var;
+                break;
+            case 9:
+            default:
+                hla hlaVar3 = new hla(context, null);
+                hlaVar3.b(wg2Var.p1, null, jb6.M0(2131745039, "SlowmodeOff"), jb6.a0(null, null, 2131745038, 5), jb6.a0(null, null, 2131745038, 10), jb6.a0(null, null, 2131745038, 30), jb6.a0(null, null, 2131745040, 1), jb6.a0(null, null, 2131745040, 5), jb6.a0(null, null, 2131745040, 15), jb6.a0(null, null, 2131745043, 1));
+                hlaVar3.setCallback(new rg2(this, (byte) 1));
+                hlaVar = hlaVar3;
+                break;
+            case 10:
+                hlaVar = new pa6(context, gm.L(40.0f), gm.L(120.0f));
+                break;
+            case 11:
+                tk4 tk4Var = new tk4(context, null);
+                tk4Var.setIsSingleCell(true);
+                tk4Var.setViewType(6);
+                tk4Var.x = false;
+                tk4Var.setUseHeaderOffset(false);
+                tk4Var.setPaddingLeft(gm.L(5.0f));
+                g69 g69Var = new g69(-1, -1);
+                int L = gm.L(12.0f);
+                ((ViewGroup.MarginLayoutParams) g69Var).rightMargin = L;
+                ((ViewGroup.MarginLayoutParams) g69Var).leftMargin = L;
+                ((ViewGroup.MarginLayoutParams) g69Var).topMargin = gm.L(30.0f);
+                tk4Var.setLayoutParams(g69Var);
+                hlaVar = tk4Var;
+                break;
+            case 12:
+                xib xibVar = new xib(23, wg2Var.getResourceProvider(), this.c, false, true);
+                xibVar.w = (byte) 50;
+                hlaVar = xibVar;
+                break;
+            case 13:
+                oh2 oh2Var = new oh2(this.c, 4, 21, false, wg2Var.getResourceProvider());
+                oh2Var.getCheckBoxRound().setDrawBackgroundAsArc(14);
+                oh2Var.getCheckBoxRound().b(cmb.U6, cmb.f7, cmb.j7);
+                oh2Var.setEnabled(true);
+                hlaVar = oh2Var;
+                break;
+            case 15:
+                hla hlaVar4 = new hla(context, null);
+                Drawable[] drawableArr = {wg2Var.getParentActivity().getDrawable(2131231935), wg2Var.getParentActivity().getDrawable(2131231936), wg2Var.getParentActivity().getDrawable(2131231936), wg2Var.getParentActivity().getDrawable(2131231936), wg2Var.getParentActivity().getDrawable(2131231936)};
+                int i6 = wg2Var.s1;
+                if (i6 > 0) {
+                    i4 = i6 - 1;
+                }
+                hlaVar4.b(i4, drawableArr, "1", "2", "3", "4", "5");
+                hlaVar4.setCallback(new rg2(this, (byte) 2));
+                hlaVar2 = hlaVar4;
+                hlaVar = hlaVar2;
+                break;
+            case 16:
+                hlaVar = new bjb(context, wg2Var.getResourceProvider());
+                break;
+            case 17:
+                hlaVar = new jla(context, wg2Var.getResourceProvider());
+                break;
         }
-        Log.e("CAST_CLIENT", "next attempt " + this.e + " " + this.g + " " + this.h);
-        p();
+        return new u69(hlaVar);
     }
 }

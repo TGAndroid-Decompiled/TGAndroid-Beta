@@ -18,9 +18,9 @@ public final class s0 extends ReplacementSpan {
     public s0() {
         this.a = (byte) 0;
         this.b = new Paint(1);
-        tgb tgbVar = new tgb("x50", 13.0f, gl.n1("fonts/num.otf"));
-        this.c = tgbVar;
-        tgbVar.a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        uib uibVar = new uib("x50", 13.0f, gm.n1("fonts/num.otf"));
+        this.c = uibVar;
+        uibVar.a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     @Override
@@ -32,40 +32,40 @@ public final class s0 extends ReplacementSpan {
         switch (b) {
             case 0:
                 float f2 = (i3 + i5) / 2.0f;
-                RectF rectF = gl.P;
-                rectF.set(f, f2 - gl.L(7.66f), ((tgb) obj2).c + f + gl.L(6.66f), gl.L(7.66f) + f2);
+                RectF rectF = gm.P;
+                rectF.set(f, f2 - gm.L(7.66f), ((uib) obj2).c + f + gm.L(6.66f), gm.L(7.66f) + f2);
                 canvas.saveLayerAlpha(rectF, 255, 31);
                 Paint paint2 = (Paint) obj;
                 paint2.setColor(paint.getColor());
-                canvas.drawRoundRect(rectF, gl.L(5.0f), gl.L(5.0f), paint2);
-                ((tgb) obj2).c(f + gl.L(3.33f), f2, 1.0f, -1, canvas);
+                canvas.drawRoundRect(rectF, gm.L(5.0f), gm.L(5.0f), paint2);
+                ((uib) obj2).c(f + gm.L(3.33f), f2, 1.0f, -1, canvas);
                 canvas.restore();
                 return;
             case 1:
-                float N = gl.N(14.66f);
+                float N = gm.N(14.66f);
                 float f3 = (i3 + i5) / 2.0f;
-                RectF rectF2 = gl.P;
+                RectF rectF2 = gm.P;
                 float f4 = N / 2.0f;
-                rectF2.set(f, f3 - f4, ((int) (((tgb) obj2).c + gl.L(10.0f))) + f, f4 + f3);
+                rectF2.set(f, f3 - f4, ((int) (((uib) obj2).c + gm.L(10.0f))) + f, f4 + f3);
                 Paint paint3 = (Paint) obj;
-                int i6 = bkb.y6;
-                paint3.setColor(bkb.p1(0.15f, bkb.w0(null, i6, false)));
-                canvas.drawRoundRect(rectF2, gl.L(4.0f), gl.L(4.0f), paint3);
-                ((tgb) obj2).c(f + gl.L(5.0f), f3, Utilities.i((paint.getAlpha() << 1) / 255.0f, 1.0f, 0.0f), bkb.w0(null, i6, false), canvas);
+                int i6 = cmb.y6;
+                paint3.setColor(cmb.p1(0.15f, cmb.w0(null, i6, false)));
+                canvas.drawRoundRect(rectF2, gm.L(4.0f), gm.L(4.0f), paint3);
+                ((uib) obj2).c(f + gm.L(5.0f), f3, Utilities.i((paint.getAlpha() << 1) / 255.0f, 1.0f, 0.0f), cmb.w0(null, i6, false), canvas);
                 return;
             default:
-                s33 s33Var = (s33) obj;
+                d53 d53Var = (d53) obj;
                 canvas.save();
-                canvas.translate(f + gl.L(4.0f), i4 / 2.0f);
+                canvas.translate(f + gm.L(4.0f), i4 / 2.0f);
                 long uptimeMillis = (SystemClock.uptimeMillis() % 250) + 500;
                 for (int i7 = 0; i7 < 3; i7++) {
                     float min = Math.min(1.0f, ((float) (((i7 * 250) + uptimeMillis) % 750)) / 667.0f);
                     if (min <= 0.425f) {
-                        interpolation = s33Var.getInterpolation(min / 0.425f);
+                        interpolation = d53Var.getInterpolation(min / 0.425f);
                     } else {
-                        interpolation = 1.0f - s33Var.getInterpolation((min - 0.425f) / 0.575f);
+                        interpolation = 1.0f - d53Var.getInterpolation((min - 0.425f) / 0.575f);
                     }
-                    canvas.drawCircle(gl.N((s33Var.getInterpolation(min) * 16.0f) + 1.667f), gl.L(3.0f), gl.N(interpolation * 2.0f), paint);
+                    canvas.drawCircle(gm.N((d53Var.getInterpolation(min) * 16.0f) + 1.667f), gm.L(3.0f), gm.N(interpolation * 2.0f), paint);
                 }
                 canvas.restore();
                 for (View view : (View[]) obj2) {
@@ -79,23 +79,23 @@ public final class s0 extends ReplacementSpan {
     public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
         switch (this.a) {
             case 0:
-                return (int) (((tgb) this.c).c + gl.L(6.66f));
+                return (int) (((uib) this.c).c + gm.L(6.66f));
             case 1:
-                return (int) (((tgb) this.c).c + gl.L(10.0f));
+                return (int) (((uib) this.c).c + gm.L(10.0f));
             default:
-                return gl.L(20.0f);
+                return gm.L(20.0f);
         }
     }
 
     public s0(int i) {
         this.a = (byte) 1;
         this.b = new Paint(1);
-        this.c = new tgb(k96.G(i, "BusinessRepliesMore", new Object[0]), 9.33f, gl.o());
+        this.c = new uib(jb6.G(i, "BusinessRepliesMore", new Object[0]), 9.33f, gm.o());
     }
 
     public s0(View[] viewArr) {
         this.a = (byte) 2;
-        this.b = new s33(0.33d, 0.0d, 0.67d, 1.0d);
+        this.b = new d53(0.33d, 0.0d, 0.67d, 1.0d);
         this.c = viewArr;
     }
 }

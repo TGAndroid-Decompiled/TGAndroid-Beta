@@ -1,56 +1,33 @@
 package defpackage;
+public final class mkc implements Runnable {
+    public final byte a;
+    public final rkc b;
+    public final int c;
 
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.widget.ImageView;
-public final class mkc extends fnc {
-    public final byte E = 0;
-    public final Object F;
-
-    public mkc(voc vocVar, Context context, kbc kbcVar) {
-        super(context, kbcVar, 0);
-        this.F = vocVar;
+    public mkc(rkc rkcVar, int i, byte b) {
+        this.a = b;
+        this.b = rkcVar;
+        this.c = i;
     }
 
     @Override
-    public final void a() {
-        byte b = this.E;
-        Object obj = this.F;
+    public final void run() {
+        byte b = this.a;
+        int i = this.c;
+        rkc rkcVar = this.b;
         switch (b) {
             case 0:
-                nkc nkcVar = (nkc) obj;
-                nkcVar.o = true;
-                setPaused(true);
-                setVisibility(8);
-                nkcVar.a.invalidate();
+                gm.c3(new mkc(rkcVar, i, (byte) 2));
                 return;
-            default:
-                setPaused(true);
-                setVisibility(8);
-                ((voc) obj).a.setVisibility(0);
-                return;
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        switch (this.E) {
             case 1:
-                ImageView imageView = ((voc) this.F).a;
-                super.onSurfaceTextureUpdated(surfaceTexture);
-                if (this.n && imageView.getVisibility() == 0) {
-                    imageView.setVisibility(4);
-                    return;
-                }
+                gm.c3(new mkc(rkcVar, i, (byte) 3));
+                return;
+            case 2:
+                rkcVar.c(i);
                 return;
             default:
-                super.onSurfaceTextureUpdated(surfaceTexture);
+                rkcVar.a(i);
                 return;
         }
-    }
-
-    public mkc(nkc nkcVar, Context context, jkc jkcVar) {
-        super(context, jkcVar, 2);
-        this.F = nkcVar;
     }
 }

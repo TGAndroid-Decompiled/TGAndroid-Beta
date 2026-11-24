@@ -1,42 +1,145 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-public final class o34 {
-    public final String a;
-    public final Enum b;
-    public volatile boolean c;
-    public volatile Enum d;
+import j$.util.Map;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+public final class o34 implements Map, Serializable, j$.util.Map {
+    public static final o34 a = new Object();
 
-    public o34(String str, Enum r2) {
-        this.a = str;
-        this.b = r2;
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
-    public final Enum a() {
-        if (!this.c) {
-            synchronized (this) {
-                if (!this.c) {
-                    SharedPreferences sharedPreferences = j8a.a;
-                    String str = this.a;
-                    Enum r2 = this.b;
-                    String string = sharedPreferences.getString(str, r2.name());
-                    if (string != null) {
-                        try {
-                            r2 = Enum.valueOf(r2.getDeclaringClass(), string);
-                        } catch (IllegalArgumentException unused) {
-                        }
-                    }
-                    this.d = r2;
-                    this.c = true;
-                }
-            }
+    @Override
+    public final Object compute(Object obj, BiFunction biFunction) {
+        return Map.CC.$default$compute(this, obj, biFunction);
+    }
+
+    @Override
+    public final Object computeIfAbsent(Object obj, Function function) {
+        return Map.CC.$default$computeIfAbsent(this, obj, function);
+    }
+
+    @Override
+    public final Object computeIfPresent(Object obj, BiFunction biFunction) {
+        return Map.CC.$default$computeIfPresent(this, obj, biFunction);
+    }
+
+    @Override
+    public final boolean containsKey(Object obj) {
+        return false;
+    }
+
+    @Override
+    public final boolean containsValue(Object obj) {
+        return false;
+    }
+
+    @Override
+    public final Set entrySet() {
+        return q34.a;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if ((obj instanceof java.util.Map) && ((java.util.Map) obj).isEmpty()) {
+            return true;
         }
-        return this.d;
+        return false;
     }
 
-    public final synchronized void b(Enum r3) {
-        this.d = r3;
-        this.c = true;
-        j8a.a.edit().putString(this.a, r3.name()).apply();
+    @Override
+    public final void forEach(BiConsumer biConsumer) {
+        Map.CC.$default$forEach(this, biConsumer);
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        return null;
+    }
+
+    @Override
+    public final Object getOrDefault(Object obj, Object obj2) {
+        return Map.CC.$default$getOrDefault(this, obj, obj2);
+    }
+
+    @Override
+    public final int hashCode() {
+        return 0;
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public final Set keySet() {
+        return q34.a;
+    }
+
+    @Override
+    public final Object merge(Object obj, Object obj2, BiFunction biFunction) {
+        return Map.CC.$default$merge(this, obj, obj2, biFunction);
+    }
+
+    @Override
+    public final Object put(Object obj, Object obj2) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void putAll(java.util.Map map) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final Object putIfAbsent(Object obj, Object obj2) {
+        return Map.CC.$default$putIfAbsent(this, obj, obj2);
+    }
+
+    @Override
+    public final Object remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final Object replace(Object obj, Object obj2) {
+        return Map.CC.$default$replace(this, obj, obj2);
+    }
+
+    @Override
+    public final void replaceAll(BiFunction biFunction) {
+        Map.CC.$default$replaceAll(this, biFunction);
+    }
+
+    @Override
+    public final int size() {
+        return 0;
+    }
+
+    public final String toString() {
+        return "{}";
+    }
+
+    @Override
+    public final Collection values() {
+        return n34.a;
+    }
+
+    @Override
+    public final boolean replace(Object obj, Object obj2, Object obj3) {
+        return Map.CC.$default$replace(this, obj, obj2, obj3);
+    }
+
+    @Override
+    public final boolean remove(Object obj, Object obj2) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

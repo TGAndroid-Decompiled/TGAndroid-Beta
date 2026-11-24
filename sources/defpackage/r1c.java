@@ -1,39 +1,40 @@
 package defpackage;
-public final class r1c {
-    public final a2c a;
-    public final d2c b;
 
-    public r1c(d2c d2cVar, a2c a2cVar) {
-        this.b = d2cVar;
-        this.a = a2cVar;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class r1c extends y59 {
+    public Context c;
+    public View d;
+    public int e;
+
+    public final void D(View view) {
+        if (this.d == view) {
+            return;
+        }
+        this.e++;
+        this.d = view;
+        g(1);
     }
 
-    public final int a() {
-        return this.b.s.w;
+    @Override
+    public final int b() {
+        return 2;
     }
 
-    public final void b(boolean z) {
-        d2c d2cVar = this.b;
-        t1c t1cVar = d2cVar.n;
-        if (z) {
-            w39 adapter = t1cVar.getAdapter();
-            c1b c1bVar = d2cVar.w;
-            if (adapter != c1bVar) {
-                t1cVar.setAdapter(c1bVar);
-            } else {
-                return;
-            }
-        } else {
-            w39 adapter2 = t1cVar.getAdapter();
-            c2c c2cVar = d2cVar.s;
-            if (adapter2 != c2cVar) {
-                t1cVar.setAdapter(c2cVar);
-            } else {
-                return;
-            }
+    @Override
+    public final int d(int i) {
+        if (i == 0) {
+            return 0;
         }
-        if (t1cVar.getAdapter().b() > 0) {
-            d2cVar.r.h1(0, gl.L(58.0f) + (-t1cVar.getPaddingTop()) + d2cVar.F, false);
+        return this.e;
+    }
+
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        if (i == 0) {
+            return new u69(new q1c(this.c, (byte) 0));
         }
+        return new u69(this.d);
     }
 }

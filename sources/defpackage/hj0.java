@@ -1,72 +1,57 @@
 package defpackage;
 
-import android.os.Build;
-import android.text.TextUtils;
-public final class hj0 {
-    public String a = null;
-    public String b = null;
-    public String c = null;
-    public byte d = 0;
-
-    public final hj0 a() {
-        String str;
-        boolean z;
-        if (!TextUtils.isEmpty(this.a)) {
-            if (wmd.c(this.d)) {
-                byte b = this.d;
-                if (b != 0) {
-                    z = wmd.b(b);
-                } else {
-                    z = false;
-                }
-                if (TextUtils.isEmpty(this.c) && !z) {
-                    w26.j("Negative text must be set and non-empty.");
-                    return null;
-                } else if (!TextUtils.isEmpty(this.c) && z) {
-                    w26.j("Negative text must not be set if device credential authentication is allowed.");
-                    return null;
-                } else {
-                    String str2 = this.a;
-                    String str3 = this.b;
-                    String str4 = this.c;
-                    byte b2 = this.d;
-                    ?? obj = new Object();
-                    obj.a = str2;
-                    obj.b = str3;
-                    obj.c = str4;
-                    obj.d = b2;
-                    return obj;
-                }
-            }
-            StringBuilder sb = new StringBuilder("Authenticator combination is unsupported on API ");
-            sb.append(Build.VERSION.SDK_INT);
-            sb.append(": ");
-            byte b3 = this.d;
-            if (b3 != 15) {
-                if (b3 != 255) {
-                    if (b3 != 32768) {
-                        if (b3 != 32783) {
-                            if (b3 != 33023) {
-                                str = String.valueOf((int) b3);
-                            } else {
-                                str = "BIOMETRIC_WEAK | DEVICE_CREDENTIAL";
-                            }
-                        } else {
-                            str = "BIOMETRIC_STRONG | DEVICE_CREDENTIAL";
-                        }
-                    } else {
-                        str = "DEVICE_CREDENTIAL";
-                    }
-                } else {
-                    str = "BIOMETRIC_WEAK";
-                }
-            } else {
-                str = "BIOMETRIC_STRONG";
-            }
-            sb.append(str);
-            throw new IllegalArgumentException(sb.toString());
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Iterator;
+import org.json.JSONObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+public abstract class hj0 {
+    public static void a(HashMap hashMap) {
+        if (!hashMap.isEmpty()) {
+            return;
         }
-        w26.j("Title must be set and non-empty.");
+        try {
+            InputStream open = a.b.getAssets().open("currencies.json");
+            String str = hac.a;
+            JSONObject jSONObject = new JSONObject(new String(i61.b(open), kl1.a));
+            Iterator<String> keys = jSONObject.keys();
+            while (keys.hasNext()) {
+                String next = keys.next();
+                hashMap.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
+            }
+            open.close();
+        } catch (Exception e) {
+            fc4.g(e, true);
+        }
+    }
+
+    public static TLRPC.InputStorePaymentPurpose b(String str) {
+        fc4.b("BillingUtilities.getPurpose " + str);
+        SerializedData serializedData = new SerializedData(Utilities.v(str));
+        gj0 a = gj0.a(serializedData.readInt32(true), serializedData);
+        serializedData.cleanup();
+        if (a.c != null) {
+            fc4.b("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
+            return a.c;
+        }
+        SerializedData serializedData2 = new SerializedData(8);
+        serializedData2.writeInt64(a.b);
+        String f = Utilities.f(serializedData2.toByteArray());
+        serializedData2.cleanup();
+        fc4.b("BillingUtilities.getPurpose: searching purpose under ".concat(f));
+        String string = a.b.getSharedPreferences("purchases", 0).getString(f, null);
+        if (string != null) {
+            fc4.b("BillingUtilities.getPurpose: got {" + string + "} under " + f);
+            SerializedData serializedData3 = new SerializedData(Utilities.v(string));
+            gj0 a2 = gj0.a(serializedData3.readInt32(true), serializedData3);
+            serializedData3.cleanup();
+            return a2.c;
+        }
+        fc4.b("BillingUtilities.getPurpose: purpose under " + f + " not found");
+        zo4.k(kt6.o("no purpose under ", f, " found :("));
         return null;
     }
 }

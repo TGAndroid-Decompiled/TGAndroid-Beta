@@ -1,4 +1,6 @@
 package defpackage;
-public interface eq4 extends fq4 {
-    Object invoke(Object obj, Object obj2);
+
+import java.util.ArrayList;
+public interface eq4 {
+    boolean a(ArrayList arrayList, ArrayList arrayList2);
 }

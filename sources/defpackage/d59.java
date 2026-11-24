@@ -1,80 +1,76 @@
 package defpackage;
 
-import java.lang.ref.Reference;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.concurrent.Semaphore;
-public final class d59 implements Iterator {
-    public int a;
-    public Object b;
-    public final e59 c;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class d59 extends e69 implements vi5 {
+    public final rac a;
+    public final r59 b;
+    public final int c;
+    public final boolean d;
 
-    public d59(e59 e59Var) {
-        this.c = e59Var;
-        this.a = e59Var.b.size();
+    public d59(r59 r59Var, rac racVar, int i, boolean z) {
+        this.b = r59Var;
+        this.a = racVar;
+        this.c = i;
+        this.d = z;
     }
 
     @Override
-    public final boolean hasNext() {
-        Object obj;
-        int i;
-        synchronized (this.c.b) {
-            this.b = null;
-            while (true) {
-                obj = this.b;
-                if (obj != null || (i = this.a) <= 0) {
-                    break;
+    public final void a(ucb ucbVar, RectF rectF) {
+        ucbVar.b = true;
+    }
+
+    @Override
+    public final void d(Rect rect, View view, RecyclerView recyclerView, r69 r69Var) {
+        int b;
+        boolean z;
+        int L;
+        if (((Boolean) this.a.a(view)).booleanValue()) {
+            int i = this.c;
+            rect.right = i;
+            rect.left = i;
+            u69 T = recyclerView.T(view);
+            y59 adapter = recyclerView.getAdapter();
+            if (T != null && adapter != null && (b = T.b()) != -1) {
+                boolean z2 = false;
+                if (b == 0) {
+                    z = true;
+                } else {
+                    z = false;
                 }
-                ArrayList arrayList = this.c.b;
-                int i2 = i - 1;
-                this.a = i2;
-                Reference reference = (Reference) arrayList.get(i2);
-                Object obj2 = reference.get();
-                if (obj2 != null && !this.c.c.contains(reference)) {
-                    this.b = obj2;
-                    obj = obj2;
-                    break;
+                if (b == adapter.b() - 1) {
+                    z2 = true;
                 }
-            }
-            if (obj == null) {
-                e59 e59Var = this.c;
-                if (e59Var.a) {
-                    ArrayList arrayList2 = e59Var.b;
-                    ArrayList arrayList3 = e59Var.d;
-                    ArrayList arrayList4 = e59Var.c;
-                    if (e59Var.e) {
-                        e59Var.e = false;
-                        if (!arrayList4.isEmpty()) {
-                            arrayList2.removeAll(arrayList4);
-                            arrayList4.clear();
-                        }
-                        if (!arrayList3.isEmpty()) {
-                            arrayList2.addAll(arrayList3);
-                            arrayList3.clear();
-                        }
+                if (z) {
+                    if (this.d) {
+                        L = i;
                     } else {
-                        throw new IllegalStateException();
+                        L = gm.L(4.0f);
                     }
+                    rect.top = L;
+                }
+                if (z2) {
+                    rect.bottom = i;
                 }
             }
         }
-        if (this.b == null) {
-            Semaphore semaphore = this.c.f;
-            if (semaphore != null) {
-                semaphore.release();
-            }
-            return false;
-        }
-        return true;
     }
 
     @Override
-    public final Object next() {
-        Object obj = this.b;
-        if (obj != null) {
-            return obj;
+    public final void e(Canvas canvas, RecyclerView recyclerView) {
+        if (recyclerView instanceof r59) {
+            ((r59) recyclerView).Q0(canvas);
         }
-        w26.g();
-        return null;
+    }
+
+    @Override
+    public final void g(Canvas canvas, RectF rectF) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        this.b.Q0(canvas);
+        canvas.restore();
     }
 }

@@ -1,3 +1,4 @@
 package defpackage;
-public final class ngf {
+public interface ngf {
+    void a(ry ryVar);
 }

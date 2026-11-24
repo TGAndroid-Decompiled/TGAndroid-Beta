@@ -1,17 +1,24 @@
 package defpackage;
-public final class h8e implements zn7 {
-    public static final h8e a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)));
+import android.os.Bundle;
+public final class h8e extends p6d {
+    public final hh0 g;
+
+    public h8e(hh0 hh0Var, int i, Bundle bundle) {
+        super(hh0Var, i, bundle);
+        this.g = hh0Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final boolean a() {
+        this.g.o.a(ot2.f);
+        return true;
+    }
+
+    @Override
+    public final void b(ot2 ot2Var) {
+        hh0 hh0Var = this.g;
+        hh0Var.o.a(ot2Var);
+        hh0Var.s(ot2Var);
     }
 }

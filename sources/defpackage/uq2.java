@@ -1,82 +1,69 @@
 package defpackage;
 
-import sun.misc.Unsafe;
-public abstract class uq2 {
-    public static final long a;
-    public static final long b;
-    public static final int c = 0;
-    private volatile Object _next$volatile;
-    private volatile Object _prev$volatile;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class uq2 extends b4 {
+    public static final Parcelable.Creator<uq2> CREATOR = new jid((byte) 6);
+    public final int a;
+    public final int b;
+    public final int c;
+    public final boolean d;
 
-    static {
-        Unsafe unsafe = ex.a;
-        a = unsafe.objectFieldOffset(uq2.class.getDeclaredField("_next$volatile"));
-        b = unsafe.objectFieldOffset(uq2.class.getDeclaredField("_prev$volatile"));
+    public uq2(int i, int i2, int i3, boolean z) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = z;
     }
 
-    public uq2(nv9 nv9Var) {
-        this._prev$volatile = nv9Var;
-    }
-
-    public final void b() {
-        ex.a.putObjectVolatile(this, b, (Object) null);
-    }
-
-    public final uq2 c() {
-        Object objectVolatile = ex.a.getObjectVolatile(this, a);
-        if (objectVolatile == bd3.a) {
-            return null;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof uq2)) {
+            return false;
         }
-        return (uq2) objectVolatile;
+        uq2 uq2Var = (uq2) obj;
+        if (this.a != uq2Var.a || this.b != uq2Var.b || this.c != uq2Var.c || this.d != uq2Var.d) {
+            return false;
+        }
+        return true;
     }
 
-    public abstract boolean d();
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.a), Integer.valueOf(this.b), Integer.valueOf(this.c), Boolean.valueOf(this.d)});
+    }
 
-    public final void e() {
-        uq2 uq2Var;
-        uq2 uq2Var2;
-        Unsafe unsafe;
-        if (c() == null) {
-            return;
-        }
-        while (true) {
-            Unsafe unsafe2 = ex.a;
-            long j = b;
-            uq2 uq2Var3 = (uq2) unsafe2.getObjectVolatile(this, j);
-            while (uq2Var3 != null && uq2Var3.d()) {
-                uq2Var3 = (uq2) ex.a.getObjectVolatile(uq2Var3, j);
-            }
-            uq2 c2 = c();
-            c2.getClass();
-            do {
-                uq2Var = c2;
-                if (!uq2Var.d()) {
-                    break;
-                }
-                c2 = uq2Var.c();
-            } while (c2 != null);
-            while (true) {
-                Object objectVolatile = ex.a.getObjectVolatile(uq2Var, j);
-                if (((uq2) objectVolatile) == null) {
-                    uq2Var2 = null;
-                } else {
-                    uq2Var2 = uq2Var3;
-                }
-                do {
-                    unsafe = ex.a;
-                    if (unsafe.compareAndSwapObject(uq2Var, b, objectVolatile, uq2Var2)) {
-                        break;
-                    }
-                } while (unsafe.getObjectVolatile(uq2Var, j) == objectVolatile);
-            }
-            if (uq2Var3 != null) {
-                unsafe.putObjectVolatile(uq2Var3, a, uq2Var);
-            }
-            if (!uq2Var.d() || uq2Var.c() == null) {
-                if (uq2Var3 == null || !uq2Var3.d()) {
-                    return;
-                }
-            }
-        }
+    public final String toString() {
+        int i = this.a;
+        int length = String.valueOf(i).length();
+        int i2 = this.b;
+        int length2 = String.valueOf(i2).length();
+        int i3 = this.c;
+        int length3 = String.valueOf(i3).length();
+        boolean z = this.d;
+        StringBuilder sb = new StringBuilder(length + 55 + length2 + 19 + length3 + 13 + String.valueOf(z).length() + 1);
+        sb.append("ComplianceOptions{callerProductId=");
+        sb.append(i);
+        sb.append(", dataOwnerProductId=");
+        sb.append(i2);
+        sb.append(", processingReason=");
+        sb.append(i3);
+        sb.append(", isUserData=");
+        sb.append(z);
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        mve.q(parcel, 3, 4);
+        parcel.writeInt(this.c);
+        mve.q(parcel, 4, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        mve.s(parcel, r);
     }
 }

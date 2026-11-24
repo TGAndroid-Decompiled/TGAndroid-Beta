@@ -1,53 +1,47 @@
 package defpackage;
 
-import android.app.Activity;
 import android.content.Context;
-public final class oe implements Runnable {
+import android.content.Intent;
+import android.net.Uri;
+public final class oe implements ee {
     public final byte a;
-    public final hd b;
-    public final Context c;
+    public final Context b;
 
-    public oe(hd hdVar, Context context) {
-        this.a = (byte) 2;
-        this.c = context;
-        this.b = hdVar;
+    public oe(Context context, byte b) {
+        this.a = b;
+        this.b = context;
     }
 
     @Override
-    public final void run() {
+    public final void r(he heVar, int i) {
         byte b = this.a;
-        hd hdVar = this.b;
-        Context context = this.c;
+        Context context = this.b;
         switch (b) {
             case 0:
-                if (hdVar != null) {
-                    hdVar.dismiss();
+                try {
+                    context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
+                    return;
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return;
                 }
-                d01.t(context, k96.M0(2131752883, null));
-                return;
             case 1:
-                if (hdVar != null) {
-                    hdVar.dismiss();
-                }
-                d01.t(context, k96.M0(2131752883, null));
+                l11.u(context, e21.g);
                 return;
+            case 2:
+                try {
+                    context.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
             default:
-                if (!((Activity) context).isFinishing()) {
-                    try {
-                        hdVar.dismiss();
-                        return;
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                        return;
-                    }
+                try {
+                    context.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    return;
+                } catch (Exception unused2) {
+                    return;
                 }
-                return;
         }
-    }
-
-    public oe(hd hdVar, Context context, byte b) {
-        this.a = b;
-        this.b = hdVar;
-        this.c = context;
     }
 }

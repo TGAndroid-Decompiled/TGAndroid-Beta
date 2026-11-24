@@ -1,19 +1,24 @@
 package defpackage;
-public final class e27 {
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public float e;
-    public float f;
-    public float g;
-    public float h;
-    public boolean i;
-    public boolean j;
-    public boolean k;
-    public boolean l;
-    public gb2 m;
-    public float n;
-    public boolean o;
-    public boolean p;
+
+import android.view.CollapsibleActionView;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class e27 extends FrameLayout implements em2 {
+    public final CollapsibleActionView a;
+
+    public e27(View view) {
+        super(view.getContext());
+        this.a = (CollapsibleActionView) view;
+        addView(view);
+    }
+
+    @Override
+    public final void onActionViewCollapsed() {
+        this.a.onActionViewCollapsed();
+    }
+
+    @Override
+    public final void onActionViewExpanded() {
+        this.a.onActionViewExpanded();
+    }
 }

@@ -1,0 +1,75 @@
+package defpackage;
+
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
+import android.view.TextureView;
+public final class y96 implements aq9, TextureView.SurfaceTextureListener {
+    public final bd8 a;
+    public volatile Surface b;
+    public boolean c;
+
+    public y96(bd8 bd8Var) {
+        this.a = bd8Var;
+        bd8Var.setSurfaceTextureListener(this);
+        SurfaceTexture surfaceTexture = bd8Var.getSurfaceTexture();
+        if (surfaceTexture != null) {
+            this.b = new Surface(surfaceTexture);
+        }
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    public final void c(SurfaceTexture surfaceTexture) {
+        if (this.c) {
+            if (surfaceTexture != null) {
+                vo9.I(this, new kg5(surfaceTexture, (byte) 23));
+                return;
+            }
+            return;
+        }
+        this.c = true;
+        Surface surface = this.b;
+        this.b = null;
+        vo9.I(this, new x96(surface, surfaceTexture, (byte) 1));
+    }
+
+    @Override
+    public final Surface getSurface() {
+        return this.b;
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        if (this.c) {
+            return;
+        }
+        this.b = new Surface(surfaceTexture);
+        vo9.I(this, null);
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        if (this.c) {
+            return false;
+        }
+        Surface surface = this.b;
+        this.b = null;
+        vo9.I(this, new x96(surface, surfaceTexture, (byte) 0));
+        return false;
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public final void a(int i, int i2) {
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+    }
+}

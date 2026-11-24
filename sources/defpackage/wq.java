@@ -1,12 +1,20 @@
 package defpackage;
 
-import android.text.StaticLayout;
-import android.text.TextDirectionHeuristic;
-import android.text.TextDirectionHeuristics;
-import android.widget.TextView;
-public class wq extends yq {
-    @Override
-    public void a(StaticLayout.Builder builder, TextView textView) {
-        builder.setTextDirection((TextDirectionHeuristic) zq.e(textView, TextDirectionHeuristics.FIRSTSTRONG_LTR, "getTextDirectionHeuristic"));
+import android.view.View;
+public abstract class wq {
+    public static int a(View view) {
+        return view.getTextAlignment();
+    }
+
+    public static int b(View view) {
+        return view.getTextDirection();
+    }
+
+    public static void c(View view, int i) {
+        view.setTextAlignment(i);
+    }
+
+    public static void d(View view, int i) {
+        view.setTextDirection(i);
     }
 }

@@ -1,28 +1,16 @@
 package defpackage;
 
-import java.io.Serializable;
-public final class hm5 extends m3 implements Serializable {
-    public final Object b;
-    public final Object c;
+import java.util.concurrent.Executor;
+public final class hm5 extends hg7 implements gm5 {
+    public final o94 f;
 
-    public hm5(Object obj, Object obj2) {
-        super((byte) 0, false);
-        this.b = obj;
-        this.c = obj2;
+    public hm5(mi6 mi6Var, Executor executor, o94 o94Var) {
+        super(mi6Var, executor);
+        this.f = o94Var;
     }
 
     @Override
-    public final Object getKey() {
-        return this.b;
-    }
-
-    @Override
-    public final Object getValue() {
-        return this.c;
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public final o94[] a() {
+        return new o94[]{this.f};
     }
 }

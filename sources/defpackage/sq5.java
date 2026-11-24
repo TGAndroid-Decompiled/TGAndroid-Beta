@@ -1,42 +1,57 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class sq5 implements r36 {
-    public final tq5 a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.q;
+public final class sq5 extends wq5 {
+    public ImageReceiver a;
+    public float b;
+    public final q c;
 
-    public sq5(tq5 tq5Var) {
-        this.a = tq5Var;
+    public sq5(q qVar, Context context) {
+        super(context);
+        this.c = qVar;
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        int i;
-        cf1 cf1Var = this.a.a.c.d2;
-        if (cf1Var != null) {
-            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
-            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
-            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
-            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
-            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
-            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            nf1 nf1Var = cf1Var.a;
-            tL_channelAdminLogEvent.user_id = y6c.h(nf1Var.getAccountInstance().a).n;
-            i = ((d) nf1Var).currentAccount;
-            if (new k27(i, tL_channelAdminLogEvent, nf1Var.o0, nf1Var.n0, nf1Var.f, nf1Var.U, true).U >= 0) {
-                nf1Var.N0();
-                nf1Var.F.f();
-                nf1Var.X0();
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        q qVar = this.c;
+        FrameLayout frameLayout = qVar.y;
+        xm9 xm9Var = qVar.x;
+        rq5 rq5Var = qVar.E;
+        super.dispatchDraw(canvas);
+        if (this.a == null) {
+            return;
         }
+        float f = this.b;
+        if (f < 1.0f) {
+            this.b = Math.min(1.0f, f + 0.064f);
+            invalidate();
+        }
+        canvas.save();
+        canvas.translate(rq5Var.getLeft() + frameLayout.getLeft() + xm9Var.getLeft(), rq5Var.getTop() + frameLayout.getTop() + xm9Var.getTop());
+        if (this.a.N0 != rq5Var.getWidth()) {
+            float width = rq5Var.getWidth() / this.a.N0;
+            canvas.scale(width, width);
+        }
+        ImageReceiver imageReceiver = this.a;
+        canvas.translate(-imageReceiver.L0, -imageReceiver.M0);
+        float alpha = this.a.getAlpha();
+        this.a.setAlpha(this.b);
+        this.a.h(canvas, null);
+        this.a.setAlpha(alpha);
+        canvas.restore();
     }
 
     @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-    }
-
-    @Override
-    public final void c(TLObject tLObject) {
+    public final void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.a == null) {
+            this.b = 0.0f;
+        }
+        this.a = imageReceiver;
+        invalidate();
     }
 }

@@ -1,86 +1,138 @@
 package defpackage;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
-public final class rma implements vd3 {
-    public final char a;
-    public int b = 0;
-    public final LinkedList c = new LinkedList();
+import java.util.Arrays;
+public final class rma implements Cloneable {
+    public int[] a;
+    public Object[] b;
+    public int c;
 
-    public rma(char c) {
-        this.a = c;
-    }
-
-    @Override
-    public final void a(ugb ugbVar, ugb ugbVar2, int i) {
-        vd3 vd3Var;
-        LinkedList linkedList = this.c;
-        Iterator it = linkedList.iterator();
+    public rma() {
+        int i;
+        int i2 = 4;
         while (true) {
-            if (it.hasNext()) {
-                vd3Var = (vd3) it.next();
-                if (vd3Var.c() <= i) {
-                    break;
-                }
-            } else {
-                vd3Var = (vd3) linkedList.getFirst();
+            i = 40;
+            if (i2 >= 32) {
                 break;
             }
-        }
-        vd3Var.a(ugbVar, ugbVar2, i);
-    }
-
-    @Override
-    public final char b() {
-        return this.a;
-    }
-
-    @Override
-    public final int c() {
-        return this.b;
-    }
-
-    @Override
-    public final int d(ud3 ud3Var, ud3 ud3Var2) {
-        vd3 vd3Var;
-        int i = ud3Var.g;
-        LinkedList linkedList = this.c;
-        Iterator it = linkedList.iterator();
-        while (true) {
-            if (it.hasNext()) {
-                vd3Var = (vd3) it.next();
-                if (vd3Var.c() <= i) {
-                    break;
-                }
-            } else {
-                vd3Var = (vd3) linkedList.getFirst();
+            int i3 = (1 << i2) - 12;
+            if (40 <= i3) {
+                i = i3;
                 break;
             }
+            i2++;
         }
-        return vd3Var.d(ud3Var, ud3Var2);
+        int i4 = i / 4;
+        this.a = new int[i4];
+        this.b = new Object[i4];
     }
 
-    @Override
-    public final char e() {
-        return this.a;
+    public final void a(int i, Object obj) {
+        int i2 = this.c;
+        if (i2 != 0 && i <= this.a[i2 - 1]) {
+            c(i, obj);
+            return;
+        }
+        if (i2 >= this.a.length) {
+            int i3 = (i2 + 1) << 2;
+            int i4 = 4;
+            while (true) {
+                if (i4 >= 32) {
+                    break;
+                }
+                int i5 = (1 << i4) - 12;
+                if (i3 <= i5) {
+                    i3 = i5;
+                    break;
+                }
+                i4++;
+            }
+            int i6 = i3 / 4;
+            this.a = Arrays.copyOf(this.a, i6);
+            this.b = Arrays.copyOf(this.b, i6);
+        }
+        this.a[i2] = i;
+        this.b[i2] = obj;
+        this.c = i2 + 1;
     }
 
-    public final void f(vd3 vd3Var) {
-        int c = vd3Var.c();
-        LinkedList linkedList = this.c;
-        ListIterator listIterator = linkedList.listIterator();
-        while (listIterator.hasNext()) {
-            int c2 = ((vd3) listIterator.next()).c();
-            if (c > c2) {
-                listIterator.previous();
-                listIterator.add(vd3Var);
+    public final rma clone() {
+        Object clone = super.clone();
+        clone.getClass();
+        rma rmaVar = (rma) clone;
+        rmaVar.a = (int[]) this.a.clone();
+        rmaVar.b = (Object[]) this.b.clone();
+        return rmaVar;
+    }
+
+    public final void c(int i, Object obj) {
+        int a = ir3.a(this.c, i, this.a);
+        if (a >= 0) {
+            this.b[a] = obj;
+            return;
+        }
+        int i2 = ~a;
+        int i3 = this.c;
+        if (i2 < i3) {
+            Object[] objArr = this.b;
+            if (objArr[i2] == bfd.a) {
+                this.a[i2] = i;
+                objArr[i2] = obj;
                 return;
-            } else if (c == c2) {
-                throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.a + "' and minimum length " + c);
             }
         }
-        linkedList.add(vd3Var);
-        this.b = c;
+        if (i3 >= this.a.length) {
+            int i4 = (i3 + 1) << 2;
+            int i5 = 4;
+            while (true) {
+                if (i5 >= 32) {
+                    break;
+                }
+                int i6 = (1 << i5) - 12;
+                if (i4 <= i6) {
+                    i4 = i6;
+                    break;
+                }
+                i5++;
+            }
+            int i7 = i4 / 4;
+            this.a = Arrays.copyOf(this.a, i7);
+            this.b = Arrays.copyOf(this.b, i7);
+        }
+        int i8 = this.c;
+        if (i8 - i2 != 0) {
+            int[] iArr = this.a;
+            int i9 = i2 + 1;
+            tt.b(i9, i2, i8, iArr, iArr);
+            Object[] objArr2 = this.b;
+            tt.c(i9, i2, this.c, objArr2, objArr2);
+        }
+        this.a[i2] = i;
+        this.b[i2] = obj;
+        this.c++;
+    }
+
+    public final String toString() {
+        int i = this.c;
+        if (i <= 0) {
+            return "{}";
+        }
+        StringBuilder sb = new StringBuilder(i * 28);
+        sb.append('{');
+        int i2 = this.c;
+        for (int i3 = 0; i3 < i2; i3++) {
+            if (i3 > 0) {
+                sb.append(", ");
+            }
+            sb.append(this.a[i3]);
+            sb.append('=');
+            Object obj = this.b[i3];
+            if (obj != this) {
+                sb.append(obj);
+            } else {
+                sb.append("(this Map)");
+            }
+        }
+        sb.append('}');
+        return sb.toString();
     }
 }

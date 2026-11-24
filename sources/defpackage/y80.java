@@ -1,35 +1,34 @@
 package defpackage;
+public final class y80 extends tq2 {
+    public final ta0 a;
 
-import java.util.List;
-public final class y80 extends uy2 {
-    public final String a;
-    public final int b;
-    public final List c;
-
-    public y80(String str, int i, List list) {
-        this.a = str;
-        this.b = i;
-        this.c = list;
+    public y80(ta0 ta0Var) {
+        sq2 sq2Var = sq2.a;
+        this.a = ta0Var;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof uy2) {
-            y80 y80Var = (y80) ((uy2) obj);
-            if (this.a.equals(y80Var.a) && this.b == y80Var.b && this.c.equals(y80Var.c)) {
-                return true;
+        if (obj != this) {
+            if (obj instanceof tq2) {
+                if (this.a.equals(((y80) ((tq2) obj)).a)) {
+                    Object obj2 = sq2.a;
+                    if (obj2.equals(obj2)) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b) * 1000003) ^ this.c.hashCode();
+        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ sq2.a.hashCode();
     }
 
     public final String toString() {
-        return "Thread{name=" + this.a + ", importance=" + this.b + ", frames=" + this.c + "}";
+        return "ComplianceData{privacyContext=" + this.a + ", productIdOrigin=" + sq2.a + "}";
     }
 }

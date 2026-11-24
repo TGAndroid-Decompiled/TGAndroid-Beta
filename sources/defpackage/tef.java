@@ -1,38 +1,83 @@
 package defpackage;
-public final class tef implements dgf {
-    public static final tef b = new tef((byte) 0);
-    public final byte a;
 
-    public tef(byte b2) {
-        this.a = b2;
+import java.util.ListIterator;
+public final class tef extends v7c implements ListIterator {
+    public final int b;
+    public int c;
+    public final khf d;
+
+    public tef(khf khfVar, int i) {
+        super((byte) 4);
+        int size = khfVar.size();
+        if (i >= 0 && i <= size) {
+            this.b = size;
+            this.c = i;
+            this.d = khfVar;
+            return;
+        }
+        wa3.i(t4f.c(i, size, "index"));
+        throw null;
+    }
+
+    public final Object a(int i) {
+        return this.d.get(i);
     }
 
     @Override
-    public final sgf zzb(Class cls) {
-        switch (this.a) {
-            case 0:
-                if (vef.class.isAssignableFrom(cls)) {
-                    try {
-                        return (sgf) vef.k(cls.asSubclass(vef.class)).h(3, null);
-                    } catch (Exception e) {
-                        fyb.j("Unable to get message info for ".concat(cls.getName()), e);
-                        return null;
-                    }
-                }
-                w26.j("Unsupported message type: ".concat(cls.getName()));
-                return null;
-            default:
-                throw new IllegalStateException("This should never be called.");
-        }
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final boolean zzc(Class cls) {
-        switch (this.a) {
-            case 0:
-                return vef.class.isAssignableFrom(cls);
-            default:
-                return false;
+    public final boolean hasNext() {
+        if (this.c < this.b) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.c > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i = this.c;
+            this.c = i + 1;
+            return a(i);
+        }
+        u36.g();
+        return null;
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i = this.c - 1;
+            this.c = i;
+            return a(i);
+        }
+        u36.g();
+        return null;
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

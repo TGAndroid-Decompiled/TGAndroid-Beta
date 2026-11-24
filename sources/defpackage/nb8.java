@@ -1,212 +1,197 @@
 package defpackage;
 
-import android.graphics.SurfaceTexture;
-import android.opengl.EGL14;
-import android.opengl.EGLConfig;
-import android.opengl.EGLContext;
-import android.opengl.EGLDisplay;
-import android.opengl.EGLSurface;
-import android.opengl.GLES20;
-import android.opengl.GLU;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Message;
-import java.util.Arrays;
-import java.util.Locale;
-public final class nb8 extends HandlerThread implements Handler.Callback {
-    public hs3 a;
-    public Handler b;
-    public Error c;
-    public RuntimeException d;
-    public ob8 e;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.ui.ActionBar.a;
+public final class nb8 extends View {
+    public final Paint a;
+    public final ho b;
+    public final TextPaint c;
+    public StaticLayout d;
+    public float e;
+    public float f;
+    public final ho h;
+    public String n;
+    public boolean r;
+    public final ln s;
+    public boolean w;
+    public int x;
 
-    public final void a(int i) {
-        boolean z;
+    public nb8(Activity activity) {
+        super(activity);
+        Paint paint = new Paint(1);
+        this.a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.c = textPaint;
+        this.r = false;
+        d53 d53Var = d53.h;
+        this.s = new ln(this, 0L, 350L, d53Var);
+        paint.setColor(2130706432);
+        ho hoVar = new ho(false, true, true);
+        this.b = hoVar;
+        hoVar.n(0.3f, 320L, d53Var);
+        hoVar.u(-1);
+        hoVar.w(gm.L(14.0f));
+        hoVar.x(gm.o());
+        hoVar.setCallback(this);
+        hoVar.t("0", true, true);
+        Point point = gm.q;
+        hoVar.N = point.x;
+        textPaint.setColor(-1);
+        textPaint.setTextSize(gm.L(14.0f));
+        textPaint.setTypeface(gm.o());
+        c();
+        ho hoVar2 = new ho(false, true, true);
+        this.h = hoVar2;
+        hoVar2.n(0.3f, 320L, d53Var);
+        hoVar2.u(-1);
+        hoVar2.w(gm.L(14.0f));
+        hoVar2.x(gm.o());
+        hoVar2.setCallback(this);
+        hoVar2.t("0", true, true);
+        hoVar2.N = point.x;
+    }
+
+    public final void a(int i, int i2) {
+        b(i, i2, true);
+    }
+
+    public final void b(int i, int i2, boolean z) {
+        int i3;
         boolean z2;
-        boolean z3;
-        EGLSurface eglCreatePbufferSurface;
-        boolean z4;
-        this.a.getClass();
-        hs3 hs3Var = this.a;
-        int[] iArr = hs3Var.b;
-        boolean z5 = false;
-        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        if (eglGetDisplay != null) {
-            z = true;
-        } else {
-            z = false;
+        boolean z3 = false;
+        int max = Math.max(0, i);
+        int max2 = Math.max(max, i2);
+        if (jb6.D0().B != null && !TextUtils.equals(this.n, jb6.D0().B.c)) {
+            c();
         }
-        wie.a("eglGetDisplay failed", z);
-        int[] iArr2 = new int[2];
-        wie.a("eglInitialize failed", EGL14.eglInitialize(eglGetDisplay, iArr2, 0, iArr2, 1));
-        hs3Var.c = eglGetDisplay;
-        EGLConfig[] eGLConfigArr = new EGLConfig[1];
-        int[] iArr3 = new int[1];
-        boolean eglChooseConfig = EGL14.eglChooseConfig(eglGetDisplay, hs3.h, 0, eGLConfigArr, 0, 1, iArr3, 0);
-        if (eglChooseConfig && iArr3[0] > 0 && eGLConfigArr[0] != null) {
+        if (jb6.a0) {
+            i3 = max2;
+        } else {
+            i3 = max;
+        }
+        String format = String.format("%d", Integer.valueOf(i3));
+        if (z && !this.w && !jb6.a0) {
             z2 = true;
         } else {
             z2 = false;
         }
-        Object[] objArr = {Boolean.valueOf(eglChooseConfig), Integer.valueOf(iArr3[0]), eGLConfigArr[0]};
-        String str = g8c.a;
-        wie.a(String.format(Locale.US, "eglChooseConfig failed: success=%b, numConfigs[0]=%d, configs[0]=%s", objArr), z2);
-        EGLConfig eGLConfig = eGLConfigArr[0];
-        EGLContext eglCreateContext = EGL14.eglCreateContext(hs3Var.c, eGLConfig, EGL14.EGL_NO_CONTEXT, i == 0 ? new int[]{12440, 2, 12344} : new int[]{12440, 2, 12992, 1, 12344}, 0);
-        if (eglCreateContext != null) {
+        this.b.t(format, z2, true);
+        if (!jb6.a0) {
+            max = max2;
+        }
+        String format2 = String.format("%d", Integer.valueOf(max));
+        if (z && !this.w && !jb6.a0) {
             z3 = true;
-        } else {
-            z3 = false;
         }
-        wie.a("eglCreateContext failed", z3);
-        hs3Var.d = eglCreateContext;
-        EGLDisplay eGLDisplay = hs3Var.c;
-        if (i == 1) {
-            eglCreatePbufferSurface = EGL14.EGL_NO_SURFACE;
-        } else {
-            eglCreatePbufferSurface = EGL14.eglCreatePbufferSurface(eGLDisplay, eGLConfig, i == 2 ? new int[]{12375, 1, 12374, 1, 12992, 1, 12344} : new int[]{12375, 1, 12374, 1, 12344}, 0);
-            if (eglCreatePbufferSurface != null) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            wie.a("eglCreatePbufferSurface failed", z4);
-        }
-        wie.a("eglMakeCurrent failed", EGL14.eglMakeCurrent(eGLDisplay, eglCreatePbufferSurface, eglCreatePbufferSurface, eglCreateContext));
-        hs3Var.e = eglCreatePbufferSurface;
-        GLES20.glGenTextures(1, iArr, 0);
-        StringBuilder sb = new StringBuilder();
-        krd.b(4, "initialCapacity");
-        Object[] objArr2 = new Object[4];
-        boolean z6 = false;
-        int i2 = 0;
-        while (true) {
-            int glGetError = GLES20.glGetError();
-            if (glGetError == 0) {
-                break;
-            }
-            if (z6) {
-                sb.append('\n');
-            }
-            String gluErrorString = GLU.gluErrorString(glGetError);
-            if (gluErrorString == null) {
-                gluErrorString = "error code: 0x" + Integer.toHexString(glGetError);
-            }
-            sb.append("glError: ");
-            sb.append(gluErrorString);
-            Integer valueOf = Integer.valueOf(glGetError);
-            int i3 = i2 + 1;
-            int b = fm5.b(objArr2.length, i3);
-            if (b > objArr2.length) {
-                objArr2 = Arrays.copyOf(objArr2, b);
-            }
-            objArr2[i2] = valueOf;
-            i2 = i3;
-            z6 = true;
-        }
-        if (!z6) {
-            SurfaceTexture surfaceTexture = new SurfaceTexture(iArr[0]);
-            hs3Var.f = surfaceTexture;
-            surfaceTexture.setOnFrameAvailableListener(hs3Var);
-            SurfaceTexture surfaceTexture2 = this.a.f;
-            surfaceTexture2.getClass();
-            if (i != 0) {
-                z5 = true;
-            }
-            this.e = new ob8(this, surfaceTexture2, z5);
-            return;
-        }
-        throw new bw4(sb.toString(), mm5.o(i2, objArr2));
+        this.h.t(format2, z3, true);
+        this.w = !z;
     }
 
-    public final void b() {
-        this.a.getClass();
-        hs3 hs3Var = this.a;
-        hs3Var.a.removeCallbacks(hs3Var);
-        try {
-            SurfaceTexture surfaceTexture = hs3Var.f;
-            if (surfaceTexture != null) {
-                surfaceTexture.release();
-                GLES20.glDeleteTextures(1, hs3Var.b, 0);
+    public final void c() {
+        this.n = jb6.D0().B.c;
+        StaticLayout staticLayout = new StaticLayout(jb6.M0(2131747562, null).replace("%1$d", "").replace("%2$d", ""), this.c, gm.L(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.d = staticLayout;
+        if (staticLayout.getLineCount() >= 1) {
+            this.e = this.d.getLineWidth(0);
+            this.f = this.d.getLineDescent(0);
+            return;
+        }
+        this.e = 0.0f;
+        this.f = 0.0f;
+    }
+
+    public final void d(boolean z, boolean z2) {
+        float f;
+        if (this.r != z) {
+            this.r = z;
+            if (!z) {
+                this.w = true;
             }
-        } finally {
-            EGLDisplay eGLDisplay = hs3Var.c;
-            if (eGLDisplay != null && !eGLDisplay.equals(EGL14.EGL_NO_DISPLAY)) {
-                EGLDisplay eGLDisplay2 = hs3Var.c;
-                EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
-                EGL14.eglMakeCurrent(eGLDisplay2, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
+            if (!z2) {
+                if (z) {
+                    f = 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+                this.s.e(true, f);
             }
-            EGLSurface eGLSurface2 = hs3Var.e;
-            if (eGLSurface2 != null && !eGLSurface2.equals(EGL14.EGL_NO_SURFACE)) {
-                EGL14.eglDestroySurface(hs3Var.c, hs3Var.e);
-            }
-            EGLContext eGLContext = hs3Var.d;
-            if (eGLContext != null) {
-                EGL14.eglDestroyContext(hs3Var.c, eGLContext);
-            }
-            EGL14.eglReleaseThread();
-            EGLDisplay eGLDisplay3 = hs3Var.c;
-            if (eGLDisplay3 != null && !eGLDisplay3.equals(EGL14.EGL_NO_DISPLAY)) {
-                EGL14.eglTerminate(hs3Var.c);
-            }
-            hs3Var.c = null;
-            hs3Var.d = null;
-            hs3Var.e = null;
-            hs3Var.f = null;
+            invalidate();
         }
     }
 
     @Override
-    public final boolean handleMessage(Message message) {
-        int i = message.what;
-        try {
-            if (i != 1) {
-                if (i == 2) {
-                    try {
-                        b();
-                    } finally {
-                        try {
-                            return true;
-                        } finally {
-                        }
-                    }
-                    return true;
-                }
-            } else {
-                try {
-                    try {
-                        a(message.arg1);
-                        synchronized (this) {
-                            notify();
-                        }
-                        return true;
-                    } catch (bw4 e) {
-                        lad.d("PlaceholderSurface", "Failed to initialize placeholder surface", e);
-                        this.d = new IllegalStateException(e);
-                        synchronized (this) {
-                            notify();
-                        }
-                    }
-                } catch (Error e2) {
-                    lad.d("PlaceholderSurface", "Failed to initialize placeholder surface", e2);
-                    this.c = e2;
-                    synchronized (this) {
-                        notify();
-                    }
-                } catch (RuntimeException e3) {
-                    lad.d("PlaceholderSurface", "Failed to initialize placeholder surface", e3);
-                    this.d = e3;
-                    synchronized (this) {
-                        notify();
-                    }
-                }
-            }
-            return true;
-        } catch (Throwable th) {
-            synchronized (this) {
-                notify();
-                throw th;
-            }
+    public final boolean isShown() {
+        return this.r;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        super.onDraw(canvas);
+        if (this.r) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
         }
+        float e = this.s.e(false, f);
+        if (e <= 0.0f) {
+            return;
+        }
+        ho hoVar = this.b;
+        float c = hoVar.c() + this.e;
+        ho hoVar2 = this.h;
+        float c2 = hoVar2.c() + c + gm.L(18.0f);
+        float f2 = ((1.0f - e) * (-gm.L(8.0f))) + this.x;
+        RectF rectF = gm.P;
+        rectF.set((getWidth() - c2) / 2.0f, gm.N(10.0f) + f2, (getWidth() + c2) / 2.0f, gm.N(33.0f) + f2);
+        Paint paint = this.a;
+        int alpha = paint.getAlpha();
+        paint.setAlpha((int) (alpha * e));
+        canvas.drawRoundRect(rectF, gm.N(12.0f), gm.N(12.0f), paint);
+        paint.setAlpha(alpha);
+        canvas.save();
+        canvas.translate(((getWidth() - c2) / 2.0f) + gm.L(9.0f), f2 + gm.L(9.5f));
+        hoVar.setBounds(0, 0, (int) hoVar.c(), gm.L(23.0f));
+        int i = (int) (e * 255.0f);
+        hoVar.C = i;
+        hoVar.draw(canvas);
+        canvas.translate(hoVar.c(), 0.0f);
+        canvas.save();
+        canvas.translate((-(this.d.getWidth() - this.e)) / 2.0f, ((this.f / 2.0f) + (gm.L(23.0f) - this.d.getHeight())) / 2.0f);
+        this.c.setAlpha(i);
+        this.d.draw(canvas);
+        canvas.restore();
+        canvas.translate(this.e, 0.0f);
+        hoVar2.setBounds(0, 0, (int) hoVar2.c(), gm.L(23.0f));
+        hoVar2.C = i;
+        hoVar2.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        this.x = a.getCurrentActionBarHeight() + gm.m;
+        this.b.N = size;
+        this.h.N = size;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), wi8.E(43.0f, this.x, 1073741824));
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

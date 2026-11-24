@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class cdf {
+
+import android.os.IInterface;
+public interface cdf extends IInterface {
 }

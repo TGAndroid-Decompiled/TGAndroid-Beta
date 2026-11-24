@@ -1,102 +1,79 @@
 package defpackage;
 
-import android.media.session.PlaybackState;
-import android.os.Bundle;
-import java.util.List;
-public abstract class ac8 {
-    public static void a(PlaybackState.Builder builder, PlaybackState.CustomAction customAction) {
-        builder.addCustomAction(customAction);
+import android.webkit.JavascriptInterface;
+public final class ac8 {
+    public final ya8 a;
+
+    public ac8(ya8 ya8Var) {
+        this.a = ya8Var;
     }
 
-    public static PlaybackState.CustomAction b(PlaybackState.CustomAction.Builder builder) {
-        return builder.build();
+    @JavascriptInterface
+    public void onPlayerError(String str) {
+        gm.c3(new ge7(this, Integer.parseInt(str), (byte) 6));
     }
 
-    public static PlaybackState c(PlaybackState.Builder builder) {
-        return builder.build();
+    @JavascriptInterface
+    public void onPlayerLoaded() {
+        gm.c3(new yb8(this, (byte) 0));
     }
 
-    public static PlaybackState.Builder d() {
-        return new PlaybackState.Builder();
+    @JavascriptInterface
+    public void onPlayerNotifyBufferedPosition(float f) {
+        this.a.K = f;
     }
 
-    public static PlaybackState.CustomAction.Builder e(String str, CharSequence charSequence, int i) {
-        return new PlaybackState.CustomAction.Builder(str, charSequence, i);
+    @JavascriptInterface
+    public void onPlayerNotifyCurrentPosition(int i) {
+        this.a.J = i * 1000;
     }
 
-    public static String f(PlaybackState.CustomAction customAction) {
-        return customAction.getAction();
+    @JavascriptInterface
+    public void onPlayerNotifyDuration(int i) {
+        ya8 ya8Var = this.a;
+        ya8Var.I = i * 1000;
+        String str = ya8Var.s;
+        if (str != null) {
+            ya8Var.g(str);
+            ya8Var.s = null;
+        }
     }
 
-    public static long g(PlaybackState playbackState) {
-        return playbackState.getActions();
-    }
-
-    public static long h(PlaybackState playbackState) {
-        return playbackState.getActiveQueueItemId();
-    }
-
-    public static long i(PlaybackState playbackState) {
-        return playbackState.getBufferedPosition();
-    }
-
-    public static List<PlaybackState.CustomAction> j(PlaybackState playbackState) {
-        return playbackState.getCustomActions();
-    }
-
-    public static CharSequence k(PlaybackState playbackState) {
-        return playbackState.getErrorMessage();
-    }
-
-    public static Bundle l(PlaybackState.CustomAction customAction) {
-        return customAction.getExtras();
-    }
-
-    public static int m(PlaybackState.CustomAction customAction) {
-        return customAction.getIcon();
-    }
-
-    public static long n(PlaybackState playbackState) {
-        return playbackState.getLastPositionUpdateTime();
-    }
-
-    public static CharSequence o(PlaybackState.CustomAction customAction) {
-        return customAction.getName();
-    }
-
-    public static float p(PlaybackState playbackState) {
-        return playbackState.getPlaybackSpeed();
-    }
-
-    public static long q(PlaybackState playbackState) {
-        return playbackState.getPosition();
-    }
-
-    public static int r(PlaybackState playbackState) {
-        return playbackState.getState();
-    }
-
-    public static void s(PlaybackState.Builder builder, long j) {
-        builder.setActions(j);
-    }
-
-    public static void t(PlaybackState.Builder builder, long j) {
-        builder.setActiveQueueItemId(j);
-    }
-
-    public static void u(PlaybackState.Builder builder, long j) {
-        builder.setBufferedPosition(j);
-    }
-
-    public static void v(PlaybackState.Builder builder, CharSequence charSequence) {
-        builder.setErrorMessage(charSequence);
-    }
-
-    public static void w(PlaybackState.CustomAction.Builder builder, Bundle bundle) {
-        builder.setExtras(bundle);
-    }
-
-    public static void x(PlaybackState.Builder builder, int i, long j, float f, long j2) {
-        builder.setState(i, j, f, j2);
+    @JavascriptInterface
+    public void onPlayerStateChange(String str) {
+        boolean z;
+        int i;
+        int parseInt = Integer.parseInt(str);
+        ya8 ya8Var = this.a;
+        boolean z2 = ya8Var.H;
+        boolean z3 = false;
+        if (parseInt != 1 && parseInt != 3) {
+            z = false;
+        } else {
+            z = true;
+        }
+        ya8Var.H = z;
+        ya8Var.a(z2);
+        if (parseInt != 0) {
+            if (parseInt != 1) {
+                i = 2;
+                if (parseInt != 2) {
+                    if (parseInt != 3) {
+                        i = 1;
+                    }
+                } else {
+                    i = 3;
+                }
+            } else {
+                i = 3;
+            }
+            z3 = true;
+        } else {
+            i = 4;
+        }
+        if (i == 3 && ya8Var.h.getVisibility() != 4) {
+            gm.d3(new yb8(this, (byte) 1), 300L);
+        }
+        gm.c3(new sr6(this, z3, i, (byte) 1));
     }
 }

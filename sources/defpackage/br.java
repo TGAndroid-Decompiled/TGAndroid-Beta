@@ -1,66 +1,55 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.view.View;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-public final class br implements View.OnClickListener {
-    public final View a;
-    public final String b;
-    public Method c;
-    public Context d;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.PopupWindow;
+public final class br implements PopupWindow.OnDismissListener {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public br(View view, String str) {
-        this.a = view;
-        this.b = str;
+    public br(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
     }
 
     @Override
-    public final void onClick(View view) {
-        int id;
-        String str;
-        Method method;
-        Method method2 = this.c;
-        if (method2 == null) {
-            View view2 = this.a;
-            Context context = view2.getContext();
-            while (true) {
-                String str2 = this.b;
-                if (context != null) {
-                    try {
-                        if (!context.isRestricted() && (method = context.getClass().getMethod(str2, View.class)) != null) {
-                            this.c = method;
-                            this.d = context;
-                            method2 = method;
-                            break;
-                        }
-                    } catch (NoSuchMethodException unused) {
-                    }
-                    if (context instanceof ContextWrapper) {
-                        context = ((ContextWrapper) context).getBaseContext();
-                    } else {
-                        context = null;
-                    }
-                } else {
-                    if (view2.getId() == -1) {
-                        str = "";
-                    } else {
-                        str = " with id '" + view2.getContext().getResources().getResourceEntryName(id) + "'";
-                    }
-                    StringBuilder p = ug8.p("Could not find method ", str2, "(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
-                    p.append(view2.getClass());
-                    p.append(str);
-                    throw new IllegalStateException(p.toString());
+    public final void onDismiss() {
+        View view;
+        byte b = this.a;
+        Object obj = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                ViewTreeObserver viewTreeObserver = ((cr) obj2).X.getViewTreeObserver();
+                if (viewTreeObserver != null) {
+                    viewTreeObserver.removeGlobalOnLayoutListener((uq) obj);
+                    return;
                 }
-            }
-        }
-        try {
-            method2.invoke(this.d, view);
-        } catch (IllegalAccessException e) {
-            k93.h("Could not execute non-public method for android:onClick", e);
-        } catch (InvocationTargetException e2) {
-            k93.h("Could not execute method for android:onClick", e2);
+                return;
+            default:
+                bu5 bu5Var = (bu5) obj2;
+                bu5Var.m = null;
+                bu5Var.v((ViewGroup) obj);
+                View view2 = bu5Var.s0;
+                if (view2 != null) {
+                    view2.setPressed(false);
+                    bu5Var.s0 = null;
+                }
+                if (bu5Var.r0 != null && (view = bu5Var.f) != null) {
+                    view.setOnTouchListener(null);
+                }
+                bu5Var.r0 = null;
+                bu5Var.O();
+                Runnable runnable = bu5Var.p;
+                if (runnable != null) {
+                    runnable.run();
+                    bu5Var.p = null;
+                    return;
+                }
+                return;
         }
     }
 }

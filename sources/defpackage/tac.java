@@ -1,4 +1,6 @@
 package defpackage;
+
+import org.telegram.tgnet.TLObject;
 public interface tac {
-    public static final w59 a = mm5.u(new eef((byte) 28));
+    void g(int i, TLObject tLObject);
 }

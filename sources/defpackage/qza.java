@@ -1,42 +1,36 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class qza extends b4c {
-    public static final int b = 0;
+import android.os.Bundle;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ProfileActivity;
+public final class qza {
+    public TLRPC.User a;
+    public String b;
 
-    static {
-        b4c.h(new b4c());
+    public static TLRPC.User a(ArrayList arrayList, long j) {
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            TLRPC.User user = (TLRPC.User) obj;
+            if (user.id == j) {
+                return user;
+            }
+        }
+        return null;
     }
 
-    @Override
-    public final void a(o39 o39Var, View view, c4c c4cVar) {
-        boolean z;
-        rza rzaVar = (rza) view;
-        boolean z2 = false;
-        if (c4cVar != null && c4cVar.e) {
-            z = true;
-        } else {
-            z = false;
-        }
-        rzaVar.b(z, true);
-        if ((o39Var instanceof q5c) && ((q5c) o39Var).k3) {
-            z2 = true;
-        }
-        rzaVar.c(z2);
+    public final void b(d dVar) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", this.a.id);
+        oc7.r1(z8c.t0).c4(this.a, false, false);
+        dVar.presentFragment(new ProfileActivity(bundle, null));
     }
 
-    @Override
-    public final void b(android.view.View r4, defpackage.c4c r5, boolean r6, defpackage.l5c r7, defpackage.q5c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qza.b(android.view.View, c4c, boolean, l5c, q5c):void");
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        rza rzaVar = new rza(context, 1);
-        if (o39Var instanceof q5c) {
-            rzaVar.setOnReorderButtonTouchListener(new f8((q5c) o39Var, rzaVar, (byte) 7));
-        }
-        return rzaVar;
+    public final void c(final org.telegram.tgnet.TLRPC.ChatFull r17, final defpackage.xza r18, final defpackage.he[] r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qza.c(org.telegram.tgnet.TLRPC$ChatFull, xza, he[], boolean):void");
     }
 }

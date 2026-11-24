@@ -1,12 +1,6 @@
 package defpackage;
-public final class jfe {
-    public final Long a;
-    public final bhe b;
-    public final Boolean c;
-
-    public jfe(rod rodVar) {
-        this.a = (Long) rodVar.b;
-        this.b = (bhe) rodVar.c;
-        this.c = (Boolean) rodVar.d;
+public abstract class jfe {
+    public static defpackage.sn4 a(android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jfe.a(android.content.Context):sn4");
     }
 }

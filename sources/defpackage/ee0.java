@@ -1,93 +1,162 @@
 package defpackage;
 
-import android.os.SystemClock;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-import java.util.TimeZone;
-public final class ee0 {
-    public int a;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.animation.DecelerateInterpolator;
+public final class ee0 extends Drawable {
+    public final Paint a;
     public boolean b;
-    public final Serializable c;
-    public final Serializable d;
-    public final Object e;
-    public Object f;
+    public long c;
+    public float d;
+    public float e;
+    public int f;
+    public final boolean g;
+    public final DecelerateInterpolator h;
+    public int i;
+    public int j;
+    public float k;
+    public short l;
 
-    public ee0(fi2 fi2Var, byte[] bArr) {
-        this.f = fi2Var;
-        this.a = fi2Var.e;
-        this.c = fi2Var.d;
-        this.d = fi2Var.f;
-        ?? obj = new Object();
-        obj.a = 0L;
-        obj.b = 0L;
-        obj.c = 0;
-        if (yce.a == null) {
-            synchronized (j5e.a) {
-                if (yce.a == null) {
-                    yce.a = new yce[0];
+    public ee0(boolean z) {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        Paint paint2 = new Paint(1);
+        this.h = new DecelerateInterpolator();
+        this.i = -1;
+        this.j = -9079435;
+        this.k = 300.0f;
+        paint.setStrokeWidth(gm.L(2.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(gm.L(2.0f));
+        paint2.setColor(-65536);
+        this.g = z;
+    }
+
+    public final void a(int i) {
+        this.i = i;
+        invalidateSelf();
+    }
+
+    public final void b(int i) {
+        this.j = i;
+        invalidateSelf();
+    }
+
+    public final void c(boolean z, float f) {
+        this.c = 0L;
+        float f2 = this.e;
+        if (f2 == 1.0f) {
+            this.b = true;
+        } else if (f2 == 0.0f) {
+            this.b = false;
+        }
+        this.c = 0L;
+        if (z) {
+            int i = (f2 > f ? 1 : (f2 == f ? 0 : -1));
+            float f3 = this.k;
+            if (i < 0) {
+                this.f = (int) (f2 * f3);
+            } else {
+                this.f = (int) ((1.0f - f2) * f3);
+            }
+            this.c = System.currentTimeMillis();
+            this.d = f;
+        } else {
+            this.e = f;
+            this.d = f;
+        }
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i;
+        int i2;
+        if (this.e != this.d) {
+            if (this.c != 0) {
+                int currentTimeMillis = this.f + ((int) (System.currentTimeMillis() - this.c));
+                this.f = currentTimeMillis;
+                float f = currentTimeMillis;
+                float f2 = this.k;
+                if (f >= f2) {
+                    this.e = this.d;
+                } else {
+                    int i3 = (this.e > this.d ? 1 : (this.e == this.d ? 0 : -1));
+                    DecelerateInterpolator decelerateInterpolator = this.h;
+                    float f3 = f / f2;
+                    if (i3 < 0) {
+                        this.e = decelerateInterpolator.getInterpolation(f3) * this.d;
+                    } else {
+                        this.e = 1.0f - decelerateInterpolator.getInterpolation(f3);
+                    }
                 }
             }
+            this.c = System.currentTimeMillis();
+            invalidateSelf();
         }
-        obj.d = yce.a;
-        byte[] bArr2 = wed.b;
-        obj.e = bArr2;
-        obj.f = bArr2;
-        obj.h = "";
-        obj.n = "";
-        obj.r = "";
-        obj.s = 180000L;
-        obj.w = bArr2;
-        obj.x = "";
-        obj.y = wed.a;
-        obj.E = false;
-        this.e = obj;
-        this.b = false;
-        obj.E = g5d.a(fi2Var.a);
-        fi2Var.h.getClass();
-        obj.a = System.currentTimeMillis();
-        fi2Var.h.getClass();
-        obj.b = SystemClock.elapsedRealtime();
-        obj.s = TimeZone.getDefault().getOffset(obj.a) / 1000;
-        obj.f = bArr;
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ee0.a():void");
-    }
-
-    public final Object b() {
-        ArrayList arrayList = (ArrayList) this.d;
-        if (((ArrayList) this.c).isEmpty()) {
-            return null;
+        int f4 = on2.f(this.e, this.i, this.j);
+        Paint paint = this.a;
+        paint.setColor(f4);
+        canvas.save();
+        canvas.translate(gm.L(24.0f) / 2.0f, gm.L(24.0f) / 2.0f);
+        short s = this.l;
+        if (s != 0) {
+            canvas.rotate(s);
         }
-        Object obj = this.f;
-        if (this.a >= arrayList.size()) {
-            if (this.b) {
-                Collections.shuffle(arrayList, (Random) this.e);
-                this.a = 0;
+        float f5 = this.e;
+        canvas.translate(-gm.L(0.66f), 0.0f);
+        float f6 = this.e;
+        boolean z = this.b;
+        if (!this.g) {
+            if (z) {
+                i2 = -225;
             } else {
-                this.a = 0;
+                i2 = 135;
             }
+            canvas.rotate(f6 * i2);
+        } else {
+            if (z) {
+                i = -180;
+            } else {
+                i = 180;
+            }
+            canvas.rotate((f6 * i) + 135.0f);
+            f5 = 1.0f;
         }
-        int i = this.a;
-        this.a = i + 1;
-        this.f = arrayList.get(i);
-        return obj;
+        float f7 = 1.0f - f5;
+        canvas.drawLine(gm.L(gm.R1(-6.75f, -8.0f, f5)), 0.0f, gm.L(8.0f) - ((paint.getStrokeWidth() / 2.0f) * f7), 0.0f, paint);
+        float L = gm.L(-0.25f);
+        float L2 = gm.L(gm.R1(7.0f, 8.0f, f5)) - ((paint.getStrokeWidth() / 4.0f) * f7);
+        float L3 = gm.L(gm.R1(-7.25f, 0.0f, f5));
+        canvas.drawLine(L3, -L, 0.0f, -L2, paint);
+        canvas.drawLine(L3, L, 0.0f, L2, paint);
+        canvas.restore();
     }
 
-    public ee0(ArrayList arrayList) {
-        this.b = true;
-        ArrayList arrayList2 = new ArrayList(arrayList == null ? new ArrayList() : arrayList);
-        this.c = arrayList2;
-        ArrayList arrayList3 = new ArrayList(arrayList2);
-        this.d = arrayList3;
-        this.a = 0;
-        Random random = new Random();
-        this.e = random;
-        Collections.shuffle(arrayList3, random);
-        this.a = 0;
-        b();
+    @Override
+    public final int getIntrinsicHeight() {
+        return gm.L(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return gm.L(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.a.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
     }
 }

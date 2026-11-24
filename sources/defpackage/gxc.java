@@ -1,15 +1,15 @@
 package defpackage;
-
-import android.os.Build;
-import android.view.animation.Interpolator;
 public final class gxc {
-    public fxc a;
+    public static void b() {
+        throw new UnsupportedOperationException();
+    }
 
-    public gxc(int i, Interpolator interpolator, long j) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            this.a = new exc(bc3.b(i, interpolator, j));
-        } else {
-            this.a = new fxc(i, interpolator, j);
-        }
+    public static void c(int i, StringBuilder sb) {
+        sb.append(i);
+        throw new IllegalArgumentException(sb.toString());
+    }
+
+    public static void d(String str) {
+        throw new NullPointerException(str);
     }
 }

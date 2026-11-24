@@ -1,34 +1,12 @@
 package defpackage;
 
-import org.telegram.messenger.LocationSharingService;
-import org.telegram.messenger.Utilities;
-public final class nb6 implements Runnable {
-    public final byte a;
-    public final LocationSharingService b;
+import java.util.Locale;
+public interface nb6 {
+    String a();
 
-    public nb6(LocationSharingService locationSharingService, byte b) {
-        this.a = b;
-        this.b = locationSharingService;
-    }
+    Object b();
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        LocationSharingService locationSharingService = this.b;
-        switch (b) {
-            case 0:
-                int i = LocationSharingService.d;
-                locationSharingService.b.postDelayed(locationSharingService.c, 1000L);
-                Utilities.d.c(new ql3((byte) 25));
-                return;
-            default:
-                if (LocationSharingService.a().isEmpty()) {
-                    locationSharingService.stopSelf();
-                    return;
-                } else {
-                    locationSharingService.c(true);
-                    return;
-                }
-        }
-    }
+    Locale get(int i);
+
+    int size();
 }

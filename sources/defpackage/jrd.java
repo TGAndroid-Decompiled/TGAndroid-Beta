@@ -1,20 +1,17 @@
 package defpackage;
+public final class jrd implements cq7 {
+    public static final jrd a = new Object();
 
-import android.net.Uri;
-public abstract class jrd {
-    public static Uri a(Uri uri) {
-        if (uri.isHierarchical() && uri.getQueryParameter("CMCD") != null) {
-            Uri.Builder buildUpon = uri.buildUpon();
-            buildUpon.clearQuery();
-            for (String str : uri.getQueryParameterNames()) {
-                if (!str.equals("CMCD")) {
-                    for (String str2 : uri.getQueryParameters(str)) {
-                        buildUpon.appendQueryParameter(str, str2);
-                    }
-                }
-            }
-            return buildUpon.build();
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        return uri;
+        throw new ClassCastException();
     }
 }

@@ -1,28 +1,17 @@
 package defpackage;
-public abstract class eze {
-    public static xye a;
+public final class eze implements cq7 {
+    public static final eze a = new Object();
 
-    public static synchronized sxe a(hwe hweVar) {
-        sxe sxeVar;
-        synchronized (eze.class) {
-            xye xyeVar = a;
-            if (xyeVar == null) {
-                xyeVar = new xye((byte) 0);
-                a = xyeVar;
-            }
-            sxeVar = (sxe) xyeVar.c(hweVar);
-        }
-        return sxeVar;
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)), 5)), 6)));
     }
 
-    public static void b(int i, Object[] objArr) {
-        for (int i2 = 0; i2 < i; i2++) {
-            if (objArr[i2] == null) {
-                StringBuilder sb = new StringBuilder(String.valueOf(i2).length() + 9);
-                sb.append("at index ");
-                sb.append(i2);
-                throw new NullPointerException(sb.toString());
-            }
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

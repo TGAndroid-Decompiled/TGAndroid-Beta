@@ -1,4 +1,17 @@
 package defpackage;
-public abstract class noe {
-    public static Boolean a;
+public final class noe implements cq7 {
+    public static final noe a = new Object();
+
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

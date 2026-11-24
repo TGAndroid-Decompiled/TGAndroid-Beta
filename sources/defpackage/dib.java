@@ -1,28 +1,34 @@
 package defpackage;
+public final class dib extends aib {
+    public final Runnable c;
 
-import android.view.Menu;
-public final class dib implements zw5, yw5 {
-    public final dt3 a;
-    public final Menu b;
-
-    public dib(dt3 dt3Var, Menu menu) {
-        this.a = dt3Var;
-        this.b = menu;
+    public dib(long j, boolean z, Runnable runnable) {
+        super(j, z);
+        this.c = runnable;
     }
 
     @Override
-    public final void a(String str) {
-        dt3 dt3Var = this.a;
-        dt3Var.b = str;
-        dt3Var.b(this.b);
+    public final void run() {
+        this.c.run();
     }
 
-    @Override
-    public final void n(Exception exc) {
-        fa4.d("mlkit: failed to detect language in selection");
-        fa4.g(exc, true);
-        dt3 dt3Var = this.a;
-        dt3Var.b = null;
-        dt3Var.b(this.b);
+    public final String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder("Task[");
+        Runnable runnable = this.c;
+        sb.append(runnable.getClass().getSimpleName());
+        sb.append('@');
+        sb.append(ea3.a(runnable));
+        sb.append(", ");
+        sb.append(this.a);
+        sb.append(", ");
+        if (this.b) {
+            str = "Blocking";
+        } else {
+            str = "Non-blocking";
+        }
+        sb.append(str);
+        sb.append(']');
+        return sb.toString();
     }
 }

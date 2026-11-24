@@ -1,72 +1,30 @@
 package defpackage;
 
-import java.io.EOFException;
+import android.util.Pair;
+import java.util.HashMap;
 public final class ko7 {
-    public short a;
-    public long b;
-    public short c;
-    public int d;
-    public int e;
-    public final int[] f = new int[255];
-    public final xu7 g = new xu7(255);
+    public final long a;
+    public String b;
+    public final HashMap c;
+    public boolean d;
+    public long e;
 
-    public final boolean a(ja3 ja3Var, boolean z) {
-        boolean z2;
-        boolean z3;
-        this.a = (short) 0;
-        this.b = 0L;
-        this.c = (short) 0;
-        this.d = 0;
-        this.e = 0;
-        xu7 xu7Var = this.g;
-        xu7Var.K(27);
-        try {
-            z2 = ja3Var.d(xu7Var.a, 0, 27, z);
-        } catch (EOFException e) {
-            if (z) {
-                z2 = false;
-            } else {
-                throw e;
-            }
-        }
-        if (z2 && xu7Var.C() == 1332176723) {
-            if (xu7Var.A() != 0) {
-                if (!z) {
-                    throw av7.d("unsupported bit stream revision");
-                }
-            } else {
-                this.a = xu7Var.A();
-                this.b = xu7Var.p();
-                xu7Var.r();
-                xu7Var.r();
-                xu7Var.r();
-                ?? A = xu7Var.A();
-                this.c = A;
-                this.d = A + 27;
-                xu7Var.K(A);
-                try {
-                    z3 = ja3Var.d(xu7Var.a, 0, this.c, z);
-                } catch (EOFException e2) {
-                    if (z) {
-                        z3 = false;
-                    } else {
-                        throw e2;
-                    }
-                }
-                if (z3) {
-                    for (int i = 0; i < this.c; i++) {
-                        int A2 = xu7Var.A();
-                        this.f[i] = A2;
-                        this.e += A2;
-                    }
-                    return true;
-                }
-            }
-        }
-        return false;
+    public ko7(String str, long j, int i, long j2, long j3) {
+        HashMap hashMap = new HashMap();
+        this.c = hashMap;
+        this.a = j;
+        this.b = str;
+        hashMap.put(Integer.valueOf(i), new Pair(Long.valueOf(j2), Long.valueOf(j3)));
+        this.e = j2;
     }
 
-    public final boolean b(defpackage.ja3 r9, long r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ko7.b(ja3, long):boolean");
+    public final long a() {
+        long j = -1;
+        for (Pair pair : this.c.values()) {
+            if (j == -1 || j > ((Long) pair.first).longValue()) {
+                j = ((Long) pair.first).longValue();
+            }
+        }
+        return j;
     }
 }

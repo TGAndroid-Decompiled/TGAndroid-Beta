@@ -1,39 +1,52 @@
 package defpackage;
 
-import android.content.Context;
-public final class vea extends gb2 {
-    public final byte Ld = 1;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class vea extends e69 {
+    public final pea a;
 
-    public vea(Context context, int i) {
-        super(context, i);
+    public vea(pea peaVar) {
+        this.a = peaVar;
     }
 
     @Override
-    public final int getParentWidth() {
-        int i;
-        int L;
-        switch (this.Ld) {
-            case 1:
-                if (getMeasuredWidth() != 0) {
-                    i = getMeasuredWidth();
-                    L = gl.L(24.0f);
-                } else {
-                    i = gl.q.x;
-                    L = gl.L(24.0f);
-                }
-                return i - L;
-            default:
-                return super.getParentWidth();
+    public final void d(Rect rect, View view, RecyclerView recyclerView, r69 r69Var) {
+        boolean z;
+        boolean z2;
+        if (view instanceof sha) {
+            sha shaVar = (sha) view;
+            pea peaVar = this.a;
+            peaVar.n.getClass();
+            int R = RecyclerView.R(shaVar);
+            int i = peaVar.r.J;
+            boolean z3 = true;
+            if (R < i) {
+                z = true;
+            } else {
+                z = false;
+            }
+            shaVar.b0 = z;
+            int i2 = R % i;
+            if (i2 == 0) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            shaVar.W = z2;
+            if (i2 != i - 1) {
+                z3 = false;
+            }
+            shaVar.a0 = z3;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+            return;
         }
-    }
-
-    @Override
-    public final boolean isPressed() {
-        byte b = this.Ld;
-        return false;
-    }
-
-    public vea(Context context, int i, boolean z, mv6 mv6Var, wjb wjbVar) {
-        super(context, i, z, mv6Var, wjbVar);
+        rect.left = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        rect.right = 0;
     }
 }

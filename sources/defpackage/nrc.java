@@ -1,58 +1,67 @@
 package defpackage;
 
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.view.View;
-import org.telegram.ui.WallpapersListActivity;
-public final class nrc implements c39 {
-    public final byte a;
-    public final Object b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+public final class nrc extends ReplacementSpan {
+    public final String a;
+    public final String b;
+    public final boolean c;
+    public float d;
+    public int e;
+    public int f;
+    public prc h;
+    public prc n;
+    public final qrc r;
 
-    public nrc(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public nrc(qrc qrcVar, String str, boolean z, boolean z2) {
+        String str2;
+        this.r = qrcVar;
+        this.a = str;
+        if (z) {
+            str2 = qrcVar.Q;
+        } else {
+            str2 = "";
+        }
+        this.b = str2;
+        this.c = z2;
+    }
+
+    public final int a() {
+        int i = this.e;
+        return Math.round((qrc.T.getInterpolation(this.r.J) * (this.f - i)) + i);
     }
 
     @Override
-    public final void d(int i, View view) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                orc orcVar = (orc) obj;
-                String M0 = k96.M0(2131753735, null);
-                StringBuilder k = b00.k(M0, " ");
-                String[] strArr = WallpapersListActivity.k0;
-                k.append(k96.M0(WallpapersListActivity.l0[i], strArr[i]));
-                SpannableString spannableString = new SpannableString(k.toString());
-                spannableString.setSpan(new ForegroundColorSpan(bkb.w0(null, bkb.A8, false)), M0.length(), spannableString.length(), 33);
-                WallpapersListActivity wallpapersListActivity = orcVar.F;
-                wallpapersListActivity.K.setSearchFieldCaption(spannableString);
-                wallpapersListActivity.K.setSearchFieldHint(null);
-                wallpapersListActivity.K.P("", true);
-                orcVar.n = strArr[i];
-                orcVar.E("", true);
-                return;
-            default:
-                af4 af4Var = (af4) obj;
-                if (view instanceof iba) {
-                    af4Var.e(i, view, ((iba) view).getMessage(), 0);
-                    return;
-                } else if (view instanceof lba) {
-                    af4Var.e(i, view, ((lba) view).getMessage(), 0);
-                    return;
-                } else if (view instanceof eba) {
-                    af4Var.e(i, view, ((eba) view).getMessage(), 0);
-                    return;
-                } else if (view instanceof bw2) {
-                    af4Var.e(i, view, ((bw2) view).getMessageObject(), 0);
-                    return;
-                } else if (view instanceof ue3) {
-                    af4Var.e(i, view, ((ue3) view).getMessage(), 0);
-                    return;
-                } else {
-                    return;
-                }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        Canvas canvas2;
+        Paint paint2;
+        int i6;
+        float textSize = paint.getTextSize();
+        if (this.c) {
+            paint.setTextSize((28.0f * textSize) / 44.0f);
         }
+        float f2 = f - this.d;
+        prc prcVar = this.n;
+        if (prcVar != null) {
+            paint2 = paint;
+            i6 = i4;
+            canvas2 = canvas;
+            prcVar.b(canvas2, paint2, this.b, f2, i6);
+        } else {
+            canvas2 = canvas;
+            paint2 = paint;
+            i6 = i4;
+        }
+        this.h.b(canvas2, paint2, this.a, f2, i6);
+        paint2.setTextSize(textSize);
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt != null) {
+            paint.getFontMetricsInt(fontMetricsInt);
+        }
+        return a();
     }
 }

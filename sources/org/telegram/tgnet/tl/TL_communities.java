@@ -111,8 +111,8 @@ public class TL_communities {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.creator_chat_ids = Vector.deserializeLong(inputSerializedData, z);
             this.joined_chat_ids = Vector.deserializeLong(inputSerializedData, z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override
@@ -148,12 +148,12 @@ public class TL_communities {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.total_count = inputSerializedData.readInt32(z);
-            this.requests = Vector.deserialize(inputSerializedData, new qdb((byte) 17), z);
+            this.requests = Vector.deserialize(inputSerializedData, new rfb((byte) 21), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new c1b((byte) 18), z);
+            this.users = Vector.deserialize(inputSerializedData, new c1b((byte) 12), z);
         }
 
         @Override

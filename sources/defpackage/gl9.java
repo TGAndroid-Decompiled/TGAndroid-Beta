@@ -1,111 +1,104 @@
 package defpackage;
 
-import java.io.File;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.q;
-public final class gl9 implements Runnable {
-    public final byte a = 1;
-    public final ul9 b;
-    public final ql9 c;
-    public final long d;
-    public final File e;
-    public final boolean f;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.RandomAccess;
+public final class gl9 extends y2 implements RandomAccess {
+    public final Object[] a;
+    public final int b;
+    public int c;
+    public int d;
 
-    public gl9(ul9 ul9Var, ql9 ql9Var, long j, File file, boolean z) {
-        this.b = ul9Var;
-        this.c = ql9Var;
-        this.d = j;
-        this.e = file;
-        this.f = z;
-    }
-
-    private final void a() {
-        ul9 ul9Var = this.b;
-        ql9 ql9Var = this.c;
-        File file = this.e;
-        long j = this.d;
-        boolean z = this.f;
-        synchronized (ul9Var.g) {
-            if (!ul9Var.H && !ql9Var.d && !ql9Var.e) {
-                ql9Var.e = true;
-                ((lgb) ul9Var.e).b(ql9Var.a, file.length(), file);
-                ul9Var.i.post(new gl9(ul9Var, ql9Var, j, file, z));
+    public gl9(int i, Object[] objArr) {
+        this.a = objArr;
+        if (i >= 0) {
+            if (i <= objArr.length) {
+                this.b = objArr.length;
+                this.d = i;
+                return;
             }
+            StringBuilder l = hg9.l(i, "ring buffer filled size: ", " cannot be larger than the buffer size: ");
+            l.append(objArr.length);
+            throw new IllegalArgumentException(l.toString().toString());
         }
+        c1b.a(hg9.j(i, "ring buffer filled size should not be negative but it is "));
+        throw null;
     }
 
     @Override
-    public final void run() {
-        kgb kgbVar;
-        kgb kgbVar2;
-        switch (this.a) {
-            case 0:
-                a();
-                return;
-            default:
-                ul9 ul9Var = this.b;
-                ql9 ql9Var = this.c;
-                long j = this.d;
-                File file = this.e;
-                boolean z = this.f;
-                int i = ul9Var.a0;
-                if (i != 10 && i != 9) {
-                    ul9Var.x(8);
-                    ul9Var.m.b("output completed: generation=" + ql9Var.a + ", durationMs=" + j + ", size=" + file.length() + ", hasAudio=" + z);
-                    ul9Var.m("completed");
-                    gi3 gi3Var = ul9Var.d;
-                    long j2 = ql9Var.a;
-                    q qVar = (q) gi3Var.a;
-                    to5 to5Var = qVar.W;
-                    if (to5Var != null) {
-                        qVar.W = null;
-                        qVar.m0 = true;
-                        lgb lgbVar = qVar.U;
-                        if (lgbVar == null) {
-                            kgbVar2 = null;
-                        } else {
-                            synchronized (lgbVar) {
-                                jgb jgbVar = (jgb) lgbVar.c.get(Long.valueOf(j2));
-                                if (jgbVar != null && !jgbVar.e) {
-                                    kgbVar = new kgb(Math.max(jgbVar.c, file.length()), jgbVar.f, jgbVar.g, jgbVar.h, jgbVar.i);
-                                } else {
-                                    kgbVar = new kgb(file.length(), null, null, null, null);
-                                }
-                            }
-                            kgbVar2 = kgbVar;
-                        }
-                        oac i2 = qVar.i(file, j, kgbVar2);
-                        i2.t = !z;
-                        jm6 jm6Var = new jm6(0, file.getAbsolutePath(), 0, true, 0, 0);
-                        jm6Var.x = to5Var.c;
-                        jm6Var.y = to5Var.d;
-                        qVar.f.G(jm6Var, i2, to5Var.a, to5Var.b, false, to5Var.e);
-                        lgb lgbVar2 = qVar.U;
-                        if (lgbVar2 != null) {
-                            lgbVar2.d(false);
-                        }
-                        qVar.U = null;
-                        MediaController.w().X(false);
-                        if (qVar.b0) {
-                            qVar.b0 = false;
-                            qVar.Q = null;
-                        }
-                    }
-                    if (ul9Var.G) {
-                        ul9Var.s();
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final Object get(int i) {
+        int i2 = this.d;
+        if (i >= 0 && i < i2) {
+            return this.a[(this.c + i) % this.b];
         }
+        wa3.i(b10.g(i, i2, "index: ", ", size: "));
+        return null;
     }
 
-    public gl9(ul9 ul9Var, ql9 ql9Var, File file, long j, boolean z) {
-        this.b = ul9Var;
-        this.c = ql9Var;
-        this.e = file;
-        this.d = j;
-        this.f = z;
+    @Override
+    public final int h() {
+        return this.d;
+    }
+
+    public final void i() {
+        if (20 <= this.d) {
+            int i = this.c;
+            int i2 = this.b;
+            int i3 = (i + 20) % i2;
+            Object[] objArr = this.a;
+            if (i > i3) {
+                Arrays.fill(objArr, i, i2, (Object) null);
+                Arrays.fill(objArr, 0, i3, (Object) null);
+            } else {
+                Arrays.fill(objArr, i, i3, (Object) null);
+            }
+            this.c = i3;
+            this.d -= 20;
+            return;
+        }
+        throw new IllegalArgumentException(("n shouldn't be greater than the buffer size: n = 20, size = " + this.d).toString());
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new fl9(this);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        Object[] objArr2;
+        objArr.getClass();
+        int length = objArr.length;
+        int i = this.d;
+        if (length < i) {
+            objArr = Arrays.copyOf(objArr, i);
+        }
+        int i2 = this.d;
+        int i3 = this.c;
+        int i4 = 0;
+        int i5 = 0;
+        while (true) {
+            objArr2 = this.a;
+            if (i5 >= i2 || i3 >= this.b) {
+                break;
+            }
+            objArr[i5] = objArr2[i3];
+            i5++;
+            i3++;
+        }
+        while (i5 < i2) {
+            objArr[i5] = objArr2[i4];
+            i5++;
+            i4++;
+        }
+        if (i2 < objArr.length) {
+            objArr[i2] = null;
+        }
+        return objArr;
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(new Object[h()]);
     }
 }

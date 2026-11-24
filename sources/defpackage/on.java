@@ -1,147 +1,194 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.Arrays;
-public final class on {
-    public int[] a;
-    public int b;
-    public int c;
-    public int d;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.LinearLayout;
+import j$.util.Comparator$CC;
+import j$.util.Comparator$EL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+public abstract class on extends LinearLayout {
+    public static final Comparator r = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new mn((byte) 0)), new mn((byte) 1));
+    public final HashMap a;
+    public final ArrayList b;
+    public final x66 c;
+    public boolean d;
+    public int e;
+    public int f;
+    public Runnable h;
+    public float n;
 
-    public on(int[] iArr) {
-        this.b = y6c.t0;
-        this.c = -1;
-        this.d = -1;
-        this.a = iArr;
+    public on(Context context) {
+        super(context);
+        this.a = new HashMap();
+        this.b = new ArrayList();
+        this.c = new x66(new l0(this, (byte) 20), d53.h, 420L);
     }
 
-    public final void a(int i) {
-        int[] iArr = this.a;
-        int i2 = this.c;
-        iArr[i2] = i;
-        int i3 = (i2 + 1) & this.d;
-        this.c = i3;
-        int i4 = this.b;
-        if (i3 == i4) {
-            int length = iArr.length;
-            int i5 = length - i4;
-            int i6 = length << 1;
-            int[] iArr2 = new int[i6];
-            System.arraycopy(iArr, i4, iArr2, 0, i5);
-            System.arraycopy(this.a, 0, iArr2, i5, this.b);
-            this.a = iArr2;
-            this.b = 0;
-            this.c = length;
-            this.d = i6 - 1;
-        }
-    }
-
-    public final void b(int i, int i2) {
-        if (i >= 0) {
-            if (i2 >= 0) {
-                int i3 = this.d;
-                int i4 = i3 << 1;
-                int[] iArr = this.a;
-                if (iArr == null) {
-                    int[] iArr2 = new int[4];
-                    this.a = iArr2;
-                    Arrays.fill(iArr2, -1);
-                } else if (i4 >= iArr.length) {
-                    int[] iArr3 = new int[i3 << 2];
-                    this.a = iArr3;
-                    System.arraycopy(iArr, 0, iArr3, 0, iArr.length);
-                }
-                int[] iArr4 = this.a;
-                iArr4[i4] = i;
-                iArr4[i4 + 1] = i2;
-                this.d++;
-                return;
-            }
-            w26.j("Pixel distance must be non-negative");
-            return;
-        }
-        w26.j("Layout positions must be non-negative");
-    }
-
-    public final void c(RecyclerView recyclerView, boolean z) {
-        boolean z2;
-        int i;
-        this.d = 0;
-        int[] iArr = this.a;
-        int i2 = -1;
-        if (iArr != null) {
-            Arrays.fill(iArr, -1);
-        }
-        d49 d49Var = recyclerView.y;
-        if (recyclerView.x != null && d49Var != null && d49Var.h) {
-            if (z) {
-                if (!recyclerView.d.g()) {
-                    int b = recyclerView.x.b();
-                    t26 t26Var = (t26) d49Var;
-                    s26 s26Var = t26Var.B;
-                    if (s26Var != null && (i = s26Var.a) >= 0) {
-                        z2 = s26Var.c;
-                    } else {
-                        t26Var.e1();
-                        z2 = t26Var.v;
-                        i = t26Var.y;
-                        if (i == -1) {
-                            i = z2 ? b - 1 : 0;
-                        }
-                    }
-                    if (!z2) {
-                        i2 = 1;
-                    }
-                    for (int i3 = 0; i3 < t26Var.E && i >= 0 && i < b; i3++) {
-                        b(i, 0);
-                        i += i2;
-                    }
-                }
-            } else if (!recyclerView.a0()) {
-                int i4 = this.b;
-                int i5 = this.c;
-                p49 p49Var = recyclerView.v0;
-                t26 t26Var2 = (t26) d49Var;
-                if (t26Var2.o) {
-                    i4 = i5;
-                }
-                if (t26Var2.r() != 0 && i4 != 0) {
-                    t26Var2.F0();
-                    if (i4 > 0) {
-                        i2 = 1;
-                    }
-                    t26Var2.l1(i2, Math.abs(i4), true, p49Var);
-                    t26Var2.z0(p49Var, t26Var2.p, this);
-                }
-            }
-            int i6 = this.d;
-            if (i6 > d49Var.i) {
-                d49Var.i = i6;
-                d49Var.j = z;
-                recyclerView.b.m();
+    public final void a() {
+        this.f = 0;
+        this.e = 0;
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            nn nnVar = (nn) this.a.get(childAt);
+            if (childAt.getVisibility() == 0 && nnVar != null && nnVar.b) {
+                this.e = childAt.getMeasuredWidth() + this.e;
+                this.f = childAt.getMeasuredHeight() + this.f;
             }
         }
     }
 
-    public final void d() {
-        int[] iArr = this.a;
-        int i = y6c.t0;
-        if (this.b != i) {
-            kk7.f(i).j(this.c);
-            this.c = -1;
-            this.b = i;
+    public final void b() {
+        ArrayList arrayList = this.c.b;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            u66 u66Var = (u66) obj;
+            View view = ((nn) u66Var.a).a;
+            RectF b = u66Var.b();
+            if (getOrientation() == 1) {
+                view.setTranslationY((getPaddingTop() + b.top) - view.getTop());
+            } else {
+                view.setTranslationX((getPaddingLeft() + b.left) - view.getLeft());
+            }
+            g(view, u66Var.c());
         }
-        this.c = kk7.f(i).q(iArr, this.c, true);
-        this.d = kk7.e().q(iArr, this.d, true);
+        float f = getMetadata().g.a;
+        if (this.n != f) {
+            this.n = f;
+            Runnable runnable = this.h;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
     }
 
-    public final void e() {
-        kk7.f(this.b).j(this.c);
-        kk7.e().j(this.d);
+    public final float c(float f) {
+        return (f * getMetadata().c.a) + getMetadata().g.a;
     }
 
-    public on() {
-        this.d = 7;
-        this.a = new int[8];
+    public final boolean d(View view) {
+        nn nnVar = (nn) this.a.get(view);
+        if (nnVar != null && nnVar.b) {
+            return true;
+        }
+        return false;
+    }
+
+    public abstract void f();
+
+    public void g(View view, float f) {
+        float R1 = gm.R1(0.95f, 1.0f, f);
+        view.setAlpha(f);
+        view.setScaleX(R1);
+        view.setScaleY(R1);
+    }
+
+    public float getAnimatedHeightWithPadding() {
+        return c(getPaddingBottom() + getPaddingTop());
+    }
+
+    public int getEntriesCount() {
+        return this.c.b.size();
+    }
+
+    public w66 getMetadata() {
+        return this.c.d;
+    }
+
+    public int getSumHeightOfAllVisibleChild() {
+        return this.f;
+    }
+
+    public int getSumWidthOfAllVisibleChild() {
+        return this.e;
+    }
+
+    public final void h(View view) {
+        nn nnVar = (nn) this.a.get(view);
+    }
+
+    public final void i(int i, View view) {
+        nn nnVar = (nn) this.a.get(view);
+        if (nnVar != null) {
+            nnVar.d = i;
+        }
+    }
+
+    public final void j(View view, boolean z, boolean z2) {
+        nn nnVar;
+        if (view != null && (nnVar = (nn) this.a.get(view)) != null) {
+            View view2 = nnVar.a;
+            if (nnVar.b != z) {
+                nnVar.b = z;
+                if (z) {
+                    view2.setVisibility(0);
+                } else if (!nnVar.c) {
+                    view2.setVisibility(8);
+                }
+                if (!z2) {
+                    this.d = true;
+                }
+                requestLayout();
+            }
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        ArrayList arrayList = this.b;
+        arrayList.clear();
+        int childCount = getChildCount();
+        for (int i5 = 0; i5 < childCount; i5++) {
+            View childAt = getChildAt(i5);
+            nn nnVar = (nn) this.a.get(childAt);
+            if (nnVar != null) {
+                nnVar.e = i5;
+                if (childAt.getVisibility() == 0 && nnVar.b) {
+                    arrayList.add(nnVar);
+                }
+            }
+        }
+        Collections.sort(arrayList, r);
+        this.c.m(arrayList, !this.d);
+        int size = arrayList.size();
+        int i6 = 0;
+        while (i6 < size) {
+            Object obj = arrayList.get(i6);
+            i6++;
+            ((nn) obj).c = true;
+        }
+        this.d = false;
+        b();
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        a();
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        view.setVisibility(8);
+        this.a.put(view, new nn(view));
+    }
+
+    @Override
+    public final void onViewRemoved(View view) {
+        super.onViewRemoved(view);
+        this.a.remove(view);
+    }
+
+    public void setOnAnimatedHeightChangedListener(Runnable runnable) {
+        this.h = runnable;
     }
 }

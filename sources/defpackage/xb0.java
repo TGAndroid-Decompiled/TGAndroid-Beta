@@ -1,62 +1,91 @@
 package defpackage;
-
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-public final class xb0 implements gk7 {
+public final class xb0 implements ee, an2 {
     public final byte a;
-    public final Object b;
+    public final mc0 b;
 
-    public xb0(Object obj, byte b) {
+    public xb0(mc0 mc0Var, byte b) {
         this.a = b;
-        this.b = obj;
+        this.b = mc0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void c(int i, int i2, boolean z) {
+        mc0 mc0Var = this.b;
+        if (i2 != 0) {
+            if (i2 != 1) {
+                if (i2 != 2) {
+                    if (i2 == 3) {
+                        hc0 hc0Var = mc0Var.Z;
+                        int i3 = hc0Var.f;
+                        if (i3 != i && (i3 == 0 || i == 0)) {
+                            hc0 a = hc0Var.a();
+                            mc0Var.Z = a;
+                            mc0Var.a.b(a, true);
+                            mc0Var.s0();
+                        }
+                        mc0Var.Z.f = i;
+                    }
+                } else {
+                    hc0 hc0Var2 = mc0Var.Z;
+                    int i4 = hc0Var2.e;
+                    if (i4 != i && (i4 == 0 || i == 0)) {
+                        hc0 a2 = hc0Var2.a();
+                        mc0Var.Z = a2;
+                        mc0Var.a.b(a2, true);
+                        mc0Var.s0();
+                    }
+                    mc0Var.Z.e = i;
+                }
+            } else {
+                hc0 hc0Var3 = mc0Var.Z;
+                int i5 = hc0Var3.d;
+                if (i5 != i && (i5 == 0 || i == 0)) {
+                    hc0 a3 = hc0Var3.a();
+                    mc0Var.Z = a3;
+                    mc0Var.a.b(a3, true);
+                    mc0Var.s0();
+                }
+                mc0Var.Z.d = i;
+            }
+        } else {
+            hc0 hc0Var4 = mc0Var.Z;
+            int i6 = hc0Var4.c;
+            if (i6 != i && (i6 == 0 || i == 0)) {
+                hc0 a4 = hc0Var4.a();
+                mc0Var.Z = a4;
+                mc0Var.a.b(a4, true);
+                mc0Var.s0();
+            }
+            mc0Var.Z.c = i;
+        }
+        nm7.e().k(nm7.v4, new Object[0]);
+        mc0Var.a.invalidate();
+    }
+
+    @Override
+    public final int d(int i) {
+        return 0;
+    }
+
+    @Override
+    public final void r(he heVar, int i) {
         byte b = this.a;
-        Object obj = this.b;
+        mc0 mc0Var = this.b;
         switch (b) {
             case 0:
-                yb0 yb0Var = (yb0) obj;
-                if (yb0Var.g && i == yb0Var.e) {
-                    yb0Var.b(objArr);
-                    return;
-                }
-                return;
-            case 1:
-                ad6 ad6Var = (ad6) obj;
-                int intValue = ((Integer) objArr[0]).intValue();
-                ((Integer) objArr[1]).getClass();
-                Intent intent = (Intent) objArr[2];
-                kk7.e().n(this, 308);
-                if (intValue == 200) {
-                    try {
-                        ad6Var.G = (GoogleSignInAccount) aje.b(intent).getResult(zn.class);
-                        ad6Var.h(null);
-                        return;
-                    } catch (zn e) {
-                        fa4.g(e, true);
-                        return;
-                    }
-                }
+                mc0Var.finishFragment();
                 return;
             default:
-                de6 de6Var = (de6) obj;
-                int intValue2 = ((Integer) objArr[0]).intValue();
-                ((Integer) objArr[1]).getClass();
-                Intent intent2 = (Intent) objArr[2];
-                kk7.e().n(this, 308);
-                if (intValue2 == 200) {
-                    try {
-                        de6Var.E = (GoogleSignInAccount) aje.b(intent2).getResult(zn.class);
-                        de6Var.h(null);
-                        return;
-                    } catch (zn e2) {
-                        fa4.g(e2, true);
-                        return;
-                    }
-                }
+                mc0Var.finishFragment();
                 return;
         }
+    }
+
+    @Override
+    public final void a(boolean z) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

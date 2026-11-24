@@ -1,8 +1,10 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.RectF;
+import android.view.animation.DecelerateInterpolator;
 public final class cb8 {
-    public Bitmap a;
-    public final RectF b = new RectF();
+    public static final cb8 e = new cb8();
+    public DecelerateInterpolator b;
+    public short a = 200;
+    public boolean c = true;
+    public boolean d = true;
 }

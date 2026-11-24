@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadioButton;
-public final class e extends n39 {
+public final class e extends q59 {
     public final Context c;
     public final f d;
 
@@ -19,7 +19,7 @@ public final class e extends n39 {
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
+    public final boolean D(u69 u69Var) {
         return false;
     }
 
@@ -32,14 +32,14 @@ public final class e extends n39 {
     }
 
     @Override
-    public final void t(s49 s49Var, int i) {
+    public final void t(u69 u69Var, int i) {
         int i2;
         boolean z;
         boolean z2;
         float f;
-        akb akbVar;
+        bmb bmbVar;
         TLRPC.TL_theme tL_theme;
-        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) s49Var.a;
+        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) u69Var.a;
         f fVar = this.d;
         ArrayList arrayList = fVar.m3;
         if (i < arrayList.size()) {
@@ -50,7 +50,7 @@ public final class e extends n39 {
             arrayList = arrayList2;
             i2 = size;
         }
-        akb akbVar2 = (akb) arrayList.get(i2);
+        bmb bmbVar2 = (bmb) arrayList.get(i2);
         if (i == b() - 1) {
             z = true;
         } else {
@@ -62,10 +62,10 @@ public final class e extends n39 {
             z2 = false;
         }
         HashMap hashMap = themesHorizontalListCell$InnerThemeView.b0.h3;
-        themesHorizontalListCell$InnerThemeView.b = akbVar2;
+        themesHorizontalListCell$InnerThemeView.b = bmbVar2;
         themesHorizontalListCell$InnerThemeView.s = z2;
         themesHorizontalListCell$InnerThemeView.r = z;
-        themesHorizontalListCell$InnerThemeView.G = akbVar2.Z;
+        themesHorizontalListCell$InnerThemeView.G = bmbVar2.Z;
         RadioButton radioButton = themesHorizontalListCell$InnerThemeView.a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) radioButton.getLayoutParams();
         if (themesHorizontalListCell$InnerThemeView.s) {
@@ -73,38 +73,38 @@ public final class e extends n39 {
         } else {
             f = 27.0f;
         }
-        layoutParams.leftMargin = gl.L(f);
+        layoutParams.leftMargin = gm.L(f);
         radioButton.setLayoutParams(layoutParams);
         themesHorizontalListCell$InnerThemeView.w = 0.0f;
-        akb akbVar3 = themesHorizontalListCell$InnerThemeView.b;
-        if (akbVar3.b != null && !akbVar3.U) {
-            akbVar3.R = bkb.D0(bkb.qa);
-            themesHorizontalListCell$InnerThemeView.b.S = bkb.D0(bkb.qb);
+        bmb bmbVar3 = themesHorizontalListCell$InnerThemeView.b;
+        if (bmbVar3.b != null && !bmbVar3.U) {
+            bmbVar3.R = cmb.D0(cmb.qa);
+            themesHorizontalListCell$InnerThemeView.b.S = cmb.D0(cmb.qb);
             boolean exists = new File(themesHorizontalListCell$InnerThemeView.b.b).exists();
-            if ((!exists || !themesHorizontalListCell$InnerThemeView.c() || !exists) && (tL_theme = (akbVar = themesHorizontalListCell$InnerThemeView.b).G) != null) {
+            if ((!exists || !themesHorizontalListCell$InnerThemeView.c() || !exists) && (tL_theme = (bmbVar = themesHorizontalListCell$InnerThemeView.b).G) != null) {
                 if (tL_theme.document != null) {
-                    akbVar.V = false;
+                    bmbVar.V = false;
                     themesHorizontalListCell$InnerThemeView.w = 1.0f;
-                    Drawable mutate = themesHorizontalListCell$InnerThemeView.getResources().getDrawable(2131232405).mutate();
+                    Drawable mutate = themesHorizontalListCell$InnerThemeView.getResources().getDrawable(2131232406).mutate();
                     themesHorizontalListCell$InnerThemeView.U = mutate;
-                    int w0 = bkb.w0(null, bkb.D6, false);
+                    int w0 = cmb.w0(null, cmb.D6, false);
                     themesHorizontalListCell$InnerThemeView.V = w0;
-                    bkb.A1(w0, mutate);
+                    cmb.A1(w0, mutate);
                     if (!exists) {
-                        String r = ba4.r(null, themesHorizontalListCell$InnerThemeView.b.G.document);
+                        String r = bc4.r(null, themesHorizontalListCell$InnerThemeView.b.G.document);
                         if (!hashMap.containsKey(r)) {
                             hashMap.put(r, themesHorizontalListCell$InnerThemeView.b);
-                            ba4 G = ba4.G(themesHorizontalListCell$InnerThemeView.b.F);
+                            bc4 G = bc4.G(themesHorizontalListCell$InnerThemeView.b.F);
                             TLRPC.TL_theme tL_theme2 = themesHorizontalListCell$InnerThemeView.b.G;
                             G.X(tL_theme2.document, tL_theme2, 1, 1);
                         }
                     }
                 } else {
-                    Drawable mutate2 = themesHorizontalListCell$InnerThemeView.getResources().getDrawable(2131232581).mutate();
+                    Drawable mutate2 = themesHorizontalListCell$InnerThemeView.getResources().getDrawable(2131232593).mutate();
                     themesHorizontalListCell$InnerThemeView.U = mutate2;
-                    int w02 = bkb.w0(null, bkb.D6, false);
+                    int w02 = cmb.w0(null, cmb.D6, false);
                     themesHorizontalListCell$InnerThemeView.V = w02;
-                    bkb.A1(w02, mutate2);
+                    cmb.A1(w02, mutate2);
                 }
             }
         }
@@ -112,7 +112,7 @@ public final class e extends n39 {
     }
 
     @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        return new s49(new ThemesHorizontalListCell$InnerThemeView(this.d, this.c));
+    public final u69 x(ViewGroup viewGroup, int i) {
+        return new u69(new ThemesHorizontalListCell$InnerThemeView(this.d, this.c));
     }
 }

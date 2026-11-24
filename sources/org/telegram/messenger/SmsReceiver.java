@@ -19,8 +19,8 @@ public class SmsReceiver extends BroadcastReceiver {
                 SharedPreferences sharedPreferences = a.b.getSharedPreferences("mainconfig", 0);
                 String string = sharedPreferences.getString("sms_hash", null);
                 if ("com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
-                    synchronized (gl.k) {
-                        z = gl.j;
+                    synchronized (gm.k) {
+                        z = gm.j;
                     }
                     if (z) {
                         str = (String) intent.getExtras().get("com.google.android.gms.auth.api.phone.EXTRA_SMS_MESSAGE");
@@ -37,12 +37,12 @@ public class SmsReceiver extends BroadcastReceiver {
                                 SharedPreferences.Editor edit = sharedPreferences.edit();
                                 edit.putString("sms_hash_code", string + "|" + replace).commit();
                             }
-                            gl.d3(new xt2(replace, (byte) 6));
+                            gm.c3(new iv2(replace, (byte) 7));
                         }
                     }
                 }
             } catch (Throwable th) {
-                fa4.g(th, true);
+                fc4.g(th, true);
             }
         }
     }

@@ -1,38 +1,73 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.util.ArrayList;
-public final class awb implements k8c {
-    public final lwb a;
-    public final String b;
-    public final long c;
-    public final Boolean d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+public abstract class awb extends View {
+    public final bwb a;
+    public qac b;
+    public final ylb c;
+    public int d;
 
-    public awb(lwb lwbVar, String str, long j, Boolean bool) {
-        this.a = lwbVar;
-        this.b = str;
-        this.c = j;
-        this.d = bool;
+    public awb(int i, ylb ylbVar, Context context) {
+        super(context);
+        this.c = ylbVar;
+        bwb bwbVar = new bwb(i, this, ylbVar, false);
+        this.a = bwbVar;
+        bwbVar.s = new zcb(this, (byte) 19);
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3) {
-        ArrayList arrayList = (ArrayList) obj;
-        oub oubVar = (oub) obj2;
-        Integer num = (Integer) obj3;
-        lwb lwbVar = this.a;
-        ArrayList arrayList2 = lwbVar.N;
-        boolean z = false;
-        lwbVar.O = 0;
-        if (this.b.equals(lwbVar.M)) {
-            if (this.c == lwbVar.V) {
-                if (Objects.equals(this.d, lwbVar.W)) {
-                    arrayList2.addAll(arrayList);
-                    lwbVar.Q = oubVar;
-                    lwbVar.R = (oubVar == null || arrayList2.size() >= num.intValue()) ? true : true;
-                    lwbVar.n();
-                }
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        ylb ylbVar = this.c;
+        if (ylbVar != null) {
+            ylbVar.b(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        } else {
+            cmb.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
         }
+        this.a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.a.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.a.b();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(33.0f), 1073741824));
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void set(k47 k47Var) {
+        bwb bwbVar = this.a;
+        bwbVar.e(k47Var);
+        if (isAttachedToWindow()) {
+            bwbVar.a();
+        }
+    }
+
+    public void setBackgroundHeight(int i) {
+        this.d = i;
+    }
+
+    public void setOnTopicClickListener(qac qacVar) {
+        this.b = qacVar;
     }
 }

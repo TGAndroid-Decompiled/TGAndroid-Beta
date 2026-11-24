@@ -1,138 +1,138 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ProfileActivity;
-public final class vw0 implements wg5 {
+import android.app.Activity;
+import android.graphics.Paint;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class vw0 implements Runnable {
     public final byte a;
-    public final Object b;
+    public final wx0 b;
 
-    public vw0(Object obj, byte b) {
+    public vw0(wx0 wx0Var, byte b) {
         this.a = b;
-        this.b = obj;
+        this.b = wx0Var;
     }
 
     @Override
-    public final void a(tab tabVar, RectF rectF) {
+    public final void run() {
         byte b = this.a;
-        tabVar.b = true;
-    }
-
-    @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        p02 p02Var;
-        float alpha;
-        p02 p02Var2;
-        View view;
-        byte b = this.a;
-        Object obj = this.b;
+        int i = 0;
+        wx0 wx0Var = this.b;
         switch (b) {
             case 0:
-                fx0 fx0Var = (fx0) obj;
-                ViewGroup viewGroup = fx0Var.b;
-                if (viewGroup != null && viewGroup.getVisibility() == 0 && viewGroup.getParent() == fx0Var.c) {
-                    canvas.save();
-                    canvas.translate(viewGroup.getX(), viewGroup.getY());
-                    viewGroup.draw(canvas);
-                    canvas.restore();
-                    return;
-                }
+                wx0Var.q();
                 return;
             case 1:
-                ((lf1) obj).X(canvas, rectF);
+                if (!wx0Var.e0 && wx0Var.L != 0) {
+                    TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
+                    tL_messages_prolongWebView.bot = oc7.r1(wx0Var.I).n1(wx0Var.J);
+                    tL_messages_prolongWebView.peer = oc7.r1(wx0Var.I).i1(wx0Var.K);
+                    tL_messages_prolongWebView.query_id = wx0Var.L;
+                    tL_messages_prolongWebView.silent = false;
+                    if (wx0Var.M != 0) {
+                        a6a.B(wx0Var.I);
+                        int i2 = wx0Var.M;
+                        TLRPC.TL_inputReplyToMessage tL_inputReplyToMessage = new TLRPC.TL_inputReplyToMessage();
+                        tL_inputReplyToMessage.reply_to_msg_id = i2;
+                        tL_messages_prolongWebView.reply_to = tL_inputReplyToMessage;
+                        if (wx0Var.N != 0) {
+                            tL_inputReplyToMessage.monoforum_peer_id = oc7.r1(wx0Var.I).i1(wx0Var.N);
+                            tL_messages_prolongWebView.reply_to.flags |= 32;
+                        }
+                        tL_messages_prolongWebView.flags |= 1;
+                    } else if (wx0Var.N != 0) {
+                        TLRPC.TL_inputReplyToMonoForum tL_inputReplyToMonoForum = new TLRPC.TL_inputReplyToMonoForum();
+                        tL_messages_prolongWebView.reply_to = tL_inputReplyToMonoForum;
+                        tL_inputReplyToMonoForum.monoforum_peer_id = oc7.r1(wx0Var.I).i1(wx0Var.N);
+                        tL_messages_prolongWebView.flags |= 1;
+                    }
+                    ConnectionsManager.getInstance(wx0Var.I).sendRequest(tL_messages_prolongWebView, new sw0(wx0Var, (byte) 1));
+                    return;
+                }
                 return;
             case 2:
-                x02 x02Var = (x02) obj;
-                for (int i = 0; i < 2; i++) {
-                    if (i == 0) {
-                        p02Var = x02Var.v2;
-                    } else {
-                        p02Var = x02Var.w2;
-                    }
-                    if (p02Var != null && p02Var.c != null && p02Var.getVisibility() == 0) {
-                        if (i == 0 && (p02Var2 = x02Var.w2) != null && p02Var2.getVisibility() == 0) {
-                            alpha = (1.0f - x02Var.w2.getAlpha()) * p02Var.getAlpha();
-                        } else {
-                            alpha = p02Var.getAlpha();
-                        }
-                        tk0.b(p02Var.c, canvas, rectF, p02Var.d, x02Var.b, (int) (alpha * 255.0f));
-                    }
-                }
+                wx0Var.I();
                 return;
             case 3:
-                t14 t14Var = (t14) obj;
-                g04 g04Var = t14Var.Q;
-                tk0.a(g04Var, canvas, rectF, g04Var, t14Var);
-                wy3 wy3Var = t14Var.i0;
-                tk0.a(wy3Var, canvas, rectF, wy3Var, t14Var);
-                bz3 bz3Var = t14Var.E0;
-                tk0.a(bz3Var, canvas, rectF, bz3Var, t14Var);
+                wx0Var.x.requestLayout();
                 return;
             case 4:
-                ((qa6) obj).d0(canvas, rectF);
+                if (!wx0Var.E.A()) {
+                    wx0Var.v();
+                    return;
+                }
                 return;
             case 5:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
-                o39 o39Var = premiumPreviewFragment.a;
-                tk0.a(o39Var, canvas, rectF, o39Var, premiumPreviewFragment.e0);
+                wx0Var.z0 = true;
+                wx0Var.m(true);
                 return;
             case 6:
-                RectF rectF2 = ProfileActivity.Z6;
-                canvas.save();
-                canvas.translate(-view.getScrollX(), -view.getScrollY());
-                ((View) obj).draw(canvas);
-                canvas.restore();
+                wx0Var.w();
                 return;
             case 7:
-                RectF rectF3 = ProfileActivity.Z6;
-                wo8 wo8Var = ((ProfileActivity) obj).d1;
-                int i2 = wo8.R;
-                wo8Var.P = true;
-                wo8Var.draw(canvas);
-                wo8Var.P = false;
+                nx0 nx0Var = wx0Var.x;
+                int i3 = (nx0Var.getSwipeOffsetY() > 0.0f ? 1 : (nx0Var.getSwipeOffsetY() == 0.0f ? 0 : -1));
+                Paint paint = wx0Var.Q;
+                if (i3 > 0) {
+                    paint.setAlpha((int) ((1.0f - pqe.a(nx0Var.getSwipeOffsetY() / nx0Var.getHeight(), 0.0f, 1.0f)) * 64.0f));
+                } else {
+                    paint.setAlpha(64);
+                }
+                wx0Var.f.invalidate();
+                wx0Var.E.l(false, false);
+                if (wx0Var.d != null) {
+                    if (1.0f - (Math.min(nx0Var.getTopActionBarOffsetY(), nx0Var.getTranslationY() - nx0Var.getTopActionBarOffsetY()) / nx0Var.getTopActionBarOffsetY()) > 0.5f) {
+                        i = 1;
+                    }
+                    float f = i * 100.0f;
+                    zna znaVar = wx0Var.d;
+                    aoa aoaVar = znaVar.m;
+                    if (((float) aoaVar.i) != f) {
+                        aoaVar.i = f;
+                        znaVar.h();
+                    }
+                }
+                if (wx0Var.f0) {
+                    int i4 = wx0Var.n.bottom;
+                } else {
+                    nx0Var.getSwipeOffsetY();
+                }
+                System.currentTimeMillis();
                 return;
             case 8:
-                om8 om8Var = (om8) obj;
-                yj0 yj0Var = om8Var.S2;
-                if (yj0Var != null) {
-                    yj0Var.d(canvas, rectF);
-                    return;
-                }
-                a39 a39Var = om8Var.H2;
-                if (a39Var != null) {
-                    a39Var.d(canvas, rectF);
-                    return;
-                }
+                wx0Var.E.l(true, false);
                 return;
             case 9:
-                yx9 yx9Var = (yx9) obj;
-                o39 o39Var2 = yx9Var.n1;
-                tk0.b(o39Var2, canvas, rectF, o39Var2, yx9Var.b, 255);
+                Activity activity = wx0Var.m0;
+                if (activity instanceof LaunchActivity) {
+                    ((LaunchActivity) activity).t0(yv1.ga(wx0Var.J));
+                }
+                wx0Var.m(true);
                 return;
             case 10:
-                taa taaVar = (taa) obj;
-                v9a v9aVar = taaVar.A1;
-                tk0.a(v9aVar, canvas, rectF, v9aVar, taaVar.b);
+                ox0 ox0Var = wx0Var.E;
+                ox0Var.getClass();
+                ox0Var.Q = System.currentTimeMillis();
+                ox0Var.v("settings_button_pressed", null);
+                return;
+            case 11:
+                hs6.d0(wx0Var.I).z0(wx0Var.J, hs6.f2 ? 1 : 0, null);
+                return;
+            case 12:
+                l11.u(wx0Var.getContext(), jb6.M0(2131752846, null));
+                return;
+            case 13:
+                da9.E0(wx0Var.I, wx0Var.getContext(), new c41(n21.a(wx0Var.getContext()), wx0Var.G), wx0Var.J);
+                return;
+            case 14:
+                wx0.l(wx0Var.I, wx0Var.J, new vw0(wx0Var, (byte) 15));
+                return;
+            case 15:
+                wx0Var.m(false);
                 return;
             default:
-                hmc hmcVar = (hmc) obj;
-                va vaVar = hmcVar.a;
-                tk0.a(vaVar, canvas, rectF, vaVar, (ViewGroup) hmcVar.fragmentView);
-                vlc vlcVar = hmcVar.e;
-                if (vlcVar != null && hmcVar.n != null && vlcVar.getVisibility() == 0 && hmcVar.e.getAlpha() > 0.0f) {
-                    int save = canvas.save();
-                    canvas.translate(hmcVar.n.getX() + hmcVar.e.getLeft(), hmcVar.n.getY() + hmcVar.e.getTop());
-                    canvas.concat(hmcVar.e.getMatrix());
-                    if (hmcVar.e.getAlpha() < 1.0f) {
-                        canvas.saveLayerAlpha(0.0f, 0.0f, hmcVar.e.getWidth(), hmcVar.e.getHeight(), (int) (hmcVar.e.getAlpha() * 255.0f));
-                    }
-                    hmcVar.e.draw(canvas);
-                    canvas.restoreToCount(save);
-                    return;
-                }
+                wx0Var.m(false);
                 return;
         }
     }

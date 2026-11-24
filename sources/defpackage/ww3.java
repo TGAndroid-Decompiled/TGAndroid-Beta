@@ -1,408 +1,237 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import java.nio.MappedByteBuffer;
-import java.util.zip.DataFormatException;
-import java.util.zip.Inflater;
-public final class ww3 {
-    public final MappedByteBuffer a;
-    public final int b;
-    public final int c;
-    public final Inflater d = new Inflater(true);
-    public final BitmapFactory.Options e = new BitmapFactory.Options();
-    public byte[] f = new byte[4096];
-    public final byte[] g = new byte[4608];
-    public final byte[] h = new byte[4096];
-    public final int[] i = new int[4096];
-    public final int[] j = new int[4096];
-    public final int[] k = new int[256];
-    public final byte[] l = new byte[1024];
-    public final int[] m = new int[8];
-    public final long[] n = new long[8];
-    public final byte[][] o = new byte[8];
-    public long p;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ww3 extends q59 {
+    public String e;
+    public TLRPC.User f;
+    public String h;
+    public boolean n;
+    public final yw3 s;
+    public final bi3 c = new bi3(this, (byte) 25);
+    public int d = -1;
+    public boolean r = false;
 
-    public ww3() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ww3.<init>():void");
+    public ww3(yw3 yw3Var) {
+        this.s = yw3Var;
     }
 
-    public static IllegalStateException a(String str) {
-        return new IllegalStateException("Damaged emoji.pack: ".concat(str));
-    }
-
-    public static int f(int i) {
-        return (i * 20) + 32;
-    }
-
-    public static int n(int i, int i2) {
-        int i3 = i & 63;
-        int i4 = i >>> 6;
-        if ((i2 & 1) != 0) {
-            i3 = 63 - i3;
+    @Override
+    public final boolean D(u69 u69Var) {
+        if (u69Var.f == 2) {
+            return true;
         }
-        if ((i2 & 2) != 0) {
-            i4 = 63 - i4;
-        }
-        if ((i2 & 4) != 0) {
-            return (i3 << 6) | i4;
-        }
-        return (i4 << 6) | i3;
+        return false;
     }
 
-    public final Bitmap b(int i, int i2) {
-        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(this.f, i, i2, this.e);
-        if (decodeByteArray != null) {
-            if (decodeByteArray.getWidth() == 64 && decodeByteArray.getHeight() == 64) {
-                return decodeByteArray;
+    public final Object E(int i) {
+        int i2 = i - 1;
+        yw3 yw3Var = this.s;
+        ArrayList arrayList = yw3Var.n;
+        ArrayList arrayList2 = yw3Var.h;
+        if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+            if (i2 >= 0 && i2 < arrayList2.size()) {
+                return arrayList2.get(i2);
             }
-            decodeByteArray.recycle();
-            throw a("Unexpected bitmap dimensions");
+            i2 -= arrayList2.size();
         }
-        throw a("Bitmap decoder rejected image");
-    }
-
-    public final void c(int r28, byte[] r29) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ww3.c(int, byte[]):void");
-    }
-
-    public final void d(int[] iArr, int i) {
-        Bitmap b;
-        boolean z;
-        int[] iArr2;
-        int i2;
-        int p;
-        int p2;
-        int i3;
-        int f = f(i);
-        MappedByteBuffer mappedByteBuffer = this.a;
-        int i4 = mappedByteBuffer.getInt(f + 4);
-        int o = o(f + 8);
-        int p3 = p(f + 16);
-        if (p3 != 2) {
-            int i5 = 3;
-            if (p3 != 3) {
-                byte[] bArr = this.h;
-                c(i, bArr);
-                int o2 = o(f + 14);
-                int i6 = f + 18;
-                int p4 = p(i6) & 127;
-                int i7 = o2 * p4;
-                if ((p(i6) & 128) != 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (z) {
-                    int j = j(f) - 2;
-                    l(i4 + 2, j);
-                    if ((p(f + 19) & 1) != 0) {
-                        i3 = ((i7 * 7) + 7) / 8;
-                    } else {
-                        i3 = i7;
-                    }
-                    i(j, i3);
-                }
-                int p5 = p(f + 19) & 1;
-                byte[] bArr2 = this.g;
-                byte[] bArr3 = this.l;
-                if (p5 != 0) {
-                    int i8 = 0;
-                    while (i8 < i7) {
-                        int i9 = i8 * 7;
-                        int i10 = i9 & 7;
-                        int i11 = i9 >>> i5;
-                        if (z) {
-                            p = bArr2[i11] & 255;
-                        } else {
-                            p = p(i4 + i11);
-                        }
-                        int i12 = p >>> i10;
-                        if (i10 > 1) {
-                            if (z) {
-                                p2 = bArr2[i11 + 1] & 255;
-                            } else {
-                                p2 = p(i11 + i4 + 1);
-                            }
-                            i12 |= p2 << (8 - i10);
-                        }
-                        int i13 = i12 & 127;
-                        bArr3[i8] = (byte) ((i13 << 1) | (i13 >>> 6));
-                        i8++;
-                        i5 = 3;
-                    }
-                } else if (z) {
-                    System.arraycopy(bArr2, 0, bArr3, 0, i7);
-                } else {
-                    for (int i14 = 0; i14 < i7; i14++) {
-                        bArr3[i14] = mappedByteBuffer.get(i4 + i14);
-                    }
-                }
-                int i15 = 0;
-                int i16 = 0;
-                while (true) {
-                    iArr2 = this.k;
-                    if (i15 >= o2) {
-                        break;
-                    }
-                    if (p4 == 0) {
-                        iArr2[i15] = (65793 * i15) | (-16777216);
-                    } else if (p4 == 1) {
-                        iArr2[i15] = ((bArr3[i16] & 255) * 65793) | (-16777216);
-                        i16++;
-                    } else {
-                        int i17 = bArr3[i16] & 255;
-                        int i18 = bArr3[i16 + 1] & 255;
-                        int i19 = i16 + 3;
-                        int i20 = bArr3[i16 + 2] & 255;
-                        if (p4 == 4) {
-                            i16 += 4;
-                            i2 = bArr3[i19] & 255;
-                        } else {
-                            i16 = i19;
-                            i2 = 255;
-                        }
-                        iArr2[i15] = (i2 << 24) | (i17 << 16) | (i18 << 8) | i20;
-                    }
-                    i15++;
-                }
-                for (int i21 = 0; i21 < 4096; i21++) {
-                    int i22 = bArr[i21] & 255;
-                    if (i22 < o2) {
-                        iArr[i21] = iArr2[i22];
-                    } else {
-                        throw a("Palette index out of range");
-                    }
-                }
-                return;
+        if (!arrayList.isEmpty()) {
+            if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+                i2--;
             }
-        }
-        l(i4, o);
-        BitmapFactory.Options options = this.e;
-        options.inPremultiplied = false;
-        Bitmap bitmap = null;
-        try {
-            if (p3 == 2) {
-                b = e(20, o);
-            } else {
-                b = b(20, o);
+            if (i2 >= 0 && i2 < arrayList.size()) {
+                return arrayList.get(i2);
             }
-            Bitmap bitmap2 = b;
-            try {
-                bitmap2.getPixels(iArr, 0, 64, 0, 0, 64, 64);
-                options.inPremultiplied = true;
-                bitmap2.recycle();
-            } catch (Throwable th) {
-                th = th;
-                bitmap = bitmap2;
-                options.inPremultiplied = true;
-                if (bitmap != null) {
-                    bitmap.recycle();
-                }
-                throw th;
-            }
-        } catch (Throwable th2) {
-            th = th2;
-        }
-    }
-
-    public final Bitmap e(int i, int i2) {
-        int i3 = i - 20;
-        int i4 = i2 & 1;
-        k(i3, 1179011410);
-        k(i - 16, i2 + 12 + i4);
-        k(i - 12, 1346520407);
-        k(i - 8, 1278758998);
-        k(i - 4, i2);
-        if (i4 != 0) {
-            this.f[i + i2] = 0;
-        }
-        return b(i3, i2 + 20 + i4);
-    }
-
-    public final int g(int i, int i2, int i3) {
-        int i4 = i3 - 1;
-        while (i2 <= i4) {
-            int i5 = (i2 + i4) >>> 1;
-            int o = o(f(i5));
-            if (o < i) {
-                i2 = i5 + 1;
-            } else if (o > i) {
-                i4 = i5 - 1;
-            } else {
-                return i5;
-            }
-        }
-        return -1;
-    }
-
-    public final synchronized Bitmap h(int i, int i2) {
-        int i3;
-        Bitmap b;
-        int i4 = 0;
-        if (i >= 0 && i <= 15 && i2 >= 0 && i2 < 4096) {
-            i3 = g((i << 12) + i2, 0, this.c);
-        } else {
-            i3 = -1;
-        }
-        if (i3 < 0) {
             return null;
         }
-        int o = o(f(i3) + 2);
-        if (o == 65535) {
-            int[] iArr = this.i;
-            int f = f(i3);
-            int i5 = this.a.getInt(f + 4);
-            int o2 = o(f + 8);
-            int p = p(f + 16);
-            if (p != 2 && p != 3) {
-                d(iArr, i3);
-                b = Bitmap.createBitmap(iArr, 64, 64, Bitmap.Config.ARGB_8888);
-            } else {
-                l(i5, o2);
-                if (p == 2) {
-                    b = e(20, o2);
-                } else {
-                    b = b(20, o2);
-                }
-            }
-            return b;
-        }
-        d(this.j, i3);
-        d(this.i, g(o, this.c, this.b));
-        while (true) {
-            int[] iArr2 = this.j;
-            if (i4 < 4096) {
-                int i6 = iArr2[i4];
-                iArr2[i4] = (i6 & 16777215) | (((((i6 >>> 24) * (this.i[i4] & 255)) + 127) / 255) << 24);
-                i4++;
-            } else {
-                return Bitmap.createBitmap(iArr2, 64, 64, Bitmap.Config.ARGB_8888);
-            }
-        }
+        return null;
     }
 
-    public final void i(int i, int i2) {
-        Inflater inflater = this.d;
-        inflater.reset();
-        inflater.setInput(this.f, 20, i);
-        int i3 = 0;
-        while (i3 < i2) {
-            try {
-                int inflate = inflater.inflate(this.g, i3, i2 - i3);
-                if (inflate != 0) {
-                    i3 += inflate;
-                } else {
-                    throw a("Truncated DEFLATE stream");
+    public final void F() {
+        yw3 yw3Var = this.s;
+        px3 px3Var = yw3Var.r;
+        if (!this.r) {
+            this.r = true;
+            yw3Var.d.c(true);
+            if (this.d >= 0) {
+                int i = px3.C1;
+                ConnectionsManager.getInstance(px3Var.a).cancelRequest(this.d, true);
+                this.d = -1;
+            }
+            if (this.f == null) {
+                int i2 = px3.C1;
+                TLObject b2 = oc7.r1(px3Var.a).b2(oc7.r1(px3Var.a).o3);
+                if (b2 instanceof TLRPC.User) {
+                    this.f = (TLRPC.User) b2;
                 }
-            } catch (DataFormatException e) {
-                k93.h("Damaged EPK3 DEFLATE stream", e);
+            }
+            if (this.f == null) {
+                if (!this.n) {
+                    TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                    int i3 = px3.C1;
+                    tL_contacts_resolveUsername.username = oc7.r1(px3Var.a).o3;
+                    this.d = ConnectionsManager.getInstance(px3Var.a).sendRequest(tL_contacts_resolveUsername, new tg(this, (byte) 22));
+                    return;
+                }
                 return;
             }
+            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+            int i4 = px3.C1;
+            tL_messages_getInlineBotResults.bot = oc7.r1(px3Var.a).p1(this.f);
+            String str = this.e;
+            String str2 = "";
+            if (str == null) {
+                str = "";
+            }
+            tL_messages_getInlineBotResults.query = str;
+            boolean isEmpty = TextUtils.isEmpty(this.h);
+            String str3 = this.h;
+            if (str3 != null) {
+                str2 = str3;
+            }
+            tL_messages_getInlineBotResults.offset = str2;
+            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+            String str4 = "gif_search_" + tL_messages_getInlineBotResults.query + "_" + tL_messages_getInlineBotResults.offset;
+            cf7.Y(px3Var.a).L(str4, new rj1(this, isEmpty, tL_messages_getInlineBotResults, str4));
         }
-        if (!inflater.finished() && (inflater.inflate(this.h, 0, 1) != 0 || !inflater.finished())) {
-            throw a("Oversized DEFLATE stream");
+    }
+
+    public final void G(String str) {
+        yw3 yw3Var = this.s;
+        ix3 ix3Var = yw3Var.d;
+        if (!TextUtils.equals(this.e, str)) {
+            if (this.d != -1) {
+                px3 px3Var = yw3Var.r;
+                int i = px3.C1;
+                ConnectionsManager.getInstance(px3Var.a).cancelRequest(this.d, true);
+                this.d = -1;
+            }
+            this.r = false;
+            this.h = "";
         }
-        if (inflater.getRemaining() == 0) {
+        boolean isEmpty = TextUtils.isEmpty(this.e);
+        this.e = str;
+        bi3 bi3Var = this.c;
+        gm.r(bi3Var);
+        if (TextUtils.isEmpty(str)) {
+            yw3Var.n.clear();
+            ix3Var.c(false);
+            f();
             return;
         }
-        throw a("Trailing DEFLATE bytes");
-    }
-
-    public final int j(int i) {
-        int i2;
-        int i3 = i + 18;
-        if ((p(i3) & 128) != 0) {
-            int i4 = i + 8;
-            if (o(i4) >= 3) {
-                int o = o(this.a.getInt(i + 4));
-                if (o != 0 && (i2 = o + 2) <= o(i4)) {
-                    return i2;
-                }
-                throw a("Invalid compressed palette");
-            }
-            throw a("Truncated compressed palette");
+        if (isEmpty) {
+            f();
         }
-        int o2 = o(i + 14) * (p(i3) & 127);
-        if ((p(i + 19) & 1) != 0) {
-            return ((o2 * 7) + 7) / 8;
+        ix3Var.c(true);
+        gm.d3(bi3Var, 1500L);
+    }
+
+    public final void H(boolean z) {
+        yw3 yw3Var = this.s;
+        ArrayList arrayList = yw3Var.h;
+        arrayList.clear();
+        px3 px3Var = yw3Var.r;
+        int i = px3.C1;
+        arrayList.addAll(new ArrayList(hs6.d0(px3Var.a).j0));
+        if (z) {
+            f();
         }
-        return o2;
     }
 
-    public final void k(int i, int i2) {
-        byte[] bArr = this.f;
-        bArr[i] = (byte) i2;
-        bArr[i + 1] = (byte) (i2 >>> 8);
-        bArr[i + 2] = (byte) (i2 >>> 16);
-        bArr[i + 3] = (byte) (i2 >>> 24);
-    }
-
-    public final void l(int i, int i2) {
-        byte[] bArr = this.f;
-        int i3 = i2 + 21;
-        if (bArr.length < i3) {
-            int length = bArr.length;
-            while (length < i3) {
-                length <<= 1;
-            }
-            this.f = new byte[length];
-        }
-        MappedByteBuffer mappedByteBuffer = this.a;
-        mappedByteBuffer.position(i);
-        mappedByteBuffer.get(this.f, 20, i2);
-    }
-
-    public final byte[] m(int i) {
+    @Override
+    public final int b() {
+        int i;
+        yw3 yw3Var = this.s;
+        ArrayList arrayList = yw3Var.n;
+        ArrayList arrayList2 = yw3Var.h;
         int i2 = 0;
-        int i3 = 0;
-        while (true) {
-            long[] jArr = this.n;
-            byte[][] bArr = this.o;
-            int[] iArr = this.m;
-            if (i2 < 8) {
-                if (iArr[i2] == i) {
-                    long j = this.p + 1;
-                    this.p = j;
-                    jArr[i2] = j;
-                    return bArr[i2];
-                }
-                if (jArr[i2] < jArr[i3]) {
-                    i3 = i2;
-                }
-                i2++;
-            } else {
-                if (bArr[i3] == null) {
-                    bArr[i3] = new byte[4096];
-                }
-                iArr[i3] = -1;
-                c(i, bArr[i3]);
-                iArr[i3] = i;
-                long j2 = this.p + 1;
-                this.p = j2;
-                jArr[i3] = j2;
-                return bArr[i3];
+        if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+            i = arrayList2.size();
+        } else {
+            i = 0;
+        }
+        int i3 = i + 1;
+        if (!arrayList.isEmpty()) {
+            if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+                i2 = 1;
+            }
+            i2 += arrayList.size();
+        }
+        return i3 + i2;
+    }
+
+    @Override
+    public final int d(int i) {
+        yw3 yw3Var = this.s;
+        ArrayList arrayList = yw3Var.h;
+        if (i == 0) {
+            return 0;
+        }
+        int i2 = i - 1;
+        if (!arrayList.isEmpty() && TextUtils.isEmpty(this.e)) {
+            i2 -= arrayList.size();
+        }
+        if (!yw3Var.n.isEmpty() && !arrayList.isEmpty() && TextUtils.isEmpty(this.e) && i2 == 0) {
+            return 1;
+        }
+        return 2;
+    }
+
+    @Override
+    public final void t(u69 u69Var, int i) {
+        int i2 = u69Var.f;
+        View view = u69Var.a;
+        if (i2 == 0) {
+            view.setTag(34);
+            view.setLayoutParams(new g69(-1, (int) this.s.r.r1));
+        } else if (i2 == 2) {
+            lx2 lx2Var = (lx2) view;
+            Object E = E(i);
+            if (E instanceof TLRPC.Document) {
+                TLRPC.Document document = (TLRPC.Document) E;
+                lx2Var.getClass();
+                lx2Var.d(0, "gif" + document, document);
+            } else if (E instanceof TLRPC.BotInlineResult) {
+                lx2Var.e((TLRPC.BotInlineResult) E, this.f, true, false, false, true);
             }
         }
     }
 
-    public final int o(int i) {
-        return this.a.getShort(i) & 65535;
-    }
-
-    public final int p(int i) {
-        return this.a.get(i) & 255;
-    }
-
-    public final void q(int i, int i2) {
-        if (i < this.b && i != i2) {
-            int f = f(i);
-            if (p(f + 16) <= 1 && p(f + 17) == 0 && o(f + 10) == 65535 && o(f + 12) == 65535) {
-                return;
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        View view;
+        yw3 yw3Var = this.s;
+        if (i == 0) {
+            view = new View(yw3Var.getContext());
+        } else if (i == 1) {
+            Context context = yw3Var.getContext();
+            px3 px3Var = yw3Var.r;
+            int i2 = px3.C1;
+            w1b w1bVar = new w1b(context, false, false, px3Var.J0, false);
+            w1bVar.a(0, jb6.M0(2131750771, null));
+            g69 g69Var = new g69(-1, -2);
+            ((ViewGroup.MarginLayoutParams) g69Var).topMargin = gm.L(2.5f);
+            ((ViewGroup.MarginLayoutParams) g69Var).bottomMargin = gm.L(5.5f);
+            w1bVar.setLayoutParams(g69Var);
+            view = w1bVar;
+        } else {
+            lx2 lx2Var = new lx2(yw3Var.getContext());
+            lx2Var.getPhotoImage().m0(7);
+            if (lx2Var.e0 == null) {
+                u51 u51Var = new u51(lx2Var, 1.0f, 3.0f);
+                u51Var.e = (byte) 120;
+                lx2Var.e0 = u51Var;
             }
-            k93.f("EPK3 dependency chains are forbidden");
-            return;
+            lx2Var.setIsKeyboard(true);
+            lx2Var.setCanPreviewGif(true);
+            view = lx2Var;
         }
-        k93.f("Invalid root reference");
+        return new u69(view);
     }
 }

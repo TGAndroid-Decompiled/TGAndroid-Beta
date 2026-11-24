@@ -1,17 +1,44 @@
 package defpackage;
-public final class yxe implements zn7 {
-    public static final yxe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+public abstract class yxe {
+    public static long a;
+    public static Method b;
+
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
+        }
+        Trace.beginSection(str);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return nzb.a();
         }
-        throw new ClassCastException();
+        try {
+            Method method = b;
+            if (method == null) {
+                a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                method = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+                b = method;
+            }
+            return ((Boolean) method.invoke(null, Long.valueOf(a))).booleanValue();
+        } catch (Exception e) {
+            if (e instanceof InvocationTargetException) {
+                Throwable cause = e.getCause();
+                if (!(cause instanceof RuntimeException)) {
+                    rjb.m(cause);
+                    return false;
+                }
+                throw ((RuntimeException) cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e);
+            return false;
+        }
     }
 }

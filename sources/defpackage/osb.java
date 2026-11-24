@@ -1,31 +1,16 @@
 package defpackage;
-public enum osb extends qsb {
+public enum osb extends rub {
     public osb() {
-        super("TagOpen", 7);
+        super("ScriptDataEscapeStartDash", 20);
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char i = zj1Var.i();
-        if (i != '!') {
-            if (i != '/') {
-                if (i != '?') {
-                    if (zj1Var.o()) {
-                        aqbVar.d(true);
-                        aqbVar.c = qsb.r;
-                        return;
-                    }
-                    aqbVar.m(this);
-                    aqbVar.f('<');
-                    aqbVar.c = qsb.a;
-                    return;
-                }
-                aqbVar.a(qsb.g0);
-                return;
-            }
-            aqbVar.a(qsb.n);
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        if (hl1Var.m('-')) {
+            bsbVar.f('-');
+            bsbVar.a(rub.N);
             return;
         }
-        aqbVar.a(qsb.h0);
+        bsbVar.c = rub.f;
     }
 }

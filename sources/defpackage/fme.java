@@ -1,12 +1,18 @@
 package defpackage;
-public final class fme {
-    public final pwe a;
-    public final ule b;
-    public final xke c;
+public enum fme {
+    BROADCAST_ACTION_UNSPECIFIED(0),
+    PURCHASES_UPDATED_ACTION(1),
+    LOCAL_PURCHASES_UPDATED_ACTION(2),
+    ALTERNATIVE_BILLING_ACTION(3);
+    
+    public final byte a;
 
-    public fme(rod rodVar) {
-        this.a = (pwe) rodVar.b;
-        this.b = (ule) rodVar.c;
-        this.c = (xke) rodVar.d;
+    fme(int i) {
+        this.a = i;
+    }
+
+    @Override
+    public final String toString() {
+        return Integer.toString(this.a);
     }
 }

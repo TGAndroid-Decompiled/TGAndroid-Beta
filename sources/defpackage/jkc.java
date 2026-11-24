@@ -1,30 +1,26 @@
 package defpackage;
 
-import android.view.View;
-public final class jkc implements Runnable {
-    public final byte a;
-    public final nkc b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+public final class jkc extends Drawable {
+    public final int a = -15130842;
 
-    public jkc(nkc nkcVar, byte b) {
-        this.a = b;
-        this.b = nkcVar;
+    @Override
+    public final void draw(Canvas canvas) {
+        canvas.drawColor(this.a);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        nkc nkcVar = this.b;
-        switch (b) {
-            case 0:
-                uk1 uk1Var = nkcVar.a;
-                if (uk1Var.getParent() instanceof View) {
-                    ((View) uk1Var.getParent()).invalidate();
-                    return;
-                }
-                return;
-            default:
-                nkcVar.p();
-                return;
-        }
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

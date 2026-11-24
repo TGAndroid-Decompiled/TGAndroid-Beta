@@ -1,46 +1,67 @@
 package defpackage;
-public enum grb extends qsb {
-    public grb() {
-        super("AttributeValue_singleQuoted", 38);
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class grb implements View.OnClickListener {
+    public final t57 a;
+    public final yv1 b;
+    public final r59 c;
+    public final LinearLayout d;
+    public final bu5 e;
+    public final bu5 f;
+    public final krb h;
+
+    public grb(krb krbVar, t57 t57Var, yv1 yv1Var, r59 r59Var, LinearLayout linearLayout, bu5 bu5Var, bu5 bu5Var2) {
+        this.h = krbVar;
+        this.a = t57Var;
+        this.b = yv1Var;
+        this.c = r59Var;
+        this.d = linearLayout;
+        this.e = bu5Var;
+        this.f = bu5Var2;
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        String g = zj1Var.g(qsb.F0);
-        int length = g.length();
-        vpb vpbVar = aqbVar.i;
-        if (length > 0) {
-            vpbVar.w(g);
-        } else {
-            vpbVar.j = true;
-        }
-        char d = zj1Var.d();
-        if (d != 0) {
-            if (d != 65535) {
-                if (d != '&') {
-                    if (d != '\'') {
-                        aqbVar.i.v(d);
-                        return;
-                    } else {
-                        aqbVar.c = qsb.e0;
-                        return;
-                    }
-                }
-                int[] c = aqbVar.c('\'', true);
-                vpb vpbVar2 = aqbVar.i;
-                if (c != null) {
-                    vpbVar2.x(c);
-                    return;
-                } else {
-                    vpbVar2.v('&');
+    public final void onClick(View view) {
+        t57 t57Var = this.a;
+        ArrayList arrayList = t57Var.b;
+        ArrayList arrayList2 = t57Var.c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            krb krbVar = this.h;
+            yv1 yv1Var = this.b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
                     return;
                 }
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).id);
+                }
+                yv1Var.presentFragment(new ProfileActivity(bundle, null));
+                krbVar.b(false);
+                return;
             }
-            aqbVar.l(this);
-            aqbVar.c = qsb.a;
-            return;
+            if (gda.Y0 > 0 && yv1Var.m1.getKeyboardHeight() < gm.L(20.0f)) {
+                u31 t = new c41(n21.a(krbVar.getContext()), krbVar.a).t(gm.S2(jb6.M0(2131748245, null)), null);
+                yv1Var.C1 = t;
+                t.j = 4000;
+                t.j();
+                gda.P(gda.Y0 - 1);
+            }
+            r59 r59Var = this.c;
+            r59Var.requestLayout();
+            this.d.requestLayout();
+            r59Var.getAdapter().f();
+            this.e.L(this.f);
         }
-        aqbVar.m(this);
-        aqbVar.i.v((char) 65533);
     }
 }

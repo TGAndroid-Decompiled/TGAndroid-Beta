@@ -1,92 +1,159 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.GestureDetector;
+import android.graphics.Rect;
 import android.view.MotionEvent;
-public final class smb extends gb2 {
-    public final GestureDetector Ld;
-    public final kl Md;
-    public final kl Nd;
-    public final int Od;
-    public final tmb Pd;
+import android.view.View;
+import android.view.ViewParent;
+public final class smb extends r59 {
+    public final byte f3;
 
-    public smb(tmb tmbVar, Context context, int i, wjb wjbVar, Context context2, int i2) {
-        super(context, i, false, null, wjbVar);
-        this.Pd = tmbVar;
-        this.Od = i2;
-        this.Ld = new GestureDetector(context2, new gl3(this, (byte) 2));
-        s33 s33Var = s33.g;
-        this.Md = new kl(this, 180L, s33Var, 0);
-        this.Nd = new kl(this, 180L, s33Var, 0);
+    public smb(Context context) {
+        super(context);
+        this.f3 = (byte) 12;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i;
-        int v0;
-        int v02;
-        da7 da7Var;
-        k27 messageObject = getMessageObject();
-        kl klVar = this.Nd;
-        kl klVar2 = this.Md;
-        pb0 pb0Var = this.B7;
-        if (messageObject != null && getMessageObject().e1 >= 0) {
-            int i2 = getMessageObject().e1;
-            if (i2 >= 14) {
-                ea7 ea7Var = na7.q1(y6c.t0).E3;
-                if (ea7Var != null) {
-                    da7Var = ea7Var.d(i2);
-                } else {
-                    da7Var = null;
-                }
-                if (da7Var != null) {
-                    int f = da7Var.f();
-                    v0 = bkb.v0(bkb.o8[pb0.e(f)], this.cc);
-                    v02 = bkb.v0(bkb.p8[pb0.e(f)], this.cc);
-                } else {
-                    long j = i2;
-                    v0 = bkb.v0(bkb.o8[pb0.d(j)], this.cc);
-                    v02 = bkb.v0(bkb.p8[pb0.d(j)], this.cc);
-                }
-            } else {
-                long j2 = i2;
-                v0 = bkb.v0(bkb.o8[pb0.d(j2)], this.cc);
-                v02 = bkb.v0(bkb.p8[pb0.d(j2)], this.cc);
-            }
-            pb0Var.h(klVar2.a(v0, false), klVar.a(v02, false));
-        } else {
-            klVar2.a(pb0Var.b(), false);
-            boolean z = pb0Var.g;
-            int i3 = pb0Var.e;
-            if (z) {
-                zjb i4 = bkb.I.i(false);
-                akb akbVar = bkb.I;
-                if (i4 != null) {
-                    i = i4.c;
-                } else {
-                    i = 0;
-                }
-                i3 = bkb.B(akbVar, i, i3);
-            }
-            klVar.a(i3, false);
+    public final Integer W0(int i) {
+        switch (this.f3) {
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            case 5:
+                return 0;
+            case 8:
+                return 0;
+            case 13:
+                return 0;
+            default:
+                return super.W0(i);
         }
-        if (getAvatarImage() != null && getAvatarImage().O0 != 0.0f) {
-            getAvatarImage().i0(getAvatarImage().L0, (getMeasuredHeight() - getAvatarImage().O0) - gl.L(4.0f), getAvatarImage().N0, getAvatarImage().O0);
-            getAvatarImage().q0((int) (getAvatarImage().O0 / 2.0f));
-            getAvatarImage().h(canvas, null);
-        } else if (this.Od == 2) {
-            invalidate();
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f3) {
+            case 0:
+                if (getParent() != null && getParent().getParent() != null) {
+                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 6:
+                if (getParent() != null && getParent().getParent() != null) {
+                    ViewParent parent = getParent().getParent();
+                    boolean z = true;
+                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                        z = false;
+                    }
+                    parent.requestDisallowInterceptTouchEvent(z);
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 11:
+                if (getParent() != null && getParent().getParent() != null) {
+                    ViewParent parent2 = getParent().getParent();
+                    boolean z2 = true;
+                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                        z2 = false;
+                    }
+                    parent2.requestDisallowInterceptTouchEvent(z2);
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 14:
+                if (getParent() != null && getParent().getParent() != null) {
+                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
         }
-        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.f3) {
+            case 4:
+                int size = View.MeasureSpec.getSize(i2);
+                int b = (getAdapter().b() * gm.L(50.0f)) + gm.L(4.0f);
+                if (b <= size) {
+                    size = b;
+                }
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+            case 9:
+                int size2 = View.MeasureSpec.getSize(i2);
+                int b2 = (getAdapter().b() * gm.L(50.0f)) + gm.L(4.0f);
+                if (b2 <= size2) {
+                    size2 = b2;
+                }
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.Pd.a()) {
-            return super.onTouchEvent(motionEvent);
+        switch (this.f3) {
+            case 12:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
-        this.Ld.onTouchEvent(motionEvent);
-        return true;
+    }
+
+    @Override
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
+        switch (this.f3) {
+            case 3:
+                rect.bottom = gm.L(60.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z);
+            case 10:
+                rect.bottom = gm.L(60.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z);
+        }
+    }
+
+    @Override
+    public final boolean requestFocus(int i, Rect rect) {
+        switch (this.f3) {
+            case 7:
+                return false;
+            default:
+                return super.requestFocus(i, rect);
+        }
+    }
+
+    @Override
+    public final void s0(View view, View view2) {
+        switch (this.f3) {
+            case 3:
+                if (view instanceof ng8) {
+                    super.s0(view, view2);
+                    return;
+                }
+                return;
+            case 10:
+                if (view instanceof ng8) {
+                    super.s0(view, view2);
+                    return;
+                }
+                return;
+            default:
+                super.s0(view, view2);
+                return;
+        }
+    }
+
+    public smb(Context context, ylb ylbVar, byte b) {
+        super(context, ylbVar);
+        this.f3 = b;
     }
 }

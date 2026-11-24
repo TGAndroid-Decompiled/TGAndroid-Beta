@@ -1,37 +1,186 @@
 package defpackage;
-public final class kl9 implements Runnable {
-    public final byte a;
-    public final g29 b;
-    public final Exception c;
 
-    public kl9(g29 g29Var, Exception exc, byte b) {
-        this.a = b;
-        this.b = g29Var;
-        this.c = exc;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class kl9 {
+    public static volatile long g;
+    public static volatile long h;
+    public static final HashSet i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
+    public final long a;
+    public final int c;
+    public int d;
+    public boolean f;
+    public String b = null;
+    public final ArrayList e = new ArrayList();
+
+    public kl9(int i2) {
+        this.c = i2;
+        this.a = z8c.h(i2).n;
+        SharedPreferences d = d();
+        try {
+            g = d.getLong("hash", 0L);
+            h = d.getLong("lastReload", 0L);
+        } catch (Exception e) {
+            fc4.g(e, true);
+        }
+        gm.c3(new hl9(this, (byte) 0));
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        Exception exc = this.c;
-        g29 g29Var = this.b;
-        switch (b) {
-            case 0:
-                ul9 ul9Var = (ul9) g29Var.b;
-                ul9Var.m.a("recording segment interrupted in state=".concat(de9.A(ul9Var.a0)), exc);
-                int i = ul9Var.a0;
-                if (i == 3) {
-                    ul9Var.q();
-                    return;
-                } else if (i == 2) {
-                    ul9Var.D = true;
-                    return;
-                } else {
-                    return;
+    public final void a(TLRPC.Document document) {
+        if (document == null || c(document.id) != null) {
+            return;
+        }
+        ?? obj = new Object();
+        obj.a = document;
+        int i2 = this.d;
+        this.d = i2 + 1;
+        obj.c = i2;
+        obj.d = false;
+        this.e.add(obj);
+        h();
+    }
+
+    public final void b() {
+        if (!this.f) {
+            f(true);
+            this.f = true;
+        }
+        Utilities.e.c(new ey8(this, new ArrayList(this.e), (byte) 29));
+    }
+
+    public final TLRPC.Document c(long j) {
+        ArrayList arrayList = this.e;
+        if (!this.f) {
+            f(true);
+            this.f = true;
+        }
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            try {
+                if (arrayList.get(i2) != null && ((jl9) arrayList.get(i2)).a != null && ((jl9) arrayList.get(i2)).a.id == j) {
+                    return ((jl9) arrayList.get(i2)).a;
                 }
-            default:
-                ((ul9) g29Var.b).h(exc);
+            } catch (Exception e) {
+                fc4.g(e, true);
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public final SharedPreferences d() {
+        if (this.b == null) {
+            this.b = "ringtones_pref_" + this.a;
+        }
+        return a.b.getSharedPreferences(this.b, 0);
+    }
+
+    public final String e(long j) {
+        if (!this.f) {
+            f(true);
+            this.f = true;
+        }
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i2 < arrayList.size()) {
+                if (((jl9) arrayList.get(i2)).a != null && ((jl9) arrayList.get(i2)).a.id == j) {
+                    if (!TextUtils.isEmpty(((jl9) arrayList.get(i2)).b)) {
+                        return ((jl9) arrayList.get(i2)).b;
+                    }
+                    bc4.G(this.c);
+                    return bc4.I(((jl9) arrayList.get(i2)).a).toString();
+                }
+                i2++;
+            } else {
+                return "NoSound";
+            }
+        }
+    }
+
+    public final void f(boolean z) {
+        SharedPreferences d = d();
+        int i2 = d.getInt("count", 0);
+        ArrayList arrayList = this.e;
+        arrayList.clear();
+        for (int i3 = 0; i3 < i2; i3++) {
+            String string = d.getString("tone_document" + i3, "");
+            String string2 = d.getString("tone_local_path" + i3, "");
+            SerializedData serializedData = new SerializedData(Utilities.v(string));
+            try {
+                TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                ?? obj = new Object();
+                obj.a = TLdeserialize;
+                obj.b = string2;
+                int i4 = this.d;
+                this.d = i4 + 1;
+                obj.c = i4;
+                arrayList.add(obj);
+            } catch (Throwable th) {
+                boolean z2 = e21.a;
+                fc4.g(th, true);
+            }
+        }
+        if (z) {
+            gm.c3(new hl9(this, (byte) 1));
+        }
+    }
+
+    public final void g(boolean z) {
+        boolean z2;
+        if (!z && System.currentTimeMillis() - h <= 86400000) {
+            z2 = false;
+        } else {
+            z2 = true;
+        }
+        TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
+        getsavedringtones.hash = g;
+        if (z2) {
+            ConnectionsManager.getInstance(this.c).sendRequest(getsavedringtones, new r15(this, (byte) 28));
+            return;
+        }
+        if (!this.f) {
+            f(true);
+            this.f = true;
+        }
+        b();
+    }
+
+    public final void h() {
+        SharedPreferences d = d();
+        d.edit().clear().apply();
+        SharedPreferences.Editor edit = d.edit();
+        int i2 = 0;
+        int i3 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i2 < arrayList.size()) {
+                if (!((jl9) arrayList.get(i2)).d) {
+                    i3++;
+                    TLRPC.Document document = ((jl9) arrayList.get(i2)).a;
+                    String str = ((jl9) arrayList.get(i2)).b;
+                    SerializedData serializedData = new SerializedData(document.getObjectSize());
+                    document.serializeToStream(serializedData);
+                    edit.putString("tone_document" + i2, Utilities.f(serializedData.toByteArray()));
+                    if (str != null) {
+                        edit.putString("tone_local_path" + i2, str);
+                    }
+                }
+                i2++;
+            } else {
+                edit.putInt("count", i3);
+                edit.apply();
+                nm7.f(this.c).k(nm7.i5, new Object[0]);
                 return;
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ public class VideoTrack extends MediaStreamTrack {
             }
             return;
         }
-        w26.j("The VideoSink is not allowed to be null");
+        u36.j("The VideoSink is not allowed to be null");
     }
 
     @Override

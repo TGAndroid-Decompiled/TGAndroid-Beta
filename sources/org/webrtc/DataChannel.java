@@ -75,7 +75,7 @@ public class DataChannel {
         if (this.nativeDataChannel != 0) {
             return;
         }
-        sc8.j("DataChannel has been disposed.");
+        dq9.m("DataChannel has been disposed.");
     }
 
     private native long nativeBufferedAmount();

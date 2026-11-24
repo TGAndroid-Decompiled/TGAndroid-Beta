@@ -2,140 +2,100 @@ package defpackage;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
+import android.os.Build;
+import android.view.KeyEvent;
 import org.telegram.messenger.voip.VoIPService;
-public final class bic extends View {
-    public StaticLayout a;
-    public final RectF b;
-    public final Paint c;
-    public final Paint d;
-    public String e;
-    public final TextPaint f;
-    public int h;
-    public boolean n;
-    public final Drawable r;
-    public final kbc s;
+import org.telegram.messenger.voip.VoIPServiceState;
+import org.webrtc.OrientationHelper;
+public final class bic extends ekc {
+    public final Path s;
+    public final RectF w;
+    public up x;
+    public final iic y;
 
-    public bic(Activity activity) {
+    public bic(Activity activity, boolean z, iic iicVar) {
         super(activity);
-        this.b = new RectF();
-        Paint paint = new Paint(1);
-        this.c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        TextPaint textPaint = new TextPaint(1);
-        this.f = textPaint;
-        this.h = 4;
-        this.n = false;
-        this.s = new kbc(this, (byte) 17);
-        textPaint.setTextSize(gl.L(15.0f));
-        textPaint.setColor(-1);
-        paint.setColor(bm2.o(-1, 229));
-        paint2.setColor(bm2.o(-1, 102));
-        Drawable drawable = activity.getDrawable(2131230918);
-        this.r = drawable;
-        drawable.setBounds(0, 0, gl.L(24.0f), gl.L(24.0f));
+        this.y = iicVar;
+        this.c = new po(null);
+        this.a = activity;
+        setSystemUiVisibility(1792);
+        gm.e2(activity);
+        OrientationHelper.cameraRotationDisabled = true;
+        if (!z) {
+            this.e = true;
+        }
+        this.s = new Path();
+        this.w = new RectF();
     }
 
-    public final void a() {
-        kbc kbcVar = this.s;
-        removeCallbacks(kbcVar);
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null) {
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        iic iicVar = this.y;
+        if (iicVar.E0 && getAlpha() != 0.0f) {
+            float scaleX = iicVar.d0.getScaleX() * iicVar.d0.getWidth();
+            float scaleY = iicVar.d0.getScaleY() * iicVar.d0.getHeight();
+            float x = iicVar.d0.getX() + ((iicVar.d0.getWidth() - scaleX) / 2.0f);
+            float y = iicVar.d0.getY() + ((iicVar.d0.getHeight() - scaleY) / 2.0f);
+            canvas.save();
+            Path path = this.s;
+            path.rewind();
+            RectF rectF = this.w;
+            rectF.set(x, y, scaleX + x, scaleY + y);
+            float L = gm.L(4.0f);
+            path.addRoundRect(rectF, L, L, Path.Direction.CW);
+            path.close();
+            canvas.clipPath(path);
+            super.dispatchDraw(canvas);
+            canvas.restore();
             return;
         }
-        String g0 = gl.g0((int) (sharedInstance.getCallDuration() / 1000), true, false);
-        String str = this.e;
-        if (str == null || !str.equals(g0)) {
-            this.e = g0;
-            if (this.a == null) {
-                requestLayout();
-            }
-            String str2 = this.e;
-            TextPaint textPaint = this.f;
-            this.a = new StaticLayout(str2, textPaint, (int) textPaint.measureText(str2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        postDelayed(kbcVar, 300L);
-        invalidate();
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int L;
-        Paint paint;
-        StaticLayout staticLayout = this.a;
-        int i = 0;
-        if (staticLayout == null) {
-            L = 0;
-        } else {
-            L = gl.L(21.0f) + staticLayout.getWidth();
-        }
-        canvas.save();
-        canvas.translate((getMeasuredWidth() - L) / 2.0f, 0.0f);
-        canvas.save();
-        if (this.n) {
-            canvas.translate(-gl.L(7.0f), -gl.L(3.0f));
-            this.r.draw(canvas);
-        } else {
-            canvas.translate(0.0f, (getMeasuredHeight() - gl.L(11.0f)) / 2.0f);
-            while (i < 4) {
-                int i2 = i + 1;
-                if (i2 > this.h) {
-                    paint = this.d;
-                } else {
-                    paint = this.c;
-                }
-                float f = i;
-                float N = gl.N(2.75f);
-                RectF rectF = this.b;
-                rectF.set(gl.N(4.16f) * f, gl.N(2.75f) * (3 - i), N + (gl.N(4.16f) * f), gl.L(11.0f));
-                canvas.drawRoundRect(rectF, gl.N(0.7f), gl.N(0.7f), paint);
-                i = i2;
-            }
-        }
-        canvas.restore();
-        if (staticLayout != null) {
-            canvas.translate(gl.L(21.0f), 0.0f);
-            staticLayout.draw(canvas);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        StaticLayout staticLayout = this.a;
-        if (staticLayout != null) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), staticLayout.getHeight());
-        } else {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(15.0f));
-        }
-    }
-
-    public void setSignalBarCount(int i) {
-        this.h = i;
-        invalidate();
-    }
-
-    @Override
-    public void setVisibility(int i) {
-        if (getVisibility() != i) {
-            if (i == 0) {
-                this.e = "00:00";
-                String str = this.e;
-                TextPaint textPaint = this.f;
-                this.a = new StaticLayout(str, textPaint, (int) textPaint.measureText(str), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                a();
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        VoIPServiceState sharedState;
+        iic iicVar = this.y;
+        if (!iicVar.G0 && !iicVar.E0) {
+            int keyCode = keyEvent.getKeyCode();
+            if (keyCode == 4 && keyEvent.getAction() == 1) {
+                iicVar.g();
+                return true;
+            } else if ((keyCode == 25 || keyCode == 24) && iicVar.p0 == 15 && (sharedState = VoIPService.getSharedState()) != null) {
+                sharedState.stopRinging();
+                return true;
             } else {
-                this.e = null;
-                this.a = null;
+                return super.dispatchKeyEvent(keyEvent);
             }
         }
-        super.setVisibility(i);
+        return false;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.y.l1) {
+            return;
+        }
+        super.draw(canvas);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (Build.VERSION.SDK_INT >= 33 && this.x == null) {
+            this.x = s4.j(this, new thc(this.y, (byte) 14));
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        up upVar;
+        if (Build.VERSION.SDK_INT >= 33 && (upVar = this.x) != null) {
+            s4.l(this, upVar);
+            this.x = null;
+        }
+        super.onDetachedFromWindow();
     }
 }

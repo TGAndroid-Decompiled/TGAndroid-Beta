@@ -1,498 +1,481 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecList;
+import android.os.CancellationSignal;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
 import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.UsersSelectActivity;
-public final class m41 {
-    public final Context a;
-    public final int b;
-    public final wjb c;
-    public final d d;
-    public final Runnable e;
-    public int f;
-    public int g;
-    public boolean h;
-    public boolean i;
-    public final ArrayList j;
-    public final ArrayList k;
-    public TL_account.TL_businessBotRecipients l;
-    public int m;
-    public boolean n;
+import org.telegram.ui.PhotoViewer;
+public final class m41 implements r76, fq7, rm6, ldc, cz8 {
+    public final byte a;
+    public boolean b;
+    public Object c;
 
-    public m41(d dVar, Runnable runnable) {
-        this.j = new ArrayList();
-        this.k = new ArrayList();
-        this.m = -4;
-        this.a = dVar.getContext();
-        this.b = dVar.getCurrentAccount();
-        this.d = dVar;
-        this.e = runnable;
-        this.c = dVar.getResourceProvider();
-    }
-
-    public final void a(java.util.ArrayList r18, defpackage.l5c r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.m41.a(java.util.ArrayList, l5c, boolean):void");
-    }
-
-    public final TL_account.TL_inputBusinessBotRecipients b() {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        ArrayList arrayList;
-        TL_account.TL_inputBusinessBotRecipients tL_inputBusinessBotRecipients = new TL_account.TL_inputBusinessBotRecipients();
-        int d = d();
-        tL_inputBusinessBotRecipients.flags = d & (-49);
-        boolean z4 = true;
-        if ((d & 1) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        tL_inputBusinessBotRecipients.existing_chats = z;
-        if ((d & 2) != 0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        tL_inputBusinessBotRecipients.new_chats = z2;
-        if ((d & 4) != 0) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        tL_inputBusinessBotRecipients.contacts = z3;
-        if ((d & 8) == 0) {
+    public m41(boolean z, boolean z2, boolean z3) {
+        boolean z4;
+        this.a = (byte) 8;
+        if (!z && !z2 && !z3) {
             z4 = false;
-        }
-        tL_inputBusinessBotRecipients.non_contacts = z4;
-        boolean z5 = this.h;
-        tL_inputBusinessBotRecipients.exclude_selected = z5;
-        ArrayList arrayList2 = this.k;
-        if (z5) {
-            arrayList = arrayList2;
         } else {
-            arrayList = this.j;
+            z4 = true;
         }
-        if (!arrayList.isEmpty()) {
-            na7 q1 = na7.q1(y6c.t0);
-            tL_inputBusinessBotRecipients.flags |= 16;
-            for (int i = 0; i < arrayList.size(); i++) {
-                Long l = (Long) arrayList.get(i);
-                l.getClass();
-                tL_inputBusinessBotRecipients.users.add(q1.o1(q1.V1(l)));
-            }
-        }
-        if (!this.h) {
-            na7 q12 = na7.q1(y6c.t0);
-            tL_inputBusinessBotRecipients.flags |= 64;
-            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                Long l2 = (Long) arrayList2.get(i2);
-                l2.getClass();
-                tL_inputBusinessBotRecipients.exclude_users.add(q12.o1(q12.V1(l2)));
-            }
-        }
-        return tL_inputBusinessBotRecipients;
+        this.b = z4;
     }
 
-    public final TL_account.TL_businessBotRecipients c() {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        ArrayList arrayList;
-        TL_account.TL_businessBotRecipients tL_businessBotRecipients = new TL_account.TL_businessBotRecipients();
-        int d = d();
-        tL_businessBotRecipients.flags = d & (-49);
-        boolean z4 = true;
-        if ((d & 1) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        tL_businessBotRecipients.existing_chats = z;
-        if ((d & 2) != 0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        tL_businessBotRecipients.new_chats = z2;
-        if ((d & 4) != 0) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        tL_businessBotRecipients.contacts = z3;
-        if ((d & 8) == 0) {
-            z4 = false;
-        }
-        tL_businessBotRecipients.non_contacts = z4;
-        boolean z5 = this.h;
-        tL_businessBotRecipients.exclude_selected = z5;
-        ArrayList arrayList2 = this.k;
-        if (z5) {
-            arrayList = arrayList2;
-        } else {
-            arrayList = this.j;
-        }
-        if (!arrayList.isEmpty()) {
-            na7 q1 = na7.q1(y6c.t0);
-            tL_businessBotRecipients.flags |= 16;
-            for (int i = 0; i < arrayList.size(); i++) {
-                Long l = (Long) arrayList.get(i);
-                l.getClass();
-                q1.o1(q1.V1(l));
-                tL_businessBotRecipients.users.add((Long) arrayList.get(i));
-            }
-        }
-        if (!this.h) {
-            na7 q12 = na7.q1(y6c.t0);
-            tL_businessBotRecipients.flags |= 64;
-            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                Long l2 = (Long) arrayList2.get(i2);
-                l2.getClass();
-                q12.o1(q12.V1(l2));
-                tL_businessBotRecipients.users.add((Long) arrayList2.get(i2));
-            }
-        }
-        return tL_businessBotRecipients;
+    @Override
+    public final void C(int i, int i2) {
+        this.b = true;
+        ((y59) this.c).p(i, i2);
     }
 
-    public final int d() {
-        if (this.h) {
-            return this.g;
-        }
-        return this.f;
+    @Override
+    public final void C0(int i, int i2) {
+        this.b = true;
+        ((y59) this.c).q(i, i2);
     }
 
-    public final TL_account.TL_inputBusinessRecipients e() {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        ArrayList arrayList;
-        TL_account.TL_inputBusinessRecipients tL_inputBusinessRecipients = new TL_account.TL_inputBusinessRecipients();
-        int d = d();
-        tL_inputBusinessRecipients.flags = d & (-49);
-        boolean z4 = true;
-        if ((d & 1) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        tL_inputBusinessRecipients.existing_chats = z;
-        if ((d & 2) != 0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        tL_inputBusinessRecipients.new_chats = z2;
-        if ((d & 4) != 0) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        tL_inputBusinessRecipients.contacts = z3;
-        if ((d & 8) == 0) {
-            z4 = false;
-        }
-        tL_inputBusinessRecipients.non_contacts = z4;
-        boolean z5 = this.h;
-        tL_inputBusinessRecipients.exclude_selected = z5;
-        if (z5) {
-            arrayList = this.k;
-        } else {
-            arrayList = this.j;
-        }
-        if (!arrayList.isEmpty()) {
-            na7 q1 = na7.q1(y6c.t0);
-            tL_inputBusinessRecipients.flags |= 16;
-            for (int i = 0; i < arrayList.size(); i++) {
-                Long l = (Long) arrayList.get(i);
-                l.getClass();
-                tL_inputBusinessRecipients.users.add(q1.o1(q1.V1(l)));
-            }
-        }
-        return tL_inputBusinessRecipients;
+    @Override
+    public final boolean L(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureRequired(str);
     }
 
-    public final TL_account.TL_businessRecipients f() {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        ArrayList arrayList;
-        TL_account.TL_businessRecipients tL_businessRecipients = new TL_account.TL_businessRecipients();
-        int d = d();
-        tL_businessRecipients.flags = d & (-49);
-        boolean z4 = true;
-        if ((d & 1) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        tL_businessRecipients.existing_chats = z;
-        if ((d & 2) != 0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        tL_businessRecipients.new_chats = z2;
-        if ((d & 4) != 0) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        tL_businessRecipients.contacts = z3;
-        if ((d & 8) == 0) {
-            z4 = false;
-        }
-        tL_businessRecipients.non_contacts = z4;
-        boolean z5 = this.h;
-        tL_businessRecipients.exclude_selected = z5;
-        if (z5) {
-            arrayList = this.k;
-        } else {
-            arrayList = this.j;
-        }
-        if (!arrayList.isEmpty()) {
-            na7 q1 = na7.q1(y6c.t0);
-            tL_businessRecipients.flags |= 16;
-            for (int i = 0; i < arrayList.size(); i++) {
-                Long l = (Long) arrayList.get(i);
-                l.getClass();
-                q1.o1(q1.V1(l));
-                tL_businessRecipients.users.add((Long) arrayList.get(i));
-            }
-        }
-        return tL_businessRecipients;
+    @Override
+    public final void O0(int i, int i2) {
+        ((y59) this.c).n(i, i2, null);
     }
 
-    public final boolean g() {
-        ArrayList arrayList;
-        TL_account.TL_businessBotRecipients tL_businessBotRecipients = this.l;
-        if (tL_businessBotRecipients != null && tL_businessBotRecipients.exclude_selected == this.h && (tL_businessBotRecipients.flags & (-49)) == d()) {
-            boolean z = this.h;
-            ArrayList arrayList2 = this.k;
-            if (z) {
-                arrayList = arrayList2;
-            } else {
-                arrayList = this.j;
+    @Override
+    public final int V() {
+        MediaCodecInfo[] mediaCodecInfoArr = (MediaCodecInfo[]) this.c;
+        if (mediaCodecInfoArr == null) {
+            mediaCodecInfoArr = new MediaCodecList(this.b ? 1 : 0).getCodecInfos();
+            this.c = mediaCodecInfoArr;
+        }
+        return mediaCodecInfoArr.length;
+    }
+
+    @Override
+    public final void a(bz8 bz8Var, int i) {
+        StringBuilder sb = (StringBuilder) this.c;
+        if (this.b) {
+            this.b = false;
+        } else {
+            sb.append(", ");
+        }
+        sb.append(i);
+    }
+
+    public final void b(int i) {
+        jte.p(!this.b);
+        ((SparseBooleanArray) this.c).append(i, true);
+    }
+
+    public final void c(lk4 lk4Var) {
+        for (int i = 0; i < lk4Var.a.size(); i++) {
+            b(lk4Var.a(i));
+        }
+    }
+
+    public final void d(int... iArr) {
+        for (int i : iArr) {
+            b(i);
+        }
+    }
+
+    @Override
+    public final MediaCodecInfo e(int i) {
+        MediaCodecInfo[] mediaCodecInfoArr = (MediaCodecInfo[]) this.c;
+        if (mediaCodecInfoArr == null) {
+            mediaCodecInfoArr = new MediaCodecList(this.b ? 1 : 0).getCodecInfos();
+            this.c = mediaCodecInfoArr;
+        }
+        return mediaCodecInfoArr[i];
+    }
+
+    public final lk4 f() {
+        jte.p(!this.b);
+        this.b = true;
+        return new lk4((SparseBooleanArray) this.c);
+    }
+
+    public final void g() {
+        synchronized (this) {
+            if (this.b) {
+                return;
             }
-            if (arrayList.size() == this.l.users.size()) {
-                for (int i = 0; i < arrayList.size(); i++) {
-                    if (!this.l.users.contains(arrayList.get(i))) {
-                        return true;
+            this.b = true;
+            CancellationSignal cancellationSignal = (CancellationSignal) this.c;
+            if (cancellationSignal != null) {
+                try {
+                    cancellationSignal.cancel();
+                } catch (Throwable th) {
+                    synchronized (this) {
+                        notifyAll();
+                        throw th;
                     }
                 }
-                if (this.i && !this.h) {
-                    if (arrayList2.size() == this.l.exclude_users.size()) {
-                        for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                            if (!this.l.exclude_users.contains(arrayList2.get(i2))) {
-                                return true;
+            }
+            synchronized (this) {
+                notifyAll();
+            }
+        }
+    }
+
+    public final boolean h() {
+        return this.b;
+    }
+
+    public final boolean i(int i, CharSequence charSequence) {
+        if (charSequence != null && i >= 0 && charSequence.length() - i >= 0) {
+            if (((jk2) this.c) == null) {
+                return h();
+            }
+            boolean z = true;
+            for (int i2 = 0; i2 < i && z; i2++) {
+                byte directionality = Character.getDirectionality(charSequence.charAt(i2));
+                m41 m41Var = jjb.a;
+                if (directionality != 0) {
+                    if (directionality != 1 && directionality != 2) {
+                        switch (directionality) {
+                            case 14:
+                            case 15:
+                                break;
+                            case 16:
+                            case 17:
+                                break;
+                            default:
+                                z = true;
+                                break;
+                        }
+                    }
+                    z = false;
+                }
+                z = true;
+            }
+            if (!z) {
+                return true;
+            }
+            if (z) {
+                return false;
+            }
+            return h();
+        }
+        i98.g();
+        return false;
+    }
+
+    public final void j() {
+        this.b = false;
+    }
+
+    @Override
+    public final void j1(Object obj) {
+        this.b = true;
+        Void r2 = (Void) obj;
+        SignInHubActivity signInHubActivity = (SignInHubActivity) ((oo8) this.c).b;
+        signInHubActivity.setResult(signInHubActivity.S, signInHubActivity.T);
+        signInHubActivity.finish();
+    }
+
+    public final void k(char c) {
+        vk1 vk1Var = (vk1) this.c;
+        vk1Var.a(vk1Var.c, 1);
+        char[] cArr = vk1Var.b;
+        int i = vk1Var.c;
+        vk1Var.c = i + 1;
+        cArr[i] = c;
+    }
+
+    @Override
+    public final void l(int i, int i2) {
+        this.b = true;
+        ((y59) this.c).j(i, i2);
+    }
+
+    public final void m(String str) {
+        int i;
+        str.getClass();
+        vk1 vk1Var = (vk1) this.c;
+        vk1Var.a(vk1Var.c, str.length() + 2);
+        char[] cArr = vk1Var.b;
+        int i2 = vk1Var.c;
+        int i3 = i2 + 1;
+        cArr[i2] = '\"';
+        int length = str.length();
+        str.getChars(0, length, cArr, i3);
+        int i4 = length + i3;
+        int i5 = i3;
+        while (i5 < i4) {
+            char c = cArr[i5];
+            byte[] bArr = dbb.b;
+            if (c < bArr.length && bArr[c] != 0) {
+                int length2 = str.length();
+                for (int i6 = i5 - i3; i6 < length2; i6++) {
+                    vk1Var.a(i5, 2);
+                    char charAt = str.charAt(i6);
+                    byte[] bArr2 = dbb.b;
+                    if (charAt < bArr2.length) {
+                        byte b = bArr2[charAt];
+                        if (b == 0) {
+                            i = i5 + 1;
+                            vk1Var.b[i5] = charAt;
+                        } else {
+                            if (b == 1) {
+                                String str2 = dbb.a[charAt];
+                                str2.getClass();
+                                vk1Var.a(i5, str2.length());
+                                str2.getChars(0, str2.length(), vk1Var.b, i5);
+                                int length3 = str2.length() + i5;
+                                vk1Var.c = length3;
+                                i5 = length3;
+                            } else {
+                                char[] cArr2 = vk1Var.b;
+                                cArr2[i5] = '\\';
+                                cArr2[i5 + 1] = (char) b;
+                                i5 += 2;
+                                vk1Var.c = i5;
                             }
                         }
                     } else {
-                        return true;
+                        i = i5 + 1;
+                        vk1Var.b[i5] = charAt;
                     }
+                    i5 = i;
                 }
-                return false;
+                vk1Var.a(i5, 1);
+                vk1Var.b[i5] = '\"';
+                vk1Var.c = i5 + 1;
+                return;
             }
-            return true;
+            i5++;
         }
-        return true;
+        cArr[i4] = '\"';
+        vk1Var.c = i4 + 1;
     }
 
-    public final boolean h(c4c c4cVar) {
-        boolean z;
-        ArrayList arrayList;
-        boolean z2;
-        boolean z3;
-        int i;
+    @Override
+    public final void onError(ndc ndcVar, Exception exc) {
+        View findViewWithTag;
+        PhotoViewer photoViewer = (PhotoViewer) this.c;
+        if (photoViewer.G2 == ndcVar) {
+            fc4.g(exc, true);
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.p0.b;
+            if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(10)) != null && findViewWithTag.getVisibility() == 0) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, photoViewer.w2, photoViewer.E);
+                String M0 = jb6.M0(2131689472, "AppName");
+                he heVar = alertDialog$Builder.a;
+                heVar.S = M0;
+                heVar.U = jb6.M0(2131752515, null);
+                alertDialog$Builder.j(jb6.M0(2131747550, "Open"), new h68(this, (byte) 3));
+                alertDialog$Builder.g(jb6.M0(2131752542, "Cancel"), null);
+                photoViewer.b2(alertDialog$Builder);
+            }
+        }
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+        PhotoViewer photoViewer = (PhotoViewer) this.c;
+        if (!photoViewer.H3) {
+            photoViewer.H3 = true;
+            photoViewer.f0.invalidate();
+        }
+        if (!photoViewer.E2) {
+            photoViewer.D0();
+            photoViewer.q(false);
+        }
+        if (photoViewer.F2 != null) {
+            ndc ndcVar = photoViewer.G2;
+            if (ndcVar == null || !ndcVar.W) {
+                gm.d3(new ma8(this, (byte) 1), 64L);
+            }
+        }
+    }
+
+    @Override
+    public final void onStateChanged(boolean z, int i) {
+        ndc ndcVar;
         int i2;
-        int i3 = c4cVar.d;
-        d dVar = this.d;
-        if (i3 != 101) {
-            if (i3 == 103) {
-                z = false;
+        rcc rccVar;
+        ndc ndcVar2;
+        boolean z2;
+        PhotoViewer photoViewer = (PhotoViewer) this.c;
+        ArrayList arrayList = photoViewer.f7;
+        ndc ndcVar3 = photoViewer.G2;
+        if (ndcVar3 != null) {
+            if (!fp.w() && !photoViewer.r) {
+                z2 = false;
             } else {
-                Runnable runnable = this.e;
-                if (i3 == 102) {
-                    runnable.run();
-                    return true;
-                } else if (i3 == 104) {
-                    runnable.run();
-                    return true;
-                } else if (c4cVar.a != 11) {
-                    return false;
-                } else {
-                    boolean z4 = c4cVar.x;
-                    String y1 = na7.q1(this.b).y1(c4cVar.y, false);
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.c, this.a);
-                    if (!z4) {
-                        i = 2131752674;
-                    } else {
-                        i = 2131752672;
+                z2 = true;
+            }
+            ndcVar3.s0(z2);
+        }
+        if (this.b && (ndcVar = photoViewer.G2) != null && ndcVar.U() != -9223372036854775807L) {
+            this.b = false;
+            if (photoViewer.X6.isEmpty() && photoViewer.d7.isEmpty() && photoViewer.Z6.isEmpty() && !arrayList.isEmpty() && (i2 = photoViewer.P4) >= 0 && i2 < arrayList.size()) {
+                Object obj = arrayList.get(photoViewer.P4);
+                if (obj instanceof jo6) {
+                    jo6 jo6Var = (jo6) obj;
+                    if (jo6Var.b && (rccVar = jo6Var.s) != null) {
+                        photoViewer.G2.o0(rccVar.d * ((float) ndcVar2.U()));
+                        x98 x98Var = photoViewer.X7;
+                        if (x98Var != null) {
+                            x98Var.setProgress(jo6Var.s.d);
+                        }
                     }
-                    String M0 = k96.M0(i, null);
-                    hd hdVar = alertDialog$Builder.a;
-                    hdVar.S = M0;
-                    if (!z4) {
-                        i2 = 2131752675;
-                    } else {
-                        i2 = 2131752673;
-                    }
-                    hdVar.U = k96.a0(null, null, i2, y1);
-                    alertDialog$Builder.j(k96.M0(2131746128, null), new ch(this, z4, c4cVar, (byte) 1));
-                    alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                    if (dVar != null) {
-                        dVar.showDialog(hdVar);
-                        return true;
-                    }
-                    hdVar.show();
-                    return true;
                 }
             }
-        } else {
-            z = true;
         }
-        if (z) {
-            arrayList = this.j;
-        } else {
-            arrayList = this.k;
+        photoViewer.M2(i, z);
+    }
+
+    @Override
+    public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        gm.c3(new ma8(this, (byte) 0));
+    }
+
+    @Override
+    public final void onVideoSizeChanged(int i, int i2, int i3, float f) {
+        float f2;
+        PhotoViewer photoViewer = (PhotoViewer) this.c;
+        if (photoViewer.z2 != null) {
+            float f3 = i * f;
+            int i4 = (int) f3;
+            photoViewer.V = i4;
+            float f4 = i2;
+            photoViewer.W = (int) (f * f4);
+            photoViewer.I0();
+            oa8 oa8Var = photoViewer.z2;
+            if (i2 == 0) {
+                f2 = 1.0f;
+            } else {
+                f2 = f3 / f4;
+            }
+            oa8Var.a(f2, 0);
+            if (photoViewer.C2 instanceof ncc) {
+                ((ncc) photoViewer.C2).setHDRInfo(photoViewer.G2.V(null));
+                ncc nccVar = (ncc) photoViewer.C2;
+                nccVar.d = i4;
+                nccVar.e = i2;
+                uf4 uf4Var = nccVar.b;
+                if (uf4Var != null) {
+                    uf4Var.postRunnable(new rf4(uf4Var, i4, i2, (byte) 0));
+                }
+                if (photoViewer.d2 == 1) {
+                    photoViewer.I1();
+                }
+            }
+            photoViewer.I3 = true;
         }
-        UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z);
-        usersSelectActivity.y = (byte) 2;
-        usersSelectActivity.H = false;
-        boolean z5 = this.i;
-        if (z5 && !this.h && !z) {
-            z2 = true;
-        } else {
-            z2 = false;
+    }
+
+    public final void p(wqe wqeVar) {
+        if (this.b) {
+            yid.h("BillingLogger", "Skipping logging since initialization failed.");
+            return;
         }
-        usersSelectActivity.G = z2;
-        usersSelectActivity.H = false;
-        usersSelectActivity.I = z5;
-        if (!z && this.n) {
-            z3 = true;
-        } else {
-            z3 = false;
+        try {
+            ((h3c) this.c).a(na0.a(wqeVar), new rjb((byte) 9));
+        } catch (Throwable unused) {
+            yid.h("BillingLogger", "logging failed.");
         }
-        usersSelectActivity.J = z3;
-        usersSelectActivity.n = new l41((byte) 0, this, z);
-        if (dVar != null) {
-            dVar.presentFragment(usersSelectActivity);
-            return true;
+    }
+
+    public final String toString() {
+        switch (this.a) {
+            case 6:
+                return ((oo8) this.c).toString();
+            default:
+                return super.toString();
         }
-        d S = LaunchActivity.S();
-        if (S == 0) {
-            return true;
-        }
-        ?? obj = new Object();
-        obj.a = true;
-        S.showAsSheet(usersSelectActivity, obj);
+    }
+
+    @Override
+    public final boolean v(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported(str);
+    }
+
+    @Override
+    public final boolean w0() {
         return true;
     }
 
-    public final void i(TL_account.TL_businessBotRecipients tL_businessBotRecipients) {
-        this.i = true;
-        this.l = tL_businessBotRecipients;
-        ArrayList arrayList = this.j;
-        ArrayList arrayList2 = this.k;
-        if (tL_businessBotRecipients == null) {
-            this.h = true;
-            this.g = 0;
-            this.f = 0;
-            arrayList.clear();
-            arrayList2.clear();
-            return;
-        }
-        boolean z = tL_businessBotRecipients.exclude_selected;
-        this.h = z;
-        if (z) {
-            this.f = 0;
-            this.g = tL_businessBotRecipients.flags & (-49);
-            arrayList.clear();
-            arrayList2.clear();
-            arrayList2.addAll(this.l.users);
-            return;
-        }
-        this.f = tL_businessBotRecipients.flags & (-49);
-        this.g = 0;
-        arrayList.clear();
-        arrayList2.clear();
-        arrayList.addAll(this.l.users);
-        arrayList2.addAll(this.l.exclude_users);
+    public m41(byte b, Object obj, boolean z) {
+        this.a = b;
+        this.c = obj;
     }
 
-    public final void j(TL_account.TL_businessRecipients tL_businessRecipients) {
-        TL_account.TL_businessBotRecipients tL_businessBotRecipients;
-        this.i = false;
-        if (tL_businessRecipients != null) {
-            tL_businessBotRecipients = new TL_account.TL_businessBotRecipients();
-            this.l = tL_businessBotRecipients;
-            tL_businessBotRecipients.flags = tL_businessRecipients.flags;
-            tL_businessBotRecipients.existing_chats = tL_businessRecipients.existing_chats;
-            tL_businessBotRecipients.new_chats = tL_businessRecipients.new_chats;
-            tL_businessBotRecipients.contacts = tL_businessRecipients.contacts;
-            tL_businessBotRecipients.non_contacts = tL_businessRecipients.non_contacts;
-            tL_businessBotRecipients.exclude_selected = tL_businessRecipients.exclude_selected;
-            tL_businessBotRecipients.users = tL_businessRecipients.users;
-        } else {
-            tL_businessBotRecipients = null;
-            this.l = null;
-        }
-        ArrayList arrayList = this.j;
-        ArrayList arrayList2 = this.k;
-        if (tL_businessBotRecipients == null) {
-            this.h = true;
-            this.g = 0;
-            this.f = 0;
-            arrayList.clear();
-            arrayList2.clear();
-            return;
-        }
-        boolean z = tL_businessBotRecipients.exclude_selected;
-        this.h = z;
-        if (z) {
-            this.f = 0;
-            this.g = tL_businessBotRecipients.flags & (-49);
-            arrayList.clear();
-            arrayList2.clear();
-            arrayList2.addAll(this.l.users);
-            return;
-        }
-        this.f = tL_businessBotRecipients.flags & (-49);
-        this.g = 0;
-        arrayList.clear();
-        arrayList2.clear();
-        arrayList.addAll(this.l.users);
-        arrayList2.addAll(this.l.exclude_users);
+    public m41(Object obj, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = true;
     }
 
-    public final boolean k(q5c q5cVar) {
-        if (!this.h && this.j.isEmpty() && this.f == 0) {
-            pw0.APP_ERROR.a();
-            View B1 = q5cVar.B1(101);
-            int i = -this.m;
-            this.m = i;
-            gl.B3(i, B1, null);
-            q5cVar.z0(q5cVar.A1(101));
-            return false;
-        }
-        return true;
+    public final void n() {
     }
 
-    public m41(Activity activity, int i, hq1 hq1Var, wjb wjbVar) {
-        this.j = new ArrayList();
-        this.k = new ArrayList();
-        this.m = -4;
-        this.a = activity;
-        this.b = i;
-        this.d = null;
-        this.e = hq1Var;
-        this.c = wjbVar;
+    public final void o() {
+    }
+
+    public m41() {
+        this.a = (byte) 5;
+        this.c = new SparseBooleanArray();
+    }
+
+    public m41(bj6 bj6Var, boolean z) {
+        this.a = (byte) 7;
+        this.c = bj6Var;
+        this.b = z;
+    }
+
+    public m41(jk2 jk2Var, boolean z) {
+        this((byte) 11, (Object) jk2Var, false);
+        this.a = (byte) 11;
+        this.b = z;
+    }
+
+    public m41(x5d x5dVar, oo8 oo8Var) {
+        this.a = (byte) 6;
+        this.b = false;
+        this.c = oo8Var;
+    }
+
+    @Override
+    public final void onSeekFinished(tk tkVar) {
+    }
+
+    @Override
+    public final void onSeekStarted(tk tkVar) {
+    }
+
+    public m41(byte b) {
+        this.a = b;
+    }
+
+    @Override
+    public final void onRenderedFirstFrame(tk tkVar) {
+        long j = tkVar.e;
+        PhotoViewer photoViewer = (PhotoViewer) this.c;
+        if (j == photoViewer.c8) {
+            photoViewer.b8 = j;
+            photoViewer.c8 = -1L;
+            photoViewer.n();
+        }
+        if (photoViewer.F2 != null) {
+            ndc ndcVar = photoViewer.G2;
+            if (ndcVar == null || !ndcVar.W) {
+                gm.d3(new ma8(this, (byte) 2), 64L);
+            }
+        }
     }
 }

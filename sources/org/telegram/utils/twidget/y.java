@@ -99,14 +99,14 @@ public final class y {
         return 0L;
     }
 
-    public static float j(gl2 gl2Var, RectF rectF) {
-        int[] iArr = (int[]) gl2Var.b;
+    public static float j(sm2 sm2Var, RectF rectF) {
+        int[] iArr = (int[]) sm2Var.b;
         float f = 0.0f;
         float f2 = 0.0f;
         float f3 = 0.0f;
         float f4 = 0.0f;
         for (int i = 0; i < iArr.length; i++) {
-            float max = Math.max(0.0f, ((float[]) gl2Var.f)[i]);
+            float max = Math.max(0.0f, ((float[]) sm2Var.f)[i]);
             int i2 = iArr[i];
             if (i2 == 0) {
                 float f5 = max * 3.0f;
@@ -115,8 +115,8 @@ public final class y {
                 f3 += f5;
                 f4 += f5;
             } else if (i2 == 9) {
-                float f6 = ((float[]) gl2Var.d)[i];
-                float f7 = ((float[]) gl2Var.e)[i];
+                float f6 = ((float[]) sm2Var.d)[i];
+                float f7 = ((float[]) sm2Var.e)[i];
                 float f8 = max * 1.5f;
                 f = Math.max(f, f8 - f6);
                 f3 = Math.max(f3, f6 + f8);
@@ -128,23 +128,23 @@ public final class y {
         return Math.max(Math.max(f, f3), Math.max(f2, f4));
     }
 
-    public static gl2 k(dd ddVar) {
-        int X = ddVar.X(64, 5);
-        gl2 gl2Var = new gl2(X);
-        for (int i = 0; i < X; i++) {
-            ((int[]) gl2Var.b)[i] = ddVar.i0();
-            ((float[]) gl2Var.f)[i] = ddVar.c0();
-            ((float[]) gl2Var.d)[i] = ddVar.c0();
-            ((float[]) gl2Var.e)[i] = ddVar.c0();
-            ((int[]) gl2Var.c)[i] = ddVar.i0();
+    public static sm2 k(de deVar) {
+        int Z = deVar.Z(64, 5);
+        sm2 sm2Var = new sm2(Z);
+        for (int i = 0; i < Z; i++) {
+            ((int[]) sm2Var.b)[i] = deVar.j0();
+            ((float[]) sm2Var.f)[i] = deVar.d0();
+            ((float[]) sm2Var.d)[i] = deVar.d0();
+            ((float[]) sm2Var.e)[i] = deVar.d0();
+            ((int[]) sm2Var.c)[i] = deVar.j0();
         }
-        return gl2Var;
+        return sm2Var;
     }
 
-    public static void m(dd ddVar, int i, int[] iArr, float[] fArr) {
+    public static void m(de deVar, int i, int[] iArr, float[] fArr) {
         for (int i2 = 0; i2 < i; i2++) {
-            float max = Math.max(0.0f, Math.min(1.0f, ddVar.c0()));
-            iArr[i2] = ddVar.i0();
+            float max = Math.max(0.0f, Math.min(1.0f, deVar.d0()));
+            iArr[i2] = deVar.j0();
             if (i > 1) {
                 fArr[i2] = max;
             }
@@ -212,18 +212,18 @@ public final class y {
         }
     }
 
-    public final void e(android.graphics.Canvas r44, defpackage.jvc r45, int r46, defpackage.dwc r47, float r48, boolean r49) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.y.e(android.graphics.Canvas, jvc, int, dwc, float, boolean):void");
+    public final void e(android.graphics.Canvas r44, defpackage.kxc r45, int r46, defpackage.eyc r47, float r48, boolean r49) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.y.e(android.graphics.Canvas, kxc, int, eyc, float, boolean):void");
     }
 
-    public final void f(Canvas canvas, jvc jvcVar, dwc dwcVar, float f, float f2, float f3, float f4, float f5) {
+    public final void f(Canvas canvas, kxc kxcVar, eyc eycVar, float f, float f2, float f3, float f4, float f5) {
         boolean z;
         int i;
         RectF rectF = this.A;
         rectF.set(f2, f3, f4, f5);
         this.D = 0L;
         this.E = h(rectF.width(), rectF.height(), f) << 6;
-        if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && jvcVar.c) {
+        if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && kxcVar.c) {
             z = true;
         } else {
             z = false;
@@ -233,25 +233,25 @@ public final class y {
         } else {
             i = -1;
         }
-        e(canvas, jvcVar, jvcVar.b, dwcVar, f, true);
+        e(canvas, kxcVar, kxcVar.b, eycVar, f, true);
         if (z) {
             canvas.restoreToCount(i);
         }
     }
 
-    public final Shader g(dd ddVar, int i) {
+    public final Shader g(de deVar, int i) {
         float[] fArr = this.k;
-        ddVar.d0(7, fArr);
+        deVar.e0(7, fArr);
         float f = fArr[0];
         float f2 = fArr[1];
         float f3 = fArr[2];
         float f4 = fArr[3];
         float f5 = fArr[4];
-        int X = ddVar.X(4096, 2);
-        int[] iArr = new int[Math.max(2, X)];
-        float[] fArr2 = X == 1 ? new float[]{0.0f, 1.0f} : new float[Math.max(X, 2)];
-        m(ddVar, X, iArr, fArr2);
-        if (X < 2) {
+        int Z = deVar.Z(4096, 2);
+        int[] iArr = new int[Math.max(2, Z)];
+        float[] fArr2 = Z == 1 ? new float[]{0.0f, 1.0f} : new float[Math.max(Z, 2)];
+        m(deVar, Z, iArr, fArr2);
+        if (Z < 2) {
             return null;
         }
         if (i == 1) {
@@ -260,70 +260,70 @@ public final class y {
         return new RadialGradient(f, f2, Math.max(f5, 0.01f), iArr, fArr2, Shader.TileMode.CLAMP);
     }
 
-    public final void i(kka kkaVar, float f) {
+    public final void i(lma lmaVar, float f) {
         Object obj;
         int i;
-        cwc cwcVar = (cwc) tb4.l(1, (ArrayList) kkaVar.h);
-        if (cwcVar.c != null || cwcVar.f != null) {
-            kkaVar.b--;
+        dyc dycVar = (dyc) td4.m(1, (ArrayList) lmaVar.h);
+        if (dycVar.c != null || dycVar.f != null) {
+            lmaVar.b--;
         }
         while (true) {
-            int i2 = kkaVar.a;
-            obj = cwcVar.c;
-            if (obj == null && cwcVar.f == null) {
-                i = cwcVar.b;
+            int i2 = lmaVar.a;
+            obj = dycVar.c;
+            if (obj == null && dycVar.f == null) {
+                i = dycVar.b;
             } else {
                 i = 0;
             }
             if (i2 <= i) {
                 break;
             }
-            kkaVar.t();
+            lmaVar.t();
         }
         if (obj != null) {
-            yz.j(cwcVar, f);
-            kkaVar.d = cwcVar.a;
+            y00.j(dycVar, f);
+            lmaVar.d = dycVar.a;
         } else {
-            Bitmap bitmap = cwcVar.f;
+            Bitmap bitmap = dycVar.f;
             if (bitmap != null) {
-                gl2 gl2Var = cwcVar.i;
-                WidgetClientNative.filterPixels(bitmap, (int[]) gl2Var.b, (float[]) gl2Var.f, (float[]) gl2Var.d, (float[]) gl2Var.e, (int[]) gl2Var.c, cwcVar.h);
-                kkaVar.d = cwcVar.a;
+                sm2 sm2Var = dycVar.i;
+                WidgetClientNative.filterPixels(bitmap, (int[]) sm2Var.b, (float[]) sm2Var.f, (float[]) sm2Var.d, (float[]) sm2Var.e, (int[]) sm2Var.c, dycVar.h);
+                lmaVar.d = dycVar.a;
                 Matrix matrix = new Matrix();
-                if (cwcVar.g.invert(matrix)) {
-                    ((Canvas) kkaVar.d).save();
-                    ((Canvas) kkaVar.d).concat(matrix);
-                    ((Canvas) kkaVar.d).drawBitmap(cwcVar.f, cwcVar.d, cwcVar.e, this.c);
-                    ((Canvas) kkaVar.d).restore();
+                if (dycVar.g.invert(matrix)) {
+                    ((Canvas) lmaVar.d).save();
+                    ((Canvas) lmaVar.d).concat(matrix);
+                    ((Canvas) lmaVar.d).drawBitmap(dycVar.f, dycVar.d, dycVar.e, this.c);
+                    ((Canvas) lmaVar.d).restore();
                 }
             }
         }
-        kkaVar.a = cwcVar.b;
+        lmaVar.a = dycVar.b;
     }
 
-    public final void l(dd ddVar, Path path) {
+    public final void l(de deVar, Path path) {
         Path.FillType fillType;
         int i;
         int i2;
         int i3;
         path.rewind();
-        int X = ddVar.X(1048576, 0);
-        int X2 = ddVar.X(6291456, 1);
-        int i4 = ddVar.b;
-        long j = (X + 3) / 4;
-        jvc jvcVar = (jvc) ddVar.c;
-        if ((j << 2) <= jvcVar.d - i4) {
-            ddVar.b = (((int) j) << 2) + i4;
+        int Z = deVar.Z(1048576, 0);
+        int Z2 = deVar.Z(6291456, 1);
+        int i4 = deVar.b;
+        long j = (Z + 3) / 4;
+        kxc kxcVar = (kxc) deVar.c;
+        if ((j << 2) <= kxcVar.d - i4) {
+            deVar.b = (((int) j) << 2) + i4;
             float[] fArr = this.u;
-            if (fArr.length < X2) {
-                fArr = new float[Math.max(X2, fArr.length << 1)];
+            if (fArr.length < Z2) {
+                fArr = new float[Math.max(Z2, fArr.length << 1)];
                 this.u = fArr;
             }
-            ddVar.d0(X2, fArr);
+            deVar.e0(Z2, fArr);
             int i5 = 0;
             int i6 = 0;
-            while (i5 < X) {
-                int i7 = jvcVar.a.get(i4 + i5) & 255;
+            while (i5 < Z) {
+                int i7 = kxcVar.a.get(i4 + i5) & 255;
                 if (i7 == 3) {
                     i = 6;
                 } else if (i7 == 2) {
@@ -334,7 +334,7 @@ public final class y {
                     i = 2;
                 }
                 int i8 = i + i6;
-                if (i8 > X2) {
+                if (i8 > Z2) {
                     break;
                 }
                 if (i7 != 0) {
@@ -377,7 +377,7 @@ public final class y {
                 i5 = i2 + 1;
                 i6 = i3;
             }
-            if (ddVar.i0() != 0) {
+            if (deVar.j0() != 0) {
                 fillType = Path.FillType.EVEN_ODD;
             } else {
                 fillType = Path.FillType.WINDING;
@@ -385,7 +385,7 @@ public final class y {
             path.setFillType(fillType);
             return;
         }
-        throw jvc.a();
+        throw kxc.a();
     }
 
     public final void n(RectF rectF, Path path) {
@@ -417,9 +417,9 @@ public final class y {
         return false;
     }
 
-    public final boolean p(kka kkaVar, RectF rectF, float f) {
+    public final boolean p(lma lmaVar, RectF rectF, float f) {
         Matrix matrix = this.C;
-        if (!((Matrix) kkaVar.f).invert(matrix)) {
+        if (!((Matrix) lmaVar.f).invert(matrix)) {
             return false;
         }
         RectF rectF2 = this.A;

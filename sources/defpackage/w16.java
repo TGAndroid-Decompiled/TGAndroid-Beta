@@ -1,19 +1,23 @@
 package defpackage;
 
-import android.content.Context;
-public final class w16 extends ah8 {
-    public final h26 S;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class w16 implements View.OnAttachStateChangeListener {
+    public final LaunchActivity a;
 
-    public w16(h26 h26Var, Context context, wjb wjbVar) {
-        super(wjbVar, context, true);
-        this.S = h26Var;
+    public w16(LaunchActivity launchActivity) {
+        this.a = launchActivity;
     }
 
     @Override
-    public final void invalidate() {
-        if (this.S.a2) {
-            return;
-        }
-        super.invalidate();
+    public final void onViewAttachedToWindow(View view) {
+        LaunchActivity launchActivity = this.a;
+        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.d1);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        LaunchActivity launchActivity = this.a;
+        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.d1);
     }
 }

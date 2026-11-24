@@ -1,24 +1,29 @@
 package defpackage;
 
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-public interface ptc {
-    void a(boolean z, ltc ltcVar, float f, boolean z2);
+import org.telegram.tgnet.TLObject;
+public final class ptc implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    TextureView b(View view, boolean z, float f, int i, boolean z2);
+    public ptc(TLObject tLObject, vxc vxcVar) {
+        this.a = (byte) 16;
+        this.c = tLObject;
+        this.b = vxcVar;
+    }
 
-    void c();
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ptc.a():void");
+    }
 
-    void d(float f);
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ptc.run():void");
+    }
 
-    void e();
-
-    TextureView f(View view, boolean z, int i, int i2, boolean z2);
-
-    void g(stc stcVar, boolean z);
-
-    ViewGroup h();
-
-    boolean i();
+    public ptc(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+    }
 }

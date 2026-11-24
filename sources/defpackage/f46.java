@@ -1,39 +1,20 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class f46 {
-    public StringBuilder d;
-    public String e;
-    public String f;
-    public char g;
-    public StringBuilder h;
-    public int a = 1;
-    public final StringBuilder b = new StringBuilder();
-    public final ArrayList c = new ArrayList();
-    public boolean i = false;
+import android.content.Context;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+public final class f46 extends LimitPreviewView {
+    public final g46 q0;
 
-    public final void a() {
-        String str;
-        if (!this.i) {
+    public f46(g46 g46Var, Context context, int i, int i2, int i3, float f, ylb ylbVar) {
+        super(context, i, i2, i3, f, ylbVar);
+        this.q0 = g46Var;
+    }
+
+    @Override
+    public final void invalidate() {
+        if (this.q0.e.a2) {
             return;
         }
-        String a = z34.a(this.f);
-        StringBuilder sb = this.h;
-        if (sb != null) {
-            str = z34.a(sb.toString());
-        } else {
-            str = null;
-        }
-        String str2 = this.e;
-        ?? tg6Var = new tg6();
-        tg6Var.g = str2;
-        tg6Var.h = a;
-        tg6Var.i = str;
-        this.c.add(tg6Var);
-        this.d = null;
-        this.i = false;
-        this.e = null;
-        this.f = null;
-        this.h = null;
+        super.invalidate();
     }
 }

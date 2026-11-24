@@ -1,91 +1,58 @@
 package defpackage;
 
-import android.util.Property;
-import android.view.View;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class bw1 extends Property {
-    public final byte a;
-    public final ChatActivityEnterView b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class bw1 extends FrameLayout {
+    public final ylb a;
+    public aw1 b;
+    public uy2 c;
+    public boolean d;
 
-    public bw1(ChatActivityEnterView chatActivityEnterView, byte b) {
-        super(Float.class, "attach_scale");
-        this.a = b;
-        switch (b) {
-            case 1:
-                this.b = chatActivityEnterView;
-                super(Float.class, "emoji_button_alpha");
-                return;
-            case 2:
-                this.b = chatActivityEnterView;
-                super(Float.class, "attach_layout_translation_x");
-                return;
-            case 3:
-                this.b = chatActivityEnterView;
-                super(Float.class, "message_text_translation_x");
-                return;
-            case 4:
-                this.b = chatActivityEnterView;
-                super(Float.class, "emoji_button_scale");
-                return;
-            default:
-                this.b = chatActivityEnterView;
-                return;
+    public bw1(Context context, ylb ylbVar) {
+        super(context);
+        this.a = ylbVar;
+    }
+
+    public final void a(int i, boolean z) {
+        if (this.c == null) {
+            uy2 uy2Var = new uy2(getContext(), this.a);
+            this.c = uy2Var;
+            uy2Var.setReverse(this.d);
+            addView(this.c, qoe.e(-1, 28, 48));
         }
+        this.c.a.c(i, z);
+    }
+
+    public final void b(boolean z, boolean z2) {
+        super.setEnabled(z);
+        this.b.e(z, z2);
+    }
+
+    public final void c(boolean z, boolean z2) {
+        aw1 aw1Var = this.b;
+        if (aw1Var.d == null) {
+            if (!z) {
+                return;
+            }
+            wi2 wi2Var = new wi2(gm.L(18.0f), gm.L(1.7f), -9079435);
+            aw1Var.e = wi2Var;
+            wi2Var.f = 90.0f;
+            ImageView imageView = new ImageView(aw1Var.getContext());
+            aw1Var.d = imageView;
+            imageView.setBackground(aw1Var.e);
+            aw1Var.d.setVisibility(8);
+            aw1Var.addView(aw1Var.d, qoe.e(46, 46, 17));
+        }
+        fn0 fn0Var = aw1Var.a;
+        if (!fn0Var.f && fn0Var.e == 0.0f) {
+            aw1Var.e.c = -1L;
+        }
+        fn0Var.a(z, z2);
     }
 
     @Override
-    public final Object get(Object obj) {
-        byte b = this.a;
-        ChatActivityEnterView chatActivityEnterView = this.b;
-        switch (b) {
-            case 0:
-                View view = (View) obj;
-                return Float.valueOf(chatActivityEnterView.F);
-            case 1:
-                View view2 = (View) obj;
-                return Float.valueOf(chatActivityEnterView.n);
-            case 2:
-                View view3 = (View) obj;
-                return Float.valueOf(chatActivityEnterView.y);
-            case 3:
-                View view4 = (View) obj;
-                return Float.valueOf(chatActivityEnterView.H);
-            default:
-                View view5 = (View) obj;
-                return Float.valueOf(chatActivityEnterView.h);
-        }
-    }
-
-    @Override
-    public final void set(Object obj, Object obj2) {
-        byte b = this.a;
-        ChatActivityEnterView chatActivityEnterView = this.b;
-        switch (b) {
-            case 0:
-                View view = (View) obj;
-                chatActivityEnterView.F = ((Float) obj2).floatValue();
-                chatActivityEnterView.g2();
-                return;
-            case 1:
-                View view2 = (View) obj;
-                chatActivityEnterView.n = ((Float) obj2).floatValue();
-                chatActivityEnterView.l2();
-                return;
-            case 2:
-                View view3 = (View) obj;
-                chatActivityEnterView.y = ((Float) obj2).floatValue();
-                chatActivityEnterView.g2();
-                return;
-            case 3:
-                View view4 = (View) obj;
-                chatActivityEnterView.H = ((Float) obj2).floatValue();
-                chatActivityEnterView.p2();
-                return;
-            default:
-                View view5 = (View) obj;
-                chatActivityEnterView.h = ((Float) obj2).floatValue();
-                chatActivityEnterView.l2();
-                return;
-        }
+    public void setEnabled(boolean z) {
+        b(z, false);
     }
 }

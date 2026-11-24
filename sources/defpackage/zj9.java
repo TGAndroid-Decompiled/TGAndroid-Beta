@@ -1,116 +1,108 @@
 package defpackage;
 
-import android.hardware.camera2.CameraDevice;
-import android.os.HandlerThread;
-public final class zj9 extends CameraDevice.StateCallback {
-    public final CameraDevice.StateCallback a;
-    public final boolean b;
-    public boolean c;
-    public boolean d;
-    public boolean e;
-    public final ak9 f;
+import android.graphics.Rect;
+import android.text.Layout;
+public final class zj9 implements qkb {
+    public final byte a;
+    public final Object b;
+    public final int c;
+    public final int d;
 
-    public zj9(ak9 ak9Var, CameraDevice.StateCallback stateCallback, boolean z) {
-        this.f = ak9Var;
-        this.a = stateCallback;
-        this.b = z;
-        ak9Var.w0++;
+    public zj9(Object obj, int i, int i2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = i;
+        this.d = i2;
     }
 
-    public final void a() {
-        boolean z = this.b;
-        ak9 ak9Var = this.f;
-        if (z) {
-            if (ak9Var.v0 == this) {
-                ak9Var.v0 = null;
-            }
-        } else if (ak9Var.u0 == this) {
-            ak9Var.u0 = null;
-        }
-    }
-
-    public final boolean b() {
-        zj9 zj9Var;
-        if (!this.f.t0) {
-            boolean z = this.b;
-            ak9 ak9Var = this.f;
-            if (z) {
-                zj9Var = ak9Var.v0;
-            } else {
-                zj9Var = ak9Var.u0;
-            }
-            if (zj9Var == this) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final void c() {
-        if (!this.c) {
-            this.c = true;
-            ak9 ak9Var = this.f;
-            int i = ak9Var.w0 - 1;
-            ak9Var.w0 = i;
-            HandlerThread handlerThread = ak9Var.x0;
-            if (i <= 0 && handlerThread != null) {
-                ak9Var.x0 = null;
-                ak9Var.j.b("camera open results settled after release; quitting thread");
-                handlerThread.quitSafely();
-            }
+    @Override
+    public final Layout a() {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                return (Layout) obj;
+            case 1:
+                return (Layout) obj;
+            case 2:
+                return (Layout) obj;
+            default:
+                return ((qkb) obj).a();
         }
     }
 
     @Override
-    public final void onClosed(CameraDevice cameraDevice) {
-        if (this.e && !this.f.t0) {
-            this.a.onClosed(cameraDevice);
+    public final Rect c() {
+        byte b = this.a;
+        return null;
+    }
+
+    @Override
+    public final CharSequence getPrefix() {
+        switch (this.a) {
+            case 0:
+            case 1:
+            case 2:
+                return null;
+            default:
+                return ((qkb) this.b).getPrefix();
         }
     }
 
     @Override
-    public final void onDisconnected(CameraDevice cameraDevice) {
-        boolean b = b();
-        c();
-        if (!this.f.t0 && (this.d || b)) {
-            a();
-            this.e = true;
-            this.a.onDisconnected(cameraDevice);
-            return;
+    public final int getRow() {
+        switch (this.a) {
+            case 0:
+            case 1:
+                return 0;
+            case 2:
+                return 1;
+            default:
+                return ((qkb) this.b).getRow();
         }
-        cameraDevice.close();
     }
 
     @Override
-    public final void onError(CameraDevice cameraDevice, int i) {
-        boolean b = b();
-        c();
-        if (!this.f.t0 && (this.d || b)) {
-            a();
-            this.e = true;
-            this.a.onError(cameraDevice, i);
-            return;
+    public final CharSequence getText() {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                return ((Layout) obj).getText();
+            case 1:
+                return ((Layout) obj).getText();
+            case 2:
+                return ((Layout) obj).getText();
+            default:
+                return ((qkb) obj).getText();
         }
-        ek9 ek9Var = this.f.j;
-        ek9Var.b("stale camera error ignored: id=" + cameraDevice.getId() + ", error=" + ak9.e(i) + ", warm=" + this.b);
-        cameraDevice.close();
     }
 
     @Override
-    public final void onOpened(CameraDevice cameraDevice) {
-        boolean b = b();
-        a();
-        c();
-        if (!b) {
-            ek9 ek9Var = this.f.j;
-            ek9Var.b("stale camera open closed: id=" + cameraDevice.getId() + ", warm=" + this.b + ", released=" + this.f.t0);
-            cameraDevice.close();
-            return;
+    public final int getX() {
+        switch (this.a) {
+            case 0:
+                return this.c;
+            case 1:
+                return this.c;
+            case 2:
+                return this.c;
+            default:
+                return ((qkb) this.b).getX() + this.c;
         }
-        this.d = true;
-        this.e = true;
-        this.f.r0.add(cameraDevice);
-        this.a.onOpened(cameraDevice);
+    }
+
+    @Override
+    public final int getY() {
+        switch (this.a) {
+            case 0:
+                return this.d;
+            case 1:
+                return this.d;
+            case 2:
+                return this.d;
+            default:
+                return ((qkb) this.b).getY() + this.d;
+        }
     }
 }

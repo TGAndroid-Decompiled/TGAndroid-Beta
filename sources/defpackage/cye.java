@@ -1,20 +1,37 @@
 package defpackage;
-public final class cye implements zn7 {
-    public static final cye a = new Object();
-    public static final w84 b = new w84("isForegroundConfidenceMaskEnabled", b00.m(yjb.p(gid.class, new bgd(1))));
-    public static final w84 c = new w84("isForegroundBitmapEnabled", b00.m(yjb.p(gid.class, new bgd(2))));
-    public static final w84 d = new w84("isMultipleSubjectsEnabled", b00.m(yjb.p(gid.class, new bgd(3))));
-    public static final w84 e = new w84("isSubjectConfidenceMaskEnabled", b00.m(yjb.p(gid.class, new bgd(4))));
-    public static final w84 f = new w84("isSubjectBitmapEnabled", b00.m(yjb.p(gid.class, new bgd(5))));
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ocf ocfVar = (ocf) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ocfVar.a);
-        ao7Var.a(c, ocfVar.b);
-        ao7Var.a(d, ocfVar.c);
-        ao7Var.a(e, ocfVar.d);
-        ao7Var.a(f, ocfVar.e);
+import java.util.Map;
+public abstract class cye {
+    public static r4c a(r4c r4cVar, String[] strArr, Map map) {
+        int i = 0;
+        if (r4cVar == null) {
+            if (strArr == null) {
+                return null;
+            }
+            if (strArr.length == 1) {
+                return (r4c) map.get(strArr[0]);
+            }
+            if (strArr.length > 1) {
+                r4c r4cVar2 = new r4c();
+                int length = strArr.length;
+                while (i < length) {
+                    r4cVar2.a((r4c) map.get(strArr[i]));
+                    i++;
+                }
+                return r4cVar2;
+            }
+        } else if (strArr != null) {
+            if (strArr.length == 1) {
+                r4cVar.a((r4c) map.get(strArr[0]));
+                return r4cVar;
+            } else if (strArr.length > 1) {
+                int length2 = strArr.length;
+                while (i < length2) {
+                    r4cVar.a((r4c) map.get(strArr[i]));
+                    i++;
+                }
+            }
+        }
+        return r4cVar;
     }
 }

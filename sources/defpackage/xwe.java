@@ -1,20 +1,17 @@
 package defpackage;
-public interface xwe {
-    boolean a(Object obj);
 
-    void b(Object obj);
-
-    void c(Object obj, byte[] bArr, int i, int i2, sad sadVar);
-
-    void d(Object obj, g6e g6eVar);
-
-    void e(nne nneVar, nne nneVar2);
-
-    boolean f(nne nneVar, nne nneVar2);
-
-    int g(nne nneVar);
-
-    Object zza();
-
-    int zzb(Object obj);
+import java.io.Serializable;
+public abstract class xwe {
+    public static sdb a(sdb sdbVar) {
+        if (!(sdbVar instanceof udb)) {
+            if (sdbVar instanceof tdb) {
+                return sdbVar;
+            }
+            if (sdbVar instanceof Serializable) {
+                return new tdb(sdbVar);
+            }
+            return new udb(sdbVar);
+        }
+        return sdbVar;
+    }
 }

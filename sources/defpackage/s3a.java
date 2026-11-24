@@ -1,23 +1,35 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class s3a {
-    public String a;
-    public String b;
-    public boolean c;
-    public String d;
-    public boolean e;
-    public TLRPC.TL_inputStickerSetItem f;
-    public oac g;
+import java.util.ArrayList;
+public final class s3a implements Runnable {
+    public final byte a;
+    public final a6a b;
+    public final long c;
+    public final ArrayList d;
 
-    public final void a(int i, TLRPC.InputFile inputFile, Runnable runnable) {
-        TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
-        tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
-        TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
-        tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
-        tL_inputMediaUploadedDocument.file = inputFile;
-        tL_inputMediaUploadedDocument.mime_type = this.d;
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_uploadMedia, new r3a(this, runnable), 2);
+    public s3a(a6a a6aVar, long j, ArrayList arrayList, byte b) {
+        this.a = b;
+        this.b = a6aVar;
+        this.c = j;
+        this.d = arrayList;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ArrayList arrayList = this.d;
+        long j = this.c;
+        a6a a6aVar = this.b;
+        switch (b) {
+            case 0:
+                a6aVar.getMessagesController().p3(arrayList, j);
+                return;
+            case 1:
+                a6aVar.getMessagesController().p3(arrayList, j);
+                return;
+            default:
+                a6aVar.getMessagesController().p3(arrayList, j);
+                return;
+        }
     }
 }

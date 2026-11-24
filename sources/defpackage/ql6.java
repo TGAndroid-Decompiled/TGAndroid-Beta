@@ -1,12 +1,37 @@
 package defpackage;
 
-import java.io.File;
-public final class ql6 extends File {
+import j$.util.Objects;
+public final class ql6 implements Comparable {
+    public final long a;
+    public final long b;
+    public final long c;
+
+    public ql6(long j, long j2, long j3) {
+        this.a = j;
+        this.b = j2;
+        this.c = j3;
+    }
+
     @Override
-    public final boolean delete() {
-        if (w01.a) {
-            fa4.d("delete voice file");
+    public final int compareTo(Object obj) {
+        return Long.compare(this.a, ((ql6) obj).a);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return super.delete();
+        if (!(obj instanceof ql6)) {
+            return false;
+        }
+        ql6 ql6Var = (ql6) obj;
+        if (this.a == ql6Var.a && this.b == ql6Var.b && this.c == ql6Var.c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.a), Long.valueOf(this.b), Long.valueOf(this.c));
     }
 }

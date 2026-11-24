@@ -1,121 +1,128 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-public final class qcc extends View {
-    public ShapeDrawable a;
-    public Drawable b;
-    public StaticLayout c;
-    public TextPaint d;
-    public long e;
-    public float f;
-    public float h;
-    public boolean n;
-    public int r;
+import android.graphics.SurfaceTexture;
+import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import org.telegram.messenger.video.MediaCodecPlayer;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class qcc extends TLObject {
+    public static final int C = 0;
+    public MediaCodecPlayer B;
+    public int a;
+    public boolean b;
+    public boolean c;
+    public String d;
+    public float e = 1.0f;
+    public long f = 0;
+    public boolean i = true;
+    public float j;
+    public float k;
+    public int l;
+    public int m;
+    public long o;
+    public rl2 r;
+    public FloatBuffer s;
+    public FloatBuffer t;
+    public kn u;
+    public float v;
+    public SurfaceTexture z;
 
-    public final void a(boolean z) {
-        this.n = z;
-        invalidate();
+    public static ArrayList a(g6b g6bVar) {
+        if (g6bVar != null && g6bVar.T != null) {
+            ArrayList arrayList = new ArrayList();
+            for (int i = 0; i < g6bVar.T.size(); i++) {
+                g6b g6bVar2 = (g6b) g6bVar.T.get(i);
+                ?? tLObject = new TLObject();
+                tLObject.e = 1.0f;
+                tLObject.f = 0L;
+                tLObject.i = true;
+                tLObject.b = g6bVar2.K;
+                tLObject.c = g6bVar2.Y;
+                tLObject.d = g6bVar2.L.getAbsolutePath();
+                tLObject.e = g6bVar2.P;
+                tLObject.i = g6bVar2.U;
+                tLObject.f = g6bVar2.X;
+                tLObject.j = g6bVar2.V;
+                tLObject.k = g6bVar2.W;
+                tLObject.l = g6bVar2.k0;
+                tLObject.m = g6bVar2.l0;
+                tLObject.o = g6bVar2.h0;
+                tLObject.r = (rl2) g6bVar.S.e.get(i);
+                arrayList.add(tLObject);
+            }
+            return arrayList;
+        }
+        return null;
     }
 
-    public final void b() {
-        int i;
-        Drawable drawable = this.b;
-        this.d.setColor(bkb.w0(null, bkb.fg, false));
-        ShapeDrawable shapeDrawable = this.a;
-        if (shapeDrawable != null) {
-            i = bkb.gg;
-            bkb.A1(bkb.w0(null, i, false), shapeDrawable);
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
+        boolean z2;
+        boolean z3;
+        int readInt32 = inputSerializedData.readInt32(z);
+        this.a = readInt32;
+        boolean z4 = false;
+        if ((readInt32 & 1) != 0) {
+            z2 = true;
         } else {
-            int L = gl.L(5.0f);
-            i = bkb.gg;
-            this.a = bkb.b0(L, bkb.w0(null, i, false));
+            z2 = false;
         }
-        int w0 = bkb.w0(null, i, false);
-        if (w0 == this.r && drawable.getColorFilter() != null) {
-            return;
+        this.b = z2;
+        if ((readInt32 & 2) != 0) {
+            z3 = true;
+        } else {
+            z3 = false;
         }
-        this.r = w0;
-        drawable.setColorFilter(new PorterDuffColorFilter(w0, PorterDuff.Mode.MULTIPLY));
+        this.i = z3;
+        if ((readInt32 & 4) != 0) {
+            z4 = true;
+        }
+        this.c = z4;
+        this.d = inputSerializedData.readString(z);
+        this.e = inputSerializedData.readFloat(z);
+        this.f = inputSerializedData.readInt64(z);
+        this.j = inputSerializedData.readFloat(z);
+        this.k = inputSerializedData.readFloat(z);
+        this.l = inputSerializedData.readInt32(z);
+        this.m = inputSerializedData.readInt32(z);
+        this.o = inputSerializedData.readInt64(z);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        Drawable drawable = this.b;
-        if (this.c != null) {
-            boolean z = this.n;
-            float f2 = this.h;
-            if (z) {
-                if (f2 != 1.0f) {
-                    float f3 = f2 + 0.12f;
-                    this.h = f3;
-                    if (f3 > 1.0f) {
-                        this.h = 1.0f;
-                    }
-                    invalidate();
-                }
-            } else {
-                if (f2 != 0.0f) {
-                    float f4 = f2 - 0.12f;
-                    this.h = f4;
-                    if (f4 < 0.0f) {
-                        this.h = 0.0f;
-                    }
-                    invalidate();
-                }
-                if (this.h == 0.0f) {
-                    return;
-                }
-            }
-            float f5 = this.h;
-            if (f5 > 0.5f) {
-                f = 1.0f;
-            } else {
-                f = f5 / 0.5f;
-            }
-            int i = (int) (f * 255.0f);
-            canvas.save();
-            float f6 = this.h;
-            canvas.scale(f6, f6, this.f, getMeasuredHeight());
-            canvas.translate(this.f - (this.c.getWidth() / 2.0f), 0.0f);
-            this.a.setBounds(-gl.L(8.0f), 0, gl.L(8.0f) + this.c.getWidth(), (int) (gl.N(4.0f) + this.c.getHeight()));
-            drawable.setBounds(oo1.A(2, this.c.getWidth() / 2, drawable), (int) (gl.N(4.0f) + this.c.getHeight()), oo1.w(2, this.c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (gl.N(4.0f) + this.c.getHeight())));
-            drawable.setAlpha(i);
-            this.a.setAlpha(i);
-            this.d.setAlpha(i);
-            drawable.draw(canvas);
-            this.a.draw(canvas);
-            canvas.translate(0.0f, gl.N(1.0f));
-            this.c.draw(canvas);
-            canvas.restore();
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        int i;
+        int i2;
+        int i3;
+        boolean z = this.b;
+        int i4 = this.a;
+        if (z) {
+            i = i4 | 1;
+        } else {
+            i = i4 & (-2);
         }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.b.getIntrinsicHeight() + gl.L(4.0f) + this.c.getHeight(), 1073741824));
-    }
-
-    public void setCx(float f) {
-        this.f = f;
-        invalidate();
-    }
-
-    public void setTime(int i) {
-        long j = i;
-        if (j != this.e) {
-            this.e = j;
-            String g0 = gl.g0(i, false, false);
-            TextPaint textPaint = this.d;
-            this.c = new StaticLayout(g0, textPaint, (int) textPaint.measureText(g0), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+        this.a = i;
+        if (this.i) {
+            i2 = i | 2;
+        } else {
+            i2 = i & (-3);
         }
+        this.a = i2;
+        if (this.c) {
+            i3 = i2 | 4;
+        } else {
+            i3 = i2 & (-5);
+        }
+        this.a = i3;
+        outputSerializedData.writeInt32(i3);
+        outputSerializedData.writeString(this.d);
+        outputSerializedData.writeFloat(this.e);
+        outputSerializedData.writeInt64(this.f);
+        outputSerializedData.writeFloat(this.j);
+        outputSerializedData.writeFloat(this.k);
+        outputSerializedData.writeInt32(this.l);
+        outputSerializedData.writeInt32(this.m);
+        outputSerializedData.writeInt64(this.o);
     }
 }

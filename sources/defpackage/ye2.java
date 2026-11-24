@@ -1,36 +1,17 @@
 package defpackage;
-public final class ye2 extends gb3 {
-    public final on F = new on(null);
-    public final kf2 G;
 
-    public ye2(kf2 kf2Var) {
-        this.G = kf2Var;
+import android.graphics.Bitmap;
+public final class ye2 extends rob {
+    public final byte m2;
+
+    public ye2(Object obj, Bitmap bitmap, boolean z, byte b) {
+        super(obj, bitmap, z);
+        this.m2 = b;
     }
 
     @Override
-    public final void N() {
-        this.F.e();
-    }
-
-    @Override
-    public final void O() {
-        this.G.c.invalidate();
-    }
-
-    @Override
-    public final void P(s49 s49Var) {
-        this.G.c.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.p.isEmpty();
-        boolean isEmpty2 = this.r.isEmpty();
-        boolean isEmpty3 = this.s.isEmpty();
-        boolean isEmpty4 = this.q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            this.F.d();
-        }
-        super.m();
+    public final boolean W0() {
+        byte b = this.m2;
+        return true;
     }
 }

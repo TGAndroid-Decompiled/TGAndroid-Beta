@@ -1,17 +1,9 @@
 package defpackage;
-public final class kod implements zn7 {
-    public static final kod a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+public abstract class kod {
+    public static Drawable a(Context context, int i) {
+        return hc9.d().g(context, i);
     }
 }

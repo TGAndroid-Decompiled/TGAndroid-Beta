@@ -1,42 +1,25 @@
 package defpackage;
-public final class ma1 implements gq4 {
+public final class ma1 implements Runnable {
     public final byte a;
-    public final Object b;
+    public final oa1 b;
 
-    public ma1(nh7 nh7Var, mh7 mh7Var) {
-        this.a = (byte) 1;
-        this.b = nh7Var;
+    public ma1(oa1 oa1Var, byte b) {
+        this.a = b;
+        this.b = oa1Var;
     }
 
     @Override
-    public final Object a(Object obj, Object obj2, Object obj3) {
+    public final void run() {
         byte b = this.a;
-        g5c g5cVar = g5c.a;
-        Object obj4 = this.b;
+        oa1 oa1Var = this.b;
         switch (b) {
             case 0:
-                sw2 sw2Var = (sw2) obj3;
-                ((z1) obj4).invoke((Throwable) obj);
-                return g5cVar;
-            case 1:
-                nh7 nh7Var = (nh7) obj4;
-                Throwable th = (Throwable) obj;
-                g5c g5cVar2 = (g5c) obj2;
-                sw2 sw2Var2 = (sw2) obj3;
-                nh7.h.set(nh7Var, null);
-                nh7Var.f(null);
-                return g5cVar;
+                oa1Var.x = false;
+                oa1Var.c();
+                return;
             default:
-                Throwable th2 = (Throwable) obj;
-                g5c g5cVar3 = (g5c) obj2;
-                sw2 sw2Var3 = (sw2) obj3;
-                ((r0a) obj4).b();
-                return g5cVar;
+                oa1Var.a.setVisibility(4);
+                return;
         }
-    }
-
-    public ma1(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
     }
 }

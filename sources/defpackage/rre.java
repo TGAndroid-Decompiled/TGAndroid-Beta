@@ -1,5 +1,3 @@
 package defpackage;
-
-import java.util.RandomAccess;
-public abstract class rre extends oee implements yve, RandomAccess {
+public final class rre extends h2e {
 }

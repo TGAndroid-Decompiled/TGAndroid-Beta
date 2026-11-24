@@ -1,15 +1,17 @@
 package defpackage;
-public final class aid {
-    public static final aid a;
-    public static final aid[] b;
+public final class aid implements cq7 {
+    public static final aid a = new Object();
 
     static {
-        ?? r0 = new Enum("DEFAULT", 0);
-        a = r0;
-        b = new aid[]{r0, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)));
     }
 
-    public static aid[] values() {
-        return (aid[]) b.clone();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

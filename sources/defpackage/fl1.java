@@ -1,37 +1,46 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-public final class fl1 implements Runnable {
-    public final byte a;
-    public final long b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
+import java.util.Iterator;
+public final class fl1 implements Iterator {
+    public final int a;
+    public boolean b;
+    public int c;
 
-    public fl1(Object obj, Object obj2, long j, Object obj3, Object obj4, Object obj5, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.b = j;
-        this.e = obj3;
-        this.f = obj4;
-        this.h = obj5;
+    public fl1(char c, char c2) {
+        boolean z;
+        this.a = c2;
+        if (rr5.b(c, c2) <= 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.b = z;
+        this.c = z ? c : c2;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.fl1.run():void");
+    public final boolean hasNext() {
+        return this.b;
     }
 
-    public fl1(Object obj, Object obj2, Object obj3, TLObject tLObject, Object obj4, long j, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f = tLObject;
-        this.h = obj4;
-        this.b = j;
+    @Override
+    public final Object next() {
+        int i = this.c;
+        if (i == this.a) {
+            if (this.b) {
+                this.b = false;
+            } else {
+                u36.g();
+                return null;
+            }
+        } else {
+            this.c = i + 1;
+        }
+        return Character.valueOf((char) i);
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

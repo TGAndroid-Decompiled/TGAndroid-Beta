@@ -1,23 +1,35 @@
 package defpackage;
 
-import android.media.VolumeProvider;
-public final class ujc extends VolumeProvider {
-    public final tx3 a;
+import org.telegram.messenger.voip.VoIPService;
+public final class ujc implements Runnable {
+    public final byte a;
+    public final VoIPService b;
 
-    public ujc(tx3 tx3Var, int i, int i2, int i3) {
-        super(i, i2, i3);
-        this.a = tx3Var;
+    public ujc(VoIPService voIPService, byte b) {
+        this.a = b;
+        this.b = voIPService;
     }
 
     @Override
-    public final void onAdjustVolume(int i) {
-        tx3 tx3Var = this.a;
-        ((ux4) ((xl3) tx3Var.f).d).a.post(new sx4(tx3Var, i, (byte) 1));
-    }
-
-    @Override
-    public final void onSetVolumeTo(int i) {
-        tx3 tx3Var = this.a;
-        ((ux4) ((xl3) tx3Var.f).d).a.post(new sx4(tx3Var, i, (byte) 0));
+    public final void run() {
+        byte b = this.a;
+        VoIPService voIPService = this.b;
+        switch (b) {
+            case 0:
+                voIPService.lambda$updateConnectionState$78();
+                return;
+            case 1:
+                voIPService.lambda$updateConnectionState$79();
+                return;
+            case 2:
+                voIPService.lambda$onConnectionStateChanged$113();
+                return;
+            case 3:
+                voIPService.lambda$onConnectionStateChanged$114();
+                return;
+            default:
+                voIPService.lambda$playConnectedSound$84();
+                return;
+        }
     }
 }

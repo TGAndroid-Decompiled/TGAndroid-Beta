@@ -1,14 +1,6 @@
 package defpackage;
 public interface a33 {
-    boolean a();
+    void A(Object obj);
 
-    void b();
-
-    void c();
-
-    boolean d();
-
-    void e();
-
-    void f(float f);
+    void onResult(Object obj);
 }

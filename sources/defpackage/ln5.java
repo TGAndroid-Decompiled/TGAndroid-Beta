@@ -1,23 +1,11 @@
 package defpackage;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-public final class ln5 {
-    public long a;
-    public float b;
-    public float c;
-    public boolean d;
-    public float e;
-    public final RectF f = new RectF();
-    public int g;
-    public final Paint h;
-    public final int i;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public interface ln5 {
+    void B0(int i, Drawable drawable);
 
-    public ln5(int i) {
-        this.i = i;
-        Paint paint = new Paint(1);
-        this.h = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-    }
+    void L(ImageReceiver imageReceiver);
+
+    void b0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3);
 }

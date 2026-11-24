@@ -1,90 +1,110 @@
 package defpackage;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.WeakHashMap;
-public class wo9 implements Iterable {
-    public to9 a;
-    public to9 b;
-    public final WeakHashMap c = new WeakHashMap();
-    public int d = 0;
+import android.graphics.Bitmap;
+import android.graphics.Typeface;
+import android.os.SystemClock;
+import android.provider.Settings;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class wo9 implements Runnable {
+    public final byte a;
+    public final pp9 b;
 
-    public final boolean equals(java.lang.Object r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.wo9.equals(java.lang.Object):boolean");
-    }
-
-    public to9 h(Object obj) {
-        to9 to9Var = this.a;
-        while (to9Var != null && !to9Var.a.equals(obj)) {
-            to9Var = to9Var.c;
-        }
-        return to9Var;
-    }
-
-    public final int hashCode() {
-        Iterator it = iterator();
-        int i = 0;
-        while (true) {
-            so9 so9Var = (so9) it;
-            if (so9Var.hasNext()) {
-                i += ((Map.Entry) so9Var.next()).hashCode();
-            } else {
-                return i;
-            }
-        }
-    }
-
-    public Object i(Object obj) {
-        to9 h = h(obj);
-        if (h == null) {
-            return null;
-        }
-        this.d--;
-        WeakHashMap weakHashMap = this.c;
-        if (!weakHashMap.isEmpty()) {
-            for (vo9 vo9Var : weakHashMap.keySet()) {
-                vo9Var.a(h);
-            }
-        }
-        to9 to9Var = h.d;
-        to9 to9Var2 = h.c;
-        if (to9Var != null) {
-            to9Var.c = to9Var2;
-        } else {
-            this.a = to9Var2;
-        }
-        to9 to9Var3 = h.c;
-        if (to9Var3 != null) {
-            to9Var3.d = to9Var;
-        } else {
-            this.b = to9Var;
-        }
-        h.c = null;
-        h.d = null;
-        return h.b;
+    public wo9(pp9 pp9Var, byte b) {
+        this.a = b;
+        this.b = pp9Var;
     }
 
     @Override
-    public final Iterator iterator() {
-        so9 so9Var = new so9(this.a, this.b, (byte) 0);
-        this.c.put(so9Var, Boolean.FALSE);
-        return so9Var;
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        Iterator it = iterator();
-        while (true) {
-            so9 so9Var = (so9) it;
-            if (so9Var.hasNext()) {
-                sb.append(((Map.Entry) so9Var.next()).toString());
-                if (so9Var.hasNext()) {
-                    sb.append(", ");
+    public final void run() {
+        String str;
+        Bitmap bitmap;
+        byte b = this.a;
+        pp9 pp9Var = this.b;
+        switch (b) {
+            case 0:
+                pp9Var.e();
+                return;
+            case 1:
+                LaunchActivity launchActivity = pp9Var.a;
+                Typeface typeface = gm.a;
+                if (Settings.canDrawOverlays(launchActivity) && !tp9.d()) {
+                    tp9.f(launchActivity);
+                    return;
                 }
-            } else {
-                sb.append("]");
-                return sb.toString();
-            }
+                return;
+            case 2:
+                TextView textView = pp9Var.x;
+                if (!pp9Var.u0 && !pp9Var.J0) {
+                    if (sd2.w(14, pp9Var.d)) {
+                        textView.setText(gm.S2(jb6.M0(2131747897, null)));
+                    } else {
+                        TLRPC.Chat chat = pp9Var.d;
+                        if (chat != null) {
+                            str = chat.title;
+                        } else {
+                            str = "";
+                        }
+                        textView.setText(jb6.a0(null, null, 2131747896, str));
+                    }
+                    pp9Var.w.setVisibility(8);
+                    textView.setAlpha(0.0f);
+                    textView.setVisibility(0);
+                    wi8.s(textView.animate(), 1.0f, 150L);
+                    return;
+                }
+                return;
+            case 3:
+                if (!pp9Var.J0) {
+                    gm.d3(pp9Var.N0, 2000L);
+                    if (pp9Var.u0 && !pp9Var.T && !pp9Var.I0 && pp9Var.s0 && e86.e(512) && (bitmap = pp9Var.n.getBitmap(4, 4)) != null) {
+                        int b2 = pp9.b(0, bitmap);
+                        int b3 = pp9.b(2, bitmap);
+                        bitmap.recycle();
+                        int i = pp9Var.z0;
+                        int i2 = pp9Var.A0;
+                        if (i != b2 || i2 != b3) {
+                            if (i == 0) {
+                                i = b2 & 16777215;
+                            }
+                            pp9Var.B0 = i;
+                            if (i2 == 0) {
+                                i2 = b3 & 16777215;
+                            }
+                            pp9Var.C0 = i2;
+                            pp9Var.D0 = b2;
+                            pp9Var.E0 = b3;
+                            pp9Var.F0 = SystemClock.uptimeMillis();
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                pp9Var.q();
+                return;
+            case 5:
+                pp9Var.dismiss();
+                return;
+            case 6:
+                pp9Var.a0 = false;
+                pp9Var.k(!pp9Var.n0, true);
+                return;
+            case 7:
+                if (pp9Var.K.I) {
+                    pp9Var.j();
+                    return;
+                } else {
+                    pp9Var.k(false, true);
+                    return;
+                }
+            default:
+                pp9 pp9Var2 = pp9.Q0;
+                pp9Var.u();
+                return;
         }
     }
 }

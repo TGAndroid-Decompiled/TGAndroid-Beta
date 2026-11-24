@@ -1,24 +1,25 @@
 package defpackage;
-public final class a53 {
-    public final xw8 a;
-    public final boolean b;
 
-    public a53(xw8 xw8Var, boolean z) {
-        this.a = xw8Var;
-        this.b = z;
+import android.security.keystore.KeyGenParameterSpec;
+import javax.crypto.KeyGenerator;
+public abstract class a53 {
+    public static KeyGenParameterSpec a(KeyGenParameterSpec.Builder builder) {
+        return builder.build();
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof a53) {
-            a53 a53Var = (a53) obj;
-            if (a53Var.a.equals(this.a) && a53Var.b == this.b) {
-                return true;
-            }
-        }
-        return false;
+    public static KeyGenParameterSpec.Builder b(String str, int i) {
+        return new KeyGenParameterSpec.Builder(str, i);
     }
 
-    public final int hashCode() {
-        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ Boolean.valueOf(this.b).hashCode();
+    public static void c(KeyGenerator keyGenerator, KeyGenParameterSpec keyGenParameterSpec) {
+        keyGenerator.init(keyGenParameterSpec);
+    }
+
+    public static void d(KeyGenParameterSpec.Builder builder) {
+        builder.setBlockModes("CBC");
+    }
+
+    public static void e(KeyGenParameterSpec.Builder builder) {
+        builder.setEncryptionPaddings("PKCS7Padding");
     }
 }

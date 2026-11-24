@@ -1,197 +1,193 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.text.method.KeyListener;
-import android.text.method.NumberKeyListener;
-import android.util.AttributeSet;
-import android.view.ActionMode;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.AutoCompleteTextView;
-public class jo extends AutoCompleteTextView implements zob {
-    public static final int[] d = {16843126};
-    public final ko a;
-    public final pq b;
-    public final lv6 c;
+import android.view.View;
+public final class jo implements Drawable.Callback {
+    public final byte a;
+    public Object b;
 
-    public jo(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968624);
-        xob.a(context);
-        cnb.a(getContext(), this);
-        vk9 v = vk9.v(getContext(), attributeSet, d, 2130968624);
-        if (((TypedArray) v.c).hasValue(0)) {
-            setDropDownBackgroundDrawable(v.n(0));
-        }
-        v.y();
-        ko koVar = new ko(this);
-        this.a = koVar;
-        koVar.g(attributeSet, 2130968624);
-        pq pqVar = new pq(this);
-        this.b = pqVar;
-        pqVar.f(attributeSet, 2130968624);
-        pqVar.b();
-        lv6 lv6Var = new lv6(this);
-        this.c = lv6Var;
-        lv6Var.w(attributeSet, 2130968624);
-        KeyListener keyListener = getKeyListener();
-        if (!(keyListener instanceof NumberKeyListener)) {
-            boolean isFocusable = super.isFocusable();
-            boolean isClickable = super.isClickable();
-            boolean isLongClickable = super.isLongClickable();
-            int inputType = super.getInputType();
-            KeyListener s = lv6Var.s(keyListener);
-            if (s != keyListener) {
-                super.setKeyListener(s);
-                super.setRawInputType(inputType);
-                super.setFocusable(isFocusable);
-                super.setClickable(isClickable);
-                super.setLongClickable(isLongClickable);
-            }
-        }
+    public jo(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.b();
-        }
-        pq pqVar = this.b;
-        if (pqVar != null) {
-            pqVar.b();
-        }
-    }
-
-    @Override
-    public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return kve.d(super.getCustomSelectionActionModeCallback());
-    }
-
-    public ColorStateList getSupportBackgroundTintList() {
-        ko koVar = this.a;
-        if (koVar != null) {
-            return koVar.e();
-        }
-        return null;
-    }
-
-    public PorterDuff.Mode getSupportBackgroundTintMode() {
-        ko koVar = this.a;
-        if (koVar != null) {
-            return koVar.f();
-        }
-        return null;
-    }
-
-    public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.b.d();
-    }
-
-    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.b.e();
-    }
-
-    @Override
-    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        gmd.a(editorInfo, onCreateInputConnection, this);
-        return this.c.x(onCreateInputConnection, editorInfo);
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        super.setBackgroundDrawable(drawable);
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.h();
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.a) {
+            case 0:
+                ((mo) this.b).invalidateSelf();
+                return;
+            case 1:
+                ((qm0) this.b).invalidateSelf();
+                return;
+            case 2:
+                ((ai2) this.b).invalidateSelf();
+                return;
+            case 3:
+                ((bk2) this.b).invalidateSelf();
+                return;
+            case 4:
+                return;
+            case 5:
+                ((ay4) this.b).c.invalidate();
+                return;
+            case 6:
+                ((cy4) this.b).c.invalidate();
+                return;
+            case 7:
+                cm1 cm1Var = ((vq8) this.b).g;
+                if (cm1Var != null) {
+                    cm1Var.invalidate();
+                    return;
+                }
+                return;
+            case 8:
+                i39 i39Var = (i39) this.b;
+                View view = i39Var.V;
+                if (view != null) {
+                    view.invalidate();
+                    if (i39Var.Q && view.getParent() != null && (view.getParent().getParent() instanceof View)) {
+                        ((View) view.getParent().getParent()).invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 9:
+                ((be9) this.b).b.invalidate();
+                return;
+            case 10:
+                ((lx9) this.b).b.run();
+                return;
+            case 11:
+                ((jsa) this.b).h.invalidate();
+                return;
+            default:
+                ((u0c) this.b).invalidateSelf();
+                return;
         }
     }
 
     @Override
-    public void setBackgroundResource(int i) {
-        super.setBackgroundResource(i);
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.i(i);
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+        switch (this.a) {
+            case 0:
+                ((mo) this.b).scheduleSelf(runnable, j);
+                return;
+            case 1:
+                ((qm0) this.b).scheduleSelf(runnable, j);
+                return;
+            case 2:
+                ((ai2) this.b).scheduleSelf(runnable, j);
+                return;
+            case 3:
+                ((bk2) this.b).scheduleSelf(runnable, j);
+                return;
+            case 4:
+                Drawable.Callback callback = (Drawable.Callback) this.b;
+                if (callback != null) {
+                    callback.scheduleDrawable(drawable, runnable, j);
+                    return;
+                }
+                return;
+            case 5:
+                ((ay4) this.b).c.invalidate();
+                return;
+            case 6:
+                ((cy4) this.b).c.invalidate();
+                return;
+            case 7:
+                return;
+            case 8:
+                View view = ((i39) this.b).V;
+                if (view != null) {
+                    view.scheduleDrawable(drawable, runnable, j);
+                    return;
+                }
+                return;
+            case 9:
+            case 10:
+            case 11:
+            default:
+                return;
         }
     }
 
     @Override
-    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        pq pqVar = this.b;
-        if (pqVar != null) {
-            pqVar.b();
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.a) {
+            case 0:
+                ((mo) this.b).unscheduleSelf(runnable);
+                return;
+            case 1:
+                ((qm0) this.b).unscheduleSelf(runnable);
+                return;
+            case 2:
+                ((ai2) this.b).unscheduleSelf(runnable);
+                return;
+            case 3:
+                ((bk2) this.b).unscheduleSelf(runnable);
+                return;
+            case 4:
+                Drawable.Callback callback = (Drawable.Callback) this.b;
+                if (callback != null) {
+                    callback.unscheduleDrawable(drawable, runnable);
+                    return;
+                }
+                return;
+            case 5:
+                ((ay4) this.b).c.invalidate();
+                return;
+            case 6:
+                ((cy4) this.b).c.invalidate();
+                return;
+            case 7:
+                return;
+            case 8:
+                View view = ((i39) this.b).V;
+                if (view != null) {
+                    view.unscheduleDrawable(drawable, runnable);
+                    return;
+                }
+                return;
+            case 9:
+            case 10:
+            case 11:
+            default:
+                return;
         }
     }
 
-    @Override
-    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        pq pqVar = this.b;
-        if (pqVar != null) {
-            pqVar.b();
-        }
+    private final void a(Drawable drawable) {
     }
 
-    @Override
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(kve.e(callback, this));
+    private final void g(Drawable drawable, Runnable runnable) {
     }
 
-    @Override
-    public void setDropDownBackgroundResource(int i) {
-        setDropDownBackgroundDrawable(hmd.a(getContext(), i));
+    private final void h(Drawable drawable, Runnable runnable) {
     }
 
-    public void setEmojiCompatEnabled(boolean z) {
-        this.c.I(z);
+    private final void i(Drawable drawable, Runnable runnable) {
     }
 
-    @Override
-    public void setKeyListener(KeyListener keyListener) {
-        super.setKeyListener(this.c.s(keyListener));
+    private final void j(Drawable drawable, Runnable runnable) {
     }
 
-    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.m(colorStateList);
-        }
+    private final void k(Drawable drawable, Runnable runnable) {
     }
 
-    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.n(mode);
-        }
+    private final void b(Drawable drawable, Runnable runnable, long j) {
     }
 
-    @Override
-    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        pq pqVar = this.b;
-        pqVar.l(colorStateList);
-        pqVar.b();
+    private final void c(Drawable drawable, Runnable runnable, long j) {
     }
 
-    @Override
-    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        pq pqVar = this.b;
-        pqVar.m(mode);
-        pqVar.b();
+    private final void d(Drawable drawable, Runnable runnable, long j) {
     }
 
-    @Override
-    public final void setTextAppearance(Context context, int i) {
-        super.setTextAppearance(context, i);
-        pq pqVar = this.b;
-        if (pqVar != null) {
-            pqVar.g(context, i);
-        }
+    private final void e(Drawable drawable, Runnable runnable, long j) {
+    }
+
+    private final void f(Drawable drawable, Runnable runnable, long j) {
     }
 }

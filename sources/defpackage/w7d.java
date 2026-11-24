@@ -1,175 +1,76 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Base64;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class w7d extends b4 {
-    public static final Parcelable.Creator<w7d> CREATOR = new t4d((byte) 21);
-    public static final byte[] b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
-    public final byte[][] a;
+import android.accounts.Account;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import android.text.TextUtils;
+public final class w7d extends zz4 {
+    public final Context F;
+    public final byte G;
+    public final String H;
+    public final boolean I;
+    public final boolean J;
 
-    public w7d(byte[][] bArr) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        boolean z4;
-        boolean z5;
-        if (bArr != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        fre.b(z);
-        if (1 != ((bArr.length & 1) ^ 1)) {
-            z2 = false;
-        } else {
-            z2 = true;
-        }
-        fre.b(z2);
-        for (int i = 0; i < bArr.length; i += 2) {
-            if (i != 0 && bArr[i] == null) {
-                z3 = false;
-            } else {
-                z3 = true;
-            }
-            fre.b(z3);
-            int i2 = i + 1;
-            if (bArr[i2] != null) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            fre.b(z4);
-            int length = bArr[i2].length;
-            if (length != 32 && length != 64) {
-                z5 = false;
-            } else {
-                z5 = true;
-            }
-            fre.b(z5);
-        }
-        this.a = bArr;
+    public w7d(int i, f05 f05Var, g05 g05Var, ovb ovbVar, Context context, Looper looper) {
+        super(4, f05Var, g05Var, ovbVar, context, looper);
+        this.F = context;
+        this.G = i;
+        this.H = null;
+        this.I = true;
+        this.J = true;
     }
 
-    public static w7d b(JSONObject jSONObject, boolean z) {
-        ArrayList arrayList = new ArrayList();
-        try {
-            if (jSONObject.has("eval")) {
-                arrayList.add(null);
-                if (z) {
-                    arrayList.add(e(jSONObject.getJSONObject("eval")));
-                } else {
-                    arrayList.add(f(jSONObject.getJSONObject("eval")));
-                }
-            }
-            if (jSONObject.has("evalByCredential")) {
-                JSONObject jSONObject2 = jSONObject.getJSONObject("evalByCredential");
-                Iterator<String> keys = jSONObject2.keys();
-                while (keys.hasNext()) {
-                    String next = keys.next();
-                    arrayList.add(und.a(next));
-                    if (z) {
-                        arrayList.add(e(jSONObject2.getJSONObject(next)));
-                    } else {
-                        arrayList.add(f(jSONObject2.getJSONObject(next)));
-                    }
-                }
-            }
-            return new w7d((byte[][]) arrayList.toArray(new byte[0]));
-        } catch (IllegalArgumentException unused) {
-            throw new JSONException("invalid base64url value");
+    public final Bundle B() {
+        String packageName = this.F.getPackageName();
+        Bundle bundle = new Bundle();
+        bundle.putInt("com.google.android.gms.wallet.EXTRA_ENVIRONMENT", this.G);
+        bundle.putBoolean("com.google.android.gms.wallet.EXTRA_USING_ANDROID_PAY_BRAND", this.J);
+        bundle.putString("androidPackageName", packageName);
+        String str = this.H;
+        if (!TextUtils.isEmpty(str)) {
+            bundle.putParcelable("com.google.android.gms.wallet.EXTRA_BUYER_ACCOUNT", new Account(str, "com.google"));
         }
-    }
-
-    public static JSONObject c(byte[] bArr) {
-        JSONObject jSONObject = new JSONObject();
-        if (bArr.length == 32) {
-            jSONObject.put("first", Base64.encodeToString(bArr, 11));
-            return jSONObject;
-        }
-        jSONObject.put("first", Base64.encodeToString(bArr, 0, 32, 11));
-        jSONObject.put("second", Base64.encodeToString(bArr, 32, 32, 11));
-        return jSONObject;
-    }
-
-    public static byte[] d(byte[] r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.w7d.d(byte[]):byte[]");
-    }
-
-    public static byte[] e(JSONObject jSONObject) {
-        byte[] a = und.a(jSONObject.getString("first"));
-        if (a.length == 32) {
-            if (!jSONObject.has("second")) {
-                return a;
-            }
-            byte[] a2 = und.a(jSONObject.getString("second"));
-            if (a2.length == 32) {
-                return c2f.a(a, a2);
-            }
-            throw new JSONException("hashed PRF value with wrong length");
-        }
-        throw new JSONException("hashed PRF value with wrong length");
-    }
-
-    public static byte[] f(JSONObject jSONObject) {
-        byte[] d = d(und.a(jSONObject.getString("first")));
-        if (!jSONObject.has("second")) {
-            return d;
-        }
-        return c2f.a(d, d(und.a(jSONObject.getString("second"))));
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof w7d)) {
-            return false;
-        }
-        return Arrays.deepEquals(this.a, ((w7d) obj).a);
-    }
-
-    public final int hashCode() {
-        byte[][] bArr;
-        int i = 0;
-        for (byte[] bArr2 : this.a) {
-            if (bArr2 != null) {
-                i ^= Arrays.hashCode(new Object[]{bArr2});
-            }
-        }
-        return i;
-    }
-
-    public final String toString() {
-        byte[][] bArr = this.a;
-        try {
-            JSONObject jSONObject = new JSONObject();
-            JSONObject jSONObject2 = null;
-            for (int i = 0; i < bArr.length; i += 2) {
-                if (bArr[i] == null) {
-                    jSONObject.put("eval", c(bArr[i + 1]));
-                } else {
-                    if (jSONObject2 == null) {
-                        jSONObject2 = new JSONObject();
-                        jSONObject.put("evalByCredential", jSONObject2);
-                    }
-                    jSONObject2.put(und.b(bArr[i]), c(bArr[i + 1]));
-                }
-            }
-            String obj = jSONObject.toString();
-            return "PrfExtension{" + obj + "}";
-        } catch (JSONException e) {
-            return tb4.y("PrfExtension{Exception:", e.getMessage(), "}");
-        }
+        bundle.putInt("com.google.android.gms.wallet.EXTRA_THEME", this.I ? 1 : 0);
+        return bundle;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.d(parcel, 1, this.a);
-        jte.s(parcel, r);
+    public final IInterface b(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.wallet.internal.IOwService");
+        if (queryLocalInterface instanceof xef) {
+            return (xef) queryLocalInterface;
+        }
+        return new xef(iBinder);
+    }
+
+    @Override
+    public final o94[] f() {
+        return bmd.b;
+    }
+
+    @Override
+    public final int i() {
+        return 12600000;
+    }
+
+    @Override
+    public final String l() {
+        return "com.google.android.gms.wallet.internal.IOwService";
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.wallet.service.BIND";
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
     }
 }

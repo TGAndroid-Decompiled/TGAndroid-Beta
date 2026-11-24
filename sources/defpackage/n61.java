@@ -1,70 +1,28 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class n61 extends ja {
-    public final int c;
-    public String d;
-    public String e;
-    public int f;
-    public long g;
-    public int h;
-    public boolean i;
-    public boolean j;
+import android.os.Build;
+import android.os.IBinder;
+import java.util.UUID;
+public abstract class n61 {
+    public static final int a;
+    public static final UUID b;
+    public static final UUID c;
+    public static final UUID d;
+    public static final UUID e;
+    public static final UUID f;
 
-    public n61(int i, String str) {
-        super(i, true);
-        this.c = -1;
-        this.d = str;
-    }
-
-    public static n61 b(int i, long j, String str, int i2) {
-        n61 n61Var = new n61(11);
-        n61Var.f = i;
-        n61Var.d = str;
-        n61Var.g = j;
-        n61Var.h = i2;
-        n61Var.j = false;
-        return n61Var;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && n61.class == obj.getClass()) {
-                n61 n61Var = (n61) obj;
-                int i = this.a;
-                if (i == n61Var.a) {
-                    if (i != 9 && i != 10 && i != 8 && i != 4 && i != 2 && i != 0 && i != 13) {
-                        if (i == 3) {
-                            return Objects.equals(this.d, n61Var.d);
-                        }
-                        if (i == 1) {
-                            return Objects.equals(this.e, n61Var.e);
-                        }
-                        if (i == 11) {
-                            if (this.f != n61Var.f || this.g != n61Var.g) {
-                                return false;
-                            }
-                        } else if (i != 7 || this.c != n61Var.c) {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+    static {
+        int i;
+        if (Build.VERSION.SDK_INT >= 30) {
+            i = IBinder.getSuggestedMaxIpcSizeBytes();
+        } else {
+            i = 65536;
         }
-        return true;
-    }
-
-    public n61(int i, int i2) {
-        super(7, true);
-        this.c = i;
-    }
-
-    public n61(int i) {
-        super(i, true);
-        this.c = -1;
+        a = i;
+        b = new UUID(0L, 0L);
+        c = new UUID(1186680826959645954L, -5988876978535335093L);
+        d = new UUID(-2129748144642739255L, 8654423357094679310L);
+        e = new UUID(-1301668207276963122L, -6645017420763422227L);
+        f = new UUID(-7348484286925749626L, -6083546864340672619L);
     }
 }

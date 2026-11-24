@@ -1,102 +1,42 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
+import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
-public final class li9 extends FrameLayout {
-    public final mc9 a;
-    public TL_iv.pageTableCell b;
+public final class li9 extends b6c {
+    public static final int b = 0;
 
-    public li9(Context context, wjb wjbVar) {
-        super(context);
-        mc9 mc9Var = new mc9(context, wjbVar);
-        this.a = mc9Var;
-        mc9Var.setTextSize(1, Math.max(8, gba.T0 - 2));
-        mc9Var.setAllowNewlines(true);
-        setCompact(false);
-        addView(mc9Var, nme.e(-1, -2, 51));
-    }
-
-    public final void a() {
-        int i;
-        int i2;
-        int i3;
-        mc9 mc9Var = this.a;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mc9Var.getLayoutParams();
-        TL_iv.pageTableCell pagetablecell = this.b;
-        if (pagetablecell.align_right) {
-            i = 5;
-        } else if (pagetablecell.align_center) {
-            i = 1;
-        } else {
-            i = 3;
-        }
-        if (pagetablecell.valign_middle) {
-            i2 = i | 16;
-        } else if (pagetablecell.valign_bottom) {
-            i2 = i | 80;
-        } else {
-            i2 = i | 48;
-        }
-        layoutParams.gravity = i2;
-        mc9Var.setLayoutParams(layoutParams);
-        TL_iv.pageTableCell pagetablecell2 = this.b;
-        if (pagetablecell2.align_right) {
-            i3 = 53;
-        } else if (pagetablecell2.align_center) {
-            i3 = 49;
-        } else {
-            i3 = 51;
-        }
-        mc9Var.setGravity(i3);
-        mc9Var.setTypeface(null);
-    }
-
-    public final void b(org.telegram.tgnet.tl.TL_iv.pageTableCell r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.li9.b(org.telegram.tgnet.tl.TL_iv$pageTableCell):void");
+    static {
+        b6c.h(new b6c());
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean z;
-        mc9 mc9Var = this.a;
-        if (mc9Var.getVisibility() == 0 && motionEvent.getActionMasked() != 3) {
-            float x = motionEvent.getX();
-            float y = motionEvent.getY();
-            boolean z2 = false;
-            if (x >= mc9Var.getLeft() && x < mc9Var.getRight()) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (y < mc9Var.getTop() || y >= mc9Var.getBottom()) {
-                z2 = true;
-            }
-            if (z && z2 && mc9Var.getHeight() > 0) {
-                float max = Math.max(0.0f, Math.min(y - mc9Var.getTop(), mc9Var.getHeight() - 1));
-                MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                obtain.setLocation(x - mc9Var.getLeft(), max);
-                boolean onTouchEvent = mc9Var.onTouchEvent(obtain);
-                obtain.recycle();
-                return onTouchEvent;
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
+        mi9 mi9Var = (mi9) view;
+        mi9Var.set((TL_iv.RichMessage) c6cVar.H);
+        mi9Var.setTranslationLoading(c6cVar.e);
     }
 
-    public void setCompact(boolean z) {
-        mc9 mc9Var = this.a;
-        if (z) {
-            mc9Var.setPadding(gl.L(5.0f), gl.L(5.0f), gl.L(5.0f), gl.L(5.0f));
-            mc9Var.setMinHeight(gl.L(18.0f));
-            return;
+    @Override
+    public final boolean c(c6c c6cVar, c6c c6cVar2) {
+        if (c6cVar.d == c6cVar2.d && c6cVar.H == c6cVar2.H && c6cVar.e == c6cVar2.e) {
+            return true;
         }
-        mc9Var.setPadding(gl.L(12.0f), gl.L(8.0f), gl.L(12.0f), gl.L(9.0f));
-        mc9Var.setMinHeight(gl.L(36.0f));
+        return false;
     }
 
-    public void setLocked(boolean z) {
-        this.a.setLocked(z);
+    @Override
+    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
+        mi9 mi9Var = new mi9(i, ylbVar, context);
+        mi9Var.setPadding(gm.L(20.0f), 0, gm.L(20.0f), gm.L(16.0f));
+        return mi9Var;
+    }
+
+    @Override
+    public final boolean e(c6c c6cVar, c6c c6cVar2) {
+        if (c6cVar.d == c6cVar2.d) {
+            return true;
+        }
+        return false;
     }
 }

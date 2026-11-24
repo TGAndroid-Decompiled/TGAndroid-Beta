@@ -1,85 +1,93 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.widget.FrameLayout;
-import java.io.File;
+import android.graphics.drawable.Drawable;
+import android.view.WindowManager;
 import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
 import org.telegram.ui.PhotoViewer;
-public final class q88 extends rw5 {
-    public boolean i2;
-    public final PhotoViewer j2;
+public final class q88 implements Runnable {
+    public final byte a;
+    public final PhotoViewer b;
+    public final qb8 c;
 
-    public q88(PhotoViewer photoViewer, Context context, Activity activity, int i, Bitmap bitmap, Bitmap bitmap2, int i2, ArrayList arrayList, zl6 zl6Var, l68 l68Var, wjb wjbVar) {
-        super(context, activity, i, bitmap, bitmap2, i2, arrayList, zl6Var, l68Var, wjbVar);
-        this.j2 = photoViewer;
+    public q88(PhotoViewer photoViewer, qb8 qb8Var, byte b) {
+        this.a = b;
+        this.b = photoViewer;
+        this.c = qb8Var;
     }
 
     @Override
-    public final FrameLayout getCaptionsBulletinContainer() {
-        return this.j2.f0;
-    }
-
-    @Override
-    public final long getCaptionsTrimEnd() {
-        PhotoViewer photoViewer = this.j2;
-        v78 v78Var = photoViewer.Y7;
-        if (v78Var == null) {
-            return 0L;
-        }
-        return v78Var.getRightProgress() * ((float) photoViewer.z0());
-    }
-
-    @Override
-    public final long getCaptionsTrimStart() {
-        PhotoViewer photoViewer = this.j2;
-        v78 v78Var = photoViewer.Y7;
-        if (v78Var == null) {
-            return 0L;
-        }
-        return v78Var.getLeftProgress() * ((float) photoViewer.z0());
-    }
-
-    @Override
-    public final File getCaptionsVideoFile() {
-        int i;
-        PhotoViewer photoViewer = this.j2;
-        if (photoViewer.s1 && photoViewer.e5 != null && (i = photoViewer.d2) != 1 && i != 11) {
-            return new File(photoViewer.e5);
-        }
-        return null;
-    }
-
-    @Override
-    public final long getCaptionsVideoPosition() {
-        lbc lbcVar = this.j2.G2;
-        if (lbcVar != null) {
-            return lbcVar.S();
-        }
-        return 0L;
-    }
-
-    @Override
-    public final int getPKeyboardHeight() {
-        mv5 mv5Var = this.j2.L1;
-        if (mv5Var != null) {
-            return mv5Var.l;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void q0(boolean z) {
-        PhotoViewer photoViewer = this.j2;
-        if (photoViewer.G2 != null) {
-            photoViewer.H2 = false;
-            photoViewer.n();
-            if (z) {
-                photoViewer.G2.f0();
-            } else if (!photoViewer.S0()) {
-                photoViewer.G2.g0();
-            }
+    public final void run() {
+        bfa bfaVar;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        byte b = this.a;
+        int i = 0;
+        qb8 qb8Var = this.c;
+        PhotoViewer photoViewer = this.b;
+        switch (b) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.d9;
+                photoViewer.i0.setImageBitmap(null);
+                if (qb8Var != null && !gm.O1() && (bfaVar = qb8Var.m) != null) {
+                    bfaVar.setImageBitmap(null);
+                }
+                try {
+                    if (photoViewer.h0.getParent() != null) {
+                        ((WindowManager) photoViewer.E.getSystemService("window")).removeView(photoViewer.h0);
+                        photoViewer.a1();
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return;
+                }
+            case 1:
+                Drawable[] drawableArr2 = PhotoViewer.d9;
+                photoViewer.o4 = null;
+                photoViewer.f0.setLayerType(0, null);
+                photoViewer.m4 = (byte) 0;
+                photoViewer.H0();
+                photoViewer.c1(qb8Var);
+                MediaController.w().E0();
+                if (photoViewer.A7 && !photoViewer.B7 && (arrayList = photoViewer.f7) != null) {
+                    int size = arrayList.size();
+                    while (i < size) {
+                        Object obj = arrayList.get(i);
+                        i++;
+                        if (obj instanceof jo6) {
+                            ((jo6) obj).h();
+                        }
+                    }
+                    return;
+                }
+                return;
+            default:
+                Drawable[] drawableArr3 = PhotoViewer.d9;
+                photoViewer.o4 = null;
+                lb8 lb8Var = photoViewer.f0;
+                if (lb8Var != null) {
+                    lb8Var.setLayerType(0, null);
+                    photoViewer.m4 = (byte) 0;
+                    photoViewer.c1(qb8Var);
+                    photoViewer.f0.setScaleX(1.0f);
+                    photoViewer.f0.setScaleY(1.0f);
+                    MediaController.w().E0();
+                    if (photoViewer.A7 && !photoViewer.B7 && (arrayList2 = photoViewer.f7) != null) {
+                        int size2 = arrayList2.size();
+                        while (i < size2) {
+                            Object obj2 = arrayList2.get(i);
+                            i++;
+                            if (obj2 instanceof jo6) {
+                                ((jo6) obj2).h();
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

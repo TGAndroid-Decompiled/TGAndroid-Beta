@@ -1,156 +1,87 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ContextThemeWrapper;
+import android.graphics.Paint;
+import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.z;
-public final class z78 extends mb1 {
-    public final Path t1;
-    public final PhotoViewer u1;
+import android.widget.TextView;
+public final class z78 extends FrameLayout {
+    public x78[] a;
+    public yn6[] b;
+    public int c;
+    public y78 d;
+    public Paint e;
 
-    public z78(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, z zVar, cja cjaVar, FrameLayout frameLayout, wjb wjbVar, sl0 sl0Var, l68 l68Var) {
-        super(contextThemeWrapper, zVar, cjaVar, frameLayout, wjbVar, sl0Var, l68Var);
-        this.u1 = photoViewer;
-        this.t1 = new Path();
-    }
-
-    @Override
-    public final void A() {
-        Drawable[] drawableArr = PhotoViewer.f9;
-        this.u1.u2();
-    }
-
-    @Override
-    public final void B() {
-        z();
-        y78 y78Var = this.u1.V1;
-        if (y78Var != null) {
-            y78Var.z();
-        }
-    }
-
-    @Override
-    public final boolean G() {
-        o98 o98Var = this.u1.d;
-        if (o98Var != null && o98Var.l()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean e() {
-        PhotoViewer photoViewer = this.u1;
-        m21 m21Var = photoViewer.t7;
-        if (m21Var != null && m21.w == m21Var) {
-            return false;
-        }
-        return photoViewer.b2(photoViewer.f0);
-    }
-
-    @Override
-    public final boolean g() {
-        return true;
-    }
-
-    @Override
-    public final void h(wl0 wl0Var, Canvas canvas, RectF rectF, float f, boolean z, float f2, float f3, boolean z2) {
-        int i;
-        int i2;
-        canvas.save();
-        Path path = this.t1;
-        path.rewind();
-        path.addRoundRect(rectF, f, f, Path.Direction.CW);
-        canvas.clipPath(path);
-        PhotoViewer photoViewer = this.u1;
-        if (z2) {
-            canvas.translate(((-getX()) - photoViewer.Z1.getX()) + f2, ((-getY()) - photoViewer.Z1.getY()) + f3);
-        } else {
-            canvas.translate(f2, f3);
-        }
-        if (z) {
-            i = -8882056;
-        } else {
-            i = -14277082;
-        }
-        int p1 = bkb.p1(1.0f, i);
-        if (z2) {
-            if (z) {
-                i2 = 0;
+    public final void a(int i, yn6 yn6Var) {
+        String str;
+        this.b[i] = yn6Var;
+        x78[] x78VarArr = this.a;
+        if (yn6Var != null) {
+            jo6 jo6Var = yn6Var.d;
+            x78 x78Var = x78VarArr[i];
+            bf0 bf0Var = x78Var.b;
+            bf0Var.q();
+            if (jo6Var != null && (str = jo6Var.I) != null) {
+                bf0Var.r(jo6Var.J, jo6Var.K, true);
+                boolean z = jo6Var.b;
+                int i2 = jo6Var.C;
+                if (z) {
+                    bf0Var.o(mle.d("vthumb://", i2, ":", str), null, cmb.Q4);
+                } else {
+                    bf0Var.o(mle.d("thumb://", i2, ":", str), null, cmb.Q4);
+                }
             } else {
-                i2 = 855638016;
+                bf0Var.setImageDrawable(cmb.Q4);
             }
-        } else {
-            i2 = 1140850688;
-        }
-        int p12 = bkb.p1(1.0f, i2);
-        boolean z3 = false;
-        boolean z4 = !z;
-        if (!z && z2) {
-            z3 = true;
-        }
-        photoViewer.Q(canvas, wl0Var, p1, p12, false, z4, z3);
-        canvas.restore();
-    }
-
-    @Override
-    public final void invalidate() {
-        byte b;
-        if (gba.Z && ((b = this.u1.n4) == 1 || b == 2 || b == 3)) {
+            ((TextView) x78Var.c).setText(yn6Var.c);
+            ((TextView) x78Var.d).setText(String.format("%d", Integer.valueOf(yn6Var.e.size())));
             return;
         }
-        super.invalidate();
+        x78VarArr[i].setVisibility(4);
     }
 
     @Override
-    public final boolean l(float f, float f2) {
-        if (!this.p0 && this.u1.u4 != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void w() {
-        boolean z = true;
-        this.N.setReversed(true);
-        this.N.getAdapter().c = false;
-        this.N.getAdapter().d = false;
-        this.N.getAdapter().e = false;
-        PhotoViewer photoViewer = this.u1;
-        mu1 mu1Var = photoViewer.l4;
-        eb1 eb1Var = this.N;
-        if (mu1Var != null) {
-            eb1Var.getAdapter().n0 = false;
-            this.N.getAdapter().V(photoViewer.l4.r8);
-            kz6 adapter = this.N.getAdapter();
-            if (photoViewer.l4.e == null) {
-                z = false;
-            }
-            adapter.f0 = z;
+    public final void onMeasure(int i, int i2) {
+        int L;
+        View[] viewArr = this.a;
+        if (gm.O1()) {
+            L = ((gm.L(490.0f) - gm.L(12.0f)) - (gm.L(4.0f) * (this.c - 1))) / this.c;
         } else {
-            eb1Var.getAdapter().n0 = true;
-            this.N.getAdapter().V(null);
-            this.N.getAdapter().f0 = false;
+            L = ((gm.q.x - gm.L(12.0f)) - (gm.L(4.0f) * (this.c - 1))) / this.c;
         }
-        this.N.getAdapter().g0 = false;
-        this.N.setLayoutParams(nme.e(-1, -1, 51));
+        for (int i3 = 0; i3 < this.c; i3++) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i3].getLayoutParams();
+            layoutParams.topMargin = gm.L(4.0f);
+            layoutParams.leftMargin = (gm.L(4.0f) + L) * i3;
+            layoutParams.width = L;
+            layoutParams.height = L;
+            layoutParams.gravity = 51;
+            viewArr[i3].setLayoutParams(layoutParams);
+        }
+        super.onMeasure(i, wi8.E(4.0f, L, 1073741824));
     }
 
-    @Override
-    public final void x(int r3) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.z78.x(int):void");
+    public void setAlbumsCount(int i) {
+        int i2;
+        int i3 = 0;
+        while (true) {
+            x78[] x78VarArr = this.a;
+            if (i3 < x78VarArr.length) {
+                x78 x78Var = x78VarArr[i3];
+                if (i3 < i) {
+                    i2 = 0;
+                } else {
+                    i2 = 4;
+                }
+                x78Var.setVisibility(i2);
+                i3++;
+            } else {
+                this.c = i;
+                return;
+            }
+        }
     }
 
-    @Override
-    public final void y() {
-        eb1 eb1Var = this.N;
-        if (eb1Var != null) {
-            eb1Var.setTranslationY(getEditTextHeight());
-        }
+    public void setDelegate(y78 y78Var) {
+        this.d = y78Var;
     }
 }

@@ -2,145 +2,153 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class dr0 extends LinearLayout {
-    public final byte a = 3;
-    public final Object b;
-    public final View c;
-    public final Object d;
-    public final Object e;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RadialGradient;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+public final class dr0 extends Drawable {
+    public final Drawable a;
+    public final Paint b;
+    public final Paint c;
+    public final Paint d;
+    public int e;
+    public ColorFilter f;
 
-    public dr0(int i, wjb wjbVar, Context context) {
-        super(context);
-        setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setClipChildren(false);
-        frameLayout.setClipToPadding(false);
-        qua quaVar = new qua(context, 70, 0);
-        frameLayout.addView(quaVar, nme.c(-1.0f, -1));
-        er4 er4Var = new er4(context, 1, 2);
-        this.c = er4Var;
-        uq4 uq4Var = er4Var.b;
-        uq4Var.z = bkb.Vk;
-        uq4Var.A = bkb.Wk;
-        uq4Var.b();
-        er4Var.setStarParticlesView(quaVar);
-        frameLayout.addView(er4Var, nme.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
-        er4Var.setPaused(false);
-        yua yuaVar = new yua(i, wjbVar, context);
-        this.d = yuaVar;
-        ote.a(yuaVar);
-        yuaVar.setOnClickListener(new bna(this, (byte) 6));
-        frameLayout.addView(yuaVar, nme.d(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(frameLayout, nme.c(150.0f, -1));
-        TextView textView = new TextView(context);
-        this.b = textView;
-        ir2.t(textView, 1, 20.0f);
-        int i2 = bkb.i5;
-        zkb.X(textView, i2, wjbVar);
-        textView.setGravity(17);
-        addView(textView, nme.t(-2, -2, 1, 0, 2, 0, 0));
-        TextView textView2 = new TextView(context);
-        this.e = textView2;
-        textView2.setTextSize(1, 14.0f);
-        zkb.X(textView2, i2, wjbVar);
-        textView2.setGravity(17);
-        addView(textView2, nme.t(-2, -2, 1, 0, 9, 0, 18));
+    public dr0(Context context) {
+        Paint paint = new Paint(1);
+        this.b = paint;
+        Paint paint2 = new Paint(1);
+        this.c = paint2;
+        this.d = new Paint();
+        this.e = 255;
+        Drawable d = b10.d(context, 2131232164);
+        this.a = d;
+        d.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
+        paint.setShader(new RadialGradient(400.0f, 213.0f, 500.0f, -4811527, -9674273, Shader.TileMode.CLAMP));
+        paint2.setColor(-1);
+        paint2.setStyle(Paint.Style.STROKE);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 2:
-                lm lmVar = (lm) this.e;
-                super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.d;
-                paint.setColor(bkb.v0(bkb.Z6, (wjb) this.b));
-                o39 o39Var = (o39) this.c;
-                float f = 1.0f;
-                if (o39Var != null) {
-                    if (!o39Var.canScrollVertically(1)) {
-                        f = 0.0f;
-                    }
-                    paint.setAlpha((int) (lmVar.e(false, f) * 255.0f));
-                } else {
-                    paint.setAlpha((int) (lmVar.e(false, 1.0f) * 255.0f));
-                }
-                canvas.drawRect(0.0f, 0.0f, getWidth(), gl.e1(), paint);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final void a(float f, float f2, float f3, float f4, Canvas canvas) {
+        Drawable drawable = this.a;
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int intrinsicHeight = drawable.getIntrinsicHeight();
+        if (intrinsicWidth > 0 && intrinsicHeight > 0) {
+            drawable.setAlpha(Math.round(this.e * f4));
+            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+            canvas.save();
+            canvas.translate(f, f2);
+            canvas.scale(f3 / intrinsicWidth, f3 / intrinsicHeight);
+            canvas.translate((-intrinsicWidth) / 2.0f, (-intrinsicHeight) / 2.0f);
+            drawable.draw(canvas);
+            canvas.restore();
         }
     }
 
-    public dr0(Context context) {
-        super(context);
-        setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        addView(frameLayout, nme.r(-1, -2, 1));
-        frameLayout.setClipChildren(false);
-        setClipChildren(false);
-        TextView textView = new TextView(context);
-        this.b = textView;
-        textView.setTextSize(1, 22.0f);
-        textView.setTypeface(gl.o());
-        textView.setGravity(1);
-        addView(textView, nme.q(-2, -2, 0.0f, 1, 16, 20, 16, 0));
-        l46 l46Var = new l46(context, null);
-        this.c = l46Var;
-        l46Var.setTextSize(1, 14.0f);
-        l46Var.setLineSpacing(gl.L(2.0f), 1.0f);
-        l46Var.setGravity(1);
-        addView(l46Var, nme.q(-1, -2, 0.0f, 1, 24, 7, 24, 0));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.e = frameLayout2;
-        addView(frameLayout2, nme.r(-1, -2, 1));
-        frameLayout2.setClipChildren(false);
+    public final void b(Canvas canvas, Rect rect, float f, float f2, float f3, float f4, float f5, float f6) {
+        float f7 = rect.left;
+        float f8 = rect.top;
+        canvas.drawLine((f3 * f) + f7, (f4 * f2) + f8, (f5 * f) + f7, (f6 * f2) + f8, this.c);
     }
 
-    public dr0(Context context, wjb wjbVar) {
-        super(context);
-        setPadding(gl.L(24.0f), gl.L(21.0f), gl.L(24.0f), gl.L(21.0f));
-        setOrientation(1);
-        TextView textView = new TextView(context);
-        this.b = textView;
-        int i = bkb.x6;
-        zkb.X(textView, i, wjbVar);
-        textView.setTextSize(1, 14.0f);
-        textView.setGravity(17);
-        textView.setTextAlignment(4);
-        addView(textView, nme.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
-        tb tbVar = new tb(context, true, wjbVar, (byte) 2);
-        this.c = tbVar;
-        tbVar.setMinWidth(gl.L(200.0f));
-        tbVar.i(k96.M0(2131746524, null), false, true);
-        addView(tbVar, nme.r(-2, 44, 17));
-        t8 t8Var = new t8(context, wjbVar);
-        this.d = t8Var;
-        zkb.X(t8Var, i, wjbVar);
-        t8Var.setText(k96.M0(2131746510, null));
-        t8Var.setTextSize(1, 14.0f);
-        t8Var.setTextAlignment(4);
-        t8Var.setGravity(17);
-        t8Var.setTypeface(gl.o());
-        addView(t8Var, nme.t(165, -2, 17, 0, 17, 0, 12));
-        u41 u41Var = new u41(wjbVar, context, false);
-        this.e = u41Var;
-        u41Var.setMinWidth(gl.L(200.0f));
-        addView(u41Var, nme.r(-2, 44, 17));
+    @Override
+    public final void draw(Canvas canvas) {
+        Canvas canvas2;
+        int i;
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty() && this.e != 0) {
+            ColorFilter colorFilter = this.f;
+            if (colorFilter != null) {
+                Paint paint = this.d;
+                paint.setColorFilter(colorFilter);
+                i = canvas.saveLayer(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
+                canvas2 = canvas;
+            } else {
+                canvas2 = canvas;
+                i = -1;
+            }
+            float width = bounds.width() / 800.0f;
+            float height = bounds.height() / 427.0f;
+            int i2 = this.e;
+            Canvas canvas3 = canvas2;
+            Paint paint2 = this.b;
+            paint2.setAlpha(i2);
+            canvas3.save();
+            canvas3.translate(bounds.left, bounds.top);
+            canvas3.scale(width, height);
+            canvas3.drawRect(0.0f, 0.0f, 800.0f, 427.0f, paint2);
+            canvas3.restore();
+            int i3 = this.e;
+            Paint paint3 = this.c;
+            paint3.setAlpha(i3);
+            paint3.setStrokeWidth(Math.min(width, height) * 16.4f);
+            b(canvas3, bounds, width, height, 449.809f, 246.04f, 483.703f, 212.418f);
+            b(canvas3, bounds, width, height, 483.703f, 212.418f, 451.291f, 179.901f);
+            b(canvas3, bounds, width, height, 350.197f, 246.04f, 316.302f, 212.418f);
+            b(canvas3, bounds, width, height, 316.302f, 212.418f, 348.716f, 179.901f);
+            b(canvas3, bounds, width, height, 379.613f, 278.0f, 420.657f, 146.0f);
+            canvas3.save();
+            canvas3.translate(bounds.left, bounds.top);
+            canvas3.scale(width, height);
+            a(299.339f, 60.9305f, 56.0f, 0.1629f, canvas3);
+            a(500.651f, 60.9305f, 56.0f, 0.1629f, canvas3);
+            a(579.018f, 225.477f, 56.0f, 0.2239f, canvas3);
+            a(220.979f, 225.477f, 56.0f, 0.2239f, canvas3);
+            a(548.102f, 359.18f, 52.0f, 0.1816f, canvas3);
+            a(400.0f, 382.172f, 52.0f, 0.123f, canvas3);
+            a(251.891f, 359.18f, 52.0f, 0.1816f, canvas3);
+            a(698.424f, 175.361f, 42.0f, 0.12f, canvas3);
+            a(572.549f, 125.064f, 42.0f, 0.2409f, canvas3);
+            a(650.19f, 61.1149f, 42.0f, 0.0764f, canvas3);
+            a(399.994f, 18.0016f, 42.0f, 0.1231f, canvas3);
+            a(149.799f, 61.1149f, 42.0f, 0.0753f, canvas3);
+            a(227.44f, 125.064f, 42.0f, 0.2409f, canvas3);
+            a(101.565f, 175.361f, 42.0f, 0.12f, canvas3);
+            a(167.057f, 316.916f, 42.0f, 0.15f, canvas3);
+            a(114.502f, 408.888f, 42.0f, 0.075f, canvas3);
+            a(678.299f, 408.888f, 42.0f, 0.075f, canvas3);
+            a(655.947f, 316.916f, 42.0f, 0.15f, canvas3);
+            canvas3.restore();
+            if (i >= 0) {
+                canvas3.restoreToCount(i);
+            }
+        }
     }
 
-    public dr0(Context context, wjb wjbVar, o39 o39Var) {
-        super(context);
-        this.d = new Paint(1);
-        this.e = new lm(this);
-        this.b = wjbVar;
-        this.c = o39Var;
+    @Override
+    public final int getIntrinsicHeight() {
+        return gm.L(427.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return gm.L(800.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        int max = Math.max(0, Math.min(255, i));
+        if (this.e != max) {
+            this.e = max;
+            invalidateSelf();
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        if (this.f != colorFilter) {
+            this.f = colorFilter;
+            invalidateSelf();
+        }
     }
 }

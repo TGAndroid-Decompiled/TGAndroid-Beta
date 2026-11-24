@@ -1,43 +1,38 @@
 package defpackage;
-public final class z59 extends ym5 {
-    public final transient qm5 d;
-    public final transient a69 e;
 
-    public z59(qm5 qm5Var, a69 a69Var) {
-        this.d = qm5Var;
-        this.e = a69Var;
+import android.database.Observable;
+public final class z59 extends Observable {
+    public final boolean a() {
+        return !((Observable) this).mObservers.isEmpty();
     }
 
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.d.get(obj) != null) {
-            return true;
+    public final void b() {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((a69) ((Observable) this).mObservers.get(size)).a();
         }
-        return false;
     }
 
-    @Override
-    public final mm5 h() {
-        return this.e;
+    public final void c(int i, int i2) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((a69) ((Observable) this).mObservers.get(size)).e(i, i2);
+        }
     }
 
-    @Override
-    public final int i(int i, Object[] objArr) {
-        return this.e.i(i, objArr);
+    public final void d(int i, int i2, Object obj) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((a69) ((Observable) this).mObservers.get(size)).c(i, i2, obj);
+        }
     }
 
-    @Override
-    public final boolean m() {
-        return true;
+    public final void e(int i, int i2) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((a69) ((Observable) this).mObservers.get(size)).d(i, i2);
+        }
     }
 
-    @Override
-    public final v5c iterator() {
-        return this.e.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.d.size();
+    public final void f(int i, int i2) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((a69) ((Observable) this).mObservers.get(size)).f(i, i2);
+        }
     }
 }

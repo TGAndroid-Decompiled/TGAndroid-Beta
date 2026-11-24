@@ -1,67 +1,30 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.ContextThemeWrapper;
-import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.PhotoViewer;
-public final class wh1 extends RadialProgressView {
-    public final byte O;
-    public final Object P;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stories;
+public final class wh1 {
+    public final oc7 a;
+    public final ConnectionsManager b;
 
-    public wh1(vl5 vl5Var, Context context, byte b) {
-        super(context, null);
-        this.O = b;
-        this.P = vl5Var;
+    public wh1(int i) {
+        this.a = oc7.r1(i);
+        this.b = ConnectionsManager.getInstance(i);
     }
 
-    @Override
-    public final void invalidate() {
-        switch (this.O) {
-            case 3:
-                super.invalidate();
-                k98 k98Var = ((PhotoViewer) this.P).f0;
-                if (k98Var != null) {
-                    k98Var.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
+    public final void a(long j, qac qacVar) {
+        TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
+        tL_premium_getBoostsStatus.peer = this.a.i1(j);
+        this.b.sendRequest(tL_premium_getBoostsStatus, new th1(qacVar, (byte) 0));
     }
 
-    @Override
-    public final void setAlpha(float f) {
-        byte b = this.O;
-        Object obj = this.P;
-        switch (b) {
-            case 0:
-                super.setAlpha(f);
-                ((yh1) obj).h.invalidate();
-                return;
-            case 1:
-                super.setAlpha(f);
-                ((wa5) obj).e.invalidate();
-                return;
-            case 2:
-                super.setAlpha(f);
-                ((ae6) obj).h.invalidate();
-                return;
-            default:
-                super.setAlpha(f);
-                k98 k98Var = ((PhotoViewer) obj).f0;
-                if (k98Var != null) {
-                    k98Var.invalidate();
-                    return;
-                }
-                return;
-        }
-    }
-
-    public wh1(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, wjb wjbVar) {
-        super(contextThemeWrapper, wjbVar);
-        this.O = (byte) 3;
-        this.P = photoViewer;
+    public final void b(long j, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, qac qacVar) {
+        vh1 vh1Var = new vh1();
+        oc7 oc7Var = this.a;
+        oc7Var.x1(j);
+        vh1Var.j = j;
+        vh1Var.k = oc7Var.L0(Long.valueOf(-j));
+        iu iuVar = new iu(vh1Var, tL_premium_boostsStatus, qacVar, (byte) 6);
+        x0 x0Var = new x0(vh1Var, qacVar, (byte) 14);
+        ConnectionsManager.getInstance(z8c.t0).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new eo0((qac) x0Var, oc7.r1(z8c.t0), (qac) iuVar, (byte) 3));
     }
 }

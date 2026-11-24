@@ -1,69 +1,71 @@
 package defpackage;
 
-import org.telegram.messenger.MediaController;
-public final class dl6 implements Runnable {
-    public final byte a;
-    public final boolean[] b;
-    public final hd c;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+public final class dl6 {
+    public static final Set e = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
+    public static final Set f = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
+    public static final Set g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
+    public final ArrayList a = new ArrayList(0);
+    public ei5 b = new ei5("", 0, Collections.EMPTY_MAP, null);
+    public boolean c;
+    public boolean d;
 
-    public dl6(hd hdVar, boolean[] zArr, byte b) {
-        this.a = b;
-        this.c = hdVar;
-        this.b = zArr;
+    public dl6(q7f q7fVar, jk2 jk2Var) {
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        boolean[] zArr = this.b;
-        hd hdVar = this.c;
-        switch (b) {
-            case 0:
-                String[] strArr = MediaController.W1;
-                if (!zArr[0]) {
-                    hdVar.show();
-                    return;
+    public static Map a(vrb vrbVar) {
+        boolean z;
+        fz fzVar = vrbVar.m;
+        int i = fzVar.a;
+        if (i > 0) {
+            HashMap hashMap = new HashMap(i);
+            int i2 = 0;
+            while (true) {
+                if (i2 < fzVar.a) {
+                    z = true;
+                } else {
+                    z = false;
                 }
-                return;
-            case 1:
-                String[] strArr2 = MediaController.W1;
-                if (!zArr[0]) {
-                    hdVar.show();
-                    return;
-                }
-                return;
-            case 2:
-                String[] strArr3 = MediaController.W1;
-                try {
-                    if (hdVar.isShowing()) {
-                        hdVar.dismiss();
-                    } else {
-                        zArr[0] = true;
+                if (z) {
+                    String str = fzVar.c[i2];
+                    String str2 = fzVar.b[i2];
+                    if (str == null) {
+                        str = "";
                     }
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return;
-                }
-            default:
-                String[] strArr4 = MediaController.W1;
-                try {
-                    if (hdVar.isShowing()) {
-                        hdVar.dismiss();
+                    ?? obj = new Object();
+                    if (str2 != null) {
+                        obj.a = str2.trim();
+                        if (str2.length() != 0) {
+                            obj.b = str;
+                            obj.c = fzVar;
+                            i2++;
+                            hashMap.put(obj.a.toLowerCase(Locale.US), obj.b);
+                        } else {
+                            u36.j("String must not be empty");
+                            return null;
+                        }
                     } else {
-                        zArr[0] = true;
+                        u36.j("Object must not be null");
+                        return null;
                     }
-                    return;
-                } catch (Exception e2) {
-                    fa4.g(e2, true);
-                    return;
+                } else {
+                    return DesugarCollections.unmodifiableMap(hashMap);
                 }
+            }
+        } else {
+            return Collections.EMPTY_MAP;
         }
     }
 
-    public dl6(boolean[] zArr, hd hdVar, byte b) {
-        this.a = b;
-        this.b = zArr;
-        this.c = hdVar;
+    public final void b(java.lang.Appendable r17, java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.dl6.b(java.lang.Appendable, java.lang.String):void");
     }
 }

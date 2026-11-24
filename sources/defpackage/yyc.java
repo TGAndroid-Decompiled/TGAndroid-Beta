@@ -1,73 +1,48 @@
 package defpackage;
 
-import java.util.Random;
-public final class yyc extends Random {
-    public long a;
-    public long b;
+import android.view.View;
+import androidx.appcompat.widget.ActionBarOverlayLayout;
+import java.util.WeakHashMap;
+public final class yyc extends ehc {
+    public final byte a;
+    public final azc b;
 
-    @Override
-    public final int next(int i) {
-        return ((int) nextLong()) >>> (32 - i);
+    public yyc(azc azcVar, byte b) {
+        this.a = b;
+        this.b = azcVar;
     }
 
     @Override
-    public final boolean nextBoolean() {
-        if (nextLong() >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void nextBytes(byte[] bArr) {
-        int length = bArr.length;
-        int i = 0;
-        while (i < length) {
-            long nextLong = (int) nextLong();
-            int min = Math.min(length - i, 8);
-            while (true) {
-                int i2 = min - 1;
-                if (min > 0) {
-                    bArr[i] = (byte) nextLong;
-                    nextLong >>>= 8;
-                    i++;
-                    min = i2;
+    public final void c() {
+        View view;
+        byte b = this.a;
+        azc azcVar = this.b;
+        switch (b) {
+            case 0:
+                if (azcVar.o && (view = azcVar.g) != null) {
+                    view.setTranslationY(0.0f);
+                    azcVar.d.setTranslationY(0.0f);
                 }
-            }
+                azcVar.d.setVisibility(8);
+                azcVar.d.setTransitioning(false);
+                azcVar.s = null;
+                lx6 lx6Var = azcVar.k;
+                if (lx6Var != null) {
+                    lx6Var.B(azcVar.j);
+                    azcVar.j = null;
+                    azcVar.k = null;
+                }
+                ActionBarOverlayLayout actionBarOverlayLayout = azcVar.c;
+                if (actionBarOverlayLayout != null) {
+                    WeakHashMap weakHashMap = kfc.a;
+                    afc.c(actionBarOverlayLayout);
+                    return;
+                }
+                return;
+            default:
+                azcVar.s = null;
+                azcVar.d.requestLayout();
+                return;
         }
-    }
-
-    @Override
-    public final double nextDouble() {
-        return (nextLong() >>> 11) * 1.1102230246251565E-16d;
-    }
-
-    @Override
-    public final float nextFloat() {
-        return (((int) nextLong()) >>> 8) * 5.9604645E-8f;
-    }
-
-    @Override
-    public final int nextInt() {
-        return (int) nextLong();
-    }
-
-    @Override
-    public final long nextLong() {
-        long j = this.a;
-        long j2 = this.b;
-        long j3 = j + j2;
-        long j4 = j2 ^ j;
-        this.a = (Long.rotateLeft(j, 55) ^ j4) ^ (j4 << 14);
-        this.b = Long.rotateLeft(j4, 36);
-        return j3;
-    }
-
-    @Override
-    public final void setSeed(long j) {
-        if (this.a == 0 && this.b == 0) {
-            return;
-        }
-        wn4.j("No seed set");
     }
 }

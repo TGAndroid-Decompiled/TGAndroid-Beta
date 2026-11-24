@@ -59,12 +59,12 @@ public class CheckBox extends View {
             paint5.setColor(-1);
             L.setStyle(style);
         }
-        K.setStrokeWidth(gl.L(28.0f));
-        L.setStrokeWidth(gl.L(2.0f));
+        K.setStrokeWidth(gm.L(28.0f));
+        L.setStrokeWidth(gm.L(2.0f));
         TextPaint textPaint = new TextPaint(1);
         this.b = textPaint;
-        textPaint.setTextSize(gl.L(18.0f));
-        textPaint.setTypeface(gl.o());
+        textPaint.setTextSize(gm.L(18.0f));
+        textPaint.setTypeface(gm.o());
         this.a = context.getResources().getDrawable(i).mutate();
     }
 
@@ -85,7 +85,7 @@ public class CheckBox extends View {
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f);
             this.s = ofFloat;
-            ofFloat.addListener(new bb1(this, (byte) 27));
+            ofFloat.addListener(new b91(this, (byte) 29));
             this.s.setDuration(300L);
             this.s.start();
             return;
@@ -186,7 +186,7 @@ public class CheckBox extends View {
     public void setSize(int i) {
         this.E = i;
         if (i == 40) {
-            this.b.setTextSize(gl.L(24.0f));
+            this.b.setTextSize(gm.L(24.0f));
         }
     }
 
@@ -199,12 +199,12 @@ public class CheckBox extends View {
         super.setVisibility(i);
         if (i == 0 && this.c == null) {
             try {
-                int L2 = gl.L(this.E);
-                int L3 = gl.L(this.E);
+                int L2 = gm.L(this.E);
+                int L3 = gm.L(this.E);
                 Bitmap.Config config = Bitmap.Config.ARGB_4444;
                 this.c = Bitmap.createBitmap(L2, L3, config);
                 this.e = new Canvas(this.c);
-                this.d = Bitmap.createBitmap(gl.L(this.E), gl.L(this.E), config);
+                this.d = Bitmap.createBitmap(gm.L(this.E), gm.L(this.E), config);
                 this.f = new Canvas(this.d);
             } catch (Throwable unused) {
             }

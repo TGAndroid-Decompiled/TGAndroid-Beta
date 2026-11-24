@@ -1,0 +1,21 @@
+package defpackage;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class h3a extends FrameLayout {
+    public final float a;
+
+    public h3a(Context context, float f) {
+        super(context);
+        this.a = f;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getWidth() * this.a, getHeight());
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+}

@@ -1,534 +1,183 @@
 package defpackage;
 
-import android.app.Activity;
-import android.util.SparseArray;
-import android.util.SparseIntArray;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.NativeByteBuffer;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class bu9 extends pf0 {
-    public static volatile bu9[] r = new bu9[4];
-    public final ArrayList a;
-    public final SparseArray b;
-    public final SparseArray c;
-    public final SparseArray d;
-    public final SparseArray e;
-    public final ArrayList f;
-    public final ArrayList h;
-    public boolean n;
+public class bu9 {
+    public au9 a;
+    public ArrayList k;
+    public ArrayList l;
+    public String n;
+    public final boolean o;
+    public ArrayList q;
+    public HashMap r;
+    public final ArrayList b = new ArrayList();
+    public String c = null;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public final vh6 f = new vh6();
+    public final ArrayList g = new ArrayList();
+    public final vh6 h = new vh6();
+    public final vh6 i = new vh6();
+    public final ArrayList j = new ArrayList();
+    public final int m = z8c.t0;
+    public boolean p = true;
+    public boolean s = false;
 
-    public bu9(int i) {
-        super(i);
-        this.a = new ArrayList();
-        this.b = new SparseArray();
-        this.c = new SparseArray();
-        this.d = new SparseArray();
-        this.e = new SparseArray();
-        this.f = new ArrayList();
-        this.h = new ArrayList();
-        this.n = false;
+    public bu9(boolean z) {
+        this.o = z;
     }
 
-    public static boolean h(org.telegram.tgnet.NativeByteBuffer r23, byte[] r24, byte[] r25, int r26, boolean r27, boolean r28) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bu9.h(org.telegram.tgnet.NativeByteBuffer, byte[], byte[], int, boolean, boolean):boolean");
-    }
-
-    public static bu9 i(int i) {
-        bu9 bu9Var;
-        bu9 bu9Var2 = r[i];
-        if (bu9Var2 == null) {
-            synchronized (bu9.class) {
-                bu9Var = r[i];
-                if (bu9Var == null) {
-                    bu9[] bu9VarArr = r;
-                    bu9 bu9Var3 = new bu9(i);
-                    bu9VarArr[i] = bu9Var3;
-                    bu9Var = bu9Var3;
-                }
-            }
-            return bu9Var;
-        }
-        return bu9Var2;
-    }
-
-    public final void A(Activity activity, TLRPC.User user) {
-        if (user != null && activity != null) {
-            if (getMessagesController().t2()) {
-                h5.b(this.currentAccount);
-                return;
-            }
-            this.n = true;
-            hd hdVar = new hd(3, null, activity);
-            TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
-            tL_messages_getDhConfig.random_length = 256;
-            ad7 messagesStorage = getMessagesStorage();
-            messagesStorage.G();
-            tL_messages_getDhConfig.version = messagesStorage.x;
-            hdVar.setOnCancelListener(new xs0(this, getConnectionsManager().sendRequest(tL_messages_getDhConfig, new rt0(this, activity, hdVar, user, (byte) 17), 2), (byte) 8));
-            try {
-                hdVar.show();
-            } catch (Exception unused) {
-            }
-        }
-    }
-
-    public final void a(TLRPC.EncryptedChat encryptedChat, int i) {
-        int W0 = gl.W0(encryptedChat.layer);
-        if (i <= W0) {
-            return;
-        }
-        if (encryptedChat.key_hash.length == 16) {
-            try {
-                byte[] bArr = encryptedChat.auth_key;
-                byte[] o = Utilities.o(bArr.length, bArr);
-                byte[] bArr2 = new byte[36];
-                System.arraycopy(encryptedChat.key_hash, 0, bArr2, 0, 16);
-                System.arraycopy(o, 0, bArr2, 16, 20);
-                encryptedChat.key_hash = bArr2;
-                getMessagesStorage().S1(encryptedChat);
-            } catch (Throwable th) {
-                fa4.g(th, true);
-            }
-        }
-        encryptedChat.layer = (encryptedChat.layer & 65535) | (i << 16);
-        ad7 messagesStorage = getMessagesStorage();
-        messagesStorage.a.c(new fb7(messagesStorage, encryptedChat, (byte) 2));
-        if (W0 < 151) {
-            w(encryptedChat, null);
-        }
-        gl.d3(new ut9(this, encryptedChat, (byte) 0));
-    }
-
-    public final void b(TLRPC.EncryptedChat encryptedChat, ArrayList arrayList) {
-        au9 au9Var;
-        TLRPC.TL_decryptedMessageLayer tL_decryptedMessageLayer;
-        int i;
-        int i2;
-        int i3 = encryptedChat.id;
-        SparseArray sparseArray = this.b;
-        ArrayList arrayList2 = (ArrayList) sparseArray.get(i3);
-        if (arrayList2 != null) {
-            Collections.sort(arrayList2, new fx7((byte) 17));
+    public final void a(CharSequence charSequence) {
+        if (charSequence != null) {
+            Matcher matcher = Pattern.compile("(^|\\s)#[^0-9][\\w@.]+").matcher(charSequence);
             boolean z = false;
-            while (arrayList2.size() > 0 && ((i = (tL_decryptedMessageLayer = (au9Var = (au9) arrayList2.get(0)).b).out_seq_no) == (i2 = encryptedChat.seq_in) || i2 == i - 2)) {
-                this.a(encryptedChat, tL_decryptedMessageLayer.layer);
-                TLRPC.TL_decryptedMessageLayer tL_decryptedMessageLayer2 = au9Var.b;
-                encryptedChat.seq_in = tL_decryptedMessageLayer2.out_seq_no;
-                encryptedChat.in_seq_no = tL_decryptedMessageLayer2.in_seq_no;
-                arrayList2.remove(0);
-                if (au9Var.e == 2) {
-                    encryptedChat.mtproto_seq = Math.min(encryptedChat.mtproto_seq, encryptedChat.seq_in);
+            while (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                if (charSequence.charAt(start) != '@' && charSequence.charAt(start) != '#') {
+                    start++;
                 }
-                bu9 bu9Var = this;
-                TLRPC.EncryptedChat encryptedChat2 = encryptedChat;
-                TLRPC.Message l = bu9Var.l(encryptedChat2, au9Var.c, au9Var.a, au9Var.b.message, au9Var.d);
-                if (l != null) {
-                    arrayList.add(l);
+                String charSequence2 = charSequence.subSequence(start, end).toString();
+                if (this.r == null) {
+                    this.r = new HashMap();
+                    this.q = new ArrayList();
                 }
+                zt9 zt9Var = (zt9) this.r.get(charSequence2);
+                if (zt9Var == 0) {
+                    zt9Var = new Object();
+                    zt9Var.a = charSequence2;
+                    this.r.put(charSequence2, zt9Var);
+                } else {
+                    this.q.remove((Object) zt9Var);
+                }
+                zt9Var.b = (int) (System.currentTimeMillis() / 1000);
+                this.q.add(0, zt9Var);
                 z = true;
-                this = bu9Var;
-                encryptedChat = encryptedChat2;
-            }
-            bu9 bu9Var2 = this;
-            TLRPC.EncryptedChat encryptedChat3 = encryptedChat;
-            if (arrayList2.isEmpty()) {
-                sparseArray.remove(encryptedChat3.id);
             }
             if (z) {
-                ad7 messagesStorage = bu9Var2.getMessagesStorage();
-                messagesStorage.a.c(new vj6((Object) messagesStorage, (Object) encryptedChat3, true, (byte) 5));
+                cf7.Y(this.m).a.c(new il9(this, this.q, (byte) 14));
             }
         }
     }
 
-    public final TLRPC.TL_messageService c(int i, int i2, int i3, long j, TLRPC.EncryptedChat encryptedChat) {
-        TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-        TLRPC.TL_messageEncryptedAction tL_messageEncryptedAction = new TLRPC.TL_messageEncryptedAction();
-        tL_messageService.action = tL_messageEncryptedAction;
-        tL_messageEncryptedAction.encryptedAction = new TLRPC.TL_decryptedMessageActionDeleteMessages();
-        tL_messageService.action.encryptedAction.random_ids.add(Long.valueOf(j));
-        tL_messageService.id = i;
-        tL_messageService.local_id = i;
-        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-        tL_messageService.from_id = tL_peerUser;
-        tL_peerUser.user_id = getUserConfig().e();
-        tL_messageService.unread = true;
-        tL_messageService.out = true;
-        tL_messageService.flags = 256;
-        tL_messageService.dialog_id = cf3.E(encryptedChat.id);
-        tL_messageService.send_state = 1;
-        tL_messageService.seq_in = i3;
-        tL_messageService.seq_out = i2;
-        tL_messageService.peer_id = new TLRPC.TL_peerUser();
-        int i4 = (encryptedChat.participant_id > getUserConfig().e() ? 1 : (encryptedChat.participant_id == getUserConfig().e() ? 0 : -1));
-        TLRPC.Peer peer = tL_messageService.peer_id;
-        if (i4 == 0) {
-            peer.user_id = encryptedChat.admin_id;
-        } else {
-            peer.user_id = encryptedChat.participant_id;
-        }
-        tL_messageService.date = 0;
-        tL_messageService.random_id = j;
-        return tL_messageService;
+    public final void b() {
+        this.e.clear();
+        this.f.b();
+        this.d.clear();
     }
 
-    public final TLRPC.TL_messageService d(TLRPC.EncryptedChat encryptedChat, TLRPC.DecryptedMessageAction decryptedMessageAction) {
-        TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-        TLRPC.TL_messageEncryptedAction tL_messageEncryptedAction = new TLRPC.TL_messageEncryptedAction();
-        tL_messageService.action = tL_messageEncryptedAction;
-        tL_messageEncryptedAction.encryptedAction = decryptedMessageAction;
-        int i = getUserConfig().i();
-        tL_messageService.id = i;
-        tL_messageService.local_id = i;
-        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-        tL_messageService.from_id = tL_peerUser;
-        tL_peerUser.user_id = getUserConfig().e();
-        tL_messageService.unread = true;
-        tL_messageService.out = true;
-        tL_messageService.flags = 256;
-        tL_messageService.dialog_id = cf3.E(encryptedChat.id);
-        tL_messageService.peer_id = new TLRPC.TL_peerUser();
-        tL_messageService.send_state = 1;
-        int i2 = (encryptedChat.participant_id > getUserConfig().e() ? 1 : (encryptedChat.participant_id == getUserConfig().e() ? 0 : -1));
-        TLRPC.Peer peer = tL_messageService.peer_id;
-        if (i2 == 0) {
-            peer.user_id = encryptedChat.admin_id;
-        } else {
-            peer.user_id = encryptedChat.participant_id;
-        }
-        if (!(decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionScreenshotMessages) && !(decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionSetMessageTTL)) {
-            tL_messageService.date = 0;
-        } else {
-            tL_messageService.date = getConnectionsManager().getCurrentTime();
-        }
-        getSendMessagesHelper().getClass();
-        tL_messageService.random_id = z3a.D();
-        getUserConfig().u(false);
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(tL_messageService);
-        getMessagesStorage().g1(arrayList, false, true, true, 0, false, 0, 0L);
-        return tL_messageService;
+    public final void c() {
+        this.q = new ArrayList();
+        this.r = new HashMap();
+        cf7.Y(this.m).a.c(new yt9(this, (byte) 0));
     }
 
-    public final void e(int i, long j, boolean z) {
-        NativeByteBuffer nativeByteBuffer;
-        Exception e;
-        if (j == 0) {
-            try {
-                nativeByteBuffer = new NativeByteBuffer(12);
-            } catch (Exception e2) {
-                nativeByteBuffer = null;
-                e = e2;
-            }
-            try {
-                nativeByteBuffer.writeInt32(100);
-                nativeByteBuffer.writeInt32(i);
-                nativeByteBuffer.writeBool(z);
-            } catch (Exception e3) {
-                e = e3;
-                fa4.g(e, true);
-                j = getMessagesStorage().y(nativeByteBuffer);
-                TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption = new TLRPC.TL_messages_discardEncryption();
-                tL_messages_discardEncryption.chat_id = i;
-                tL_messages_discardEncryption.delete_history = z;
-                getConnectionsManager().sendRequest(tL_messages_discardEncryption, new eu2(this, j, (byte) 4));
-            }
-            j = getMessagesStorage().y(nativeByteBuffer);
-        }
-        TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption2 = new TLRPC.TL_messages_discardEncryption();
-        tL_messages_discardEncryption2.chat_id = i;
-        tL_messages_discardEncryption2.delete_history = z;
-        getConnectionsManager().sendRequest(tL_messages_discardEncryption2, new eu2(this, j, (byte) 4));
+    public boolean d(TLObject tLObject) {
+        return true;
     }
 
-    public final void f(int i, boolean z) {
-        e(i, 0L, z);
+    public final boolean e() {
+        if (this.b.size() > 0) {
+            return true;
+        }
+        return false;
     }
 
-    public final java.util.ArrayList g(org.telegram.tgnet.TLRPC.EncryptedMessage r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bu9.g(org.telegram.tgnet.TLRPC$EncryptedMessage):java.util.ArrayList");
-    }
-
-    public final void j(TLRPC.DecryptedMessage decryptedMessage, TLRPC.Message message, TLRPC.EncryptedChat encryptedChat, TLRPC.InputEncryptedFile inputEncryptedFile, String str, k27 k27Var) {
-        if (decryptedMessage != null && encryptedChat.auth_key != null && !(encryptedChat instanceof TLRPC.TL_encryptedChatRequested) && !(encryptedChat instanceof TLRPC.TL_encryptedChatWaiting)) {
-            getSendMessagesHelper().e0(message, false);
-            Utilities.d.c(new i87(this, encryptedChat, decryptedMessage, message, inputEncryptedFile, k27Var, str, (byte) 17));
-        }
-    }
-
-    public final void k(TLRPC.TL_messages_sendEncryptedMultiMedia tL_messages_sendEncryptedMultiMedia, k3a k3aVar) {
-        for (int i = 0; i < tL_messages_sendEncryptedMultiMedia.files.size(); i++) {
-            j(tL_messages_sendEncryptedMultiMedia.messages.get(i), (TLRPC.Message) k3aVar.z.get(i), k3aVar.n, tL_messages_sendEncryptedMultiMedia.files.get(i), (String) k3aVar.B.get(i), (k27) k3aVar.x.get(i));
-        }
-    }
-
-    public final org.telegram.tgnet.TLRPC.Message l(org.telegram.tgnet.TLRPC.EncryptedChat r18, org.telegram.tgnet.TLRPC.EncryptedFile r19, int r20, org.telegram.tgnet.TLObject r21, boolean r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bu9.l(org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$EncryptedFile, int, org.telegram.tgnet.TLObject, boolean):org.telegram.tgnet.TLRPC$Message");
-    }
-
-    public final void m() {
-        ArrayList arrayList = this.h;
-        if (!arrayList.isEmpty()) {
-            gl.d3(new zt9(this, new ArrayList(arrayList), (byte) 1));
-            ArrayList arrayList2 = new ArrayList(arrayList);
-            ad7 messagesStorage = getMessagesStorage();
-            messagesStorage.getClass();
-            if (!arrayList2.isEmpty()) {
-                messagesStorage.a.c(new i41(messagesStorage, arrayList2, (byte) 5));
-            }
-            arrayList.clear();
-        }
-    }
-
-    public final void n(org.telegram.tgnet.tl.TL_update.TL_updateEncryption r20, j$.util.concurrent.ConcurrentHashMap r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bu9.n(org.telegram.tgnet.tl.TL_update$TL_updateEncryption, j$.util.concurrent.ConcurrentHashMap):void");
-    }
-
-    public final void o(TLRPC.EncryptedChat encryptedChat) {
-        byte[] bArr = new byte[256];
-        Utilities.b.nextBytes(bArr);
-        ad7 messagesStorage = getMessagesStorage();
-        messagesStorage.G();
-        BigInteger valueOf = BigInteger.valueOf(messagesStorage.E);
-        BigInteger bigInteger = new BigInteger(1, bArr);
-        ad7 messagesStorage2 = getMessagesStorage();
-        messagesStorage2.G();
-        byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage2.y)).toByteArray();
-        if (byteArray.length > 256) {
-            byte[] bArr2 = new byte[256];
-            System.arraycopy(byteArray, 1, bArr2, 0, 256);
-            byteArray = bArr2;
-        }
-        getSendMessagesHelper().getClass();
-        encryptedChat.exchange_id = z3a.D();
-        encryptedChat.a_or_b = bArr;
-        encryptedChat.g_a = byteArray;
-        getMessagesStorage().S1(encryptedChat);
-        x(encryptedChat, null);
-    }
-
-    public final void p(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, long j) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionAbortKey tL_decryptedMessageActionAbortKey = new TLRPC.TL_decryptedMessageActionAbortKey();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionAbortKey;
-            tL_decryptedMessageActionAbortKey.exchange_id = j;
-            message = d(encryptedChat, tL_decryptedMessageActionAbortKey);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void q(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionAcceptKey tL_decryptedMessageActionAcceptKey = new TLRPC.TL_decryptedMessageActionAcceptKey();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionAcceptKey;
-            tL_decryptedMessageActionAcceptKey.exchange_id = encryptedChat.exchange_id;
-            tL_decryptedMessageActionAcceptKey.key_fingerprint = encryptedChat.future_key_fingerprint;
-            tL_decryptedMessageActionAcceptKey.g_b = encryptedChat.g_a_or_b;
-            message = d(encryptedChat, tL_decryptedMessageActionAcceptKey);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void r(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionFlushHistory tL_decryptedMessageActionFlushHistory = new TLRPC.TL_decryptedMessageActionFlushHistory();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionFlushHistory;
-            message = d(encryptedChat, tL_decryptedMessageActionFlushHistory);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void s(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionCommitKey tL_decryptedMessageActionCommitKey = new TLRPC.TL_decryptedMessageActionCommitKey();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionCommitKey;
-            tL_decryptedMessageActionCommitKey.exchange_id = encryptedChat.exchange_id;
-            tL_decryptedMessageActionCommitKey.key_fingerprint = encryptedChat.future_key_fingerprint;
-            message = d(encryptedChat, tL_decryptedMessageActionCommitKey);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void t(TLRPC.EncryptedChat encryptedChat, ArrayList arrayList, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionDeleteMessages tL_decryptedMessageActionDeleteMessages = new TLRPC.TL_decryptedMessageActionDeleteMessages();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionDeleteMessages;
-            tL_decryptedMessageActionDeleteMessages.random_ids = arrayList;
-            message = d(encryptedChat, tL_decryptedMessageActionDeleteMessages);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void u(TLRPC.EncryptedChat encryptedChat, ArrayList arrayList, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionReadMessages tL_decryptedMessageActionReadMessages = new TLRPC.TL_decryptedMessageActionReadMessages();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionReadMessages;
-            tL_decryptedMessageActionReadMessages.random_ids = arrayList;
-            message = d(encryptedChat, tL_decryptedMessageActionReadMessages);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void v(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionNoop tL_decryptedMessageActionNoop = new TLRPC.TL_decryptedMessageActionNoop();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionNoop;
-            message = d(encryptedChat, tL_decryptedMessageActionNoop);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void w(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
-        if (encryptedChat instanceof TLRPC.TL_encryptedChat) {
-            Integer valueOf = Integer.valueOf(encryptedChat.id);
-            ArrayList arrayList = this.a;
-            if (arrayList.contains(valueOf)) {
-                return;
-            }
-            arrayList.add(Integer.valueOf(encryptedChat.id));
-            TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-            if (message != null) {
-                tL_decryptedMessageService.action = message.action.encryptedAction;
-            } else {
-                TLRPC.TL_decryptedMessageActionNotifyLayer tL_decryptedMessageActionNotifyLayer = new TLRPC.TL_decryptedMessageActionNotifyLayer();
-                tL_decryptedMessageService.action = tL_decryptedMessageActionNotifyLayer;
-                tL_decryptedMessageActionNotifyLayer.layer = 151;
-                message = d(encryptedChat, tL_decryptedMessageActionNotifyLayer);
-            }
-            TLRPC.Message message2 = message;
-            tL_decryptedMessageService.random_id = message2.random_id;
-            j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-        }
-    }
-
-    public final void x(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
-        }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionRequestKey tL_decryptedMessageActionRequestKey = new TLRPC.TL_decryptedMessageActionRequestKey();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionRequestKey;
-            tL_decryptedMessageActionRequestKey.exchange_id = encryptedChat.exchange_id;
-            tL_decryptedMessageActionRequestKey.g_a = encryptedChat.g_a;
-            message = d(encryptedChat, tL_decryptedMessageActionRequestKey);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
-    }
-
-    public final void y(TLRPC.EncryptedChat encryptedChat, int i, int i2, TLRPC.Message message) {
-        if (encryptedChat instanceof TLRPC.TL_encryptedChat) {
-            int i3 = encryptedChat.id;
-            SparseArray sparseArray = this.d;
-            SparseIntArray sparseIntArray = (SparseIntArray) sparseArray.get(i3);
-            if (sparseIntArray != null) {
-                if (sparseIntArray.indexOfKey(i) >= 0) {
+    public final void f(ArrayList arrayList, ArrayList arrayList2) {
+        int size;
+        int size2;
+        Object obj;
+        TLRPC.Chat chat;
+        this.k = arrayList;
+        this.l = arrayList2;
+        vh6 vh6Var = this.f;
+        if (vh6Var.m() != 0) {
+            if (arrayList == null) {
+                if (arrayList2 != null) {
+                    size = 0;
+                } else {
                     return;
                 }
             } else {
-                sparseIntArray = new SparseIntArray();
-                sparseArray.put(encryptedChat.id, sparseIntArray);
+                size = arrayList.size();
             }
-            sparseIntArray.put(i, i2);
-            TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-            if (message != null) {
-                tL_decryptedMessageService.action = message.action.encryptedAction;
+            if (arrayList2 == null) {
+                size2 = 0;
             } else {
-                TLRPC.TL_decryptedMessageActionResend tL_decryptedMessageActionResend = new TLRPC.TL_decryptedMessageActionResend();
-                tL_decryptedMessageService.action = tL_decryptedMessageActionResend;
-                tL_decryptedMessageActionResend.start_seq_no = i;
-                tL_decryptedMessageActionResend.end_seq_no = i2;
-                message = d(encryptedChat, tL_decryptedMessageActionResend);
+                size2 = arrayList2.size();
             }
-            TLRPC.Message message2 = message;
-            tL_decryptedMessageService.random_id = message2.random_id;
-            j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+            int i = size2 + size;
+            for (int i2 = 0; i2 < i; i2++) {
+                if (i2 < size) {
+                    obj = arrayList.get(i2);
+                } else {
+                    obj = arrayList2.get(i2 - size);
+                }
+                if (obj instanceof lm3) {
+                    obj = ((lm3) obj).a;
+                }
+                if (obj instanceof ica) {
+                    obj = ((ica) obj).b;
+                }
+                boolean z = obj instanceof TLRPC.User;
+                ArrayList arrayList3 = this.d;
+                ArrayList arrayList4 = this.e;
+                if (z) {
+                    TLRPC.User user = (TLRPC.User) obj;
+                    TLRPC.User user2 = (TLRPC.User) vh6Var.f(user.id);
+                    if (user2 != null) {
+                        arrayList4.remove(user2);
+                        arrayList3.remove(user2);
+                        vh6Var.l(user2.id);
+                    }
+                    long j = user.id;
+                    vh6 vh6Var2 = this.h;
+                    TLObject tLObject = (TLObject) vh6Var2.f(j);
+                    if (tLObject != null) {
+                        this.g.remove(tLObject);
+                        vh6Var2.l(user.id);
+                    }
+                    long j2 = user.id;
+                    vh6 vh6Var3 = this.i;
+                    Object f = vh6Var3.f(j2);
+                    if (f != null) {
+                        this.j.remove(f);
+                        vh6Var3.l(user.id);
+                    }
+                } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) vh6Var.f(-((TLRPC.Chat) obj).id)) != null) {
+                    arrayList4.remove(chat);
+                    arrayList3.remove(chat);
+                    vh6Var.l(-chat.id);
+                }
+            }
         }
     }
 
-    public final void z(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
-        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
-            return;
+    public final void g(String str, boolean z, boolean z2, boolean z3, boolean z4, long j, boolean z5, int i, int i2) {
+        h(str, z, z2, z3, z4, false, j, z5, i, i2, 0L, null);
+    }
+
+    public final void h(final java.lang.String r22, boolean r23, final boolean r24, final boolean r25, boolean r26, final boolean r27, long r28, boolean r30, int r31, final int r32, final long r33, final java.lang.Runnable r35) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bu9.h(java.lang.String, boolean, boolean, boolean, boolean, boolean, long, boolean, int, int, long, java.lang.Runnable):void");
+    }
+
+    public final void i() {
+        vh6 vh6Var = this.f;
+        if (vh6Var.m() != 0) {
+            vh6 vh6Var2 = this.h;
+            int m = vh6Var2.m();
+            for (int i = 0; i < m; i++) {
+                TLRPC.User user = (TLRPC.User) vh6Var.f(vh6Var2.j(i));
+                if (user != null) {
+                    this.e.remove(user);
+                    this.d.remove(user);
+                    vh6Var.l(user.id);
+                }
+            }
         }
-        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
-        if (message != null) {
-            tL_decryptedMessageService.action = message.action.encryptedAction;
-        } else {
-            TLRPC.TL_decryptedMessageActionSetMessageTTL tL_decryptedMessageActionSetMessageTTL = new TLRPC.TL_decryptedMessageActionSetMessageTTL();
-            tL_decryptedMessageService.action = tL_decryptedMessageActionSetMessageTTL;
-            tL_decryptedMessageActionSetMessageTTL.ttl_seconds = encryptedChat.ttl;
-            message = d(encryptedChat, tL_decryptedMessageActionSetMessageTTL);
-            k27 k27Var = new k27(this.currentAccount, message, false, false);
-            k27Var.k.send_state = 1;
-            k27Var.X1 = true;
-            getMessagesController().q5(0, message.dialog_id, tb4.t(k27Var));
-            getNotificationCenter().k(kk7.r, new Object[0]);
-        }
-        TLRPC.Message message2 = message;
-        tL_decryptedMessageService.random_id = message2.random_id;
-        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
     }
 }

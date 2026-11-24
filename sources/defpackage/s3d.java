@@ -1,13 +1,10 @@
 package defpackage;
-
-import android.util.Base64;
-import java.security.SecureRandom;
 public abstract class s3d {
-    public static final SecureRandom a = new SecureRandom();
+    public final r3d a;
 
-    public static String a() {
-        byte[] bArr = new byte[16];
-        a.nextBytes(bArr);
-        return Base64.encodeToString(bArr, 11);
+    public s3d(r3d r3dVar) {
+        this.a = r3dVar;
     }
+
+    public abstract void a();
 }

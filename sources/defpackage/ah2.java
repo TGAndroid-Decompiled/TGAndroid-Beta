@@ -1,59 +1,69 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class ah2 implements fv9 {
-    public final int a;
-    public final int[] b;
-    public final long[] c;
-    public final long[] d;
-    public final long[] e;
-    public final long f;
+import android.text.TextUtils;
+import org.telegram.tgnet.tl.TL_account;
+public final class ah2 implements Runnable {
+    public final byte a;
+    public final hh2 b;
 
-    public ah2(int[] iArr, long[] jArr, long[] jArr2, long[] jArr3) {
-        this.b = iArr;
-        this.c = jArr;
-        this.d = jArr2;
-        this.e = jArr3;
-        int length = iArr.length;
-        this.a = length;
-        if (length > 0) {
-            int i = length - 1;
-            this.f = jArr2[i] + jArr3[i];
-            return;
+    public ah2(hh2 hh2Var, byte b) {
+        this.a = b;
+        this.b = hh2Var;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        hh2 hh2Var = this.b;
+        switch (b) {
+            case 0:
+                TL_account.TL_businessBotRights tL_businessBotRights = hh2Var.K;
+                tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
+                hh2Var.c.g3.O(true);
+                hh2Var.a0(true);
+                return;
+            case 1:
+                TL_account.TL_businessBotRights tL_businessBotRights2 = hh2Var.K;
+                tL_businessBotRights2.transfer_stars = true;
+                tL_businessBotRights2.transfer_and_upgrade_gifts = true;
+                tL_businessBotRights2.change_gift_settings = true;
+                tL_businessBotRights2.sell_gifts = true;
+                tL_businessBotRights2.view_gifts = true;
+                hh2Var.c.g3.O(true);
+                hh2Var.a0(true);
+                return;
+            case 2:
+                TL_account.TL_businessBotRights tL_businessBotRights3 = hh2Var.K;
+                tL_businessBotRights3.edit_username = true;
+                tL_businessBotRights3.edit_profile_photo = true;
+                tL_businessBotRights3.edit_bio = true;
+                tL_businessBotRights3.edit_name = true;
+                hh2Var.c.g3.O(true);
+                hh2Var.a0(true);
+                return;
+            case 3:
+                hh2Var.c.g3.O(true);
+                hh2Var.a0(true);
+                return;
+            default:
+                String obj = hh2Var.f.getText().toString();
+                String str = hh2Var.E;
+                if (str == null || !TextUtils.equals(str, obj)) {
+                    hh2Var.y = false;
+                    if (TextUtils.isEmpty(obj)) {
+                        hh2Var.E = null;
+                        hh2Var.d.b();
+                        hh2Var.c.g3.O(true);
+                        return;
+                    }
+                    bu9 bu9Var = hh2Var.d;
+                    hh2Var.E = obj;
+                    int i = hh2Var.F;
+                    hh2Var.F = i + 1;
+                    bu9Var.h(obj, true, false, true, false, false, 0L, false, 0, i, 0L, null);
+                    return;
+                }
+                return;
         }
-        this.f = 0L;
-    }
-
-    @Override
-    public final boolean c() {
-        return true;
-    }
-
-    @Override
-    public final boolean d() {
-        return false;
-    }
-
-    @Override
-    public final ev9 f(long j) {
-        long[] jArr = this.e;
-        int f = g8c.f(jArr, j, true);
-        long j2 = jArr[f];
-        long[] jArr2 = this.c;
-        hv9 hv9Var = new hv9(j2, jArr2[f]);
-        if (j2 < j && f != this.a - 1) {
-            int i = f + 1;
-            return new ev9(hv9Var, new hv9(jArr[i], jArr2[i]));
-        }
-        return new ev9(hv9Var, hv9Var);
-    }
-
-    @Override
-    public final long h() {
-        return this.f;
-    }
-
-    public final String toString() {
-        return "ChunkIndex(length=" + this.a + ", sizes=" + Arrays.toString(this.b) + ", offsets=" + Arrays.toString(this.c) + ", timeUs=" + Arrays.toString(this.e) + ", durationsUs=" + Arrays.toString(this.d) + ")";
     }
 }

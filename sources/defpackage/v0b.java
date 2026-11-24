@@ -1,93 +1,154 @@
 package defpackage;
 
-import java.io.FileNotFoundException;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.tgnet.tl.TL_communities;
-public final class v0b implements ed, j8c, r8c, Vector.TLDeserializer {
-    public final byte a;
+public final class v0b extends FrameLayout {
+    public bf0 a;
+    public TLRPC.Document b;
+    public Object c;
+    public long d;
+    public boolean e;
+    public float f;
+    public boolean h;
+    public pj8 n;
+    public boolean r;
+    public boolean s;
+    public ylb w;
 
-    public v0b(byte b) {
-        this.a = b;
-    }
-
-    public static void a(Object obj) {
-        throw new IllegalArgumentException(obj.toString());
-    }
-
-    public static void b(Object obj, String str) {
-        throw new FileNotFoundException(str + obj);
-    }
-
-    @Override
-    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-        switch (this.a) {
-            case 7:
-                return TLRPC.AttachMenuPeerType.TLdeserialize(inputSerializedData, i, z);
-            case 8:
-                return TLRPC.TL_attachMenuBotIcon.TLdeserialize(inputSerializedData, i, z);
-            case 9:
-                return TLRPC.TL_attachMenuBotIconColor.TLdeserialize(inputSerializedData, i, z);
-            case 10:
-                return TLRPC.AttachMenuBot.TLdeserialize(inputSerializedData, i, z);
-            case 11:
-                return TLRPC.User.TLdeserialize(inputSerializedData, i, z);
-            case 12:
-                return TLRPC.RestrictionReason.TLdeserialize(inputSerializedData, i, z);
-            case 13:
-                return TLRPC.TL_username.TLdeserialize(inputSerializedData, i, z);
-            case 14:
-                return TL_bots.BotInfo.TLdeserialize(inputSerializedData, i, z);
-            case 15:
-                return TLRPC.TL_messageRange.TLdeserialize(inputSerializedData, i, z);
-            case 16:
-                return TLRPC.TL_channelAdminLogEvent.TLdeserialize(inputSerializedData, i, z);
-            case 17:
-                return TLRPC.Chat.TLdeserialize(inputSerializedData, i, z);
-            case 18:
-                return TLRPC.ChannelParticipant.TLdeserialize(inputSerializedData, i, z);
-            case 19:
-                return TLRPC.TL_sendAsPeer.TLdeserialize(inputSerializedData, i, z);
-            case 20:
-                return TLRPC.TL_sponsoredMessageReportOption.TLdeserialize(inputSerializedData, i, z);
-            case 21:
-                return TLRPC.ChatParticipant.TLdeserialize(inputSerializedData, i, z);
-            case 22:
-                return TLRPC.Reaction.TLdeserialize(inputSerializedData, i, z);
-            case 23:
-                return TLRPC.ThemeSettings.TLdeserialize(inputSerializedData, i, z);
-            case 24:
-                return TL_communities.CommunityPeer.TLdeserialize(inputSerializedData, i, z);
-            case 25:
-                return TLRPC.TL_dcOption.TLdeserialize(inputSerializedData, i, z);
-            case 26:
-                return TLRPC.TL_peerBlocked.TLdeserialize(inputSerializedData, i, z);
-            case 27:
-                return TLRPC.TL_contact.TLdeserialize(inputSerializedData, i, z);
-            case 28:
-                return TLRPC.TL_contactStatus.TLdeserialize(inputSerializedData, i, z);
-            default:
-                return TLRPC.TL_importedContact.TLdeserialize(inputSerializedData, i, z);
-        }
+    static {
+        new AccelerateInterpolator(0.5f);
     }
 
     @Override
-    public final Object g(Integer num, Object obj) {
-        Integer num2 = (Integer) obj;
-        if (num.intValue() == 0) {
-            if (num2.intValue() == 0) {
-                return k96.M0(2131748613, null);
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        boolean drawChild = super.drawChild(canvas, view, j);
+        bf0 bf0Var = this.a;
+        if (view == bf0Var) {
+            boolean z = this.e;
+            float f = 1.0f;
+            float f2 = 0.8f;
+            if ((z && this.f != 0.8f) || (!z && this.f != 1.0f)) {
+                long currentTimeMillis = System.currentTimeMillis();
+                long j2 = currentTimeMillis - this.d;
+                this.d = currentTimeMillis;
+                if (this.e) {
+                    float f3 = this.f;
+                    if (f3 != 0.8f) {
+                        f = f3 - (((float) j2) / 400.0f);
+                        this.f = f;
+                        if (f < 0.8f) {
+                            this.f = 0.8f;
+                            f = f2;
+                        }
+                        bf0Var.setScaleX(f);
+                        bf0Var.setScaleY(this.f);
+                        bf0Var.invalidate();
+                        invalidate();
+                    }
+                }
+                f2 = (((float) j2) / 400.0f) + this.f;
+                this.f = f2;
+                if (f2 > 1.0f) {
+                    this.f = 1.0f;
+                    bf0Var.setScaleX(f);
+                    bf0Var.setScaleY(this.f);
+                    bf0Var.invalidate();
+                    invalidate();
+                }
+                f = f2;
+                bf0Var.setScaleX(f);
+                bf0Var.setScaleY(this.f);
+                bf0Var.invalidate();
+                invalidate();
             }
-            return k96.H(',', "Stars", num2.intValue());
         }
-        return String.valueOf(num2);
+        return drawChild;
+    }
+
+    public Object getParentObject() {
+        return this.c;
+    }
+
+    public g47 getSendAnimationData() {
+        bf0 bf0Var = this.a;
+        ImageReceiver imageReceiver = bf0Var.getImageReceiver();
+        if (!imageReceiver.E()) {
+            return null;
+        }
+        ?? obj = new Object();
+        int[] iArr = new int[2];
+        bf0Var.getLocationInWindow(iArr);
+        obj.a = imageReceiver.r() + iArr[0];
+        obj.b = imageReceiver.s() + iArr[1];
+        obj.c = imageReceiver.N0;
+        return obj;
+    }
+
+    public TLRPC.Document getSticker() {
+        return this.b;
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        hdVar.dismiss();
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.b == null) {
+            return;
+        }
+        String str = null;
+        for (int i = 0; i < this.b.attributes.size(); i++) {
+            TLRPC.DocumentAttribute documentAttribute = this.b.attributes.get(i);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                String str2 = documentAttribute.alt;
+                if (str2 != null && str2.length() > 0) {
+                    str = documentAttribute.alt;
+                } else {
+                    str = null;
+                }
+            }
+        }
+        if (str != null) {
+            StringBuilder k = b10.k(str, " ");
+            k.append(jb6.M0(2131753901, null));
+            accessibilityNodeInfo.setText(k.toString());
+        } else {
+            accessibilityNodeInfo.setText(jb6.M0(2131753901, null));
+        }
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + gm.L(76.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(78.0f), 1073741824));
+    }
+
+    public void setClearsInputField(boolean z) {
+        this.h = z;
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        boolean z2;
+        bf0 bf0Var = this.a;
+        if (bf0Var.getImageReceiver().f1 != 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (z2 != z) {
+            bf0Var.getImageReceiver().f1 = z ? 1 : 0;
+            bf0Var.invalidate();
+        }
+        super.setPressed(z);
+    }
+
+    public void setScaled(boolean z) {
+        this.e = z;
+        this.d = System.currentTimeMillis();
+        invalidate();
     }
 }

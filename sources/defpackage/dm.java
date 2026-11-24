@@ -1,4 +1,6 @@
 package defpackage;
-public interface dm {
-    void invalidate();
+public final class dm {
+    public String a;
+    public int b;
+    public int c;
 }

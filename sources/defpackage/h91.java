@@ -1,147 +1,205 @@
 package defpackage;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.util.SparseArray;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.webrtc.RendererCommon;
+import org.telegram.messenger.ImageReceiver;
 public final class h91 extends FrameLayout {
-    public final aic a;
-    public final c91 b;
-    public final TextView c;
-    public final TextView d;
-    public final ImageView e;
-    public final f91 f;
-    public TLRPC.User h;
-    public boolean n;
-    public long r;
+    public static final int E = 0;
+    public final lka a;
+    public int b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+    public int h;
+    public SparseArray n;
+    public SparseArray r;
+    public final lj4 s;
+    public final SparseArray w;
+    public final SparseArray x;
+    public final k91 y;
 
-    public h91(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.n = false;
-        this.r = SystemClock.elapsedRealtime();
-        setBackgroundColor(-14999773);
-        aic aicVar = new aic(launchActivity, false, true, false, false);
-        this.a = aicVar;
-        RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
-        zhc zhcVar = aicVar.d;
-        zhcVar.setScalingType(scalingType);
-        zhcVar.setEnableHardwareScaler(true);
-        zhcVar.setRotateTextureWithScreen(true);
-        aicVar.b0 = (byte) 1;
-        zhcVar.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
-        View view = aicVar.h;
-        if (view != null) {
-            view.setVisibility(8);
+    public h91(k91 k91Var, Context context) {
+        super(context);
+        this.y = k91Var;
+        this.n = new SparseArray();
+        this.r = new SparseArray();
+        this.w = new SparseArray();
+        this.x = new SparseArray();
+        setWillNotDraw(false);
+        lka lkaVar = new lka(context);
+        this.a = lkaVar;
+        if (k91Var.f0 == 0 && k91Var.e0) {
+            lkaVar.setOnLongClickListener(new au(this, (byte) 1));
+            lkaVar.setOnClickListener(new g6(this, (byte) 2));
         }
-        addView(aicVar, nme.c(-1.0f, -1));
-        c91 c91Var = new c91(launchActivity);
-        this.b = c91Var;
-        addView(c91Var, nme.c(-1.0f, -1));
-        TextView textView = new TextView(launchActivity);
-        this.c = textView;
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 13.0f);
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(1);
-        textView.setShadowLayer(gl.L(2.0f), 0.0f, 0.0f, Integer.MIN_VALUE);
-        addView(textView, nme.d(-1, -2.0f, 81, 12.0f, 0.0f, 12.0f, 8.0f));
-        TextView textView2 = new TextView(launchActivity);
-        this.d = textView2;
-        textView2.setTextColor(-1275068417);
-        textView2.setTextSize(1, 11.0f);
-        textView2.setSingleLine();
-        textView2.setGravity(1);
-        textView2.setShadowLayer(gl.L(2.0f), 0.0f, 0.0f, Integer.MIN_VALUE);
-        textView2.setVisibility(8);
-        addView(textView2, nme.d(-1, -2.0f, 49, 32.0f, 8.0f, 32.0f, 0.0f));
-        f91 f91Var = new f91(launchActivity);
-        this.f = f91Var;
-        addView(f91Var, nme.c(-1.0f, -1));
-        f91Var.a();
-        ImageView imageView = new ImageView(launchActivity);
-        this.e = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(-1);
-        imageView.setBackground(bkb.K(gl.L(28.0f), 1711276032));
-        addView(imageView, nme.d(28, 28.0f, 51, 6.0f, 6.0f, 0.0f, 0.0f));
+        int i = cmb.h6;
+        fg0 f0 = cmb.f0(cmb.w0(null, i, false), 2, -1);
+        wmb M = anb.M(i);
+        lkaVar.setBackground(f0);
+        anb.j(lkaVar, f0, null, M, null);
+        lkaVar.setTextSize(15);
+        lkaVar.setTypeface(gm.o());
+        lkaVar.setGravity(17);
+        anb.W(lkaVar, cmb.F6, null);
+        addView(lkaVar, qoe.d(-1, 28.0f, 0, 0.0f, 12.0f, 0.0f, 4.0f));
+        lj4 lj4Var = new lj4(context, new f91(this, context));
+        this.s = lj4Var;
+        ((GestureDetector) lj4Var.a).setIsLongpressEnabled(k91Var.f0 == 0);
     }
 
-    public static boolean a(VoIPService voIPService) {
-        if (voIPService != null && voIPService.getRemoteVideoState() == 2) {
-            return true;
+    public final void a(int i, int i2, int i3, boolean z, boolean z2) {
+        float f;
+        float f2;
+        final float f3;
+        float f4;
+        final float f5;
+        SparseArray sparseArray = this.w;
+        ValueAnimator valueAnimator = (ValueAnimator) sparseArray.get(i);
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        return false;
-    }
-
-    public final void b() {
-        boolean z;
-        int i;
-        int i2;
-        int i3;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null) {
+        float measuredWidth = getMeasuredWidth() / 7.0f;
+        SparseArray sparseArray2 = this.x;
+        j91 j91Var = (j91) sparseArray2.get(i);
+        float f6 = 0.0f;
+        if (j91Var != null) {
+            float f7 = j91Var.a;
+            f2 = j91Var.b;
+            f3 = j91Var.c;
+            f = f7;
+        } else {
+            f = (measuredWidth / 2.0f) + (i2 * measuredWidth);
+            f2 = f;
+            f3 = 0.0f;
+        }
+        if (z) {
+            float f8 = measuredWidth / 2.0f;
+            f4 = (i2 * measuredWidth) + f8;
+            float f9 = (measuredWidth * i3) + f8;
+            f6 = 1.0f;
+            f5 = f9;
+        } else {
+            f4 = f;
+            f5 = f2;
+        }
+        final ?? obj = new Object();
+        obj.a = f;
+        obj.b = f2;
+        sparseArray2.put(i, obj);
+        if (z2) {
+            ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
+            duration.setInterpolator(vt3.e);
+            final float f10 = f4;
+            final float f11 = f;
+            final float f12 = f2;
+            final float f13 = f6;
+            duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                    float f14 = f10;
+                    float f15 = f11;
+                    float A = td4.A(f14, f15, floatValue, f15);
+                    j91 j91Var2 = obj;
+                    j91Var2.a = A;
+                    float f16 = f5;
+                    float f17 = f12;
+                    j91Var2.b = td4.A(f16, f17, floatValue, f17);
+                    float f18 = f13;
+                    float f19 = f3;
+                    j91Var2.c = td4.A(f18, f19, floatValue, f19);
+                    h91.this.invalidate();
+                }
+            });
+            duration.addListener(new g91(this, obj, f10, f5, f13, i, z));
+            duration.start();
+            sparseArray.put(i, duration);
             return;
         }
-        TLRPC.User user = sharedInstance.getUser();
-        TextView textView = this.c;
-        c91 c91Var = this.b;
-        if (user != null && user != this.h) {
-            this.h = user;
-            sharedInstance.getAccount();
-            c91Var.a(user);
-            textView.setText(l7c.q(user));
-        }
-        boolean a = a(sharedInstance);
-        boolean z2 = true;
-        aic aicVar = this.a;
-        if (a && !aicVar.d.isFirstFrameRendered() && SystemClock.elapsedRealtime() - this.r < 1200) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (!a || (!aicVar.d.isFirstFrameRendered() && !z)) {
-            z2 = false;
-        }
-        if (this.n != z2) {
-            this.n = z2;
-            if (z2) {
-                i2 = 8;
-            } else {
-                i2 = 0;
+        obj.a = f4;
+        obj.b = f5;
+        obj.c = f6;
+        invalidate();
+    }
+
+    public final void b(float f) {
+        if (this.n != null) {
+            for (int i = 0; i < this.d; i++) {
+                i91 i91Var = (i91) this.n.get(i, null);
+                if (i91Var != null) {
+                    float f2 = i91Var.m;
+                    i91Var.l = td4.A(i91Var.n, f2, f, f2);
+                    float f3 = i91Var.j;
+                    i91Var.i = td4.A(i91Var.k, f3, f, f3);
+                }
             }
-            c91Var.setVisibility(i2);
-            if (z2) {
-                i3 = 8;
-            } else {
-                i3 = 0;
+        }
+        invalidate();
+    }
+
+    public final void c(int i, int i2) {
+        float f;
+        if (this.n != null) {
+            for (int i3 = 0; i3 < this.d; i3++) {
+                i91 i91Var = (i91) this.n.get(i3, null);
+                if (i91Var != null) {
+                    i91Var.m = i91Var.l;
+                    int i4 = i91Var.h;
+                    if (i4 >= i && i4 <= i2) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.0f;
+                    }
+                    i91Var.n = f;
+                    i91Var.j = i91Var.i;
+                    if (i4 != i && i4 != i2) {
+                        i91Var.k = 0.0f;
+                    } else {
+                        i91Var.k = 1.0f;
+                    }
+                }
             }
-            textView.setVisibility(i3);
         }
-        if (sharedInstance.isMicMute()) {
-            i = 2131232432;
-        } else {
-            i = 2131232436;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.r != null) {
+            for (int i = 0; i < this.r.size(); i++) {
+                ((ImageReceiver) this.r.valueAt(i)).I();
+            }
         }
-        this.e.setImageResource(i);
-        this.f.c();
-        int callState = sharedInstance.getCallState();
-        TextView textView2 = this.d;
-        if (callState == 5) {
-            textView2.setText(k96.M0(2131743011, null));
-            textView2.setVisibility(0);
-        } else if (callState != 3) {
-            textView2.setText(k96.M0(2131743177, null));
-            textView2.setVisibility(0);
-        } else {
-            textView2.setVisibility(8);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.r != null) {
+            for (int i = 0; i < this.r.size(); i++) {
+                ((ImageReceiver) this.r.valueAt(i)).K();
+            }
         }
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r36) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h91.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L((this.f * 52) + 44), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return ((GestureDetector) this.s.a).onTouchEvent(motionEvent);
     }
 }

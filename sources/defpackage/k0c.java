@@ -1,42 +1,96 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class k0c implements Runnable {
-    public final byte a;
-    public final b1c b;
-    public final long c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Wallet.c;
+public final class k0c extends b6c {
+    public static final int b = 0;
 
-    public k0c(b1c b1cVar, long j, byte b) {
-        this.a = b;
-        this.b = b1cVar;
-        this.c = j;
+    static {
+        b6c.h(new b6c());
+    }
+
+    public static c6c i(TL_wallet.walletTransaction wallettransaction, l0c l0cVar) {
+        String a;
+        c6c K = c6c.K(k0c.class);
+        j0c j0cVar = new j0c(wallettransaction);
+        j0cVar.set(wallettransaction);
+        j0cVar.id = wallettransaction.id;
+        j0cVar.random_id = wallettransaction.random_id;
+        j0cVar.gasless = wallettransaction.gasless;
+        j0cVar.gaslessMessageBodyHash = wallettransaction.gaslessMessageBodyHash;
+        j0cVar.normalMessageBodyHash = wallettransaction.normalMessageBodyHash;
+        j0cVar.nft = wallettransaction.nft;
+        K.H = j0cVar;
+        K.I = l0cVar;
+        TL_wallet.WalletTransactionPeer walletTransactionPeer = wallettransaction.peer;
+        if (walletTransactionPeer == null) {
+            a = null;
+        } else {
+            a = l0cVar.a(walletTransactionPeer.address);
+        }
+        K.m = a;
+        return K;
+    }
+
+    public static boolean j(TL_wallet.walletTransaction wallettransaction, TL_wallet.walletTransaction wallettransaction2) {
+        TL_wallet.walletTransaction wallettransaction3;
+        TL_wallet.walletTransaction wallettransaction4;
+        if (wallettransaction instanceof j0c) {
+            wallettransaction3 = ((j0c) wallettransaction).a;
+        } else {
+            wallettransaction3 = wallettransaction;
+        }
+        if (wallettransaction2 instanceof j0c) {
+            wallettransaction4 = ((j0c) wallettransaction2).a;
+        } else {
+            wallettransaction4 = wallettransaction2;
+        }
+        if (wallettransaction3 != wallettransaction4 && !c.t0(wallettransaction, wallettransaction2) && !c.t0(wallettransaction3, wallettransaction4)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        long j = this.c;
-        b1c b1cVar = this.b;
-        switch (b) {
-            case 0:
-                kk7.f(b1cVar.currentAccount).k(130, Long.valueOf(j));
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) b1cVar.n.S.f(j);
-                if (arrayList != null) {
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i = 0; i < arrayList.size(); i++) {
-                        k27 k27Var = (k27) arrayList.get(i);
-                        if (k27Var != null && k27Var.k != null) {
-                            arrayList2.add(b1cVar.getMessagesStorage().c0(k27Var.e1(), k27.B0(k27Var.k)));
-                        } else {
-                            arrayList2.add(null);
-                        }
-                    }
-                    gl.d3(new nn6(b1cVar, arrayList2, arrayList, (byte) 5));
-                    return;
-                }
-                return;
+    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
+        ((m0c) view).h((TL_wallet.walletTransaction) c6cVar.H, (l0c) c6cVar.I, z);
+    }
+
+    @Override
+    public final boolean c(c6c c6cVar, c6c c6cVar2) {
+        Object obj = c6cVar.H;
+        if (obj instanceof TL_wallet.walletTransaction) {
+            Object obj2 = c6cVar2.H;
+            if (obj2 instanceof TL_wallet.walletTransaction) {
+                return ((TL_wallet.walletTransaction) obj).equals((TL_wallet.walletTransaction) obj2);
+            }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
+        return new m0c(i, ylbVar, context);
+    }
+
+    @Override
+    public final boolean e(c6c c6cVar, c6c c6cVar2) {
+        Object obj = c6cVar.H;
+        if (obj instanceof TL_wallet.walletTransaction) {
+            Object obj2 = c6cVar2.H;
+            if (obj2 instanceof TL_wallet.walletTransaction) {
+                return j((TL_wallet.walletTransaction) obj, (TL_wallet.walletTransaction) obj2);
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean f() {
+        return true;
     }
 }

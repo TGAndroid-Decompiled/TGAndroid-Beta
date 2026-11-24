@@ -1,21 +1,20 @@
 package defpackage;
-public final class pg7 extends gw2 {
-    public Object a;
-    public Object b;
-    public Object c;
-    public Object d;
-    public final rg7 e;
-    public int f;
 
-    public pg7(rg7 rg7Var, fw2 fw2Var) {
-        super(fw2Var);
-        this.e = rg7Var;
+import android.app.PendingIntent;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class pg7 extends b4 {
+    public static final Parcelable.Creator<pg7> CREATOR = new d3d((byte) 1);
+    public final PendingIntent a;
+
+    public pg7(PendingIntent pendingIntent) {
+        this.a = pendingIntent;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.d = obj;
-        this.f |= Integer.MIN_VALUE;
-        return this.e.c(null, this);
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.k(parcel, 1, this.a, i);
+        mve.s(parcel, r);
     }
 }

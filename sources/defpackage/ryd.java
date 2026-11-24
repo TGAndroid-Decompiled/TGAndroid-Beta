@@ -1,19 +1,17 @@
 package defpackage;
+public final class ryd implements cq7 {
+    public static final ryd a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ryd extends b4 {
-    public static final Parcelable.Creator<ryd> CREATOR = new qyd((byte) 8);
-    public final String a;
-
-    public ryd(String str) {
-        this.a = str;
+    static {
+        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)), 3)), 4)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

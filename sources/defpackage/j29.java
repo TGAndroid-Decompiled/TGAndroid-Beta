@@ -1,19 +1,21 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-public final class j29 implements cq9 {
-    public final LinkedHashSet a = new LinkedHashSet();
+import android.animation.ValueAnimator;
+public final class j29 implements ValueAnimator.AnimatorUpdateListener {
+    public final float a;
+    public final v29 b;
 
-    public j29(oo ooVar) {
-        ooVar.f("androidx.savedstate.Restarter", this);
+    public j29(v29 v29Var, float f) {
+        this.b = v29Var;
+        this.a = f;
     }
 
     @Override
-    public final Bundle c() {
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("classes_to_restore", new ArrayList<>(this.a));
-        return bundle;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        v29 v29Var = this.b;
+        v29Var.p0 = floatValue;
+        v29Var.o0 = (1.0f - floatValue) * this.a;
+        v29Var.invalidate();
     }
 }

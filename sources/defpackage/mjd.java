@@ -1,19 +1,17 @@
 package defpackage;
+public final class mjd implements cq7 {
+    public static final mjd a = new Object();
 
-import java.util.concurrent.Executor;
-public final class mjd {
-    public static final mjd d = new mjd();
-    public final Runnable a;
-    public final Executor b;
-    public mjd c;
-
-    public mjd() {
-        this.a = null;
-        this.b = null;
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)));
     }
 
-    public mjd(Runnable runnable, Executor executor) {
-        this.a = runnable;
-        this.b = executor;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

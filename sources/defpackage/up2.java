@@ -1,66 +1,68 @@
 package defpackage;
 
-import android.os.Looper;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import java.util.concurrent.Executor;
-public final class up2 implements ViewTreeObserver.OnDrawListener, Runnable, Executor {
-    public Runnable b;
-    public final wp2 d;
-    public final long a = SystemClock.uptimeMillis() + 10000;
-    public boolean c = false;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_communities;
+public final class up2 implements jac {
+    public final byte a;
+    public final xp2 b;
 
-    public up2(wp2 wp2Var) {
-        this.d = wp2Var;
-    }
-
-    public final void a(View view) {
-        if (!this.c) {
-            this.c = true;
-            view.getViewTreeObserver().addOnDrawListener(this);
-        }
+    public up2(xp2 xp2Var, byte b) {
+        this.a = b;
+        this.b = xp2Var;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        this.b = runnable;
-        View decorView = this.d.getWindow().getDecorView();
-        if (this.c) {
-            if (Looper.myLooper() == Looper.getMainLooper()) {
-                decorView.invalidate();
+    public final void a(Object obj, Object obj2) {
+        byte b = this.a;
+        boolean z = false;
+        xp2 xp2Var = this.b;
+        switch (b) {
+            case 0:
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                xp2Var.q.dismiss();
+                xp2Var.q = null;
+                xp2Var.r = 0;
+                if (tL_error != null) {
+                    xp2Var.c.g0(tL_error, false);
+                    return;
+                }
+                wp2 wp2Var = xp2Var.h;
+                if (wp2Var != null) {
+                    wp2Var.close();
+                    return;
+                }
                 return;
-            } else {
-                decorView.postInvalidate();
+            case 1:
+                TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                xp2Var.m = false;
+                if (peerLinkRequests != null) {
+                    xp2Var.j.addAll(peerLinkRequests.requests);
+                    String str = peerLinkRequests.next_offset;
+                    xp2Var.k = str;
+                    xp2Var.l = peerLinkRequests.total_count;
+                    if (str == null) {
+                        z = true;
+                    }
+                    xp2Var.n = z;
+                    xp2Var.a();
+                    wp2 wp2Var2 = xp2Var.h;
+                    if (wp2Var2 != null) {
+                        wp2Var2.U();
+                        return;
+                    }
+                    return;
+                }
                 return;
-            }
+            default:
+                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                if (tL_error3 != null) {
+                    xp2Var.c.g0(tL_error3, false);
+                    return;
+                }
+                return;
         }
-        decorView.postOnAnimation(new mk2(this, (byte) 4));
-    }
-
-    @Override
-    public final void onDraw() {
-        boolean z;
-        Runnable runnable = this.b;
-        if (runnable != null) {
-            runnable.run();
-            this.b = null;
-            qx qxVar = this.d.s;
-            synchronized (qxVar.c) {
-                z = qxVar.b;
-            }
-            if (z) {
-                this.c = false;
-                this.d.getWindow().getDecorView().post(this);
-            }
-        } else if (SystemClock.uptimeMillis() > this.a) {
-            this.c = false;
-            this.d.getWindow().getDecorView().post(this);
-        }
-    }
-
-    @Override
-    public final void run() {
-        this.d.getWindow().getDecorView().getViewTreeObserver().removeOnDrawListener(this);
     }
 }

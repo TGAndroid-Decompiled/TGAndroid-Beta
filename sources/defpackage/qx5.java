@@ -1,124 +1,85 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class qx5 implements Runnable {
-    public final byte a = 1;
-    public final LaunchActivity b;
-    public final TLObject c;
-    public final int d;
-    public final String e;
-    public final TLRPC.TL_error f;
-    public final kz5 h;
+import android.util.Log;
+import j$.util.DesugarCollections;
+import java.util.HashMap;
+import java.util.Map;
+public final class qx5 {
+    public final HashMap a = new HashMap();
+    public final short b;
 
-    public qx5(LaunchActivity launchActivity, TLObject tLObject, int i, String str, TLRPC.TL_error tL_error, kz5 kz5Var) {
-        this.b = launchActivity;
-        this.c = tLObject;
-        this.d = i;
-        this.e = str;
-        this.f = tL_error;
-        this.h = kz5Var;
+    public qx5(int i) {
+        this.b = i;
     }
 
-    @Override
-    public final void run() {
-        u21 b0;
-        int i;
-        int i2;
-        String str;
-        byte b = this.a;
-        kz5 kz5Var = this.h;
-        TLRPC.TL_error tL_error = this.f;
-        String str2 = this.e;
-        TLObject tLObject = this.c;
-        switch (b) {
-            case 0:
-                String str3 = LaunchActivity.C1;
-                if (tL_error != null) {
-                    d S = LaunchActivity.S();
-                    if (S != null) {
-                        if ("STARGIFT_ALREADY_BURNED".equalsIgnoreCase(tL_error.text)) {
-                            b0 = u21.b0(S);
-                            i = 2131624021;
-                            i2 = 2131743641;
-                        } else {
-                            b0 = u21.b0(S);
-                            i = 2131624012;
-                            i2 = 2131743642;
-                        }
-                        ir2.v(null, i2, b0, i, 36);
-                    } else {
-                        return;
-                    }
-                } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
-                    TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity = this.b;
-                    na7.q1(launchActivity.P).a4(tL_payments_uniqueStarGift.users, false);
-                    na7.q1(launchActivity.P).U3(tL_payments_uniqueStarGift.chats, false);
-                    d S2 = LaunchActivity.S();
-                    TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
-                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        vqa vqaVar = new vqa(launchActivity, this.d, 0L, null, null);
-                        vqaVar.m2(str2, (TL_stars.TL_starGiftUnique) starGift, null);
-                        if (S2 != null) {
-                            if (S2.getLastStoryViewer() != null && S2.getLastStoryViewer().K0) {
-                                S2.getLastStoryViewer().u(vqaVar);
-                            } else {
-                                S2.showDialog(vqaVar);
-                            }
-                        } else {
-                            vqaVar.show();
-                        }
-                    }
-                }
-                try {
-                    kz5Var.run();
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return;
-                }
-            default:
-                String str4 = LaunchActivity.C1;
-                boolean z = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity2 = this.b;
-                if (z) {
-                    TLRPC.User user = (TLRPC.User) tLObject;
-                    na7.q1(this.d).Z3(user, false, false);
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.id);
-                    launchActivity2.t0(new mu1(bundle));
-                } else {
-                    StringBuilder p = ug8.p("cant import contact token. token=", str2, " err=");
-                    if (tL_error == null) {
-                        str = null;
-                    } else {
-                        str = tL_error.text;
-                    }
-                    p.append(str);
-                    fa4.d(p.toString());
-                    yjb.x(null, 2131747942, u21.b0((d) b00.f(1, launchActivity2.e0)), null);
-                }
-                try {
-                    kz5Var.run();
-                    return;
-                } catch (Exception e2) {
-                    fa4.g(e2, true);
-                    return;
-                }
+    public static String b(int i, String str) {
+        if (str != null) {
+            str = str.trim();
+            if (str.length() > i) {
+                return str.substring(0, i);
+            }
         }
+        return str;
     }
 
-    public qx5(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i, String str, kz5 kz5Var) {
-        this.b = launchActivity;
-        this.f = tL_error;
-        this.c = tLObject;
-        this.d = i;
-        this.e = str;
-        this.h = kz5Var;
+    public final synchronized Map a() {
+        return DesugarCollections.unmodifiableMap(new HashMap(this.a));
+    }
+
+    public final synchronized boolean c(String str, String str2) {
+        boolean equals;
+        String b = b(this.b, str);
+        if (this.a.size() >= 64 && !this.a.containsKey(b)) {
+            Log.w("FirebaseCrashlytics", "Ignored entry \"" + str + "\" when adding custom keys. Maximum allowable: 64", null);
+            return false;
+        }
+        String b2 = b(this.b, str2);
+        String str3 = (String) this.a.get(b);
+        if (str3 == null) {
+            if (b2 == null) {
+                equals = true;
+            } else {
+                equals = false;
+            }
+        } else {
+            equals = str3.equals(b2);
+        }
+        if (equals) {
+            return false;
+        }
+        HashMap hashMap = this.a;
+        if (str2 == null) {
+            b2 = "";
+        }
+        hashMap.put(b, b2);
+        return true;
+    }
+
+    public final synchronized void d(Map map) {
+        String b;
+        int i = 0;
+        for (Map.Entry entry : map.entrySet()) {
+            String str = (String) entry.getKey();
+            if (str != null) {
+                String b2 = b(this.b, str);
+                if (this.a.size() >= 64 && !this.a.containsKey(b2)) {
+                    i++;
+                } else {
+                    String str2 = (String) entry.getValue();
+                    HashMap hashMap = this.a;
+                    if (str2 == null) {
+                        b = "";
+                    } else {
+                        b = b(this.b, str2);
+                    }
+                    hashMap.put(b2, b);
+                }
+            } else {
+                throw new IllegalArgumentException("Custom attribute key must not be null.");
+            }
+        }
+        if (i > 0) {
+            Log.w("FirebaseCrashlytics", "Ignored " + i + " entries when adding custom keys. Maximum allowable: 64", null);
+        }
     }
 }

@@ -1,56 +1,125 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.graphics.RectF;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ProfileActivity;
-public final class un8 implements k7b {
-    public final ProfileActivity a;
+public final class un8 implements qac {
+    public final byte a = 2;
+    public final boolean b;
+    public final Object c;
+    public final jm7 d;
+    public final Object e;
+    public final Object f;
+    public final Object g;
 
-    public un8(ProfileActivity profileActivity) {
-        this.a = profileActivity;
+    public un8(vz9 vz9Var, boolean z, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
+        this.d = vz9Var;
+        this.b = z;
+        this.e = linkedHashSet;
+        this.c = str;
+        this.f = hashMap;
+        this.g = arrayList;
     }
 
     @Override
-    public final o7b b(long j) {
-        float f;
-        ProfileActivity profileActivity = this.a;
-        if (j == profileActivity.a()) {
-            profileActivity.f0.setRoundRadiusForExpand((int) gl.R1(profileActivity.l2(), 0.0f, profileActivity.l2));
-            xm8 xm8Var = profileActivity.f0;
-            boolean c0 = hc2.c0(profileActivity.F2);
-            if (xm8Var != null && xm8Var.getRootView() != null) {
-                float scaleX = ((View) xm8Var.getParent()).getScaleX();
-                float f2 = xm8Var.getImageReceiver().N0 * scaleX;
-                if (c0) {
-                    f = 0.32f * f2;
+    public final void a(Object obj) {
+        boolean z;
+        ArrayList<TLRPC.Document> arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        byte b = this.a;
+        Object obj2 = this.c;
+        Object obj3 = this.g;
+        Object obj4 = this.f;
+        Object obj5 = this.e;
+        jm7 jm7Var = this.d;
+        switch (b) {
+            case 0:
+                ProfileActivity profileActivity = (ProfileActivity) jm7Var;
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj5;
+                TLRPC.User user = (TLRPC.User) obj4;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) obj3;
+                String str = (String) obj2;
+                Integer num = (Integer) obj;
+                RectF rectF = ProfileActivity.e7;
+                boolean z2 = this.b;
+                if (channelParticipant != null) {
+                    profileActivity.h3(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z2);
+                    return;
                 } else {
-                    f = f2;
+                    profileActivity.h3(num.intValue(), user, chatParticipant, null, null, str, z2);
+                    return;
                 }
-                m7b m7bVar = new m7b(xm8Var, (byte) 0);
-                int[] iArr = new int[2];
-                float[] fArr = new float[2];
-                xm8Var.getRootView().getLocationOnScreen(iArr);
-                gl.p1(xm8Var, (ViewGroup) xm8Var.getRootView(), fArr);
-                float f3 = (xm8Var.getImageReceiver().L0 * scaleX) + iArr[0] + fArr[0];
-                float f4 = (xm8Var.getImageReceiver().M0 * scaleX) + iArr[1] + fArr[1];
-                m7bVar.c.set(f3, f4, f3 + f2, f2 + f4);
-                m7bVar.e = xm8Var.getImageReceiver();
-                m7bVar.b = f;
-                return m7bVar;
-            }
-            return null;
+            case 1:
+                vz9 vz9Var = (vz9) jm7Var;
+                LinkedHashSet linkedHashSet = (LinkedHashSet) obj5;
+                String str2 = (String) obj2;
+                HashMap hashMap = (HashMap) obj4;
+                ArrayList arrayList3 = (ArrayList) obj3;
+                Runnable runnable = (Runnable) obj;
+                int i = vz9Var.W;
+                if (this.b) {
+                    ArrayList t0 = hs6.d0(i).t0(5);
+                    for (int i2 = 0; i2 < t0.size(); i2++) {
+                        if (((TLRPC.TL_messages_stickerSet) t0.get(i2)).documents != null && (arrayList2 = ((TLRPC.TL_messages_stickerSet) t0.get(i2)).documents) != null) {
+                            for (int i3 = 0; i3 < arrayList2.size(); i3++) {
+                                String V = k47.V(arrayList2.get(i3), null, null);
+                                long j = arrayList2.get(i3).id;
+                                if (V != null && !linkedHashSet.contains(Long.valueOf(j)) && str2.contains(V.toLowerCase())) {
+                                    linkedHashSet.add(Long.valueOf(j));
+                                }
+                            }
+                        }
+                    }
+                    ArrayList arrayList4 = hs6.d0(i).t0[1];
+                    for (int i4 = 0; i4 < arrayList4.size(); i4++) {
+                        if ((arrayList4.get(i4) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i4)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i4)).documents) != null) {
+                            for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                                String V2 = k47.V(arrayList.get(i5), null, null);
+                                long j2 = arrayList.get(i5).id;
+                                if (V2 != null && !linkedHashSet.contains(Long.valueOf(j2)) && str2.contains(V2)) {
+                                    linkedHashSet.add(Long.valueOf(j2));
+                                }
+                            }
+                        }
+                    }
+                    runnable.run();
+                    return;
+                }
+                hs6 d0 = hs6.d0(i);
+                String[] strArr = vz9.c2;
+                ki kiVar = new ki(vz9Var, linkedHashSet, hashMap, arrayList3, runnable);
+                if (vz9Var.a0 == 3) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                d0.X(strArr, str2, false, kiVar, true, z, false, false, 30);
+                return;
+            default:
+                ((a6a) jm7Var).O((TLObject) obj, (ArrayList) obj5, (ArrayList) obj4, (ArrayList) obj3, (m5a) obj2, this.b);
+                return;
         }
-        return null;
     }
 
-    @Override
-    public final void c(long j, sma smaVar) {
-        ProfileActivity profileActivity = this.a;
-        profileActivity.f0.setHasStories(profileActivity.M2());
-        if (j == profileActivity.a() && profileActivity.p2 && profileActivity.l2 > 0.0f) {
-            profileActivity.c.g1(0, profileActivity.c2() - profileActivity.a.getPaddingTop());
-            profileActivity.a.post(new v36(profileActivity, (byte) 16));
-        }
-        gl.e3(smaVar, 30L);
+    public un8(a6a a6aVar, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, m5a m5aVar, boolean z) {
+        this.d = a6aVar;
+        this.e = arrayList;
+        this.f = arrayList2;
+        this.g = arrayList3;
+        this.c = m5aVar;
+        this.b = z;
+    }
+
+    public un8(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z, String str) {
+        this.d = profileActivity;
+        this.e = channelParticipant;
+        this.f = user;
+        this.g = chatParticipant;
+        this.b = z;
+        this.c = str;
     }
 }

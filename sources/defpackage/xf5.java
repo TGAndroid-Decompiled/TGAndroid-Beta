@@ -1,206 +1,167 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-public final class xf5 extends HorizontalScrollView {
-    public static final RectF w = new RectF();
-    public final wjb a;
-    public final lm b;
-    public final lm c;
-    public final LinearLayout d;
-    public final Paint e;
-    public final TextPaint f;
-    public boolean h;
-    public int n;
-    public final Path r;
-    public final Path s;
+import java.util.Collections;
+import java.util.List;
+public final class xf5 {
+    public final List a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final int g;
+    public final int h;
+    public final int i;
+    public final int j;
+    public final int k;
+    public final float l;
+    public final int m;
+    public final String n;
+    public final xvc o;
 
-    public xf5(Context context, wjb wjbVar) {
-        super(context);
-        this.e = new Paint(1);
-        TextPaint textPaint = new TextPaint(1);
-        this.f = textPaint;
-        this.r = new Path();
-        this.s = new Path();
-        this.a = wjbVar;
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.d = linearLayout;
-        linearLayout.setLayerType(0, null);
-        linearLayout.setOrientation(0);
-        addView(linearLayout, nme.x(-1, -1, 8388611));
-        textPaint.setTextSize(gl.L(13.0f));
-        textPaint.setTypeface(gl.o());
-        lm lmVar = new lm(new Runnable(this) {
-            public final xf5 b;
+    public xf5(List list, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, float f, int i11, String str, xvc xvcVar) {
+        this.a = list;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = i4;
+        this.f = i5;
+        this.g = i6;
+        this.h = i7;
+        this.i = i8;
+        this.j = i9;
+        this.k = i10;
+        this.l = f;
+        this.m = i11;
+        this.n = str;
+        this.o = xvcVar;
+    }
 
-            {
-                this.b = this;
+    public static xf5 a(yw7 yw7Var, boolean z, xvc xvcVar) {
+        String str;
+        boolean z2;
+        List singletonList;
+        g40 h;
+        int i;
+        int i2 = 4;
+        try {
+            if (z) {
+                yw7Var.O(4);
+            } else {
+                yw7Var.O(21);
             }
-
-            @Override
-            public final void run() {
-                byte b = r2;
-                int i = 0;
-                xf5 xf5Var = this.b;
-                switch (b) {
-                    case 0:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout2 = xf5Var.d;
-                        linearLayout2.invalidate();
-                        while (i < linearLayout2.getChildCount()) {
-                            linearLayout2.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
-                    default:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout3 = xf5Var.d;
-                        linearLayout3.invalidate();
-                        while (i < linearLayout3.getChildCount()) {
-                            linearLayout3.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
+            int A = yw7Var.A() & 3;
+            int A2 = yw7Var.A();
+            int i3 = yw7Var.b;
+            int i4 = 0;
+            int i5 = 0;
+            int i6 = 0;
+            while (true) {
+                z2 = true;
+                if (i5 >= A2) {
+                    break;
                 }
-            }
-        });
-        this.b = lmVar;
-        lmVar.g = 180L;
-        lm lmVar2 = new lm(new Runnable(this) {
-            public final xf5 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void run() {
-                byte b = r2;
-                int i = 0;
-                xf5 xf5Var = this.b;
-                switch (b) {
-                    case 0:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout2 = xf5Var.d;
-                        linearLayout2.invalidate();
-                        while (i < linearLayout2.getChildCount()) {
-                            linearLayout2.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
-                    default:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout3 = xf5Var.d;
-                        linearLayout3.invalidate();
-                        while (i < linearLayout3.getChildCount()) {
-                            linearLayout3.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
+                yw7Var.O(1);
+                int H = yw7Var.H();
+                for (int i7 = 0; i7 < H; i7++) {
+                    int H2 = yw7Var.H();
+                    i6 += H2 + 4;
+                    yw7Var.O(H2);
                 }
+                i5++;
             }
-        });
-        this.c = lmVar2;
-        lmVar2.g = 180L;
-        setVerticalScrollBarEnabled(false);
-        setHorizontalScrollBarEnabled(false);
-    }
-
-    public final void a(int i, boolean z) {
-        this.n = i;
-        LinearLayout linearLayout = this.d;
-        boolean z2 = !z;
-        this.b.e(z2, linearLayout.getChildAt(i).getLeft());
-        this.c.e(z2, linearLayout.getChildAt(i).getRight());
-    }
-
-    public final void b(ArrayList arrayList, uc7 uc7Var) {
-        LinearLayout linearLayout = this.d;
-        linearLayout.removeAllViews();
-        for (int i = 0; i < arrayList.size(); i++) {
-            CharSequence charSequence = (CharSequence) arrayList.get(i);
-            sb sbVar = new sb(getContext(), (byte) 15);
-            sbVar.setDrawingCacheEnabled(false);
-            sbVar.setOnClickListener(new wg(this, i, uc7Var, (byte) 8));
-            sbVar.setPadding(gl.L(12.0f), gl.L(5.0f), gl.L(12.0f), gl.L(5.0f));
-            LinearLayout.LayoutParams o = nme.o(-2, -2);
-            if (i < arrayList.size() - 1) {
-                o.rightMargin = gl.L(4.0f);
+            yw7Var.N(i3);
+            byte[] bArr = new byte[i6];
+            xvc xvcVar2 = xvcVar;
+            int i8 = -1;
+            int i9 = -1;
+            int i10 = -1;
+            int i11 = -1;
+            int i12 = -1;
+            int i13 = -1;
+            int i14 = -1;
+            int i15 = -1;
+            int i16 = -1;
+            int i17 = -1;
+            float f = 1.0f;
+            String str2 = null;
+            int i18 = 0;
+            int i19 = 0;
+            while (i18 < A2) {
+                int A3 = yw7Var.A() & 63;
+                int H3 = yw7Var.H();
+                int i20 = i4;
+                xvc xvcVar3 = xvcVar2;
+                while (i20 < H3) {
+                    boolean z3 = z2;
+                    int H4 = yw7Var.H();
+                    int i21 = A;
+                    System.arraycopy(add.a, i4, bArr, i19, i2);
+                    int i22 = i19 + 4;
+                    System.arraycopy(yw7Var.a, yw7Var.b, bArr, i22, H4);
+                    if (A3 == 32 && i20 == 0) {
+                        xvcVar3 = add.j(i22, i22 + H4, bArr);
+                    } else {
+                        if (A3 == 33 && i20 == 0) {
+                            wj7 i23 = add.i(bArr, i22, i22 + H4, xvcVar3);
+                            i8 = i23.a + 1;
+                            i9 = i23.g;
+                            int i24 = i23.h;
+                            i11 = i23.c + 8;
+                            i12 = i23.d + 8;
+                            int i25 = i23.k;
+                            i10 = i24;
+                            int i26 = i23.l;
+                            int i27 = i23.m;
+                            float f2 = i23.i;
+                            int i28 = i23.j;
+                            tj7 tj7Var = i23.b;
+                            if (tj7Var != null) {
+                                i = i28;
+                                str2 = jl2.a(tj7Var.a, tj7Var.c, tj7Var.d, tj7Var.f, tj7Var.b, tj7Var.e);
+                            } else {
+                                i = i28;
+                            }
+                            i17 = i;
+                            f = f2;
+                            i15 = i27;
+                            i14 = i26;
+                            i13 = i25;
+                        } else if (A3 == 39 && i20 == 0 && (h = add.h(i22, i22 + H4, bArr)) != null && xvcVar3 != null) {
+                            i4 = 0;
+                            if (h.a == ((sj7) ((mo5) xvcVar3.b).get(0)).b) {
+                                i16 = 4;
+                            } else {
+                                i16 = 5;
+                            }
+                        }
+                        i4 = 0;
+                    }
+                    i19 = i22 + H4;
+                    yw7Var.O(H4);
+                    i20++;
+                    z2 = z3;
+                    A = i21;
+                    i2 = 4;
+                }
+                i18++;
+                xvcVar2 = xvcVar3;
+                i2 = 4;
             }
-            sbVar.b = new tgb(charSequence, this.f);
-            linearLayout.addView(sbVar, o);
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int v0;
-        int v02;
-        RectF rectF = w;
-        rectF.set(this.b.c(), 0.0f, this.c.c(), getMeasuredHeight());
-        Path path = this.r;
-        path.rewind();
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, gl.L(13.0f), gl.L(13.0f), direction);
-        path.close();
-        Path path2 = this.s;
-        path2.rewind();
-        LinearLayout linearLayout = this.d;
-        path2.addRect(0.0f, 0.0f, linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
-        path2.addRoundRect(rectF, gl.L(13.0f), gl.L(13.0f), Path.Direction.CCW);
-        path2.close();
-        boolean z = this.h;
-        wjb wjbVar = this.a;
-        if (z) {
-            v0 = bkb.p1(0.1f, bkb.v0(bkb.Ei, wjbVar));
-        } else {
-            v0 = bkb.v0(bkb.x6, wjbVar) & 520093695;
-        }
-        Paint paint = this.e;
-        paint.setColor(v0);
-        canvas.drawPath(path, paint);
-        int v03 = bkb.v0(bkb.x6, wjbVar);
-        TextPaint textPaint = this.f;
-        textPaint.setColor(v03);
-        canvas.save();
-        canvas.clipPath(path2);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (this.h) {
-            v02 = bkb.v0(bkb.Ei, wjbVar);
-        } else {
-            v02 = bkb.v0(bkb.X8, wjbVar);
-        }
-        textPaint.setColor(v02);
-        canvas.save();
-        canvas.clipPath(path);
-        for (int i = 0; i < linearLayout.getChildCount(); i++) {
-            View childAt = linearLayout.getChildAt(i);
-            if (rectF.right >= childAt.getLeft() && rectF.left <= childAt.getRight()) {
-                canvas.save();
-                canvas.translate(childAt.getLeft(), childAt.getTop());
-                childAt.draw(canvas);
-                canvas.restore();
+            int i29 = A;
+            if (i6 == 0) {
+                singletonList = Collections.EMPTY_LIST;
+            } else {
+                singletonList = Collections.singletonList(bArr);
             }
+            return new xf5(singletonList, i29 + 1, i8, i9, i10, i11, i12, i13, i14, i15, i16, f, i17, str2, xvcVar2);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            if (z) {
+                str = "L-HEVC config";
+            } else {
+                str = "HEVC config";
+            }
+            throw bx7.a("Error parsing".concat(str), e);
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        a(this.n, false);
-    }
-
-    public void setAccent(boolean z) {
-        this.h = z;
     }
 }

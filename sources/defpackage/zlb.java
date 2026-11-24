@@ -1,48 +1,51 @@
 package defpackage;
 
-import android.graphics.Point;
-public final class zlb extends tnd {
-    public final byte a;
-    public final gk7 b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class zlb extends Drawable {
+    public float[] b;
+    public Path a = new Path();
+    public boolean c = true;
 
-    public zlb(gk7 gk7Var, byte b) {
-        this.a = b;
-        this.b = gk7Var;
+    public zlb(float f, float f2) {
+        this.b = r0;
+        float L = gm.L(f);
+        float L2 = gm.L(f2);
+        float[] fArr = {L, L, L, L, L2, L2, L2, L2};
     }
 
     @Override
-    public final void a() {
-        switch (this.a) {
-            case 1:
-                ((hgc) this.b).w.invalidate();
-                return;
-            default:
-                return;
+    public final void draw(Canvas canvas) {
+        Path path = this.a;
+        if (this.c) {
+            this.c = false;
+            path.reset();
+            RectF rectF = gm.P;
+            rectF.set(getBounds());
+            path.addRoundRect(rectF, this.b, Path.Direction.CW);
         }
+        canvas.drawPath(path, cmb.z);
     }
 
     @Override
-    public final void b(int i, int i2) {
-        boolean z;
-        switch (this.a) {
-            case 0:
-                Point point = gl.q;
-                boolean z2 = false;
-                if (point.x <= point.y) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (i <= i2) {
-                    z2 = true;
-                }
-                if (z == z2) {
-                    ((qmb) this.b).z0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.c = true;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

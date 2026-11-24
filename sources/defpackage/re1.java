@@ -1,83 +1,83 @@
 package defpackage;
 
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
-public final class re1 implements uc7 {
-    public final byte a;
-    public final Object b;
+import android.animation.ValueAnimator;
+import java.net.URL;
+public final class re1 {
+    public int a;
+    public long b;
+    public Object c;
 
-    public re1(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public re1(int i, URL url, long j) {
+        this.a = i;
+        this.c = url;
+        this.b = j;
     }
 
-    @Override
-    public final void a(int i) {
-        k98 k98Var;
-        byte b = this.a;
-        oj ojVar = oj.b;
-        oj ojVar2 = oj.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                ((nf1) obj).W0(true);
-                return;
-            case 1:
-                c42 c42Var = (c42) obj;
-                x02 x02Var = c42Var.b;
-                ij.X(x02Var.G3, x02Var.V0(), x02Var.R0() + 1, new jq0(c42Var, i, (byte) 1));
-                return;
-            case 2:
-                lu4 lu4Var = (lu4) obj;
-                if (i == 0) {
-                    ojVar = ojVar2;
-                }
-                lu4Var.E0(nj.j(0L, ojVar), true, false, true);
-                lu4Var.r1.setText("");
-                return;
-            case 3:
-                ((NotificationsCustomSettingsActivity) obj).p0(true);
-                return;
-            case 4:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                Drawable[] drawableArr = PhotoViewer.f9;
-                if (photoViewer.E != null && (k98Var = photoViewer.f0) != null && i > 0) {
-                    u21.F(k98Var, true).j();
-                    return;
-                }
-                return;
-            case 5:
-                ProfileActivity profileActivity = (ProfileActivity) obj;
-                RectF rectF = ProfileActivity.Z6;
-                if (i == 1) {
-                    profileActivity.getNotificationCenter().n(profileActivity, 4);
-                    profileActivity.getNotificationCenter().k(4, new Object[0]);
-                    profileActivity.J1 = (byte) 0;
-                    profileActivity.finishFragment();
-                    return;
-                }
-                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.e1));
-                return;
-            case 6:
-                aqa aqaVar = (aqa) obj;
-                if (i == 0) {
-                    ojVar = ojVar2;
-                }
-                aqaVar.s = ojVar;
-                aqaVar.a(true);
-                return;
-            default:
-                qvb qvbVar = ((wub) obj).a;
-                if (i == 0) {
-                    qvbVar.R0(false);
-                    return;
-                } else {
-                    qvbVar.finishFragment();
-                    return;
-                }
+    public final void a(ll0 ll0Var, h68 h68Var) {
+        long j;
+        boolean z;
+        int i;
+        int b = uue.b(ll0Var);
+        if (ll0Var != null) {
+            j = ll0Var.a;
+        } else {
+            j = Long.MIN_VALUE;
         }
+        if (j == this.b && this.a >= 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.b = j;
+        ValueAnimator valueAnimator = (ValueAnimator) this.c;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.c = null;
+        }
+        if (z && (i = this.a) != b) {
+            ValueAnimator ofInt = ValueAnimator.ofInt(i, b);
+            ofInt.addUpdateListener(new pl(this, h68Var, (byte) 25));
+            ofInt.setInterpolator(d53.f);
+            ofInt.setDuration(200L);
+            this.c = ofInt;
+            ofInt.start();
+            return;
+        }
+        this.a = b;
+        h68Var.c(b);
+    }
+
+    public final synchronized long b(int i) {
+        if (i != 429 && (i < 500 || i >= 600)) {
+            return 86400000L;
+        }
+        return (long) Math.min(Math.pow(2.0d, this.a) + ((long) (Math.random() * 1000.0d)), 1800000.0d);
+    }
+
+    public final synchronized boolean c() {
+        boolean z;
+        if (this.a != 0) {
+            ((uac) this.c).a.getClass();
+            if (System.currentTimeMillis() <= this.b) {
+                z = false;
+            }
+        }
+        z = true;
+        return z;
+    }
+
+    public final synchronized void d() {
+        this.a = 0;
+    }
+
+    public final synchronized void e(int i) {
+        if ((i < 200 || i >= 300) && i != 401 && i != 404) {
+            this.a++;
+            long b = b(i);
+            ((uac) this.c).a.getClass();
+            this.b = System.currentTimeMillis() + b;
+            return;
+        }
+        d();
     }
 }

@@ -1,120 +1,356 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
+import android.graphics.Matrix;
+import android.graphics.PointF;
+import android.graphics.SurfaceTexture;
+import android.hardware.Camera;
+import android.os.Build;
 import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.messenger.camera.CameraSessionWrapper;
+import org.telegram.messenger.camera.CameraView;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public class ss3 extends View {
-    public final tgb a;
-    public final Drawable b;
-    public final ImageReceiver c;
-    public final Rect d;
-    public final RectF e;
-    public il0 f;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class ss3 extends CameraView {
+    public static final int[] b0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
+    public final Matrix E;
+    public boolean F;
+    public boolean G;
+    public boolean H;
+    public boolean I;
+    public float J;
+    public float K;
+    public long L;
+    public final Matrix M;
+    public rs3 N;
+    public rs3 O;
+    public final float[] P;
+    public float Q;
+    public float R;
+    public float S;
+    public float T;
+    public float U;
+    public final float[] V;
+    public float[] W;
+    public boolean a;
+    public float[] a0;
+    public final PointF b;
+    public final PointF c;
+    public float d;
+    public double e;
+    public boolean f;
+    public boolean h;
+    public final Matrix n;
+    public final Matrix r;
+    public boolean s;
+    public float w;
+    public boolean x;
+    public final Matrix y;
 
-    public ss3(Context context, String str) {
-        super(context);
-        this.d = new Rect();
-        this.e = new RectF();
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.c = imageReceiver;
-        imageReceiver.q0(gl.L(22.66f));
-        this.a = new tgb(str, 14.0f, gl.o());
-        Drawable d = b00.d(context, 2131230872);
-        this.b = d;
-        d.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+    public ss3(Context context, boolean z) {
+        super(context, z, false);
+        this.b = new PointF();
+        this.c = new PointF();
+        this.n = new Matrix();
+        this.r = new Matrix();
+        this.y = new Matrix();
+        this.E = new Matrix();
+        this.F = true;
+        this.M = new Matrix();
+        this.P = new float[2];
+        this.V = new float[2];
+        this.a = o(context);
     }
 
-    public final void a(TLRPC.Photo photo, Object obj) {
-        TLRPC.PhotoSize w = ba4.w(photo.sizes, gl.L(48.0f), false, null, true);
-        TLRPC.PhotoSize w2 = ba4.w(photo.sizes, gl.L(24.0f), false, w, false);
-        this.c.Z(gl5.i(w, photo), "24_24", gl5.i(w2, photo), "24_24", null, 0L, null, obj, 0);
+    private Matrix getSavedDualMatrix() {
+        String string = oc7.d1().getString("dualmatrix", null);
+        if (string != null) {
+            String[] split = string.split(";");
+            if (split.length == 9) {
+                float[] fArr = new float[9];
+                for (int i = 0; i < split.length; i++) {
+                    try {
+                        fArr[i] = Float.parseFloat(split[i]);
+                    } catch (Exception e) {
+                        fc4.g(e, true);
+                        return null;
+                    }
+                }
+                Matrix matrix = new Matrix();
+                matrix.setValues(fArr);
+                return matrix;
+            }
+        }
+        return null;
+    }
+
+    public static boolean n(Context context, boolean z) {
+        boolean z2;
+        boolean z3;
+        int i = 0;
+        boolean z4 = true;
+        if (gda.o() >= 1 && Camera.getNumberOfCameras() > 1 && gda.b()) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (z2) {
+            if (context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent")) {
+                z3 = true;
+            } else {
+                z3 = false;
+            }
+            if (!z3 && z) {
+                int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
+                while (true) {
+                    if (i < 32) {
+                        if (b0[i] == hashCode) {
+                            break;
+                        }
+                        i++;
+                    } else {
+                        z4 = z3;
+                        break;
+                    }
+                }
+                if (!z4) {
+                    (Build.MANUFACTURER + Build.MODEL).toUpperCase().getClass();
+                }
+                return z4;
+            }
+            return z3;
+        }
+        return z2;
+    }
+
+    public static boolean o(Context context) {
+        return oc7.d1().getBoolean("dual_available", n(context, true));
+    }
+
+    public static void r(boolean z) {
+        int i;
+        boolean n = n(a.b, false);
+        if (oc7.r1(z8c.t0).l4.k3.f) {
+            try {
+                TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
+                TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
+                tL_inputAppEvent.time = ConnectionsManager.getInstance(z8c.t0).getCurrentTime();
+                tL_inputAppEvent.type = "android_dual_camera";
+                TLRPC.TL_jsonObject tL_jsonObject = new TLRPC.TL_jsonObject();
+                TLRPC.TL_jsonObjectValue tL_jsonObjectValue = new TLRPC.TL_jsonObjectValue();
+                tL_jsonObjectValue.key = "device";
+                TLRPC.TL_jsonString tL_jsonString = new TLRPC.TL_jsonString();
+                tL_jsonString.value = "" + Build.MANUFACTURER + Build.MODEL;
+                tL_jsonObjectValue.value = tL_jsonString;
+                tL_jsonObject.value.add(tL_jsonObjectValue);
+                tL_inputAppEvent.data = tL_jsonObject;
+                if (n) {
+                    i = 2;
+                } else {
+                    i = 0;
+                }
+                tL_inputAppEvent.peer = (z ? 1 : 0) | i;
+                tL_help_saveAppLog.events.add(tL_inputAppEvent);
+                ConnectionsManager.getInstance(z8c.t0).sendRequest(tL_help_saveAppLog, new nf2((byte) 0));
+            } catch (Exception unused) {
+            }
+        }
+        a.a.getClass();
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.d.contains((int) motionEvent.getX(), (int) motionEvent.getY()) && motionEvent.getAction() == 0) {
+    public final void destroy(boolean z, Runnable runnable) {
+        t();
+        super.destroy(z, runnable);
+    }
+
+    @Override
+    public final void onDualCameraSuccess() {
+        int i;
+        t();
+        if (this.I) {
+            a9b a9bVar = (a9b) this;
+            if (oc7.d1().getInt("storysvddualhint", 0) < 2) {
+                gm.d3(new nsa(a9bVar, (byte) 26), 340L);
+            }
+            v9b v9bVar = a9bVar.c0;
+            v9bVar.G0.setValue(a9bVar.isDual());
+            orb orbVar = v9bVar.G0;
+            if (a9bVar.isDual()) {
+                i = 2131754886;
+            } else {
+                i = 2131754887;
+            }
+            orbVar.setContentDescription(jb6.M0(i, null));
+        }
+        r(true);
+    }
+
+    @Override
+    public final void onError(int i, Camera camera, CameraSessionWrapper cameraSessionWrapper) {
+        if (isDual()) {
+            if (!n(getContext(), false)) {
+                SharedPreferences.Editor edit = oc7.d1().edit();
+                this.a = false;
+                edit.putBoolean("dual_available", false).apply();
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
+                String M0 = jb6.M0(2131751277, null);
+                he heVar = alertDialog$Builder.a;
+                heVar.S = M0;
+                heVar.U = jb6.M0(2131751278, null);
+                b10.t(null, 2131747564, alertDialog$Builder, null);
+            }
+            r(false);
+            toggleDual();
+        }
+        if (getCameraSession(0) != null && getCameraSession(0).equals(cameraSessionWrapper)) {
+            resetCamera();
+        }
+        oc7.d1().edit().putBoolean("dualcam", false).remove("dualmatrix").apply();
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && q(motionEvent.getX(), motionEvent.getY())) {
+            return v(motionEvent);
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        Matrix matrix = this.y;
+        matrix.reset();
+        matrix.postTranslate(1.0f, -1.0f);
+        matrix.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
+        matrix.invert(this.E);
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        if (this.F) {
+            if (o(getContext()) && oc7.d1().getBoolean("dualcam", n(a.b, false))) {
+                this.I = true;
+                u();
+                this.dual = true;
+            }
+            this.F = false;
+        }
+        super.onSurfaceTextureAvailable(surfaceTexture, i, i2);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean v = v(motionEvent);
+        if (!super.onTouchEvent(motionEvent) && !v) {
             return false;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        return true;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.c.I();
+    public final void p(Matrix matrix) {
+        float[] fArr = this.P;
+        fArr[0] = 0.0f;
+        fArr[1] = 0.0f;
+        matrix.mapPoints(fArr);
+        this.Q = fArr[0];
+        this.R = fArr[1];
+        fArr[0] = 1.0f;
+        fArr[1] = 0.0f;
+        matrix.mapPoints(fArr);
+        this.S = (float) Math.toDegrees(Math.atan2(fArr[1] - this.R, fArr[0] - this.Q));
+        this.T = oqe.a(this.Q, this.R, fArr[0], fArr[1]) * 2.0f;
+        fArr[0] = 0.0f;
+        fArr[1] = 1.0f;
+        matrix.mapPoints(fArr);
+        this.U = oqe.a(this.Q, this.R, fArr[0], fArr[1]) * 2.0f;
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.c.K();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        int L;
-        ImageReceiver imageReceiver = this.c;
-        boolean B = imageReceiver.B();
-        if (B) {
-            f = 30.33f;
+    public final boolean q(float f, float f2) {
+        float f3;
+        if (!isDual()) {
+            return false;
+        }
+        float[] fArr = this.V;
+        fArr[0] = f;
+        fArr[1] = f2;
+        this.E.mapPoints(fArr);
+        Matrix dualPosition = getDualPosition();
+        Matrix matrix = this.M;
+        dualPosition.invert(matrix);
+        matrix.mapPoints(fArr);
+        int dualShape = getDualShape() % 3;
+        if (dualShape != 0 && dualShape != 1 && dualShape != 3) {
+            f3 = 1.0f;
         } else {
-            f = 11.33f;
+            f3 = 0.5625f;
         }
-        int L2 = gl.L(19.0f) + ((int) Math.ceil(this.a.c)) + gl.L(f);
-        int L3 = gl.L(24.0f);
-        int width = (getWidth() - L2) / 2;
-        int height = getHeight() / 2;
-        int i = height - (L3 / 2);
-        int i2 = L2 + width;
-        Rect rect = this.d;
-        rect.set(width, i, i2, L3 + i);
-        rect.inset(-gl.L(4.0f), -gl.L(4.0f));
-        il0 il0Var = this.f;
-        if (il0Var != null) {
-            il0Var.setBounds(rect);
-            this.f.draw(canvas);
+        float f4 = fArr[0];
+        if (f4 >= -1.0f && f4 <= 1.0f) {
+            float f5 = fArr[1];
+            if (f5 >= (-f3) && f5 <= f3) {
+                return true;
+            }
         }
-        if (B) {
-            float f2 = height;
-            float L4 = (gl.L(22.66f) / 2.0f) + f2;
-            RectF rectF = this.e;
-            rectF.set(gl.L(0.66f) + width, f2 - (gl.L(22.66f) / 2.0f), gl.L(23.32f) + width, L4);
-            imageReceiver.k0(rectF);
-            imageReceiver.h(canvas, null);
-        }
-        this.a.c(width + L, height, 1.0f, -1, canvas);
-        Drawable drawable = this.b;
-        drawable.setBounds(i2 - gl.L(17.0f), height - gl.L(6.0f), i2 - gl.L(5.0f), gl.L(6.0f) + height);
-        drawable.draw(canvas);
+        return false;
     }
 
-    public void setBlurredBackgroundDrawable(il0 il0Var) {
-        il0Var.q(gl.L(4.0f));
-        il0Var.r(gl.L(11.0f));
-        this.f = il0Var;
-    }
+    public abstract void s(boolean z);
 
-    public void setImage(String str) {
-        if (str == null) {
-            setImage((Bitmap) null);
+    public final void t() {
+        SharedPreferences.Editor edit = oc7.d1().edit();
+        edit.putBoolean("dualcam", isDual());
+        if (isDual()) {
+            float[] fArr = new float[9];
+            getDualPosition().getValues(fArr);
+            StringBuilder sb = new StringBuilder(108);
+            sb.append(fArr[0]);
+            for (int i = 1; i < 9; i++) {
+                sb.append(";");
+                sb.append(fArr[i]);
+            }
+            edit.putString("dualmatrix", sb.toString());
         } else {
-            Utilities.e.c(new wc3(this, str, (byte) 25));
+            edit.remove("dualmatrix");
         }
+        edit.apply();
     }
 
-    public void setImage(Bitmap bitmap) {
-        this.c.f0(bitmap);
-        invalidate();
+    @Override
+    public void toggleDual() {
+        if (!isDual() && !this.a) {
+            return;
+        }
+        if (!isDual()) {
+            u();
+        } else {
+            oc7.d1().edit().putBoolean("dualcam", false).remove("dualmatrix").apply();
+        }
+        super.toggleDual();
+    }
+
+    public final void u() {
+        Matrix dualPosition = getDualPosition();
+        dualPosition.reset();
+        Matrix savedDualMatrix = getSavedDualMatrix();
+        if (savedDualMatrix != null) {
+            dualPosition.set(savedDualMatrix);
+        } else {
+            dualPosition.postConcat(this.y);
+            float measuredWidth = getMeasuredWidth() * 0.43f;
+            float min = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
+            dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());
+            dualPosition.postTranslate((getMeasuredWidth() - min) - measuredWidth, min);
+            dualPosition.postConcat(this.E);
+        }
+        updateDualPosition();
+    }
+
+    public final boolean v(android.view.MotionEvent r52) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ss3.v(android.view.MotionEvent):boolean");
     }
 }

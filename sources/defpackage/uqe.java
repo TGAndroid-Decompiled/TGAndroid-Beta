@@ -1,17 +1,37 @@
 package defpackage;
-public final class uqe implements zn7 {
-    public static final uqe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+public abstract class uqe {
+    public static int a(Context context) {
+        boolean z;
+        int i;
+        float fraction;
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        if (displayMetrics.widthPixels < displayMetrics.heightPixels) {
+            z = true;
+        } else {
+            z = false;
         }
-        throw new ClassCastException();
+        TypedValue typedValue = new TypedValue();
+        Resources resources = context.getResources();
+        if (z) {
+            i = 2131165335;
+        } else {
+            i = 2131165334;
+        }
+        resources.getValue(i, typedValue, true);
+        int i2 = typedValue.type;
+        if (i2 == 5) {
+            fraction = typedValue.getDimension(displayMetrics);
+        } else if (i2 == 6) {
+            int i3 = displayMetrics.widthPixels;
+            fraction = typedValue.getFraction(i3, i3);
+        } else {
+            return -2;
+        }
+        return (int) fraction;
     }
 }

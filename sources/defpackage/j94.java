@@ -1,14 +1,24 @@
 package defpackage;
-public final class j94 {
-    public long a;
-    public long b;
 
-    public j94(long j, long j2) {
-        this.a = j;
-        this.b = j2;
-    }
+import java.util.Random;
+public final class j94 extends ThreadLocal {
+    public final byte a;
 
-    public final String toString() {
-        return "Range{start=" + this.a + ", end=" + this.b + '}';
+    @Override
+    public final Object initialValue() {
+        switch (this.a) {
+            case 0:
+                return new Random();
+            case 1:
+                ?? obj = new Object();
+                obj.a = new byte[4096];
+                return obj;
+            case 2:
+                return Long.valueOf(System.currentTimeMillis() - 1000);
+            case 3:
+                return Boolean.FALSE;
+            default:
+                return 0L;
+        }
     }
 }

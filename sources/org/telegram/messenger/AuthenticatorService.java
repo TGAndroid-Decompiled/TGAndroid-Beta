@@ -5,19 +5,19 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 public class AuthenticatorService extends Service {
-    public static e50 a;
+    public static e60 a;
 
     @Override
     public final IBinder onBind(Intent intent) {
         if (intent.getAction().equals("android.accounts.AccountAuthenticator")) {
-            e50 e50Var = a;
-            e50 e50Var2 = e50Var;
-            if (e50Var == null) {
+            e60 e60Var = a;
+            e60 e60Var2 = e60Var;
+            if (e60Var == null) {
                 ?? abstractAccountAuthenticator = new AbstractAccountAuthenticator(this);
                 a = abstractAccountAuthenticator;
-                e50Var2 = abstractAccountAuthenticator;
+                e60Var2 = abstractAccountAuthenticator;
             }
-            return e50Var2.getIBinder();
+            return e60Var2.getIBinder();
         }
         return null;
     }

@@ -1,439 +1,574 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class yc2 extends n39 {
-    public final Context c;
-    public boolean d;
-    public final zc2 e;
+import android.graphics.Rect;
+import android.text.StaticLayout;
+import java.util.ArrayList;
+import java.util.HashSet;
+public final class yc2 {
+    public boolean A;
+    public boolean A1;
+    public float A2;
+    public boolean B;
+    public int[] B0;
+    public int B1;
+    public float B2;
+    public boolean C;
+    public boolean C0;
+    public boolean C1;
+    public int C2;
+    public float D;
+    public boolean D0;
+    public boolean D1;
+    public int D2;
+    public float E;
+    public boolean E1;
+    public boolean E2;
+    public int F;
+    public boolean F0;
+    public boolean F1;
+    public StaticLayout F2;
+    public boolean G;
+    public boolean G0;
+    public boolean G1;
+    public boolean G2;
+    public StaticLayout H;
+    public boolean H0;
+    public int H1;
+    public int H2;
+    public StaticLayout I;
+    public ArrayList I0;
+    public int I1;
+    public int I2;
+    public float J;
+    public ArrayList J0;
+    public boolean J1;
+    public int J2;
+    public float K;
+    public int K0;
+    public boolean K1;
+    public float K2;
+    public float L;
+    public boolean L0;
+    public boolean L2;
+    public float M;
+    public uj9 M0;
+    public boolean M2;
+    public int N;
+    public uj9 N0;
+    public boolean N2;
+    public int O;
+    public float O0;
+    public boolean O1;
+    public boolean O2;
+    public int P;
+    public cn P0;
+    public int P1;
+    public boolean P2;
+    public int Q;
+    public float Q0;
+    public int Q1;
+    public boolean Q2;
+    public boolean R;
+    public float R0;
+    public boolean R2;
+    public float S;
+    public StaticLayout S0;
+    public boolean S2;
+    public boolean T;
+    public cn T0;
+    public float T1;
+    public int T2;
+    public StaticLayout U;
+    public boolean U0;
+    public float U1;
+    public int U2;
+    public boolean V;
+    public StaticLayout V0;
+    public float V1;
+    public boolean V2;
+    public StaticLayout W;
+    public StaticLayout W0;
+    public float W1;
+    public int W2;
+    public float X;
+    public int X0;
+    public boolean X1;
+    public int X2;
+    public int Y;
+    public int Y0;
+    public int Y1;
+    public boolean Y2;
+    public int Z;
+    public int Z0;
+    public int Z1;
+    public boolean Z2;
+    public final rc2 a;
+    public int a0;
+    public boolean a1;
+    public boolean a2;
+    public boolean a3;
+    public float b;
+    public boolean b0;
+    public boolean b1;
+    public boolean b3;
+    public float c;
+    public boolean c0;
+    public i47 c1;
+    public int c2;
+    public boolean c3;
+    public float d;
+    public boolean d0;
+    public i47 d1;
+    public StaticLayout d2;
+    public HashSet d3;
+    public float e;
+    public float e0;
+    public boolean e1;
+    public StaticLayout e2;
+    public HashSet e3;
+    public float f;
+    public String f0;
+    public boolean f1;
+    public boolean f2;
+    public boolean f3;
+    public float g;
+    public boolean g0;
+    public int g1;
+    public boolean g2;
+    public boolean g3;
+    public boolean h;
+    public float h0;
+    public int h1;
+    public boolean h2;
+    public boolean h3;
+    public boolean i;
+    public float i0;
+    public boolean i1;
+    public boolean i2;
+    public boolean i3;
+    public boolean j;
+    public float j0;
+    public int j1;
+    public StaticLayout j2;
+    public boolean j3;
+    public boolean k;
+    public float k0;
+    public int k1;
+    public boolean k2;
+    public StaticLayout k3;
+    public String l;
+    public float l0;
+    public boolean l1;
+    public boolean l2;
+    public StaticLayout l3;
+    public float m;
+    public float m0;
+    public boolean m1;
+    public boolean m2;
+    public cn m3;
+    public StaticLayout n;
+    public float n0;
+    public boolean n1;
+    public float n2;
+    public StaticLayout o;
+    public float o0;
+    public boolean o1;
+    public float o2;
+    public boolean p;
+    public float p0;
+    public float p1;
+    public float p2;
+    public boolean q;
+    public float q0;
+    public float q1;
+    public int q2;
+    public float r;
+    public float r0;
+    public float r1;
+    public int r2;
+    public float s;
+    public float s0;
+    public float s1;
+    public boolean s2;
+    public float t;
+    public boolean t0;
+    public boolean t1;
+    public int t2;
+    public float u;
+    public int u1;
+    public boolean u2;
+    public boolean v;
+    public boolean v1;
+    public int v2;
+    public int w;
+    public boolean w0;
+    public boolean w1;
+    public int w2;
+    public int x;
+    public boolean x0;
+    public boolean x1;
+    public boolean x2;
+    public int y;
+    public boolean y0;
+    public int y1;
+    public boolean z;
+    public boolean z0;
+    public boolean z1;
+    public final int[] u0 = new int[4];
+    public float v0 = 1.0f;
+    public float A0 = 1.0f;
+    public final Rect E0 = new Rect();
+    public float L1 = 1.0f;
+    public final ArrayList M1 = new ArrayList();
+    public final ArrayList N1 = new ArrayList();
+    public float R1 = 0.0f;
+    public float S1 = 1.0f;
+    public int b2 = -1;
+    public final StaticLayout[] y2 = new StaticLayout[2];
+    public final StaticLayout[] z2 = new StaticLayout[2];
 
-    public yc2(zc2 zc2Var, Context context) {
-        this.e = zc2Var;
-        if (zc2Var.E == 2) {
-            C(true);
-        }
-        this.c = context;
+    public yc2(rc2 rc2Var) {
+        this.a = rc2Var;
     }
 
-    @Override
-    public final boolean D(s49 s49Var) {
-        TLRPC.Chat chat;
-        int i = s49Var.f;
-        zc2 zc2Var = this.e;
-        TLRPC.TL_chatBannedRights tL_chatBannedRights = zc2Var.Q;
-        int i2 = zc2Var.E;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights = zc2Var.O;
-        if (!zc2Var.x.creator || ((i2 != 0 && (i2 != 2 || !zc2Var.L)) || i != 4 || s49Var.b() != zc2Var.f0)) {
-            if (zc2Var.J) {
-                if ((i2 == 0 || i2 == 2) && i == 4) {
-                    int b = s49Var.b();
-                    if (b == zc2Var.X) {
-                        if (!tL_chatAdminRights.add_admins && ((chat = zc2Var.x) == null || !chat.creator)) {
-                            return false;
-                        }
-                    } else if (i2 != 2 || zc2Var.L) {
-                        if (b == zc2Var.Y) {
-                            if (tL_chatAdminRights.change_info) {
-                                if (tL_chatBannedRights != null && !tL_chatBannedRights.change_info && !zc2Var.F) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        } else if (b == zc2Var.Z) {
-                            return tL_chatAdminRights.post_messages;
-                        } else {
-                            if (b == zc2Var.a0) {
-                                return tL_chatAdminRights.manage_direct_messages;
-                            }
-                            if (b == zc2Var.b0) {
-                                return tL_chatAdminRights.manage_welcome_messages;
-                            }
-                            if (b == zc2Var.c0) {
-                                return tL_chatAdminRights.edit_messages;
-                            }
-                            if (b == zc2Var.d0) {
-                                return tL_chatAdminRights.delete_messages;
-                            }
-                            if (b == zc2Var.L0) {
-                                return tL_chatAdminRights.manage_call;
-                            }
-                            if (b == zc2Var.e0) {
-                                return tL_chatAdminRights.add_admins;
-                            }
-                            if (b == zc2Var.f0) {
-                                return tL_chatAdminRights.anonymous;
-                            }
-                            if (b == zc2Var.g0) {
-                                return tL_chatAdminRights.ban_users;
-                            }
-                            if (b == zc2Var.h0) {
-                                return tL_chatAdminRights.invite_users;
-                            }
-                            if (b == zc2Var.i0) {
-                                if (tL_chatAdminRights.pin_messages) {
-                                    if (tL_chatBannedRights != null && !tL_chatBannedRights.pin_messages) {
-                                        return false;
-                                    }
-                                } else {
-                                    return false;
-                                }
-                            } else if (b == zc2Var.j0) {
-                                return tL_chatAdminRights.manage_ranks;
-                            } else {
-                                if (b == zc2Var.n0) {
-                                    return tL_chatAdminRights.manage_topics;
-                                }
-                                if (b == zc2Var.V0) {
-                                    return tL_chatAdminRights.post_stories;
-                                }
-                                if (b == zc2Var.W0) {
-                                    return tL_chatAdminRights.edit_stories;
-                                }
-                                if (b == zc2Var.X0) {
-                                    return tL_chatAdminRights.delete_stories;
-                                }
-                                if (b == zc2Var.o0) {
-                                    return tL_chatAdminRights.manage_linked_peers;
-                                }
-                            }
-                        }
-                    } else {
-                        return false;
-                    }
-                }
-                if (i == 3 || i == 1 || i == 5 || i == 8 || i == 11) {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-        return true;
+    public final boolean a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.yc2.a():boolean");
     }
 
-    @Override
     public final int b() {
-        return this.e.W;
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.yc2.b():int");
     }
 
-    @Override
-    public final long c(int i) {
-        zc2 zc2Var = this.e;
-        if (zc2Var.E == 2) {
-            if (i == zc2Var.X) {
-                return 1L;
-            }
-            if (i == zc2Var.Y) {
-                return 2L;
-            }
-            if (i == zc2Var.Z) {
-                return 3L;
-            }
-            if (i == zc2Var.c0) {
-                return 4L;
-            }
-            if (i == zc2Var.d0) {
-                return 5L;
-            }
-            if (i == zc2Var.e0) {
-                return 6L;
-            }
-            if (i == zc2Var.f0) {
-                return 7L;
-            }
-            if (i == zc2Var.g0) {
-                return 8L;
-            }
-            if (i == zc2Var.h0) {
-                return 9L;
-            }
-            if (i == zc2Var.i0) {
-                return 10L;
-            }
-            if (i == zc2Var.p0) {
-                return 11L;
-            }
-            if (i == zc2Var.q0) {
-                return 12L;
-            }
-            if (i == zc2Var.r0) {
-                return 13L;
-            }
-            if (i == zc2Var.s0) {
-                return 14L;
-            }
-            if (i == zc2Var.t0) {
-                return 15L;
-            }
-            if (i == zc2Var.u0) {
-                return 16L;
-            }
-            if (i == zc2Var.v0) {
-                return 17L;
-            }
-            if (i == zc2Var.w0) {
-                return 18L;
-            }
-            if (i == zc2Var.x0) {
-                return 19L;
-            }
-            if (i == zc2Var.z0) {
-                return 20L;
-            }
-            if (i == zc2Var.C0) {
-                return 21L;
-            }
-            if (i == zc2Var.I0) {
-                return 22L;
-            }
-            if (i == zc2Var.J0) {
-                return 23L;
-            }
-            if (i == zc2Var.K0) {
-                return 24L;
-            }
-            if (i == zc2Var.L0) {
-                return 25L;
-            }
-            if (i == zc2Var.M0) {
-                return 26L;
-            }
-            if (i == zc2Var.N0) {
-                return 27L;
-            }
-            if (i == zc2Var.y0) {
-                return 28L;
-            }
-            if (i == zc2Var.n0) {
-                return 29L;
-            }
-            if (i == zc2Var.D0) {
-                return 30L;
-            }
-            if (i == zc2Var.F0) {
-                return 31L;
-            }
-            if (i == zc2Var.E0) {
-                return 32L;
-            }
-            if (i == zc2Var.G0) {
-                return 33L;
-            }
-            if (i == zc2Var.H0) {
-                return 34L;
-            }
-            if (i == zc2Var.A0) {
-                return 35L;
-            }
-            if (i == zc2Var.O0) {
-                return 36L;
-            }
-            if (i == zc2Var.Q0) {
-                return 37L;
-            }
-            if (i == zc2Var.R0) {
-                return 38L;
-            }
-            if (i == zc2Var.S0) {
-                return 39L;
-            }
-            if (i == zc2Var.T0) {
-                return 40L;
-            }
-            if (i == zc2Var.V0) {
-                return 41L;
-            }
-            if (i == zc2Var.W0) {
-                return 42L;
-            }
-            if (i == zc2Var.X0) {
-                return 43L;
-            }
-            if (i == zc2Var.a0) {
-                return 44L;
-            }
-            if (i == zc2Var.j0) {
-                return 45L;
-            }
-            if (i == zc2Var.k0) {
-                return 46L;
-            }
-            if (i == zc2Var.l0) {
-                return 47L;
-            }
-            if (i == zc2Var.m0) {
-                return 48L;
-            }
-            if (i == zc2Var.o0) {
-                return 49L;
-            }
-            if (i == zc2Var.b0) {
-                return 50L;
-            }
-            return 0L;
-        }
-        return -1L;
-    }
-
-    @Override
-    public final int d(int i) {
-        zc2 zc2Var = this.e;
-        if (i != zc2Var.I0 && i != zc2Var.K0 && i != zc2Var.J0 && i != zc2Var.C0 && i != zc2Var.D0 && i != zc2Var.F0 && i != zc2Var.E0 && i != zc2Var.H0 && i != zc2Var.G0 && i != zc2Var.k0 && i != zc2Var.Q0 && i != zc2Var.R0 && i != zc2Var.S0 && i != zc2Var.V0 && i != zc2Var.W0 && i != zc2Var.X0) {
-            if (i != zc2Var.A0 && i != zc2Var.O0 && i != zc2Var.T0) {
-                if (i == 0) {
-                    return 0;
-                }
-                if (i != 1 && i != zc2Var.p0 && i != zc2Var.r0 && i != zc2Var.M0 && i != zc2Var.t0) {
-                    if (i != 2 && i != zc2Var.v0) {
-                        if (i != zc2Var.Y && i != zc2Var.Z && i != zc2Var.a0 && i != zc2Var.c0 && i != zc2Var.d0 && i != zc2Var.e0 && i != zc2Var.g0 && i != zc2Var.h0 && i != zc2Var.i0 && i != zc2Var.j0 && i != zc2Var.z0 && i != zc2Var.f0 && i != zc2Var.L0 && i != zc2Var.X && i != zc2Var.n0 && i != zc2Var.l0 && i != zc2Var.o0 && i != zc2Var.b0) {
-                            if (i == zc2Var.s0 || i == zc2Var.x0 || i == zc2Var.m0) {
-                                return 1;
-                            }
-                            if (i == zc2Var.N0) {
-                                return 6;
-                            }
-                            if (i == zc2Var.w0) {
-                                return 11;
-                            }
-                            if (i != zc2Var.y0) {
-                                return 2;
-                            }
-                            return 8;
-                        }
-                        return 4;
-                    }
-                    return 3;
-                }
-                return 5;
-            }
-            return 9;
-        }
-        return 10;
-    }
-
-    @Override
-    public final void t(defpackage.s49 r33, int r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yc2.t(s49, int):void");
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        View u6cVar;
-        View ld5Var;
+    public final void c() {
+        ArrayList arrayList;
+        int i;
+        uj9 uj9Var;
+        boolean z;
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        boolean z5;
+        float f;
         int i2;
-        int i3;
-        wjb wjbVar;
-        Context context = this.c;
-        zc2 zc2Var = this.e;
-        switch (i) {
-            case 0:
-                u6cVar = new u6c(context, null);
-                zkb.h(bkb.c6, null, u6cVar);
-                break;
-            case 1:
-                u6cVar = new mhb(context);
-                break;
-            case 2:
-            default:
-                u6cVar = new uib(context);
-                zkb.h(bkb.c6, null, u6cVar);
-                break;
-            case 3:
-                ld5Var = new ld5(this.c, bkb.K6, 21, 15, true, null);
-                zkb.h(bkb.c6, null, ld5Var);
-                u6cVar = ld5Var;
-                break;
-            case 4:
-            case 9:
-                u6cVar = new zgb(context);
-                zkb.h(bkb.c6, null, u6cVar);
-                break;
-            case 5:
-                u6cVar = new b9a(context, (de9) null);
-                break;
-            case 6:
-                u6cVar = new ghb(null, context, false);
-                zkb.h(bkb.c6, null, u6cVar);
-                break;
-            case 7:
-                le8 le8Var = new le8(context, 0, null, null);
-                zkb.h(bkb.c6, null, le8Var);
-                le8Var.c(new b7(this, (byte) 12));
-                u6cVar = le8Var;
-                break;
-            case 8:
-                FrameLayout frameLayout = new FrameLayout(context);
-                zc2Var.d = frameLayout;
-                int i4 = bkb.Z6;
-                zkb.h(i4, null, frameLayout);
-                zc2Var.e = new FrameLayout(context);
-                hn hnVar = new hn(context, true, false, false);
-                zc2Var.f = hnVar;
-                hnVar.setTypeface(gl.o());
-                zc2Var.f.setTextColor(-1);
-                zc2Var.f.setTextSize(gl.L(14.0f));
-                zc2Var.f.setGravity(17);
-                hn hnVar2 = zc2Var.f;
-                StringBuilder sb = new StringBuilder(k96.M0(2131754456, null));
-                sb.append(" ");
-                if (zc2Var.L) {
-                    i2 = 2131754455;
-                } else {
-                    i2 = 2131754454;
+        boolean z6;
+        boolean z7;
+        lk1 lk1Var;
+        boolean z8 = true;
+        this.w0 = true;
+        rc2 rc2Var = this.a;
+        ArrayList arrayList2 = rc2Var.I5;
+        mm mmVar = rc2Var.U0;
+        this.b = mmVar.L0;
+        this.c = mmVar.M0;
+        this.d = mmVar.N0;
+        this.e = mmVar.O0;
+        System.arraycopy(mmVar.X0, 0, this.u0, 0, 4);
+        m37 m37Var = rc2Var.L6;
+        if (m37Var != null) {
+            this.E0.set(m37Var.getBounds());
+        }
+        this.F0 = rc2Var.Y6;
+        k47 k47Var = rc2Var.Q5;
+        HashSet hashSet = null;
+        if (k47Var != null) {
+            arrayList = k47Var.B2;
+        } else {
+            arrayList = null;
+        }
+        this.J0 = arrayList;
+        if (k47Var != null) {
+            i = k47Var.v2;
+        } else {
+            i = 0;
+        }
+        this.K0 = i;
+        this.a1 = rc2Var.vb;
+        if (k47Var != null) {
+            uj9Var = k47Var.y2;
+        } else {
+            uj9Var = null;
+        }
+        this.N0 = uj9Var;
+        this.f = rc2Var.s3;
+        this.g = rc2Var.t3;
+        this.d1 = rc2Var.m3;
+        if (k47Var != null) {
+            z = k47Var.M2;
+        } else {
+            z = false;
+        }
+        this.e1 = z;
+        ArrayList arrayList3 = this.M1;
+        arrayList3.clear();
+        if (!arrayList2.isEmpty()) {
+            arrayList3.addAll(arrayList2);
+        }
+        this.v = rc2Var.x1;
+        this.w = rc2Var.g0;
+        this.x = rc2Var.W;
+        this.y = rc2Var.e0;
+        if (rc2Var.T != null) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        this.z = z2;
+        if (rc2Var.b0 != null) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        this.A = z3;
+        this.H1 = rc2Var.W1;
+        this.D1 = rc2Var.v1;
+        this.F1 = rc2Var.w1;
+        k47 k47Var2 = rc2Var.Q5;
+        if (k47Var2 != null && k47Var2.D == 27 && (lk1Var = rc2Var.w) != null && lk1Var.d()) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        this.L2 = z4;
+        if (rc2Var.n7 != null) {
+            this.N = rc2Var.getRepliesCount();
+            this.O = rc2Var.v7;
+            this.U = rc2Var.n7;
+            this.P = rc2Var.q7;
+            this.Q = rc2Var.r7;
+            this.R = rc2Var.s7;
+            this.S = rc2Var.u7;
+            this.T = rc2Var.p7;
+        }
+        this.F = rc2Var.getRepliesCount();
+        this.c2 = rc2Var.getMessageObject().k.views;
+        this.H = rc2Var.sa;
+        this.d2 = rc2Var.pa;
+        this.B = rc2Var.q6;
+        this.f0 = rc2Var.z5;
+        this.l1 = rc2Var.I6;
+        this.n1 = rc2Var.I4;
+        this.T1 = rc2Var.K3;
+        this.U1 = rc2Var.L3;
+        this.Y1 = rc2Var.X1;
+        this.f1 = !rc2Var.S9;
+        this.g1 = rc2Var.O9;
+        this.j2 = rc2Var.L9;
+        this.Y0 = rc2Var.M9;
+        this.f2 = rc2Var.I3();
+        this.t2 = rc2Var.getTopMediaOffset();
+        this.h2 = rc2Var.H3();
+        this.k = rc2Var.h3;
+        this.k2 = rc2Var.Lb;
+        this.n2 = rc2Var.u0;
+        this.q2 = rc2Var.q0;
+        this.Q1 = rc2Var.K5;
+        StaticLayout[] staticLayoutArr = rc2Var.C9;
+        StaticLayout staticLayout = staticLayoutArr[0];
+        StaticLayout[] staticLayoutArr2 = this.y2;
+        staticLayoutArr2[0] = staticLayout;
+        staticLayoutArr2[1] = staticLayoutArr[1];
+        k47 k47Var3 = rc2Var.Q5;
+        if (k47Var3 != null && k47Var3.m5()) {
+            z5 = true;
+        } else {
+            z5 = false;
+        }
+        this.x2 = z5;
+        this.B2 = rc2Var.F9;
+        int i3 = rc2Var.gb;
+        this.w2 = i3;
+        this.I2 = i3;
+        this.D2 = rc2Var.D9;
+        this.j1 = rc2Var.getCurrentBackgroundLeft();
+        m37 m37Var2 = rc2Var.L6;
+        if (m37Var2 != null) {
+            this.k1 = m37Var2.getBounds().right;
+        }
+        k47 k47Var4 = rc2Var.Q5;
+        if (k47Var4 != null) {
+            f = k47Var4.x2;
+        } else {
+            f = 0.0f;
+        }
+        this.p2 = f;
+        this.Q0 = rc2Var.a8;
+        this.F2 = rc2Var.R7;
+        this.J2 = rc2Var.b8;
+        rc2Var.O.q();
+        if (rc2Var.Q7 != null) {
+            this.t = rc2Var.V7;
+        } else {
+            this.t = 0.0f;
+        }
+        this.N2 = rc2Var.w9;
+        this.O2 = rc2Var.x9;
+        tc2 tc2Var = rc2Var.s0;
+        if (tc2Var != null) {
+            i2 = tc2Var.r;
+        } else {
+            i2 = 0;
+        }
+        this.T2 = i2;
+        if (rc2Var.getPrimaryMessageObject() != null && rc2Var.getPrimaryMessageObject().c3) {
+            z6 = true;
+        } else {
+            z6 = false;
+        }
+        this.Z2 = z6;
+        this.R2 = rc2Var.h2();
+        this.W2 = rc2Var.Q1;
+        this.b3 = rc2Var.s8;
+        if (rc2Var.getPrimaryMessageObject() != null) {
+            hashSet = rc2Var.getPrimaryMessageObject().K0;
+        }
+        this.d3 = hashSet;
+        k47 k47Var5 = rc2Var.Q5;
+        if (k47Var5 != null && k47Var5.L0) {
+            z7 = true;
+        } else {
+            z7 = false;
+        }
+        this.g3 = z7;
+        if (k47Var5 == null || !k47Var5.L2) {
+            z8 = false;
+        }
+        this.j3 = z8;
+        this.k3 = rc2Var.o2;
+    }
+
+    public final void d() {
+        rc2 rc2Var = this.a;
+        StaticLayout[] staticLayoutArr = rc2Var.C9;
+        StaticLayout staticLayout = staticLayoutArr[0];
+        StaticLayout[] staticLayoutArr2 = this.y2;
+        staticLayoutArr2[0] = staticLayout;
+        staticLayoutArr2[1] = staticLayoutArr[1];
+        this.x2 = rc2Var.Q5.m5();
+        this.B2 = rc2Var.F9;
+        int i = rc2Var.gb;
+        this.w2 = i;
+        this.I2 = i;
+        this.D2 = rc2Var.D9;
+    }
+
+    public final void e() {
+        rc2 rc2Var = this.a;
+        mm mmVar = rc2Var.U0;
+        this.h = false;
+        this.C = false;
+        this.x0 = false;
+        this.h0 = 0.0f;
+        this.i0 = 0.0f;
+        this.j0 = 0.0f;
+        this.k0 = 0.0f;
+        this.l0 = 0.0f;
+        this.m0 = 0.0f;
+        if (this.g0) {
+            float f = this.p0;
+            if (f != 0.0f) {
+                float f2 = this.q0;
+                if (f2 != 0.0f) {
+                    mmVar.i0(this.n0, this.o0, f, f2);
                 }
-                sb.append(k96.M0(i2, null));
-                hnVar2.setText(sb.toString());
-                zc2Var.e.addView(zc2Var.f, nme.e(-2, -2, 17));
-                zc2Var.e.setBackground(sjb.f(bkb.Ei, 4.0f));
-                zc2Var.e.setOnClickListener(new x91(this, (byte) 12));
-                zc2Var.d.addView(zc2Var.e, nme.d(-1, 48.0f, 119, 14.0f, 28.0f, 14.0f, 14.0f));
-                zc2Var.d.setLayoutParams(new e49(-1, -2));
-                View view = new View(context);
-                zkb.h(i4, null, view);
-                zc2Var.d.setClipChildren(false);
-                zc2Var.d.setClipToPadding(false);
-                zc2Var.d.addView(view, nme.d(-1, 800.0f, 87, 0.0f, 0.0f, 0.0f, -800.0f));
-                u6cVar = zc2Var.d;
-                break;
-            case 10:
-                ag2 ag2Var = new ag2(this.c, 4, 21, false, zc2Var.getResourceProvider());
-                ag2Var.setPad(1);
-                ag2Var.getCheckBoxRound().setDrawBackgroundAsArc(14);
-                ag2Var.getCheckBoxRound().b(bkb.U6, bkb.f7, bkb.j7);
-                ag2Var.setEnabled(true);
-                zkb.h(bkb.c6, null, ag2Var);
-                u6cVar = ag2Var;
-                break;
-            case 11:
-                i3 = ((d) zc2Var).currentAccount;
-                wjbVar = ((d) zc2Var).resourceProvider;
-                ld5Var = new wfb(i3, -zc2Var.s, wjbVar, this.c);
-                u6cVar = ld5Var;
-                break;
+            }
         }
-        return new s49(u6cVar);
+        if (this.C0) {
+            mmVar.s0(this.B0);
+        }
+        this.n0 = 0.0f;
+        this.o0 = 0.0f;
+        this.p0 = 0.0f;
+        this.q0 = 0.0f;
+        this.g0 = false;
+        this.A0 = 1.0f;
+        this.v0 = 1.0f;
+        this.C0 = false;
+        this.L1 = 1.0f;
+        this.R1 = 0.0f;
+        this.S1 = 1.0f;
+        this.H0 = false;
+        this.L0 = false;
+        this.G0 = false;
+        this.P2 = false;
+        this.Q2 = false;
+        this.I0 = null;
+        uj9 uj9Var = this.M0;
+        if (uj9Var != null) {
+            uj9Var.f(rc2Var);
+        }
+        this.M0 = null;
+        this.V0 = null;
+        this.W0 = null;
+        this.U0 = false;
+        this.b1 = false;
+        this.D0 = false;
+        this.c1 = null;
+        gn.release(rc2Var, this.P0);
+        this.P0 = null;
+        this.t0 = false;
+        this.K1 = false;
+        this.N1.clear();
+        this.X1 = false;
+        this.E2 = false;
+        this.O1 = false;
+        this.a2 = false;
+        this.S0 = null;
+        this.G = false;
+        this.I = null;
+        this.V = false;
+        this.W = null;
+        this.e2 = null;
+        this.g2 = false;
+        this.i2 = false;
+        this.i1 = false;
+        this.m1 = false;
+        this.d0 = false;
+        this.t1 = false;
+        this.v1 = false;
+        this.z1 = false;
+        this.x1 = false;
+        this.A1 = false;
+        this.C1 = false;
+        this.w1 = false;
+        this.E1 = false;
+        this.G1 = false;
+        this.M2 = false;
+        this.K1 = false;
+        this.j = false;
+        this.l2 = false;
+        this.m2 = false;
+        this.s2 = false;
+        this.Y2 = false;
+        this.a3 = false;
+        this.f3 = false;
+        this.i3 = false;
+        this.S2 = false;
+        this.c3 = false;
+        this.u2 = false;
+        this.G2 = false;
+        StaticLayout[] staticLayoutArr = this.z2;
+        staticLayoutArr[0] = null;
+        staticLayoutArr[1] = null;
+        this.q = false;
+        l39 l39Var = rc2Var.O;
+        ArrayList arrayList = l39Var.s;
+        ArrayList arrayList2 = l39Var.t;
+        for (int i = 0; i < arrayList2.size(); i++) {
+            ((i39) arrayList2.get(i)).b();
+        }
+        arrayList2.clear();
+        l39Var.i = false;
+        l39Var.j = false;
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            ((i39) arrayList.get(i2)).b = (byte) 0;
+        }
+        this.l3 = null;
+        gn.release(rc2Var, this.m3);
     }
 
-    @Override
-    public final void y(s49 s49Var) {
-        int b = s49Var.b();
-        zc2 zc2Var = this.e;
-        if (b == zc2Var.v0) {
-            zc2Var.q0(s49Var.a);
-        }
-    }
-
-    @Override
-    public final void z(s49 s49Var) {
-        int b = s49Var.b();
-        zc2 zc2Var = this.e;
-        if (b == zc2Var.w0 && zc2Var.getParentActivity() != null) {
-            gl.t1(zc2Var.getParentActivity().getCurrentFocus());
-        }
+    public final void f() {
+        float max = Math.max(0.0f, Math.min(1.0f, this.L1));
+        this.R1 = (float) Math.pow(1.0f - max, 0.5d);
+        this.S1 = (float) Math.pow(max, 0.5d);
     }
 }

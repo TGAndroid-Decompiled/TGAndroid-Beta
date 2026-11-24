@@ -1,57 +1,43 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.RandomAccessFile;
-public abstract class g00 {
-    public String a;
-    public long b;
-    public String c;
-    public String d;
-    public String e;
-    public String f;
-    public short g;
-    public String h;
-    public String i;
-    public short j;
-    public short k;
-    public String l;
-    public String m;
-    public String n;
-    public Bitmap o;
-    public Bitmap p;
-    public File q;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class g00 extends FrameLayout {
+    public final RectF a;
+    public final RectF b;
+    public final m00 c;
 
-    public static g00 a(File file) {
-        byte b;
-        try {
-            byte[] bArr = new byte[12];
-            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
-            randomAccessFile.readFully(bArr, 0, 8);
-            randomAccessFile.close();
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-            if (bArr[4] == 102 && bArr[5] == 116 && bArr[6] == 121 && bArr[7] == 112) {
-                return new hg6(bufferedInputStream);
-            }
-            if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
-                br7 br7Var = new br7(file);
-                if (!br7Var.s) {
-                    return br7Var;
+    public g00(m00 m00Var, Context context) {
+        super(context);
+        this.c = m00Var;
+        this.a = new RectF();
+        this.b = new RectF();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        m00 m00Var = this.c;
+        h00 h00Var = m00Var.V1;
+        FrameLayout frameLayout = h00Var.b;
+        RectF rectF = this.a;
+        if (zgc.c(frameLayout, this, rectF)) {
+            TextView textView = m00Var.W1;
+            RectF rectF2 = this.b;
+            if (zgc.c(textView, this, rectF2)) {
+                float L = rectF2.right - gm.L(32.0f);
+                float centerY = rectF2.centerY() - gm.L(16.0f);
+                if (!rectF.isEmpty()) {
+                    canvas.save();
+                    canvas.translate(L, centerY);
+                    canvas.scale(gm.L(32.0f) / rectF.width(), gm.L(32.0f) / rectF.height());
+                    h00Var.b.draw(canvas);
+                    canvas.restore();
                 }
-                return null;
-            } else if (!file.getAbsolutePath().endsWith("mp3") && (((b = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b != 84 || bArr[1] != 65 || bArr[2] != 71))) {
-                br7 br7Var2 = new br7(file);
-                if (!br7Var2.s) {
-                    return br7Var2;
-                }
-                return null;
-            } else {
-                return new qg6(bufferedInputStream, file.length());
             }
-        } catch (Exception unused) {
-            return null;
         }
     }
 }

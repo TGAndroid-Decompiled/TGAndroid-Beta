@@ -1,21 +1,10 @@
 package defpackage;
-public final class v93 extends pg0 {
-    public final u93 d;
 
-    public v93(u93 u93Var, long j, long j2) {
-        super(j, j2);
-        this.d = u93Var;
-    }
-
+import android.view.MotionEvent;
+import android.view.View;
+public final class v93 implements View.OnTouchListener {
     @Override
-    public final long a() {
-        b();
-        return this.d.e(this.c);
-    }
-
-    @Override
-    public final long h() {
-        b();
-        return this.d.d(this.c);
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        return true;
     }
 }

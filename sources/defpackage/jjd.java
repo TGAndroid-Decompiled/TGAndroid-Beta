@@ -1,20 +1,16 @@
 package defpackage;
-public final class jjd implements Runnable {
-    public final tod a;
-    public final ymd b;
 
-    public jjd(tod todVar, ymd ymdVar) {
-        this.a = todVar;
-        this.b = ymdVar;
+import android.os.IBinder;
+import android.os.IInterface;
+public final class jjd implements evd, IInterface {
+    public final IBinder a;
+
+    public jjd(IBinder iBinder) {
+        this.a = iBinder;
     }
 
     @Override
-    public final void run() {
-        if (this.a.a == this) {
-            ymd ymdVar = this.b;
-            if (akd.h.f(this.a, this, tod.h(ymdVar))) {
-                tod.j(this.a);
-            }
-        }
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

@@ -1,50 +1,38 @@
 package defpackage;
-public abstract class tid implements Cloneable {
-    public final vid a;
-    public vid b;
-    public boolean c = false;
 
-    public tid(vid vidVar) {
-        this.a = vidVar;
-        this.b = (vid) vidVar.a(4);
+import android.os.BadParcelableException;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class tid {
+    public static final int a = 0;
+
+    static {
+        tid.class.getClassLoader();
     }
 
-    public final void a(vid vidVar) {
-        b();
-        vid vidVar2 = this.b;
-        ttd ttdVar = ttd.c;
-        ttdVar.getClass();
-        ttdVar.a(vidVar2.getClass()).d(vidVar2, vidVar);
-    }
-
-    public final void b() {
-        if (this.c) {
-            vid vidVar = (vid) this.b.a(4);
-            vid vidVar2 = this.b;
-            ttd ttdVar = ttd.c;
-            ttdVar.getClass();
-            ttdVar.a(vidVar.getClass()).d(vidVar, vidVar2);
-            this.b = vidVar;
-            this.c = false;
+    public static void a(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
         }
+        throw new BadParcelableException(hg9.j(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
-    public final vid c() {
-        boolean z = this.c;
-        vid vidVar = this.b;
-        if (z) {
-            return vidVar;
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
         }
-        ttd ttdVar = ttd.c;
-        ttdVar.getClass();
-        ttdVar.a(vidVar.getClass()).b(vidVar);
-        this.c = true;
-        return this.b;
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 
-    public final Object clone() {
-        tid tidVar = (tid) this.a.a(5);
-        tidVar.a(c());
-        return tidVar;
+    public static void c(Parcel parcel, IInterface iInterface) {
+        if (iInterface == null) {
+            parcel.writeStrongBinder(null);
+        } else {
+            parcel.writeStrongBinder(iInterface.asBinder());
+        }
     }
 }

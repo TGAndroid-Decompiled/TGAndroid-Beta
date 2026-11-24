@@ -1,48 +1,40 @@
 package defpackage;
-public final class m76 extends n76 implements b16 {
-    public final e16 e;
-    public final hh7 f;
 
-    public m76(hh7 hh7Var, e16 e16Var, co7 co7Var) {
-        super(hh7Var, co7Var);
-        this.f = hh7Var;
-        this.e = e16Var;
+import java.util.WeakHashMap;
+public final class m76 implements Runnable {
+    public final byte a;
+    public final o76 b;
+
+    public m76(o76 o76Var, byte b) {
+        this.a = b;
+        this.b = o76Var;
     }
 
     @Override
-    public final void b(e16 e16Var, u06 u06Var) {
-        e16 e16Var2 = this.e;
-        v06 v06Var = e16Var2.m().b;
-        if (v06Var == v06.a) {
-            this.f.h(this.a);
-            return;
+    public final void run() {
+        byte b = this.a;
+        o76 o76Var = this.b;
+        switch (b) {
+            case 0:
+                os3 os3Var = o76Var.c;
+                if (os3Var != null) {
+                    os3Var.setListSelectionHidden(true);
+                    os3Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                os3 os3Var2 = o76Var.c;
+                if (os3Var2 != null) {
+                    WeakHashMap weakHashMap = kfc.a;
+                    if (os3Var2.isAttachedToWindow() && o76Var.c.getCount() > o76Var.c.getChildCount() && o76Var.c.getChildCount() <= o76Var.y) {
+                        o76Var.P.setInputMethodMode(2);
+                        o76Var.f();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        v06 v06Var2 = null;
-        while (v06Var2 != v06Var) {
-            a(e());
-            v06Var2 = v06Var;
-            v06Var = e16Var2.m().b;
-        }
-    }
-
-    @Override
-    public final void c() {
-        this.e.m().b(this);
-    }
-
-    @Override
-    public final boolean d(e16 e16Var) {
-        if (this.e == e16Var) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean e() {
-        if (this.e.m().b.compareTo(v06.d) >= 0) {
-            return true;
-        }
-        return false;
     }
 }

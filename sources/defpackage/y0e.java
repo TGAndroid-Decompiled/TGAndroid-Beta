@@ -1,67 +1,41 @@
 package defpackage;
-public final class y0e extends nne {
-    private static final y0e zzf;
-    private static volatile dwe zzg;
-    private int zzc;
-    private String zzd = "";
-    private String zze = "";
 
-    static {
-        y0e y0eVar = new y0e();
-        zzf = y0eVar;
-        nne.g(y0e.class, y0eVar);
-    }
+import android.os.Binder;
+import android.os.IBinder;
+import android.os.IInterface;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class y0e extends Binder implements IInterface {
+    public final byte a;
+    public final TaskCompletionSource b;
 
-    public static x0e k() {
-        return (x0e) ((jne) zzf.d(5));
+    public y0e(TaskCompletionSource taskCompletionSource, byte b) {
+        this.a = b;
+        switch (b) {
+            case 2:
+                this.b = taskCompletionSource;
+                attachInterface(this, "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverResultCallback");
+                return;
+            default:
+                this.b = taskCompletionSource;
+                attachInterface(this, "com.google.android.gms.fido.fido2.internal.regular.IFido2AppCallbacks");
+                return;
+        }
     }
 
     @Override
-    public final Object d(int i) {
-        dwe dweVar;
-        switch (l2e.a[i - 1]) {
-            case 1:
-                return new y0e();
-            case 2:
-                return new jne(zzf);
-            case 3:
-                return new swe(zzf, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဈ\u0001", new Object[]{"zzc", "zzd", "zze"});
-            case 4:
-                return zzf;
-            case 5:
-                dwe dweVar2 = zzg;
-                if (dweVar2 == null) {
-                    synchronized (y0e.class) {
-                        dwe dweVar3 = zzg;
-                        dweVar = dweVar3;
-                        if (dweVar3 == null) {
-                            ?? obj = new Object();
-                            zzg = obj;
-                            dweVar = obj;
-                        }
-                    }
-                    return dweVar;
-                }
-                return dweVar2;
-            case 6:
-                return (byte) 1;
-            case 7:
-                break;
-            default:
-                fvc.b();
-                break;
-        }
-        return null;
+    public final IBinder asBinder() {
+        byte b = this.a;
+        return this;
     }
 
-    public final void j(String str) {
-        str.getClass();
-        this.zzc |= 1;
-        this.zzd = str;
+    @Override
+    public final boolean onTransact(int r7, android.os.Parcel r8, android.os.Parcel r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.y0e.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
     }
 
-    public final void m(String str) {
-        this.zzc |= 2;
-        this.zze = str;
+    public y0e(ua4 ua4Var, TaskCompletionSource taskCompletionSource) {
+        this.a = (byte) 1;
+        this.b = taskCompletionSource;
+        attachInterface(this, "com.google.android.gms.cloudmessaging.internal.IRegisterCallback");
     }
 }

@@ -1,22 +1,37 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class uz3 extends r35 {
-    public final t14 Q;
+import android.graphics.Rect;
+import android.text.method.TransformationMethod;
+import android.view.View;
+public final class uz3 implements TransformationMethod {
+    public final TransformationMethod a;
 
-    public uz3(t14 t14Var) {
-        super(8);
-        this.Q = t14Var;
+    public uz3(TransformationMethod transformationMethod) {
+        this.a = transformationMethod;
     }
 
     @Override
-    public final void u0(RecyclerView recyclerView, p49 p49Var, int i) {
-        try {
-            gv3 gv3Var = new gv3((byte) 2, recyclerView.getContext(), this);
-            gv3Var.a = i;
-            v0(gv3Var);
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public final CharSequence getTransformation(CharSequence charSequence, View view) {
+        if (view.isInEditMode()) {
+            return charSequence;
+        }
+        TransformationMethod transformationMethod = this.a;
+        if (transformationMethod != null) {
+            charSequence = transformationMethod.getTransformation(charSequence, view);
+        }
+        if (charSequence != null && wx3.a().b() == 1) {
+            wx3 a = wx3.a();
+            a.getClass();
+            return a.e(0, charSequence.length(), charSequence);
+        }
+        return charSequence;
+    }
+
+    @Override
+    public final void onFocusChanged(View view, CharSequence charSequence, boolean z, int i, Rect rect) {
+        TransformationMethod transformationMethod = this.a;
+        if (transformationMethod != null) {
+            transformationMethod.onFocusChanged(view, charSequence, z, i, rect);
         }
     }
 }

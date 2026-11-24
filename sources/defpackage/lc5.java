@@ -1,35 +1,45 @@
 package defpackage;
 
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.Choreographer;
-public abstract class lc5 {
-    private static volatile Choreographer choreographer;
+import android.content.Context;
+import android.view.View;
+public final class lc5 extends a1b {
+    public final byte L;
 
-    static {
-        Object sa9Var;
-        try {
-            sa9Var = new kc5(a(Looper.getMainLooper()), false);
-        } catch (Throwable th) {
-            sa9Var = new sa9(th);
-        }
-        if (sa9Var instanceof sa9) {
-            sa9Var = null;
-        }
-        kc5 kc5Var = (kc5) sa9Var;
+    public lc5(Context context, View view, int i, ylb ylbVar, byte b) {
+        super(context, view, i, ylbVar);
+        this.L = b;
     }
 
-    public static final Handler a(Looper looper) {
-        if (Build.VERSION.SDK_INT >= 28) {
-            Object invoke = Handler.class.getDeclaredMethod("createAsync", Looper.class).invoke(null, looper);
-            invoke.getClass();
-            return (Handler) invoke;
+    @Override
+    public final void onAttachedToWindow() {
+        switch (this.L) {
+            case 0:
+                super.onAttachedToWindow();
+                this.b.getImageReceiver().w0(false);
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.b.getImageReceiver().w0(false);
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
         }
-        try {
-            return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler.Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);
-        } catch (NoSuchMethodException unused) {
-            return new Handler(looper);
+    }
+
+    @Override
+    public final void setVisibility(int i) {
+        switch (this.L) {
+            case 2:
+                super.setVisibility(i);
+                if (i != 0) {
+                    e(false, false);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i);
+                return;
         }
     }
 }

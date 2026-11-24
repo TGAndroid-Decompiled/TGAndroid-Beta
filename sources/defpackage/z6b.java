@@ -1,76 +1,56 @@
 package defpackage;
 
 import android.app.Activity;
-import android.app.Dialog;
-import org.telegram.ui.ActionBar.d;
-public final class z6b extends d {
-    public final byte a;
-    public final t7b b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+public final class z6b extends LinearLayout {
+    public final RectF a;
+    public final RectF b;
+    public final RectF c;
+    public final Paint d;
+    public final a7b e;
 
-    public z6b(t7b t7bVar, byte b) {
-        super(null);
-        this.a = b;
-        switch (b) {
-            case 1:
-                this.b = t7bVar;
-                super(null);
-                this.currentAccount = t7bVar.c;
-                return;
-            default:
-                this.b = t7bVar;
-                return;
+    public z6b(a7b a7bVar, Activity activity) {
+        super(activity);
+        this.e = a7bVar;
+        this.a = new RectF();
+        this.b = new RectF();
+        this.c = new RectF();
+        this.d = new Paint(1);
+    }
+
+    public final void a(RectF rectF, int i) {
+        FrameLayout frameLayout;
+        a7b a7bVar = this.e;
+        if (i <= -1) {
+            frameLayout = a7bVar.b;
+        } else if (i >= 1) {
+            frameLayout = a7bVar.f;
+        } else {
+            frameLayout = a7bVar.d;
         }
+        rectF.set(frameLayout.getLeft(), frameLayout.getBottom() - gm.L(30.0f), frameLayout.getRight(), frameLayout.getBottom());
     }
 
     @Override
-    public final Activity getParentActivity() {
-        byte b = this.a;
-        t7b t7bVar = this.b;
-        switch (b) {
-            case 0:
-                return t7bVar.b;
-            default:
-                return t7bVar.b;
-        }
-    }
-
-    @Override
-    public final wjb getResourceProvider() {
-        byte b = this.a;
-        t7b t7bVar = this.b;
-        switch (b) {
-            case 0:
-                return new gu0(t7bVar.a, (byte) 8);
-            default:
-                return new gu0(t7bVar.a, (byte) 9);
-        }
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        byte b = this.a;
-        return false;
-    }
-
-    @Override
-    public final boolean presentFragment(d dVar) {
-        switch (this.a) {
-            case 0:
-                this.b.S();
-                return false;
-            default:
-                return super.presentFragment(dVar);
-        }
-    }
-
-    @Override
-    public final Dialog showDialog(Dialog dialog) {
-        switch (this.a) {
-            case 1:
-                dialog.show();
-                return dialog;
-            default:
-                return super.showDialog(dialog);
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        a7b a7bVar = this.e;
+        RectF rectF = this.a;
+        a(rectF, (int) Math.floor(a7bVar.r));
+        int ceil = (int) Math.ceil(a7bVar.r);
+        RectF rectF2 = this.b;
+        a(rectF2, ceil);
+        float f = a7bVar.r;
+        float floor = f - ((float) Math.floor(f));
+        RectF rectF3 = this.c;
+        gm.X1(rectF, rectF2, floor, rectF3);
+        int p1 = cmb.p1(0.15f, on2.f(a7bVar.n, -1, -16777216));
+        Paint paint = this.d;
+        paint.setColor(p1);
+        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, paint);
+        super.dispatchDraw(canvas);
     }
 }

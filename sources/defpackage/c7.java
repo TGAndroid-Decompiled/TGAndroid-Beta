@@ -37,9 +37,9 @@ public final class c7 extends ImageView {
         switch (this.a) {
             case 2:
                 super.invalidate();
-                e55 e55Var = (e55) this.b;
-                e55Var.g0.invalidate();
-                e55Var.invalidate();
+                c75 c75Var = (c75) this.b;
+                c75Var.g0.invalidate();
+                c75Var.invalidate();
                 return;
             default:
                 super.invalidate();
@@ -82,7 +82,7 @@ public final class c7 extends ImageView {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 boolean z = true;
                 accessibilityNodeInfo.setCheckable(true);
-                if (((p3c) this.b).n.getTransformationMethod() != null) {
+                if (((p5c) this.b).n.getTransformationMethod() != null) {
                     z = false;
                 }
                 accessibilityNodeInfo.setChecked(z);
@@ -131,16 +131,16 @@ public final class c7 extends ImageView {
                     while (i < size) {
                         Object obj = arrayList.get(i);
                         i++;
-                        ((je5) obj).setTranslationY(f);
+                        ((hg5) obj).setTranslationY(f);
                     }
                 }
-                w78 w78Var = photoViewer.h1;
-                if (w78Var != null) {
-                    w78Var.setTranslationY(f);
+                y98 y98Var = photoViewer.h1;
+                if (y98Var != null) {
+                    y98Var.setTranslationY(f);
                 }
-                o76 o76Var = photoViewer.g1;
-                if (o76Var != null) {
-                    o76Var.setTranslationY(f);
+                o96 o96Var = photoViewer.g1;
+                if (o96Var != null) {
+                    o96Var.setTranslationY(f);
                     return;
                 }
                 return;

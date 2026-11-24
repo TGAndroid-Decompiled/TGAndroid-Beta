@@ -1,30 +1,26 @@
 package defpackage;
-public final class v13 implements Runnable {
-    public final byte a;
-    public final w13 b;
-    public final us4 c;
 
-    public v13(w13 w13Var, us4 us4Var, byte b) {
-        this.a = b;
-        this.b = w13Var;
-        this.c = us4Var;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class v13 extends b4 {
+    public static final Parcelable.Creator<v13> CREATOR = new f41((byte) 12);
+    public final String a;
+    public final Bundle b;
+
+    public v13(String str, Bundle bundle) {
+        str.getClass();
+        bundle.getClass();
+        this.a = str;
+        this.b = bundle;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        us4 us4Var = this.c;
-        w13 w13Var = this.b;
-        switch (b) {
-            case 0:
-                w13Var.e().L(us4Var);
-                return;
-            case 1:
-                w13Var.e().L(us4Var);
-                return;
-            default:
-                w13Var.e().L(us4Var);
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        int r = mve.r(parcel, 20293);
+        mve.l(parcel, 1, this.a);
+        mve.b(parcel, 2, this.b);
+        mve.s(parcel, r);
     }
 }

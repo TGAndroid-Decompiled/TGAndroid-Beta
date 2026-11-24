@@ -1,22 +1,19 @@
 package defpackage;
-public final class cga {
-    public static final cga a;
-    public static final cga b;
-    public static final cga[] c;
 
-    static {
-        ?? r0 = new Enum("GENERAL", 0);
-        a = r0;
-        ?? r1 = new Enum("FALLBACK", 1);
-        b = r1;
-        c = new cga[]{r0, r1};
-    }
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public interface cga {
+    void I();
 
-    public static cga valueOf(String str) {
-        return (cga) Enum.valueOf(cga.class, str);
-    }
+    void W();
 
-    public static cga[] values() {
-        return (cga[]) c.clone();
-    }
+    boolean Y();
+
+    r59 e();
+
+    TLRPC.Chat f();
+
+    boolean g(TLRPC.ChatParticipant chatParticipant, boolean z, boolean z2, View view);
+
+    boolean t();
 }

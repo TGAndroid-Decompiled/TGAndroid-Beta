@@ -1,44 +1,112 @@
 package defpackage;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class if9 implements ft3, kf9 {
-    public final byte a;
-    public final xe9 b;
+import android.graphics.ColorFilter;
+import android.graphics.Outline;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class if9 extends Drawable implements Drawable.Callback {
+    public final Drawable a;
+    public final Paint b;
+    public final Path c;
+    public final RectF d;
+    public final Outline e;
+    public boolean f;
+    public final boolean h;
+    public boolean n;
 
-    public if9(xe9 xe9Var, byte b) {
-        this.a = b;
-        this.b = xe9Var;
+    public if9(Drawable drawable) {
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.c = new Path();
+        this.d = new RectF();
+        this.e = new Outline();
+        this.f = true;
+        this.a = drawable;
+        drawable.setCallback(this);
+        paint.setColor(0);
+        this.h = true;
+        a(cmb.I.o());
     }
 
-    @Override
-    public final void a(String str) {
-        byte b = this.a;
-        xe9 xe9Var = this.b;
-        switch (b) {
-            case 0:
-                if (!TextUtils.isEmpty(str)) {
-                    TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = new TL_keyboard.TL_inlineButtonTypeUrl();
-                    tL_inlineButtonTypeUrl.url = str;
-                    xe9Var.a(tL_inlineButtonTypeUrl);
-                    return;
-                }
-                return;
-            default:
-                if (!TextUtils.isEmpty(str)) {
-                    TL_keyboard.TL_inlineButtonTypeCopy tL_inlineButtonTypeCopy = new TL_keyboard.TL_inlineButtonTypeCopy();
-                    tL_inlineButtonTypeCopy.copy_text = str;
-                    xe9Var.a(tL_inlineButtonTypeCopy);
-                    return;
-                }
-                return;
+    public final void a(boolean z) {
+        float f;
+        this.n = z;
+        float L = gm.L(12.0f);
+        float L2 = gm.L(4.0f);
+        if (z) {
+            f = 0.3f;
+        } else {
+            f = 0.1f;
         }
+        this.b.setShadowLayer(L, 0.0f, L2, cmb.p1(f, -16777216));
     }
 
     @Override
-    public final void run(long j) {
-        TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
-        tL_inlineButtonTypeUserProfile.user_id = j;
-        this.b.a(tL_inlineButtonTypeUserProfile);
+    public final void draw(android.graphics.Canvas r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.if9.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final boolean isStateful() {
+        return this.a.isStateful();
+    }
+
+    @Override
+    public final void jumpToCurrentState() {
+        this.a.jumpToCurrentState();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.a.setBounds(rect);
+        this.f = true;
+    }
+
+    @Override
+    public final boolean onStateChange(int[] iArr) {
+        return this.a.setState(iArr);
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+        scheduleSelf(runnable, j);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.a.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setHotspot(float f, float f2) {
+        this.a.setHotspot(f, f2);
+    }
+
+    @Override
+    public final void setHotspotBounds(int i, int i2, int i3, int i4) {
+        this.a.setHotspotBounds(i, i2, i3, i4);
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
     }
 }

@@ -1,84 +1,42 @@
 package defpackage;
+public final class ba0 extends h03 {
+    public final String a;
+    public final int b;
+    public final int c;
+    public final boolean d;
 
-import java.util.ArrayList;
-public final class ba0 extends zb6 {
-    public final long a;
-    public final long b;
-    public final x70 c;
-    public final Integer d;
-    public final String e;
-    public final ArrayList f;
-
-    public ba0(long j, long j2, x70 x70Var, Integer num, String str, ArrayList arrayList) {
-        ev8 ev8Var = ev8.a;
-        this.a = j;
-        this.b = j2;
-        this.c = x70Var;
-        this.d = num;
-        this.e = str;
-        this.f = arrayList;
+    public ba0(int i, int i2, String str, boolean z) {
+        this.a = str;
+        this.b = i;
+        this.c = i2;
+        this.d = z;
     }
 
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof zb6) {
-                ba0 ba0Var = (ba0) ((zb6) obj);
-                if (this.a == ba0Var.a && this.b == ba0Var.b && this.c.equals(ba0Var.c)) {
-                    Integer num = ba0Var.d;
-                    Integer num2 = this.d;
-                    if (num2 == null) {
-                        if (num != null) {
-                            return false;
-                        }
-                    } else if (!num2.equals(num)) {
-                        return false;
-                    }
-                    String str = ba0Var.e;
-                    String str2 = this.e;
-                    if (str2 == null) {
-                        if (str != null) {
-                            return false;
-                        }
-                    } else if (!str2.equals(str)) {
-                        return false;
-                    }
-                    if (this.f.equals(ba0Var.f)) {
-                        Object obj2 = ev8.a;
-                        if (obj2.equals(obj2)) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+        if (obj == this) {
+            return true;
         }
-        return true;
+        if (obj instanceof h03) {
+            ba0 ba0Var = (ba0) ((h03) obj);
+            if (this.a.equals(ba0Var.a) && this.b == ba0Var.b && this.c == ba0Var.c && this.d == ba0Var.d) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public final int hashCode() {
-        int hashCode;
-        long j = this.a;
-        long j2 = this.b;
-        int hashCode2 = (((((((int) ((j >>> 32) ^ j)) ^ 1000003) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003) ^ this.c.hashCode()) * 1000003;
-        int i = 0;
-        Integer num = this.d;
-        if (num == null) {
-            hashCode = 0;
+        int i;
+        int hashCode = (((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b) * 1000003) ^ this.c) * 1000003;
+        if (this.d) {
+            i = 1231;
         } else {
-            hashCode = num.hashCode();
+            i = 1237;
         }
-        int i2 = (hashCode2 ^ hashCode) * 1000003;
-        String str = this.e;
-        if (str != null) {
-            i = str.hashCode();
-        }
-        return ((((i2 ^ i) * 1000003) ^ this.f.hashCode()) * 1000003) ^ ev8.a.hashCode();
+        return hashCode ^ i;
     }
 
     public final String toString() {
-        return "LogRequest{requestTimeMs=" + this.a + ", requestUptimeMs=" + this.b + ", clientInfo=" + this.c + ", logSource=" + this.d + ", logSourceName=" + this.e + ", logEvents=" + this.f + ", qosTier=" + ev8.a + "}";
+        return "ProcessDetails{processName=" + this.a + ", pid=" + this.b + ", importance=" + this.c + ", defaultProcess=" + this.d + "}";
     }
 }

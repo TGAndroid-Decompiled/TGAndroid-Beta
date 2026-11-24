@@ -1,17 +1,98 @@
 package defpackage;
-public final class g0e implements zn7 {
-    public static final g0e a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
+import java.util.Arrays;
+public final class g0e {
+    public static final g0e e = new g0e(0, new int[0], new Object[0], false);
+    public int a;
+    public int[] b;
+    public Object[] c;
+    public boolean d;
+
+    public g0e(int i, int[] iArr, Object[] objArr, boolean z) {
+        this.a = i;
+        this.b = iArr;
+        this.c = objArr;
+        this.d = z;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static g0e b() {
+        return new g0e(0, new int[8], new Object[8], true);
+    }
+
+    public final void a(int i, Object obj) {
+        int i2;
+        if (this.d) {
+            int i3 = this.a;
+            int[] iArr = this.b;
+            if (i3 == iArr.length) {
+                if (i3 < 4) {
+                    i2 = 8;
+                } else {
+                    i2 = i3 >> 1;
+                }
+                int i4 = i3 + i2;
+                this.b = Arrays.copyOf(iArr, i4);
+                this.c = Arrays.copyOf(this.c, i4);
+            }
+            int[] iArr2 = this.b;
+            int i5 = this.a;
+            iArr2[i5] = i;
+            this.c[i5] = obj;
+            this.a = i5 + 1;
+            return;
         }
-        throw new ClassCastException();
+        gxc.b();
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || !(obj instanceof g0e)) {
+            return false;
+        }
+        g0e g0eVar = (g0e) obj;
+        int i = this.a;
+        if (i == g0eVar.a) {
+            int[] iArr = this.b;
+            int[] iArr2 = g0eVar.b;
+            int i2 = 0;
+            while (true) {
+                if (i2 < i) {
+                    if (iArr[i2] != iArr2[i2]) {
+                        break;
+                    }
+                    i2++;
+                } else {
+                    Object[] objArr = this.c;
+                    Object[] objArr2 = g0eVar.c;
+                    int i3 = this.a;
+                    for (int i4 = 0; i4 < i3; i4++) {
+                        if (objArr[i4].equals(objArr2[i4])) {
+                        }
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i = this.a;
+        int i2 = (i + 527) * 31;
+        int[] iArr = this.b;
+        int i3 = 17;
+        int i4 = 17;
+        for (int i5 = 0; i5 < i; i5++) {
+            i4 = (i4 * 31) + iArr[i5];
+        }
+        int i6 = (i2 + i4) * 31;
+        Object[] objArr = this.c;
+        int i7 = this.a;
+        for (int i8 = 0; i8 < i7; i8++) {
+            i3 = (i3 * 31) + objArr[i8].hashCode();
+        }
+        return i6 + i3;
     }
 }

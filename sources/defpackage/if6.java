@@ -1,95 +1,143 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class if6 extends AnimatedPhoneNumberEditText {
-    public final byte c2;
-    public final lf6 d2;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class if6 extends kla {
+    public final mh6 E;
+    public final EditTextBoldCursor a;
+    public final TextView b;
+    public final TextView c;
+    public final TextView d;
+    public final s09 e;
+    public Bundle f;
+    public boolean h;
+    public TL_account.Password n;
+    public String r;
+    public String s;
+    public String w;
+    public String x;
+    public final gt7 y;
 
-    public if6(lf6 lf6Var, Context context, byte b) {
-        super(context);
-        this.c2 = b;
-        this.d2 = lf6Var;
+    public if6(defpackage.mh6 r21, android.content.Context r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.if6.<init>(mh6, android.content.Context):void");
     }
 
     @Override
-    public final void onFocusChanged(boolean z, int i, Rect rect) {
-        byte b = this.c2;
-        float f = 1.0f;
-        lf6 lf6Var = this.d2;
-        switch (b) {
-            case 0:
-                super.onFocusChanged(z, i, rect);
-                er7 er7Var = lf6Var.f;
-                if (!z && !lf6Var.b.isFocused()) {
-                    f = 0.0f;
-                }
-                er7Var.b(f, f, true);
-                if (z) {
-                    lf6Var.h0.c.setEditText(this);
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean d(boolean z) {
+        this.h = false;
+        this.E.y1(true, true);
+        this.f = null;
+        return true;
+    }
+
+    @Override
+    public final void e() {
+        this.h = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return jb6.M0(2131748483, "LoginPassword");
+    }
+
+    @Override
+    public final void h(String str) {
+        if (!this.h && this.n != null) {
+            String obj = this.a.getText().toString();
+            if (obj.length() == 0) {
+                if (this.E.getParentActivity() == null) {
                     return;
                 }
+                mh6.E1(this.y, true);
                 return;
-            default:
-                super.onFocusChanged(z, i, rect);
-                mf6 mf6Var = lf6Var.h0;
-                er7 er7Var2 = lf6Var.f;
-                if (!z && !lf6Var.a.isFocused()) {
-                    f = 0.0f;
-                }
-                er7Var2.b(f, f, true);
-                if (z) {
-                    mf6Var.c.setEditText(this);
-                    mf6Var.c.setDispatchBackWhenEmpty(true);
-                    if (lf6Var.F == 2) {
-                        lf6.n(lf6Var, k96.M0(2131742596, null));
-                        return;
-                    }
-                    return;
-                } else if (lf6Var.F == 2) {
-                    lf6.n(lf6Var, null);
-                    return;
-                } else {
-                    return;
-                }
+            }
+            this.h = true;
+            this.E.B1(0, true);
+            Utilities.e.c(new k16(this, obj, (byte) 18));
         }
     }
 
     @Override
-    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
-        switch (this.c2) {
-            case 1:
-                lf6 lf6Var = this.d2;
-                if6 if6Var = lf6Var.a;
-                if (i == 67 && lf6Var.b.length() == 0) {
-                    if6Var.requestFocus();
-                    if6Var.setSelection(if6Var.length());
-                    if6Var.dispatchKeyEvent(keyEvent);
-                }
-                return super.onKeyDown(i, keyEvent);
-            default:
-                return super.onKeyDown(i, keyEvent);
+    public final void j() {
+        gm.d3(new kg5(this, (byte) 27), mh6.A0);
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("passview_params");
+        this.f = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+        String string = bundle.getString("passview_code");
+        if (string != null) {
+            this.a.setText(string);
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.c2) {
-            case 1:
-                if (motionEvent.getAction() == 0) {
-                    mf6 mf6Var = this.d2.h0;
-                    short s = mf6.A0;
-                    if (!mf6Var.L1(this)) {
-                        clearFocus();
-                        requestFocus();
-                    }
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+    public final void l(Bundle bundle) {
+        String obj = this.a.getText().toString();
+        if (obj.length() != 0) {
+            bundle.putString("passview_code", obj);
         }
+        Bundle bundle2 = this.f;
+        if (bundle2 != null) {
+            bundle.putBundle("passview_params", bundle2);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z) {
+        if (bundle == null) {
+            return;
+        }
+        boolean isEmpty = bundle.isEmpty();
+        EditTextBoldCursor editTextBoldCursor = this.a;
+        if (isEmpty) {
+            gm.t1(editTextBoldCursor);
+            return;
+        }
+        editTextBoldCursor.setText("");
+        this.f = bundle;
+        String string = bundle.getString("password");
+        this.r = string;
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.v(string));
+            this.n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        }
+        this.s = bundle.getString("phoneFormated");
+        this.w = bundle.getString("phoneHash");
+        this.x = bundle.getString("code");
+        TL_account.Password password = this.n;
+        if (password != null && !TextUtils.isEmpty(password.hint)) {
+            editTextBoldCursor.setHint(this.n.hint);
+        } else {
+            editTextBoldCursor.setHint((CharSequence) null);
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        int i = cmb.F6;
+        this.d.setTextColor(cmb.w0(null, i, false));
+        this.b.setTextColor(cmb.w0(null, cmb.C6, false));
+        int w0 = cmb.w0(null, i, false);
+        EditTextBoldCursor editTextBoldCursor = this.a;
+        editTextBoldCursor.setTextColor(w0);
+        editTextBoldCursor.setCursorColor(cmb.w0(null, i, false));
+        editTextBoldCursor.setHintTextColor(cmb.w0(null, cmb.G6, false));
+        this.c.setTextColor(cmb.w0(null, cmb.p6, false));
+        this.y.f();
     }
 }

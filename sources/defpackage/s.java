@@ -22,7 +22,7 @@ public final class s implements View.OnLongClickListener {
     public final boolean onLongClick(View view) {
         boolean z;
         int i;
-        ex1 ex1Var;
+        sy1 sy1Var;
         boolean z2;
         byte b = this.a;
         Object obj = this.d;
@@ -31,7 +31,7 @@ public final class s implements View.OnLongClickListener {
         switch (b) {
             case 0:
                 a1 a1Var = (a1) obj3;
-                wjb wjbVar = (wjb) obj2;
+                ylb ylbVar = (ylb) obj2;
                 Context context = (Context) obj;
                 if (a1Var.h2) {
                     return false;
@@ -43,64 +43,64 @@ public final class s implements View.OnLongClickListener {
                 } else if (a1Var.i2 == null || a1Var.g1() == null) {
                     return false;
                 }
-                if (a1Var.g2 == y6c.h(a1Var.a).e()) {
+                if (a1Var.g2 == z8c.h(a1Var.a).e()) {
                     z = true;
                 } else {
                     z = false;
                 }
-                cs5 G = cs5.G(a1Var.c, wjbVar, a1Var.C2);
-                G.k(2131231512, k96.M0(2131745391, null), new a(a1Var, (byte) 4), !z);
+                bu5 G = bu5.G(a1Var.c, ylbVar, a1Var.C2);
+                G.k(2131231513, jb6.M0(2131745317, null), new a(a1Var, (byte) 4), !z);
                 if (z) {
-                    i = 2131745322;
+                    i = 2131745248;
                 } else {
-                    i = 2131745667;
+                    i = 2131745593;
                 }
-                G.b(2131232082, k96.M0(i, null), new nn6(a1Var, context, wjbVar, (byte) 6), false);
+                G.b(2131232083, jb6.M0(i, null), new op6(a1Var, context, ylbVar, (byte) 6), false);
                 G.a0();
                 return true;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
-                k27 k27Var = (k27) obj2;
-                f27 f27Var = (f27) obj;
-                int i2 = ChatActivityEnterView.r7;
-                wjb wjbVar2 = chatActivityEnterView.L4;
-                if (k27Var.F3() || (ex1Var = chatActivityEnterView.F0) == null || TextUtils.isEmpty(ex1Var.getTextToUse())) {
+                k47 k47Var = (k47) obj2;
+                f47 f47Var = (f47) obj;
+                int i2 = ChatActivityEnterView.z7;
+                ylb ylbVar2 = chatActivityEnterView.L4;
+                if (k47Var.F3() || (sy1Var = chatActivityEnterView.F0) == null || TextUtils.isEmpty(sy1Var.getTextToUse())) {
                     return false;
                 }
-                if (f27Var != null && (!f27Var.c || f27Var.i)) {
+                if (f47Var != null && (!f47Var.c || f47Var.i)) {
                     return false;
                 }
-                int i3 = k27Var.D;
+                int i3 = k47Var.D;
                 if (i3 != 1 && i3 != 3 && i3 != 8) {
                     return false;
                 }
-                j47 j47Var = new j47(chatActivityEnterView.getContext(), wjbVar2);
-                j47Var.h0 = true;
+                j67 j67Var = new j67(chatActivityEnterView.getContext(), ylbVar2);
+                j67Var.h0 = true;
                 ArrayList arrayList = new ArrayList();
-                if (f27Var != null) {
-                    ArrayList arrayList2 = f27Var.d;
+                if (f47Var != null) {
+                    ArrayList arrayList2 = f47Var.d;
                     for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                        k27 k27Var2 = (k27) arrayList2.get(i4);
+                        k47 k47Var2 = (k47) arrayList2.get(i4);
                         if (i4 == 0) {
                             z2 = true;
                         } else {
                             z2 = false;
                         }
-                        arrayList.add(chatActivityEnterView.x0(k27Var2, z2));
+                        arrayList.add(chatActivityEnterView.x0(k47Var2, z2));
                     }
                 } else {
-                    arrayList.add(chatActivityEnterView.x0(k27Var, true));
+                    arrayList.add(chatActivityEnterView.x0(k47Var, true));
                 }
-                j47Var.r(arrayList);
-                cs5 G2 = cs5.G(chatActivityEnterView.c2, wjbVar2, chatActivityEnterView.v2);
-                k37 k37Var = new k37(chatActivityEnterView.getContext(), 2131624140, k96.M0(2131752548, null), 2131624139, k96.M0(2131752547, null), chatActivityEnterView.L4);
-                k37Var.a(!chatActivityEnterView.N6, false);
-                k37Var.setOnClickListener(new ee(chatActivityEnterView, arrayList, k37Var, j47Var, (byte) 8));
-                G2.p(k37Var);
+                j67Var.r(arrayList);
+                bu5 G2 = bu5.G(chatActivityEnterView.c2, ylbVar2, chatActivityEnterView.v2);
+                k57 k57Var = new k57(chatActivityEnterView.getContext(), 2131624139, jb6.M0(2131752513, null), 2131624138, jb6.M0(2131752512, null), chatActivityEnterView.L4);
+                k57Var.a(!chatActivityEnterView.V6, false);
+                k57Var.setOnClickListener(new ef(chatActivityEnterView, arrayList, k57Var, j67Var, (byte) 8));
+                G2.p(k57Var);
                 G2.Z();
-                j47Var.q(G2);
-                j47Var.s(chatActivityEnterView.v2, false, new ee(chatActivityEnterView, f27Var, k27Var, j47Var, (byte) 9));
-                j47Var.show();
+                j67Var.q(G2);
+                j67Var.s(chatActivityEnterView.v2, false, new ef(chatActivityEnterView, f47Var, k47Var, j67Var, (byte) 9));
+                j67Var.show();
                 return true;
         }
     }

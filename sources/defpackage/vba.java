@@ -1,58 +1,80 @@
 package defpackage;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class vba implements Runnable {
-    public final byte a = 0;
-    public final nfa b;
-    public final wjb c;
-    public final k27 d;
-    public final int e;
+import android.graphics.Canvas;
+public final class vba extends r59 {
+    public final byte f3;
+    public final tca g3;
 
-    public vba(nfa nfaVar, wjb wjbVar, int i, k27 k27Var) {
-        this.b = nfaVar;
-        this.c = wjbVar;
-        this.e = i;
-        this.d = k27Var;
+    public vba(tca tcaVar, Context context, ylb ylbVar, byte b) {
+        super(context, ylbVar);
+        this.f3 = b;
+        this.g3 = tcaVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
+    public final boolean F0(float f) {
+        byte b = this.f3;
+        float f2 = 58.0f;
+        tca tcaVar = this.g3;
+        switch (b) {
             case 0:
-                hd[] hdVarArr = {new hd(3, this.c, this.b.getContext())};
-                int i = this.e;
-                int v0 = z3a.B(i).v0(this.d, null, new wh0(hdVarArr, (byte) 9));
-                if (v0 != 0) {
-                    gl.e3(new fca(hdVarArr, i, v0, (byte) 0), 500L);
+                if (tcaVar.c2 && tcaVar.j2[1] != null) {
+                    f2 = 111.0f;
+                }
+                if (f < gm.L(f2) + tcaVar.B2.b) {
+                    return false;
+                }
+                return true;
+            default:
+                if (tcaVar.c2 && tcaVar.j2[1] != null) {
+                    f2 = 111.0f;
+                }
+                if (f < gm.L(f2) + tcaVar.B2.b) {
+                    return false;
+                }
+                return true;
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        byte b = this.f3;
+        float f = 58.0f;
+        tca tcaVar = this.g3;
+        switch (b) {
+            case 0:
+                r59 r59Var = tcaVar.z1;
+                if (r59Var.getVisibility() != 8) {
+                    canvas.save();
+                    int i = tcaVar.k2;
+                    if (tcaVar.c2 && tcaVar.j2[1] != null) {
+                        f = 111.0f;
+                    }
+                    canvas.clipRect(0, gm.L(f) + i, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (r59Var.getVisibility() != 8) {
+                    canvas.restore();
                     return;
                 }
                 return;
             default:
-                nfa nfaVar = this.b;
-                Context context = nfaVar.getContext();
-                wjb wjbVar = this.c;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar, context);
-                hd hdVar = alertDialog$Builder.a;
-                hdVar.Q0 = false;
-                k27 k27Var = this.d;
-                if (k27Var.b4()) {
-                    hdVar.S = k96.M0(2131744587, null);
-                    hdVar.U = k96.M0(2131744588, null);
-                } else {
-                    hdVar.S = k96.M0(2131744592, null);
-                    hdVar.U = k96.M0(2131744593, null);
+                r59 r59Var2 = tcaVar.z1;
+                if (r59Var2.getVisibility() != 8) {
+                    canvas.save();
+                    int i2 = tcaVar.k2;
+                    if (tcaVar.c2 && tcaVar.j2[1] != null) {
+                        f = 111.0f;
+                    }
+                    canvas.clipRect(0, gm.L(f) + i2, getWidth(), getHeight());
                 }
-                alertDialog$Builder.j(k96.M0(2131744604, null), new zm(nfaVar, wjbVar, k27Var, this.e, (byte) 10));
-                ug8.y(null, 2131752577, alertDialog$Builder, null);
+                super.draw(canvas);
+                if (r59Var2.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
                 return;
         }
-    }
-
-    public vba(nfa nfaVar, wjb wjbVar, k27 k27Var, int i) {
-        this.b = nfaVar;
-        this.c = wjbVar;
-        this.d = k27Var;
-        this.e = i;
     }
 }

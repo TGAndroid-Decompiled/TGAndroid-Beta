@@ -1,27 +1,35 @@
 package defpackage;
 
-import java.util.concurrent.Executor;
-public final class hc implements Executor {
-    public final byte a;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
+public final class hc implements TextWatcher {
+    public final jc a;
 
-    public hc(byte b) {
-        this.a = b;
+    public hc(jc jcVar) {
+        this.a = jcVar;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        switch (this.a) {
-            case 0:
-                gl.d3(runnable);
-                return;
-            case 1:
-                runnable.run();
-                return;
-            default:
-                return;
+    public final void afterTextChanged(Editable editable) {
+        int i;
+        jc jcVar = this.a;
+        TextView textView = jcVar.h2;
+        if (editable != null && editable.length() != 0) {
+            i = 8;
+        } else {
+            i = 0;
         }
+        textView.setVisibility(i);
+        jcVar.c1(false);
+        jcVar.d1();
     }
 
-    private final void a(Runnable runnable) {
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

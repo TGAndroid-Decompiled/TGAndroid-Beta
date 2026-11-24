@@ -1,32 +1,25 @@
 package defpackage;
 
-import android.os.Build;
-import java.lang.reflect.Field;
+import java.util.Map;
 public abstract class fqe {
-    public static Boolean a;
-    public static int b;
+    public static int a(int i) {
+        if (i < 3) {
+            ntd.b(i, "expectedSize");
+            return i + 1;
+        } else if (i < 1073741824) {
+            return (int) Math.ceil(i / 0.75d);
+        } else {
+            return Integer.MAX_VALUE;
+        }
+    }
 
-    public static boolean a() {
-        Boolean bool;
-        int intValue;
-        Boolean bool2 = a;
-        if (bool2 != null) {
-            return bool2.booleanValue();
+    public static boolean b(Map map, Object obj) {
+        if (map == obj) {
+            return true;
         }
-        try {
-            Field declaredField = Build.VERSION.class.getDeclaredField("SEM_PLATFORM_INT");
-            declaredField.setAccessible(true);
-            intValue = ((Integer) declaredField.get(null)).intValue();
-        } catch (Exception unused) {
-            bool = Boolean.FALSE;
-            a = bool;
+        if (obj instanceof Map) {
+            return map.entrySet().equals(((Map) obj).entrySet());
         }
-        if (intValue < 100000) {
-            return false;
-        }
-        b = intValue - 90000;
-        bool = Boolean.TRUE;
-        a = bool;
-        return bool.booleanValue();
+        return false;
     }
 }

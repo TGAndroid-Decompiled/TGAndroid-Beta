@@ -2,278 +2,497 @@ package defpackage;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.ui.ProxyListActivity;
-public final class yt8 extends FrameLayout implements tjb {
-    public final TextView a;
-    public final TextView b;
-    public final ImageView c;
-    public fba d;
-    public Drawable e;
-    public final wf2 f;
-    public boolean h;
-    public boolean n;
-    public int r;
-    public final ProxyListActivity s;
+import j$.util.Objects;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public abstract class yt8 extends FrameLayout implements jm7 {
+    public final ur0 a;
+    public final vgc b;
+    public final v3b c;
+    public final xt8 d;
+    public int e;
+    public boolean f;
+    public ValueAnimator h;
+    public float n;
+    public boolean r;
+    public final Rect s;
+    public final pp8 w;
 
-    public yt8(ProxyListActivity proxyListActivity, Context context) {
+    public yt8(Context context, v3b v3bVar, final nea neaVar) {
         super(context);
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        int i8;
-        this.s = proxyListActivity;
-        TextView textView = new TextView(context);
-        this.a = textView;
-        zkb.X(textView, bkb.F6, null);
-        ug8.w(textView, 1, 16.0f, 1, 1);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
-        }
-        textView.setGravity(i | 16);
-        boolean z = k96.a0;
-        if (z) {
-            i2 = 5;
-        } else {
-            i2 = 3;
-        }
-        int i9 = i2 | 48;
-        if (z) {
-            i3 = 56;
-        } else {
-            i3 = 21;
-        }
-        float f = i3;
-        if (z) {
-            i4 = 21;
-        } else {
-            i4 = 56;
-        }
-        addView(textView, nme.d(-2, -2.0f, i9, f, 10.0f, i4, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.b = textView2;
-        textView2.setTextSize(1, 13.0f);
-        if (k96.a0) {
-            i5 = 5;
-        } else {
-            i5 = 3;
-        }
-        textView2.setGravity(i5);
-        textView2.setLines(1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        textView2.setCompoundDrawablePadding(gl.L(6.0f));
-        textView2.setEllipsize(truncateAt);
-        textView2.setPadding(0, 0, 0, 0);
-        boolean z2 = k96.a0;
-        if (z2) {
-            i6 = 5;
-        } else {
-            i6 = 3;
-        }
-        int i10 = i6 | 48;
-        if (z2) {
-            i7 = 56;
-        } else {
-            i7 = 21;
-        }
-        addView(textView2, nme.d(-2, -2.0f, i10, i7, 35.0f, z2 ? 21 : 56, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.c = imageView;
-        imageView.setImageResource(2131232190);
-        zkb.s(imageView, bkb.z6, null, PorterDuff.Mode.MULTIPLY);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setContentDescription(k96.M0(2131751323, null));
-        if (k96.a0) {
-            i8 = 3;
-        } else {
-            i8 = 5;
-        }
-        addView(imageView, nme.d(48, 48.0f, i8 | 48, 8.0f, 8.0f, 8.0f, 0.0f));
-        imageView.setOnClickListener(new ik8(this, (byte) 3));
-        wf2 wf2Var = new wf2(21, null, context);
-        this.f = wf2Var;
-        wf2Var.b(bkb.h7, bkb.f7, bkb.j7);
-        wf2Var.setDrawBackgroundAsArc(14);
-        wf2Var.setVisibility(8);
-        addView(wf2Var, nme.d(24, 24.0f, (k96.a0 ? 5 : 3) | 16, 16.0f, 0.0f, 8.0f, 0.0f));
-        setWillNotDraw(false);
+        this.s = new Rect();
+        this.c = v3bVar;
+        Objects.requireNonNull(v3bVar);
+        this.w = new pp8(v3bVar, (byte) 8);
+        final oea oeaVar = (oea) this;
+        ur0 ur0Var = new ur0(oeaVar, context, neaVar, (byte) 2);
+        this.a = ur0Var;
+        ur0Var.setAllowDisallowInterceptTouch(true);
+        xt8 xt8Var = new xt8(oeaVar);
+        this.d = xt8Var;
+        xt8Var.a = v3bVar.a();
+        ur0Var.setAdapter(xt8Var);
+        ur0Var.setTranslationY(gm.L(42.0f));
+        vgc l = ur0Var.l(10, true);
+        this.b = l;
+        l.h(cmb.wi, cmb.F6, cmb.ui, cmb.xi, cmb.r8);
+        l.r = 12;
+        l.setPreTabClick(new kac() {
+            @Override
+            public final Object j(Integer num, Object obj) {
+                h4b storiesController;
+                byte b = r3;
+                final nea neaVar2 = neaVar;
+                oea oeaVar2 = oeaVar;
+                switch (b) {
+                    case 0:
+                        Integer num2 = (Integer) obj;
+                        if (oeaVar2.f) {
+                            return Boolean.TRUE;
+                        }
+                        if (num.intValue() == -1) {
+                            ik.P(neaVar2.a, neaVar2.b, neaVar2.c, new yf9(neaVar2, (byte) 20));
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                    default:
+                        View view = (View) obj;
+                        if (num.intValue() != -1 && num.intValue() != 0 && !oeaVar2.f) {
+                            final int intValue = num.intValue();
+                            nha nhaVar = neaVar2.d;
+                            d dVar = nhaVar.y1;
+                            storiesController = nhaVar.getStoriesController();
+                            if (storiesController.h(nhaVar.m1)) {
+                                bu5 I = bu5.I(dVar, view);
+                                I.X(new ds8(neaVar2));
+                                I.b(2131231768, jb6.M0(2131744487, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                nhaVar.g(new x59(I, (byte) 12), dVar, nhaVar.m1, intValue);
+                                I.b(2131232122, jb6.M0(2131744482, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                I.b(2131232791, jb6.M0(2131744479, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                I.b(2131232114, jb6.M0(2131744485, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, true);
+                                I.a0();
+                            }
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                }
+            }
+        });
+        l.setOnTabLongClick(new kac() {
+            @Override
+            public final Object j(Integer num, Object obj) {
+                h4b storiesController;
+                byte b = r3;
+                final nea neaVar2 = neaVar;
+                oea oeaVar2 = oeaVar;
+                switch (b) {
+                    case 0:
+                        Integer num2 = (Integer) obj;
+                        if (oeaVar2.f) {
+                            return Boolean.TRUE;
+                        }
+                        if (num.intValue() == -1) {
+                            ik.P(neaVar2.a, neaVar2.b, neaVar2.c, new yf9(neaVar2, (byte) 20));
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                    default:
+                        View view = (View) obj;
+                        if (num.intValue() != -1 && num.intValue() != 0 && !oeaVar2.f) {
+                            final int intValue = num.intValue();
+                            nha nhaVar = neaVar2.d;
+                            d dVar = nhaVar.y1;
+                            storiesController = nhaVar.getStoriesController();
+                            if (storiesController.h(nhaVar.m1)) {
+                                bu5 I = bu5.I(dVar, view);
+                                I.X(new ds8(neaVar2));
+                                I.b(2131231768, jb6.M0(2131744487, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                nhaVar.g(new x59(I, (byte) 12), dVar, nhaVar.m1, intValue);
+                                I.b(2131232122, jb6.M0(2131744482, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                I.b(2131232791, jb6.M0(2131744479, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                I.b(2131232114, jb6.M0(2131744485, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r3;
+                                        int i = intValue;
+                                        nea neaVar3 = neaVar2;
+                                        switch (b2) {
+                                            case 0:
+                                                nha nhaVar2 = neaVar3.d;
+                                                nhaVar2.U0(i, nhaVar2.m1, nhaVar2.y1);
+                                                return;
+                                            case 1:
+                                                nha nhaVar3 = neaVar3.d;
+                                                nhaVar3.W0(i, nhaVar3.m1, nhaVar3.y1);
+                                                return;
+                                            case 2:
+                                                neaVar3.d.o1(i);
+                                                return;
+                                            default:
+                                                nha nhaVar4 = neaVar3.d;
+                                                nhaVar4.V0(i, nhaVar4.m1, nhaVar4.y1);
+                                                return;
+                                        }
+                                    }
+                                }, true);
+                                I.a0();
+                            }
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                }
+            }
+        });
+        addView(l, qoe.e(-1, 42, 48));
+        c(!v3bVar.h.isEmpty(), false, true);
     }
 
-    public final void a(boolean z, boolean z2) {
-        int L;
+    public final void a() {
         int i;
-        if (this.n == z && z2) {
+        vgc vgcVar = this.b;
+        if (vgcVar != null) {
+            i = vgcVar.getCurrentTabId();
+        } else {
+            i = 0;
+        }
+        v3b v3bVar = this.c;
+        boolean a = v3bVar.a();
+        xt8 xt8Var = this.d;
+        xt8Var.a = a;
+        this.a.m(true);
+        c(!v3bVar.h.isEmpty(), true, false);
+        int i2 = this.e;
+        if (i2 > 0) {
+            if (xt8Var.i(i2) != -1) {
+                gm.d3(new wt8(this, this.e, (byte) 1), 500L);
+                this.e = 0;
+            }
+        } else if (vgcVar != null && i > 0 && v3bVar.b(i) == null) {
+            vgcVar.e(0, 0);
+        }
+    }
+
+    public abstract void b();
+
+    public final void c(boolean z, boolean z2, boolean z3) {
+        if (this.r == z && !z3) {
             return;
         }
-        this.n = z;
-        if (k96.a0) {
-            L = -gl.L(32.0f);
-        } else {
-            L = gl.L(32.0f);
+        this.r = z;
+        setEnabled(z);
+        ValueAnimator valueAnimator = this.h;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.h = null;
         }
-        float f = L;
-        int i2 = 0;
-        float f2 = 0.0f;
-        float f3 = 1.0f;
+        float f = 0.0f;
         if (!z2) {
-            if (!z) {
-                f = 0.0f;
-            }
-            this.a.setTranslationX(f);
-            this.b.setTranslationX(f);
-            ImageView imageView = this.c;
-            imageView.setTranslationX(f);
-            boolean z3 = k96.a0;
-            int L2 = gl.L(32.0f);
-            if (!z3) {
-                L2 = -L2;
-            }
-            wf2 wf2Var = this.f;
-            wf2Var.setTranslationX(L2 + f);
             if (z) {
-                i = 8;
-            } else {
-                i = 0;
+                f = 1.0f;
             }
-            imageView.setVisibility(i);
-            imageView.setAlpha(1.0f);
-            imageView.setScaleX(1.0f);
-            imageView.setScaleY(1.0f);
-            if (!z) {
-                i2 = 8;
-            }
-            wf2Var.setVisibility(i2);
-            wf2Var.setAlpha(1.0f);
-            wf2Var.setScaleX(1.0f);
-            wf2Var.setScaleY(1.0f);
+            this.n = f;
+            b();
             return;
         }
+        float f2 = this.n;
         if (z) {
-            f3 = 0.0f;
-            f2 = 1.0f;
+            f = 1.0f;
         }
-        ValueAnimator duration = ValueAnimator.ofFloat(f3, f2).setDuration(200L);
-        duration.setInterpolator(s33.f);
-        duration.addUpdateListener(new rm1(this, f, (byte) 6));
-        duration.addListener(new id4((byte) 27, this, z));
-        duration.start();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
+        this.h = ofFloat;
+        ofFloat.setDuration(480L);
+        this.h.setInterpolator(d53.h);
+        this.h.addUpdateListener(new fx7(this, (byte) 20));
+        this.h.start();
     }
 
-    public final void b() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yt8.b():void");
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == nm7.l3 && ((Long) objArr[0]).longValue() == this.c.b) {
+            a();
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.r && super.dispatchTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getCurrentAlbumId() {
+        return this.d.f(this.b.getCurrentPosition());
+    }
+
+    public float getVisibilityFactor() {
+        return this.n;
+    }
+
+    public float getVisualHeight() {
+        return getMeasuredHeight() * this.n;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        b();
+        v3b v3bVar = this.c;
+        nm7.f(v3bVar.a).b(this, nm7.l3);
+        if (this.r != v3bVar.h.isEmpty() && this.d.a == v3bVar.a()) {
+            return;
+        }
+        a();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i;
-        if (k96.a0) {
-            L = 0.0f;
-        } else {
-            L = gl.L(20.0f);
-        }
-        float f = L;
-        float measuredHeight = getMeasuredHeight() - 1;
-        int measuredWidth = getMeasuredWidth();
-        if (k96.a0) {
-            i = gl.L(20.0f);
-        } else {
-            i = 0;
-        }
-        canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, bkb.j0);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        nm7.f(this.c.a).n(this, nm7.l3);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), ug8.E(64.0f, 1, 1073741824));
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        Rect rect = this.s;
+        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
+        setClipBounds(rect);
     }
 
-    public void setChecked(boolean z) {
-        TextView textView = this.b;
-        if (z) {
-            Drawable drawable = this.e;
-            if (drawable == null) {
-                drawable = getResources().getDrawable(2131232630).mutate();
-                this.e = drawable;
-            }
-            if (drawable != null) {
-                drawable.setColorFilter(new PorterDuffColorFilter(this.r, PorterDuff.Mode.MULTIPLY));
-            }
-            boolean z2 = k96.a0;
-            Drawable drawable2 = this.e;
+    public void setInitialTabId(int i) {
+        if (this.d.i(i) != -1) {
+            gm.d3(new wt8(this, i, (byte) 0), 500L);
+        } else {
+            this.e = i;
+        }
+    }
+
+    public void setReorderingAlbums(boolean z) {
+        float f;
+        float f2;
+        if (this.f != z) {
+            this.f = z;
+            vgc vgcVar = this.b;
+            vgcVar.setReordering(z);
+            boolean z2 = this.f;
+            oea oeaVar = (oea) this;
+            nha nhaVar = oeaVar.x;
+            TextView textView = nhaVar.t0;
+            textView.setVisibility(0);
+            ViewPropertyAnimator animate = textView.animate();
+            float f3 = 1.0f;
             if (z2) {
-                textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, drawable2, (Drawable) null);
-                return;
+                f = 1.0f;
             } else {
-                textView.setCompoundDrawablesWithIntrinsicBounds(drawable2, (Drawable) null, (Drawable) null, (Drawable) null);
-                return;
+                f = 0.0f;
             }
-        }
-        textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
-    }
-
-    public void setProxy(fba fbaVar) {
-        String str;
-        au8 au8Var = fbaVar.a;
-        if (au8Var.a == 3) {
-            str = b00.j(new StringBuilder(), au8Var.b, " (WEB)");
-        } else {
-            str = au8Var.b + ":" + fbaVar.a.c;
-        }
-        this.a.setText(str);
-        this.d = fbaVar;
-    }
-
-    public void setValue(CharSequence charSequence) {
-        this.b.setText(charSequence);
-    }
-
-    @Override
-    public final void updateColors() {
-        int w0;
-        TextView textView = this.b;
-        if (textView != null) {
-            try {
-                if ((textView.getTag() instanceof Integer) && (w0 = bkb.w0(null, ((Integer) textView.getTag()).intValue(), false)) != this.r) {
-                    this.r = w0;
-                    textView.setTextColor(w0);
-                    Drawable drawable = this.e;
-                    if (drawable != null) {
-                        drawable.setColorFilter(new PorterDuffColorFilter(this.r, PorterDuff.Mode.MULTIPLY));
-                    }
+            ViewPropertyAnimator alpha = animate.alpha(f);
+            if (z2) {
+                f2 = 1.0f;
+            } else {
+                f2 = 0.4f;
+            }
+            ViewPropertyAnimator scaleX = alpha.scaleX(f2);
+            if (!z2) {
+                f3 = 0.4f;
+            }
+            scaleX.scaleY(f3).withEndAction(new n28((byte) 14, oeaVar, z2)).start();
+            nhaVar.G1(true);
+            nhaVar.Q0();
+            if (z) {
+                d S = LaunchActivity.S();
+                if (S instanceof ProfileActivity) {
+                    ProfileActivity profileActivity = (ProfileActivity) S;
+                    profileActivity.n3(false);
+                    gm.c3(new gs8(profileActivity, (byte) 1));
                 }
-            } catch (Exception e) {
-                fa4.g(e, true);
+            }
+            if (!z) {
+                gm.r(this.w);
+                v3b v3bVar = this.c;
+                v3bVar.e();
+                v3bVar.f(false);
+                int currentPosition = vgcVar.getCurrentPosition();
+                xt8 xt8Var = this.d;
+                int f4 = xt8Var.f(currentPosition);
+                this.a.m(true);
+                int i = xt8Var.i(f4);
+                vgcVar.f(0.0f, i, i);
             }
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

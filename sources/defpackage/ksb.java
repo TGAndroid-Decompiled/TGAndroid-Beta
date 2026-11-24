@@ -1,22 +1,17 @@
 package defpackage;
-public enum ksb extends qsb {
+public enum ksb extends rub {
     public ksb() {
-        super("BogusDoctype", 65);
+        super("ScriptDataEndTagOpen", 17);
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char d = zj1Var.d();
-        lqb lqbVar = qsb.a;
-        if (d != '>') {
-            if (d != 65535) {
-                return;
-            }
-            aqbVar.j();
-            aqbVar.c = lqbVar;
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        if (hl1Var.o()) {
+            bsbVar.d(false);
+            bsbVar.c = rub.I;
             return;
         }
-        aqbVar.j();
-        aqbVar.c = lqbVar;
+        bsbVar.h("</");
+        bsbVar.c = rub.f;
     }
 }

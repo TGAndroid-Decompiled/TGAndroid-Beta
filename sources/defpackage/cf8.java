@@ -1,343 +1,757 @@
 package defpackage;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.Property;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import j$.util.Objects;
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.PollVotesAlert$UserCell;
-public final class cf8 extends j39 {
-    public final Context r;
-    public final gf8 s;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.view.SurfaceHolder;
+import java.util.IdentityHashMap;
+import java.util.List;
+public final class cf8 implements re8 {
+    public final re8 a;
+    public final IdentityHashMap b = new IdentityHashMap();
 
-    public cf8(gf8 gf8Var, Context context) {
-        this.s = gf8Var;
-        this.r = context;
+    public cf8(re8 re8Var) {
+        this.a = re8Var;
     }
 
     @Override
-    public final String F(int i) {
+    public final int A() {
+        V0();
+        return this.a.A();
+    }
+
+    @Override
+    public final void A0(int i, bt6 bt6Var) {
+        V0();
+        this.a.A0(i, bt6Var);
+    }
+
+    @Override
+    public final jec B() {
+        V0();
+        return this.a.B();
+    }
+
+    @Override
+    public final Looper B0() {
+        return this.a.B0();
+    }
+
+    @Override
+    public final void C() {
+        V0();
+        this.a.C();
+    }
+
+    @Override
+    public final void C0() {
+        V0();
+        this.a.C0();
+    }
+
+    @Override
+    public final float D() {
+        V0();
+        return this.a.D();
+    }
+
+    @Override
+    public final void D0(bt6 bt6Var) {
+        V0();
+        this.a.D0(bt6Var);
+    }
+
+    @Override
+    public final void E() {
+        V0();
+        this.a.E();
+    }
+
+    @Override
+    public final void E0() {
+        V0();
+        this.a.E0();
+    }
+
+    @Override
+    public final o00 F() {
+        V0();
+        return this.a.F();
+    }
+
+    @Override
+    public final boolean F0() {
+        V0();
+        return this.a.F0();
+    }
+
+    @Override
+    public final void G(int i, boolean z) {
+        V0();
+        this.a.G(i, z);
+    }
+
+    @Override
+    public final d0c G0() {
+        V0();
+        return this.a.G0();
+    }
+
+    @Override
+    public final of3 H() {
+        V0();
+        return this.a.H();
+    }
+
+    @Override
+    public final long H0() {
+        V0();
+        return this.a.H0();
+    }
+
+    @Override
+    public final void I() {
+        V0();
+        this.a.I();
+    }
+
+    @Override
+    public final void I0(int i) {
+        V0();
+        this.a.I0(i);
+    }
+
+    @Override
+    public final void J(int i, int i2) {
+        V0();
+        this.a.J(i, i2);
+    }
+
+    @Override
+    public final void J0() {
+        V0();
+        this.a.J0();
+    }
+
+    @Override
+    public final void K(int i) {
+        V0();
+        this.a.K(i);
+    }
+
+    @Override
+    public final void K0() {
+        V0();
+        this.a.K0();
+    }
+
+    @Override
+    public final int L() {
+        V0();
+        return this.a.L();
+    }
+
+    @Override
+    public final void L0() {
+        V0();
+        this.a.L0();
+    }
+
+    @Override
+    public final void M(d0c d0cVar) {
+        V0();
+        this.a.M(d0cVar);
+    }
+
+    @Override
+    public final jt6 M0() {
+        V0();
+        return this.a.M0();
+    }
+
+    @Override
+    public final boolean N() {
+        return this.a.N();
+    }
+
+    @Override
+    public final void N0(List list) {
+        V0();
+        this.a.N0(list);
+    }
+
+    @Override
+    public final void O(int i) {
+        V0();
+        this.a.O(i);
+    }
+
+    @Override
+    public final long O0() {
+        V0();
+        return this.a.O0();
+    }
+
+    @Override
+    public final void P(int i, int i2) {
+        V0();
+        this.a.P(i, i2);
+    }
+
+    @Override
+    public final boolean P0() {
+        V0();
+        return this.a.P0();
+    }
+
+    @Override
+    public final void Q(SurfaceHolder surfaceHolder) {
+        V0();
+        this.a.Q(surfaceHolder);
+    }
+
+    public final qe8 Q0() {
+        int i;
+        boolean z;
+        int i2;
+        boolean z2;
+        bt6 bt6Var;
+        long j;
+        long j2;
+        int i3;
+        int i4;
+        boolean z3;
+        boolean m0 = m0(16);
+        boolean m02 = m0(17);
+        boolean z4 = false;
+        if (m02) {
+            i = l0();
+        } else {
+            i = 0;
+        }
+        if (i >= 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        jte.p(z);
+        if (m02) {
+            i2 = A();
+        } else {
+            i2 = 0;
+        }
+        if (i2 >= 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        jte.p(z2);
+        if (m02) {
+            bqb y0 = y0();
+            if (!y0.p()) {
+                if (i < y0.o()) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                jte.p(z3);
+                aqb m = y0.m(i, new aqb(), 0L);
+                if (i2 == hac.i(i2, m.m, m.n)) {
+                    z4 = true;
+                }
+                jte.p(z4);
+            }
+        }
+        if (m0) {
+            bt6Var = u();
+        } else {
+            bt6Var = null;
+        }
+        bt6 bt6Var2 = bt6Var;
+        if (m0) {
+            long k = k();
+            long Y = Y();
+            int k0 = k0();
+            i4 = L();
+            j = k;
+            j2 = Y;
+            i3 = k0;
+        } else {
+            j = 0;
+            j2 = 0;
+            i3 = -1;
+            i4 = -1;
+        }
+        return new qe8(null, i, bt6Var2, null, i2, j, j2, i3, i4);
+    }
+
+    @Override
+    public final void R(float f) {
+        V0();
+        this.a.R(f);
+    }
+
+    public final n8a R0() {
+        boolean z;
+        long j;
+        long j2;
+        long j3;
+        long j4;
+        int i;
+        boolean z2;
+        long j5;
+        long j6;
+        long j7;
+        boolean m0 = m0(16);
+        qe8 Q0 = Q0();
+        if (m0 && m()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (m0) {
+            long duration = getDuration();
+            long b0 = b0();
+            int w = w();
+            j3 = o();
+            j = n();
+            j2 = z();
+            j4 = H0();
+            i = w;
+            z2 = z;
+            j5 = elapsedRealtime;
+            j6 = duration;
+            j7 = b0;
+        } else {
+            j = -9223372036854775807L;
+            j2 = -9223372036854775807L;
+            j3 = 0;
+            j4 = 0;
+            i = 0;
+            z2 = z;
+            j5 = elapsedRealtime;
+            j6 = -9223372036854775807L;
+            j7 = 0;
+        }
+        return new n8a(Q0, z2, j5, j6, j7, i, j3, j, j2, j4);
+    }
+
+    @Override
+    public final void S() {
+        V0();
+        this.a.S();
+    }
+
+    public final bt6 S0() {
+        if (m0(16)) {
+            return u();
+        }
         return null;
     }
 
     @Override
-    public final void G(o39 o39Var, float f, int[] iArr) {
-        iArr[0] = 0;
-        iArr[1] = 0;
+    public final void T(List list, int i, long j) {
+        V0();
+        this.a.T(list, i, j);
+    }
+
+    public final bqb T0() {
+        if (m0(17)) {
+            return y0();
+        }
+        if (S0() != null) {
+            return new bf8(this);
+        }
+        return bqb.a;
     }
 
     @Override
-    public final int M(int i) {
-        int i2 = 1;
-        if (i == 0) {
-            return 1;
+    public final u64 U() {
+        V0();
+        return this.a.U();
+    }
+
+    public final jt6 U0() {
+        if (m0(18)) {
+            return M0();
         }
-        ff8 ff8Var = (ff8) this.s.w1.get(i - 1);
-        int b = ff8Var.b() + 1;
-        if (TextUtils.isEmpty(ff8Var.c) && !ff8Var.e) {
-            i2 = 0;
-        }
-        return b + i2;
+        return jt6.M;
     }
 
     @Override
-    public final Object O(int i, int i2) {
-        int i3;
-        ArrayList arrayList = this.s.w1;
-        if (i == 0) {
-            return 293145;
-        }
-        int i4 = i - 1;
-        if (i2 == 0) {
-            return -928312;
-        }
-        if (i4 >= 0 && i4 < arrayList.size() && (i3 = i2 - 1) < ((ff8) arrayList.get(i4)).b()) {
-            return Integer.valueOf(Objects.hash(Long.valueOf(cf3.n(((TLRPC.MessagePeerVote) ((ff8) arrayList.get(i4)).b.get(i3)).peer))));
-        }
-        return -182734;
+    public final void V(boolean z) {
+        V0();
+        this.a.V(z);
     }
 
-    @Override
-    public final int P(int i, int i2) {
-        if (i == 0) {
-            return 1;
-        }
-        if (i2 == 0) {
-            return 2;
-        }
-        if (i2 - 1 < ((ff8) this.s.w1.get(i - 1)).b()) {
-            return 0;
-        }
-        return 3;
-    }
-
-    @Override
-    public final int R() {
-        return this.s.w1.size() + 1;
-    }
-
-    @Override
-    public final View T(int i, View view) {
-        ArrayList<TLRPC.MessageEntity> arrayList;
-        String str;
-        TLRPC.Message message;
-        gf8 gf8Var = this.s;
-        TLRPC.Poll poll = gf8Var.s1;
-        k27 k27Var = gf8Var.r1;
-        if (view == null) {
-            view = new bf8(this, this.r);
-        }
-        ef8 ef8Var = (ef8) view;
-        if (i == 0) {
-            ef8Var.setAlpha(0.0f);
-            return view;
-        }
-        view.setAlpha(1.0f);
-        ff8 ff8Var = (ff8) gf8Var.w1.get(i - 1);
-        int size = poll.answers.size();
-        int i2 = 0;
-        for (int i3 = 0; i3 < size; i3++) {
-            TLRPC.PollAnswer pollAnswer = poll.answers.get(i3);
-            if (Arrays.equals(pollAnswer.option, ff8Var.d) && ((df8) gf8Var.v1.get(ff8Var)) != null) {
-                TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (k27Var != null && k27Var.L2 && (message = k27Var.k) != null && message.translatedPoll != null) {
-                    while (true) {
-                        if (i2 >= k27Var.k.translatedPoll.b.size()) {
-                            break;
-                        }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) k27Var.k.translatedPoll.b.get(i2);
-                        if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
-                            tL_textWithEntities = pollAnswer2.text;
-                            break;
-                        }
-                        i2++;
-                    }
-                }
-                if (tL_textWithEntities == null) {
-                    str = "";
-                    arrayList = null;
-                } else {
-                    String str2 = tL_textWithEntities.text;
-                    arrayList = tL_textWithEntities.entities;
-                    str = str2;
-                }
-                ef8Var.a(str, arrayList, gf8Var.E0(ff8Var.d), ff8Var.a, ff8Var.a(), false);
-                ef8Var.setTag(2131296587, ff8Var);
-                return view;
-            }
-        }
-        return view;
-    }
-
-    @Override
-    public final boolean V(int i, int i2, s49 s49Var) {
-        if (i != 0 && i2 != 0) {
-            ArrayList arrayList = this.s.z1;
-            if (arrayList == null || arrayList.isEmpty()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void W(int i, int i2, s49 s49Var) {
-        ArrayList<TLRPC.MessageEntity> arrayList;
-        String str;
-        TLRPC.Message message;
-        gf8 gf8Var = this.s;
-        TLRPC.Poll poll = gf8Var.s1;
-        ArrayList arrayList2 = gf8Var.w1;
-        k27 k27Var = gf8Var.r1;
-        int i3 = s49Var.f;
-        View view = s49Var.a;
-        int i4 = 0;
-        if (i3 != 2) {
-            if (i3 == 3) {
-                ff8 ff8Var = (ff8) arrayList2.get(i - 1);
-                ((wgb) view).o(2131230871, k96.G(ff8Var.a - ff8Var.b(), "ShowVotes", new Object[0]), false);
-                return;
-            }
-            return;
-        }
-        ef8 ef8Var = (ef8) view;
-        ff8 ff8Var2 = (ff8) arrayList2.get(i - 1);
-        ArrayList arrayList3 = ff8Var2.b;
-        byte[] bArr = ff8Var2.d;
-        TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) arrayList3.get(0);
-        int size = poll.answers.size();
-        for (int i5 = 0; i5 < size; i5++) {
-            TLRPC.PollAnswer pollAnswer = poll.answers.get(i5);
-            if (Arrays.equals(pollAnswer.option, bArr) && ((df8) gf8Var.v1.get(ff8Var2)) != null) {
-                TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (k27Var != null && k27Var.L2 && (message = k27Var.k) != null && message.translatedPoll != null) {
-                    while (true) {
-                        if (i4 >= k27Var.k.translatedPoll.b.size()) {
-                            break;
-                        }
-                        TLRPC.PollAnswer pollAnswer2 = (TLRPC.PollAnswer) k27Var.k.translatedPoll.b.get(i4);
-                        if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
-                            tL_textWithEntities = pollAnswer2.text;
-                            break;
-                        }
-                        i4++;
-                    }
-                }
-                if (tL_textWithEntities == null) {
-                    str = "";
-                    arrayList = null;
-                } else {
-                    String str2 = tL_textWithEntities.text;
-                    arrayList = tL_textWithEntities.entities;
-                    str = str2;
-                }
-                ef8Var.a(str, arrayList, gf8Var.E0(bArr), ff8Var2.a, ff8Var2.a(), false);
-                ef8Var.setTag(2131296587, ff8Var2);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        wgb wgbVar;
-        gf8 gf8Var = this.s;
-        View view = gf8Var.x1;
-        Context context = this.r;
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    wgb wgbVar2 = new wgb(23, context, true);
-                    wgbVar2.setOffsetFromImage(65);
-                    zkb.h(bkb.g5, gf8Var.J0, wgbVar2);
-                    wgbVar2.g(bkb.M6, bkb.p6);
-                    wgbVar = wgbVar2;
-                } else {
-                    View bf8Var = new bf8(this, context);
-                    bf8Var.setTag(-33024);
-                    wgbVar = bf8Var;
-                }
-            } else {
-                ViewParent parent = view.getParent();
-                wgbVar = view;
-                if (parent != null) {
-                    ((ViewGroup) view.getParent()).removeView(view);
-                    wgbVar = view;
-                }
-            }
-        } else {
-            wgbVar = new PollVotesAlert$UserCell(gf8Var, context);
-        }
-        return new s49(wgbVar);
-    }
-
-    @Override
-    public final void y(s49 s49Var) {
+    public final void V0() {
         boolean z;
-        if (s49Var.f == 0) {
-            int b = s49Var.b();
-            int S = S(b);
-            int Q = Q(b) - 1;
-            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) s49Var.a;
-            gf8 gf8Var = this.s;
-            ff8 ff8Var = (ff8) gf8Var.w1.get(S - 1);
-            TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) ff8Var.b.get(Q);
-            TLObject Z1 = na7.q1(gf8Var.a).Z1(cf3.n(messagePeerVote.peer));
-            int i = messagePeerVote.date;
-            boolean z2 = true;
-            if (Q == ff8Var.b() - 1 && TextUtils.isEmpty(ff8Var.c) && !ff8Var.e) {
-                z = false;
-            } else {
-                z = true;
-            }
-            be0 be0Var = pollVotesAlert$UserCell.a;
-            jia jiaVar = pollVotesAlert$UserCell.b;
-            if (Z1 instanceof TLRPC.User) {
-                pollVotesAlert$UserCell.h = (TLRPC.User) Z1;
-                pollVotesAlert$UserCell.n = null;
-            } else if (Z1 instanceof TLRPC.Chat) {
-                pollVotesAlert$UserCell.n = (TLRPC.Chat) Z1;
-                pollVotesAlert$UserCell.h = null;
-            } else {
-                pollVotesAlert$UserCell.h = null;
-                pollVotesAlert$UserCell.n = null;
-            }
-            long j = i;
-            pollVotesAlert$UserCell.d.setText(k96.D0().o0().format(1000 * j));
-            pollVotesAlert$UserCell.c.setText(k96.r(j, true));
-            pollVotesAlert$UserCell.s = z;
-            if (Z1 != null) {
-                z2 = false;
-            }
-            pollVotesAlert$UserCell.x = z2;
-            pollVotesAlert$UserCell.w = Q;
-            if (Z1 == null) {
-                jiaVar.l("", false);
-                be0Var.setImageDrawable(null);
-            } else {
-                pb0 pb0Var = pollVotesAlert$UserCell.e;
-                TLRPC.User user = pollVotesAlert$UserCell.h;
-                if (user != null) {
-                    pb0Var.q(user);
-                    TLRPC.UserStatus userStatus = pollVotesAlert$UserCell.h.status;
-                } else {
-                    TLRPC.Chat chat = pollVotesAlert$UserCell.n;
-                    if (chat != null) {
-                        pb0Var.p(chat);
-                    }
-                }
-                TLRPC.User user2 = pollVotesAlert$UserCell.h;
-                if (user2 != null) {
-                    String q = l7c.q(user2);
-                    pollVotesAlert$UserCell.r = q;
-                    pollVotesAlert$UserCell.r = b00.e(jiaVar, q, false, null, 0);
-                } else {
-                    TLRPC.Chat chat2 = pollVotesAlert$UserCell.n;
-                    if (chat2 != null) {
-                        String str = chat2.title;
-                        pollVotesAlert$UserCell.r = str;
-                        pollVotesAlert$UserCell.r = b00.e(jiaVar, str, false, null, 0);
-                    } else {
-                        pollVotesAlert$UserCell.r = "";
-                    }
-                }
-                jiaVar.l(pollVotesAlert$UserCell.r, false);
-                aya ayaVar = pollVotesAlert$UserCell.f;
-                TLRPC.User user3 = pollVotesAlert$UserCell.h;
-                TLRPC.Chat chat3 = pollVotesAlert$UserCell.n;
-                int i2 = bkb.y9;
-                gf8 gf8Var2 = pollVotesAlert$UserCell.F;
-                pm pmVar = gf8.L1;
-                jiaVar.i(ayaVar.b(user3, chat3, bkb.v0(i2, gf8Var2.J0), false));
-                TLRPC.Chat chat4 = pollVotesAlert$UserCell.n;
-                if (chat4 != null) {
-                    be0Var.f(chat4, pb0Var);
-                } else {
-                    TLRPC.User user4 = pollVotesAlert$UserCell.h;
-                    if (user4 != null) {
-                        be0Var.f(user4, pb0Var);
-                    } else {
-                        be0Var.setImageDrawable(pb0Var);
-                    }
-                }
-            }
-            ArrayList arrayList = pollVotesAlert$UserCell.E;
-            if (arrayList != null) {
-                Property property = View.ALPHA;
-                arrayList.add(ObjectAnimator.ofFloat(be0Var, property, 0.0f, 1.0f));
-                pollVotesAlert$UserCell.E.add(ObjectAnimator.ofFloat(jiaVar, property, 0.0f, 1.0f));
-                pollVotesAlert$UserCell.E.add(ObjectAnimator.ofFloat(pollVotesAlert$UserCell, gf8.L1, 1.0f, 0.0f));
-            } else if (!pollVotesAlert$UserCell.x) {
-                pollVotesAlert$UserCell.y = 0.0f;
-            }
+        if (Looper.myLooper() == this.a.B0()) {
+            z = true;
+        } else {
+            z = false;
         }
+        jte.p(z);
+    }
+
+    @Override
+    public final void W(int i) {
+        V0();
+        this.a.W(i);
+    }
+
+    @Override
+    public final long X() {
+        V0();
+        return this.a.X();
+    }
+
+    @Override
+    public final long Y() {
+        V0();
+        return this.a.Y();
+    }
+
+    @Override
+    public final void Z(int i, List list) {
+        V0();
+        this.a.Z(i, list);
+    }
+
+    @Override
+    public final void a() {
+        V0();
+        this.a.a();
+    }
+
+    @Override
+    public final void a0() {
+        V0();
+        this.a.a0();
+    }
+
+    @Override
+    public final void b(ce8 ce8Var) {
+        V0();
+        this.a.b(ce8Var);
+    }
+
+    @Override
+    public final long b0() {
+        V0();
+        return this.a.b0();
+    }
+
+    @Override
+    public final void c() {
+        V0();
+        this.a.c();
+    }
+
+    @Override
+    public final boolean c0() {
+        V0();
+        return this.a.c0();
+    }
+
+    @Override
+    public final void d(float f) {
+        V0();
+        this.a.d(f);
+    }
+
+    @Override
+    public final void d0() {
+        V0();
+        this.a.d0();
+    }
+
+    @Override
+    public final void e(long j) {
+        V0();
+        this.a.e(j);
+    }
+
+    @Override
+    public final void e0(int i) {
+        V0();
+        this.a.e0(i);
+    }
+
+    @Override
+    public final boolean f() {
+        V0();
+        return this.a.f();
+    }
+
+    @Override
+    public final g0c f0() {
+        V0();
+        return this.a.f0();
+    }
+
+    @Override
+    public final ce8 g() {
+        V0();
+        return this.a.g();
+    }
+
+    @Override
+    public final jt6 g0() {
+        V0();
+        return this.a.g0();
+    }
+
+    @Override
+    public final long getDuration() {
+        V0();
+        return this.a.getDuration();
+    }
+
+    @Override
+    public final int h() {
+        V0();
+        return this.a.h();
+    }
+
+    @Override
+    public final g53 h0() {
+        V0();
+        return this.a.h0();
+    }
+
+    @Override
+    public final boolean i() {
+        V0();
+        return this.a.i();
+    }
+
+    @Override
+    public final void i0(o00 o00Var, boolean z) {
+        this.a.i0(o00Var, z);
+    }
+
+    @Override
+    public final void j() {
+        V0();
+        this.a.j();
+    }
+
+    @Override
+    public final void j0(jt6 jt6Var) {
+        V0();
+        this.a.j0(jt6Var);
+    }
+
+    @Override
+    public final long k() {
+        V0();
+        return this.a.k();
+    }
+
+    @Override
+    public final int k0() {
+        V0();
+        return this.a.k0();
+    }
+
+    @Override
+    public final int l() {
+        V0();
+        return this.a.l();
+    }
+
+    @Override
+    public final int l0() {
+        V0();
+        return this.a.l0();
+    }
+
+    @Override
+    public final boolean m() {
+        V0();
+        return this.a.m();
+    }
+
+    @Override
+    public final boolean m0(int i) {
+        V0();
+        return this.a.m0(i);
+    }
+
+    @Override
+    public final long n() {
+        V0();
+        return this.a.n();
+    }
+
+    @Override
+    public final void n0(int i) {
+        V0();
+        this.a.n0(i);
+    }
+
+    @Override
+    public final long o() {
+        V0();
+        return this.a.o();
+    }
+
+    @Override
+    public final void o0(boolean z) {
+        V0();
+        this.a.o0(z);
+    }
+
+    @Override
+    public final void p(int i, long j) {
+        V0();
+        this.a.p(i, j);
+    }
+
+    @Override
+    public final void p0(pe8 pe8Var) {
+        V0();
+        synchronized (this.b) {
+            pe8 pe8Var2 = (pe8) this.b.remove(pe8Var);
+            re8 re8Var = this.a;
+            if (pe8Var2 != null) {
+                pe8Var = pe8Var2;
+            }
+            re8Var.p0(pe8Var);
+        }
+    }
+
+    @Override
+    public final ne8 q() {
+        V0();
+        return this.a.q();
+    }
+
+    @Override
+    public final void q0(bt6 bt6Var) {
+        V0();
+        this.a.q0(bt6Var);
+    }
+
+    @Override
+    public final void r(bt6 bt6Var, long j) {
+        V0();
+        this.a.r(bt6Var, j);
+    }
+
+    @Override
+    public final void r0(List list, int i, int i2) {
+        V0();
+        this.a.r0(list, i, i2);
+    }
+
+    @Override
+    public final boolean s() {
+        V0();
+        return this.a.s();
+    }
+
+    @Override
+    public final void s0(int i, int i2) {
+        V0();
+        this.a.s0(i, i2);
+    }
+
+    @Override
+    public final void stop() {
+        V0();
+        this.a.stop();
+    }
+
+    @Override
+    public final void t() {
+        V0();
+        this.a.t();
+    }
+
+    @Override
+    public final void t0(int i, int i2, int i3) {
+        V0();
+        this.a.t0(i, i2, i3);
+    }
+
+    @Override
+    public final bt6 u() {
+        V0();
+        return this.a.u();
+    }
+
+    @Override
+    public final boolean u0() {
+        V0();
+        return this.a.u0();
+    }
+
+    @Override
+    public final void v(boolean z) {
+        V0();
+        this.a.v(z);
+    }
+
+    @Override
+    public final int v0() {
+        V0();
+        return this.a.v0();
+    }
+
+    @Override
+    public final int w() {
+        V0();
+        return this.a.w();
+    }
+
+    @Override
+    public final void w0(List list) {
+        V0();
+        this.a.w0(list);
+    }
+
+    @Override
+    public final long x() {
+        V0();
+        return this.a.x();
+    }
+
+    @Override
+    public final int x0() {
+        V0();
+        return this.a.x0();
+    }
+
+    @Override
+    public final void y(pe8 pe8Var) {
+        V0();
+        synchronized (this.b) {
+            ro4 ro4Var = (ro4) this.b.get(pe8Var);
+            if (ro4Var == null) {
+                ro4Var = new ro4(this, pe8Var);
+            }
+            this.a.y(ro4Var);
+            this.b.put(pe8Var, ro4Var);
+        }
+    }
+
+    @Override
+    public final bqb y0() {
+        V0();
+        return this.a.y0();
+    }
+
+    @Override
+    public final long z() {
+        V0();
+        return this.a.z();
+    }
+
+    @Override
+    public final boolean z0() {
+        V0();
+        return this.a.z0();
     }
 }

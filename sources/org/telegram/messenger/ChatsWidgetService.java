@@ -11,10 +11,10 @@ public class ChatsWidgetService extends RemoteViewsService {
         Context applicationContext = getApplicationContext();
         ?? obj = new Object();
         obj.a = new ArrayList();
-        obj.g = new vf6();
-        obj.h = new vf6();
+        obj.g = new vh6();
+        obj.h = new vh6();
         obj.b = applicationContext;
-        bkb.S(applicationContext);
+        cmb.S(applicationContext);
         boolean z = false;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         obj.c = intExtra;

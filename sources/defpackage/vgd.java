@@ -1,8 +1,14 @@
 package defpackage;
 public abstract class vgd {
-    public static final int a = 0;
+    public static final Class a;
 
     static {
-        vgd.class.getClassLoader();
+        Class<?> cls;
+        try {
+            cls = Class.forName("com.google.protobuf.ExtensionRegistry");
+        } catch (ClassNotFoundException unused) {
+            cls = null;
+        }
+        a = cls;
     }
 }

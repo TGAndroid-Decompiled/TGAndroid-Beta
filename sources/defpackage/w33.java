@@ -1,14 +1,17 @@
 package defpackage;
-public interface w33 {
-    long a(long j);
 
-    boolean b(x33 x33Var, long j);
-
-    mm5 c(long j);
-
-    void clear();
-
-    long d(long j);
-
-    void e(long j);
+import android.os.CancellationSignal;
+import android.util.Log;
+public final class w33 {
+    public static boolean a(CancellationSignal cancellationSignal) {
+        if (cancellationSignal != null) {
+            if (cancellationSignal.isCanceled()) {
+                Log.i("PlayServicesImpl", "the flow has been canceled");
+                return true;
+            }
+            return false;
+        }
+        Log.i("PlayServicesImpl", "No cancellationSignal found");
+        return false;
+    }
 }

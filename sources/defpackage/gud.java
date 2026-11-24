@@ -1,98 +1,44 @@
 package defpackage;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
-public final class gud {
-    public Object A;
-    public final ng5 a;
-    public final Object[] b;
-    public final Class c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final int g;
-    public final int h;
-    public final int i;
-    public final int j;
-    public final int k;
-    public final int l;
-    public final int[] m;
-    public int n;
-    public int o;
-    public int p = Integer.MAX_VALUE;
-    public int q = Integer.MIN_VALUE;
-    public int r = 0;
-    public int s;
-    public int t;
-    public int u;
-    public int v;
-    public int w;
-    public Field x;
-    public Object y;
-    public Object z;
-
-    public gud(Class cls, String str, Object[] objArr) {
-        this.c = cls;
-        ng5 ng5Var = new ng5(str, (byte) 4);
-        this.a = ng5Var;
-        this.b = objArr;
-        this.d = ng5Var.b();
-        int b = ng5Var.b();
-        this.e = b;
-        if (b == 0) {
-            this.f = 0;
-            this.g = 0;
-            this.h = 0;
-            this.i = 0;
-            this.k = 0;
-            this.j = 0;
-            this.l = 0;
-            this.m = null;
-            return;
-        }
-        int b2 = ng5Var.b();
-        this.f = b2;
-        int b3 = ng5Var.b();
-        this.g = ng5Var.b();
-        this.h = ng5Var.b();
-        this.k = ng5Var.b();
-        this.j = ng5Var.b();
-        this.i = ng5Var.b();
-        this.l = ng5Var.b();
-        int b4 = ng5Var.b();
-        this.m = b4 != 0 ? new int[b4] : null;
-        this.n = (b2 << 1) + b3;
-    }
-
-    public static Field b(Class cls, String str) {
-        try {
-            return cls.getDeclaredField(str);
-        } catch (NoSuchFieldException unused) {
-            Field[] declaredFields = cls.getDeclaredFields();
-            for (Field field : declaredFields) {
-                if (str.equals(field.getName())) {
-                    return field;
-                }
+public abstract class gud {
+    public static Object a(int i) {
+        if (i >= 2 && i <= 1073741824 && Integer.highestOneBit(i) == i) {
+            if (i <= 256) {
+                return new byte[i];
             }
-            String name = cls.getName();
-            String arrays = Arrays.toString(declaredFields);
-            StringBuilder sb = new StringBuilder(String.valueOf(arrays).length() + name.length() + String.valueOf(str).length() + 40);
-            sb.append("Field ");
-            sb.append(str);
-            sb.append(" for ");
-            sb.append(name);
-            wn4.j(b00.j(sb, " not found. Known fields are ", arrays));
-            return null;
+            if (i <= 65536) {
+                return new short[i];
+            }
+            return new int[i];
         }
+        u36.j(hg9.j(i, "must be power of 2 between 2^1 and 2^30: "));
+        return null;
     }
 
-    public final boolean a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gud.a():boolean");
+    public static int b(int i, int i2, int i3) {
+        return (i & (~i3)) | (i2 & i3);
     }
 
-    public final Object c() {
-        int i = this.n;
-        this.n = i + 1;
-        return this.b[i];
+    public static int c(java.lang.Object r9, java.lang.Object r10, int r11, java.lang.Object r12, int[] r13, java.lang.Object[] r14, java.lang.Object[] r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gud.c(java.lang.Object, java.lang.Object, int, java.lang.Object, int[], java.lang.Object[], java.lang.Object[]):int");
+    }
+
+    public static int d(int i, Object obj) {
+        if (obj instanceof byte[]) {
+            return ((byte[]) obj)[i] & 255;
+        }
+        if (obj instanceof short[]) {
+            return ((short[]) obj)[i] & 65535;
+        }
+        return ((int[]) obj)[i];
+    }
+
+    public static void e(int i, int i2, Object obj) {
+        if (obj instanceof byte[]) {
+            ((byte[]) obj)[i] = (byte) i2;
+        } else if (obj instanceof short[]) {
+            ((short[]) obj)[i] = (short) i2;
+        } else {
+            ((int[]) obj)[i] = i2;
+        }
     }
 }

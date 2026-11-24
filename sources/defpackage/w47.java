@@ -1,35 +1,30 @@
 package defpackage;
-
-import org.telegram.tgnet.RequestDelegate;
-public final class w47 implements RequestDelegate {
+public final class w47 implements Runnable {
     public final byte a;
-    public final Object b;
-    public final long c;
-    public final Object d;
+    public final f57 b;
 
-    public w47(eta etaVar, na7 na7Var, long j) {
-        this.a = (byte) 17;
-        this.d = etaVar;
-        this.b = na7Var;
-        this.c = j;
+    public w47(f57 f57Var, byte b) {
+        this.a = b;
+        this.b = f57Var;
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r28, org.telegram.tgnet.TLRPC.TL_error r29) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.w47.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
-    }
-
-    public w47(Object obj, long j, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = j;
-        this.d = obj2;
-    }
-
-    public w47(Object obj, Object obj2, long j, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.d = obj2;
-        this.c = j;
+    public final void run() {
+        byte b = this.a;
+        f57 f57Var = this.b;
+        switch (b) {
+            case 0:
+                boolean z = f57Var.d0.d.r;
+                fv fvVar = f57Var.f;
+                if (z) {
+                    fvVar.y0(-fvVar.computeVerticalScrollOffset(), 250, wb2.V);
+                    return;
+                }
+                fvVar.y0(fvVar.computeVerticalScrollRange() - (fvVar.computeVerticalScrollExtent() + fvVar.computeVerticalScrollOffset()), 250, wb2.V);
+                return;
+            default:
+                f57Var.g(true, false);
+                return;
+        }
     }
 }

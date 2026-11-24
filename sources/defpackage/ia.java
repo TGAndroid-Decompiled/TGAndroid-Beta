@@ -2,7 +2,7 @@ package defpackage;
 
 import j$.util.Objects;
 import java.util.ArrayList;
-public final class ia extends zde {
+public final class ia extends age {
     public final byte a = 0;
     public ArrayList b;
     public ArrayList c;
@@ -38,9 +38,9 @@ public final class ia extends zde {
                 }
                 return jaVar.equals(jaVar2);
             default:
-                iwb iwbVar = (iwb) this.b.get(i);
-                iwb iwbVar2 = (iwb) this.c.get(i2);
-                if (iwbVar.a != iwbVar2.a || !Objects.equals(iwbVar.b, iwbVar2.b)) {
+                lyb lybVar = (lyb) this.b.get(i);
+                lyb lybVar2 = (lyb) this.c.get(i2);
+                if (lybVar.a != lybVar2.a || !Objects.equals(lybVar.b, lybVar2.b)) {
                     return false;
                 }
                 return true;

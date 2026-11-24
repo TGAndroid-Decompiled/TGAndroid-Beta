@@ -1,55 +1,132 @@
 package defpackage;
 
-import android.view.View;
-public final class wu3 implements Runnable {
-    public final int a;
-    public final int b;
-    public final zu3 c;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MotionEvent;
+public final class wu3 extends qu3 {
+    public Drawable e2;
+    public final int f2;
+    public final cv3 g2;
 
-    public wu3(zu3 zu3Var, int i, int i2) {
-        this.c = zu3Var;
-        this.a = i;
-        this.b = i2;
+    public wu3(cv3 cv3Var, Context context, ylb ylbVar, int i) {
+        super(context, ylbVar);
+        this.g2 = cv3Var;
+        this.f2 = i;
+        this.e2 = null;
     }
 
     @Override
-    public final void run() {
-        gb2 gb2Var;
-        mu1 mu1Var;
-        zu3 zu3Var = this.c;
-        jq1 jq1Var = zu3Var.I;
-        if (zu3Var.n) {
-            int i = 0;
-            while (true) {
-                if (i < jq1Var.getChildCount()) {
-                    View childAt = jq1Var.getChildAt(i);
-                    if (childAt instanceof gb2) {
-                        gb2Var = (gb2) childAt;
-                        String V1 = gb2Var.getMessageObject().V1();
-                        if (V1 == null) {
-                            V1 = gb2Var.getMessageObject().k.message;
-                        }
-                        if (gb2Var.getPhotoImage().E() && V1 != null && gb2Var.getMessageObject().e1() == this.a) {
-                            break;
-                        }
-                    }
-                    i++;
+    public final void G(int i, int i2) {
+        this.g2.q(i, i2);
+    }
+
+    @Override
+    public final int e() {
+        return this.g2.h();
+    }
+
+    @Override
+    public final int getActionModeStyle() {
+        int i = this.f2;
+        if (i == 2 || i == 3) {
+            return 2;
+        }
+        return super.getActionModeStyle();
+    }
+
+    @Override
+    public final void o(ActionMode actionMode, Menu menu) {
+        boolean z;
+        cv3 cv3Var = this.g2;
+        if (cv3Var.a()) {
+            if (cv3Var.M == 3) {
+                z = true;
+            } else {
+                z = false;
+            }
+            yv1.E6(menu, null, z, true, true, true);
+            return;
+        }
+        cv3Var.i(actionMode, menu);
+    }
+
+    @Override
+    public final void onSelectionChanged(int i, int i2) {
+        boolean z;
+        super.onSelectionChanged(i, i2);
+        cv3 cv3Var = this.g2;
+        n99 n99Var = cv3Var.c;
+        if (n99Var != null) {
+            boolean z2 = false;
+            if (i2 != i) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (cv3Var.a() && z) {
+                p0f.b();
+                z2 = true;
+            }
+            if (cv3Var.n != z2) {
+                cv3Var.n = z2;
+                if (z2) {
+                    this.e2 = n99Var.d;
+                    n99Var.a(2131232122, true);
+                    return;
+                }
+                n99Var.b(this.e2, true);
+                this.e2 = null;
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i;
+        xu3 xu3Var;
+        cv3 cv3Var = this.g2;
+        if (cv3Var.e && motionEvent.getAction() == 0) {
+            cv3Var.u();
+            if (cv3Var.y && (xu3Var = cv3Var.d) != null) {
+                xu3Var.r(false);
+                cv3Var.y = false;
+                cv3Var.k(true);
+                gm.E3(this);
+            } else {
+                if (gm.D) {
+                    i = 0;
                 } else {
-                    gb2Var = null;
-                    break;
+                    i = 2;
                 }
+                cv3Var.x(i);
             }
-            if (gb2Var != null && (mu1Var = zu3Var.a) != null) {
-                mu1Var.Va(gb2Var);
-                String V12 = gb2Var.getMessageObject().V1();
-                if (!ow3.a(V12) && !"🍑".equals(V12) && !"⚰".equals(V12) && !gb2Var.getMessageObject().V3() && !gb2Var.getMessageObject().F2()) {
-                    try {
-                        gb2Var.performHapticFeedback(3);
-                    } catch (Exception unused) {
-                    }
-                }
-                zu3Var.n(gb2Var, this.b, false, true);
+            cv3Var.v();
+        }
+        if (motionEvent.getAction() == 0) {
+            boolean isFocused = isFocused();
+            requestFocus();
+            if (!gm.E3(this)) {
+                clearFocus();
+                requestFocus();
             }
+            if (!isFocused) {
+                setSelection(getText().length());
+            }
+        }
+        try {
+            return super.onTouchEvent(motionEvent);
+        } catch (Exception e) {
+            fc4.g(e, true);
+            return false;
+        }
+    }
+
+    @Override
+    public final void scrollTo(int i, int i2) {
+        if (this.g2.t(i2)) {
+            super.scrollTo(i, i2);
         }
     }
 }

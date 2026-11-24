@@ -1,114 +1,204 @@
 package defpackage;
 
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.os.Build;
-import android.view.View;
-import java.util.Iterator;
-public final class ep8 {
-    public static final float[] m = new ColorMatrix().getArray();
-    public static final float[] n;
-    public static final eef o;
-    public final ew4 a;
-    public final dw4 b;
-    public final kl0 c;
-    public final kl0 d;
-    public final kl0 e;
-    public final jx4 f;
-    public final e59 g;
-    public final e59 h;
-    public int i;
-    public boolean j;
-    public float k;
-    public float l;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ProfileActivity;
+public final class ep8 extends ro {
+    public final byte b;
+    public final ProfileActivity c;
 
-    static {
-        ColorMatrix colorMatrix = new ColorMatrix();
-        gl.i(colorMatrix, 0.65f);
-        gl.l2(colorMatrix, 0.5f);
-        n = colorMatrix.getArray();
-        o = new eef((byte) 23);
-    }
-
-    public ep8(qw4 qw4Var, dg0 dg0Var) {
-        dw4 dw4Var;
-        e59 e59Var = new e59(0, false);
-        this.g = e59Var;
-        e59 e59Var2 = new e59(0, false);
-        this.h = e59Var2;
-        if (Build.VERSION.SDK_INT >= 31) {
-            dg0Var.l = true;
-            ew4 ew4Var = dg0Var.g;
-            this.a = ew4Var;
-            if (ew4Var != null) {
-                dw4Var = ew4Var.d(4);
-            } else {
-                dw4Var = null;
-            }
-            this.b = dw4Var;
-        } else {
-            this.a = null;
-            this.b = null;
-        }
-        dp8 dp8Var = new dp8(this, null);
-        dp8 dp8Var2 = new dp8(this, new cp8(dg0Var.c));
-        kl0 kl0Var = new kl0(dp8Var, dp8Var, dp8Var);
-        kl0Var.j = qw4Var;
-        kl0Var.g = e59Var;
-        kl0Var.f = e59Var2;
-        this.c = kl0Var;
-        kl0 kl0Var2 = new kl0(dp8Var2, dp8Var2, dp8Var2);
-        kl0Var2.j = qw4Var;
-        kl0Var2.g = e59Var;
-        kl0Var2.f = e59Var2;
-        this.d = kl0Var2;
-        kl0Var2.k = true;
-        jx4 jx4Var = new jx4(dp8Var2, new cp8(dg0Var.f));
-        this.f = jx4Var;
-        kl0 kl0Var3 = new kl0(jx4Var, jx4Var, jx4Var);
-        kl0Var3.j = qw4Var;
-        kl0Var3.g = e59Var;
-        kl0Var3.f = e59Var2;
-        this.e = kl0Var3;
-        kl0Var3.k = true;
-    }
-
-    public final void a() {
-        Iterator it = this.h.iterator();
-        while (it.hasNext()) {
-            ((il0) it.next()).updateColors();
-        }
-        Iterator it2 = this.g.iterator();
-        while (it2.hasNext()) {
-            ((View) it2.next()).invalidate();
+    public ep8(ProfileActivity profileActivity, byte b) {
+        super("headerShadow", (byte) 0);
+        this.b = b;
+        switch (b) {
+            case 1:
+                this.c = profileActivity;
+                super("avatarAnimationProgress", (byte) 0);
+                return;
+            default:
+                this.c = profileActivity;
+                return;
         }
     }
 
-    public final void b(float f) {
-        ew4 ew4Var;
-        ColorMatrixColorFilter colorMatrixColorFilter;
-        if (this.k != f) {
-            this.k = f;
-            if (Build.VERSION.SDK_INT >= 31 && (ew4Var = this.a) != null) {
-                if (f > 0.0f) {
-                    float[] fArr = m;
-                    int length = fArr.length;
-                    float[] fArr2 = new float[length];
-                    for (int i = 0; i < length; i++) {
-                        fArr2[i] = gl.R1(fArr[i], n[i], f);
-                    }
-                    colorMatrixColorFilter = new ColorMatrixColorFilter(fArr2);
+    @Override
+    public final void c(Object obj, float f) {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        sy4 sy4Var;
+        int v0;
+        int v02;
+        a aVar;
+        int v03;
+        a aVar2;
+        zja zjaVar;
+        int v04;
+        int i;
+        float f2;
+        int B1;
+        byte b = this.b;
+        ProfileActivity profileActivity = this.c;
+        switch (b) {
+            case 0:
+                ProfileActivity profileActivity2 = (ProfileActivity) obj;
+                profileActivity.b1 = f;
+                return;
+            default:
+                a aVar3 = (a) obj;
+                if (profileActivity.b6 > 0.0f) {
+                    z = true;
                 } else {
-                    colorMatrixColorFilter = null;
+                    z = false;
                 }
-                if (ew4Var.k != colorMatrixColorFilter) {
-                    ew4Var.k = colorMatrixColorFilter;
-                    for (int i2 = 0; i2 < ew4Var.b; i2++) {
-                        ((cw4) ew4Var.a.get(i2)).c(colorMatrixColorFilter);
+                if (f > 0.0f) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                if (z != z2) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                profileActivity.b6 = f;
+                sy4Var = ((d) profileActivity).glassEngine;
+                sy4Var.g();
+                if (z3) {
+                    profileActivity.I1();
+                }
+                profileActivity.V3();
+                profileActivity.W3();
+                ap8 ap8Var = profileActivity.r;
+                if (ap8Var != null && !profileActivity.q2) {
+                    Object tag = ap8Var.getTag();
+                    if (tag instanceof Integer) {
+                        B1 = profileActivity.B1(cmb.v0(((Integer) tag).intValue(), profileActivity.A0), Boolean.valueOf(profileActivity.K0[0]));
+                    } else {
+                        B1 = profileActivity.B1(cmb.v0(cmb.A8, profileActivity.A0), Boolean.TRUE);
+                    }
+                    ap8Var.setTextColor(on2.f(f, B1, cmb.v0(cmb.Fj, profileActivity.A0)));
+                }
+                profileActivity.Y3();
+                bp8 bp8Var = profileActivity.v0;
+                if (bp8Var != null) {
+                    bp8Var.setActionBarActionMode(f);
+                }
+                xs8 xs8Var = profileActivity.w0;
+                if (xs8Var != null) {
+                    xs8Var.setActionBarActionMode(f);
+                }
+                profileActivity.d1.invalidate();
+                int i2 = -1;
+                if (profileActivity.s6 != null) {
+                    v0 = -1;
+                } else {
+                    v0 = cmb.v0(cmb.li, profileActivity.A0);
+                }
+                int i3 = cmb.Ej;
+                int v05 = cmb.v0(i3, profileActivity.A0);
+                int R0 = gm.R0(f, 1.0f, v0, v05);
+                profileActivity.f.setTextColor(R0);
+                Drawable drawable = profileActivity.x;
+                if (drawable != null) {
+                    if (profileActivity.s6 != null) {
+                        R0 = -1;
+                    }
+                    drawable.setColorFilter(R0, PorterDuff.Mode.MULTIPLY);
+                }
+                if (profileActivity.L != null) {
+                    profileActivity.L.b(gm.R0(f, 1.0f, cmb.v0(cmb.g8, profileActivity.A0), v05));
+                }
+                if (profileActivity.s6 != null) {
+                    v02 = -1;
+                } else {
+                    v02 = cmb.v0(cmb.u8, profileActivity.A0);
+                }
+                int v06 = cmb.v0(cmb.x8, profileActivity.A0);
+                aVar = ((d) profileActivity).actionBar;
+                aVar.H(gm.R0(f, 1.0f, v02, v06), false);
+                ec7 ec7Var = profileActivity.s6;
+                if (ec7Var != null) {
+                    v03 = 1090519039;
+                } else if (ec7Var != null) {
+                    v03 = 553648127;
+                } else {
+                    v03 = cmb.v0(cmb.e8, profileActivity.A0);
+                }
+                int v07 = cmb.v0(cmb.y8, profileActivity.A0);
+                aVar2 = ((d) profileActivity).actionBar;
+                aVar2.G(gm.R0(f, 1.0f, v03, v07), false);
+                profileActivity.d1.invalidate();
+                if (profileActivity.y != null) {
+                    ec7 ec7Var2 = profileActivity.s6;
+                    if (ec7Var2 != null) {
+                        int g = ec7Var2.g();
+                        boolean o = profileActivity.s6.o(cmb.I.o());
+                        ec7 ec7Var3 = profileActivity.s6;
+                        if (o) {
+                            i = ec7Var3.k();
+                        } else {
+                            i = ec7Var3.i();
+                        }
+                        int f3 = on2.f(0.4f, g, i);
+                        if (cmb.I.o()) {
+                            f2 = -0.1f;
+                        } else {
+                            f2 = -0.08f;
+                        }
+                        v04 = cmb.a(0.1f, f2, f3);
+                    } else {
+                        v04 = cmb.v0(cmb.pi, profileActivity.A0);
+                    }
+                    profileActivity.y.setColorFilter(gm.R0(f, 1.0f, v04, cmb.v0(i3, profileActivity.A0)), PorterDuff.Mode.MULTIPLY);
+                }
+                if (profileActivity.I != null) {
+                    if (profileActivity.s6 == null) {
+                        i2 = cmb.v0(cmb.qi, profileActivity.A0);
+                    }
+                    profileActivity.I.setColorFilter(gm.R0(f, 1.0f, i2, cmb.v0(cmb.c6, profileActivity.A0)), PorterDuff.Mode.MULTIPLY);
+                }
+                if (profileActivity.E != null) {
+                    profileActivity.E.setColorFilter(gm.R0(f, 1.0f, cmb.v0(cmb.pi, profileActivity.A0), cmb.v0(i3, profileActivity.A0)), PorterDuff.Mode.MULTIPLY);
+                }
+                profileActivity.P3();
+                nq8 nq8Var = profileActivity.p0;
+                int i4 = nq8.r;
+                ProfileActivity profileActivity3 = nq8Var.n;
+                if (profileActivity3.M0) {
+                    zjaVar = profileActivity3.Q0;
+                } else if (profileActivity3.O0) {
+                    zjaVar = profileActivity3.S0;
+                } else {
+                    zjaVar = profileActivity3.U0;
+                    if (zjaVar == null) {
+                        zjaVar = null;
                     }
                 }
-            }
-            a();
+                if (zjaVar != null) {
+                    if (profileActivity.N0 || profileActivity.O0 || profileActivity.M0) {
+                        profileActivity.R2(0, profileActivity.E1(), true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        byte b = this.b;
+        ProfileActivity profileActivity = this.c;
+        switch (b) {
+            case 0:
+                ProfileActivity profileActivity2 = (ProfileActivity) obj;
+                return Float.valueOf(profileActivity.b1);
+            default:
+                a aVar = (a) obj;
+                return Float.valueOf(profileActivity.b6);
         }
     }
 }

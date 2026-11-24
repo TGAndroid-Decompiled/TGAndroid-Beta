@@ -1,13 +1,17 @@
 package defpackage;
-public final class jnd {
-    public final ktd a;
-    public final u44 b;
-    public final z3f c;
+public final class jnd implements cq7 {
+    public static final jnd a = new Object();
 
-    public jnd(ktd ktdVar, u44 u44Var) {
-        z3f d = l5f.d();
-        this.a = ktdVar;
-        this.b = u44Var;
-        this.c = d;
+    static {
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

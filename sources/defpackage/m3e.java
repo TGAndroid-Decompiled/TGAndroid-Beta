@@ -1,17 +1,18 @@
 package defpackage;
-public final class m3e implements zn7 {
-    public static final m3e a = new Object();
+public enum m3e implements eqe {
+    LANDMARK_UNKNOWN(0),
+    LANDMARK_NONE(1),
+    LANDMARK_ALL(2),
+    LANDMARK_CONTOUR(3);
+    
+    public final byte a;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+    m3e(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final String toString() {
+        return "<" + m3e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

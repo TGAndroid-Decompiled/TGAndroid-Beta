@@ -1,33 +1,43 @@
 package defpackage;
 
-import android.content.Context;
-public final class y82 implements e36 {
-    public final Context a;
-    public final f92 b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class y82 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final z82 b;
 
-    public y82(f92 f92Var, Context context) {
-        this.b = f92Var;
-        this.a = context;
+    public y82(z82 z82Var, byte b) {
+        this.a = b;
+        this.b = z82Var;
     }
 
     @Override
-    public final void c() {
-        this.b.c0(true);
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.a) {
+            case 0:
+                this.b.R = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
-    public final void i() {
-        f92 f92Var = this.b;
-        zq5 zq5Var = new zq5(this.a, f92Var.m0, f92Var.Z, f92Var.p0, f92Var, f92Var.a0, true, hc2.T(f92Var.Y));
-        f92Var.q0 = zq5Var;
-        zq5Var.show();
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void k() {
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        z82 z82Var = this.b;
+        switch (b) {
+            case 0:
+                if (z82Var.R == animator) {
+                    z82Var.getSubtitleTextView().setVisibility(4);
+                    z82Var.R = null;
+                    return;
+                }
+                return;
+            default:
+                z82Var.R = null;
+                return;
+        }
     }
 }

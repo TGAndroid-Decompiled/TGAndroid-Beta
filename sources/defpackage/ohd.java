@@ -1,62 +1,61 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.os.Parcelable;
-public abstract class ohd {
-    public static final f84 a;
-    public static final f84[] b;
+import android.os.Parcel;
+public final class ohd {
+    public byte a;
+    public Object b;
 
-    static {
-        f84 f84Var = new f84("register", -1, 1L, true);
-        a = f84Var;
-        b = new f84[]{f84Var, new f84("unregister", -1, 1L, true)};
+    public ohd(int i, Object obj) {
+        this.a = i;
+        this.b = obj;
     }
 
-    public static Parcelable a(String str, Bundle bundle) {
-        ClassLoader classLoader = ohd.class.getClassLoader();
-        fre.h(classLoader);
-        bundle.setClassLoader(classLoader);
-        Bundle bundle2 = bundle.getBundle("map_state");
-        if (bundle2 == null) {
-            return null;
+    public final String a(j9f j9fVar) {
+        String str;
+        nkd nkdVar = (nkd) this.b;
+        byte b = this.a;
+        try {
+            if (nkdVar.E != null) {
+                bcd bcdVar = nkdVar.E;
+                String packageName = nkdVar.C.getPackageName();
+                if (b != 2) {
+                    if (b != 3) {
+                        if (b != 4) {
+                            if (b != 5) {
+                                if (b != 6) {
+                                    str = "QUERY_PRODUCT_DETAILS_ASYNC";
+                                } else {
+                                    str = "START_CONNECTION";
+                                }
+                            } else {
+                                str = "IS_FEATURE_SUPPORTED";
+                            }
+                        } else {
+                            str = "CONSUME_ASYNC";
+                        }
+                    } else {
+                        str = "ACKNOWLEDGE_PURCHASE";
+                    }
+                } else {
+                    str = "LAUNCH_BILLING_FLOW";
+                }
+                wjd wjdVar = new wjd(j9fVar);
+                fbd fbdVar = (fbd) bcdVar;
+                Parcel X = fbdVar.X();
+                X.writeString(packageName);
+                X.writeString(str);
+                int i = dbd.a;
+                X.writeStrongBinder(wjdVar);
+                fbdVar.b.transact(1, X, null, 1);
+                X.recycle();
+                return "billingOverrideService.getBillingOverride";
+            }
+            throw null;
+        } catch (Exception e) {
+            nkdVar.E(95, 28, sld.p);
+            yid.i("BillingClientTesting", "An error occurred while retrieving billing override.", e);
+            j9fVar.a(0);
+            return "billingOverrideService.getBillingOverride";
         }
-        bundle2.setClassLoader(classLoader);
-        return bundle2.getParcelable(str);
-    }
-
-    public static void b(Bundle bundle, Bundle bundle2) {
-        if (bundle != null && bundle2 != null) {
-            Parcelable a2 = a("MapOptions", bundle);
-            if (a2 != null) {
-                c(bundle2, "MapOptions", a2);
-            }
-            Parcelable a3 = a("StreetViewPanoramaOptions", bundle);
-            if (a3 != null) {
-                c(bundle2, "StreetViewPanoramaOptions", a3);
-            }
-            Parcelable a4 = a("camera", bundle);
-            if (a4 != null) {
-                c(bundle2, "camera", a4);
-            }
-            if (bundle.containsKey("position")) {
-                bundle2.putString("position", bundle.getString("position"));
-            }
-            if (bundle.containsKey("com.google.android.wearable.compat.extra.LOWBIT_AMBIENT")) {
-                bundle2.putBoolean("com.google.android.wearable.compat.extra.LOWBIT_AMBIENT", bundle.getBoolean("com.google.android.wearable.compat.extra.LOWBIT_AMBIENT", false));
-            }
-        }
-    }
-
-    public static void c(Bundle bundle, String str, Parcelable parcelable) {
-        ClassLoader classLoader = ohd.class.getClassLoader();
-        fre.h(classLoader);
-        bundle.setClassLoader(classLoader);
-        Bundle bundle2 = bundle.getBundle("map_state");
-        if (bundle2 == null) {
-            bundle2 = new Bundle();
-        }
-        bundle2.setClassLoader(classLoader);
-        bundle2.putParcelable(str, parcelable);
-        bundle.putBundle("map_state", bundle2);
     }
 }

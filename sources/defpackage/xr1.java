@@ -1,65 +1,63 @@
 package defpackage;
+public final class xr1 extends wb2 {
+    public Runnable W;
+    public final yv1 X;
 
-import android.app.Activity;
-import android.text.style.CharacterStyle;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.LaunchActivity;
-public final class xr1 extends UndoView {
-    public final byte k0 = 1;
-    public final Object l0;
-
-    public xr1(mu1 mu1Var, Activity activity, mu1 mu1Var2, wjb wjbVar) {
-        super(activity, mu1Var2, true, wjbVar);
-        this.l0 = mu1Var;
+    public xr1(yv1 yv1Var, yv1 yv1Var2, vr1 vr1Var, ylb ylbVar) {
+        super(yv1Var2, vr1Var, ylbVar);
+        this.X = yv1Var;
     }
 
     @Override
-    public final void b(CharacterStyle characterStyle) {
-        switch (this.k0) {
-            case 0:
-                ((mu1) this.l0).d6(characterStyle, false, null, null);
-                return;
-            default:
-                return;
+    public final void F() {
+        yv1 yv1Var = this.X;
+        if (yv1Var.ea == -1) {
+            yv1Var.ea = yv1Var.getNotificationCenter().p(yv1.Dd, yv1Var.ea, false);
         }
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.k0) {
-            case 1:
-                super.invalidate();
-                ((e55) this.l0).invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            gm.r(runnable);
+            this.W = null;
         }
+        wr1 wr1Var = new wr1(this, (byte) 1);
+        this.W = wr1Var;
+        gm.c3(wr1Var);
     }
 
     @Override
-    public final void k(long j, int i, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f;
-        int i2;
-        switch (this.k0) {
-            case 0:
-                uq1 uq1Var = ((mu1) this.l0).m2;
-                if (uq1Var != null && (((i2 = uq1Var.U) == 1 || i2 == 3) && uq1Var.T)) {
-                    f = gl.L(uq1Var.getStyleHeight());
-                } else {
-                    f = 0.0f;
-                }
-                setAdditionalTranslationY(f);
-                super.k(j, i, obj, obj2, runnable, runnable2);
-                return;
-            default:
-                super.k(j, i, obj, obj2, runnable, runnable2);
-                return;
+    public final void V() {
+        yv1 yv1Var = this.X;
+        yv1Var.ea = yv1Var.getNotificationCenter().p(yv1.Dd, yv1Var.ea, false);
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            gm.r(runnable);
+            this.W = null;
         }
+        if (e21.a) {
+            fc4.b("chatItemAnimator disable notifications");
+        }
+        o1 o1Var = yv1Var.a0.getAdjustPanLayoutHelper().h;
+        gm.r(o1Var);
+        o1Var.run();
+        dy1 dy1Var = yv1Var.a0.N4;
+        gm.r(dy1Var);
+        dy1Var.run();
     }
 
-    public xr1(e55 e55Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.l0 = e55Var;
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            gm.r(runnable);
+        }
+        wr1 wr1Var = new wr1(this, (byte) 0);
+        this.W = wr1Var;
+        gm.c3(wr1Var);
     }
 }

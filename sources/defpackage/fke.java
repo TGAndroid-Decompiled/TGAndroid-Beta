@@ -1,14 +1,17 @@
 package defpackage;
+public final class fke implements cq7 {
+    public static final fke a = new Object();
 
-import java.io.Closeable;
-import java.io.IOException;
-public abstract class fke {
-    public static void a(Closeable closeable) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException unused) {
-            }
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

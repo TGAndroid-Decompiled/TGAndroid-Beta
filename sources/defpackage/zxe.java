@@ -1,21 +1,17 @@
 package defpackage;
+public final class zxe implements cq7 {
+    public static final zxe a = new Object();
 
-import android.content.Context;
-import java.util.concurrent.atomic.AtomicLong;
-public final class zxe {
-    public final u84 a;
-    public final AtomicLong b;
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
+    }
 
-    public zxe(Context context, byte b) {
-        switch (b) {
-            case 1:
-                this.b = new AtomicLong(-1L);
-                this.a = new by4(context, u84.o, new ngb("mlkit:vision"), ay4.c);
-                return;
-            default:
-                this.b = new AtomicLong(-1L);
-                this.a = new by4(context, u84.o, new ngb("mlkit:natural_language"), ay4.c);
-                return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

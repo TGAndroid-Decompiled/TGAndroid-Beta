@@ -10,10 +10,10 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public abstract class t2 implements t56 {
+public abstract class t2 implements t76 {
     public static final boolean d;
-    public static final f06 e;
-    public static final qkd f;
+    public static final f26 e;
+    public static final smd f;
     public static final Object h;
     public volatile Object a;
     public volatile k2 b;
@@ -29,7 +29,7 @@ public abstract class t2 implements t56 {
             z = false;
         }
         d = z;
-        e = new f06(t2.class, (byte) 0);
+        e = new f26(t2.class, (byte) 0);
         Throwable th2 = null;
         try {
             th = null;
@@ -45,11 +45,11 @@ public abstract class t2 implements t56 {
         }
         f = l2Var;
         if (th2 != null) {
-            f06 f06Var = e;
-            Logger a = f06Var.a();
+            f26 f26Var = e;
+            Logger a = f26Var.a();
             Level level = Level.SEVERE;
             a.log(level, "UnsafeAtomicHelper is broken!", th);
-            f06Var.a().log(level, "SafeAtomicHelper is broken!", th2);
+            f26Var.a().log(level, "SafeAtomicHelper is broken!", th2);
         }
         h = new Object();
     }
@@ -128,8 +128,8 @@ public abstract class t2 implements t56 {
         throw cancellationException;
     }
 
-    public static java.lang.Object i(defpackage.t56 r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.t2.i(t56):java.lang.Object");
+    public static java.lang.Object i(defpackage.t76 r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.t2.i(t76):java.lang.Object");
     }
 
     public final void a(StringBuilder sb) {
@@ -220,9 +220,9 @@ public abstract class t2 implements t56 {
                 if (!(obj instanceof m2)) {
                     break;
                 }
-                t56 t56Var = ((m2) obj).b;
-                if (t56Var instanceof o2) {
-                    this = (t2) t56Var;
+                t76 t76Var = ((m2) obj).b;
+                if (t76Var instanceof o2) {
+                    this = (t2) t76Var;
                     obj = this.a;
                     if (obj == null) {
                         z3 = true;
@@ -234,7 +234,7 @@ public abstract class t2 implements t56 {
                     }
                     z4 = true;
                 } else {
-                    t56Var.cancel(z);
+                    t76Var.cancel(z);
                     break;
                 }
             } else {
@@ -333,22 +333,22 @@ public abstract class t2 implements t56 {
         return true;
     }
 
-    public final boolean n(t56 t56Var) {
+    public final boolean n(t76 t76Var) {
         j2 j2Var;
-        t56Var.getClass();
+        t76Var.getClass();
         Object obj = this.a;
         if (obj == null) {
-            if (t56Var.isDone()) {
-                if (f.b(this, null, i(t56Var))) {
+            if (t76Var.isDone()) {
+                if (f.b(this, null, i(t76Var))) {
                     f(this, false);
                     return true;
                 }
                 return false;
             }
-            m2 m2Var = new m2(this, t56Var);
+            m2 m2Var = new m2(this, t76Var);
             if (f.b(this, null, m2Var)) {
                 try {
-                    t56Var.b(m2Var, vn3.a);
+                    t76Var.b(m2Var, fp3.a);
                     return true;
                 } catch (Throwable th) {
                     try {
@@ -363,7 +363,7 @@ public abstract class t2 implements t56 {
             obj = this.a;
         }
         if (obj instanceof h2) {
-            t56Var.cancel(((h2) obj).a);
+            t76Var.cancel(((h2) obj).a);
         }
         return false;
     }
@@ -388,9 +388,9 @@ public abstract class t2 implements t56 {
             if (s2Var2 != s2Var) {
                 s2 s2Var3 = new s2();
                 do {
-                    qkd qkdVar = f;
-                    qkdVar.f(s2Var3, s2Var2);
-                    if (qkdVar.c(this, s2Var2, s2Var3)) {
+                    smd smdVar = f;
+                    smdVar.f(s2Var3, s2Var2);
+                    if (smdVar.c(this, s2Var2, s2Var3)) {
                         do {
                             LockSupport.park(this);
                             if (!Thread.interrupted()) {

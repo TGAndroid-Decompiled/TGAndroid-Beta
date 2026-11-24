@@ -1,54 +1,8 @@
 package defpackage;
-
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class h09 extends c49 {
-    public final byte a;
-    public final t09 b;
-
-    public h09(t09 t09Var, byte b) {
-        this.a = b;
-        this.b = t09Var;
-    }
-
-    @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, p49 p49Var) {
-        byte b = this.a;
-        t09 t09Var = this.b;
-        switch (b) {
-            case 0:
-                super.e(rect, view, recyclerView, p49Var);
-                if (!t09Var.n()) {
-                    int R = RecyclerView.R(view);
-                    if (R == 0) {
-                        rect.left = gl.L(6.0f);
-                    }
-                    rect.right = gl.L(4.0f);
-                    if (R == t09Var.b0.b() - 1) {
-                        if ((!t09Var.V.isEmpty() && !na7.q1(t09Var.K).E3()) || t09Var.n()) {
-                            rect.right = gl.L(2.0f);
-                            return;
-                        } else {
-                            rect.right = gl.L(6.0f);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                rect.left = 0;
-                rect.right = 0;
-                return;
-            default:
-                int R2 = RecyclerView.R(view);
-                if (R2 == 0) {
-                    rect.left = gl.L(8.0f);
-                }
-                if (R2 == t09Var.b0.b() - 1) {
-                    rect.right = gl.L(8.0f);
-                    return;
-                }
-                return;
-        }
-    }
+public abstract class h09 {
+    public static final int[] a = {16843173, 16843551, 16844359, 2130968618, 2130968825};
+    public static final int[] b = {2130968787, 2130968788, 2130968789, 2130968790, 2130968791, 2130968792, 2130968793, 2130968794};
+    public static final int[] c = {16844082, 16844083, 16844095, 16844143, 16844144, 2130968785, 2130968795, 2130968796, 2130968797, 2130968997};
+    public static final int[] d = {16843165, 16843166, 16843169, 16843170, 16843171, 16843172, 16843265, 16843275, 16844048, 16844049, 16844050, 16844051};
+    public static final int[] e = {16843173, 16844052};
 }

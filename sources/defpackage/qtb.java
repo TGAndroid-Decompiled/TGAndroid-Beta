@@ -1,27 +1,29 @@
 package defpackage;
-
-import org.telegram.ui.ActionBar.d;
-public final class qtb implements Runnable {
-    public final byte a;
-    public final vtb b;
-
-    public qtb(vtb vtbVar, byte b) {
-        this.a = b;
-        this.b = vtbVar;
+public enum qtb extends rub {
+    public qtb() {
+        super("Comment", 46);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        vtb vtbVar = this.b;
-        switch (b) {
-            case 0:
-                new jh8((d) vtbVar, 11, false).show();
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        rrb rrbVar = bsbVar.n;
+        char i = hl1Var.i();
+        if (i != 0) {
+            if (i != '-') {
+                if (i != 65535) {
+                    rrbVar.e.append(hl1Var.g('-', 0));
+                    return;
+                }
+                bsbVar.l(this);
+                bsbVar.i();
+                bsbVar.c = rub.a;
                 return;
-            default:
-                vtbVar.e.requestFocus();
-                gl.F3(vtbVar.e);
-                return;
+            }
+            bsbVar.a(rub.l0);
+            return;
         }
+        bsbVar.m(this);
+        hl1Var.a();
+        rrbVar.e.append((char) 65533);
     }
 }

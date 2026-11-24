@@ -1,162 +1,125 @@
 package defpackage;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class vl0 extends Drawable {
-    public float a = 1.0f;
-    public final Paint b = new Paint(1);
-    public final Rect c = new Rect();
-    public final Path d = new Path();
-    public final float e;
-    public final float f;
-    public final Drawable g;
-    public final float h;
-    public final wl0 i;
+import org.telegram.messenger.Utilities;
+public final class vl0 {
+    public np3 a;
+    public final boolean b;
+    public final View c;
+    public final a91 d;
+    public Bitmap[] e;
+    public Bitmap[] f;
+    public Bitmap[] g;
+    public Canvas[] h;
+    public Canvas[] i;
+    public Canvas[] j;
+    public boolean k;
+    public float m;
+    public boolean n;
+    public boolean o;
+    public int q;
+    public int r;
+    public int s;
+    public boolean t;
+    public float u;
+    public final Paint x;
+    public final ylb y;
+    public boolean l = true;
+    public boolean p = true;
+    public ul0 v = new ul0(this);
+    public final Paint w = new Paint(2);
 
-    public vl0(wl0 wl0Var, float f, float f2, Drawable drawable, float f3) {
-        this.i = wl0Var;
-        this.e = f;
-        this.f = f2;
-        this.g = drawable;
-        this.h = f3;
+    public vl0(View view, a91 a91Var, ylb ylbVar) {
+        Paint paint = new Paint();
+        this.x = paint;
+        this.b = true;
+        this.c = view;
+        this.d = a91Var;
+        this.y = ylbVar;
+        paint.setColor(-16777216);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Bitmap b;
-        wl0 wl0Var = this.i;
-        sl0 sl0Var = wl0Var.a;
-        Matrix matrix = wl0Var.p;
-        Paint paint = null;
-        if (sl0Var != null && (b = sl0Var.b()) != null) {
-            if (wl0Var.o == null || wl0Var.n != b) {
-                wl0Var.n = b;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(b, tileMode, tileMode);
-                wl0Var.o = bitmapShader;
-                wl0Var.h.setShader(bitmapShader);
-            }
-            matrix.reset();
-            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f);
-            View view = sl0Var.b;
-            if (view != null) {
-                matrix.preScale(view.getWidth() / b.getWidth(), sl0Var.b.getHeight() / b.getHeight());
-            }
-            wl0Var.o.setLocalMatrix(matrix);
-            wl0Var.h.setAlpha((int) (this.a * 255.0f));
-            paint = wl0Var.h;
+    public final void a() {
+        Bitmap[] bitmapArr = this.g;
+        if (bitmapArr == null) {
+            bitmapArr = new Bitmap[2];
+            this.g = bitmapArr;
+            this.h = new Canvas[2];
         }
-        Paint paint2 = paint;
-        Rect bounds = getBounds();
-        Drawable drawable = this.g;
-        Paint paint3 = this.b;
-        float f = this.h;
-        if (paint2 == null && (sl0Var == null || !sl0Var.c())) {
-            if (drawable != null) {
-                drawable.setBounds(bounds);
-                drawable.draw(canvas);
-                return;
+        if (this.e == null) {
+            this.e = new Bitmap[2];
+            this.j = new Canvas[2];
+        }
+        this.v.a = true;
+        this.v = new ul0(this);
+        for (int i = 0; i < 2; i++) {
+            a91 a91Var = this.d;
+            int measuredHeight = a91Var.getMeasuredHeight();
+            int measuredWidth = a91Var.getMeasuredWidth();
+            int L = gm.L(200.0f) + gm.m;
+            this.s = L;
+            if (i != 0) {
+                L = measuredHeight;
             }
-            paint3.setColor(-14145495);
-            if (f > 0.0f) {
-                RectF rectF = gl.P;
-                rectF.set(bounds);
-                canvas.drawRoundRect(rectF, f, f, paint3);
-                return;
+            Bitmap bitmap = bitmapArr[i];
+            if (bitmap == null || bitmap.getHeight() != L || bitmapArr[i].getWidth() != a91Var.getMeasuredWidth()) {
+                np3 np3Var = this.a;
+                if (np3Var != null) {
+                    np3Var.cleanupQueue();
+                }
+                Bitmap[] bitmapArr2 = this.e;
+                int i2 = (int) (measuredWidth / 15.0f);
+                Bitmap.Config config = Bitmap.Config.ARGB_8888;
+                bitmapArr2[i] = Bitmap.createBitmap(i2, (int) (L / 15.0f), config);
+                ylb ylbVar = this.y;
+                if (i == 1) {
+                    this.e[i].eraseColor(cmb.v0(cmb.c6, ylbVar));
+                }
+                this.j[i] = new Canvas(this.e[i]);
+                if (i == 0) {
+                    measuredHeight = this.s;
+                }
+                this.g[i] = Bitmap.createBitmap(i2, (int) (measuredHeight / 15.0f), config);
+                this.h[i] = new Canvas(this.g[i]);
+                this.h[i].scale(this.g[i].getWidth() / this.e[i].getWidth(), this.g[i].getHeight() / this.e[i].getHeight());
+                this.j[i].save();
+                this.j[i].scale(0.06666667f, 0.06666667f, 0.0f, 0.0f);
+                View view = this.c;
+                Drawable background = view.getBackground();
+                if (background == null) {
+                    if (ylbVar instanceof wv1) {
+                        background = ((wv1) ylbVar).l();
+                    } else {
+                        background = cmb.s0();
+                    }
+                }
+                view.setTag(67108867, Integer.valueOf(i));
+                if (i == 0) {
+                    this.j[i].translate(0.0f, -this.u);
+                    view.draw(this.j[i]);
+                }
+                if (i == 1) {
+                    Rect bounds = background.getBounds();
+                    background.setBounds(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                    background.draw(this.j[i]);
+                    background.setBounds(bounds);
+                    view.draw(this.j[i]);
+                }
+                view.setTag(67108867, null);
+                this.j[i].restore();
+                Utilities.stackBlurBitmap(this.e[i], 15);
+                Paint paint = this.w;
+                paint.setAlpha(255);
+                if (i == 1) {
+                    this.g[i].eraseColor(cmb.v0(cmb.c6, ylbVar));
+                }
+                this.h[i].drawBitmap(this.e[i], 0.0f, 0.0f, paint);
             }
-            canvas.drawRect(bounds, paint3);
-            return;
         }
-        Path path = this.d;
-        if (drawable != null) {
-            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-            drawable.setBounds(bounds);
-            drawable.draw(canvas);
-            Rect rect = this.c;
-            if (sl0Var != null && sl0Var.c()) {
-                canvas.save();
-                getPadding(rect);
-                RectF rectF2 = gl.P;
-                rectF2.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-                path.rewind();
-                path.addRoundRect(rectF2, f, f, Path.Direction.CW);
-                canvas.clipPath(path);
-                wl0Var.b(canvas, false);
-                canvas.restore();
-            } else {
-                canvas.drawRect(bounds, paint2);
-            }
-            canvas.restore();
-            getPadding(rect);
-            RectF rectF3 = gl.P;
-            rectF3.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-            paint3.setColor(1711276032);
-            canvas.drawRoundRect(rectF3, f, f, paint3);
-            return;
-        }
-        int i = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
-        if (i > 0) {
-            RectF rectF4 = gl.P;
-            rectF4.set(bounds);
-            if (sl0Var != null && sl0Var.c()) {
-                canvas.save();
-                path.rewind();
-                path.addRoundRect(rectF4, f, f, Path.Direction.CW);
-                canvas.clipPath(path);
-                wl0Var.b(canvas, false);
-                canvas.restore();
-            } else {
-                canvas.drawRoundRect(rectF4, f, f, paint2);
-            }
-        } else if (sl0Var != null && sl0Var.c()) {
-            canvas.save();
-            canvas.clipRect(bounds);
-            wl0Var.b(canvas, false);
-            canvas.restore();
-        } else {
-            canvas.drawRect(bounds, paint2);
-        }
-        paint3.setColor(1711276032);
-        if (i > 0) {
-            RectF rectF5 = gl.P;
-            rectF5.set(bounds);
-            canvas.drawRoundRect(rectF5, f, f, paint3);
-            return;
-        }
-        canvas.drawRect(bounds, paint3);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.g;
-        if (drawable != null) {
-            return drawable.getPadding(rect);
-        }
-        rect.set(0, 0, 0, 0);
-        return true;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.a = i / 255.0f;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,53 +1,68 @@
 package defpackage;
 
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.content.res.XmlResourceParser;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.util.TypedValue;
-import org.xmlpull.v1.XmlPullParser;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.SortedSet;
 public abstract class bwe {
-    public static kp a(TypedArray typedArray, XmlPullParser xmlPullParser, Resources.Theme theme, String str, int i) {
-        kp kpVar;
-        if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", str) != null) {
-            TypedValue typedValue = new TypedValue();
-            typedArray.getValue(i, typedValue);
-            int i2 = typedValue.type;
-            if (i2 >= 28 && i2 <= 31) {
-                return new kp((Object) null, (Object) null, typedValue.data, (byte) 3);
+    public static boolean a(Set set, Object obj) {
+        if (set != obj) {
+            if (obj instanceof Set) {
+                Set set2 = (Set) obj;
+                try {
+                    if (set.size() == set2.size()) {
+                        if (set.containsAll(set2)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                } catch (ClassCastException | NullPointerException unused) {
+                    return false;
+                }
             }
-            try {
-                kpVar = kp.g(typedArray.getResources(), typedArray.getResourceId(i, 0), theme);
-            } catch (Exception e) {
-                Log.e("ComplexColorCompat", "Failed to inflate ComplexColor.", e);
-                kpVar = null;
-            }
-            if (kpVar != null) {
-                return kpVar;
-            }
+            return false;
         }
-        return new kp((Object) null, (Object) null, 0, (byte) 3);
+        return true;
     }
 
-    public static String b(TypedArray typedArray, XmlResourceParser xmlResourceParser, String str, int i) {
-        if (xmlResourceParser.getAttributeValue("http://schemas.android.com/apk/res/android", str) != null) {
-            return typedArray.getString(i);
+    public static n9a b(Set set, di8 di8Var) {
+        if (set instanceof SortedSet) {
+            SortedSet sortedSet = (SortedSet) set;
+            if (sortedSet instanceof n9a) {
+                n9a n9aVar = (n9a) sortedSet;
+                di8 di8Var2 = n9aVar.b;
+                di8Var2.getClass();
+                return new n9a((SortedSet) n9aVar.a, new ei8(Arrays.asList(di8Var2, di8Var)));
+            }
+            return new n9a(sortedSet, di8Var);
+        } else if (set instanceof n9a) {
+            n9a n9aVar2 = (n9a) set;
+            di8 di8Var3 = n9aVar2.b;
+            di8Var3.getClass();
+            return new n9a(n9aVar2.a, new ei8(Arrays.asList(di8Var3, di8Var)));
+        } else {
+            set.getClass();
+            return new n9a(set, di8Var);
         }
-        return null;
     }
 
-    public static boolean c(XmlPullParser xmlPullParser, String str) {
-        if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", str) != null) {
-            return true;
+    public static int c(Set set) {
+        int i;
+        int i2 = 0;
+        for (Object obj : set) {
+            if (obj != null) {
+                i = obj.hashCode();
+            } else {
+                i = 0;
+            }
+            i2 = ~(~(i2 + i));
         }
-        return false;
+        return i2;
     }
 
-    public static TypedArray d(Resources resources, Resources.Theme theme, AttributeSet attributeSet, int[] iArr) {
-        if (theme == null) {
-            return resources.obtainAttributes(attributeSet, iArr);
-        }
-        return theme.obtainStyledAttributes(attributeSet, iArr, 0, 0);
+    public static m9a d(yo5 yo5Var, yo5 yo5Var2) {
+        jte.l(yo5Var, "set1");
+        jte.l(yo5Var2, "set2");
+        return new m9a(yo5Var, yo5Var2);
     }
 }

@@ -23,17 +23,17 @@ public final class rb implements Runnable {
                 tb tbVar = bcVar.W;
                 int i2 = bcVar.b0.end_date;
                 if (i2 != 0) {
-                    str = kz9.f((i2 - bcVar.getConnectionsManager().getCurrentTime()) * 1000);
+                    str = m1a.f((i2 - bcVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
                 tbVar.g(str, true);
                 if (bcVar.b0.end_date != 0 && bcVar.e0) {
-                    gl.e3(bcVar.Y, 1000L);
+                    gm.d3(bcVar.Y, 1000L);
                     return;
                 }
                 return;
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-                updatestarrefprogram.bot = bcVar.getMessagesController().m1(bcVar.S);
+                updatestarrefprogram.bot = bcVar.getMessagesController().n1(bcVar.S);
                 TL_payments.starRefProgram starrefprogram = bcVar.b0;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
                 int i3 = starrefprogram.duration_months;
@@ -46,9 +46,9 @@ public final class rb implements Runnable {
                     updatestarrefprogram.flags = i4 & (-2);
                     starrefprogram.duration_months = i3 & (-2);
                 }
-                hd hdVar = new hd(3, null, bcVar.getParentActivity());
-                hdVar.q(150L);
-                bcVar.getConnectionsManager().sendRequest(updatestarrefprogram, new ob(bcVar, hdVar, (byte) 1));
+                he heVar = new he(3, null, bcVar.getParentActivity());
+                heVar.q(150L);
+                bcVar.getConnectionsManager().sendRequest(updatestarrefprogram, new ob(bcVar, heVar, (byte) 1));
                 return;
             default:
                 Activity parentActivity = bcVar.getParentActivity();
@@ -57,7 +57,7 @@ public final class rb implements Runnable {
                 } else {
                     i = 2131754311;
                 }
-                d01.t(parentActivity, k96.M0(i, null));
+                l11.u(parentActivity, jb6.M0(i, null));
                 return;
         }
     }

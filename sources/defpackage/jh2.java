@@ -1,95 +1,164 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.ProfileActivity;
-public final class jh2 implements eec {
-    public final byte a;
-    public int b;
-    public final View c;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.ui.Components.CheckBoxBase;
+public class jh2 extends View {
+    public final CheckBoxBase a;
+    public Drawable b;
+    public int c;
 
-    public jh2(View view, byte b) {
-        this.a = b;
-        this.c = view;
+    public jh2(int i, ylb ylbVar, Context context) {
+        super(context);
+        this.a = new CheckBoxBase(i, ylbVar, this);
+    }
+
+    public final void a(boolean z, boolean z2) {
+        this.a.f(-1, z, z2);
+    }
+
+    public final void b(int i, int i2, int i3) {
+        this.a.h(i, i2, i3);
+    }
+
+    public CheckBoxBase getCheckBoxBase() {
+        return this.a;
+    }
+
+    public boolean getDrawUnchecked() {
+        return this.a.z;
+    }
+
+    public float getProgress() {
+        return this.a.getProgress();
     }
 
     @Override
-    public final void a(int i) {
-        boolean z;
-        switch (this.a) {
-            case 0:
-                return;
-            default:
-                mo8 mo8Var = (mo8) this.c;
-                ProfileActivity profileActivity = mo8Var.n;
-                int k = profileActivity.o0.E0.k(i);
-                if (this.b != k) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                mo8Var.a(z);
-                this.b = k;
-                if (profileActivity.r0 != null) {
-                    if (profileActivity.T0.y()) {
-                        gl.e3(new w88(mo8Var, (byte) 24), 500L);
-                        return;
-                    } else {
-                        mo8Var.c();
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.a.l = true;
     }
 
     @Override
-    public final void b(float f, int i, int i2) {
-        qw4 qw4Var;
-        byte b = this.a;
-        View view = this.c;
-        switch (b) {
-            case 0:
-                if (i == ((sp8) view).getCurrentItem() && f == 0.0f && this.b == 1) {
-                    d();
-                    return;
-                }
-                return;
-            default:
-                qw4Var = ((d) ((mo8) view).n).glassEngine;
-                qw4Var.g();
-                return;
-        }
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.a.l = false;
     }
 
     @Override
-    public final void c(int i) {
-        switch (this.a) {
-            case 0:
-                if (i == 0) {
-                    d();
-                }
-                this.b = i;
-                return;
-            default:
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (this.b != null) {
+            int measuredWidth = getMeasuredWidth() >> 1;
+            int measuredHeight = getMeasuredHeight() >> 1;
+            Drawable drawable = this.b;
+            drawable.setBounds(aq1.A(2, measuredWidth, drawable), aq1.y(2, measuredHeight, this.b), aq1.w(2, measuredWidth, this.b), aq1.i(2, measuredHeight, this.b));
+            this.b.draw(canvas);
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(gm.L(1.2f));
+            paint.setColor(cmb.w0(null, cmb.T6, false));
+            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - gm.L(1.5f), paint);
+            return;
         }
+        this.a.a(canvas);
     }
 
-    public final void d() {
-        sp8 sp8Var = (sp8) this.c;
-        if (sp8Var.x0 != null) {
-            int currentItem = sp8Var.getCurrentItem();
-            int k = sp8Var.x0.k(currentItem) + sp8Var.x0.j();
-            if (currentItem != k) {
-                sp8Var.x(k, false);
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Switch");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.a.q);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        this.a.e(0, 0, i3 - i, i4 - i2);
+    }
+
+    public void setCirclePaintProvider(ku4 ku4Var) {
+        CheckBoxBase checkBoxBase = this.a;
+        if (checkBoxBase.G == ku4Var) {
+            return;
+        }
+        checkBoxBase.G = ku4Var;
+        checkBoxBase.b();
+    }
+
+    public void setDrawBackgroundAsArc(int i) {
+        this.a.d(i);
+    }
+
+    public void setDrawUnchecked(boolean z) {
+        this.a.k(z);
+    }
+
+    public void setDuration(long j) {
+        this.a.H = j;
+    }
+
+    @Override
+    public void setEnabled(boolean z) {
+        CheckBoxBase checkBoxBase = this.a;
+        if (checkBoxBase.k != z) {
+            checkBoxBase.k = z;
+            checkBoxBase.b();
+        }
+        super.setEnabled(z);
+    }
+
+    public void setForbidden(boolean z) {
+        CheckBoxBase checkBoxBase = this.a;
+        if (checkBoxBase.n == z) {
+            return;
+        }
+        checkBoxBase.n = z;
+        checkBoxBase.b();
+    }
+
+    public void setIcon(int i) {
+        if (i != this.c) {
+            this.c = i;
+            if (i == 0) {
+                this.b = null;
+                return;
             }
+            Drawable mutate = getContext().getDrawable(i).mutate();
+            this.b = mutate;
+            anb.x(this, mutate, cmb.T6, null, PorterDuff.Mode.MULTIPLY);
         }
     }
 
-    private final void e(int i) {
+    public void setNum(int i) {
+        String str;
+        CheckBoxBase checkBoxBase = this.a;
+        if (i >= 0) {
+            checkBoxBase.getClass();
+            str = String.valueOf(i + 1);
+        } else if (checkBoxBase.p != null) {
+            str = checkBoxBase.C;
+        } else {
+            str = null;
+        }
+        String str2 = checkBoxBase.C;
+        if (str2 == null) {
+            if (str == null) {
+                return;
+            }
+        } else if (str2.equals(str)) {
+            return;
+        }
+        checkBoxBase.C = str;
+        checkBoxBase.b();
     }
 
-    private final void f(int i) {
+    public void setProgressDelegate(lh2 lh2Var) {
+        this.a.D = lh2Var;
     }
 }

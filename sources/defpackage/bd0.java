@@ -1,301 +1,332 @@
 package defpackage;
 
+import android.animation.AnimatorSet;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-public final class bd0 extends d implements gk7 {
-    public int E;
-    public int F;
-    public int G;
-    public sha a;
-    public q5c b;
-    public m41 c;
-    public boolean d;
-    public boolean e;
-    public int f;
-    public TL_account.TL_businessAwayMessage h;
-    public byte n;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.Components.RadialProgress2;
+public abstract class bd0 extends FrameLayout implements jm7 {
+    public static final int G = 0;
+    public yc0 E;
+    public boolean F;
+    public final OvershootInterpolator a;
+    public final yd b;
+    public final tc0 c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
+    public final uc0 e;
+    public final ylb f;
+    public final jz4 h;
+    public AnimatorSet n;
     public boolean r;
-    public boolean s;
-    public boolean w;
-    public byte x;
-    public int y;
+    public cd0[] s;
+    public final View w;
+    public boolean x;
+    public String y;
 
-    public final void Y(boolean z) {
-        if (this.a == null) {
-            return;
+    public bd0(Context context, ylb ylbVar, uc0 uc0Var) {
+        super(context);
+        this.a = new OvershootInterpolator(1.02f);
+        jz4 jz4Var = new jz4();
+        this.h = jz4Var;
+        km0 km0Var = new km0(jz4Var, jz4Var, jz4Var);
+        this.e = uc0Var;
+        this.f = ylbVar;
+        km0Var.h = new zgc(this);
+        km0Var.i = this;
+        View view = new View(context);
+        this.w = view;
+        view.setOnClickListener(new j1(this, (byte) 16));
+        addView(view, qoe.c(-1.0f, -1));
+        yd ydVar = new yd((byte) 2, context, this);
+        this.b = ydVar;
+        addView(ydVar, qoe.c(-1.0f, -1));
+        tc0 tc0Var = new tc0(context, ylbVar);
+        this.c = tc0Var;
+        xj xjVar = agc.a;
+        tc0Var.setOutlineProvider(new yfc(0, gm.L(12.0f)));
+        tc0Var.setElevation(gm.L(4.0f));
+        tc0Var.setClipToOutline(true);
+        ydVar.addView(tc0Var, qoe.e(0, 0, 1));
+        if (Build.VERSION.SDK_INT >= 28) {
+            tc0Var.setOutlineSpotShadowColor(Integer.MIN_VALUE);
+            tc0Var.setOutlineAmbientShadowColor(Integer.MIN_VALUE);
         }
-        this.a.a(a0(), z);
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232581, 0, ylbVar, context);
+        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        im0 c = km0Var.c(actionBarPopupWindow$ActionBarPopupWindowLayout, null, false);
+        c.p(qqd.k(ylbVar));
+        c.q(gm.L(8.0f));
+        c.S.e = true;
+        c.r(gm.L(12.0f));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(c);
+        ydVar.addView(actionBarPopupWindow$ActionBarPopupWindowLayout, qoe.h(-2.0f, -2.0f, 8388611));
     }
 
-    public final void Z(ArrayList arrayList, l5c l5cVar) {
+    public final void a(wc0 wc0Var) {
         boolean z;
         boolean z2;
-        String M0 = k96.M0(2131752826, null);
-        String M02 = k96.M0(2131752823, null);
-        c4c c4cVar = new c4c(2);
-        c4cVar.m = M0;
-        c4cVar.p = M02;
-        c4cVar.n = "RestrictedEmoji";
-        c4cVar.o = "💤";
-        arrayList.add(c4cVar);
-        c4c i = c4c.i(1, k96.M0(2131752809, null));
-        i.L(this.r);
-        arrayList.add(i);
-        arrayList.add(c4c.C(null));
-        if (this.r) {
-            nx8 d = ox8.f(this.currentAccount).d("away");
-            if (d != null) {
-                c4c c4cVar2 = new c4c(17);
-                c4cVar2.H = d;
-                arrayList.add(c4cVar2);
-            } else {
-                c4c c = c4c.c(2, 2131232026, k96.M0(2131752825, null));
-                c.r = true;
-                arrayList.add(c);
+        boolean z3;
+        this.s = wc0Var.i;
+        if (wc0Var.c != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        tc0 tc0Var = this.c;
+        tc0Var.c = z;
+        tc0Var.invalidate();
+        this.y = wc0Var.f;
+        yc0 yc0Var = this.E;
+        if (yc0Var != null) {
+            if (yc0Var.g) {
+                yc0Var.g = false;
+                yc0Var.b.n(yc0Var.a, yc0Var.e);
             }
-            arrayList.add(c4c.C(null));
-            arrayList.add(c4c.u(k96.M0(2131752818, null)));
-            c4c x = c4c.x(3, k96.M0(2131752817, null));
-            boolean z3 = false;
-            if (this.x == 0) {
-                z = true;
-            } else {
-                z = false;
+            this.E = null;
+        }
+        yc0 yc0Var2 = wc0Var.j;
+        if (yc0Var2 != null) {
+            this.E = yc0Var2;
+            ad0 ad0Var = new ad0(this, wc0Var, (byte) 0);
+            if (!yc0Var2.g) {
+                yc0Var2.g = true;
+                yc0Var2.f = ad0Var;
+                yc0Var2.b.a(yc0Var2.a, yc0Var2.e);
+                yc0Var2.a();
             }
-            x.L(z);
-            arrayList.add(x);
-            if (this.d) {
-                c4c x2 = c4c.x(4, k96.M0(2131752810, null));
-                if (this.x == 1) {
+        }
+        int i = z8c.t0;
+        gn5 gn5Var = wc0Var.c;
+        String str = wc0Var.e;
+        gn5 gn5Var2 = wc0Var.a;
+        gn5 gn5Var3 = wc0Var.b;
+        String str2 = wc0Var.d;
+        BitmapDrawable bitmapDrawable = wc0Var.g;
+        Object obj = wc0Var.h;
+        bf0 bf0Var = (bf0) tc0Var.d;
+        bf0Var.getImageReceiver().d = i;
+        bf0Var.getImageReceiver().Y(gn5Var, str, gn5Var2, null, gn5Var3, str2, bitmapDrawable, 0L, null, obj, 1);
+        bf0Var.e();
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.d;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.d();
+        int i2 = 0;
+        while (true) {
+            cd0[] cd0VarArr = this.s;
+            if (i2 < cd0VarArr.length) {
+                cd0 cd0Var = cd0VarArr[i2];
+                String M0 = jb6.M0(cd0Var.b, cd0Var.a);
+                if (i2 == 0) {
                     z2 = true;
                 } else {
                     z2 = false;
                 }
-                x2.L(z2);
-                arrayList.add(x2);
-            }
-            c4c x3 = c4c.x(5, k96.M0(2131752816, null));
-            if (this.x == 2) {
-                z3 = true;
-            }
-            x3.L(z3);
-            arrayList.add(x3);
-            if (this.x == 2) {
-                arrayList.add(c4c.C(null));
-                arrayList.add(c4c.u(k96.M0(2131752818, null)));
-                arrayList.add(c4c.f(k96.M0(2131752812, null), k96.Q(this.F), 8));
-                arrayList.add(c4c.f(k96.M0(2131752815, null), k96.Q(this.G), 9));
-            }
-            arrayList.add(c4c.C(null));
-            c4c i2 = c4c.i(10, k96.M0(2131752820, null));
-            i2.L(this.w);
-            arrayList.add(i2);
-            arrayList.add(c4c.C(k96.M0(2131752819, null)));
-            arrayList.add(c4c.u(k96.M0(2131752676, null)));
-            c4c x4 = c4c.x(6, k96.M0(2131752769, null));
-            x4.L(this.s);
-            arrayList.add(x4);
-            c4c x5 = c4c.x(7, k96.M0(2131752764, null));
-            x5.L(!this.s);
-            arrayList.add(x5);
-            arrayList.add(c4c.C(null));
-            this.c.a(arrayList, l5cVar, true);
-            arrayList.add(c4c.C(null));
-        }
-    }
-
-    public final boolean a0() {
-        boolean z;
-        m41 m41Var;
-        if (this.e) {
-            boolean z2 = this.r;
-            TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.h;
-            if (tL_businessAwayMessage != null) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (z2 == z) {
-                if (z2 && tL_businessAwayMessage != null) {
-                    if (tL_businessAwayMessage.recipients.exclude_selected == this.s && ((m41Var = this.c) == null || !m41Var.g())) {
-                        byte b = this.n;
-                        byte b2 = this.x;
-                        if (b != b2 || this.h.offline_only != this.w || (b2 == 2 && (this.y != this.F || this.E != this.G))) {
-                        }
-                    }
+                if (i2 == this.s.length - 1) {
+                    z3 = true;
+                } else {
+                    z3 = false;
                 }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public final void b0() {
-        if (!this.a.y.f) {
-            if (!a0()) {
-                finishFragment();
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = actionBarPopupWindow$ActionBarPopupWindowLayout;
+                a8 c = r7.c(z2, z3, actionBarPopupWindow$ActionBarPopupWindowLayout2, cd0Var.c, M0, false, this.f);
+                c.setTag(Integer.valueOf(i2));
+                c.setOnClickListener(new t(this, cd0Var, (byte) 23));
+                i2++;
+                actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            } else {
+                b(true);
                 return;
             }
-            nx8 d = ox8.f(this.currentAccount).d("away");
-            if (this.r) {
-                if (d == null) {
-                    pw0.APP_ERROR.a();
-                    View B1 = this.b.B1(2);
-                    int i = -this.f;
-                    this.f = i;
-                    gl.B3(i, B1, null);
-                    q5c q5cVar = this.b;
-                    q5cVar.z0(q5cVar.A1(2));
-                    return;
-                } else if (!this.c.k(this.b)) {
-                    return;
-                }
-            }
-            this.a.b(true);
-            TLRPC.UserFull W1 = getMessagesController().W1(getUserConfig().e());
-            TL_account.updateBusinessAwayMessage updatebusinessawaymessage = new TL_account.updateBusinessAwayMessage();
-            if (this.r) {
-                TL_account.TL_inputBusinessAwayMessage tL_inputBusinessAwayMessage = new TL_account.TL_inputBusinessAwayMessage();
-                updatebusinessawaymessage.message = tL_inputBusinessAwayMessage;
-                tL_inputBusinessAwayMessage.offline_only = this.w;
-                tL_inputBusinessAwayMessage.shortcut_id = d.a;
-                tL_inputBusinessAwayMessage.recipients = this.c.e();
-                byte b = this.x;
-                if (b == 0) {
-                    updatebusinessawaymessage.message.schedule = new TL_account.TL_businessAwayMessageScheduleAlways();
-                } else if (b == 1) {
-                    updatebusinessawaymessage.message.schedule = new TL_account.TL_businessAwayMessageScheduleOutsideWorkHours();
-                } else if (b == 2) {
-                    TL_account.TL_businessAwayMessageScheduleCustom tL_businessAwayMessageScheduleCustom = new TL_account.TL_businessAwayMessageScheduleCustom();
-                    tL_businessAwayMessageScheduleCustom.start_date = this.F;
-                    tL_businessAwayMessageScheduleCustom.end_date = this.G;
-                    updatebusinessawaymessage.message.schedule = tL_businessAwayMessageScheduleCustom;
-                }
-                updatebusinessawaymessage.flags |= 1;
-                if (W1 != null) {
-                    W1.flags2 |= 8;
-                    TL_account.TL_businessAwayMessage tL_businessAwayMessage = new TL_account.TL_businessAwayMessage();
-                    W1.business_away_message = tL_businessAwayMessage;
-                    tL_businessAwayMessage.offline_only = this.w;
-                    tL_businessAwayMessage.shortcut_id = d.a;
-                    tL_businessAwayMessage.recipients = this.c.f();
-                    W1.business_away_message.schedule = updatebusinessawaymessage.message.schedule;
-                }
-            } else if (W1 != null) {
-                W1.flags2 &= -9;
-                W1.business_away_message = null;
-            }
-            getConnectionsManager().sendRequest(updatebusinessawaymessage, new uf(this, (byte) 2));
-            getMessagesStorage().g2(W1, false);
         }
     }
 
-    public final void c0() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bd0.c0():void");
-    }
-
-    @Override
-    public final View createView(Context context) {
-        TL_account.TL_businessRecipients tL_businessRecipients;
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231243);
-        this.simpleActionBar.setTitle(k96.M0(2131752826, null));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new r8(this, (byte) 6));
-        this.a = this.simpleActionBar.s(k96.M0(2131745754, null));
-        Y(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        m41 m41Var = new m41(this, new oz(this, (byte) 6));
-        this.c = m41Var;
-        m41Var.h = this.s;
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.h;
-        if (tL_businessAwayMessage == null) {
-            tL_businessRecipients = null;
+    public final void b(final boolean z) {
+        TimeInterpolator timeInterpolator;
+        long j;
+        if (this.r == z) {
+            return;
+        }
+        this.r = z;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        if (z) {
+            timeInterpolator = this.a;
         } else {
-            tL_businessRecipients = tL_businessAwayMessage.recipients;
+            timeInterpolator = d53.h;
         }
-        m41Var.j(tL_businessRecipients);
-        q5c q5cVar = new q5c(this, new f(this, (byte) 14), new zc0(this, (byte) 0), null);
-        this.b = q5cVar;
-        q5cVar.r1();
-        this.b.setSectionsDrawBackground(true);
-        q5c q5cVar2 = this.b;
-        q5cVar2.g3.r = false;
-        frameLayout.addView(q5cVar2, nme.c(-1.0f, -1));
-        c0();
-        this.fragmentView = frameLayout;
-        return frameLayout;
+        ofFloat.setInterpolator(timeInterpolator);
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+            public final bd0 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                byte b = r3;
+                boolean z2 = z;
+                bd0 bd0Var = this.b;
+                switch (b) {
+                    case 0:
+                        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = bd0Var.d;
+                        yd ydVar = bd0Var.b;
+                        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z2) {
+                            floatValue = 1.0f - floatValue;
+                        }
+                        float a = pqe.a(floatValue, 0.0f, 1.0f);
+                        float f = (0.3f * floatValue) + 0.7f;
+                        ydVar.setScaleX(f);
+                        ydVar.setScaleY(f);
+                        ydVar.setAlpha(a);
+                        float f2 = 1.0f - floatValue;
+                        bd0Var.c.setTranslationY(gm.L(40.0f) * f2);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((-gm.L(70.0f)) * f2);
+                        float f3 = (floatValue * 0.05f) + 0.95f;
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleX(f3);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleY(f3);
+                        return;
+                    default:
+                        float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z2) {
+                            floatValue2 = 1.0f - floatValue2;
+                        }
+                        bd0Var.w.setAlpha(floatValue2);
+                        bd0Var.invalidate();
+                        return;
+                }
+            }
+        });
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+            public final bd0 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                byte b = r3;
+                boolean z2 = z;
+                bd0 bd0Var = this.b;
+                switch (b) {
+                    case 0:
+                        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = bd0Var.d;
+                        yd ydVar = bd0Var.b;
+                        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z2) {
+                            floatValue = 1.0f - floatValue;
+                        }
+                        float a = pqe.a(floatValue, 0.0f, 1.0f);
+                        float f = (0.3f * floatValue) + 0.7f;
+                        ydVar.setScaleX(f);
+                        ydVar.setScaleY(f);
+                        ydVar.setAlpha(a);
+                        float f2 = 1.0f - floatValue;
+                        bd0Var.c.setTranslationY(gm.L(40.0f) * f2);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((-gm.L(70.0f)) * f2);
+                        float f3 = (floatValue * 0.05f) + 0.95f;
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleX(f3);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleY(f3);
+                        return;
+                    default:
+                        float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z2) {
+                            floatValue2 = 1.0f - floatValue2;
+                        }
+                        bd0Var.w.setAlpha(floatValue2);
+                        bd0Var.invalidate();
+                        return;
+                }
+            }
+        });
+        AnimatorSet animatorSet = this.n;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.n = animatorSet2;
+        if (z) {
+            j = 190;
+        } else {
+            j = 150;
+        }
+        animatorSet2.setDuration(j);
+        this.n.playTogether(ofFloat, ofFloat2);
+        this.n.addListener(new y7((byte) 4, this, z));
+        this.n.start();
     }
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        l5c l5cVar;
-        if (i == kk7.E1) {
-            q5c q5cVar = this.b;
-            if (q5cVar != null && (l5cVar = q5cVar.g3) != null) {
-                l5cVar.O(true);
-            }
-            Y(true);
-        } else if (i == kk7.D0) {
-            c0();
-        }
-    }
-
-    @Override
-    public final o39 getListViewForSimpleGlass() {
-        return this.b;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z) {
-        if (a0()) {
-            if (z) {
-                if (!this.r) {
-                    b0();
-                    return false;
+        tc0 tc0Var = this.c;
+        boolean z = tc0Var.c;
+        RadialProgress2 radialProgress2 = (RadialProgress2) tc0Var.e;
+        if (z && !TextUtils.isEmpty(this.y)) {
+            if (i == nm7.Y1) {
+                if (TextUtils.equals((String) objArr[0], this.y)) {
+                    radialProgress2.o(true, 1.0f);
                 }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                String M0 = k96.M0(2131743596, null);
-                hd hdVar = alertDialog$Builder.a;
-                hdVar.S = M0;
-                hdVar.U = k96.M0(2131752808, null);
-                alertDialog$Builder.j(k96.M0(2131754213, null), new zc0(this, (byte) 1));
-                alertDialog$Builder.g(k96.M0(2131747387, null), new zc0(this, (byte) 2));
-                showDialog(hdVar);
+            } else if (i == nm7.X1 && TextUtils.equals((String) objArr[0], this.y)) {
+                radialProgress2.o(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
             }
-            return false;
         }
-        return super.onBackPressed(z);
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().b(this, kk7.E1);
-        getNotificationCenter().b(this, kk7.D0);
-        ox8.f(this.currentAccount).h();
-        c0();
-        return super.onFragmentCreate();
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        KeyEvent.DispatcherState keyDispatcherState;
+        if (keyEvent.getKeyCode() != 4 && keyEvent.getKeyCode() != 111) {
+            return super.dispatchKeyEvent(keyEvent);
+        }
+        if (getKeyDispatcherState() == null) {
+            return super.dispatchKeyEvent(keyEvent);
+        }
+        if (keyEvent.getAction() == 0 && keyEvent.getRepeatCount() == 0) {
+            KeyEvent.DispatcherState keyDispatcherState2 = getKeyDispatcherState();
+            if (keyDispatcherState2 != null) {
+                keyDispatcherState2.startTracking(keyEvent, this);
+            }
+            return true;
+        } else if (keyEvent.getAction() == 1 && (keyDispatcherState = getKeyDispatcherState()) != null && keyDispatcherState.isTracking(keyEvent) && !keyEvent.isCanceled()) {
+            b(false);
+            return true;
+        } else {
+            return super.dispatchKeyEvent(keyEvent);
+        }
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, kk7.E1);
-        getNotificationCenter().n(this, kk7.D0);
-        super.onFragmentDestroy();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        nm7.f(z8c.t0).b(this, nm7.Y1);
+        nm7.f(z8c.t0).b(this, nm7.X1);
     }
 
     @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        nm7.f(z8c.t0).n(this, nm7.Y1);
+        nm7.f(z8c.t0).n(this, nm7.X1);
+    }
+
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        if (i != 0 && i2 != 0 && this.r) {
+            this.w.setBackground(null);
+            gm.c3(new f00(this, (byte) 7));
+        }
+        tl0.c(this.h, this);
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.d;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.invalidate();
+        }
     }
 }

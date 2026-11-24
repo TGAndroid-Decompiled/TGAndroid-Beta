@@ -1,22 +1,34 @@
 package defpackage;
 
-import java.util.List;
-public final class x1b implements q8c {
-    public final y1b a;
-    public final boolean b;
-    public final int c;
-    public final List d;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class x1b implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final View b;
+    public final FrameLayout c;
 
-    public x1b(y1b y1bVar, boolean z, int i, List list) {
-        this.a = y1bVar;
-        this.b = z;
-        this.c = i;
-        this.d = list;
+    public x1b(FrameLayout frameLayout, View view, byte b) {
+        this.a = b;
+        this.c = frameLayout;
+        this.b = view;
     }
 
     @Override
-    public final Object a(Object obj) {
-        Integer num = (Integer) obj;
-        return Boolean.valueOf(this.a.q(this.c, this.d, this.b));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        View view = this.b;
+        FrameLayout frameLayout = this.c;
+        switch (b) {
+            case 0:
+                y1b y1bVar = (y1b) frameLayout;
+                y1bVar.b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y1bVar.invalidate();
+                ((gt9) view).invalidate();
+                return;
+            default:
+                ((wgc) frameLayout).F(view, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+        }
     }
 }

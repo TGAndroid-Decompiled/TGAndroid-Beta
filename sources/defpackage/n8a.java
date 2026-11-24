@@ -1,80 +1,204 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.text.style.ImageSpan;
-public final class n8a extends ImageSpan {
-    public static tyb b;
-    public final byte a = 1;
+import android.os.Bundle;
+import j$.util.Objects;
+public final class n8a {
+    public static final qe8 k;
+    public static final n8a l;
+    public static final String m;
+    public static final String n;
+    public static final String o;
+    public static final String p;
+    public static final String q;
+    public static final String r;
+    public static final String s;
+    public static final String t;
+    public static final String u;
+    public static final String v;
+    public final qe8 a;
+    public final boolean b;
+    public final long c;
+    public final long d;
+    public final long e;
+    public final int f;
+    public final long g;
+    public final long h;
+    public final long i;
+    public final long j;
 
-    public n8a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.n8a.<init>():void");
+    static {
+        qe8 qe8Var = new qe8(null, 0, null, null, 0, 0L, 0L, -1, -1);
+        k = qe8Var;
+        l = new n8a(qe8Var, false, -9223372036854775807L, -9223372036854775807L, 0L, 0, 0L, -9223372036854775807L, -9223372036854775807L, 0L);
+        String str = hac.a;
+        m = "0";
+        n = "1";
+        o = "2";
+        p = "3";
+        q = "4";
+        r = "5";
+        s = "6";
+        t = "7";
+        u = "8";
+        v = "9";
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        switch (this.a) {
-            case 0:
-                Drawable drawable = getDrawable();
-                canvas.save();
-                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                int i6 = fontMetricsInt.descent;
-                canvas.translate(f, ((i4 + i6) - ((i6 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
-                if (k96.a0) {
-                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+    public n8a(qe8 qe8Var, boolean z, long j, long j2, long j3, int i, long j4, long j5, long j6, long j7) {
+        boolean z2;
+        if (qe8Var.h != -1) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        jte.f(z == z2);
+        this.a = qe8Var;
+        this.b = z;
+        this.c = j;
+        this.d = j2;
+        this.e = j3;
+        this.f = i;
+        this.g = j4;
+        this.h = j5;
+        this.i = j6;
+        this.j = j7;
+    }
+
+    public final n8a a(boolean z, boolean z2) {
+        boolean z3;
+        qe8 qe8Var;
+        long j;
+        long j2;
+        long j3;
+        long j4;
+        long j5;
+        long j6;
+        if (z && z2) {
+            return this;
+        }
+        qe8 b = this.a.b(z, z2);
+        int i = 0;
+        if (z && this.b) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        if (z) {
+            j = this.d;
+            long j7 = this.e;
+            i = this.f;
+            j4 = this.g;
+            j2 = this.h;
+            j3 = this.i;
+            qe8Var = b;
+            j5 = this.j;
+            j6 = j7;
+        } else {
+            qe8Var = b;
+            j = -9223372036854775807L;
+            j2 = -9223372036854775807L;
+            j3 = -9223372036854775807L;
+            j4 = 0;
+            j5 = 0;
+            j6 = 0;
+        }
+        return new n8a(qe8Var, z3, this.c, j, j6, i, j4, j2, j3, j5);
+    }
+
+    public final Bundle b(int i) {
+        Bundle bundle = new Bundle();
+        qe8 qe8Var = this.a;
+        if (i < 3 || !k.a(qe8Var)) {
+            bundle.putBundle(m, qe8Var.c(i));
+        }
+        boolean z = this.b;
+        if (z) {
+            bundle.putBoolean(n, z);
+        }
+        long j = this.c;
+        if (j != -9223372036854775807L) {
+            bundle.putLong(o, j);
+        }
+        long j2 = this.d;
+        if (j2 != -9223372036854775807L) {
+            bundle.putLong(p, j2);
+        }
+        long j3 = this.e;
+        if (i < 3 || j3 != 0) {
+            bundle.putLong(q, j3);
+        }
+        int i2 = this.f;
+        if (i2 != 0) {
+            bundle.putInt(r, i2);
+        }
+        long j4 = this.g;
+        if (j4 != 0) {
+            bundle.putLong(s, j4);
+        }
+        long j5 = this.h;
+        if (j5 != -9223372036854775807L) {
+            bundle.putLong(t, j5);
+        }
+        long j6 = this.i;
+        if (j6 != -9223372036854775807L) {
+            bundle.putLong(u, j6);
+        }
+        long j7 = this.j;
+        if (i >= 3 && j7 == 0) {
+            return bundle;
+        }
+        bundle.putLong(v, j7);
+        return bundle;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && n8a.class == obj.getClass()) {
+                n8a n8aVar = (n8a) obj;
+                if (this.c == n8aVar.c && this.a.equals(n8aVar.a) && this.b == n8aVar.b && this.d == n8aVar.d && this.e == n8aVar.e && this.f == n8aVar.f && this.g == n8aVar.g && this.h == n8aVar.h && this.i == n8aVar.i && this.j == n8aVar.j) {
+                    return true;
                 }
-                drawable.draw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
-                return;
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.a) {
-            case 0:
-                Rect bounds = getDrawable().getBounds();
-                if (fontMetricsInt != null) {
-                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                    int i3 = fontMetricsInt2.descent;
-                    int i4 = fontMetricsInt2.ascent;
-                    int i5 = ((i3 - i4) / 2) + i4;
-                    int i6 = (bounds.bottom - bounds.top) / 2;
-                    int i7 = i5 - i6;
-                    fontMetricsInt.ascent = i7;
-                    fontMetricsInt.top = i7;
-                    int i8 = i5 + i6;
-                    fontMetricsInt.bottom = i8;
-                    fontMetricsInt.descent = i8;
-                }
-                return bounds.right;
-            default:
-                return super.getSize(paint, charSequence, i, i2, fontMetricsInt);
-        }
+    public final int hashCode() {
+        return Objects.hash(this.a, Boolean.valueOf(this.b));
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.a) {
-            case 1:
-                float textSize = textPaint.getTextSize() * 0.89f;
-                int i = (int) (0.02f * textSize);
-                getDrawable().setBounds(0, i, (int) textSize, ((int) (textSize * 1.25f)) + i);
-                super.updateDrawState(textPaint);
-                return;
-            default:
-                super.updateDrawState(textPaint);
-                return;
-        }
-    }
-
-    public n8a(Drawable drawable) {
-        super(drawable);
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("SessionPositionInfo {PositionInfo {mediaItemIndex=");
+        qe8 qe8Var = this.a;
+        sb.append(qe8Var.b);
+        sb.append(", periodIndex=");
+        sb.append(qe8Var.e);
+        sb.append(", positionMs=");
+        sb.append(qe8Var.f);
+        sb.append(", contentPositionMs=");
+        sb.append(qe8Var.g);
+        sb.append(", adGroupIndex=");
+        sb.append(qe8Var.h);
+        sb.append(", adIndexInAdGroup=");
+        sb.append(qe8Var.i);
+        sb.append("}, isPlayingAd=");
+        sb.append(this.b);
+        sb.append(", eventTimeMs=");
+        sb.append(this.c);
+        sb.append(", durationMs=");
+        sb.append(this.d);
+        sb.append(", bufferedPositionMs=");
+        sb.append(this.e);
+        sb.append(", bufferedPercentage=");
+        sb.append(this.f);
+        sb.append(", totalBufferedDurationMs=");
+        sb.append(this.g);
+        sb.append(", currentLiveOffsetMs=");
+        sb.append(this.h);
+        sb.append(", contentDurationMs=");
+        sb.append(this.i);
+        sb.append(", contentBufferedPositionMs=");
+        return kt6.q(sb, this.j, "}");
     }
 }

@@ -1,53 +1,28 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
 public final class kyb {
-    public final HashSet a = new HashSet();
-    public final HashMap b = new HashMap();
+    public TLRPC.TL_forumTopic a;
+    public vr9 b;
+    public final oyb c;
 
-    public static String c(int i, String str) {
-        if (str.length() <= (i << 1) + 1) {
-            return str;
-        }
-        return str.substring(0, i) + "…" + str.substring(str.length() - i);
+    public kyb(oyb oybVar) {
+        this.c = oybVar;
     }
 
-    public final String a(String str) {
-        if (str == null) {
-            return null;
+    public final long a() {
+        vr9 vr9Var = this.b;
+        if (vr9Var != null) {
+            return vr9Var.a;
         }
-        String str2 = (String) this.b.get(str);
-        if (str2 == null) {
-            return str;
+        TLRPC.TL_forumTopic tL_forumTopic = this.a;
+        if (tL_forumTopic == null) {
+            return 0L;
         }
-        return str2;
-    }
-
-    public final void b(int i, ArrayList arrayList) {
-        HashMap hashMap = new HashMap();
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            String str = (String) obj;
-            String c = c(i, str);
-            ArrayList arrayList2 = (ArrayList) hashMap.get(c);
-            if (arrayList2 == null) {
-                arrayList2 = new ArrayList();
-                hashMap.put(c, arrayList2);
-            }
-            arrayList2.add(str);
+        int i = oyb.r0;
+        if (this.c.c) {
+            return pg3.n(tL_forumTopic.from_id);
         }
-        for (ArrayList arrayList3 : hashMap.values()) {
-            if (arrayList3.size() == 1) {
-                String str2 = (String) arrayList3.get(0);
-                this.b.put(str2, c(i, str2));
-            } else {
-                b(i + 1, arrayList3);
-            }
-        }
+        return tL_forumTopic.id;
     }
 }

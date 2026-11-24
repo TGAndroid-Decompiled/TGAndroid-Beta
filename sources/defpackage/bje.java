@@ -1,5 +1,11 @@
 package defpackage;
-public abstract class bje {
-    public static int a = 22336;
-    public static l15 b;
+public final class bje {
+    public static final mq5 a;
+
+    static {
+        int i = okd.r;
+        Object[] objArr = vnd.F;
+        new cpd("FIDO");
+        a = new mq5(Boolean.FALSE);
+    }
 }

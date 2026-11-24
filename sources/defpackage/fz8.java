@@ -1,71 +1,28 @@
 package defpackage;
 
-import android.os.Bundle;
-public abstract class fz8 {
-    public static final String a;
+import android.view.View;
+import java.io.Serializable;
+public final class fz8 implements oac, pac {
+    public final lz8 a;
 
-    static {
-        String str = g8c.a;
-        a = "0";
-    }
-
-    public static fz8 a(Bundle bundle) {
-        String str = a;
-        int i = bundle.getInt(str, -1);
+    @Override
+    public final Object b(c6c c6cVar, View view, Integer num, Float f, Float f2) {
         boolean z = false;
-        boolean z2 = true;
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    if (i == 3) {
-                        String str2 = knb.d;
-                        if (bundle.getInt(str, -1) != 3) {
-                            z2 = false;
-                        }
-                        gre.f(z2);
-                        if (bundle.getBoolean(knb.d, false)) {
-                            return new knb(bundle.getBoolean(knb.e, false));
-                        }
-                        return new knb();
-                    }
-                    w26.j(de9.k(i, "Unknown RatingType: "));
-                    return null;
-                }
-                String str3 = dra.d;
-                if (bundle.getInt(str, -1) == 2) {
-                    z = true;
-                }
-                gre.f(z);
-                int i2 = bundle.getInt(dra.d, 5);
-                float f = bundle.getFloat(dra.e, -1.0f);
-                if (f == -1.0f) {
-                    return new dra(i2);
-                }
-                return new dra(i2, f);
-            }
-            String str4 = e38.c;
-            if (bundle.getInt(str, -1) == 1) {
+        if (c6cVar.a == 16) {
+            Object obj = c6cVar.H;
+            if (!(obj instanceof oz8) || !((oz8) obj).g) {
+                this.a.i0(c6cVar, view);
                 z = true;
             }
-            gre.f(z);
-            float f2 = bundle.getFloat(e38.c, -1.0f);
-            if (f2 == -1.0f) {
-                return new e38();
-            }
-            return new e38(f2);
         }
-        String str5 = ud5.d;
-        if (bundle.getInt(str, -1) != 0) {
-            z2 = false;
-        }
-        gre.f(z2);
-        if (bundle.getBoolean(ud5.d, false)) {
-            return new ud5(bundle.getBoolean(ud5.e, false));
-        }
-        return new ud5();
+        return Boolean.valueOf(z);
     }
 
-    public abstract boolean b();
-
-    public abstract Bundle c();
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        this.a.g0((c6c) obj, (View) obj2);
+    }
 }

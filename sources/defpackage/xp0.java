@@ -1,102 +1,54 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class xp0 extends Drawable {
-    public final long a;
-    public final Drawable b;
-    public final Paint c;
-    public final Path d;
-    public boolean e;
-    public final lm f;
+import android.graphics.RectF;
+public final class xp0 {
+    public final RectF a = new RectF();
+    public final ln b;
+    public final ln c;
+    public final ln d;
+    public final ln e;
+    public final km f;
+    public final km g;
+    public final ln h;
+    public final ln i;
+    public final u51 j;
+    public final Paint k;
+    public final ho l;
+    public int m;
+    public final fg0 n;
+    public final wi2 o;
+    public final ef1 p;
 
-    public xp0(Context context) {
-        Paint paint = new Paint(1);
-        this.c = paint;
-        Path path = new Path();
-        this.d = path;
-        this.e = false;
-        this.f = new lm(new oz(this, (byte) 21), 420L, s33.h, 0);
-        this.a = System.currentTimeMillis();
-        this.b = b00.d(context, 2131231247);
-        paint.setPathEffect(new CornerPathEffect(gl.L(1.0f)));
-        path.rewind();
-        path.moveTo(-gl.N(1.33f), gl.N(0.16f));
-        path.lineTo(-gl.N(1.33f), -gl.N(3.5f));
-        path.lineTo(gl.N(1.33f), -gl.N(3.5f));
-        path.lineTo(gl.N(1.33f), gl.N(0.16f));
-        path.lineTo(gl.N(3.5f), gl.N(0.16f));
-        path.lineTo(0.0f, gl.N(3.5f));
-        path.lineTo(-gl.N(3.5f), gl.N(0.16f));
-        path.close();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        Drawable drawable = this.b;
-        drawable.setBounds(bounds);
-        drawable.draw(canvas);
-        float d = this.f.d(this.e);
-        if (d > 0.0f) {
-            canvas.save();
-            canvas.translate(getBounds().centerX(), getBounds().centerY());
-            canvas.translate(-gl.N(8.166f), gl.N(5.0f));
-            float f = (d * 0.5f) + 0.5f;
-            canvas.scale(f, f);
-            int p1 = bkb.p1(0.4f, -1);
-            Paint paint = this.c;
-            paint.setColor(p1);
-            Path path = this.d;
-            canvas.drawPath(path, paint);
-            float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.a) % 450)) / 450.0f;
-            float f2 = 0.5f + currentTimeMillis;
-            canvas.save();
-            canvas.clipRect(-gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), currentTimeMillis), gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), f2));
-            paint.setColor(bkb.p1(1.0f, -1));
-            canvas.drawPath(path, paint);
-            canvas.restore();
-            if (f2 > 1.0f) {
-                canvas.save();
-                canvas.clipRect(-gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), 0.0f), gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), f2 - 1.0f));
-                paint.setColor(bkb.p1(1.0f, -1));
-                canvas.drawPath(path, paint);
-                canvas.restore();
-            }
-            canvas.restore();
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.b.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.b.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.b.setAlpha(i);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.c.setColorFilter(colorFilter);
-        this.b.setColorFilter(colorFilter);
+    public xp0(zp0 zp0Var) {
+        d53 d53Var = d53.h;
+        this.b = new ln(zp0Var, 0L, 320L, d53Var);
+        this.c = new ln(zp0Var, 0L, 320L, d53Var);
+        this.d = new ln(zp0Var, 0L, 320L, d53Var);
+        this.e = new ln(zp0Var, 0L, 320L, d53Var);
+        this.f = new km(zp0Var, 320L, d53Var, 0);
+        this.g = new km(zp0Var, 320L, d53Var, 0);
+        this.h = new ln(zp0Var, 0L, 320L, d53Var);
+        this.i = new ln(zp0Var, 0L, 320L, d53Var);
+        this.j = new u51(zp0Var);
+        this.k = new Paint(1);
+        ho hoVar = new ho(true, false, true);
+        this.l = hoVar;
+        fg0 Y = cmb.Y(0, 9, 9);
+        this.n = Y;
+        wi2 wi2Var = new wi2(-1);
+        this.o = wi2Var;
+        ef1 ef1Var = new ef1();
+        this.p = ef1Var;
+        hoVar.b = 17;
+        hoVar.w(gm.L(14.0f));
+        hoVar.x(gm.o());
+        hoVar.N = gm.q.x << 2;
+        hoVar.q(true);
+        hoVar.setCallback(zp0Var);
+        wi2Var.setCallback(zp0Var);
+        Y.setCallback(zp0Var);
+        ef1Var.l = true;
+        ef1Var.m = 2.0f;
     }
 }

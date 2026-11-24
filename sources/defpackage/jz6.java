@@ -1,12 +1,6 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class jz6 {
-    public final TLRPC.Document a;
-    public final Object b;
-
-    public jz6(Object obj, TLRPC.Document document) {
-        this.a = document;
-        this.b = obj;
-    }
+import java.util.List;
+public interface jz6 {
+    void a(cf8 cf8Var, sw6 sw6Var, List list);
 }

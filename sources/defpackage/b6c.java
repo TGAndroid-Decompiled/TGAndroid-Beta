@@ -1,61 +1,57 @@
 package defpackage;
 
-import java.lang.reflect.Field;
-import sun.misc.Unsafe;
-public final class b6c extends c6c {
-    @Override
-    public final boolean h() {
-        if (!super.h()) {
-            return false;
+import android.content.Context;
+import android.util.LongSparseArray;
+import android.view.View;
+import java.util.HashMap;
+public abstract class b6c {
+    public final int a;
+
+    public b6c() {
+        int i = c6c.K;
+        c6c.K = i + 1;
+        this.a = i;
+    }
+
+    public static void h(b6c b6cVar) {
+        if (c6c.M == null) {
+            c6c.M = new HashMap();
         }
-        try {
-            Class<?> cls = this.a.getClass();
-            Class<?> cls2 = Long.TYPE;
-            cls.getMethod("getByte", Object.class, cls2);
-            cls.getMethod("putByte", Object.class, cls2, Byte.TYPE);
-            cls.getMethod("getBoolean", Object.class, cls2);
-            cls.getMethod("putBoolean", Object.class, cls2, Boolean.TYPE);
-            cls.getMethod("getFloat", Object.class, cls2);
-            cls.getMethod("putFloat", Object.class, cls2, Float.TYPE);
-            cls.getMethod("getDouble", Object.class, cls2);
-            cls.getMethod("putDouble", Object.class, cls2, Double.TYPE);
-            return true;
-        } catch (Throwable th) {
-            d6c.i(th);
-            return false;
+        if (c6c.L == null) {
+            c6c.L = new LongSparseArray();
+        }
+        Class<?> cls = b6cVar.getClass();
+        if (!c6c.M.containsKey(cls)) {
+            c6c.M.put(cls, b6cVar);
+            c6c.L.put(b6cVar.a, b6cVar);
         }
     }
 
-    @Override
-    public final boolean i() {
-        Unsafe unsafe = this.a;
-        if (unsafe != null) {
-            try {
-                Class<?> cls = unsafe.getClass();
-                cls.getMethod("objectFieldOffset", Field.class);
-                Class<?> cls2 = Long.TYPE;
-                cls.getMethod("getLong", Object.class, cls2);
-                if (d6c.c() != null) {
-                    try {
-                        Class<?> cls3 = unsafe.getClass();
-                        cls3.getMethod("getByte", cls2);
-                        cls3.getMethod("putByte", cls2, Byte.TYPE);
-                        cls3.getMethod("getInt", cls2);
-                        cls3.getMethod("putInt", cls2, Integer.TYPE);
-                        cls3.getMethod("getLong", cls2);
-                        cls3.getMethod("putLong", cls2, cls2);
-                        cls3.getMethod("copyMemory", cls2, cls2, cls2);
-                        cls3.getMethod("copyMemory", Object.class, cls2, Object.class, cls2, cls2);
-                        return true;
-                    } catch (Throwable th) {
-                        d6c.i(th);
-                        return false;
-                    }
-                }
-            } catch (Throwable th2) {
-                d6c.i(th2);
-            }
-        }
-        return false;
+    public boolean c(c6c c6cVar, c6c c6cVar2) {
+        return c6cVar.I(c6cVar2);
+    }
+
+    public View d(Context context, r59 r59Var, int i, ylb ylbVar) {
+        n5 n5Var = new n5(i, ylbVar, context);
+        n5Var.setLayoutParams(qoe.c(-2.0f, -1));
+        return n5Var;
+    }
+
+    public boolean e(c6c c6cVar, c6c c6cVar2) {
+        return c6cVar.J(c6cVar2);
+    }
+
+    public boolean f() {
+        return !(this instanceof li9);
+    }
+
+    public boolean g() {
+        return this instanceof q22;
+    }
+
+    public void a(r59 r59Var, View view, c6c c6cVar) {
+    }
+
+    public void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
     }
 }

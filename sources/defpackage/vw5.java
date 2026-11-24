@@ -1,20 +1,13 @@
 package defpackage;
 
-import java.io.Serializable;
-public abstract class vw5 implements oq4, Serializable {
-    public final byte a;
-
-    public vw5(int i) {
-        this.a = i;
+import java.util.regex.Pattern;
+public abstract class vw5 {
+    static {
+        Pattern.compile("\\\\.");
+        Pattern.compile("[\\\\\"/\b\f\n\r\t]");
     }
 
-    @Override
-    public final int getArity() {
-        return this.a;
-    }
-
-    public final String toString() {
-        f59.a.getClass();
-        return g59.a(this);
+    public static boolean a(java.lang.Object r4, java.lang.Object r5) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vw5.a(java.lang.Object, java.lang.Object):boolean");
     }
 }

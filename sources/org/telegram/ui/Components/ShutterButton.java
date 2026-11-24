@@ -14,14 +14,14 @@ public class ShutterButton extends View {
     public DecelerateInterpolator b;
     public Paint c;
     public Paint d;
-    public xga e;
-    public yga f;
+    public zia e;
+    public aja f;
     public boolean h;
     public float n;
     public long r;
     public long s;
     public boolean w;
-    public bg7 x;
+    public ei7 x;
 
     private void setHighlighted(boolean z) {
         AnimatorSet animatorSet = new AnimatorSet();
@@ -38,23 +38,23 @@ public class ShutterButton extends View {
         animatorSet.start();
     }
 
-    public final void a(yga ygaVar) {
-        if (this.f != ygaVar) {
-            this.f = ygaVar;
+    public final void a(aja ajaVar) {
+        if (this.f != ajaVar) {
+            this.f = ajaVar;
             this.r = System.currentTimeMillis();
             this.s = 0L;
-            if (this.f != yga.b) {
+            if (this.f != aja.b) {
                 this.n = 0.0f;
             }
             invalidate();
         }
     }
 
-    public xga getDelegate() {
+    public zia getDelegate() {
         return this.e;
     }
 
-    public yga getState() {
+    public aja getState() {
         return this.f;
     }
 
@@ -65,7 +65,7 @@ public class ShutterButton extends View {
         int measuredWidth = getMeasuredWidth() / 2;
         int measuredHeight = getMeasuredHeight() / 2;
         Drawable drawable = this.a;
-        drawable.setBounds(measuredWidth - gl.L(36.0f), measuredHeight - gl.L(36.0f), gl.L(36.0f) + measuredWidth, gl.L(36.0f) + measuredHeight);
+        drawable.setBounds(measuredWidth - gm.L(36.0f), measuredHeight - gm.L(36.0f), gm.L(36.0f) + measuredWidth, gm.L(36.0f) + measuredHeight);
         drawable.draw(canvas);
         if (!this.h && getScaleX() == 1.0f) {
             if (this.n != 0.0f) {
@@ -78,10 +78,10 @@ public class ShutterButton extends View {
         paint2.setAlpha((int) (255.0f * scaleX));
         float f = measuredWidth;
         float f2 = measuredHeight;
-        canvas.drawCircle(f, f2, gl.L(26.0f), paint2);
-        yga ygaVar = this.f;
+        canvas.drawCircle(f, f2, gm.L(26.0f), paint2);
+        aja ajaVar = this.f;
         float f3 = this.n;
-        if (ygaVar == yga.b) {
+        if (ajaVar == aja.b) {
             if (f3 != 1.0f) {
                 long abs = Math.abs(System.currentTimeMillis() - this.r);
                 if (abs > 17) {
@@ -96,9 +96,9 @@ public class ShutterButton extends View {
                 this.n = this.b.getInterpolation(((float) j) / 120.0f);
                 invalidate();
             }
-            canvas.drawCircle(f, f2, gl.L(26.5f) * scaleX * this.n, paint);
+            canvas.drawCircle(f, f2, gm.L(26.5f) * scaleX * this.n, paint);
         } else if (f3 != 0.0f) {
-            canvas.drawCircle(f, f2, gl.L(26.5f) * scaleX, paint);
+            canvas.drawCircle(f, f2, gm.L(26.5f) * scaleX, paint);
         }
     }
 
@@ -108,13 +108,13 @@ public class ShutterButton extends View {
         accessibilityNodeInfo.setClassName("android.widget.Button");
         accessibilityNodeInfo.setClickable(true);
         accessibilityNodeInfo.setLongClickable(true);
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), k96.M0(2131754926, null)));
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK.getId(), k96.M0(2131754928, null)));
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), jb6.M0(2131754926, null)));
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK.getId(), jb6.M0(2131754928, null)));
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        setMeasuredDimension(gl.L(84.0f), gl.L(84.0f));
+        setMeasuredDimension(gm.L(84.0f), gm.L(84.0f));
     }
 
     @Override
@@ -122,8 +122,8 @@ public class ShutterButton extends View {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShutterButton.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
-    public void setDelegate(xga xgaVar) {
-        this.e = xgaVar;
+    public void setDelegate(zia ziaVar) {
+        this.e = ziaVar;
     }
 
     @Override

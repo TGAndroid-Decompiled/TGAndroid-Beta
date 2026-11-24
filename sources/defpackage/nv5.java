@@ -1,28 +1,22 @@
 package defpackage;
-public final class nv5 {
-    public static final nv5 a;
-    public static final nv5 b;
-    public static final nv5 c;
-    public static final nv5 d;
-    public static final nv5[] e;
+public final class nv5 extends rs4 implements hs4 {
+    public static final nv5 a = new rs4(3, ov5.class, "registerSelectForOnJoin", "registerSelectForOnJoin(Lkotlinx/coroutines/selects/SelectInstance;Ljava/lang/Object;)V", 0);
 
-    static {
-        ?? r0 = new Enum("STATE_FULLY_HIDDEN", 0);
-        a = r0;
-        ?? r1 = new Enum("STATE_ANIMATING_TO_FULLY_HIDDEN", 1);
-        b = r1;
-        ?? r3 = new Enum("STATE_ANIMATING_TO_FULLY_VISIBLE", 2);
-        c = r3;
-        ?? r5 = new Enum("STATE_FULLY_VISIBLE", 3);
-        d = r5;
-        e = new nv5[]{r0, r1, r3, r5};
-    }
-
-    public static nv5 valueOf(String str) {
-        return (nv5) Enum.valueOf(nv5.class, str);
-    }
-
-    public static nv5[] values() {
-        return (nv5[]) e.clone();
+    @Override
+    public final Object a(Object obj, Object obj2, Object obj3) {
+        Object v;
+        ov5 ov5Var = (ov5) obj;
+        if (obj2 == null) {
+            int i = ov5.c;
+            do {
+                v = ov5Var.v();
+                if (!(v instanceof ep5)) {
+                    throw null;
+                }
+            } while (ov5Var.K(v) < 0);
+            pne.c(ov5Var, true, new pd6());
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

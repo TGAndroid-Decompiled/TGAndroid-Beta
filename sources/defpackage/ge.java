@@ -1,101 +1,63 @@
 package defpackage;
 
-import android.view.View;
-public final class ge implements View.OnClickListener {
-    public final byte a;
-    public final boolean[] b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import java.util.HashSet;
+public final class ge extends Drawable implements vlb {
+    public final s09 a;
+    public final GradientDrawable b;
+    public final int c;
+    public final int d;
+    public final ylb e;
 
-    public ge(boolean[] zArr, byte b) {
-        this.a = b;
-        this.b = zArr;
+    public ge(s09 s09Var, int i, int i2, int i3, ylb ylbVar) {
+        this.a = s09Var;
+        this.c = i2;
+        this.d = i3;
+        this.e = ylbVar;
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        this.b = gradientDrawable;
+        gradientDrawable.setColor(i);
+        gradientDrawable.setCornerRadius(gm.L(128.0f));
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        boolean[] zArr = this.b;
-        switch (b) {
-            case 0:
-                boolean z = !zArr[0];
-                zArr[0] = z;
-                ((ag2) view).c(z, true);
-                return;
-            case 1:
-                boolean z2 = !zArr[0];
-                zArr[0] = z2;
-                ((ag2) view).c(z2, true);
-                return;
-            case 2:
-                boolean z3 = !zArr[0];
-                zArr[0] = z3;
-                ((ag2) view).c(z3, true);
-                return;
-            case 3:
-                boolean z4 = !zArr[0];
-                zArr[0] = z4;
-                ((ag2) view).c(z4, true);
-                return;
-            case 4:
-                boolean z5 = !zArr[0];
-                zArr[0] = z5;
-                ((ag2) view).c(z5, true);
-                return;
-            case 5:
-                boolean z6 = !zArr[0];
-                zArr[0] = z6;
-                ((ag2) view).c(z6, true);
-                return;
-            case 6:
-                boolean z7 = !zArr[0];
-                zArr[0] = z7;
-                ((ag2) view).c(z7, true);
-                return;
-            case 7:
-                boolean z8 = !zArr[1];
-                zArr[1] = z8;
-                ((ag2) view).c(z8, true);
-                return;
-            case 8:
-                boolean z9 = !zArr[0];
-                zArr[0] = z9;
-                ((ag2) view).c(z9, true);
-                return;
-            case 9:
-                boolean z10 = !zArr[0];
-                zArr[0] = z10;
-                ((ag2) view).c(z10, true);
-                return;
-            case 10:
-                boolean z11 = !zArr[0];
-                zArr[0] = z11;
-                ((ag2) view).c(z11, true);
-                return;
-            case 11:
-                if (view.isEnabled()) {
-                    boolean z12 = !zArr[0];
-                    zArr[0] = z12;
-                    ((ag2) view).c(z12, true);
-                    return;
-                }
-                return;
-            case 12:
-                boolean z13 = !zArr[0];
-                zArr[0] = z13;
-                ((ag2) view).c(z13, true);
-                return;
-            case 13:
-                if (view.isEnabled()) {
-                    boolean z14 = !zArr[0];
-                    zArr[0] = z14;
-                    ((ag2) view).c(z14, true);
-                    return;
-                }
-                return;
-            default:
-                boolean z15 = !zArr[0];
-                zArr[0] = z15;
-                ((ag2) view).c(z15, true);
-                return;
+    public final void draw(Canvas canvas) {
+        s09 s09Var = this.a;
+        int width = s09Var.getWidth();
+        int i = this.c;
+        GradientDrawable gradientDrawable = this.b;
+        gradientDrawable.setBounds((int) ((width - i) / 2.0f), (int) ((s09Var.getHeight() - i) / 2.0f), (int) ((s09Var.getWidth() + i) / 2.0f), (int) ((s09Var.getHeight() + i) / 2.0f));
+        gradientDrawable.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return this.b.getOpacity();
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.b.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.b.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i = this.d;
+        if (i >= 0) {
+            this.b.setColor(cmb.v0(i, this.e));
+            invalidateSelf();
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

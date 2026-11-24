@@ -1,24 +1,26 @@
 package defpackage;
-public final class nn0 implements Runnable {
-    public final byte a;
-    public final tn0 b;
 
-    public nn0(tn0 tn0Var, byte b) {
-        this.a = b;
-        this.b = tn0Var;
+import android.view.View;
+public final class nn0 implements ee, py4, qq7 {
+    public final my0 a;
+
+    public nn0(my0 my0Var) {
+        this.a = my0Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        tn0 tn0Var = this.b;
-        switch (b) {
-            case 0:
-                gl.d3(new nn0(tn0Var, (byte) 1));
-                return;
-            default:
-                tn0Var.a(null);
-                return;
-        }
+    public final wzc C0(View view, wzc wzcVar) {
+        return this.a.Y(wzcVar);
+    }
+
+    @Override
+    public final int i() {
+        return cmb.v0(cmb.g5, this.a.J0);
+    }
+
+    @Override
+    public final void r(he heVar, int i) {
+        this.a.dismiss();
+        yw4.f1(false, null);
     }
 }

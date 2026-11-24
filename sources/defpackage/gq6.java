@@ -1,7 +1,0 @@
-package defpackage;
-
-import java.util.ArrayList;
-public final class gq6 {
-    public final ArrayList a = new ArrayList();
-    public Integer b;
-}

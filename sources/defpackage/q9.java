@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class q9 implements Parcelable {
-    public static final Parcelable.Creator<q9> CREATOR = new x21((byte) 2);
+    public static final Parcelable.Creator<q9> CREATOR = new f41((byte) 2);
     public final int a;
     public final Intent b;
 

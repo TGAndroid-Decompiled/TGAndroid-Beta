@@ -75,7 +75,7 @@ public class VideoFrameDrawer {
                 glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
                 return;
             } else {
-                wn4.j("Unknown texture type.");
+                zo4.k("Unknown texture type.");
                 return;
             }
         }

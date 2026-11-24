@@ -1,39 +1,37 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class bfc extends efc {
-    public boolean a = false;
-    public int b = 0;
-    public final cfc c;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowInsets;
+import java.util.WeakHashMap;
+public final class bfc implements View.OnApplyWindowInsetsListener {
+    public wzc a = null;
+    public final View b;
+    public final qq7 c;
 
-    public bfc(cfc cfcVar) {
-        this.c = cfcVar;
+    public bfc(View view, qq7 qq7Var) {
+        this.b = view;
+        this.c = qq7Var;
     }
 
     @Override
-    public final void b() {
-        if (!this.a) {
-            this.a = true;
-            efc efcVar = (efc) this.c.e;
-            if (efcVar != null) {
-                efcVar.b();
+    public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        wzc h = wzc.h(view, windowInsets);
+        int i = Build.VERSION.SDK_INT;
+        qq7 qq7Var = this.c;
+        if (i < 30) {
+            cfc.a(windowInsets, this.b);
+            if (h.equals(this.a)) {
+                return qq7Var.C0(view, h).g();
             }
         }
-    }
-
-    @Override
-    public final void c() {
-        int i = this.b + 1;
-        this.b = i;
-        cfc cfcVar = this.c;
-        if (i == ((ArrayList) cfcVar.c).size()) {
-            efc efcVar = (efc) cfcVar.e;
-            if (efcVar != null) {
-                efcVar.c();
-            }
-            this.b = 0;
-            this.a = false;
-            cfcVar.b = false;
+        this.a = h;
+        wzc C0 = qq7Var.C0(view, h);
+        if (i >= 30) {
+            return C0.g();
         }
+        WeakHashMap weakHashMap = kfc.a;
+        afc.c(view);
+        return C0.g();
     }
 }

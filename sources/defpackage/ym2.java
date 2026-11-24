@@ -1,26 +1,40 @@
 package defpackage;
-public final class ym2 implements Runnable {
-    public final byte a;
-    public final en2 b;
-    public final long c;
 
-    public ym2(en2 en2Var, long j, byte b) {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ColorPicker$RadioButton;
+import org.telegram.ui.Components.p;
+public final class ym2 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final p b;
+
+    public ym2(p pVar, byte b) {
         this.a = b;
-        this.b = en2Var;
-        this.c = j;
+        this.b = pVar;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationEnd(Animator animator) {
         byte b = this.a;
-        long j = this.c;
-        en2 en2Var = this.b;
+        p pVar = this.b;
         switch (b) {
             case 0:
-                en2Var.Z(j);
+                if (pVar.L == pVar.M) {
+                    pVar.H.setVisibility(4);
+                }
+                pVar.E = null;
                 return;
             default:
-                en2Var.presentFragment(mu1.U9(j));
+                ColorPicker$RadioButton[] colorPicker$RadioButtonArr = pVar.w;
+                if (pVar.L == 1) {
+                    pVar.G.setVisibility(4);
+                }
+                for (int i = 0; i < colorPicker$RadioButtonArr.length; i++) {
+                    if (colorPicker$RadioButtonArr[i].getTag(2131296463) == null) {
+                        colorPicker$RadioButtonArr[i].setVisibility(4);
+                    }
+                }
+                pVar.E = null;
                 return;
         }
     }

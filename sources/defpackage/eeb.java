@@ -1,22 +1,23 @@
 package defpackage;
+public abstract class eeb extends qx2 implements ps4 {
+    private final int arity;
 
-import java.nio.ByteBuffer;
-public abstract class eeb {
-    public int a;
-    public ByteBuffer b;
-    public int c;
-    public int d;
-
-    public eeb() {
-        if (o5f.F == null) {
-            o5f.F = new o5f((byte) 28);
-        }
+    public eeb(int i, px2 px2Var) {
+        super(px2Var);
+        this.arity = i;
     }
 
-    public final int a(int i) {
-        if (i < this.d) {
-            return this.b.getShort(this.c + i);
+    @Override
+    public int getArity() {
+        return this.arity;
+    }
+
+    @Override
+    public String toString() {
+        if (getCompletion() == null) {
+            h79.a.getClass();
+            return i79.a(this);
         }
-        return 0;
+        return super.toString();
     }
 }

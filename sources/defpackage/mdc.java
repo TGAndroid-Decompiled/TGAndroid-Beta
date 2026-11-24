@@ -1,93 +1,159 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.ProfileActivity;
-public final class mdc implements wg5 {
-    public final ViewGroup c;
-    public final ga5 d;
-    public final ViewGroup e;
-    public boolean h;
-    public final RectF a = new RectF();
-    public final PointF b = new PointF();
-    public final RectF f = new RectF();
+import android.net.Uri;
+import java.io.File;
+import java.net.URLEncoder;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class mdc {
+    public int a;
+    public boolean b;
+    public long c;
+    public Uri d;
+    public long e;
+    public Uri f;
+    public TLRPC.Document g;
+    public TLRPC.Document h;
+    public int i;
+    public int j;
+    public long k;
+    public double l;
+    public String m;
 
-    public mdc(ViewGroup viewGroup, ViewGroup viewGroup2, ga5 ga5Var) {
-        this.c = viewGroup;
-        this.d = ga5Var;
-        this.e = viewGroup2;
+    public static Uri a(int i, int i2, TLRPC.Document document) {
+        StringBuilder l = hg9.l(i, "?account=", "&id=");
+        l.append(document.id);
+        l.append("&hash=");
+        l.append(document.access_hash);
+        l.append("&dc=");
+        l.append(document.dc_id);
+        l.append("&size=");
+        l.append(document.size);
+        l.append("&mime=");
+        l.append(URLEncoder.encode(document.mime_type, "UTF-8"));
+        l.append("&rid=");
+        l.append(i2);
+        l.append("&name=");
+        l.append(URLEncoder.encode(bc4.B(document), "UTF-8"));
+        l.append("&reference=");
+        byte[] bArr = document.file_reference;
+        if (bArr == null) {
+            bArr = new byte[0];
+        }
+        l.append(Utilities.f(bArr));
+        String sb = l.toString();
+        return Uri.parse("tg://" + bc4.r(null, document) + sb);
     }
 
-    @Override
-    public final void a(tab tabVar, RectF rectF) {
-        ViewGroup viewGroup = this.c;
-        ViewGroup viewGroup2 = this.e;
-        PointF pointF = this.b;
-        if (!zec.b(viewGroup, viewGroup2, pointF)) {
-            tabVar.b = true;
-        } else if ((viewGroup instanceof wg5) && !this.h) {
-            tabVar.c(pointF.x);
-            tabVar.c(pointF.y);
-            RectF rectF2 = this.f;
-            rectF2.set(rectF);
-            rectF.offset(-pointF.x, -pointF.y);
-            ((wg5) viewGroup).a(tabVar, rectF);
-            rectF.set(rectF2);
-        } else {
-            tabVar.b = true;
+    public static mdc d(int i, TLRPC.Document document, TLRPC.Document document2, int i2, boolean z) {
+        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
+        String str;
+        String str2;
+        ?? obj = new Object();
+        int i3 = 0;
+        while (true) {
+            if (i3 < document.attributes.size()) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i3);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                    tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
+                    break;
+                }
+                i3++;
+            } else {
+                tL_documentAttributeVideo = null;
+                break;
+            }
         }
-    }
-
-    @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        long uptimeMillis = SystemClock.uptimeMillis();
-        ViewGroup viewGroup = this.c;
-        ViewGroup viewGroup2 = this.e;
-        PointF pointF = this.b;
-        if (!zec.b(viewGroup, viewGroup2, pointF)) {
-            return;
-        }
-        canvas.save();
-        canvas.clipRect(rectF);
-        canvas.translate(pointF.x, pointF.y);
-        if ((viewGroup instanceof wg5) && !this.h) {
-            RectF rectF2 = this.f;
-            rectF2.set(rectF);
-            rectF.offset(-pointF.x, -pointF.y);
-            ((wg5) viewGroup).d(canvas, rectF);
-            rectF.set(rectF2);
+        if (tL_documentAttributeVideo != null && (str2 = tL_documentAttributeVideo.video_codec) != null) {
+            str = str2.toLowerCase();
         } else {
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                View childAt = viewGroup.getChildAt(i);
-                RectF rectF3 = this.a;
-                if (zec.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
-                    ga5 ga5Var = this.d;
-                    byte b = ga5Var.a;
-                    Object obj = ga5Var.b;
-                    switch (b) {
-                        case 0:
-                            ((o39) obj).drawChild(canvas, childAt, uptimeMillis);
-                            continue;
-                        case 1:
-                            ProfileActivity profileActivity = (ProfileActivity) obj;
-                            RectF rectF4 = ProfileActivity.Z6;
-                            if (childAt != profileActivity.O) {
-                                profileActivity.a.drawChild(canvas, childAt, uptimeMillis);
-                                break;
-                            } else {
-                                continue;
-                            }
-                        default:
-                            ((cvb) obj).drawChild(canvas, childAt, uptimeMillis);
-                            continue;
-                    }
+            str = null;
+        }
+        obj.a = i;
+        obj.g = document;
+        obj.c = document.id;
+        obj.d = a(i, i2, document);
+        if (document2 != null) {
+            obj.h = document2;
+            obj.e = document2.id;
+            obj.f = a(i, i2, document2);
+            bc4.G(i);
+            File J = bc4.J(document2, null, false, z);
+            if (J != null && J.exists()) {
+                obj.f = Uri.fromFile(J);
+            } else {
+                bc4.G(i);
+                File J2 = bc4.J(document2, null, true, z);
+                if (J2 != null && J2.exists()) {
+                    obj.f = Uri.fromFile(J2);
                 }
             }
         }
-        canvas.restore();
+        obj.m = str;
+        long j = document.size;
+        obj.k = j;
+        if (tL_documentAttributeVideo != null) {
+            double d = tL_documentAttributeVideo.duration;
+            obj.i = tL_documentAttributeVideo.w;
+            obj.j = tL_documentAttributeVideo.h;
+            obj.l = j / d;
+        }
+        bc4.G(i);
+        File J3 = bc4.J(document, null, false, z);
+        if (J3 != null && J3.exists()) {
+            obj.d = Uri.fromFile(J3);
+            return obj;
+        }
+        bc4.G(i);
+        File J4 = bc4.J(document, null, true, z);
+        if (J4 != null && J4.exists()) {
+            obj.d = Uri.fromFile(J4);
+        }
+        return obj;
+    }
+
+    public final boolean b() {
+        Uri uri = this.d;
+        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        Uri uri = this.f;
+        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void e(boolean z) {
+        if (!b() && this.g != null) {
+            bc4.G(this.a);
+            File J = bc4.J(this.g, null, false, z);
+            if (J != null && J.exists()) {
+                this.d = Uri.fromFile(J);
+            } else {
+                bc4.G(this.a);
+                File J2 = bc4.J(this.g, null, true, z);
+                if (J2 != null && J2.exists()) {
+                    this.d = Uri.fromFile(J2);
+                }
+            }
+        }
+        if (!c() && this.h != null) {
+            bc4.G(this.a);
+            File J3 = bc4.J(this.h, null, false, z);
+            if (J3 != null && J3.exists()) {
+                this.f = Uri.fromFile(J3);
+                return;
+            }
+            bc4.G(this.a);
+            File J4 = bc4.J(this.h, null, true, z);
+            if (J4 != null && J4.exists()) {
+                this.f = Uri.fromFile(J4);
+            }
+        }
     }
 }

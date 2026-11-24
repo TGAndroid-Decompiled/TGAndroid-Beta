@@ -1,26 +1,55 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.common.api.Status;
-import java.util.ArrayList;
-public final class w4f extends b4 implements ua9 {
-    public static final Parcelable.Creator<w4f> CREATOR = new c0f((byte) 12);
-    public Status a;
-    public ArrayList b;
-    public String[] c;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
+import org.telegram.messenger.WearAuthListenerService;
+public final class w4f extends Handler {
+    public boolean a;
+    public final d2f b;
+    public final WearAuthListenerService c;
 
-    @Override
-    public final Status a() {
-        return this.a;
+    public w4f(WearAuthListenerService wearAuthListenerService, Looper looper) {
+        super(looper);
+        this.c = wearAuthListenerService;
+        this.b = new Object();
+    }
+
+    public final synchronized void a(String str) {
+        if (!this.a) {
+            return;
+        }
+        if (Log.isLoggable("WearableLS", 2)) {
+            String valueOf = String.valueOf(this.c.a);
+            Log.v("WearableLS", "unbindService: " + str + ", " + valueOf);
+        }
+        try {
+            this.c.unbindService(this.b);
+        } catch (RuntimeException e) {
+            Log.e("WearableLS", "Exception when unbinding from local service", e);
+        }
+        this.a = false;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.k(parcel, 1, this.a, i);
-        jte.p(parcel, 2, this.b);
-        jte.m(parcel, 3, this.c);
-        jte.s(parcel, r);
+    public final void dispatchMessage(Message message) {
+        synchronized (this) {
+            if (!this.a) {
+                if (Log.isLoggable("WearableLS", 2)) {
+                    Log.v("WearableLS", "bindService: ".concat(String.valueOf(this.c.a)));
+                }
+                WearAuthListenerService wearAuthListenerService = this.c;
+                wearAuthListenerService.bindService(wearAuthListenerService.d, this.b, 1);
+                this.a = true;
+            }
+        }
+        try {
+            super.dispatchMessage(message);
+        } finally {
+            if (!hasMessages(0)) {
+                a("dispatch");
+            }
+        }
     }
 }

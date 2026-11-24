@@ -1,23 +1,25 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-public final class bb8 {
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public String e;
-    public ab8[] f;
-    public ab8[] g;
-    public ab8[] h;
-    public ab8[] i;
-    public Bitmap j;
-    public Bitmap k;
-    public Bitmap l;
-    public Bitmap m;
-    public Bitmap n;
-    public Bitmap o;
-    public int p;
-    public Bitmap q;
-    public String r;
+import android.graphics.Paint;
+import android.text.style.LineHeightSpan;
+public final class bb8 implements LineHeightSpan {
+    public final byte a;
+
+    public bb8(byte b) {
+        this.a = b;
+    }
+
+    @Override
+    public final void chooseHeight(CharSequence charSequence, int i, int i2, int i3, int i4, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.a) {
+            case 0:
+                fontMetricsInt.descent = gm.L(4.0f) + fontMetricsInt.descent;
+                fontMetricsInt.ascent = fontMetricsInt.ascent;
+                return;
+            default:
+                fontMetricsInt.ascent -= gm.L(2.0f);
+                fontMetricsInt.top -= gm.L(2.0f);
+                return;
+        }
+    }
 }

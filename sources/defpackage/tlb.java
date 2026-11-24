@@ -1,32 +1,49 @@
 package defpackage;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-public final class tlb extends FrameLayout {
-    public final int a;
-    public final Rect b;
-    public final qmb c;
+public final class tlb extends Drawable {
+    public final RectF a = new RectF();
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final float f;
 
-    public tlb(qmb qmbVar, Context context, int i, Rect rect) {
-        super(context);
-        this.c = qmbVar;
-        this.a = i;
-        this.b = rect;
+    public tlb(int i, int i2, int i3, int i4, float f) {
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = i4;
+        this.f = f;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        qmb qmbVar = this.c;
-        Drawable drawable = qmbVar.r;
-        Rect rect = this.b;
-        if (this.a == 0) {
-            drawable.setBounds(qmbVar.X.getLeft() - rect.left, 0, qmbVar.X.getRight() + rect.right, getMeasuredHeight());
-        } else {
-            drawable.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
-        }
-        qmbVar.r.draw(canvas);
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.a;
+        rectF.set(bounds);
+        rectF.left += this.b;
+        rectF.top += this.c;
+        rectF.right -= this.d;
+        rectF.bottom -= this.e;
+        float f = this.f;
+        canvas.drawRoundRect(rectF, f, f, cmb.z);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

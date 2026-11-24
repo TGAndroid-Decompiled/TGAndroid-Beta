@@ -1,15 +1,15 @@
 package defpackage;
 
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.ui.ActionBar.a;
-public final class lw0 extends a {
+import android.webkit.DownloadListener;
+public final class lw0 implements DownloadListener {
+    public final mw0 a;
+
+    public lw0(mw0 mw0Var) {
+        this.a = mw0Var;
+    }
+
     @Override
-    public final void onMeasure(int i, int i2) {
-        if (gl.O1() && !gl.E && !gl.N1()) {
-            Point point = gl.q;
-            i = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
-        }
-        super.onMeasure(i, i2);
+    public final void onDownloadStart(java.lang.String r12, java.lang.String r13, java.lang.String r14, java.lang.String r15, long r16) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lw0.onDownloadStart(java.lang.String, java.lang.String, java.lang.String, java.lang.String, long):void");
     }
 }

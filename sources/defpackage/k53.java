@@ -1,24 +1,104 @@
 package defpackage;
-public final class k53 {
-    public final int[] a;
-    public final int b;
-    public final byte c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final int g;
-    public final int h;
-    public final fm4 i;
 
-    public k53(int i, int i2, int[] iArr, int i3, int i4, int i5, int i6, int i7, fm4 fm4Var) {
-        this.b = i;
-        this.a = iArr;
-        this.c = i2;
-        this.e = i3;
-        this.f = i4;
-        this.g = i5;
-        this.h = i6;
-        this.d = i7;
-        this.i = fm4Var;
+import java.io.InputStream;
+import java.util.ArrayList;
+import org.json.JSONObject;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class k53 implements Runnable {
+    public final byte a;
+    public final l53 b;
+    public final TL_wallet.currencyRates c;
+
+    public k53(l53 l53Var, TL_wallet.currencyRates currencyrates, byte b) {
+        this.a = b;
+        this.b = l53Var;
+        this.c = currencyrates;
+    }
+
+    @Override
+    public final void run() {
+        byte b;
+        boolean z;
+        String str;
+        switch (this.a) {
+            case 0:
+                l53 l53Var = this.b;
+                TL_wallet.currencyRates currencyrates = this.c;
+                boolean z2 = true;
+                if (currencyrates != null && currencyrates.rates != null) {
+                    try {
+                        InputStream open = a.b.getAssets().open("currencies.json");
+                        String str2 = hac.a;
+                        JSONObject jSONObject = new JSONObject(new String(i61.b(open), kl1.a));
+                        ArrayList<TL_wallet.currencyRate> arrayList = currencyrates.rates;
+                        int size = arrayList.size();
+                        int i = 0;
+                        while (i < size) {
+                            TL_wallet.currencyRate currencyrate = arrayList.get(i);
+                            i++;
+                            TL_wallet.currencyRate currencyrate2 = currencyrate;
+                            if (currencyrate2 != null) {
+                                JSONObject optJSONObject = jSONObject.optJSONObject(currencyrate2.currency);
+                                if (optJSONObject == null) {
+                                    String str3 = currencyrate2.currency;
+                                    currencyrate2.title = str3;
+                                    currencyrate2.symbol = str3;
+                                    currencyrate2.thousandsSeparator = ",";
+                                    currencyrate2.decimalSeparator = ".";
+                                    currencyrate2.spaceBetween = z2;
+                                    currencyrate2.exp = 2;
+                                } else {
+                                    currencyrate2.title = optJSONObject.optString("title", currencyrate2.currency);
+                                    String optString = optJSONObject.optString("native", currencyrate2.currency);
+                                    String optString2 = optJSONObject.optString("symbol", currencyrate2.currency);
+                                    if (("$".equals(optString) && !"USD".equals(currencyrate2.currency)) || "kr".equals(optString)) {
+                                        z = true;
+                                    } else {
+                                        z = false;
+                                    }
+                                    if ("AED".equals(currencyrate2.currency)) {
+                                        str = "\u20c3";
+                                    } else if ("GEL".equals(currencyrate2.currency)) {
+                                        str = "₾";
+                                    } else if (z) {
+                                        str = optString2;
+                                    } else {
+                                        str = optString;
+                                    }
+                                    currencyrate2.symbol = str;
+                                    currencyrate2.thousandsSeparator = optJSONObject.optString("thousands_sep", ",");
+                                    currencyrate2.decimalSeparator = optJSONObject.optString("decimal_sep", ".");
+                                    currencyrate2.symbolLeft = optJSONObject.optBoolean("symbol_left");
+                                    currencyrate2.spaceBetween = optJSONObject.optBoolean("space_between");
+                                    currencyrate2.dropZeros = optJSONObject.optBoolean("drop_zeros");
+                                    currencyrate2.exp = optJSONObject.optInt("exp", 2);
+                                    if ("AED".equals(currencyrate2.currency)) {
+                                        currencyrate2.title = currencyrate2.title.replace("United Arab Emirates", "UAE");
+                                    } else if ("USD".equalsIgnoreCase(currencyrate2.currency)) {
+                                        currencyrate2.title = currencyrate2.title.replace("United States", "US");
+                                    }
+                                    z2 = true;
+                                }
+                            }
+                        }
+                        open.close();
+                        b = 1;
+                    } catch (Exception e) {
+                        b = 1;
+                        fc4.g(e, true);
+                    }
+                } else {
+                    b = 1;
+                }
+                gm.c3(new k53(l53Var, currencyrates, b));
+                return;
+            default:
+                l53 l53Var2 = this.b;
+                l53Var2.d = this.c;
+                l53Var2.c = false;
+                l53Var2.b.S();
+                return;
+        }
     }
 }

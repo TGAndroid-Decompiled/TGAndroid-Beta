@@ -1,304 +1,654 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.util.SparseArray;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.d;
-public final class a8b extends cja {
-    public float m0;
-    public float n0;
-    public float o0;
-    public final float[] p0;
-    public final Path q0;
-    public final RectF r0;
-    public final RectF s0;
-    public final RectF t0;
-    public final RectF u0;
-    public final RectF v0;
-    public final SparseArray w0;
-    public final d x0;
-    public final m8b y0;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class a8b extends my0 implements jm7 {
+    public static final int X1 = 0;
+    public boolean A1;
+    public int B1;
+    public int C1;
+    public final ArrayList D1;
+    public boolean E1;
+    public boolean F1;
+    public int G1;
+    public int H1;
+    public boolean I1;
+    public HashMap J1;
+    public int K1;
+    public final Paint L1;
+    public ArrayList M1;
+    public i7b N1;
+    public qac O1;
+    public n7b P1;
+    public qac Q1;
+    public g8b R1;
+    public final boolean S1;
+    public boolean T1;
+    public boolean U1;
+    public BitmapDrawable V1;
+    public f8b W1;
+    public hs1 l1;
+    public TLRPC.InputPeer m1;
+    public final ArrayList n1;
+    public final HashMap o1;
+    public int p1;
+    public final ArrayList q1;
+    public final ArrayList r1;
+    public final HashMap s1;
+    public int t1;
+    public final HashSet u1;
+    public boolean v1;
+    public boolean w1;
+    public boolean x1;
+    public boolean y1;
+    public boolean z1;
 
-    public a8b(m8b m8bVar, Context context, d dVar) {
-        super(context, null);
-        this.y0 = m8bVar;
-        this.x0 = dVar;
-        this.p0 = new float[8];
-        this.q0 = new Path();
-        this.r0 = new RectF();
-        this.s0 = new RectF();
-        this.t0 = new RectF();
-        this.u0 = new RectF();
-        this.v0 = new RectF();
-        this.w0 = new SparseArray();
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r30) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a8b.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        int keyCode = keyEvent.getKeyCode();
-        m8b m8bVar = this.y0;
-        if (keyCode != 24 && keyEvent.getKeyCode() != 25) {
-            if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                m8bVar.q();
-                return true;
-            }
-            return super.dispatchKeyEventPreIme(keyEvent);
-        }
-        m8bVar.r(keyEvent);
-        return true;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+    public a8b(Context context, int i, r63 r63Var) {
+        super(1, (ylb) r63Var, context, true);
         boolean z;
-        boolean z2;
-        boolean z3;
-        boolean z4;
-        float floatValue;
+        char c;
+        boolean z2 = true;
+        ArrayList arrayList = new ArrayList();
+        this.n1 = arrayList;
+        HashMap hashMap = new HashMap();
+        this.o1 = hashMap;
+        char c2 = 0;
+        this.p1 = 0;
+        ArrayList arrayList2 = new ArrayList();
+        this.q1 = arrayList2;
+        ArrayList arrayList3 = new ArrayList();
+        this.r1 = arrayList3;
+        HashMap hashMap2 = new HashMap();
+        this.s1 = hashMap2;
+        this.t1 = 0;
+        this.u1 = new HashSet();
+        this.v1 = true;
+        this.w1 = true;
+        this.x1 = false;
+        this.y1 = true;
+        this.z1 = true;
+        this.A1 = false;
+        this.B1 = 0;
+        this.C1 = 1;
+        this.D1 = new ArrayList();
+        this.G1 = 1;
+        this.H1 = 4;
+        this.J1 = new HashMap();
+        this.K1 = 86400;
+        this.L1 = new Paint(1);
+        this.S1 = true;
+        this.T1 = false;
+        this.K1 = i;
+        String string = oc7.r1(this.a).X3.getString("story_prv_contacts", null);
+        if (string != null) {
+            String[] split = string.split(",");
+            arrayList3.clear();
+            for (String str : split) {
+                try {
+                    arrayList3.add(Long.valueOf(Long.parseLong(str)));
+                } catch (Exception unused) {
+                }
+            }
+        }
+        String string2 = oc7.r1(this.a).X3.getString("story_prv_grpcontacts", null);
+        if (string2 != null) {
+            String[] split2 = string2.split(";");
+            hashMap2.clear();
+            int i2 = 0;
+            while (i2 < split2.length) {
+                String[] split3 = split2[i2].split(",");
+                if (split3.length > 0) {
+                    try {
+                        long parseLong = Long.parseLong(split3[c2]);
+                        z = z2;
+                        ArrayList arrayList4 = new ArrayList();
+                        c = c2;
+                        for (int i3 = z; i3 < split3.length; i3++) {
+                            arrayList4.add(Long.valueOf(Long.parseLong(split3[i3])));
+                        }
+                        hashMap2.put(Long.valueOf(parseLong), arrayList4);
+                    } catch (Exception unused2) {
+                    }
+                    i2++;
+                    c2 = c;
+                    z2 = z;
+                }
+                z = z2;
+                c = c2;
+                i2++;
+                c2 = c;
+                z2 = z;
+            }
+        }
+        boolean z3 = z2;
+        ?? r23 = c2;
+        String string3 = oc7.r1(this.a).X3.getString("story_prv_everyoneexcept", null);
+        if (string3 != null) {
+            String[] split4 = string3.split(",");
+            arrayList.clear();
+            for (int i4 = r23 == true ? 1 : 0; i4 < split4.length; i4++) {
+                try {
+                    arrayList.add(Long.valueOf(Long.parseLong(split4[i4])));
+                } catch (Exception unused3) {
+                }
+            }
+        }
+        String string4 = oc7.r1(this.a).X3.getString("story_prv_grpeveryoneexcept", null);
+        if (string4 != null) {
+            String[] split5 = string4.split(";");
+            hashMap.clear();
+            for (int i5 = r23 == true ? 1 : 0; i5 < split5.length; i5++) {
+                String[] split6 = split5[i5].split(",");
+                if (split6.length > 0) {
+                    try {
+                        long parseLong2 = Long.parseLong(split6[r23 == true ? 1 : 0]);
+                        ArrayList arrayList5 = new ArrayList();
+                        for (int i6 = z3; i6 < split6.length; i6++) {
+                            arrayList5.add(Long.valueOf(Long.parseLong(split6[i6])));
+                        }
+                        hashMap.put(Long.valueOf(parseLong2), arrayList5);
+                    } catch (Exception unused4) {
+                    }
+                }
+            }
+        }
+        String string5 = oc7.r1(this.a).X3.getString("story_prv_excluded", null);
+        if (string5 != null) {
+            String[] split7 = string5.split(",");
+            arrayList2.clear();
+            for (int i7 = r23 == true ? 1 : 0; i7 < split7.length; i7++) {
+                try {
+                    arrayList2.add(Long.valueOf(Long.parseLong(split7[i7])));
+                } catch (Exception unused5) {
+                }
+            }
+        }
+        this.t1 = M0(arrayList3, hashMap2).size();
+        this.p1 = M0(arrayList, hashMap).size();
+        this.w1 = !oc7.r1(this.a).X3.getBoolean("story_noforwards", r23);
+        this.x1 = oc7.r1(this.a).X3.getBoolean("story_keep", z3);
+        K0(context);
+        this.l1.setAdapter(new c7b(this, context, (byte) 0));
+        cf7 Y = cf7.Y(this.a);
+        Y.a.c(new b7b(this, Y, (byte) 0));
+        oc7.r1(this.a).N1().R();
+        oc7.r1(this.a).N1().T();
+    }
+
+    public static HashSet M0(ArrayList arrayList, HashMap hashMap) {
+        HashSet hashSet = new HashSet();
+        if (arrayList != null) {
+            hashSet.addAll(arrayList);
+        }
+        if (hashMap != null) {
+            for (ArrayList arrayList2 : hashMap.values()) {
+                hashSet.addAll(arrayList2);
+            }
+        }
+        return hashSet;
+    }
+
+    @Override
+    public final boolean C() {
+        View currentView = this.l1.getCurrentView();
+        if (currentView instanceof v7b) {
+            return ((v7b) currentView).T;
+        }
+        return true;
+    }
+
+    public final void E0(boolean z) {
+        View[] viewPages;
+        this.y1 = z;
+        hs1 hs1Var = this.l1;
+        if (hs1Var != null) {
+            for (View view : hs1Var.getViewPages()) {
+                if (view instanceof v7b) {
+                    ((v7b) view).f(false);
+                }
+            }
+        }
+    }
+
+    public final void F0() {
+        View[] viewPages;
+        o7b o7bVar;
+        for (View view : this.l1.getViewPages()) {
+            if ((view instanceof v7b) && (o7bVar = ((v7b) view).y) != null) {
+                gm.t1(o7bVar.b);
+            }
+        }
+    }
+
+    public final void G0(y7b y7bVar, Runnable runnable, boolean z) {
+        ArrayList arrayList = new ArrayList();
+        if (this.M1 != null) {
+            oc7 r1 = oc7.r1(this.a);
+            for (int i = 0; i < this.M1.size(); i++) {
+                String str = (String) this.M1.get(i);
+                TLObject b2 = r1.b2(str);
+                if (b2 instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) b2;
+                    TLRPC.User W1 = r1.W1(Long.valueOf(user.id));
+                    if (W1 != null) {
+                        user = W1;
+                    }
+                    if (!user.bot && !y7bVar.b(user)) {
+                        arrayList.add(str);
+                    }
+                }
+            }
+        }
+        b61 b61Var = null;
+        if (!arrayList.isEmpty() && !z) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            for (int i2 = 0; i2 < Math.min(2, arrayList.size()); i2++) {
+                if (i2 > 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                SpannableString spannableString = new SpannableString("@" + ((String) arrayList.get(i2)));
+                spannableString.setSpan(new z5c(gm.o()), 0, spannableString.length(), 33);
+                spannableStringBuilder.append((CharSequence) spannableString);
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.J0, getContext());
+            String M0 = jb6.M0(2131744175, null);
+            he heVar = alertDialog$Builder.a;
+            heVar.S = M0;
+            heVar.U = gm.G2(jb6.M0(2131744174, null), spannableStringBuilder, "%s");
+            alertDialog$Builder.j(jb6.M0(2131746478, null), new jq9(this, y7bVar, runnable, (byte) 7));
+            wi8.y(null, 2131752542, alertDialog$Builder, null);
+            return;
+        }
+        View view = this.l1.getViewPages()[0];
+        if (view instanceof v7b) {
+            b61Var = ((v7b) view).w;
+        }
+        if (b61Var != null) {
+            b61Var.setLoading(true);
+        }
+        i7b i7bVar = this.N1;
+        if (i7bVar != null) {
+            i7bVar.c(y7bVar, this.v1, this.w1, this.x1, this.A1, this.m1, this.B1, new b7b(b61Var, runnable, (byte) 2), new nsa(b61Var, (byte) 22));
+        } else {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public final void H() {
+        nm7.f(this.a).n(this, nm7.N);
+        nm7.f(this.a).n(this, nm7.c3);
+        nm7.f(this.a).n(this, nm7.e3);
+        super.H();
+    }
+
+    public final ArrayList H0() {
+        ArrayList I0 = I0();
+        int i = 0;
+        while (i < I0.size()) {
+            TLObject tLObject = (TLObject) I0.get(i);
+            if ((tLObject instanceof TLRPC.User) && !((TLRPC.User) tLObject).close_friend) {
+                I0.remove(i);
+                i--;
+            }
+            i++;
+        }
+        return I0;
+    }
+
+    public final ArrayList I0() {
+        TLRPC.User W1;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = bw2.r(this.a).f0;
+        if (arrayList2 == null || arrayList2.isEmpty()) {
+            bw2.r(this.a).A(0L, false);
+        }
+        oc7 r1 = oc7.r1(this.a);
+        if (arrayList2 != null) {
+            for (int i = 0; i < arrayList2.size(); i++) {
+                TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) arrayList2.get(i);
+                if (tL_contact != null && (W1 = r1.W1(Long.valueOf(tL_contact.user_id))) != null && !m9c.D(W1) && !W1.bot && W1.id != 777000) {
+                    arrayList.add(W1);
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public final int J0(TLRPC.Chat chat) {
+        Integer num;
         int i;
-        c8b c8bVar;
-        int i2;
-        t09 t09Var;
-        m8b m8bVar = this.y0;
-        float[] fArr = m8bVar.p0;
-        y28 currentPeerView = m8bVar.o0.getCurrentPeerView();
-        if (currentPeerView != null) {
-            i28 i28Var = currentPeerView.A0;
-            if (i28Var.W.w()) {
-                float x = currentPeerView.getX();
-                float y = ((View) currentPeerView.getParent()).getY() + currentPeerView.getY();
-                motionEvent.offsetLocation(-x, -y);
-                if (!i28Var.W.m(currentPeerView.getContext()).onTouchEvent(motionEvent)) {
-                    motionEvent.offsetLocation(x, y);
+        TLRPC.ChatFull M0 = oc7.r1(this.a).M0(chat.id);
+        if (M0 != null && (i = M0.participants_count) > 0) {
+            return i;
+        }
+        HashMap hashMap = this.J1;
+        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.id))) != null) {
+            return num.intValue();
+        }
+        return chat.participants_count;
+    }
+
+    public final void K0(Context context) {
+        u31.a(this.c, new oz((byte) 13));
+        nm7.f(this.a).b(this, nm7.N);
+        nm7.f(this.a).b(this, nm7.c3);
+        nm7.f(this.a).b(this, nm7.e3);
+        int i = cmb.g5;
+        this.L1.setColor(cmb.v0(i, this.J0));
+        L(i);
+        this.b = new lp2(this, context);
+        hs1 hs1Var = new hs1((byte) 7, context, this);
+        this.l1 = hs1Var;
+        int i2 = this.u0;
+        hs1Var.setPadding(i2, 0, i2, 0);
+        this.b.addView(this.l1, qoe.e(-1, -1, 119));
+    }
+
+    public final void L0(boolean z) {
+        View[] viewPages;
+        this.T1 = z;
+        hs1 hs1Var = this.l1;
+        if (hs1Var != null) {
+            for (View view : hs1Var.getViewPages()) {
+                if (view instanceof v7b) {
+                    v7b v7bVar = (v7b) view;
+                    v7bVar.h(false);
+                    v7bVar.f(false);
                 }
-                return true;
             }
         }
-        float f = 0.0f;
-        if (m8bVar.p1 && currentPeerView != null && (t09Var = currentPeerView.h3) != null) {
-            float f2 = 0.0f;
-            for (View view = currentPeerView; view != null && (view.getParent() instanceof View); view = (View) view.getParent()) {
-                f += view.getX();
-                f2 += view.getY();
+    }
+
+    public final void N0(int i) {
+        View[] viewPages;
+        this.C1 = i;
+        hs1 hs1Var = this.l1;
+        if (hs1Var != null) {
+            for (View view : hs1Var.getViewPages()) {
+                if (view instanceof v7b) {
+                    ((v7b) view).f(false);
+                }
             }
-            if (currentPeerView.h3.getReactionsWindow() != null && currentPeerView.h3.getReactionsWindow().c != null) {
-                motionEvent.offsetLocation(-f, (-f2) - currentPeerView.h3.getReactionsWindow().c.getTranslationY());
-                currentPeerView.h3.getReactionsWindow().c.dispatchTouchEvent(motionEvent);
-                return true;
-            }
-            Rect rect = gl.Q;
-            t09Var.getHitRect(rect);
-            rect.offset((int) f, (int) f2);
-            if (motionEvent.getAction() == 0 && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                currentPeerView.W0(false);
-                return true;
-            }
-            motionEvent.offsetLocation(-rect.left, -rect.top);
-            t09Var.dispatchTouchEvent(motionEvent);
-            return true;
         }
-        if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-            z = false;
+    }
+
+    public final void O0(Bitmap bitmap) {
+        BitmapDrawable bitmapDrawable;
+        View[] viewPages;
+        if (bitmap == null) {
+            bitmapDrawable = null;
         } else {
-            m8bVar.k0 = false;
-            gl.r(m8bVar.b1);
-            float f3 = m8bVar.Y;
-            if (f3 != 0.0f) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(f3, 0.0f);
-                m8bVar.H = ofFloat;
-                ofFloat.addUpdateListener(new x7b(this, (byte) 0));
-                m8bVar.H.addListener(new y7b(this, (byte) 0));
-                m8bVar.H.setDuration(250L);
-                m8bVar.H.setInterpolator(s33.f);
-                m8bVar.H.start();
-            }
-            if (m8bVar.W >= 0.3f) {
-                m8bVar.o(true);
-            }
-            m8bVar.O(false);
-            m8bVar.P(false);
-            z = true;
+            bitmapDrawable = new BitmapDrawable(bitmap);
         }
-        if (motionEvent.getAction() == 0) {
-            m8bVar.b0 = false;
-            if (currentPeerView != null) {
-                a6 a6Var = currentPeerView.o0;
-                z5b z5bVar = currentPeerView.s0;
-                d28 d28Var = currentPeerView.S0;
-                je5 je5Var = currentPeerView.v0;
-                if (je5Var != null && je5Var.W && z5bVar != null) {
-                    if (!je5Var.D0.contains(motionEvent.getX() - (currentPeerView.v0.getX() + (d28Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.v0.getY() + (d28Var.getY() + currentPeerView.getY()))) && !currentPeerView.z0(z5bVar, motionEvent)) {
-                        currentPeerView.v0.f(true);
+        this.V1 = bitmapDrawable;
+        hs1 hs1Var = this.l1;
+        if (hs1Var != null) {
+            for (View view : hs1Var.getViewPages()) {
+                if (view instanceof v7b) {
+                    v7b v7bVar = (v7b) view;
+                    v7bVar.h(false);
+                    v7bVar.f(false);
+                }
+            }
+        }
+    }
+
+    public final void P0() {
+        this.E1 = true;
+        View[] viewPages = this.l1.getViewPages();
+        View view = viewPages[0];
+        if (view instanceof v7b) {
+            v7b v7bVar = (v7b) view;
+            v7bVar.b(v7bVar.a);
+        }
+        View view2 = viewPages[1];
+        if (view2 instanceof v7b) {
+            v7b v7bVar2 = (v7b) view2;
+            v7bVar2.b(v7bVar2.a);
+        }
+    }
+
+    public final void Q0(TLRPC.InputPeer inputPeer) {
+        this.m1 = inputPeer;
+        this.u1.clear();
+        View[] viewPages = this.l1.getViewPages();
+        View view = viewPages[0];
+        if (view instanceof v7b) {
+            v7b v7bVar = (v7b) view;
+            v7bVar.b(v7bVar.a);
+        }
+        View view2 = viewPages[1];
+        if (view2 instanceof v7b) {
+            v7b v7bVar2 = (v7b) view2;
+            v7bVar2.b(v7bVar2.a);
+        }
+    }
+
+    public final void R0(y7b y7bVar) {
+        if (y7bVar != null) {
+            HashMap hashMap = y7bVar.d;
+            int i = y7bVar.a;
+            ArrayList arrayList = y7bVar.c;
+            this.H1 = i;
+            if (i == 2) {
+                ArrayList arrayList2 = this.q1;
+                arrayList2.clear();
+                arrayList2.addAll(arrayList);
+            } else if (i == 3) {
+                ArrayList arrayList3 = this.r1;
+                arrayList3.clear();
+                arrayList3.addAll(arrayList);
+                HashMap hashMap2 = this.s1;
+                hashMap2.clear();
+                hashMap2.putAll(hashMap);
+                this.t1 = M0(arrayList3, hashMap2).size();
+            } else if (i == 4) {
+                ArrayList arrayList4 = this.n1;
+                arrayList4.clear();
+                arrayList4.addAll(arrayList);
+                HashMap hashMap3 = this.o1;
+                hashMap3.clear();
+                hashMap3.putAll(hashMap);
+                this.p1 = M0(arrayList4, hashMap3).size();
+            }
+            if (i == 5) {
+                this.I1 = true;
+                this.G1 = 5;
+                ArrayList arrayList5 = this.D1;
+                arrayList5.clear();
+                arrayList5.addAll(y7bVar.f);
+                this.l1.setPosition(1);
+            }
+            View[] viewPages = this.l1.getViewPages();
+            View view = viewPages[0];
+            if (view instanceof v7b) {
+                v7b v7bVar = (v7b) view;
+                v7bVar.b(v7bVar.a);
+            }
+            View view2 = viewPages[1];
+            if (view2 instanceof v7b) {
+                v7b v7bVar2 = (v7b) view2;
+                v7bVar2.b(v7bVar2.a);
+            }
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        hs1 hs1Var = this.l1;
+        if (hs1Var != null) {
+            int i3 = 0;
+            if (i == nm7.N) {
+                View[] viewPages = hs1Var.getViewPages();
+                View view = viewPages[0];
+                if (view instanceof v7b) {
+                    ((v7b) view).h(true);
+                }
+                View view2 = viewPages[1];
+                if (view2 instanceof v7b) {
+                    ((v7b) view2).h(true);
+                }
+            } else if (i == nm7.c3) {
+                View[] viewPages2 = hs1Var.getViewPages();
+                while (i3 < viewPages2.length) {
+                    View view3 = viewPages2[i3];
+                    if (view3 instanceof v7b) {
+                        v7b v7bVar = (v7b) view3;
+                        int i4 = v7bVar.a;
+                        if (i4 == 6) {
+                            v7bVar.a(true);
+                        } else if (i4 == 0) {
+                            v7bVar.h(true);
+                        }
                     }
+                    i3++;
                 }
-                je5 je5Var2 = currentPeerView.w0;
-                if (je5Var2 != null && je5Var2.W && a6Var != null && !je5Var2.D0.contains(motionEvent.getX() - (currentPeerView.w0.getX() + (d28Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.w0.getY() + (d28Var.getY() + currentPeerView.getY()))) && !currentPeerView.z0(a6Var, motionEvent)) {
-                    currentPeerView.w0.f(true);
-                }
-            }
-            m8bVar.o0.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-        }
-        if (!m8bVar.y && !m8bVar.H0 && !m8bVar.I0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        int i3 = (m8bVar.f0 > 0.0f ? 1 : (m8bVar.f0 == 0.0f ? 0 : -1));
-        SparseArray sparseArray = this.w0;
-        if (i3 == 0 && !m8bVar.k0 && m8bVar.o0.G0 == 1 && motionEvent.getAction() == 2 && z2 && (((((Float) sparseArray.get(motionEvent.getPointerId(0), Float.valueOf(0.0f))).floatValue() - motionEvent.getX(0)) != 0.0f && (((i2 = (c8bVar = m8bVar.o0).J0) == 0 && c8bVar.L0 == 0.0f && floatValue < 0.0f) || (i2 == c8bVar.getAdapter().b() - 1 && c8bVar.L0 == 0.0f && i > 0))) || m8bVar.Y != 0.0f)) {
-            float f4 = m8bVar.Y;
-            if (f4 == 0.0f) {
-                m8bVar.Z = -floatValue;
-            }
-            if ((floatValue < 0.0f && m8bVar.Z > 0.0f) || (i > 0 && m8bVar.Z < 0.0f)) {
-                floatValue *= 0.2f;
-            }
-            m8bVar.Y = f4 - floatValue;
-            m8bVar.V();
-            float f5 = m8bVar.Y;
-            if ((f5 > 0.0f && m8bVar.Z < 0.0f) || (f5 < 0.0f && m8bVar.Z > 0.0f)) {
-                m8bVar.Y = 0.0f;
-            }
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        if (currentPeerView != null && m8bVar.f0 == 0.0f && !m8bVar.k0 && !m8bVar.L0 && !m8bVar.I0 && m8bVar.o0.G0 != 1) {
-            gl.p1(currentPeerView.S0, this, fArr);
-            motionEvent.offsetLocation(-fArr[0], -fArr[1]);
-            y28 currentPeerView2 = m8bVar.o0.getCurrentPeerView();
-            currentPeerView2.N2.a(motionEvent, currentPeerView2.S0, null, null, 0);
-            motionEvent.offsetLocation(fArr[0], fArr[1]);
-        }
-        if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-            for (int i4 = 0; i4 < motionEvent.getPointerCount(); i4++) {
-                sparseArray.put(motionEvent.getPointerId(i4), Float.valueOf(motionEvent.getX(i4)));
-            }
-        } else {
-            sparseArray.clear();
-        }
-        if (!z3) {
-            boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (m8bVar.f0 != 0.0f && !m8bVar.g1 && m8bVar.q0 < gl.L(20.0f)) {
-                    if (m8bVar.x.f > 0.5f) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
+            } else if (i == nm7.e3) {
+                View[] viewPages3 = hs1Var.getViewPages();
+                while (i3 < viewPages3.length) {
+                    View view4 = viewPages3[i3];
+                    if (view4 instanceof v7b) {
+                        v7b v7bVar2 = (v7b) view4;
+                        if (v7bVar2.a == 0) {
+                            v7bVar2.h(true);
+                        }
                     }
-                    m8bVar.k(z4);
-                }
-                y28 w = m8bVar.w();
-                if (w != null) {
-                    w.A0.w0 = false;
+                    i3++;
                 }
             }
-            if (z && !m8bVar.b0) {
-                m8bVar.i();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        y7b y7bVar;
+        y7b y7bVar2;
+        qac qacVar = this.O1;
+        ArrayList arrayList = this.q1;
+        HashMap hashMap = this.o1;
+        ArrayList arrayList2 = this.n1;
+        HashMap hashMap2 = this.s1;
+        ArrayList arrayList3 = this.r1;
+        if (qacVar != null) {
+            int i = this.H1;
+            if (i == 3) {
+                y7bVar2 = new y7b(this.H1, this.a, new ArrayList(M0(arrayList3, hashMap2)));
+                ArrayList arrayList4 = y7bVar2.c;
+                arrayList4.clear();
+                arrayList4.addAll(arrayList3);
+                HashMap hashMap3 = y7bVar2.d;
+                hashMap3.clear();
+                hashMap3.putAll(hashMap2);
+            } else if (i == 4) {
+                y7bVar2 = new y7b(this.H1, this.a, new ArrayList(M0(arrayList2, hashMap)));
+                ArrayList arrayList5 = y7bVar2.c;
+                arrayList5.clear();
+                arrayList5.addAll(arrayList2);
+                HashMap hashMap4 = y7bVar2.d;
+                hashMap4.clear();
+                hashMap4.putAll(hashMap);
+            } else {
+                int i2 = this.a;
+                if (i == 2) {
+                    y7bVar = new y7b(i, i2, arrayList);
+                } else {
+                    y7bVar = new y7b(i, i2, (ArrayList) null);
+                }
+                y7bVar2 = y7bVar;
             }
-            if (!dispatchTouchEvent && (!m8b.x1 || !m8bVar.r0)) {
-                return false;
+            this.O1.a(y7bVar2);
+            this.O1 = null;
+        }
+        u31.h(this.c);
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry entry : hashMap2.entrySet()) {
+            if (sb.length() > 0) {
+                sb.append(";");
             }
+            sb.append(entry.getKey());
+            sb.append(",");
+            sb.append(TextUtils.join(",", (Iterable) entry.getValue()));
         }
-        return true;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        if (view == this.y0.z0) {
-            return false;
-        }
-        return super.drawChild(canvas, view, j);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        m8b m8bVar = this.y0;
-        if (m8bVar.b && !m8bVar.c) {
-            d dVar = this.x0;
-            gl.W2(dVar.getParentActivity(), dVar.getClassGuid());
-        }
-        setTag(2131296353, new z7b(this));
-        kk7.f(m8bVar.h).b(m8bVar, kk7.z5);
-        kk7.f(m8bVar.h).b(m8bVar, kk7.x5);
-        kk7.f(m8bVar.h).b(m8bVar, kk7.c1);
-        kk7.f(m8bVar.h).b(m8bVar, kk7.b1);
-        kk7.f(m8bVar.h).b(m8bVar, kk7.y5);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        setTag(2131296353, null);
-        m8b m8bVar = this.y0;
-        kk7.f(m8bVar.h).n(m8bVar, kk7.z5);
-        kk7.f(m8bVar.h).n(m8bVar, kk7.x5);
-        kk7.f(m8bVar.h).n(m8bVar, kk7.c1);
-        kk7.f(m8bVar.h).n(m8bVar, kk7.b1);
-        kk7.f(m8bVar.h).n(m8bVar, kk7.y5);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(android.view.MotionEvent r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a8b.onInterceptTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        m8b m8bVar = this.y0;
-        ((FrameLayout.LayoutParams) m8bVar.d1.getLayoutParams()).topMargin = gl.m - gl.L(2.0f);
-        m8bVar.d1.getLayoutParams().height = gl.L(2.0f);
-        super.onMeasure(i, i2);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        l18 l18Var;
-        int action = motionEvent.getAction();
-        m8b m8bVar = this.y0;
-        if (action == 1 || motionEvent.getAction() == 3) {
-            m8bVar.k0 = false;
-            m8bVar.O(false);
-            if (m8bVar.W >= 1.0f) {
-                m8bVar.o(true);
-            } else if (!m8bVar.H0) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(m8bVar.X, 0.0f);
-                m8bVar.H = ofFloat;
-                ofFloat.addUpdateListener(new x7b(this, (byte) 1));
-                m8bVar.H.addListener(new y7b(this, (byte) 1));
-                m8bVar.H.setDuration(150L);
-                m8bVar.H.setInterpolator(s33.f);
-                m8bVar.H.start();
+        StringBuilder sb2 = new StringBuilder();
+        for (Map.Entry entry2 : hashMap.entrySet()) {
+            if (sb2.length() > 0) {
+                sb2.append(";");
             }
-            y28 w = m8bVar.w();
-            if (w != null && (l18Var = w.B0) != null) {
-                l18Var.setAllowTouches(true);
-            }
+            sb2.append(entry2.getKey());
+            sb2.append(",");
+            sb2.append(TextUtils.join(",", (Iterable) entry2.getValue()));
         }
-        if (!m8bVar.k0 && !m8bVar.y && m8bVar.a0 == 0.0f && ((m8bVar.f0 == 0.0f || (!m8bVar.g0 && !m8bVar.h0)) && !m8bVar.j1)) {
-            return false;
-        }
-        m8bVar.j0.onTouchEvent(motionEvent);
-        return true;
+        oc7.r1(this.a).X3.edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb2.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.w1).putBoolean("story_keep", this.x1).apply();
+        super.dismiss();
     }
 
     @Override
-    public final void requestDisallowInterceptTouchEvent(boolean z) {
-        super.requestDisallowInterceptTouchEvent(z);
-        this.y0.g0 = false;
+    public final void onBackPressed() {
+        if (this.l1.getCurrentPosition() > 0) {
+            F0();
+            hs1 hs1Var = this.l1;
+            hs1Var.E(hs1Var.getCurrentPosition() - 1);
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public final void p0() {
+        super.p0();
+        try {
+            this.L1.setColor(cmb.v0(cmb.g5, this.J0));
+            ViewGroup viewGroup = this.b;
+            if (viewGroup != null) {
+                viewGroup.invalidate();
+            }
+        } catch (Exception e) {
+            fc4.g(e, true);
+        }
+    }
+
+    public a8b(Context context, ylb ylbVar) {
+        super(1, ylbVar, context, true);
+        this.n1 = new ArrayList();
+        this.o1 = new HashMap();
+        this.p1 = 0;
+        this.q1 = new ArrayList();
+        this.r1 = new ArrayList();
+        this.s1 = new HashMap();
+        this.t1 = 0;
+        this.u1 = new HashSet();
+        this.v1 = true;
+        this.w1 = true;
+        this.x1 = false;
+        this.y1 = true;
+        this.z1 = true;
+        this.A1 = false;
+        this.B1 = 0;
+        this.C1 = 1;
+        this.D1 = new ArrayList();
+        this.G1 = 1;
+        this.H1 = 4;
+        this.J1 = new HashMap();
+        this.K1 = 86400;
+        this.L1 = new Paint(1);
+        this.S1 = true;
+        this.T1 = false;
+        K0(context);
+        this.l1.setAdapter(new c7b(this, context, (byte) 1));
     }
 }

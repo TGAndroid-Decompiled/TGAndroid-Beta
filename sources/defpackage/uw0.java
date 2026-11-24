@@ -1,32 +1,26 @@
 package defpackage;
-public final class uw0 implements Runnable {
-    public final byte a;
-    public final zha b;
 
-    public uw0(zha zhaVar, byte b) {
+import android.animation.ValueAnimator;
+public final class uw0 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final wx0 b;
+
+    public uw0(wx0 wx0Var, byte b) {
         this.a = b;
-        this.b = zhaVar;
+        this.b = wx0Var;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        zha zhaVar = this.b;
+        wx0 wx0Var = this.b;
         switch (b) {
             case 0:
-                zhaVar.a(true);
-                return;
-            case 1:
-                zhaVar.a(true);
-                return;
-            case 2:
-                if (!zhaVar.I && zhaVar.U) {
-                    zhaVar.c();
-                    return;
-                }
+                wx0Var.S0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wx0Var.h();
                 return;
             default:
-                zhaVar.a(true);
+                wx0Var.F.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

@@ -1,41 +1,20 @@
 package defpackage;
 
-import java.util.List;
-public abstract class rab extends b93 implements kab {
-    public kab a;
-    public long b;
+import android.content.Context;
+import android.view.View;
+public final class rab extends gd6 {
+    public final sab R;
 
-    @Override
-    public final int b(long j) {
-        kab kabVar = this.a;
-        kabVar.getClass();
-        return kabVar.b(j - this.b);
+    public rab(sab sabVar, Context context, float f) {
+        super(context, f);
+        this.R = sabVar;
     }
 
     @Override
-    public final void clear() {
-        super.clear();
-        this.a = null;
-    }
-
-    @Override
-    public final long h(int i) {
-        kab kabVar = this.a;
-        kabVar.getClass();
-        return kabVar.h(i) + this.b;
-    }
-
-    @Override
-    public final List l(long j) {
-        kab kabVar = this.a;
-        kabVar.getClass();
-        return kabVar.l(j - this.b);
-    }
-
-    @Override
-    public final int t() {
-        kab kabVar = this.a;
-        kabVar.getClass();
-        return kabVar.t();
+    public final void invalidate() {
+        View view = this.R.c;
+        if (view != null) {
+            view.invalidate();
+        }
     }
 }

@@ -1,28 +1,50 @@
 package defpackage;
-public final class wd3 {
-    public final xw8 a;
-    public final byte b;
-    public final byte c;
 
-    public wd3(xw8 xw8Var, int i, int i2) {
-        hre.a(xw8Var, "Null dependency anInterface.");
-        this.a = xw8Var;
-        this.b = i;
-        this.c = i2;
+import android.text.TextUtils;
+import j$.util.Objects;
+public final class wd3 extends de3 implements Comparable {
+    public final boolean E;
+    public final boolean F;
+    public final int G;
+    public final int H;
+    public final boolean I;
+    public final int J;
+    public final int K;
+    public final int L;
+    public final int M;
+    public final boolean N;
+    public final boolean O;
+    public final boolean P;
+    public final byte e;
+    public final boolean f;
+    public final String h;
+    public final ae3 n;
+    public final boolean r;
+    public final int s;
+    public final int w;
+    public final int x;
+    public final int y;
+
+    public wd3(int r8, defpackage.uzb r9, int r10, defpackage.ae3 r11, int r12, boolean r13, defpackage.vd3 r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wd3.<init>(int, uzb, int, ae3, int, boolean, vd3, int):void");
     }
 
-    public static wd3 a(xw8 xw8Var) {
-        return new wd3(xw8Var, 1, 0);
+    @Override
+    public final int a() {
+        return this.e;
     }
 
-    public static wd3 b(Class cls) {
-        return new wd3(1, 0, cls);
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof wd3) {
-            wd3 wd3Var = (wd3) obj;
-            if (this.a.equals(wd3Var.a) && this.b == wd3Var.b && this.c == wd3Var.c) {
+    @Override
+    public final boolean b(de3 de3Var) {
+        int i;
+        String str;
+        wd3 wd3Var = (wd3) de3Var;
+        go4 go4Var = wd3Var.d;
+        this.n.getClass();
+        go4 go4Var2 = this.d;
+        int i2 = go4Var2.N;
+        if (i2 != -1 && i2 == go4Var.N) {
+            if ((this.E || ((str = go4Var2.t) != null && TextUtils.equals(str, go4Var.t))) && (i = go4Var2.P) != -1 && i == go4Var.P && this.N == wd3Var.N && this.O == wd3Var.O) {
                 return true;
             }
             return false;
@@ -30,45 +52,36 @@ public final class wd3 {
         return false;
     }
 
-    public final int hashCode() {
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b) * 1000003) ^ this.c;
-    }
-
-    public final String toString() {
-        String str;
-        String str2;
-        StringBuilder sb = new StringBuilder("Dependency{anInterface=");
-        sb.append(this.a);
-        sb.append(", type=");
-        byte b = this.b;
-        if (b == 1) {
-            str = "required";
-        } else if (b == 0) {
-            str = "optional";
+    @Override
+    public final int compareTo(wd3 wd3Var) {
+        at7 at7Var;
+        at7 a;
+        boolean z = this.r;
+        boolean z2 = this.f;
+        if (z2 && z) {
+            a = fe3.l;
+            at7Var = a;
         } else {
-            str = "set";
+            at7 at7Var2 = fe3.l;
+            at7Var = at7Var2;
+            a = at7Var2.a();
         }
-        sb.append(str);
-        sb.append(", injection=");
-        byte b2 = this.c;
-        if (b2 != 0) {
-            if (b2 != 1) {
-                if (b2 == 2) {
-                    str2 = "deferred";
-                } else {
-                    fi7.g(de9.k(b2, "Unsupported injection: "));
-                    return null;
-                }
-            } else {
-                str2 = "provider";
-            }
-        } else {
-            str2 = "direct";
+        boolean z3 = wd3Var.r;
+        int i = wd3Var.L;
+        hq2 c = hq2.a.c(z, z3);
+        Integer valueOf = Integer.valueOf(this.w);
+        Integer valueOf2 = Integer.valueOf(wd3Var.w);
+        jk7 jk7Var = jk7.c;
+        hq2 b = c.b(valueOf, valueOf2, jk7Var).a(this.s, wd3Var.s).a(this.x, wd3Var.x).b(Integer.valueOf(this.y), Integer.valueOf(wd3Var.y), jk7Var).c(this.I, wd3Var.I).c(this.F, wd3Var.F).b(Integer.valueOf(this.G), Integer.valueOf(wd3Var.G), jk7Var).a(this.H, wd3Var.H).c(z2, wd3Var.f).b(Integer.valueOf(this.M), Integer.valueOf(wd3Var.M), jk7Var);
+        boolean z4 = this.n.F;
+        int i2 = this.L;
+        if (z4) {
+            b = b.b(Integer.valueOf(i2), Integer.valueOf(i), at7Var.a());
         }
-        return b00.j(sb, str2, "}");
-    }
-
-    public wd3(int i, int i2, Class cls) {
-        this(xw8.a(cls), i, i2);
+        hq2 b2 = b.c(this.N, wd3Var.N).c(this.O, wd3Var.O).c(this.P, wd3Var.P).b(Integer.valueOf(this.J), Integer.valueOf(wd3Var.J), a).b(Integer.valueOf(this.K), Integer.valueOf(wd3Var.K), a);
+        if (Objects.equals(this.h, wd3Var.h)) {
+            b2 = b2.b(Integer.valueOf(i2), Integer.valueOf(i), a);
+        }
+        return b2.e();
     }
 }

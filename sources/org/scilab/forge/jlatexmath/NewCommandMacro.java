@@ -12,7 +12,7 @@ public class NewCommandMacro {
             MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i, 1.0f));
             return;
         }
-        qm0.g(tb4.y("Command ", str, " already exists ! Use renewcommand instead ..."));
+        qn0.g(kt6.o("Command ", str, " already exists ! Use renewcommand instead ..."));
     }
 
     public static void addReNewCommand(String str, String str2, int i) {
@@ -21,7 +21,7 @@ public class NewCommandMacro {
             MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i));
             return;
         }
-        qm0.g(tb4.y("Command ", str, " is not defined ! Use newcommand instead ..."));
+        qn0.g(kt6.o("Command ", str, " is not defined ! Use newcommand instead ..."));
     }
 
     public static boolean isMacro(String str) {

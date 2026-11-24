@@ -1,13 +1,13 @@
 package defpackage;
 
 import java.util.ListIterator;
-public abstract class u2 extends v5c implements ListIterator {
+public abstract class u2 extends v7c implements ListIterator {
     public final int b;
     public int c;
 
     public u2(int i, int i2) {
         super((byte) 0);
-        gre.m(i2, i);
+        jte.m(i2, i);
         this.b = i;
         this.c = i2;
     }
@@ -42,7 +42,7 @@ public abstract class u2 extends v5c implements ListIterator {
             this.c = i + 1;
             return a(i);
         }
-        w26.g();
+        u36.g();
         return null;
     }
 
@@ -58,7 +58,7 @@ public abstract class u2 extends v5c implements ListIterator {
             this.c = i;
             return a(i);
         }
-        w26.g();
+        u36.g();
         return null;
     }
 

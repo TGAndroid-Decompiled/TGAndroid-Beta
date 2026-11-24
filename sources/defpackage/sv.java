@@ -1,177 +1,304 @@
 package defpackage;
 
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.Trace;
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
+import android.net.http.SslError;
+import android.text.TextUtils;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import java.io.ByteArrayInputStream;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
-public final class sv implements Runnable {
-    public static final sv b = new sv((byte) 14);
+import org.telegram.ui.j;
+public final class sv extends WebViewClient {
     public final byte a;
+    public final Object b;
 
-    public sv(u39 u39Var, int i) {
-        this.a = (byte) 1;
+    public sv(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
+    }
+
+    public final boolean a(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            Uri parse = Uri.parse(str);
+            if ("tg".equals(parse.getScheme())) {
+                ((uwc) this.b).finishFragment(false);
+                try {
+                    Intent intent = new Intent("android.intent.action.VIEW", parse);
+                    intent.setComponent(new ComponentName(a.b.getPackageName(), LaunchActivity.class.getName()));
+                    intent.putExtra("com.android.browser.application_id", a.b.getPackageName());
+                    a.b.startActivity(intent);
+                    return true;
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void run() {
-        boolean z = true;
+    public final void onLoadResource(WebView webView, String str) {
         switch (this.a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
             case 4:
-            case 5:
-                return;
-            case 6:
-                ArrayList arrayList = eo3.j;
-                if (arrayList != null && !arrayList.isEmpty()) {
-                    ArrayList arrayList2 = eo3.j;
-                    eo3.j = null;
-                    if (eo3.k == null) {
-                        int max = Math.max(1, Runtime.getRuntime().availableProcessors());
-                        ?? obj = new Object();
-                        obj.a = new ArrayList(10);
-                        obj.b = new SparseIntArray();
-                        obj.c = new ArrayList(10);
-                        obj.i = new o1(obj, (byte) 24);
-                        obj.d = max;
-                        obj.f = Utilities.b.nextInt();
-                        eo3.k = obj;
-                    }
-                    Utilities.e.c(new se(arrayList2, (byte) 4));
-                    return;
-                }
-                eo3.j = null;
-                return;
-            case 7:
-                try {
-                    int i = mxb.a;
-                    Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
-                    if (lw3.j == null) {
-                        z = false;
-                    }
-                    if (z) {
-                        lw3.a().c();
-                    }
-                    Trace.endSection();
-                    return;
-                } catch (Throwable th) {
-                    int i2 = mxb.a;
-                    Trace.endSection();
-                    throw th;
-                }
-            case 8:
-                return;
-            case 9:
-                String[] strArr = MediaController.W1;
-                return;
-            case 10:
-                Utilities.b.nextInt();
-                kz4[] kz4VarArr = x2b.a;
-                kk7.f(y6c.t0).k(2, 0);
-                gl.e3(x2b.o, 1000L);
-                LaunchActivity.Q().getFragmentView();
-                return;
-            case 11:
-                bkb.j = false;
-                bkb.l(false);
-                return;
-            case 12:
-                bkb.k = false;
-                bkb.l(true);
-                return;
-            case 13:
-                xgc xgcVar = xgc.U;
-                if (xgcVar != null) {
-                    wgc wgcVar = xgcVar.b;
-                    int i3 = wgc.h;
-                    gl.r(wgcVar.f.O);
+                if (!a(str)) {
+                    super.onLoadResource(webView, str);
                     return;
                 }
                 return;
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 20:
-            case 21:
             default:
+                super.onLoadResource(webView, str);
                 return;
         }
     }
 
-    public sv(x43 x43Var, String str, Bundle bundle, byte b2) {
-        this.a = b2;
+    @Override
+    public final void onPageFinished(WebView webView, String str) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 1:
+                super.onPageFinished(webView, str);
+                zv3 zv3Var = (zv3) obj;
+                ImageView imageView = zv3Var.w1;
+                if (!zv3Var.x1) {
+                    zv3Var.r1.setVisibility(4);
+                    zv3Var.q1.setVisibility(4);
+                    imageView.setEnabled(true);
+                    imageView.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 2:
+                super.onPageFinished(webView, str);
+                ya8 ya8Var = (ya8) obj;
+                a8 a8Var = ya8Var.r;
+                if (!ya8Var.y) {
+                    ya8Var.n.setVisibility(4);
+                    ya8Var.h.setVisibility(4);
+                    a8Var.setEnabled(true);
+                    a8Var.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 3:
+            default:
+                super.onPageFinished(webView, str);
+                return;
+            case 4:
+                super.onPageFinished(webView, str);
+                uwc uwcVar = (uwc) obj;
+                mx2 mx2Var = uwcVar.c;
+                if (mx2Var != null && mx2Var.getVisibility() == 0) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    uwcVar.b.getContentView().setVisibility(0);
+                    uwcVar.b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(uwcVar.c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(uwcVar.c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(uwcVar.c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(uwcVar.b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(uwcVar.b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(uwcVar.b.getContentView(), "alpha", 0.0f, 1.0f));
+                    animatorSet.addListener(new koc(this, (byte) 5));
+                    animatorSet.setDuration(150L);
+                    animatorSet.start();
+                    return;
+                }
+                return;
+        }
     }
 
-    public sv(Binder binder, Object obj, byte b2) {
-        this.a = b2;
+    @Override
+    public final void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
+        switch (this.a) {
+            case 3:
+                if (webResourceRequest.isForMainFrame()) {
+                    bwc bwcVar = (bwc) this.b;
+                    if (webView == bwcVar.o) {
+                        bwcVar.h();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onReceivedError(webView, webResourceRequest, webResourceError);
+                return;
+        }
     }
 
-    public sv(Object obj, byte b2) {
-        this.a = b2;
+    @Override
+    public final void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
+        switch (this.a) {
+            case 3:
+                if (webResourceRequest.isForMainFrame()) {
+                    bwc bwcVar = (bwc) this.b;
+                    if (webView == bwcVar.o) {
+                        bwcVar.h();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
+                return;
+        }
     }
 
-    public sv(byte b2) {
-        this.a = b2;
+    @Override
+    public final void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
+        switch (this.a) {
+            case 3:
+                sslErrorHandler.cancel();
+                bwc bwcVar = (bwc) this.b;
+                if (webView == bwcVar.o) {
+                    bwcVar.h();
+                    return;
+                }
+                return;
+            default:
+                super.onReceivedSslError(webView, sslErrorHandler, sslError);
+                return;
+        }
     }
 
-    public sv(x43 x43Var, int i, Bundle bundle) {
-        this.a = (byte) 2;
+    @Override
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                try {
+                    LaunchActivity launchActivity = LaunchActivity.H1;
+                    if (launchActivity == null || !launchActivity.isFinishing()) {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, null, ((j) obj).getContext());
+                        he heVar = alertDialog$Builder.a;
+                        heVar.S = jb6.M0(2131752041, null);
+                        heVar.U = gm.N2(jb6.M0(2131752042, null), -1, 0, new b1(this, (byte) 24), null);
+                        alertDialog$Builder.j(jb6.M0(2131747564, null), null);
+                        alertDialog$Builder.o();
+                    }
+                    return true;
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return false;
+                }
+            case 1:
+                zv3 zv3Var = (zv3) obj;
+                try {
+                    if (gm.K1(zv3Var.getContext())) {
+                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, zv3Var.J0, zv3Var.getContext());
+                        he heVar2 = alertDialog$Builder2.a;
+                        heVar2.S = jb6.M0(2131752041, null);
+                        heVar2.U = gm.N2(jb6.M0(2131752042, null), -1, 0, new bi3(this, (byte) 21), null);
+                        alertDialog$Builder2.j(jb6.M0(2131747564, null), null);
+                        alertDialog$Builder2.o();
+                    }
+                    return true;
+                } catch (Exception e2) {
+                    fc4.g(e2, true);
+                    return false;
+                }
+            case 2:
+            default:
+                return super.onRenderProcessGone(webView, renderProcessGoneDetail);
+            case 3:
+                bwc bwcVar = (bwc) obj;
+                if (webView == bwcVar.o) {
+                    bwcVar.h();
+                }
+                return true;
+        }
     }
 
-    private final void a() {
+    @Override
+    public final WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+        switch (this.a) {
+            case 2:
+                String uri = webResourceRequest.getUrl().toString();
+                if (((ya8) this.b).y && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+                    Utilities.j.c(new ud7(this, uri, webResourceRequest, (byte) 27));
+                }
+                return null;
+            case 3:
+                Uri url = webResourceRequest.getUrl();
+                if (!"http".equalsIgnoreCase(url.getScheme()) && !"https".equalsIgnoreCase(url.getScheme())) {
+                    return null;
+                }
+                bwc bwcVar = (bwc) this.b;
+                bwcVar.getClass();
+                String path = url.getPath();
+                if ("https".equalsIgnoreCase(url.getScheme()) && bwcVar.c.equalsIgnoreCase(url.getHost()) && url.getUserInfo() == null && ((url.getPort() == -1 || url.getPort() == 443) && path != null && path.startsWith(bwcVar.d))) {
+                    return null;
+                }
+                return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
+            default:
+                return super.shouldInterceptRequest(webView, webResourceRequest);
+        }
     }
 
-    private final void b() {
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                j jVar = (j) obj;
+                if (!jVar.s) {
+                    return false;
+                }
+                l11.u(jVar.y.M, str);
+                return true;
+            case 1:
+                if (((zv3) obj).x1) {
+                    l11.u(webView.getContext(), str);
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 2:
+                if (((ya8) obj).y) {
+                    l11.u(webView.getContext(), str);
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 3:
+            default:
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 4:
+                if (!a(str) && !super.shouldOverrideUrlLoading(webView, str)) {
+                    return false;
+                }
+                return true;
+        }
     }
 
-    private final void c() {
-    }
-
-    private final void d() {
-    }
-
-    private final void e() {
-    }
-
-    private final void f() {
-    }
-
-    private final void g() {
-    }
-
-    private final void h() {
-    }
-
-    private final void i() {
-    }
-
-    private final void j() {
-    }
-
-    private final void k() {
-    }
-
-    private final void l() {
-    }
-
-    private final void m() {
-    }
-
-    private final void n() {
-    }
-
-    private final void o() {
-    }
-
-    private final void p() {
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
+        switch (this.a) {
+            case 3:
+                if (webResourceRequest.isForMainFrame()) {
+                    bwc bwcVar = (bwc) this.b;
+                    Uri url = webResourceRequest.getUrl();
+                    if (url != null) {
+                        if (bwcVar.g.equals(url.toString())) {
+                            return false;
+                        }
+                    } else {
+                        bwcVar.getClass();
+                    }
+                }
+                return true;
+            default:
+                return super.shouldOverrideUrlLoading(webView, webResourceRequest);
+        }
     }
 }

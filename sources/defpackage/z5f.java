@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class z5f {
+public interface z5f {
+    void a(ry ryVar);
 }

@@ -16,7 +16,7 @@ import org.telegram.ui.Components.PollVotesAlert$UserCell;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-public final class k0 implements c39 {
+public final class k0 implements f59 {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -29,142 +29,142 @@ public final class k0 implements c39 {
 
     private final void a(int i, View view) {
         Paint.FontMetricsInt fontMetricsInt;
-        gm gmVar;
+        gn gnVar;
         String str;
-        uz6 uz6Var = (uz6) this.b;
-        rz6 rz6Var = (rz6) this.c;
+        u17 u17Var = (u17) this.b;
+        r17 r17Var = (r17) this.c;
         if (i != 0) {
-            kz6 adapter = uz6Var.getAdapter();
+            k17 adapter = u17Var.getAdapter();
             if (adapter.x0 != null && !adapter.i0) {
                 return;
             }
             int i2 = i - 1;
-            Object J = uz6Var.getAdapter().J(i2);
-            int i3 = uz6Var.getAdapter().Y;
-            int i4 = uz6Var.getAdapter().Z;
-            if (uz6Var.getAdapter().G != null && i2 == 1) {
-                TLRPC.Chat chat = uz6Var.getAdapter().m0;
-                if (chat == null && uz6Var.getAdapter().H0 != null) {
-                    chat = uz6Var.getAdapter().H0.e;
+            Object J = u17Var.getAdapter().J(i2);
+            int i3 = u17Var.getAdapter().Y;
+            int i4 = u17Var.getAdapter().Z;
+            if (u17Var.getAdapter().G != null && i2 == 1) {
+                TLRPC.Chat chat = u17Var.getAdapter().m0;
+                if (chat == null && u17Var.getAdapter().H0 != null) {
+                    chat = u17Var.getAdapter().H0.e;
                 }
                 StringBuilder sb = new StringBuilder();
-                sb.append(uz6Var.getAdapter().G);
+                sb.append(u17Var.getAdapter().G);
                 if (chat != null) {
-                    str = "@" + hc2.K(chat, false);
+                    str = "@" + sd2.K(chat, false);
                 } else {
                     str = "";
                 }
-                rz6Var.k(i3, i4, b00.j(sb, str, " "), false);
+                r17Var.Y0(i3, i4, b10.j(sb, str, " "), false);
                 return;
-            } else if (uz6Var.getAdapter().G != null && i2 == 0) {
-                rz6Var.k(i3, i4, b00.j(new StringBuilder(), uz6Var.getAdapter().G, " "), false);
+            } else if (u17Var.getAdapter().G != null && i2 == 0) {
+                r17Var.Y0(i3, i4, b10.j(new StringBuilder(), u17Var.getAdapter().G, " "), false);
                 return;
             } else {
                 if (J instanceof TLRPC.TL_document) {
-                    if (view instanceof uya) {
-                        ((uya) view).getSendAnimationData();
+                    if (view instanceof v0b) {
+                        ((v0b) view).getSendAnimationData();
                     }
                     TLRPC.TL_document tL_document = (TLRPC.TL_document) J;
-                    rz6Var.h(tL_document, k27.U(tL_document), uz6Var.getAdapter().L(i2));
+                    r17Var.w0(tL_document, k47.U(tL_document), u17Var.getAdapter().L(i2));
                 } else if (J instanceof TLRPC.Chat) {
-                    String K = hc2.K((TLRPC.Chat) J, false);
+                    String K = sd2.K((TLRPC.Chat) J, false);
                     if (K != null) {
-                        rz6Var.k(i3, i4, tb4.y("@", K, " "), false);
+                        r17Var.Y0(i3, i4, kt6.o("@", K, " "), false);
                     }
                 } else if (J instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) J;
-                    if (l7c.o(user) != null) {
-                        rz6Var.k(i3, i4, "@" + l7c.o(user) + " ", false);
+                    if (m9c.p(user) != null) {
+                        r17Var.Y0(i3, i4, "@" + m9c.p(user) + " ", false);
                     } else {
-                        SpannableString spannableString = new SpannableString(tb4.o(l7c.k(user, false), " "));
-                        spannableString.setSpan(new j4c(String.valueOf(user.id), 3, null), 0, spannableString.length(), 33);
-                        rz6Var.k(i3, i4, spannableString, false);
+                        SpannableString spannableString = new SpannableString(td4.p(m9c.k(user, false), " "));
+                        spannableString.setSpan(new j6c(String.valueOf(user.id), 3, null), 0, spannableString.length(), 33);
+                        r17Var.Y0(i3, i4, spannableString, false);
                     }
                 } else if (J instanceof String) {
-                    rz6Var.k(i3, i4, J + " ", false);
-                } else if (J instanceof dq6) {
-                    String str2 = ((dq6) J).a;
-                    rz6Var.m(str2);
+                    r17Var.Y0(i3, i4, J + " ", false);
+                } else if (J instanceof ds6) {
+                    String str2 = ((ds6) J).a;
+                    r17Var.c1(str2);
                     if (str2 != null) {
                         try {
                         } catch (Exception unused) {
-                            rz6Var.k(i3, i4, str2, true);
+                            r17Var.Y0(i3, i4, str2, true);
                         }
                         if (str2.startsWith("animated_")) {
                             try {
-                                fontMetricsInt = rz6Var.d();
+                                fontMetricsInt = r17Var.u0();
                             } catch (Exception e) {
-                                fa4.g(e, false);
+                                fc4.g(e, false);
                                 fontMetricsInt = null;
                             }
                             long parseLong = Long.parseLong(str2.substring(9));
-                            TLRPC.Document e2 = vl.e(y6c.t0, parseLong);
-                            SpannableString spannableString2 = new SpannableString(k27.U(e2));
+                            TLRPC.Document e2 = vm.e(z8c.t0, parseLong);
+                            SpannableString spannableString2 = new SpannableString(k47.U(e2));
                             if (e2 != null) {
-                                gmVar = new gm(e2, fontMetricsInt);
+                                gnVar = new gn(e2, fontMetricsInt);
                             } else {
-                                gmVar = new gm(parseLong, fontMetricsInt);
+                                gnVar = new gn(parseLong, fontMetricsInt);
                             }
-                            spannableString2.setSpan(gmVar, 0, spannableString2.length(), 33);
-                            rz6Var.k(i3, i4, spannableString2, false);
-                            uz6Var.o(false);
+                            spannableString2.setSpan(gnVar, 0, spannableString2.length(), 33);
+                            r17Var.Y0(i3, i4, spannableString2, false);
+                            u17Var.o(false);
                         }
                     }
-                    rz6Var.k(i3, i4, str2, true);
-                    uz6Var.o(false);
+                    r17Var.Y0(i3, i4, str2, true);
+                    u17Var.o(false);
                 }
                 if (J instanceof TLRPC.BotInlineResult) {
                     TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
                     if ((botInlineResult.type.equals("photo") && (botInlineResult.photo != null || botInlineResult.content != null)) || ((botInlineResult.type.equals("gif") && (botInlineResult.document != null || botInlineResult.content != null)) || (botInlineResult.type.equals("video") && botInlineResult.document != null))) {
-                        ArrayList arrayList = new ArrayList(uz6Var.getAdapter().S);
-                        uz6Var.Q = arrayList;
-                        PhotoViewer.r0().S1(null, uz6Var.h, uz6Var.a);
-                        PhotoViewer.r0().n1(arrayList, uz6Var.getAdapter().M(i2), 3, false, uz6Var.R, null);
+                        ArrayList arrayList = new ArrayList(u17Var.getAdapter().S);
+                        u17Var.Q = arrayList;
+                        PhotoViewer.r0().T1(null, u17Var.h, u17Var.a);
+                        PhotoViewer.r0().o1(arrayList, u17Var.getAdapter().M(i2), 3, false, u17Var.R, null);
                         return;
                     }
-                    rz6Var.c(botInlineResult, true, 0);
+                    r17Var.r(botInlineResult, true, 0);
                     return;
                 }
                 return;
             }
         }
-        uz6Var.getClass();
+        u17Var.getClass();
     }
 
     private final void b(int i, View view) {
-        gf8 gf8Var = (gf8) this.b;
-        HashSet hashSet = gf8Var.u1;
-        cf8 cf8Var = gf8Var.m1;
-        if (gl.C1((Context) this.c)) {
-            ArrayList arrayList = gf8Var.z1;
+        ih8 ih8Var = (ih8) this.b;
+        HashSet hashSet = ih8Var.u1;
+        eh8 eh8Var = ih8Var.m1;
+        if (gm.C1((Context) this.c)) {
+            ArrayList arrayList = ih8Var.z1;
             if (arrayList == null || arrayList.isEmpty()) {
                 int i2 = 0;
-                if (view instanceof wgb) {
-                    int S = cf8Var.S(i) - 1;
-                    int Q = cf8Var.Q(i) - 1;
+                if (view instanceof xib) {
+                    int S = eh8Var.S(i) - 1;
+                    int Q = eh8Var.Q(i) - 1;
                     if (Q > 0 && S >= 0) {
-                        ff8 ff8Var = (ff8) gf8Var.w1.get(S);
-                        if (Q == ff8Var.b() && !hashSet.contains(ff8Var)) {
-                            if (ff8Var.e && ff8Var.f < ff8Var.b.size()) {
-                                int min = Math.min(ff8Var.f + 50, ff8Var.b.size());
-                                ff8Var.f = min;
-                                if (min == ff8Var.b.size()) {
-                                    ff8Var.e = false;
+                        hh8 hh8Var = (hh8) ih8Var.w1.get(S);
+                        if (Q == hh8Var.b() && !hashSet.contains(hh8Var)) {
+                            if (hh8Var.e && hh8Var.f < hh8Var.b.size()) {
+                                int min = Math.min(hh8Var.f + 50, hh8Var.b.size());
+                                hh8Var.f = min;
+                                if (min == hh8Var.b.size()) {
+                                    hh8Var.e = false;
                                 }
-                                gf8Var.D0(null);
-                                cf8Var.X(true);
+                                ih8Var.D0(null);
+                                eh8Var.X(true);
                                 return;
                             }
-                            hashSet.add(ff8Var);
+                            hashSet.add(hh8Var);
                             TLRPC.TL_messages_getPollVotes tL_messages_getPollVotes = new TLRPC.TL_messages_getPollVotes();
-                            tL_messages_getPollVotes.peer = gf8Var.t1;
-                            tL_messages_getPollVotes.id = gf8Var.r1.e1();
+                            tL_messages_getPollVotes.peer = ih8Var.t1;
+                            tL_messages_getPollVotes.id = ih8Var.r1.e1();
                             tL_messages_getPollVotes.limit = 50;
                             int i3 = tL_messages_getPollVotes.flags;
-                            tL_messages_getPollVotes.option = ff8Var.d;
+                            tL_messages_getPollVotes.option = hh8Var.d;
                             tL_messages_getPollVotes.flags = i3 | 3;
-                            tL_messages_getPollVotes.offset = ff8Var.c;
-                            ConnectionsManager.getInstance(gf8Var.a).sendRequest(tL_messages_getPollVotes, new hj7(gf8Var, ff8Var, (byte) 7));
+                            tL_messages_getPollVotes.offset = hh8Var.c;
+                            ConnectionsManager.getInstance(ih8Var.a).sendRequest(tL_messages_getPollVotes, new jl7(ih8Var, hh8Var, (byte) 7));
                         }
                     }
                 } else if (view instanceof PollVotesAlert$UserCell) {
@@ -177,24 +177,24 @@ public final class k0 implements c39 {
                         } else {
                             bundle.putLong("chat_id", pollVotesAlert$UserCell.n.id);
                         }
-                        gf8Var.dismiss();
+                        ih8Var.dismiss();
                         d S2 = LaunchActivity.S();
                         if (S2 != null) {
                             ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-                            if (S2 instanceof mu1) {
+                            if (S2 instanceof yv1) {
                                 if (pollVotesAlert$UserCell.h != null) {
-                                    TLRPC.User h = ((mu1) S2).h();
-                                    gf8Var.l1.getChildAt(0);
+                                    TLRPC.User h = ((yv1) S2).h();
+                                    ih8Var.l1.getChildAt(0);
                                     if (h != null && h.id == pollVotesAlert$UserCell.h.id) {
                                         i2 = 1;
                                     }
-                                    profileActivity.x3(i2);
+                                    profileActivity.B3(i2);
                                 } else {
-                                    TLRPC.Chat chat = ((mu1) S2).e;
+                                    TLRPC.Chat chat = ((yv1) S2).e;
                                     if (chat != null && chat.id == pollVotesAlert$UserCell.n.id) {
                                         i2 = 1;
                                     }
-                                    profileActivity.x3(i2);
+                                    profileActivity.B3(i2);
                                 }
                             }
                             S2.presentFragment(profileActivity);
@@ -209,32 +209,32 @@ public final class k0 implements c39 {
         TLRPC.Message message;
         TL_stories.TL_storyReactionPublicRepost tL_storyReactionPublicRepost;
         TL_stories.StoryItem storyItem;
-        g0a g0aVar = (g0a) this.b;
-        m8b m8bVar = (m8b) this.c;
-        d dVar = m8bVar.f;
-        c0a c0aVar = g0aVar.x;
-        oz9 oz9Var = g0aVar.r;
-        if (i >= 0 && i < c0aVar.c.size()) {
-            yz9 yz9Var = (yz9) c0aVar.c.get(i);
-            TL_stories.StoryView storyView = yz9Var.b;
-            TL_stories.StoryReaction storyReaction = yz9Var.c;
+        i2a i2aVar = (i2a) this.b;
+        oab oabVar = (oab) this.c;
+        d dVar = oabVar.f;
+        e2a e2aVar = i2aVar.x;
+        q1a q1aVar = i2aVar.r;
+        if (i >= 0 && i < e2aVar.c.size()) {
+            a2a a2aVar = (a2a) e2aVar.c.get(i);
+            TL_stories.StoryView storyView = a2aVar.b;
+            TL_stories.StoryReaction storyReaction = a2aVar.c;
             if (storyView instanceof TL_stories.TL_storyView) {
-                m8bVar.L(ProfileActivity.P2(storyView.user_id));
+                oabVar.L(ProfileActivity.S2(storyView.user_id));
             } else if (storyView instanceof TL_stories.TL_storyViewPublicRepost) {
-                dVar.createOverlayStoryViewer().J(g0aVar.getContext(), ((TL_stories.TL_storyViewPublicRepost) yz9Var.b).story, p2b.a(oz9Var));
+                dVar.createOverlayStoryViewer().J(i2aVar.getContext(), ((TL_stories.TL_storyViewPublicRepost) a2aVar.b).story, q4b.a(q1aVar));
             } else if (storyReaction instanceof TL_stories.TL_storyReaction) {
-                m8bVar.L(ProfileActivity.P2(cf3.n(storyReaction.peer_id)));
+                oabVar.L(ProfileActivity.S2(pg3.n(storyReaction.peer_id)));
             } else if (storyReaction instanceof TL_stories.TL_storyReactionPublicRepost) {
                 ArrayList arrayList = new ArrayList();
-                f0a f0aVar = g0aVar.F;
+                h2a h2aVar = i2aVar.F;
                 int i2 = 0;
                 int i3 = -1;
-                if (f0aVar != null) {
-                    int size = f0aVar.i.size();
-                    while (i2 < g0aVar.F.i.size()) {
-                        TL_stories.StoryReaction storyReaction2 = (TL_stories.StoryReaction) g0aVar.F.i.get(i2);
+                if (h2aVar != null) {
+                    int size = h2aVar.i.size();
+                    while (i2 < i2aVar.F.i.size()) {
+                        TL_stories.StoryReaction storyReaction2 = (TL_stories.StoryReaction) i2aVar.F.i.get(i2);
                         if ((storyReaction2 instanceof TL_stories.TL_storyReactionPublicRepost) && (storyItem = (tL_storyReactionPublicRepost = (TL_stories.TL_storyReactionPublicRepost) storyReaction2).story) != null) {
-                            storyItem.dialogId = cf3.n(tL_storyReactionPublicRepost.peer_id);
+                            storyItem.dialogId = pg3.n(tL_storyReactionPublicRepost.peer_id);
                             if (storyReaction2 == storyReaction) {
                                 i3 = arrayList.size();
                             }
@@ -245,19 +245,19 @@ public final class k0 implements c39 {
                     i2 = size;
                 }
                 if (i3 >= 0 && arrayList.size() > 1) {
-                    g0aVar.H = new a2b(g0aVar.w, arrayList);
-                    g0aVar.I = i2;
-                    f0a f0aVar2 = g0aVar.F;
-                    m8b createOverlayStoryViewer = dVar.createOverlayStoryViewer();
-                    Context context = g0aVar.getContext();
-                    a2b a2bVar = g0aVar.H;
-                    p2b a = p2b.a(oz9Var);
-                    a.e = new wh9(f0aVar2, (byte) 13);
-                    createOverlayStoryViewer.G(context, i3, a2bVar, a);
+                    i2aVar.H = new b4b(i2aVar.w, arrayList);
+                    i2aVar.I = i2;
+                    h2a h2aVar2 = i2aVar.F;
+                    oab createOverlayStoryViewer = dVar.createOverlayStoryViewer();
+                    Context context = i2aVar.getContext();
+                    b4b b4bVar = i2aVar.H;
+                    q4b a = q4b.a(q1aVar);
+                    a.e = new yf9(h2aVar2, (byte) 17);
+                    createOverlayStoryViewer.G(context, i3, b4bVar, a);
                     return;
                 }
-                g0aVar.H = null;
-                dVar.createOverlayStoryViewer().J(g0aVar.getContext(), ((TL_stories.TL_storyReactionPublicRepost) storyReaction).story, p2b.a(oz9Var));
+                i2aVar.H = null;
+                dVar.createOverlayStoryViewer().J(i2aVar.getContext(), ((TL_stories.TL_storyReactionPublicRepost) storyReaction).story, q4b.a(q1aVar));
             } else {
                 if (!(storyReaction instanceof TL_stories.TL_storyReactionPublicForward)) {
                     if (storyView instanceof TL_stories.TL_storyViewPublicForward) {
@@ -269,72 +269,72 @@ public final class k0 implements c39 {
                     message = storyReaction.message;
                 }
                 Bundle bundle = new Bundle();
-                long n = cf3.n(message.peer_id);
+                long n = pg3.n(message.peer_id);
                 if (n >= 0) {
                     bundle.putLong("user_id", n);
                 } else {
                     bundle.putLong("chat_id", -n);
                 }
                 bundle.putInt("message_id", message.id);
-                m8bVar.L(new mu1(bundle));
+                oabVar.L(new yv1(bundle));
             }
         }
     }
 
-    private final void e(int i, View view) {
-        lwb lwbVar = (lwb) this.b;
-        EditText editText = lwbVar.w;
-        long a = ((hwb) lwbVar.s.c.get(i)).a();
-        mu1 mu1Var = ((or1) this.c).a;
-        if (mu1Var.S7()) {
-            mu1Var.ma(a);
+    private final void d(int i, View view) {
+        oyb oybVar = (oyb) this.b;
+        EditText editText = oybVar.w;
+        long a = ((kyb) oybVar.s.c.get(i)).a();
+        yv1 yv1Var = ((bt1) this.c).a;
+        if (yv1Var.d8()) {
+            yv1Var.ya(a);
         } else {
-            kxb kxbVar = mu1Var.g2;
-            if (kxbVar != null) {
-                kxbVar.k(a, false);
+            mzb mzbVar = yv1Var.g2;
+            if (mzbVar != null) {
+                mzbVar.k(a, false);
             }
         }
-        boolean h = lwbVar.h();
-        lwbVar.V = 0L;
-        lwbVar.W = null;
+        boolean h = oybVar.h();
+        oybVar.V = 0L;
+        oybVar.W = null;
         if (editText.length() > 0) {
             editText.setText("");
         } else if (h) {
-            lwbVar.l(false);
-            lwbVar.n();
+            oybVar.l(false);
+            oybVar.n();
         }
         editText.clearFocus();
-        lwbVar.d();
+        oybVar.d();
     }
 
-    private final void f(int i, View view) {
-        c0c c0cVar = (c0c) this.b;
-        wjb wjbVar = (wjb) this.c;
-        c4c G = c0cVar.e2.G(i - 1);
+    private final void e(int i, View view) {
+        c2c c2cVar = (c2c) this.b;
+        ylb ylbVar = (ylb) this.c;
+        c6c G = c2cVar.e2.G(i - 1);
         if (G != null) {
             int i2 = G.d;
             if (i2 == 1) {
-                CharSequence charSequence = c0cVar.X1;
-                if (charSequence != null && !c0cVar.W1) {
-                    gl.g(charSequence);
+                CharSequence charSequence = c2cVar.X1;
+                if (charSequence != null && !c2cVar.W1) {
+                    gm.g(charSequence);
                 }
             } else if (i2 == 2) {
-                if (!y6c.h(c0cVar.a).p()) {
+                if (!z8c.h(c2cVar.a).p()) {
                     if (LaunchActivity.S() != null) {
-                        new jh8(13, wjbVar, c0cVar.getContext()).show();
+                        new kj8(13, ylbVar, c2cVar.getContext()).show();
                         return;
                     }
                     return;
                 }
-                b1c b1cVar = na7.q1(c0cVar.a).i4;
-                b1cVar.K(0L, !b1cVar.A(0L));
-                c0cVar.dismiss();
+                b3c b3cVar = oc7.r1(c2cVar.a).i4;
+                b3cVar.K(0L, !b3cVar.A(0L));
+                c2cVar.dismiss();
             }
         }
     }
 
     @Override
-    public final void d(int r40, android.view.View r41) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.k0.d(int, android.view.View):void");
+    public final void g(int r40, android.view.View r41) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.k0.g(int, android.view.View):void");
     }
 }

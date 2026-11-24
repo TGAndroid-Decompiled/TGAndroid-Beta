@@ -1,13 +1,22 @@
 package defpackage;
-
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public abstract class e4f {
-    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, vbf vbfVar, Object obj, Object obj2) {
-        while (!atomicReferenceFieldUpdater.compareAndSet(vbfVar, obj, obj2)) {
-            if (atomicReferenceFieldUpdater.get(vbfVar) != obj && atomicReferenceFieldUpdater.get(vbfVar) != obj) {
-                return false;
+    public static byte[] a(byte[]... bArr) {
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            if (i >= bArr.length) {
+                break;
             }
+            i2 += bArr[i].length;
+            i++;
         }
-        return true;
+        byte[] bArr2 = new byte[i2];
+        int i3 = 0;
+        for (byte[] bArr3 : bArr) {
+            int length = bArr3.length;
+            System.arraycopy(bArr3, 0, bArr2, i3, length);
+            i3 += length;
+        }
+        return bArr2;
     }
 }

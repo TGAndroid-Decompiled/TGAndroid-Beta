@@ -1,14 +1,15 @@
 package defpackage;
-public final class xle extends c2e {
+public final class xle extends f4e {
     private static final xle zzb;
-    private int zzd;
-    private boolean zze;
-    private boolean zzf;
 
     static {
-        ?? c2eVar = new c2e();
-        zzb = c2eVar;
-        c2e.k(xle.class, c2eVar);
+        ?? f4eVar = new f4e();
+        zzb = f4eVar;
+        f4e.k(xle.class, f4eVar);
+    }
+
+    public static xle n() {
+        return zzb;
     }
 
     @Override
@@ -23,11 +24,11 @@ public final class xle extends c2e {
                         }
                         throw null;
                     }
-                    return new e0e(zzb);
+                    return new h2e(zzb);
                 }
-                return new c2e();
+                return new f4e();
             }
-            return new vae(zzb, "\u0004\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဇ\u0000\u0002ဇ\u0001", new Object[]{"zzd", "zze", "zzf"});
+            return new wce(zzb, "\u0004\u0000", null);
         }
         return (byte) 1;
     }

@@ -1,113 +1,252 @@
 package defpackage;
 
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-public final class cw4 {
-    public final RenderNode e;
-    public final RenderNode f;
-    public final RenderNode g;
-    public final RenderNode h;
-    public final RenderNode i;
-    public ColorMatrixColorFilter j;
-    public int k;
-    public int l;
-    public int m;
-    public int n;
-    public byte o;
-    public byte p;
-    public float s;
-    public float t;
-    public int u;
-    public int v;
-    public int w;
-    public int x;
-    public final RectF a = new RectF();
-    public final Rect b = new Rect();
-    public final RectF c = new RectF();
-    public final RectF d = new RectF();
-    public int q = 1;
-    public final RectF r = new RectF();
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
+public final class cw4 implements uz1 {
+    public final TL_stars.TL_starGiftUnique a;
+    public final fw4 b;
 
-    public cw4(int i) {
-        mk1.p();
-        RenderNode renderNode = new RenderNode("cap-" + i);
-        this.e = renderNode;
-        renderNode.setUseCompositingLayer(true, null);
-        mk1.p();
-        RenderNode renderNode2 = new RenderNode("glass-" + i);
-        this.f = renderNode2;
-        renderNode2.setRenderEffect(yz.m());
-        mk1.p();
-        this.g = new RenderNode("glass-frosted-" + i);
-        mk1.p();
-        RenderNode renderNode3 = new RenderNode("filtered-" + i);
-        this.h = renderNode3;
-        renderNode3.setRenderEffect(RenderEffect.createColorFilterEffect(ew4.v));
-        mk1.p();
-        this.i = new RenderNode("frosted-filtered-" + i);
+    public cw4(fw4 fw4Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        this.b = fw4Var;
+        this.a = tL_starGiftUnique;
     }
 
-    public final RenderNode a(int i) {
-        int F = ug8.F(i);
-        if (F != 0) {
-            if (F != 1) {
-                if (F != 2) {
-                    if (F == 3) {
-                        return this.i;
-                    }
-                    w26.j("Unknown source index: ".concat(tb4.B(i)));
-                    return null;
-                }
-                return this.g;
+    @Override
+    public final int B0() {
+        return 0;
+    }
+
+    @Override
+    public final TL_stories.StoryItem C0() {
+        return null;
+    }
+
+    @Override
+    public final boolean E0(long j) {
+        return false;
+    }
+
+    @Override
+    public final boolean G0() {
+        return false;
+    }
+
+    @Override
+    public final void H0(CharSequence charSequence, boolean z, boolean z2) {
+        b(charSequence);
+    }
+
+    @Override
+    public final nv1 J() {
+        return null;
+    }
+
+    @Override
+    public final boolean K0() {
+        return false;
+    }
+
+    public final void b(CharSequence charSequence) {
+        int i;
+        boolean z;
+        fw4 fw4Var = this.b;
+        io ioVar = fw4Var.v1;
+        fw4Var.l1.a(this.a, z8c.h(fw4Var.a).e(), fw4Var.r1.getTextWithEntities(), jb6.M0(2131749677, null), true);
+        int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
+        fw4Var.z1 = codePointCount;
+        int i2 = fw4Var.y1;
+        if (i2 > 0 && (i = i2 - codePointCount) <= 15) {
+            if (i < -9999) {
+                i = -9999;
             }
-            return this.f;
-        }
-        return this.e;
-    }
-
-    public final void b(int i, int i2, int i3) {
-        float max;
-        float f = 0.0f;
-        if (this.o != i) {
-            this.o = i;
-            float N = gl.N(7.0f);
-            if (N <= 0.0f) {
-                max = 0.0f;
+            String E = jb6.E(i, ',');
+            if (ioVar.getVisibility() == 0) {
+                z = true;
             } else {
-                max = Math.max(0.0f, ((((N * 0.57735f) + 0.5f) / i) - 0.5f) / 0.57735f);
+                z = false;
             }
-            this.s = max;
-            this.e.setRenderEffect(RenderEffect.createBlurEffect(max, max, Shader.TileMode.CLAMP));
-        }
-        if (this.p != i2) {
-            this.p = i2;
-            float N2 = gl.N(36.0f);
-            if (N2 > 0.0f) {
-                f = Math.max(0.0f, ((((N2 * 0.57735f) + 0.5f) / i2) - 0.5f) / 0.57735f);
+            ioVar.c(E, z, true);
+            if (ioVar.getVisibility() != 0) {
+                ioVar.setVisibility(0);
+                ioVar.setAlpha(0.0f);
+                ioVar.setScaleX(0.5f);
+                ioVar.setScaleY(0.5f);
             }
-            this.t = f;
-            RenderNode renderNode = this.g;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            renderNode.setRenderEffect(RenderEffect.createBlurEffect(f, f, tileMode));
-            RenderNode renderNode2 = this.i;
-            float f2 = this.t;
-            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(f2, f2, tileMode));
+            ioVar.animate().setListener(null).cancel();
+            ioVar.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            if (i < 0) {
+                anb.U(ioVar, cmb.o7, fw4Var.J0);
+                return;
+            } else {
+                anb.U(ioVar, cmb.x6, fw4Var.J0);
+                return;
+            }
         }
-        this.q = i3;
+        ioVar.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new kh2(this, (byte) 28));
     }
 
-    public final void c(ColorMatrixColorFilter colorMatrixColorFilter) {
-        if (this.j != colorMatrixColorFilter) {
-            this.j = colorMatrixColorFilter;
-            RenderNode renderNode = this.h;
-            if (colorMatrixColorFilter == null) {
-                colorMatrixColorFilter = ew4.v;
-            }
-            renderNode.setRenderEffect(RenderEffect.createColorFilterEffect(colorMatrixColorFilter));
-        }
+    @Override
+    public final boolean b0() {
+        return true;
+    }
+
+    @Override
+    public final void c1(CharSequence charSequence) {
+        b(charSequence);
+    }
+
+    @Override
+    public final boolean d1() {
+        return false;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final int j() {
+        return 0;
+    }
+
+    @Override
+    public final TLRPC.Peer l() {
+        return null;
+    }
+
+    @Override
+    public final TLRPC.TL_channels_sendAsPeers x() {
+        return null;
+    }
+
+    @Override
+    public final void A1() {
+    }
+
+    @Override
+    public final void B() {
+    }
+
+    @Override
+    public final void C(boolean z) {
+    }
+
+    @Override
+    public final void E1(boolean z) {
+    }
+
+    @Override
+    public final void G1() {
+    }
+
+    @Override
+    public final void H1() {
+    }
+
+    @Override
+    public final void I() {
+    }
+
+    @Override
+    public final void I0() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void O0() {
+    }
+
+    @Override
+    public final void R1() {
+    }
+
+    @Override
+    public final void W0() {
+    }
+
+    @Override
+    public final void Y0() {
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void c0() {
+    }
+
+    @Override
+    public final void e() {
+    }
+
+    @Override
+    public final void e1() {
+    }
+
+    @Override
+    public final void f0() {
+    }
+
+    @Override
+    public final void j1() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void n0() {
+    }
+
+    @Override
+    public final void o(float f) {
+    }
+
+    @Override
+    public final void p(boolean z) {
+    }
+
+    @Override
+    public final void r() {
+    }
+
+    @Override
+    public final void s1() {
+    }
+
+    @Override
+    public final void v() {
+    }
+
+    @Override
+    public final void v1(int i) {
+    }
+
+    @Override
+    public final void z0(int i) {
+    }
+
+    @Override
+    public final void y(float f, int i) {
+    }
+
+    @Override
+    public final void a1(View view, CharSequence charSequence, boolean z) {
+    }
+
+    @Override
+    public final void w(CharSequence charSequence, boolean z, int i, int i2, long j) {
+    }
+
+    @Override
+    public final void F1(int i, int i2, int i3, long j, long j2, boolean z) {
     }
 }

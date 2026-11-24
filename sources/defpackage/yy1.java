@@ -1,24 +1,25 @@
 package defpackage;
+
+import android.widget.FrameLayout;
 public final class yy1 implements Runnable {
     public final byte a;
-    public final az1 b;
+    public final FrameLayout b;
 
-    public yy1(az1 az1Var, byte b) {
+    public yy1(FrameLayout frameLayout, byte b) {
         this.a = b;
-        this.b = az1Var;
+        this.b = frameLayout;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        az1 az1Var = this.b;
+        FrameLayout frameLayout = this.b;
         switch (b) {
             case 0:
-                az1Var.a();
+                gm.B2(frameLayout);
                 return;
             default:
-                gl.e3(az1Var.E, 400L);
-                az1Var.c();
+                gm.B2(frameLayout);
                 return;
         }
     }

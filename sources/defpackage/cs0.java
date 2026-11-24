@@ -1,39 +1,35 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class cs0 extends k27 {
-    public TL_iv.RichMessage u3;
-    public final boolean v3;
-    public final TLRPC.BotInlineResult w3;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class cs0 extends tk4 {
+    public final Paint V;
+    public final gs0 W;
 
-    public cs0(int i, TLRPC.TL_message tL_message, boolean z, TLRPC.BotInlineResult botInlineResult) {
-        super(i, tL_message, true, true);
-        this.v3 = z;
-        this.w3 = botInlineResult;
+    public cs0(gs0 gs0Var, Context context) {
+        super(context, null);
+        this.W = gs0Var;
+        this.V = new Paint();
     }
 
     @Override
-    public final TL_iv.RichMessage E0() {
-        if (this.v3) {
-            TL_iv.RichMessage richMessage = this.u3;
-            if (richMessage == null) {
-                TL_iv.RichMessage n = vvc.n(vvc.v(this.K1, this.w3));
-                this.u3 = n;
-                return n;
-            }
-            return richMessage;
-        }
-        return super.E0();
+    public final int getColumnsCount() {
+        return this.W.d;
     }
 
     @Override
-    public final boolean N3() {
-        return false;
+    public final int getViewType() {
+        setIsSingleCell(false);
+        return 27;
     }
 
     @Override
-    public final boolean O3() {
-        return false;
+    public final void onDraw(Canvas canvas) {
+        int v0 = cmb.v0(cmb.c6, this.W.a0.c);
+        Paint paint = this.V;
+        paint.setColor(v0);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.onDraw(canvas);
     }
 }

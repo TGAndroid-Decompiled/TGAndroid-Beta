@@ -1,29 +1,32 @@
 package defpackage;
 
-import java.util.AbstractMap;
-public final class zhf extends jff {
-    public final c5d h;
+import j$.util.DesugarCollections;
+import java.util.List;
+public abstract class zhf {
+    public static final vhf a = new Object();
+    public static final xhf b = new Object();
 
-    public zhf(c5d c5dVar) {
-        super((byte) 3);
-        this.h = c5dVar;
+    public void a(Object obj, long j) {
+        Object unmodifiableList;
+        List list = (List) hjf.g(obj, j);
+        if (list instanceof thf) {
+            unmodifiableList = ((thf) list).zzd();
+        } else if (!vhf.c.isAssignableFrom(list.getClass())) {
+            if ((list instanceof qif) && (list instanceof ehf)) {
+                mff mffVar = (mff) ((ehf) list);
+                boolean z = mffVar.a;
+                if (z && z) {
+                    mffVar.a = false;
+                    return;
+                }
+                return;
+            }
+            unmodifiableList = DesugarCollections.unmodifiableList(list);
+        } else {
+            return;
+        }
+        hjf.i(obj, j, unmodifiableList);
     }
 
-    @Override
-    public final Object get(int i) {
-        c5d c5dVar = this.h;
-        r2f.a(i, c5dVar.r ? 1 : 0);
-        int i2 = i << 1;
-        Object[] objArr = c5dVar.n;
-        Object obj = objArr[i2];
-        obj.getClass();
-        Object obj2 = objArr[i2 + 1];
-        obj2.getClass();
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
-    }
-
-    @Override
-    public final int size() {
-        return this.h.r ? 1 : 0;
-    }
+    public abstract void b(Object obj, long j, Object obj2);
 }

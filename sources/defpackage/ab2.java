@@ -1,28 +1,14 @@
 package defpackage;
+public final class ab2 implements tc5 {
+    public final ib2 a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ab2 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final gb2 b;
-
-    public ab2(gb2 gb2Var, byte b) {
-        this.a = b;
-        this.b = gb2Var;
+    public ab2(ib2 ib2Var) {
+        this.a = ib2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        gb2 gb2Var = this.b;
-        switch (b) {
-            case 0:
-                gb2Var.Q5.O0 = true;
-                gb2Var.invalidate();
-                return;
-            default:
-                gb2Var.setSelectedBackgroundProgress(0.0f);
-                return;
-        }
+    public final void a(uc5 uc5Var, long j) {
+        ib2 ib2Var = this.a;
+        ib2Var.d0(ib2Var.getMessagesController().L0(Long.valueOf(j)), uc5Var);
     }
 }

@@ -1,5 +1,17 @@
 package defpackage;
+public final class n6e implements cq7 {
+    public static final n6e a = new Object();
 
-import java.util.RandomAccess;
-public abstract class n6e extends bsd implements RandomAccess {
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

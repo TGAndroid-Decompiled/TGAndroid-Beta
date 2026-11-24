@@ -1,83 +1,341 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import java.util.concurrent.CancellationException;
+import android.app.Dialog;
+import android.text.SpannableStringBuilder;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d;
-public final class gf6 implements px2, OnSuccessListener, OnFailureListener {
-    public final lf6 a;
+public final class gf6 implements RequestDelegate {
+    public final byte a;
+    public final if6 b;
 
-    public gf6(lf6 lf6Var) {
-        this.a = lf6Var;
+    public gf6(if6 if6Var, byte b) {
+        this.a = b;
+        this.b = if6Var;
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        int i;
-        lf6 lf6Var = this.a;
-        mf6 mf6Var = lf6Var.h0;
-        if (!lf6Var.a0) {
-            if (exc instanceof ConnectionsManager.RequestException) {
-                String message = exc.getMessage();
-                if (message != null) {
-                    if (message.contains("SESSION_PASSWORD_NEEDED")) {
-                        TL_account.getPassword getpassword = new TL_account.getPassword();
-                        i = ((d) mf6Var).currentAccount;
-                        ConnectionsManager.getInstance(i).sendRequest(getpassword, new ff6(lf6Var, (byte) 1), 10);
-                        return;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        final if6 if6Var = this.b;
+        switch (b) {
+            case 0:
+                gm.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String G;
+                        String G2;
+                        int i;
+                        byte b2 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        if6 if6Var2 = if6Var;
+                        switch (b2) {
+                            case 0:
+                                if (tL_error2 == null) {
+                                    if6Var2.n = (TL_account.Password) tLObject2;
+                                    if6Var2.h(null);
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                mh6 mh6Var = if6Var2.E;
+                                mh6Var.y1(false, true);
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
+                                    if (mh6Var.getParentActivity() != null) {
+                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mh6Var.getParentActivity());
+                                        String str = tL_auth_passwordRecovery.email_pattern;
+                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                                        int indexOf = str.indexOf(42);
+                                        int lastIndexOf = str.lastIndexOf(42);
+                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                            ?? obj = new Object();
+                                            obj.a |= 256;
+                                            obj.b = indexOf;
+                                            int i2 = lastIndexOf + 1;
+                                            obj.c = i2;
+                                            valueOf.setSpan(new xkb(obj, 0), indexOf, i2, 0);
+                                        }
+                                        SpannableStringBuilder m0 = gm.m0(jb6.M0(2131745813, null), valueOf);
+                                        he heVar = alertDialog$Builder.a;
+                                        heVar.U = m0;
+                                        heVar.S = jb6.M0(2131745811, "RestoreEmailSentTitle");
+                                        alertDialog$Builder.j(jb6.M0(2131751708, null), new nv4(if6Var2, tL_auth_passwordRecovery, (byte) 20));
+                                        Dialog showDialog = mh6Var.showDialog(heVar);
+                                        if (showDialog != null) {
+                                            showDialog.setCanceledOnTouchOutside(false);
+                                            showDialog.setCancelable(false);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                    int intValue = Utilities.z(tL_error2.text).intValue();
+                                    if (intValue < 60) {
+                                        G = jb6.G(intValue, "Seconds", new Object[0]);
+                                    } else {
+                                        G = jb6.G(intValue / 60, "Minutes", new Object[0]);
+                                    }
+                                    mh6Var.z1(jb6.M0(2131742523, null), jb6.a0("FloodWaitTime", null, 2131750618, G));
+                                    return;
+                                } else {
+                                    mh6Var.z1(jb6.M0(2131745804, null), tL_error2.text);
+                                    return;
+                                }
+                            default:
+                                mh6 mh6Var2 = if6Var2.E;
+                                if6Var2.h = false;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i = ((d) mh6Var2).currentAccount;
+                                    ConnectionsManager.getInstance(i).sendRequest(getpassword, new gf6(if6Var2, (byte) 0), 8);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
+                                    mh6Var2.K1(false, true);
+                                    if6Var2.postDelayed(new k16(if6Var2, tLObject2, (byte) 17), 150L);
+                                    return;
+                                } else {
+                                    mh6Var2.y1(false, true);
+                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
+                                        if (mh6Var2.getParentActivity() != null) {
+                                            if6Var2.a.setText("");
+                                            mh6.E1(if6Var2.y, true);
+                                            return;
+                                        }
+                                        return;
+                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                        int intValue2 = Utilities.z(tL_error2.text).intValue();
+                                        if (intValue2 < 60) {
+                                            G2 = jb6.G(intValue2, "Seconds", new Object[0]);
+                                        } else {
+                                            G2 = jb6.G(intValue2 / 60, "Minutes", new Object[0]);
+                                        }
+                                        mh6Var2.z1(jb6.M0(2131745804, null), jb6.a0("FloodWaitTime", null, 2131750618, G2));
+                                        return;
+                                    } else {
+                                        mh6Var2.z1(jb6.M0(2131745804, null), tL_error2.text);
+                                        return;
+                                    }
+                                }
+                        }
                     }
-                    boolean z = w01.a;
-                    new u21(mf6Var.a0, null).f0(message, false);
-                }
-            } else if (!(exc instanceof CancellationException)) {
-                fa4.g(exc, true);
-            }
-            if (lf6Var.o()) {
-                lf6Var.t(false);
-            }
+                });
+                return;
+            case 1:
+                gm.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String G;
+                        String G2;
+                        int i;
+                        byte b2 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        if6 if6Var2 = if6Var;
+                        switch (b2) {
+                            case 0:
+                                if (tL_error2 == null) {
+                                    if6Var2.n = (TL_account.Password) tLObject2;
+                                    if6Var2.h(null);
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                mh6 mh6Var = if6Var2.E;
+                                mh6Var.y1(false, true);
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
+                                    if (mh6Var.getParentActivity() != null) {
+                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mh6Var.getParentActivity());
+                                        String str = tL_auth_passwordRecovery.email_pattern;
+                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                                        int indexOf = str.indexOf(42);
+                                        int lastIndexOf = str.lastIndexOf(42);
+                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                            ?? obj = new Object();
+                                            obj.a |= 256;
+                                            obj.b = indexOf;
+                                            int i2 = lastIndexOf + 1;
+                                            obj.c = i2;
+                                            valueOf.setSpan(new xkb(obj, 0), indexOf, i2, 0);
+                                        }
+                                        SpannableStringBuilder m0 = gm.m0(jb6.M0(2131745813, null), valueOf);
+                                        he heVar = alertDialog$Builder.a;
+                                        heVar.U = m0;
+                                        heVar.S = jb6.M0(2131745811, "RestoreEmailSentTitle");
+                                        alertDialog$Builder.j(jb6.M0(2131751708, null), new nv4(if6Var2, tL_auth_passwordRecovery, (byte) 20));
+                                        Dialog showDialog = mh6Var.showDialog(heVar);
+                                        if (showDialog != null) {
+                                            showDialog.setCanceledOnTouchOutside(false);
+                                            showDialog.setCancelable(false);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                    int intValue = Utilities.z(tL_error2.text).intValue();
+                                    if (intValue < 60) {
+                                        G = jb6.G(intValue, "Seconds", new Object[0]);
+                                    } else {
+                                        G = jb6.G(intValue / 60, "Minutes", new Object[0]);
+                                    }
+                                    mh6Var.z1(jb6.M0(2131742523, null), jb6.a0("FloodWaitTime", null, 2131750618, G));
+                                    return;
+                                } else {
+                                    mh6Var.z1(jb6.M0(2131745804, null), tL_error2.text);
+                                    return;
+                                }
+                            default:
+                                mh6 mh6Var2 = if6Var2.E;
+                                if6Var2.h = false;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i = ((d) mh6Var2).currentAccount;
+                                    ConnectionsManager.getInstance(i).sendRequest(getpassword, new gf6(if6Var2, (byte) 0), 8);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
+                                    mh6Var2.K1(false, true);
+                                    if6Var2.postDelayed(new k16(if6Var2, tLObject2, (byte) 17), 150L);
+                                    return;
+                                } else {
+                                    mh6Var2.y1(false, true);
+                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
+                                        if (mh6Var2.getParentActivity() != null) {
+                                            if6Var2.a.setText("");
+                                            mh6.E1(if6Var2.y, true);
+                                            return;
+                                        }
+                                        return;
+                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                        int intValue2 = Utilities.z(tL_error2.text).intValue();
+                                        if (intValue2 < 60) {
+                                            G2 = jb6.G(intValue2, "Seconds", new Object[0]);
+                                        } else {
+                                            G2 = jb6.G(intValue2 / 60, "Minutes", new Object[0]);
+                                        }
+                                        mh6Var2.z1(jb6.M0(2131745804, null), jb6.a0("FloodWaitTime", null, 2131750618, G2));
+                                        return;
+                                    } else {
+                                        mh6Var2.z1(jb6.M0(2131745804, null), tL_error2.text);
+                                        return;
+                                    }
+                                }
+                        }
+                    }
+                });
+                return;
+            default:
+                gm.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        String G;
+                        String G2;
+                        int i;
+                        byte b2 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        if6 if6Var2 = if6Var;
+                        switch (b2) {
+                            case 0:
+                                if (tL_error2 == null) {
+                                    if6Var2.n = (TL_account.Password) tLObject2;
+                                    if6Var2.h(null);
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                mh6 mh6Var = if6Var2.E;
+                                mh6Var.y1(false, true);
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
+                                    if (mh6Var.getParentActivity() != null) {
+                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mh6Var.getParentActivity());
+                                        String str = tL_auth_passwordRecovery.email_pattern;
+                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                                        int indexOf = str.indexOf(42);
+                                        int lastIndexOf = str.lastIndexOf(42);
+                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                            ?? obj = new Object();
+                                            obj.a |= 256;
+                                            obj.b = indexOf;
+                                            int i2 = lastIndexOf + 1;
+                                            obj.c = i2;
+                                            valueOf.setSpan(new xkb(obj, 0), indexOf, i2, 0);
+                                        }
+                                        SpannableStringBuilder m0 = gm.m0(jb6.M0(2131745813, null), valueOf);
+                                        he heVar = alertDialog$Builder.a;
+                                        heVar.U = m0;
+                                        heVar.S = jb6.M0(2131745811, "RestoreEmailSentTitle");
+                                        alertDialog$Builder.j(jb6.M0(2131751708, null), new nv4(if6Var2, tL_auth_passwordRecovery, (byte) 20));
+                                        Dialog showDialog = mh6Var.showDialog(heVar);
+                                        if (showDialog != null) {
+                                            showDialog.setCanceledOnTouchOutside(false);
+                                            showDialog.setCancelable(false);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                    int intValue = Utilities.z(tL_error2.text).intValue();
+                                    if (intValue < 60) {
+                                        G = jb6.G(intValue, "Seconds", new Object[0]);
+                                    } else {
+                                        G = jb6.G(intValue / 60, "Minutes", new Object[0]);
+                                    }
+                                    mh6Var.z1(jb6.M0(2131742523, null), jb6.a0("FloodWaitTime", null, 2131750618, G));
+                                    return;
+                                } else {
+                                    mh6Var.z1(jb6.M0(2131745804, null), tL_error2.text);
+                                    return;
+                                }
+                            default:
+                                mh6 mh6Var2 = if6Var2.E;
+                                if6Var2.h = false;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i = ((d) mh6Var2).currentAccount;
+                                    ConnectionsManager.getInstance(i).sendRequest(getpassword, new gf6(if6Var2, (byte) 0), 8);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
+                                    mh6Var2.K1(false, true);
+                                    if6Var2.postDelayed(new k16(if6Var2, tLObject2, (byte) 17), 150L);
+                                    return;
+                                } else {
+                                    mh6Var2.y1(false, true);
+                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
+                                        if (mh6Var2.getParentActivity() != null) {
+                                            if6Var2.a.setText("");
+                                            mh6.E1(if6Var2.y, true);
+                                            return;
+                                        }
+                                        return;
+                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                        int intValue2 = Utilities.z(tL_error2.text).intValue();
+                                        if (intValue2 < 60) {
+                                            G2 = jb6.G(intValue2, "Seconds", new Object[0]);
+                                        } else {
+                                            G2 = jb6.G(intValue2 / 60, "Minutes", new Object[0]);
+                                        }
+                                        mh6Var2.z1(jb6.M0(2131745804, null), jb6.a0("FloodWaitTime", null, 2131750618, G2));
+                                        return;
+                                    } else {
+                                        mh6Var2.z1(jb6.M0(2131745804, null), tL_error2.text);
+                                        return;
+                                    }
+                                }
+                        }
+                    }
+                });
+                return;
         }
-    }
-
-    @Override
-    public final void onSuccess(Object obj) {
-        TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
-        lf6 lf6Var = this.a;
-        mf6 mf6Var = lf6Var.h0;
-        if (lf6Var.a0) {
-            return;
-        }
-        if (auth_authorization instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
-            TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) auth_authorization).terms_of_service;
-            if (tL_help_termsOfService != null) {
-                mf6Var.s0 = tL_help_termsOfService;
-            }
-            mf6Var.I1(5, true, ir2.l("fromFirebasePhoneNumberVerification", true), false);
-        } else if (auth_authorization instanceof TLRPC.TL_auth_authorization) {
-            mf6Var.B1((TLRPC.TL_auth_authorization) auth_authorization, false);
-        } else {
-            lf6Var.t(false);
-        }
-    }
-
-    @Override
-    public final void y(mx2 mx2Var) {
-        lf6 lf6Var = this.a;
-        lf6Var.L = true;
-        String str = mx2Var.c;
-        lf6Var.a.setText(str);
-        lf6Var.u(str, mx2Var);
-        lf6Var.G = mx2Var;
-        lf6Var.F = (byte) 0;
-        lf6Var.L = false;
-        SharedPreferences.Editor edit = na7.c1().edit();
-        edit.putString("phone_code_last_matched_" + mx2Var.c, mx2Var.d).apply();
-        gl.e3(new bf6(lf6Var, (byte) 4), 300L);
-        if6 if6Var = lf6Var.b;
-        if6Var.requestFocus();
-        if6Var.setSelection(if6Var.length());
     }
 }

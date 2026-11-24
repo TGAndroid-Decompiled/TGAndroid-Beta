@@ -1,42 +1,40 @@
 package defpackage;
 
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.ResultReceiver;
-public final class t13 {
-    public static d03 a(String str, String str2) {
-        if (rp5.a(str, "CREATE_CANCELED")) {
-            return new b03(str2);
-        }
-        if (rp5.a(str, "CREATE_INTERRUPTED")) {
-            return new f03(str2);
-        }
-        return new c03(str2, (byte) 2);
+public final class t13 extends b4 {
+    public static final Parcelable.Creator<t13> CREATOR = new f41((byte) 11);
+    public final String a;
+    public final Bundle b;
+    public final Bundle c;
+    public final String d;
+    public final String e;
+    public final ResultReceiver f;
+
+    public t13(String str, Bundle bundle, Bundle bundle2, String str2, String str3, ResultReceiver resultReceiver) {
+        str.getClass();
+        bundle.getClass();
+        bundle2.getClass();
+        this.a = str;
+        this.b = bundle;
+        this.c = bundle2;
+        this.d = str2;
+        this.e = str3;
+        this.f = resultReceiver;
     }
 
-    public static us4 b(String str, String str2) {
-        if (str != null) {
-            int hashCode = str.hashCode();
-            if (hashCode != -1567968963) {
-                if (hashCode != -154594663) {
-                    if (hashCode == 1996705159 && str.equals("GET_NO_CREDENTIALS")) {
-                        return new pj7(str2);
-                    }
-                } else if (str.equals("GET_INTERRUPTED")) {
-                    return new vs4(str2);
-                }
-            } else if (str.equals("GET_CANCELED_TAG")) {
-                return new rs4(str2);
-            }
-        }
-        return new ts4(str2, (byte) 2);
-    }
-
-    public static void c(ResultReceiver resultReceiver, String str, String str2) {
-        resultReceiver.getClass();
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("FAILURE_RESPONSE", true);
-        bundle.putString("EXCEPTION_TYPE", str);
-        bundle.putString("EXCEPTION_MESSAGE", str2);
-        resultReceiver.send(Integer.MAX_VALUE, bundle);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        int r = mve.r(parcel, 20293);
+        mve.l(parcel, 1, this.a);
+        mve.b(parcel, 2, this.b);
+        mve.b(parcel, 3, this.c);
+        mve.l(parcel, 4, this.d);
+        mve.l(parcel, 5, this.e);
+        mve.k(parcel, 6, this.f, i);
+        mve.s(parcel, r);
     }
 }

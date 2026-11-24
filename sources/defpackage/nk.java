@@ -1,197 +1,211 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class nk implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import org.telegram.tgnet.tl.TL_stars;
+public final class nk {
+    public final ok a;
+    public final long b;
 
-    public nk(Object obj, Object obj2, Object obj3, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-        this.d = obj3;
+    public nk(long j, ok okVar) {
+        this.a = okVar;
+        this.b = j;
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f;
-        float f2;
-        float L;
-        byte b = this.a;
-        int i = 0;
-        Object obj = this.d;
-        Object obj2 = this.c;
-        Object obj3 = this.b;
-        switch (b) {
-            case 0:
-                ImageView imageView = (ImageView) obj3;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) obj2;
-                Drawable drawable = (Drawable) obj;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float abs = Math.abs(floatValue - 0.5f) + 0.5f;
-                imageView.setScaleX(abs);
-                imageView.setScaleY(abs);
-                if (floatValue >= 0.5f && !atomicBoolean.get()) {
-                    atomicBoolean.set(true);
-                    imageView.setImageDrawable(drawable);
-                    return;
+    public static nk h(long j, ok okVar) {
+        if (okVar == null) {
+            return null;
+        }
+        return new nk(j * 1000000000, okVar);
+    }
+
+    public static nk i(String str, ok okVar) {
+        try {
+            BigDecimal multiply = new BigDecimal(str).multiply(BigDecimal.valueOf(1000000000L));
+            if (multiply.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0) {
+                return null;
+            }
+            return j(multiply.longValue(), okVar);
+        } catch (NumberFormatException unused) {
+            return null;
+        }
+    }
+
+    public static nk j(long j, ok okVar) {
+        if (okVar == null) {
+            return null;
+        }
+        return new nk(j, okVar);
+    }
+
+    public static nk k(double d, ok okVar) {
+        ok okVar2 = ok.b;
+        if (okVar == okVar2) {
+            return new nk((long) ((d / oc7.r1(z8c.t0).l4.k.i) * 1.0E9d), okVar2).o(2);
+        }
+        ok okVar3 = ok.a;
+        if (okVar == okVar3) {
+            return new nk((long) (((d * 100000.0d) / oc7.r1(z8c.t0).l4.r3.i) * 1.0E9d), okVar3).o(0);
+        }
+        return h(0L, okVar);
+    }
+
+    public static nk m(TL_stars.StarsAmount starsAmount) {
+        if (starsAmount instanceof TL_stars.TL_starsAmount) {
+            return j((starsAmount.amount * 1000000000) + starsAmount.nanos, ok.a);
+        }
+        if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
+            return j(starsAmount.amount, ok.b);
+        }
+        return null;
+    }
+
+    public static nk n(TL_stars.StarsAmount starsAmount) {
+        nk m = m(starsAmount);
+        if (m != null) {
+            return m;
+        }
+        return j(0L, ok.a);
+    }
+
+    public final long a() {
+        return this.b / 1000000000;
+    }
+
+    public final String b() {
+        BigDecimal stripTrailingZeros;
+        BigDecimal divide = new BigDecimal(this.b).divide(BigDecimal.valueOf(1000000000L), MathContext.UNLIMITED);
+        if (divide.signum() == 0) {
+            stripTrailingZeros = new BigDecimal(BigInteger.ZERO, 0);
+        } else {
+            stripTrailingZeros = divide.stripTrailingZeros();
+        }
+        return stripTrailingZeros.toPlainString();
+    }
+
+    public final double c() {
+        return this.b / 1.0E9d;
+    }
+
+    public final String d() {
+        StringBuilder sb = new StringBuilder(jb6.E(a(), ','));
+        long j = this.b % 1000000000;
+        if (j == 0) {
+            return sb.toString();
+        }
+        sb.append('.');
+        String l = Long.toString(j);
+        int length = 9 - l.length();
+        for (int i = 0; i < length; i++) {
+            sb.append('0');
+        }
+        int length2 = l.length();
+        while (length2 > 0 && l.charAt(length2 - 1) == '0') {
+            length2--;
+        }
+        sb.append((CharSequence) l, 0, length2);
+        return sb.toString();
+    }
+
+    public final nk e(ok okVar) {
+        if (this.a == okVar) {
+            return this;
+        }
+        return k(f(), okVar);
+    }
+
+    public final boolean equals(Object obj) {
+        nk nkVar;
+        if (this == obj) {
+            return true;
+        }
+        if ((obj instanceof nk) && (this == (nkVar = (nk) obj) || (this.a == nkVar.a && this.b == nkVar.b))) {
+            return true;
+        }
+        return false;
+    }
+
+    public final double f() {
+        ok okVar = this.a;
+        if (okVar == ok.a) {
+            return ((c() / 1000.0d) * oc7.r1(z8c.t0).l4.r3.i) / 100.0d;
+        }
+        if (okVar == ok.b) {
+            return c() * oc7.r1(z8c.t0).l4.k.i;
+        }
+        return 0.0d;
+    }
+
+    public final String g() {
+        int i = ((this.b % 1000000000) > 0L ? 1 : ((this.b % 1000000000) == 0L ? 0 : -1));
+        ok okVar = this.a;
+        if (i == 0) {
+            int ordinal = okVar.ordinal();
+            if (ordinal != 0) {
+                if (ordinal == 1) {
+                    return jb6.H(' ', "TonCount", (int) a());
                 }
-                return;
-            case 1:
-                ka2 ka2Var = (ka2) obj3;
-                nb2 nb2Var = (nb2) obj2;
-                gb2 gb2Var = (gb2) obj;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                boolean z = ka2Var.l;
-                int i2 = ka2Var.s;
-                if (z) {
-                    nb2Var.h0 = (-i2) * floatValue2;
-                    nb2Var.i0 = (-ka2Var.t) * floatValue2;
-                    nb2Var.k0 = (-ka2Var.u) * floatValue2;
-                    nb2Var.j0 = (-ka2Var.v) * floatValue2;
-                } else {
-                    nb2Var.h0 = ((-i2) * floatValue2) - gb2Var.getAnimationOffsetX();
-                    nb2Var.i0 = ((-ka2Var.t) * floatValue2) - gb2Var.getAnimationOffsetX();
-                    nb2Var.k0 = ((-ka2Var.u) * floatValue2) - gb2Var.getTranslationY();
-                    nb2Var.j0 = ((-ka2Var.v) * floatValue2) - gb2Var.getTranslationY();
-                }
-                gb2Var.invalidate();
-                return;
-            case 2:
-                rw5 rw5Var = (rw5) obj3;
-                ViewGroup viewGroup = (ViewGroup) obj2;
-                ViewGroup viewGroup2 = (ViewGroup) obj;
-                rw5Var.Y0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rw5Var.V0.invalidate();
-                rw5Var.S0.invalidate();
-                rw5Var.T0.invalidate();
-                while (i < rw5Var.V0.getChildCount()) {
-                    View childAt = rw5Var.V0.getChildAt(i);
-                    if (i == rw5Var.X0) {
-                        f = rw5Var.Y0;
-                    } else if (i == rw5Var.W0) {
-                        f = 1.0f - rw5Var.Y0;
-                    } else {
-                        f = 0.0f;
-                    }
-                    childAt.setAlpha((f * 0.4f) + 0.6f);
-                    i++;
-                }
-                float interpolation = s33.f.getInterpolation(rw5Var.Y0);
-                if (viewGroup != null && viewGroup2 != null) {
-                    float f3 = 1.0f - interpolation;
-                    float f4 = (f3 * 0.4f) + 0.6f;
-                    viewGroup.setScaleX(f4);
-                    viewGroup.setScaleY(f4);
-                    viewGroup.setTranslationY((Math.min(interpolation, 0.25f) * gl.L(16.0f)) / 0.25f);
-                    viewGroup.setAlpha(1.0f - (Math.min(interpolation, 0.25f) / 0.25f));
-                    float f5 = (interpolation * 0.4f) + 0.6f;
-                    viewGroup2.setScaleX(f5);
-                    viewGroup2.setScaleY(f5);
-                    viewGroup2.setTranslationY((Math.min(f3, 0.25f) * (-gl.L(16.0f))) / 0.25f);
-                    viewGroup2.setAlpha(1.0f - (Math.min(f3, 0.25f) / 0.25f));
-                    return;
-                }
-                return;
-            case 3:
-                wt7 wt7Var = (wt7) obj3;
-                ViewGroup viewGroup3 = (ViewGroup) obj2;
-                ViewGroup viewGroup4 = (ViewGroup) obj;
-                wt7Var.Q0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wt7Var.M0.invalidate();
-                wt7Var.J0.invalidate();
-                wt7Var.K0.invalidate();
-                while (i < wt7Var.M0.getChildCount()) {
-                    View childAt2 = wt7Var.M0.getChildAt(i);
-                    if (i == wt7Var.P0) {
-                        f2 = wt7Var.Q0;
-                    } else if (i == wt7Var.O0) {
-                        f2 = 1.0f - wt7Var.Q0;
-                    } else {
-                        f2 = 0.0f;
-                    }
-                    childAt2.setAlpha((f2 * 0.4f) + 0.6f);
-                    i++;
-                }
-                float interpolation2 = s33.f.getInterpolation(wt7Var.Q0);
-                if (viewGroup3 != null && viewGroup4 != null) {
-                    float f6 = 1.0f - interpolation2;
-                    float f7 = (f6 * 0.4f) + 0.6f;
-                    viewGroup3.setScaleX(f7);
-                    viewGroup3.setScaleY(f7);
-                    viewGroup3.setTranslationY((Math.min(interpolation2, 0.25f) * gl.L(16.0f)) / 0.25f);
-                    viewGroup3.setAlpha(1.0f - (Math.min(interpolation2, 0.25f) / 0.25f));
-                    float f8 = (interpolation2 * 0.4f) + 0.6f;
-                    viewGroup4.setScaleX(f8);
-                    viewGroup4.setScaleY(f8);
-                    viewGroup4.setTranslationY((Math.min(f6, 0.25f) * (-gl.L(16.0f))) / 0.25f);
-                    viewGroup4.setAlpha(1.0f - (Math.min(f6, 0.25f) / 0.25f));
-                    return;
-                }
-                return;
-            case 4:
-                boolean[] zArr = (boolean[]) obj;
-                y28 y28Var = ((c28) obj3).a;
-                y28Var.l3 = ((Float) ((ValueAnimator) obj2).getAnimatedValue()).floatValue();
-                y28Var.invalidate();
-                if (y28Var.l3 > 0.8f && !zArr[0]) {
-                    zArr[0] = true;
-                    y28Var.g3 = true;
-                    try {
-                        y28Var.performHapticFeedback(3);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-            case 5:
-                ei8 ei8Var = (ei8) obj3;
-                t98 t98Var = (t98) obj2;
-                PremiumPreviewFragment premiumPreviewFragment = ei8Var.n;
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t98Var.setAlpha(floatValue3);
-                t98Var.setScaleX(floatValue3);
-                t98Var.setScaleY(floatValue3);
-                float animatedFraction = ((ValueAnimator) obj).getAnimatedFraction();
-                while (i < premiumPreviewFragment.V.getChildCount()) {
-                    View childAt3 = premiumPreviewFragment.V.getChildAt(i);
-                    if (childAt3 != ei8Var.e) {
-                        if (childAt3 == ei8Var.c) {
-                            L = 0.0f - (gl.L(15.0f) * animatedFraction);
-                        } else {
-                            L = (gl.L(8.0f) * animatedFraction) + 0.0f;
-                        }
-                        childAt3.setTranslationY((t98Var.getMeasuredHeight() * animatedFraction) + L);
-                    }
-                    i++;
-                }
-                return;
-            case 6:
-                ohb ohbVar = (ohb) obj3;
-                ohbVar.a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((ar1) obj2).getEditField().setAlpha(ohbVar.a);
-                ((w02) obj).invalidate();
-                return;
-            default:
-                mpb mpbVar = (mpb) obj3;
-                AtomicBoolean atomicBoolean2 = (AtomicBoolean) obj2;
-                gk2 gk2Var = (gk2) obj;
-                mpbVar.getClass();
-                if (((Float) valueAnimator.getAnimatedValue()).floatValue() >= 0.5f && !atomicBoolean2.get()) {
-                    atomicBoolean2.set(true);
-                    mpbVar.setDrawable(gk2Var);
-                    return;
-                }
-                return;
+                return "";
+            }
+            return jb6.H(' ', "StarsCount", (int) a());
+        }
+        int ordinal2 = okVar.ordinal();
+        if (ordinal2 != 0) {
+            if (ordinal2 != 1) {
+                return "";
+            }
+            return jb6.a0(null, null, 2131743735, b());
+        }
+        return jb6.a0(null, null, 2131744802, b());
+    }
+
+    public final boolean l() {
+        if (this.b == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final nk o(int i) {
+        long j = 9 - i;
+        if (j <= 0) {
+            return this;
+        }
+        long j2 = 1;
+        for (int i2 = 0; i2 < j; i2++) {
+            j2 *= 10;
+        }
+        return j((this.b / j2) * j2, this.a);
+    }
+
+    public final nk p() {
+        nk o = o(2);
+        if (o.b == this.b) {
+            return this;
+        }
+        long j = 1;
+        for (int i = 0; i < 7; i++) {
+            j *= 10;
+        }
+        return j(o.b + j, this.a);
+    }
+
+    public final TL_stars.StarsAmount q() {
+        ok okVar = ok.a;
+        long j = this.b;
+        ok okVar2 = this.a;
+        if (okVar2 == okVar) {
+            TL_stars.TL_starsAmount tL_starsAmount = new TL_stars.TL_starsAmount();
+            tL_starsAmount.amount = j / 1000000000;
+            tL_starsAmount.nanos = (int) (j % 1000000000);
+            return tL_starsAmount;
+        } else if (okVar2 == ok.b) {
+            TL_stars.TL_starsTonAmount tL_starsTonAmount = new TL_stars.TL_starsTonAmount();
+            tL_starsTonAmount.amount = j;
+            return tL_starsTonAmount;
+        } else {
+            return null;
         }
     }
 }

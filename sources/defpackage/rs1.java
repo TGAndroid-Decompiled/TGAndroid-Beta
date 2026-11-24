@@ -1,18 +1,16 @@
 package defpackage;
 
 import android.content.Context;
-public final class rs1 extends eq0 {
-    public final vs1 M;
+public final class rs1 extends y7c {
+    public final yv1 O;
 
-    public rs1(vs1 vs1Var, Context context, int i, wjb wjbVar) {
-        super(i, wjbVar, context);
-        this.M = vs1Var;
+    public rs1(yv1 yv1Var, Context context) {
+        super(context);
+        this.O = yv1Var;
     }
 
     @Override
-    public final int getSideMenuWidth() {
-        mu1 mu1Var = this.M.R;
-        int i = mu1.md;
-        return mu1Var.e7();
+    public final ylb getResourceProvider() {
+        return this.O.Ba;
     }
 }

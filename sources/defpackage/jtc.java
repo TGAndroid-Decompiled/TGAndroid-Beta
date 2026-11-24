@@ -1,132 +1,196 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.ShapeDrawable;
+import android.app.Activity;
+import android.graphics.Typeface;
+import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class jtc extends FrameLayout {
-    public static final int f = 0;
-    public final wjb a;
-    public final n79 b;
-    public final RectF c;
-    public final RectF d;
-    public final Path e;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.WallpapersListActivity;
+public final class jtc implements ee, hk3 {
+    public final ktc a;
 
-    public jtc(Context context, wjb wjbVar) {
-        super(context);
-        n79 n79Var = new n79(this);
-        this.b = n79Var;
-        this.c = new RectF();
-        this.d = new RectF();
-        this.e = new Path();
-        setWillNotDraw(false);
-        this.a = wjbVar;
-        int v0 = bkb.v0(bkb.Yl, wjbVar);
-        n79Var.B = v0;
-        n79Var.A = v0;
-        n79Var.z = v0;
-        n79Var.x = bkb.p1(0.1f, v0);
-        n79Var.j = false;
-        n79Var.i = false;
-        n79Var.k();
+    public jtc(ktc ktcVar) {
+        this.a = ktcVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        RectF rectF = this.c;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        n79 n79Var = this.b;
-        float[] fArr = n79Var.e;
-        float L = gl.L(10.0f);
-        fArr[7] = L;
-        fArr[6] = L;
-        fArr[1] = L;
-        fArr[0] = L;
-        float[] fArr2 = n79Var.e;
-        float L2 = gl.L(10.0f);
-        fArr2[5] = L2;
-        fArr2[4] = L2;
-        fArr2[3] = L2;
-        fArr2[2] = L2;
-        Path path = this.e;
-        path.rewind();
-        path.addRoundRect(rectF, fArr2, Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        this.b.e(canvas, rectF, 1.0f, false, false);
-        RectF rectF2 = this.d;
-        rectF2.set(0.0f, 0.0f, gl.L(3.0f), getHeight());
-        n79Var.f(canvas, rectF2, 1.0f);
-        canvas.restore();
+    public final boolean E() {
+        return false;
     }
 
-    public void setWebPage(TLRPC.WebPage webPage) {
-        boolean z;
-        float f2;
-        removeAllViews();
-        if (webPage.photo != null) {
-            z = true;
-        } else {
-            z = false;
+    @Override
+    public final boolean q(nk3 nk3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, sxb sxbVar) {
+        rja rjaVar;
+        rja rjaVar2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        int i8;
+        String b;
+        WallpapersListActivity wallpapersListActivity = this.a.a;
+        LongSparseArray longSparseArray = wallpapersListActivity.f0;
+        StringBuilder sb = new StringBuilder();
+        for (int i9 = 0; i9 < longSparseArray.size(); i9++) {
+            Object valueAt = longSparseArray.valueAt(i9);
+            if (valueAt instanceof TLRPC.TL_wallPaper) {
+                Typeface typeface = gm.a;
+                TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) valueAt;
+                b = "https://" + oc7.r1(z8c.t0).N2 + "/bg/" + tL_wallPaper.slug;
+                StringBuilder sb2 = new StringBuilder();
+                TLRPC.WallPaperSettings wallPaperSettings = tL_wallPaper.settings;
+                if (wallPaperSettings != null) {
+                    if (wallPaperSettings.blur) {
+                        sb2.append("blur");
+                    }
+                    if (tL_wallPaper.settings.motion) {
+                        if (sb2.length() > 0) {
+                            sb2.append("+");
+                        }
+                        sb2.append("motion");
+                    }
+                }
+                if (sb2.length() > 0) {
+                    StringBuilder k = b10.k(b, "?mode=");
+                    k.append(sb2.toString());
+                    b = k.toString();
+                }
+            } else if (valueAt instanceof mtc) {
+                b = ((mtc) valueAt).b();
+            }
+            if (!TextUtils.isEmpty(b)) {
+                if (sb.length() > 0) {
+                    sb.append('\n');
+                }
+                sb.append(b);
+            }
         }
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(1);
-        String str = webPage.site_name;
-        wjb wjbVar = this.a;
-        if (str != null) {
-            TextView textView = new TextView(getContext());
-            textView.setTypeface(gl.o());
-            textView.setText(webPage.site_name);
-            textView.setTextSize(1, 14.0f);
-            zkb.X(textView, bkb.Yl, wjbVar);
-            textView.setSingleLine(true);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            linearLayout.addView(textView, nme.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        longSparseArray.clear();
+        rjaVar = ((d) wallpapersListActivity).simpleActionBar;
+        rjaVar.w();
+        rjaVar2 = ((d) wallpapersListActivity).simpleActionBar;
+        rjaVar2.o(true);
+        if (arrayList.size() <= 1) {
+            long j = ((bf7) arrayList.get(0)).a;
+            i5 = ((d) wallpapersListActivity).currentAccount;
+            if (j != z8c.h(i5).e() && charSequence == null) {
+                long j2 = ((bf7) arrayList.get(0)).a;
+                Bundle l = ts2.l("scrollToTopOnResume", true);
+                if (pg3.B(j2)) {
+                    l.putInt("enc_id", (int) (4294967295L & j2));
+                } else {
+                    if (pg3.D(j2)) {
+                        l.putLong("user_id", j2);
+                    } else if (pg3.y(j2)) {
+                        l.putLong("chat_id", -j2);
+                    }
+                    i6 = ((d) wallpapersListActivity).currentAccount;
+                    if (!oc7.r1(i6).A(l, nk3Var, null, null)) {
+                        return true;
+                    }
+                }
+                i7 = ((d) wallpapersListActivity).currentAccount;
+                nm7.f(i7).k(nm7.s, new Object[0]);
+                wallpapersListActivity.presentFragment(new yv1(l), true);
+                i8 = ((d) wallpapersListActivity).currentAccount;
+                a6a.B(i8).q0(y5a.b(sb.toString(), j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                return true;
+            }
         }
-        if (webPage.title != null) {
-            TextView textView2 = new TextView(getContext());
-            textView2.setTypeface(gl.o());
-            textView2.setText(webPage.title);
-            textView2.setTextSize(1, 14.0f);
-            zkb.X(textView2, bkb.i5, wjbVar);
-            textView2.setSingleLine(true);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
-            linearLayout.addView(textView2, nme.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        wallpapersListActivity.I0();
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            long j3 = ((bf7) arrayList.get(i10)).a;
+            if (charSequence != null) {
+                i4 = ((d) wallpapersListActivity).currentAccount;
+                a6a.B(i4).q0(y5a.b(charSequence.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            }
+            if (!TextUtils.isEmpty(sb)) {
+                i3 = ((d) wallpapersListActivity).currentAccount;
+                a6a.B(i3).q0(y5a.b(sb.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            }
         }
-        if (webPage.description != null) {
-            TextView textView3 = new TextView(getContext());
-            textView3.setText(webPage.description);
-            textView3.setTextSize(1, 13.0f);
-            zkb.X(textView3, bkb.i5, wjbVar);
-            textView3.setMaxLines(4);
-            textView3.setEllipsize(TextUtils.TruncateAt.END);
-            linearLayout.addView(textView3, nme.o(-1, -2));
+        nk3Var.finishFragment();
+        return true;
+    }
+
+    @Override
+    public final void r(he heVar, int i) {
+        rja rjaVar;
+        rja rjaVar2;
+        int i2;
+        String str;
+        ktc ktcVar = this.a;
+        WallpapersListActivity wallpapersListActivity = ktcVar.a;
+        Activity parentActivity = wallpapersListActivity.getParentActivity();
+        LongSparseArray longSparseArray = wallpapersListActivity.f0;
+        he heVar2 = new he(3, null, parentActivity);
+        wallpapersListActivity.M = heVar2;
+        heVar2.j0 = false;
+        heVar2.show();
+        int[] iArr = {0};
+        for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
+            Object valueAt = longSparseArray.valueAt(i3);
+            if (valueAt instanceof mtc) {
+                mtc mtcVar = (mtc) valueAt;
+                TLRPC.WallPaper wallPaper = mtcVar.k;
+                if (wallPaper != null && wallPaper.id < 0) {
+                    cf7 messagesStorage = wallpapersListActivity.getMessagesStorage();
+                    messagesStorage.a.c(new vc7(messagesStorage, mtcVar.k.id, (byte) 1));
+                    wallpapersListActivity.c0.remove(mtcVar);
+                    wallpapersListActivity.a0.remove(mtcVar.a());
+                } else {
+                    valueAt = wallPaper;
+                }
+            }
+            if (valueAt instanceof TLRPC.WallPaper) {
+                iArr[0] = iArr[0] + 1;
+                TLRPC.WallPaper wallPaper2 = (TLRPC.WallPaper) valueAt;
+                TL_account.saveWallPaper savewallpaper = new TL_account.saveWallPaper();
+                savewallpaper.settings = new TLRPC.TL_wallPaperSettings();
+                savewallpaper.unsave = true;
+                if (valueAt instanceof TLRPC.TL_wallPaperNoFile) {
+                    TLRPC.TL_inputWallPaperNoFile tL_inputWallPaperNoFile = new TLRPC.TL_inputWallPaperNoFile();
+                    tL_inputWallPaperNoFile.id = wallPaper2.id;
+                    savewallpaper.wallpaper = tL_inputWallPaperNoFile;
+                } else {
+                    TLRPC.TL_inputWallPaper tL_inputWallPaper = new TLRPC.TL_inputWallPaper();
+                    tL_inputWallPaper.id = wallPaper2.id;
+                    tL_inputWallPaper.access_hash = wallPaper2.access_hash;
+                    savewallpaper.wallpaper = tL_inputWallPaper;
+                }
+                String str2 = wallPaper2.slug;
+                if (str2 != null && str2.equals(wallpapersListActivity.P)) {
+                    if (cmb.e1()) {
+                        str = "t";
+                    } else {
+                        str = "d";
+                    }
+                    wallpapersListActivity.P = str;
+                    cmb.I.v(null);
+                    cmb.s1(true);
+                }
+                i2 = ((d) wallpapersListActivity).currentAccount;
+                ConnectionsManager.getInstance(i2).sendRequest(savewallpaper, new ara(ktcVar, iArr, (byte) 27));
+            }
         }
-        if (z) {
-            f2 = 56.0f;
-        } else {
-            f2 = 0.0f;
+        if (iArr[0] == 0) {
+            wallpapersListActivity.E0(true);
         }
-        addView(linearLayout, nme.d(-1, -2.0f, 51, 0.0f, 0.0f, f2, 0.0f));
-        if (z) {
-            be0 be0Var = new be0(getContext());
-            be0Var.setRoundRadius(gl.L(6.0f));
-            int L = gl.L(6.0f);
-            int i = bkb.i5;
-            ShapeDrawable b0 = bkb.b0(L, bkb.p1(0.08f, bkb.v0(i, wjbVar)));
-            vkb K = zkb.K(0.08f, i);
-            be0Var.setBackground(b0);
-            zkb.j(be0Var, b0, K, null, wjbVar);
-            addView(be0Var, nme.d(48, 48.0f, 53, 0.0f, 5.0f, 0.0f, 1.0f));
-            TLRPC.PhotoSize w = ba4.w(webPage.photo.sizes, 40, false, null, false);
-            be0Var.g(1, 0L, gl5.f(ba4.w(webPage.photo.sizes, gl.L(36.0f), false, w, true), webPage.photo), gl5.f(w, webPage.photo), webPage, "48_48", "48_48_b", null);
-        }
-        setPadding(gl.L(10.0f), gl.L(2.0f), gl.L(7.0f), gl.L(6.0f));
+        longSparseArray.clear();
+        rjaVar = ((d) wallpapersListActivity).simpleActionBar;
+        rjaVar.w();
+        rjaVar2 = ((d) wallpapersListActivity).simpleActionBar;
+        rjaVar2.o(true);
+    }
+
+    @Override
+    public final boolean s(nk3 nk3Var) {
+        return false;
     }
 }

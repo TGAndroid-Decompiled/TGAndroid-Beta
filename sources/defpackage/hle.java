@@ -1,66 +1,56 @@
 package defpackage;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-public abstract class hle {
-    public static int a(byte b) {
-        if (b < 0) {
-            return b + 256;
+import com.google.android.gms.common.api.Status;
+public final class hle extends y6d {
+    public t2e b;
+
+    @Override
+    public final void T(ffe ffeVar) {
+        String str;
+        int i = ffeVar.a;
+        switch (i) {
+            case 4000:
+                str = "TARGET_NODE_NOT_CONNECTED";
+                break;
+            case 4001:
+                str = "DUPLICATE_LISTENER";
+                break;
+            case 4002:
+                str = "UNKNOWN_LISTENER";
+                break;
+            case 4003:
+                str = "DATA_ITEM_TOO_LARGE";
+                break;
+            case 4004:
+                str = "INVALID_TARGET_NODE";
+                break;
+            case 4005:
+                str = "ASSET_UNAVAILABLE";
+                break;
+            case 4006:
+                str = "DUPLICATE_CAPABILITY";
+                break;
+            case 4007:
+                str = "UNKNOWN_CAPABILITY";
+                break;
+            case 4008:
+                str = "WIFI_CREDENTIAL_SYNC_NO_CREDENTIAL_FETCHED";
+                break;
+            case 4009:
+                str = "UNSUPPORTED_BY_TARGET";
+                break;
+            case 4010:
+                str = "ACCOUNT_KEY_CREATION_FAILED";
+                break;
+            default:
+                str = dud.a(i);
+                break;
         }
-        return b;
-    }
-
-    public static String b(ByteBuffer byteBuffer) {
-        byte[] bArr = new byte[4];
-        byteBuffer.get(bArr);
-        try {
-            return new String(bArr, "ISO-8859-1");
-        } catch (UnsupportedEncodingException e) {
-            sdb.b(e);
-            return null;
+        p4e p4eVar = new p4e(new Status(i, str, null, null), ffeVar.b);
+        t2e t2eVar = this.b;
+        if (t2eVar != null) {
+            t2eVar.a(p4eVar);
+            this.b = null;
         }
-    }
-
-    public static double c(ByteBuffer byteBuffer) {
-        byte[] bArr = new byte[4];
-        byteBuffer.get(bArr);
-        return (((((bArr[0] << 24) & (-16777216)) | ((bArr[1] << 16) & 16711680)) | ((bArr[2] << 8) & 65280)) | (bArr[3] & 255)) / 1.073741824E9d;
-    }
-
-    public static double d(ByteBuffer byteBuffer) {
-        byte[] bArr = new byte[4];
-        byteBuffer.get(bArr);
-        return (((((bArr[0] << 24) & (-16777216)) | ((bArr[1] << 16) & 16711680)) | ((bArr[2] << 8) & 65280)) | (bArr[3] & 255)) / 65536.0d;
-    }
-
-    public static float e(ByteBuffer byteBuffer) {
-        byte[] bArr = new byte[2];
-        byteBuffer.get(bArr);
-        return ((short) (((short) ((bArr[0] << 8) & 65280)) | (bArr[1] & 255))) / 256.0f;
-    }
-
-    public static int f(ByteBuffer byteBuffer) {
-        return a(byteBuffer.get()) + (a(byteBuffer.get()) << 8);
-    }
-
-    public static long g(ByteBuffer byteBuffer) {
-        long j = byteBuffer.getInt();
-        if (j < 0) {
-            return j + 4294967296L;
-        }
-        return j;
-    }
-
-    public static long h(ByteBuffer byteBuffer) {
-        long g = g(byteBuffer) << 32;
-        if (g >= 0) {
-            return g(byteBuffer) + g;
-        }
-        wn4.j("I don't know how to deal with UInt64! long is not sufficient and I don't want to use BigInt");
-        return 0L;
-    }
-
-    public static int i(ByteBuffer byteBuffer) {
-        return a(byteBuffer.get());
     }
 }

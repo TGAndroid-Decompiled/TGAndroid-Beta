@@ -1,328 +1,312 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.Uri;
+import android.os.Bundle;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PopupNotificationActivity;
-import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.t;
-import org.telegram.ui.u;
-public final class l48 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final Object b;
+import java.net.URLDecoder;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.d;
+public final class l48 extends l5b {
+    public final oab x0;
+    public final r63 y0;
+    public final a58 z0;
 
-    public l48(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public l48(a58 a58Var, Context context, r63 r63Var, oab oabVar, r63 r63Var2) {
+        super(context, r63Var);
+        this.z0 = a58Var;
+        this.x0 = oabVar;
+        this.y0 = r63Var2;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 4:
-                ((PhotoViewer) ((u5) obj).c).B2 = null;
-                return;
-            case 14:
-                ((gf8) obj).q1 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void F(gn gnVar) {
+        if (gnVar != null) {
+            a58 a58Var = this.z0;
+            if (a58Var.G1 != null) {
+                TLRPC.Document document = gnVar.document;
+                if (document == null) {
+                    document = vm.e(a58Var.s2, gnVar.documentId);
+                }
+                if (document != null) {
+                    g48 g48Var = a58Var.S0;
+                    r63 r63Var = this.y0;
+                    u31 h = new c41(g48Var, r63Var).h(document, 2, new i48(this, this.x0, r63Var, (byte) 0));
+                    if (h != null) {
+                        h.a = 1;
+                        h.k(true);
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        boolean z;
+    public final void G(CharacterStyle characterStyle, View view) {
+        oab oabVar = this.x0;
+        d dVar = oabVar.f;
+        boolean z = characterStyle instanceof j6c;
+        a58 a58Var = this.z0;
+        if (z) {
+            TLRPC.User W1 = oc7.r1(a58Var.s2).W1(Utilities.A(((j6c) characterStyle).getURL()));
+            if (W1 != null) {
+                oc7.r1(a58Var.s2).D3(W1, null, dVar, 0);
+            }
+        } else if (characterStyle instanceof g6c) {
+            String url = ((g6c) characterStyle).getURL();
+            if (url != null && (url.startsWith("#") || url.startsWith("$"))) {
+                if (url.contains("@")) {
+                    oabVar.L(new re5(url, null));
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", 3);
+                bundle.putString("hashtag", url);
+                oabVar.L(new cm6(bundle, null));
+                return;
+            }
+            String c = l11.c(url);
+            if (c != null) {
+                String lowerCase = c.toLowerCase();
+                if (url.startsWith("@")) {
+                    oc7.r1(a58Var.s2).C3(lowerCase, dVar, 0, null);
+                    return;
+                } else {
+                    M(0, url, characterStyle, false);
+                    return;
+                }
+            }
+            M(0, url, characterStyle, false);
+        } else if (characterStyle instanceof URLSpan) {
+            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof i6c);
+        } else if (characterStyle instanceof f6c) {
+            f6c f6cVar = (f6c) characterStyle;
+            gm.g(f6cVar.a.subSequence(f6cVar.b, f6cVar.c).toString());
+            new c41(a58Var.S0, this.y0).i(jb6.M0(2131743879, null)).j();
+        } else if (characterStyle instanceof ClickableSpan) {
+            ((ClickableSpan) characterStyle).onClick(view);
+        }
+    }
+
+    @Override
+    public final void H(final URLSpan uRLSpan, final View view, nsa nsaVar) {
+        String str;
+        final String url = uRLSpan.getURL();
+        String url2 = uRLSpan.getURL();
+        try {
+            try {
+                Uri parse = Uri.parse(url2);
+                url2 = l11.x(parse, null, null, l11.a(parse.getHost()), null);
+            } catch (Exception e) {
+                fc4.g(e, false);
+            }
+            str = URLDecoder.decode(url2.replaceAll("\\+", "%2b"), "UTF-8");
+        } catch (Exception e2) {
+            fc4.g(e2, true);
+            str = url2;
+        }
+        try {
+            performHapticFeedback(0, 1);
+        } catch (Exception unused) {
+        }
+        Context context = getContext();
+        final r63 r63Var = this.y0;
+        my0 my0Var = new my0(1, (ylb) r63Var, context, false);
+        my0Var.J();
+        my0Var.P = str;
+        my0Var.Q = false;
+        my0Var.R = true;
+        a58 a58Var = this.z0;
+        z48 z48Var = a58Var.E1;
+        CharSequence[] charSequenceArr = (z48Var == null || z48Var.a()) ? new CharSequence[]{jb6.M0(2131747550, null), jb6.M0(2131751704, null)} : new CharSequence[]{jb6.M0(2131747550, null)};
+        DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                l48 l48Var = l48.this;
+                if (i == 0) {
+                    l48Var.G(uRLSpan, view);
+                } else if (i == 1) {
+                    gm.g(url);
+                    new c41(l48Var.z0.S0, r63Var).k(false).j();
+                }
+            }
+        };
+        my0Var.M = charSequenceArr;
+        my0Var.L = onClickListener;
+        my0Var.I0 = new n1(nsaVar, (byte) 28);
+        my0Var.K(cmb.v0(cmb.g5, r63Var));
+        ((fab) a58Var.G1).h(my0Var);
+    }
+
+    @Override
+    public final void I(g5b g5bVar) {
+        if (g5bVar == null) {
+            return;
+        }
+        final TLRPC.Document document = g5bVar.g;
+        a58 a58Var = this.z0;
+        oab oabVar = this.x0;
+        final r63 r63Var = this.y0;
+        if (document != null) {
+            bu5 G = bu5.G(oabVar.w, r63Var, a58Var.A0);
+            G.i = (byte) 3;
+            G.b0(-gm.L(8.0f), 0.0f);
+            G.k(2131232357, jb6.M0(2131744411, null), new Runnable(this) {
+                public final l48 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void run() {
+                    TL_stories.StoryItem storyItem;
+                    byte b = r4;
+                    r63 r63Var2 = r63Var;
+                    TLRPC.Document document2 = document;
+                    l48 l48Var = this.b;
+                    switch (b) {
+                        case 0:
+                            a58 a58Var2 = l48Var.z0;
+                            a6a B = a6a.B(a58Var2.s2);
+                            TLRPC.TL_document tL_document = (TLRPC.TL_document) document2;
+                            long e = z8c.h(a58Var2.s2).e();
+                            z48 z48Var = a58Var2.E1;
+                            if (z48Var != null) {
+                                storyItem = z48Var.a;
+                            } else {
+                                storyItem = null;
+                            }
+                            B.q0(y5a.f(tL_document, null, null, e, null, null, null, null, null, null, false, 0, 0, 0, storyItem, null, false));
+                            new c41(a58Var2.S0, r63Var2).Q(2131624185, 36, gm.N2(jb6.M0(2131744410, null), -1, 2, new jd((byte) 14), null)).k(true);
+                            return;
+                        default:
+                            a58 a58Var3 = l48Var.z0;
+                            TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
+                            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                            tL_account_saveMusic.id = tL_inputDocument;
+                            tL_inputDocument.id = document2.id;
+                            tL_inputDocument.access_hash = document2.access_hash;
+                            tL_inputDocument.file_reference = document2.file_reference;
+                            if (MediaController.w().R0 != null && MediaController.w().R0.b == z8c.h(a58Var3.s2).e()) {
+                                jc7 jc7Var = MediaController.w().R0;
+                                jc7Var.c.add(0, jc7Var.d(document2));
+                                jc7Var.e();
+                            }
+                            ConnectionsManager.getInstance(a58Var3.s2).sendRequest(tL_account_saveMusic, null);
+                            new c41(a58Var3.S0, r63Var2).Q(2131624058, 36, jb6.M0(2131744412, null)).k(true);
+                            return;
+                    }
+                }
+            }, document instanceof TLRPC.TL_document);
+            G.b(2131232407, jb6.M0(2131744413, null), new Runnable(this) {
+                public final l48 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void run() {
+                    TL_stories.StoryItem storyItem;
+                    byte b = r4;
+                    r63 r63Var2 = r63Var;
+                    TLRPC.Document document2 = document;
+                    l48 l48Var = this.b;
+                    switch (b) {
+                        case 0:
+                            a58 a58Var2 = l48Var.z0;
+                            a6a B = a6a.B(a58Var2.s2);
+                            TLRPC.TL_document tL_document = (TLRPC.TL_document) document2;
+                            long e = z8c.h(a58Var2.s2).e();
+                            z48 z48Var = a58Var2.E1;
+                            if (z48Var != null) {
+                                storyItem = z48Var.a;
+                            } else {
+                                storyItem = null;
+                            }
+                            B.q0(y5a.f(tL_document, null, null, e, null, null, null, null, null, null, false, 0, 0, 0, storyItem, null, false));
+                            new c41(a58Var2.S0, r63Var2).Q(2131624185, 36, gm.N2(jb6.M0(2131744410, null), -1, 2, new jd((byte) 14), null)).k(true);
+                            return;
+                        default:
+                            a58 a58Var3 = l48Var.z0;
+                            TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
+                            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                            tL_account_saveMusic.id = tL_inputDocument;
+                            tL_inputDocument.id = document2.id;
+                            tL_inputDocument.access_hash = document2.access_hash;
+                            tL_inputDocument.file_reference = document2.file_reference;
+                            if (MediaController.w().R0 != null && MediaController.w().R0.b == z8c.h(a58Var3.s2).e()) {
+                                jc7 jc7Var = MediaController.w().R0;
+                                jc7Var.c.add(0, jc7Var.d(document2));
+                                jc7Var.e();
+                            }
+                            ConnectionsManager.getInstance(a58Var3.s2).sendRequest(tL_account_saveMusic, null);
+                            new c41(a58Var3.S0, r63Var2).Q(2131624058, 36, jb6.M0(2131744412, null)).k(true);
+                            return;
+                    }
+                }
+            }, false);
+            G.a0();
+        } else if (g5bVar.e && g5bVar.b != null && g5bVar.d != null) {
+            Bundle bundle = new Bundle();
+            int i = (g5bVar.b.longValue() > 0L ? 1 : (g5bVar.b.longValue() == 0L ? 0 : -1));
+            Long l = g5bVar.b;
+            if (i >= 0) {
+                bundle.putLong("user_id", l.longValue());
+            } else {
+                bundle.putLong("chat_id", -l.longValue());
+            }
+            bundle.putInt("message_id", g5bVar.d.intValue());
+            oabVar.L(new yv1(bundle));
+        } else if (g5bVar.b != null && g5bVar.c != null) {
+            oc7.r1(a58Var.s2).N1().f0(g5bVar.c.intValue(), g5bVar.b.longValue(), new jv0(this, g5bVar, oabVar, r63Var, (byte) 14));
+        } else {
+            u31 Q = new c41(a58Var.S0, r63Var).Q(2131624012, 36, jb6.M0(2131744350, null));
+            Q.a = 3;
+            Q.k(true);
+        }
+    }
+
+    public final void M(int i, String str, CharacterStyle characterStyle, boolean z) {
         boolean z2;
-        boolean z3;
-        float f = 0.0f;
-        boolean z4 = false;
-        switch (this.a) {
-            case 0:
-                o48 o48Var = (o48) this.b;
-                if (animator.equals(o48Var.n)) {
-                    o48Var.n = null;
-                    return;
-                }
+        wkb wkbVar;
+        if (!z && !gm.D3(str)) {
+            if (i == 0) {
+                l11.s(getContext(), Uri.parse(str), true, true, null);
                 return;
-            case 1:
-                x48 x48Var = (x48) ((bg7) this.b).b;
-                if (animator.equals(x48Var.d)) {
-                    x48Var.d = null;
-                    return;
-                }
+            } else if (i == 1) {
+                l11.s(getContext(), Uri.parse(str), false, false, null);
                 return;
-            case 2:
-                gl.e3(((x48) this.b).e, 1000L);
+            } else if (i == 2) {
+                l11.s(getContext(), Uri.parse(str), false, true, null);
                 return;
-            case 3:
-                z58 z58Var = (z58) this.b;
-                b68 b68Var = z58Var.t0;
-                b68Var.r = null;
-                boolean z5 = b68Var.x;
-                a68[] a68VarArr = b68Var.n;
-                if (z5) {
-                    a68VarArr[1].setVisibility(8);
-                } else {
-                    a68 a68Var = a68VarArr[0];
-                    a68VarArr[0] = a68VarArr[1];
-                    a68VarArr[1] = a68Var;
-                    a68Var.setVisibility(8);
-                    if (b68Var.n[0].b == b68Var.h.getFirstTabId()) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    b68Var.e = z;
-                    b68Var.h.i(1.0f, b68Var.n[0].b);
-                }
-                b68Var.s = false;
-                z58Var.o0 = false;
-                z58Var.n0 = false;
-                b68.g0(b68Var).setEnabled(true);
-                b68Var.h.setEnabled(true);
+            } else {
                 return;
-            case 4:
-                PhotoViewer photoViewer = (PhotoViewer) ((u5) this.b).c;
-                if (photoViewer.B2 != null) {
-                    oq7 oq7Var = new oq7(this, (byte) 28);
-                    photoViewer.I2 = oq7Var;
-                    gl.e3(oq7Var, 860L);
-                    return;
-                }
-                return;
-            case 5:
-                t tVar = (t) this.b;
-                PhotoViewer photoViewer2 = tVar.b;
-                j33 j33Var = photoViewer2.D1.b;
-                j33Var.q();
-                CropAreaView cropAreaView = j33Var.a;
-                cropAreaView.setDimVisibility(true);
-                cropAreaView.f(true, true);
-                cropAreaView.invalidate();
-                photoViewer2.D1.b.K = true;
-                photoViewer2.p6 = null;
-                photoViewer2.u4 = tVar.a;
-                mv5 mv5Var = photoViewer2.d0().M;
-                if (photoViewer2.u4 != 0) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                mv5Var.b(z2);
-                mv5 mv5Var2 = photoViewer2.L1;
-                if (mv5Var2 != null) {
-                    if (photoViewer2.u4 != 3) {
-                        z4 = true;
-                    }
-                    mv5Var2.b(z4);
-                }
-                if (photoViewer2.u4 != 3) {
-                    photoViewer2.Z5 = 0.0f;
-                }
-                photoViewer2.o6 = -1;
-                photoViewer2.e6 = 1.0f;
-                photoViewer2.a6 = 1.0f;
-                photoViewer2.c6 = 0.0f;
-                photoViewer2.d6 = 0.0f;
-                photoViewer2.H2(1.0f);
-                photoViewer2.u2 = true;
-                photoViewer2.f0.invalidate();
-                return;
-            case 6:
-                u uVar = (u) this.b;
-                PhotoViewer photoViewer3 = uVar.b;
-                photoViewer3.J1.j0.setVisibility(0);
-                photoViewer3.p6 = null;
-                photoViewer3.u4 = uVar.a;
-                mv5 mv5Var3 = photoViewer3.d0().M;
-                if (photoViewer3.u4 != 0) {
-                    z3 = true;
-                } else {
-                    z3 = false;
-                }
-                mv5Var3.b(z3);
-                mv5 mv5Var4 = photoViewer3.L1;
-                if (mv5Var4 != null) {
-                    if (photoViewer3.u4 != 3) {
-                        z4 = true;
-                    }
-                    mv5Var4.b(z4);
-                }
-                if (photoViewer3.u4 != 3) {
-                    photoViewer3.Z5 = 0.0f;
-                }
-                photoViewer3.o6 = -1;
-                photoViewer3.e6 = 1.0f;
-                photoViewer3.a6 = 1.0f;
-                photoViewer3.c6 = 0.0f;
-                photoViewer3.d6 = 0.0f;
-                photoViewer3.H2(1.0f);
-                photoViewer3.u2 = true;
-                photoViewer3.f0.invalidate();
-                return;
-            case 7:
-                ((PhotoViewer) ((r88) this.b).q0).y3[0].setTag(null);
-                return;
-            case 8:
-                ((s88) this.b).d.U1.k0 = 1.0f;
-                return;
-            case 9:
-                PhotoViewer photoViewer4 = ((s88) this.b).d;
-                photoViewer4.U1.setVisibility(4);
-                photoViewer4.U1.k0 = 1.0f;
-                return;
-            case 10:
-                gl.d3(new w88(this, (byte) 0));
-                return;
-            case 11:
-                PhotoViewer photoViewer5 = ((n88) this.b).c;
-                if (animator.equals(photoViewer5.a8)) {
-                    photoViewer5.a8 = null;
-                    return;
-                }
-                return;
-            case 12:
-                n98 n98Var = (n98) this.b;
-                if (n98Var.e == animator) {
-                    n98Var.c[1].setVisibility(8);
-                    n98Var.e = null;
-                    return;
-                }
-                return;
-            case 13:
-                ma8 ma8Var = (ma8) this.b;
-                if (ma8Var.C != null) {
-                    ma8Var.C = null;
-                    ma8Var.b();
-                    return;
-                }
-                return;
-            case 14:
-                return;
-            case 15:
-                PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) this.b;
-                Runnable runnable = popupNotificationActivity.Z;
-                if (runnable != null) {
-                    runnable.run();
-                    popupNotificationActivity.Z = null;
-                    return;
-                }
-                return;
-            case 16:
-                rf8 rf8Var = (rf8) this.b;
-                rf8Var.f = false;
-                rf8Var.G = null;
-                return;
-            case 17:
-                ah8 ah8Var = (ah8) this.b;
-                if (ah8Var.r) {
-                    f = 1.0f;
-                }
-                ah8Var.s = f;
-                ah8Var.e();
-                return;
-            case 18:
-                super.onAnimationEnd(animator);
-                ((ui8) this.b).x = null;
-                return;
-            case 19:
-                super.onAnimationEnd(animator);
-                mk8 mk8Var = (mk8) this.b;
-                if (mk8Var.getParent() != null) {
-                    ((ViewGroup) mk8Var.getParent()).removeView(mk8Var);
-                    return;
-                }
-                return;
-            case 20:
-                bgc bgcVar = (bgc) this.b;
-                if (!bgcVar.a) {
-                    bgcVar.W.w.T = true;
-                    bgcVar.W.w.invalidate();
-                    return;
-                }
-                return;
-            case 21:
-                ((bn8) this.b).b.V5 = null;
-                return;
-            case 22:
-                lo8 lo8Var = (lo8) this.b;
-                if (!lo8Var.F) {
-                    lo8Var.setVisibility(8);
-                    return;
-                }
-                return;
-            case 23:
-                pr8 pr8Var = (pr8) this.b;
-                if (animator.equals(pr8Var.d)) {
-                    pr8Var.d = null;
-                    return;
-                }
-                return;
-            case 24:
-                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.b;
-                xm8 xm8Var = profileStoriesView.h;
-                profileStoriesView.H = 1.0f;
-                xm8Var.S = 1.0f;
-                xm8Var.invalidate();
-                profileStoriesView.invalidate();
-                return;
-            case 25:
-                ((vu8) this.b).b();
-                return;
-            case 26:
-                ((a09) this.b).h.setVisibility(8);
-                return;
-            case 27:
-                ((Runnable) this.b).run();
-                return;
-            case 28:
-                ((a19) this.b).y.c();
-                return;
-            default:
-                o39 o39Var = (o39) this.b;
-                View view = o39Var.b1;
-                if (view != null) {
-                    view.setVisibility(8);
-                }
-                if (o39Var.c1()) {
-                    o39Var.invalidate();
-                    return;
-                }
-                return;
+            }
         }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 5:
-                PhotoViewer photoViewer = ((t) obj).b;
-                photoViewer.V0.setVisibility(0);
-                photoViewer.D1.setVisibility(0);
+        r63 r63Var = this.y0;
+        oab oabVar = this.x0;
+        if (i != 0 && i != 2) {
+            if (i == 1) {
+                ik.o0(oabVar.f, str, true, true, false, false, null, null, r63Var);
                 return;
-            case 6:
-                return;
-            case 22:
-                ((lo8) obj).setVisibility(0);
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+            }
+            return;
         }
-    }
-
-    private final void a(Animator animator) {
-    }
-
-    private final void b(Animator animator) {
+        if ((characterStyle instanceof i6c) && (wkbVar = ((i6c) characterStyle).a) != null && (wkbVar.a & 1024) != 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        ik.o0(oabVar.f, str, true, true, true, z2, null, null, r63Var);
     }
 }

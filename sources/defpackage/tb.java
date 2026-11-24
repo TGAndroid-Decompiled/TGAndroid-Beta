@@ -2,11 +2,11 @@ package defpackage;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class tb extends u41 {
+public final class tb extends b61 {
     public final byte m0;
 
-    public tb(Context context, boolean z, wjb wjbVar, byte b) {
-        super(wjbVar, context, z);
+    public tb(Context context, boolean z, ylb ylbVar, byte b) {
+        super(ylbVar, context, z);
         this.m0 = b;
     }
 

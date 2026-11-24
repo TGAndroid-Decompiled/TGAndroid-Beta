@@ -1,8 +1,6 @@
 package defpackage;
-
-import android.view.MenuItem;
 public interface wz6 {
-    boolean B(yz6 yz6Var, MenuItem menuItem);
+    Object a();
 
-    void o1(yz6 yz6Var);
+    bqb b();
 }

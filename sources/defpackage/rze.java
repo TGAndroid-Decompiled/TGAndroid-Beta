@@ -1,21 +1,26 @@
 package defpackage;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
 public abstract class rze {
-    public static final void a(StringBuilder sb, Iterator it, hcd hcdVar) {
-        if (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            sb.append(hcd.a(entry.getKey()));
-            sb.append(" : ");
-            sb.append(hcd.a(entry.getValue()));
-            while (it.hasNext()) {
-                sb.append(",\n  ");
-                Map.Entry entry2 = (Map.Entry) it.next();
-                sb.append(hcd.a(entry2.getKey()));
-                sb.append(" : ");
-                sb.append(hcd.a(entry2.getValue()));
+    public static byte[] a(String str) {
+        if (str != null) {
+            try {
+                return str.getBytes("UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new Error(e);
             }
         }
+        return null;
+    }
+
+    public static int b(String str) {
+        if (str != null) {
+            try {
+                return str.getBytes("UTF-8").length;
+            } catch (UnsupportedEncodingException unused) {
+                throw new RuntimeException();
+            }
+        }
+        return 0;
     }
 }

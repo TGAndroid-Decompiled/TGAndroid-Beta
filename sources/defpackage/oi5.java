@@ -1,17 +1,70 @@
 package defpackage;
 
-import android.app.Activity;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class oi5 extends ActionBarLayout {
-    public final l0 z1;
+import android.view.View;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
+public abstract class oi5 {
+    public static Runnable c;
+    public static Boolean h;
+    public static final HashSet a = new HashSet();
+    public static volatile boolean b = false;
+    public static boolean d = true;
+    public static boolean e = false;
+    public static boolean f = false;
+    public static boolean g = false;
 
-    public oi5(Activity activity, l0 l0Var) {
-        super(activity, false);
-        this.z1 = l0Var;
+    public static void a() {
+        ix2 ix2Var = fn5.z().p;
+        CountDownLatch countDownLatch = (CountDownLatch) ix2Var.c;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+            ix2Var.c = null;
+        }
+        b = false;
+        e = false;
+        g = false;
+        c = null;
+        Iterator it = a.iterator();
+        while (it.hasNext()) {
+            ((View) it.next()).invalidate();
+        }
+        a.clear();
     }
 
-    @Override
-    public final fx0 getBottomSheet() {
-        return ((fx0[]) this.z1.b)[0];
+    public static boolean b(View view) {
+        if (b) {
+            a.add(view);
+        }
+        return b;
+    }
+
+    public static boolean c(View... viewArr) {
+        boolean z;
+        Boolean bool = h;
+        if (bool == null) {
+            if (gda.o() != 2) {
+                z = true;
+            } else {
+                z = false;
+            }
+            bool = Boolean.valueOf(z);
+            h = bool;
+        }
+        if (!bool.booleanValue()) {
+            return false;
+        }
+        if (b) {
+            a.addAll(Arrays.asList(viewArr));
+        }
+        return b;
+    }
+
+    public static boolean d() {
+        if (!b && !e && !g) {
+            return false;
+        }
+        return true;
     }
 }

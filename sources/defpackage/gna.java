@@ -1,14 +1,20 @@
 package defpackage;
+public abstract class gna implements lf7 {
+    @Override
+    public final go4 a() {
+        return null;
+    }
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class gna {
-    public final TL_stars.starGiftAttributeBackdrop a;
-    public final TL_stars.starGiftAttributePattern b;
-    public final TL_stars.starGiftAttributeModel c;
+    @Override
+    public final byte[] c() {
+        return null;
+    }
 
-    public gna(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.a = stargiftattributebackdrop;
-        this.b = stargiftattributepattern;
-        this.c = stargiftattributemodel;
+    public String toString() {
+        return "SCTE-35 splice command: type=".concat(getClass().getSimpleName());
+    }
+
+    @Override
+    public final void b(ht6 ht6Var) {
     }
 }

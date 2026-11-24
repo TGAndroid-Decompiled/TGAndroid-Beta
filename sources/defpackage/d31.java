@@ -1,65 +1,49 @@
 package defpackage;
-public final class d31 implements wxb {
-    public final int a;
-    public final fm4 b;
-    public final yn3 c = new yn3();
-    public fm4 d;
-    public wxb e;
-    public long f;
 
-    public d31(int i, int i2, fm4 fm4Var) {
-        this.a = i2;
-        this.b = fm4Var;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class d31 implements Runnable {
+    public final byte a = 3;
+    public final int b;
+    public final int c;
+    public final boolean d;
+    public final Object e;
+    public final Object f;
+
+    public d31(e31 e31Var, k39 k39Var, boolean z, int i, int i2) {
+        this.e = e31Var;
+        this.f = k39Var;
+        this.d = z;
+        this.b = i;
+        this.c = i2;
     }
 
     @Override
-    public final void a(long j, int i, int i2, int i3, vxb vxbVar) {
-        long j2 = this.f;
-        if (j2 != -9223372036854775807L && j >= j2) {
-            this.e = this.c;
-        }
-        wxb wxbVar = this.e;
-        String str = g8c.a;
-        wxbVar.a(j, i, i2, i3, vxbVar);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.d31.run():void");
     }
 
-    @Override
-    public final void b(xu7 xu7Var, int i, int i2) {
-        wxb wxbVar = this.e;
-        String str = g8c.a;
-        wxbVar.e(i, xu7Var);
+    public d31(yv1 yv1Var, int i, int i2, boolean z, v29 v29Var) {
+        this.e = yv1Var;
+        this.b = i;
+        this.c = i2;
+        this.d = z;
+        this.f = v29Var;
     }
 
-    @Override
-    public final int c(g63 g63Var, int i, boolean z) {
-        wxb wxbVar = this.e;
-        String str = g8c.a;
-        return wxbVar.f(g63Var, i, z);
+    public d31(a6a a6aVar, TLRPC.Message message, int i, int i2, boolean z) {
+        this.e = a6aVar;
+        this.f = message;
+        this.b = i;
+        this.c = i2;
+        this.d = z;
     }
 
-    @Override
-    public final void e(int i, xu7 xu7Var) {
-        yjb.b(this, xu7Var, i);
-    }
-
-    @Override
-    public final int f(g63 g63Var, int i, boolean z) {
-        return c(g63Var, i, z);
-    }
-
-    @Override
-    public final void g(fm4 fm4Var) {
-        fm4 fm4Var2 = this.b;
-        if (fm4Var2 != null) {
-            fm4Var = fm4Var.d(fm4Var2);
-        }
-        this.d = fm4Var;
-        wxb wxbVar = this.e;
-        String str = g8c.a;
-        wxbVar.g(fm4Var);
-    }
-
-    @Override
-    public final void d(long j) {
+    public d31(TLObject tLObject, int i, boolean z, int i2, String str) {
+        this.e = tLObject;
+        this.b = i;
+        this.d = z;
+        this.c = i2;
+        this.f = str;
     }
 }

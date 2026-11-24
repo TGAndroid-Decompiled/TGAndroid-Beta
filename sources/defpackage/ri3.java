@@ -1,45 +1,48 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.FiltersSetupActivity;
-public final class ri3 implements Runnable {
-    public final byte a = 1;
-    public final ti3 b;
-    public final t97 c;
-    public final boolean d;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class ri3 extends FragmentContextView {
+    public final byte X0;
+    public final nk3 Y0;
 
-    public ri3(ti3 ti3Var, t97 t97Var, boolean z) {
-        this.b = ti3Var;
-        this.c = t97Var;
-        this.d = z;
-    }
-
-    @Override
-    public final void run() {
-        d pd4Var;
-        byte b = this.a;
-        boolean z = this.d;
-        t97 t97Var = this.c;
-        ti3 ti3Var = this.b;
+    public ri3(nk3 nk3Var, Context context, nk3 nk3Var2, byte b) {
+        super(context, nk3Var2, true);
+        this.X0 = b;
         switch (b) {
-            case 0:
-                cj3 cj3Var = ti3Var.b;
-                if (z) {
-                    pd4Var = new FiltersSetupActivity();
-                } else {
-                    pd4Var = new pd4(t97Var, null);
-                }
-                cj3Var.presentFragment(pd4Var);
+            case 1:
+                this.Y0 = nk3Var;
+                super(context, nk3Var2, false);
                 return;
             default:
-                ti3Var.b.getMessagesController().N4(t97Var, !z);
+                this.Y0 = nk3Var;
                 return;
         }
     }
 
-    public ri3(ti3 ti3Var, boolean z, t97 t97Var) {
-        this.b = ti3Var;
-        this.d = z;
-        this.c = t97Var;
+    @Override
+    public final void setVisibility(int i) {
+        byte b = this.X0;
+        boolean z = false;
+        nk3 nk3Var = this.Y0;
+        switch (b) {
+            case 0:
+                qk3 qk3Var = nk3Var.L1;
+                FrameLayout frameLayout = nk3Var.I1;
+                if (i == 0) {
+                    z = true;
+                }
+                qk3Var.j(frameLayout, z, true);
+                return;
+            default:
+                qk3 qk3Var2 = nk3Var.L1;
+                FrameLayout frameLayout2 = nk3Var.K1;
+                if (i == 0) {
+                    z = true;
+                }
+                qk3Var2.j(frameLayout2, z, true);
+                return;
+        }
     }
 }

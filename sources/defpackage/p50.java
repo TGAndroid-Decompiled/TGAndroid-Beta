@@ -1,17 +1,35 @@
 package defpackage;
-public final class p50 implements zn7 {
-    public static final p50 a = new Object();
-    public static final w84 b = w84.c("arch");
-    public static final w84 c = w84.c("libraryName");
-    public static final w84 d = w84.c("buildId");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        gy2 gy2Var = (gy2) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ((e80) gy2Var).a);
-        e80 e80Var = (e80) gy2Var;
-        ao7Var.a(c, e80Var.b);
-        ao7Var.a(d, e80Var.c);
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+public abstract class p50 {
+    public static void a() {
+        a.b.getSharedPreferences("saved_tokens_login", 0).edit().clear().apply();
+        a.b.getSharedPreferences("saved_tokens", 0).edit().clear().apply();
+    }
+
+    public static ArrayList b() {
+        SharedPreferences sharedPreferences = a.b.getSharedPreferences("saved_tokens_login", 0);
+        int i = sharedPreferences.getInt("count", 0);
+        if (i == 0) {
+            return null;
+        }
+        ArrayList arrayList = new ArrayList();
+        for (int i2 = 0; i2 < i; i2++) {
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.v(sharedPreferences.getString("log_in_token_" + i2, "")));
+                TLRPC.auth_Authorization TLdeserialize = TLRPC.auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (TLdeserialize instanceof TLRPC.TL_auth_authorization) {
+                    arrayList.add((TLRPC.TL_auth_authorization) TLdeserialize);
+                }
+            } catch (Exception e) {
+                fc4.g(e, true);
+            }
+        }
+        return arrayList;
     }
 }

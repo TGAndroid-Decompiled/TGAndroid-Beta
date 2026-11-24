@@ -52,6 +52,10 @@ public class NativeInstance {
         void run(long j, int[] iArr);
     }
 
+    public static void a(NativeInstance nativeInstance, int i, String str) {
+        nativeInstance.lambda$onEmitJoinPayload$3(i, str);
+    }
+
     private native long addIncomingVideoOutputNative(int i, String str, SsrcGroup[] ssrcGroupArr, VideoSink videoSink, long j);
 
     public static native long createVideoCapturer(VideoSink videoSink, int i);
@@ -88,13 +92,13 @@ public class NativeInstance {
     }
 
     public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j, AudioLevelsCallback audioLevelsCallback) {
-        if (w01.a) {
-            fa4.b("create new tgvoip instance, version " + str);
+        if (e21.a) {
+            fc4.b("create new tgvoip instance, version " + str);
         }
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.persistentStateFilePath = str2;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
-        Point point = gl.q;
+        Point point = gm.q;
         nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, Math.min(point.x, point.y) / Math.max(point.x, point.y));
         return nativeInstance;
     }
@@ -106,7 +110,7 @@ public class NativeInstance {
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
         nativeInstance.unknownParticipantsCallback = videoSourcesCallback;
         nativeInstance.isGroup = true;
-        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, gba.U, j, z, z2, z3);
+        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, gda.U, j, z, z2, z3);
         return nativeInstance;
     }
 
@@ -145,7 +149,7 @@ public class NativeInstance {
         if (this.isGroup && iArr != null && iArr.length == 0) {
             return;
         }
-        gl.d3(new jw6(this, iArr, fArr, zArr, (byte) 12));
+        gm.c3(new jy6(this, iArr, fArr, zArr, (byte) 12));
     }
 
     private void onBroadcastStateChanged(boolean z, boolean z2) {
@@ -157,15 +161,15 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i) {
         try {
-            gl.d3(new j45(this, i, str, (byte) 15));
+            gm.c3(new h65(this, i, str, (byte) 15));
         } catch (Exception e) {
-            fa4.g(e, true);
+            fc4.g(e, true);
         }
     }
 
     private void onNetworkStateUpdated(boolean z, boolean z2) {
         if (this.onStateUpdatedListener != null) {
-            gl.d3(new sy3(this, z, z2, (byte) 1));
+            gm.c3(new c04(this, z, z2, (byte) 1));
         }
     }
 
@@ -173,7 +177,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        gl.d3(new go6(this, j, iArr, (byte) 20));
+        gm.c3(new hq6(this, j, iArr, (byte) 20));
     }
 
     public static void onRecordedSamples(WebRtcAudioRecord.AudioSamples audioSamples) {
@@ -254,14 +258,14 @@ public class NativeInstance {
     public static native void switchCameraCapturer(long j, boolean z);
 
     private static synchronized void updateRecordedSamplesCallback() {
-        fi7 fi7Var;
+        bh7 bh7Var;
         synchronized (NativeInstance.class) {
             if (!ownAudioCapture && !ownAudioLevelMeter) {
-                fi7Var = null;
+                bh7Var = null;
             } else {
-                fi7Var = new fi7((byte) 0);
+                bh7Var = new bh7((byte) 2);
             }
-            WebRtcAudioRecord.setOnAudioSamplesReady(fi7Var);
+            WebRtcAudioRecord.setOnAudioSamplesReady(bh7Var);
         }
     }
 
@@ -391,7 +395,7 @@ public class NativeInstance {
         try {
             this.stopBarrier.await();
         } catch (Exception e) {
-            fa4.g(e, true);
+            fc4.g(e, true);
         }
         return this.finalState;
     }

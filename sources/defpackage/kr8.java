@@ -1,15 +1,15 @@
 package defpackage;
-public final class kr8 implements ed {
-    public final pr8 a;
-    public final String b;
+public final class kr8 implements Runnable {
+    public final byte a;
+    public final lr8 b;
 
-    public kr8(pr8 pr8Var, String str) {
-        this.a = pr8Var;
-        this.b = str;
+    public kr8(lr8 lr8Var, byte b) {
+        this.a = b;
+        this.b = lr8Var;
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        this.a.l0(this.b);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kr8.run():void");
     }
 }

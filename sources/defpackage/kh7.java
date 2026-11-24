@@ -1,153 +1,229 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-public final class kh7 extends FrameLayout {
-    public final FrameLayout a;
-    public final View b;
-    public final ImageView c;
-    public final fo0 d;
-    public boolean e;
-    public ValueAnimator f;
-    public boolean h;
-    public float n;
-    public ValueAnimator r;
+import java.io.EOFException;
+import java.util.List;
+public final class kh7 implements s84 {
+    public static final bh7 w = new bh7((byte) 1);
+    public final int a;
+    public final long b;
+    public final yw7 c;
+    public final wh7 d;
+    public final au4 e;
+    public final fk3 f;
+    public final ip3 g;
+    public u84 h;
+    public yzb i;
+    public yzb j;
+    public int k;
+    public nf7 l;
+    public nf7 m;
+    public long n;
+    public long o;
+    public long p;
+    public long q;
+    public int r;
+    public nx9 s;
+    public boolean t;
+    public boolean u;
+    public long v;
 
-    public kh7(Context context, bl0 bl0Var) {
-        super(context);
-        ote.a(this);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.a = frameLayout;
-        u9b u9bVar = new u9b();
-        u9bVar.a = bl0Var;
-        u9bVar.a();
-        u9bVar.g.setColor(-14670806);
-        u9bVar.invalidateSelf();
-        u9bVar.f = gl.L(1.0f);
-        frameLayout.setBackground(u9bVar);
-        addView(frameLayout, nme.e(40, 40, 17));
-        View view = new View(context);
-        this.b = view;
-        view.setBackground(bkb.K(gl.L(40.0f), -13522392));
-        frameLayout.addView(view, nme.e(38, 38, 17));
-        view.setAlpha(0.0f);
-        view.setScaleX(0.0f);
-        view.setScaleY(0.0f);
-        fo0 fo0Var = new fo0(context);
-        this.d = fo0Var;
-        addView(fo0Var, nme.e(42, 42, 17));
-        ImageView imageView = new ImageView(context);
-        this.c = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setScaleX(0.75f);
-        imageView.setScaleY(0.75f);
-        imageView.setColorFilter(new PorterDuffColorFilter(-2960428, PorterDuff.Mode.SRC_IN));
-        frameLayout.addView(imageView, nme.e(40, 40, 17));
-        b(false, false);
+    public kh7(int i, long j) {
+        this.a = i;
+        this.b = j;
+        this.c = new yw7(10);
+        this.d = new Object();
+        this.e = new au4();
+        this.n = -9223372036854775807L;
+        this.f = new fk3((byte) 11);
+        ip3 ip3Var = new ip3();
+        this.g = ip3Var;
+        this.j = ip3Var;
+        this.q = -1L;
     }
 
-    public final void a(boolean z, boolean z2) {
+    @Override
+    public final int b(defpackage.t84 r50, defpackage.u21 r51) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kh7.b(t84, u21):int");
+    }
+
+    @Override
+    public final boolean c(t84 t84Var) {
+        return j((vb3) t84Var, true);
+    }
+
+    @Override
+    public final void d(long j, long j2) {
+        this.k = 0;
+        this.n = -9223372036854775807L;
+        this.o = 0L;
+        this.r = 0;
+        this.q = -1L;
+        this.v = j2;
+        nx9 nx9Var = this.s;
+        if (nx9Var instanceof jp5) {
+            de deVar = ((jp5) nx9Var).d.b;
+            int i = deVar.b;
+            if (i == 0 || j2 - deVar.g0(i - 1) >= 100000) {
+                this.u = true;
+                this.j = this.g;
+            }
+        }
+    }
+
+    @Override
+    public final List e() {
+        ko5 ko5Var = mo5.b;
+        return y79.e;
+    }
+
+    @Override
+    public final void f(u84 u84Var) {
+        this.h = u84Var;
+        yzb c0 = u84Var.c0(0, 1);
+        this.i = c0;
+        this.j = c0;
+        this.h.B();
+    }
+
+    public final bu2 g(vb3 vb3Var) {
+        yw7 yw7Var = this.c;
+        boolean z = false;
+        vb3Var.d(yw7Var.a, 0, 4, false);
+        yw7Var.N(0);
+        int m = yw7Var.m();
+        wh7 wh7Var = this.d;
+        wh7Var.a(m);
+        long j = vb3Var.c;
+        long j2 = vb3Var.d;
+        if ((this.a & 2) != 0) {
+            z = true;
+        }
+        return new bu2(j, j2, wh7Var.f, wh7Var.c, z, true, -9223372036854775807L);
+    }
+
+    public final void h() {
+        nx9 nx9Var = this.s;
+        if ((nx9Var instanceof bu2) && ((au2) nx9Var).c()) {
+            long j = this.q;
+            if (j != -1 && j != this.s.a()) {
+                bu2 bu2Var = (bu2) this.s;
+                this.s = new bu2(this.q, bu2Var.b, bu2Var.e, bu2Var.c, bu2Var.g, false, bu2Var.i);
+                u84 u84Var = this.h;
+                u84Var.getClass();
+                u84Var.f0(this.s);
+                yzb yzbVar = this.i;
+                yzbVar.getClass();
+                yzbVar.d(this.s.h());
+            }
+        }
+    }
+
+    public final boolean i(defpackage.vb3 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kh7.i(vb3):boolean");
+    }
+
+    public final boolean j(vb3 vb3Var, boolean z) {
         int i;
-        if (this.e == z && z2) {
-            return;
-        }
-        this.e = z;
-        ValueAnimator valueAnimator = this.f;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f = null;
-        }
-        boolean z3 = true;
-        float f = 1.0f;
-        fo0 fo0Var = this.d;
-        if (!z2) {
-            if (z) {
-                f = 0.0f;
-            }
-            fo0Var.setAlpha(f);
-            if (z) {
-                i = 8;
-            } else {
-                i = 0;
-            }
-            fo0Var.setVisibility(i);
-        } else {
-            fo0Var.setVisibility(0);
-            float alpha = fo0Var.getAlpha();
-            if (z) {
-                f = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f);
-            this.f = ofFloat;
-            ofFloat.addUpdateListener(new jh7(this, (byte) 0));
-            this.f.setDuration(320L);
-            this.f.setInterpolator(s33.h);
-            this.f.start();
-        }
-        if (!this.h && z) {
-            z3 = false;
-        }
-        c(z3, z2);
-    }
-
-    public final void b(boolean z, boolean z2) {
+        int i2;
+        int a;
+        boolean z2;
         boolean z3;
-        this.h = z;
-        int i = 2131232436;
-        ImageView imageView = this.c;
-        if (!z2) {
-            if (z) {
-                i = 2131232432;
+        ql5 ql5Var;
+        vb3Var.f = 0;
+        if (vb3Var.d == 0) {
+            int i3 = this.a;
+            if ((i3 & 8) == 0) {
+                z2 = true;
+            } else {
+                z2 = false;
             }
-            gl.M3(imageView, i);
-        } else {
-            if (z) {
-                i = 2131232432;
+            if ((i3 & 16) != 0) {
+                z3 = true;
+            } else {
+                z3 = false;
             }
-            imageView.setImageResource(i);
-        }
-        if (!z && this.e) {
-            z3 = false;
+            if (!z2) {
+                ql5Var = w;
+            } else if (z3) {
+                ql5Var = sl5.c;
+            } else {
+                ql5Var = null;
+            }
+            nf7 Z = this.f.Z(vb3Var, ql5Var, 131072);
+            this.l = Z;
+            if (Z != null) {
+                this.e.b(Z);
+            }
+            i = (int) vb3Var.f();
+            if (!z) {
+                vb3Var.m(i, false);
+            }
+            i2 = 0;
         } else {
-            z3 = true;
+            i = 0;
+            i2 = 0;
         }
-        c(z3, z2);
+        int i4 = i2;
+        int i5 = i4;
+        while (true) {
+            if (i(vb3Var)) {
+                if (i4 <= 0) {
+                    h();
+                    throw new EOFException();
+                }
+            } else {
+                yw7 yw7Var = this.c;
+                yw7Var.N(0);
+                int m = yw7Var.m();
+                if ((i2 != 0 && ((-128000) & m) != (i2 & (-128000))) || (a = wcd.a(m)) == -1) {
+                    int i6 = i5 + 1;
+                    if (i5 == 131072) {
+                        if (z) {
+                            return false;
+                        }
+                        h();
+                        throw new EOFException();
+                    }
+                    if (z) {
+                        vb3Var.f = 0;
+                        vb3Var.a(i + i6, false);
+                    } else {
+                        vb3Var.m(1, false);
+                    }
+                    i4 = 0;
+                    i5 = i6;
+                    i2 = 0;
+                } else {
+                    i4++;
+                    if (i4 == 1) {
+                        this.d.a(m);
+                        i2 = m;
+                    } else if (i4 == 4) {
+                        break;
+                    }
+                    vb3Var.a(a - 4, false);
+                }
+            }
+        }
+        if (z) {
+            vb3Var.m(i + i5, false);
+        } else {
+            vb3Var.f = 0;
+        }
+        this.k = i2;
+        return true;
     }
 
-    public final void c(boolean z, boolean z2) {
-        ValueAnimator valueAnimator = this.r;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.r = null;
-        }
-        float f = 0.0f;
-        if (!z2) {
-            if (z) {
-                f = 1.0f;
-            }
-            this.n = f;
-            View view = this.b;
-            view.setAlpha(1.0f - f);
-            view.setScaleX(1.0f - this.n);
-            view.setScaleY(1.0f - this.n);
-            this.c.setColorFilter(new PorterDuffColorFilter(bm2.f(this.n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-            this.a.invalidate();
-            return;
-        }
-        float f2 = this.n;
-        if (z) {
-            f = 1.0f;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-        this.r = ofFloat;
-        ofFloat.addUpdateListener(new jh7(this, (byte) 1));
-        this.r.setInterpolator(s33.h);
-        this.r.setDuration(420L);
-        this.r.start();
+    @Override
+    public final s84 a() {
+        return this;
+    }
+
+    @Override
+    public final void release() {
+    }
+
+    public kh7(int i) {
+        this(i, -9223372036854775807L);
     }
 }

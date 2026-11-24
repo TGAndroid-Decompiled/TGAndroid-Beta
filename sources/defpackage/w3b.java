@@ -1,26 +1,32 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
-public final class w3b implements p8c {
+public final class w3b implements Runnable {
     public final byte a;
-    public final x3b b;
+    public final z3b b;
 
-    public w3b(x3b x3bVar, byte b) {
+    public w3b(z3b z3bVar, byte b) {
         this.a = b;
-        this.b = x3bVar;
+        this.b = z3bVar;
     }
 
     @Override
-    public final void a(Object obj) {
+    public final void run() {
         byte b = this.a;
-        x3b x3bVar = this.b;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+        z3b z3bVar = this.b;
         switch (b) {
             case 0:
-                x3bVar.d(tL_messages_stickerSet);
+                nm7.f(z3bVar.c).k(331, z3bVar);
+                return;
+            case 1:
+                z3bVar.u = false;
+                z3bVar.w = true;
+                nm7.f(z3bVar.c).k(331, z3bVar, Boolean.FALSE);
+                return;
+            case 2:
+                z3bVar.z = false;
                 return;
             default:
-                x3bVar.b(tL_messages_stickerSet);
+                z3bVar.k.clear();
+                z3bVar.d(true);
                 return;
         }
     }

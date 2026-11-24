@@ -1,29 +1,37 @@
 package defpackage;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class h65 extends AnimatorListenerAdapter {
+public final class h65 implements Runnable {
     public final byte a;
-    public final h75 b;
+    public final int b;
+    public final Object c;
+    public final Object d;
 
-    public h65(h75 h75Var, byte b) {
-        this.a = b;
-        this.b = h75Var;
+    public h65(int i, int[] iArr, k16 k16Var) {
+        this.a = (byte) 4;
+        this.b = i;
+        this.c = iArr;
+        this.d = k16Var;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h65.a():void");
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        h75 h75Var = this.b;
-        switch (b) {
-            case 0:
-                h75Var.O1.setVisibility(4);
-                h75Var.P1.setVisibility(4);
-                h75Var.N1.setVisibility(4);
-                return;
-            default:
-                h75Var.a2 = null;
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h65.run():void");
+    }
+
+    public h65(Object obj, int i, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = i;
+        this.d = obj2;
+    }
+
+    public h65(Object obj, Object obj2, int i, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.d = obj2;
+        this.b = i;
     }
 }

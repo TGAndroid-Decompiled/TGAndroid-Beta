@@ -25,7 +25,7 @@ public class GlShader {
                 return;
             }
             Logging.e("GlShader", "Could not link program: " + GLES20.glGetProgramInfoLog(this.program));
-            wn4.j(GLES20.glGetProgramInfoLog(this.program));
+            zo4.k(GLES20.glGetProgramInfoLog(this.program));
             throw null;
         }
         int glGetError = GLES20.glGetError();
@@ -44,7 +44,7 @@ public class GlShader {
                 return glCreateShader;
             }
             Logging.e("GlShader", "Compile error " + GLES20.glGetShaderInfoLog(glCreateShader) + " in shader:\n" + str);
-            wn4.j(GLES20.glGetShaderInfoLog(glCreateShader));
+            zo4.k(GLES20.glGetShaderInfoLog(glCreateShader));
             return 0;
         }
         int glGetError = GLES20.glGetError();
@@ -58,10 +58,10 @@ public class GlShader {
             if (glGetAttribLocation >= 0) {
                 return glGetAttribLocation;
             }
-            wn4.j(tb4.y("Could not locate '", str, "' in program"));
+            zo4.k(kt6.o("Could not locate '", str, "' in program"));
             return 0;
         }
-        wn4.j("The program has been released");
+        zo4.k("The program has been released");
         return 0;
     }
 
@@ -72,10 +72,10 @@ public class GlShader {
             if (glGetUniformLocation >= 0) {
                 return glGetUniformLocation;
             }
-            wn4.j(tb4.y("Could not locate uniform '", str, "' in program"));
+            zo4.k(kt6.o("Could not locate uniform '", str, "' in program"));
             return 0;
         }
-        wn4.j("The program has been released");
+        zo4.k("The program has been released");
         return 0;
     }
 
@@ -96,7 +96,7 @@ public class GlShader {
             GlUtil.checkNoGLES2Error("setVertexAttribArray");
             return;
         }
-        wn4.j("The program has been released");
+        zo4.k("The program has been released");
     }
 
     public void useProgram() {
@@ -107,7 +107,7 @@ public class GlShader {
             GlUtil.checkNoGLES2Error("glUseProgram");
             return;
         }
-        wn4.j("The program has been released");
+        zo4.k("The program has been released");
     }
 
     public void setVertexAttribArray(String str, int i, FloatBuffer floatBuffer) {

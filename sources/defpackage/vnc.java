@@ -1,33 +1,36 @@
 package defpackage;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.ui.Wallet.WalletEngine2;
-public final class vnc implements Runnable {
-    public final byte a;
-    public final AtomicBoolean b;
-    public final i8c c;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class vnc extends FrameLayout {
+    public View a;
+    public float b;
+    public int c;
+    public final cc d;
+    public final goc e;
 
-    public vnc(AtomicBoolean atomicBoolean, i8c i8cVar, byte b) {
-        this.a = b;
-        this.b = atomicBoolean;
-        this.c = i8cVar;
+    public vnc(goc gocVar, Context context) {
+        super(context);
+        this.e = gocVar;
+        this.d = new cc(this, (byte) 10);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        i8c i8cVar = this.c;
-        AtomicBoolean atomicBoolean = this.b;
-        switch (b) {
-            case 0:
-                WalletEngine2.lambda$emulateSend$20(atomicBoolean, i8cVar);
-                return;
-            case 1:
-                WalletEngine2.lambda$emulateSendNFT$24(atomicBoolean, i8cVar);
-                return;
-            default:
-                WalletEngine2.lambda$emulateSendNFT$25(atomicBoolean, i8cVar);
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.d);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        getViewTreeObserver().removeOnPreDrawListener(this.d);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        this.e.Y0();
     }
 }

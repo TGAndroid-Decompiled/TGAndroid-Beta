@@ -1,72 +1,42 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class vz1 extends AnimatorListenerAdapter {
+import org.telegram.ui.Components.l;
+public final class vz1 implements Runnable {
     public final byte a;
-    public final boolean b;
-    public final c02 c;
+    public final l b;
+    public final hg5 c;
 
-    public vz1(c02 c02Var, boolean z, byte b) {
+    public vz1(l lVar, hg5 hg5Var, byte b) {
         this.a = b;
-        this.c = c02Var;
-        this.b = z;
+        this.b = lVar;
+        this.c = hg5Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int L;
+    public final void run() {
         byte b = this.a;
-        boolean z = this.b;
-        c02 c02Var = this.c;
+        hg5 hg5Var = this.c;
+        l lVar = this.b;
         switch (b) {
             case 0:
-                x02 x02Var = c02Var.e;
-                if (!z) {
-                    x02Var.B3.setVisibility(8);
-                    L = 0;
-                } else {
-                    x02Var.u3.setVisibility(8);
-                    L = gl.L(36.0f);
-                }
-                for (int i = 0; i < x02Var.u2.size(); i++) {
-                    ((s12) x02Var.u2.valueAt(i)).setMeasureOffsetY(L);
-                }
-                if (c02Var.a == animator) {
-                    c02Var.a = null;
+                lVar.removeView(hg5Var);
+                if (lVar.b == hg5Var) {
+                    lVar.b = null;
                     return;
                 }
+                return;
+            case 1:
+                lVar.removeView(hg5Var);
+                return;
+            case 2:
+                lVar.removeView(hg5Var);
                 return;
             default:
-                x02 x02Var2 = c02Var.e;
-                x02Var2.y3 = z;
-                if (!z) {
-                    x02Var2.z3.setVisibility(8);
+                lVar.removeView(hg5Var);
+                if (lVar.a == hg5Var) {
+                    lVar.a = null;
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.a) {
-            case 0:
-                x02 x02Var = this.c.e;
-                if (this.b) {
-                    x02Var.B3.setAlpha(0.0f);
-                    x02Var.B3.setVisibility(0);
-                    int L = gl.L(36.0f);
-                    for (int i = 0; i < x02Var.u2.size(); i++) {
-                        ((s12) x02Var.u2.valueAt(i)).setMeasureOffsetY(L);
-                    }
-                    return;
-                }
-                x02Var.u3.setAlpha(0.0f);
-                x02Var.u3.setVisibility(0);
-                return;
-            default:
-                super.onAnimationStart(animator);
                 return;
         }
     }

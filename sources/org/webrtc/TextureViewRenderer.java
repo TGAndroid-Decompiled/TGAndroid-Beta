@@ -116,7 +116,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
             runnable.run();
         } else {
-            gl.d3(runnable);
+            gm.c3(runnable);
         }
     }
 
@@ -140,7 +140,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             sb.append(", frame size: ");
             sb.append(this.rotatedFrameWidth);
             sb.append("x");
-            ir2.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            ts2.v(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb.append(min2);
             sb.append(", old surface size: ");
             sb.append(this.surfaceWidth);
@@ -198,11 +198,11 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                 synchronized (this.eglRenderer.layoutLock) {
                     Runnable runnable = this.updateScreenRunnable;
                     if (runnable != null) {
-                        gl.r(runnable);
+                        gm.r(runnable);
                     }
-                    bt btVar = new bt(this, i, i3, (byte) 17);
-                    this.updateScreenRunnable = btVar;
-                    postOrRun(btVar);
+                    cu cuVar = new cu(this, i, i3, (byte) 17);
+                    this.updateScreenRunnable = cuVar;
+                    postOrRun(cuVar);
                 }
             }
         }
@@ -336,7 +336,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     public void setBackgroundRenderer(TextureView textureView) {
-        if (!e66.e(512)) {
+        if (!e86.e(512)) {
             return;
         }
         this.backgroundRenderer = textureView;
@@ -581,7 +581,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
         @Override
         public void onFirstFrameRendered() {
-            gl.d3(new cib(this, (byte) 2));
+            gm.c3(new zcb(this, (byte) 10));
         }
 
         @Override
@@ -600,7 +600,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new wm3(countDownLatch, (byte) 1), false);
+            releaseEglSurface(new go3(countDownLatch, (byte) 1), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }

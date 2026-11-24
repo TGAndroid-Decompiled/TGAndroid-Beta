@@ -1,63 +1,47 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class b50 extends c50 {
-    public static final Parcelable.Creator<b50> CREATOR = new rhe((byte) 25);
-    public final v34 a;
-    public final String b;
-    public final int c;
+import android.media.AudioTrack;
+public final class b50 {
+    public final a50 a;
+    public final int b;
+    public final sz4 c;
+    public byte d;
+    public long e;
+    public int f;
+    public long g;
+    public long h;
+    public long i;
 
-    public b50(int i, int i2, String str) {
-        try {
-            this.a = v34.a(i);
-            this.b = str;
-            this.c = i2;
-        } catch (u34 e) {
-            throw new IllegalArgumentException(e);
-        }
+    public b50(AudioTrack audioTrack, sz4 sz4Var) {
+        this.a = new a50(audioTrack);
+        this.b = audioTrack.getSampleRate();
+        this.c = sz4Var;
+        a(0);
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof b50)) {
-            return false;
+    public final void a(int i) {
+        this.d = i;
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2 && i != 3) {
+                    if (i == 4) {
+                        this.f = 500000;
+                        return;
+                    } else {
+                        rjb.h();
+                        return;
+                    }
+                }
+                this.f = 10000000;
+                return;
+            }
+            this.f = 10000;
+            return;
         }
-        b50 b50Var = (b50) obj;
-        if (!cqe.a(this.a, b50Var.a) || !cqe.a(this.b, b50Var.b) || !cqe.a(Integer.valueOf(this.c), Integer.valueOf(b50Var.c))) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b, Integer.valueOf(this.c)});
-    }
-
-    public final String toString() {
-        vk9 vk9Var = new vk9(getClass().getSimpleName(), (byte) 25);
-        String valueOf = String.valueOf((int) this.a.a);
-        vk9 vk9Var2 = new vk9((byte) 24, false);
-        ((vk9) vk9Var.d).d = vk9Var2;
-        vk9Var.d = vk9Var2;
-        vk9Var2.c = valueOf;
-        vk9Var2.b = "errorCode";
-        String str = this.b;
-        if (str != null) {
-            vk9Var.B(str, "errorMessage");
-        }
-        return vk9Var.toString();
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        byte b = this.a.a;
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(b);
-        jte.l(parcel, 3, this.b);
-        jte.q(parcel, 4, 4);
-        parcel.writeInt(this.c);
-        jte.s(parcel, r);
+        this.g = 0L;
+        this.h = -1L;
+        this.i = -9223372036854775807L;
+        this.e = System.nanoTime() / 1000;
+        this.f = 10000;
     }
 }

@@ -1,57 +1,16 @@
 package defpackage;
 public abstract class c3f {
-    public static String a(sie sieVar) {
-        StringBuilder sb = new StringBuilder(sieVar.i());
-        for (int i = 0; i < sieVar.i(); i++) {
-            byte h = sieVar.h(i);
-            if (h != 34) {
-                if (h != 39) {
-                    if (h != 92) {
-                        switch (h) {
-                            case 7:
-                                sb.append("\\a");
-                                continue;
-                            case 8:
-                                sb.append("\\b");
-                                continue;
-                            case 9:
-                                sb.append("\\t");
-                                continue;
-                            case 10:
-                                sb.append("\\n");
-                                continue;
-                            case 11:
-                                sb.append("\\v");
-                                continue;
-                            case 12:
-                                sb.append("\\f");
-                                continue;
-                            case 13:
-                                sb.append("\\r");
-                                continue;
-                            default:
-                                if (h >= 32 && h <= 126) {
-                                    sb.append((char) h);
-                                    continue;
-                                } else {
-                                    sb.append('\\');
-                                    sb.append((char) (((h >>> 6) & 3) + 48));
-                                    sb.append((char) (((h >>> 3) & 7) + 48));
-                                    sb.append((char) ((h & 7) + 48));
-                                    break;
-                                }
-                                break;
-                        }
-                    } else {
-                        sb.append("\\\\");
-                    }
-                } else {
-                    sb.append("\\'");
-                }
+    public static int a(okd okdVar) {
+        int i;
+        int i2 = 0;
+        for (Object obj : okdVar) {
+            if (obj != null) {
+                i = obj.hashCode();
             } else {
-                sb.append("\\\"");
+                i = 0;
             }
+            i2 += i;
         }
-        return sb.toString();
+        return i2;
     }
 }

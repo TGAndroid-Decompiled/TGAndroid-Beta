@@ -1,156 +1,96 @@
 package defpackage;
 
-import android.view.ViewTreeObserver;
-import org.telegram.ui.Components.Crop.CropAreaView;
-public final class f33 implements ViewTreeObserver.OnPreDrawListener {
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.CancellationSignal;
+import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+import androidx.credentials.playservices.controllers.identityauth.HiddenActivity;
+import androidx.credentials.playservices.controllers.identitycredentials.IdentityCredentialApiHiddenActivity;
+import java.util.concurrent.Executor;
+public final class f33 implements rr4 {
     public final byte a;
-    public final zl6 b;
-    public final int c;
-    public final int d;
-    public final j33 e;
+    public final Object b;
+    public final Object c;
 
-    public f33(j33 j33Var, zl6 zl6Var, int i, int i2, byte b) {
+    public f33(Object obj, Object obj2, byte b) {
         this.a = b;
-        this.e = j33Var;
-        this.b = zl6Var;
-        this.c = i;
-        this.d = i2;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        float f;
-        float f2;
-        boolean z;
-        float f3;
-        float f4;
-        boolean z2;
+    public final Object invoke(Object obj) {
         byte b = this.a;
-        zl6 zl6Var = this.b;
-        j33 j33Var = this.e;
-        int i = this.d;
-        int i2 = this.c;
+        g7c g7cVar = g7c.a;
+        Object obj2 = this.c;
+        Object obj3 = this.b;
         switch (b) {
             case 0:
-                j33Var.l(false);
-                CropAreaView cropAreaView = j33Var.a;
-                if (zl6Var != null) {
-                    float f5 = zl6Var.v;
-                    if (f5 > 1.0E-4f) {
-                        cropAreaView.setLockedAspectRatio(f5);
-                        i33 i33Var = j33Var.N;
-                        if (i33Var != null) {
-                            i33Var.o1(true);
+                CancellationSignal cancellationSignal = (CancellationSignal) obj3;
+                h33 h33Var = (h33) obj2;
+                Context context = h33Var.e;
+                ii0 ii0Var = (ii0) obj;
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!w33.a(cancellationSignal)) {
+                    Intent intent = new Intent(context, HiddenActivity.class);
+                    j33.a(h33Var.i, intent, "BEGIN_SIGN_IN");
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", ii0Var.a);
+                    try {
+                        context.startActivity(intent);
+                    } catch (Exception unused) {
+                        CredentialProviderPlayServicesImpl.Companion.getClass();
+                        if (!w33.a(cancellationSignal)) {
+                            h33Var.f().execute(new xf2(h33Var, (byte) 19));
                         }
-                    }
-                    j33Var.setFreeform(zl6Var.u);
-                    float aspectRatio = cropAreaView.getAspectRatio();
-                    int i3 = zl6Var.k;
-                    if (i3 != 90 && i3 != 270) {
-                        h33 h33Var = j33Var.M;
-                        f = h33Var.a;
-                        f2 = h33Var.b;
-                    } else {
-                        aspectRatio = 1.0f / aspectRatio;
-                        h33 h33Var2 = j33Var.M;
-                        f = h33Var2.b;
-                        f2 = h33Var2.a;
-                        i2 = i;
-                        i = i2;
-                    }
-                    if (j33Var.y && cropAreaView.getLockAspectRatio() > 0.0f) {
-                        cropAreaView.setLockedAspectRatio(1.0f / cropAreaView.getLockAspectRatio());
-                        cropAreaView.setActualRect(cropAreaView.getLockAspectRatio());
-                    } else {
-                        int currentWidth = j33Var.getCurrentWidth();
-                        int currentHeight = j33Var.getCurrentHeight();
-                        if ((i3 + j33Var.M.g) % 180.0f != 0.0f) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        cropAreaView.e(currentWidth, currentHeight, z, j33Var.y);
-                    }
-                    j33Var.M.d(i3);
-                    cropAreaView.setActualRect((aspectRatio * zl6Var.e) / zl6Var.f);
-                    h33 h33Var3 = j33Var.M;
-                    h33Var3.j = zl6Var.l;
-                    h33Var3.e(zl6Var.d);
-                    h33 h33Var4 = j33Var.M;
-                    float f6 = zl6Var.a * i;
-                    float f7 = h33Var4.f;
-                    h33Var4.g(f6 * f7, zl6Var.b * i2 * f7);
-                    float max = Math.max(cropAreaView.getCropWidth() / f, cropAreaView.getCropHeight() / f2);
-                    h33 h33Var5 = j33Var.M;
-                    h33Var5.f(zl6Var.c * (max / h33Var5.f), 0.0f, 0.0f);
-                    j33Var.r(false);
-                    i33 i33Var2 = j33Var.N;
-                    if (i33Var2 != null) {
-                        i33Var2.h2(false);
                     }
                 }
-                cropAreaView.getViewTreeObserver().removeOnPreDrawListener(this);
-                return false;
+                return g7cVar;
+            case 1:
+                CancellationSignal cancellationSignal2 = (CancellationSignal) obj3;
+                o33 o33Var = (o33) obj2;
+                Context context2 = o33Var.e;
+                PendingIntent pendingIntent = (PendingIntent) obj;
+                pendingIntent.getClass();
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!w33.a(cancellationSignal2)) {
+                    Intent intent2 = new Intent(context2, HiddenActivity.class);
+                    j33.a(o33Var.i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", pendingIntent);
+                    try {
+                        context2.startActivity(intent2);
+                    } catch (Exception unused2) {
+                        CredentialProviderPlayServicesImpl.Companion.getClass();
+                        if (!w33.a(cancellationSignal2)) {
+                            Executor executor = o33Var.g;
+                            if (executor != null) {
+                                executor.execute(new m33(o33Var, (byte) 0));
+                            } else {
+                                rr5.e("executor");
+                                throw null;
+                            }
+                        }
+                    }
+                }
+                return g7cVar;
+            case 2:
+                t33 t33Var = (t33) obj2;
+                Context context3 = t33Var.e;
+                b58 b58Var = (b58) obj;
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!w33.a((CancellationSignal) obj3)) {
+                    Intent intent3 = new Intent(context3, IdentityCredentialApiHiddenActivity.class);
+                    intent3.setFlags(65536);
+                    intent3.putExtra("RESULT_RECEIVER", j33.c(t33Var.i));
+                    intent3.putExtra("EXTRA_FLOW_PENDING_INTENT", b58Var.a);
+                    intent3.putExtra("EXTRA_ERROR_NAME", "GET_UNKNOWN");
+                    context3.startActivity(intent3);
+                }
+                return g7cVar;
             default:
-                j33Var.l(false);
-                CropAreaView cropAreaView2 = j33Var.a;
-                if (zl6Var != null) {
-                    float f8 = zl6Var.v;
-                    if (f8 > 1.0E-4f) {
-                        cropAreaView2.setLockedAspectRatio(f8);
-                        i33 i33Var3 = j33Var.N;
-                        if (i33Var3 != null) {
-                            i33Var3.o1(true);
-                        }
-                    }
-                    j33Var.setFreeform(zl6Var.u);
-                    float aspectRatio2 = cropAreaView2.getAspectRatio();
-                    int i4 = zl6Var.k;
-                    if (i4 != 90 && i4 != 270) {
-                        h33 h33Var6 = j33Var.M;
-                        f3 = h33Var6.a;
-                        f4 = h33Var6.b;
-                    } else {
-                        aspectRatio2 = 1.0f / aspectRatio2;
-                        h33 h33Var7 = j33Var.M;
-                        f3 = h33Var7.b;
-                        f4 = h33Var7.a;
-                        i2 = i;
-                        i = i2;
-                    }
-                    if (j33Var.y && cropAreaView2.getLockAspectRatio() > 0.0f) {
-                        cropAreaView2.setLockedAspectRatio(1.0f / cropAreaView2.getLockAspectRatio());
-                        cropAreaView2.setActualRect(cropAreaView2.getLockAspectRatio());
-                    } else {
-                        int currentWidth2 = j33Var.getCurrentWidth();
-                        int currentHeight2 = j33Var.getCurrentHeight();
-                        if ((i4 + j33Var.M.g) % 180.0f != 0.0f) {
-                            z2 = true;
-                        } else {
-                            z2 = false;
-                        }
-                        cropAreaView2.e(currentWidth2, currentHeight2, z2, j33Var.y);
-                    }
-                    j33Var.M.d(i4);
-                    cropAreaView2.setActualRect((aspectRatio2 * zl6Var.e) / zl6Var.f);
-                    h33 h33Var8 = j33Var.M;
-                    h33Var8.j = zl6Var.l;
-                    h33Var8.e(zl6Var.d);
-                    h33 h33Var9 = j33Var.M;
-                    float f9 = zl6Var.a * i;
-                    float f10 = h33Var9.f;
-                    h33Var9.g(f9 * f10, zl6Var.b * i2 * f10);
-                    float max2 = Math.max(cropAreaView2.getCropWidth() / f3, cropAreaView2.getCropHeight() / f4);
-                    h33 h33Var10 = j33Var.M;
-                    h33Var10.f(zl6Var.c * (max2 / h33Var10.f), 0.0f, 0.0f);
-                    j33Var.r(false);
-                    i33 i33Var4 = j33Var.N;
-                    if (i33Var4 != null) {
-                        i33Var4.h2(false);
-                    }
-                }
-                cropAreaView2.getViewTreeObserver().removeOnPreDrawListener(this);
-                return false;
+                Throwable th = (Throwable) obj;
+                ((ie5) obj3).c.removeCallbacks((tnd) obj2);
+                return g7cVar;
         }
     }
 }

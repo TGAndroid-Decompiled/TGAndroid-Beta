@@ -2,7 +2,7 @@ package defpackage;
 
 import android.view.View;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class l5 implements c39 {
+public final class l5 implements f59 {
     public final byte a;
 
     public l5(byte b) {
@@ -10,21 +10,21 @@ public final class l5 implements c39 {
     }
 
     @Override
-    public final void d(int i, View view) {
+    public final void g(int i, View view) {
         switch (this.a) {
             case 0:
                 return;
             case 1:
-                if (view instanceof j20) {
-                    ((j20) view).a();
+                if (view instanceof j30) {
+                    ((j30) view).a();
                     return;
                 }
                 return;
             default:
                 boolean z = ChatAttachAlertPhotoLayout.r1;
-                if (view instanceof o48) {
-                    o48 o48Var = (o48) view;
-                    o48Var.y.c(o48Var);
+                if (view instanceof q68) {
+                    q68 q68Var = (q68) view;
+                    q68Var.y.c(q68Var);
                     return;
                 }
                 return;

@@ -1,27 +1,58 @@
 package defpackage;
-public final class jba implements Runnable {
-    public final byte a;
-    public final lba b;
+public final class jba extends lba {
+    public final byte f;
+    public final iba g;
+    public final mba h;
 
-    public jba(lba lbaVar, byte b) {
-        this.a = b;
-        this.b = lbaVar;
+    public jba(mba mbaVar, iba ibaVar, byte b) {
+        this.f = b;
+        this.h = mbaVar;
+        this.g = ibaVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        lba lbaVar = this.b;
+    public final void a() {
+        byte b = this.f;
+        mba mbaVar = this.h;
         switch (b) {
             case 0:
-                lbaVar.post(new jba(lbaVar, (byte) 1));
+                dba dbaVar = mbaVar.h;
+                float f = dbaVar.i;
+                float f2 = dbaVar.j;
+                this.d = f;
+                this.e = f2;
                 return;
             default:
-                lbaVar.c0.N0 = true;
-                lbaVar.I.clear();
-                lbaVar.J.clear();
-                lbaVar.K.clear();
-                lbaVar.invalidate();
+                dba dbaVar2 = mbaVar.h;
+                float f3 = dbaVar2.d;
+                float f4 = dbaVar2.e;
+                this.d = f3;
+                this.e = f4;
+                return;
+        }
+    }
+
+    @Override
+    public final void b(float f, float f2) {
+        byte b = this.f;
+        iba ibaVar = this.g;
+        mba mbaVar = this.h;
+        switch (b) {
+            case 0:
+                dba dbaVar = mbaVar.h;
+                dbaVar.i = f;
+                dbaVar.j = f2;
+                this.d = f;
+                this.e = f2;
+                ibaVar.a();
+                return;
+            default:
+                dba dbaVar2 = mbaVar.h;
+                dbaVar2.d = f;
+                dbaVar2.e = f2;
+                this.d = f;
+                this.e = f2;
+                ibaVar.a();
                 return;
         }
     }

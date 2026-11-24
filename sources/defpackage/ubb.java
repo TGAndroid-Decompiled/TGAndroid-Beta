@@ -1,37 +1,28 @@
 package defpackage;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-public class ubb extends ze3 {
-    public AlertDialog B0;
-    public DialogInterface.OnCancelListener C0;
-    public AlertDialog D0;
+import java.io.IOException;
+public abstract class ubb extends Exception {
+    public final String a;
 
-    @Override
-    public final Dialog P() {
-        AlertDialog alertDialog = this.B0;
-        if (alertDialog == null) {
-            this.s0 = false;
-            AlertDialog alertDialog2 = this.D0;
-            if (alertDialog2 == null) {
-                Context n = n();
-                fre.h(n);
-                AlertDialog create = new AlertDialog.Builder(n).create();
-                this.D0 = create;
-                return create;
-            }
-            return alertDialog2;
-        }
-        return alertDialog;
+    public ubb(String str, String str2) {
+        super(str, null);
+        this.a = str2;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.C0;
-        if (onCancelListener != null) {
-            onCancelListener.onCancel(dialogInterface);
+    public final String toString() {
+        String str;
+        String str2 = this.a;
+        if (str2 != null) {
+            str = b10.h("; request-id: ", str2);
+        } else {
+            str = "";
         }
+        return b10.j(new StringBuilder(), super.toString(), str);
+    }
+
+    public ubb(String str, String str2, IOException iOException) {
+        super(str, iOException);
+        this.a = str2;
     }
 }

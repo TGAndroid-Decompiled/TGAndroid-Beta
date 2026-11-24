@@ -1,21 +1,71 @@
 package defpackage;
 
-import java.util.Comparator;
-public final class is6 implements Comparator {
-    public static final is6 b = new is6((byte) 0);
-    public static final is6 c = new is6((byte) 1);
-    public static final is6 d = new is6((byte) 2);
-    public static final is6 e = new is6((byte) 3);
-    public static final is6 f = new is6((byte) 12);
-    public static final is6 h = new is6((byte) 13);
-    public final byte a;
-
-    public is6(byte b2) {
-        this.a = b2;
+import android.graphics.Bitmap;
+import android.media.MediaDescription;
+import android.net.Uri;
+import android.os.Bundle;
+public abstract class is6 {
+    public static MediaDescription a(MediaDescription.Builder builder) {
+        return builder.build();
     }
 
-    @Override
-    public final int compare(java.lang.Object r6, java.lang.Object r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.is6.compare(java.lang.Object, java.lang.Object):int");
+    public static MediaDescription.Builder b() {
+        return new MediaDescription.Builder();
+    }
+
+    public static CharSequence c(MediaDescription mediaDescription) {
+        return mediaDescription.getDescription();
+    }
+
+    public static Bundle d(MediaDescription mediaDescription) {
+        return mediaDescription.getExtras();
+    }
+
+    public static Bitmap e(MediaDescription mediaDescription) {
+        return mediaDescription.getIconBitmap();
+    }
+
+    public static Uri f(MediaDescription mediaDescription) {
+        return mediaDescription.getIconUri();
+    }
+
+    public static String g(MediaDescription mediaDescription) {
+        return mediaDescription.getMediaId();
+    }
+
+    public static CharSequence h(MediaDescription mediaDescription) {
+        return mediaDescription.getSubtitle();
+    }
+
+    public static CharSequence i(MediaDescription mediaDescription) {
+        return mediaDescription.getTitle();
+    }
+
+    public static void j(MediaDescription.Builder builder, CharSequence charSequence) {
+        builder.setDescription(charSequence);
+    }
+
+    public static void k(MediaDescription.Builder builder, Bundle bundle) {
+        builder.setExtras(bundle);
+    }
+
+    public static void l(MediaDescription.Builder builder, Bitmap bitmap) {
+        builder.setIconBitmap(bitmap);
+    }
+
+    public static void m(MediaDescription.Builder builder, Uri uri) {
+        builder.setIconUri(uri);
+    }
+
+    public static void n(MediaDescription.Builder builder, String str) {
+        builder.setMediaId(str);
+    }
+
+    public static void o(MediaDescription.Builder builder, CharSequence charSequence) {
+        builder.setSubtitle(charSequence);
+    }
+
+    public static void p(MediaDescription.Builder builder, CharSequence charSequence) {
+        builder.setTitle(charSequence);
     }
 }

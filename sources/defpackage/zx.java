@@ -1,3 +1,7 @@
 package defpackage;
-public final class zx extends Exception {
+
+import org.telegram.tgnet.tl.TL_iv;
+public final class zx extends TL_iv.PageBlock {
+    public TL_iv.pageBlockRelatedArticles a;
+    public int b;
 }

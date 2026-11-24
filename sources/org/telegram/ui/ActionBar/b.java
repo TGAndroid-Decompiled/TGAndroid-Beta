@@ -28,7 +28,7 @@ public final class b extends FrameLayout {
     public LinearGradient r;
     public final Matrix s;
     public Paint w;
-    public rs3 x;
+    public bu3 x;
     public boolean y;
 
     public b(Context context, ActionBarLayout actionBarLayout) {
@@ -45,19 +45,19 @@ public final class b extends FrameLayout {
         int paddingLeft = getPaddingLeft();
         int paddingRight = getPaddingRight();
         int paddingBottom = getPaddingBottom();
-        Paint l0 = bkb.l0(i);
-        rs3 rs3Var = rs3.c;
-        if (paddingLeft > 0 && this.x != rs3Var) {
+        Paint l0 = cmb.l0(i);
+        bu3 bu3Var = bu3.c;
+        if (paddingLeft > 0 && this.x != bu3Var) {
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, paddingLeft + 1, getHeight(), l0);
         } else {
             canvas2 = canvas;
         }
-        if (paddingRight > 0 && this.x != rs3Var) {
+        if (paddingRight > 0 && this.x != bu3Var) {
             canvas2.drawRect(getWidth() - (paddingRight + 1), 0.0f, getWidth(), getHeight(), l0);
         }
         if (paddingBottom > 0) {
-            if (this.x == rs3.a || z) {
+            if (this.x == bu3.a || z) {
                 canvas2.drawRect(0.0f, getHeight() - (paddingBottom + 1), getWidth(), getHeight(), l0);
             }
         }
@@ -71,8 +71,8 @@ public final class b extends FrameLayout {
             actionBarLayout.m(this, actionBarLayout.t1);
             return;
         }
-        WeakHashMap weakHashMap = jdc.a;
-        zcc.c(this);
+        WeakHashMap weakHashMap = kfc.a;
+        afc.c(this);
     }
 
     public final void b() {
@@ -83,7 +83,7 @@ public final class b extends FrameLayout {
             while (true) {
                 if (i2 >= 0) {
                     View childAt = getChildAt(i2);
-                    if ((childAt instanceof rw) && childAt.getVisibility() == 0) {
+                    if ((childAt instanceof rx) && childAt.getVisibility() == 0) {
                         break;
                     }
                     i2--;
@@ -106,53 +106,53 @@ public final class b extends FrameLayout {
                 }
             }
         } catch (Exception e) {
-            fa4.g(e, true);
+            fc4.g(e, true);
         }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int w0;
-        io5 io5Var;
+        iq5 iq5Var;
         ActionBarLayout actionBarLayout = this.F;
         if (actionBarLayout.T0) {
             super.dispatchDraw(canvas);
             return;
         }
-        mq3 mq3Var = actionBarLayout.y;
+        wr3 wr3Var = actionBarLayout.y;
         boolean z = false;
-        if (mq3Var != null) {
-            w0 = mq3Var.getInternalNavbarPaint().getColor();
+        if (wr3Var != null) {
+            w0 = wr3Var.getInternalNavbarPaint().getColor();
         } else {
-            w0 = bkb.w0(null, bkb.Z6, false);
+            w0 = cmb.w0(null, cmb.Z6, false);
         }
         boolean z2 = true;
         if (this == actionBarLayout.x) {
-            lm lmVar = actionBarLayout.i1;
+            ln lnVar = actionBarLayout.i1;
             k6 k6Var = actionBarLayout.H;
             if (k6Var != null && k6Var.hasSheet()) {
                 z = true;
             }
-            float d = lmVar.d(z);
+            float d = lnVar.d(z);
             if (d > 0.0f) {
-                a(canvas, this.E, bkb.p1(d, w0));
+                a(canvas, this.E, cmb.p1(d, w0));
             }
         } else {
             d lastFragment = actionBarLayout.getLastFragment();
             if (lastFragment != null && !lastFragment.inPreviewMode) {
-                if (this == actionBarLayout.s && this.x != rs3.a) {
+                if (this == actionBarLayout.s && this.x != bu3.a) {
                     int childCount = getChildCount();
                     for (int i = 0; i < childCount; i++) {
-                        if (getChildAt(i) instanceof rw) {
+                        if (getChildAt(i) instanceof rx) {
                             break;
                         }
                     }
                 }
                 z2 = false;
                 a(canvas, z2, w0);
-                if (z2 && this.y && actionBarLayout.u(false) <= 0 && (io5Var = actionBarLayout.u1) != null && io5Var.d > 0) {
+                if (z2 && this.y && actionBarLayout.u(false) <= 0 && (iq5Var = actionBarLayout.u1) != null && iq5Var.d > 0) {
                     super.dispatchDraw(canvas);
-                    canvas.drawRect(0.0f, getHeight() - actionBarLayout.u1.d, getWidth(), getHeight(), bkb.l0(w0));
+                    canvas.drawRect(0.0f, getHeight() - actionBarLayout.u1.d, getWidth(), getHeight(), cmb.l0(w0));
                     return;
                 }
             }
@@ -173,11 +173,11 @@ public final class b extends FrameLayout {
         int i3;
         int i4;
         Drawable drawable;
-        ArrayList<zf0> arrayList;
+        ArrayList<ah0> arrayList;
         ActionBarLayout actionBarLayout = this.F;
-        zf0 zf0Var = null;
+        ah0 ah0Var = null;
         if (!actionBarLayout.V0.isEmpty()) {
-            dVar = (d) oo1.m(1, actionBarLayout.V0);
+            dVar = (d) aq1.m(1, actionBarLayout.V0);
         } else {
             dVar = null;
         }
@@ -186,9 +186,9 @@ public final class b extends FrameLayout {
             dVar = actionBarLayout.H;
         }
         if (dVar != null) {
-            zf0Var = dVar.getLastSheet();
+            ah0Var = dVar.getLastSheet();
         }
-        if (zf0Var != null && zf0Var.h() && zf0Var.d() != view) {
+        if (ah0Var != null && ah0Var.h() && ah0Var.d() != view) {
             return true;
         }
         if (view instanceof a) {
@@ -224,7 +224,7 @@ public final class b extends FrameLayout {
             ActionBarLayout.w1.draw(canvas);
             ActionBarLayout.w1.setAlpha(alpha);
         }
-        if (!actionBarLayout.T0 && this.E && this.y && dVar != null && dVar.getListViewForSimpleGlass() == null && (i4 = gl.n) >= gl.L(32.0f)) {
+        if (!actionBarLayout.T0 && this.E && this.y && dVar != null && dVar.getListViewForSimpleGlass() == null && (i4 = gm.n) >= gm.L(32.0f)) {
             int i7 = (int) (i4 * 1.33f);
             int navigationBarColor = dVar.getNavigationBarColor();
             if (i7 != this.h || this.n != navigationBarColor || this.w == null) {
@@ -233,7 +233,7 @@ public final class b extends FrameLayout {
                 }
                 this.n = navigationBarColor;
                 this.h = i7;
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, i7, new int[]{bkb.p1(0.1f, navigationBarColor), bkb.p1(1.0f, navigationBarColor)}, new float[]{0.0f, 0.88f}, Shader.TileMode.CLAMP);
+                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, i7, new int[]{cmb.p1(0.1f, navigationBarColor), cmb.p1(1.0f, navigationBarColor)}, new float[]{0.0f, 0.88f}, Shader.TileMode.CLAMP);
                 this.r = linearGradient;
                 this.w.setShader(linearGradient);
             }
@@ -258,12 +258,12 @@ public final class b extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
         if (this.c != 0) {
-            int i = bkb.c6;
-            int w0 = bkb.w0(null, i, false);
+            int i = cmb.c6;
+            int w0 = cmb.w0(null, i, false);
             int i2 = this.e;
             Paint paint = this.d;
             if (i2 != w0) {
-                int w02 = bkb.w0(null, i, false);
+                int w02 = cmb.w0(null, i, false);
                 this.e = w02;
                 paint.setColor(w02);
             }
@@ -301,7 +301,7 @@ public final class b extends FrameLayout {
             View childAt2 = getChildAt(i8);
             if (!(childAt2 instanceof a)) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt2.getLayoutParams();
-                if (childAt2.getTag(2131296649) == null && !childAt2.getFitsSystemWindows() && !(childAt2 instanceof rw)) {
+                if (childAt2.getTag(2131296649) == null && !childAt2.getFitsSystemWindows() && !(childAt2 instanceof rx)) {
                     int i9 = layoutParams.leftMargin + paddingLeft;
                     childAt2.layout(i9, layoutParams.topMargin + i5, childAt2.getMeasuredWidth() + i9, childAt2.getMeasuredHeight() + layoutParams.topMargin + i5);
                 } else {
@@ -315,18 +315,18 @@ public final class b extends FrameLayout {
         getWindowVisibleDisplayFrame(rect);
         int height = rootView.getHeight();
         if (rect.top != 0) {
-            i6 = gl.m;
+            i6 = gm.m;
         } else {
             i6 = 0;
         }
-        if (((height - i6) - gl.o1(rootView)) - (rect.bottom - rect.top) > 0) {
+        if (((height - i6) - gm.o1(rootView)) - (rect.bottom - rect.top) > 0) {
             z2 = true;
         }
         this.b = z2;
         ActionBarLayout actionBarLayout = this.F;
         Runnable runnable = actionBarLayout.d;
         if (runnable != null && !actionBarLayout.s.b && !actionBarLayout.w.b) {
-            gl.r(runnable);
+            gm.r(runnable);
             actionBarLayout.d.run();
             actionBarLayout.d = null;
         }
@@ -353,9 +353,9 @@ public final class b extends FrameLayout {
         this.f = z;
         int childCount = getChildCount();
         getWindowVisibleDisplayFrame(this.a);
-        qx0 qx0Var = actionBarLayout.F;
-        if (qx0Var != null) {
-            qx0Var.setCurrentAccount(y6c.t0);
+        xy0 xy0Var = actionBarLayout.F;
+        if (xy0Var != null) {
+            xy0Var.setCurrentAccount(z8c.t0);
         }
         int i6 = 0;
         while (true) {
@@ -375,7 +375,7 @@ public final class b extends FrameLayout {
         for (int i7 = 0; i7 < childCount; i7++) {
             View childAt2 = getChildAt(i7);
             if (!(childAt2 instanceof a)) {
-                if (childAt2 instanceof rw) {
+                if (childAt2 instanceof rx) {
                     if (actionBarLayout.u(false) <= 0 && this.y) {
                         i5 = actionBarLayout.u1.d;
                     } else {
@@ -421,11 +421,11 @@ public final class b extends FrameLayout {
         invalidate();
     }
 
-    public void setShouldHandleBottomInsets(rs3 rs3Var) {
+    public void setShouldHandleBottomInsets(bu3 bu3Var) {
         boolean z;
-        if (this.x != rs3Var) {
-            this.x = rs3Var;
-            if (rs3Var != rs3.a) {
+        if (this.x != bu3Var) {
+            this.x = bu3Var;
+            if (bu3Var != bu3.a) {
                 z = true;
             } else {
                 z = false;
@@ -436,8 +436,8 @@ public final class b extends FrameLayout {
             if (actionBarLayout.t1 != null && getParent() == actionBarLayout) {
                 actionBarLayout.m(this, actionBarLayout.t1);
             } else if (view != null) {
-                WeakHashMap weakHashMap = jdc.a;
-                zcc.c(view);
+                WeakHashMap weakHashMap = kfc.a;
+                afc.c(view);
             }
         }
     }

@@ -97,7 +97,7 @@ public class SurfaceTextureHelper {
                 this.oesTextureId = generateTexture;
                 SurfaceTexture surfaceTexture = new SurfaceTexture(generateTexture);
                 this.surfaceTexture = surfaceTexture;
-                setOnFrameAvailableListener(surfaceTexture, new ha1(this, (byte) 3), handler);
+                setOnFrameAvailableListener(surfaceTexture, new pb1(this, (byte) 3), handler);
                 return;
             } catch (RuntimeException e) {
                 this.eglBase.release();
@@ -105,7 +105,7 @@ public class SurfaceTextureHelper {
                 throw e;
             }
         }
-        sc8.j("SurfaceTextureHelper must be created on the handler thread");
+        dq9.m("SurfaceTextureHelper must be created on the handler thread");
         throw null;
     }
 
@@ -185,14 +185,14 @@ public class SurfaceTextureHelper {
                 }
                 return;
             }
-            sc8.j("Unexpected release.");
+            dq9.m("Unexpected release.");
             return;
         }
-        sc8.j("Wrong thread.");
+        dq9.m("Wrong thread.");
     }
 
     public void returnTextureFrame() {
-        this.handler.post(new bcb(this, (byte) 2));
+        this.handler.post(new deb(this, (byte) 2));
     }
 
     private static void setOnFrameAvailableListener(SurfaceTexture surfaceTexture, SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener, Handler handler) {
@@ -228,7 +228,7 @@ public class SurfaceTextureHelper {
             }
             return;
         }
-        sc8.j("Wrong thread.");
+        dq9.m("Wrong thread.");
     }
 
     public void updateTexImage() {
@@ -242,11 +242,11 @@ public class SurfaceTextureHelper {
 
     public void dispose() {
         Logging.d("SurfaceTextureHelper", "dispose()");
-        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new bcb(this, (byte) 1));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new deb(this, (byte) 1));
     }
 
     public void forceFrame() {
-        this.handler.post(new bcb(this, (byte) 3));
+        this.handler.post(new deb(this, (byte) 3));
     }
 
     public Handler getHandler() {
@@ -262,20 +262,20 @@ public class SurfaceTextureHelper {
     }
 
     public void setFrameRotation(int i) {
-        this.handler.post(new on7(this, i, (byte) 19));
+        this.handler.post(new ge7(this, i, (byte) 21));
     }
 
     public void setTextureSize(int i, int i2) {
         if (i > 0) {
             if (i2 > 0) {
                 this.surfaceTexture.setDefaultBufferSize(i, i2);
-                this.handler.post(new bt(this, i, i2, (byte) 15));
+                this.handler.post(new cu(this, i, i2, (byte) 15));
                 return;
             }
-            w26.j(de9.k(i2, "Texture height must be positive, but was "));
+            u36.j(hg9.j(i2, "Texture height must be positive, but was "));
             return;
         }
-        w26.j(de9.k(i, "Texture width must be positive, but was "));
+        u36.j(hg9.j(i, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {
@@ -284,13 +284,13 @@ public class SurfaceTextureHelper {
             this.handler.post(this.setListenerRunnable);
             return;
         }
-        sc8.j("SurfaceTextureHelper listener has already been set.");
+        dq9.m("SurfaceTextureHelper listener has already been set.");
     }
 
     public void stopListening() {
         Logging.d("SurfaceTextureHelper", "stopListening()");
         this.handler.removeCallbacks(this.setListenerRunnable);
-        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new bcb(this, (byte) 0));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new deb(this, (byte) 0));
     }
 
     @Deprecated

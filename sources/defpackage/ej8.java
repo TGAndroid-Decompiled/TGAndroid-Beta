@@ -1,27 +1,27 @@
 package defpackage;
-public final class ej8 implements Runnable {
-    public final byte a;
-    public final jj8 b;
 
-    public ej8(jj8 jj8Var, byte b) {
+import androidx.recyclerview.widget.RecyclerView;
+public final class ej8 extends k69 {
+    public final byte a;
+    public final kj8 b;
+
+    public ej8(kj8 kj8Var, byte b) {
         this.a = b;
-        this.b = jj8Var;
+        this.b = kj8Var;
     }
 
     @Override
-    public final void run() {
+    public final void b(RecyclerView recyclerView, int i, int i2) {
         byte b = this.a;
-        jj8 jj8Var = this.b;
+        kj8 kj8Var = this.b;
         switch (b) {
             case 0:
-                hj2 hj2Var = jj8Var.h;
-                if (hj2Var != null) {
-                    hj2Var.close();
-                    return;
-                }
+                kj8Var.b.invalidate();
+                kj8Var.D0();
                 return;
             default:
-                jj8Var.a();
+                kj8Var.b.invalidate();
+                kj8Var.D0();
                 return;
         }
     }

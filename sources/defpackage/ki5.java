@@ -1,58 +1,13 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.Parcel;
-import android.support.v4.media.session.PlaybackStateCompat;
-public final class ki5 implements mi5 {
-    public IBinder a;
+import java.util.Map;
+public final class ki5 extends ii5 {
+    public final int c;
+    public final Map d;
 
-    @Override
-    public final void D(ii5 ii5Var) {
-        Parcel obtain = Parcel.obtain();
-        Parcel obtain2 = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaSession");
-            obtain.writeStrongInterface(ii5Var);
-            this.a.transact(4, obtain, obtain2, 0);
-            obtain2.readException();
-        } finally {
-            obtain2.recycle();
-            obtain.recycle();
-        }
-    }
-
-    @Override
-    public final void G(ii5 ii5Var) {
-        Parcel obtain = Parcel.obtain();
-        Parcel obtain2 = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaSession");
-            obtain.writeStrongInterface(ii5Var);
-            this.a.transact(3, obtain, obtain2, 0);
-            obtain2.readException();
-        } finally {
-            obtain2.recycle();
-            obtain.recycle();
-        }
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.a;
-    }
-
-    @Override
-    public final PlaybackStateCompat h() {
-        Parcel obtain = Parcel.obtain();
-        Parcel obtain2 = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaSession");
-            this.a.transact(28, obtain, obtain2, 0);
-            obtain2.readException();
-            return (PlaybackStateCompat) eke.a(obtain2, PlaybackStateCompat.CREATOR);
-        } finally {
-            obtain2.recycle();
-            obtain.recycle();
-        }
+    public ki5(int i, d83 d83Var, Map map) {
+        super(hg9.j(i, "Response code: "), d83Var, 2004);
+        this.c = i;
+        this.d = map;
     }
 }

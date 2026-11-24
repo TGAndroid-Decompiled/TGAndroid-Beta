@@ -78,7 +78,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
             } else {
                 str2 = "sampler2D";
             }
-            ug8.z("uniform ", str2, " tex;\n", sb);
+            wi8.z("uniform ", str2, " tex;\n", sb);
             if (z) {
                 sb.append("precision mediump float;\nvarying vec2 tc;\nconst mediump vec3 satLuminanceWeighting = vec3(0.2126, 0.7152, 0.0722);\nuniform float texelWidthOffset;\nuniform float texelHeightOffset;\nvoid main(){\nint rad = 3;\nint diameter = 2 * rad + 1;\nvec4 sampleTex = vec4(0, 0, 0, 0);\nvec3 col = vec3(0, 0, 0);\nfloat weightSum = 0.0;\nfor(int i = 0; i < diameter; i++) {\nvec2 offset = vec2(float(i - rad) * texelWidthOffset, float(i - rad) * texelHeightOffset);\nsampleTex = vec4(texture2D(tex, tc.st+offset));\nfloat index = float(i);\nfloat boxWeight = float(rad) + 1.0 - abs(index - float(rad));\ncol += sampleTex.rgb * boxWeight;\nweightSum += boxWeight;\n}\nvec3 result = col / weightSum;\nlowp float satLuminance = dot(result.rgb, satLuminanceWeighting);\nlowp vec3 greyScaleColor = vec3(satLuminance);\ngl_FragColor = vec4(clamp(mix(greyScaleColor, result.rgb, 1.1), 0.0, 1.0), 1.0);\n}\n");
             } else {
@@ -152,7 +152,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
                 this.inPosLocation[i][i8] = glShader.getAttribLocation("in_pos");
                 this.inTcLocation[i][i8] = glShader.getAttribLocation("in_tc");
             } catch (Exception e) {
-                fa4.g(e, true);
+                fc4.g(e, true);
                 return;
             }
         }

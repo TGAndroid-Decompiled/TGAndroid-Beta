@@ -1,24 +1,32 @@
 package defpackage;
-public final class gwa extends gw2 {
-    public hwa a;
-    public ik4 b;
-    public iwa c;
-    public bt5 d;
-    public Object e;
-    public Object f;
-    public final hwa h;
-    public int n;
+public final class gwa implements Runnable {
+    public final byte a;
+    public final Runnable b;
+    public final Runnable c;
 
-    public gwa(hwa hwaVar, fw2 fw2Var) {
-        super(fw2Var);
-        this.h = hwaVar;
+    public gwa(Runnable runnable, Runnable runnable2, byte b) {
+        this.a = b;
+        this.b = runnable;
+        this.c = runnable2;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f = obj;
-        this.n |= Integer.MIN_VALUE;
-        this.h.h(null, this);
-        return bx2.a;
+    public final void run() {
+        byte b = this.a;
+        Runnable runnable = this.c;
+        Runnable runnable2 = this.b;
+        switch (b) {
+            case 0:
+                runnable2.run();
+                runnable.run();
+                return;
+            default:
+                jlb.b(runnable2);
+                if (runnable != null) {
+                    gm.c3(runnable);
+                    return;
+                }
+                return;
+        }
     }
 }

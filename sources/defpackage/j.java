@@ -18,10 +18,10 @@ public final class j implements TextView.OnEditorActionListener {
 
     @Override
     public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        sha shaVar;
-        gb2 gb2Var;
-        sha shaVar2;
-        lc9 lc9Var;
+        uja ujaVar;
+        rc2 rc2Var;
+        uja ujaVar2;
+        me9 me9Var;
         byte b = this.a;
         Object obj = this.b;
         switch (b) {
@@ -30,12 +30,12 @@ public final class j implements TextView.OnEditorActionListener {
                 if (i != 3) {
                     return false;
                 }
-                gl.t1(editTextBoldCursor);
+                gm.t1(editTextBoldCursor);
                 return true;
             case 1:
                 r7 r7Var = (r7) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(r7Var.e);
+                    gm.t1(r7Var.e);
                     n7 n7Var = r7Var.I;
                     if (n7Var != null) {
                         n7Var.k(r7Var.e);
@@ -43,229 +43,223 @@ public final class j implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                s67 s67Var = (s67) obj;
-                if (i != 6) {
-                    return false;
-                }
-                s67Var.run();
+                gm.t1(((wc) obj).a);
                 return true;
             case 3:
-                ss0 ss0Var = (ss0) obj;
-                if (i != 5) {
+                l97 l97Var = (l97) obj;
+                if (i != 6) {
                     return false;
                 }
-                ss0Var.y0();
+                l97Var.run();
                 return true;
             case 4:
-                ge1 ge1Var = (ge1) obj;
-                if (i != 6 || (shaVar = ge1Var.c.a) == null) {
+                au0 au0Var = (au0) obj;
+                if (i != 5) {
                     return false;
                 }
-                shaVar.performClick();
+                au0Var.z0();
                 return true;
             case 5:
-                mu1 mu1Var = (mu1) obj;
-                if (i == 6) {
-                    jd8 jd8Var = mu1Var.kd;
-                    if (jd8Var != null && (gb2Var = jd8Var.n) != null) {
-                        mu1Var.ya(gb2Var);
-                        return true;
-                    }
-                } else {
-                    mu1Var.getClass();
+                of1 of1Var = (of1) obj;
+                if (i != 6 || (ujaVar = of1Var.c.a) == null) {
+                    return false;
                 }
-                return false;
+                ujaVar.performClick();
+                return true;
             case 6:
-                r32 r32Var = (r32) obj;
+                yv1 yv1Var = (yv1) obj;
                 if (i == 6) {
-                    u41 u41Var = r32Var.p0;
-                    if (u41Var.e0) {
-                        u41Var.performClick();
-                        return true;
+                    lf8 lf8Var = yv1Var.vd;
+                    if (lf8Var == null || (rc2Var = lf8Var.n) == null) {
+                        return false;
                     }
-                }
-                return false;
-            case 7:
-                p82 p82Var = (p82) obj;
-                if (i != 6 || (shaVar2 = p82Var.a) == null) {
-                    return false;
-                }
-                shaVar2.performClick();
-                return true;
-            case 8:
-                uf2 uf2Var = (uf2) obj;
-                of2 of2Var = uf2Var.G;
-                if (i != 6) {
-                    return false;
-                }
-                uf2Var.y = false;
-                gl.r(of2Var);
-                if (TextUtils.isEmpty(uf2Var.f.getText())) {
-                    uf2Var.E = null;
-                    uf2Var.d.b();
-                    uf2Var.c.g3.O(true);
-                } else {
-                    gl.d3(of2Var);
-                }
-                uf2Var.f0();
-                return true;
-            case 9:
-                fj2 fj2Var = (fj2) obj;
-                if (i != 5) {
-                    return false;
-                }
-                fj2Var.a();
-                return true;
-            case 10:
-                ht3 ht3Var = ((it3) obj).d;
-                if (i != 5) {
-                    return false;
-                }
-                ht3Var.requestFocus();
-                ht3Var.setSelection(ht3Var.length());
-                return true;
-            case 11:
-                xz2 xz2Var = (xz2) obj;
-                if (i != 6) {
-                    return false;
-                }
-                xz2Var.run();
-                return true;
-            case 12:
-                qa5 qa5Var = (qa5) obj;
-                if (i == 6 && qa5Var.r0()) {
+                    yv1Var.Ka(rc2Var);
                     return true;
                 }
+                yv1Var.getClass();
                 return false;
-            case 13:
-                jd6 jd6Var = (jd6) obj;
+            case 7:
+                c52 c52Var = (c52) obj;
+                if (i != 6) {
+                    return false;
+                }
+                b61 b61Var = c52Var.p0;
+                if (!b61Var.e0) {
+                    return false;
+                }
+                b61Var.performClick();
+                return true;
+            case 8:
+                ba2 ba2Var = (ba2) obj;
+                if (i != 6 || (ujaVar2 = ba2Var.a) == null) {
+                    return false;
+                }
+                ujaVar2.performClick();
+                return true;
+            case 9:
+                hh2 hh2Var = (hh2) obj;
+                ah2 ah2Var = hh2Var.G;
+                if (i != 6) {
+                    return false;
+                }
+                hh2Var.y = false;
+                gm.r(ah2Var);
+                if (TextUtils.isEmpty(hh2Var.f.getText())) {
+                    hh2Var.E = null;
+                    hh2Var.d.b();
+                    hh2Var.c.g3.O(true);
+                } else {
+                    gm.c3(ah2Var);
+                }
+                hh2Var.g0();
+                return true;
+            case 10:
+                tk2 tk2Var = (tk2) obj;
                 if (i != 5) {
                     return false;
                 }
-                jd6Var.h(null);
+                tk2Var.a();
+                return true;
+            case 11:
+                ru3 ru3Var = ((su3) obj).d;
+                if (i != 5) {
+                    return false;
+                }
+                ru3Var.requestFocus();
+                ru3Var.setSelection(ru3Var.length());
+                return true;
+            case 12:
+                i13 i13Var = (i13) obj;
+                if (i != 6) {
+                    return false;
+                }
+                i13Var.run();
+                return true;
+            case 13:
+                oc5 oc5Var = (oc5) obj;
+                if (i != 6 || !oc5Var.s0()) {
+                    return false;
+                }
                 return true;
             case 14:
-                qd6 qd6Var = (qd6) obj;
+                if6 if6Var = (if6) obj;
                 if (i != 5) {
                     return false;
                 }
-                qd6Var.h(null);
+                if6Var.h(null);
                 return true;
             case 15:
-                de6 de6Var = (de6) obj;
+                pf6 pf6Var = (pf6) obj;
                 if (i != 5) {
                     return false;
                 }
-                de6Var.h(null);
+                pf6Var.h(null);
                 return true;
             case 16:
+                cg6 cg6Var = (cg6) obj;
+                if (i != 5) {
+                    return false;
+                }
+                cg6Var.h(null);
+                return true;
+            case 17:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
                 boolean z = passcodeActivity.F;
                 if (!z) {
-                    passcodeActivity.u0();
-                    return true;
+                    passcodeActivity.v0();
                 } else if (!z) {
                     return false;
                 } else {
-                    passcodeActivity.t0();
-                    return true;
+                    passcodeActivity.u0();
                 }
-            case 17:
-                yv7 yv7Var = (yv7) obj;
+                return true;
+            case 18:
+                by7 by7Var = (by7) obj;
                 if (i != 6) {
                     return false;
                 }
-                yv7Var.n(false);
+                by7Var.n(false);
                 return true;
-            case 18:
-                rx7 rx7Var = (rx7) obj;
+            case 19:
+                tz7 tz7Var = (tz7) obj;
                 if (i != 5) {
                     return false;
                 }
-                rx7Var.h(null);
+                tz7Var.h(null);
                 return true;
-            case 19:
-                fu8 fu8Var = (fu8) obj;
+            case 20:
+                gw8 gw8Var = (gw8) obj;
                 if (i == 5) {
                     int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = fu8Var.a;
-                    if (intValue >= editTextBoldCursorArr.length) {
-                        return true;
+                    EditTextBoldCursor[] editTextBoldCursorArr = gw8Var.a;
+                    if (intValue < editTextBoldCursorArr.length) {
+                        editTextBoldCursorArr[intValue].requestFocus();
                     }
-                    editTextBoldCursorArr[intValue].requestFocus();
-                    return true;
                 } else if (i != 6) {
                     return false;
                 } else {
-                    fu8Var.finishFragment();
-                    return true;
+                    gw8Var.finishFragment();
                 }
-            case 20:
-                wi wiVar = (wi) obj;
+                return true;
+            case 21:
+                wj wjVar = (wj) obj;
                 if (i != 6) {
                     return false;
                 }
-                wiVar.l1.a.callOnClick();
-                return true;
-            case 21:
-                mc9 mc9Var = (mc9) obj;
-                if (i != 5 || (lc9Var = mc9Var.e2) == null || mc9Var.n2) {
-                    return false;
-                }
-                if (mc9Var.k2) {
-                    mc9Var.M();
-                    return true;
-                }
-                lc9Var.Y(mc9Var);
+                wjVar.l1.a.callOnClick();
                 return true;
             case 22:
-                ps0 ps0Var = ((js9) obj).d;
-                if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    ps0Var.m();
-                    gl.t1(ps0Var);
+                ne9 ne9Var = (ne9) obj;
+                if (i != 5 || (me9Var = ne9Var.e2) == null || ne9Var.n2) {
+                    return false;
                 }
-                return false;
+                if (ne9Var.k2) {
+                    ne9Var.M();
+                } else {
+                    me9Var.W(ne9Var);
+                }
+                return true;
             case 23:
-                iy9 iy9Var = (iy9) obj;
+                vc vcVar = ((lu9) obj).d;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(iy9Var.X1);
+                    vcVar.m();
+                    gm.t1(vcVar);
                 }
                 return false;
             case 24:
-                taa taaVar = (taa) obj;
+                k0a k0aVar = (k0a) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(taaVar.t2.r);
+                    gm.t1(k0aVar.X1);
                 }
                 return false;
             case 25:
-                ((pha) obj).A(i, keyEvent);
-                return false;
-            case 26:
-                g0 g0Var = (g0) obj;
+                tca tcaVar = (tca) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(g0Var.b);
+                    gm.t1(tcaVar.t2.r);
                 }
                 return false;
+            case 26:
+                ((rja) obj).A(i, keyEvent);
+                return false;
             case 27:
+                g0 g0Var = (g0) obj;
+                if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
+                    gm.t1(g0Var.b);
+                }
+                return false;
+            case 28:
                 TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
                 if (i != 5 && i != 6) {
                     return false;
                 }
-                twoStepVerificationActivity.x0();
+                twoStepVerificationActivity.y0();
                 return true;
-            case 28:
-                w7c w7cVar = (w7c) obj;
+            default:
+                x9c x9cVar = (x9c) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(w7cVar.K);
+                    gm.t1(x9cVar.K);
                 }
                 return false;
-            default:
-                zoc zocVar = (zoc) obj;
-                if (i != 3) {
-                    return false;
-                }
-                gl.t1(zocVar.b);
-                return true;
         }
     }
 }

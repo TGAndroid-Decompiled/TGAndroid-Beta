@@ -94,7 +94,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         }
         switch (c) {
             case 0:
-                gba.D((gba.P0 + 1) % 3);
+                gda.D((gda.O0 + 1) % 3);
                 return;
             case 1:
                 MediaController.w().l(true, true, false, false);
@@ -113,7 +113,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 MediaController.w().U();
                 return;
             case 7:
-                if (gba.K0) {
+                if (gda.J0) {
                     MediaController.w().k0(0);
                     return;
                 } else {

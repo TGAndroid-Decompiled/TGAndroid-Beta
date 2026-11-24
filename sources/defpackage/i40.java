@@ -1,22 +1,13 @@
 package defpackage;
 
-import android.os.Handler;
-public final class i40 {
-    public final Handler a;
-    public final h40 b;
-    public final j40 c;
+import java.nio.ShortBuffer;
+public interface i40 {
+    public static final k4f i = new k4f((byte) 18);
+    public static final f8e j = new Object();
+    public static final nf5 k = new nf5((byte) 23);
+    public static final jk2 l = new jk2((byte) 27);
 
-    public i40(j40 j40Var) {
-        this.c = j40Var;
-        Handler q = g8c.q(null);
-        this.a = q;
-        h40 h40Var = new h40(this);
-        this.b = h40Var;
-        j40Var.a.registerStreamEventCallback(new g40(q, (byte) 0), h40Var);
-    }
+    void j0(ShortBuffer shortBuffer, int i2, ShortBuffer shortBuffer2, int i3);
 
-    public final void a() {
-        this.c.a.unregisterStreamEventCallback(this.b);
-        this.a.removeCallbacksAndMessages(null);
-    }
+    int p1(int i2, int i3, int i4);
 }

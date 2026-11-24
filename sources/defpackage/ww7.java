@@ -1,86 +1,29 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import java.io.Serializable;
-import java.util.HashMap;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ww7 implements TextWatcher {
-    public final byte a = 1;
-    public final EditTextBoldCursor b;
-    public final Serializable c;
-    public final Object d;
-    public final gk7 e;
+import android.os.Bundle;
+import android.os.Parcelable;
+import androidx.versionedparcelable.ParcelImpl;
+public abstract class ww7 {
+    public static final ju6 a = new ju6((byte) 5);
 
-    public ww7(u0b u0bVar, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
-        this.e = u0bVar;
-        this.c = iArr;
-        this.d = textView;
-        this.b = editTextBoldCursor;
+    public static defpackage.tn2 a(defpackage.age r28, boolean r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ww7.a(age, boolean):tn2");
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z;
-        switch (this.a) {
-            case 0:
-                vx7 vx7Var = (vx7) this.e;
-                String str = (String) this.c;
-                if (((HashMap) this.d) == vx7Var.u1) {
-                    z = true;
-                } else {
-                    z = false;
+    public static bcc b(Bundle bundle) {
+        try {
+            Bundle bundle2 = (Bundle) bundle.getParcelable("android.support.v4.media.session.SESSION_TOKEN2");
+            if (bundle2 != null) {
+                bundle2.setClassLoader(ww7.class.getClassLoader());
+                Parcelable parcelable = bundle2.getParcelable("a");
+                if (parcelable instanceof ParcelImpl) {
+                    return ((ParcelImpl) parcelable).a;
                 }
-                EditTextBoldCursor editTextBoldCursor = this.b;
-                vx7Var.O0(editTextBoldCursor, str, editable, z);
-                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-                EditTextBoldCursor editTextBoldCursor2 = vx7Var.Z[intValue];
-                if (intValue == 6) {
-                    vx7Var.Q0(true);
-                    return;
-                }
-                return;
-            default:
-                return;
+                throw new IllegalArgumentException("Invalid parcel");
+            }
+            return null;
+        } catch (RuntimeException unused) {
+            return null;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        switch (this.a) {
-            case 0:
-                return;
-            default:
-                if (((int[]) this.c)[0] == 2) {
-                    ((u0b) this.e).E0((TextView) this.d, this.b.getText().toString(), false);
-                    return;
-                }
-                return;
-        }
-    }
-
-    public ww7(vx7 vx7Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
-        this.e = vx7Var;
-        this.b = editTextBoldCursor;
-        this.c = str;
-        this.d = hashMap;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d(int i, int i2, int i3, CharSequence charSequence) {
     }
 }

@@ -1,721 +1,275 @@
 package defpackage;
 
-import android.graphics.RectF;
-import android.os.SystemClock;
-import android.text.style.CharacterStyle;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.nio.ShortBuffer;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-public class pd5 implements rw2, f69, c38, yyb, al0, p30, rdc, bb2, i30, k13, k86 {
-    public static pd5 F;
-    public final byte a;
-    public static final pd5 b = new pd5((byte) 1);
-    public static final pd5 c = new pd5((byte) 2);
-    public static final pd5 d = new pd5((byte) 3);
-    public static final pd5 e = new pd5((byte) 4);
-    public static final pd5 f = new pd5((byte) 5);
-    public static final pd5 h = new pd5((byte) 6);
-    public static final pd5 n = new pd5((byte) 7);
-    public static final pd5 r = new pd5((byte) 8);
-    public static final pd5 s = new pd5((byte) 9);
-    public static final pd5 w = new pd5((byte) 10);
-    public static final pd5 x = new pd5((byte) 11);
-    public static final pd5 y = new pd5((byte) 12);
-    public static final pd5 E = new pd5((byte) 13);
+public final class pd5 extends y9c {
+    public final od5 N1;
+    public int O1;
+    public final TLRPC.Chat P1;
+    public final TLRPC.ChatFull Q1;
+    public final ArrayList R1;
+    public final ArrayList S1;
+    public boolean T1;
+    public final vh6 U1;
+    public final vh6 V1;
+    public boolean W1;
+    public boolean X1;
+    public final vh6 Y1;
+    public final HashSet Z1;
+    public l65 a2;
+    public boolean b2;
+    public int c2;
+    public int d2;
+    public int e2;
+    public int f2;
+    public int g2;
+    public int h2;
+    public int i2;
+    public int j2;
+    public int k2;
+    public int l2;
 
-    public pd5(byte b2) {
-        this.a = b2;
+    public pd5(Context context, int i, TLRPC.Chat chat, TLRPC.ChatFull chatFull, vh6 vh6Var, HashSet hashSet) {
+        super(i, null, context);
+        this.R1 = new ArrayList();
+        this.S1 = new ArrayList();
+        this.U1 = new vh6();
+        this.V1 = new vh6();
+        this.q0 = (byte) 75;
+        this.P1 = chat;
+        this.Q1 = chatFull;
+        this.Y1 = vh6Var;
+        this.Z1 = hashSet;
+        this.n1.setOnItemClickListener(new kg4(this, (byte) 6));
+        od5 od5Var = new od5(this, context);
+        this.N1 = od5Var;
+        this.o1 = od5Var;
+        pu9 pu9Var = this.n1;
+        ld5 ld5Var = new ld5(this, context);
+        this.p1 = ld5Var;
+        pu9Var.setAdapter(ld5Var);
+        if (!this.W1) {
+            this.T1 = false;
+            N0();
+        }
+        O0();
+        H0(0.0f);
     }
 
     @Override
-    public final boolean A1(gb2 gb2Var, int i) {
-        return false;
-    }
-
-    @Override
-    public final boolean B2(gb2 gb2Var, k27 k27Var) {
-        return false;
-    }
-
-    @Override
-    public final boolean D0(gb2 gb2Var, TLRPC.PollAnswer pollAnswer) {
-        return false;
-    }
-
-    @Override
-    public final gib E2() {
-        return null;
-    }
-
-    @Override
-    public final boolean F(gb2 gb2Var, TLRPC.TodoItem todoItem) {
-        return false;
-    }
-
-    @Override
-    public final boolean F0(gb2 gb2Var) {
-        return false;
-    }
-
-    @Override
-    public final boolean J0(long j) {
-        return false;
-    }
-
-    @Override
-    public final void K1(gb2 gb2Var, TLRPC.WebPage webPage, String str, boolean z) {
-        d01.t(gb2Var.getContext(), str);
-    }
-
-    @Override
-    public final int L() {
-        return 0;
-    }
-
-    @Override
-    public final boolean N() {
-        return false;
-    }
-
-    @Override
-    public final boolean N1() {
-        return false;
-    }
-
-    @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final int Q() {
-        return 0;
-    }
-
-    @Override
-    public final boolean T0(gb2 gb2Var, TLRPC.TodoItem todoItem, boolean z) {
-        return false;
-    }
-
-    @Override
-    public final boolean T1(gm gmVar) {
-        return false;
-    }
-
-    @Override
-    public final int U(gb2 gb2Var) {
-        return 0;
-    }
-
-    @Override
-    public final float U0() {
-        return 0.0f;
-    }
-
-    @Override
-    public final vu1 W() {
-        return null;
-    }
-
-    @Override
-    public final ma8 Z1() {
-        return null;
-    }
-
-    @Override
-    public final void a() {
-        synchronized (ycd.a) {
-            Object obj = ycd.b;
-            synchronized (obj) {
-                if (ycd.c) {
-                    return;
-                }
-                long b2 = ycd.b();
-                synchronized (obj) {
-                    SystemClock.elapsedRealtime();
-                    ycd.d = b2;
-                    ycd.c = true;
-                }
+    public final void E0(MotionEvent motionEvent, l7 l7Var) {
+        g95 g95Var = this.a2.a;
+        if (!g95Var.q2) {
+            if (motionEvent.getX() > l7Var.getLeft() && motionEvent.getX() < l7Var.getRight() && motionEvent.getY() > l7Var.getTop() && motionEvent.getY() < l7Var.getBottom()) {
+                g95Var.k1(g95Var.y3, null, l7Var, true);
+            } else {
+                g95Var.k1(g95Var.y3, null, l7Var, false);
             }
         }
     }
 
     @Override
-    public final void a0(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
-        shortBuffer2.put(shortBuffer);
-    }
-
-    @Override
-    public final int a1() {
-        return 0;
-    }
-
-    @Override
-    public final void accept(Object obj, Object obj2) {
-        dc6 dc6Var = afd.H;
-        ((x6d) ((lhf) obj).k()).Z();
-        ((TaskCompletionSource) obj2).setResult(null);
-    }
-
-    @Override
-    public final Object apply(Object obj) {
-        return (byte[]) obj;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final String b1(gb2 gb2Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean c2(long j) {
-        return false;
-    }
-
-    @Override
-    public final boolean d0() {
-        return false;
-    }
-
-    @Override
-    public final int d1() {
-        return 0;
-    }
-
-    @Override
-    public odc e(Class cls, l13 l13Var) {
-        switch (this.a) {
-            case 21:
-                l13Var.getClass();
-                return h(cls);
-            default:
-                l13Var.getClass();
-                return h(cls);
+    public final void G0(String str) {
+        od5 od5Var = this.N1;
+        bu9 bu9Var = od5Var.d;
+        pd5 pd5Var = od5Var.x;
+        md5 md5Var = od5Var.e;
+        if (md5Var != null) {
+            gm.r(md5Var);
+            od5Var.e = null;
         }
-    }
-
-    @Override
-    public final CharacterStyle e0(gb2 gb2Var) {
-        return null;
-    }
-
-    @Override
-    public final odc f(oh2 oh2Var, l13 l13Var) {
-        switch (this.a) {
-            case 21:
-                return yjb.a(this, oh2Var, l13Var);
-            default:
-                l13Var.getClass();
-                Class a = oh2Var.a();
-                a.getClass();
-                return e(a, l13Var);
+        bu9Var.f(null, null);
+        TLRPC.Chat chat = pd5Var.P1;
+        pu9 pu9Var = pd5Var.n1;
+        bu9Var.g(null, true, false, true, false, chat.id, false, 2, -1);
+        if (!TextUtils.isEmpty(str)) {
+            pd5Var.t1.e(true, true);
+            pu9Var.X1 = false;
+            pu9Var.Y1 = false;
+            od5Var.f();
+            pu9Var.X1 = true;
+            pu9Var.Y1 = false;
+            od5Var.h = true;
+            int i = od5Var.n + 1;
+            od5Var.n = i;
+            md5 md5Var2 = new md5(od5Var, str, i, (byte) 0);
+            od5Var.e = md5Var2;
+            gm.d3(md5Var2, 300L);
+            y59 adapter = pu9Var.getAdapter();
+            q59 q59Var = pd5Var.o1;
+            if (adapter != q59Var) {
+                pu9Var.setAdapter(q59Var);
+                return;
+            }
+            return;
         }
-    }
-
-    public final void g(r24 r24Var) {
-        r24Var.a(pte.class, e8e.a);
-        r24Var.a(d1f.class, ije.a);
-        r24Var.a(ste.class, j8e.a);
-        r24Var.a(fue.class, t8e.a);
-        r24Var.a(wte.class, p8e.a);
-        r24Var.a(bue.class, y8e.a);
-        r24Var.a(xoe.class, x3e.a);
-        r24Var.a(roe.class, r3e.a);
-        r24Var.a(lre.class, s6e.a);
-        r24Var.a(r0f.class, lhe.a);
-        r24Var.a(ooe.class, l3e.a);
-        r24Var.a(ioe.class, f3e.a);
-        r24Var.a(rve.class, nbe.a);
-        r24Var.a(c3f.class, e5e.a);
-        r24Var.a(tqe.class, r5e.a);
-        r24Var.a(cqe.class, y4e.a);
-        r24Var.a(wve.class, sbe.a);
-        r24Var.a(h0f.class, xge.a);
-        r24Var.a(k0f.class, dhe.a);
-        r24Var.a(vze.class, rge.a);
-        r24Var.a(wue.class, hae.a);
-        r24Var.a(a3f.class, gyd.a);
-        r24Var.a(bve.class, nae.a);
-        r24Var.a(bwe.class, ybe.a);
-        r24Var.a(kxe.class, cde.a);
-        r24Var.a(bxe.class, wce.a);
-        r24Var.a(qwe.class, pce.a);
-        r24Var.a(bye.class, aee.a);
-        r24Var.a(eye.class, gee.a);
-        r24Var.a(lye.class, see.a);
-        r24Var.a(hye.class, mee.a);
-        r24Var.a(sue.class, cae.a);
-        r24Var.a(oye.class, xee.a);
-        r24Var.a(rye.class, bfe.a);
-        r24Var.a(uye.class, ffe.a);
-        r24Var.a(zye.class, lfe.a);
-        r24Var.a(rze.class, jge.a);
-        r24Var.a(oze.class, oge.a);
-        r24Var.a(xxe.class, gde.a);
-        r24Var.a(mse.class, w7e.a);
-        r24Var.a(qxe.class, ode.a);
-        r24Var.a(d8c.class, kde.a);
-        r24Var.a(uxe.class, tde.a);
-        r24Var.a(m0f.class, hhe.a);
-        r24Var.a(n1f.class, bke.a);
-        r24Var.a(vle.class, xzd.a);
-        r24Var.a(nle.class, izd.a);
-        r24Var.a(jle.class, bzd.a);
-        r24Var.a(rle.class, ozd.a);
-        r24Var.a(cme.class, i0e.a);
-        r24Var.a(ame.class, c0e.a);
-        r24Var.a(gme.class, o0e.a);
-        r24Var.a(jme.class, t0e.a);
-        r24Var.a(dne.class, a2e.a);
-        r24Var.a(lne.class, f2e.a);
-        r24Var.a(one.class, j2e.a);
-        r24Var.a(asd.class, lxd.a);
-        r24Var.a(hsd.class, wxd.a);
-        r24Var.a(dsd.class, qxd.a);
-        r24Var.a(vre.class, k7e.a);
-        r24Var.a(dpe.class, e4e.a);
-        r24Var.a(op5.class, rsd.a);
-        r24Var.a(wld.class, ysd.a);
-        r24Var.a(tpe.class, o4e.a);
-        r24Var.a(lmd.class, qtd.a);
-        r24Var.a(gmd.class, wtd.a);
-        r24Var.a(mod.class, xud.a);
-        r24Var.a(eod.class, dvd.a);
-        r24Var.a(wmd.class, cud.a);
-        r24Var.a(rmd.class, jud.a);
-        r24Var.a(opd.class, ivd.a);
-        r24Var.a(cpd.class, mvd.a);
-        r24Var.a(bqd.class, rvd.a);
-        r24Var.a(vpd.class, vvd.a);
-        r24Var.a(vrd.class, exd.a);
-        r24Var.a(qrd.class, ixd.a);
-        r24Var.a(lqd.class, awd.a);
-        r24Var.a(hqd.class, fwd.a);
-        r24Var.a(wqd.class, kwd.a);
-        r24Var.a(sqd.class, owd.a);
-        r24Var.a(f2f.class, kie.a);
-        r24Var.a(p1f.class, j4e.a);
-        r24Var.a(x1f.class, u9e.a);
-        r24Var.a(v1f.class, p9e.a);
-        r24Var.a(r1f.class, m5e.a);
-        r24Var.a(c2f.class, die.a);
-        r24Var.a(a2f.class, aie.a);
-        r24Var.a(j2f.class, qie.a);
-        r24Var.a(u1f.class, y6e.a);
-        r24Var.a(r2f.class, kke.a);
-        r24Var.a(o2f.class, pke.a);
-        r24Var.a(l2f.class, hke.a);
-        r24Var.a(s0f.class, uie.a);
-        r24Var.a(pre.class, e7e.a);
-        r24Var.a(rse.class, a8e.a);
-        r24Var.a(dle.class, myd.a);
-        r24Var.a(xqe.class, l6e.a);
-        r24Var.a(ise.class, p7e.a);
-        r24Var.a(xpe.class, t4e.a);
-        r24Var.a(oue.class, j9e.a);
-        r24Var.a(jue.class, e9e.a);
-        r24Var.a(s9.class, nsd.a);
-        r24Var.a(g1f.class, oje.a);
-        r24Var.a(l1f.class, xje.a);
-        r24Var.a(i1f.class, tje.a);
-        r24Var.a(yke.class, zxd.a);
-        r24Var.a(qi6.class, y2e.a);
-        r24Var.a(zne.class, u2e.a);
-        r24Var.a(tne.class, q2e.a);
-        r24Var.a(eve.class, tae.a);
-        r24Var.a(nve.class, jbe.a);
-        r24Var.a(ive.class, zae.a);
-        r24Var.a(znd.class, oud.a);
-        r24Var.a(tnd.class, sud.a);
-        r24Var.a(cze.class, qfe.a);
-        r24Var.a(nze.class, fge.a);
-        r24Var.a(gze.class, vfe.a);
-        r24Var.a(kze.class, age.a);
-        r24Var.a(jrd.class, twd.a);
-        r24Var.a(drd.class, xwd.a);
-        r24Var.a(x0f.class, dje.a);
-        r24Var.a(u0f.class, yie.a);
+        od5Var.n = -1;
     }
 
     @Override
-    public final boolean g2(k27 k27Var) {
-        return true;
+    public final void K0() {
+        this.C1 = cmb.Fh;
+        this.D1 = cmb.Ug;
+        this.E1 = cmb.Vg;
+        this.F1 = cmb.jh;
+        this.G1 = cmb.dh;
+        this.H1 = cmb.eh;
+        this.I1 = cmb.bh;
+        this.J1 = cmb.hh;
+        this.K1 = cmb.ch;
     }
 
-    public odc h(Class cls) {
-        switch (this.a) {
-            case 21:
-                return new p86();
-            default:
-                return rle.a(cls);
+    public final void M0() {
+        if (!this.b2) {
+            return;
         }
+        ArrayList arrayList = bw2.r(this.a).f0;
+        ArrayList arrayList2 = this.S1;
+        arrayList2.addAll(arrayList);
+        long j = z8c.h(this.a).n;
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            TLObject tLObject = (TLObject) arrayList2.get(i);
+            if (tLObject instanceof TLRPC.TL_contact) {
+                long j2 = ((TLRPC.TL_contact) tLObject).user_id;
+                if (j2 == j || this.Y1.h(j2) >= 0 || this.Z1.contains(Long.valueOf(j2))) {
+                    arrayList2.remove(i);
+                    i--;
+                    size--;
+                }
+            }
+            i++;
+        }
+        Collections.sort(arrayList2, new dv2(oc7.r1(this.a), ConnectionsManager.getInstance(this.a).getCurrentTime(), (byte) 2));
     }
 
-    @Override
-    public final boolean h0() {
-        return false;
-    }
-
-    @Override
-    public final boolean h1(gb2 gb2Var, TL_iv.PageBlock pageBlock) {
-        return false;
-    }
-
-    @Override
-    public final void i(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2, int i3) {
-        if (i < i2) {
-            p30.o.i(shortBuffer, i, shortBuffer2, i2, i3);
-        } else if (i > i2) {
-            p30.m.i(shortBuffer, i, shortBuffer2, i2, i3);
-        } else if (i == i2) {
-            shortBuffer2.put(shortBuffer);
+    public final void N0() {
+        vh6 vh6Var;
+        TLRPC.Chat chat = this.P1;
+        boolean T = sd2.T(chat);
+        TLRPC.ChatFull chatFull = this.Q1;
+        if (!T) {
+            this.W1 = false;
+            ArrayList arrayList = this.R1;
+            arrayList.clear();
+            this.S1.clear();
+            vh6 vh6Var2 = this.U1;
+            vh6Var2.b();
+            this.V1.b();
+            if (chatFull != null) {
+                long j = z8c.h(this.a).n;
+                int size = chatFull.participants.participants.size();
+                for (int i = 0; i < size; i++) {
+                    TLRPC.ChatParticipant chatParticipant = chatFull.participants.participants.get(i);
+                    long j2 = chatParticipant.user_id;
+                    if (j2 != j && ((vh6Var = this.Y1) == null || vh6Var.h(j2) < 0)) {
+                        TLRPC.User W1 = oc7.r1(this.a).W1(Long.valueOf(chatParticipant.user_id));
+                        if (!m9c.z(W1) && !W1.bot) {
+                            arrayList.add(chatParticipant);
+                            vh6Var2.k(chatParticipant, chatParticipant.user_id);
+                        }
+                    }
+                }
+                if (arrayList.isEmpty()) {
+                    this.b2 = true;
+                    M0();
+                }
+            }
+            O0();
+            q59 q59Var = this.p1;
+            if (q59Var != null) {
+                q59Var.f();
+                return;
+            }
+            return;
+        }
+        this.W1 = true;
+        a1b a1bVar = this.t1;
+        if (a1bVar != null) {
+            a1bVar.e(true, false);
+        }
+        q59 q59Var2 = this.p1;
+        if (q59Var2 != null) {
+            q59Var2.f();
+        }
+        TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+        tL_channels_getParticipants.channel = oc7.h1(chat);
+        if (chatFull != null && chatFull.participants_count <= 200) {
+            tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
+        } else if (!this.T1) {
+            this.O1 = 2;
+            tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsContacts();
+            this.T1 = true;
+            N0();
         } else {
-            w26.j("Illegal use of PassThroughAudioResampler");
+            tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
         }
-    }
-
-    @Override
-    public final int j0() {
-        return 0;
-    }
-
-    @Override
-    public final boolean k2(gb2 gb2Var, TLRPC.User user) {
-        return false;
-    }
-
-    @Override
-    public final boolean l() {
-        return true;
-    }
-
-    @Override
-    public final boolean l2(gb2 gb2Var) {
-        return false;
-    }
-
-    @Override
-    public final int m0() {
-        return 0;
-    }
-
-    @Override
-    public final Object n0(ua9 ua9Var) {
-        return Integer.valueOf(((m2e) ua9Var).b);
-    }
-
-    @Override
-    public final float p0() {
-        return -1.0f;
-    }
-
-    @Override
-    public final boolean r0(gb2 gb2Var, boolean z) {
-        return false;
-    }
-
-    @Override
-    public final float s0() {
-        return -1.0f;
-    }
-
-    @Override
-    public final int t1() {
-        return 0;
-    }
-
-    @Override
-    public final boolean w0(gb2 gb2Var, TLRPC.Chat chat) {
-        return false;
-    }
-
-    @Override
-    public final String x(long j) {
-        return null;
-    }
-
-    @Override
-    public final boolean y1() {
-        return false;
-    }
-
-    @Override
-    public final boolean y2(int i) {
-        return false;
-    }
-
-    @Override
-    public final boolean z1(k27 k27Var) {
-        return oo1.a(k27Var);
-    }
-
-    @Override
-    public final void B0() {
-    }
-
-    @Override
-    public final void C2() {
-    }
-
-    @Override
-    public final void R1() {
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void d() {
-    }
-
-    @Override
-    public final void i1() {
-    }
-
-    @Override
-    public final void p() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void u2() {
-    }
-
-    @Override
-    public final void D1(h27 h27Var) {
-    }
-
-    @Override
-    public final void E(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void H2(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void I(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void M1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void N0(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void S(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void V(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void X(k27 k27Var) {
-    }
-
-    @Override
-    public final void X0(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void X1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void Y1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void c0(int i) {
-    }
-
-    @Override
-    public final void c1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void e2(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void i0(k27 k27Var) {
-    }
-
-    @Override
-    public final void k0(String str) {
-    }
-
-    @Override
-    public final void l1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void n1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void q(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void q0(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void q1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void v2(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void x1(gb2 gb2Var) {
-    }
-
-    @Override
-    public final void C1(gb2 gb2Var, boolean z) {
-    }
-
-    @Override
-    public final void E0(gb2 gb2Var, long j) {
-    }
-
-    @Override
-    public final void F1(gb2 gb2Var, int i) {
-    }
-
-    @Override
-    public final void M0(gb2 gb2Var, boolean z) {
-    }
-
-    @Override
-    public final void O1(gb2 gb2Var, iq0 iq0Var) {
-    }
-
-    @Override
-    public final void V0(gb2 gb2Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
-    @Override
-    public final void Y(gb2 gb2Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-    }
-
-    @Override
-    public final void b2(String str, String str2) {
-    }
-
-    @Override
-    public final void d2(gb2 gb2Var, k08 k08Var) {
-    }
-
-    @Override
-    public final void j2(gb2 gb2Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-    }
-
-    @Override
-    public final void l0(gb2 gb2Var, int i) {
-    }
-
-    @Override
-    public final void u0(gb2 gb2Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
-    @Override
-    public final void G1(gb2 gb2Var, boolean z, boolean z2) {
-    }
-
-    @Override
-    public final void H(gb2 gb2Var, TLRPC.Document document, RectF rectF) {
-    }
-
-    @Override
-    public final void O(gb2 gb2Var, CharacterStyle characterStyle, boolean z) {
-    }
-
-    @Override
-    public final void W1(gb2 gb2Var, TLObject tLObject, boolean z) {
-    }
-
-    @Override
-    public final void Y0(gb2 gb2Var, float f2, float f3) {
-    }
-
-    @Override
-    public final int Z0(int i, int i2, int i3) {
-        return i;
-    }
-
-    @Override
-    public final void s2(gb2 gb2Var, float f2, float f3) {
-    }
-
-    @Override
-    public final void v0(gb2 gb2Var, int i, int i2) {
-    }
-
-    @Override
-    public final void v1(gb2 gb2Var, float f2, float f3) {
-    }
-
-    @Override
-    public final void x2(gb2 gb2Var, boolean z, boolean z2) {
-    }
-
-    @Override
-    public final void z(gb2 gb2Var, float f2, float f3) {
-    }
-
-    @Override
-    public final void D(gb2 gb2Var, TLRPC.User user, TLRPC.Document document, String str) {
-    }
-
-    @Override
-    public final void b0(gb2 gb2Var, TLRPC.User user, float f2, float f3) {
-    }
-
-    @Override
-    public final void s(gb2 gb2Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i) {
-    }
-
-    @Override
-    public final void z0(gb2 gb2Var, float f2, float f3, boolean z) {
-    }
-
-    @Override
-    public final void M(gb2 gb2Var, int i, float f2, float f3, boolean z) {
-    }
-
-    @Override
-    public final void m1(gb2 gb2Var, TLRPC.ReactionCount reactionCount, boolean z, float f2, float f3) {
-    }
-
-    @Override
-    public final void r1(gb2 gb2Var, ArrayList arrayList, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void i2(gb2 gb2Var, TLRPC.Chat chat, int i, float f2, float f3, boolean z) {
-    }
-
-    @Override
-    public final void I1(k27 k27Var, String str, String str2, String str3, String str4, int i, int i2) {
+        tL_channels_getParticipants.filter.q = "";
+        tL_channels_getParticipants.offset = 0;
+        tL_channels_getParticipants.limit = 200;
+        ConnectionsManager.getInstance(this.a).sendRequest(tL_channels_getParticipants, new cx3(this, tL_channels_getParticipants, (byte) 11));
+    }
+
+    public final void O0() {
+        this.c2 = -1;
+        this.e2 = -1;
+        this.f2 = -1;
+        this.g2 = -1;
+        this.h2 = -1;
+        this.i2 = -1;
+        this.j2 = -1;
+        this.d2 = -1;
+        boolean z = true;
+        this.l2 = 1;
+        TLRPC.Chat chat = this.P1;
+        if (sd2.t0(chat) || sd2.y(3, chat)) {
+            int i = this.l2;
+            this.l2 = i + 1;
+            this.c2 = i;
+        }
+        if (!this.W1 || this.X1) {
+            ArrayList arrayList = this.S1;
+            if (!arrayList.isEmpty()) {
+                int i2 = this.l2;
+                int i3 = i2 + 1;
+                this.l2 = i3;
+                this.g2 = i2;
+                this.h2 = i3;
+                int size = arrayList.size() + i3;
+                this.l2 = size;
+                this.i2 = size;
+            } else {
+                z = false;
+            }
+            ArrayList arrayList2 = this.R1;
+            if (!arrayList2.isEmpty()) {
+                if (z) {
+                    int i4 = this.l2;
+                    this.l2 = i4 + 1;
+                    this.j2 = i4;
+                }
+                int i5 = this.l2;
+                this.e2 = i5;
+                int size2 = arrayList2.size() + i5;
+                this.l2 = size2;
+                this.f2 = size2;
+            }
+        }
+        if (this.W1) {
+            int i6 = this.l2;
+            this.l2 = i6 + 1;
+            this.k2 = i6;
+        }
+        int i7 = this.l2;
+        this.l2 = i7 + 1;
+        this.d2 = i7;
     }
 }

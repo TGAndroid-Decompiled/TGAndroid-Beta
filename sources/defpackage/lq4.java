@@ -1,3 +1,4 @@
 package defpackage;
-public interface lq4 extends fq4 {
+public interface lq4 {
+    void a();
 }

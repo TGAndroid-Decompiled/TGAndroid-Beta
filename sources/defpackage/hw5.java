@@ -1,42 +1,31 @@
 package defpackage;
+public final class hw5 implements Runnable {
+    public final byte a;
+    public final iw5 b;
+    public final boolean c;
+    public final boolean d;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class hw5 extends mu1 {
-    public final rw5 vd;
-
-    public hw5(rw5 rw5Var) {
-        super(null);
-        this.vd = rw5Var;
+    public hw5(iw5 iw5Var, boolean z, boolean z2, byte b) {
+        this.a = b;
+        this.b = iw5Var;
+        this.c = z;
+        this.d = z2;
     }
 
     @Override
-    public final boolean O7() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return gl.W(this.vd.getContext());
-    }
-
-    @Override
-    public final wjb getResourceProvider() {
-        return this.vd.G1;
-    }
-
-    @Override
-    public final TLRPC.User h() {
-        return y6c.h(this.currentAccount).f();
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        return false;
+    public final void run() {
+        byte b = this.a;
+        boolean z = this.d;
+        boolean z2 = this.c;
+        iw5 iw5Var = this.b;
+        switch (b) {
+            case 0:
+                gm.c3(new hw5(iw5Var, z2, z, (byte) 1));
+                return;
+            default:
+                iw5Var.setJoinRequest(z2);
+                iw5Var.setJoinToSend(z);
+                return;
+        }
     }
 }

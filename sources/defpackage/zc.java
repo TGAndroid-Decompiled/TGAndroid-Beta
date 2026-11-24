@@ -1,79 +1,49 @@
 package defpackage;
 
 import android.content.Context;
-public final class zc extends bjb {
-    public final byte d;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class zc extends FrameLayout {
+    public final TextView a;
+    public final TextView b;
+    public final ImageView c;
 
-    public zc(Context context, byte b) {
+    public zc(ad adVar, Context context) {
         super(context);
-        this.d = b;
-    }
-
-    @Override
-    public final void setEnabled(boolean z) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        switch (this.d) {
-            case 0:
-                super.setEnabled(z);
-                if (z) {
-                    f = 1.0f;
-                } else {
-                    f = 0.5f;
-                }
-                setAlpha(f);
-                return;
-            case 1:
-                super.setEnabled(z);
-                if (z) {
-                    f2 = 1.0f;
-                } else {
-                    f2 = 0.5f;
-                }
-                setAlpha(f2);
-                return;
-            case 2:
-                super.setEnabled(z);
-                if (z) {
-                    f3 = 1.0f;
-                } else {
-                    f3 = 0.5f;
-                }
-                setAlpha(f3);
-                return;
-            default:
-                super.setEnabled(z);
-                if (z) {
-                    f4 = 1.0f;
-                } else {
-                    f4 = 0.5f;
-                }
-                setAlpha(f4);
-                return;
+        int i;
+        if (jb6.a0) {
+            i = 5;
+        } else {
+            i = 3;
         }
-    }
-
-    @Override
-    public final void setTextColor(int i) {
-        switch (this.d) {
-            case 0:
-                super.setTextColor(i);
-                setBackground(bkb.H0(gl.L(20.0f), i));
-                return;
-            case 1:
-                super.setTextColor(i);
-                setBackground(bkb.H0(gl.L(20.0f), i));
-                return;
-            case 2:
-                super.setTextColor(i);
-                setBackground(bkb.H0(gl.L(20.0f), i));
-                return;
-            default:
-                super.setTextColor(i);
-                setBackgroundDrawable(bkb.H0(gl.L(20.0f), i));
-                return;
-        }
+        int v0 = cmb.v0(cmb.D8, adVar.d);
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTextColor(v0);
+        textView.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        textView.setGravity(i);
+        int i2 = i | 48;
+        addView(textView, qoe.d(-1, -2.0f, i2, 16.0f, 7.0f, 44.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.b = textView2;
+        textView2.setTextSize(1, 12.0f);
+        textView2.setTextColor(cmb.p1(0.5f, v0));
+        textView2.setSingleLine();
+        textView2.setEllipsize(truncateAt);
+        textView2.setGravity(i);
+        addView(textView2, qoe.d(-1, -2.0f, i2, 16.0f, 30.0f, 44.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.c = imageView;
+        imageView.setImageResource(2131232404);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setColorFilter(new PorterDuffColorFilter(v0, PorterDuff.Mode.SRC_IN));
+        addView(imageView, qoe.d(24, 24.0f, (jb6.a0 ? 3 : 5) | 16, 14.0f, 0.0f, 14.0f, 0.0f));
     }
 }

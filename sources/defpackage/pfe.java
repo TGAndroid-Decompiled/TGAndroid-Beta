@@ -1,30 +1,17 @@
 package defpackage;
+public final class pfe implements cq7 {
+    public static final pfe a = new Object();
 
-import android.content.Context;
-import android.util.Log;
-public abstract class pfe {
-    public static String a(Context context, int i) {
-        if (context == null) {
-            return "";
+    static {
+        mlb.z(mlb.r(mmd.class, new eld(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        if (i != 1) {
-            if (i != 7) {
-                switch (i) {
-                    case 9:
-                        break;
-                    case 10:
-                        return context.getString(2131689613);
-                    case 11:
-                        return context.getString(2131689612);
-                    case 12:
-                        return context.getString(2131689610);
-                    default:
-                        Log.e("BiometricUtils", "Unknown error code: " + i);
-                        return context.getString(2131689578);
-                }
-            }
-            return context.getString(2131689611);
-        }
-        return context.getString(2131689609);
+        throw new ClassCastException();
     }
 }

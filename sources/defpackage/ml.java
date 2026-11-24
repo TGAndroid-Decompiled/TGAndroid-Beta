@@ -1,121 +1,83 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.PhotoViewer;
-public final class ml extends ImageReceiver {
-    public final byte K1;
-    public final Object L1;
+import android.util.Log;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.concurrent.Callable;
+import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
+import org.webrtc.TextureBufferImpl;
+import org.webrtc.VideoFrame;
+public final class ml implements Callable {
+    public final byte a;
+    public final Object b;
 
     public ml(Object obj, byte b) {
-        super(null);
-        this.K1 = b;
-        this.L1 = obj;
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final boolean h0(Drawable drawable, String str, int i, boolean z, int i2) {
-        Runnable runnable;
-        byte b = this.K1;
-        Object obj = this.L1;
+    public final Object call() {
+        VideoFrame.I420Buffer lambda$toI420$1;
+        byte b = this.a;
+        boolean z = true;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                vl vlVar = (vl) obj;
-                vlVar.j();
-                boolean h0 = super.h0(drawable, str, i, z, i2);
-                if (vlVar.m && C()) {
-                    vlVar.m = false;
-                    gl.d3(new b1(vlVar, (byte) 13));
+                try {
+                    return (Boolean) ((ql) obj).run();
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return Boolean.FALSE;
                 }
-                return h0;
             case 1:
-                boolean h02 = super.h0(drawable, str, i, z, i2);
-                ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-                duration.addUpdateListener(new f0(this, (byte) 18));
-                duration.start();
-                return h02;
+                nz2 nz2Var = (nz2) ((zd1) obj).f;
+                nz2Var.getClass();
+                mx6.w();
+                lx6 lx6Var = nz2Var.c;
+                String str = (String) lx6Var.b;
+                if (!new File((File) ((jd4) lx6Var.c).c, str).exists()) {
+                    if (nz2Var.e() == null || !nz2Var.j.c()) {
+                        z = false;
+                    }
+                } else {
+                    if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+                        Log.v("FirebaseCrashlytics", "Found previous crash marker.", null);
+                    }
+                    new File((File) ((jd4) lx6Var.c).c, str).delete();
+                }
+                return Boolean.valueOf(z);
             case 2:
+                return new yu5((JsReplyProxyBoundaryInterface) obj);
             case 3:
+                ex8 ex8Var = (ex8) ((wm4) obj).c;
+                ld3 ld3Var = (ld3) ex8Var.f;
+                laa laaVar = (laa) ex8Var.c;
+                String str2 = ld3Var.b;
+                mx6.x();
+                try {
+                    HashMap d = ld3.d(laaVar);
+                    in3 in3Var = new in3(str2, d);
+                    in3Var.A("User-Agent", "Crashlytics Android SDK/20.1.1");
+                    in3Var.A("X-CRASHLYTICS-DEVELOPER-TOKEN", "470fa2b4ae81cd56ecbcda9735803434cec591fa");
+                    ld3.c(in3Var, laaVar);
+                    String concat = "Requesting settings from ".concat(str2);
+                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                        Log.d("FirebaseCrashlytics", concat, null);
+                    }
+                    String str3 = "Settings query params were: " + d;
+                    if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+                        Log.v("FirebaseCrashlytics", str3, null);
+                    }
+                    return ld3Var.e(in3Var.s());
+                } catch (IOException e2) {
+                    Log.e("FirebaseCrashlytics", "Settings request failed.", e2);
+                    return null;
+                }
             default:
-                return super.h0(drawable, str, i, z, i2);
-            case 4:
-                if (drawable != null && i != 1) {
-                    ug8.t(((pa6) ((kb0) obj).I).h.animate().alpha(1.0f).translationY(0.0f), s33.k, 250L);
-                }
-                return super.h0(drawable, str, i, z, i2);
-            case 5:
-                y28 y28Var = (y28) obj;
-                boolean h03 = super.h0(drawable, str, i, z, i2);
-                if (i == 1 && (runnable = y28Var.Y0) != null) {
-                    runnable.run();
-                    y28Var.Y0 = null;
-                }
-                return h03;
-            case 6:
-                boolean h04 = super.h0(drawable, str, i, z, i2);
-                ((PhotoViewer) obj).t1();
-                return h04;
+                lambda$toI420$1 = ((TextureBufferImpl) obj).lambda$toI420$1();
+                return lambda$toI420$1;
         }
-    }
-
-    @Override
-    public final void invalidate() {
-        byte b = this.K1;
-        Object obj = this.L1;
-        switch (b) {
-            case 0:
-                ((vl) obj).j();
-                super.invalidate();
-                return;
-            case 2:
-                View view = ((p72) obj).b;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
-                return;
-            case 7:
-                super.invalidate();
-                koc kocVar = ((joc) obj).d0;
-                int i = koc.J1;
-                kocVar.f0();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void s0(int[] iArr) {
-        yd8 yd8Var;
-        switch (this.K1) {
-            case 3:
-                super.s0(iArr);
-                gb2 gb2Var = (gb2) this.L1;
-                int[] iArr2 = gb2Var.T0;
-                iArr2[0] = iArr[0];
-                iArr2[1] = iArr[1];
-                int L = gl.L(6.0f);
-                iArr2[3] = L;
-                iArr2[2] = L;
-                mb2 mb2Var = gb2Var.x2;
-                if (mb2Var != null && (yd8Var = mb2Var.m) != null) {
-                    yd8Var.b.s0(iArr2);
-                    return;
-                }
-                return;
-            default:
-                super.s0(iArr);
-                return;
-        }
-    }
-
-    public ml(Object obj, View view, byte b) {
-        super(view);
-        this.K1 = b;
-        this.L1 = obj;
     }
 }

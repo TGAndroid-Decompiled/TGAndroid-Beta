@@ -7,8 +7,8 @@ public final class v7 extends w7 {
     public final u7 h0;
     public String i0;
 
-    public v7(Context context, wjb wjbVar) {
-        super(context, wjbVar);
+    public v7(Context context, ylb ylbVar) {
+        super(context, ylbVar);
         this.i0 = null;
         setFocusable(true);
         setFocusableInTouchMode(true);

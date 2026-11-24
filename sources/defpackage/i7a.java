@@ -1,51 +1,18 @@
 package defpackage;
 
-import android.app.Activity;
-import android.app.Application;
-import android.os.Bundle;
-public final class i7a implements Application.ActivityLifecycleCallbacks {
-    public final fga a;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class i7a implements View.OnClickListener {
+    public final TLRPC.TL_authorization a;
+    public final p7a b;
 
-    public i7a(fga fgaVar) {
-        fgaVar.getClass();
-        this.a = fgaVar;
+    public i7a(p7a p7aVar, TLRPC.TL_authorization tL_authorization) {
+        this.b = p7aVar;
+        this.a = tL_authorization;
     }
 
     @Override
-    public final void onActivityCreated(Activity activity, Bundle bundle) {
-        activity.getClass();
-    }
-
-    @Override
-    public final void onActivityDestroyed(Activity activity) {
-        activity.getClass();
-    }
-
-    @Override
-    public final void onActivityPaused(Activity activity) {
-        activity.getClass();
-        this.a.a();
-    }
-
-    @Override
-    public final void onActivityResumed(Activity activity) {
-        activity.getClass();
-        this.a.b();
-    }
-
-    @Override
-    public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
-        activity.getClass();
-        bundle.getClass();
-    }
-
-    @Override
-    public final void onActivityStarted(Activity activity) {
-        activity.getClass();
-    }
-
-    @Override
-    public final void onActivityStopped(Activity activity) {
-        activity.getClass();
+    public final void onClick(View view) {
+        this.b.D0(this.a.country);
     }
 }

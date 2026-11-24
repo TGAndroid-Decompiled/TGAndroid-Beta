@@ -1,40 +1,41 @@
 package defpackage;
-public enum yrb extends qsb {
-    public yrb() {
-        super("AfterDoctypePublicKeyword", 54);
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public enum yrb implements Parcelable {
+    PRESENT("present"),
+    SUPPORTED("supported"),
+    NOT_SUPPORTED("not-supported");
+    
+    public static final Parcelable.Creator<yrb> CREATOR = new lbd((byte) 8);
+    public final String a;
+
+    yrb(String str) {
+        this.a = str;
+    }
+
+    public static yrb a(String str) {
+        yrb[] values;
+        for (yrb yrbVar : values()) {
+            if (str.equals(yrbVar.a)) {
+                return yrbVar;
+            }
+        }
+        throw new Exception(kt6.o("TokenBindingStatus ", str, " not supported"));
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char d = zj1Var.d();
-        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
-            if (d != '\"') {
-                if (d != '\'') {
-                    lqb lqbVar = qsb.a;
-                    if (d != '>') {
-                        if (d != 65535) {
-                            aqbVar.m(this);
-                            aqbVar.c = qsb.D0;
-                            return;
-                        }
-                        aqbVar.l(this);
-                        aqbVar.j();
-                        aqbVar.c = lqbVar;
-                        return;
-                    }
-                    aqbVar.m(this);
-                    aqbVar.j();
-                    aqbVar.c = lqbVar;
-                    return;
-                }
-                aqbVar.m(this);
-                aqbVar.c = qsb.v0;
-                return;
-            }
-            aqbVar.m(this);
-            aqbVar.c = qsb.u0;
-            return;
-        }
-        aqbVar.c = qsb.t0;
+    public final int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public final String toString() {
+        return this.a;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.a);
     }
 }

@@ -1,747 +1,519 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.animation.AnimatorSet;
+import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.text.SpannableStringBuilder;
-import android.util.SparseIntArray;
-import android.view.MotionEvent;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.SurfaceTexture;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.TextView;
+import j$.util.Objects;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.WeakHashMap;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-public final class a18 extends d implements gk7 {
-    public final ix4 E;
-    public final kl0 F;
-    public final ix4 G;
-    public final kl0 H;
-    public d I;
-    public vq1 J;
-    public ImageView K;
-    public ImageView L;
-    public FrameLayout M;
-    public xb4 N;
-    public jia O;
-    public FrameLayout P;
-    public FrameLayout Q;
-    public u41 R;
-    public t08 S;
-    public boolean T;
-    public oy8 U;
-    public boolean V;
-    public boolean W;
-    public boolean X;
-    public xg1 Y;
-    public float Z;
-    public final boolean a;
-    public ValueAnimator a0;
-    public final xsa b;
-    public boolean b0;
-    public final xsa c;
-    public io5 c0;
-    public oc6 d;
-    public final e59 d0;
-    public c08 e;
-    public final e59 e0;
-    public final int f;
-    public t08 h;
-    public t08 n;
-    public boolean r;
-    public wjb s;
-    public final SparseIntArray w;
-    public final m17 x;
-    public final m17 y;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PrivacyControlActivity;
+import org.telegram.ui.PrivacySettingsActivity;
+import org.telegram.ui.p;
+import org.telegram.ui.s;
+import org.telegram.ui.v;
+public final class a18 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public a18() {
-        super(null);
-        this.f = gl.L(6.0f);
-        this.w = new SparseIntArray();
-        boolean o = bkb.I.o();
-        this.T = o;
-        this.b0 = o;
-        this.c0 = io5.e;
-        e59 e59Var = new e59(0, false);
-        this.d0 = e59Var;
-        e59 e59Var2 = new e59(0, false);
-        this.e0 = e59Var2;
-        ix4 ix4Var = new ix4();
-        this.E = ix4Var;
-        kl0 kl0Var = new kl0(ix4Var, ix4Var, ix4Var);
-        this.F = kl0Var;
-        ix4 ix4Var2 = new ix4();
-        this.G = ix4Var2;
-        kl0 kl0Var2 = new kl0(ix4Var2, ix4Var2, ix4Var2);
-        this.H = kl0Var2;
-        kl0Var.g = e59Var;
-        kl0Var.f = e59Var2;
-        kl0Var2.g = e59Var;
-        kl0Var2.f = e59Var2;
-        this.a = false;
-        gta.v(this.currentAccount, false).T();
-        xsa xsaVar = new xsa(this.currentAccount, 0L, false);
-        this.b = xsaVar;
-        xsaVar.g(8, false);
-        xsaVar.a();
-        xsa xsaVar2 = new xsa(this.currentAccount, 0L, false);
-        this.c = xsaVar2;
-        xsaVar2.g(8, false);
-        xsaVar2.f = true;
-        xsaVar2.a();
-        this.resourceProvider = new fd(this, (byte) 3);
-        this.x = new m17(0, false, false, this.resourceProvider);
-        this.y = new m17(0, false, true, this.resourceProvider);
-    }
-
-    public static boolean D0(TLRPC.EmojiStatus emojiStatus, TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible) {
-        boolean z;
-        if (tL_emojiStatusCollectible == emojiStatus) {
-            return true;
-        }
-        if (tL_emojiStatusCollectible != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        boolean z2 = emojiStatus instanceof TLRPC.TL_emojiStatusCollectible;
-        if (z == z2 && tL_emojiStatusCollectible != null && z2 && ((TLRPC.TL_emojiStatusCollectible) emojiStatus).collectible_id == tL_emojiStatusCollectible.collectible_id) {
-            return true;
-        }
-        return false;
-    }
-
-    public static int y0(int i) {
-        boolean z;
-        float f;
-        if (gl.B(i) < 0.2f) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z) {
-            f = 0.28f;
-        } else {
-            f = -0.28f;
-        }
-        return bkb.a(0.5f, f, i);
-    }
-
-    public final void A0() {
-        oj ojVar;
-        if (this.r) {
-            return;
-        }
-        if (this.a) {
-            finishFragment();
-        } else if (!getUserConfig().p()) {
-            showDialog(new jh8((d) this, 23, true));
-            return;
-        }
-        t08 E0 = E0();
-        TL_stars.TL_starGiftUnique tL_starGiftUnique = E0.J;
-        t08 t08Var = this.h;
-        if (tL_starGiftUnique != null) {
-            if (E0 == t08Var) {
-                t08Var = this.n;
-            }
-            t08Var.c();
-            this.r = true;
-            this.R.setLoading(true);
-            TL_stars.TL_starGiftUnique tL_starGiftUnique2 = E0.J;
-            xz7 xz7Var = new xz7(this, (byte) 1);
-            long e = y6c.h(this.currentAccount).e();
-            if (tL_starGiftUnique2.resale_ton_only) {
-                ojVar = oj.b;
-            } else {
-                ojVar = oj.a;
-            }
-            gta.u(this.currentAccount, ojVar).E(tL_starGiftUnique2, e, null, true, new zz7(this, ojVar, tL_starGiftUnique2, e, xz7Var));
-            return;
-        }
-        if (E0 == t08Var) {
-            t08Var = this.n;
-        }
-        if (t08Var.J != null) {
-            t08Var.c();
-        }
-        z0();
-        finishFragment();
-        H0();
-    }
-
-    public final void B0() {
-        this.E.a(getThemedColor(bkb.c6));
-        this.P.invalidate();
-        this.Q.invalidate();
-        this.h.x.invalidate();
-        this.h.y.invalidate();
-        this.n.x.invalidate();
-        this.h.b.invalidate();
-        this.n.b.invalidate();
-        ((il0) this.P.getBackground()).updateColors();
-        C0();
-        Iterator it = this.e0.iterator();
-        while (it.hasNext()) {
-            ((il0) it.next()).updateColors();
-        }
-    }
-
-    public final void C0() {
-        int themedColor;
-        if (gl.B(getThemedColor(bkb.c6)) > 0.72d) {
-            themedColor = bm2.f(0.085f, getThemedColor(bkb.Z6), this.e.getColor());
-        } else {
-            themedColor = getThemedColor(bkb.Z6);
-        }
-        this.d.setBackgroundColor(themedColor);
-        ix4 ix4Var = this.G;
-        if (ix4Var.b != themedColor) {
-            ix4Var.a(themedColor);
-            Iterator it = this.e0.iterator();
-            while (it.hasNext()) {
-                ((il0) it.next()).updateColors();
-            }
-            Iterator it2 = this.d0.iterator();
-            while (it2.hasNext()) {
-                ((View) it2.next()).invalidate();
-            }
-        }
-    }
-
-    public final t08 E0() {
-        vq1 vq1Var = this.J;
-        if (vq1Var != null && vq1Var.getPositionAnimated() >= 0.5f) {
-            return this.h;
-        }
-        return this.n;
-    }
-
-    public final void F0(oj ojVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, xz7 xz7Var, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
-        if (tL_payments_paymentFormStarGift == null) {
-            return;
-        }
-        ypa ypaVar = new ypa(ojVar, tL_payments_paymentFormStarGift);
-        StringBuilder sb = new StringBuilder();
-        sb.append(tL_starGiftUnique.title);
-        sb.append(" #");
-        boolean[] zArr = new boolean[1];
-        aqa aqaVar = new aqa(getParentActivity(), this.resourceProvider, tL_starGiftUnique, ypaVar, this.currentAccount, j, ls6.m(tL_starGiftUnique.num, ',', sb), false, new a08(this, zArr, tL_starGiftUnique, j, xz7Var, (byte) 0));
-        aqaVar.h.setOnDismissListener(new cf(zArr, xz7Var, (byte) 13));
-        aqaVar.b();
-    }
-
-    public final void G0(boolean[] zArr, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, xz7 xz7Var, ypa ypaVar, c01 c01Var) {
-        zArr[0] = true;
-        c01Var.d();
-        gta.u(this.currentAccount, ypaVar.a).f(ypaVar.b, tL_starGiftUnique, j, null, true, new w77(c01Var, xz7Var, (byte) 6));
-    }
-
-    public final void H0() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a18.H0():void");
-    }
-
-    public final void I0() {
-        jia jiaVar = this.O;
-        if (jiaVar != null) {
-            jiaVar.setTextColor(getThemedColor(bkb.z8));
-        }
-        this.h.g();
-        this.n.g();
-        c08 c08Var = this.e;
-        if (c08Var != null) {
-            c08Var.a = bkb.v0(bkb.Z6, c08Var.b);
-            c08Var.a();
-            c08Var.invalidate();
-        }
-        J0();
-        B0();
-        setNavigationBarColor(getNavigationBarColor());
-    }
-
-    public final void J0() {
-        float positionAnimated;
-        if (this.e != null) {
-            C0();
-            int tabsViewBackgroundColor = this.e.getTabsViewBackgroundColor();
-            if (this.N != null) {
-                vq1 vq1Var = this.J;
-                if (vq1Var == null) {
-                    positionAnimated = 0.0f;
-                } else {
-                    positionAnimated = vq1Var.getPositionAnimated();
-                }
-                float a = moe.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f);
-                xb4 xb4Var = this.N;
-                int f = bm2.f(a, tabsViewBackgroundColor, getThemedColor(bkb.c6));
-                int f2 = bm2.f(a, -1, getThemedColor(bkb.Z6));
-                int f3 = bm2.f(a, -1, getThemedColor(bkb.y6));
-                int f4 = bm2.f(a, tabsViewBackgroundColor, getThemedColor(bkb.F6));
-                xb4Var.a.setColor(f);
-                xb4Var.b.setColor(f2);
-                xb4Var.d = f3;
-                xb4Var.e = f4;
-                xb4Var.invalidate();
-            }
-        }
+    public a18(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final View createView(Context context) {
+    public final void run() {
+        long j;
         int i;
         int i2;
-        setHasOwnBackground(true);
-        this.actionBar.setCastShadows(false);
-        this.actionBar.setVisibility(8);
-        this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setAddToContainer(false);
-        oc6 oc6Var = new oc6((byte) 4, context, this);
-        this.d = oc6Var;
-        this.fragmentView = oc6Var;
-        this.h = new t08(this, context, 1);
-        this.n = new t08(this, context, 0);
-        c08 c08Var = new c08(this, context, this.resourceProvider);
-        this.e = c08Var;
-        c08Var.F = true;
-        this.n.j(false);
-        this.n.addView(this.e, 2, nme.e(-1, -2, 55));
-        vq1 vq1Var = new vq1((byte) 4, context, this);
-        this.J = vq1Var;
-        vq1Var.setAdapter(new sl2(this, (byte) 4));
-        oc6Var.addView(this.J, nme.e(-1, -1, 119));
-        u41 u41Var = new u41(getResourceProvider(), context, true);
-        this.R = u41Var;
-        u41Var.setStateListAnimator(null);
-        this.R.f();
-        this.R.d.r(true, true);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.P = frameLayout;
-        frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final a18 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                byte b = r2;
-                a18 a18Var = this.b;
-                switch (b) {
-                    case 0:
-                        a18Var.A0();
-                        return;
-                    case 1:
-                        if (a18Var.onBackPressed(true)) {
-                            a18Var.finishFragment();
-                            return;
-                        }
-                        return;
-                    default:
-                        a18 a18Var2 = this.b;
-                        FrameLayout frameLayout2 = (FrameLayout) a18Var2.getParentActivity().getWindow().getDecorView();
-                        Bitmap createBitmap = Bitmap.createBitmap(frameLayout2.getWidth(), frameLayout2.getHeight(), Bitmap.Config.ARGB_8888);
-                        Canvas canvas = new Canvas(createBitmap);
-                        a18Var2.L.setAlpha(0.0f);
-                        frameLayout2.draw(canvas);
-                        a18Var2.L.setAlpha(1.0f);
-                        Paint paint = new Paint(1);
-                        paint.setColor(-16777216);
-                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                        Paint paint2 = new Paint(1);
-                        paint2.setFilterBitmap(true);
-                        int[] iArr = new int[2];
-                        a18Var2.L.getLocationInWindow(iArr);
-                        float f = iArr[0];
-                        float f2 = iArr[1];
-                        float max = Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + gl.n;
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        xg1 xg1Var = new xg1(a18Var2, a18Var2.getParentActivity(), canvas, (a18Var2.L.getMeasuredWidth() / 2.0f) + f, (a18Var2.L.getMeasuredHeight() / 2.0f) + f2, max, paint, createBitmap, paint2, f, f2, (byte) 1);
-                        a18Var2.Y = xg1Var;
-                        xg1Var.setOnTouchListener(new jz1((byte) 17));
-                        a18Var2.Z = 0.0f;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        a18Var2.a0 = ofFloat;
-                        ofFloat.addUpdateListener(new yg1(a18Var2, (byte) 1));
-                        a18Var2.a0.addListener(new v85(a18Var2, (byte) 27));
-                        a18Var2.a0.setDuration(400L);
-                        a18Var2.a0.setInterpolator(ls3.e);
-                        a18Var2.a0.start();
-                        frameLayout2.addView(a18Var2.Y, new ViewGroup.LayoutParams(-1, -1));
-                        gl.d3(new oq7(a18Var2, (byte) 14));
-                        return;
+        u9b u9bVar;
+        nab nabVar;
+        ms1 ms1Var;
+        wm4 wm4Var;
+        wm4 wm4Var2;
+        int i3 = 0;
+        switch (this.a) {
+            case 0:
+                p pVar = (p) this.b;
+                TLRPC.TL_payments_paymentVerificationNeeded tL_payments_paymentVerificationNeeded = (TLRPC.TL_payments_paymentVerificationNeeded) this.c;
+                qac qacVar = pVar.e1;
+                if (qacVar != null) {
+                    qacVar.a(tL_payments_paymentVerificationNeeded);
                 }
-            }
-        });
-        this.P.setPadding(gl.L(8.0f), gl.L(8.0f), gl.L(8.0f), gl.L(8.0f));
-        this.P.addView(this.R, nme.c(-1.0f, -1));
-        FrameLayout frameLayout2 = this.P;
-        il0 c = this.F.c(frameLayout2, null, false);
-        c.p(nod.j(this.resourceProvider));
-        c.r(gl.L(28.0f));
-        c.q(gl.L(5.0f));
-        frameLayout2.setBackground(c);
-        ote.b(this.P, 0.02f, 1.5f);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.Q = frameLayout3;
-        frameLayout3.addView(this.P, nme.d(-1, 64.0f, 80, 4.0f, 0.0f, 4.0f, 0.0f));
-        ql0 ql0Var = new ql0(this.H.c(this.Q, null, false));
-        ql0Var.b(gl.L(40.0f), true);
-        ql0Var.H = 220;
-        this.Q.setBackground(ql0Var);
-        t08 E0 = E0();
-        u41 u41Var2 = this.R;
-        if (u41Var2 != null && E0 != null && E0 != this.S) {
-            this.S = E0;
-            sk4 sk4Var = E0.e;
-            u41Var2.i((CharSequence) sk4Var.b, false, true);
-            this.R.g((SpannableStringBuilder) sk4Var.c, false);
-        }
-        oc6Var.addView(this.Q, nme.e(-1, -2, 80));
-        FrameLayout frameLayout4 = new FrameLayout(context);
-        this.M = frameLayout4;
-        oc6Var.addView(frameLayout4, nme.e(-1, -2, 55));
-        boolean z = this.a;
-        if (!z) {
-            xb4 xb4Var = new xb4(context);
-            this.N = xb4Var;
-            if (z) {
-                i = 2131752416;
-            } else {
-                i = 2131743507;
-            }
-            String M0 = k96.M0(i, null);
-            if (z) {
-                i2 = 2131752417;
-            } else {
-                i2 = 2131743508;
-            }
-            xb4Var.setTabs(M0, k96.M0(i2, null));
-            this.N.r = new xz7(this, (byte) 0);
-            J0();
-            this.M.addView(this.N, nme.e(-1, 40, 17));
-        } else {
-            jia jiaVar = new jia(context);
-            this.O = jiaVar;
-            jiaVar.l(k96.M0(2131752415, null), false);
-            this.O.setEllipsizeByGradient(true);
-            this.O.setTextSize(20);
-            zkb.W(this.O, bkb.z8, getResourceProvider());
-            this.O.setTypeface(gl.o());
-            this.M.addView(this.O, nme.d(-2, -2.0f, 19, 72.0f, 0.0f, 72.0f, 0.0f));
-        }
-        c08 c08Var2 = this.e;
-        if (c08Var2 != null) {
-            c08Var2.setProgressToGradient(1.0f);
-            if (getParentActivity() != null) {
-                gl.l3(getParentActivity(), isLightStatusBar());
-            }
-        }
-        ImageView imageView = new ImageView(context);
-        this.K = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.K;
-        int i3 = bkb.t8;
-        zkb.R(imageView2, bkb.f0(getThemedColor(i3), 1, -1), null, zkb.M(i3), getResourceProvider());
-        this.K.setImageResource(2131231243);
-        ImageView imageView3 = this.K;
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        this.K.setOnClickListener(new View.OnClickListener(this) {
-            public final a18 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                byte b = r2;
-                a18 a18Var = this.b;
-                switch (b) {
-                    case 0:
-                        a18Var.A0();
-                        return;
-                    case 1:
-                        if (a18Var.onBackPressed(true)) {
-                            a18Var.finishFragment();
-                            return;
-                        }
-                        return;
-                    default:
-                        a18 a18Var2 = this.b;
-                        FrameLayout frameLayout22 = (FrameLayout) a18Var2.getParentActivity().getWindow().getDecorView();
-                        Bitmap createBitmap = Bitmap.createBitmap(frameLayout22.getWidth(), frameLayout22.getHeight(), Bitmap.Config.ARGB_8888);
-                        Canvas canvas = new Canvas(createBitmap);
-                        a18Var2.L.setAlpha(0.0f);
-                        frameLayout22.draw(canvas);
-                        a18Var2.L.setAlpha(1.0f);
-                        Paint paint = new Paint(1);
-                        paint.setColor(-16777216);
-                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                        Paint paint2 = new Paint(1);
-                        paint2.setFilterBitmap(true);
-                        int[] iArr = new int[2];
-                        a18Var2.L.getLocationInWindow(iArr);
-                        float f = iArr[0];
-                        float f2 = iArr[1];
-                        float max = Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + gl.n;
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        xg1 xg1Var = new xg1(a18Var2, a18Var2.getParentActivity(), canvas, (a18Var2.L.getMeasuredWidth() / 2.0f) + f, (a18Var2.L.getMeasuredHeight() / 2.0f) + f2, max, paint, createBitmap, paint2, f, f2, (byte) 1);
-                        a18Var2.Y = xg1Var;
-                        xg1Var.setOnTouchListener(new jz1((byte) 17));
-                        a18Var2.Z = 0.0f;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        a18Var2.a0 = ofFloat;
-                        ofFloat.addUpdateListener(new yg1(a18Var2, (byte) 1));
-                        a18Var2.a0.addListener(new v85(a18Var2, (byte) 27));
-                        a18Var2.a0.setDuration(400L);
-                        a18Var2.a0.setInterpolator(ls3.e);
-                        a18Var2.a0.start();
-                        frameLayout22.addView(a18Var2.Y, new ViewGroup.LayoutParams(-1, -1));
-                        gl.d3(new oq7(a18Var2, (byte) 14));
-                        return;
+                pVar.J0(false);
+                pVar.A0 = true;
+                pVar.N0(true, true);
+                mx2 mx2Var = pVar.r;
+                if (mx2Var != null) {
+                    mx2Var.setVisibility(0);
                 }
-            }
-        });
-        ote.a(this.K);
-        this.M.addView(this.K, nme.e(54, 54, 19));
-        oy8 oy8Var = new oy8(2131624236, gl.L(28.0f), gl.L(28.0f), true, null);
-        this.U = oy8Var;
-        oy8Var.h = true;
-        if (!this.T) {
-            oy8Var.K(0);
-            this.U.H(0);
-        } else {
-            oy8Var.H(35);
-            this.U.K(36);
-        }
-        this.U.a0 = true;
-        int w0 = bkb.w0(null, bkb.I9, false);
-        this.U.L(w0, "Sunny");
-        this.U.L(w0, "Path 6");
-        this.U.L(w0, "Path");
-        this.U.L(w0, "Path 5");
-        this.U.j();
-        ImageView imageView4 = new ImageView(context);
-        this.L = imageView4;
-        imageView4.setScaleType(scaleType);
-        zkb.R(this.L, bkb.f0(getThemedColor(i3), 1, -1), null, zkb.M(i3), getResourceProvider());
-        this.L.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        this.L.setOnClickListener(new View.OnClickListener(this) {
-            public final a18 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                byte b = r2;
-                a18 a18Var = this.b;
-                switch (b) {
-                    case 0:
-                        a18Var.A0();
-                        return;
-                    case 1:
-                        if (a18Var.onBackPressed(true)) {
-                            a18Var.finishFragment();
-                            return;
-                        }
-                        return;
-                    default:
-                        a18 a18Var2 = this.b;
-                        FrameLayout frameLayout22 = (FrameLayout) a18Var2.getParentActivity().getWindow().getDecorView();
-                        Bitmap createBitmap = Bitmap.createBitmap(frameLayout22.getWidth(), frameLayout22.getHeight(), Bitmap.Config.ARGB_8888);
-                        Canvas canvas = new Canvas(createBitmap);
-                        a18Var2.L.setAlpha(0.0f);
-                        frameLayout22.draw(canvas);
-                        a18Var2.L.setAlpha(1.0f);
-                        Paint paint = new Paint(1);
-                        paint.setColor(-16777216);
-                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                        Paint paint2 = new Paint(1);
-                        paint2.setFilterBitmap(true);
-                        int[] iArr = new int[2];
-                        a18Var2.L.getLocationInWindow(iArr);
-                        float f = iArr[0];
-                        float f2 = iArr[1];
-                        float max = Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + gl.n;
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        xg1 xg1Var = new xg1(a18Var2, a18Var2.getParentActivity(), canvas, (a18Var2.L.getMeasuredWidth() / 2.0f) + f, (a18Var2.L.getMeasuredHeight() / 2.0f) + f2, max, paint, createBitmap, paint2, f, f2, (byte) 1);
-                        a18Var2.Y = xg1Var;
-                        xg1Var.setOnTouchListener(new jz1((byte) 17));
-                        a18Var2.Z = 0.0f;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        a18Var2.a0 = ofFloat;
-                        ofFloat.addUpdateListener(new yg1(a18Var2, (byte) 1));
-                        a18Var2.a0.addListener(new v85(a18Var2, (byte) 27));
-                        a18Var2.a0.setDuration(400L);
-                        a18Var2.a0.setInterpolator(ls3.e);
-                        a18Var2.a0.start();
-                        frameLayout22.addView(a18Var2.Y, new ViewGroup.LayoutParams(-1, -1));
-                        gl.d3(new oq7(a18Var2, (byte) 14));
-                        return;
+                r7 r7Var = pVar.n;
+                if (r7Var != null) {
+                    r7Var.setEnabled(false);
+                    pVar.n.getContentView().setVisibility(4);
                 }
-            }
-        });
-        this.M.addView(this.L, nme.e(54, 54, 21));
-        this.L.setImageDrawable(this.U);
-        c08 c08Var3 = this.e;
-        c08Var3.getClass();
-        c08Var3.a = bkb.v0(bkb.Z6, c08Var3.b);
-        c08Var3.a();
-        c08Var3.invalidate();
-        B0();
-        C0();
-        View view = this.fragmentView;
-        b08 b08Var = new b08(this, (byte) 0);
-        WeakHashMap weakHashMap = jdc.a;
-        bdc.i(view, b08Var);
-        return this.d;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i2 == this.currentAccount) {
-            if (i == kk7.h5) {
-                this.h.f(true);
-                this.n.f(true);
-            } else if (i == kk7.H3) {
-                this.h.d();
-                this.n.d();
-            } else if (i == kk7.G3) {
-                this.h.d();
-                this.n.d();
-            }
-        }
-    }
-
-    @Override
-    public final boolean drawEdgeNavigationBar() {
-        return false;
-    }
-
-    @Override
-    public final rs3 getEdgeToEdgeSupportMode() {
-        return rs3.c;
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        return hue.a(new t00(this, (byte) 12), bkb.c6, bkb.F6, bkb.y6, bkb.h6, bkb.Z6, bkb.A6, bkb.o7, bkb.e6, bkb.f6, bkb.N6, bkb.O6, bkb.P6, bkb.Q6);
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        c08 c08Var = this.e;
-        if (c08Var == null) {
-            return super.isLightStatusBar();
-        }
-        if (bm2.h(c08Var.getColor()) > 0.699999988079071d) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        if (!this.a && ((this.h.a() || this.n.a()) && getUserConfig().p())) {
-            return false;
-        }
-        return super.isSwipeBackEnabled(motionEvent);
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z) {
-        int i;
-        int i2;
-        boolean z2 = this.a;
-        if (!z2 && ((this.h.a() || this.n.a()) && getUserConfig().p())) {
-            if (z && getVisibleDialog() == null) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getResourceProvider(), getParentActivity());
-                if (z2) {
-                    i = 2131752414;
+                pVar.getMessagesController().b4 = new wu2(pVar, pVar.getParentLayout(), pVar.getParentActivity(), (byte) 21);
+                WebView webView = pVar.x;
+                if (webView != null) {
+                    webView.setVisibility(0);
+                    WebView webView2 = pVar.x;
+                    String str = tL_payments_paymentVerificationNeeded.url;
+                    pVar.y = str;
+                    webView2.loadUrl(str);
+                }
+                pVar.b1 = true;
+                pVar.g1 = 3;
+                w18 w18Var = pVar.a1;
+                if (w18Var != null) {
+                    w18Var.c(3);
+                    return;
+                }
+                return;
+            case 1:
+                a58 a58Var = (a58) this.b;
+                hg5 hg5Var = (hg5) this.c;
+                a58Var.removeView(hg5Var);
+                if (a58Var.T1 == hg5Var) {
+                    a58Var.T1 = null;
+                    return;
+                }
+                return;
+            case 2:
+                a58 a58Var2 = (a58) this.b;
+                v9b C = v9b.C((Activity) this.c, a58Var2.s2);
+                c40 c40Var = a58Var2.C2;
+                if (c40Var != null && (nabVar = (nab) c40Var.c) != null) {
+                    j = nabVar.currentPosition;
                 } else {
-                    i = 2131743506;
+                    j = 0;
                 }
-                String M0 = k96.M0(i, null);
-                hd hdVar = alertDialog$Builder.a;
-                hdVar.S = M0;
-                if (z2) {
-                    i2 = 2131752413;
-                } else {
-                    i2 = 2131743505;
+                File f = a58Var2.E1.f();
+                TL_stories.StoryItem storyItem = a58Var2.E1.a;
+                g6b g6bVar = new g6b();
+                g6bVar.n = true;
+                g6bVar.t = storyItem.media;
+                int i4 = g6bVar.a;
+                g6bVar.q = oc7.r1(i4).x1(storyItem.dialogId);
+                g6bVar.r = storyItem.id;
+                g6bVar.s = storyItem.caption;
+                g6bVar.L = f;
+                g6bVar.M = false;
+                g6bVar.k0 = 720;
+                g6bVar.l0 = 1280;
+                TLRPC.MessageMedia messageMedia = storyItem.media;
+                if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
+                    g6bVar.K = false;
+                    if (f != null) {
+                        g6bVar.h(f.getAbsolutePath());
+                    }
+                } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
+                    g6bVar.K = true;
+                    TLRPC.Document document = messageMedia.document;
+                    if (document != null && document.attributes != null) {
+                        int i5 = 0;
+                        while (true) {
+                            if (i5 < storyItem.media.document.attributes.size()) {
+                                TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i5);
+                                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                                    g6bVar.k0 = documentAttribute.w;
+                                    g6bVar.l0 = documentAttribute.h;
+                                    g6bVar.i = documentAttribute.duration;
+                                } else {
+                                    i5++;
+                                }
+                            }
+                        }
+                    }
+                    TLRPC.Document document2 = storyItem.media.document;
+                    if (document2 != null) {
+                        String str2 = storyItem.firstFramePath;
+                        if (str2 != null) {
+                            g6bVar.N = str2;
+                        } else if (document2.thumbs != null) {
+                            for (int i6 = 0; i6 < storyItem.media.document.thumbs.size(); i6++) {
+                                TLRPC.PhotoSize photoSize = storyItem.media.document.thumbs.get(i6);
+                                if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
+                                    g6bVar.O = fn5.B(null, photoSize.bytes);
+                                } else {
+                                    bc4.G(i4);
+                                    File J = bc4.J(photoSize, null, true, true);
+                                    if (J != null && J.exists()) {
+                                        g6bVar.N = J.getAbsolutePath();
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                hdVar.U = k96.M0(i2, null);
-                alertDialog$Builder.g(k96.M0(2131751357, null), new b08(this, (byte) 1));
-                alertDialog$Builder.j(k96.M0(2131754213, null), new b08(this, (byte) 2));
-                showDialog(hdVar);
-                zkb.X((TextView) hdVar.c(-2), bkb.p7, getResourceProvider());
-            }
-            return false;
+                g6bVar.z();
+                g6bVar.e(storyItem);
+                o9b d = q9b.d(a58Var2.z0);
+                RectF rectF = C.I;
+                WindowManager.LayoutParams layoutParams = C.h;
+                WindowManager windowManager = C.f;
+                int i7 = C.c;
+                if (!C.d) {
+                    if (oc7.r1(i7).u2()) {
+                        h5.b(i7);
+                    } else {
+                        C.v0 = false;
+                        C.e = false;
+                        C.C2 = false;
+                        if (windowManager != null && (u9bVar = C.n) != null && u9bVar.getParent() == null) {
+                            gm.s3(windowManager, C.n, layoutParams);
+                            windowManager.addView(C.n, layoutParams);
+                            C.f0();
+                        }
+                        C.L1 = g6bVar;
+                        c8b.a(i7, g6bVar);
+                        g6b g6bVar2 = C.L1;
+                        if (g6bVar2 != null && g6bVar2.K) {
+                            i = 1;
+                        } else {
+                            i = 0;
+                        }
+                        C.P1 = i;
+                        C.t0.g = false;
+                        if (d != null) {
+                            C.G = d;
+                            C.K = d.a;
+                            rectF.set(d.c);
+                            C.H = d.b;
+                            C.G.e();
+                        } else {
+                            C.K = false;
+                            Point point = gm.q;
+                            rectF.set(0.0f, gm.L(100.0f), point.x, gm.L(100.0f) + point.y);
+                            C.H = gm.L(8.0f);
+                        }
+                        C.r.c();
+                        i9b i9bVar = C.i0;
+                        boolean z = C.K;
+                        if (!z && z) {
+                            i2 = -14737633;
+                        } else {
+                            i2 = 0;
+                        }
+                        i9bVar.setBackgroundColor(i2);
+                        C.r.setTranslationX(0.0f);
+                        C.r.setTranslationY(0.0f);
+                        C.r.b(0.0f);
+                        C.r.setScaleX(1.0f);
+                        C.r.setScaleY(1.0f);
+                        C.L = 0.0f;
+                        gm.e2(C.b);
+                        g6b g6bVar3 = C.L1;
+                        if (g6bVar3 != null) {
+                            C.d1.setText(g6bVar3.C0);
+                        }
+                        C.J(new f8b(C, (byte) 7), j);
+                        C.c1.b(true, false);
+                        C.I(1, false);
+                        C.k0(-1, false, false);
+                        C.a();
+                        C.w0 = 0L;
+                        C.x0 = "";
+                    }
+                }
+                C.R = new h38(a58Var2, (byte) 12);
+                C.S = new g25(a58Var2, C, (byte) 1);
+                return;
+            case 3:
+                ((fab) ((v48) this.b).x.G1).h(new kj8(((oab) this.c).f, 14, false));
+                return;
+            case 4:
+                ((g88) this.b).s((Bitmap) this.c);
+                return;
+            case 5:
+                kn knVar = (kn) this.b;
+                Bitmap bitmap = (Bitmap) this.c;
+                Drawable[] drawableArr = PhotoViewer.d9;
+                ArrayList arrayList = knVar.h;
+                hn hnVar = knVar.n;
+                if (hnVar != null) {
+                    arrayList.add(hnVar);
+                }
+                hn hnVar2 = knVar.r;
+                if (hnVar2 != null) {
+                    arrayList.add(hnVar2);
+                }
+                hn hnVar3 = knVar.s;
+                if (hnVar3 != null) {
+                    arrayList.add(hnVar3);
+                }
+                knVar.n = new hn(bitmap);
+                knVar.r = null;
+                knVar.s = null;
+                knVar.t();
+                return;
+            case 6:
+                PhotoViewer photoViewer = (PhotoViewer) this.b;
+                Drawable[] drawableArr2 = PhotoViewer.d9;
+                cd9.Y0(photoViewer.F, photoViewer.l4, false, (r63) this.c, null);
+                return;
+            case 7:
+                PhotoViewer photoViewer2 = (PhotoViewer) this.b;
+                ea8 ea8Var = (ea8) this.c;
+                Drawable[] drawableArr3 = PhotoViewer.d9;
+                if (ea8Var.getWindow() != null) {
+                    ea8Var.v0(true);
+                    yv1 yv1Var = photoViewer2.k4;
+                    if (yv1Var != null && (ms1Var = yv1Var.a0) != null) {
+                        ms1Var.J0(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 8:
+                Drawable[] drawableArr4 = PhotoViewer.d9;
+                ((s2c) this.b).a((Bitmap) this.c);
+                return;
+            case 9:
+                PhotoViewer photoViewer3 = (PhotoViewer) this.b;
+                ra8 ra8Var = (ra8) this.c;
+                Drawable[] drawableArr5 = PhotoViewer.d9;
+                ra8Var.e.h();
+                ra8Var.c.postRunnable(new bn3((byte) 29));
+                photoViewer3.f0.removeView(photoViewer3.O1);
+                return;
+            case 10:
+                ((View) this.c).setOutlineProvider(null);
+                PhotoViewer photoViewer4 = ((ga8) this.b).c;
+                ImageView imageView = photoViewer4.x3;
+                if (imageView != null) {
+                    imageView.setOutlineProvider(null);
+                }
+                kb8 kb8Var = photoViewer4.F2;
+                if (kb8Var != null) {
+                    kb8Var.setOutlineProvider(null);
+                    return;
+                }
+                return;
+            case 11:
+                na8 na8Var = (na8) this.b;
+                ndc ndcVar = (ndc) this.c;
+                if (ndcVar.U() > 0 && ndcVar.S() >= ndcVar.U() - 590) {
+                    na8Var.a.f0.invalidate();
+                    return;
+                }
+                return;
+            case 12:
+                s sVar = (s) this.b;
+                ra8 ra8Var2 = (ra8) this.c;
+                ra8Var2.e.h();
+                ra8Var2.c.postRunnable(new bn3((byte) 29));
+                try {
+                    sVar.b.f0.removeView(ra8Var2);
+                    return;
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return;
+                }
+            case 13:
+                ((v) this.b).r.q7.d();
+                ((AnimatorSet) this.c).start();
+                return;
+            case 14:
+                qb8 qb8Var = (qb8) this.c;
+                ((v) this.b).r.r4 = false;
+                if (!qb8Var.s) {
+                    qb8Var.a.v0(false, true);
+                    return;
+                }
+                return;
+            case 15:
+                bd8 bd8Var = (bd8) this.b;
+                SurfaceTexture surfaceTexture = (SurfaceTexture) this.c;
+                if (bd8Var.a == surfaceTexture && bd8Var.getSurfaceTexture() == null) {
+                    bd8Var.setSurfaceTexture(surfaceTexture);
+                    return;
+                }
+                return;
+            case 16:
+                gm.g((String) this.c);
+                ((xg8) this.b).b(true);
+                return;
+            case 17:
+                gm.g(k47.h0(((TLRPC.PollAnswer) this.c).text, false));
+                ((xg8) this.b).b(true);
+                return;
+            case 18:
+                xg8 xg8Var = (xg8) this.b;
+                byte[] bArr = (byte[]) this.c;
+                a6a B = a6a.B(xg8Var.I.K1);
+                k47 k47Var = xg8Var.I;
+                if (k47Var != null && (k47.m1(k47Var) instanceof TLRPC.TL_messageMediaPoll)) {
+                    long B0 = k47.B0(k47Var.k);
+                    int e1 = k47Var.e1();
+                    TLRPC.TL_messages_deletePollAnswer tL_messages_deletePollAnswer = new TLRPC.TL_messages_deletePollAnswer();
+                    tL_messages_deletePollAnswer.peer = B.getMessagesController().i1(B0);
+                    tL_messages_deletePollAnswer.msg_id = e1;
+                    tL_messages_deletePollAnswer.option = bArr;
+                    ConnectionsManager connectionsManager = B.getConnectionsManager();
+                    mp3 mp3Var = Utilities.d;
+                    Objects.requireNonNull(mp3Var);
+                    connectionsManager.sendRequestTyped(tL_messages_deletePollAnswer, new rf2(mp3Var, (byte) 0), new vh8(B, (byte) 20));
+                }
+                xg8Var.b(true);
+                return;
+            case 19:
+                qa4 qa4Var = (qa4) this.b;
+                dc2 dc2Var = (dc2) this.c;
+                qa4Var.getClass();
+                dc2Var.run();
+                qa4Var.a.remove(dc2Var);
+                return;
+            case 20:
+                ai8 ai8Var = (ai8) this.b;
+                TLObject tLObject = (TLObject) this.c;
+                ai8Var.N = false;
+                if (tLObject instanceof TLRPC.SearchPostsFlood) {
+                    TLRPC.SearchPostsFlood searchPostsFlood = (TLRPC.SearchPostsFlood) tLObject;
+                    ai8Var.d = searchPostsFlood;
+                    if (searchPostsFlood.query_is_free) {
+                        ai8Var.a(false);
+                        return;
+                    }
+                    ai8Var.d();
+                    ai8Var.c.g3.O(true);
+                    return;
+                }
+                return;
+            case 21:
+                ((qac) this.b).a((Bitmap) this.c);
+                return;
+            case 22:
+                ((cl8) this.b).k((g6b) this.c);
+                return;
+            case 23:
+                g6b g6bVar4 = (g6b) this.c;
+                cl8 cl8Var = (cl8) ((in3) this.b).d;
+                Bitmap bitmap2 = cl8Var.a;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                    if (g6bVar4.M0 == cl8Var.a) {
+                        g6bVar4.M0 = null;
+                    }
+                    cl8Var.a = null;
+                    cl8Var.invalidate();
+                    return;
+                }
+                return;
+            case 24:
+                ml8 ml8Var = (ml8) this.b;
+                kl8 kl8Var = (kl8) this.c;
+                synchronized (ml8Var.a) {
+                    if (!ml8Var.f) {
+                        ArrayList arrayList2 = (ArrayList) ml8Var.d.get(kl8Var);
+                        if (arrayList2 != null) {
+                            int size = arrayList2.size();
+                            int i8 = 0;
+                            while (i8 < size) {
+                                Object obj = arrayList2.get(i8);
+                                i8++;
+                                if (((ll8) obj).a != null) {
+                                    il8 il8Var = (il8) ml8Var.c.get(kl8Var);
+                                    if (il8Var != null) {
+                                        wm4Var2 = il8Var.a;
+                                    } else if (!ml8Var.a()) {
+                                        wm4Var2 = new wm4((Object) null, ml8Var.n, (byte) 19);
+                                    } else {
+                                        try {
+                                            f26 c = ml8Var.h.a.c(kl8Var.a, kl8Var.b);
+                                            c.b();
+                                            wm4Var = new wm4(c, (Object) null, (byte) 19);
+                                        } catch (LinkageError | OutOfMemoryError | RuntimeException e2) {
+                                            try {
+                                                fc4.g(e2, true);
+                                            } catch (LinkageError | RuntimeException unused) {
+                                            }
+                                            wm4Var = new wm4((Object) null, e2, (byte) 19);
+                                        }
+                                        wm4Var2 = wm4Var;
+                                    }
+                                    synchronized (ml8Var.a) {
+                                        if (!ml8Var.f) {
+                                            if (il8Var == null && ((Throwable) wm4Var2.c) == null) {
+                                                ml8Var.c(kl8Var, wm4Var2);
+                                            }
+                                            ArrayList arrayList3 = (ArrayList) ml8Var.d.remove(kl8Var);
+                                            if (arrayList3 != null) {
+                                                int size2 = arrayList3.size();
+                                                while (i3 < size2) {
+                                                    Object obj2 = arrayList3.get(i3);
+                                                    i3++;
+                                                    ll8 ll8Var = (ll8) obj2;
+                                                    try {
+                                                        jl8 jl8Var = ll8Var.a;
+                                                        ll8Var.a = null;
+                                                        if (jl8Var != null) {
+                                                            jl8Var.a(wm4Var2);
+                                                        }
+                                                    } catch (LinkageError | RuntimeException e3) {
+                                                        try {
+                                                            fc4.g(e3, true);
+                                                        } catch (LinkageError | RuntimeException unused2) {
+                                                        }
+                                                    }
+                                                }
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        ml8Var.d.remove(kl8Var);
+                        return;
+                    }
+                    return;
+                }
+            case 25:
+                ((PrivacyControlActivity) this.b).I0((TLObject) this.c);
+                return;
+            case 26:
+                PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.b;
+                boolean[] zArr = (boolean[]) this.c;
+                privacyControlActivity.getClass();
+                zArr[0] = true;
+                if (zArr[1]) {
+                    privacyControlActivity.B0();
+                    return;
+                }
+                return;
+            case 27:
+                PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) this.b;
+                privacySettingsActivity.d = (TL_account.Password) this.c;
+                privacySettingsActivity.B0();
+                return;
+            case 28:
+                PrivacySettingsActivity privacySettingsActivity2 = (PrivacySettingsActivity) this.b;
+                boolean z2 = !privacySettingsActivity2.W;
+                privacySettingsActivity2.W = z2;
+                ((bjb) this.c).setChecked(z2);
+                return;
+            default:
+                ((km8) this.b).getMessagesController().n5(null, ((Long) this.c).longValue());
+                return;
         }
-        return super.onBackPressed(z);
-    }
-
-    @Override
-    public final void onFragmentClosed() {
-        super.onFragmentClosed();
-        setBulletinDelegate(null);
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a18.onFragmentCreate():boolean");
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        getNotificationCenter().n(this, kk7.h5);
-        getNotificationCenter().n(this, kk7.H3);
-        getNotificationCenter().n(this, kk7.G3);
-    }
-
-    @Override
-    public final void onThemeColorsChanged() {
-        try {
-            if (this.h != null && this.n != null) {
-                I0();
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void setResourceProvider(wjb wjbVar) {
-        this.s = wjbVar;
-    }
-
-    public final void z0() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a18.z0():void");
     }
 }

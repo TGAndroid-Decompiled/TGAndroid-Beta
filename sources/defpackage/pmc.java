@@ -1,55 +1,103 @@
 package defpackage;
+public final class pmc implements Runnable {
+    public final byte a;
+    public final goc b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import j$.util.Objects;
-public final class pmc extends hn {
-    public final byte s;
-    public final smc w;
-
-    public pmc(smc smcVar, Context context, byte b) {
-        super(context, false, true, true, true, true);
-        this.s = b;
-        this.w = smcVar;
-    }
-
-    public final void e(Canvas canvas) {
-        super.onDraw(canvas);
-    }
-
-    public final void f(Canvas canvas) {
-        super.onDraw(canvas);
+    public pmc(goc gocVar, byte b) {
+        this.a = b;
+        this.b = gocVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        byte b = this.s;
-        smc smcVar = this.w;
+    public final void run() {
+        boolean z;
+        t25 t25Var;
+        byte b = this.a;
+        goc gocVar = this.b;
         switch (b) {
             case 0:
-                float c = getDrawable().c();
-                float a = smcVar.a();
-                if (c > 0.0f) {
-                    f = Math.min(1.0f, smcVar.V / c);
-                } else {
-                    f = 1.0f;
+                mqc mqcVar = gocVar.k0;
+                if (mqcVar != null && (t25Var = gocVar.H0) != null) {
+                    mqcVar.Y(t25Var);
                 }
-                float f2 = ((f - a) * smcVar.U) + a;
-                smcVar.b = f2;
-                int save = canvas.save();
-                canvas.scale(f2, f2, 0.0f, getHeight() / 2.0f);
-                float e = (1.0f - smcVar.U) * smcVar.g0.e(false, smcVar.e0);
-                gn drawable = getDrawable();
-                Objects.requireNonNull(drawable);
-                smcVar.c(e, new dkc(drawable, (byte) 2), new mhc(this, canvas, (byte) 15));
-                canvas.restoreToCount(save);
+                t25 t25Var2 = gocVar.H0;
+                if (t25Var2 != null && !t25Var2.a.isEmpty()) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (gocVar.g0 != z) {
+                    gocVar.P0(z);
+                }
+                if (z && gocVar.I0) {
+                    brc brcVar = gocVar.j0;
+                    if (brcVar != null) {
+                        brcVar.b(false);
+                    }
+                    if (!gocVar.g0) {
+                        gocVar.I0 = true;
+                    } else {
+                        gocVar.I0 = false;
+                        gocVar.f0 = 1;
+                        hs1 hs1Var = gocVar.s0;
+                        if (hs1Var != null) {
+                            hs1Var.setPosition(1);
+                        }
+                    }
+                }
+                va vaVar = gocVar.a;
+                if (vaVar != null && vaVar.g3 != null) {
+                    gocVar.c1(true);
+                    return;
+                }
+                return;
+            case 1:
+                gocVar.i0(false);
+                return;
+            case 2:
+                gocVar.H0();
+                return;
+            case 3:
+                gocVar.G0();
+                return;
+            case 4:
+                if (gocVar.S.isAttachedToWindow()) {
+                    if (!gocVar.a.canScrollVertically(-1)) {
+                        gocVar.a.f3.g1(0, 0);
+                    }
+                    gocVar.S.requestLayout();
+                    return;
+                }
+                return;
+            case 5:
+                gocVar.j0();
+                return;
+            case 6:
+                gocVar.Y0();
+                return;
+            case 7:
+                gocVar.Q0 = null;
+                return;
+            case 8:
+                gocVar.S.post(new pmc(gocVar, (byte) 4));
+                return;
+            case 9:
+                c41.b0(gocVar).N(jb6.M0(2131745595, null), jb6.M0(2131751042, null)).j();
+                return;
+            case 10:
+                gocVar.z0();
+                return;
+            case 11:
+                gocVar.presentFragment(new vqc());
+                return;
+            case 12:
+                gocVar.presentFragment(new yfb());
+                return;
+            case 13:
+                gocVar.G0();
                 return;
             default:
-                float e2 = (1.0f - smcVar.U) * smcVar.g0.e(false, smcVar.e0);
-                gn drawable2 = getDrawable();
-                Objects.requireNonNull(drawable2);
-                smcVar.c(e2, new dkc(drawable2, (byte) 2), new mhc(this, canvas, (byte) 16));
+                gocVar.G0();
                 return;
         }
     }

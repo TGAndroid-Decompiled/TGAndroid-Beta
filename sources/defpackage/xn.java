@@ -1,30 +1,673 @@
 package defpackage;
 
-import android.window.BackEvent;
-public final class xn {
-    public static final xn a = new Object();
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Outline;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class xn extends Drawable implements Drawable.Callback {
+    public static final int K = 0;
+    public boolean E;
+    public un F;
+    public ynd G;
+    public boolean J;
+    public un a;
+    public Rect b;
+    public Drawable c;
+    public Drawable d;
+    public boolean f;
+    public boolean n;
+    public o1 r;
+    public long s;
+    public long w;
+    public jo x;
+    public un y;
+    public int e = 255;
+    public int h = -1;
+    public int H = -1;
+    public int I = -1;
 
-    public final BackEvent a(float f, float f2, float f3, int i) {
-        return new BackEvent(f, f2, f3, i);
+    public xn(un unVar, Resources resources) {
+        i(new un(unVar, this, resources));
+        onStateChange(getState());
+        jumpToCurrentState();
     }
 
-    public final float b(BackEvent backEvent) {
-        backEvent.getClass();
-        return backEvent.getProgress();
+    public static defpackage.xn c(android.content.Context r24, android.content.res.Resources r25, android.content.res.XmlResourceParser r26, android.util.AttributeSet r27, android.content.res.Resources.Theme r28) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xn.c(android.content.Context, android.content.res.Resources, android.content.res.XmlResourceParser, android.util.AttributeSet, android.content.res.Resources$Theme):xn");
     }
 
-    public final int c(BackEvent backEvent) {
-        backEvent.getClass();
-        return backEvent.getSwipeEdge();
+    public final void a(boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xn.a(boolean):void");
     }
 
-    public final float d(BackEvent backEvent) {
-        backEvent.getClass();
-        return backEvent.getTouchX();
+    @Override
+    public final void applyTheme(Resources.Theme theme) {
+        b(theme);
+        onStateChange(getState());
     }
 
-    public final float e(BackEvent backEvent) {
-        backEvent.getClass();
-        return backEvent.getTouchY();
+    public final void b(Resources.Theme theme) {
+        un unVar = this.a;
+        if (theme != null) {
+            unVar.c();
+            int i = unVar.h;
+            Drawable[] drawableArr = unVar.g;
+            for (int i2 = 0; i2 < i; i2++) {
+                Drawable drawable = drawableArr[i2];
+                if (drawable != null && drawable.canApplyTheme()) {
+                    drawableArr[i2].applyTheme(theme);
+                    unVar.e |= drawableArr[i2].getChangingConfigurations();
+                }
+            }
+            Resources resources = theme.getResources();
+            if (resources != null) {
+                unVar.b = resources;
+                int i3 = resources.getDisplayMetrics().densityDpi;
+                if (i3 == 0) {
+                    i3 = 160;
+                }
+                int i4 = unVar.c;
+                unVar.c = i3;
+                if (i4 != i3) {
+                    unVar.m = false;
+                    unVar.j = false;
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        unVar.getClass();
+    }
+
+    @Override
+    public final boolean canApplyTheme() {
+        return this.a.canApplyTheme();
+    }
+
+    public final void d(Drawable drawable) {
+        jo joVar = this.x;
+        if (joVar == null) {
+            joVar = new jo();
+            this.x = joVar;
+        }
+        joVar.b = drawable.getCallback();
+        drawable.setCallback(joVar);
+        try {
+            if (this.a.y <= 0 && this.f) {
+                drawable.setAlpha(this.e);
+            }
+            un unVar = this.a;
+            if (unVar.C) {
+                drawable.setColorFilter(unVar.B);
+            } else {
+                if (unVar.F) {
+                    drawable.setTintList(unVar.D);
+                }
+                un unVar2 = this.a;
+                if (unVar2.G) {
+                    drawable.setTintMode(unVar2.E);
+                }
+            }
+            drawable.setVisible(isVisible(), true);
+            drawable.setDither(this.a.w);
+            drawable.setState(getState());
+            drawable.setLevel(getLevel());
+            drawable.setBounds(getBounds());
+            drawable.setLayoutDirection(getLayoutDirection());
+            drawable.setAutoMirrored(this.a.A);
+            Rect rect = this.b;
+            if (rect != null) {
+                drawable.setHotspotBounds(rect.left, rect.top, rect.right, rect.bottom);
+            }
+        } finally {
+            jo joVar2 = this.x;
+            joVar2.b = null;
+            drawable.setCallback((Drawable.Callback) joVar2.b);
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            drawable.draw(canvas);
+        }
+        Drawable drawable2 = this.d;
+        if (drawable2 != null) {
+            drawable2.draw(canvas);
+        }
+    }
+
+    public final void e() {
+        boolean z;
+        Drawable drawable = this.d;
+        boolean z2 = true;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
+            this.d = null;
+            z = true;
+        } else {
+            z = false;
+        }
+        Drawable drawable2 = this.c;
+        if (drawable2 != null) {
+            drawable2.jumpToCurrentState();
+            if (this.f) {
+                this.c.setAlpha(this.e);
+            }
+        }
+        if (this.w != 0) {
+            this.w = 0L;
+            z = true;
+        }
+        if (this.s != 0) {
+            this.s = 0L;
+        } else {
+            z2 = z;
+        }
+        if (z2) {
+            invalidateSelf();
+        }
+    }
+
+    public final Drawable f() {
+        if (!this.n && super.mutate() == this) {
+            un unVar = new un(this.F, this, null);
+            unVar.I = unVar.I.clone();
+            unVar.J = unVar.J.clone();
+            i(unVar);
+            this.n = true;
+        }
+        return this;
+    }
+
+    public final Drawable g() {
+        if (!this.E) {
+            f();
+            un unVar = this.y;
+            unVar.I = unVar.I.clone();
+            unVar.J = unVar.J.clone();
+            this.E = true;
+        }
+        return this;
+    }
+
+    @Override
+    public final int getAlpha() {
+        return this.e;
+    }
+
+    @Override
+    public final int getChangingConfigurations() {
+        return super.getChangingConfigurations() | this.a.getChangingConfigurations();
+    }
+
+    @Override
+    public final Drawable.ConstantState getConstantState() {
+        boolean z;
+        un unVar = this.a;
+        if (unVar.u) {
+            z = unVar.v;
+        } else {
+            unVar.c();
+            unVar.u = true;
+            int i = unVar.h;
+            Drawable[] drawableArr = unVar.g;
+            int i2 = 0;
+            while (true) {
+                if (i2 < i) {
+                    if (drawableArr[i2].getConstantState() == null) {
+                        unVar.v = false;
+                        z = false;
+                        break;
+                    }
+                    i2++;
+                } else {
+                    unVar.v = true;
+                    z = true;
+                    break;
+                }
+            }
+        }
+        if (z) {
+            this.a.d = getChangingConfigurations();
+            return this.a;
+        }
+        return null;
+    }
+
+    @Override
+    public final Drawable getCurrent() {
+        return this.c;
+    }
+
+    @Override
+    public final void getHotspotBounds(Rect rect) {
+        Rect rect2 = this.b;
+        if (rect2 != null) {
+            rect.set(rect2);
+        } else {
+            super.getHotspotBounds(rect);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        un unVar = this.a;
+        if (unVar.l) {
+            if (!unVar.m) {
+                unVar.b();
+            }
+            return unVar.o;
+        }
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            return drawable.getIntrinsicHeight();
+        }
+        return -1;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        un unVar = this.a;
+        if (unVar.l) {
+            if (!unVar.m) {
+                unVar.b();
+            }
+            return unVar.n;
+        }
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            return drawable.getIntrinsicWidth();
+        }
+        return -1;
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        un unVar = this.a;
+        if (unVar.l) {
+            if (!unVar.m) {
+                unVar.b();
+            }
+            return unVar.q;
+        }
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            return drawable.getMinimumHeight();
+        }
+        return 0;
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        un unVar = this.a;
+        if (unVar.l) {
+            if (!unVar.m) {
+                unVar.b();
+            }
+            return unVar.p;
+        }
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            return drawable.getMinimumWidth();
+        }
+        return 0;
+    }
+
+    @Override
+    public final int getOpacity() {
+        Drawable drawable = this.c;
+        int i = -2;
+        if (drawable != null && drawable.isVisible()) {
+            un unVar = this.a;
+            if (unVar.r) {
+                return unVar.s;
+            }
+            unVar.c();
+            int i2 = unVar.h;
+            Drawable[] drawableArr = unVar.g;
+            if (i2 > 0) {
+                i = drawableArr[0].getOpacity();
+            }
+            for (int i3 = 1; i3 < i2; i3++) {
+                i = Drawable.resolveOpacity(i, drawableArr[i3].getOpacity());
+            }
+            unVar.s = i;
+            unVar.r = true;
+        }
+        return i;
+    }
+
+    @Override
+    public final void getOutline(Outline outline) {
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            drawable.getOutline(outline);
+        }
+    }
+
+    @Override
+    public final boolean getPadding(Rect rect) {
+        un unVar = this.a;
+        Rect rect2 = null;
+        boolean z = false;
+        if (!unVar.i) {
+            Rect rect3 = unVar.k;
+            if (rect3 == null && !unVar.j) {
+                unVar.c();
+                Rect rect4 = new Rect();
+                int i = unVar.h;
+                Drawable[] drawableArr = unVar.g;
+                for (int i2 = 0; i2 < i; i2++) {
+                    if (drawableArr[i2].getPadding(rect4)) {
+                        if (rect2 == null) {
+                            rect2 = new Rect(0, 0, 0, 0);
+                        }
+                        int i3 = rect4.left;
+                        if (i3 > rect2.left) {
+                            rect2.left = i3;
+                        }
+                        int i4 = rect4.top;
+                        if (i4 > rect2.top) {
+                            rect2.top = i4;
+                        }
+                        int i5 = rect4.right;
+                        if (i5 > rect2.right) {
+                            rect2.right = i5;
+                        }
+                        int i6 = rect4.bottom;
+                        if (i6 > rect2.bottom) {
+                            rect2.bottom = i6;
+                        }
+                    }
+                }
+                unVar.j = true;
+                unVar.k = rect2;
+            } else {
+                rect2 = rect3;
+            }
+        }
+        if (rect2 != null) {
+            rect.set(rect2);
+            if ((rect2.left | rect2.top | rect2.bottom | rect2.right) != 0) {
+                z = true;
+            }
+        } else {
+            Drawable drawable = this.c;
+            if (drawable != null) {
+                z = drawable.getPadding(rect);
+            } else {
+                z = super.getPadding(rect);
+            }
+        }
+        if (this.a.A && getLayoutDirection() == 1) {
+            int i7 = rect.left;
+            rect.left = rect.right;
+            rect.right = i7;
+        }
+        return z;
+    }
+
+    public final boolean h(int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xn.h(int):boolean");
+    }
+
+    public final void i(un unVar) {
+        this.a = unVar;
+        int i = this.h;
+        if (i >= 0) {
+            Drawable d = unVar.d(i);
+            this.c = d;
+            if (d != null) {
+                d(d);
+            }
+        }
+        this.d = null;
+        this.y = unVar;
+        this.F = unVar;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        un unVar = this.a;
+        if (unVar != null) {
+            unVar.r = false;
+            unVar.t = false;
+        }
+        if (drawable == this.c && getCallback() != null) {
+            getCallback().invalidateDrawable(this);
+        }
+    }
+
+    @Override
+    public final boolean isAutoMirrored() {
+        return this.a.A;
+    }
+
+    @Override
+    public final boolean isStateful() {
+        return true;
+    }
+
+    public final boolean j(boolean z, boolean z2) {
+        boolean visible = super.setVisible(z, z2);
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setVisible(z, z2);
+        }
+        Drawable drawable2 = this.c;
+        if (drawable2 != null) {
+            drawable2.setVisible(z, z2);
+        }
+        return visible;
+    }
+
+    @Override
+    public final void jumpToCurrentState() {
+        e();
+        ynd yndVar = this.G;
+        if (yndVar != null) {
+            yndVar.d();
+            this.G = null;
+            h(this.H);
+            this.H = -1;
+            this.I = -1;
+        }
+    }
+
+    @Override
+    public final Drawable mutate() {
+        if (!this.J) {
+            g();
+            un unVar = this.F;
+            unVar.I = unVar.I.clone();
+            unVar.J = unVar.J.clone();
+            this.J = true;
+        }
+        return this;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setBounds(rect);
+        }
+        Drawable drawable2 = this.c;
+        if (drawable2 != null) {
+            drawable2.setBounds(rect);
+        }
+    }
+
+    @Override
+    public final boolean onLayoutDirectionChanged(int i) {
+        un unVar = this.a;
+        int i2 = this.h;
+        int i3 = unVar.h;
+        Drawable[] drawableArr = unVar.g;
+        boolean z = false;
+        for (int i4 = 0; i4 < i3; i4++) {
+            Drawable drawable = drawableArr[i4];
+            if (drawable != null) {
+                boolean layoutDirection = drawable.setLayoutDirection(i);
+                if (i4 == i2) {
+                    z = layoutDirection;
+                }
+            }
+        }
+        unVar.x = i;
+        return z;
+    }
+
+    @Override
+    public final boolean onLevelChange(int i) {
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            return drawable.setLevel(i);
+        }
+        Drawable drawable2 = this.c;
+        if (drawable2 != null) {
+            return drawable2.setLevel(i);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onStateChange(int[] r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xn.onStateChange(int[]):boolean");
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+        if (drawable == this.c && getCallback() != null) {
+            getCallback().scheduleDrawable(this, runnable, j);
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        if (!this.f || this.e != i) {
+            this.f = true;
+            this.e = i;
+            Drawable drawable = this.c;
+            if (drawable != null) {
+                if (this.s == 0) {
+                    drawable.setAlpha(i);
+                } else {
+                    a(false);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void setAutoMirrored(boolean z) {
+        un unVar = this.a;
+        if (unVar.A != z) {
+            unVar.A = z;
+            Drawable drawable = this.c;
+            if (drawable != null) {
+                drawable.setAutoMirrored(z);
+            }
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        un unVar = this.a;
+        unVar.C = true;
+        if (unVar.B != colorFilter) {
+            unVar.B = colorFilter;
+            Drawable drawable = this.c;
+            if (drawable != null) {
+                drawable.setColorFilter(colorFilter);
+            }
+        }
+    }
+
+    @Override
+    public final void setDither(boolean z) {
+        un unVar = this.a;
+        if (unVar.w != z) {
+            unVar.w = z;
+            Drawable drawable = this.c;
+            if (drawable != null) {
+                drawable.setDither(z);
+            }
+        }
+    }
+
+    @Override
+    public final void setHotspot(float f, float f2) {
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            drawable.setHotspot(f, f2);
+        }
+    }
+
+    @Override
+    public final void setHotspotBounds(int i, int i2, int i3, int i4) {
+        Rect rect = this.b;
+        if (rect == null) {
+            this.b = new Rect(i, i2, i3, i4);
+        } else {
+            rect.set(i, i2, i3, i4);
+        }
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            drawable.setHotspotBounds(i, i2, i3, i4);
+        }
+    }
+
+    @Override
+    public final void setTint(int i) {
+        setTintList(ColorStateList.valueOf(i));
+    }
+
+    @Override
+    public final void setTintList(ColorStateList colorStateList) {
+        un unVar = this.a;
+        unVar.F = true;
+        if (unVar.D != colorStateList) {
+            unVar.D = colorStateList;
+            this.c.setTintList(colorStateList);
+        }
+    }
+
+    @Override
+    public final void setTintMode(PorterDuff.Mode mode) {
+        un unVar = this.a;
+        unVar.G = true;
+        if (unVar.E != mode) {
+            unVar.E = mode;
+            this.c.setTintMode(mode);
+        }
+    }
+
+    @Override
+    public final boolean setVisible(boolean z, boolean z2) {
+        boolean j = j(z, z2);
+        ynd yndVar = this.G;
+        if (yndVar != null && (j || z2)) {
+            if (z) {
+                yndVar.c();
+                return j;
+            }
+            jumpToCurrentState();
+        }
+        return j;
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        if (drawable == this.c && getCallback() != null) {
+            getCallback().unscheduleDrawable(this, runnable);
+        }
     }
 }

@@ -12,9 +12,9 @@ public class ApplicationLoaderImpl extends a {
     public final boolean u(Activity activity, TLRPC.Document document) {
         boolean z = false;
         try {
-            ba4.r(null, document);
-            ba4.G(y6c.t0);
-            File J = ba4.J(document, null, true, true);
+            bc4.r(null, document);
+            bc4.G(z8c.t0);
+            File J = bc4.J(document, null, true, true);
             z = J.exists();
             if (z) {
                 Intent intent = new Intent("android.intent.action.VIEW");
@@ -28,11 +28,11 @@ public class ApplicationLoaderImpl extends a {
                 try {
                     activity.startActivityForResult(intent, 500);
                 } catch (Exception e) {
-                    fa4.g(e, true);
+                    fc4.g(e, true);
                 }
             }
         } catch (Exception e2) {
-            fa4.g(e2, true);
+            fc4.g(e2, true);
         }
         return z;
     }

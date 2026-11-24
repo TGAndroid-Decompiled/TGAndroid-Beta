@@ -1,11 +1,9 @@
 package defpackage;
 
-import android.os.IBinder;
-public final class vi5 implements xi5 {
-    public IBinder a;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public interface vi5 {
+    void a(ucb ucbVar, RectF rectF);
 
-    @Override
-    public final IBinder asBinder() {
-        return this.a;
-    }
+    void g(Canvas canvas, RectF rectF);
 }

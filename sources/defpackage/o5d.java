@@ -1,10 +1,21 @@
 package defpackage;
-public final class o5d {
-    public final byte a;
-    public final long b = System.currentTimeMillis();
-    public long c;
 
-    public o5d(d00 d00Var) {
-        this.a = d00Var.a;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import j$.util.Objects;
+import java.util.Map;
+public final class o5d implements d58 {
+    public final BasePendingResult a;
+    public final rhb b;
+
+    public o5d(rhb rhbVar, BasePendingResult basePendingResult) {
+        this.a = basePendingResult;
+        Objects.requireNonNull(rhbVar);
+        this.b = rhbVar;
+    }
+
+    @Override
+    public final void a(Status status) {
+        ((Map) this.b.b).remove(this.a);
     }
 }

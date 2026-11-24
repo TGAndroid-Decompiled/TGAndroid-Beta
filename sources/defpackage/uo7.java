@@ -1,28 +1,76 @@
 package defpackage;
-public final class uo7 implements ka1 {
-    public final yn4 a;
-    public final vo7 b;
 
-    public uo7(vo7 vo7Var, yn4 yn4Var) {
-        this.b = vo7Var;
-        this.a = yn4Var;
+import j$.util.Objects;
+public final class uo7 extends ja {
+    public int c;
+    public int d;
+    public String e;
+    public String f;
+    public zo7 g;
+    public int h;
+    public boolean i;
+
+    public static uo7 b(int i, String str, boolean z) {
+        ?? jaVar = new ja(1, true);
+        jaVar.c = i;
+        jaVar.e = str;
+        jaVar.i = z;
+        return jaVar;
+    }
+
+    public static uo7 c(int i, String str, String str2) {
+        ?? jaVar = new ja(5, true);
+        jaVar.c = i;
+        jaVar.e = str;
+        jaVar.f = str2;
+        return jaVar;
+    }
+
+    public static uo7 d(int i, String str) {
+        ?? jaVar = new ja(4, true);
+        jaVar.c = i;
+        jaVar.e = str;
+        return jaVar;
     }
 
     @Override
-    public final void cancel() {
-        vo7 vo7Var = this.b;
-        ks ksVar = vo7Var.b;
-        yn4 yn4Var = this.a;
-        ksVar.remove(yn4Var);
-        if (rp5.a(vo7Var.c, yn4Var)) {
-            yn4Var.a();
-            vo7Var.c = null;
+    public final boolean a(ja jaVar) {
+        if (this != jaVar) {
+            if (uo7.class == jaVar.getClass()) {
+                uo7 uo7Var = (uo7) jaVar;
+                if (this.c == uo7Var.c && this.d == uo7Var.d && this.h == uo7Var.h && this.i == uo7Var.i && Objects.equals(this.e, uo7Var.e) && Objects.equals(this.f, uo7Var.f) && this.g == uo7Var.g) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        yn4Var.b.remove(this);
-        op4 op4Var = yn4Var.c;
-        if (op4Var != null) {
-            op4Var.invoke();
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && uo7.class == obj.getClass()) {
+                uo7 uo7Var = (uo7) obj;
+                if (this.c == uo7Var.c && this.h == uo7Var.h) {
+                    if (this.a != 8) {
+                        if (this.d == uo7Var.d && Objects.equals(this.e, uo7Var.e)) {
+                            if (this.a != 6 && !Objects.equals(this.f, uo7Var.f)) {
+                                return false;
+                            }
+                        } else {
+                            return false;
+                        }
+                    }
+                    if (this.g == uo7Var.g) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
-        yn4Var.c = null;
+        return true;
     }
 }

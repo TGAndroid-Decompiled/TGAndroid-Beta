@@ -1,50 +1,31 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class n04 extends pr7 {
-    public final t14 c;
+import org.telegram.tgnet.TLRPC;
+public final class n04 extends yp {
+    public final e34 c;
 
-    public n04(t14 t14Var) {
-        this.c = t14Var;
+    public n04(e34 e34Var) {
+        this.c = e34Var;
     }
 
     @Override
-    public final void a(gec gecVar, Object obj) {
-        gecVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.c.e.size();
-    }
-
-    @Override
-    public final CharSequence d(int i) {
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    return null;
-                }
-                return k96.M0(2131754755, null);
+    public final int i(int i) {
+        e34 e34Var = this.c;
+        z24 z24Var = e34Var.A0;
+        y59 adapter = e34Var.E0.getAdapter();
+        w24 w24Var = e34Var.z0;
+        if (adapter == w24Var) {
+            if (i == 0) {
+                return w24Var.d;
             }
-            return k96.M0(2131754879, null);
+            if (i == w24Var.s || (w24Var.h.get(i) != null && !(w24Var.h.get(i) instanceof TLRPC.Document))) {
+                return w24Var.d;
+            }
+            return 1;
+        } else if (i != z24Var.y && (z24Var.r.get(i) == null || (z24Var.r.get(i) instanceof TLRPC.Document))) {
+            return 1;
+        } else {
+            return w24Var.d;
         }
-        return k96.M0(2131751184, null);
-    }
-
-    @Override
-    public final Object e(gec gecVar, int i) {
-        FrameLayout frameLayout = ((p14) this.c.e.get(i)).b;
-        gecVar.addView(frameLayout);
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
-        }
-        return false;
     }
 }

@@ -1,17 +1,17 @@
 package defpackage;
-public abstract class xqd {
-    public static final boolean a(char c, char c2, boolean z) {
-        if (c == c2) {
-            return true;
+public final class xqd implements cq7 {
+    public static final xqd a = new Object();
+
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        if (!z) {
-            return false;
-        }
-        char upperCase = Character.toUpperCase(c);
-        char upperCase2 = Character.toUpperCase(c2);
-        if (upperCase == upperCase2 || Character.toLowerCase(upperCase) == Character.toLowerCase(upperCase2)) {
-            return true;
-        }
-        return false;
+        throw new ClassCastException();
     }
 }

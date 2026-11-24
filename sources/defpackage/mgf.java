@@ -1,75 +1,46 @@
 package defpackage;
-public final class mgf implements tgf {
-    public final jdf a;
-    public final dhf b;
+public final class mgf extends khf {
+    public final transient int h;
+    public final transient int n;
+    public final khf r;
 
-    public mgf(dhf dhfVar, oef oefVar, jdf jdfVar) {
-        this.b = dhfVar;
-        this.a = jdfVar;
+    public mgf(khf khfVar, int i, int i2) {
+        super((byte) 3);
+        this.r = khfVar;
+        this.h = i;
+        this.n = i2;
     }
 
     @Override
-    public final void a(Object obj) {
-        this.b.getClass();
-        chf chfVar = ((vef) obj).zzc;
-        if (chfVar.d) {
-            chfVar.d = false;
-        }
-        obj.getClass();
-        throw new ClassCastException();
+    public final Object get(int i) {
+        t4f.a(i, this.n);
+        return this.r.get(i + this.h);
     }
 
     @Override
-    public final boolean b(vef vefVar, vef vefVar2) {
-        this.b.getClass();
-        if (!vefVar.zzc.equals(vefVar2.zzc)) {
-            return false;
-        }
-        return true;
+    public final int i() {
+        return this.r.j() + this.h + this.n;
     }
 
     @Override
-    public final void c(Object obj, xdd xddVar) {
-        ir2.u(obj);
-        throw null;
+    public final int j() {
+        return this.r.j() + this.h;
     }
 
     @Override
-    public final void d(Object obj, Object obj2) {
-        ugf.o(this.b, obj, obj2);
+    public final Object[] k() {
+        return this.r.k();
     }
 
     @Override
-    public final int e(vef vefVar) {
-        this.b.getClass();
-        chf chfVar = vefVar.zzc;
-        int i = chfVar.c;
-        if (i == -1) {
-            chfVar.c = 0;
-            return 0;
-        }
-        return i;
+    public final khf subList(int i, int i2) {
+        t4f.b(i, i2, this.n);
+        int i3 = this.h;
+        return this.r.subList(i + i3, i2 + i3);
     }
 
     @Override
-    public final int f(vef vefVar) {
-        this.b.getClass();
-        vefVar.zzc.getClass();
-        return 506991;
-    }
-
-    @Override
-    public final boolean g(Object obj) {
-        ir2.u(obj);
-        throw null;
-    }
-
-    @Override
-    public final vef zzc() {
-        jdf jdfVar = this.a;
-        if (jdfVar instanceof vef) {
-            return (vef) ((vef) jdfVar).h(4, null);
-        }
-        return ((uef) ((vef) jdfVar).h(5, null)).b();
+    public final int size() {
+        return this.n;
     }
 }

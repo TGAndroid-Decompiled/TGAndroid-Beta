@@ -1,9 +1,17 @@
 package defpackage;
-public abstract class xse {
-    public static boolean a(char c) {
-        if (c != ' ' && c != '\t' && c != '\n' && c != '\r' && c != '\f') {
-            return false;
+public final class xse implements cq7 {
+    public static final xse a = new Object();
+
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        return true;
+        throw new ClassCastException();
     }
 }

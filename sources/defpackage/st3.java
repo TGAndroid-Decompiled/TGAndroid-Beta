@@ -1,222 +1,174 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.TextPaint;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public class st3 extends EditTextBoldCursor {
-    public final Canvas M1;
-    public final TextPaint N1;
-    public final Paint O1;
-    public Bitmap P1;
-    public boolean Q1;
-    public int R1;
-    public float S1;
-    public int T1;
-    public final pw2 U1;
-    public RectF[] V1;
-    public RectF W1;
-    public boolean X1;
-    public float Y1;
-    public boolean Z1;
-    public int[] a2;
-    public long b2;
-    public int c2;
-    public Paint d2;
-    public final Path e2;
-    public final RectF f2;
-    public final RectF g2;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.logging.Logger;
+public final class st3 extends rg0 {
+    public static final Logger p = Logger.getLogger(st3.class.getName());
+    public int d;
+    public int e;
+    public int f;
+    public int g;
+    public int h;
+    public int i;
+    public String j;
+    public int k;
+    public int l;
+    public ha3 m;
+    public hq9 n;
+    public ArrayList o;
 
-    public st3(Context context) {
-        super(context);
-        this.M1 = new Canvas();
-        TextPaint textPaint = new TextPaint(1);
-        this.N1 = textPaint;
-        this.O1 = new Paint(1);
-        this.U1 = new pw2();
-        this.c2 = Integer.MIN_VALUE;
-        this.e2 = new Path();
-        this.f2 = new RectF();
-        this.g2 = new RectF();
-        this.R1 = 0;
-        setInputType(getInputType() | 655360);
-        this.Q1 = true;
-        this.X1 = true;
-        setFrameRoundRadius(gl.L(16.0f));
-        textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-    }
-
-    private void setFrameRoundRadius(float f) {
-        if (Math.abs(this.Y1 - f) > 0.1f) {
-            this.Y1 = f;
-            this.O1.setPathEffect(new CornerPathEffect(f));
-        }
-    }
-
-    public final boolean A(long j) {
-        this.b2 = j;
-        if (this.a2 == null) {
-            return false;
-        }
-        int B = B(j);
-        if (B < 0) {
-            B = -1;
-        } else if (j - this.a2[(B << 2) + 2] < 240) {
-            B = -2;
-        }
-        if (B == this.c2 && B != -2) {
-            return false;
-        }
-        this.c2 = B;
-        invalidate();
-        return true;
-    }
-
-    public final int B(long j) {
+    @Override
+    public final void b(ByteBuffer byteBuffer) {
         int i;
-        int i2 = -1;
-        int i3 = 0;
-        while (true) {
-            int i4 = i3;
-            i = i2;
-            i2 = i4;
-            int i5 = i2 << 2;
-            int i6 = i5 + 3;
-            int[] iArr = this.a2;
-            if (i6 >= iArr.length || iArr[i5 + 2] > j) {
-                break;
-            }
-            i3 = i2 + 1;
+        int i2;
+        this.d = jne.f(byteBuffer);
+        int a = jne.a(byteBuffer.get());
+        int i3 = a >>> 7;
+        this.e = i3;
+        this.f = (a >>> 6) & 1;
+        this.g = (a >>> 5) & 1;
+        this.h = a & 31;
+        if (i3 == 1) {
+            this.k = jne.f(byteBuffer);
         }
-        return i;
-    }
-
-    public final boolean C(Layout layout, int i, RectF rectF) {
-        int[] iArr = this.a2;
-        int i2 = i << 2;
-        int i3 = iArr[i2];
-        int i4 = iArr[i2 + 1];
-        if (i3 >= 0 && i3 < i4 && i4 <= layout.getText().length()) {
-            Path path = this.e2;
-            path.rewind();
-            layout.getSelectionPath(i3, i4, path);
-            path.computeBounds(rectF, false);
-            if (!rectF.isEmpty()) {
-                Paint.FontMetrics fontMetrics = getPaint().getFontMetrics();
-                float lineBaseline = layout.getLineBaseline(layout.getLineForOffset(i3));
-                float textSize = getTextSize() * 0.14f;
-                rectF.set(rectF.left - textSize, ((fontMetrics.ascent * 0.86f) + lineBaseline) - textSize, rectF.right + textSize, ir2.i(fontMetrics.descent, 0.9f, lineBaseline, textSize));
-                return true;
+        if (this.f == 1) {
+            int a2 = jne.a(byteBuffer.get());
+            this.i = a2;
+            byte[] bArr = new byte[a2];
+            byteBuffer.get(bArr);
+            try {
+                this.j = new String(bArr, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new Error(e);
             }
         }
-        return false;
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.st3.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i, int i2, int i3, int i4) {
-        super.onScrollChanged(i, i2, i3, i4);
-        if (i != i3) {
-            this.X1 = true;
-            invalidate();
+        if (this.g == 1) {
+            this.l = jne.f(byteBuffer);
         }
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        if (i > 0 && i2 > 0) {
-            this.Q1 = true;
-            this.X1 = true;
-            Bitmap bitmap = this.P1;
-            if (bitmap != null) {
-                bitmap.recycle();
+        int i4 = this.c + 4;
+        int i5 = 0;
+        if (this.e == 1) {
+            i = 2;
+        } else {
+            i = 0;
+        }
+        int i6 = i4 + i;
+        if (this.f == 1) {
+            i2 = this.i + 1;
+        } else {
+            i2 = 0;
+        }
+        int i7 = i6 + i2;
+        if (this.g == 1) {
+            i5 = 2;
+        }
+        int i8 = i7 + i5;
+        int position = byteBuffer.position();
+        int a3 = a();
+        int i9 = i8 + 2;
+        Logger logger = p;
+        if (a3 > i9) {
+            rg0 a4 = bq7.a(-1, byteBuffer);
+            logger.finer(a4 + " - ESDescriptor1 read: " + (byteBuffer.position() - position) + ", size: " + Integer.valueOf(a4.a()));
+            int a5 = a4.a();
+            byteBuffer.position(position + a5);
+            i8 += a5;
+            if (a4 instanceof ha3) {
+                this.m = (ha3) a4;
             }
-            this.P1 = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
-            return;
         }
-        this.P1 = null;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        super.onTextChanged(charSequence, i, i2, i3);
-        this.Q1 = true;
-        this.X1 = true;
-    }
-
-    public void setFrameColor(int i) {
-        int i2 = this.T1;
-        if (i2 == 0 && i != 0) {
-            setPadding(gl.L(19.0f), gl.L(7.0f), gl.L(19.0f), gl.L(7.0f));
-            setCursorColor(-1);
-        } else if (i2 != 0 && i == 0) {
-            setPadding(gl.L(7.0f), gl.L(7.0f), gl.L(7.0f), gl.L(7.0f));
-            setCursorColor(-1);
-        }
-        this.T1 = i;
-        if (i != 0) {
-            float B = gl.B(i);
-            if (B == 0.0f) {
-                B = Color.red(this.T1) / 255.0f;
+        int position2 = byteBuffer.position();
+        if (a() > i8 + 2) {
+            rg0 a6 = bq7.a(-1, byteBuffer);
+            logger.finer(a6 + " - ESDescriptor2 read: " + (byteBuffer.position() - position2) + ", size: " + Integer.valueOf(a6.a()));
+            int a7 = a6.a();
+            byteBuffer.position(position2 + a7);
+            i8 += a7;
+            if (a6 instanceof hq9) {
+                this.n = (hq9) a6;
             }
-            if (B > 0.87d) {
-                setTextColor(-16777216);
+        } else {
+            logger.warning("SLConfigDescriptor is missing!");
+        }
+        while (a() - i8 > 2) {
+            int position3 = byteBuffer.position();
+            rg0 a8 = bq7.a(-1, byteBuffer);
+            logger.finer(a8 + " - ESDescriptor3 read: " + (byteBuffer.position() - position3) + ", size: " + Integer.valueOf(a8.a()));
+            int a9 = a8.a();
+            byteBuffer.position(position3 + a9);
+            i8 += a9;
+            this.o.add(a8);
+        }
+    }
+
+    public final int c() {
+        int i;
+        if (this.e > 0) {
+            i = 7;
+        } else {
+            i = 5;
+        }
+        if (this.f > 0) {
+            i += this.i + 1;
+        }
+        if (this.g > 0) {
+            i += 2;
+        }
+        y40 y40Var = this.m.j;
+        int i2 = 0;
+        if (y40Var != null) {
+            if (y40Var.e == 2) {
+                i2 = 4;
             } else {
-                setTextColor(-1);
+                rjb.j("can't serialize that yet");
+                return 0;
             }
-            this.X1 = true;
         }
-        this.Q1 = true;
-        invalidate();
+        this.n.getClass();
+        return i2 + 15 + i + 3;
     }
 
-    @Override
-    public void setGravity(int i) {
-        super.setGravity(i);
-        this.Q1 = true;
-        this.X1 = true;
-        invalidate();
+    public final boolean equals(java.lang.Object r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.st3.equals(java.lang.Object):boolean");
     }
 
-    public void setSpokenWords(int[] iArr) {
-        if (this.a2 == iArr) {
-            return;
+    public final int hashCode() {
+        int i;
+        int i2;
+        int i3;
+        int i4 = ((((((((((this.d * 31) + this.e) * 31) + this.f) * 31) + this.g) * 31) + this.h) * 31) + this.i) * 31;
+        String str = this.j;
+        int i5 = 0;
+        if (str != null) {
+            i = str.hashCode();
+        } else {
+            i = 0;
         }
-        this.a2 = iArr;
-        this.c2 = Integer.MIN_VALUE;
-        invalidate();
-    }
-
-    public void setStrokeColor(int i) {
-        this.R1 = i;
-        this.Q1 = true;
-        invalidate();
-    }
-
-    public void setStrokeWidth(float f) {
-        this.S1 = f;
-        this.Q1 = true;
-        invalidate();
-    }
-
-    public void setTallFrame(boolean z) {
-        if (this.Z1 == z) {
-            return;
+        int i6 = (((((i4 + i) * 961) + this.k) * 31) + this.l) * 31;
+        ha3 ha3Var = this.m;
+        if (ha3Var != null) {
+            i2 = ha3Var.hashCode();
+        } else {
+            i2 = 0;
         }
-        this.Z1 = z;
-        this.X1 = true;
-        invalidate();
+        int i7 = (i6 + i2) * 31;
+        hq9 hq9Var = this.n;
+        if (hq9Var != null) {
+            i3 = hq9Var.d;
+        } else {
+            i3 = 0;
+        }
+        int i8 = (i7 + i3) * 31;
+        ArrayList arrayList = this.o;
+        if (arrayList != null) {
+            i5 = arrayList.hashCode();
+        }
+        return i8 + i5;
+    }
+
+    public final String toString() {
+        return "ESDescriptor{esId=" + this.d + ", streamDependenceFlag=" + this.e + ", URLFlag=" + this.f + ", oCRstreamFlag=" + this.g + ", streamPriority=" + this.h + ", URLLength=" + this.i + ", URLString='" + this.j + "', remoteODFlag=0, dependsOnEsId=" + this.k + ", oCREsId=" + this.l + ", decoderConfigDescriptor=" + this.m + ", slConfigDescriptor=" + this.n + '}';
     }
 }

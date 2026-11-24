@@ -18,7 +18,7 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7 {
+public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements jm7 {
     public boolean E;
     public boolean F;
     public String G;
@@ -34,54 +34,58 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
     public int Q;
     public r7 R;
     public boolean S;
-    public final ev7 T;
-    public fv7 U;
-    public t36 V;
-    public vc4 W;
-    public ry8 a;
+    public final gx7 T;
+    public hx7 U;
+    public t56 V;
+    public ve4 W;
+    public s09 a;
     private int autoLockRow;
-    public s20 b;
-    public o39 c;
+    public s30 b;
+    public r59 c;
     private int changePasscodeRow;
     public TextView d;
     private int disablePasscodeRow;
-    public ajb e;
-    public er7 f;
+    public blb e;
+    public gt7 f;
     private int fingerprintRow;
     public EditTextBoldCursor h;
-    public yc6 n;
+    public xe6 n;
     public TextView r;
     public ImageView s;
-    public s43 w;
-    public un4 x;
+    public d63 w;
+    public wp4 x;
     public final byte y;
 
     public PasscodeActivity(int i) {
         super(null);
         this.E = false;
         this.F = false;
-        this.T = new ev7(this, (byte) 5);
+        this.T = new gx7(this, (byte) 5);
         this.y = i;
     }
 
-    public static int Z(PasscodeActivity passcodeActivity) {
-        return passcodeActivity.fingerprintRow;
+    public static rja Z(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.simpleActionBar;
     }
 
     public static int a0(PasscodeActivity passcodeActivity) {
-        return passcodeActivity.autoLockRow;
+        return passcodeActivity.fingerprintRow;
     }
 
     public static int b0(PasscodeActivity passcodeActivity) {
-        return passcodeActivity.changePasscodeRow;
+        return passcodeActivity.autoLockRow;
     }
 
     public static int c0(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.changePasscodeRow;
+    }
+
+    public static int d0(PasscodeActivity passcodeActivity) {
         return passcodeActivity.disablePasscodeRow;
     }
 
-    public static int e0(PasscodeActivity passcodeActivity) {
-        return passcodeActivity.currentAccount;
+    public static rja e0(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.simpleActionBar;
     }
 
     public static int f0(PasscodeActivity passcodeActivity) {
@@ -92,8 +96,28 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         return passcodeActivity.currentAccount;
     }
 
-    public static org.telegram.ui.ActionBar.d m0() {
-        if (!gba.r.isEmpty()) {
+    public static int h0(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.currentAccount;
+    }
+
+    public static org.telegram.ui.ActionBar.a i0(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.actionBar;
+    }
+
+    public static rja j0(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.simpleActionBar;
+    }
+
+    public static rja k0(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.simpleActionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.a l0(PasscodeActivity passcodeActivity) {
+        return passcodeActivity.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.d n0() {
+        if (!gda.r.isEmpty()) {
             return new PasscodeActivity(2);
         }
         return new u8(6);
@@ -102,53 +126,53 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
     @Override
     public final void addThemeColorKeys(HashSet hashSet) {
         super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(bkb.A6));
-        hashSet.add(Integer.valueOf(bkb.H6));
-        hashSet.add(Integer.valueOf(bkb.c7));
-        hashSet.add(Integer.valueOf(bkb.s8));
-        hashSet.add(Integer.valueOf(bkb.z8));
-        hashSet.add(Integer.valueOf(bkb.u8));
-        hashSet.add(Integer.valueOf(bkb.r8));
+        hashSet.add(Integer.valueOf(cmb.A6));
+        hashSet.add(Integer.valueOf(cmb.H6));
+        hashSet.add(Integer.valueOf(cmb.c7));
+        hashSet.add(Integer.valueOf(cmb.s8));
+        hashSet.add(Integer.valueOf(cmb.z8));
+        hashSet.add(Integer.valueOf(cmb.u8));
+        hashSet.add(Integer.valueOf(cmb.r8));
     }
 
     @Override
-    public final android.view.View createView(android.content.Context r29) {
+    public final android.view.View createView(android.content.Context r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PasscodeActivity.createView(android.content.Context):android.view.View");
     }
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.m0) {
+        if (i == nm7.n0) {
             if ((objArr.length == 0 || ((Boolean) objArr[0]).booleanValue()) && this.y == 0) {
-                y0();
-                s20 s20Var = this.b;
-                if (s20Var != null) {
-                    s20Var.f();
+                z0();
+                s30 s30Var = this.b;
+                if (s30Var != null) {
+                    s30Var.f();
                 }
             }
         }
     }
 
     @Override
-    public final o39 getListViewForSimpleGlass() {
+    public final r59 getListViewForSimpleGlass() {
         return this.c;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new blb(this.fragmentView, 262145, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.Z6));
+        arrayList.add(new cnb(this.fragmentView, 262145, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.Z6));
         if (this.y != 0) {
-            arrayList.add(new blb(this.actionBar, 1, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.r8));
+            arrayList.add(new cnb(this.actionBar, 1, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.r8));
         }
-        arrayList.add(new blb(this.actionBar, Integer.MIN_VALUE, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.F8));
-        arrayList.add(new blb(this.actionBar, 1073741824, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.D8));
-        arrayList.add(new blb(this.actionBar, 1073741832, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.E8));
-        arrayList.add(new blb(this.d, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.C6));
-        arrayList.add(new blb(this.h, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.j6));
-        arrayList.add(new blb(this.h, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.k6));
-        arrayList.add(new blb(this.c, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.L6));
-        arrayList.add(new blb(this.c, 0, new Class[]{ahb.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.M6));
+        arrayList.add(new cnb(this.actionBar, Integer.MIN_VALUE, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.F8));
+        arrayList.add(new cnb(this.actionBar, 1073741824, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.D8));
+        arrayList.add(new cnb(this.actionBar, 1073741832, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.E8));
+        arrayList.add(new cnb(this.d, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.C6));
+        arrayList.add(new cnb(this.h, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.j6));
+        arrayList.add(new cnb(this.h, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (bnb) null, cmb.k6));
+        arrayList.add(new cnb(this.c, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.L6));
+        arrayList.add(new cnb(this.c, 0, new Class[]{bjb.class}, new String[]{"checkBox"}, (Drawable[]) null, (bnb) null, cmb.M6));
         return arrayList;
     }
 
@@ -168,30 +192,30 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         return false;
     }
 
-    public final void l0(Runnable runnable) {
-        if (!p0()) {
+    public final void m0(Runnable runnable) {
+        if (!q0()) {
             runnable.run();
             return;
         }
         int i = 0;
         while (true) {
-            yc6 yc6Var = this.n;
-            sj2[] sj2VarArr = yc6Var.f;
-            if (i < sj2VarArr.length) {
-                sj2 sj2Var = sj2VarArr[i];
-                sj2Var.postDelayed(new gv7(sj2Var, (byte) 0), i * 75);
+            xe6 xe6Var = this.n;
+            gl2[] gl2VarArr = xe6Var.f;
+            if (i < gl2VarArr.length) {
+                gl2 gl2Var = gl2VarArr[i];
+                gl2Var.postDelayed(new ix7(gl2Var, (byte) 0), i * 75);
                 i++;
             } else {
-                yc6Var.postDelayed(new bj7(this, runnable, (byte) 17), (sj2VarArr.length * 75) + 350);
+                xe6Var.postDelayed(new bl7(this, runnable, (byte) 18), (gl2VarArr.length * 75) + 350);
                 return;
             }
         }
     }
 
-    public final boolean n0() {
-        if (p0() && this.y != 0 && !gl.O1()) {
-            Point point = gl.q;
-            if (point.x < point.y && !gl.A1()) {
+    public final boolean o0() {
+        if (q0() && this.y != 0 && !gm.O1()) {
+            Point point = gm.q;
+            if (point.x < point.y && !gm.A1()) {
                 return true;
             }
             return false;
@@ -199,36 +223,28 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         return false;
     }
 
-    public final boolean o0() {
-        byte b = this.y;
-        if ((b == 1 && this.E) || ((b == 2 || b == 3) && gba.q == 1)) {
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
-        sj2[] sj2VarArr;
+        gl2[] gl2VarArr;
         int i;
         super.onConfigurationChanged(configuration);
-        v0(n0(), false);
-        ry8 ry8Var = this.a;
-        if (ry8Var != null) {
-            if (!gl.M1()) {
-                Point point = gl.q;
+        w0(o0(), false);
+        s09 s09Var = this.a;
+        if (s09Var != null) {
+            if (!gm.M1()) {
+                Point point = gm.q;
                 if (point.x < point.y) {
                     i = 0;
-                    ry8Var.setVisibility(i);
+                    s09Var.setVisibility(i);
                 }
             }
             i = 8;
-            ry8Var.setVisibility(i);
+            s09Var.setVisibility(i);
         }
-        yc6 yc6Var = this.n;
-        if (yc6Var != null && (sj2VarArr = yc6Var.f) != null) {
-            for (sj2 sj2Var : sj2VarArr) {
-                sj2Var.setShowSoftInputOnFocusCompat(!n0());
+        xe6 xe6Var = this.n;
+        if (xe6Var != null && (gl2VarArr = xe6Var.f) != null) {
+            for (gl2 gl2Var : gl2VarArr) {
+                gl2Var.setShowSoftInputOnFocusCompat(!o0());
             }
         }
     }
@@ -236,9 +252,9 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
     @Override
     public final boolean onFragmentCreate() {
         super.onFragmentCreate();
-        y0();
+        z0();
         if (this.y == 0) {
-            kk7.e().b(this, kk7.m0);
+            nm7.e().b(this, nm7.n0);
             return true;
         }
         return true;
@@ -248,31 +264,31 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
         if (this.y == 0) {
-            kk7.e().n(this, kk7.m0);
+            nm7.e().n(this, nm7.n0);
         }
-        gl.y2(getParentActivity(), this.classGuid);
+        gm.y2(getParentActivity(), this.classGuid);
     }
 
     @Override
     public final void onPause() {
         super.onPause();
-        gl.z2(getParentActivity(), this.classGuid);
+        gm.z2(getParentActivity(), this.classGuid);
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        s20 s20Var = this.b;
-        if (s20Var != null) {
-            s20Var.f();
+        s30 s30Var = this.b;
+        if (s30Var != null) {
+            s30Var.f();
         }
-        if (this.y != 0 && !n0()) {
-            gl.e3(new ev7(this, (byte) 6), 200L);
+        if (this.y != 0 && !o0()) {
+            gm.d3(new gx7(this, (byte) 6), 200L);
         }
-        gl.W2(getParentActivity(), this.classGuid);
-        if (n0()) {
-            gl.t1(this.fragmentView);
-            gl.X2(getParentActivity(), this.classGuid);
+        gm.V2(getParentActivity(), this.classGuid);
+        if (o0()) {
+            gm.t1(this.fragmentView);
+            gm.W2(getParentActivity(), this.classGuid);
         }
     }
 
@@ -281,96 +297,104 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         try {
             EditTextBoldCursor editTextBoldCursor = this.h;
             if (editTextBoldCursor != null) {
-                zkb.l(editTextBoldCursor, 30, bkb.k6, null);
+                anb.l(editTextBoldCursor, 30, cmb.k6, null);
             }
         } catch (Exception e) {
-            fa4.g(e, true);
+            fc4.g(e, true);
         }
     }
 
     @Override
     public final void onTransitionAnimationEnd(boolean z, boolean z2) {
         if (z && this.y != 0) {
-            w0();
+            x0();
         }
     }
 
     public final boolean p0() {
         byte b = this.y;
-        if ((b == 1 && !this.E) || ((b == 2 || b == 3) && gba.q == 0)) {
+        if ((b == 1 && this.E) || ((b == 2 || b == 3) && gda.q == 1)) {
             return true;
         }
         return false;
     }
 
-    public final void q0(hn7 hn7Var, int i) {
-        int value = hn7Var.getValue();
-        if (value == 0) {
-            gba.x = 0;
-        } else if (value == 1) {
-            gba.x = 60;
-        } else if (value == 2) {
-            gba.x = 300;
-        } else if (value == 3) {
-            gba.x = 3600;
-        } else if (value == 4) {
-            gba.x = 18000;
+    public final boolean q0() {
+        byte b = this.y;
+        if ((b == 1 && !this.E) || ((b == 2 || b == 3) && gda.q == 0)) {
+            return true;
         }
-        this.b.g(i);
-        y6c.h(this.currentAccount).u(false);
+        return false;
     }
 
-    public final void r0(int i, View view) {
+    public final void r0(lp7 lp7Var, int i) {
+        int value = lp7Var.getValue();
+        if (value == 0) {
+            gda.x = 0;
+        } else if (value == 1) {
+            gda.x = 60;
+        } else if (value == 2) {
+            gda.x = 300;
+        } else if (value == 3) {
+            gda.x = 3600;
+        } else if (value == 4) {
+            gda.x = 18000;
+        }
+        this.b.g(i);
+        z8c.h(this.currentAccount).u(false);
+    }
+
+    public final void s0(int i, View view) {
         if (view.isEnabled()) {
             if (i == this.disablePasscodeRow) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                String M0 = k96.M0(2131751421, null);
-                hd hdVar = alertDialog$Builder.a;
-                hdVar.S = M0;
-                hdVar.U = k96.M0(2131751420, null);
-                alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                alertDialog$Builder.j(k96.M0(2131751419, null), new im6(this, (byte) 23));
-                hdVar.show();
-                zkb.X((TextView) hdVar.c(-1), bkb.p7, null);
+                String M0 = jb6.M0(2131751370, null);
+                he heVar = alertDialog$Builder.a;
+                heVar.S = M0;
+                heVar.U = jb6.M0(2131751369, null);
+                alertDialog$Builder.g(jb6.M0(2131752542, null), null);
+                alertDialog$Builder.j(jb6.M0(2131751368, null), new cj6(this, (byte) 26));
+                heVar.show();
+                anb.X((TextView) heVar.c(-1), cmb.p7, null);
             } else if (i == this.changePasscodeRow) {
                 presentFragment(new PasscodeActivity(1));
             } else if (i == this.autoLockRow) {
                 if (getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(getParentActivity());
-                    String M02 = k96.M0(2131753797, null);
-                    hd hdVar2 = alertDialog$Builder2.a;
-                    hdVar2.S = M02;
-                    hn7 hn7Var = new hn7(getParentActivity(), null);
-                    hn7Var.setMinValue(0);
-                    hn7Var.setMaxValue(4);
-                    int i2 = gba.x;
+                    String M02 = jb6.M0(2131753765, null);
+                    he heVar2 = alertDialog$Builder2.a;
+                    heVar2.S = M02;
+                    lp7 lp7Var = new lp7(getParentActivity(), null);
+                    lp7Var.setMinValue(0);
+                    lp7Var.setMaxValue(4);
+                    int i2 = gda.x;
                     if (i2 == 0) {
-                        hn7Var.setValue(0);
+                        lp7Var.setValue(0);
                     } else if (i2 == 60) {
-                        hn7Var.setValue(1);
+                        lp7Var.setValue(1);
                     } else if (i2 == 300) {
-                        hn7Var.setValue(2);
+                        lp7Var.setValue(2);
                     } else if (i2 == 3600) {
-                        hn7Var.setValue(3);
+                        lp7Var.setValue(3);
                     } else if (i2 == 18000) {
-                        hn7Var.setValue(4);
+                        lp7Var.setValue(4);
                     }
-                    hn7Var.setFormatter(new fi7((byte) 21));
-                    alertDialog$Builder2.n(hn7Var);
-                    alertDialog$Builder2.g(k96.M0(2131751342, null), new zf(this, hn7Var, i, (byte) 10));
-                    showDialog(hdVar2);
+                    lp7Var.setFormatter(new bh7((byte) 23));
+                    alertDialog$Builder2.n(lp7Var);
+                    alertDialog$Builder2.g(jb6.M0(2131751291, null), new yg(this, lp7Var, i, (byte) 11));
+                    showDialog(heVar2);
                 }
             } else if (i == this.fingerprintRow) {
-                gba.C = !gba.C;
-                y6c.h(this.currentAccount).u(false);
-                ((ahb) view).setChecked(gba.C);
+                gda.C = !gda.C;
+                z8c.h(this.currentAccount).u(false);
+                ((bjb) view).setChecked(gda.C);
             } else if (i == this.O) {
-                gba.z = !gba.z;
-                y6c.h(this.currentAccount).u(false);
-                ((ahb) view).setChecked(gba.z);
-                kk7.e().k(kk7.m0, Boolean.FALSE);
-                if (!gba.z) {
-                    ij.r0(this, null, k96.M0(2131745652, null), null);
+                gda.z = !gda.z;
+                z8c.h(this.currentAccount).u(false);
+                ((bjb) view).setChecked(gda.z);
+                nm7.e().k(nm7.n0, Boolean.FALSE);
+                if (!gda.z) {
+                    ik.r0(this, null, jb6.M0(2131745578, null), null);
                 }
             } else if (i == this.K) {
                 org.telegram.ui.Wallet.c C = org.telegram.ui.Wallet.c.C(this.currentAccount);
@@ -383,24 +407,24 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
                         org.telegram.ui.Wallet.c.n("failed to save prefs", e);
                     }
                 }
-                y6c.h(this.currentAccount).u(false);
-                ((ahb) view).setChecked(C.R());
+                z8c.h(this.currentAccount).u(false);
+                ((bjb) view).setChecked(C.R());
             } else if (i == this.L) {
                 org.telegram.ui.Wallet.c C2 = org.telegram.ui.Wallet.c.C(this.currentAccount);
                 boolean Q = C2.Q();
                 boolean z2 = !Q;
                 ra raVar = new ra((byte) 3, view, Q);
-                g15 g15Var = C2.c;
-                if (g15Var == null) {
+                g35 g35Var = C2.c;
+                if (g35Var == null) {
                     raVar.a(Boolean.FALSE);
                     return;
                 }
-                g15.i.execute(new b61(g15Var, g15Var.l(), z2, new hj3(raVar, (byte) 13), (byte) 1));
+                g35.i.execute(new i71(g35Var, g35Var.l(), z2, new sk3(raVar, (byte) 13), (byte) 1));
             }
         }
     }
 
-    public final void s0() {
+    public final void t0() {
         View view;
         float f;
         if (getParentActivity() == null) {
@@ -410,35 +434,35 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
             this.fragmentView.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        if (p0()) {
-            for (sj2 sj2Var : this.n.f) {
-                sj2Var.A(1.0f);
+        if (q0()) {
+            for (gl2 gl2Var : this.n.f) {
+                gl2Var.A(1.0f);
             }
         } else {
             this.f.a(1.0f);
         }
-        if (p0()) {
+        if (q0()) {
             view = this.n;
         } else {
             view = this.f;
         }
-        if (p0()) {
+        if (q0()) {
             f = 10.0f;
         } else {
             f = 4.0f;
         }
-        gl.B3(f, view, new ev7(this, (byte) 3));
+        gm.A3(f, view, new gx7(this, (byte) 3));
     }
 
-    public final void t0() {
+    public final void u0() {
         String obj;
-        sj2[] sj2VarArr;
-        sj2[] sj2VarArr2;
-        if (o0() && this.h.getText().length() == 0) {
-            s0();
+        gl2[] gl2VarArr;
+        gl2[] gl2VarArr2;
+        if (p0() && this.h.getText().length() == 0) {
+            t0();
             return;
         }
-        if (p0()) {
+        if (q0()) {
             obj = this.n.getCode();
         } else {
             obj = this.h.getText().toString();
@@ -446,110 +470,83 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         byte b = this.y;
         if (b == 1) {
             if (!this.G.equals(obj)) {
-                gl.S3(this.r, true);
-                for (sj2 sj2Var : this.n.f) {
-                    sj2Var.setText("");
+                gm.R3(this.r, true);
+                for (gl2 gl2Var : this.n.f) {
+                    gl2Var.setText("");
                 }
-                if (p0()) {
+                if (q0()) {
                     this.n.f[0].requestFocus();
                 }
                 this.h.setText("");
-                s0();
+                t0();
                 this.n.removeCallbacks(this.T);
-                this.n.post(new ev7(this, (byte) 0));
+                this.n.post(new gx7(this, (byte) 0));
                 return;
             }
-            boolean isEmpty = gba.r.isEmpty();
+            boolean isEmpty = gda.r.isEmpty();
             try {
-                gba.v = new byte[16];
-                Utilities.b.nextBytes(gba.v);
+                gda.v = new byte[16];
+                Utilities.b.nextBytes(gda.v);
                 byte[] bytes = this.G.getBytes(StandardCharsets.UTF_8);
                 int length = bytes.length + 32;
                 byte[] bArr = new byte[length];
-                System.arraycopy(gba.v, 0, bArr, 0, 16);
+                System.arraycopy(gda.v, 0, bArr, 0, 16);
                 System.arraycopy(bytes, 0, bArr, 16, bytes.length);
-                System.arraycopy(gba.v, 0, bArr, bytes.length + 16, 16);
-                gba.r = Utilities.f(Utilities.o(length, bArr));
+                System.arraycopy(gda.v, 0, bArr, bytes.length + 16, 16);
+                gda.r = Utilities.f(Utilities.o(length, bArr));
             } catch (Exception e) {
-                fa4.g(e, true);
+                fc4.g(e, true);
             }
-            gba.z = true;
-            gba.q = this.E ? 1 : 0;
-            gba.x();
+            gda.z = true;
+            gda.q = this.E ? 1 : 0;
+            gda.x();
             this.h.clearFocus();
-            gl.t1(this.h);
-            for (sj2 sj2Var2 : this.n.f) {
-                sj2Var2.clearFocus();
-                gl.t1(sj2Var2);
+            gm.t1(this.h);
+            for (gl2 gl2Var2 : this.n.f) {
+                gl2Var2.clearFocus();
+                gm.t1(gl2Var2);
             }
             this.w.setEditText(null);
-            l0(new fv7(this, isEmpty, (byte) 0));
+            m0(new hx7(this, isEmpty, (byte) 0));
         } else if (b == 2 || b == 3) {
-            long j = gba.s;
+            long j = gda.s;
             if (j > 0) {
-                Toast.makeText(getParentActivity(), k96.a0("TooManyTries", null, 2131743796, k96.G(Math.max(1, (int) Math.ceil(j / 1000.0d)), "Seconds", new Object[0])), 0).show();
-                for (sj2 sj2Var3 : this.n.f) {
-                    sj2Var3.setText("");
+                Toast.makeText(getParentActivity(), jb6.a0("TooManyTries", null, 2131743722, jb6.G(Math.max(1, (int) Math.ceil(j / 1000.0d)), "Seconds", new Object[0])), 0).show();
+                for (gl2 gl2Var3 : this.n.f) {
+                    gl2Var3.setText("");
                 }
                 this.h.setText("");
-                if (p0()) {
+                if (q0()) {
                     this.n.f[0].requestFocus();
                 }
-                s0();
-            } else if (!gba.g(obj)) {
-                gba.r();
+                t0();
+            } else if (!gda.g(obj)) {
+                gda.r();
                 this.h.setText("");
-                for (sj2 sj2Var4 : this.n.f) {
-                    sj2Var4.setText("");
+                for (gl2 gl2Var4 : this.n.f) {
+                    gl2Var4.setText("");
                 }
-                if (p0()) {
+                if (q0()) {
                     this.n.f[0].requestFocus();
                 }
-                s0();
+                t0();
             } else {
-                gba.u = 0;
-                gba.x();
+                gda.u = 0;
+                gda.x();
                 this.h.clearFocus();
-                gl.t1(this.h);
-                for (sj2 sj2Var5 : this.n.f) {
-                    sj2Var5.clearFocus();
-                    gl.t1(sj2Var5);
+                gm.t1(this.h);
+                for (gl2 gl2Var5 : this.n.f) {
+                    gl2Var5.clearFocus();
+                    gm.t1(gl2Var5);
                 }
                 this.w.setEditText(null);
                 if (b == 3) {
-                    l0(new ev7(this, (byte) 1));
+                    m0(new gx7(this, (byte) 1));
                 } else {
-                    l0(new ev7(this, (byte) 2));
+                    m0(new gx7(this, (byte) 2));
                 }
             }
         }
-    }
-
-    public final void u0() {
-        String obj;
-        if ((this.E && this.h.getText().length() == 0) || (!this.E && this.n.getCode().length() != 4)) {
-            s0();
-            return;
-        }
-        r7 r7Var = this.R;
-        if (r7Var != null) {
-            r7Var.setVisibility(8);
-        }
-        this.d.setText(k96.M0(2131751803, null));
-        this.e.setText(gl.T2(k96.M0(2131747463, null)));
-        if (p0()) {
-            obj = this.n.getCode();
-        } else {
-            obj = this.h.getText().toString();
-        }
-        this.G = obj;
-        this.h.setText("");
-        this.h.setInputType(524417);
-        for (sj2 sj2Var : this.n.f) {
-            sj2Var.setText("");
-        }
-        w0();
-        this.F = true;
     }
 
     @Override
@@ -560,33 +557,60 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         return false;
     }
 
-    public final void v0(boolean z, boolean z2) {
-        s33 s33Var;
-        if (z) {
-            gl.t1(this.fragmentView);
-            gl.X2(getParentActivity(), this.classGuid);
+    public final void v0() {
+        String obj;
+        if ((this.E && this.h.getText().length() == 0) || (!this.E && this.n.getCode().length() != 4)) {
+            t0();
+            return;
+        }
+        r7 r7Var = this.R;
+        if (r7Var != null) {
+            r7Var.setVisibility(8);
+        }
+        this.d.setText(jb6.M0(2131751752, null));
+        this.e.setText(gm.S2(jb6.M0(2131747389, null)));
+        if (q0()) {
+            obj = this.n.getCode();
         } else {
-            gl.z2(getParentActivity(), this.classGuid);
+            obj = this.h.getText().toString();
+        }
+        this.G = obj;
+        this.h.setText("");
+        this.h.setInputType(524417);
+        for (gl2 gl2Var : this.n.f) {
+            gl2Var.setText("");
+        }
+        x0();
+        this.F = true;
+    }
+
+    public final void w0(boolean z, boolean z2) {
+        d53 d53Var;
+        if (z) {
+            gm.t1(this.fragmentView);
+            gm.W2(getParentActivity(), this.classGuid);
+        } else {
+            gm.z2(getParentActivity(), this.classGuid);
         }
         int i = 0;
         float f = 1.0f;
         float f2 = 0.0f;
         if (!z2) {
-            s43 s43Var = this.w;
+            d63 d63Var = this.w;
             if (!z) {
                 i = 8;
             }
-            s43Var.setVisibility(i);
-            s43 s43Var2 = this.w;
+            d63Var.setVisibility(i);
+            d63 d63Var2 = this.w;
             if (!z) {
                 f = 0.0f;
             }
-            s43Var2.setAlpha(f);
-            s43 s43Var3 = this.w;
+            d63Var2.setAlpha(f);
+            d63 d63Var3 = this.w;
             if (!z) {
-                f2 = gl.L(230.0f);
+                f2 = gm.L(230.0f);
             }
-            s43Var3.setTranslationY(f2);
+            d63Var3.setTranslationY(f2);
             this.fragmentView.requestLayout();
             return;
         }
@@ -596,45 +620,45 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f2, f).setDuration(150L);
         if (z) {
-            s33Var = s33.f;
+            d53Var = d53.f;
         } else {
-            s33Var = ls3.e;
+            d53Var = vt3.e;
         }
-        duration.setInterpolator(s33Var);
-        duration.addUpdateListener(new ni4(this, (byte) 28));
-        duration.addListener(new id4((byte) 18, this, z));
+        duration.setInterpolator(d53Var);
+        duration.addUpdateListener(new fx7(this, (byte) 0));
+        duration.addListener(new jf4((byte) 18, this, z));
         duration.start();
     }
 
-    public final void w0() {
-        if (p0()) {
+    public final void x0() {
+        if (q0()) {
             this.n.f[0].requestFocus();
-            if (!n0()) {
-                gl.F3(this.n.f[0]);
+            if (!o0()) {
+                gm.E3(this.n.f[0]);
             }
-        } else if (o0()) {
+        } else if (p0()) {
             this.h.requestFocus();
-            gl.F3(this.h);
+            gm.E3(this.h);
         }
     }
 
-    public final void x0() {
+    public final void y0() {
         String charSequence;
         int i;
         boolean z;
-        int i2 = 2131751694;
+        int i2 = 2131751643;
         byte b = this.y;
         if (b == 2) {
-            charSequence = k96.M0(2131751099, null);
+            charSequence = jb6.M0(2131751048, null);
         } else if (b == 3) {
-            charSequence = k96.M0(2131742950, null);
+            charSequence = jb6.M0(2131742876, null);
         } else if (!this.F) {
             if (!this.E) {
-                i = 2131751695;
+                i = 2131751644;
             } else {
-                i = 2131751694;
+                i = 2131751643;
             }
-            charSequence = k96.M0(i, null);
+            charSequence = jb6.M0(i, null);
         } else {
             charSequence = this.e.getCurrentView().getText().toString();
         }
@@ -644,35 +668,35 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
             z = false;
         }
         if (b == 2) {
-            this.e.a(k96.M0(2131751099, null), z, false);
+            this.e.a(jb6.M0(2131751048, null), z, false);
         } else if (b == 3) {
-            this.e.setText(k96.M0(2131742950, null));
+            this.e.setText(jb6.M0(2131742876, null));
         } else if (!this.F) {
-            ajb ajbVar = this.e;
+            blb blbVar = this.e;
             if (!this.E) {
-                i2 = 2131751695;
+                i2 = 2131751644;
             }
-            ajbVar.a(k96.M0(i2, null), z, false);
+            blbVar.a(jb6.M0(i2, null), z, false);
+        }
+        if (q0()) {
+            gm.T3(this.n, true, 1.0f, true, z);
+            gm.T3(this.f, false, 1.0f, true, z);
+        } else if (p0()) {
+            gm.T3(this.n, false, 1.0f, true, z);
+            gm.T3(this.f, true, 1.0f, true, z);
         }
         if (p0()) {
-            gl.U3(this.n, true, 1.0f, true, z);
-            gl.U3(this.f, false, 1.0f, true, z);
-        } else if (o0()) {
-            gl.U3(this.n, false, 1.0f, true, z);
-            gl.U3(this.f, true, 1.0f, true, z);
-        }
-        if (o0()) {
-            fv7 fv7Var = new fv7(this, z, (byte) 1);
-            this.U = fv7Var;
-            gl.e3(fv7Var, 3000L);
+            hx7 hx7Var = new hx7(this, z, (byte) 1);
+            this.U = hx7Var;
+            gm.d3(hx7Var, 3000L);
         } else {
             this.x.e(false, z);
         }
-        v0(n0(), z);
-        w0();
+        w0(o0(), z);
+        x0();
     }
 
-    public final void y0() {
+    public final void z0() {
         this.J = -1;
         this.K = -1;
         this.fingerprintRow = -1;
@@ -682,8 +706,8 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
         this.Q = 3;
         this.changePasscodeRow = 2;
         try {
-            if (new ej0(new dj0(org.telegram.messenger.a.b)).a(15) == 0) {
-                Typeface typeface = gl.a;
+            if (new ek0(new dk0(org.telegram.messenger.a.b, (byte) 0)).a(15) == 0) {
+                Typeface typeface = gm.a;
                 if (((KeyguardManager) org.telegram.messenger.a.b.getSystemService("keyguard")).isKeyguardSecure()) {
                     int i = this.Q;
                     this.Q = i + 1;
@@ -691,18 +715,18 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.d implements gk7
                 }
             }
         } catch (Throwable th) {
-            fa4.g(th, true);
+            fc4.g(th, true);
         }
         int i2 = this.Q;
         this.autoLockRow = i2;
         this.Q = i2 + 2;
         this.I = i2 + 1;
-        if (getMessagesController().k4.n0.f) {
+        if (getMessagesController().l4.n0.f) {
             int i3 = this.Q;
             this.J = i3;
             this.Q = i3 + 2;
             this.K = i3 + 1;
-            if (g15.i(org.telegram.messenger.a.b)) {
+            if (g35.i(org.telegram.messenger.a.b)) {
                 int i4 = this.Q;
                 this.Q = i4 + 1;
                 this.L = i4;

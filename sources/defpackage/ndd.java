@@ -1,54 +1,132 @@
 package defpackage;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.BasePendingResult;
-import java.util.Iterator;
-public abstract class ndd extends BasePendingResult {
-    public v39 o;
-    public final boolean p;
-    public final i69 q;
+import android.content.Context;
+import java.lang.ref.ReferenceQueue;
+import java.util.Set;
+public final class ndd implements lr2, mae, mt3 {
+    public final byte a;
 
-    public ndd(i69 i69Var, boolean z) {
-        super(null);
-        this.q = i69Var;
-        this.p = z;
+    public ndd(byte b) {
+        this.a = b;
+    }
+
+    public static boolean b(int i, byte[] bArr) {
+        int i2;
+        int i3 = 0;
+        while (true) {
+            if (i3 >= i) {
+                break;
+            } else if (bArr[i3] >= 0) {
+                i3++;
+            } else {
+                while (i3 < i) {
+                    int i4 = i3 + 1;
+                    i2 = bArr[i3];
+                    if (i2 < 0) {
+                        if (i2 < -32) {
+                            if (i4 < i) {
+                                if (i2 >= -62) {
+                                    i3 += 2;
+                                    if (bArr[i4] > -65) {
+                                    }
+                                }
+                                i2 = -1;
+                                break;
+                            }
+                            break;
+                        } else if (i2 < -16) {
+                            if (i4 >= i - 1) {
+                                i2 = jjf.a(bArr, i4, i);
+                                break;
+                            }
+                            int i5 = i3 + 2;
+                            char c = bArr[i4];
+                            if (c <= -65 && ((i2 != -32 || c >= -96) && (i2 != -19 || c < -96))) {
+                                i3 += 3;
+                                if (bArr[i5] > -65) {
+                                }
+                            }
+                            i2 = -1;
+                            break;
+                        } else if (i4 >= i - 2) {
+                            i2 = jjf.a(bArr, i4, i);
+                            break;
+                        } else {
+                            int i6 = i3 + 2;
+                            int i7 = bArr[i4];
+                            if (i7 <= -65) {
+                                if ((((i7 + 112) + (i2 << 28)) >> 30) == 0) {
+                                    int i8 = i3 + 3;
+                                    if (bArr[i6] <= -65) {
+                                        i3 += 4;
+                                        if (bArr[i8] > -65) {
+                                        }
+                                    }
+                                }
+                            }
+                            i2 = -1;
+                            break;
+                        }
+                    }
+                    i3 = i4;
+                }
+            }
+        }
+        i2 = 0;
+        if (i2 != 0) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final ua9 d(Status status) {
-        return new vcd(status, (byte) 1);
+    public final Object X(sm2 sm2Var) {
+        switch (this.a) {
+            case 0:
+                return new eg7();
+            default:
+                hj2 hj2Var = new hj2();
+                sw swVar = new sw((byte) 15);
+                ReferenceQueue referenceQueue = hj2Var.a;
+                Set set = hj2Var.b;
+                set.add(new lpd(hj2Var, referenceQueue, set, swVar));
+                Thread thread = new Thread(new tnd(referenceQueue, set, (byte) 16), "MlKitCleaner");
+                thread.setDaemon(true);
+                thread.start();
+                return hj2Var;
+        }
     }
 
-    public abstract void n();
-
-    public final f9d o() {
-        v39 v39Var = this.o;
-        if (v39Var == null) {
-            v39 v39Var2 = new v39(this, (byte) 26);
-            this.o = v39Var2;
-            return v39Var2;
+    @Override
+    public final pd0 a(Context context, String str, lt3 lt3Var) {
+        pd0 pd0Var = new pd0();
+        pd0Var.a = lt3Var.b(context, str);
+        int i = 1;
+        int a = lt3Var.a(context, str, true);
+        pd0Var.b = a;
+        int i2 = pd0Var.a;
+        if (i2 == 0) {
+            i2 = 0;
+            if (a == 0) {
+                i = 0;
+                pd0Var.c = i;
+                return pd0Var;
+            }
         }
-        return v39Var;
+        if (a < i2) {
+            i = -1;
+        }
+        pd0Var.c = i;
+        return pd0Var;
     }
 
-    public final void p() {
-        if (!this.p) {
-            Iterator it = this.q.h.iterator();
-            if (!it.hasNext()) {
-                Iterator it2 = this.q.i.iterator();
-                while (it2.hasNext()) {
-                    ((h69) it2.next()).f();
-                }
-            } else {
-                throw ls6.l(it);
-            }
-        }
-        try {
-            synchronized (this.q.a) {
-                n();
-            }
-        } catch (m8d unused) {
-            a(new vcd(new Status(2100, null, null, null), (byte) 1));
-        }
+    @Override
+    public final wce zzb(Class cls) {
+        throw new IllegalStateException("This should never be called.");
+    }
+
+    @Override
+    public final boolean zzc(Class cls) {
+        return false;
     }
 }

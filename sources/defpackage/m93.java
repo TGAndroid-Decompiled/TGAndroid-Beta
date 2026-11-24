@@ -1,106 +1,66 @@
 package defpackage;
 
-import android.content.Context;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.os.Build;
-public final class m93 {
-    public final Context a;
-    public Boolean b;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.d;
+public final class m93 implements c59, ee {
+    public final q93 a;
 
-    public m93(Context context) {
-        Context applicationContext;
-        if (context == null) {
-            applicationContext = null;
-        } else {
-            applicationContext = context.getApplicationContext();
-        }
-        this.a = applicationContext;
+    public m93(q93 q93Var) {
+        this.a = q93Var;
     }
 
-    public final k00 a(nz nzVar, fm4 fm4Var) {
-        Boolean bool;
-        boolean booleanValue;
-        boolean z;
-        fm4Var.getClass();
-        int i = fm4Var.P;
-        nzVar.getClass();
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 29 && i != -1) {
-            Boolean bool2 = this.b;
-            boolean z2 = false;
-            if (bool2 != null) {
-                booleanValue = bool2.booleanValue();
-            } else {
-                Context context = this.a;
-                if (context != null) {
-                    String parameters = i00.e(context).getParameters("offloadVariableRateSupported");
-                    if (parameters != null && parameters.equals("offloadVariableRateSupported=1")) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    bool = Boolean.valueOf(z);
-                    this.b = bool;
-                } else {
-                    bool = Boolean.FALSE;
-                    this.b = bool;
-                }
-                booleanValue = bool.booleanValue();
+    @Override
+    public final void r(he heVar, int i) {
+        int i2;
+        int i3;
+        int i4;
+        q93 q93Var = this.a;
+        t93 t93Var = q93Var.w3;
+        ArrayList arrayList = q93Var.n3;
+        arrayList.clear();
+        int i5 = 0;
+        while (true) {
+            p93[] p93VarArr = q93Var.o3;
+            if (i5 >= p93VarArr.length) {
+                i2 = ((d) t93Var).currentAccount;
+                b0b.c(i2).l(0);
+                i3 = ((d) t93Var).currentAccount;
+                b0b.c(i3).l(1);
+                i4 = ((d) t93Var).currentAccount;
+                b0b.c(i4).l(2);
+                q93Var.f3 = true;
+                q93Var.C1();
+                q93Var.D1(true);
+                return;
             }
-            String str = fm4Var.t;
-            str.getClass();
-            int c = ud7.c(str, fm4Var.l);
-            if (c != 0 && i2 >= g8c.s(c)) {
-                int i3 = fm4Var.O;
-                if (i3 == -1) {
-                    i3 = g8c.t(fm4Var.N);
-                }
-                if (i3 == 0) {
-                    return k00.d;
-                }
-                try {
-                    AudioFormat build = new AudioFormat.Builder().setSampleRate(i).setChannelMask(i3).setEncoding(c).build();
-                    if (i2 >= 33) {
-                        int directPlaybackSupport = AudioManager.getDirectPlaybackSupport(build, nzVar.b());
-                        if ((directPlaybackSupport & 1) == 0) {
-                            return k00.d;
-                        }
-                        if ((directPlaybackSupport & 3) == 3) {
-                            z2 = true;
-                        }
-                        ?? obj = new Object();
-                        obj.a = true;
-                        obj.b = z2;
-                        obj.c = booleanValue;
-                        return obj.a();
-                    } else if (i2 >= 31) {
-                        int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(build, nzVar.b());
-                        if (playbackOffloadSupport == 0) {
-                            return k00.d;
-                        }
-                        ?? obj2 = new Object();
-                        if (i2 > 32 && playbackOffloadSupport == 2) {
-                            z2 = true;
-                        }
-                        obj2.a = true;
-                        obj2.b = z2;
-                        obj2.c = booleanValue;
-                        return obj2.a();
-                    } else if (!AudioManager.isOffloadedPlaybackSupported(build, nzVar.b())) {
-                        return k00.d;
-                    } else {
-                        ?? obj3 = new Object();
-                        obj3.a = true;
-                        obj3.c = booleanValue;
-                        return obj3.a();
-                    }
-                } catch (IllegalArgumentException unused) {
-                    return k00.d;
-                }
+            p93 p93Var = p93VarArr[i5];
+            if (p93Var.c > 0) {
+                arrayList.add(Integer.valueOf(p93Var.d));
             }
-            return k00.d;
+            i5++;
         }
-        return k00.d;
+    }
+
+    @Override
+    public final int run() {
+        q93 q93Var = this.a;
+        ArrayList arrayList = q93Var.k3;
+        int i = 0;
+        while (true) {
+            if (i < arrayList.size()) {
+                if (((l93) arrayList.get(i)).a == 5) {
+                    break;
+                }
+                i++;
+            } else {
+                i = -1;
+                break;
+            }
+        }
+        if (i < 0) {
+            return -1;
+        }
+        q93Var.h3.g1(i, gm.L(60.0f));
+        return i;
     }
 }

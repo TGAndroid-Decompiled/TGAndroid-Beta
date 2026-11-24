@@ -1,17 +1,18 @@
 package defpackage;
-public final class s3e implements zn7 {
-    public static final s3e a = new Object();
+public enum s3e implements eqe {
+    FORMAT_UNKNOWN(0),
+    FORMAT_LUMINANCE(1),
+    FORMAT_RGB8(2),
+    FORMAT_MONOCHROME(3);
+    
+    public final byte a;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)));
+    s3e(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final String toString() {
+        return "<" + s3e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

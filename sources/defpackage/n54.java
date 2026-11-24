@@ -1,30 +1,24 @@
 package defpackage;
-public final class n54 implements x56, us2 {
+
+import android.content.Context;
+public final class n54 implements lv8 {
     public final byte a;
-    public final float b;
+    public final lq5 b;
 
-    public n54(float f, byte b) {
+    public n54(lq5 lq5Var, byte b) {
         this.a = b;
-        this.b = f;
+        this.b = lq5Var;
     }
 
     @Override
-    public final void accept(Object obj) {
+    public final Object mo8get() {
         byte b = this.a;
-        float f = this.b;
-        ad8 ad8Var = (ad8) obj;
+        lq5 lq5Var = this.b;
         switch (b) {
-            case 1:
-                ad8Var.c(f);
-                return;
+            case 0:
+                return new m54((nv8) lq5Var.a);
             default:
-                ad8Var.R(f);
-                return;
+                return new va6((Context) lq5Var.a);
         }
-    }
-
-    @Override
-    public final void invoke(Object obj) {
-        ((mc8) obj).q(this.b);
     }
 }

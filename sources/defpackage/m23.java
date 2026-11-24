@@ -1,22 +1,8 @@
 package defpackage;
+public final class m23 extends u13 {
+    public final String d;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class m23 extends b4 {
-    public static final Parcelable.Creator<m23> CREATOR = new x21((byte) 14);
-    public final Bundle a;
-
-    public m23(Bundle bundle) {
-        bundle.getClass();
-        this.a = bundle;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.getClass();
-        int r = jte.r(parcel, 20293);
-        jte.b(parcel, 1, this.a);
-        jte.s(parcel, r);
+    public m23(java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m23.<init>(java.lang.String):void");
     }
 }

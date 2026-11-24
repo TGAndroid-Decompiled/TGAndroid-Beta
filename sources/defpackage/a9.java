@@ -2,7 +2,7 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-public final class a9 extends lp implements c9 {
+public final class a9 extends lq implements c9 {
     public final b9 d;
 
     public a9(b9 b9Var, Context context) {
@@ -12,7 +12,7 @@ public final class a9 extends lp implements c9 {
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        uve.a(this, getContentDescription());
+        wxe.a(this, getContentDescription());
         setOnTouchListener(new w8(this, this));
     }
 

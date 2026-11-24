@@ -1,47 +1,20 @@
 package defpackage;
-public final class bn7 implements cv5 {
-    public final cv5 a;
-    public final x4a b;
 
-    public bn7(cv5 cv5Var) {
-        cv5Var.getClass();
-        this.a = cv5Var;
-        this.b = new x4a(cv5Var.d());
-    }
+import android.app.Notification;
+import android.os.Build;
+import android.support.v4.media.session.MediaSessionCompat$Token;
+public final class bn7 extends jn7 {
+    public int[] e;
+    public MediaSessionCompat$Token f;
 
     @Override
-    public final void b(c30 c30Var, Object obj) {
-        if (obj != null) {
-            c30Var.j(this.a, obj);
+    public final void b(p41 p41Var) {
+        int i = Build.VERSION.SDK_INT;
+        Notification.Builder builder = (Notification.Builder) p41Var.c;
+        if (i >= 34) {
+            qm7.d(builder, qm7.b(rm7.a(qm7.a(), null, 0, null, Boolean.FALSE), this.e, this.f));
         } else {
-            c30Var.g();
+            qm7.d(builder, qm7.b(qm7.a(), this.e, this.f));
         }
-    }
-
-    @Override
-    public final Object c(igf igfVar) {
-        if (igfVar.i()) {
-            return igfVar.l(this.a);
-        }
-        return null;
-    }
-
-    @Override
-    public final w4a d() {
-        return this.b;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && bn7.class == obj.getClass() && rp5.a(this.a, ((bn7) obj).a)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
     }
 }

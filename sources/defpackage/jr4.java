@@ -1,30 +1,317 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class jr4 extends i49 {
-    public final byte a;
-    public final sr4 b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.os.Build;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.view.Choreographer;
+import android.view.FrameMetrics;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.ui.LaunchActivity;
+public final class jr4 extends View {
+    public View E;
+    public hr4 F;
+    public final AtomicBoolean G;
+    public final AtomicBoolean H;
+    public final Handler I;
+    public final o04 J;
+    public int a;
+    public long b;
+    public int c;
+    public gr4 d;
+    public final AtomicInteger e;
+    public int f;
+    public final Paint h;
+    public final Paint n;
+    public WindowManager r;
+    public WindowManager.LayoutParams s;
+    public Window w;
+    public HandlerThread x;
+    public fr4 y;
 
-    public jr4(sr4 sr4Var, byte b) {
-        this.a = b;
-        this.b = sr4Var;
+    public jr4(LaunchActivity launchActivity) {
+        super(launchActivity.getApplicationContext());
+        this.a = 0;
+        this.b = 0L;
+        this.c = 0;
+        this.e = new AtomicInteger(0);
+        this.f = 0;
+        Paint paint = new Paint(1);
+        this.h = paint;
+        Paint paint2 = new Paint(1);
+        this.n = paint2;
+        this.G = new AtomicBoolean(false);
+        this.H = new AtomicBoolean(false);
+        this.I = new Handler(Looper.getMainLooper());
+        this.J = new o04(this, (byte) 9);
+        paint.setColor(-1342177280);
+        paint2.setColor(-1);
+        paint2.setTextSize(gm.L(9.0f));
+        paint2.setFakeBoldText(true);
+        paint2.setTypeface(gm.n1("fonts/rmono.ttf"));
+        setWillNotDraw(false);
+    }
+
+    public static jr4 a(LaunchActivity launchActivity, yd ydVar) {
+        jr4 jr4Var = new jr4(launchActivity);
+        jr4Var.setObservedView(ydVar);
+        jr4Var.r = (WindowManager) launchActivity.getSystemService("window");
+        jr4Var.w = launchActivity.getWindow();
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-2, -2, 2, 792, -3);
+        jr4Var.s = layoutParams;
+        layoutParams.gravity = 8388627;
+        int L = gm.L(12.0f);
+        WindowManager.LayoutParams layoutParams2 = jr4Var.s;
+        layoutParams2.x = L;
+        layoutParams2.y = L;
+        layoutParams2.width = gm.L(260.0f);
+        jr4Var.r.addView(jr4Var, jr4Var.s);
+        jr4Var.H.set(true);
+        if (jr4Var.G.getAndSet(true)) {
+            return jr4Var;
+        }
+        HandlerThread handlerThread = new HandlerThread("FrameMetrics");
+        jr4Var.x = handlerThread;
+        handlerThread.start();
+        Handler handler = new Handler(jr4Var.x.getLooper());
+        ?? obj = new Object();
+        jr4Var.y = obj;
+        jr4Var.w.addOnFrameMetricsAvailableListener(obj, handler);
+        jr4Var.d = new gr4(jr4Var, (byte) 0);
+        Choreographer.getInstance().postFrameCallback(jr4Var.d);
+        View view = jr4Var.E;
+        if (view != null) {
+            jr4Var.F = new hr4(jr4Var, (byte) 0);
+            ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+            if (viewTreeObserver.isAlive()) {
+                viewTreeObserver.addOnDrawListener(jr4Var.F);
+            }
+        }
+        jr4Var.I.post(jr4Var.J);
+        return jr4Var;
+    }
+
+    public static void c(FrameMetrics frameMetrics) {
+        ir4[] values;
+        for (ir4 ir4Var : ir4.values()) {
+            if (Build.VERSION.SDK_INT >= ir4Var.c) {
+                long metric = frameMetrics.getMetric(ir4Var.a);
+                ir4Var.d = metric;
+                if (metric >= 0) {
+                    double d = metric / 1000000.0d;
+                    double d2 = ir4Var.e;
+                    if (d2 != 0.0d) {
+                        d = ((d - d2) * 0.05d) + d2;
+                    }
+                    ir4Var.e = d;
+                }
+            } else {
+                ir4Var.d = Long.MIN_VALUE;
+            }
+        }
+    }
+
+    public final void b() {
+        fr4 fr4Var;
+        this.G.set(false);
+        this.I.removeCallbacks(this.J);
+        Window window = this.w;
+        if (window != null && (fr4Var = this.y) != null) {
+            window.removeOnFrameMetricsAvailableListener(fr4Var);
+        }
+        if (this.d != null) {
+            Choreographer.getInstance().removeFrameCallback(this.d);
+            this.d = null;
+        }
+        View view = this.E;
+        if (view != null && this.F != null) {
+            ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+            if (viewTreeObserver.isAlive()) {
+                viewTreeObserver.removeOnDrawListener(this.F);
+            }
+            this.F = null;
+        }
+        HandlerThread handlerThread = this.x;
+        if (handlerThread != null) {
+            handlerThread.quitSafely();
+        }
+        if (this.r != null && this.H.getAndSet(false)) {
+            try {
+                this.r.removeViewImmediate(this);
+            } catch (Throwable unused) {
+            }
+        }
+        this.r = null;
+        this.s = null;
+        this.w = null;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        byte b = this.a;
-        sr4 sr4Var = this.b;
-        switch (b) {
-            case 0:
-                sr4Var.invalidate();
-                return;
-            default:
-                r7 r7Var = sr4Var.H;
-                if (sr4Var.n.J1 && r7Var != null && r7Var.getSearchField() != null) {
-                    gl.t1(r7Var.getSearchContainer());
-                    return;
+    public final void onDraw(Canvas canvas) {
+        int L;
+        String str;
+        boolean z;
+        String format;
+        double d;
+        jr4 jr4Var = this;
+        float L2 = gm.L(8.0f);
+        float L3 = gm.L(11.0f);
+        int length = ir4.values().length + 9;
+        if (jr4Var.getWidth() > 0) {
+            L = jr4Var.getWidth();
+        } else {
+            L = gm.L(260.0f);
+        }
+        canvas.drawRoundRect(0.0f, 0.0f, L, (length * L3) + (2.0f * L2), gm.L(10.0f), gm.L(10.0f), jr4Var.h);
+        float f = L2 + L3;
+        ir4[] values = ir4.values();
+        int length2 = values.length;
+        double d2 = 0.0d;
+        double d3 = 0.0d;
+        double d4 = 0.0d;
+        double d5 = 0.0d;
+        float f2 = L3;
+        long j = 0;
+        int i = 0;
+        long j2 = 0;
+        long j3 = 0;
+        long j4 = 0;
+        while (true) {
+            float f3 = f2;
+            Paint paint = jr4Var.n;
+            if (i < length2) {
+                int i2 = length2;
+                ir4 ir4Var = values[i];
+                int i3 = i;
+                if (Build.VERSION.SDK_INT >= ir4Var.c) {
+                    z = true;
+                } else {
+                    z = false;
                 }
+                String str2 = ir4Var.b;
+                long j5 = j4;
+                if (z) {
+                    long j6 = ir4Var.d;
+                    if (j6 >= 0) {
+                        format = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j6 / 1000000.0d), Double.valueOf(ir4Var.e));
+                        switch (ir4Var.ordinal()) {
+                            case 0:
+                            case 7:
+                                j4 = j5 + ir4Var.d;
+                                d2 += ir4Var.e;
+                                continue;
+                                canvas.drawText(format, L2, f, paint);
+                                f += f3;
+                                i = i3 + 1;
+                                jr4Var = this;
+                                f2 = f3;
+                                length2 = i2;
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                                j += ir4Var.d;
+                                d3 += ir4Var.e;
+                                break;
+                            case 5:
+                                long j7 = ir4Var.d;
+                                j += j7;
+                                d = ir4Var.e;
+                                d3 += d;
+                                j2 += j7;
+                                d5 += d;
+                                break;
+                            case 6:
+                                j2 += ir4Var.d;
+                                d = ir4Var.e;
+                                d5 += d;
+                                break;
+                            case 8:
+                                j3 += ir4Var.d;
+                                d4 += ir4Var.e;
+                                break;
+                        }
+                        j4 = j5;
+                        canvas.drawText(format, L2, f, paint);
+                        f += f3;
+                        i = i3 + 1;
+                        jr4Var = this;
+                        f2 = f3;
+                        length2 = i2;
+                    }
+                }
+                format = String.format(Locale.US, "%-16s : n/a", str2);
+                j4 = j5;
+                canvas.drawText(format, L2, f, paint);
+                f += f3;
+                i = i3 + 1;
+                jr4Var = this;
+                f2 = f3;
+                length2 = i2;
+            } else {
+                long j8 = j4;
+                long max = Math.max(j, Math.max(j2, j3));
+                double d6 = d4;
+                long j9 = j3;
+                double d7 = d5;
+                long j10 = j2;
+                double d8 = d3;
+                double max2 = Math.max(d8, Math.max(d7, d6));
+                float f4 = f + f3;
+                Locale locale = Locale.US;
+                canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "ui", Double.valueOf(j / 1000000.0d), Double.valueOf(d8)), L2, f4, paint);
+                float f5 = f4 + f3;
+                canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "rt", Double.valueOf(j10 / 1000000.0d), Double.valueOf(d7)), L2, f5, paint);
+                float f6 = f5 + f3;
+                canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "gpu", Double.valueOf(j9 / 1000000.0d), Double.valueOf(d6)), L2, f6, paint);
+                float f7 = f6 + f3;
+                canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "other", Double.valueOf(j8 / 1000000.0d), Double.valueOf(d2)), L2, f7, paint);
+                float f8 = f7 + f3;
+                canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "frame", Double.valueOf(max / 1000000.0d), Double.valueOf(max2)), L2, f8, paint);
+                float f9 = f8 + f3 + f3;
+                canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.c)), L2, f9, paint);
+                float f10 = f9 + f3;
+                if (this.E != null) {
+                    str = "onDraw";
+                } else {
+                    str = "onDraw (none)";
+                }
+                canvas.drawText(String.format(locale, "%-16s : %d /s", str, Integer.valueOf(this.f)), L2, f10, paint);
                 return;
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        setMeasuredDimension(gm.L(210.0f), ((ir4.values().length + 9) * gm.L(11.0f)) + (gm.L(8.0f) << 1));
+    }
+
+    public void setObservedView(View view) {
+        View view2;
+        View view3 = this.E;
+        if (view3 != null && this.F != null) {
+            ViewTreeObserver viewTreeObserver = view3.getViewTreeObserver();
+            if (viewTreeObserver.isAlive()) {
+                viewTreeObserver.removeOnDrawListener(this.F);
+            }
+            this.F = null;
+        }
+        this.E = view;
+        if (this.G.get() && (view2 = this.E) != null) {
+            this.F = new hr4(this, (byte) 0);
+            ViewTreeObserver viewTreeObserver2 = view2.getViewTreeObserver();
+            if (viewTreeObserver2.isAlive()) {
+                viewTreeObserver2.addOnDrawListener(this.F);
+            }
         }
     }
 }

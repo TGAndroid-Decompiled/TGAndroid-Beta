@@ -1,17 +1,33 @@
 package defpackage;
-public final class di6 {
-    public static ci6 a(Object obj, Object obj2) {
-        ci6 ci6Var = (ci6) obj;
-        ci6 ci6Var2 = (ci6) obj2;
-        if (!ci6Var2.isEmpty()) {
-            if (!ci6Var.a) {
-                ci6Var = ci6Var.c();
-            }
-            ci6Var.b();
-            if (!ci6Var2.isEmpty()) {
-                ci6Var.putAll(ci6Var2);
-            }
-        }
-        return ci6Var;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class di6 extends b4 {
+    public static final Parcelable.Creator<di6> CREATOR = new sje((byte) 3);
+    public int a;
+    public String b;
+    public double c;
+    public String d;
+    public long e;
+    public int f;
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        int i2 = this.a;
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(i2);
+        mve.l(parcel, 3, this.b);
+        double d = this.c;
+        mve.q(parcel, 4, 8);
+        parcel.writeDouble(d);
+        mve.l(parcel, 5, this.d);
+        long j = this.e;
+        mve.q(parcel, 6, 8);
+        parcel.writeLong(j);
+        int i3 = this.f;
+        mve.q(parcel, 7, 4);
+        parcel.writeInt(i3);
+        mve.s(parcel, r);
     }
 }

@@ -1,17 +1,17 @@
 package defpackage;
-public final class w77 implements i8c {
+public final class w77 implements Runnable {
     public final byte a;
-    public final Object b;
-    public final Object c;
+    public final oc7 b;
+    public final int c;
 
-    public w77(Object obj, Object obj2, byte b) {
+    public w77(oc7 oc7Var, int i, byte b) {
         this.a = b;
-        this.b = obj;
-        this.c = obj2;
+        this.b = oc7Var;
+        this.c = i;
     }
 
     @Override
-    public final void a(java.lang.Object r31, java.lang.Object r32) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.w77.a(java.lang.Object, java.lang.Object):void");
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.w77.run():void");
     }
 }

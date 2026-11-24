@@ -1,88 +1,65 @@
 package defpackage;
-public final class ho3 extends jo3 implements cx2, fw2 {
-    public static final long n = ex.a.objectFieldOffset(ho3.class.getDeclaredField("_reusableCancellableContinuation$volatile"));
-    private volatile Object _reusableCancellableContinuation$volatile;
-    public final vw2 d;
-    public final gw2 e;
-    public Object f;
-    public final Object h;
 
-    public ho3(vw2 vw2Var, gw2 gw2Var) {
-        super(-1);
-        this.d = vw2Var;
-        this.e = gw2Var;
-        this.f = r3c.a;
-        this.h = edd.b(gw2Var.getContext());
+import android.os.SystemClock;
+import android.util.Log;
+import java.io.File;
+import java.util.concurrent.CountDownLatch;
+public final class ho3 implements jm7 {
+    public final String a;
+    public final long[] b;
+    public final io3 c;
+    public final File[] d;
+    public final File e;
+    public final CountDownLatch f;
+
+    public ho3(String str, long[] jArr, io3 io3Var, File[] fileArr, File file, CountDownLatch countDownLatch) {
+        this.a = str;
+        this.b = jArr;
+        this.c = io3Var;
+        this.d = fileArr;
+        this.e = file;
+        this.f = countDownLatch;
     }
 
     @Override
-    public final cx2 getCallerFrame() {
-        return this.e;
-    }
-
-    @Override
-    public final sw2 getContext() {
-        return this.e.getContext();
-    }
-
-    @Override
-    public final Object i() {
-        Object obj = this.f;
-        this.f = r3c.a;
-        return obj;
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        Object fp2Var;
-        Throwable a = ta9.a(obj);
-        if (a == null) {
-            fp2Var = obj;
-        } else {
-            fp2Var = new fp2(a, false);
-        }
-        gw2 gw2Var = this.e;
-        sw2 context = gw2Var.getContext();
-        vw2 vw2Var = this.d;
-        if (vw2Var.d(context)) {
-            this.f = fp2Var;
-            this.c = 0;
-            vw2Var.c(gw2Var.getContext(), this);
-            return;
-        }
-        d44 a2 = dnb.a();
-        if (a2.c >= 4294967296L) {
-            this.f = fp2Var;
-            this.c = 0;
-            ks ksVar = a2.e;
-            if (ksVar == null) {
-                ksVar = new ks();
-                a2.e = ksVar;
-            }
-            ksVar.addLast(this);
-            return;
-        }
-        a2.g(true);
-        try {
-            sw2 context2 = gw2Var.getContext();
-            Object c = edd.c(context2, this.h);
-            gw2Var.resumeWith(obj);
-            edd.a(context2, c);
-            do {
-            } while (a2.i());
-        } finally {
-            try {
-            } finally {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        Object obj;
+        File file;
+        if (objArr.length != 0) {
+            Object obj2 = objArr[0];
+            String str = this.a;
+            if (str.equals(obj2)) {
+                this.b[0] = SystemClock.elapsedRealtime();
+                if (i == nm7.X1) {
+                    this.c.c(((Long) objArr[1]).longValue(), ((Long) objArr[2]).longValue());
+                    return;
+                }
+                if (i == nm7.Y1) {
+                    if (objArr.length > 1) {
+                        Object obj3 = objArr[1];
+                        if (obj3 instanceof File) {
+                            file = (File) obj3;
+                            this.d[0] = file;
+                        }
+                    }
+                    file = this.e;
+                    this.d[0] = file;
+                } else if (i == nm7.Z1) {
+                    StringBuilder p = wi8.p("speech models: ", str, " download failed (");
+                    if (objArr.length > 1) {
+                        obj = objArr[1];
+                    } else {
+                        obj = "";
+                    }
+                    p.append(obj);
+                    p.append(")");
+                    Log.d("Dictation", p.toString());
+                    oc7.d1().edit().remove("speech_models_checked").apply();
+                } else {
+                    return;
+                }
+                this.f.countDown();
             }
         }
-    }
-
-    public final String toString() {
-        return "DispatchedContinuation[" + this.d + ", " + s83.d(this.e) + ']';
-    }
-
-    @Override
-    public final fw2 d() {
-        return this;
     }
 }

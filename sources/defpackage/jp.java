@@ -2,206 +2,196 @@ package defpackage;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
+import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
-import android.net.Uri;
+import android.text.method.KeyListener;
+import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-public class jp extends ImageButton {
-    public final ko a;
-    public final kp b;
-    public boolean c;
+import android.view.ActionMode;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.AutoCompleteTextView;
+public class jp extends AutoCompleteTextView implements arb {
+    public static final int[] d = {16843126};
+    public final kp a;
+    public final pr b;
+    public final hi2 c;
 
-    public jp(Context context, AttributeSet attributeSet, int i) {
-        super(context, attributeSet, i);
-        xob.a(context);
-        this.c = false;
-        cnb.a(getContext(), this);
-        ko koVar = new ko(this);
-        this.a = koVar;
-        koVar.g(attributeSet, i);
+    public jp(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 2130968624);
+        yqb.a(context);
+        dpb.a(getContext(), this);
+        wm9 v = wm9.v(getContext(), attributeSet, d, 2130968624);
+        if (((TypedArray) v.c).hasValue(0)) {
+            setDropDownBackgroundDrawable(v.j(0));
+        }
+        v.y();
         kp kpVar = new kp(this);
-        this.b = kpVar;
-        kpVar.t(attributeSet, i);
+        this.a = kpVar;
+        kpVar.g(attributeSet, 2130968624);
+        pr prVar = new pr(this);
+        this.b = prVar;
+        prVar.f(attributeSet, 2130968624);
+        prVar.b();
+        hi2 hi2Var = new hi2(this);
+        this.c = hi2Var;
+        hi2Var.E(attributeSet, 2130968624);
+        KeyListener keyListener = getKeyListener();
+        if (!(keyListener instanceof NumberKeyListener)) {
+            boolean isFocusable = super.isFocusable();
+            boolean isClickable = super.isClickable();
+            boolean isLongClickable = super.isLongClickable();
+            int inputType = super.getInputType();
+            KeyListener w = hi2Var.w(keyListener);
+            if (w != keyListener) {
+                super.setKeyListener(w);
+                super.setRawInputType(inputType);
+                super.setFocusable(isFocusable);
+                super.setClickable(isClickable);
+                super.setLongClickable(isLongClickable);
+            }
+        }
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.b();
-        }
-        kp kpVar = this.b;
+        kp kpVar = this.a;
         if (kpVar != null) {
             kpVar.b();
         }
+        pr prVar = this.b;
+        if (prVar != null) {
+            prVar.b();
+        }
+    }
+
+    @Override
+    public ActionMode.Callback getCustomSelectionActionModeCallback() {
+        return mxe.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        ko koVar = this.a;
-        if (koVar != null) {
-            return koVar.e();
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            return kpVar.e();
         }
         return null;
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        ko koVar = this.a;
-        if (koVar != null) {
-            return koVar.f();
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            return kpVar.f();
         }
         return null;
     }
 
-    public ColorStateList getSupportImageTintList() {
-        h24 h24Var;
-        kp kpVar = this.b;
-        if (kpVar == null || (h24Var = (h24) kpVar.d) == null) {
-            return null;
-        }
-        return (ColorStateList) h24Var.c;
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.b.d();
     }
 
-    public PorterDuff.Mode getSupportImageTintMode() {
-        h24 h24Var;
-        kp kpVar = this.b;
-        if (kpVar == null || (h24Var = (h24) kpVar.d) == null) {
-            return null;
-        }
-        return (PorterDuff.Mode) h24Var.d;
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.b.e();
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        if (!(((ImageView) this.b.c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
-            return true;
-        }
-        return false;
+    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        jod.a(editorInfo, onCreateInputConnection, this);
+        return this.c.F(onCreateInputConnection, editorInfo);
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.h();
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.h();
         }
     }
 
     @Override
     public void setBackgroundResource(int i) {
         super.setBackgroundResource(i);
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.i(i);
-        }
-    }
-
-    @Override
-    public void setImageBitmap(Bitmap bitmap) {
-        super.setImageBitmap(bitmap);
-        kp kpVar = this.b;
+        kp kpVar = this.a;
         if (kpVar != null) {
-            kpVar.b();
+            kpVar.i(i);
         }
     }
 
     @Override
-    public void setImageDrawable(Drawable drawable) {
-        kp kpVar = this.b;
-        if (kpVar != null && drawable != null && !this.c) {
-            kpVar.b = drawable.getLevel();
-        }
-        super.setImageDrawable(drawable);
-        if (kpVar != null) {
-            kpVar.b();
-            if (!this.c) {
-                ImageView imageView = (ImageView) kpVar.c;
-                if (imageView.getDrawable() != null) {
-                    imageView.getDrawable().setLevel(kpVar.b);
-                }
-            }
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        pr prVar = this.b;
+        if (prVar != null) {
+            prVar.b();
         }
     }
 
     @Override
-    public void setImageLevel(int i) {
-        super.setImageLevel(i);
-        this.c = true;
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        pr prVar = this.b;
+        if (prVar != null) {
+            prVar.b();
+        }
     }
 
     @Override
-    public void setImageResource(int i) {
-        kp kpVar = this.b;
-        ImageView imageView = (ImageView) kpVar.c;
-        if (i != 0) {
-            Drawable a = hmd.a(imageView.getContext(), i);
-            if (a != null) {
-                lq3.a(a);
-            }
-            imageView.setImageDrawable(a);
-        } else {
-            imageView.setImageDrawable(null);
-        }
-        kpVar.b();
+    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
+        super.setCustomSelectionActionModeCallback(mxe.e(callback, this));
     }
 
     @Override
-    public void setImageURI(Uri uri) {
-        super.setImageURI(uri);
-        kp kpVar = this.b;
-        if (kpVar != null) {
-            kpVar.b();
-        }
+    public void setDropDownBackgroundResource(int i) {
+        setDropDownBackgroundDrawable(kod.a(getContext(), i));
+    }
+
+    public void setEmojiCompatEnabled(boolean z) {
+        this.c.S(z);
+    }
+
+    @Override
+    public void setKeyListener(KeyListener keyListener) {
+        super.setKeyListener(this.c.w(keyListener));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.m(colorStateList);
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.m(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        ko koVar = this.a;
-        if (koVar != null) {
-            koVar.n(mode);
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.n(mode);
         }
     }
 
-    public void setSupportImageTintList(ColorStateList colorStateList) {
-        kp kpVar = this.b;
-        if (kpVar != null) {
-            h24 h24Var = (h24) kpVar.d;
-            h24 h24Var2 = h24Var;
-            if (h24Var == null) {
-                Object obj = new Object();
-                kpVar.d = obj;
-                h24Var2 = obj;
-            }
-            h24Var2.c = colorStateList;
-            h24Var2.b = true;
-            kpVar.b();
-        }
+    @Override
+    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
+        pr prVar = this.b;
+        prVar.l(colorStateList);
+        prVar.b();
     }
 
-    public void setSupportImageTintMode(PorterDuff.Mode mode) {
-        kp kpVar = this.b;
-        if (kpVar != null) {
-            h24 h24Var = (h24) kpVar.d;
-            h24 h24Var2 = h24Var;
-            if (h24Var == null) {
-                Object obj = new Object();
-                kpVar.d = obj;
-                h24Var2 = obj;
-            }
-            h24Var2.d = mode;
-            h24Var2.a = true;
-            kpVar.b();
+    @Override
+    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
+        pr prVar = this.b;
+        prVar.m(mode);
+        prVar.b();
+    }
+
+    @Override
+    public final void setTextAppearance(Context context, int i) {
+        super.setTextAppearance(context, i);
+        pr prVar = this.b;
+        if (prVar != null) {
+            prVar.g(context, i);
         }
     }
 }

@@ -1,22 +1,39 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-public final class f0d extends b4 {
-    public static final Parcelable.Creator<f0d> CREATOR = new hv6((byte) 24);
-    public final ArrayList a;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.WeakHashMap;
+public final class f0d implements Runnable {
+    public final byte a;
+    public final g0d b;
 
-    public f0d(ArrayList arrayList) {
-        arrayList.getClass();
-        this.a = arrayList;
+    public f0d(g0d g0dVar, byte b) {
+        this.a = b;
+        this.b = g0dVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.getClass();
-        int r = jte.r(parcel, 20293);
-        jte.p(parcel, 1, this.a);
-        jte.s(parcel, r);
+    public final void run() {
+        byte b = this.a;
+        g0d g0dVar = this.b;
+        switch (b) {
+            case 0:
+                if (g0dVar.w != 0) {
+                    g0dVar.i(false);
+                    return;
+                }
+                return;
+            default:
+                int i = g0dVar.H - 1;
+                g0dVar.H = i;
+                if (i == 0) {
+                    View view = g0dVar.F;
+                    RectF rectF = uyc.e;
+                    WeakHashMap weakHashMap = kfc.a;
+                    g0dVar.k(uyc.a(dfc.a(view), view, view.getRootView()), false);
+                    return;
+                }
+                return;
+        }
     }
 }

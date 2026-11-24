@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class zy2 {
+public interface zy2 {
+    void g(wy2 wy2Var);
 }

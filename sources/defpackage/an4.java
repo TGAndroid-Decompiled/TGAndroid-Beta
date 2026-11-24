@@ -1,14 +1,14 @@
 package defpackage;
-
-import android.view.View;
-public final class an4 {
-    public boolean a;
-    public int b;
-    public int c;
+public final class an4 extends qx2 {
+    public e79 a;
+    public ym4 b;
+    public Object c;
     public int d;
-    public int e;
-    public Object f;
-    public Object g;
-    public Object h;
-    public View i;
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.c = obj;
+        this.d |= Integer.MIN_VALUE;
+        return lje.b(null, this);
+    }
 }

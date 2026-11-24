@@ -1,16 +1,42 @@
 package defpackage;
-public final class z2e implements zn7 {
-    public static final z2e a = new Object();
-    public static final w84 b = new w84("logEventKey", b00.m(yjb.p(gid.class, new bgd(1))));
-    public static final w84 c = new w84("eventCount", b00.m(yjb.p(gid.class, new bgd(2))));
-    public static final w84 d = new w84("inferenceDurationStats", b00.m(yjb.p(gid.class, new bgd(3))));
+public final class z2e {
+    public final byte a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ssd ssdVar = (ssd) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ssdVar.a);
-        ao7Var.a(c, ssdVar.b);
-        ao7Var.a(d, ssdVar.c);
+    public static int a(long j, byte[] bArr, int i, int i2) {
+        int i3;
+        if (i2 != 0) {
+            if (i2 != 1) {
+                if (i2 == 2) {
+                    byte a = x1e.a(j, bArr);
+                    byte a2 = x1e.a(j + 1, bArr);
+                    z2e z2eVar = o2e.a;
+                    if (i > -12 || a > -65 || a2 > -65) {
+                        return -1;
+                    }
+                    i ^= a << 8;
+                    i3 = a2 << 16;
+                } else {
+                    zo4.f();
+                    return 0;
+                }
+            } else {
+                byte a3 = x1e.a(j, bArr);
+                z2e z2eVar2 = o2e.a;
+                if (i > -12 || a3 > -65) {
+                    return -1;
+                }
+                i3 = a3 << 8;
+            }
+            return i ^ i3;
+        }
+        z2e z2eVar3 = o2e.a;
+        if (i > -12) {
+            return -1;
+        }
+        return i;
+    }
+
+    public final boolean b(byte[] r22, int r23, int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.z2e.b(byte[], int, int):boolean");
     }
 }

@@ -1,94 +1,40 @@
 package defpackage;
 
-import android.net.Uri;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-public final class hf5 extends if5 {
-    public static final hf5 o;
-    public final List d;
-    public final List e;
-    public final List f;
-    public final List g;
-    public final List h;
-    public final List i;
-    public final fm4 j;
-    public final List k;
-    public final Map l;
-    public final List m;
-    public final sk4 n;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class hf5 extends AnimatorListenerAdapter {
+    public final float[] a;
+    public final float b;
+    public final float c;
+    public final boolean d;
+    public final if5 e;
 
-    static {
-        List list = Collections.EMPTY_LIST;
-        o = new hf5("", list, list, list, list, list, list, null, list, false, Collections.EMPTY_MAP, list, null);
-    }
-
-    public hf5(String str, List list, List list2, List list3, List list4, List list5, List list6, fm4 fm4Var, List list7, boolean z, Map map, List list8, sk4 sk4Var) {
-        super(str, list, z);
-        List list9;
-        ArrayList arrayList = new ArrayList();
-        for (int i = 0; i < list2.size(); i++) {
-            Uri uri = ((gf5) list2.get(i)).a;
-            if (!arrayList.contains(uri)) {
-                arrayList.add(uri);
-            }
-        }
-        b(arrayList, list3);
-        b(arrayList, list4);
-        b(arrayList, list5);
-        b(arrayList, list6);
-        this.d = DesugarCollections.unmodifiableList(arrayList);
-        this.e = DesugarCollections.unmodifiableList(list2);
-        this.f = DesugarCollections.unmodifiableList(list3);
-        this.g = DesugarCollections.unmodifiableList(list4);
-        this.h = DesugarCollections.unmodifiableList(list5);
-        this.i = DesugarCollections.unmodifiableList(list6);
-        this.j = fm4Var;
-        if (list7 != null) {
-            list9 = DesugarCollections.unmodifiableList(list7);
-        } else {
-            list9 = null;
-        }
-        this.k = list9;
-        this.l = DesugarCollections.unmodifiableMap(map);
-        this.m = DesugarCollections.unmodifiableList(list8);
-        this.n = sk4Var;
-    }
-
-    public static void b(ArrayList arrayList, List list) {
-        for (int i = 0; i < list.size(); i++) {
-            Uri uri = ((ff5) list.get(i)).a;
-            if (!arrayList.contains(uri)) {
-                arrayList.add(uri);
-            }
-        }
-    }
-
-    public static ArrayList c(List list, int i, List list2) {
-        ArrayList arrayList = new ArrayList(list2.size());
-        for (int i2 = 0; i2 < list.size(); i2++) {
-            Object obj = list.get(i2);
-            int i3 = 0;
-            while (true) {
-                if (i3 < list2.size()) {
-                    t8b t8bVar = (t8b) list2.get(i3);
-                    if (t8bVar.b == i && t8bVar.c == i2) {
-                        arrayList.add(obj);
-                        break;
-                    }
-                    i3++;
-                }
-            }
-        }
-        return arrayList;
+    public hf5(if5 if5Var, float[] fArr, float f, float f2, boolean z) {
+        this.e = if5Var;
+        this.a = fArr;
+        this.b = f;
+        this.c = f2;
+        this.d = z;
     }
 
     @Override
-    public final Object a(List list) {
-        ArrayList c = c(this.e, 0, list);
-        List list2 = Collections.EMPTY_LIST;
-        return new hf5(this.a, this.b, c, list2, c(this.g, 1, list), c(this.h, 2, list), list2, this.j, this.k, this.c, this.l, this.m, this.n);
+    public final void onAnimationEnd(Animator animator) {
+        int i;
+        float[] fArr = this.a;
+        fArr[0] = 1.0f;
+        this.e.a.b.l = gm.R1(this.b, this.c, 1.0f);
+        vs4 vs4Var = this.e.a.b;
+        float f = vs4Var.f;
+        float f2 = (1.0f - fArr[0]) * 360.0f;
+        if (this.d) {
+            i = 1;
+        } else {
+            i = -1;
+        }
+        vs4Var.f = (f2 * i) + f;
+        this.e.a.b.b();
+        if5 if5Var = this.e;
+        if5Var.a(if5Var.a.b.l);
+        this.e.a.j(750L);
     }
 }

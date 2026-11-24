@@ -1,88 +1,63 @@
 package defpackage;
 
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.transition.TransitionSet;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class tgc extends LinearLayout {
-    public HashMap a;
-    public ArrayList b;
-    public ArrayList c;
-    public TransitionSet d;
-    public boolean e;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class tgc extends View {
+    public sgc a;
+    public int b;
+    public final RectF c;
+    public CharSequence d;
+    public uib e;
     public boolean f;
-    public Runnable h;
-    public lfc n;
-    public TextPaint r;
+    public cba h;
+    public final ln n;
+    public final vgc r;
 
-    public final void a(int i, String str, String str2) {
-        HashMap hashMap = this.a;
-        if (hashMap.get(str2) != null) {
-            return;
-        }
-        sgc sgcVar = new sgc(getContext(), this.n, i);
-        sgcVar.a = str2;
-        int L = gl.q.x - gl.L(120.0f);
-        TextView textView = sgcVar.c;
-        StaticLayout c = lwa.c(str, textView.getPaint(), L, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, L, 10, true);
-        if (c != null) {
-            L = 0;
-            for (int i2 = 0; i2 < c.getLineCount(); i2++) {
-                L = (int) Math.max(L, Math.ceil(c.getLineWidth(i2)));
-            }
-        }
-        textView.setMaxWidth(L);
-        textView.setText(str);
-        sgcVar.b.setImageResource(i);
-        hashMap.put(str2, sgcVar);
-        if (this.e) {
-            this.b.add(sgcVar);
-            return;
-        }
-        this.f = true;
-        addView(sgcVar, nme.t(-2, -2, 1, 4, 0, 0, 4));
+    public tgc(vgc vgcVar, Context context) {
+        super(context);
+        this.r = vgcVar;
+        this.c = new RectF();
+        this.n = new ln(360L, this, d53.h);
     }
 
-    public final CharSequence b(String str) {
-        if (str == null) {
-            return "";
-        }
-        return TextUtils.ellipsize(str, this.r, gl.L(300.0f), TextUtils.TruncateAt.END);
+    @Override
+    public int getId() {
+        return this.a.a;
     }
 
-    public final void c(String str) {
-        sgc sgcVar = (sgc) this.a.remove(str);
-        this.n.m.remove(sgcVar);
-        if (sgcVar != null) {
-            if (this.e) {
-                if (!this.b.remove(sgcVar)) {
-                    this.c.add(sgcVar);
-                    return;
-                }
-                return;
-            }
-            this.f = true;
-            removeView(sgcVar);
-        }
+    @Override
+    public final void onDraw(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.tgc.onDraw(android.graphics.Canvas):void");
     }
 
-    public int getChildsHight() {
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z;
         int i;
-        int childCount = getChildCount();
-        if (childCount > 0) {
-            i = gl.L(16.0f);
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        sgc sgcVar = this.a;
+        if (sgcVar != null && (i = this.r.H) != -1 && sgcVar.a == i) {
+            z = true;
         } else {
-            i = 0;
+            z = false;
         }
-        return de9.y(32.0f, childCount, i);
+        accessibilityNodeInfo.setSelected(z);
     }
 
-    public void setOnViewsUpdated(Runnable runnable) {
-        this.h = runnable;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        sgc sgcVar = this.a;
+        vgc vgcVar = this.r;
+        setMeasuredDimension(gm.L(vgcVar.r << 1) + sgcVar.a(vgcVar.c) + vgcVar.J, View.MeasureSpec.getSize(i2));
+    }
+
+    public void setReordering(boolean z) {
+        if (this.f == z) {
+            return;
+        }
+        this.f = z;
+        invalidate();
     }
 }

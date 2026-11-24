@@ -1,50 +1,45 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class py6 implements RequestDelegate {
-    public final byte a = 1;
-    public final boolean b;
-    public final boolean c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
+import android.text.TextUtils;
+import j$.util.Objects;
+public class py6 {
+    public final String a;
+    public final int b;
+    public final int c;
 
-    public py6(xy6 xy6Var, boolean z, oy6 oy6Var, String str, boolean z2) {
-        this.d = xy6Var;
-        this.b = z;
-        this.e = oy6Var;
-        this.f = str;
-        this.c = z2;
+    public py6(String str, int i, int i2) {
+        this.a = str;
+        this.b = i;
+        this.c = i2;
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        Object obj = this.f;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        switch (b) {
-            case 0:
-                xy6 xy6Var = (xy6) obj3;
-                xy6Var.getClass();
-                gl.d3(new zo6(xy6Var, this.b, (oy6) obj2, (String) obj, tL_error, tLObject, this.c));
-                return;
-            default:
-                vqa vqaVar = (vqa) obj3;
-                vqaVar.getClass();
-                gl.d3(new zo6(vqaVar, tLObject, this.b, (TLRPC.Document) obj2, this.c, tL_error, (TL_stars.saveStarGift) obj));
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof py6)) {
+            return false;
+        }
+        py6 py6Var = (py6) obj;
+        int i = py6Var.c;
+        String str = py6Var.a;
+        int i2 = py6Var.b;
+        int i3 = this.c;
+        String str2 = this.a;
+        int i4 = this.b;
+        if (i4 >= 0 && i2 >= 0) {
+            if (TextUtils.equals(str2, str) && i4 == i2 && i3 == i) {
+                return true;
+            }
+            return false;
+        } else if (TextUtils.equals(str2, str) && i3 == i) {
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public py6(vqa vqaVar, boolean z, TLRPC.Document document, boolean z2, TL_stars.saveStarGift savestargift) {
-        this.d = vqaVar;
-        this.b = z;
-        this.e = document;
-        this.c = z2;
-        this.f = savestargift;
+    public final int hashCode() {
+        return Objects.hash(this.a, Integer.valueOf(this.c));
     }
 }

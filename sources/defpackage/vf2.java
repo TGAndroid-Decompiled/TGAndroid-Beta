@@ -1,98 +1,109 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.RemoteViews;
-import android.widget.RemoteViewsService;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.TLRPC;
-public final class vf2 implements RemoteViewsService.RemoteViewsFactory {
-    public ArrayList a;
-    public Context b;
-    public int c;
-    public j5 d;
-    public Paint e;
-    public RectF f;
-    public vf6 g;
-    public vf6 h;
-    public boolean i;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class vf2 extends FrameLayout implements vlb {
+    public final TextView a;
+    public final ImageView b;
+    public final FrameLayout c;
+    public final ylb d;
+    public int e;
 
-    @Override
-    public final int getCount() {
-        if (this.i) {
-            return 1;
+    public vf2(Context context, ylb ylbVar) {
+        super(context);
+        int i;
+        this.d = ylbVar;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.c = frameLayout;
+        frameLayout.setBackgroundResource(2131232450);
+        Drawable background = frameLayout.getBackground();
+        int i2 = cmb.wf;
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        anb.x(frameLayout, background, i2, ylbVar, mode);
+        addView(frameLayout, qoe.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.b = imageView;
+        imageView.setImageResource(2131231247);
+        imageView.setColorFilter(new PorterDuffColorFilter(a(cmb.uf), mode));
+        imageView.setPadding(0, gm.L(2.0f), 0, 0);
+        frameLayout.addView(imageView, qoe.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setPadding(0, 0, 0, gm.L(1.0f));
+        textView.setTextSize(1, 14.0f);
+        if (cmb.g1(ylbVar)) {
+            i = cmb.Ea;
+        } else {
+            i = cmb.vf;
         }
-        return this.a.size() + 1;
+        anb.X(textView, i, ylbVar);
+        textView.setTypeface(gm.o());
+        addView(textView, qoe.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
+        if (cmb.g1(ylbVar)) {
+            int i3 = cmb.Da;
+            anb.B(frameLayout, cmb.b0(0, a(i3)), anb.M(i3), ylbVar);
+            imageView.setVisibility(8);
+        }
+    }
+
+    public final int a(int i) {
+        Integer num;
+        ylb ylbVar = this.d;
+        if (ylbVar != null) {
+            num = Integer.valueOf(ylbVar.h(i));
+        } else {
+            num = null;
+        }
+        if (num != null) {
+            return num.intValue();
+        }
+        return cmb.w0(null, i, false);
+    }
+
+    public FrameLayout getBackgroundLayout() {
+        return this.c;
+    }
+
+    public ImageView getImageView() {
+        return this.b;
+    }
+
+    public TextView getTextView() {
+        return this.a;
     }
 
     @Override
-    public final long getItemId(int i) {
-        return i;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(40.0f), 1073741824));
+    }
+
+    public void setText(String str) {
+        this.a.setText(str);
     }
 
     @Override
-    public final RemoteViews getLoadingView() {
-        return null;
-    }
-
-    @Override
-    public final android.widget.RemoteViews getViewAt(int r25) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vf2.getViewAt(int):android.widget.RemoteViews");
-    }
-
-    @Override
-    public final int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public final boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public final void onCreate() {
-        a.v();
-    }
-
-    @Override
-    public final void onDataSetChanged() {
-        ArrayList arrayList = this.a;
-        arrayList.clear();
-        vf6 vf6Var = this.h;
-        vf6Var.b();
-        j5 j5Var = this.d;
-        if (j5Var != null) {
-            int i = j5Var.a;
-            if (y6c.h(i).o()) {
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                vf6 vf6Var2 = new vf6();
-                ad7 Y = ad7.Y(i);
-                int i2 = this.c;
-                vf6 vf6Var3 = this.g;
-                CountDownLatch countDownLatch = new CountDownLatch(1);
-                Y.a.c(new ic7(Y, i2, arrayList, 0, vf6Var3, vf6Var2, arrayList3, arrayList2, countDownLatch));
-                try {
-                    countDownLatch.await();
-                } catch (Exception e) {
-                    Y.n(e, true);
-                }
-                na7.q1(i).a4(arrayList2, true);
-                na7.q1(i).U3(arrayList3, true);
-                vf6Var.b();
-                int m = vf6Var2.m();
-                for (int i3 = 0; i3 < m; i3++) {
-                    vf6Var.k(new k27(j5Var.a, (TLRPC.Message) vf6Var2.n(i3), (vf6) null, (vf6) null, false, true), vf6Var2.j(i3));
-                }
+    public final void updateColors() {
+        try {
+            int a = a(cmb.uf);
+            ImageView imageView = this.b;
+            if (imageView != null && a != this.e) {
+                this.e = a;
+                imageView.setColorFilter(new PorterDuffColorFilter(a, PorterDuff.Mode.MULTIPLY));
             }
+            invalidate();
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
     }
 
     @Override
-    public final void onDestroy() {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

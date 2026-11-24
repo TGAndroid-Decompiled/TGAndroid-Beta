@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 @Deprecated
-public class UndoView extends FrameLayout implements tjb {
+public class UndoView extends FrameLayout implements vlb {
     public static final int j0 = 0;
     public final TextPaint E;
     public final Paint F;
@@ -45,10 +45,10 @@ public class UndoView extends FrameLayout implements tjb {
     public CharSequence T;
     public int U;
     public final ShapeDrawable V;
-    public final wjb W;
+    public final ylb W;
     public byte a;
     public boolean a0;
-    public final ke1 b;
+    public final sf1 b;
     public final ArrayList b0;
     public final TextView c;
     public final ArrayList c0;
@@ -56,10 +56,10 @@ public class UndoView extends FrameLayout implements tjb {
     public final ArrayList d0;
     public final ImageView e;
     public int e0;
-    public final ry8 f;
+    public final s09 f;
     public StaticLayout f0;
     public StaticLayout g0;
-    public final be0 h;
+    public final bf0 h;
     public float h0;
     public float i0;
     public final LinearLayout n;
@@ -69,43 +69,43 @@ public class UndoView extends FrameLayout implements tjb {
     public Object x;
     public final int y;
 
-    public UndoView(Context context, org.telegram.ui.ActionBar.d dVar, boolean z, wjb wjbVar) {
+    public UndoView(Context context, org.telegram.ui.ActionBar.d dVar, boolean z, ylb ylbVar) {
         super(context);
         this.a = (byte) 0;
-        this.y = y6c.t0;
+        this.y = z8c.t0;
         this.L = -1;
         this.U = 1;
         this.b0 = new ArrayList();
         this.c0 = new ArrayList();
         this.d0 = new ArrayList();
-        this.e0 = gl.L(8.0f);
+        this.e0 = gm.L(8.0f);
         this.h0 = 1.0f;
-        this.W = wjbVar;
+        this.W = ylbVar;
         this.s = dVar;
         this.S = z;
-        ke1 ke1Var = new ke1(this, context, wjbVar);
-        this.b = ke1Var;
-        ke1Var.setTextSize(1, 15.0f);
-        int i = bkb.xj;
-        zkb.X(ke1Var, i, wjbVar);
-        int i2 = bkb.wj;
-        zkb.G(ke1Var, i2, wjbVar);
-        ke1Var.setMovementMethod(new d5c(this));
-        addView(ke1Var, nme.d(-2, -2.0f, 51, 45.0f, 13.0f, 0.0f, 0.0f));
+        sf1 sf1Var = new sf1(this, context, ylbVar);
+        this.b = sf1Var;
+        sf1Var.setTextSize(1, 15.0f);
+        int i = cmb.xj;
+        anb.X(sf1Var, i, ylbVar);
+        int i2 = cmb.wj;
+        anb.G(sf1Var, i2, ylbVar);
+        sf1Var.setMovementMethod(new d7c(this));
+        addView(sf1Var, qoe.d(-2, -2.0f, 51, 45.0f, 13.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.c = textView;
         textView.setTextSize(1, 13.0f);
-        zkb.X(textView, i, wjbVar);
-        zkb.G(textView, i2, wjbVar);
+        anb.X(textView, i, ylbVar);
+        anb.G(textView, i2, ylbVar);
         textView.setHighlightColor(0);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setMovementMethod(new cl((byte) 0));
-        addView(textView, nme.d(-2, -2.0f, 51, 58.0f, 27.0f, 8.0f, 0.0f));
+        textView.setMovementMethod(new cm((byte) 0));
+        addView(textView, qoe.d(-2, -2.0f, 51, 58.0f, 27.0f, 8.0f, 0.0f));
         ?? imageView = new ImageView(context);
         this.f = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i3 = bkb.vj;
+        int i3 = cmb.vj;
         i(i3, "info1", true);
         i(i3, "info2", true);
         i(i, "luc12", false);
@@ -121,42 +121,42 @@ public class UndoView extends FrameLayout implements tjb {
         i(i, "luc2", false);
         i(i, "luc1", false);
         i(i, "Oval", false);
-        addView((View) imageView, nme.d(54, -2.0f, 19, 3.0f, 0.0f, 0.0f, 0.0f));
-        be0 be0Var = new be0(context);
-        this.h = be0Var;
-        be0Var.setRoundRadius(gl.L(15.0f));
-        addView(be0Var, nme.d(30, 30.0f, 19, 15.0f, 0.0f, 0.0f, 0.0f));
+        addView((View) imageView, qoe.d(54, -2.0f, 19, 3.0f, 0.0f, 0.0f, 0.0f));
+        bf0 bf0Var = new bf0(context);
+        this.h = bf0Var;
+        bf0Var.setRoundRadius(gm.L(15.0f));
+        addView(bf0Var, qoe.d(30, 30.0f, 19, 15.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.n = linearLayout;
         linearLayout.setOrientation(0);
-        linearLayout.setBackground(bkb.Y(bkb.v0(i2, wjbVar) & 587202559, gl.L(2.0f), gl.L(2.0f)));
-        addView(linearLayout, nme.d(-2, -2.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        linearLayout.setOnClickListener(new c5c(this, (byte) 0));
+        linearLayout.setBackground(cmb.Y(cmb.v0(i2, ylbVar) & 587202559, gm.L(2.0f), gm.L(2.0f)));
+        addView(linearLayout, qoe.d(-2, -2.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
+        linearLayout.setOnClickListener(new c7c(this, (byte) 0));
         ImageView imageView2 = new ImageView(context);
         this.e = imageView2;
-        imageView2.setImageResource(2131231003);
-        zkb.s(imageView2, i2, wjbVar, PorterDuff.Mode.MULTIPLY);
-        linearLayout.addView(imageView2, nme.t(-2, -2, 19, 4, 4, 0, 4));
+        imageView2.setImageResource(2131231004);
+        anb.s(imageView2, i2, ylbVar, PorterDuff.Mode.MULTIPLY);
+        linearLayout.addView(imageView2, qoe.t(-2, -2, 19, 4, 4, 0, 4));
         TextView textView2 = new TextView(context);
         this.d = textView2;
-        ir2.t(textView2, 1, 14.0f);
-        ug8.x(textView2, i2, wjbVar, null, 2131743646);
-        linearLayout.addView(textView2, nme.t(-2, -2, 19, 6, 4, 8, 4));
-        this.G = new RectF(gl.L(15.0f), gl.L(15.0f), gl.L(33.0f), gl.L(33.0f));
+        ts2.s(textView2, 1, 14.0f);
+        wi8.x(textView2, i2, ylbVar, null, 2131743572);
+        linearLayout.addView(textView2, qoe.t(-2, -2, 19, 6, 4, 8, 4));
+        this.G = new RectF(gm.L(15.0f), gm.L(15.0f), gm.L(33.0f), gm.L(33.0f));
         Paint paint = new Paint(1);
         this.F = paint;
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gl.L(2.0f));
+        paint.setStrokeWidth(gm.L(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setColor(bkb.v0(i, wjbVar));
+        paint.setColor(cmb.v0(i, ylbVar));
         TextPaint textPaint = new TextPaint(1);
         this.E = textPaint;
-        textPaint.setTextSize(gl.L(12.0f));
-        textPaint.setTypeface(gl.o());
-        textPaint.setColor(bkb.v0(i, wjbVar));
+        textPaint.setTextSize(gm.L(12.0f));
+        textPaint.setTypeface(gm.o());
+        textPaint.setColor(cmb.v0(i, ylbVar));
         setWillNotDraw(false);
-        this.V = bkb.b0(gl.L(10.0f), bkb.v0(i3, wjbVar));
-        setOnTouchListener(new wmb((byte) 4));
+        this.V = cmb.b0(gm.L(10.0f), cmb.v0(i3, ylbVar));
+        setOnTouchListener(new xob((byte) 4));
         setVisibility(4);
     }
 
@@ -166,7 +166,7 @@ public class UndoView extends FrameLayout implements tjb {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.vj));
+        hashSet.add(Integer.valueOf(cmb.vj));
     }
 
     public final boolean c() {
@@ -174,7 +174,7 @@ public class UndoView extends FrameLayout implements tjb {
         Object obj;
         int i2 = this.L;
         if (i2 != 11 && i2 != 24 && i2 != 6 && i2 != 3 && i2 != 5 && i2 != 13 && i2 != 14 && i2 != 74) {
-            if ((i2 != 7 || !na7.q1(this.y).G0.isEmpty()) && (i = this.L) != 83 && i != 85) {
+            if ((i2 != 7 || !oc7.r1(this.y).G0.isEmpty()) && (i = this.L) != 83 && i != 85) {
                 if (i != 88 || (obj = this.x) == null || ((Integer) obj).intValue() <= 0) {
                     return false;
                 }
@@ -209,26 +209,26 @@ public class UndoView extends FrameLayout implements tjb {
             if (i2 == 0 || i2 == 1 || i2 == 95 || i2 == 26 || i2 == 27) {
                 for (int i3 = 0; i3 < this.M.size(); i3++) {
                     long longValue = ((Long) this.M.get(i3)).longValue();
-                    na7 q1 = na7.q1(this.y);
+                    oc7 r1 = oc7.r1(this.y);
                     int i4 = this.L;
                     if (i4 != 0 && i4 != 26) {
                         z2 = false;
                     } else {
                         z2 = true;
                     }
-                    TLRPC.Dialog dialog = (TLRPC.Dialog) q1.R.f(longValue);
+                    TLRPC.Dialog dialog = (TLRPC.Dialog) r1.R.f(longValue);
                     if (dialog != null) {
                         if (z2) {
-                            q1.v0.l(longValue);
+                            r1.v0.l(longValue);
                         } else {
-                            q1.u0.l(longValue);
+                            r1.u0.l(longValue);
                             if (!z) {
-                                q1.y.add(dialog);
-                                q1.Y4(null);
+                                r1.y.add(dialog);
+                                r1.b5(null);
                             }
                         }
                         if (!z) {
-                            q1.getNotificationCenter().k(kk7.r, Boolean.TRUE);
+                            r1.getNotificationCenter().k(nm7.r, Boolean.TRUE);
                         }
                     }
                     g(this.L, longValue);
@@ -249,7 +249,7 @@ public class UndoView extends FrameLayout implements tjb {
                     animatorSet.setDuration(180L);
                 }
                 animatorSet.setInterpolator(new DecelerateInterpolator());
-                animatorSet.addListener(new iab(this, (byte) 12));
+                animatorSet.addListener(new q7b(this, (byte) 14));
                 animatorSet.start();
                 return;
             }
@@ -265,7 +265,7 @@ public class UndoView extends FrameLayout implements tjb {
     public final void dispatchDraw(Canvas canvas) {
         if (this.Q != 0.0f) {
             canvas.save();
-            float measuredHeight = (getMeasuredHeight() - this.i0) + gl.L(9.0f);
+            float measuredHeight = (getMeasuredHeight() - this.i0) + gm.L(9.0f);
             if (measuredHeight > 0.0f) {
                 canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight);
                 super.dispatchDraw(canvas);
@@ -311,16 +311,16 @@ public class UndoView extends FrameLayout implements tjb {
 
     public final void h(int i, int i2) {
         this.a0 = true;
-        bkb.A1(-115203550, this.V);
-        ke1 ke1Var = this.b;
-        zkb.q(ke1Var);
-        int i3 = bkb.wj;
-        wjb wjbVar = this.W;
-        zkb.G(ke1Var, i3, wjbVar);
+        cmb.A1(-115203550, this.V);
+        sf1 sf1Var = this.b;
+        anb.q(sf1Var);
+        int i3 = cmb.wj;
+        ylb ylbVar = this.W;
+        anb.G(sf1Var, i3, ylbVar);
         TextView textView = this.c;
-        zkb.q(textView);
-        zkb.G(textView, i3, wjbVar);
-        ke1Var.setTextColor(-1);
+        anb.q(textView);
+        anb.G(textView, i3, ylbVar);
+        sf1Var.setTextColor(-1);
         textView.setTextColor(-1);
         ArrayList arrayList = this.b0;
         int indexOf = arrayList.indexOf("info1");
@@ -337,9 +337,9 @@ public class UndoView extends FrameLayout implements tjb {
             arrayList3.remove(indexOf2);
             arrayList2.remove(indexOf2);
         }
-        ry8 ry8Var = this.f;
-        ry8Var.h(-14540254, "info1");
-        ry8Var.h(-14540254, "info2");
+        s09 s09Var = this.f;
+        s09Var.h(-14540254, "info1");
+        s09Var.h(-14540254, "info2");
     }
 
     public final void i(int i, String str, boolean z) {
@@ -355,7 +355,7 @@ public class UndoView extends FrameLayout implements tjb {
             arrayList3.add(Integer.valueOf(i));
             arrayList2.add(Boolean.valueOf(z));
         }
-        int v0 = bkb.v0(i, this.W);
+        int v0 = cmb.v0(i, this.W);
         if (z) {
             v0 |= -16777216;
         }
@@ -387,7 +387,7 @@ public class UndoView extends FrameLayout implements tjb {
         k(j, i, obj, null, null, null);
     }
 
-    public final void n(java.util.ArrayList r39, int r40, java.lang.Object r41, java.lang.Object r42, java.lang.Runnable r43, java.lang.Runnable r44) {
+    public final void n(java.util.ArrayList r38, int r39, java.lang.Object r40, java.lang.Object r41, java.lang.Runnable r42, java.lang.Runnable r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.n(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 
@@ -400,7 +400,7 @@ public class UndoView extends FrameLayout implements tjb {
         ShapeDrawable shapeDrawable = this.V;
         if (i2 != 0) {
             canvas.save();
-            float measuredHeight = (getMeasuredHeight() - this.i0) + this.e0 + gl.L(1.0f);
+            float measuredHeight = (getMeasuredHeight() - this.i0) + this.e0 + gm.L(1.0f);
             if (measuredHeight > 0.0f) {
                 canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight);
                 super.dispatchDraw(canvas);
@@ -448,7 +448,7 @@ public class UndoView extends FrameLayout implements tjb {
                 if (f3 < 1.0f) {
                     textPaint.setAlpha((int) ((1.0f - f3) * alpha));
                     canvas.save();
-                    canvas.translate(rectF.centerX() - (this.K / 2), (gl.L(10.0f) * this.h0) + gl.L(17.2f));
+                    canvas.translate(rectF.centerX() - (this.K / 2), (gm.L(10.0f) * this.h0) + gm.L(17.2f));
                     this.g0.draw(canvas);
                     textPaint.setAlpha(alpha);
                     canvas.restore();
@@ -460,7 +460,7 @@ public class UndoView extends FrameLayout implements tjb {
                     textPaint.setAlpha((int) (alpha * f4));
                 }
                 canvas.save();
-                canvas.translate(rectF.centerX() - (this.K / 2), ls6.B(1.0f, this.h0, gl.L(10.0f), gl.L(17.2f)));
+                canvas.translate(rectF.centerX() - (this.K / 2), kt6.B(1.0f, this.h0, gm.L(10.0f), gm.L(17.2f)));
                 this.f0.draw(canvas);
                 if (this.h0 != 1.0f) {
                     textPaint.setAlpha(alpha);
@@ -490,7 +490,7 @@ public class UndoView extends FrameLayout implements tjb {
     public void setAdditionalTranslationY(float f) {
         if (this.Q != f) {
             this.Q = f;
-            setTranslationY(((this.i0 - this.e0) + gl.L(8.0f)) - this.Q);
+            setTranslationY(((this.i0 - this.e0) + gm.L(8.0f)) - this.Q);
             invalidate();
         }
     }
@@ -498,7 +498,7 @@ public class UndoView extends FrameLayout implements tjb {
     public void setEnterOffset(float f) {
         if (this.i0 != f) {
             this.i0 = f;
-            setTranslationY(((f - this.e0) + gl.L(8.0f)) - this.Q);
+            setTranslationY(((f - this.e0) + gm.L(8.0f)) - this.Q);
             invalidate();
         }
     }
@@ -517,39 +517,39 @@ public class UndoView extends FrameLayout implements tjb {
 
     @Override
     public final void updateColors() {
-        wjb wjbVar;
+        ylb ylbVar;
         ArrayList arrayList = this.b0;
         try {
             if (!this.a0) {
                 int i = 0;
                 while (true) {
                     int size = arrayList.size();
-                    wjbVar = this.W;
+                    ylbVar = this.W;
                     if (i >= size) {
                         break;
                     }
-                    int v0 = bkb.v0(((Integer) this.c0.get(i)).intValue(), wjbVar);
-                    ry8 ry8Var = this.f;
+                    int v0 = cmb.v0(((Integer) this.c0.get(i)).intValue(), ylbVar);
+                    s09 s09Var = this.f;
                     String str = (String) arrayList.get(i);
                     if (((Boolean) this.d0.get(i)).booleanValue()) {
                         v0 |= -16777216;
                     }
-                    ry8Var.h(v0, str);
+                    s09Var.h(v0, str);
                     i++;
                 }
                 Paint paint = this.F;
-                int i2 = bkb.xj;
-                paint.setColor(bkb.v0(i2, wjbVar));
-                this.E.setColor(bkb.v0(i2, wjbVar));
-                bkb.A1(bkb.v0(bkb.vj, wjbVar), this.V);
+                int i2 = cmb.xj;
+                paint.setColor(cmb.v0(i2, ylbVar));
+                this.E.setColor(cmb.v0(i2, ylbVar));
+                cmb.A1(cmb.v0(cmb.vj, ylbVar), this.V);
                 invalidate();
                 LinearLayout linearLayout = this.n;
                 if (linearLayout != null) {
-                    bkb.F1(linearLayout.getBackground(), bkb.v0(bkb.wj, wjbVar) & 587202559, true);
+                    cmb.F1(linearLayout.getBackground(), cmb.v0(cmb.wj, ylbVar) & 587202559, true);
                 }
             }
         } catch (Exception e) {
-            fa4.g(e, true);
+            fc4.g(e, true);
         }
     }
 
@@ -559,8 +559,8 @@ public class UndoView extends FrameLayout implements tjb {
     public void g(int i, long j) {
     }
 
-    public UndoView(qmb qmbVar, Context context) {
-        this(context, qmbVar, false, null);
+    public UndoView(rob robVar, Context context) {
+        this(context, robVar, false, null);
     }
 
     public UndoView(Context context) {

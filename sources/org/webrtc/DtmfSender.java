@@ -10,7 +10,7 @@ public class DtmfSender {
         if (this.nativeDtmfSender != 0) {
             return;
         }
-        sc8.j("DtmfSender has been disposed.");
+        dq9.m("DtmfSender has been disposed.");
     }
 
     private static native boolean nativeCanInsertDtmf(long j);

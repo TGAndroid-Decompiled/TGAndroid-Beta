@@ -1,32 +1,44 @@
 package defpackage;
-public final class d90 extends yy2 {
-    public final Double a;
-    public final int b;
-    public final boolean c;
+
+import java.util.List;
+public final class d90 extends sz2 {
+    public final int a;
+    public final String b;
+    public final int c;
     public final int d;
     public final long e;
     public final long f;
+    public final long g;
+    public final String h;
+    public final List i;
 
-    public d90(Double d, int i, boolean z, int i2, long j, long j2) {
-        this.a = d;
-        this.b = i;
-        this.c = z;
-        this.d = i2;
+    public d90(int i, String str, int i2, int i3, long j, long j2, long j3, String str2, List list) {
+        this.a = i;
+        this.b = str;
+        this.c = i2;
+        this.d = i3;
         this.e = j;
         this.f = j2;
+        this.g = j3;
+        this.h = str2;
+        this.i = list;
     }
 
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof yy2) {
-            yy2 yy2Var = (yy2) obj;
-            Double d = this.a;
-            if (d != null ? d.equals(((d90) yy2Var).a) : ((d90) yy2Var).a == null) {
-                d90 d90Var = (d90) yy2Var;
-                if (this.b == d90Var.b && this.c == d90Var.c && this.d == d90Var.d && this.e == d90Var.e && this.f == d90Var.f) {
-                    return true;
+        if (obj instanceof sz2) {
+            d90 d90Var = (d90) ((sz2) obj);
+            if (this.a == d90Var.a && this.b.equals(d90Var.b) && this.c == d90Var.c && this.d == d90Var.d && this.e == d90Var.e && this.f == d90Var.f && this.g == d90Var.g) {
+                String str = d90Var.h;
+                String str2 = this.h;
+                if (str2 != null ? str2.equals(str) : str == null) {
+                    List list = d90Var.i;
+                    List list2 = this.i;
+                    if (list2 != null ? list2.equals(list) : list == null) {
+                        return true;
+                    }
                 }
             }
         }
@@ -35,36 +47,26 @@ public final class d90 extends yy2 {
 
     public final int hashCode() {
         int hashCode;
-        int i;
-        Double d = this.a;
-        if (d == null) {
-            hashCode = 0;
-        } else {
-            hashCode = d.hashCode();
-        }
-        int i2 = (((hashCode ^ 1000003) * 1000003) ^ this.b) * 1000003;
-        if (this.c) {
-            i = 1231;
-        } else {
-            i = 1237;
-        }
         long j = this.e;
         long j2 = this.f;
-        return ((((((i2 ^ i) * 1000003) ^ this.d) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2));
+        long j3 = this.g;
+        int hashCode2 = (((((((((((((this.a ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c) * 1000003) ^ this.d) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003) ^ ((int) ((j3 >>> 32) ^ j3))) * 1000003;
+        int i = 0;
+        String str = this.h;
+        if (str == null) {
+            hashCode = 0;
+        } else {
+            hashCode = str.hashCode();
+        }
+        int i2 = (hashCode2 ^ hashCode) * 1000003;
+        List list = this.i;
+        if (list != null) {
+            i = list.hashCode();
+        }
+        return i2 ^ i;
     }
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("Device{batteryLevel=");
-        sb.append(this.a);
-        sb.append(", batteryVelocity=");
-        sb.append(this.b);
-        sb.append(", proximityOn=");
-        sb.append(this.c);
-        sb.append(", orientation=");
-        sb.append(this.d);
-        sb.append(", ramUsed=");
-        sb.append(this.e);
-        sb.append(", diskUsed=");
-        return ls6.p(sb, this.f, "}");
+        return "ApplicationExitInfo{pid=" + this.a + ", processName=" + this.b + ", reasonCode=" + this.c + ", importance=" + this.d + ", pss=" + this.e + ", rss=" + this.f + ", timestamp=" + this.g + ", traceFile=" + this.h + ", buildIdMappingForArch=" + this.i + "}";
     }
 }

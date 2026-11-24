@@ -1,10 +1,12 @@
 package defpackage;
-public abstract class efc implements dfc {
-    @Override
-    public void a() {
+
+import android.view.View;
+public abstract class efc {
+    public static int a(View view) {
+        return view.getImportantForAutofill();
     }
 
-    @Override
-    public void b() {
+    public static void b(View view, int i) {
+        view.setImportantForAutofill(i);
     }
 }

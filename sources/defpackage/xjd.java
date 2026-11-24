@@ -1,17 +1,38 @@
 package defpackage;
-public final class xjd implements zn7 {
-    public static final xjd a = new Object();
+public abstract class xjd {
+    public static final int[] a;
+    public static final int[] b;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+        int[] iArr = new int[ind.values().length];
+        b = iArr;
+        try {
+            iArr[ind.BYTE_STRING.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        throw new ClassCastException();
+        try {
+            b[ind.MESSAGE.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            int[] iArr2 = b;
+            ind indVar = ind.VOID;
+            iArr2[6] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        int[] iArr3 = new int[wi8.G(4).length];
+        a = iArr3;
+        try {
+            iArr3[3] = 1;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[1] = 2;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[0] = 3;
+        } catch (NoSuchFieldError unused6) {
+        }
     }
 }

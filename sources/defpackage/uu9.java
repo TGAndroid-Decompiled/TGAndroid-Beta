@@ -1,21 +1,18 @@
 package defpackage;
+public final class uu9 {
+    public k39 a;
+    public int b;
+    public String c;
+    public int d;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class uu9 extends TLObject {
-    public final vu9 a;
-    public final TLRPC.TL_secureFile b;
-    public final String c;
-    public TLRPC.TL_inputFile d;
-    public final byte[] e;
-    public final byte[] f;
-    public byte i;
-
-    public uu9(vu9 vu9Var, TLRPC.TL_secureFile tL_secureFile, String str, byte[] bArr, byte[] bArr2) {
-        this.a = vu9Var;
-        this.b = tL_secureFile;
-        this.c = str;
-        this.f = bArr;
-        this.e = bArr2;
+    public final boolean equals(Object obj) {
+        if (obj instanceof uu9) {
+            uu9 uu9Var = (uu9) obj;
+            if (this.b == uu9Var.b && this.a.h == uu9Var.a.h && this.d == uu9Var.d) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

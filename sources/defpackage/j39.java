@@ -1,198 +1,52 @@
 package defpackage;
 
-import android.util.SparseIntArray;
-import android.view.View;
-import j$.util.Objects;
-import java.util.ArrayList;
-public abstract class j39 extends w29 {
-    public SparseIntArray c;
-    public SparseIntArray d;
-    public SparseIntArray e;
-    public int f;
-    public int h;
-    public final ArrayList n = new ArrayList();
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class j39 extends i39 {
+    public final l39 g0;
 
-    public j39() {
-        L();
+    public j39(l39 l39Var, i39 i39Var, TLRPC.ReactionCount reactionCount, boolean z) {
+        super(i39Var, l39Var.l, l39Var.w, reactionCount, z, l39Var.y);
+        this.g0 = l39Var;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        int b = s49Var.b();
-        return V(S(b), Q(b), s49Var);
+    public final float j() {
+        return this.g0.a;
     }
 
-    public final void L() {
-        SparseIntArray sparseIntArray = this.d;
-        if (sparseIntArray == null) {
-            this.d = new SparseIntArray();
-            this.c = new SparseIntArray();
-            this.e = new SparseIntArray();
-        } else {
-            sparseIntArray.clear();
-            this.c.clear();
-            this.e.clear();
-        }
-        this.h = -1;
-        this.f = -1;
+    @Override
+    public final ImageReceiver k() {
+        return (ImageReceiver) this.g0.E.get(this.r);
     }
 
-    public abstract int M(int i);
-
-    public int N(int i, int i2) {
-        return Objects.hash(Integer.valueOf((-49612) * i), O(i, i2));
+    @Override
+    public final boolean l() {
+        return this.g0.x.O3();
     }
 
-    public Object O(int i, int i2) {
-        return null;
-    }
-
-    public int P(int i, int i2) {
-        if (i == 0) {
-            return 1;
-        }
-        if (i == 2) {
-            return 2;
-        }
-        return 0;
-    }
-
-    public final int Q(int i) {
-        int i2 = this.c.get(i, Integer.MAX_VALUE);
-        if (i2 != Integer.MAX_VALUE) {
-            return i2;
-        }
-        int i3 = this.f;
-        if (i3 < 0) {
-            i3 = R();
-            this.f = i3;
-        }
-        int i4 = 0;
-        int i5 = 0;
-        while (i4 < i3) {
-            int U = U(i4) + i5;
-            if (i >= i5 && i < U) {
-                int i6 = i - i5;
-                this.c.put(i, i6);
-                return i6;
+    @Override
+    public final boolean m() {
+        l39 l39Var = this.g0;
+        int e1 = l39Var.x.e1();
+        long c1 = l39Var.x.c1();
+        g39 g39Var = g39.B;
+        if (g39Var != null) {
+            int i = g39Var.a;
+            if (i == 2 || i == 0) {
+                long j = g39Var.o;
+                if (((j != 0 && c1 == j) || e1 == g39Var.n) && g39Var.p.equals(this.r)) {
+                    return true;
+                }
+                return false;
             }
-            i4++;
-            i5 = U;
-        }
-        return -1;
-    }
-
-    public int R() {
-        return 3;
-    }
-
-    public final int S(int i) {
-        int i2 = this.d.get(i, Integer.MAX_VALUE);
-        if (i2 != Integer.MAX_VALUE) {
-            return i2;
-        }
-        int i3 = this.f;
-        if (i3 < 0) {
-            i3 = R();
-            this.f = i3;
-        }
-        int i4 = 0;
-        int i5 = 0;
-        while (i4 < i3) {
-            int U = U(i4) + i5;
-            if (i >= i5 && i < U) {
-                this.d.put(i, i4);
-                return i4;
-            }
-            i4++;
-            i5 = U;
-        }
-        return -1;
-    }
-
-    public View T(int i, View view) {
-        return null;
-    }
-
-    public final int U(int i) {
-        int i2 = this.e.get(i, Integer.MAX_VALUE);
-        if (i2 != Integer.MAX_VALUE) {
-            return i2;
-        }
-        int M = M(i);
-        this.e.put(i, M);
-        return M;
-    }
-
-    public boolean V(int i, int i2, s49 s49Var) {
-        int i3 = s49Var.f;
-        if (i3 == 1 || i3 == 4) {
-            return true;
+            return false;
         }
         return false;
     }
 
-    public abstract void W(int i, int i2, s49 s49Var);
-
-    public final void X(boolean z) {
-        ArrayList arrayList = this.n;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        L();
-        arrayList.clear();
-        int i = this.f;
-        if (i < 0) {
-            i = R();
-            this.f = i;
-        }
-        for (int i2 = 0; i2 < i; i2++) {
-            int U = U(i2);
-            for (int i3 = 0; i3 < U; i3++) {
-                arrayList.add(Integer.valueOf(N(i2, i3)));
-            }
-        }
-        if (z) {
-            vu7.a(new ij3(this, arrayList2, (byte) 3), true).c(this);
-        } else {
-            super.f();
-        }
-    }
-
     @Override
-    public final int b() {
-        int i = this.h;
-        if (i >= 0) {
-            return i;
-        }
-        int i2 = 0;
-        this.h = 0;
-        int i3 = this.f;
-        if (i3 < 0) {
-            i3 = R();
-            this.f = i3;
-        }
-        while (true) {
-            int i4 = this.h;
-            if (i2 < i3) {
-                this.h = U(i2) + i4;
-                i2++;
-            } else {
-                return i4;
-            }
-        }
-    }
-
-    @Override
-    public final int d(int i) {
-        return P(S(i), Q(i));
-    }
-
-    @Override
-    public void f() {
-        X(false);
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        W(S(i), Q(i), s49Var);
+    public final void n() {
+        this.g0.E.remove(this.r);
     }
 }

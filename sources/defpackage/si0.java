@@ -1,58 +1,33 @@
 package defpackage;
-public final class si0 implements co7 {
-    public final byte a;
-    public final aj0 b;
+public final class si0 {
+    public static final String b;
+    public static final String c;
+    public static final si0 d;
+    public static final si0 e;
+    public final boolean a;
 
-    public si0(aj0 aj0Var, byte b) {
-        this.a = b;
-        this.b = aj0Var;
+    static {
+        m41 m41Var = jjb.c;
+        b = "\u200e";
+        c = "\u200f";
+        d = new si0(false);
+        e = new si0(true);
     }
 
-    @Override
-    public final void D2(Object obj) {
-        byte b = this.a;
-        String str = null;
-        aj0 aj0Var = this.b;
-        switch (b) {
-            case 0:
-                fj0 fj0Var = (fj0) obj;
-                if (fj0Var != null) {
-                    aj0Var.W(fj0Var);
-                    lj0 lj0Var = aj0Var.m0;
-                    hh7 hh7Var = lj0Var.p;
-                    if (hh7Var == null) {
-                        hh7Var = new hh7();
-                        lj0Var.p = hh7Var;
-                    }
-                    lj0.f(hh7Var, null);
-                    return;
-                }
-                return;
-            default:
-                if (((Boolean) obj).booleanValue()) {
-                    if (aj0Var.R()) {
-                        aj0Var.T();
-                    } else {
-                        lj0 lj0Var2 = aj0Var.m0;
-                        String str2 = lj0Var2.i;
-                        if (str2 != null) {
-                            str = str2;
-                        } else {
-                            hj0 hj0Var = lj0Var2.d;
-                            if (hj0Var != null && (str = hj0Var.c) == null) {
-                                str = "";
-                            }
-                        }
-                        if (str == null) {
-                            str = aj0Var.q(2131689578);
-                        }
-                        aj0Var.U(13, str);
-                        aj0Var.O(2);
-                    }
-                    aj0Var.m0.e(false);
-                    return;
-                }
-                return;
-        }
+    public si0(boolean z) {
+        m41 m41Var = jjb.a;
+        this.a = z;
+    }
+
+    public static int a(java.lang.CharSequence r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.si0.a(java.lang.CharSequence):int");
+    }
+
+    public static int b(java.lang.CharSequence r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.si0.b(java.lang.CharSequence):int");
+    }
+
+    public final android.text.SpannableStringBuilder c(java.lang.CharSequence r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.si0.c(java.lang.CharSequence):android.text.SpannableStringBuilder");
     }
 }

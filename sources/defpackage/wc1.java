@@ -1,12 +1,26 @@
 package defpackage;
-public final class wc1 {
-    public final q07 a;
-    public final yz6 b;
-    public final int c;
 
-    public wc1(q07 q07Var, yz6 yz6Var, int i) {
-        this.a = q07Var;
-        this.b = yz6Var;
-        this.c = i;
+import android.content.Context;
+import org.telegram.messenger.camera.CameraController;
+public final class wc1 extends bn9 {
+    public final yc1 G;
+
+    public wc1(yc1 yc1Var, Context context) {
+        super(context);
+        this.G = yc1Var;
+    }
+
+    @Override
+    public final void c() {
+        gm.r(this.h);
+        if (this.c <= 0) {
+            a(true);
+        } else {
+            CameraController.getInstance().stopVideoRecording(this.a.getCameraSessionRecording(), false, false);
+        }
+        yc1 yc1Var = this.G;
+        if (yc1Var.O1) {
+            yc1Var.z(true, false);
+        }
     }
 }

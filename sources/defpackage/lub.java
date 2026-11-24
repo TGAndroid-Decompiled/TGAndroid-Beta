@@ -1,10 +1,22 @@
 package defpackage;
+public enum lub extends rub {
+    public lub() {
+        super("BogusDoctype", 65);
+    }
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class lub implements RequestDelegate {
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        char d = hl1Var.d();
+        msb msbVar = rub.a;
+        if (d != '>') {
+            if (d != 65535) {
+                return;
+            }
+            bsbVar.j();
+            bsbVar.c = msbVar;
+            return;
+        }
+        bsbVar.j();
+        bsbVar.c = msbVar;
     }
 }

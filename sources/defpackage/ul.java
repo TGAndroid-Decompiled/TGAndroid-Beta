@@ -1,63 +1,29 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public class ul extends Drawable {
-    public final Drawable a;
-    public final int b;
-    public final int c;
-    public int d = 255;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class ul extends AnimatorListenerAdapter {
+    public final byte a;
+    public final View b;
 
-    public ul(int i, int i2, Drawable drawable) {
-        this.a = drawable;
-        this.b = i;
-        this.c = i2;
+    public ul(View view, byte b) {
+        this.a = b;
+        this.b = view;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            drawable.setAlpha(this.d);
-            drawable.draw(canvas);
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.c;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            return drawable.getOpacity();
-        }
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.d = i;
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            drawable.setAlpha(i);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.a) {
+            case 0:
+                this.b.setTranslationX(0.0f);
+                return;
+            case 1:
+                gm.B2(this.b);
+                return;
+            default:
+                gm.B2(this.b);
+                return;
         }
     }
 }

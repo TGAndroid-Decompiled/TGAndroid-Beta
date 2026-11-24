@@ -1,192 +1,111 @@
 package defpackage;
 
-import android.os.SystemClock;
-import java.util.Arrays;
-import java.util.List;
-public abstract class vg0 implements k64 {
-    public static final sa g = new sa((byte) 7);
-    public final sxb a;
-    public final int b;
-    public final int[] c;
-    public final fm4[] d;
-    public final long[] e;
-    public int f;
+import j$.util.Objects;
+public class vg0 {
+    public static final tg0 d;
+    public final sg0 a;
+    public final Character b;
+    public volatile vg0 c;
 
-    public vg0(int i, sxb sxbVar, int[] iArr) {
+    static {
+        new ug0("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
+        new ug0("base64Url()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
+        new vg0("base32()", "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
+        new vg0("base32Hex()", "0123456789ABCDEFGHIJKLMNOPQRSTUV");
+        d = new tg0(new sg0("base16()", new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'}));
+    }
+
+    public vg0(sg0 sg0Var, Character ch) {
         boolean z;
-        fm4[] fm4VarArr;
-        int i2 = 0;
-        if (iArr.length > 0) {
+        sg0Var.getClass();
+        this.a = sg0Var;
+        if (ch != null) {
+            char charValue = ch.charValue();
+            byte[] bArr = sg0Var.g;
+            if (charValue < bArr.length && bArr[charValue] != -1) {
+                z = false;
+                jte.h(z, "Padding character %s was already in alphabet", ch);
+                this.b = ch;
+            }
+        }
+        z = true;
+        jte.h(z, "Padding character %s was already in alphabet", ch);
+        this.b = ch;
+    }
+
+    public final void a(int i, int i2, StringBuilder sb, byte[] bArr) {
+        boolean z;
+        jte.n(i, i + i2, bArr.length);
+        sg0 sg0Var = this.a;
+        int i3 = sg0Var.f;
+        int i4 = sg0Var.d;
+        int i5 = 0;
+        if (i2 <= i3) {
             z = true;
         } else {
             z = false;
         }
-        gre.p(z);
-        sxbVar.getClass();
-        this.a = sxbVar;
-        int length = iArr.length;
-        this.b = length;
-        this.d = new fm4[length];
-        int i3 = 0;
-        while (true) {
-            int length2 = iArr.length;
-            fm4VarArr = this.d;
-            if (i3 >= length2) {
-                break;
-            }
-            fm4VarArr[i3] = sxbVar.d[iArr[i3]];
-            i3++;
+        jte.f(z);
+        long j = 0;
+        for (int i6 = 0; i6 < i2; i6++) {
+            j = (j | (bArr[i + i6] & 255)) << 8;
         }
-        Arrays.sort(fm4VarArr, g);
-        this.c = new int[this.b];
-        while (true) {
-            int i4 = this.b;
-            if (i2 < i4) {
-                this.c[i2] = sxbVar.a(this.d[i2]);
-                i2++;
-            } else {
-                this.e = new long[i4];
-                return;
+        int i7 = ((i2 + 1) << 3) - i4;
+        while (i5 < (i2 << 3)) {
+            sb.append(sg0Var.b[((int) (j >>> (i7 - i5))) & sg0Var.c]);
+            i5 += i4;
+        }
+        Character ch = this.b;
+        if (ch != null) {
+            while (i5 < (sg0Var.f << 3)) {
+                sb.append(ch.charValue());
+                i5 += i4;
             }
         }
     }
 
-    @Override
-    public final boolean a(int i, long j) {
-        if (this.e[i] > j) {
-            return true;
+    public void b(StringBuilder sb, byte[] bArr, int i) {
+        int i2 = 0;
+        jte.n(0, i, bArr.length);
+        while (i2 < i) {
+            sg0 sg0Var = this.a;
+            a(i2, Math.min(sg0Var.f, i - i2), sb, bArr);
+            i2 += sg0Var.f;
         }
-        return false;
-    }
-
-    @Override
-    public final sxb c() {
-        return this.a;
-    }
-
-    @Override
-    public final int e(fm4 fm4Var) {
-        for (int i = 0; i < this.b; i++) {
-            if (this.d[i] == fm4Var) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && getClass() == obj.getClass()) {
+        if (obj instanceof vg0) {
             vg0 vg0Var = (vg0) obj;
-            if (this.a.equals(vg0Var.a) && Arrays.equals(this.c, vg0Var.c)) {
+            if (this.a.equals(vg0Var.a) && Objects.equals(this.b, vg0Var.b)) {
                 return true;
             }
         }
         return false;
     }
 
-    @Override
-    public final void f() {
-        Arrays.fill(this.e, 0L);
-    }
-
-    @Override
-    public final boolean g(long j, zg2 zg2Var, List list) {
-        return false;
-    }
-
     public final int hashCode() {
-        int i = this.f;
-        if (i == 0) {
-            int hashCode = Arrays.hashCode(this.c) + (System.identityHashCode(this.a) * 31);
-            this.f = hashCode;
-            return hashCode;
-        }
-        return i;
+        return this.a.hashCode() ^ Objects.hashCode(this.b);
     }
 
-    @Override
-    public final fm4 i(int i) {
-        return this.d[i];
-    }
-
-    @Override
-    public final int k(int i) {
-        return this.c[i];
-    }
-
-    @Override
-    public int l(long j, List list) {
-        return list.size();
-    }
-
-    @Override
-    public final int length() {
-        return this.c.length;
-    }
-
-    @Override
-    public final int n() {
-        return this.c[d()];
-    }
-
-    @Override
-    public final fm4 o() {
-        return this.d[d()];
-    }
-
-    @Override
-    public final boolean q(int i, long j) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        boolean a = a(i, elapsedRealtime);
-        for (int i2 = 0; i2 < this.b && !a; i2++) {
-            if (i2 != i && !a(i2, elapsedRealtime)) {
-                a = true;
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("BaseEncoding.");
+        sg0 sg0Var = this.a;
+        sb.append(sg0Var);
+        if (8 % sg0Var.d != 0) {
+            Character ch = this.b;
+            if (ch == null) {
+                sb.append(".omitPadding()");
             } else {
-                a = false;
+                sb.append(".withPadChar('");
+                sb.append(ch);
+                sb.append("')");
             }
         }
-        if (!a) {
-            return false;
-        }
-        long[] jArr = this.e;
-        jArr[i] = Math.max(jArr[i], g8c.a(elapsedRealtime, j));
-        return true;
+        return sb.toString();
     }
 
-    @Override
-    public final int v(int i) {
-        for (int i2 = 0; i2 < this.b; i2++) {
-            if (this.c[i2] == i) {
-                return i2;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public void j() {
-    }
-
-    @Override
-    public void m() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void h(boolean z) {
-    }
-
-    @Override
-    public void r(float f) {
+    public vg0(String str, String str2) {
+        this(new sg0(str, str2.toCharArray()), (Character) '=');
     }
 }

@@ -1,27 +1,49 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-public final class jr1 extends ma8 {
+import org.telegram.ui.ActionBar.d;
+public final class jr1 extends bm0 {
+    public final byte s;
+    public final yv1 w;
+
+    public jr1(yv1 yv1Var, ylb ylbVar, int i, byte b) {
+        super(i, ylbVar);
+        this.s = b;
+        this.w = yv1Var;
+    }
+
     @Override
-    public final void c(Canvas canvas, float f, float f2, float f3, float f4, float f5) {
-        if (f > 0.0f) {
-            ViewGroup viewGroup = this.e;
-            if (viewGroup instanceof gb2) {
-                gb2 gb2Var = (gb2) viewGroup;
-                RectF rectF = gl.P;
-                rectF.set(f2, (int) Math.max(f4, f3), gb2Var.getMeasuredWidth() + f2, (int) Math.min(f5, gb2Var.getMeasuredHeight() + f3));
-                canvas.saveLayerAlpha(rectF, (int) (f * 255.0f), 31);
-                canvas.translate(f2, f3 + gb2Var.getPaddingTop());
-                gb2Var.Yb = true;
-                gb2Var.j1(canvas);
-                if (gb2Var.I3() && gb2Var.getCurrentMessagesGroup() == null) {
-                    gb2Var.A1(1.0f, canvas, false);
+    public final int K1() {
+        int i;
+        int i2;
+        byte b = this.s;
+        yv1 yv1Var = this.w;
+        switch (b) {
+            case 0:
+                i = ((d) yv1Var).currentAccount;
+                if (!qqd.d(i, yv1Var.Ba)) {
+                    return on2.p(yv1Var.getThemedColor(cmb.Ie), 255);
                 }
-                gb2Var.Yb = false;
-                canvas.restore();
-            }
+                wv1 wv1Var = yv1Var.Ba;
+                if (wv1Var != null && !wv1Var.a()) {
+                    a();
+                    return on2.p(this.d, 216);
+                }
+                a();
+                return this.d;
+            case 1:
+                return yv1Var.x.K1();
+            default:
+                i2 = ((d) yv1Var).currentAccount;
+                if (!qqd.d(i2, yv1Var.Ba)) {
+                    return on2.p(yv1Var.getThemedColor(cmb.c6), 255);
+                }
+                wv1 wv1Var2 = yv1Var.Ba;
+                if (wv1Var2 != null && !wv1Var2.a()) {
+                    a();
+                    return on2.p(this.d, 216);
+                }
+                a();
+                return this.d;
         }
     }
 }

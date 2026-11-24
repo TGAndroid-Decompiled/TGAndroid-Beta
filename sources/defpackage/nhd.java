@@ -1,54 +1,29 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class nhd extends efd {
-    public static final nhd e = new nhd(0, new Object[0]);
-    public final transient Object[] c;
-    public final transient int d;
+import java.util.AbstractMap;
+public final class nhd extends ped {
+    public final shd h;
 
-    public nhd(int i, Object[] objArr) {
-        this.c = objArr;
-        this.d = i;
+    public nhd(shd shdVar) {
+        super((byte) 1);
+        this.h = shdVar;
     }
 
     @Override
     public final Object get(int i) {
-        sze.a(i, this.d);
-        Object obj = this.c[i];
-        Objects.requireNonNull(obj);
-        return obj;
-    }
-
-    @Override
-    public final int h(Object[] objArr) {
-        Object[] objArr2 = this.c;
-        int i = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i);
-        return i;
-    }
-
-    @Override
-    public final int i() {
-        return this.d;
-    }
-
-    @Override
-    public final int j() {
-        return 0;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final Object[] m() {
-        return this.c;
+        shd shdVar = this.h;
+        k6f.a(i, shdVar.r ? 1 : 0);
+        int i2 = i << 1;
+        Object[] objArr = shdVar.n;
+        Object obj = objArr[i2];
+        obj.getClass();
+        Object obj2 = objArr[i2 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
     }
 
     @Override
     public final int size() {
-        return this.d;
+        return this.h.r ? 1 : 0;
     }
 }

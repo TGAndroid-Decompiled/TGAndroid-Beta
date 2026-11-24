@@ -1,39 +1,15 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.os.Build;
-import android.util.Log;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
 import android.view.View;
-import java.lang.reflect.Method;
-import java.util.WeakHashMap;
 public abstract class gfc {
-    public static final Method a;
-    public static final boolean b;
-
-    static {
-        boolean z;
-        if (Build.VERSION.SDK_INT >= 27) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = z;
-        try {
-            Method declaredMethod = View.class.getDeclaredMethod("computeFitSystemWindows", Rect.class, Rect.class);
-            a = declaredMethod;
-            if (!declaredMethod.isAccessible()) {
-                declaredMethod.setAccessible(true);
-            }
-        } catch (NoSuchMethodException unused) {
-            Log.d("ViewUtils", "Could not find method computeFitSystemWindows. Oh well.");
-        }
+    public static View.AccessibilityDelegate a(View view) {
+        return view.getAccessibilityDelegate();
     }
 
-    public static boolean a(View view) {
-        WeakHashMap weakHashMap = jdc.a;
-        if (view.getLayoutDirection() == 1) {
-            return true;
-        }
-        return false;
+    public static void b(View view, Context context, int[] iArr, AttributeSet attributeSet, TypedArray typedArray, int i, int i2) {
+        view.saveAttributeDataForStyleable(context, iArr, attributeSet, typedArray, i, i2);
     }
 }

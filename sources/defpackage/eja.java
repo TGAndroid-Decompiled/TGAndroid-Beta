@@ -1,6 +1,8 @@
 package defpackage;
-public interface eja {
-    void k(int i);
 
-    void n();
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import androidx.recyclerview.widget.RecyclerView;
+public interface eja {
+    void c(Canvas canvas, RectF rectF, RecyclerView recyclerView);
 }

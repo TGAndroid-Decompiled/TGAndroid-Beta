@@ -1,27 +1,36 @@
 package defpackage;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class cvb extends ovb {
-    public final qvb p3;
+import androidx.appcompat.widget.Toolbar;
+public final class cvb implements Runnable {
+    public final byte a;
+    public final Toolbar b;
 
-    public cvb(qvb qvbVar, Context context) {
-        super(qvbVar, context);
-        this.p3 = qvbVar;
+    public cvb(Toolbar toolbar, byte b) {
+        this.a = b;
+        this.b = toolbar;
     }
 
     @Override
-    public final boolean S0() {
-        ArrayList arrayList = this.p3.b;
-        if (getAdapter() == null || this.W1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((ivb) arrayList.get(0)).c == null || ((ivb) arrayList.get(0)).c.id != 1 ? getAdapter().b() > 1 : getAdapter().b() > 2)) {
-            return false;
+    public final void run() {
+        c27 c27Var;
+        byte b = this.a;
+        Toolbar toolbar = this.b;
+        switch (b) {
+            case 0:
+                evb evbVar = toolbar.f0;
+                if (evbVar == null) {
+                    c27Var = null;
+                } else {
+                    c27Var = evbVar.b;
+                }
+                if (c27Var != null) {
+                    c27Var.collapseActionView();
+                    return;
+                }
+                return;
+            default:
+                toolbar.m();
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.p3.y0();
     }
 }

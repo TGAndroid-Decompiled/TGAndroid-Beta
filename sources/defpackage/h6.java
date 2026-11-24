@@ -2,7 +2,7 @@ package defpackage;
 
 import android.view.View;
 import org.telegram.ui.ActionBar.d;
-public final class h6 implements no7, ed, nw4 {
+public final class h6 implements qq7, ee, py4 {
     public final byte a;
     public final d b;
 
@@ -12,18 +12,18 @@ public final class h6 implements no7, ed, nw4 {
     }
 
     @Override
-    public final vxc W(View view, vxc vxcVar) {
+    public final wzc C0(View view, wzc wzcVar) {
         byte b = this.a;
-        return this.b.onInsetsInternal(view, vxcVar);
+        return this.b.onInsetsInternal(view, wzcVar);
     }
 
     @Override
     public final int i() {
-        return this.b.getThemedColor(bkb.Z6);
+        return this.b.getThemedColor(cmb.Z6);
     }
 
     @Override
-    public final void u(defpackage.hd r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.h6.u(hd, int):void");
+    public final void r(defpackage.he r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h6.r(he, int):void");
     }
 }

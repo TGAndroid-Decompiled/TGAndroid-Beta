@@ -1,22 +1,19 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class rv2 extends m8 {
-    public final tv2 o;
+import java.util.ArrayList;
+public final class rv2 implements Runnable {
+    public final byte a;
+    public final bw2 b;
+    public final ArrayList c;
 
-    public rv2(tv2 tv2Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.o = tv2Var;
+    public rv2(bw2 bw2Var, ArrayList arrayList, byte b) {
+        this.a = b;
+        this.b = bw2Var;
+        this.c = arrayList;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        xv2 xv2Var = this.o.a;
-        xv2Var.k = null;
-        xv2Var.K = false;
-        if (xv2Var.R) {
-            xv2Var.b();
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rv2.run():void");
     }
 }

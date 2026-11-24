@@ -1,56 +1,37 @@
 package defpackage;
 
-import android.location.Address;
-import android.location.Geocoder;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
+import android.provider.Settings;
+import org.telegram.ui.LaunchActivity;
 public final class u96 implements Runnable {
-    public final byte a = 0;
-    public final pa6 b;
-    public final qa6 c;
-    public final hd d;
+    public final byte a;
+    public final w96 b;
 
-    public u96(pa6 pa6Var, hd hdVar, qa6 qa6Var) {
-        this.b = pa6Var;
-        this.d = hdVar;
-        this.c = qa6Var;
+    public u96(w96 w96Var, byte b) {
+        this.a = b;
+        this.b = w96Var;
     }
 
     @Override
     public final void run() {
+        ad8 ad8Var;
+        LaunchActivity launchActivity;
         byte b = this.a;
-        hd hdVar = this.d;
-        qa6 qa6Var = this.c;
-        pa6 pa6Var = this.b;
+        w96 w96Var = this.b;
         switch (b) {
             case 0:
-                hdVar.dismiss();
-                pa6Var.presentFragment(qa6Var);
+                ad8 ad8Var2 = w96Var.a;
+                if (ad8Var2 != null) {
+                    ad8Var2.d();
+                    return;
+                }
                 return;
             default:
-                try {
-                    List<Address> fromLocationName = new Geocoder(pa6Var.getParentActivity(), k96.D0().y).getFromLocationName(pa6Var.y, 1);
-                    if (!fromLocationName.isEmpty()) {
-                        Address address = fromLocationName.get(0);
-                        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-                        tL_channelLocation.address = pa6Var.y;
-                        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
-                        tL_channelLocation.geo_point = tL_geoPoint;
-                        tL_geoPoint.lat = address.getLatitude();
-                        tL_channelLocation.geo_point._long = address.getLongitude();
-                        qa6Var.I0 = tL_channelLocation;
-                    }
-                } catch (Exception e) {
-                    fa4.g(e, true);
+                oab oabVar = w96Var.c;
+                if (oabVar != null && w96Var.P() && (ad8Var = w96Var.a) != null && ad8Var.c == 0 && (launchActivity = LaunchActivity.H1) != null && Settings.canDrawOverlays(launchActivity)) {
+                    oabVar.S();
+                    return;
                 }
-                gl.d3(new u96(pa6Var, hdVar, qa6Var));
                 return;
         }
-    }
-
-    public u96(pa6 pa6Var, qa6 qa6Var, hd hdVar) {
-        this.b = pa6Var;
-        this.c = qa6Var;
-        this.d = hdVar;
     }
 }

@@ -1,3 +1,3 @@
 package defpackage;
-public final class ebd extends vk9 {
+public final class ebd extends f1d implements pbd {
 }

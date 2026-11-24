@@ -1,15 +1,9 @@
 package defpackage;
+public final class hec extends Exception {
+    public final go4 a;
 
-import org.telegram.ui.ActionBar.d;
-public final class hec {
-    public final d a;
-    public boolean b;
-    public boolean c;
-    public boolean d;
-    public boolean e;
-    public float f;
-
-    public hec(d dVar) {
-        this.a = dVar;
+    public hec(Exception exc, go4 go4Var) {
+        super(exc);
+        this.a = go4Var;
     }
 }

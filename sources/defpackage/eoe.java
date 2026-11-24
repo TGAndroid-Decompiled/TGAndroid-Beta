@@ -1,44 +1,41 @@
 package defpackage;
-public final class eoe extends c2e {
-    private static final eoe zzb;
-    private int zzd;
-    private a3e zze = pae.e;
-    private String zzf = "";
-    private boolean zzg;
 
-    static {
-        eoe eoeVar = new eoe();
-        zzb = eoeVar;
-        c2e.k(eoe.class, eoeVar);
+import android.content.Context;
+import com.google.android.gms.tasks.TaskExecutors;
+import org.telegram.messenger.a;
+public abstract class eoe {
+    public static void a(String str, zy5 zy5Var, yy5 yy5Var) {
+        b(str, zy5Var, yy5Var, false);
     }
 
-    public static void n(eoe eoeVar, boolean z) {
-        eoeVar.zzd |= 2;
-        eoeVar.zzg = z;
-    }
-
-    public static eoe o() {
-        return zzb;
-    }
-
-    @Override
-    public final Object d(int i) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 == 5) {
-                            return zzb;
-                        }
-                        throw null;
+    public static void b(String str, zy5 zy5Var, yy5 yy5Var, boolean z) {
+        if (z) {
+            try {
+                Context context = a.b;
+                synchronized (cg7.b) {
+                    try {
+                        cg7.d(context, TaskExecutors.MAIN_THREAD);
+                    } finally {
                     }
-                    return new e0e(zzb);
                 }
-                return new eoe();
+            } catch (IllegalStateException e) {
+                if (!z) {
+                    b(str, zy5Var, yy5Var, true);
+                    return;
+                }
+                yy5Var.o(e);
+                fc4.g(e, false);
+                return;
+            } catch (Exception e2) {
+                yy5Var.o(e2);
+                fc4.g(e2, true);
+                return;
+            } catch (Throwable th) {
+                yy5Var.o(null);
+                fc4.g(th, false);
+                return;
             }
-            return new vae(zzb, "\u0004\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0001\u0000\u0001\u001b\u0002ဈ\u0000\u0003ဇ\u0001", new Object[]{"zzd", "zze", vne.class, "zzf", "zzg"});
         }
-        return (byte) 1;
+        joe.a().c(str).addOnSuccessListener(new wx4(zy5Var, (byte) 21)).addOnFailureListener(new wx4(yy5Var, (byte) 22));
     }
 }

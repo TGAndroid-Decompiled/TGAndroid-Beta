@@ -1,35 +1,17 @@
 package defpackage;
-public enum hsb extends qsb {
+public enum hsb extends rub {
     public hsb() {
-        super("DoctypeSystemIdentifier_doubleQuoted", 62);
+        super("RawtextEndTagOpen", 14);
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        rpb rpbVar = aqbVar.m;
-        char d = zj1Var.d();
-        if (d != 0) {
-            if (d != '\"') {
-                lqb lqbVar = qsb.a;
-                if (d != '>') {
-                    if (d != 65535) {
-                        rpbVar.g.append(d);
-                        return;
-                    }
-                    aqbVar.l(this);
-                    aqbVar.j();
-                    aqbVar.c = lqbVar;
-                    return;
-                }
-                aqbVar.m(this);
-                aqbVar.j();
-                aqbVar.c = lqbVar;
-                return;
-            }
-            aqbVar.c = qsb.C0;
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        if (hl1Var.o()) {
+            bsbVar.d(false);
+            bsbVar.c = rub.F;
             return;
         }
-        aqbVar.m(this);
-        rpbVar.g.append((char) 65533);
+        bsbVar.h("</");
+        bsbVar.c = rub.e;
     }
 }

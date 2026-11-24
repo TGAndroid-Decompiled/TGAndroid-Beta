@@ -1,48 +1,136 @@
 package defpackage;
 
 import android.view.View;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class j72 extends u2b {
-    public final byte S = 0;
-    public final View T;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class j72 implements f24 {
+    public final qac a;
+    public final e51 b;
 
-    public j72(v6c v6cVar) {
-        super(null, false);
-        this.T = v6cVar;
+    public j72(qac qacVar, e51 e51Var) {
+        this.a = qacVar;
+        this.b = e51Var;
     }
 
     @Override
-    public final void f(long j) {
-        byte b = this.S;
-        View view = this.T;
-        switch (b) {
-            case 0:
-                k72 k72Var = (k72) view;
-                k72Var.I.getOrCreateStoryViewer().H(k72Var.getContext(), j, new rh1(this, (byte) 19));
-                return;
-            case 1:
-                ((qz8) view).b(j);
-                return;
-            default:
-                v6c v6cVar = (v6c) view;
-                d Q = LaunchActivity.Q();
-                if (Q != null) {
-                    Q.getOrCreateStoryViewer().getClass();
-                    Q.getOrCreateStoryViewer().H(v6cVar.getContext(), j, p2b.a((o39) v6cVar.getParent()));
-                    return;
-                }
-                return;
-        }
+    public final boolean A() {
+        return false;
     }
 
-    public j72(qz8 qz8Var, wjb wjbVar) {
-        super(wjbVar, false);
-        this.T = qz8Var;
+    @Override
+    public final long a() {
+        return 0L;
     }
 
-    public j72(k72 k72Var) {
-        super(null, true);
-        this.T = k72Var;
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final float o() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void w(long j, TLRPC.Document document, String str, boolean z) {
+        this.a.a(new xf8(null, document));
+        this.b.a(true);
+    }
+
+    @Override
+    public final void x(View view, TLRPC.Document document, String str, Object obj, g47 g47Var, boolean z, int i) {
+        this.a.a(new xf8(obj, document));
+        this.b.a(true);
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void g(d4c d4cVar) {
+    }
+
+    @Override
+    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void j(int i) {
+    }
+
+    @Override
+    public final void m(String str) {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void r(int i) {
+    }
+
+    @Override
+    public final void s(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void v() {
+    }
+
+    @Override
+    public final void y(long j) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
     }
 }

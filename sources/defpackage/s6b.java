@@ -1,50 +1,94 @@
 package defpackage;
-public final class s6b implements Runnable {
-    public final byte a = 1;
-    public final t6b b;
-    public final Runnable c;
-    public final boolean d;
 
-    public s6b(t6b t6bVar, Runnable runnable, boolean z) {
-        this.b = t6bVar;
-        this.c = runnable;
-        this.d = z;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.tgnet.TLRPC;
+public final class s6b extends b6c {
+    public static final int b = 0;
+
+    static {
+        b6c.h(new b6c());
     }
 
     @Override
-    public final void run() {
-        int i;
-        byte b = this.a;
-        boolean z = this.d;
-        Runnable runnable = this.c;
-        t6b t6bVar = this.b;
-        switch (b) {
-            case 0:
-                t6bVar.g(runnable, z);
-                return;
-            default:
-                runnable.run();
-                t7b t7bVar = t6bVar.a;
-                ge5 ge5Var = t7bVar.U0;
-                if (z) {
-                    i = 2131744420;
-                } else {
-                    i = 2131744421;
-                }
-                ge5Var.a.t(k96.M0(i, null), false, true);
-                ge5Var.invalidate();
-                t7bVar.e(true, true);
-                t7bVar.c0(true);
-                t7bVar.J0.a(false, true);
-                t7bVar.K0.b(true, true);
-                t7bVar.h0(true, true);
-                return;
+    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
+        TLRPC.WebPage webPage;
+        boolean z2;
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        String str;
+        t6b t6bVar = (t6b) view;
+        Object obj = c6cVar.H;
+        if (obj instanceof TLRPC.WebPage) {
+            webPage = (TLRPC.WebPage) obj;
+        } else {
+            webPage = null;
         }
+        View.OnClickListener onClickListener = c6cVar.E;
+        io ioVar = t6bVar.e;
+        ImageView imageView = t6bVar.b;
+        ImageView imageView2 = t6bVar.c;
+        if (webPage != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        float f5 = 0.0f;
+        float f6 = 1.0f;
+        if (z2) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        imageView.setAlpha(f);
+        if (z2) {
+            f2 = 1.0f;
+        } else {
+            f2 = 0.4f;
+        }
+        imageView.setScaleX(f2);
+        if (z2) {
+            f3 = 1.0f;
+        } else {
+            f3 = 0.4f;
+        }
+        imageView.setScaleY(f3);
+        if (!z2) {
+            f5 = 1.0f;
+        }
+        imageView2.setAlpha(f5);
+        if (z2) {
+            f4 = 0.4f;
+        } else {
+            f4 = 1.0f;
+        }
+        imageView2.setScaleX(f4);
+        if (z2) {
+            f6 = 0.4f;
+        }
+        imageView2.setScaleY(f6);
+        io ioVar2 = t6bVar.d;
+        if (z2) {
+            if (TextUtils.isEmpty(webPage.site_name)) {
+                str = webPage.title;
+            } else {
+                str = webPage.site_name;
+            }
+            ioVar2.c(str, false, true);
+            ioVar.c(webPage.description, false, true);
+        } else {
+            ioVar2.c(t6bVar.h, false, true);
+            ioVar.c(t6bVar.n, false, true);
+        }
+        t6bVar.f.setOnClickListener(onClickListener);
     }
 
-    public s6b(t6b t6bVar, boolean z, Runnable runnable) {
-        this.b = t6bVar;
-        this.d = z;
-        this.c = runnable;
+    @Override
+    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
+        return new t6b(context);
     }
 }

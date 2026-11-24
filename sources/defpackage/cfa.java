@@ -1,151 +1,58 @@
 package defpackage;
 
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class cfa {
-    public boolean g;
-    public boolean h;
-    public int k;
-    public int m;
-    public int n;
-    public boolean o;
-    public int p;
-    public boolean r;
-    public int t;
-    public int u;
-    public boolean v;
-    public boolean w;
-    public final ArrayList a = new ArrayList();
-    public final SparseArray[] b = {new SparseArray(), new SparseArray()};
-    public final ArrayList c = new ArrayList();
-    public final HashMap d = new HashMap();
-    public final ArrayList e = new ArrayList();
-    public final int[] f = {0, 0};
-    public final boolean[] i = {false, true};
-    public final int[] j = {0, 0};
-    public boolean l = true;
-    public byte q = 0;
-    public final ArrayList s = new ArrayList();
-    public final k49 x = new k49();
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class cfa extends tk4 {
+    public final pea V;
+    public final nha W;
 
-    public final boolean a(k27 k27Var, int i, boolean z, boolean z2) {
-        SparseArray[] sparseArrayArr = this.b;
-        SparseArray sparseArray = sparseArrayArr[i];
-        int e1 = k27Var.e1();
-        String str = k27Var.Y;
-        if (sparseArray.indexOfKey(e1) >= 0) {
-            return false;
-        }
-        HashMap hashMap = this.d;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList == null) {
-            arrayList = new ArrayList();
-            hashMap.put(str, arrayList);
-            ArrayList arrayList2 = this.c;
-            if (z) {
-                arrayList2.add(0, str);
-            } else {
-                arrayList2.add(str);
-            }
-        }
-        ArrayList arrayList3 = this.a;
-        if (z) {
-            arrayList.add(0, k27Var);
-            arrayList3.add(0, k27Var);
-        } else {
-            arrayList.add(k27Var);
-            arrayList3.add(k27Var);
-        }
-        sparseArrayArr[i].put(k27Var.e1(), k27Var);
-        int[] iArr = this.j;
-        if (!z2) {
-            if (k27Var.e1() > 0) {
-                iArr[i] = Math.min(k27Var.e1(), iArr[i]);
-                this.k = Math.max(k27Var.e1(), this.k);
-            }
-        } else {
-            iArr[i] = Math.max(k27Var.e1(), iArr[i]);
-            this.k = Math.min(k27Var.e1(), this.k);
-        }
-        if (!this.v && k27.K4(k27Var.k)) {
-            this.v = true;
-        }
-        if (!this.w && k27.R3(k27Var.k)) {
-            this.w = true;
-        }
-        return true;
+    public cfa(nha nhaVar, Context context, pea peaVar) {
+        super(context, null);
+        this.W = nhaVar;
+        this.V = peaVar;
     }
 
-    public final k27 b(int i, int i2) {
-        SparseArray[] sparseArrayArr = this.b;
-        k27 k27Var = (k27) sparseArrayArr[i2].get(i);
-        if (k27Var != null) {
-            String str = k27Var.Y;
-            HashMap hashMap = this.d;
-            ArrayList arrayList = (ArrayList) hashMap.get(str);
-            if (arrayList == null) {
-                return null;
+    @Override
+    public final int getColumnsCount() {
+        return this.W.p1[nha.j0(this.V.F) ? 1 : 0];
+    }
+
+    @Override
+    public final int getViewType() {
+        setIsSingleCell(false);
+        int i = this.V.F;
+        if (i == 0 || i == 5) {
+            return 2;
+        }
+        if (i == 1) {
+            return 3;
+        }
+        if (i != 2 && i != 4) {
+            if (i == 3) {
+                return 5;
             }
-            arrayList.remove(k27Var);
-            this.a.remove(k27Var);
-            sparseArrayArr[i2].remove(k27Var.e1());
-            if (arrayList.isEmpty()) {
-                hashMap.remove(str);
-                this.c.remove(str);
-            }
-            int[] iArr = this.f;
-            int i3 = iArr[i2] - 1;
-            iArr[i2] = i3;
-            if (i3 < 0) {
-                iArr[i2] = 0;
-            }
-            return k27Var;
-        }
-        return null;
-    }
-
-    public final ArrayList c() {
-        if (this.r) {
-            return this.s;
-        }
-        return this.a;
-    }
-
-    public final int d() {
-        if (this.r) {
-            return this.t;
-        }
-        return this.m;
-    }
-
-    public final int e() {
-        int[] iArr = this.f;
-        return iArr[0] + iArr[1];
-    }
-
-    public final void f(int i, int i2, int i3) {
-        SparseArray[] sparseArrayArr = this.b;
-        k27 k27Var = (k27) sparseArrayArr[i].get(i2);
-        if (k27Var != null) {
-            sparseArrayArr[i].remove(i2);
-            sparseArrayArr[i].put(i3, k27Var);
-            k27Var.k.id = i3;
-            int[] iArr = this.j;
-            iArr[i] = Math.min(i3, iArr[i]);
-        }
-    }
-
-    public final void g(boolean z) {
-        if (this.r != z) {
-            this.r = z;
-            if (z) {
-                this.t = this.m;
-                this.u = this.n;
-                ArrayList arrayList = this.s;
-                arrayList.clear();
-                arrayList.addAll(this.a);
+            if (i != 7) {
+                if (i == 6) {
+                    if (this.W.L0.getTabsCount() == 1) {
+                        setIsSingleCell(true);
+                        return 1;
+                    }
+                } else if (nha.j0(i)) {
+                    return 27;
+                }
+                return 1;
             }
         }
+        return 6;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        nha nhaVar = this.W;
+        Paint paint = nhaVar.W0;
+        paint.setColor(nhaVar.c0(cmb.c6));
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.onDraw(canvas);
     }
 }

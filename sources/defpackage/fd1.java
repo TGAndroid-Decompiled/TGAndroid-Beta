@@ -1,31 +1,28 @@
 package defpackage;
 
-import com.google.android.gms.common.api.Status;
-public final class fd1 implements b38 {
-    public final byte a;
+import android.widget.FrameLayout;
+public interface fd1 {
+    kd1 A();
 
-    public fd1(byte b) {
-        this.a = b;
-    }
+    long E();
 
-    @Override
-    public final void a(Status status) {
-        switch (this.a) {
-            case 0:
-                fo.b.decrementAndGet();
-                return;
-            case 1:
-                fo.b.decrementAndGet();
-                return;
-            case 2:
-                fo.b.decrementAndGet();
-                return;
-            case 3:
-                fo.b.decrementAndGet();
-                return;
-            default:
-                fo.b.decrementAndGet();
-                return;
-        }
-    }
+    FrameLayout G();
+
+    long K();
+
+    long N();
+
+    void P(kd1 kd1Var);
+
+    void R(long j);
+
+    void S(w44 w44Var);
+
+    void o(boolean z);
+
+    FrameLayout q();
+
+    ylb t();
+
+    kd1 u();
 }

@@ -1,13 +1,17 @@
 package defpackage;
+public final class vbe implements cq7 {
+    public static final vbe a = new Object();
 
-import java.io.IOException;
-public abstract class vbe {
-    public static void a(o63 o63Var) {
-        if (o63Var != null) {
-            try {
-                o63Var.close();
-            } catch (IOException unused) {
-            }
+    static {
+        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

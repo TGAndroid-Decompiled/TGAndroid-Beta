@@ -1,12 +1,24 @@
 package defpackage;
-public interface av5 extends yu5, fq4 {
-    boolean isExternal();
 
-    boolean isInfix();
+import java.util.concurrent.CancellationException;
+public interface av5 extends ay2 {
+    th2 attachChild(wh2 wh2Var);
 
-    boolean isInline();
+    void cancel(CancellationException cancellationException);
 
-    boolean isOperator();
+    CancellationException getCancellationException();
 
-    boolean isSuspend();
+    p6a getChildren();
+
+    xp3 invokeOnCompletion(rr4 rr4Var);
+
+    xp3 invokeOnCompletion(boolean z, boolean z2, rr4 rr4Var);
+
+    boolean isActive();
+
+    boolean isCancelled();
+
+    Object join(px2 px2Var);
+
+    boolean start();
 }

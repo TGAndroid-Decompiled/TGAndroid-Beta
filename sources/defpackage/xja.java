@@ -1,57 +1,71 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PointF;
 import android.view.View;
-public class xja extends u26 {
-    public final s33 r;
-    public int s;
-    public float t;
+public final class xja implements v66, nf3 {
+    public final View a;
+    public boolean b;
+    public float c = 1.0f;
+    public float d = 1.0f;
+    public float e = 1.0f;
 
-    public xja(Context context) {
-        super(context);
-        this.r = s33.f;
-        this.t = 1.0f;
+    public xja(View view) {
+        this.a = view;
     }
 
     @Override
-    public final void g(View view, n49 n49Var) {
-        int j = j(o(), view);
-        int k = k(p(), view);
-        int m = m((int) Math.sqrt((k * k) + (j * j)));
-        if (m > 0) {
-            n49Var.b(-j, -k, m, this.r);
+    public final void a() {
+        View view = this.a;
+        if (!yja.g(view)) {
+            if (view instanceof zja) {
+                ((zja) view).X();
+            } else {
+                view.setVisibility(8);
+            }
+            c(1.0f, 1.0f);
         }
-        gl.e3(new am6(this, (byte) 25), Math.max(0, m));
     }
 
     @Override
-    public final int k(int i, View view) {
-        return super.k(i, view) - this.s;
+    public final int b(boolean z) {
+        return 0;
     }
 
-    @Override
-    public final int m(int i) {
-        return Math.round(Math.min(super.m(i), 500) * this.t);
-    }
-
-    @Override
-    public final int n(int i) {
-        return Math.round(Math.min(super.n(i), 150) * this.t);
-    }
-
-    @Override
-    public final void q(n49 n49Var) {
-        PointF a = a(this.a);
-        if (a != null && (a.x != 0.0f || a.y != 0.0f)) {
-            o49.b(a);
-            this.k = a;
-            this.o = (int) (a.x * 10000.0f);
-            this.p = (int) (a.y * 10000.0f);
-            n49Var.b((int) (this.o * 1.2f), (int) (this.p * 1.2f), (int) (n(10000) * 1.2f), this.r);
+    public final void c(float f, float f2) {
+        float f3 = this.c;
+        if (f3 == f && this.d == f2) {
             return;
         }
-        n49Var.d = this.a;
-        h();
+        int i = (f3 > 1.0f ? 1 : (f3 == 1.0f ? 0 : -1));
+        View view = this.a;
+        if (i == 0) {
+            this.e = view.getAlpha();
+        }
+        this.c = f;
+        this.d = f2;
+        view.setAlpha(this.e * f);
+        float min = Math.min(gm.R1(0.6f, 1.0f, f), f2);
+        view.setScaleX(min);
+        view.setScaleY(min);
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof xja) && ((xja) obj).a == this.a) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int getHeight() {
+        return this.a.getMeasuredHeight();
+    }
+
+    @Override
+    public final int getWidth() {
+        return yja.e(this.a);
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
     }
 }

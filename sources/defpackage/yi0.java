@@ -1,53 +1,23 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-import java.util.concurrent.Executor;
-import java.util.concurrent.RejectedExecutionException;
-public final class yi0 implements Executor {
+import java.util.List;
+public final class yi0 implements bj0, xw8 {
     public final byte a;
-    public final Handler b;
+    public final cj0 b;
 
-    public yi0(byte b) {
+    public yi0(cj0 cj0Var, byte b) {
         this.a = b;
-        switch (b) {
-            case 1:
-                this.b = new Handler(Looper.getMainLooper());
-                return;
-            default:
-                this.b = new Handler(Looper.getMainLooper());
-                return;
-        }
+        this.b = cj0Var;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        byte b = this.a;
-        Handler handler = this.b;
-        switch (b) {
-            case 0:
-                handler.post(runnable);
-                return;
-            case 1:
-                handler.post(runnable);
-                return;
-            case 2:
-                runnable.getClass();
-                if (handler.post(runnable)) {
-                    return;
-                }
-                throw new RejectedExecutionException(handler + " is shutting down");
-            default:
-                runnable.getClass();
-                if (handler.post(runnable)) {
-                    return;
-                }
-                throw new RejectedExecutionException(handler + " is shutting down");
-        }
+    public final void a(fj0 fj0Var, List list) {
+        this.b.m(fj0Var, list, null);
     }
 
-    public yi0(Handler handler, byte b) {
-        this.a = b;
-        this.b = handler;
+    @Override
+    public final void b(fj0 fj0Var, List list) {
+        byte b = this.a;
+        this.b.n(fj0Var, list);
     }
 }

@@ -1,16 +1,12 @@
 package defpackage;
-public abstract class ioe {
-    public static void a(long j, String str) {
-        if (j >= 0) {
-            return;
-        }
-        throw new IllegalArgumentException(str + " (" + j + ") must be >= 0");
-    }
+public final class ioe {
+    public final rye a;
+    public final wne b;
+    public final zme c;
 
-    public static void b(boolean z) {
-        if (z) {
-            return;
-        }
-        throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
+    public ioe(uqd uqdVar) {
+        this.a = (rye) uqdVar.b;
+        this.b = (wne) uqdVar.c;
+        this.c = (zme) uqdVar.d;
     }
 }

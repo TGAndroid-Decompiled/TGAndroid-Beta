@@ -1,324 +1,180 @@
 package defpackage;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.view.SurfaceView;
-import android.view.WindowManager;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class d8b implements t28 {
-    public final y1b a;
-    public final ArrayList b;
-    public final Context c;
-    public final m8b d;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class d8b extends Drawable {
+    public int a;
+    public final View b;
+    public final Paint c;
+    public final Paint d;
+    public final ln g;
+    public boolean h;
+    public Paint i;
+    public int e = 255;
+    public final float[] f = new float[15];
+    public final Path j = new Path();
 
-    public d8b(m8b m8bVar, y1b y1bVar, ArrayList arrayList, Context context) {
-        this.d = m8bVar;
-        this.a = y1bVar;
-        this.b = arrayList;
-        this.c = context;
+    public d8b(View view) {
+        this.b = view;
+        this.g = new ln(350L, view, d53.h);
+        Paint paint = new Paint(1);
+        this.c = paint;
+        paint.setShadowLayer(gm.L(4.0f), 0.0f, 0.0f, 1593835520);
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        paint2.setColor(-1);
     }
 
-    public final void a(int i, long j) {
-        m8b m8bVar = this.d;
-        if (m8bVar.K == i && m8bVar.J == j) {
+    public final void a() {
+        int i = this.a + 1;
+        this.a = i;
+        if (i >= 2) {
+            this.a = 0;
+        }
+    }
+
+    public final void b(boolean z, boolean z2) {
+        float f;
+        this.h = z;
+        if (!z2) {
+            if (z) {
+                f = 1.0f;
+            } else {
+                f = 0.0f;
+            }
+            this.g.e(true, f);
             return;
         }
-        m8bVar.J = j;
-        m8bVar.K = i;
+        this.b.invalidate();
     }
 
-    public final void b(boolean z) {
+    public final void c(float f) {
+        this.c.setShadowLayer(gm.L(2.0f) / f, 0.0f, gm.N(0.7f) / f, on2.p(-16777216, 45));
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f;
         int i;
-        m8b m8bVar = this.d;
-        d dVar = m8bVar.f;
-        if (m8bVar.b) {
-            if (!m8bVar.c) {
-                if (z) {
-                    gl.V2(dVar.getParentActivity(), dVar.getClassGuid());
-                    return;
-                } else {
-                    gl.W2(dVar.getParentActivity(), dVar.getClassGuid());
-                    return;
-                }
-            }
-            return;
-        }
-        WindowManager.LayoutParams layoutParams = m8bVar.r;
-        if (z) {
-            i = 48;
-        } else {
-            i = 16;
-        }
-        layoutParams.softInputMode = i;
-        try {
-            m8bVar.n.updateViewLayout(m8bVar.s, layoutParams);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    public final void c(TLRPC.Document document, Uri uri, long j, c30 c30Var) {
-        String uri2;
-        String uri3;
-        long j2;
-        l8b l8bVar;
-        m8b m8bVar = this.d;
-        ArrayList arrayList = m8bVar.M0;
-        if (!m8bVar.H0 && m8bVar.V >= 0.9f) {
-            Uri uri4 = m8bVar.F0;
-            if (uri4 == null) {
-                uri2 = null;
-            } else {
-                uri2 = uri4.toString();
-            }
-            if (uri == null) {
-                uri3 = null;
-            } else {
-                uri3 = uri.toString();
-            }
-            boolean equals = TextUtils.equals(uri2, uri3);
-            boolean z = true;
-            if (equals && (l8bVar = m8bVar.A0) != null) {
-                if (equals) {
-                    m8bVar.G0 = c30Var;
-                    c30Var.c = l8bVar;
-                    c30Var.b = null;
-                    l8bVar.setSpeed(m8b.B1);
-                    c30 c30Var2 = m8bVar.G0;
-                    c30Var2.a = m8bVar.A0.firstFrameRendered;
-                    c30Var2.e = m8bVar.z0;
-                    c30Var2.f = m8bVar.C0;
-                    c30Var2.d = m8bVar.D0;
-                    fa4.b("StoryViewer requestPlayer: same url");
-                }
-            } else {
-                m8bVar.F0 = uri;
-                u76 u76Var = m8bVar.E0;
-                if (u76Var != null) {
-                    u76Var.e(0L, null);
-                }
-                t76 t76Var = m8bVar.B0;
-                if (t76Var != null) {
-                    if (t76Var.n) {
-                        t76Var.d();
-                    } else {
-                        t76Var.h();
-                    }
-                    m8bVar.B0 = null;
-                }
-                l8b l8bVar2 = m8bVar.A0;
-                if (l8bVar2 != null) {
-                    l8bVar2.release(null);
-                    m8bVar.A0 = null;
-                }
-                c30 c30Var3 = m8bVar.G0;
-                if (c30Var3 != null) {
-                    c30Var3.c = null;
-                    c30Var3.b = null;
-                    c30Var3.a = false;
-                    c30Var3.e = null;
-                    c30Var3.f = null;
-                    c30Var3.d = null;
-                    c30Var3.m();
-                    m8bVar.G0 = null;
-                }
-                if (uri != null) {
-                    m8bVar.G0 = c30Var;
-                    int i = 0;
-                    while (true) {
-                        if (i >= arrayList.size()) {
-                            break;
-                        } else if (((l8b) arrayList.get(i)).uri.equals(uri)) {
-                            m8bVar.A0 = (l8b) arrayList.remove(i);
-                            break;
-                        } else {
-                            i++;
-                        }
-                    }
-                    l8b l8bVar3 = m8bVar.A0;
-                    if (l8bVar3 == null) {
-                        l8bVar3 = new l8b(m8bVar, m8bVar.D0, m8bVar.C0);
-                        m8bVar.A0 = l8bVar3;
-                        l8bVar3.document = document;
-                    }
-                    l8bVar3.uri = uri;
-                    l8bVar3.setSpeed(m8b.B1);
-                    c30 c30Var4 = m8bVar.G0;
-                    l8b l8bVar4 = m8bVar.A0;
-                    c30Var4.c = l8bVar4;
-                    c30Var4.a = false;
-                    c30Var4.e = m8bVar.z0;
-                    c30Var4.f = m8bVar.C0;
-                    c30Var4.d = m8bVar.D0;
-                    c30Var4.b = null;
-                    TLRPC.Document document2 = l8bVar4.document;
-                    if (document2 != null) {
-                        kb4.J.put(Long.valueOf(document2.id), 3);
-                    } else {
-                        ConcurrentHashMap concurrentHashMap = kb4.I;
-                    }
-                    ba4.G(m8bVar.h).h(3, m8bVar.A0.document, null, null, null, null);
-                    if (j == 0) {
-                        long j3 = m8bVar.t1;
-                        if (j3 != 0) {
-                            m8bVar.G0.a = true;
-                            j2 = j3;
-                            fa4.b("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                            ((l8b) m8bVar.G0.c).start(false, m8bVar.A(), uri, j2, m8b.D1, m8b.B1);
-                            m8bVar.G0.m();
-                        }
-                    }
-                    j2 = j;
-                    fa4.b("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                    ((l8b) m8bVar.G0.c).start(false, m8bVar.A(), uri, j2, m8b.D1, m8b.B1);
-                    m8bVar.G0.m();
-                } else {
-                    fa4.b("StoryViewer requestPlayer: url is null (1)");
-                }
-            }
-            if (uri == null) {
-                z = false;
-            }
-            i(false, z);
-            m8bVar.t1 = 0L;
-            m8bVar.U();
-            return;
-        }
-        u76 u76Var2 = m8bVar.E0;
-        if (u76Var2 != null) {
-            u76Var2.e(0L, null);
-        }
-        t76 t76Var2 = m8bVar.B0;
-        if (t76Var2 != null) {
-            if (t76Var2.n) {
-                t76Var2.d();
-            } else {
-                t76Var2.h();
-            }
-            m8bVar.B0 = null;
-        }
-        fa4.b("StoryViewer requestPlayer ignored, because closed: " + m8bVar.H0 + ", " + m8bVar.V);
-        c30Var.a = false;
-        c30Var.c = null;
-        c30Var.b = null;
-    }
-
-    public final void d(float f) {
-        m8b m8bVar = this.d;
-        if (m8bVar.s0 != f) {
-            m8bVar.s0 = f;
-            m8bVar.w.invalidate();
-        }
-    }
-
-    public final void e() {
-        this.d.m1 = false;
-    }
-
-    public final void f(boolean z) {
-        l8b l8bVar;
-        m8b m8bVar = this.d;
-        if (!m8bVar.f1 && z && m8bVar.l0) {
-            m8bVar.l0 = false;
-            c30 c30Var = m8bVar.G0;
-            if (c30Var != null && (l8bVar = (l8b) c30Var.c) != null) {
-                l8bVar.setSeeking(false);
-            }
-            y28 w = m8bVar.w();
-            if (w != null) {
-                w.invalidate();
-            }
-        }
-        m8bVar.f1 = z;
-        m8bVar.U();
-    }
-
-    public final void g(boolean z) {
-        m8b m8bVar = this.d;
-        m8bVar.X0 = z;
-        m8bVar.U();
-    }
-
-    public final void h(Dialog dialog) {
-        this.d.u(dialog);
-    }
-
-    public final void i(boolean z, boolean z2) {
-        int i;
+        Paint paint;
         int i2;
-        m8b m8bVar = this.d;
-        u76 u76Var = m8bVar.E0;
-        int i3 = 8;
-        if (u76Var != null) {
-            if (z) {
-                i2 = 0;
+        int i3;
+        float[] fArr = this.f;
+        int i4 = 0;
+        fArr[0] = getBounds().centerX();
+        int i5 = 1;
+        fArr[1] = getBounds().centerY();
+        int i6 = 2;
+        fArr[2] = getBounds().height() / 2.0f;
+        int i7 = 3;
+        fArr[3] = (getBounds().width() * 1.027f) + getBounds().left;
+        int i8 = 4;
+        fArr[4] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[5] = getBounds().height() * 0.055f;
+        fArr[6] = (getBounds().width() * 0.843f) + getBounds().left;
+        fArr[7] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[8] = getBounds().height() * 0.132f;
+        fArr[9] = (getBounds().width() * (-0.02699995f)) + getBounds().left;
+        fArr[10] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[11] = getBounds().height() * 0.055f;
+        fArr[12] = (getBounds().width() * 0.157f) + getBounds().left;
+        fArr[13] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[14] = getBounds().height() * 0.132f;
+        if (this.h) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        float e = this.g.e(false, f);
+        int i9 = this.a;
+        Paint paint2 = this.d;
+        if (i9 == 0) {
+            paint2.setColor(-1);
+        } else if (i9 == 1) {
+            if (this.i == null) {
+                Paint paint3 = new Paint(1);
+                this.i = paint3;
+                paint3.setColor(-16777216);
+                this.i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                this.i.setStrokeWidth(gm.L(3.0f));
+            }
+            paint2.setColor(on2.p(-16777216, 127));
+        }
+        if (this.e == 255 && this.a != 1) {
+            canvas.save();
+        } else {
+            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.e, 31);
+        }
+        Path path = this.j;
+        path.rewind();
+        int i10 = 0;
+        while (i10 < i6) {
+            if (this.a == i5 && i10 == 0) {
+                i2 = i6;
             } else {
-                i2 = 8;
+                if (i10 == 0) {
+                    paint = this.c;
+                    i = i5;
+                } else {
+                    i = i4;
+                    paint = paint2;
+                }
+                while (i4 < 5) {
+                    if (i4 != i5 && i4 != i6) {
+                        if (i4 != i7 && i4 != i8) {
+                            int i11 = i4 * 3;
+                            i3 = i6;
+                            path.addCircle(fArr[i11], fArr[i11 + 1], fArr[i11 + 2] - i, Path.Direction.CW);
+                        } else {
+                            i3 = i6;
+                            if (e != 0.0f) {
+                                int i12 = i4 * 3;
+                                path.addCircle(fArr[i12], fArr[i12 + 1], (fArr[i12 + 2] * e) - i, Path.Direction.CW);
+                            }
+                        }
+                    } else {
+                        i3 = i6;
+                        if (e != 1.0f) {
+                            int i13 = i4 * 3;
+                            path.addCircle(fArr[i13], fArr[i13 + 1], ((1.0f - e) * fArr[i13 + 2]) - i, Path.Direction.CW);
+                        }
+                    }
+                    i4++;
+                    i6 = i3;
+                    i7 = 3;
+                    i5 = 1;
+                    i8 = 4;
+                }
+                i2 = i6;
+                canvas.drawPath(path, paint);
             }
-            u76Var.setVisibility(i2);
+            i10++;
+            i6 = i2;
+            i7 = 3;
+            i4 = 0;
+            i5 = 1;
+            i8 = 4;
         }
-        SurfaceView surfaceView = m8bVar.D0;
-        if (surfaceView != null) {
-            if (z) {
-                i = 8;
-            } else if (z2) {
-                i = 0;
-            } else {
-                i = 4;
-            }
-            surfaceView.setVisibility(i);
-        }
-        e8b e8bVar = m8bVar.C0;
-        if (e8bVar != null) {
-            if (!z) {
-                i3 = 0;
-            }
-            e8bVar.setVisibility(i3);
-        }
+        canvas.restore();
     }
 
-    public final void j() {
-        int indexOf;
-        m8b m8bVar = this.d;
-        y1b y1bVar = this.a;
-        if (y1bVar != null) {
-            if (m8bVar.o0.y0 == null) {
-                return;
-            }
-            ArrayList arrayList = new ArrayList(m8bVar.o0.y0);
-            if (m8bVar.o0.getCurrentPeerView() == null) {
-                indexOf = -1;
-            } else {
-                indexOf = arrayList.indexOf(m8bVar.o0.getCurrentPeerView().getCurrentDay());
-            }
-            if (indexOf >= 0) {
-                arrayList.remove(indexOf);
-                if (!m8bVar.o0.E(true)) {
-                    m8bVar.o(false);
-                    return;
-                }
-                m8bVar.o0.H0 = new r1b(this, y1bVar, arrayList, (byte) 8);
-                return;
-            }
-            m8bVar.o(false);
-            return;
-        }
-        ArrayList arrayList2 = new ArrayList(this.b);
-        int indexOf2 = arrayList2.indexOf(Long.valueOf(m8bVar.o0.getCurrentPeerView().getCurrentPeer()));
-        if (indexOf2 >= 0) {
-            arrayList2.remove(indexOf2);
-            if (!m8bVar.o0.E(true)) {
-                m8bVar.o(false);
-                return;
-            }
-            m8bVar.o0.H0 = new t79(this, arrayList2, indexOf2, (byte) 20);
-            return;
-        }
-        m8bVar.o(false);
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.e = i;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

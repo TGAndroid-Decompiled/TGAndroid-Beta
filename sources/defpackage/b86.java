@@ -1,16 +1,56 @@
 package defpackage;
-public final class b86 {
-    public final uc8 a;
-    public final aob b;
-    public final rx6 c;
-    public final long d;
-    public final float e;
 
-    public b86(uc8 uc8Var, aob aobVar, rx6 rx6Var, long j, float f, boolean z, long j2) {
-        this.a = uc8Var;
-        this.b = aobVar;
-        this.c = rx6Var;
-        this.d = j;
-        this.e = f;
+import java.util.AbstractList;
+import java.util.ListIterator;
+public final class b86 extends y0c implements ListIterator {
+    public final byte b;
+    public final AbstractList c;
+
+    public b86(AbstractList abstractList, ListIterator listIterator, byte b) {
+        super(listIterator);
+        this.b = b;
+        this.c = abstractList;
+    }
+
+    @Override
+    public final Object a(Object obj) {
+        byte b = this.b;
+        AbstractList abstractList = this.c;
+        switch (b) {
+            case 0:
+                return ((c86) abstractList).b.apply(obj);
+            default:
+                return ((d86) abstractList).b.apply(obj);
+        }
+    }
+
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        return ((ListIterator) this.a).hasPrevious();
+    }
+
+    @Override
+    public final int nextIndex() {
+        return ((ListIterator) this.a).nextIndex();
+    }
+
+    @Override
+    public final Object previous() {
+        return a(((ListIterator) this.a).previous());
+    }
+
+    @Override
+    public final int previousIndex() {
+        return ((ListIterator) this.a).previousIndex();
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

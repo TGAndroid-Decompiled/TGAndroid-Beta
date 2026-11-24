@@ -1,29 +1,28 @@
 package defpackage;
 
+import android.content.Context;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xa7 implements Runnable {
     public final byte a = 0;
-    public final boolean b;
+    public final int b;
     public final long c;
-    public final int d;
-    public final long e;
-    public final Object f;
+    public final long d;
+    public final int e;
+    public final boolean f;
     public final Object h;
     public final Object n;
     public final Object r;
-    public final Object s;
 
-    public xa7(ad7 ad7Var, long j, boolean z, String str, long j2, int i, String str2, String str3, String str4) {
-        this.f = ad7Var;
+    public xa7(oc7 oc7Var, long j, int i, int i2, long j2, TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory, boolean z, ho1 ho1Var) {
+        this.h = oc7Var;
         this.c = j;
-        this.b = z;
-        this.h = str;
-        this.e = j2;
-        this.d = i;
-        this.n = str2;
-        this.r = str3;
-        this.s = str4;
+        this.b = i;
+        this.e = i2;
+        this.d = j2;
+        this.n = tL_messages_affectedHistory;
+        this.f = z;
+        this.r = ho1Var;
     }
 
     @Override
@@ -31,15 +30,14 @@ public final class xa7 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.xa7.run():void");
     }
 
-    public xa7(gta gtaVar, TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error, boolean z, long j, int i, k27 k27Var, long j2) {
-        this.f = gtaVar;
+    public xa7(TLObject tLObject, int i, long j, long j2, int i2, boolean z, Context context, String str) {
         this.h = tLObject;
-        this.n = runnable;
-        this.r = tL_error;
-        this.b = z;
+        this.b = i;
         this.c = j;
-        this.d = i;
-        this.s = k27Var;
-        this.e = j2;
+        this.d = j2;
+        this.e = i2;
+        this.f = z;
+        this.n = context;
+        this.r = str;
     }
 }

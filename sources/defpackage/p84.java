@@ -1,20 +1,38 @@
 package defpackage;
-public final class p84 {
-    public final byte a;
-    public final int b;
-    public final String c;
-    public final String d;
-    public final byte e;
 
-    public p84(int i, int i2, String str, String str2) {
-        this.a = (byte) 1;
-        this.b = i;
-        this.c = str;
-        this.d = str2;
-        this.e = i2;
+import android.content.Context;
+import android.view.View;
+public final class p84 extends ela {
+    public final byte m0;
+
+    public p84(Context context, tk5 tk5Var, byte b) {
+        super(context, tk5Var);
+        this.m0 = b;
     }
 
-    public p84(int i) {
-        this.a = i;
+    @Override
+    public final boolean O() {
+        switch (this.m0) {
+            case 0:
+            case 1:
+                return false;
+            default:
+                return super.O();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.m0) {
+            case 2:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+                return;
+            case 3:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
     }
 }

@@ -1,8 +1,17 @@
 package defpackage;
+public final class gse implements cq7 {
+    public static final gse a = new Object();
 
-import android.os.IInterface;
-public interface gse extends IInterface {
-    void t(w5e w5eVar);
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)));
+    }
 
-    void zze();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

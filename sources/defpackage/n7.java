@@ -39,7 +39,7 @@ public abstract class n7 {
     public void i() {
     }
 
-    public void j(rf4 rf4Var) {
+    public void j(sh4 sh4Var) {
     }
 
     public void k(EditTextBoldCursor editTextBoldCursor) {

@@ -25,7 +25,7 @@ public final class r5 implements View.OnClickListener {
                 return;
             default:
                 if (!aVar.K && aVar.o0) {
-                    aVar.n(true);
+                    aVar.o(true);
                     return;
                 }
                 c6 c6Var = aVar.v0;

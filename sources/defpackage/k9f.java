@@ -1,28 +1,17 @@
 package defpackage;
 
-import android.os.Parcel;
-public final class k9f extends ezc {
-    public final yi5 Z(bo7 bo7Var, String str, int i, bo7 bo7Var2) {
-        Parcel R = R();
-        mgd.b(R, bo7Var);
-        R.writeString(str);
-        R.writeInt(i);
-        mgd.b(R, bo7Var2);
-        Parcel P = P(R, 2);
-        yi5 T = bo7.T(P.readStrongBinder());
-        P.recycle();
-        return T;
+import com.google.android.gms.common.api.Status;
+public final class k9f implements uc9 {
+    public final Status a;
+    public final u6d b;
+
+    public k9f(Status status, u6d u6dVar) {
+        this.a = status;
+        this.b = u6dVar;
     }
 
-    public final yi5 a0(bo7 bo7Var, String str, int i, bo7 bo7Var2) {
-        Parcel R = R();
-        mgd.b(R, bo7Var);
-        R.writeString(str);
-        R.writeInt(i);
-        mgd.b(R, bo7Var2);
-        Parcel P = P(R, 3);
-        yi5 T = bo7.T(P.readStrongBinder());
-        P.recycle();
-        return T;
+    @Override
+    public final Status a() {
+        return this.a;
     }
 }

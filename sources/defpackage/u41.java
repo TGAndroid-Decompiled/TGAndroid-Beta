@@ -1,772 +1,512 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextPaint;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcelable;
+import android.util.ArrayMap;
+import android.util.Log;
+import androidx.core.graphics.drawable.IconCompat;
+import j$.util.Objects;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.AbstractCollection;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
-public class u41 extends FrameLayout implements g86, tjb {
-    public int E;
-    public boolean F;
-    public int G;
-    public int H;
-    public boolean I;
-    public int J;
-    public q21 K;
-    public float L;
-    public ValueAnimator M;
-    public boolean N;
-    public r86 O;
-    public boolean P;
-    public float Q;
-    public boolean R;
-    public ValueAnimator S;
-    public boolean T;
-    public float U;
-    public ValueAnimator V;
-    public int W;
-    public wjb a;
-    public boolean a0;
-    public int b;
-    public boolean b0;
-    public final Paint c;
-    public Drawable c0;
-    public final gn d;
-    public float d0;
-    public final gn e;
-    public boolean e0;
-    public final gn f;
-    public ValueAnimator f0;
-    public ih2 g0;
-    public float h;
-    public int h0;
-    public boolean i0;
-    public int j0;
-    public boolean k0;
-    public int l0;
-    public final lm n;
-    public final View r;
-    public boolean s;
-    public boolean w;
-    public boolean x;
-    public boolean y;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+public abstract class u41 {
+    public static final ArrayMap a;
+    public static final ArrayMap b;
 
-    public u41(wjb wjbVar, Context context, boolean z) {
-        super(context);
-        this.b = 8;
-        s33 s33Var = s33.h;
-        this.n = new lm(350L, s33Var);
-        this.G = -1;
-        this.I = true;
-        this.J = 0;
-        this.L = 0.0f;
-        this.Q = 0.0f;
-        this.U = 1.0f;
-        this.d0 = 1.0f;
-        this.e0 = true;
-        this.h0 = 255;
-        this.s = z;
-        this.a = wjbVar;
-        ote.b(this, 0.02f, 1.2f);
-        View view = new View(context);
-        this.r = view;
-        addView(view, nme.c(-1.0f, -1));
-        if (z) {
-            int L = gl.L(8.0f);
-            int i = bkb.Ei;
-            int v0 = bkb.v0(i, wjbVar);
-            this.E = v0;
-            ShapeDrawable b0 = bkb.b0(L, v0);
-            vkb M = zkb.M(i);
-            setBackground(b0);
-            zkb.j(this, b0, M, null, wjbVar);
-        }
-        Paint paint = new Paint(1);
-        this.c = paint;
-        paint.setColor(bkb.v0(bkb.Ii, wjbVar));
-        gn gnVar = new gn(true, true, false, false, true);
-        this.d = gnVar;
-        gnVar.n(0.3f, 250L, s33Var);
-        gnVar.setCallback(this);
-        gnVar.w(gl.L(14.0f));
-        if (z) {
-            gnVar.x(gl.o());
-        }
-        gnVar.b = 1;
-        gn gnVar2 = new gn(j(), true, false);
-        this.e = gnVar2;
-        gnVar2.n(0.3f, 250L, s33Var);
-        gnVar2.setCallback(this);
-        gnVar2.w(gl.L(12.0f));
-        gnVar2.b = 1;
-        gn gnVar3 = new gn(false, false, true);
-        this.f = gnVar3;
-        gnVar3.n(0.3f, 250L, s33Var);
-        gnVar3.setCallback(this);
-        gnVar3.w(gl.L(12.0f));
-        gnVar3.x(gl.o());
-        gnVar3.t("", true, true);
-        gnVar3.b = 1;
-        setWillNotDraw(false);
-        updateColors();
+    static {
+        ArrayMap arrayMap = new ArrayMap();
+        arrayMap.put(Boolean.class, "bool");
+        arrayMap.put(Byte.class, "byte");
+        arrayMap.put(Short.class, "short");
+        arrayMap.put(Integer.class, "int");
+        arrayMap.put(Long.class, "long");
+        arrayMap.put(Double.class, "double");
+        arrayMap.put(Float.class, "float");
+        arrayMap.put(String.class, "string");
+        arrayMap.put(Parcelable.class, "parcelable");
+        arrayMap.put(Map.class, "map");
+        arrayMap.put(List.class, "list");
+        arrayMap.put(IconCompat.class, "image");
+        a = arrayMap;
+        ArrayMap arrayMap2 = new ArrayMap();
+        arrayMap2.put(0, "primitive");
+        arrayMap2.put(1, "iInterface");
+        arrayMap2.put(9, "iBinder");
+        arrayMap2.put(2, "map");
+        arrayMap2.put(3, "set");
+        arrayMap2.put(4, "list");
+        arrayMap2.put(5, "object");
+        arrayMap2.put(6, "image");
+        b = arrayMap2;
     }
 
-    private int getWrapWidth() {
-        float f;
-        float e = this.n.e(false, this.h);
-        if (this.b0) {
-            f = gl.L(12.0f);
-        } else {
-            f = 0.0f;
-        }
-        return getPaddingRight() + getPaddingLeft() + ((int) (b(this.f.c() + gl.L(15.66f), e) + this.d.c() + f));
-    }
-
-    private void setRippleColor(int i) {
-        View view = this.r;
-        Drawable background = view.getBackground();
-        if (background != null && this.H == i) {
+    public static void a(Bundle bundle, AbstractCollection abstractCollection, s41 s41Var) {
+        ArrayList parcelableArrayList = bundle.getParcelableArrayList("tag_value");
+        if (parcelableArrayList != null) {
+            int size = parcelableArrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = parcelableArrayList.get(i);
+                i++;
+                abstractCollection.add(f((Bundle) ((Parcelable) obj), s41Var));
+            }
             return;
         }
-        this.H = i;
-        if (background instanceof RippleDrawable) {
-            ((RippleDrawable) background).setColor(ColorStateList.valueOf(i));
-            return;
-        }
-        int i2 = this.b;
-        view.setBackground(bkb.Y(i, i2, i2));
+        throw new t41("Bundle is missing the collection", s41Var);
     }
 
-    @Override
-    public final boolean a() {
-        return this.R;
-    }
-
-    public float b(float f, float f2) {
-        return f * f2;
-    }
-
-    public final void c(int i, boolean z) {
-        float f;
-        gn gnVar = this.f;
-        if (z) {
-            gnVar.a();
-            int i2 = this.W;
-            if (i != i2 && i > 0 && i2 > 0) {
-                ValueAnimator valueAnimator = this.V;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.V = null;
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.V = ofFloat;
-                ofFloat.addUpdateListener(new s41(this, (byte) 0));
-                this.V.addListener(new t41(this, (byte) 1));
-                b00.n(2.0f, this.V);
-                this.V.setDuration(200L);
-                this.V.start();
-            }
-        }
-        this.W = i;
-        if (i == 0 && !this.a0) {
-            f = 0.0f;
-        } else {
-            f = 1.0f;
-        }
-        this.h = f;
-        gnVar.t(k96.E(i, ' '), z, true);
-        invalidate();
-    }
-
-    public final void d() {
-        int i;
-        ShapeDrawable b0 = bkb.b0(gl.L(this.b), this.E);
-        if (this.y) {
-            setBackground(b0);
-            return;
-        }
-        if (this.x) {
-            i = bkb.nb;
-        } else {
-            i = bkb.Ei;
-        }
-        vkb M = zkb.M(i);
-        wjb wjbVar = this.a;
-        setBackground(b0);
-        zkb.j(this, b0, M, null, wjbVar);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        return false;
-    }
-
-    public final void e() {
-        this.x = true;
-        setFilled(true);
-        if (!this.y) {
-            this.E = bkb.v0(bkb.nb, this.a);
-            d();
-        }
-        updateColors();
-    }
-
-    public final void f() {
-        setRoundRadius(24);
-    }
-
-    public final void g(CharSequence charSequence, boolean z) {
-        boolean z2;
-        if (charSequence != null) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        gn gnVar = this.e;
-        if (z) {
-            gnVar.a();
-        }
-        setContentDescription(charSequence);
-        invalidate();
-        if (this.N && !z2) {
-            ValueAnimator valueAnimator = this.M;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.M = null;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.L, 0.0f);
-            this.M = ofFloat;
-            ofFloat.addUpdateListener(new s41(this, (byte) 3));
-            this.M.addListener(new t41(this, (byte) 0));
-            this.M.setDuration(200L);
-            this.M.setInterpolator(s33.f);
-            this.M.start();
-        } else {
-            gnVar.t(charSequence, z, true);
-        }
-        if (!this.N && z2) {
-            this.N = true;
-            ValueAnimator valueAnimator2 = this.M;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-                this.M = null;
-            }
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.L, 1.0f);
-            this.M = ofFloat2;
-            ofFloat2.addUpdateListener(new s41(this, (byte) 4));
-            this.M.setDuration(200L);
-            this.M.setInterpolator(s33.f);
-            this.M.start();
-        }
-    }
-
-    public TextPaint getTextPaint() {
-        return this.d.a;
-    }
-
-    public final void h(CharSequence charSequence, boolean z) {
-        i(charSequence, false, true);
-    }
-
-    public final void i(CharSequence charSequence, boolean z, boolean z2) {
-        gn gnVar = this.d;
-        if (z) {
-            gnVar.a();
-        }
-        gnVar.t(charSequence, z, z2);
-        setContentDescription(charSequence);
-        invalidate();
-    }
-
-    @Override
-    public final boolean isEnabled() {
-        return this.e0;
-    }
-
-    public boolean j() {
-        return !(this instanceof oi1);
-    }
-
-    public final void k() {
-        this.b0 = true;
-        Drawable mutate = getContext().getDrawable(2131231933).mutate();
-        this.c0 = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(this.E, PorterDuff.Mode.SRC_IN));
-    }
-
-    public final void l() {
-        this.i0 = true;
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        int wrapWidth;
-        boolean z;
-        float f;
-        float f2;
-        int i;
-        float f3;
-        float f4;
-        float f5;
-        this.r.draw(canvas);
-        int i2 = 0;
-        if (this.P) {
-            boolean z2 = this.R;
-            r86 r86Var = this.O;
-            if (z2) {
-                if (r86Var == null) {
-                    r86 r86Var2 = new r86(this.a);
-                    this.O = r86Var2;
-                    r86Var2.setCallback(this);
-                    r86 r86Var3 = this.O;
-                    r86Var3.t = 2.0f;
-                    r86Var3.D = true;
-                    r86Var3.x.setStrokeWidth(0.0f);
-                    this.O.f(bkb.p1(0.02f, -1), bkb.p1(0.375f, -1));
-                }
-                r86 r86Var4 = this.O;
-                r86Var4.c = -1L;
-                r86Var4.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.O.j(this.b);
-                this.O.draw(canvas);
-            } else if (r86Var != null) {
-                r86Var.a();
-                this.O.draw(canvas);
-                if (this.O.c()) {
-                    this.O.b = -1L;
+    public static Object b(Bundle bundle, s41 s41Var) {
+        String string = bundle.getString("tag_value");
+        if (string != null) {
+            String string2 = bundle.getString("tag_class_name");
+            if (string2 != null) {
+                try {
+                    return g(Class.forName(string2), "valueOf", s41Var).invoke(null, string);
+                } catch (ClassNotFoundException e) {
+                    throw new t41(kt6.o("Enum class [", string2, "] not found"), s41Var, e);
+                } catch (IllegalArgumentException e2) {
+                    throw new t41(b10.i("Enum value [", string, "] does not exist in enum class [", string2, "]"), s41Var, e2);
+                } catch (ReflectiveOperationException e3) {
+                    throw new t41(kt6.o("Enum of class [", string2, "] missing valueOf method"), s41Var, e3);
                 }
             }
+            throw new t41(kt6.o("Missing enum className [", string2, "]"), s41Var);
         }
-        int i3 = (this.Q > 0.0f ? 1 : (this.Q == 0.0f ? 0 : -1));
-        gn gnVar = this.d;
-        if (i3 > 0) {
-            ih2 ih2Var = this.g0;
-            if (ih2Var == null) {
-                ih2Var = new ih2(gnVar.a.getColor());
-                this.g0 = ih2Var;
-            }
-            if (this.T) {
-                ih2Var.setBounds(0, 0, getWidth(), getHeight());
-                this.g0.setAlpha((int) (this.Q * 255.0f));
-                float R1 = gl.R1(0.6f, 1.0f, this.Q);
-                canvas.save();
-                canvas.scale(R1, R1, getWidth() / 2.0f, getHeight() / 2.0f);
-                this.g0.draw(canvas);
-                canvas.restore();
-            } else {
-                int L = (int) ((1.0f - this.Q) * gl.L(24.0f));
-                this.g0.setBounds(0, L, getWidth(), getHeight() + L);
-                this.g0.setAlpha((int) (this.Q * 255.0f));
-                this.g0.draw(canvas);
-            }
-            invalidate();
-        }
-        float f6 = this.Q;
-        if (f6 < 1.0f) {
-            if (f6 != 0.0f) {
-                canvas.save();
-                boolean z3 = this.T;
-                float f7 = this.Q;
-                if (z3) {
-                    float f8 = 1.0f - (f7 * 0.2f);
-                    canvas.scale(f8, f8, getWidth() / 2.0f, getHeight() / 2.0f);
-                } else {
-                    canvas.translate(0.0f, (int) (f7 * gl.L(-24.0f)));
-                    canvas.scale(1.0f, 1.0f - (this.Q * 0.4f));
-                }
-                z = true;
-            } else {
-                z = false;
-            }
-            float c = gnVar.c();
-            float e = this.n.e(false, this.h);
-            if (this.b0) {
-                f = gl.L(12.0f);
-            } else {
-                f = 0.0f;
-            }
-            gn gnVar2 = this.f;
-            float b = b(gnVar2.c() + gl.L(15.66f), e) + c + f;
-            Rect rect = gl.Q;
-            rect.set((int) (((getMeasuredWidth() - b) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - gnVar.e) / 2.0f) - gl.L(1.0f)), (int) tb4.e(getMeasuredWidth() - b, getWidth(), 2.0f, c), (int) (((getMeasuredHeight() + gnVar.e) / 2.0f) - gl.L(1.0f)));
-            rect.offset(0, (int) ((-gl.L(7.0f)) * this.L));
-            gnVar.C = (int) (gl.R1(0.5f, 1.0f, this.d0) * (1.0f - this.Q) * this.h0);
-            gnVar.setBounds(rect);
-            gnVar.draw(canvas);
-            if (this.N) {
-                gn gnVar3 = this.e;
-                b = gnVar3.c();
-                rect.set((int) (((getMeasuredWidth() - b) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - gnVar3.e) / 2.0f) - gl.L(1.0f)), (int) tb4.e(getMeasuredWidth() - b, getWidth(), 2.0f, b), (int) (((getMeasuredHeight() + gnVar3.e) / 2.0f) - gl.L(1.0f)));
-                rect.offset(0, gl.L(11.0f));
-                canvas.save();
-                float R12 = gl.R1(0.1f, 1.0f, this.L);
-                canvas.scale(R12, R12, rect.centerX(), rect.bottom);
-                gnVar3.C = (int) (gl.R1(0.5f, 1.0f, this.d0) * (1.0f - this.Q) * 200.0f * this.L);
-                gnVar3.setBounds(rect);
-                gnVar3.draw(canvas);
-                canvas.restore();
-            }
-            float z4 = oo1.z(getMeasuredWidth(), b, 2.0f, c);
-            if (this.I) {
-                f2 = 5.0f;
-            } else {
-                f2 = 2.0f;
-            }
-            int L2 = (int) (z4 + gl.L(f2));
-            int measuredHeight = (int) ((getMeasuredHeight() - gl.L(18.0f)) / 2.0f);
-            float z5 = oo1.z(getMeasuredWidth(), b, 2.0f, c);
-            if (this.I) {
-                i = 5;
-            } else {
-                i = 2;
-            }
-            rect.set(L2, measuredHeight, (int) (Math.max(gl.L(9.0f), gnVar2.c() + f) + z5 + gl.L(i + 8)), (int) ((gl.L(18.0f) + getMeasuredHeight()) / 2.0f));
-            RectF rectF = gl.P;
-            rectF.set(rect);
-            if (this.U != 1.0f) {
-                canvas.save();
-                float f9 = this.U;
-                canvas.scale(f9, f9, rect.centerX(), rect.centerY());
-            }
-            if (this.I) {
-                float f10 = 1.0f - this.Q;
-                f3 = 0.5f;
-                float R13 = gl.R1(0.5f, 1.0f, this.d0);
-                Paint paint = this.c;
-                paint.setAlpha((int) (R13 * f10 * this.h0 * e * e));
-                if (this.b0) {
-                    f5 = 4.0f;
-                } else {
-                    f5 = 10.0f;
-                }
-                float L3 = gl.L(f5);
-                canvas.drawRoundRect(rectF, L3, L3, paint);
-            } else {
-                f3 = 0.5f;
-            }
-            CharSequence charSequence = gnVar2.i;
-            if (charSequence != null) {
-                i2 = charSequence.length();
-            }
-            if (i2 > 1) {
-                f4 = 0.3f;
-            } else {
-                f4 = 0.0f;
-            }
-            rect.offset(-gl.L(f4), -gl.L(0.4f));
-            float z6 = tb4.z(1.0f, this.Q, this.h0, e);
-            if (this.I) {
-                f3 = 1.0f;
-            }
-            gnVar2.C = (int) (z6 * f3);
-            gnVar2.setBounds(rect);
-            canvas.save();
-            if (this.I && this.b0) {
-                this.c0.setAlpha((int) ((1.0f - this.Q) * this.h0 * e * 1.0f));
-                this.c0.setBounds(gl.L(1.0f) + rect.left, gl.L(2.0f) + rect.top, this.c0.getIntrinsicWidth() + gl.L(1.0f) + rect.left, this.c0.getIntrinsicHeight() + gl.L(2.0f) + rect.top);
-                this.c0.draw(canvas);
-                canvas.translate(f / 2.0f, 0.0f);
-            }
-            gnVar2.draw(canvas);
-            canvas.restore();
-            if (this.U != 1.0f) {
-                canvas.restore();
-            }
-            if (z) {
-                canvas.restore();
-            }
-        }
-        if (this.w && this.l0 != (wrapWidth = getWrapWidth())) {
-            this.l0 = wrapWidth;
-            requestLayout();
-        }
+        throw new t41(kt6.o("Missing enum name [", string, "]"), s41Var);
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.s && isClickable() && getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public void onMeasure(int i, int i2) {
-        if (this.w) {
-            int wrapWidth = getWrapWidth();
-            this.l0 = wrapWidth;
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(wrapWidth, View.MeasureSpec.getSize(i)), 1073741824), i2);
-            View view = this.r;
-            if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-            }
-        } else if (this.k0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(this.d.c() + getPaddingLeft() + getPaddingRight(), this.j0), View.MeasureSpec.getSize(i)), 1073741824), i2);
-        } else {
-            super.onMeasure(i, i2);
-        }
-    }
-
-    public void setColor(int i) {
-        if (this.s) {
-            this.y = true;
-            int L = gl.L(this.b);
-            this.E = i;
-            setBackground(bkb.b0(L, i));
-            return;
-        }
-        this.F = true;
-        this.d.u(i);
-        int p1 = bkb.p1(0.1f, i);
-        int i2 = this.b;
-        this.r.setBackground(bkb.Y(p1, i2, i2));
-    }
-
-    public void setCountFilled(boolean z) {
-        float f;
-        int color;
-        this.I = z;
-        if (z) {
-            f = 12.0f;
-        } else {
-            f = 14.0f;
-        }
-        gn gnVar = this.f;
-        gnVar.w(gl.L(f));
-        if (this.I) {
-            color = this.E;
-        } else {
-            color = this.d.a.getColor();
-        }
-        gnVar.u(color);
-    }
-
-    public void setCounterColor(int i) {
-        this.f.u(i);
-        this.c0.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-    }
-
-    @Override
-    public void setEnabled(boolean z) {
-        float f;
-        if (this.e0 != z) {
-            ValueAnimator valueAnimator = this.f0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.f0 = null;
-            }
-            float f2 = this.d0;
-            this.e0 = z;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.f0 = ofFloat;
-            ofFloat.addUpdateListener(new s41(this, (byte) 1));
-            this.f0.start();
-        }
-        super.setEnabled(z);
-    }
-
-    public void setFilled(boolean z) {
-        if (this.s == z) {
-            return;
-        }
-        this.s = z;
-        gn gnVar = this.d;
-        if (z) {
-            d();
-            gnVar.x(gl.o());
-        } else {
-            setBackground(null);
-            gnVar.x(null);
-        }
-        updateColors();
-    }
-
-    public void setFlickeringLoading(boolean z) {
-        this.P = z;
-    }
-
-    public void setGlobalAlpha(float f) {
-        this.h0 = (int) (f * 255.0f);
-    }
-
-    @Override
-    public void setLoading(boolean z) {
-        float f;
-        long j;
-        if (this.R != z) {
-            if (this.P) {
-                this.R = z;
-                invalidate();
-                return;
-            }
-            ValueAnimator valueAnimator = this.S;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.S = null;
-            }
-            float f2 = this.Q;
-            this.R = z;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.S = ofFloat;
-            ofFloat.addUpdateListener(new s41(this, (byte) 2));
-            this.S.addListener(new y7((byte) 10, this, z));
-            ValueAnimator valueAnimator2 = this.S;
-            if (this.T) {
-                j = 240;
-            } else {
-                j = 320;
-            }
-            valueAnimator2.setDuration(j);
-            this.S.setInterpolator(s33.h);
-            this.S.start();
-        }
-    }
-
-    public void setMinWidth(int i) {
-        this.k0 = true;
-        this.j0 = i;
-    }
-
-    public void setRoundRadius(int i) {
-        this.b = i;
-        if (this.s) {
-            d();
-        } else {
-            setBackground(null);
-        }
-        this.r.setBackground(null);
-        updateColors();
-    }
-
-    public void setScaleLoading(boolean z) {
-        this.T = z;
-    }
-
-    public void setShowZero(boolean z) {
-        this.a0 = z;
-    }
-
-    public void setText(CharSequence charSequence) {
-        i(charSequence, false, true);
-    }
-
-    public void setTextAlpha(float f) {
-        this.d.C = (int) (f * 255.0f);
-    }
-
-    public void setTextColor(int i) {
-        this.G = -1;
-        this.F = true;
-        gn gnVar = this.d;
-        gnVar.u(i);
-        if (!this.s) {
-            setRippleColor(bkb.p1(0.1f, gnVar.a.getColor()));
-        }
-    }
-
-    public void setTextColorKey(int i) {
-        this.G = i;
-        this.F = false;
-        updateColors();
-    }
-
-    public void setUseWrapContent(boolean z) {
-        this.w = z;
-    }
-
-    @Override
-    public void updateColors() {
-        int i;
-        int i2;
-        if (!this.y) {
-            if (this.x) {
-                i2 = bkb.nb;
-            } else {
-                i2 = bkb.Ei;
-            }
-            this.E = bkb.v0(i2, this.a);
-        }
-        boolean z = this.F;
-        gn gnVar = this.d;
-        if (!z) {
-            int i3 = this.G;
-            if (i3 < 0) {
-                if (this.s) {
-                    if (this.x) {
-                        i3 = bkb.ob;
-                    } else {
-                        i3 = bkb.Ii;
+    public static Object c(Bundle bundle, s41 s41Var) {
+        IBinder binder = bundle.getBinder("tag_value");
+        if (binder != null) {
+            String string = bundle.getString("tag_class_name");
+            if (string != null) {
+                try {
+                    Object invoke = g(Class.forName(string), "asInterface", s41Var).invoke(null, binder);
+                    if (invoke != null) {
+                        return invoke;
                     }
-                } else {
-                    i3 = bkb.Ei;
+                    throw new t41("Failed to get interface from binder", s41Var);
+                } catch (ClassNotFoundException e) {
+                    throw new t41("Binder for unknown IInterface: ".concat(string), s41Var, e);
+                } catch (ReflectiveOperationException e2) {
+                    throw new t41("Method to create IInterface from a Binder is not accessible for interface: ".concat(string), s41Var, e2);
                 }
             }
-            gnVar.u(bkb.v0(i3, this.a));
+            throw new t41("Bundle is missing IInterface class name", s41Var);
         }
-        if (this.s) {
-            setRippleColor(bkb.v0(bkb.h6, this.a));
-        } else if (!this.F) {
-            setRippleColor(bkb.p1(0.1f, gnVar.a.getColor()));
-        }
-        if (!this.F) {
-            if (this.s) {
-                if (this.x) {
-                    i = bkb.ob;
+        throw new t41("Bundle is missing the binder", s41Var);
+    }
+
+    public static HashMap d(Bundle bundle, s41 s41Var) {
+        Object f;
+        ArrayList parcelableArrayList = bundle.getParcelableArrayList("tag_value");
+        if (parcelableArrayList != null) {
+            HashMap hashMap = new HashMap();
+            int size = parcelableArrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = parcelableArrayList.get(i);
+                i++;
+                Bundle bundle2 = (Bundle) ((Parcelable) obj);
+                Bundle bundle3 = bundle2.getBundle("tag_1");
+                Bundle bundle4 = bundle2.getBundle("tag_2");
+                if (bundle3 != null) {
+                    Object f2 = f(bundle3, s41Var);
+                    if (bundle4 == null) {
+                        f = null;
+                    } else {
+                        f = f(bundle4, s41Var);
+                    }
+                    hashMap.put(f2, f);
                 } else {
-                    i = bkb.Ii;
+                    throw new t41("Bundle is missing key", s41Var);
                 }
-            } else {
-                i = bkb.Ei;
             }
-            this.e.u(bkb.v0(i, this.a));
+            return hashMap;
         }
-        this.f.u(this.E);
-        this.c.setColor(bkb.v0(bkb.Ii, this.a));
-        invalidate();
+        throw new t41("Bundle is missing the map", s41Var);
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.O != drawable && this.d != drawable && this.e != drawable && this.f != drawable && !super.verifyDrawable(drawable)) {
-            return false;
+    public static Object e(Bundle bundle, s41 s41Var) {
+        String string = bundle.getString("tag_class_name");
+        if (string != null) {
+            try {
+                Class<?> cls = Class.forName(string);
+                Constructor<?> declaredConstructor = cls.getDeclaredConstructor(null);
+                declaredConstructor.setAccessible(true);
+                Object newInstance = declaredConstructor.newInstance(null);
+                ArrayList h = h(cls);
+                int size = h.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = h.get(i);
+                    i++;
+                    Field field = (Field) obj;
+                    field.setAccessible(true);
+                    String str = field.getDeclaringClass().getName() + field.getName();
+                    Object obj2 = bundle.get(str);
+                    if (obj2 == null) {
+                        obj2 = bundle.get(str.replaceAll("androidx.core.graphics.drawable.IconCompat", "androidx.core.graphics.drawable.IconCompat"));
+                    }
+                    if (obj2 instanceof Bundle) {
+                        field.set(newInstance, f((Bundle) obj2, s41Var));
+                    } else if (obj2 == null && Log.isLoggable("CarApp.Bun", 3)) {
+                        Log.d("CarApp.Bun", "Value is null for field: " + field);
+                    }
+                }
+                return newInstance;
+            } catch (ClassNotFoundException e) {
+                throw new t41("Object for unknown class: ".concat(string), s41Var, e);
+            } catch (IllegalArgumentException e2) {
+                throw new t41("Failed to deserialize class: ".concat(string), s41Var, e2);
+            } catch (NoSuchMethodException e3) {
+                throw new t41("Object missing no args constructor: ".concat(string), s41Var, e3);
+            } catch (ReflectiveOperationException e4) {
+                throw new t41("Constructor or field is not accessible: ".concat(string), s41Var, e4);
+            }
         }
-        return true;
+        throw new t41("Bundle is missing the class name", s41Var);
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public static Object f(Bundle bundle, s41 s41Var) {
+        Object obj;
+        AbstractCollection hashSet;
+        String str;
+        ClassLoader classLoader = u41.class.getClassLoader();
+        Objects.requireNonNull(classLoader);
+        bundle.setClassLoader(classLoader);
+        int i = bundle.getInt("tag_class_type");
+        String str2 = (String) b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
+        if (str2 == null) {
+            str2 = "unknown";
+        }
+        s41 s41Var2 = new s41(bundle, str2, s41Var.b);
+        try {
+            switch (i) {
+                case 0:
+                    obj = bundle.get("tag_value");
+                    if (obj == null) {
+                        throw new t41("Bundle is missing the primitive value", s41Var2);
+                    }
+                    s41Var2.close();
+                    return obj;
+                case 1:
+                    obj = c(bundle, s41Var2);
+                    s41Var2.close();
+                    return obj;
+                case 2:
+                    obj = d(bundle, s41Var2);
+                    s41Var2.close();
+                    return obj;
+                case 3:
+                    hashSet = new HashSet();
+                    a(bundle, hashSet, s41Var2);
+                    s41Var2.close();
+                    return hashSet;
+                case 4:
+                    hashSet = new ArrayList();
+                    a(bundle, hashSet, s41Var2);
+                    s41Var2.close();
+                    return hashSet;
+                case 5:
+                    obj = e(bundle, s41Var2);
+                    s41Var2.close();
+                    return obj;
+                case 6:
+                    Bundle bundle2 = bundle.getBundle("tag_value");
+                    if (bundle2 != null) {
+                        obj = IconCompat.a(bundle2);
+                        if (obj == null) {
+                            throw new t41("Failed to create IconCompat from bundle", s41Var2);
+                        }
+                        s41Var2.close();
+                        return obj;
+                    }
+                    throw new t41("IconCompat bundle is null", s41Var2);
+                case 7:
+                    obj = b(bundle, s41Var2);
+                    s41Var2.close();
+                    return obj;
+                case 8:
+                    String string = bundle.getString("tag_value");
+                    if (string != null) {
+                        try {
+                            obj = Class.forName(string);
+                            s41Var2.close();
+                            return obj;
+                        } catch (ClassNotFoundException e) {
+                            throw new t41("Class name is unknown: ".concat(str), s41Var2, e);
+                        }
+                    }
+                    throw new t41("Class is missing the class name", s41Var2);
+                case 9:
+                    obj = bundle.getBinder("tag_value");
+                    if (obj == null) {
+                        throw new t41("Bundle is missing the binder", s41Var2);
+                    }
+                    s41Var2.close();
+                    return obj;
+                case 10:
+                    obj = n58.a(bundle);
+                    s41Var2.close();
+                    return obj;
+                default:
+                    throw new t41("Unsupported class type in bundle: " + i, s41Var2);
+            }
+        } catch (Throwable th) {
+            try {
+                s41Var2.close();
+            } catch (Throwable th2) {
+                th.addSuppressed(th2);
+            }
+            throw th;
+        }
     }
 
-    public u41(Context context, wjb wjbVar) {
-        this(wjbVar, context, true);
+    public static Method g(Class cls, String str, s41 s41Var) {
+        Method[] declaredMethods;
+        if (cls != null && cls != Object.class) {
+            for (Method method : cls.getDeclaredMethods()) {
+                if (method.getName().equals(str)) {
+                    method.setAccessible(true);
+                    return method;
+                }
+            }
+            return g(cls.getSuperclass(), str, s41Var);
+        }
+        throw new t41("No method " + str + " in class " + cls, s41Var);
+    }
+
+    public static ArrayList h(Class cls) {
+        Field[] declaredFields;
+        ArrayList arrayList = new ArrayList();
+        if (cls != null && cls != Object.class) {
+            for (Field field : cls.getDeclaredFields()) {
+                if (!Modifier.isStatic(field.getModifiers())) {
+                    arrayList.add(field);
+                }
+            }
+            arrayList.addAll(h(cls.getSuperclass()));
+        }
+        return arrayList;
+    }
+
+    public static String i(Class cls) {
+        String str = (String) a.get(cls);
+        if (str == null) {
+            if (List.class.isAssignableFrom(cls)) {
+                return "<List>";
+            }
+            if (Map.class.isAssignableFrom(cls)) {
+                return "<Map>";
+            }
+            if (Set.class.isAssignableFrom(cls)) {
+                return "<Set>";
+            }
+            return cls.getSimpleName();
+        }
+        return str;
+    }
+
+    public static Bundle j(Collection collection, s41 s41Var) {
+        Bundle bundle = new Bundle(2);
+        ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
+        int i = 0;
+        for (Object obj : collection) {
+            arrayList.add(o(obj, "<item " + i + ">", s41Var));
+            i++;
+        }
+        bundle.putParcelableArrayList("tag_value", arrayList);
+        return bundle;
+    }
+
+    public static Bundle k(Object obj, s41 s41Var) {
+        Bundle bundle = new Bundle(3);
+        bundle.putInt("tag_class_type", 7);
+        try {
+            bundle.putString("tag_value", (String) g(obj.getClass(), "name", s41Var).invoke(obj, null));
+            bundle.putString("tag_class_name", obj.getClass().getName());
+            return bundle;
+        } catch (ReflectiveOperationException e) {
+            throw new t41("Enum missing name method", s41Var, e);
+        }
+    }
+
+    public static Bundle l(Map map, s41 s41Var) {
+        Bundle bundle = new Bundle(2);
+        ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
+        int i = 0;
+        for (Map.Entry entry : map.entrySet()) {
+            Bundle bundle2 = new Bundle(2);
+            Object key = entry.getKey();
+            bundle2.putBundle("tag_1", o(key, "<key " + i + ">", s41Var));
+            if (entry.getValue() != null) {
+                Object value = entry.getValue();
+                bundle2.putBundle("tag_2", o(value, "<value " + i + ">", s41Var));
+            }
+            i++;
+            arrayList.add(bundle2);
+        }
+        bundle.putInt("tag_class_type", 2);
+        bundle.putParcelableArrayList("tag_value", arrayList);
+        return bundle;
+    }
+
+    public static Bundle m(Object obj, s41 s41Var) {
+        String name = obj.getClass().getName();
+        try {
+            obj.getClass().getDeclaredConstructor(null);
+            ArrayList h = h(obj.getClass());
+            Bundle bundle = new Bundle(h.size() + 2);
+            bundle.putInt("tag_class_type", 5);
+            bundle.putString("tag_class_name", name);
+            int size = h.size();
+            int i = 0;
+            while (i < size) {
+                Object obj2 = h.get(i);
+                i++;
+                Field field = (Field) obj2;
+                field.setAccessible(true);
+                String h2 = b10.h(field.getDeclaringClass().getName(), field.getName());
+                try {
+                    Object obj3 = field.get(obj);
+                    if (obj3 != null) {
+                        bundle.putParcelable(h2, o(obj3, field.getName(), s41Var));
+                    }
+                } catch (IllegalAccessException e) {
+                    throw new t41("Field is not accessible: ".concat(h2), s41Var, e);
+                }
+            }
+            return bundle;
+        } catch (NoSuchMethodException e2) {
+            throw new t41("Class to deserialize is missing a no args constructor: ".concat(name), s41Var, e2);
+        }
+    }
+
+    public static Bundle n(Object obj, s41 s41Var) {
+        Bundle bundle = new Bundle(2);
+        bundle.putInt("tag_class_type", 0);
+        if (obj instanceof Boolean) {
+            bundle.putBoolean("tag_value", ((Boolean) obj).booleanValue());
+            return bundle;
+        } else if (obj instanceof Byte) {
+            bundle.putByte("tag_value", ((Byte) obj).byteValue());
+            return bundle;
+        } else if (obj instanceof Character) {
+            bundle.putChar("tag_value", ((Character) obj).charValue());
+            return bundle;
+        } else if (obj instanceof Short) {
+            bundle.putShort("tag_value", ((Short) obj).shortValue());
+            return bundle;
+        } else if (obj instanceof Integer) {
+            bundle.putInt("tag_value", ((Integer) obj).intValue());
+            return bundle;
+        } else if (obj instanceof Long) {
+            bundle.putLong("tag_value", ((Long) obj).longValue());
+            return bundle;
+        } else if (obj instanceof Double) {
+            bundle.putDouble("tag_value", ((Double) obj).doubleValue());
+            return bundle;
+        } else if (obj instanceof Float) {
+            bundle.putFloat("tag_value", ((Float) obj).floatValue());
+            return bundle;
+        } else if (obj instanceof String) {
+            bundle.putString("tag_value", (String) obj);
+            return bundle;
+        } else if (obj instanceof Parcelable) {
+            bundle.putParcelable("tag_value", (Parcelable) obj);
+            return bundle;
+        } else {
+            throw new t41("Unsupported primitive type: ".concat(obj.getClass().getName()), s41Var);
+        }
+    }
+
+    public static Bundle o(Object obj, String str, s41 s41Var) {
+        Bundle n;
+        Bundle bundle;
+        ArrayDeque arrayDeque = s41Var.b;
+        if (obj != null) {
+            Iterator it = arrayDeque.iterator();
+            while (it.hasNext()) {
+                if (((r41) it.next()).a == obj) {
+                    throw new t41("Found cycle while bundling type ".concat(obj.getClass().getSimpleName()), s41Var);
+                }
+            }
+        }
+        s41 s41Var2 = new s41(obj, str, arrayDeque);
+        try {
+            if (obj != null) {
+                if (obj instanceof IconCompat) {
+                    bundle = new Bundle(2);
+                    bundle.putInt("tag_class_type", 6);
+                    bundle.putBundle("tag_value", ((IconCompat) obj).l());
+                } else {
+                    if (!(obj instanceof Boolean) && !(obj instanceof Byte) && !(obj instanceof Character) && !(obj instanceof Short) && !(obj instanceof Integer) && !(obj instanceof Long) && !(obj instanceof Double) && !(obj instanceof Float) && !(obj instanceof String) && !(obj instanceof Parcelable)) {
+                        if (obj instanceof IInterface) {
+                            IInterface iInterface = (IInterface) obj;
+                            bundle = new Bundle(3);
+                            String name = iInterface.getClass().getName();
+                            bundle.putInt("tag_class_type", 1);
+                            bundle.putBinder("tag_value", iInterface.asBinder());
+                            bundle.putString("tag_class_name", name);
+                        } else if (obj instanceof IBinder) {
+                            bundle = new Bundle(2);
+                            bundle.putInt("tag_class_type", 9);
+                            bundle.putBinder("tag_value", (IBinder) obj);
+                        } else if (obj instanceof Map) {
+                            n = l((Map) obj, s41Var2);
+                        } else if (obj instanceof List) {
+                            n = j((List) obj, s41Var2);
+                            n.putInt("tag_class_type", 4);
+                        } else if (obj instanceof Set) {
+                            n = j((Set) obj, s41Var2);
+                            n.putInt("tag_class_type", 3);
+                        } else if (obj.getClass().isEnum()) {
+                            n = k(obj, s41Var2);
+                        } else if (obj instanceof Class) {
+                            bundle = new Bundle(2);
+                            bundle.putInt("tag_class_type", 8);
+                            bundle.putString("tag_value", ((Class) obj).getName());
+                        } else if (!obj.getClass().isArray()) {
+                            if (obj instanceof n58) {
+                                n = ((n58) obj).b();
+                                n.putInt("tag_class_type", 10);
+                            } else {
+                                n = m(obj, s41Var2);
+                            }
+                        } else {
+                            throw new t41("Object serializing contains an array, use a list or a set instead", s41Var2);
+                        }
+                    } else {
+                        n = n(obj, s41Var2);
+                    }
+                    s41Var2.close();
+                    return n;
+                }
+                s41Var2.close();
+                return bundle;
+            }
+            throw new t41("Bundling of null object is not supported", s41Var2);
+        } catch (Throwable th) {
+            try {
+                s41Var2.close();
+            } catch (Throwable th2) {
+                th.addSuppressed(th2);
+            }
+            throw th;
+        }
     }
 }

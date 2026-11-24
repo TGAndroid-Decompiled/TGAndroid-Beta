@@ -10,7 +10,7 @@ public abstract class m3 implements Map.Entry {
             case 0:
                 if (obj instanceof Map.Entry) {
                     Map.Entry entry = (Map.Entry) obj;
-                    if (bqe.a(getKey(), entry.getKey()) && bqe.a(getValue(), entry.getValue())) {
+                    if (ese.a(getKey(), entry.getKey()) && ese.a(getValue(), entry.getValue())) {
                         return true;
                     }
                 }
@@ -18,7 +18,7 @@ public abstract class m3 implements Map.Entry {
             case 1:
                 if (obj instanceof Map.Entry) {
                     Map.Entry entry2 = (Map.Entry) obj;
-                    if (s3f.a(getKey(), entry2.getKey()) && s3f.a(getValue(), entry2.getValue())) {
+                    if (u5f.a(getKey(), entry2.getKey()) && u5f.a(getValue(), entry2.getValue())) {
                         return true;
                     }
                 }
@@ -26,7 +26,7 @@ public abstract class m3 implements Map.Entry {
             default:
                 if (obj instanceof Map.Entry) {
                     Map.Entry entry3 = (Map.Entry) obj;
-                    if (m1f.a(getKey(), entry3.getKey()) && m1f.a(getValue(), entry3.getValue())) {
+                    if (o3f.a(getKey(), entry3.getKey()) && o3f.a(getValue(), entry3.getValue())) {
                         return true;
                     }
                 }
@@ -94,7 +94,7 @@ public abstract class m3 implements Map.Entry {
             case 1:
                 return getKey() + "=" + getValue();
             default:
-                return tb4.y(String.valueOf(getKey()), "=", String.valueOf(getValue()));
+                return kt6.o(String.valueOf(getKey()), "=", String.valueOf(getValue()));
         }
     }
 }

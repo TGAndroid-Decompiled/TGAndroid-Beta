@@ -1,61 +1,87 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.RectF;
-import org.telegram.ui.ProfileActivity;
-public final class zm8 extends jl {
-    public final ProfileActivity V0;
+import android.os.Process;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+public final class zm8 {
+    public final Context a;
+    public final zeb b;
+    public final int c;
+    public final zeb d;
+    public final zeb e;
+    public boolean f;
 
-    public zm8(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.V0 = profileActivity;
+    public zm8(Context context, wac wacVar) {
+        context.getClass();
+        wacVar.getClass();
+        this.a = context;
+        this.b = new zeb(new pr4(this) {
+            public final zm8 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final Object invoke() {
+                byte b = r2;
+                zm8 zm8Var = this.b;
+                switch (b) {
+                    case 0:
+                        return ((bn8) zm8Var.e.getValue()).a;
+                    default:
+                        return s4.f(zm8Var.a);
+                }
+            }
+        });
+        this.c = Process.myPid();
+        this.d = new zeb(new yq2(wacVar, (byte) 2));
+        this.e = new zeb(new pr4(this) {
+            public final zm8 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final Object invoke() {
+                byte b = r2;
+                zm8 zm8Var = this.b;
+                switch (b) {
+                    case 0:
+                        return ((bn8) zm8Var.e.getValue()).a;
+                    default:
+                        return s4.f(zm8Var.a);
+                }
+            }
+        });
     }
 
-    @Override
-    public final void setAlpha(float f) {
-        super.setAlpha(f);
-        RectF rectF = ProfileActivity.Z6;
-        this.V0.H1();
+    public final String a() {
+        return (String) this.b.getValue();
     }
 
-    @Override
-    public final void setTextColor(int i) {
-        int p1;
-        ProfileActivity profileActivity = this.V0;
-        profileActivity.K5 = i;
-        int f = bm2.f(profileActivity.G5, i, bkb.v0(bkb.x6, profileActivity.A0));
-        super.setTextColor(f);
-        uo8 uo8Var = profileActivity.F6;
-        if (uo8Var != null && uo8Var.c != (p1 = bkb.p1(1.4f, bkb.a(-0.02f, 0.15f, f)))) {
-            uo8Var.c = p1;
-            uo8Var.invalidateSelf();
+    public final Map b(Map map) {
+        zeb zebVar = this.d;
+        if (map != null) {
+            LinkedHashMap linkedHashMap = new LinkedHashMap(map);
+            linkedHashMap.put(a(), new xm8(Process.myPid(), (String) zebVar.getValue()));
+            int size = linkedHashMap.size();
+            if (size != 0) {
+                if (size != 1) {
+                    return new LinkedHashMap(linkedHashMap);
+                }
+                Map.Entry entry = (Map.Entry) linkedHashMap.entrySet().iterator().next();
+                Map singletonMap = Collections.singletonMap(entry.getKey(), entry.getValue());
+                singletonMap.getClass();
+                return singletonMap;
+            }
+            return o34.a;
         }
-    }
-
-    @Override
-    public final void setTranslationX(float f) {
-        super.setTranslationX(f);
-        RectF rectF = ProfileActivity.Z6;
-        ProfileActivity profileActivity = this.V0;
-        profileActivity.k2();
-        hra hraVar = profileActivity.T;
-        if (hraVar != null) {
-            hraVar.setTranslationX(f - profileActivity.k2());
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        super.setTranslationY(f);
-        RectF rectF = ProfileActivity.Z6;
-        ProfileActivity profileActivity = this.V0;
-        if (profileActivity.T != null) {
-            gl.L(3.0f);
-            profileActivity.T.getVisibilityFactor();
-        }
-        hra hraVar = profileActivity.T;
-        if (hraVar != null) {
-            hraVar.setTranslationY(f - gl.L(5.0f));
-        }
+        Map singletonMap2 = Collections.singletonMap(a(), new xm8(Process.myPid(), (String) zebVar.getValue()));
+        singletonMap2.getClass();
+        return singletonMap2;
     }
 }

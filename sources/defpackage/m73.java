@@ -1,20 +1,36 @@
 package defpackage;
-public final class m73 extends gw2 {
-    public v73 a;
-    public int b;
-    public Object c;
-    public final v73 d;
-    public int e;
+public final class m73 {
+    public final l73 a;
+    public final l73 b;
+    public final double c;
 
-    public m73(v73 v73Var, gw2 gw2Var) {
-        super(gw2Var);
-        this.d = v73Var;
+    public m73(l73 l73Var, l73 l73Var2, double d) {
+        this.a = l73Var;
+        this.b = l73Var2;
+        this.c = d;
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.c = obj;
-        this.e |= Integer.MIN_VALUE;
-        return this.d.f(this);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof m73) {
+                m73 m73Var = (m73) obj;
+                if (this.a != m73Var.a || this.b != m73Var.b || Double.compare(this.c, m73Var.c) != 0) {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int hashCode = this.b.hashCode();
+        long doubleToLongBits = Double.doubleToLongBits(this.c);
+        return ((hashCode + (this.a.hashCode() * 31)) * 31) + ((int) (doubleToLongBits ^ (doubleToLongBits >>> 32)));
+    }
+
+    public final String toString() {
+        return "DataCollectionStatus(performance=" + this.a + ", crashlytics=" + this.b + ", sessionSamplingRate=" + this.c + ')';
     }
 }

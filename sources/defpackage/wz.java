@@ -1,220 +1,315 @@
 package defpackage;
 
-import android.media.AudioDescriptor;
-import android.os.SystemClock;
-import android.view.View;
-public final class wz implements x56, ed, wkb, xkb, ml0, dn7 {
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.media.MediaMetadataCompat;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
+public final class wz implements Runnable {
     public final byte a;
+    public final long b;
+    public final int c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
 
-    public wz(byte b) {
-        this.a = b;
+    public wz(a6a a6aVar, k47 k47Var, TLRPC.Message message, long j, int i) {
+        this.a = (byte) 11;
+        this.d = a6aVar;
+        this.e = k47Var;
+        this.f = message;
+        this.b = j;
+        this.c = i;
     }
 
-    public static AudioDescriptor a(Object obj) {
-        return (AudioDescriptor) obj;
-    }
-
-    @Override
-    public final String c(int i) {
-        switch (this.a) {
-            case 28:
-                return String.valueOf(i);
-            default:
-                return String.format("%02d", Integer.valueOf(i * 5));
+    private final void a() {
+        SQLitePreparedStatement executeFast;
+        boolean z;
+        boolean z2;
+        cf7 cf7Var = (cf7) this.d;
+        ArrayList arrayList = (ArrayList) this.e;
+        ArrayList arrayList2 = (ArrayList) this.f;
+        int i = this.c;
+        long j = this.b;
+        vh6 vh6Var = cf7Var.K;
+        SQLitePreparedStatement sQLitePreparedStatement = null;
+        try {
+            try {
+                cf7Var.b.beginTransaction();
+                executeFast = cf7Var.b.executeFast("UPDATE dialogs SET folder_id = ?, pinned = ? WHERE did = ?");
+            } catch (Exception e) {
+                e = e;
+            }
+        } catch (Throwable th) {
+            th = th;
         }
-    }
-
-    @Override
-    public final void d(int i, View view) {
-        ((a8) view).d(i, i);
-    }
-
-    @Override
-    public final int e(View view) {
-        a8 a8Var = (a8) view;
-        if (a8Var.getTextView() != null) {
-            return a8Var.getTextView().getCurrentTextColor();
-        }
-        return 0;
-    }
-
-    @Override
-    public final void invoke(Object obj) {
-        long j;
-        u30 u30Var;
-        switch (this.a) {
-            case 2:
-                o93 o93Var = (o93) obj;
-                q93 q93Var = o93Var.a;
-                if (o93Var == q93Var.j && q93Var.n != null) {
-                    wg2 wg2Var = q93Var.p;
-                    int i = wg2Var.b;
-                    if (i != -1) {
-                        long j2 = ((r00) wg2Var.e).f / i;
-                        j40 j40Var = q93Var.t;
-                        j40Var.getClass();
-                        j = g8c.Z(j40Var.a.getSampleRate(), j2);
-                    } else {
-                        j = -9223372036854775807L;
+        try {
+            if (arrayList != null) {
+                int size = arrayList.size();
+                z2 = false;
+                for (int i2 = 0; i2 < size; i2++) {
+                    TLRPC.TL_folderPeer tL_folderPeer = (TLRPC.TL_folderPeer) arrayList.get(i2);
+                    long n = pg3.n(tL_folderPeer.peer);
+                    executeFast.requery();
+                    executeFast.bindInteger(1, tL_folderPeer.folder_id);
+                    if (tL_folderPeer.folder_id == 1) {
+                        z2 = true;
                     }
-                    q93Var.n.A2(g8c.i0(j), ((r00) q93Var.p.e).f, SystemClock.elapsedRealtime() - q93Var.Z);
-                    return;
+                    executeFast.bindInteger(2, 0);
+                    executeFast.bindLong(3, n);
+                    executeFast.step();
+                    vh6Var.l(n);
                 }
-                return;
-            case 3:
-                u30 u30Var2 = ((o93) obj).a.n;
-                if (u30Var2 != null) {
-                    u30Var2.A(new pd5((byte) 14));
-                    return;
+            } else if (arrayList2 != null) {
+                int size2 = arrayList2.size();
+                z2 = false;
+                for (int i3 = 0; i3 < size2; i3++) {
+                    TLRPC.TL_inputFolderPeer tL_inputFolderPeer = (TLRPC.TL_inputFolderPeer) arrayList2.get(i3);
+                    long m = pg3.m(tL_inputFolderPeer.peer);
+                    executeFast.requery();
+                    executeFast.bindInteger(1, tL_inputFolderPeer.folder_id);
+                    if (tL_inputFolderPeer.folder_id == 1) {
+                        z2 = true;
+                    }
+                    executeFast.bindInteger(2, 0);
+                    executeFast.bindLong(3, m);
+                    executeFast.step();
+                    vh6Var.l(m);
                 }
-                return;
-            case 4:
-                o93 o93Var2 = (o93) obj;
-                q93 q93Var2 = o93Var2.a;
-                if (o93Var2 == q93Var2.j && (u30Var = q93Var2.n) != null && q93Var2.R) {
-                    u30Var.p2();
-                    return;
+            } else {
+                executeFast.requery();
+                executeFast.bindInteger(1, i);
+                if (i == 1) {
+                    z = true;
+                } else {
+                    z = false;
                 }
-                return;
-            case 5:
-                o93 o93Var3 = (o93) obj;
-                q93 q93Var3 = o93Var3.a;
-                if (o93Var3 == q93Var3.j && q93Var3.P) {
-                    q93Var3.Q = true;
-                    return;
+                executeFast.bindInteger(2, 0);
+                executeFast.bindLong(3, j);
+                executeFast.step();
+                z2 = z;
+            }
+            executeFast.dispose();
+            cf7Var.b.commitTransaction();
+            if (!z2) {
+                cf7Var.k(1);
+            }
+            cf7Var.q1(false);
+            SQLiteDatabase sQLiteDatabase = cf7Var.b;
+            if (sQLiteDatabase != null) {
+                sQLiteDatabase.commitTransaction();
+            }
+        } catch (Exception e2) {
+            e = e2;
+            sQLitePreparedStatement = executeFast;
+            cf7Var.n(e, true);
+            SQLiteDatabase sQLiteDatabase2 = cf7Var.b;
+            if (sQLiteDatabase2 != null) {
+                sQLiteDatabase2.commitTransaction();
+            }
+            if (sQLitePreparedStatement != null) {
+                sQLitePreparedStatement.dispose();
+            }
+        } catch (Throwable th2) {
+            th = th2;
+            sQLitePreparedStatement = executeFast;
+            SQLiteDatabase sQLiteDatabase3 = cf7Var.b;
+            if (sQLiteDatabase3 != null) {
+                sQLiteDatabase3.commitTransaction();
+            }
+            if (sQLitePreparedStatement != null) {
+                sQLitePreparedStatement.dispose();
+            }
+            throw th;
+        }
+    }
+
+    private final void b() {
+        b61 b61Var = (b61) this.d;
+        b61Var.setLoading(true);
+        TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
+        tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) this.e).id;
+        tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
+        int i = this.c;
+        ConnectionsManager.getInstance(i).sendRequest(tL_fulfillStarsSubscription, new mh(b61Var, (my0[]) this.f, i, this.b, (byte) 6));
+    }
+
+    private final void c() {
+        TL_stories.StoryItem storyItem;
+        h4b h4bVar = (h4b) this.d;
+        TLObject tLObject = (TLObject) this.e;
+        String str = (String) this.f;
+        int i = h4bVar.a;
+        HashSet hashSet = h4bVar.t;
+        int i2 = this.c;
+        if (tLObject != null) {
+            TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+            oc7.r1(i).d4(tL_stories_stories.users, false);
+            oc7.r1(i).X3(tL_stories_stories.chats, false);
+            for (int i3 = 0; i3 < tL_stories_stories.stories.size(); i3++) {
+                if (tL_stories_stories.stories.get(i3).id == i2) {
+                    storyItem = tL_stories_stories.stories.get(i3);
+                    break;
                 }
-                return;
-            default:
-                u30 u30Var3 = ((n93) obj).a.n;
-                if (u30Var3 != null) {
-                    u30Var3.f1();
-                    return;
+            }
+        }
+        storyItem = null;
+        h4bVar.W.remove(str);
+        long j = this.b;
+        if (storyItem != null) {
+            storyItem.dialogId = j;
+            TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
+            tL_updateStory.peer = oc7.r1(i).x1(j);
+            tL_updateStory.story = storyItem;
+            h4bVar.b0(tL_updateStory);
+            return;
+        }
+        Iterator it = hashSet.iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                break;
+            }
+            String str2 = (String) it.next();
+            if (str2.endsWith(":" + j + ":" + i2)) {
+                hashSet.remove(str2);
+                break;
+            }
+        }
+        hashSet.add(str);
+        h4bVar.l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
+    }
+
+    private final void d() {
+        String str;
+        String str2;
+        iib iibVar = (iib) this.d;
+        ArrayList arrayList = (ArrayList) this.e;
+        ArrayList arrayList2 = (ArrayList) this.f;
+        vh6 vh6Var = iibVar.l;
+        vh6 vh6Var2 = iibVar.k;
+        vh6 vh6Var3 = iibVar.j;
+        if (this.c == iibVar.c) {
+            long j = this.b;
+            vh6Var3.k(arrayList, j);
+            vh6Var2.k(arrayList2, j);
+            ArrayList arrayList3 = (ArrayList) vh6Var.f(j);
+            vh6Var.l(j);
+            if (j == iibVar.d) {
+                mx6 mx6Var = iibVar.b;
+                if (j != 0) {
+                    ArrayList arrayList4 = (ArrayList) vh6Var3.f(j);
+                    ArrayList arrayList5 = (ArrayList) vh6Var2.f(j);
+                    if (arrayList4 != null && !arrayList4.isEmpty() && arrayList5 != null) {
+                        mx6Var.s0(arrayList5);
+                        zw6 zw6Var = (zw6) mx6Var.b;
+                        if (pg3.D(j)) {
+                            TLRPC.User user = (TLRPC.User) iibVar.h.f(j);
+                            if (user != null) {
+                                str2 = bw2.m(0, user.first_name, user.last_name);
+                            } else {
+                                str2 = "DELETED USER";
+                            }
+                            zw6Var.a.setQueueTitle(str2);
+                        } else {
+                            TLRPC.Chat chat = (TLRPC.Chat) iibVar.i.f(-j);
+                            if (chat != null) {
+                                str = chat.title;
+                            } else {
+                                str = "DELETED CHAT";
+                            }
+                            zw6Var.a.setQueueTitle(str);
+                        }
+                        k47 k47Var = (k47) arrayList4.get(0);
+                        k44 k44Var = new k44((byte) 17);
+                        k44Var.T((long) (k47Var.L0() * 1000.0d));
+                        k44Var.U("android.media.metadata.ARTIST", k47Var.w1(true));
+                        k44Var.U("android.media.metadata.TITLE", k47Var.y1(true));
+                        mx6Var.q0(new MediaMetadataCompat((Bundle) k44Var.b));
+                    }
                 }
-                return;
+            }
+            if (arrayList3 != null) {
+                for (int i = 0; i < arrayList3.size(); i++) {
+                    ((Runnable) arrayList3.get(i)).run();
+                }
+            }
         }
     }
 
     @Override
-    public final int k(wjb wjbVar, boolean z) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        float f6;
-        float f7;
-        float f8;
-        float f9;
-        float f10;
-        float f11;
-        switch (this.a) {
-            case 10:
-                if (e66.e(262144)) {
-                    f = 0.82f;
-                } else {
-                    f = 0.76f;
-                }
-                int v0 = bkb.v0(bkb.c6, wjbVar);
-                if (z) {
-                    return bkb.p1(0.9f, -15658735);
-                }
-                return nod.m(f, v0, -14145496);
-            case 11:
-                if (e66.e(262144)) {
-                    f2 = 0.85f;
-                } else {
-                    f2 = 0.76f;
-                }
-                return bkb.p1(f2, bkb.v0(bkb.c6, wjbVar));
-            case 12:
-                if (!e66.e(256)) {
-                    return bkb.w0(null, bkb.F8, false);
-                }
-                int w0 = bkb.w0(null, bkb.F8, false);
-                if (z) {
-                    f3 = 0.85f;
-                } else {
-                    f3 = 0.825f;
-                }
-                return bkb.p1(f3, w0);
-            case 13:
-                if (e66.e(262144)) {
-                    f4 = 0.85f;
-                } else {
-                    f4 = 0.76f;
-                }
-                return nod.m(f4, bkb.v0(bkb.c6, wjbVar), bkb.v0(bkb.Pl, wjbVar));
-            case 14:
-                if (e66.e(262144)) {
-                    f5 = 0.85f;
-                } else {
-                    f5 = 0.76f;
-                }
-                return nod.m(f5, bkb.v0(bkb.c6, wjbVar), bkb.v0(bkb.Ie, wjbVar));
-            case 15:
-                if (e66.e(262144)) {
-                    f6 = 0.85f;
-                } else {
-                    f6 = 0.8f;
-                }
-                return nod.m(f6, bkb.v0(bkb.Z6, wjbVar), bkb.v0(bkb.c6, wjbVar));
-            case 16:
-                return 855638016;
-            case 17:
-                return 1073741824;
-            case 18:
-                int v02 = bkb.v0(bkb.g5, wjbVar);
-                if (z) {
-                    f7 = 0.82f;
-                } else {
-                    f7 = 0.78f;
-                }
-                return bkb.p1(f7, v02);
-            case 19:
-                return bkb.p1(0.075f, -16777216);
-            case 20:
-                if (e66.e(262144)) {
-                    f8 = 0.85f;
-                } else {
-                    f8 = 0.76f;
-                }
-                return bkb.p1(f8, bkb.v0(bkb.vj, wjbVar));
-            case 21:
-                return bkb.p1(0.88f, bkb.v0(bkb.c6, wjbVar));
-            case 22:
-                int v03 = bkb.v0(bkb.F8, wjbVar);
-                if (z) {
-                    f9 = 0.85f;
-                } else {
-                    f9 = 0.825f;
-                }
-                return bkb.p1(f9, v03);
-            case 23:
-                if (e66.e(262144)) {
-                    f10 = 0.85f;
-                } else {
-                    f10 = 0.76f;
-                }
-                return nod.m(f10, bkb.v0(bkb.c6, wjbVar), bkb.v0(bkb.Ol, wjbVar));
-            case 24:
-                if (e66.e(262144)) {
-                    f11 = 0.85f;
-                } else {
-                    f11 = 0.76f;
-                }
-                return bkb.p1(f11, bkb.v0(bkb.c6, wjbVar));
-            case 25:
-                return bkb.p1(0.78f, bkb.v0(bkb.g5, wjbVar));
-            case 26:
-                return bkb.p1(0.7f, bkb.v0(bkb.c6, wjbVar));
-            default:
-                e66.e(262144);
-                return 0;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wz.run():void");
     }
 
-    @Override
-    public final void u(hd hdVar, int i) {
-        hdVar.dismiss();
+    public wz(wq0 wq0Var, long[] jArr, long j, int i, Runnable runnable) {
+        this.a = (byte) 1;
+        this.d = wq0Var;
+        this.e = jArr;
+        this.b = j;
+        this.c = i;
+        this.f = runnable;
+    }
+
+    public wz(e6a e6aVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, String str, int i) {
+        this.a = (byte) 9;
+        this.d = e6aVar;
+        this.e = tL_starGiftUnique;
+        this.b = j;
+        this.f = str;
+        this.c = i;
+    }
+
+    public wz(Context context, int i, hv4 hv4Var, long j, bx4 bx4Var) {
+        this.a = (byte) 0;
+        this.d = context;
+        this.c = i;
+        this.e = hv4Var;
+        this.b = j;
+        this.f = bx4Var;
+    }
+
+    public wz(Object obj, int i, long j, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.c = i;
+        this.b = j;
+        this.e = obj2;
+        this.f = obj3;
+    }
+
+    public wz(Object obj, long j, int i, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = j;
+        this.c = i;
+        this.e = obj2;
+        this.f = obj3;
+    }
+
+    public wz(Object obj, Object obj2, int i, Object obj3, long j, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = obj2;
+        this.c = i;
+        this.f = obj3;
+        this.b = j;
+    }
+
+    public wz(Object obj, Object obj2, Serializable serializable, int i, long j, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = obj2;
+        this.f = serializable;
+        this.c = i;
+        this.b = j;
     }
 }

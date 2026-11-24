@@ -20,7 +20,7 @@ public final class r extends FrameLayout {
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r26) {
+    public final boolean onTouchEvent(android.view.MotionEvent r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

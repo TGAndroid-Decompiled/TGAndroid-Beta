@@ -1,47 +1,71 @@
 package defpackage;
 
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
+import android.view.MotionEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import java.util.ArrayList;
+import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.LaunchActivity;
-public final class q65 extends jia {
-    public LinearGradient N0;
-    public int O0;
-    public final Matrix P0;
-    public float Q0;
-    public float R0;
-    public float S0;
-    public float T0;
-    public float U0;
-    public long V0;
-    public final h75 W0;
+public final class q65 extends s09 {
+    public final g95 r;
 
-    public q65(h75 h75Var, LaunchActivity launchActivity) {
+    public q65(g95 g95Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.W0 = h75Var;
-        this.P0 = new Matrix();
-        this.Q0 = -1.0f;
+        this.r = g95Var;
     }
 
     @Override
-    public final void d(int i) {
-        super.d(i);
-        int textWidth = getTextWidth();
-        if (textWidth != this.O0) {
-            float f = textWidth;
-            this.U0 = 1.3f * f;
-            float f2 = f * 2.0f;
-            int w0 = bkb.w0(null, bkb.Yh, false);
-            int w02 = bkb.w0(null, bkb.ai, false);
-            int i2 = bkb.Zh;
-            this.N0 = new LinearGradient(0.0f, getTextHeight(), f2, 0.0f, new int[]{w0, w02, bkb.w0(null, i2, false), bkb.w0(null, i2, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
-            getPaint().setShader(this.N0);
-            this.O0 = textWidth;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        g95 g95Var = this.r;
+        byte b = g95Var.z3;
+        if (b != 0 && b != 1) {
+            z = false;
+        } else {
+            z = true;
+        }
+        accessibilityNodeInfo.setEnabled(z);
+        if (g95Var.z3 == 1) {
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, jb6.M0(2131742977, null)));
         }
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.q65.onDraw(android.graphics.Canvas):void");
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        g95 g95Var = this.r;
+        v55 v55Var = g95Var.q4;
+        ArrayList arrayList = g95Var.S3;
+        if (motionEvent.getAction() == 0 && g95Var.z3 == 0 && g95Var.T2 != null) {
+            gm.d3(v55Var, 300L);
+            g95Var.K3 = true;
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (g95Var.K3) {
+                gm.r(v55Var);
+                g95Var.K3 = false;
+            } else if (g95Var.L3) {
+                gm.r(g95Var.p4);
+                g95Var.H1(0, true);
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().setMicMute(true, true, false);
+                    try {
+                        g95Var.v1.performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                }
+                arrayList.clear();
+                arrayList.addAll(g95Var.R3);
+                for (int i = 0; i < arrayList.size(); i++) {
+                    ((ha5) arrayList.get(i)).j(true);
+                }
+                g95Var.L3 = false;
+                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                super.onTouchEvent(obtain);
+                obtain.recycle();
+                return true;
+            }
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

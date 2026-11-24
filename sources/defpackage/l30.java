@@ -1,37 +1,45 @@
 package defpackage;
-public final class l30 implements Runnable {
-    public final byte a;
+
+import j$.util.Objects;
+public final class l30 {
+    public static final l30 e = new l30(-1, -1, -1);
+    public final int a;
     public final int b;
-    public final long c;
-    public final long d;
-    public final Object e;
+    public final int c;
+    public final int d;
 
-    public l30(int i, long j, long j2, String str) {
-        this.a = (byte) 2;
-        this.b = i;
-        this.e = str;
-        this.c = j;
-        this.d = j2;
+    public l30(int i, int i2, int i3) {
+        int i4;
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        if (hac.N(i3)) {
+            i4 = hac.u(i3) * i2;
+        } else {
+            i4 = -1;
+        }
+        this.d = i4;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.l30.run():void");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof l30)) {
+            return false;
+        }
+        l30 l30Var = (l30) obj;
+        if (this.a == l30Var.a && this.b == l30Var.b && this.c == l30Var.c) {
+            return true;
+        }
+        return false;
     }
 
-    public l30(pf0 pf0Var, long j, long j2, int i, byte b) {
-        this.a = b;
-        this.e = pf0Var;
-        this.c = j;
-        this.d = j2;
-        this.b = i;
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.a), Integer.valueOf(this.b), Integer.valueOf(this.c));
     }
 
-    public l30(Object obj, int i, long j, long j2, byte b) {
-        this.a = b;
-        this.e = obj;
-        this.b = i;
-        this.c = j;
-        this.d = j2;
+    public final String toString() {
+        return "AudioFormat[sampleRate=" + this.a + ", channelCount=" + this.b + ", encoding=" + this.c + ']';
     }
 }

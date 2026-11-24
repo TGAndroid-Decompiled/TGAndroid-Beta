@@ -1,35 +1,50 @@
 package defpackage;
 
+import android.media.MediaCodec;
+import android.media.MediaFormat;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.Surface;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
-public final class hm6 implements Runnable {
-    public final byte a;
-    public final jm6 b;
+public interface hm6 {
+    void a(int i, z43 z43Var, long j, int i2);
 
-    public hm6(jm6 jm6Var, byte b) {
-        this.a = b;
-        this.b = jm6Var;
-    }
+    void b(int i, int i2, int i3, long j);
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        jm6 jm6Var = this.b;
-        switch (b) {
-            case 0:
-                jm6Var.d();
-                gl.d3(new hm6(jm6Var, (byte) 1));
-                return;
-            default:
-                jm6Var.X = false;
-                ArrayList arrayList = jm6Var.Y;
-                jm6Var.Y = null;
-                if (arrayList != null) {
-                    for (int i = 0; i < arrayList.size(); i++) {
-                        ((Runnable) arrayList.get(i)).run();
-                    }
-                    return;
-                }
-                return;
-        }
-    }
+    void c(int i);
+
+    void d();
+
+    void e(int i, long j);
+
+    int f();
+
+    void flush();
+
+    boolean g(fk3 fk3Var);
+
+    ByteBuffer getInputBuffer(int i);
+
+    ByteBuffer getOutputBuffer(int i);
+
+    MediaFormat getOutputFormat();
+
+    int h(MediaCodec.BufferInfo bufferInfo);
+
+    void i(kpb kpbVar);
+
+    void j(int i);
+
+    void k(Surface surface);
+
+    void l(ArrayList arrayList);
+
+    void m(xm6 xm6Var, Handler handler);
+
+    void n(ArrayList arrayList);
+
+    void release();
+
+    void setParameters(Bundle bundle);
 }

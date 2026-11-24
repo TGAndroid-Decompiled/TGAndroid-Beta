@@ -1,54 +1,31 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.TLRPC;
-public final class n0b extends hs5 {
-    public int f;
-    public final u0b g;
+import android.animation.ValueAnimator;
+public final class n0b implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final q0b b;
 
-    public n0b(u0b u0bVar) {
-        this.g = u0bVar;
-        this.e = (byte) 15;
-        this.f = -1;
+    public n0b(q0b q0bVar, byte b) {
+        this.a = b;
+        this.b = q0bVar;
     }
 
     @Override
-    public final boolean o(RecyclerView recyclerView, s49 s49Var, s49 s49Var2) {
-        int i = s49Var.f;
-        if (i != 3 && i == s49Var2.f) {
-            u0b u0bVar = this.g;
-            if (u0bVar.M1 == null) {
-                return false;
-            }
-            int b = s49Var.b();
-            int b2 = s49Var2.b();
-            u0bVar.M1.documents.add(b2, u0bVar.M1.documents.remove(b));
-            u0bVar.n1.j(b, b2);
-            this.f = b2;
-            return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        q0b q0bVar = this.b;
+        switch (b) {
+            case 0:
+                q0bVar.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q0bVar.invalidate();
+                return;
+            case 1:
+                q0bVar.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                q0bVar.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q0bVar.invalidate();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void q(s49 s49Var, int i) {
-        u0b u0bVar = this.g;
-        if (i == 0 && u0bVar.p1 != null && this.f > 0) {
-            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
-            tL_stickers_changeStickerPosition.position = this.f;
-            tL_stickers_changeStickerPosition.sticker = hq6.c0(u0bVar.p1, "").document;
-            this.f = -1;
-            u0bVar.p1 = null;
-        } else if (i == 2) {
-            u0bVar.p1 = ((xya) s49Var.a).getSticker();
-        }
-    }
-
-    @Override
-    public final void r(s49 s49Var) {
-    }
-
-    @Override
-    public final void p(RecyclerView recyclerView, s49 s49Var, s49 s49Var2, int i, int i2, int i3) {
     }
 }

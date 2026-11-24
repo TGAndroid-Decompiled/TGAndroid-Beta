@@ -1,63 +1,47 @@
 package defpackage;
 
-import android.graphics.RectF;
-import java.util.ArrayList;
-public final class fob {
-    public int a;
-    public boolean b;
-    public iob c;
-    public String d;
-    public long e;
-    public long f;
-    public float g;
-    public float h;
-    public float i;
-    public final RectF j = new RectF();
-    public final lm k;
-    public final kob l;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import org.telegram.messenger.Utilities;
+public final class fob extends jb8 {
+    public final jo6 a;
+    public final gob b;
 
-    public fob(kob kobVar) {
-        this.l = kobVar;
-        this.k = new lm(360L, kobVar, s33.h);
+    public fob(gob gobVar, jo6 jo6Var) {
+        this.b = gobVar;
+        this.a = jo6Var;
     }
 
-    public final void a(boolean z) {
-        kob kobVar = this.l;
-        if (kobVar.getMeasuredWidth() > 0) {
-            iob iobVar = this.c;
-            if (iobVar != null) {
-                if (z) {
-                    iobVar.a();
-                    this.c = null;
-                } else {
-                    return;
-                }
+    @Override
+    public final void M(int i, rcc rccVar, boolean z, int i2, int i3, boolean z2) {
+        rob robVar = this.b.a;
+        jo6 jo6Var = this.a;
+        if (jo6Var.h != null) {
+            File z3 = bc4.z(4);
+            File file = new File(z3, Utilities.b.nextInt() + ".jpg");
+            Point b1 = gm.b1();
+            Bitmap G = fn5.G(jo6Var.h, null, (float) b1.x, (float) b1.y, true);
+            try {
+                G.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-            Long l = null;
-            boolean z2 = this.b;
-            String str = this.d;
-            int i = kobVar.w1;
-            int i2 = kobVar.z1;
-            int i3 = (i - i2) - i2;
-            int L = gl.L(38.0f);
-            long j = this.e;
-            if (j > 2) {
-                l = Long.valueOf(j);
-            }
-            this.c = new iob(kobVar, z2, str, i3, L, l, kobVar.getMaxScrollDuration(), kobVar.a1, kobVar.b1, new cib(this, (byte) 8));
+            File file2 = new File(jo6Var.h);
+            robVar.D1 = new ntc(file2, file2, "");
+            robVar.E1 = G;
+            robVar.d2 = 0;
+            robVar.z0.requestLayout();
+            robVar.g1(false);
+            robVar.y1 = null;
+            robVar.n1();
         }
     }
 
-    public final void b() {
-        kob kobVar = this.l;
-        ArrayList arrayList = kobVar.r;
-        int i = this.a;
-        if (i >= 0 && i < arrayList.size()) {
-            dob dobVar = (dob) arrayList.get(this.a);
-            if (kobVar.getMeasuredWidth() <= 0 || dobVar != null) {
-                return;
-            }
-            arrayList.set(this.a, new dob(kobVar, this.d, (kobVar.getMeasuredWidth() - kobVar.getPaddingLeft()) - kobVar.getPaddingRight()));
-        }
+    @Override
+    public final boolean y() {
+        return false;
     }
 }

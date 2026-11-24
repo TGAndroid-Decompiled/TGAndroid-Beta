@@ -1,229 +1,80 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ja8 implements h07 {
-    public int E;
-    public int G;
-    public int H;
-    public Runnable I;
-    public Runnable J;
-    public be2 K;
-    public final Activity a;
-    public final View b;
-    public final ia8 c;
-    public final zha d;
-    public final kl0 e;
-    public final jx4 f;
-    public final al0 h;
-    public final wp1 n;
-    public final wjb r;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout s;
-    public boolean w;
-    public boolean y;
-    public boolean x = true;
-    public int F = -1;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import org.telegram.messenger.video.VideoFramesRewinder;
+import org.telegram.messenger.video.VideoPlayerRewinder;
+import org.telegram.ui.PhotoViewer;
+public final class ja8 extends VideoPlayerRewinder {
+    public final PhotoViewer a;
 
-    public ja8(Activity activity, View view, ia8 ia8Var, zha zhaVar, kl0 kl0Var, jx4 jx4Var, al0 al0Var, wp1 wp1Var, wjb wjbVar) {
-        this.a = activity;
-        this.b = view;
-        this.c = ia8Var;
-        this.d = zhaVar;
-        this.e = kl0Var;
-        this.f = jx4Var;
-        this.h = al0Var;
-        this.n = wp1Var;
-        this.r = wjbVar;
-        this.s = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232570, 1, wjbVar, activity);
+    public ja8(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
+        super(videoFramesRewinder);
+        this.a = photoViewer;
     }
 
     @Override
-    public final boolean a() {
-        return true;
-    }
-
-    @Override
-    public final void b(zha zhaVar, r7 r7Var) {
-        boolean z;
-        if (zhaVar != null) {
-            z = true;
-        } else {
-            z = false;
+    public final void onRewindCanceled() {
+        tl4 tl4Var;
+        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+        Drawable[] drawableArr = PhotoViewer.d9;
+        PhotoViewer photoViewer = this.a;
+        photoViewer.h1(obtain);
+        photoViewer.A1.d(false);
+        ad8 ad8Var = photoViewer.U8;
+        if (ad8Var != null && (tl4Var = ad8Var.e) != null) {
+            tl4Var.F.d(false);
         }
-        this.w = z;
-        this.c.s1(z);
     }
 
     @Override
-    public final boolean c(r7 r7Var, RectF rectF) {
-        this.c.J1(rectF);
-        if (this.x) {
-            rectF.bottom += gl.L(6.0f);
-            return true;
+    public final void onRewindStart(boolean z) {
+        tl4 tl4Var;
+        PhotoViewer photoViewer = this.a;
+        photoViewer.A1.c(false);
+        boolean z2 = !z;
+        photoViewer.A1.b(z2);
+        photoViewer.A1.d(true);
+        photoViewer.f0.invalidate();
+        ad8 ad8Var = photoViewer.U8;
+        if (ad8Var != null && (tl4Var = ad8Var.e) != null) {
+            ucc uccVar = tl4Var.F;
+            uccVar.c(false);
+            uccVar.b(z2);
+            uccVar.d(true);
+            yc ycVar = tl4Var.o;
+            if (ycVar != null) {
+                ycVar.invalidate();
+            }
+            pl4 pl4Var = tl4Var.m;
+            if (pl4Var != null) {
+                pl4Var.invalidate();
+            }
         }
-        rectF.top -= gl.L(6.0f);
-        return true;
-    }
-
-    public final void d(FrameLayout frameLayout, int i, Runnable runnable) {
-        frameLayout.setBackground(bkb.f0(bkb.p1(0.12f, bkb.v0(bkb.D8, this.r)), 2, -1));
-        frameLayout.setMinimumWidth(gl.L(220.0f));
-        frameLayout.setOnClickListener(new ha8(this, runnable, (byte) 0));
-        this.s.a(frameLayout, nme.o(-1, i));
-        this.G = gl.L(i) + this.G;
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final boolean g() {
-        return this.x;
-    }
-
-    @Override
-    public final int getButtonsGlassBackgroundColor() {
-        return this.n.t1();
-    }
-
-    @Override
-    public final al0 getButtonsGlassColorProvider() {
-        return this.n;
-    }
-
-    @Override
-    public final int getMenuAnchorTint() {
-        return 0;
-    }
-
-    @Override
-    public final int getMenuDimAlpha() {
-        return 51;
-    }
-
-    @Override
-    public final int getMenuExtraBelow() {
-        return this.E;
-    }
-
-    @Override
-    public final al0 getMenuGlassColorProvider() {
-        return this.h;
-    }
-
-    @Override
-    public final View getMenuHostView() {
-        return this.c.w2();
-    }
-
-    @Override
-    public final int getMenuMaxHeight() {
-        return this.H;
-    }
-
-    @Override
-    public final wjb getMenuResourcesProvider() {
-        return this.r;
-    }
-
-    @Override
-    public final int getMenuRise() {
-        return 0;
-    }
-
-    @Override
-    public final View getMenuView() {
-        return this.b;
-    }
-
-    @Override
-    public final zha getOpenMenuOverlay() {
-        if (this.w) {
-            return this.d;
+    public final void updateRewindProgressUi(long j, float f, boolean z) {
+        tl4 tl4Var;
+        PhotoViewer photoViewer = this.a;
+        photoViewer.A1.e(Math.abs(j));
+        if (z) {
+            photoViewer.q3.h(false, f);
+            photoViewer.r3.invalidate();
         }
-        return null;
-    }
-
-    @Override
-    public final il0 h(zha zhaVar) {
-        il0 c = this.e.c(zhaVar, null, false);
-        c.p(this.h);
-        ug8.r(c, gl.L(22.0f), 6.0f);
-        return c;
-    }
-
-    public final void i() {
-        boolean z;
-        zha zhaVar = this.d;
-        if (zhaVar.d == this && zhaVar.e == null && (zhaVar.I || zhaVar.U)) {
-            return;
-        }
-        RectF rectF = new RectF();
-        ia8 ia8Var = this.c;
-        ia8Var.J1(rectF);
-        jjc w2 = ia8Var.w2();
-        int[] iArr = new int[2];
-        w2.getLocationInWindow(iArr);
-        Rect rect = new Rect();
-        w2.getWindowVisibleDisplayFrame(rect);
-        float L = gl.L(24.0f) + this.G;
-        int i = this.H;
-        if (i > 0) {
-            L = Math.min(L, i);
-        }
-        int i2 = this.F;
-        int i3 = rect.bottom;
-        if (i2 > 0) {
-            i3 = Math.min(i3, i2);
-        }
-        float f = iArr[1];
-        float f2 = i3 - (rectF.bottom + f);
-        float f3 = (f + rectF.top) - rect.top;
-        int i4 = 0;
-        if (f2 < L && f2 <= f3) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.x = z;
-        if (z && f3 < L) {
-            i4 = (int) Math.max(0.0f, Math.min(f2 - gl.L(8.0f), L - f3));
-        }
-        this.E = i4;
-        this.I = null;
-        zhaVar.setOnClosed(new ga8(this, (byte) 1));
-        zhaVar.d(this, null, this.s);
-    }
-
-    @Override
-    public final void setMenuGlassFrostedProgress(float f) {
-        jx4 jx4Var = this.f;
-        if (jx4Var != null) {
-            jx4Var.k(f);
-        }
-        be2 be2Var = this.K;
-        if (be2Var != null) {
-            ((jjc) be2Var.b).setEditMenuProgress(f);
-        }
-        if (f > 0.9f) {
-            this.y = true;
-        }
-        if (this.y && f < 0.06f) {
-            zha zhaVar = this.d;
-            if (!zhaVar.I && this.w) {
-                this.y = false;
-                zhaVar.post(new ga8(this, (byte) 0));
+        ad8 ad8Var = photoViewer.U8;
+        if (ad8Var != null && (tl4Var = ad8Var.e) != null) {
+            tl4Var.F.e(0L);
+            if (z) {
+                tl4Var.I = f;
+                yc ycVar = tl4Var.o;
+                if (ycVar != null) {
+                    ycVar.invalidate();
+                }
+                pl4 pl4Var = tl4Var.m;
+                if (pl4Var != null) {
+                    pl4Var.invalidate();
+                }
             }
         }
     }

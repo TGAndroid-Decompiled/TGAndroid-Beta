@@ -1,57 +1,86 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.ActionBar.a;
-public final class cw0 extends AnimatorListenerAdapter {
-    public final boolean a;
-    public final float b;
-    public final float c;
-    public final ow0 d;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.webkit.PermissionRequest;
+import java.util.Arrays;
+public final class cw0 implements gu2 {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
 
-    public cw0(ow0 ow0Var, boolean z, float f, float f2) {
-        this.d = ow0Var;
-        this.a = z;
-        this.b = f;
-        this.c = f2;
+    public cw0(Object obj, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f;
-        ow0 ow0Var = this.d;
-        gw0 gw0Var = ow0Var.E;
-        lw0 lw0Var = ow0Var.Y;
-        fw0 fw0Var = ow0Var.x;
-        ow0Var.j0 = false;
-        boolean z = this.a;
-        if (!z) {
-            ow0Var.I();
-            ow0Var.L();
-            float f2 = this.b;
-            fw0Var.setForceOffsetY(f2 - gl.L(24.0f));
-            fw0Var.setTopActionBarOffsetY(f2 - gl.L(24.0f));
-            fw0Var.setSwipeOffsetY(0.0f);
-            f = 1.0f - ow0Var.i0;
-        } else {
-            fw0Var.setForceOffsetY(-gl.L(24.0f));
-            fw0Var.setTopActionBarOffsetY(-gl.L(24.0f));
-            fw0Var.setSwipeOffsetY(0.0f);
-            f = ow0Var.i0;
+    public final void accept(Object obj) {
+        int b;
+        byte b2 = this.a;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b2) {
+            case 0:
+                jw0 jw0Var = (jw0) obj4;
+                PermissionRequest permissionRequest = (PermissionRequest) obj3;
+                String[] strArr = (String[]) obj2;
+                Boolean bool = (Boolean) obj;
+                if (jw0Var.a != null) {
+                    jw0Var.a = null;
+                    if (bool.booleanValue()) {
+                        cw0 cw0Var = new cw0(jw0Var, permissionRequest, strArr, (byte) 1);
+                        boolean z = qw0.R0;
+                        jw0Var.e.R.R(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, cw0Var);
+                        return;
+                    }
+                    permissionRequest.deny();
+                    return;
+                }
+                return;
+            case 1:
+                jw0 jw0Var2 = (jw0) obj4;
+                PermissionRequest permissionRequest2 = (PermissionRequest) obj3;
+                String[] strArr2 = (String[]) obj2;
+                if (((Boolean) obj).booleanValue()) {
+                    permissionRequest2.grant(new String[]{strArr2[0], strArr2[1]});
+                    jw0Var2.e.R.U = true;
+                    return;
+                }
+                permissionRequest2.deny();
+                return;
+            default:
+                Path path = (Path) obj3;
+                float[] fArr = (float[]) obj2;
+                Canvas canvas = (Canvas) obj;
+                ub8 ub8Var = ((gk8) obj4).e;
+                View pressedChildView = ub8Var.getPressedChildView();
+                if (pressedChildView == null) {
+                    b = -1;
+                } else {
+                    b = ub8Var.T(pressedChildView).b();
+                }
+                path.rewind();
+                Rect selectorRect = ub8Var.getSelectorRect();
+                RectF rectF = gm.P;
+                rectF.set(selectorRect.left, selectorRect.top, selectorRect.right, selectorRect.bottom);
+                Arrays.fill(fArr, 0.0f);
+                if (b == 0) {
+                    Arrays.fill(fArr, 0, 4, gm.L(12.0f));
+                }
+                if (b == ub8Var.getAdapter().b() - 1) {
+                    Arrays.fill(fArr, 4, 8, gm.L(12.0f));
+                }
+                path.addRoundRect(rectF, fArr, Path.Direction.CW);
+                canvas.clipPath(path);
+                return;
         }
-        ow0Var.h0 = f;
-        lw0Var.setAlpha(1.0f - f);
-        lw0Var.setTranslationY((-a.getCurrentActionBarHeight()) * ow0Var.h0);
-        ow0Var.o0.setAlpha(ow0Var.h0);
-        if (z) {
-            lw0Var.setVisibility(8);
-        }
-        fw0Var.setSwipeOffsetAnimationDisallowed(false);
-        fw0Var.setTranslationX(gl.R1(this.c, 0.0f, ow0Var.i0));
-        ow0Var.n0.setTranslationX(0.0f);
-        ow0Var.f.invalidate();
-        gw0Var.setViewPortHeightOffset(0.0f);
-        gw0Var.l(true, true);
-        ow0Var.H();
     }
 }

@@ -1,298 +1,265 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.PorterDuff;
-import android.text.TextUtils;
+import android.graphics.PorterDuffColorFilter;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import org.telegram.ui.Components.Switch;
-public final class l66 extends FrameLayout {
-    public final m66 E;
-    public final ImageView a;
-    public final LinearLayout b;
-    public final wb c;
-    public final hn d;
-    public final ImageView e;
-    public final Switch f;
-    public final wf2 h;
+import android.view.ViewConfiguration;
+import android.widget.TextView;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+public class l66 extends TextView {
+    public static Field J;
+    public static Class K;
+    public static Method L;
+    public Object E;
+    public boolean F;
+    public boolean G;
+    public PorterDuffColorFilter H;
+    public int I;
+    public final boolean a;
+    public final i66 b;
+    public final ylb c;
+    public cn d;
+    public m66 e;
+    public k66 f;
+    public k66 h;
     public boolean n;
     public boolean r;
     public boolean s;
-    public boolean w;
+    public CharacterStyle w;
     public int x;
-    public int y;
+    public boolean y;
 
-    public l66(m66 m66Var, Context context) {
+    public l66(Context context, ylb ylbVar) {
         super(context);
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        float f;
-        float f2;
-        this.E = m66Var;
-        setImportantForAccessibility(1);
-        ImageView imageView = new ImageView(context);
-        this.a = imageView;
-        int i7 = bkb.l6;
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        zkb.s(imageView, i7, null, mode);
-        imageView.setVisibility(8);
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
-        }
-        addView(imageView, nme.d(24, 24.0f, i | 16, 20.0f, 0.0f, 20.0f, 0.0f));
-        wb wbVar = new wb(context, (byte) 23);
-        this.c = wbVar;
-        wbVar.setLines(1);
-        wbVar.setSingleLine(true);
-        wbVar.setEllipsize(TextUtils.TruncateAt.END);
-        wbVar.setTextSize(1, 16.0f);
-        int i8 = bkb.F6;
-        zkb.X(wbVar, i8, null);
-        if (k96.a0) {
-            i2 = 5;
-        } else {
-            i2 = 3;
-        }
-        wbVar.setGravity(i2);
-        wbVar.setImportantForAccessibility(2);
-        hn hnVar = new hn(context, false, true, true);
-        this.d = hnVar;
-        hnVar.b(0.35f, 200L, s33.h);
-        hnVar.setTypeface(gl.o());
-        hnVar.setTextSize(gl.L(14.0f));
-        zkb.U(hnVar, i8, null);
-        hnVar.setImportantForAccessibility(2);
-        ImageView imageView2 = new ImageView(context);
-        this.e = imageView2;
-        imageView2.setVisibility(8);
-        zkb.s(imageView2, i8, null, mode);
-        imageView2.setImageResource(2131230871);
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.b = linearLayout;
-        linearLayout.setOrientation(0);
-        if (k96.a0) {
-            i3 = 5;
-        } else {
-            i3 = 3;
-        }
-        linearLayout.setGravity(i3);
-        if (k96.a0) {
-            linearLayout.addView(imageView2, nme.q(16, 16, 0.0f, 16, 0, 0, 6, 0));
-            linearLayout.addView(hnVar, nme.q(-2, -2, 0.0f, 16, 0, 0, 6, 0));
-            linearLayout.addView(wbVar, nme.p(-2, -2, 1.0f, 16));
-        } else {
-            linearLayout.addView(wbVar, nme.p(-2, -2, 1.0f, 16));
-            linearLayout.addView(hnVar, nme.q(-2, -2, 0.0f, 16, 6, 0, 0, 0));
-            linearLayout.addView(imageView2, nme.q(16, 16, 0.0f, 16, 2, 0, 0, 0));
-        }
-        if (k96.a0) {
-            i4 = 5;
-        } else {
-            i4 = 3;
-        }
-        addView(linearLayout, nme.d(-1, -2.0f, i4 | 16, 64.0f, 0.0f, 8.0f, 0.0f));
-        Switch r3 = new Switch(context, null);
-        this.f = r3;
-        r3.setVisibility(8);
-        int i9 = bkb.L6;
-        int i10 = bkb.M6;
-        int i11 = bkb.c6;
-        r3.d(i9, i10, i11, i11);
-        r3.setImportantForAccessibility(2);
-        if (k96.a0) {
-            i5 = 3;
-        } else {
-            i5 = 5;
-        }
-        addView(r3, nme.d(37, 50.0f, i5 | 16, 19.0f, 0.0f, 19.0f, 0.0f));
-        wf2 wf2Var = new wf2(21, null, context);
-        this.h = wf2Var;
-        wf2Var.b(bkb.g7, bkb.i7, bkb.j7);
-        wf2Var.setDrawUnchecked(true);
-        wf2Var.a(true, false);
-        wf2Var.setDrawBackgroundAsArc(10);
-        wf2Var.setVisibility(8);
-        wf2Var.setImportantForAccessibility(2);
-        boolean z = k96.a0;
-        if (z) {
-            i6 = 5;
-        } else {
-            i6 = 3;
-        }
-        int i12 = i6 | 16;
-        if (z) {
-            f = 0.0f;
-        } else {
-            f = 64.0f;
-        }
-        if (z) {
-            f2 = 64.0f;
-        } else {
-            f2 = 0.0f;
-        }
-        addView(wf2Var, nme.d(21, 21.0f, i12, f, 0.0f, f2, 0.0f));
-        setFocusable(true);
+        this.F = false;
+        this.G = true;
+        this.a = false;
+        this.b = new i66(this);
+        this.c = ylbVar;
     }
 
-    public final int a(int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.l66.a(int):int");
+    public int a() {
+        return 0;
     }
 
-    public final void b(boolean z, boolean z2) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        float f6;
-        if (this.s != z) {
-            this.s = z;
-            wf2 wf2Var = this.h;
-            Switch r1 = this.f;
-            LinearLayout linearLayout = this.b;
-            float f7 = 1.0f;
-            ImageView imageView = this.a;
-            if (z2) {
-                ViewPropertyAnimator animate = imageView.animate();
-                if (z) {
-                    f4 = 0.5f;
-                } else {
-                    f4 = 1.0f;
-                }
-                animate.alpha(f4).setDuration(220L).start();
-                ViewPropertyAnimator animate2 = linearLayout.animate();
-                if (z) {
-                    f5 = 0.5f;
-                } else {
-                    f5 = 1.0f;
-                }
-                animate2.alpha(f5).setDuration(220L).start();
-                ViewPropertyAnimator animate3 = r1.animate();
-                if (z) {
-                    f6 = 0.5f;
-                } else {
-                    f6 = 1.0f;
-                }
-                animate3.alpha(f6).setDuration(220L).start();
-                ViewPropertyAnimator animate4 = wf2Var.animate();
-                if (z) {
-                    f7 = 0.5f;
-                }
-                ug8.s(animate4, f7, 220L);
-            } else {
-                if (z) {
-                    f = 0.5f;
-                } else {
-                    f = 1.0f;
-                }
-                imageView.setAlpha(f);
-                if (z) {
-                    f2 = 0.5f;
-                } else {
-                    f2 = 1.0f;
-                }
-                linearLayout.setAlpha(f2);
-                if (z) {
-                    f3 = 0.5f;
-                } else {
-                    f3 = 1.0f;
-                }
-                r1.setAlpha(f3);
-                if (z) {
-                    f7 = 0.5f;
-                }
-                wf2Var.setAlpha(f7);
+    public final ClickableSpan b(int i, int i2) {
+        Layout layout = getLayout();
+        if (layout == null) {
+            return null;
+        }
+        int textPaddingTop = i2 - getTextPaddingTop();
+        int lineForVertical = layout.getLineForVertical(textPaddingTop);
+        float paddingLeft = i - getPaddingLeft();
+        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, paddingLeft);
+        float lineLeft = layout.getLineLeft(lineForVertical);
+        if (lineLeft <= paddingLeft && layout.getLineWidth(lineForVertical) + lineLeft >= paddingLeft && textPaddingTop >= 0 && textPaddingTop <= layout.getHeight()) {
+            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+            if (clickableSpanArr.length != 0 && !gm.A1()) {
+                return clickableSpanArr[0];
             }
-            setEnabled(!z);
         }
+        return null;
     }
 
-    public final void c(g66 g66Var, boolean z) {
-        int d = e66.d(true);
-        int i = g66Var.e;
-        this.x = a(d & i);
-        this.y = a(i);
-        boolean z2 = false;
-        String format = String.format("%d/%d", Integer.valueOf(this.x), Integer.valueOf(this.y));
-        if (z && !k96.a0) {
-            z2 = true;
+    public int c() {
+        return cmb.v0(cmb.Be, this.c);
+    }
+
+    public int getTextPaddingTop() {
+        int paddingTop = getPaddingTop();
+        if (getGravity() == 17 && getLayout() != null) {
+            return Math.max(0, (((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2) + paddingTop;
         }
-        this.d.c(format, z2, true);
+        return paddingTop;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i;
-        super.onDraw(canvas);
-        boolean z = k96.a0;
-        boolean z2 = this.r;
-        wb wbVar = this.c;
-        if (z) {
-            if (z2) {
-                float L = gl.L(75.0f);
-                canvas.drawRect(L - gl.L(0.66f), (getMeasuredHeight() - gl.L(20.0f)) / 2.0f, L, (gl.L(20.0f) + getMeasuredHeight()) / 2.0f, bkb.j0);
-            }
-            if (this.n) {
-                int measuredWidth = getMeasuredWidth() - gl.L(64.0f);
-                if (wbVar.getTranslationX() < 0.0f) {
-                    i = gl.L(-32.0f);
-                } else {
-                    i = 0;
+    public final void invalidate() {
+        if (!this.y) {
+            this.y = true;
+            try {
+                if (K == null) {
+                    Field declaredField = TextView.class.getDeclaredField("mEditor");
+                    J = declaredField;
+                    declaredField.setAccessible(true);
+                    Class<?> cls = Class.forName("android.widget.Editor");
+                    K = cls;
+                    try {
+                        Method declaredMethod = cls.getDeclaredMethod("invalidateTextDisplayList", null);
+                        L = declaredMethod;
+                        declaredMethod.setAccessible(true);
+                    } catch (Exception unused) {
+                    }
                 }
-                canvas.drawLine(measuredWidth + i, getMeasuredHeight() - 1, 0.0f, getMeasuredHeight() - 1, bkb.j0);
-                return;
+            } catch (Throwable th) {
+                fc4.g(th, true);
             }
-            return;
         }
-        if (z2) {
-            float measuredWidth2 = getMeasuredWidth() - gl.L(75.0f);
-            canvas.drawRect(measuredWidth2 - gl.L(0.66f), (getMeasuredHeight() - gl.L(20.0f)) / 2.0f, measuredWidth2, (gl.L(20.0f) + getMeasuredHeight()) / 2.0f, bkb.j0);
-        }
-        if (this.n) {
-            canvas.drawLine(wbVar.getTranslationX() + gl.L(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, bkb.j0);
+        super.invalidate();
+        if (isHardwareAccelerated()) {
+            try {
+                if (L != null) {
+                    Object obj = this.E;
+                    if (obj == null) {
+                        obj = J.get(this);
+                        this.E = obj;
+                    }
+                    if (obj != null) {
+                        L.invoke(obj, null);
+                    }
+                }
+            } catch (Exception unused2) {
+            }
         }
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        CharSequence charSequence;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        wf2 wf2Var = this.h;
-        if (wf2Var.getVisibility() == 0) {
-            charSequence = "android.widget.CheckBox";
-        } else {
-            charSequence = "android.widget.Switch";
-        }
-        accessibilityNodeInfo.setClassName(charSequence);
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setEnabled(true);
-        if (wf2Var.getVisibility() == 0) {
-            accessibilityNodeInfo.setChecked(wf2Var.a.q);
-        } else {
-            accessibilityNodeInfo.setChecked(this.f.h);
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.c.getText());
-        if (this.w) {
-            sb.append('\n');
-            sb.append(k96.a0("Of", null, 2131747636, Integer.valueOf(this.x), Integer.valueOf(this.y)));
-        }
-        accessibilityNodeInfo.setContentDescription(sb);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.d = gn.update(a(), this, this.d, getLayout());
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(50.0f), 1073741824));
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        gn.release(this, this.d);
+    }
+
+    @Override
+    public void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.l66.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        int i3 = this.x;
+        if (i3 > 0) {
+            i = View.MeasureSpec.makeMeasureSpec(Math.min(i3, View.MeasureSpec.getSize(i)), View.MeasureSpec.getMode(i));
+        }
+        super.onMeasure(i, i2);
+        this.d = gn.update(a(), this, this.d, getLayout());
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        CharacterStyle characterStyle;
+        i66 i66Var = this.b;
+        if (i66Var != null) {
+            Layout layout = getLayout();
+            ClickableSpan b = b((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (b != null && motionEvent.getAction() == 0) {
+                m66 m66Var = new m66(b, this.c, motionEvent.getX(), motionEvent.getY(), 0);
+                m66Var.d(c());
+                this.e = m66Var;
+                i66Var.a(m66Var, null);
+                SpannableString spannableString = new SpannableString(layout.getText());
+                int spanStart = spannableString.getSpanStart(this.e.i);
+                int spanEnd = spannableString.getSpanEnd(this.e.i);
+                b66 b2 = this.e.b();
+                b2.d(layout, spanStart, getPaddingTop());
+                layout.getSelectionPath(spanStart, spanEnd, b2);
+                gm.d3(new dt5(this, m66Var, b, (byte) 11), ViewConfiguration.getLongPressTimeout());
+                return true;
+            }
+            if (motionEvent.getAction() == 1) {
+                i66Var.e(true);
+                m66 m66Var2 = this.e;
+                if (m66Var2 != null && (characterStyle = m66Var2.i) == b) {
+                    k66 k66Var = this.f;
+                    if (k66Var != null) {
+                        k66Var.a((ClickableSpan) characterStyle);
+                    } else if (characterStyle != null) {
+                        ((ClickableSpan) characterStyle).onClick(this);
+                    }
+                    this.e = null;
+                    return true;
+                }
+                this.e = null;
+            }
+            if (motionEvent.getAction() == 3) {
+                i66Var.e(true);
+                this.e = null;
+            }
+        }
+        if (this.e != null || super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setDisablePaddingsOffset(boolean z) {
+        this.n = z;
+    }
+
+    public void setDisablePaddingsOffsetX(boolean z) {
+        this.r = z;
+    }
+
+    public void setDisablePaddingsOffsetY(boolean z) {
+        this.s = z;
+    }
+
+    public void setEmojiColor(int i) {
+        this.G = false;
+        this.H = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+        invalidate();
+    }
+
+    public void setLoading(CharacterStyle characterStyle) {
+        if (this.w != characterStyle) {
+            i66 i66Var = this.b;
+            i66Var.f();
+            this.w = characterStyle;
+            qa6 j = i66.j(getLayout(), characterStyle, getPaddingTop());
+            if (j != null) {
+                int d = d(cmb.v0(cmb.Be, this.c));
+                j.g(cmb.p1(0.8f, d), cmb.p1(1.3f, d), cmb.p1(1.0f, d), cmb.p1(4.0f, d));
+                j.x.setStrokeWidth(gm.N(1.25f));
+                i66Var.b(j, null);
+            }
+        }
+    }
+
+    @Override
+    public void setMaxWidth(int i) {
+        this.x = i;
+    }
+
+    public void setOnLinkLongPressListener(k66 k66Var) {
+        this.h = k66Var;
+    }
+
+    public void setOnLinkPressListener(k66 k66Var) {
+        this.f = k66Var;
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        this.d = gn.update(a(), this, this.d, getLayout());
+    }
+
+    public l66(Context context) {
+        this(context, null);
+    }
+
+    public l66(Context context, i66 i66Var, ylb ylbVar) {
+        super(context);
+        this.F = false;
+        this.G = true;
+        this.a = true;
+        this.b = i66Var;
+        this.c = ylbVar;
+    }
+
+    public int d(int i) {
+        return i;
     }
 }

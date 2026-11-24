@@ -1,17 +1,20 @@
 package defpackage;
-public final class bfe implements zn7 {
-    public static final bfe a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.KeyEvent;
+public abstract class bfe {
+    public static KeyEvent a(Intent intent) {
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            try {
+                if (extras.containsKey("android.intent.extra.KEY_EVENT")) {
+                    return (KeyEvent) extras.getParcelable("android.intent.extra.KEY_EVENT");
+                }
+            } catch (RuntimeException e) {
+                ncd.g("DefaultActionFactory", "Failed to get parcelable key event", e);
+            }
         }
-        throw new ClassCastException();
+        return null;
     }
 }

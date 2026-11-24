@@ -1,42 +1,57 @@
 package defpackage;
-
-import android.os.IBinder;
-import android.os.IInterface;
-public final class e5f extends xx4 {
-    @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+public abstract class e5f {
+    public static String a(tke tkeVar) {
+        StringBuilder sb = new StringBuilder(tkeVar.i());
+        for (int i = 0; i < tkeVar.i(); i++) {
+            byte h = tkeVar.h(i);
+            if (h != 34) {
+                if (h != 39) {
+                    if (h != 92) {
+                        switch (h) {
+                            case 7:
+                                sb.append("\\a");
+                                continue;
+                            case 8:
+                                sb.append("\\b");
+                                continue;
+                            case 9:
+                                sb.append("\\t");
+                                continue;
+                            case 10:
+                                sb.append("\\n");
+                                continue;
+                            case 11:
+                                sb.append("\\v");
+                                continue;
+                            case 12:
+                                sb.append("\\f");
+                                continue;
+                            case 13:
+                                sb.append("\\r");
+                                continue;
+                            default:
+                                if (h >= 32 && h <= 126) {
+                                    sb.append((char) h);
+                                    continue;
+                                } else {
+                                    sb.append('\\');
+                                    sb.append((char) (((h >>> 6) & 3) + 48));
+                                    sb.append((char) (((h >>> 3) & 7) + 48));
+                                    sb.append((char) ((h & 7) + 48));
+                                    break;
+                                }
+                                break;
+                        }
+                    } else {
+                        sb.append("\\\\");
+                    }
+                } else {
+                    sb.append("\\'");
+                }
+            } else {
+                sb.append("\\\"");
+            }
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.internal.ICastService");
-        if (queryLocalInterface instanceof n7d) {
-            return (n7d) queryLocalInterface;
-        }
-        return new ezc(iBinder, "com.google.android.gms.cast.internal.ICastService", (byte) 3);
-    }
-
-    @Override
-    public final f84[] f() {
-        return ied.e;
-    }
-
-    @Override
-    public final int i() {
-        return 12451000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.cast.internal.ICastService";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.cast.service.BIND_CAST_DEVICE_CONTROLLER_SERVICE";
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
+        return sb.toString();
     }
 }

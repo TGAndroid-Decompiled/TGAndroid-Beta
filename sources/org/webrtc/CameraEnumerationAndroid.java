@@ -39,7 +39,7 @@ public class CameraEnumerationAndroid {
                 if (i2 < i3) {
                     return i2 * i4;
                 }
-                return oo1.h(i2, i3, i5, i4 * i3);
+                return aq1.h(i2, i3, i5, i4 * i3);
             }
 
             @Override
@@ -111,7 +111,7 @@ public class CameraEnumerationAndroid {
             if (i3 == 17) {
                 return (ImageFormat.getBitsPerPixel(i3) * (i * i2)) / 8;
             }
-            fyb.i("Don't know how to calculate the frame size of non-NV21 image formats.");
+            rjb.j("Don't know how to calculate the frame size of non-NV21 image formats.");
             return 0;
         }
 

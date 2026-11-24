@@ -1,28 +1,17 @@
 package defpackage;
-public final class v4e extends v5c {
-    public boolean b;
-    public final Object c;
+public final class v4e implements cq7 {
+    public static final v4e a = new Object();
 
-    public v4e(Object obj) {
-        super((byte) 12);
-        this.c = obj;
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)));
     }
 
     @Override
-    public final boolean hasNext() {
-        if (!this.b) {
-            return true;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (!this.b) {
-            this.b = true;
-            return this.c;
-        }
-        w26.g();
-        return null;
+        throw new ClassCastException();
     }
 }

@@ -20,7 +20,7 @@ public final class wb extends TextView {
         switch (this.a) {
             case 0:
                 super.dispatchDraw(canvas);
-                canvas.drawCircle(gl.L(3.5f), gl.L(11.5f), gl.L(2.5f), getPaint());
+                canvas.drawCircle(gm.L(3.5f), gm.L(11.5f), gm.L(2.5f), getPaint());
                 return;
             default:
                 super.dispatchDraw(canvas);
@@ -76,7 +76,7 @@ public final class wb extends TextView {
         int i3 = 0;
         switch (this.a) {
             case 14:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), gl.L(220.0f)), View.MeasureSpec.getMode(i)), i2);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), gm.L(220.0f)), View.MeasureSpec.getMode(i)), i2);
                 return;
             case 15:
                 if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE && getLayout() != null) {
@@ -130,10 +130,10 @@ public final class wb extends TextView {
                     return;
                 }
             case 19:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - gl.L(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(42.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - gm.L(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(42.0f), 1073741824));
                 return;
             case 20:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - gl.L(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(42.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - gm.L(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(42.0f), 1073741824));
                 return;
             case 21:
             case 26:
@@ -145,21 +145,21 @@ public final class wb extends TextView {
                 return;
             case 23:
                 if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
-                    i = ug8.f(52.0f, View.MeasureSpec.getSize(i), Integer.MIN_VALUE);
+                    i = wi8.f(52.0f, View.MeasureSpec.getSize(i), Integer.MIN_VALUE);
                 }
                 super.onMeasure(i, i2);
                 return;
             case 24:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), Integer.MIN_VALUE));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(100.0f), Integer.MIN_VALUE));
                 return;
             case 25:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i2), gl.L(100.0f)), Integer.MIN_VALUE));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i2), gm.L(100.0f)), Integer.MIN_VALUE));
                 return;
             case 27:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), Integer.MIN_VALUE));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(100.0f), Integer.MIN_VALUE));
                 return;
             case 28:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), Integer.MIN_VALUE));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(100.0f), Integer.MIN_VALUE));
                 return;
         }
     }
@@ -168,16 +168,16 @@ public final class wb extends TextView {
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         switch (this.a) {
             case 10:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
                 return;
             case 13:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
                 return;
             case 21:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
                 return;
             case 26:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                super.setText(gw3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
                 return;
             default:
                 super.setText(charSequence, bufferType);

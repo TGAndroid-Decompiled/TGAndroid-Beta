@@ -1,65 +1,37 @@
 package defpackage;
 
-import android.widget.FrameLayout;
-public final class aw5 implements xr3 {
+import android.content.DialogInterface;
+public final class aw5 implements DialogInterface.OnDismissListener {
     public final byte a;
-    public final FrameLayout b;
+    public final Object b;
     public final boolean c;
 
-    public aw5(FrameLayout frameLayout, boolean z, byte b) {
+    public aw5(byte b, Object obj, boolean z) {
         this.a = b;
-        this.b = frameLayout;
+        this.b = obj;
         this.c = z;
     }
 
     @Override
-    public final void a(yla ylaVar, boolean z, float f, float f2) {
+    public final void onDismiss(DialogInterface dialogInterface) {
         byte b = this.a;
-        int i = 8;
-        boolean z2 = this.c;
-        FrameLayout frameLayout = this.b;
+        boolean z = this.c;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                rw5 rw5Var = (rw5) frameLayout;
-                ss7 ss7Var = rw5Var.l1;
-                if (ylaVar == rw5Var.v1) {
-                    rw5Var.v1 = null;
-                    if (!z2) {
-                        ss7Var.setVisibility(8);
-                    }
-                    ss7Var.setMaskProvider(null);
-                    return;
-                }
+                ew5 ew5Var = (ew5) obj;
+                ew5.E0(ew5Var.getContext(), ew5Var.n1, ew5Var.s1, z);
                 return;
             case 1:
-                rw5 rw5Var2 = (rw5) frameLayout;
-                nw5 nw5Var = rw5Var2.w1;
-                if (ylaVar == rw5Var2.C1) {
-                    rw5Var2.C1 = null;
-                    if (!z2) {
-                        nw5Var.setVisibility(8);
-                        k38.e(rw5Var2.F1).g();
-                        nw5Var.getAdapter().f();
-                        return;
-                    }
-                    return;
-                }
+                ew5 ew5Var2 = (ew5) obj;
+                ew5.E0(ew5Var2.getContext(), ew5Var2.n1, ew5Var2.s1, z);
                 return;
             default:
-                uz6 uz6Var = (uz6) frameLayout;
-                if (!z) {
-                    uz6Var.L = null;
-                    if (!z2) {
-                        i = 0;
-                    }
-                    uz6Var.setVisibility(i);
-                    if (uz6Var.O && z2) {
-                        uz6Var.O = false;
-                        uz6Var.b.setLayoutManager(uz6Var.getNeededLayoutManager());
-                        uz6Var.J = true;
-                        uz6Var.o(true);
-                        return;
-                    }
+                v9b v9bVar = (v9b) obj;
+                v9bVar.A2 = false;
+                v9bVar.Y0.x(7, true);
+                if (z) {
+                    v9bVar.o(true);
                     return;
                 }
                 return;

@@ -1,4 +1,6 @@
 package defpackage;
+
+import org.telegram.tgnet.TLRPC;
 public interface um3 {
-    void a(float[] fArr, long j, int i);
+    void c(TLRPC.TL_error tL_error, String str);
 }

@@ -1,26 +1,13 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class gn8 extends zc2 {
-    public final boolean[] d1;
-    public final TLRPC.User e1;
-    public final ProfileActivity f1;
-
-    public gn8(ProfileActivity profileActivity, long j, long j2, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i, boolean[] zArr, TLRPC.User user) {
-        super(j, j2, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i, true, false, null);
-        this.f1 = profileActivity;
-        this.d1 = zArr;
-        this.e1 = user;
-    }
+public final class gn8 extends qx2 {
+    public dd4 a;
+    public Object b;
+    public int c;
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
-        if (!z && z2 && this.d1[0]) {
-            ProfileActivity profileActivity = this.f1;
-            if (u21.a(profileActivity)) {
-                u21.C(this.e1.first_name, profileActivity).j();
-            }
-        }
+    public final Object invokeSuspend(Object obj) {
+        this.b = obj;
+        this.c |= Integer.MIN_VALUE;
+        return qte.a(null, null, this);
     }
 }

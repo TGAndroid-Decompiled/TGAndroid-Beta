@@ -1,17 +1,24 @@
 package defpackage;
-public final class ixd implements zn7 {
-    public static final ixd a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)), 5)));
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+public final class ixd extends b4 {
+    public static final Parcelable.Creator<ixd> CREATOR = new urd((byte) 23);
+    public final int a;
+    public final ArrayList b;
+
+    public ixd(int i, ArrayList arrayList) {
+        this.a = i;
+        this.b = arrayList;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        mve.p(parcel, 3, this.b);
+        mve.s(parcel, r);
     }
 }

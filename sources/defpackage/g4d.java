@@ -1,45 +1,46 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class g4d extends e4d {
-    public static final g4d w = new g4d(0, new Object[0]);
-    public final transient Object[] r;
-    public final transient boolean s;
-
-    public g4d(int i, Object[] objArr) {
-        super((byte) 1);
-        this.r = objArr;
-        this.s = i;
+import android.os.BadParcelableException;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class g4d {
+    static {
+        g4d.class.getClassLoader();
     }
 
-    @Override
-    public final Object get(int i) {
-        yye.a(i, this.s ? 1 : 0);
-        Object obj = this.r[i];
-        Objects.requireNonNull(obj);
-        return obj;
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    @Override
-    public final int l(Object[] objArr) {
-        Object[] objArr2 = this.r;
-        boolean z = this.s;
-        System.arraycopy(objArr2, 0, objArr, 0, z ? 1 : 0);
-        return z ? 1 : 0;
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 
-    @Override
-    public final int m() {
-        return this.s ? 1 : 0;
+    public static void c(Parcel parcel, IInterface iInterface) {
+        if (iInterface == null) {
+            parcel.writeStrongBinder(null);
+        } else {
+            parcel.writeStrongBinder(iInterface.asBinder());
+        }
     }
 
-    @Override
-    public final Object[] o() {
-        return this.r;
-    }
-
-    @Override
-    public final int size() {
-        return this.s ? 1 : 0;
+    public static void d(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        StringBuilder sb = new StringBuilder(String.valueOf(dataAvail).length() + 45);
+        sb.append("Parcel data not fully consumed, unread size: ");
+        sb.append(dataAvail);
+        throw new BadParcelableException(sb.toString());
     }
 }

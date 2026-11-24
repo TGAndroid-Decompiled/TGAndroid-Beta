@@ -1,5 +1,12 @@
 package defpackage;
-public abstract class z8d {
-    public static final lo5 a = new lo5("REMOVED_TASK");
-    public static final lo5 b = new lo5("CLOSED_EMPTY");
+
+import android.os.IBinder;
+public final class z8d extends f1d {
+    public z8d(IBinder iBinder) {
+        super(iBinder, "com.google.android.gms.cast.internal.ICastDeviceController", (byte) 3);
+    }
+
+    public final void Z() {
+        W(R(), 1);
+    }
 }

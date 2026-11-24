@@ -1,22 +1,26 @@
 package defpackage;
-public final class xw1 implements yr3 {
-    public boolean a = false;
-    public final float b;
-    public final bia c;
 
-    public xw1(float f, bia biaVar) {
-        this.b = f;
-        this.c = biaVar;
-    }
-
+import android.text.InputFilter;
+import android.text.Spanned;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class xw1 implements InputFilter {
     @Override
-    public final void a(yla ylaVar, float f, float f2) {
-        if (!this.a && f >= this.b) {
-            this.a = true;
-            try {
-                this.c.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
+    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+        int i5 = ChatActivityEnterView.z7;
+        for (int i6 = i; i6 < i2; i6++) {
+            char charAt = charSequence.charAt(i6);
+            if (charAt == '\n' || charAt == '\r') {
+                StringBuilder sb = new StringBuilder(i2 - i);
+                while (i < i2) {
+                    char charAt2 = charSequence.charAt(i);
+                    if (charAt2 != '\n' && charAt2 != '\r') {
+                        sb.append(charAt2);
+                    }
+                    i++;
+                }
+                return sb;
             }
         }
+        return null;
     }
 }

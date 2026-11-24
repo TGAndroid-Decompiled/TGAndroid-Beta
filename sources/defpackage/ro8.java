@@ -1,126 +1,58 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.DataAutoDownloadActivity;
-import org.telegram.ui.DataSettingsActivity;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ProxyListActivity;
-import org.telegram.ui.ThemeActivity;
-public final class ro8 implements Runnable {
-    public final byte a;
-    public final d b;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.ProfileActivity;
+public final class ro8 extends u46 {
+    public final ProfileActivity I;
 
-    public ro8(d dVar, byte b) {
-        this.a = b;
-        this.b = dVar;
+    public ro8(ProfileActivity profileActivity) {
+        this.I = profileActivity;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        d dVar = this.b;
-        switch (b) {
-            case 0:
-                dVar.presentFragment(new r61());
-                return;
-            case 1:
-                dVar.presentFragment(new r61());
-                return;
-            case 2:
-                dVar.presentFragment(new h83());
-                return;
-            case 3:
-                dVar.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
-                return;
-            case 4:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 5:
-                dVar.presentFragment(new DataAutoDownloadActivity(0));
-                return;
-            case 6:
-                dVar.presentFragment(new DataAutoDownloadActivity(1));
-                return;
-            case 7:
-                dVar.presentFragment(new DataAutoDownloadActivity(2));
-                return;
-            case 8:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 9:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 10:
-                jh8 jh8Var = new jh8(dVar, 3, false);
-                jh8Var.F0();
-                dVar.showDialog(jh8Var);
-                return;
-            case 11:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 12:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 13:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 14:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 15:
-                dVar.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
-                return;
-            case 16:
-                dVar.presentFragment(new ProxyListActivity());
-                return;
-            case 17:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 18:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 19:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 20:
-                dVar.presentFragment(new DataSettingsActivity());
-                return;
-            case 21:
-                jh8 jh8Var2 = new jh8(dVar, 4, false);
-                jh8Var2.F0();
-                dVar.showDialog(jh8Var2);
-                return;
-            case 22:
-                dVar.presentFragment(new hmc());
-                return;
-            case 23:
-                hmc.K0(dVar.getContext(), dVar.getResourceProvider());
-                return;
-            case 24:
-                ij.q0(7, null, dVar);
-                return;
-            case 25:
-                ij.q0(8, null, dVar);
-                return;
-            case 26:
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.V0 = true;
-                dVar.presentFragment(themeActivity);
-                return;
-            case 27:
-                de9.o(1, dVar);
-                return;
-            case 28:
-                dVar.presentFragment(new PremiumPreviewFragment(0, "summarize_limit"));
-                return;
-            default:
-                if (u21.a(dVar)) {
-                    u21.b0(dVar).I(2131623990, k96.M0(2131742907, null), k96.M0(2131742906, null)).j();
-                    return;
+    public final int n0(int i, ki2 ki2Var, r69 r69Var) {
+        ProfileActivity profileActivity = this.I;
+        View m = profileActivity.c.m(0);
+        if (m != null && !profileActivity.G0) {
+            int top = m.getTop() - profileActivity.e2();
+            boolean z = true;
+            if (!profileActivity.p2) {
+                if (top > i) {
+                    if (!profileActivity.o0.Y0.isEmpty() && profileActivity.f0.getImageReceiver().E() && !gm.A1() && ((!profileActivity.o2 && !gm.O1()) || profileActivity.J0)) {
+                        if (profileActivity.K2 != null) {
+                            z = false;
+                        }
+                        profileActivity.p2 = z;
+                    }
+                    i = top;
                 }
-                return;
+            } else if (i >= top) {
+                profileActivity.p2 = false;
+                i = top;
+            } else if (profileActivity.a.getScrollState() == 1 && !profileActivity.q2) {
+                i /= 2;
+            }
         }
+        if (profileActivity.O1 && !profileActivity.a.Q0) {
+            return 0;
+        }
+        return super.n0(i, ki2Var, r69Var);
+    }
+
+    @Override
+    public final boolean x0() {
+        if (this.I.r0 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void y0(r69 r69Var, int[] iArr) {
+        super.y0(r69Var, iArr);
+        int i = iArr[0];
+        RectF rectF = ProfileActivity.e7;
+        iArr[0] = Math.max(i, this.I.d2());
     }
 }

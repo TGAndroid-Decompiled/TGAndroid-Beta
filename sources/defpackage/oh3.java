@@ -1,24 +1,29 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-public final class oh3 extends vf3 {
-    public final cj3 P0;
+import android.animation.ValueAnimator;
+public final class oh3 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final nk3 b;
+    public final float c;
 
-    public oh3(cj3 cj3Var, Context context, cj3 cj3Var2, int i, int i2) {
-        super(context, cj3Var2, i, i2);
-        this.P0 = cj3Var;
+    public oh3(nk3 nk3Var, float f, byte b) {
+        this.a = b;
+        this.b = nk3Var;
+        this.c = f;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        a aVar;
-        aVar = ((d) this.P0).actionBar;
-        if (!aVar.y() && super.dispatchTouchEvent(motionEvent)) {
-            return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        float f = this.c;
+        nk3 nk3Var = this.b;
+        switch (b) {
+            case 0:
+                nk3Var.f4(f, valueAnimator);
+                return;
+            default:
+                nk3Var.T3(f, valueAnimator);
+                return;
         }
-        return false;
     }
 }

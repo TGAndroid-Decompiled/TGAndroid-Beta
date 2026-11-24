@@ -24,19 +24,19 @@ public final class p3 extends AbstractCollection {
                 ((q3) obj).b();
                 return;
             case 1:
-                ((wg7) obj).b();
+                ((zi7) obj).b();
                 return;
             case 2:
-                ((so2) obj).clear();
+                ((dq2) obj).clear();
                 return;
             case 3:
                 ((AbstractMap) obj).clear();
                 return;
             case 4:
-                ((so2) obj).clear();
+                ((dq2) obj).clear();
                 return;
             case 5:
-                ((so2) obj).clear();
+                ((dq2) obj).clear();
                 return;
             case 6:
                 ((d3) obj).clear();
@@ -65,7 +65,7 @@ public final class p3 extends AbstractCollection {
                 }
                 return true;
             case 1:
-                return ((wg7) obj2).c(obj);
+                return ((zi7) obj2).c(obj);
             case 2:
             case 4:
             case 5:
@@ -104,34 +104,34 @@ public final class p3 extends AbstractCollection {
             case 0:
                 return ((q3) obj).h();
             case 1:
-                return new a3((wg7) obj, (byte) 0);
+                return new a3((zi7) obj, (byte) 0);
             case 2:
-                so2 so2Var = (so2) obj;
-                Map d = so2Var.d();
+                dq2 dq2Var = (dq2) obj;
+                Map d = dq2Var.d();
                 if (d != null) {
                     return d.values().iterator();
                 }
-                return new oo2(so2Var, (byte) 2);
+                return new zp2(dq2Var, (byte) 2);
             case 3:
-                return new xyb(((AbstractMap) obj).entrySet().iterator());
+                return new y0c(((AbstractMap) obj).entrySet().iterator());
             case 4:
-                so2 so2Var2 = (so2) obj;
-                Map m = so2Var2.m();
+                dq2 dq2Var2 = (dq2) obj;
+                Map m = dq2Var2.m();
                 if (m != null) {
                     return m.values().iterator();
                 }
-                return new t5d(so2Var2, (byte) 2);
+                return new v7d(dq2Var2, (byte) 2);
             case 5:
-                so2 so2Var3 = (so2) obj;
-                Map n = so2Var3.n();
+                dq2 dq2Var3 = (dq2) obj;
+                Map n = dq2Var3.n();
                 if (n != null) {
                     return n.values().iterator();
                 }
-                return new j8d(so2Var3, (byte) 2);
+                return new lad(dq2Var3, (byte) 2);
             case 6:
-                return new dcd(((d3) obj).entrySet().iterator(), (byte) 0);
+                return new fed(((d3) obj).entrySet().iterator(), (byte) 0);
             default:
-                return new dcd(((d3) obj).entrySet().iterator(), (byte) 1);
+                return new fed(((d3) obj).entrySet().iterator(), (byte) 1);
         }
     }
 
@@ -152,7 +152,7 @@ public final class p3 extends AbstractCollection {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused) {
                     for (Map.Entry entry2 : abstractMap.entrySet()) {
-                        if (bqe.a(obj, entry2.getValue())) {
+                        if (ese.a(obj, entry2.getValue())) {
                             abstractMap.remove(entry2.getKey());
                             return true;
                         }
@@ -165,7 +165,7 @@ public final class p3 extends AbstractCollection {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused2) {
                     for (Map.Entry entry3 : d3Var.entrySet()) {
-                        if (m1f.a(obj, entry3.getValue())) {
+                        if (o3f.a(obj, entry3.getValue())) {
                             d3Var.remove(entry3.getKey());
                             return true;
                         }
@@ -178,7 +178,7 @@ public final class p3 extends AbstractCollection {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused3) {
                     for (Map.Entry entry4 : d3Var2.entrySet()) {
-                        if (s3f.a(obj, entry4.getValue())) {
+                        if (u5f.a(obj, entry4.getValue())) {
                             d3Var2.remove(entry4.getKey());
                             return true;
                         }
@@ -227,7 +227,7 @@ public final class p3 extends AbstractCollection {
                             hashSet2.add(entry2.getKey());
                         }
                     }
-                    return ((vhf) d3Var.e).b().removeAll(hashSet2);
+                    return ((wjf) d3Var.e).b().removeAll(hashSet2);
                 }
             case 7:
                 d3 d3Var2 = (d3) obj;
@@ -243,7 +243,7 @@ public final class p3 extends AbstractCollection {
                             hashSet3.add(entry3.getKey());
                         }
                     }
-                    return ((j7d) d3Var2.e).b().removeAll(hashSet3);
+                    return ((l9d) d3Var2.e).b().removeAll(hashSet3);
                 }
         }
     }
@@ -285,7 +285,7 @@ public final class p3 extends AbstractCollection {
                             hashSet2.add(entry2.getKey());
                         }
                     }
-                    return ((vhf) d3Var.e).b().retainAll(hashSet2);
+                    return ((wjf) d3Var.e).b().retainAll(hashSet2);
                 }
             case 7:
                 d3 d3Var2 = (d3) obj;
@@ -301,7 +301,7 @@ public final class p3 extends AbstractCollection {
                             hashSet3.add(entry3.getKey());
                         }
                     }
-                    return ((j7d) d3Var2.e).b().retainAll(hashSet3);
+                    return ((l9d) d3Var2.e).b().retainAll(hashSet3);
                 }
         }
     }
@@ -314,15 +314,15 @@ public final class p3 extends AbstractCollection {
             case 0:
                 return ((q3) obj).l();
             case 1:
-                return ((wg7) obj).f;
+                return ((zi7) obj).f;
             case 2:
-                return ((so2) obj).size();
+                return ((dq2) obj).size();
             case 3:
                 return ((AbstractMap) obj).size();
             case 4:
-                return ((so2) obj).size();
+                return ((dq2) obj).size();
             case 5:
-                return ((so2) obj).size();
+                return ((dq2) obj).size();
             case 6:
                 return ((d3) obj).size();
             default:

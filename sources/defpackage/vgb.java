@@ -1,22 +1,36 @@
 package defpackage;
+public class vgb {
+    public int a;
+    public int b;
+    public int c;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class vgb extends FrameLayout {
-    public TextView a;
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    public vgb() {
+        c();
     }
 
-    public void setTextColor(int i) {
-        this.a.setTextColor(i);
+    public int a(ehb ehbVar, xgb xgbVar, qgb qgbVar, int i, boolean z) {
+        return this.a - qgbVar.a(xgbVar, i);
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
+    public void b(int i, int i2) {
+        this.a = Math.max(this.a, i);
+        this.b = Math.max(this.b, i2);
+    }
+
+    public void c() {
+        this.a = Integer.MIN_VALUE;
+        this.b = Integer.MIN_VALUE;
+        this.c = 2;
+    }
+
+    public int d(boolean z) {
+        if (!z) {
+            int i = this.c;
+            qgb qgbVar = ehb.T;
+            if ((i & 2) != 0) {
+                return 100000;
+            }
+        }
+        return this.a + this.b;
     }
 }

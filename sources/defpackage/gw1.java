@@ -1,132 +1,69 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.a;
-public final class gw1 extends ImageView {
-    public final byte a;
-    public final ChatActivityEnterView b;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+public abstract class gw1 extends FrameLayout {
+    public final fw1 a;
+    public final tk5 b;
+    public View c;
+    public int d;
+    public boolean e;
 
-    public gw1(ChatActivityEnterView chatActivityEnterView, Context context, byte b) {
+    public gw1(Context context, tk5 tk5Var, Bundle bundle) {
         super(context);
-        this.a = b;
-        this.b = chatActivityEnterView;
+        this.e = true;
+        this.b = tk5Var;
+        fw1 fw1Var = new fw1(this, bundle);
+        this.a = fw1Var;
+        fw1Var.mb = true;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                if (getAlpha() >= 0.5f && this.b.y1 <= 0.0f) {
-                    return super.dispatchTouchEvent(motionEvent);
+    public void a() {
+        int i;
+        fw1 fw1Var = this.a;
+        if (fw1Var.onFragmentCreate()) {
+            this.c = fw1Var.fragmentView;
+            fw1Var.setParentLayout(this.b);
+            View view = this.c;
+            if (view == null) {
+                this.c = fw1Var.createView(getContext());
+            } else {
+                ViewGroup viewGroup = (ViewGroup) view.getParent();
+                if (viewGroup != null) {
+                    fw1Var.onRemoveFromParent();
+                    viewGroup.removeView(this.c);
                 }
-                return false;
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+            }
+            vr1 vr1Var = fw1Var.A0;
+            if (vr1Var != null && (i = this.d) != 0) {
+                vr1Var.setPadding(0, i, 0, 0);
+            }
+            fw1Var.Ga();
+            addView(this.c, qoe.c(-1.0f, -1));
+            if (this.e) {
+                fw1Var.onResume();
+            }
         }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.b;
-                float f = chatActivityEnterView.y1;
-                if (f < 1.0f) {
-                    if (f > 0.0f) {
-                        int saveLayerAlpha = canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - chatActivityEnterView.y1) * 255.0f));
-                        super.draw(canvas);
-                        canvas.restoreToCount(saveLayerAlpha);
-                        return;
-                    }
-                    super.draw(canvas);
-                    return;
-                }
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        switch (this.a) {
-            case 1:
-                super.onLayout(z, i, i2, i3, i4);
-                post(new uv1(this.b, (byte) 16));
-                return;
-            default:
-                super.onLayout(z, i, i2, i3, i4);
-                return;
-        }
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 3:
-                if (getAlpha() <= 0.0f) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
+    public void setTopPadding(int i) {
+        this.d = i;
     }
 
-    @Override
-    public final void setAlpha(float f) {
-        byte b = this.a;
-        ChatActivityEnterView chatActivityEnterView = this.b;
-        switch (b) {
-            case 1:
-                super.setAlpha(f);
-                pw1 pw1Var = chatActivityEnterView.z2;
-                if (pw1Var != null) {
-                    pw1Var.setTranslationX(pw1Var.a);
-                    return;
-                }
-                return;
-            case 2:
-                super.setAlpha(f);
-                pw1 pw1Var2 = chatActivityEnterView.z2;
-                if (pw1Var2 != null) {
-                    pw1Var2.setTranslationX(pw1Var2.a);
-                    return;
-                }
-                return;
-            case 3:
-                super.setAlpha(f);
-                a aVar = chatActivityEnterView.a1;
-                if (aVar != null) {
-                    aVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.setAlpha(f);
-                return;
-        }
-    }
-
-    @Override
-    public final void setVisibility(int i) {
-        switch (this.a) {
-            case 3:
-                super.setVisibility(i);
-                a aVar = this.b.a1;
-                if (aVar != null) {
-                    aVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i);
-                return;
-        }
+    public void b(boolean z) {
     }
 }

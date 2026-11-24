@@ -1,39 +1,30 @@
 package defpackage;
+public final class imd extends v7c {
+    public static final Object c = new Object();
+    public Object b;
 
-import java.io.Serializable;
-public final class imd extends kld implements Serializable {
-    public final kld a;
-
-    public imd(kld kldVar) {
-        this.a = kldVar;
+    public imd(Object obj) {
+        super((byte) 10);
+        this.b = obj;
     }
 
     @Override
-    public final kld a() {
-        return this.a;
-    }
-
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        return this.a.compare(obj2, obj);
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
+    public final boolean hasNext() {
+        if (this.b != c) {
             return true;
-        }
-        if (obj instanceof imd) {
-            return this.a.equals(((imd) obj).a);
         }
         return false;
     }
 
-    public final int hashCode() {
-        return -this.a.hashCode();
-    }
-
-    public final String toString() {
-        return this.a.toString().concat(".reverse()");
+    @Override
+    public final Object next() {
+        Object obj = this.b;
+        Object obj2 = c;
+        if (obj != obj2) {
+            this.b = obj2;
+            return obj;
+        }
+        u36.g();
+        return null;
     }
 }

@@ -1,10 +1,32 @@
 package defpackage;
+
+import android.os.Build;
+import java.lang.reflect.Field;
 public abstract class ise {
-    public static fp5 a(int i, int i2) {
-        if (i2 <= Integer.MIN_VALUE) {
-            fp5 fp5Var = fp5.d;
-            return fp5.d;
+    public static Boolean a;
+    public static int b;
+
+    public static boolean a() {
+        Boolean bool;
+        int intValue;
+        Boolean bool2 = a;
+        if (bool2 != null) {
+            return bool2.booleanValue();
         }
-        return new fp5(i, i2 - 1, 1);
+        try {
+            Field declaredField = Build.VERSION.class.getDeclaredField("SEM_PLATFORM_INT");
+            declaredField.setAccessible(true);
+            intValue = ((Integer) declaredField.get(null)).intValue();
+        } catch (Exception unused) {
+            bool = Boolean.FALSE;
+            a = bool;
+        }
+        if (intValue < 100000) {
+            return false;
+        }
+        b = intValue - 90000;
+        bool = Boolean.TRUE;
+        a = bool;
+        return bool.booleanValue();
     }
 }

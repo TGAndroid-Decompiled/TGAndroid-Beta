@@ -1,18 +1,24 @@
 package defpackage;
+public final class w56 implements Runnable {
+    public final byte a;
+    public final a66 b;
 
-import android.os.Looper;
-public final class w56 {
-    public final mc5 a;
-    public volatile u56 b;
-
-    public w56(Looper looper, Object obj, String str) {
-        this.a = new mc5(looper);
-        fre.i(obj, "Listener must not be null");
-        fre.f(str);
-        this.b = new u56(obj, str);
+    public w56(a66 a66Var, byte b) {
+        this.a = b;
+        this.b = a66Var;
     }
 
-    public final void a(v56 v56Var) {
-        this.a.execute(new tq4(this, v56Var, (byte) 15));
+    @Override
+    public final void run() {
+        byte b = this.a;
+        a66 a66Var = this.b;
+        switch (b) {
+            case 0:
+                a66Var.b();
+                return;
+            default:
+                a66Var.c();
+                return;
+        }
     }
 }

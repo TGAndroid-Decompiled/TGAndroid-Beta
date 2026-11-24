@@ -1,18 +1,10 @@
 package defpackage;
-public enum j1e implements boe {
-    LANDMARK_UNKNOWN(0),
-    LANDMARK_NONE(1),
-    LANDMARK_ALL(2),
-    LANDMARK_CONTOUR(3);
-    
-    public final byte a;
-
-    j1e(int i) {
-        this.a = i;
-    }
+public final class j1e implements cq7 {
+    public static final j1e a = new Object();
+    public static final wa4 b = new wa4("identifiedLanguage", b10.m(mlb.p(kad.class, new d9d(1))));
 
     @Override
-    public final String toString() {
-        return "<" + j1e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
+    public final void a(Object obj, Object obj2) {
+        ((dq7) obj2).a(b, ((kpe) obj).a);
     }
 }

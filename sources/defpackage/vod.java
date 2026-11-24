@@ -1,17 +1,68 @@
 package defpackage;
-public final class vod implements zn7 {
-    public static final vod a = new Object();
-
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+public abstract class vod {
+    public static boolean a(String str, String str2) {
+        char charAt;
+        char charAt2;
+        char c;
+        int length = str.length();
+        if (str != str2) {
+            if (length == str2.length()) {
+                for (int i = 0; i < length; i++) {
+                    if (str.charAt(i) == str2.charAt(i) || ((c = (char) ((charAt | ' ') - 97)) < 26 && c == ((char) ((charAt2 | ' ') - 97)))) {
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static boolean b(char c) {
+        if (c >= 'A' && c <= 'Z') {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
+    }
+
+    public static String c(String str) {
+        int length = str.length();
+        int i = 0;
+        while (i < length) {
+            if (b(str.charAt(i))) {
+                char[] charArray = str.toCharArray();
+                while (i < length) {
+                    char c = charArray[i];
+                    if (b(c)) {
+                        charArray[i] = (char) (c ^ ' ');
+                    }
+                    i++;
+                }
+                return String.valueOf(charArray);
+            }
+            i++;
+        }
+        return str;
+    }
+
+    public static String d(String str) {
+        int length = str.length();
+        int i = 0;
+        while (i < length) {
+            char charAt = str.charAt(i);
+            if (charAt >= 'a' && charAt <= 'z') {
+                char[] charArray = str.toCharArray();
+                while (i < length) {
+                    char c = charArray[i];
+                    if (c >= 'a' && c <= 'z') {
+                        charArray[i] = (char) (c ^ ' ');
+                    }
+                    i++;
+                }
+                return String.valueOf(charArray);
+            }
+            i++;
+        }
+        return str;
     }
 }

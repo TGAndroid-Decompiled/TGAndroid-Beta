@@ -1,22 +1,40 @@
 package defpackage;
-public interface r53 {
-    long C(long j, long j2);
+public final class r53 implements Runnable {
+    public final byte a;
+    public final x53 b;
 
-    boolean V();
+    public r53(x53 x53Var, byte b) {
+        this.a = b;
+        this.b = x53Var;
+    }
 
-    long c0();
-
-    long e(long j);
-
-    long g0(long j);
-
-    long h0(long j, long j2);
-
-    long k(long j, long j2);
-
-    long r(long j, long j2);
-
-    long v(long j, long j2);
-
-    az8 w(long j);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        x53 x53Var = this.b;
+        switch (b) {
+            case 0:
+                x53Var.a.invalidate();
+                return;
+            default:
+                su suVar = x53Var.c;
+                if (suVar.getParent() != null) {
+                    if (x53Var.d) {
+                        gm.B2(suVar);
+                    } else {
+                        try {
+                            x53Var.b.removeView(suVar);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    pp8 pp8Var = x53Var.p;
+                    if (pp8Var != null) {
+                        pp8Var.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
 }

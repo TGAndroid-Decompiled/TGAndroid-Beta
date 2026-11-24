@@ -1,3 +1,3 @@
 package defpackage;
-public final class l03 extends k03 {
+public abstract class l03 {
 }

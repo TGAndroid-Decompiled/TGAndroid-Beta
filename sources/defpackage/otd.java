@@ -1,17 +1,24 @@
 package defpackage;
-public final class otd implements zn7 {
-    public static final otd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.ParcelFileDescriptor;
+import android.os.Parcelable;
+public final class otd extends b4 {
+    public static final Parcelable.Creator<otd> CREATOR = new urd((byte) 5);
+    public final int a;
+    public final ParcelFileDescriptor b;
+
+    public otd(int i, ParcelFileDescriptor parcelFileDescriptor) {
+        this.a = i;
+        this.b = parcelFileDescriptor;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        mve.k(parcel, 3, this.b, i);
+        mve.s(parcel, r);
     }
 }

@@ -1,53 +1,71 @@
 package defpackage;
 
-import android.content.Context;
-public final class i47 extends gb2 {
-    public int Ld;
-    public int Md;
-    public int Nd;
-    public final j47 Od;
+import java.util.ArrayList;
+public final class i47 {
+    public final CharSequence a;
+    public final int b;
+    public final int c;
+    public final float d;
+    public final ArrayList e = new ArrayList();
+    public final boolean f;
+    public final boolean g;
+    public final boolean h;
+    public final boolean i;
+    public final boolean j;
+    public final boolean k;
 
-    public i47(j47 j47Var, Context context, int i, wjb wjbVar) {
-        super(context, i, true, null, wjbVar);
-        this.Od = j47Var;
-        this.Ld = Integer.MAX_VALUE;
-        this.Md = Integer.MAX_VALUE;
-        this.Nd = -1;
+    public i47(defpackage.k47 r37, java.lang.CharSequence r38, android.text.TextPaint r39, int r40) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.i47.<init>(k47, java.lang.CharSequence, android.text.TextPaint, int):void");
     }
 
-    @Override
-    public final pla Y2() {
-        return pla.d(1, this, this.Od.F);
-    }
-
-    @Override
-    public final boolean isPressed() {
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int e1;
-        super.onLayout(z, i, i2, i3, i4);
-        if (this.ub.x0 && i2 != 0 && this.Ld != Integer.MAX_VALUE && i4 != 0 && this.Md != Integer.MAX_VALUE) {
-            int i5 = this.Nd;
-            int i6 = 0;
-            if (getMessageObject() == null) {
-                e1 = 0;
-            } else {
-                e1 = getMessageObject().e1();
+    public final void a(i47 i47Var) {
+        if (i47Var != null) {
+            ArrayList arrayList = i47Var.e;
+            int i = 0;
+            while (true) {
+                ArrayList arrayList2 = this.e;
+                if (i < Math.min(arrayList2.size(), arrayList.size())) {
+                    ((h47) arrayList2.get(i)).H = ((h47) arrayList.get(i)).H;
+                    i++;
+                } else {
+                    return;
+                }
             }
-            if (i5 == e1) {
-                if (!this.Od.A0) {
-                    setTranslationY(-(i2 - this.Ld));
-                    animate().translationY(0.0f).setDuration(320L).setInterpolator(s33.h).start();
+        }
+    }
+
+    public final int b() {
+        int i;
+        int i2 = 0;
+        int i3 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i2 < arrayList.size()) {
+                int i4 = ((h47) arrayList.get(i2)).f;
+                h47 h47Var = (h47) arrayList.get(i2);
+                if (h47Var.K && h47Var.f()) {
+                    i = h47Var.G;
+                } else {
+                    i = h47Var.w;
                 }
-                this.Ld = getTop();
-                this.Md = getBottom();
-                if (getMessageObject() != null) {
-                    i6 = getMessageObject().e1();
-                }
-                this.Nd = i6;
+                i3 += i + i4 + ((h47) arrayList.get(i2)).h;
+                i2++;
+            } else {
+                return i3;
+            }
+        }
+    }
+
+    public final int c(yc2 yc2Var) {
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i < arrayList.size()) {
+                i2 += ((h47) arrayList.get(i)).j(yc2Var) + ((h47) arrayList.get(i)).f + ((h47) arrayList.get(i)).h;
+                i++;
+            } else {
+                return i2;
             }
         }
     }

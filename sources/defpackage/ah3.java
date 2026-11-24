@@ -1,87 +1,46 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ah3 extends t26 {
-    public boolean I;
-    public boolean J;
-    public ValueAnimator K;
-    public final bj3 L;
-    public final cj3 M;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+public final class ah3 extends sn2 {
+    public int E;
+    public final Drawable F;
+    public final Drawable G;
+    public final aj3 H;
 
-    public ah3(cj3 cj3Var, bj3 bj3Var) {
-        this.M = cj3Var;
-        this.L = bj3Var;
+    public ah3(aj3 aj3Var, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super(drawable, drawable2);
+        this.H = aj3Var;
+        this.F = drawable3;
+        this.G = drawable4;
     }
 
     @Override
-    public final int Q0() {
-        bj3 bj3Var = this.L;
-        if (bj3Var.s == 0 && this.M.w3() && bj3Var.w == 2) {
-            return 1;
+    public final void draw(Canvas canvas) {
+        int i;
+        int i2;
+        aj3 aj3Var = this.H;
+        int i3 = aj3Var.b;
+        if (i3 == 0) {
+            i = cmb.r8;
+        } else {
+            i = cmb.L8;
         }
-        return 0;
-    }
-
-    @Override
-    public final void a0(wg2 wg2Var, p49 p49Var) {
-        boolean z = w01.a;
-        try {
-            super.a0(wg2Var, p49Var);
-        } catch (IndexOutOfBoundsException e) {
-            fa4.g(e, true);
-            gl.d3(new zg3(this.L, (byte) 0));
+        int f = aj3Var.f(i);
+        if (this.E != f) {
+            this.E = f;
+            if (i3 == 0) {
+                i2 = cmb.z8;
+            } else {
+                i2 = cmb.O8;
+            }
+            int f2 = on2.f(0.1f, aj3Var.f(i2), f);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            this.F.setColorFilter(new PorterDuffColorFilter(f2, mode));
+            this.G.setColorFilter(new PorterDuffColorFilter(f, mode));
         }
-    }
-
-    @Override
-    public final void a1(View view, View view2, int i, int i2) {
-        this.I = true;
-        super.a1(view, view2, i, i2);
-        this.I = false;
-    }
-
-    @Override
-    public final void e0() {
-        ValueAnimator valueAnimator = this.K;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.K.cancel();
-        }
-        bj3 bj3Var = this.L;
-        if (bj3Var.a.getScrollState() != 1) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.U, 0.0f);
-            this.K = ofFloat;
-            ofFloat.addUpdateListener(new pk(this, bj3Var, (byte) 13));
-            this.K.addListener(new im2(this, (byte) 7));
-            this.K.setDuration(200L);
-            this.K.setInterpolator(s33.f);
-            this.K.start();
-        }
-    }
-
-    @Override
-    public final void g1(int i, int i2) {
-        if (this.I) {
-            i2 -= this.L.a.getPaddingTop();
-        }
-        super.g1(i, i2);
-    }
-
-    @Override
-    public final int n0(int r23, defpackage.wg2 r24, defpackage.p49 r25) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ah3.n0(int, wg2, p49):int");
-    }
-
-    @Override
-    public final void u0(RecyclerView recyclerView, p49 p49Var, int i) {
-        if (this.M.w3() && i == 1) {
-            super.u0(recyclerView, p49Var, i);
-            return;
-        }
-        v26 v26Var = new v26(recyclerView.getContext(), 0);
-        v26Var.a = i;
-        v0(v26Var);
+        super.draw(canvas);
     }
 }

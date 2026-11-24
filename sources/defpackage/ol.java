@@ -1,39 +1,63 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class ol implements Runnable {
+import android.graphics.Bitmap;
+import android.view.PixelCopy;
+import java.util.concurrent.CountDownLatch;
+public final class ol implements PixelCopy.OnPixelCopyFinishedListener {
     public final byte a;
-    public final rl b;
-    public final ArrayList c;
-    public final HashSet d;
+    public final Object b;
+    public final Object c;
 
-    public ol(rl rlVar, ArrayList arrayList, HashSet hashSet, byte b) {
+    public ol(Object obj, Object obj2, byte b) {
         this.a = b;
-        this.b = rlVar;
-        this.c = arrayList;
-        this.d = hashSet;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        HashSet hashSet = this.d;
-        ArrayList arrayList = this.c;
-        rl rlVar = this.b;
-        switch (b) {
+    public final void onPixelCopyFinished(int i) {
+        boolean z;
+        switch (this.a) {
             case 0:
-                gl.d3(new ol(rlVar, arrayList, hashSet, (byte) 1));
+                boolean[] zArr = (boolean[]) this.b;
+                CountDownLatch countDownLatch = (CountDownLatch) this.c;
+                if (i == 0) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                zArr[0] = z;
+                countDownLatch.countDown();
+                return;
+            case 1:
+                rs0 rs0Var = (rs0) this.b;
+                Bitmap bitmap = (Bitmap) this.c;
+                rs0Var.getClass();
+                if (i == 0) {
+                    float f = 0.0f;
+                    for (int i2 = 0; i2 < 16; i2++) {
+                        for (int i3 = 0; i3 < 4; i3++) {
+                            f += gm.B(bitmap.getPixel(i2, i3));
+                        }
+                    }
+                    float f2 = f / 64.0f;
+                    bitmap.recycle();
+                    if (Math.abs(f2 - rs0Var.r) >= 0.02f) {
+                        rs0Var.r = f2;
+                        rs0Var.checkSystemBarColors();
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                rlVar.d(arrayList);
-                if (!hashSet.isEmpty()) {
-                    ArrayList<Long> arrayList2 = new ArrayList<>(hashSet);
-                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
-                    tL_messages_getCustomEmojiDocuments.document_id = arrayList2;
-                    ConnectionsManager.getInstance(rlVar.e).sendRequest(tL_messages_getCustomEmojiDocuments, new pl(rlVar, arrayList2, (byte) 0));
+                hk6 hk6Var = (hk6) this.b;
+                Bitmap bitmap2 = (Bitmap) this.c;
+                hk6Var.h = false;
+                if (!hk6Var.i && i == 0) {
+                    hk6Var.f = hk6Var.e;
+                    hk6Var.e = bitmap2;
+                    hk6Var.a.run();
                     return;
                 }
                 return;

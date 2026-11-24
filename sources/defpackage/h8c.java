@@ -1,4 +1,3 @@
 package defpackage;
-public interface h8c {
-    Object run();
+public final class h8c extends Exception {
 }

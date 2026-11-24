@@ -4,7 +4,7 @@ import java.util.AbstractList;
 import java.util.Collection;
 import java.util.List;
 import java.util.RandomAccess;
-public abstract class s3 extends AbstractList implements lp5 {
+public abstract class s3 extends AbstractList implements lr5 {
     public boolean a;
 
     @Override
@@ -47,7 +47,7 @@ public abstract class s3 extends AbstractList implements lp5 {
         if (this.a) {
             return;
         }
-        fvc.b();
+        gxc.b();
     }
 
     @Override

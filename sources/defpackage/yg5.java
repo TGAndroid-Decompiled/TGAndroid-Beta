@@ -1,6 +1,14 @@
 package defpackage;
 
-import android.os.Binder;
-public abstract class yg5 extends Binder implements zg5 {
-    public static final int a = 0;
+import android.net.Uri;
+public final class yg5 {
+    public final Uri a;
+    public final long b;
+    public final int c;
+
+    public yg5(Uri uri, long j, int i) {
+        this.a = uri;
+        this.b = j;
+        this.c = i;
+    }
 }

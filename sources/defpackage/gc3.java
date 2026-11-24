@@ -1,20 +1,28 @@
 package defpackage;
-public final class gc3 extends yo {
-    public final byte c;
+
+import java.util.Map;
+public final class gc3 implements di8 {
+    public final byte a;
 
     @Override
-    public final int h(int i, int i2) {
-        switch (this.c) {
+    public final boolean apply(Object obj) {
+        switch (this.a) {
+            case 0:
+                if (((Map.Entry) obj).getKey() == null) {
+                    return false;
+                }
+                return true;
             case 1:
-                return i % i2;
+                if (((String) obj) == null) {
+                    return false;
+                }
+                return true;
             default:
-                return super.h(i, i2);
+                nr5 nr5Var = (nr5) obj;
+                if (!nr5Var.b.equals("com.apple.iTunes") || !nr5Var.c.equals("iTunSMPB")) {
+                    return false;
+                }
+                return true;
         }
-    }
-
-    @Override
-    public final int i(int i) {
-        byte b = this.c;
-        return 1;
     }
 }

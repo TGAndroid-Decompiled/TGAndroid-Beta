@@ -1,12 +1,12 @@
 package defpackage;
 public abstract class j3f {
     public static boolean a(Object obj, Object obj2) {
-        if (obj != obj2) {
-            if (obj == null || !obj.equals(obj2)) {
-                return false;
-            }
+        if (obj == obj2) {
             return true;
         }
-        return true;
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
     }
 }

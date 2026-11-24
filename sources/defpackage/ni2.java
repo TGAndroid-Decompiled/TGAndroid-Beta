@@ -1,114 +1,23 @@
 package defpackage;
+public abstract class ni2 implements ja6 {
+    public final long a = ea6.h.getAndIncrement();
+    public final g83 b;
+    public final byte c;
+    public final go4 d;
+    public final int e;
+    public final Object f;
+    public final long h;
+    public final long n;
+    public final c0b r;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class ni2 extends Drawable {
-    public final Drawable a;
-    public Path b;
-    public final RectF c;
-    public final RectF d;
-    public boolean e;
-    public final float[] f;
-
-    public ni2(Drawable drawable) {
-        in inVar = new in(this, (byte) 3);
-        this.c = new RectF();
-        this.d = new RectF();
-        this.e = false;
-        this.f = new float[8];
-        Drawable drawable2 = this.a;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.a = drawable;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            this.a.setCallback(inVar);
-        }
-    }
-
-    public final void a() {
-        if (!this.e) {
-            return;
-        }
-        Path path = this.b;
-        if (path == null) {
-            this.b = new Path();
-        } else {
-            path.rewind();
-        }
-        Rect bounds = getBounds();
-        RectF rectF = this.c;
-        rectF.set(bounds);
-        float f = rectF.left;
-        RectF rectF2 = this.d;
-        rectF.left = f + rectF2.left;
-        rectF.top += rectF2.top;
-        rectF.right -= rectF2.right;
-        rectF.bottom -= rectF2.bottom;
-        this.b.addRoundRect(rectF, this.f, Path.Direction.CW);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            if (!this.e) {
-                canvas.save();
-                canvas.clipRect(getBounds());
-                drawable.draw(canvas);
-                canvas.restore();
-                return;
-            }
-            canvas.save();
-            a();
-            canvas.clipPath(this.b);
-            drawable.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            return drawable.getIntrinsicHeight();
-        }
-        return super.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            return drawable.getIntrinsicWidth();
-        }
-        return super.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            drawable.setAlpha(i);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
+    public ni2(a83 a83Var, g83 g83Var, int i, go4 go4Var, int i2, Object obj, long j, long j2, String str) {
+        this.r = new c0b(a83Var);
+        this.b = g83Var;
+        this.c = i;
+        this.d = go4Var;
+        this.e = i2;
+        this.f = obj;
+        this.h = j;
+        this.n = j2;
     }
 }

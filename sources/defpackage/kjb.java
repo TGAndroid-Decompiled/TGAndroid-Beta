@@ -1,50 +1,19 @@
 package defpackage;
-public final class kjb implements p8c {
-    public final byte a;
-    public final boolean b;
-    public final String c;
 
-    public kjb(boolean z, String str, byte b) {
-        this.a = b;
-        this.b = z;
-        this.c = str;
-    }
+import java.util.regex.Pattern;
+public final class kjb {
+    public static final Pattern d = Pattern.compile("\\s+");
+    public static final yo5 e = yo5.p(2, "auto", "none");
+    public static final yo5 f = yo5.p(3, "dot", "sesame", "circle");
+    public static final yo5 g = yo5.p(2, "filled", "open");
+    public static final yo5 h = yo5.p(3, "after", "before", "outside");
+    public final int a;
+    public final byte b;
+    public final int c;
 
-    @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        vjb vjbVar = null;
-        zjb zjbVar = null;
-        String str = this.c;
-        boolean z = this.b;
-        mqc mqcVar = (mqc) obj;
-        switch (b) {
-            case 0:
-                if (mqcVar != null && z && bkb.Cm.add(str)) {
-                    akb akbVar = bkb.I;
-                    if (akbVar != null) {
-                        vjbVar = akbVar.j0;
-                    }
-                    if (vjbVar != null && str.equals(vjbVar.c)) {
-                        bkb.s1(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                if (mqcVar != null && z && bkb.Cm.add(str)) {
-                    akb akbVar2 = bkb.I;
-                    if (akbVar2 != null) {
-                        zjbVar = akbVar2.i(false);
-                    }
-                    if (zjbVar != null && str.equals(zjbVar.o)) {
-                        bkb.s1(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public kjb(int i, int i2, int i3) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
     }
 }

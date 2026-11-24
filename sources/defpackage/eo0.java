@@ -1,257 +1,258 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import j$.util.Objects;
-import java.util.Locale;
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stats;
-import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-public final class eo0 extends ka {
-    public final lo0 d;
+import org.telegram.ui.LaunchActivity;
+public final class eo0 implements RequestDelegate {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
 
-    public eo0(lo0 lo0Var) {
-        this.d = lo0Var;
+    public eo0(oc7 oc7Var, jv0 jv0Var, vn0 vn0Var) {
+        this.a = (byte) 1;
+        this.b = oc7Var;
+        this.c = jv0Var;
+        this.d = vn0Var;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        return ((ko0) this.d.d0.get(s49Var.b())).b;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.d0.size();
-    }
-
-    @Override
-    public final int d(int i) {
-        return ((ko0) this.d.d0.get(i)).a;
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        lo0 lo0Var;
-        int i2;
-        ko0 ko0Var;
-        String a0;
-        int i3 = s49Var.f;
-        if (i3 != 4 && i3 != 14 && i3 != 15) {
-            if (i3 != 1 && i3 != 12 && i3 != 16) {
-                if (i3 == 0) {
-                    oxa oxaVar = (oxa) s49Var.a;
-                    oxaVar.a(Integer.toString(this.d.U.level), 0, null, k96.M0(2131753156, null));
-                    lo0 lo0Var2 = this.d;
-                    TL_stats.TL_statsPercentValue tL_statsPercentValue = lo0Var2.U.premium_audience;
-                    int i4 = 2131746848;
-                    if (tL_statsPercentValue != null) {
-                        double d = tL_statsPercentValue.total;
-                        if (d != 0.0d) {
-                            String str = "≈" + ((int) this.d.U.premium_audience.part);
-                            String concat = String.format(Locale.US, "%.1f", Float.valueOf((((float) tL_statsPercentValue.part) / ((float) d)) * 100.0f)).concat("%");
-                            if (hc2.V(this.d.j0)) {
-                                i4 = 2131746738;
-                            }
-                            oxaVar.a(str, 1, concat, k96.M0(i4, null));
-                            oxaVar.a(String.valueOf(this.d.U.boosts), 2, null, k96.M0(2131753159, null));
-                            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.d.U;
-                            oxaVar.a(String.valueOf(Math.max(0, tL_premium_boostsStatus.next_level_boosts - tL_premium_boostsStatus.boosts)), 3, null, k96.M0(2131753154, null));
-                            oxaVar.setPadding(gl.L(23.0f), oxaVar.getPaddingTop(), gl.L(23.0f), oxaVar.getPaddingBottom());
-                            return;
-                        }
-                    }
-                    if (hc2.V(lo0Var2.j0)) {
-                        i4 = 2131746738;
-                    }
-                    oxaVar.a("~0", 1, "0%", k96.M0(i4, null));
-                    oxaVar.a(String.valueOf(this.d.U.boosts), 2, null, k96.M0(2131753159, null));
-                    TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = this.d.U;
-                    oxaVar.a(String.valueOf(Math.max(0, tL_premium_boostsStatus2.next_level_boosts - tL_premium_boostsStatus2.boosts)), 3, null, k96.M0(2131753154, null));
-                    oxaVar.setPadding(gl.L(23.0f), oxaVar.getPaddingTop(), gl.L(23.0f), oxaVar.getPaddingBottom());
-                    return;
-                } else if (i3 == 5) {
-                    TL_stories.Boost boost = ((ko0) this.d.d0.get(i)).d;
-                    TLRPC.User V1 = na7.q1(this.d.T).V1(Long.valueOf(boost.user_id));
-                    uv4 uv4Var = (uv4) s49Var.a;
-                    int i5 = boost.multiplier;
-                    long j = boost.expires;
-                    if (i5 > 1) {
-                        a0 = k96.a0("BoostsExpireOn", null, 2131753158, k96.r(j, false));
-                    } else {
-                        a0 = k96.a0("BoostExpireOn", null, 2131753658, k96.r(j, false));
-                    }
-                    uv4Var.d(V1, qu2.p(V1), a0, !((ko0) this.d.d0.get(i)).f);
-                    uv4Var.setStatus(boost);
-                    uv4Var.setAvatarPadding(5);
-                    return;
-                } else if (i3 == 6) {
-                    mhb mhbVar = (mhb) s49Var.a;
-                    mhbVar.setText(((ko0) this.d.d0.get(i)).c);
-                    mhbVar.setTextColor(bkb.p1(0.875f, -1));
-                    return;
-                } else if (i3 == 9) {
-                    dh6 dh6Var = (dh6) s49Var.a;
-                    lo0 lo0Var3 = this.d;
-                    if (lo0Var3.e0 == 0) {
-                        dh6Var.b(2131230871, 5, k96.G(lo0Var3.a0, "BoostingShowMoreBoosts", new Object[0]), false);
-                        return;
-                    } else {
-                        dh6Var.b(2131230871, 5, k96.G(lo0Var3.c0, "BoostingShowMoreGifts", new Object[0]), false);
-                        return;
-                    }
-                } else if (i3 == 3) {
-                    ((f36) s49Var.a).setLink(((ko0) this.d.d0.get(i)).c);
-                    return;
-                } else if (i3 == 11) {
-                    TL_stories.PrepaidGiveaway prepaidGiveaway = ((ko0) this.d.d0.get(i)).e;
-                    xv4 xv4Var = (xv4) s49Var.a;
-                    if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-                        xv4Var.d(prepaidGiveaway, k96.G(prepaidGiveaway.quantity, "BoostingTelegramPremiumCountPlural", new Object[0]), k96.G(prepaidGiveaway.quantity, "BoostingSubscriptionsCountPlural", k96.G(((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, "PrepaidGiveawayMonths", new Object[0])), !ko0Var.f);
-                    } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
-                        TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
-                        xv4Var.d(prepaidGiveaway, k96.H(',', "BoostingStarsCountPlural", (int) tL_prepaidStarsGiveaway.stars), k96.G(tL_prepaidStarsGiveaway.quantity, "AmongWinners", new Object[0]), !ko0Var.f);
-                    }
-                    xv4Var.setImage(prepaidGiveaway);
-                    xv4Var.setAvatarPadding(5);
-                    return;
-                } else if (i3 == 13) {
-                    if (this.d.W.getTag() == null || ((Integer) this.d.W.getTag()).intValue() != Objects.hash(Integer.valueOf(this.d.p0), Integer.valueOf(this.d.o0))) {
-                        lo0 lo0Var4 = this.d;
-                        lo0Var4.W.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(lo0Var4.p0), Integer.valueOf(this.d.o0))));
-                        this.d.W.f();
-                        lo0 lo0Var5 = this.d;
-                        lo0Var5.W.a(0, k96.G(lo0Var5.p0, "BoostingBoostsCount", new Object[0]), null);
-                        if (na7.q1(this.d.T).k4.O1.f && (i2 = (lo0Var = this.d).o0) > 0 && i2 != lo0Var.p0) {
-                            lo0Var.W.a(1, k96.G(i2, "BoostingGiftsCount", new Object[0]), null);
-                        }
-                        lo0 lo0Var6 = this.d;
-                        lo0Var6.W.setInitialTabId(lo0Var6.e0);
-                        this.d.W.c();
-                        return;
-                    }
-                    return;
-                } else {
-                    return;
-                }
-            }
-            hk1 hk1Var = (hk1) s49Var.a;
-            hk1Var.setTitle(((ko0) this.d.d0.get(i)).c);
-            hk1Var.c(false);
-            if (s49Var.f == 12) {
-                hk1Var.setPadding(gl.L(3.0f), hk1Var.getPaddingTop(), hk1Var.getPaddingRight(), hk1Var.getPaddingBottom());
-            }
-        }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        ViewGroup oxaVar;
-        ViewGroup viewGroup2;
-        wjb wjbVar;
-        int i2;
-        wjb wjbVar2;
-        lo0 lo0Var = this.d;
-        switch (i) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        Object obj = this.b;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        switch (b) {
             case 0:
-                oxaVar = new oxa(lo0Var.getParentActivity(), 2);
-                viewGroup2 = oxaVar;
-                break;
+                gm.c3(new da7(tL_error, (qac) obj3, tLObject, (oc7) obj, (qac) obj2, (byte) 3));
+                return;
             case 1:
-            case 16:
-                ViewGroup hk1Var = new hk1(lo0Var.getParentActivity(), null);
-                hk1Var.setPadding(hk1Var.getPaddingLeft(), gl.L(16.0f), hk1Var.getRight(), gl.L(16.0f));
-                viewGroup2 = hk1Var;
-                break;
+                gm.c3(new da7(tLObject, (oc7) obj, (jv0) obj3, (vn0) obj2, tL_error));
+                return;
             case 2:
-                viewGroup2 = new b9a(viewGroup.getContext(), 0, 0);
-                break;
-            case 3:
-                f36 f36Var = new f36(lo0Var.getParentActivity(), lo0Var, null, false, false);
-                f36Var.d.setVisibility(8);
-                f36Var.a.setGravity(17);
-                f36Var.h.setVisibility(8);
-                f36Var.w.setVisibility(8);
-                f36Var.setPadding(gl.L(11.0f), 0, gl.L(11.0f), gl.L(24.0f));
-                viewGroup2 = f36Var;
-                break;
-            case 4:
-            default:
-                fvc.b();
-                return null;
-            case 5:
-                viewGroup2 = new uv4(lo0Var.getParentActivity());
-                break;
-            case 6:
-                Context context = viewGroup.getContext();
-                wjbVar = ((d) lo0Var).resourceProvider;
-                viewGroup2 = new mhb(20, wjbVar, context);
-                break;
-            case 7:
-                viewGroup2 = new wh4(lo0Var.getParentActivity(), 8, (byte) 0);
-                break;
-            case 8:
-                oxaVar = new a6(lo0Var.getParentActivity(), (byte) 2);
-                TextView textView = new TextView(lo0Var.getParentActivity());
-                if (hc2.V(lo0Var.j0)) {
-                    i2 = 2131748042;
+                to0 to0Var = (to0) obj3;
+                oc7 oc7Var = (oc7) obj;
+                wo0 wo0Var = (wo0) obj2;
+                if (tL_error != null) {
+                    gm.c3(new x30(to0Var, tL_error, (byte) 10));
+                    return;
+                } else if (tLObject != null) {
+                    oc7Var.T3((TLRPC.Updates) tLObject, false);
+                    gm.c3(new f00(wo0Var, (byte) 16));
+                    return;
                 } else {
-                    i2 = 2131748043;
+                    return;
                 }
-                tb4.u(14.0f, i2, 1, textView, null);
-                zkb.X(textView, bkb.x6, null);
-                textView.setGravity(17);
-                oxaVar.addView(textView, nme.d(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
-                viewGroup2 = oxaVar;
-                break;
+            case 3:
+                gm.c3(new da7(tL_error, (qac) ((x0) obj3), tLObject, (oc7) obj, (qac) ((iu) obj2), (byte) 2));
+                return;
+            case 4:
+                gm.c3(new l97((lp0) obj3, (CountDownLatch) obj2, tLObject, (bp0) obj, (byte) 11));
+                return;
+            case 5:
+                gm.c3(new l97((lp0) obj3, (CountDownLatch) obj2, tLObject, (bp0) obj, (byte) 10));
+                return;
+            case 6:
+                gm.c3(new l97((b61) obj3, tLObject, (my0) obj2, (qu0) obj, (byte) 14));
+                return;
+            case 7:
+                gm.c3(new da7((Object) ((qw0) obj3), tL_error, (Object) ((String) obj2), (Object) ((TLRPC.TL_inputInvoiceSlug) obj), (Object) tLObject, (byte) 5));
+                return;
+            case 8:
+                gm.c3(new da7((qw0) obj3, tLObject, (String[]) obj2, tL_error, (he) obj));
+                return;
             case 9:
-                do0 do0Var = new do0(lo0Var.getParentActivity(), (byte) 0);
-                do0Var.a(bkb.u6, bkb.t6);
-                viewGroup2 = do0Var;
-                break;
+                gm.c3(new l97((q51) obj3, tLObject, (TL_account.TL_businessChatLink) obj2, (gx1) obj, (byte) 16));
+                return;
             case 10:
-                wgb wgbVar = new wgb(lo0Var.getParentActivity());
-                wgbVar.o(2131232177, k96.a0(null, null, 2131753509, new Object[0]), false);
-                wgbVar.s = 64;
-                int i3 = bkb.p6;
-                wgbVar.g(i3, i3);
-                viewGroup2 = wgbVar;
-                break;
+                final uf1 uf1Var = (uf1) obj3;
+                final he heVar = (he) obj2;
+                TL_account.updateUsername updateusername = (TL_account.updateUsername) obj;
+                uf1Var.getClass();
+                if (tL_error == null) {
+                    gm.c3(new tv0(uf1Var, heVar, (TLRPC.User) tLObject, (byte) 15));
+                    return;
+                } else if ("USERNAME_NOT_MODIFIED".equals(tL_error.text)) {
+                    gm.c3(new Runnable() {
+                        @Override
+                        public final void run() {
+                            byte b2 = r3;
+                            he heVar2 = heVar;
+                            uf1 uf1Var2 = uf1Var;
+                            uf1Var2.getClass();
+                            switch (b2) {
+                                case 0:
+                                    try {
+                                        heVar2.dismiss();
+                                    } catch (Exception e) {
+                                        fc4.g(e, true);
+                                    }
+                                    uf1Var2.finishFragment();
+                                    return;
+                                default:
+                                    try {
+                                        heVar2.dismiss();
+                                    } catch (Exception e2) {
+                                        fc4.g(e2, true);
+                                    }
+                                    uf1Var2.m0();
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                } else if (!"USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text) && !"USERNAME_INVALID".equals(tL_error.text)) {
+                    gm.c3(new l97(uf1Var, heVar, tL_error, updateusername, (byte) 22));
+                    return;
+                } else {
+                    gm.c3(new Runnable() {
+                        @Override
+                        public final void run() {
+                            byte b2 = r3;
+                            he heVar2 = heVar;
+                            uf1 uf1Var2 = uf1Var;
+                            uf1Var2.getClass();
+                            switch (b2) {
+                                case 0:
+                                    try {
+                                        heVar2.dismiss();
+                                    } catch (Exception e) {
+                                        fc4.g(e, true);
+                                    }
+                                    uf1Var2.finishFragment();
+                                    return;
+                                default:
+                                    try {
+                                        heVar2.dismiss();
+                                    } catch (Exception e2) {
+                                        fc4.g(e2, true);
+                                    }
+                                    uf1Var2.m0();
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
             case 11:
-                viewGroup2 = new xv4(lo0Var.getParentActivity());
-                break;
+                gm.c3(new da7((d) ((uf1) obj3), (String) obj2, tL_error, tLObject, (TLObject) ((TL_account.checkUsername) obj), (byte) 13));
+                return;
             case 12:
-                hk1 hk1Var2 = new hk1(lo0Var.getParentActivity(), null);
-                hk1Var2.setPadding(hk1Var2.getPaddingLeft(), gl.L(16.0f), hk1Var2.getRight(), gl.L(8.0f));
-                viewGroup2 = hk1Var2;
-                break;
+                gm.c3(new l97((sh1) obj3, (CountDownLatch) obj2, tLObject, (ph1) obj, (byte) 26));
+                return;
             case 13:
-                Activity parentActivity = lo0Var.getParentActivity();
-                wjbVar2 = ((d) lo0Var).resourceProvider;
-                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(parentActivity, wjbVar2);
-                lo0Var.W = scrollSlidingTextTabStrip;
-                int i4 = bkb.vi;
-                int i5 = bkb.ui;
-                scrollSlidingTextTabStrip.M = i4;
-                scrollSlidingTextTabStrip.N = i5;
-                scrollSlidingTextTabStrip.updateColors();
-                st stVar = new st(this, lo0Var.getParentActivity());
-                lo0Var.W.setDelegate(new i4d(this));
-                stVar.addView(lo0Var.W, nme.c(48.0f, -2));
-                viewGroup2 = stVar;
-                break;
+                gm.c3(new l97((sh1) obj3, (CountDownLatch) obj2, tLObject, (ph1) obj, (byte) 25));
+                return;
             case 14:
-                viewGroup2 = lo0Var.n0(lo0Var.getParentActivity());
-                break;
+                gm.c3(new da7((d) ((fj1) obj3), (String) obj2, tL_error, tLObject, (TLObject) ((TLRPC.TL_channels_checkUsername) obj), (byte) 16));
+                return;
             case 15:
-                sb sbVar = new sb((byte) 1, lo0Var.getParentActivity(), this);
-                sbVar.setTag(-33024);
-                viewGroup2 = sbVar;
-                break;
+                gm.c3(new l97((yv1) obj3, (br1) obj2, tLObject, (hv0) obj, (byte) 29));
+                return;
+            case 16:
+                yv1 yv1Var = (yv1) obj3;
+                long[] jArr = (long[]) obj;
+                gm.r((l97) obj2);
+                yv1Var.v5.k.voiceTranscriptionRated = true;
+                cf7 messagesStorage = yv1Var.getMessagesStorage();
+                messagesStorage.a.c(new o77(messagesStorage, yv1Var.v5.e1(), k47.B0(yv1Var.v5.k), yv1Var.v5.k, (byte) 11));
+                ho1 ho1Var = new ho1(yv1Var, (byte) 25);
+                long j = 0;
+                if (jArr[0] > 0) {
+                    j = Math.max(0L, 300 - (SystemClock.elapsedRealtime() - jArr[0]));
+                }
+                gm.d3(ho1Var, j);
+                return;
+            case 17:
+                yv1 yv1Var2 = (yv1) obj3;
+                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) obj;
+                gm.c3(new wi0((he[]) obj2, (byte) 3));
+                if (tL_error == null) {
+                    yv1Var2.getMessagesController().T3((TLRPC.Updates) tLObject, false);
+                    return;
+                } else {
+                    gm.c3(new co1(yv1Var2, tL_error, tL_messages_editMessage, (byte) 4));
+                    return;
+                }
+            case 18:
+                gm.c3(new da7((d) ((qa2) obj3), (String) obj2, tL_error, tLObject, (TLObject) ((TLRPC.TL_channels_checkUsername) obj), (byte) 21));
+                return;
+            case 19:
+                gm.c3(new co1((yg2) obj3, (TL_account.TL_connectedBot) obj2, (TL_account.TL_businessBotRecipients) obj, (byte) 22));
+                return;
+            case 20:
+                gm.c3(new da7((Object) ((hx2) obj3), tL_error, (Object) tLObject, (Object) ((ArrayList) obj2), (Object) ((TLRPC.TL_messages_getMyStickers) obj), (byte) 25));
+                return;
+            case 21:
+                nk3 nk3Var = (nk3) obj3;
+                nk3Var.getClass();
+                gm.c3(new da7(nk3Var, tLObject, (TLRPC.UserFull) obj2, (TL_account.TL_birthday) obj, tL_error, (byte) 26));
+                return;
+            case 22:
+                gm.c3(new jh3((nk3) obj3, (TLRPC.TL_attachMenuBot) obj2, (LaunchActivity) obj, (byte) 1));
+                return;
+            case 23:
+                gm.c3(new xo1((b24) obj3, (he[]) obj2, tLObject, (k6d) obj, (byte) 15));
+                return;
+            case 24:
+                gm.c3(new xo1((y24) obj3, (TLRPC.TL_messages_getStickers) obj2, tLObject, (Runnable) obj, (byte) 16));
+                return;
+            case 25:
+                gm.c3(new if4((lh4) obj3, (he) obj2, (ub7) obj, (byte) 2));
+                return;
+            case 26:
+                gm.c3(new if4((ln4) obj3, (d) obj2, (ArrayList) obj, (byte) 3));
+                return;
+            case 27:
+                gm.c3(new da7((yw4) obj3, tLObject, (TLRPC.UserFull) obj2, (TL_account.TL_birthday) obj, tL_error, (byte) 29));
+                return;
+            case 28:
+                g95 g95Var = (g95) obj3;
+                TLRPC.Chat chat = (TLRPC.Chat) obj2;
+                TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
+                if (tLObject != null) {
+                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                    int i = 0;
+                    while (true) {
+                        if (i < updates.updates.size()) {
+                            TLRPC.Update update = updates.updates.get(i);
+                            if (update instanceof TL_update.TL_updateGroupCall) {
+                                gm.c3(new d65(g95Var, chat, inputPeer, (TL_update.TL_updateGroupCall) update, (byte) 0));
+                            } else {
+                                i++;
+                            }
+                        }
+                    }
+                    oc7.r1(g95Var.n1.a).T3(updates, false);
+                    return;
+                }
+                gm.c3(new ve4(g95Var, tL_error, (byte) 25));
+                return;
+            default:
+                gm.c3(new v15((g95) obj3, (he) obj2, tLObject, (TL_phone.exportGroupCallInvite) obj, tL_error));
+                return;
         }
-        return ls6.h(viewGroup2, viewGroup2, -1, -2);
+    }
+
+    public eo0(qac qacVar, oc7 oc7Var, qac qacVar2, byte b) {
+        this.a = b;
+        this.c = qacVar;
+        this.b = oc7Var;
+        this.d = qacVar2;
+    }
+
+    public eo0(Object obj, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.d = obj2;
+        this.b = obj3;
     }
 }

@@ -1,11 +1,14 @@
 package defpackage;
+public class dwc extends Exception {
+    public final int a;
 
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-public interface dwc {
-    Bitmap canvas(int i);
+    public dwc(int i, String str) {
+        super(str);
+        this.a = i;
+    }
 
-    Paint deviceFont(int i);
-
-    Bitmap image(int i);
+    public dwc(int i, String str, Throwable th) {
+        super(str, th);
+        this.a = i;
+    }
 }

@@ -1,16 +1,46 @@
 package defpackage;
 
-import android.app.Activity;
-public final class ug1 extends h26 {
-    public final int S2;
+import android.view.View;
+public final class ug1 extends nue {
+    public k47 a;
+    public int b = 0;
+    public boolean c = true;
+    public int d = 0;
+    public int e;
+    public final vg1 f;
 
-    public ug1(nh1 nh1Var, Activity activity, int i, int i2, wjb wjbVar, int i3) {
-        super(i, i2, wjbVar, activity, nh1Var);
-        this.S2 = i3;
+    public ug1(vg1 vg1Var) {
+        this.f = vg1Var;
     }
 
     @Override
-    public final int a1() {
-        return this.S2;
+    public final void a() {
+        k47 k47Var = this.a;
+        vg1 vg1Var = this.f;
+        if (k47Var != null) {
+            int indexOf = vg1Var.p0.indexOf(k47Var) + vg1Var.F.f;
+            if (indexOf >= 0) {
+                vg1Var.y.h1(indexOf, this.e, false);
+            }
+        } else {
+            vg1Var.y.h1(this.b, this.d, this.c);
+        }
+        this.a = null;
+        vg1Var.W = true;
+        vg1Var.i1();
+        gm.c3(new yt0(this, (byte) 25));
+    }
+
+    @Override
+    public final void c() {
+        vg1 vg1Var = this.f;
+        vg1Var.K0 = vg1Var.getNotificationCenter().p(vg1.R0, vg1Var.K0, true);
+    }
+
+    @Override
+    public final void d(View view) {
+        if (view instanceof rc2) {
+            this.f.h.add((rc2) view);
+        }
     }
 }

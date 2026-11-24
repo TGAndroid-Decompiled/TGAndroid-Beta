@@ -19,7 +19,7 @@ public final class g5 implements DialogInterface.OnDismissListener {
             case 2:
                 return;
             case 3:
-                aue.a.edit().putInt("dismissed_count", aue.a.getInt("dismissed_count", 0) + 1).apply();
+                dwe.a.edit().putInt("dismissed_count", dwe.a.getInt("dismissed_count", 0) + 1).apply();
                 return;
             case 4:
                 return;
@@ -29,12 +29,12 @@ public final class g5 implements DialogInterface.OnDismissListener {
             case 6:
                 return;
             default:
-                vvc.i = false;
+                wxc.i = false;
                 return;
         }
     }
 
-    public g5(jc jcVar, boolean[] zArr, byte b) {
+    public g5(jd jdVar, boolean[] zArr, byte b) {
         this.a = b;
     }
 

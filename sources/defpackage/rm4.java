@@ -1,28 +1,19 @@
 package defpackage;
-public abstract class rm4 implements fv9 {
-    public final fv9 a;
+public final class rm4 extends qx2 {
+    public sm4 a;
+    public Object b;
+    public final sm4 c;
+    public int d;
 
-    public rm4(fv9 fv9Var) {
-        this.a = fv9Var;
+    public rm4(sm4 sm4Var, px2 px2Var) {
+        super(px2Var);
+        this.c = sm4Var;
     }
 
     @Override
-    public final boolean c() {
-        return this.a.c();
-    }
-
-    @Override
-    public final boolean d() {
-        return this.a.d();
-    }
-
-    @Override
-    public ev9 f(long j) {
-        return this.a.f(j);
-    }
-
-    @Override
-    public long h() {
-        return this.a.h();
+    public final Object invokeSuspend(Object obj) {
+        this.b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.c.c(null, this);
     }
 }

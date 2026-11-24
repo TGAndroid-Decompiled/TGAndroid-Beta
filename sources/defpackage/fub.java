@@ -1,25 +1,37 @@
 package defpackage;
-
-import java.util.ArrayList;
-public final class fub implements Runnable {
-    public final byte a;
-    public final pub b;
-    public final long c;
-    public final ArrayList d;
-    public final boolean e;
-    public final long f;
-
-    public fub(pub pubVar, long j, ArrayList arrayList, boolean z, long j2, byte b) {
-        this.a = b;
-        this.b = pubVar;
-        this.c = j;
-        this.d = arrayList;
-        this.e = z;
-        this.f = j2;
+public enum fub extends rub {
+    public fub() {
+        super("BetweenDoctypePublicAndSystemIdentifiers", 59);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.fub.run():void");
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        char d = hl1Var.d();
+        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
+            if (d != '\"') {
+                if (d != '\'') {
+                    msb msbVar = rub.a;
+                    if (d != '>') {
+                        if (d != 65535) {
+                            bsbVar.m(this);
+                            bsbVar.c = rub.D0;
+                            return;
+                        }
+                        bsbVar.l(this);
+                        bsbVar.j();
+                        bsbVar.c = msbVar;
+                        return;
+                    }
+                    bsbVar.j();
+                    bsbVar.c = msbVar;
+                    return;
+                }
+                bsbVar.m(this);
+                bsbVar.c = rub.B0;
+                return;
+            }
+            bsbVar.m(this);
+            bsbVar.c = rub.A0;
+        }
     }
 }

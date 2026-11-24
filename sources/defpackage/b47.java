@@ -1,9 +1,10 @@
 package defpackage;
-public final class b47 extends t09 {
+
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class b47 extends CharacterStyle {
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        setPivotX(getMeasuredWidth());
-        setPivotY(getMeasuredHeight());
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(cmb.n2.linkColor);
     }
 }

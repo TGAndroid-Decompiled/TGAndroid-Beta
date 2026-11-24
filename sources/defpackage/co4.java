@@ -1,20 +1,19 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class co4 implements Parcelable {
-    public static final Parcelable.Creator<co4> CREATOR = new x21((byte) 18);
-    public String a;
-    public int b;
+import android.net.Uri;
+public final class co4 {
+    public final Uri a;
+    public final int b;
+    public final int c;
+    public final boolean d;
+    public final int e;
 
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.a);
-        parcel.writeInt(this.b);
+    public co4(Uri uri, int i, int i2, boolean z, int i3) {
+        uri.getClass();
+        this.a = uri;
+        this.b = i;
+        this.c = i2;
+        this.d = z;
+        this.e = i3;
     }
 }

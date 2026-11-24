@@ -1,13 +1,10 @@
 package defpackage;
-public abstract class wld {
-    public boolean a() {
-        return false;
-    }
+public final class wld {
+    public static final wld c = new Object();
+    public volatile Thread a;
+    public volatile wld b;
 
-    public abstract void c();
-
-    public abstract void d();
-
-    public void b() {
+    public wld() {
+        cmd.h.d(this, Thread.currentThread());
     }
 }

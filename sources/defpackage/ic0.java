@@ -1,55 +1,89 @@
 package defpackage;
 
+import android.app.Activity;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class ic0 implements v46, be3 {
-    public final ImageReceiver a;
-    public final pb0 b;
-    public long c;
-    public boolean d;
-    public final jc0 e;
+import java.util.ArrayList;
+public final class ic0 extends r59 {
+    public final ArrayList f3;
+    public final int g3;
+    public int h3;
+    public final js i3;
+    public hc0 j3;
+    public final mc0 k3;
 
-    public ic0(jc0 jc0Var, View view) {
-        this.e = jc0Var;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.a = imageReceiver;
-        imageReceiver.q0(jc0Var.e / 2);
-        pb0 pb0Var = new pb0((wjb) null);
-        this.b = pb0Var;
-        pb0Var.s(gl.L(22.0f));
-    }
-
-    @Override
-    public final void a() {
-        if (this.d) {
-            this.d = false;
-            this.a.K();
+    public ic0(mc0 mc0Var, Activity activity) {
+        super(activity, null);
+        this.k3 = mc0Var;
+        this.f3 = new ArrayList();
+        this.g3 = 200;
+        this.h3 = -1;
+        u46 u46Var = new u46();
+        u46Var.i1(0);
+        setLayoutManager(u46Var);
+        for (int i = 0; i < 7; i++) {
+            ?? obj = new Object();
+            int i2 = this.g3;
+            this.g3 = i2 + 1;
+            obj.a = i2;
+            int[] iArr = mc0.d0[i];
+            obj.c = iArr[0];
+            obj.d = iArr[1];
+            obj.e = iArr[2];
+            obj.f = iArr[3];
+            this.f3.add(obj);
         }
-        this.c = 0L;
-    }
-
-    @Override
-    public final int b(boolean z) {
-        if (z) {
-            return 0;
+        for (int i3 = 0; i3 < 30; i3++) {
+            ?? obj2 = new Object();
+            int i4 = this.g3;
+            this.g3 = i4 + 1;
+            obj2.a = i4;
+            int[] iArr2 = mc0.e0[i3];
+            obj2.c = iArr2[0];
+            obj2.d = iArr2[1];
+            obj2.e = 0;
+            obj2.f = 0;
+            obj2.b = true;
+            this.f3.add(obj2);
         }
-        return -this.e.f;
+        setPadding(gm.L(4.0f), 0, gm.L(4.0f), 0);
+        setClipToPadding(false);
+        this.g1 = true;
+        setOnItemClickListener(new u(this, (byte) 7));
+        js jsVar = new js(this, (byte) 1);
+        this.i3 = jsVar;
+        setAdapter(jsVar);
+        setOverScrollMode(1);
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof ic0) || this.c != ((ic0) obj).c) {
-            return false;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i) / this.i3.b();
+        mc0 mc0Var = this.k3;
+        mc0Var.Q = size;
+        if (size < gm.L(39.0f)) {
+            mc0Var.Q = gm.L(39.0f);
+        } else if (mc0Var.Q > gm.L(150.0f)) {
+            mc0Var.Q = gm.L(48.0f);
         }
-        return true;
+        super.onMeasure(i, i2);
     }
 
-    @Override
-    public final int getHeight() {
-        return this.e.e;
-    }
-
-    @Override
-    public final int getWidth() {
-        return this.e.e;
+    public final void z1(hc0 hc0Var) {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.f3;
+            if (i < arrayList.size()) {
+                if (((hc0) arrayList.get(i)).equals(hc0Var)) {
+                    this.h3 = ((hc0) arrayList.get(i)).a;
+                    break;
+                }
+                i++;
+            } else {
+                this.j3 = hc0Var;
+                this.h3 = 1;
+                break;
+            }
+        }
+        this.i3.f();
     }
 }

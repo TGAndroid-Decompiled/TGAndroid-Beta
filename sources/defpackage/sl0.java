@@ -1,138 +1,142 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.os.Build;
-import android.view.View;
-import java.util.ArrayList;
-import javax.microedition.khronos.egl.EGLContext;
-public final class sl0 {
-    public boolean a;
-    public final View b;
-    public final ArrayList c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final Object f;
-    public EGLContext g;
-    public final Object h;
-    public int i;
-    public g7b j;
-    public Object k;
-    public Object l;
-    public xl0 m;
-    public final ei0 n;
-    public Bitmap o;
-    public int p;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.a;
+public final class sl0 extends Drawable {
+    public final byte a;
+    public final Drawable b;
+    public int c;
+    public int d;
 
-    public sl0(View view) {
-        ArrayList arrayList = new ArrayList();
-        this.c = arrayList;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.f = new Object();
-        this.h = new Object();
-        this.n = new ei0(0, new oz(this, (byte) 12));
-        this.p = 0;
-        this.b = view;
-        if (view.isAttachedToWindow()) {
-            arrayList.clear();
-            for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
-                arrayList.add(0, view2);
-                if (!(view2.getParent() instanceof View)) {
-                    break;
+    public sl0() {
+        this.a = (byte) 1;
+        this.d = 255;
+        this.b = b10.d(a.b, 2131232714);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        byte b = this.a;
+        Drawable drawable = this.b;
+        switch (b) {
+            case 0:
+                drawable.draw(canvas);
+                return;
+            default:
+                float exactCenterX = getBounds().exactCenterX();
+                float exactCenterY = getBounds().exactCenterY();
+                int w0 = cmb.w0(null, cmb.F6, false);
+                int w02 = cmb.w0(null, cmb.c6, false);
+                if (this.c != w02) {
+                    this.c = w02;
+                    drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
                 }
-            }
-        }
-        view.addOnAttachStateChangeListener(new wc(this, (byte) 3));
-    }
-
-    public final void a(EGLContext eGLContext) {
-        synchronized (this.f) {
-            if (this.g == null) {
-                this.g = eGLContext;
-            }
-        }
-    }
-
-    public final Bitmap b() {
-        Bitmap bitmap;
-        xl0 xl0Var = this.m;
-        if (xl0Var == null) {
-            return this.o;
-        }
-        synchronized (xl0Var.n) {
-            if (!xl0Var.q) {
-                bitmap = null;
-            } else {
-                bitmap = xl0Var.p;
-            }
-        }
-        if (bitmap == null) {
-            return this.o;
-        }
-        return bitmap;
-    }
-
-    public final boolean c() {
-        if (this.l != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        int i = 0;
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            ((wl0) obj).b.invalidate();
-        }
-        ArrayList arrayList2 = this.e;
-        int size2 = arrayList2.size();
-        while (i < size2) {
-            Object obj2 = arrayList2.get(i);
-            i++;
-            ((Runnable) obj2).run();
+                canvas.drawCircle(exactCenterX, exactCenterY, gm.L(7.6666665f), cmb.l0(on2.p(w02, this.d)));
+                canvas.drawCircle(exactCenterX, exactCenterY, gm.L(6.6666665f), cmb.l0(on2.p(w0, this.d)));
+                ur3.d(drawable, exactCenterX, exactCenterY, 17);
+                canvas.translate(0.0f, gm.L(0.66f));
+                canvas.save();
+                canvas.rotate(90.0f, exactCenterX, exactCenterY);
+                ur3.b(canvas, drawable, 0.8f);
+                canvas.restore();
+                return;
         }
     }
 
-    public final void e() {
-        xl0 xl0Var = this.m;
-        if (xl0Var != null) {
-            synchronized (xl0Var.n) {
-                xl0Var.q = false;
-            }
+    @Override
+    public final int getAlpha() {
+        switch (this.a) {
+            case 0:
+                return this.b.getAlpha();
+            default:
+                return this.d;
         }
     }
 
-    public final void f(Bitmap bitmap, boolean z) {
-        int i = this.p;
-        this.p = i + 1;
-        this.o = this.n.c(bitmap, String.valueOf(i), 0, 0, z);
+    @Override
+    public final int getIntrinsicHeight() {
+        switch (this.a) {
+            case 1:
+                return gm.L(13.333333f);
+            default:
+                return super.getIntrinsicHeight();
+        }
     }
 
-    public final void g(g7b g7bVar, Object obj) {
-        this.j = g7bVar;
-        this.k = obj;
-        this.i = -14737633;
-        if (obj != null && Build.VERSION.SDK_INT >= 31) {
-            RenderNode renderNode = (RenderNode) obj;
-            RenderNode renderNode2 = new RenderNode("blurRenderNode");
-            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(gl.L(35.0f), gl.L(35.0f), Shader.TileMode.CLAMP));
-            renderNode2.setPosition(0, 0, renderNode.getWidth(), renderNode.getHeight());
-            RecordingCanvas beginRecording = renderNode2.beginRecording();
-            beginRecording.drawColor(-14737633);
-            beginRecording.drawRenderNode(renderNode);
-            renderNode2.endRecording();
-            this.l = renderNode2;
-            return;
+    @Override
+    public final int getIntrinsicWidth() {
+        switch (this.a) {
+            case 1:
+                return gm.L(13.333333f);
+            default:
+                return super.getIntrinsicWidth();
         }
-        this.l = null;
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.a) {
+            case 0:
+                return this.b.getOpacity();
+            default:
+                return -3;
+        }
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        switch (this.a) {
+            case 0:
+                super.onBoundsChange(rect);
+                int width = rect.width();
+                int i = this.c;
+                int i2 = (width - i) / 2;
+                int height = rect.height();
+                int i3 = this.d;
+                int i4 = (height - i3) / 2;
+                this.b.setBounds(i2, i4, i + i2, i3 + i4);
+                return;
+            default:
+                super.onBoundsChange(rect);
+                return;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        byte b = this.a;
+        Drawable drawable = this.b;
+        switch (b) {
+            case 0:
+                drawable.setAlpha(i);
+                return;
+            default:
+                this.d = i;
+                drawable.setAlpha(i);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        byte b = this.a;
+    }
+
+    public sl0(int i, int i2, Drawable drawable) {
+        this.a = (byte) 0;
+        this.c = i;
+        this.d = i2;
+        this.b = drawable;
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

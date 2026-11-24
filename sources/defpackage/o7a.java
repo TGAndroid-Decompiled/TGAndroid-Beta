@@ -1,60 +1,36 @@
 package defpackage;
 
-import java.util.AbstractSet;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-public abstract class o7a extends AbstractSet {
-    public final byte a;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.SessionsActivity;
+public final class o7a implements View.OnClickListener {
+    public final e9a a;
+    public final TLRPC.TL_authorization b;
+    public final SessionsActivity c;
+    public final p7a d;
 
-    @Override
-    public boolean removeAll(Collection collection) {
-        switch (this.a) {
-            case 0:
-                collection.getClass();
-                if (collection instanceof wm5) {
-                    c69 c69Var = (c69) ((wm5) collection);
-                    vm5 vm5Var = c69Var.h;
-                    if (vm5Var == null) {
-                        vm5Var = new vm5(c69Var, (byte) 1);
-                        c69Var.h = vm5Var;
-                    }
-                    collection = vm5Var;
-                }
-                boolean z = false;
-                if ((collection instanceof Set) && collection.size() > size()) {
-                    Iterator<E> it = iterator();
-                    while (it.hasNext()) {
-                        if (collection.contains(it.next())) {
-                            it.remove();
-                            z = true;
-                        }
-                    }
-                } else {
-                    for (Object obj : collection) {
-                        z |= remove(obj);
-                    }
-                }
-                return z;
-            case 1:
-                return n0f.a(this, collection);
-            default:
-                return t0f.a(this, collection);
-        }
+    public o7a(p7a p7aVar, e9a e9aVar, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
+        this.d = p7aVar;
+        this.a = e9aVar;
+        this.b = tL_authorization;
+        this.c = sessionsActivity;
     }
 
     @Override
-    public boolean retainAll(Collection collection) {
-        switch (this.a) {
-            case 0:
-                collection.getClass();
-                return super.retainAll(collection);
-            case 1:
-                collection.getClass();
-                return super.retainAll(collection);
-            default:
-                collection.getClass();
-                return super.retainAll(collection);
+    public final void onClick(View view) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.m1.getParentActivity());
+        String M0 = jb6.M0(2131743889, null);
+        he heVar = alertDialog$Builder.a;
+        heVar.U = M0;
+        heVar.S = jb6.M0(2131754038, null);
+        alertDialog$Builder.j(jb6.M0(2131743894, null), new jq9(this, this.a, this.b, (byte) 3));
+        alertDialog$Builder.g(jb6.M0(2131752542, null), null);
+        this.c.showDialog(heVar);
+        TextView textView = (TextView) heVar.c(-1);
+        if (textView != null) {
+            anb.X(textView, cmb.p7, null);
         }
     }
 }

@@ -87,13 +87,13 @@ public class EglBase10Impl implements EglBase10 {
         if (this.eglDisplay != EGL10.EGL_NO_DISPLAY && this.eglContext != EGL10.EGL_NO_CONTEXT && this.eglConfig != null) {
             return;
         }
-        wn4.j("This object has been released");
+        zo4.k("This object has been released");
     }
 
     private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {
         EGLContext eglCreateContext;
         if (eGLContext != null && eGLContext == EGL10.EGL_NO_CONTEXT) {
-            wn4.j("Invalid sharedContext");
+            zo4.k("Invalid sharedContext");
             return null;
         }
         int[] iArr = {12440, i, 12344};
@@ -106,13 +106,13 @@ public class EglBase10Impl implements EglBase10 {
         if (eglCreateContext != EGL10.EGL_NO_CONTEXT) {
             return eglCreateContext;
         }
-        k93.c(Integer.toHexString(this.egl.eglGetError()), "Failed to create EGL context: 0x");
+        wa3.c(Integer.toHexString(this.egl.eglGetError()), "Failed to create EGL context: 0x");
         return null;
     }
 
     private void createSurfaceInternal(Object obj, boolean z) {
         if (!(obj instanceof SurfaceHolder) && !(obj instanceof SurfaceTexture)) {
-            sc8.j("Input must be either a SurfaceHolder or SurfaceTexture");
+            dq9.m("Input must be either a SurfaceHolder or SurfaceTexture");
             return;
         }
         checkIsNotReleased();
@@ -122,21 +122,21 @@ public class EglBase10Impl implements EglBase10 {
                 EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
                 this.eglBackgroundSurface = eglCreateWindowSurface;
                 if (eglCreateWindowSurface == eGLSurface) {
-                    k93.c(Integer.toHexString(this.egl.eglGetError()), "Failed to create window surface: 0x");
+                    wa3.c(Integer.toHexString(this.egl.eglGetError()), "Failed to create window surface: 0x");
                     return;
                 }
                 return;
             }
-            wn4.j("Already has an EGLSurface");
+            zo4.k("Already has an EGLSurface");
         } else if (this.eglSurface == eGLSurface) {
             EGLSurface eglCreateWindowSurface2 = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
             this.eglSurface = eglCreateWindowSurface2;
             if (eglCreateWindowSurface2 != eGLSurface) {
                 return;
             }
-            k93.c(Integer.toHexString(this.egl.eglGetError()), "Failed to create window surface: 0x");
+            wa3.c(Integer.toHexString(this.egl.eglGetError()), "Failed to create window surface: 0x");
         } else {
-            wn4.j("Already has an EGLSurface");
+            zo4.k("Already has an EGLSurface");
         }
     }
 
@@ -149,13 +149,13 @@ public class EglBase10Impl implements EglBase10 {
                 if (eGLConfig != null) {
                     return eGLConfig;
                 }
-                wn4.j("eglChooseConfig returned null");
+                zo4.k("eglChooseConfig returned null");
                 return null;
             }
-            wn4.j("Unable to find any matching EGL config");
+            zo4.k("Unable to find any matching EGL config");
             return null;
         }
-        k93.c(Integer.toHexString(egl10.eglGetError()), "eglChooseConfig failed: 0x");
+        wa3.c(Integer.toHexString(egl10.eglGetError()), "eglChooseConfig failed: 0x");
         return null;
     }
 
@@ -166,10 +166,10 @@ public class EglBase10Impl implements EglBase10 {
             if (egl10.eglInitialize(eglGetDisplay, new int[2])) {
                 return eglGetDisplay;
             }
-            k93.c(Integer.toHexString(this.egl.eglGetError()), "Unable to initialize EGL10: 0x");
+            wa3.c(Integer.toHexString(this.egl.eglGetError()), "Unable to initialize EGL10: 0x");
             return null;
         }
-        k93.c(Integer.toHexString(egl10.eglGetError()), "Unable to get EGL10 display: 0x");
+        wa3.c(Integer.toHexString(egl10.eglGetError()), "Unable to get EGL10 display: 0x");
         return null;
     }
 
@@ -196,11 +196,11 @@ public class EglBase10Impl implements EglBase10 {
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder p = ir2.p("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
-            p.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(p.toString());
+            StringBuilder o = ts2.o("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
+            o.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(o.toString());
         }
-        wn4.j("Already has an EGLSurface");
+        zo4.k("Already has an EGLSurface");
     }
 
     @Override
@@ -255,7 +255,7 @@ public class EglBase10Impl implements EglBase10 {
             }
             return;
         }
-        wn4.j("No EGLSurface - can't make current");
+        zo4.k("No EGLSurface - can't make current");
     }
 
     @Override
@@ -272,7 +272,7 @@ public class EglBase10Impl implements EglBase10 {
             }
             return;
         }
-        wn4.j("No EGLSurface - can't make current");
+        zo4.k("No EGLSurface - can't make current");
     }
 
     @Override
@@ -336,7 +336,7 @@ public class EglBase10Impl implements EglBase10 {
             }
             return;
         }
-        wn4.j("No EGLSurface - can't swap buffers");
+        zo4.k("No EGLSurface - can't swap buffers");
     }
 
     private class FakeSurfaceHolder implements SurfaceHolder {

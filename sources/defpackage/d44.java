@@ -1,59 +1,31 @@
 package defpackage;
-public abstract class d44 extends vw2 {
-    public static final int f = 0;
-    public long c;
-    public boolean d;
-    public ks e;
+public final class d44 {
+    public final String a;
 
-    public final void f(boolean z) {
-        long j;
-        long j2 = this.c;
-        if (z) {
-            j = 4294967296L;
+    public d44(String str) {
+        if (str != null) {
+            this.a = str;
         } else {
-            j = 1;
-        }
-        long j3 = j2 - j;
-        this.c = j3;
-        if (j3 <= 0 && this.d) {
-            shutdown();
+            gxc.d("name is null");
+            throw null;
         }
     }
 
-    public final void g(boolean z) {
-        long j;
-        long j2 = this.c;
-        if (z) {
-            j = 4294967296L;
-        } else {
-            j = 1;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        this.c = j + j2;
-        if (!z) {
-            this.d = true;
-        }
-    }
-
-    public abstract long h();
-
-    public final boolean i() {
-        Object removeFirst;
-        ks ksVar = this.e;
-        if (ksVar == null) {
+        if (!(obj instanceof d44)) {
             return false;
         }
-        if (ksVar.isEmpty()) {
-            removeFirst = null;
-        } else {
-            removeFirst = ksVar.removeFirst();
-        }
-        jo3 jo3Var = (jo3) removeFirst;
-        if (jo3Var == null) {
-            return false;
-        }
-        jo3Var.run();
-        return true;
+        return this.a.equals(((d44) obj).a);
     }
 
-    public abstract void shutdown();
+    public final int hashCode() {
+        return this.a.hashCode() ^ 1000003;
+    }
+
+    public final String toString() {
+        return b10.j(new StringBuilder("Encoding{name=\""), this.a, "\"}");
+    }
 }

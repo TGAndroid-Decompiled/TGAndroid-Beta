@@ -1,28 +1,45 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class gtb extends w1 {
-    public static final Parcelable.Creator<gtb> CREATOR = new v1((byte) 3);
-    public int c;
-    public boolean d;
-
-    public gtb(Parcel parcel, ClassLoader classLoader) {
-        super(parcel, classLoader);
-        boolean z;
-        this.c = parcel.readInt();
-        if (parcel.readInt() != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.d = z;
+public enum gtb extends rub {
+    public gtb() {
+        super("AttributeValue_doubleQuoted", 37);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        super.writeToParcel(parcel, i);
-        parcel.writeInt(this.c);
-        parcel.writeInt(this.d ? 1 : 0);
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        String g = hl1Var.g(rub.G0);
+        int length = g.length();
+        wrb wrbVar = bsbVar.i;
+        if (length > 0) {
+            wrbVar.w(g);
+        } else {
+            wrbVar.j = true;
+        }
+        char d = hl1Var.d();
+        if (d != 0) {
+            if (d != '\"') {
+                if (d != '&') {
+                    if (d != 65535) {
+                        bsbVar.i.v(d);
+                        return;
+                    }
+                    bsbVar.l(this);
+                    bsbVar.c = rub.a;
+                    return;
+                }
+                int[] c = bsbVar.c('\"', true);
+                wrb wrbVar2 = bsbVar.i;
+                if (c != null) {
+                    wrbVar2.x(c);
+                    return;
+                } else {
+                    wrbVar2.v('&');
+                    return;
+                }
+            }
+            bsbVar.c = rub.e0;
+            return;
+        }
+        bsbVar.m(this);
+        bsbVar.i.v((char) 65533);
     }
 }

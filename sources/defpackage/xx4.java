@@ -1,10 +1,18 @@
 package defpackage;
 
-import java.util.Set;
-public abstract class xx4 extends gg0 {
-    public final Set E;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class xx4 extends FrameLayout {
+    public View a;
+    public TextView b;
 
-    public xx4(int r11, defpackage.ey4 r12, defpackage.fy4 r13, defpackage.ntb r14, android.content.Context r15, android.os.Looper r16) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xx4.<init>(int, ey4, fy4, ntb, android.content.Context, android.os.Looper):void");
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gm.L(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.b.setText(charSequence);
     }
 }

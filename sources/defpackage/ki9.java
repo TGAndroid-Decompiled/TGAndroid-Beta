@@ -1,712 +1,511 @@
 package defpackage;
 
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Editable;
-import android.text.Layout;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class ki9 extends ViewGroup {
-    public final RectF E;
-    public final RectF F;
-    public final Path G;
-    public final lm H;
-    public short I;
-    public boolean J;
+import org.telegram.ui.Components.RadialProgress2;
+public final class ki9 implements cr3 {
+    public static ColorMatrixColorFilter V;
+    public final boolean E;
+    public final float F;
+    public int G;
+    public int H;
+    public int I;
+    public int J;
     public boolean K;
     public int L;
     public int M;
     public int N;
-    public int O;
-    public int P;
-    public int Q;
-    public ffb a;
-    public final wjb b;
-    public int[] c;
-    public int[] d;
-    public int[] e;
-    public int[] f;
-    public ji9 h;
-    public final Paint n;
-    public final Paint r;
-    public final Paint s;
-    public final Paint w;
-    public final Paint x;
-    public final Paint y;
+    public final int O;
+    public final int P;
+    public boolean Q;
+    public boolean R;
+    public boolean S;
+    public View T;
+    public final qj9 U;
+    public final uj9 a;
+    public final TL_iv.PageBlock b;
+    public final ImageReceiver c;
+    public final ImageReceiver d;
+    public Bitmap e;
+    public RadialProgress2 f;
+    public final TLRPC.Photo h;
+    public final TLRPC.PhotoSize n;
+    public final TLRPC.TL_photoStrippedSize r;
+    public final TLRPC.Document s;
+    public final TLRPC.PhotoSize w;
+    public final TLRPC.TL_photoStrippedSize x;
+    public final boolean y;
 
-    public ki9(Context context, wjb wjbVar) {
-        super(context);
-        this.c = new int[0];
-        this.d = new int[0];
-        this.e = new int[0];
-        this.f = new int[0];
-        Paint paint = new Paint(1);
-        this.n = paint;
-        this.r = new Paint(1);
-        this.s = new Paint(1);
-        Paint paint2 = new Paint(1);
-        this.w = paint2;
-        this.x = new Paint(1);
-        this.y = new Paint(1);
-        this.E = new RectF();
-        this.F = new RectF();
-        this.G = new Path();
-        this.b = wjbVar;
-        setClipChildren(false);
-        setClipToPadding(false);
-        setWillNotDraw(false);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(gl.N(0.66f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(gl.L(2.0f));
-        paint2.setStrokeJoin(Paint.Join.ROUND);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        this.H = new lm(this, 0L, 220L, s33.h);
-        b();
-    }
-
-    public final TL_iv.pageTableCell a() {
-        ViewParent parent;
-        TL_iv.pageTableCell pagetablecell;
-        ffb ffbVar = this.a;
-        TL_iv.pageTableCell pagetablecell2 = null;
-        if (ffbVar != null && ffbVar.b != 0 && ffbVar.c != 0) {
-            View findFocus = findFocus();
-            if (findFocus == null) {
-                parent = null;
-            } else {
-                parent = findFocus.getParent();
-            }
-            while (parent != null && parent != this) {
-                if (parent instanceof li9) {
-                    pagetablecell = ((li9) parent).b;
+    public ki9(uj9 uj9Var, TL_iv.pageBlockVideo pageblockvideo) {
+        boolean z;
+        float f;
+        int i;
+        this.c = new ImageReceiver(null);
+        this.d = new ImageReceiver(null);
+        this.L = -1;
+        this.O = gm.L(48.0f);
+        this.U = new qj9();
+        this.a = uj9Var;
+        this.b = pageblockvideo;
+        this.h = null;
+        this.n = null;
+        this.r = null;
+        TLRPC.Document s = uj9Var.s(pageblockvideo.video_id);
+        this.s = s;
+        boolean J4 = k47.J4(s);
+        this.E = J4;
+        if (!J4 && !k47.s3(s, false)) {
+            z = false;
+        } else {
+            z = true;
+        }
+        this.y = z;
+        if (s != null) {
+            this.w = bc4.w(s.thumbs, 320, false, null, true);
+            this.x = bc4.Q(s.thumbs);
+        } else {
+            this.w = null;
+            this.x = null;
+        }
+        if (s != null) {
+            for (int i2 = 0; i2 < this.s.attributes.size(); i2++) {
+                TLRPC.DocumentAttribute documentAttribute = this.s.attributes.get(i2);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeVideo) && (i = documentAttribute.h) > 0) {
+                    f = documentAttribute.w / i;
                     break;
                 }
-                parent = parent.getParent();
-            }
-            pagetablecell = null;
-            if (pagetablecell != null) {
-                return pagetablecell;
-            }
-            if (this.h != null) {
-                ArrayList arrayList = this.a.g;
-                int size = arrayList.size();
-                int i = Integer.MAX_VALUE;
-                int i2 = 0;
-                int i3 = Integer.MAX_VALUE;
-                while (i2 < size) {
-                    Object obj = arrayList.get(i2);
-                    i2++;
-                    TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) obj;
-                    if (((LinkedHashSet) ((wh9) this.h).b).contains(pagetablecell3)) {
-                        int b = this.a.b(pagetablecell3);
-                        int a = this.a.a(pagetablecell3);
-                        if (b < i || (b == i && a < i3)) {
-                            pagetablecell2 = pagetablecell3;
-                            i = b;
-                            i3 = a;
-                        }
-                    }
-                }
             }
         }
-        return pagetablecell2;
-    }
-
-    public final void b() {
-        int i = bkb.gi;
-        wjb wjbVar = this.b;
-        this.n.setColor(bkb.v0(i, wjbVar));
-        int v0 = bkb.v0(bkb.L6, wjbVar);
-        int red = Color.red(v0);
-        int green = Color.green(v0);
-        int blue = Color.blue(v0);
-        this.r.setColor(bkb.v0(bkb.fi, wjbVar));
-        this.s.setColor(Color.argb(20, red, green, blue));
-        this.I = (short) 255;
-        int i2 = bkb.Ei;
-        this.w.setColor(bkb.v0(i2, wjbVar));
-        Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.x;
-        paint.setStyle(style);
-        this.P = bkb.v0(bkb.D6, wjbVar);
-        this.Q = bkb.v0(bkb.Ii, wjbVar);
-        paint.setColor(this.P);
-        Paint paint2 = this.y;
-        paint2.setStyle(style);
-        paint2.setColor(bkb.v0(i2, wjbVar));
-        invalidate();
-    }
-
-    public final boolean c(int i, int i2) {
-        if (i < 0 || i2 < i) {
-            return false;
-        }
-        while (i <= i2) {
-            if (!n(i)) {
-                return false;
-            }
-            i++;
-        }
-        return true;
-    }
-
-    public final boolean d(int i, int i2) {
-        if (i < 0 || i2 < i) {
-            return false;
-        }
-        while (i <= i2) {
-            if (!o(i)) {
-                return false;
-            }
-            i++;
-        }
-        return true;
+        f = 1.0f;
+        this.F = f;
+        this.P = er3.q(uj9Var.a).k();
+        ImageReceiver imageReceiver = this.c;
+        imageReceiver.A1 = true;
+        this.d.A1 = true;
+        imageReceiver.h1 = new ji9(this);
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ki9.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    public final boolean e(int i) {
-        if (i >= 0 && i < this.a.c) {
-            for (int i2 = 0; i2 < this.a.b; i2++) {
-                if (p(i2, i)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public final float f(int i, int i2) {
-        int i3;
-        ffb ffbVar = this.a;
-        int i4 = ffbVar.c;
-        int i5 = ffbVar.b;
-        int[] iArr = this.e;
-        int i6 = 0;
-        if (i == iArr[0]) {
-            i3 = 0;
-        } else {
-            if (i == iArr[i4]) {
-                i3 = i4 - 1;
-            }
-            return 0.0f;
-        }
-        int[] iArr2 = this.f;
-        if (i2 != iArr2[0]) {
-            if (i2 == iArr2[i5]) {
-                i6 = i5 - 1;
-            }
-            return 0.0f;
-        }
-        if (i3 >= 0 && i6 >= 0 && p(i6, i3)) {
-            return Math.min(gl.N(10.0f), Math.min(this.c[i3], this.d[i6]) / 2.0f);
-        }
-        return 0.0f;
-    }
-
-    public final void g(Canvas canvas, int i, int i2) {
-        float N = i - gl.N(1.0f);
-        float N2 = gl.N(1.0f) + i2;
-        float f = this.f[this.a.b];
-        float L = gl.L(16.0f) + f;
-        float min = Math.min(gl.N(10.0f), (N2 - N) / 2.0f);
-        float f2 = f(i, this.f[this.a.b]);
-        float f3 = f(i2, this.f[this.a.b]);
-        Path path = this.G;
-        path.rewind();
-        path.moveTo(N, f - f2);
-        path.lineTo(N, L - min);
-        float f4 = min * 2.0f;
-        float f5 = L - f4;
-        RectF rectF = this.F;
-        rectF.set(N, f5, N + f4, L);
-        path.arcTo(rectF, 180.0f, -90.0f);
-        path.lineTo(N2 - min, L);
-        rectF.set(N2 - f4, f5, N2, L);
-        path.arcTo(rectF, 90.0f, -90.0f);
-        path.lineTo(N2, f - f3);
-        if (f3 > 0.0f) {
-            float f6 = f3 * 2.0f;
-            rectF.set(N2 - f6, f - f6, N2, f);
-            path.arcTo(rectF, 0.0f, 90.0f);
-        } else {
-            path.lineTo(N2, f);
-        }
-        path.lineTo(N + f2, f);
-        if (f2 > 0.0f) {
-            float f7 = f2 * 2.0f;
-            rectF.set(N, f - f7, f7 + N, f);
-            path.arcTo(rectF, 90.0f, 90.0f);
-        } else {
-            path.lineTo(N, f);
-        }
-        path.close();
-        canvas.drawPath(path, this.y);
-    }
-
-    public ffb getModel() {
-        return this.a;
-    }
-
-    public final void h(Canvas canvas, int i, int i2) {
-        float N = i - gl.N(1.0f);
-        float N2 = gl.N(1.0f) + i2;
-        float L = this.e[0] - gl.L(16.0f);
-        float min = Math.min(gl.N(10.0f), (N2 - N) / 2.0f);
-        float f = f(this.e[0], i);
-        float f2 = f(this.e[0], i2);
-        Path path = this.G;
-        path.rewind();
-        path.moveTo(this.e[0] + f, N);
-        path.lineTo(L + min, N);
-        float f3 = min * 2.0f;
-        float f4 = L + f3;
-        RectF rectF = this.F;
-        rectF.set(L, N, f4, N + f3);
-        path.arcTo(rectF, 270.0f, -90.0f);
-        path.lineTo(L, N2 - min);
-        rectF.set(L, N2 - f3, f4, N2);
-        path.arcTo(rectF, 180.0f, -90.0f);
-        path.lineTo(this.e[0] + f2, N2);
-        if (f2 > 0.0f) {
-            int i3 = this.e[0];
-            float f5 = f2 * 2.0f;
-            rectF.set(i3, N2 - f5, i3 + f5, N2);
-            path.arcTo(rectF, 90.0f, 90.0f);
-        } else {
-            path.lineTo(this.e[0], N2);
-        }
-        path.lineTo(this.e[0], N + f);
-        if (f > 0.0f) {
-            int i4 = this.e[0];
-            float f6 = f * 2.0f;
-            rectF.set(i4, N, i4 + f6, f6 + N);
-            path.arcTo(rectF, 180.0f, 90.0f);
-        } else {
-            path.lineTo(this.e[0], N);
-        }
-        path.close();
-        canvas.drawPath(path, this.y);
-    }
-
-    public final void i(float f, int i, int i2, Canvas canvas) {
-        float f2;
-        float f3;
-        float f4 = f(i, i2);
-        if (f4 <= 0.0f) {
-            return;
-        }
-        if (i == this.e[0]) {
-            f2 = i + f4;
-        } else {
-            f2 = i - f4;
-        }
-        if (i2 == this.f[0]) {
-            f3 = i2 + f4;
-        } else {
-            f3 = i2 - f4;
-        }
-        RectF rectF = this.F;
-        rectF.set(f2 - f4, f3 - f4, f2 + f4, f3 + f4);
-        canvas.drawArc(rectF, f, 90.0f, false, this.w);
-    }
-
-    public final int j() {
-        for (int i = 0; i < this.a.c; i++) {
-            if (e(i)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public final int k() {
-        for (int i = 0; i < this.a.b; i++) {
-            if (t(i)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public final boolean l() {
-        ffb ffbVar = this.a;
-        if (ffbVar != null && this.h != null) {
-            ArrayList arrayList = ffbVar.g;
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                if (((LinkedHashSet) ((wh9) this.h).b).contains((TL_iv.pageTableCell) obj)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public final li9 m(TL_iv.pageTableCell pagetablecell) {
-        for (int i = 0; i < getChildCount(); i++) {
-            View childAt = getChildAt(i);
-            if (childAt instanceof li9) {
-                li9 li9Var = (li9) childAt;
-                if (li9Var.b == pagetablecell) {
-                    return li9Var;
-                }
-            }
-        }
-        return null;
-    }
-
-    public final boolean n(int i) {
-        if (i < 0 || i >= this.a.c) {
-            return false;
-        }
-        for (int i2 = 0; i2 < this.a.b; i2++) {
-            if (!p(i2, i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public final boolean o(int i) {
-        if (i < 0 || i >= this.a.b) {
-            return false;
-        }
-        for (int i2 = 0; i2 < this.a.c; i2++) {
-            if (!p(i, i2)) {
-                return false;
-            }
-        }
-        return true;
+    public final void A(boolean z) {
+        n(this.T, false);
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        if (this.a != null) {
-            for (int i5 = 0; i5 < getChildCount(); i5++) {
-                View childAt = getChildAt(i5);
-                if (childAt instanceof li9) {
-                    li9 li9Var = (li9) childAt;
-                    int b = this.a.b(li9Var.b);
-                    int a = this.a.a(li9Var.b);
-                    if (b >= 0 && a >= 0) {
-                        int i6 = this.e[a];
-                        int i7 = this.f[b];
-                        li9Var.layout(i6, i7, li9Var.getMeasuredWidth() + i6, li9Var.getMeasuredHeight() + i7);
-                    }
-                }
-            }
+    public final void N(String str) {
+        RadialProgress2 radialProgress2 = this.f;
+        if (radialProgress2 != null) {
+            radialProgress2.o(true, 1.0f);
         }
+        if (this.y && (a() || this.S)) {
+            b(true);
+        }
+        n(this.T, true);
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int round;
-        int i7;
-        int i8;
-        int i9;
-        int ceil;
-        float f = 20.0f;
-        int L = gl.L(20.0f);
-        int L2 = gl.L(4.0f);
-        int L3 = gl.L(4.0f);
-        int L4 = gl.L(10.0f);
-        ffb ffbVar = this.a;
-        if (ffbVar != null && ffbVar.b != 0 && ffbVar.c != 0) {
-            int size = (View.MeasureSpec.getSize(i) - L) - L3;
-            ffb ffbVar2 = this.a;
-            int i10 = ffbVar2.b;
-            int i11 = ffbVar2.c;
-            this.c = new int[i11];
-            this.d = new int[i10];
-            if (!ffbVar2.a.compact) {
-                f = 50.0f;
+    public final boolean a() {
+        if (this.E) {
+            boolean z = gda.a;
+            return e86.e(1024);
+        }
+        boolean z2 = gda.a;
+        return e86.e(2048);
+    }
+
+    public final void b(boolean z) {
+        gn5 gn5Var;
+        TLRPC.PhotoSize photoSize;
+        ImageReceiver imageReceiver = this.c;
+        gn5 gn5Var2 = null;
+        uj9 uj9Var = this.a;
+        TLRPC.Photo photo = this.h;
+        if (photo != null && (photoSize = this.n) != null) {
+            TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.r;
+            if (tL_photoStrippedSize != null) {
+                gn5Var2 = gn5.i(tL_photoStrippedSize, photo);
             }
-            int L5 = gl.L(f);
-            if (this.a.a.compact) {
-                i3 = 5;
+            gn5 gn5Var3 = gn5Var2;
+            imageReceiver.O = gn5.i(photoSize, photo);
+            if (z) {
+                imageReceiver.Y(null, null, gn5.i(photoSize, photo), null, gn5Var3, "b1", null, photoSize.size, null, uj9Var.b, 1);
+                return;
             } else {
-                i3 = 12;
+                imageReceiver.Y(null, null, null, null, gn5Var3, "b1", null, photoSize.size, null, uj9Var.b, 1);
+                return;
             }
-            int L6 = gl.L(i3 << 1);
-            if (i11 > 1) {
-                i4 = Math.round(size * 0.8f);
+        }
+        TLRPC.Document document = this.s;
+        if (document != null) {
+            TLRPC.TL_photoStrippedSize tL_photoStrippedSize2 = this.x;
+            if (tL_photoStrippedSize2 != null) {
+                gn5Var = gn5.c(tL_photoStrippedSize2, document);
             } else {
-                i4 = size;
+                gn5Var = null;
             }
-            int max = Math.max(1, Math.max(L5, i4) - L6);
-            ArrayList arrayList = new ArrayList();
-            int i12 = 0;
-            while (i12 < getChildCount()) {
-                View childAt = getChildAt(i12);
-                if (childAt instanceof li9) {
-                    li9 li9Var = (li9) childAt;
-                    mc9 mc9Var = li9Var.a;
-                    int a = this.a.a(li9Var.b);
-                    if (a >= 0 && a < i11) {
-                        int i13 = i12;
-                        Editable text = mc9Var.getText();
-                        if (text == null) {
-                            i7 = L;
-                            i8 = L3;
-                            ceil = 0;
+            TLRPC.PhotoSize photoSize2 = this.w;
+            if (photoSize2 != null) {
+                gn5Var2 = gn5.c(photoSize2, document);
+            }
+            imageReceiver.O = gn5.b(document);
+            if (z && this.y && (a() || this.S)) {
+                imageReceiver.u0 = true;
+                imageReceiver.M(1);
+                imageReceiver.Y(gn5.b(document), "g", gn5Var2, null, gn5Var, "b1", null, document.size, "mp4", uj9Var.b, 1);
+                return;
+            }
+            imageReceiver.Y(null, null, gn5Var2, null, gn5Var, "b1", null, document.size, "mp4", uj9Var.b, 1);
+        }
+    }
+
+    public final void c(Canvas canvas) {
+        Bitmap n;
+        ImageReceiver imageReceiver = this.c;
+        qna qnaVar = null;
+        imageReceiver.h(canvas, null);
+        if (h()) {
+            qj9 qj9Var = this.U;
+            if (!qj9Var.b()) {
+                ImageReceiver imageReceiver2 = this.d;
+                if ((imageReceiver2.n() == null || imageReceiver.m() == null) && (n = imageReceiver.n()) != null && !n.isRecycled() && (n != this.e || imageReceiver2.n() == null)) {
+                    this.e = n;
+                    imageReceiver2.f0(Utilities.D(n, false));
+                    ColorMatrixColorFilter colorMatrixColorFilter = V;
+                    if (colorMatrixColorFilter == null) {
+                        ColorMatrix colorMatrix = new ColorMatrix();
+                        gm.l2(colorMatrix, 0.9f);
+                        gm.i(colorMatrix, 0.6f);
+                        ColorMatrixColorFilter colorMatrixColorFilter2 = new ColorMatrixColorFilter(colorMatrix);
+                        V = colorMatrixColorFilter2;
+                        colorMatrixColorFilter = colorMatrixColorFilter2;
+                    }
+                    imageReceiver2.p1 = colorMatrixColorFilter;
+                }
+                float f = imageReceiver.L0;
+                float f2 = imageReceiver.M0;
+                float f3 = imageReceiver.N0;
+                float f4 = imageReceiver.O0;
+                if (f3 > 0.0f && f4 > 0.0f) {
+                    canvas.save();
+                    canvas.clipRect(f, f2, f + f3, f2 + f4);
+                    qj9Var.a(canvas);
+                    if (imageReceiver2.n() != null) {
+                        imageReceiver2.i0(f, f2, f3, f4);
+                        imageReceiver2.setAlpha(imageReceiver.i1);
+                        imageReceiver2.h(canvas, null);
+                    }
+                    uj9 uj9Var = this.a;
+                    View view = uj9Var.Q;
+                    if (view != null) {
+                        qna qnaVar2 = uj9Var.R;
+                        if (qnaVar2 != null && qnaVar2.i) {
+                            uj9Var.R = null;
                         } else {
-                            i7 = L;
-                            i8 = L3;
-                            ceil = (int) Math.ceil(Layout.getDesiredWidth(text, mc9Var.getPaint()));
+                            qnaVar = qnaVar2;
                         }
-                        i9 = i13;
-                        arrayList.add(ave.b(text, mc9Var.getPaint(), a, ffb.n(li9Var.b), L6, max, ceil));
-                        i12 = i9 + 1;
-                        L = i7;
-                        L3 = i8;
-                    }
-                }
-                i7 = L;
-                i8 = L3;
-                i9 = i12;
-                i12 = i9 + 1;
-                L = i7;
-                L3 = i8;
-            }
-            int i14 = L;
-            int i15 = L3;
-            System.arraycopy(ave.a(i11, size, L5, arrayList), 0, this.c, 0, i11);
-            int i16 = 0;
-            for (int i17 : this.c) {
-                i16 += i17;
-            }
-            if (i16 < size && i11 > 0) {
-                int i18 = size - i16;
-                for (int i19 = 0; i19 < i11; i19++) {
-                    if (i19 == i11 - 1) {
-                        round = i18;
-                    } else {
-                        round = Math.round((this.c[i19] * i18) / i16);
-                    }
-                    int[] iArr = this.c;
-                    int i20 = iArr[i19] + round;
-                    iArr[i19] = i20;
-                    i18 -= round;
-                    i16 -= i20 - round;
-                }
-            }
-            for (int i21 = 0; i21 < getChildCount(); i21++) {
-                View childAt2 = getChildAt(i21);
-                if (childAt2 instanceof li9) {
-                    li9 li9Var2 = (li9) childAt2;
-                    int b = this.a.b(li9Var2.b);
-                    int a2 = this.a.a(li9Var2.b);
-                    int n = ffb.n(li9Var2.b);
-                    int i22 = 0;
-                    for (int i23 = a2; i23 < a2 + n && i23 < i11; i23++) {
-                        i22 += this.c[i23];
-                    }
-                    li9Var2.measure(View.MeasureSpec.makeMeasureSpec(i22, 1073741824), 0);
-                    if (ffb.o(li9Var2.b) == 1) {
-                        int measuredHeight = li9Var2.getMeasuredHeight();
-                        int[] iArr2 = this.d;
-                        if (measuredHeight > iArr2[b]) {
-                            iArr2[b] = li9Var2.getMeasuredHeight();
+                        if (qnaVar == null) {
+                            qnaVar = qna.e(view);
+                            uj9Var.R = qnaVar;
                         }
                     }
-                }
-            }
-            for (int i24 = 0; i24 < getChildCount(); i24++) {
-                View childAt3 = getChildAt(i24);
-                if (childAt3 instanceof li9) {
-                    li9 li9Var3 = (li9) childAt3;
-                    int b2 = this.a.b(li9Var3.b);
-                    int o = ffb.o(li9Var3.b);
-                    if (o > 1) {
-                        int i25 = b2;
-                        int i26 = 0;
-                        while (true) {
-                            i5 = b2 + o;
-                            if (i25 >= i5 || i25 >= i10) {
-                                break;
-                            }
-                            i26 += this.d[i25];
-                            i25++;
-                        }
-                        int measuredHeight2 = li9Var3.getMeasuredHeight();
-                        if (measuredHeight2 > i26) {
-                            int i27 = measuredHeight2 - i26;
-                            int max2 = i27 / Math.max(o, 1);
-                            int max3 = i27 % Math.max(o, 1);
-                            while (b2 < i5 && b2 < i10) {
-                                int[] iArr3 = this.d;
-                                int i28 = iArr3[b2];
-                                if (max3 > 0) {
-                                    i6 = 1;
-                                } else {
-                                    i6 = 0;
-                                }
-                                iArr3[b2] = i6 + max2 + i28;
-                                if (max3 > 0) {
-                                    max3--;
-                                }
-                                b2++;
-                            }
-                        }
+                    if (qnaVar != null) {
+                        canvas.translate(f, f2);
+                        qnaVar.c(canvas, this.T, Math.round(f3), Math.round(f4), imageReceiver.i1, false);
                     }
-                }
-            }
-            for (int i29 = 0; i29 < getChildCount(); i29++) {
-                View childAt4 = getChildAt(i29);
-                if (childAt4 instanceof li9) {
-                    li9 li9Var4 = (li9) childAt4;
-                    int b3 = this.a.b(li9Var4.b);
-                    int a3 = this.a.a(li9Var4.b);
-                    int n2 = ffb.n(li9Var4.b);
-                    int o2 = ffb.o(li9Var4.b);
-                    int i30 = 0;
-                    for (int i31 = a3; i31 < a3 + n2 && i31 < i11; i31++) {
-                        i30 += this.c[i31];
+                    canvas.restore();
+                    View view2 = this.T;
+                    if (view2 != null) {
+                        view2.invalidate();
+                        return;
                     }
-                    int i32 = 0;
-                    for (int i33 = b3; i33 < b3 + o2 && i33 < i10; i33++) {
-                        i32 += this.d[i33];
-                    }
-                    li9Var4.measure(View.MeasureSpec.makeMeasureSpec(i30, 1073741824), View.MeasureSpec.makeMeasureSpec(i32, 1073741824));
+                    return;
                 }
+                return;
             }
-            int[] iArr4 = new int[i11 + 1];
-            this.e = iArr4;
-            iArr4[0] = i14;
-            int i34 = 0;
-            while (i34 < i11) {
-                int[] iArr5 = this.e;
-                int i35 = i34 + 1;
-                iArr5[i35] = iArr5[i34] + this.c[i34];
-                i34 = i35;
+        }
+        RadialProgress2 radialProgress2 = this.f;
+        if (radialProgress2 != null && this.L != -1) {
+            radialProgress2.draw(canvas);
+        }
+    }
+
+    public final void d(View view) {
+        RadialProgress2 radialProgress2 = this.f;
+        int i = this.O;
+        if (radialProgress2 == null && view != null) {
+            RadialProgress2 radialProgress22 = new RadialProgress2(view, null);
+            this.f = radialProgress22;
+            radialProgress22.d = -1;
+            radialProgress22.setColors(1711276032, 2130706432, -1, -2500135);
+            RadialProgress2 radialProgress23 = this.f;
+            int i2 = this.M;
+            int i3 = this.N;
+            radialProgress23.p(i2, i3, i2 + i, i + i3);
+        } else if (radialProgress2 != null && view != null) {
+            radialProgress2.m(view);
+            RadialProgress2 radialProgress24 = this.f;
+            int i4 = this.M;
+            int i5 = this.N;
+            radialProgress24.p(i4, i5, i4 + i, i + i5);
+        }
+    }
+
+    public final boolean e() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ki9.e():boolean");
+    }
+
+    public final CharSequence f() {
+        int i;
+        if (this.y) {
+            i = 2131753898;
+        } else {
+            i = 2131753913;
+        }
+        String M0 = jb6.M0(i, null);
+        if (h() && !this.U.b()) {
+            return TextUtils.concat(M0, ", ", jb6.M0(2131744951, null));
+        }
+        return M0;
+    }
+
+    public final boolean g(float f, float f2) {
+        int i = this.G;
+        if (f >= i && f <= i + this.I) {
+            int i2 = this.H;
+            if (f2 >= i2 && f2 <= i2 + this.J) {
+                return true;
             }
-            int[] iArr6 = new int[i10 + 1];
-            this.f = iArr6;
-            iArr6[0] = L2;
-            int i36 = 0;
-            while (i36 < i10) {
-                int[] iArr7 = this.f;
-                int i37 = i36 + 1;
-                iArr7[i37] = iArr7[i36] + this.d[i36];
-                i36 = i37;
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final int getObserverTag() {
+        return this.P;
+    }
+
+    public final boolean h() {
+        TL_iv.PageBlock pageBlock = this.b;
+        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+            return ((TL_iv.pageBlockPhoto) pageBlock).spoiler;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockVideo) {
+            return ((TL_iv.pageBlockVideo) pageBlock).spoiler;
+        }
+        return false;
+    }
+
+    @Override
+    public final void i(long j, long j2) {
+        float f;
+        RadialProgress2 radialProgress2 = this.f;
+        if (radialProgress2 != null) {
+            if (j2 <= 0) {
+                f = 0.0f;
+            } else {
+                f = ((float) j) / ((float) j2);
             }
-            setMeasuredDimension(Math.max(this.e[i11] + i15, size + i14 + i15), this.f[i10] + L4);
+            radialProgress2.o(true, Math.min(1.0f, f));
+        }
+        if (this.L != 1) {
+            n(this.T, true);
+        }
+    }
+
+    public final boolean j(View view) {
+        if (h()) {
+            qj9 qj9Var = this.U;
+            if (!qj9Var.b && qj9Var.f == null) {
+                ImageReceiver imageReceiver = this.c;
+                float f = imageReceiver.N0;
+                float f2 = imageReceiver.O0;
+                qj9Var.c(view, (f / 2.0f) + imageReceiver.L0, (f2 / 2.0f) + imageReceiver.M0, f, f2);
+                return true;
+            }
+        }
+        uj9 uj9Var = this.a;
+        mc2 mc2Var = uj9Var.F;
+        if (mc2Var != null) {
+            mc2Var.S0(uj9Var.E, this.b);
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean k(android.view.View r13, android.view.MotionEvent r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ki9.k(android.view.View, android.view.MotionEvent):boolean");
+    }
+
+    public final void m(int i, int i2, int i3, int i4) {
+        boolean z;
+        this.G = i;
+        this.H = i2;
+        this.I = i3;
+        this.J = i4;
+        this.c.i0(i, i2, i3, i4);
+        int i5 = this.O;
+        int g = wi8.g(i3, i5, 2, i);
+        this.M = g;
+        int g2 = wi8.g(i4, i5, 2, i2);
+        this.N = g2;
+        RadialProgress2 radialProgress2 = this.f;
+        if (radialProgress2 != null) {
+            radialProgress2.p(g, g2, g + i5, i5 + g2);
+        }
+        int i6 = this.a.a;
+        boolean z2 = true;
+        TLRPC.Document document = this.s;
+        if (document == null ? (er3.q(i6).m() & 1) != 0 : !(this.y && (!a() || !er3.q(i6).c(4, document.size)))) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.K = z;
+        if (!z && !e()) {
+            z2 = false;
+        }
+        b(z2);
+    }
+
+    public final void n(View view, boolean z) {
+        String str;
+        boolean z2;
+        int i = this.a.a;
+        if (view == null) {
+            view = this.T;
+        }
+        d(view);
+        TLRPC.PhotoSize photoSize = this.n;
+        if (photoSize != null) {
+            str = bc4.r(null, photoSize);
+        } else {
+            TLRPC.Document document = this.s;
+            if (document != null) {
+                str = bc4.r(null, document);
+            } else {
+                str = null;
+            }
+        }
+        if (TextUtils.isEmpty(str)) {
+            this.L = -1;
+            RadialProgress2 radialProgress2 = this.f;
+            if (radialProgress2 != null) {
+                radialProgress2.setIcon(4, false, false);
+                return;
+            }
             return;
         }
-        setMeasuredDimension(View.MeasureSpec.getSize(i), L2 + L4);
-        this.c = new int[0];
-        this.d = new int[0];
-        this.e = new int[0];
-        this.f = new int[0];
-    }
-
-    public final boolean p(int i, int i2) {
-        ji9 ji9Var;
-        ffb ffbVar = this.a;
-        if (ffbVar != null && (ji9Var = this.h) != null && i >= 0 && i < ffbVar.b && i2 >= 0 && i2 < ffbVar.c) {
-            return ((LinkedHashSet) ((wh9) ji9Var).b).contains(ffbVar.d[i][i2]);
+        ImageReceiver imageReceiver = this.c;
+        kn m = imageReceiver.m();
+        if (m != null && (m.s() || imageReceiver.F())) {
+            z2 = true;
+        } else {
+            z2 = false;
         }
-        return false;
-    }
-
-    public final int q() {
-        for (int i = this.a.c - 1; i >= 0; i--) {
-            if (e(i)) {
-                return i;
+        boolean e = e();
+        boolean z3 = this.E;
+        boolean z4 = this.y;
+        if (!e && (!z4 || !z2)) {
+            er3.q(i).a(str, null, this);
+            float f = 0.0f;
+            if (!this.K && !this.S && !bc4.G(i).S(str)) {
+                if (z3) {
+                    this.L = 3;
+                    RadialProgress2 radialProgress22 = this.f;
+                    if (radialProgress22 != null) {
+                        radialProgress22.setIcon(0, true, z);
+                    }
+                } else {
+                    this.L = 0;
+                    RadialProgress2 radialProgress23 = this.f;
+                    if (radialProgress23 != null) {
+                        radialProgress23.setIcon(2, true, z);
+                    }
+                }
+            } else {
+                this.L = 1;
+                Float s = fn5.z().s(str);
+                if (s != null) {
+                    f = s.floatValue();
+                }
+                RadialProgress2 radialProgress24 = this.f;
+                if (radialProgress24 != null) {
+                    radialProgress24.setIcon(3, true, z);
+                }
             }
-        }
-        return -1;
-    }
-
-    public final int r() {
-        for (int i = this.a.b - 1; i >= 0; i--) {
-            if (t(i)) {
-                return i;
+            RadialProgress2 radialProgress25 = this.f;
+            if (radialProgress25 != null) {
+                radialProgress25.o(false, f);
             }
-        }
-        return -1;
-    }
-
-    public final void s() {
-        for (int childCount = getChildCount() - 1; childCount >= 0; childCount--) {
-            if (getChildAt(childCount) instanceof li9) {
-                removeViewAt(childCount);
-            }
-        }
-        ffb ffbVar = this.a;
-        if (ffbVar != null) {
-            int size = ffbVar.g.size();
-            for (int i = 0; i < size; i++) {
-                li9 li9Var = new li9(getContext(), this.b);
-                li9Var.setCompact(this.a.a.compact);
-                li9Var.b((TL_iv.pageTableCell) this.a.g.get(i));
-                addView(li9Var);
-            }
-        }
-    }
-
-    public void setModel(ffb ffbVar) {
-        this.a = ffbVar;
-        s();
-    }
-
-    public void setSelectionProvider(ji9 ji9Var) {
-        this.h = ji9Var;
-        invalidate();
-    }
-
-    public final boolean t(int i) {
-        if (i >= 0 && i < this.a.b) {
-            for (int i2 = 0; i2 < this.a.c; i2++) {
-                if (p(i, i2)) {
-                    return true;
+        } else {
+            er3.q(i).v(this);
+            if (z3 && !z2) {
+                this.L = 3;
+                RadialProgress2 radialProgress26 = this.f;
+                if (radialProgress26 != null) {
+                    radialProgress26.setIcon(0, false, z);
+                }
+            } else if (z4 && !z2 && !a() && !this.S) {
+                this.L = 2;
+                RadialProgress2 radialProgress27 = this.f;
+                if (radialProgress27 != null) {
+                    radialProgress27.setIcon(8, false, z);
+                }
+            } else {
+                this.L = -1;
+                RadialProgress2 radialProgress28 = this.f;
+                if (radialProgress28 != null) {
+                    radialProgress28.setIcon(4, false, z);
                 }
             }
         }
-        return false;
+        if (view != null) {
+            view.invalidate();
+        }
     }
 
-    public final boolean u() {
-        if (!l()) {
-            return false;
-        }
-        boolean d = d(k(), r());
-        boolean c = c(j(), q());
-        if (d && !c) {
-            return false;
-        }
-        return true;
+    @Override
+    public final void l(long j, long j2) {
     }
 
-    public final boolean v() {
-        if (!l()) {
-            return false;
+    public ki9(uj9 uj9Var, TL_iv.pageBlockPhoto pageblockphoto) {
+        TLRPC.PhotoSize photoSize;
+        int i;
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.c = imageReceiver;
+        ImageReceiver imageReceiver2 = new ImageReceiver(null);
+        this.d = imageReceiver2;
+        this.L = -1;
+        this.O = gm.L(48.0f);
+        this.U = new qj9();
+        this.a = uj9Var;
+        this.b = pageblockphoto;
+        TLRPC.Photo u = uj9Var.u(pageblockphoto.photo_id);
+        this.h = u;
+        if (u != null) {
+            photoSize = bc4.w(u.sizes, gm.Y0(false), false, null, false);
+            this.n = photoSize;
+            this.r = bc4.Q(u.sizes);
+        } else {
+            this.n = null;
+            this.r = null;
+            photoSize = null;
         }
-        boolean d = d(k(), r());
-        if (c(j(), q()) && !d) {
-            return false;
-        }
-        return true;
+        this.s = null;
+        this.w = null;
+        this.x = null;
+        this.y = false;
+        this.E = false;
+        this.F = (photoSize == null || (i = photoSize.h) <= 0) ? 1.0f : photoSize.w / i;
+        this.P = er3.q(uj9Var.a).k();
+        imageReceiver.A1 = true;
+        imageReceiver2.A1 = true;
     }
 }

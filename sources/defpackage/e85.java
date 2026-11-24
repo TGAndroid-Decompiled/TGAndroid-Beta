@@ -1,25 +1,32 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.webrtc.RendererCommon;
-public final class e85 implements RendererCommon.RendererEvents {
-    public final h85 a;
+import android.view.ViewTreeObserver;
+public final class e85 implements ViewTreeObserver.OnPreDrawListener {
+    public final byte a;
+    public final g95 b;
 
-    public e85(h85 h85Var) {
-        this.a = h85Var;
+    public e85(g95 g95Var, byte b) {
+        this.a = b;
+        this.b = g95Var;
     }
 
     @Override
-    public final void onFirstFrameRendered() {
-        ArrayList arrayList = this.a.m0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            gl.r((Runnable) arrayList.get(i));
-            ((Runnable) arrayList.get(i)).run();
+    public final boolean onPreDraw() {
+        byte b = this.a;
+        g95 g95Var = this.b;
+        switch (b) {
+            case 0:
+                g95Var.J1.getViewTreeObserver().removeOnPreDrawListener(this);
+                g95Var.T3.h(null);
+                gm.V3(g95Var.e4);
+                g95Var.b.requestLayout();
+                return false;
+            default:
+                g95Var.J1.getViewTreeObserver().removeOnPreDrawListener(this);
+                g95Var.T3.h(null);
+                gm.V3(g95Var.e4);
+                g95Var.b.requestLayout();
+                return false;
         }
-        arrayList.clear();
-    }
-
-    @Override
-    public final void onFrameResolutionChanged(int i, int i2, int i3) {
     }
 }

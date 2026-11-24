@@ -1,20 +1,22 @@
 package defpackage;
 
-import androidx.car.app.model.CarText;
-import androidx.car.app.model.ItemList;
-import java.util.ArrayList;
-public final class qr5 {
-    public final ArrayList a;
-    public final int b;
-    public final hp7 c;
-    public final dp7 d;
-    public final CarText e;
+import java.util.concurrent.locks.AbstractOwnableSynchronizer;
+public final class qr5 extends AbstractOwnableSynchronizer implements Runnable {
+    public final h4c a;
 
-    public qr5(ItemList itemList) {
-        this.b = itemList.getSelectedIndex();
-        this.c = itemList.getOnSelectedDelegate();
-        this.d = itemList.getOnItemVisibilityChangedDelegate();
-        this.e = itemList.getNoItemsMessage();
-        this.a = new ArrayList(itemList.getItems());
+    public qr5(h4c h4cVar) {
+        this.a = h4cVar;
+    }
+
+    public final void a(Thread thread) {
+        setExclusiveOwnerThread(thread);
+    }
+
+    public final String toString() {
+        return this.a.toString();
+    }
+
+    @Override
+    public final void run() {
     }
 }

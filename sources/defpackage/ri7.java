@@ -1,250 +1,61 @@
 package defpackage;
 
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-public final class ri7 {
-    public ViewParent a;
-    public ViewParent b;
-    public final ViewGroup c;
-    public boolean d;
-    public int[] e;
+import android.os.ParcelFileDescriptor;
+import androidx.datastore.core.NativeSharedCounter;
+import java.io.File;
+import java.io.IOException;
+public final class ri7 extends vy5 implements pr4 {
+    public final byte b;
+    public final ui7 c;
 
-    public ri7(ViewGroup viewGroup) {
-        this.c = viewGroup;
+    public ri7(ui7 ui7Var, byte b) {
+        super(0);
+        this.b = b;
+        this.c = ui7Var;
     }
 
-    public final boolean a(float f, float f2, boolean z) {
-        ViewParent e;
-        if (this.d && (e = e(0)) != null) {
-            try {
-                return e.onNestedFling(this.c, f, f2, z);
-            } catch (AbstractMethodError e2) {
-                Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedFling", e2);
-            }
-        }
-        return false;
-    }
-
-    public final boolean b(float f, float f2) {
-        ViewParent e;
-        if (this.d && (e = e(0)) != null) {
-            try {
-                return e.onNestedPreFling(this.c, f, f2);
-            } catch (AbstractMethodError e2) {
-                Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedPreFling", e2);
-            }
-        }
-        return false;
-    }
-
-    public final boolean c(int i, int i2, int i3, int[] iArr, int[] iArr2) {
-        ViewParent e;
-        int i4;
-        int i5;
-        int[] iArr3;
-        if (!this.d || (e = e(i3)) == null) {
-            return false;
-        }
-        if (i == 0 && i2 == 0) {
-            if (iArr2 == null) {
-                return false;
-            }
-            iArr2[0] = 0;
-            iArr2[1] = 0;
-            return false;
-        }
-        ViewGroup viewGroup = this.c;
-        if (iArr2 != null) {
-            viewGroup.getLocationInWindow(iArr2);
-            i4 = iArr2[0];
-            i5 = iArr2[1];
-        } else {
-            i4 = 0;
-            i5 = 0;
-        }
-        if (iArr == null) {
-            int[] iArr4 = this.e;
-            if (iArr4 == null) {
-                iArr4 = new int[2];
-                this.e = iArr4;
-            }
-            iArr3 = iArr4;
-        } else {
-            iArr3 = iArr;
-        }
-        iArr3[0] = 0;
-        iArr3[1] = 0;
-        if (e instanceof si7) {
-            ((si7) e).r(viewGroup, i, i2, iArr3, i3);
-            viewGroup = viewGroup;
-        } else if (i3 == 0) {
-            try {
-                e.onNestedPreScroll(viewGroup, i, i2, iArr3);
-            } catch (AbstractMethodError e2) {
-                Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedPreScroll", e2);
-            }
-        }
-        if (iArr2 != null) {
-            viewGroup.getLocationInWindow(iArr2);
-            iArr2[0] = iArr2[0] - i4;
-            iArr2[1] = iArr2[1] - i5;
-        }
-        if (iArr3[0] == 0 && iArr3[1] == 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean d(int i, int i2, int i3, int i4, int[] iArr, int i5, int[] iArr2) {
-        ViewParent e;
-        int i6;
-        int i7;
-        int[] iArr3;
-        if (this.d && (e = e(i5)) != null) {
-            if (i == 0 && i2 == 0 && i3 == 0 && i4 == 0) {
-                if (iArr != null) {
-                    iArr[0] = 0;
-                    iArr[1] = 0;
-                    return false;
-                }
-            } else {
-                ViewGroup viewGroup = this.c;
-                if (iArr != null) {
-                    viewGroup.getLocationInWindow(iArr);
-                    i6 = iArr[0];
-                    i7 = iArr[1];
-                } else {
-                    i6 = 0;
-                    i7 = 0;
-                }
-                if (iArr2 == null) {
-                    int[] iArr4 = this.e;
-                    if (iArr4 == null) {
-                        iArr4 = new int[2];
-                        this.e = iArr4;
-                    }
-                    iArr4[0] = 0;
-                    iArr4[1] = 0;
-                    iArr3 = iArr4;
-                } else {
-                    iArr3 = iArr2;
-                }
-                if (e instanceof ti7) {
-                    ((ti7) e).l(viewGroup, i, i2, i3, i4, i5, iArr3);
-                } else {
-                    iArr3[0] = iArr3[0] + i3;
-                    iArr3[1] = iArr3[1] + i4;
-                    if (e instanceof si7) {
-                        ((si7) e).m(viewGroup, i, i2, i3, i4, i5);
-                    } else if (i5 == 0) {
-                        try {
-                            e.onNestedScroll(viewGroup, i, i2, i3, i4);
-                        } catch (AbstractMethodError e2) {
-                            Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onNestedScroll", e2);
-                        }
-                    }
-                }
-                if (iArr != null) {
-                    viewGroup.getLocationInWindow(iArr);
-                    iArr[0] = iArr[0] - i6;
-                    iArr[1] = iArr[1] - i7;
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final ViewParent e(int i) {
-        if (i != 0) {
-            if (i != 1) {
-                return null;
-            }
-            return this.b;
-        }
-        return this.a;
-    }
-
-    public final boolean f(int i) {
-        if (e(i) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean g(int i, int i2) {
-        boolean onStartNestedScroll;
-        if (!f(i2)) {
-            if (this.d) {
-                View view = this.c;
-                View view2 = view;
-                for (ViewParent parent = view.getParent(); parent != null; parent = parent.getParent()) {
-                    boolean z = parent instanceof si7;
-                    if (z) {
-                        onStartNestedScroll = ((si7) parent).n(view2, view, i, i2);
-                    } else {
-                        if (i2 == 0) {
-                            try {
-                                onStartNestedScroll = parent.onStartNestedScroll(view2, view, i);
-                            } catch (AbstractMethodError e) {
-                                Log.e("ViewParentCompat", "ViewParent " + parent + " does not implement interface method onStartNestedScroll", e);
-                            }
-                        }
-                        onStartNestedScroll = false;
-                    }
-                    if (onStartNestedScroll) {
-                        if (i2 != 0) {
-                            if (i2 == 1) {
-                                this.b = parent;
-                            }
-                        } else {
-                            this.a = parent;
-                        }
-                        if (z) {
-                            ((si7) parent).q(view2, view, i, i2);
-                        } else if (i2 == 0) {
-                            try {
-                                parent.onNestedScrollAccepted(view2, view, i);
-                            } catch (AbstractMethodError e2) {
-                                Log.e("ViewParentCompat", "ViewParent " + parent + " does not implement interface method onNestedScrollAccepted", e2);
-                            }
-                        }
-                    } else {
-                        if (parent instanceof View) {
-                            view2 = parent;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final void h(int i) {
-        ViewParent e = e(i);
-        if (e != null) {
-            boolean z = e instanceof si7;
-            ViewGroup viewGroup = this.c;
-            if (z) {
-                ((si7) e).k(i, viewGroup);
-            } else if (i == 0) {
+    @Override
+    public final Object invoke() {
+        ParcelFileDescriptor parcelFileDescriptor;
+        byte b = this.b;
+        ui7 ui7Var = this.c;
+        switch (b) {
+            case 0:
+                System.loadLibrary("datastore_shared_counter");
+                String str = ui7Var.e;
+                File file = new File(ui7Var.b.getAbsolutePath() + str);
+                ui7.f(file);
                 try {
-                    e.onStopNestedScroll(viewGroup);
-                } catch (AbstractMethodError e2) {
-                    Log.e("ViewParentCompat", "ViewParent " + e + " does not implement interface method onStopNestedScroll", e2);
+                    parcelFileDescriptor = ParcelFileDescriptor.open(file, 939524096);
+                    try {
+                        int fd = parcelFileDescriptor.getFd();
+                        NativeSharedCounter nativeSharedCounter = hda.b;
+                        if (nativeSharedCounter.nativeTruncateFile(fd) == 0) {
+                            long nativeCreateSharedCounter = nativeSharedCounter.nativeCreateSharedCounter(fd);
+                            if (nativeCreateSharedCounter >= 0) {
+                                hda hdaVar = new hda(nativeCreateSharedCounter);
+                                parcelFileDescriptor.close();
+                                return hdaVar;
+                            }
+                            throw new IOException("Failed to mmap counter file");
+                        }
+                        throw new IOException("Failed to truncate counter file");
+                    } catch (Throwable th) {
+                        th = th;
+                        if (parcelFileDescriptor != null) {
+                            parcelFileDescriptor.close();
+                        }
+                        throw th;
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    parcelFileDescriptor = null;
                 }
-            }
-            if (i != 0) {
-                if (i == 1) {
-                    this.b = null;
-                    return;
-                }
-                return;
-            }
-            this.a = null;
+            default:
+                String str2 = ui7Var.d;
+                File file2 = new File(ui7Var.b.getAbsolutePath() + str2);
+                ui7.f(file2);
+                return file2;
         }
     }
 }

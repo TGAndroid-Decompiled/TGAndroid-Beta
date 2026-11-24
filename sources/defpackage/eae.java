@@ -1,8 +1,17 @@
 package defpackage;
-public abstract class eae {
-    public static final int a = 0;
+public final class eae implements cq7 {
+    public static final eae a = new Object();
 
     static {
-        jae jaeVar = jae.c;
+        mlb.z(mlb.o(i9d.class, new f8d(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

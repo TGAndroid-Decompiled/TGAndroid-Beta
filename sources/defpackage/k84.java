@@ -1,21 +1,43 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class k84 extends AnimatorListenerAdapter {
-    public final m84 a;
+import java.util.Collections;
+import java.util.Map;
+public final class k84 {
+    public static volatile k84 a;
+    public static final k84 b;
 
-    public k84(m84 m84Var) {
-        this.a = m84Var;
+    static {
+        ?? obj = new Object();
+        Map map = Collections.EMPTY_MAP;
+        b = obj;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        m84 m84Var = this.a;
-        if (m84Var.r) {
-            m84Var.d.setVisibility(4);
-        } else {
-            m84Var.e.setVisibility(4);
+    public static k84 a() {
+        k84 k84Var;
+        gv8 gv8Var = gv8.c;
+        k84 k84Var2 = a;
+        if (k84Var2 == null) {
+            synchronized (k84.class) {
+                k84Var = a;
+                if (k84Var == null) {
+                    Class cls = j84.a;
+                    k84 k84Var3 = null;
+                    if (cls != null) {
+                        try {
+                            k84Var3 = (k84) cls.getDeclaredMethod("getEmptyRegistry", null).invoke(null, null);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    if (k84Var3 != null) {
+                        k84Var = k84Var3;
+                    } else {
+                        k84Var = b;
+                    }
+                    a = k84Var;
+                }
+            }
+            return k84Var;
         }
+        return k84Var2;
     }
 }

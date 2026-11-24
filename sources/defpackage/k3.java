@@ -15,7 +15,7 @@ public final class k3 extends c3 implements ListIterator {
         l3 l3Var = this.e;
         boolean isEmpty = l3Var.isEmpty();
         c().add(obj);
-        ((wg7) l3Var.h).f++;
+        ((zi7) l3Var.h).f++;
         if (isEmpty) {
             l3Var.h();
         }

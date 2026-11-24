@@ -1,14 +1,17 @@
 package defpackage;
-public final class df7 {
-    public final String a;
-    public final String b;
-    public final long c;
-    public final long d;
+public enum df7 implements dv8 {
+    UNKNOWN_EVENT(0),
+    MESSAGE_DELIVERED(1),
+    MESSAGE_OPEN(2);
+    
+    public final byte a;
 
-    public df7(String str, String str2, long j, long j2) {
-        this.a = str;
-        this.b = str2;
-        this.c = j;
-        this.d = j2;
+    df7(int i) {
+        this.a = i;
+    }
+
+    @Override
+    public final int a() {
+        return this.a;
     }
 }

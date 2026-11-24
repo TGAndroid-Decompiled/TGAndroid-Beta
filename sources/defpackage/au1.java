@@ -1,62 +1,51 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class au1 extends TextView implements tjb {
-    public final ff0 a;
-    public int b;
-    public boolean c;
-    public final mu1 d;
+import org.telegram.tgnet.TLRPC;
+public final class au1 implements Runnable {
+    public final byte a;
+    public final k47 b;
 
-    public au1(mu1 mu1Var, Activity activity) {
-        super(activity);
-        this.d = mu1Var;
-        setSingleLine(true);
-        setLines(1);
-        setMaxLines(1);
-        setEllipsize(TextUtils.TruncateAt.END);
-        zkb.X(this, bkb.Ii, mu1Var.getResourceProvider());
-        int themedColor = mu1Var.getThemedColor(bkb.Ei);
-        this.b = themedColor;
-        ff0 e = sjb.e(themedColor, 16.0f);
-        this.a = e;
-        setBackground(e);
-        setTextSize(1, 14.0f);
-        setTypeface(gl.o());
-        setGravity(17);
-        setPadding(gl.L(14.0f), 0, gl.L(14.0f), 0);
+    public au1(a6a a6aVar, k47 k47Var) {
+        this.a = (byte) 2;
+        this.b = k47Var;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), (int) (gl.q.x * 0.45f)), Integer.MIN_VALUE), i2);
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            int themedColor = this.d.getThemedColor(bkb.Ei);
-            if (themedColor != this.b || this.c != bkb.I.o()) {
-                Drawable background = getBackground();
-                ff0 ff0Var = this.a;
-                if (background == ff0Var) {
-                    this.c = bkb.I.o();
-                    bkb.F1(ff0Var, themedColor, false);
-                    bkb.F1(ff0Var, sjb.b(themedColor), true);
-                    this.b = themedColor;
-                    invalidate();
+    public final void run() {
+        TLRPC.Message message;
+        byte b = this.a;
+        k47 k47Var = this.b;
+        switch (b) {
+            case 0:
+                k47Var.q = false;
+                return;
+            case 1:
+                if (v0c.k(k47Var)) {
+                    v0c.z(k47Var, false, null);
+                    return;
                 }
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
+                return;
+            case 2:
+                if (k47Var != null && (message = k47Var.k) != null) {
+                    message.reqId = 0;
+                    return;
+                }
+                return;
+            case 3:
+                n50 n50Var = (n50) cmb.d5.remove(k47Var);
+                if (n50Var != null) {
+                    n50Var.i = null;
+                    return;
+                }
+                return;
+            default:
+                nm7.f(k47Var.K1).k(116, k47Var);
+                return;
         }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public au1(k47 k47Var, byte b) {
+        this.a = b;
+        this.b = k47Var;
     }
 }

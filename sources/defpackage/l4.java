@@ -108,10 +108,10 @@ public abstract class l4 extends AccessibilityNodeProvider {
             m4 m4Var = ((k4) this).g.R;
             if (m4Var != null) {
                 if (i == 0) {
-                    ((fgc) m4Var).a();
+                    ((gic) m4Var).a();
                     return true;
                 } else if (i == 1) {
-                    ((fgc) m4Var).b();
+                    ((gic) m4Var).b();
                 }
             }
             return true;

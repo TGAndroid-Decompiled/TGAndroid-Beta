@@ -1,103 +1,93 @@
 package defpackage;
+public final class nz6 extends bqb {
+    public final bqb e;
+    public final co5 f;
+    public final co5 g;
 
-import org.telegram.tgnet.TLRPC;
-public final class nz6 extends w64 {
-    public final via X;
-    public final uz6 Y;
-
-    public nz6(uz6 uz6Var) {
-        super(100, false);
-        this.Y = uz6Var;
-        this.X = new Object();
+    public nz6(bqb bqbVar, co5 co5Var, co5 co5Var2) {
+        this.e = bqbVar;
+        this.f = co5Var;
+        this.g = co5Var2;
     }
 
     @Override
-    public final via B1(int i) {
-        uz6 uz6Var;
-        TLRPC.PhotoSize w;
-        float f;
-        kz6 kz6Var = this.Y.f;
-        via viaVar = this.X;
-        int i2 = 0;
-        viaVar.c = false;
-        if (i == 0) {
-            viaVar.a = this.m;
-            viaVar.b = uz6Var.e.h;
-            viaVar.c = true;
-            return viaVar;
+    public final int a(boolean z) {
+        return this.e.a(z);
+    }
+
+    @Override
+    public final int b(Object obj) {
+        Object obj2;
+        boolean z = obj instanceof String;
+        bqb bqbVar = this.e;
+        if (z && (obj2 = ((x79) this.g).n.get(obj)) != null) {
+            return bqbVar.b(obj2);
         }
-        int i3 = i - 1;
-        if (kz6Var.I() == null && kz6Var.V == null) {
-            i = i3;
-        }
-        viaVar.a = 0.0f;
-        viaVar.b = 0.0f;
-        Object J = kz6Var.J(i);
-        if (J instanceof TLRPC.BotInlineResult) {
-            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
-            TLRPC.Document document = botInlineResult.document;
-            if (document != null) {
-                TLRPC.PhotoSize w2 = ba4.w(document.thumbs, 90, false, null, false);
-                float f2 = 100.0f;
-                if (w2 != null) {
-                    f = w2.w;
-                } else {
-                    f = 100.0f;
-                }
-                viaVar.a = f;
-                if (w2 != null) {
-                    f2 = w2.h;
-                }
-                viaVar.b = f2;
-                while (i2 < botInlineResult.document.attributes.size()) {
-                    TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i2);
-                    if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i2++;
-                    } else {
-                        viaVar.a = documentAttribute.w;
-                        viaVar.b = documentAttribute.h;
-                        return viaVar;
-                    }
-                }
-            } else if (botInlineResult.content != null) {
-                while (i2 < botInlineResult.content.attributes.size()) {
-                    TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i2);
-                    if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i2++;
-                    } else {
-                        viaVar.a = documentAttribute2.w;
-                        viaVar.b = documentAttribute2.h;
-                        return viaVar;
-                    }
-                }
-            } else if (botInlineResult.thumb != null) {
-                while (i2 < botInlineResult.thumb.attributes.size()) {
-                    TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i2);
-                    if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i2++;
-                    } else {
-                        viaVar.a = documentAttribute3.w;
-                        viaVar.b = documentAttribute3.h;
-                        return viaVar;
-                    }
-                }
-            } else {
-                TLRPC.Photo photo = botInlineResult.photo;
-                if (photo != null && (w = ba4.w(photo.sizes, gl.Y0(false), false, null, false)) != null) {
-                    viaVar.a = w.w;
-                    viaVar.b = w.h;
-                }
+        return bqbVar.b(obj);
+    }
+
+    @Override
+    public final int c(boolean z) {
+        return this.e.c(z);
+    }
+
+    @Override
+    public final int e(int i, int i2, boolean z) {
+        return this.e.e(i, i2, z);
+    }
+
+    @Override
+    public final ypb f(int i, ypb ypbVar, boolean z) {
+        String str;
+        String str2;
+        this.e.f(i, ypbVar, z);
+        if (z) {
+            Object obj = ypbVar.a;
+            co5 co5Var = this.g;
+            if (obj != null && (str2 = (String) co5Var.get(obj)) != null) {
+                ypbVar.a = str2;
+            }
+            Object obj2 = ypbVar.b;
+            if (obj2 != null && (str = (String) co5Var.get(obj2)) != null) {
+                ypbVar.b = str;
             }
         }
-        return viaVar;
+        return ypbVar;
     }
 
     @Override
-    public final int z() {
-        kz6 kz6Var = this.Y.f;
-        if (kz6Var.I() == null && kz6Var.V == null) {
-            return A();
+    public final int h() {
+        return this.e.h();
+    }
+
+    @Override
+    public final int k(int i, int i2, boolean z) {
+        return this.e.k(i, i2, z);
+    }
+
+    @Override
+    public final Object l(int i) {
+        Object l = this.e.l(i);
+        String str = (String) this.g.get(l);
+        if (str == null) {
+            return l;
         }
-        return A() - 1;
+        return str;
+    }
+
+    @Override
+    public final aqb m(int i, aqb aqbVar, long j) {
+        String str;
+        this.e.m(i, aqbVar, j);
+        Object obj = aqbVar.a;
+        if (obj != null && (str = (String) this.f.get(obj)) != null) {
+            aqbVar.a = str;
+        }
+        return aqbVar;
+    }
+
+    @Override
+    public final int o() {
+        return this.e.o();
     }
 }

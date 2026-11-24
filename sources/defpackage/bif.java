@@ -1,47 +1,30 @@
 package defpackage;
+public final class bif implements eif {
+    public final eif[] a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class bif extends b4 {
-    public static final Parcelable.Creator<bif> CREATOR = new t4d((byte) 6);
-    public final int a;
-    public final boolean b;
-    public final boolean c;
-
-    public bif(int i, boolean z, boolean z2) {
-        this.a = i;
-        this.b = z;
-        this.c = z2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof bif)) {
-            return false;
-        }
-        bif bifVar = (bif) obj;
-        if (this.a == bifVar.a && this.b == bifVar.b && this.c == bifVar.c) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.a), Boolean.valueOf(this.b), Boolean.valueOf(this.c)});
+    public bif(eif... eifVarArr) {
+        this.a = eifVarArr;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(this.b ? 1 : 0);
-        jte.q(parcel, 4, 4);
-        parcel.writeInt(this.c ? 1 : 0);
-        jte.s(parcel, r);
+    public final tif zzb(Class cls) {
+        for (int i = 0; i < 2; i++) {
+            eif eifVar = this.a[i];
+            if (eifVar.zzc(cls)) {
+                return eifVar.zzb(cls);
+            }
+        }
+        rjb.j("No factory is available for message type: ".concat(cls.getName()));
+        return null;
+    }
+
+    @Override
+    public final boolean zzc(Class cls) {
+        for (int i = 0; i < 2; i++) {
+            if (this.a[i].zzc(cls)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,27 +1,26 @@
 package defpackage;
 
-import android.graphics.Paint;
-public final class ke0 extends k26 {
-    public final wjb q;
-    public final Paint r;
-    public int s;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+public final class ke0 implements Parcelable {
+    public static final Parcelable.Creator<ke0> CREATOR = new f41((byte) 5);
+    public final ArrayList a;
+    public final ArrayList b;
 
-    public ke0(ek1 ek1Var, wjb wjbVar) {
-        super(ek1Var, false, null);
-        Paint paint = new Paint();
-        this.r = paint;
-        this.s = 0;
-        this.q = wjbVar;
-        Paint paint2 = this.c;
-        Paint.Style style = Paint.Style.STROKE;
-        paint2.setStyle(style);
-        paint.setStyle(style);
-        this.c.setAntiAlias(false);
+    public ke0(Parcel parcel) {
+        this.a = parcel.createStringArrayList();
+        this.b = parcel.createTypedArrayList(je0.CREATOR);
     }
 
     @Override
-    public final void a() {
-        super.a();
-        this.s = bm2.f(0.3f, bkb.v0(bkb.c6, this.q), this.m);
+    public final int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringList(this.a);
+        parcel.writeTypedList(this.b);
     }
 }

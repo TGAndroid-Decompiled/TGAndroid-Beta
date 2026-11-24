@@ -1,17 +1,12 @@
 package defpackage;
-public final class uvd implements zn7 {
-    public static final uvd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.content.res.Configuration;
+import android.os.Build;
+public abstract class uvd {
+    public static lb6 a(Configuration configuration) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            return new lb6(new ob6(ki0.i(configuration)));
         }
-        throw new ClassCastException();
+        return lb6.a(configuration.locale);
     }
 }

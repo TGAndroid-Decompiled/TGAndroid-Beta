@@ -1,30 +1,17 @@
 package defpackage;
-public final class gkd extends v5c {
-    public static final Object c = new Object();
-    public Object b;
+public final class gkd implements cq7 {
+    public static final gkd a = new Object();
 
-    public gkd(Object obj) {
-        super((byte) 10);
-        this.b = obj;
+    static {
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)), 5)), 6)));
     }
 
     @Override
-    public final boolean hasNext() {
-        if (this.b != c) {
-            return true;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        Object obj = this.b;
-        Object obj2 = c;
-        if (obj != obj2) {
-            this.b = obj2;
-            return obj;
-        }
-        w26.g();
-        return null;
+        throw new ClassCastException();
     }
 }

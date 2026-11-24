@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class py2 {
+
+import java.io.IOException;
+public final class py2 extends IOException {
 }

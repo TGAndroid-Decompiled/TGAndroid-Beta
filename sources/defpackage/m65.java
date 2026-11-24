@@ -1,37 +1,20 @@
 package defpackage;
+public final class m65 extends yp {
+    public final g95 c;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class m65 extends m8 {
-    public final h75 o;
-
-    public m65(h75 h75Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.o = h75Var;
+    public m65(g95 g95Var) {
+        this.c = g95Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        h75 h75Var = this.o;
-        if (h75Var.U4 != this) {
-            return;
+    public final int i(int i) {
+        int size = this.c.g4.e.size();
+        if (size > 1 && size != 2) {
+            if (size != 3 || i == 0 || i == 1) {
+                return 3;
+            }
+            return 6;
         }
-        h75Var.U4 = null;
-        AnimatorSet animatorSet = h75Var.T4;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            h75Var.T4 = null;
-        }
-        h75Var.R1.X = true;
-        h75Var.T4 = new AnimatorSet();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(h75Var.L4, rn.b, 0));
-        h75Var.T4.playTogether(arrayList);
-        h75Var.T4.setDuration(220L);
-        h75Var.T4.addListener(new im2(this, (byte) 27));
-        h75Var.T4.start();
+        return 6;
     }
 }

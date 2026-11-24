@@ -1,42 +1,196 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_iv;
-public final class hg9 extends b4c {
-    public static final int b = 0;
-
-    static {
-        b4c.h(new b4c());
+import android.graphics.Canvas;
+import android.text.TextPaint;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ThemeActivity;
+public abstract class hg9 {
+    public static String A(int i) {
+        switch (i) {
+            case 1:
+                return "IDLE";
+            case 2:
+                return "STARTING";
+            case 3:
+                return "RECORDING";
+            case 4:
+                return "PAUSING";
+            case 5:
+                return "PREVIEWING";
+            case 6:
+                return "RESUMING";
+            case 7:
+                return "FINISHING";
+            case 8:
+                return "COMPLETED";
+            case 9:
+                return "ERROR";
+            case 10:
+                return "RELEASED";
+            default:
+                return "null";
+        }
     }
 
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        ig9 ig9Var = (ig9) view;
-        ig9Var.set((TL_iv.RichMessage) c4cVar.H);
-        ig9Var.setTranslationLoading(c4cVar.e);
+    public static byte[] a(TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        TL_keyboard.ButtonTypeProto type = keyboardButtonProto.getType();
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeCallback) {
+            return ((TL_keyboard.TL_inlineButtonTypeCallback) type).data;
+        }
+        return null;
     }
 
-    @Override
-    public final boolean c(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.d == c4cVar2.d && c4cVar.H == c4cVar2.H && c4cVar.e == c4cVar2.e) {
+    public static String b(TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        TL_keyboard.ButtonTypeProto type = keyboardButtonProto.getType();
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
+            return ((TL_keyboard.TL_inlineButtonTypeUrl) type).url;
+        }
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeUrlAuth) {
+            return ((TL_keyboard.TL_inlineButtonTypeUrlAuth) type).url;
+        }
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeWebView) {
+            return ((TL_keyboard.TL_inlineButtonTypeWebView) type).url;
+        }
+        if (type instanceof TL_keyboard.TL_buttonTypeSimpleWebView) {
+            return ((TL_keyboard.TL_buttonTypeSimpleWebView) type).url;
+        }
+        return null;
+    }
+
+    public static j53 c(vcb vcbVar, byte[] bArr, int i) {
+        jo5 p = mo5.p();
+        vcbVar.p(bArr, 0, i, ucb.c, new wta(p, (byte) 13));
+        return new j53(p.f());
+    }
+
+    public static void d(RecyclerView recyclerView) {
+        recyclerView.D0();
+        f69 layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof u46) {
+            ((u46) layoutManager).g1(0, 0);
+        } else {
+            recyclerView.w0(0);
+        }
+    }
+
+    public static float e(float f, float f2, float f3, float f4) {
+        return (f3 - (f / f2)) * f4;
+    }
+
+    public static int f(float f, int i, int i2) {
+        return i2 - (i - gm.L(f));
+    }
+
+    public static int g(int i, int i2, int i3, int i4) {
+        return Math.max(i4, Math.min(Math.max(i, i2), i3));
+    }
+
+    public static my0 h(int i, ylb ylbVar, Context context, boolean z) {
+        my0 my0Var = new my0(i, ylbVar, context, z);
+        my0Var.J();
+        return my0Var;
+    }
+
+    public static LinearLayout i(Context context, int i) {
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(i);
+        return linearLayout;
+    }
+
+    public static String j(int i, String str) {
+        return str + i;
+    }
+
+    public static String k(StringBuilder sb, int i, String str) {
+        sb.append(i);
+        sb.append(str);
+        return sb.toString();
+    }
+
+    public static StringBuilder l(int i, String str, String str2) {
+        StringBuilder sb = new StringBuilder(str);
+        sb.append(i);
+        sb.append(str2);
+        return sb;
+    }
+
+    public static void m(float f, float f2, float f3, float f4, Canvas canvas) {
+        canvas.translate(f4, f3 - (f / f2));
+    }
+
+    public static void n(int i, d dVar) {
+        dVar.presentFragment(new ThemeActivity(i));
+    }
+
+    public static void o(TextPaint textPaint, float f) {
+        textPaint.setTextSize(f);
+        textPaint.setTypeface(gm.o());
+    }
+
+    public static void p(TextView textView, int i, String str, int i2) {
+        textView.setGravity(i);
+        textView.setText(jb6.M0(i2, str));
+    }
+
+    public static void q(String str, String str2, int i, Object[] objArr, TextView textView) {
+        textView.setText(gm.S2(jb6.a0(str, str2, i, objArr)));
+    }
+
+    public static void r(String str, StringBuilder sb) {
+        sb.append(str);
+        fc4.b(sb.toString());
+    }
+
+    public static boolean s(String str, String str2, String str3) {
+        return str3.contains(str + str2);
+    }
+
+    public static boolean t(TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument) {
+        if (tL_inputMediaUploadedDocument != null) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        ig9 ig9Var = new ig9(i, wjbVar, context);
-        ig9Var.setPadding(gl.L(20.0f), 0, gl.L(20.0f), gl.L(16.0f));
-        return ig9Var;
+    public static float u(float f, float f2, float f3, float f4) {
+        return ((f + f2) * f3) + f4;
     }
 
-    @Override
-    public final boolean e(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.d == c4cVar2.d) {
-            return true;
+    public static int v(float f, int i, int i2) {
+        return gm.L(f) + i + i2;
+    }
+
+    public static int w(int i, int i2, int i3, int i4) {
+        return Math.max(i4, Math.min(Math.min(i, i2), i3));
+    }
+
+    public static float x(float f, float f2, float f3, float f4) {
+        return f4 - ((f / f2) * f3);
+    }
+
+    public static int y(float f, int i, int i2) {
+        return (gm.L(f) * i) + i2;
+    }
+
+    public static String z(int i) {
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        return "null";
+                    }
+                    return "ERROR";
+                }
+                return "CANCELLED";
+            }
+            return "AUDIO_REMOVED";
         }
-        return false;
+        return "TRIMMED";
     }
 }

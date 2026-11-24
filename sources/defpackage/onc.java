@@ -1,38 +1,50 @@
 package defpackage;
 
-import org.telegram.ui.Wallet.WalletEngine2;
-public final class onc implements Runnable {
-    public final byte a;
-    public final WalletEngine2 b;
-    public final byte[] c;
-    public final v25 d;
-    public final String e;
-    public final i8c f;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class onc implements View.OnAttachStateChangeListener {
+    public final zf5 a;
+    public final TL_wallet.walletTransaction[] b;
+    public final nnc c;
+    public final int d;
+    public final jac e;
+    public final el7[] f;
+    public final String[] h;
+    public final boolean[] n;
 
-    public onc(WalletEngine2 walletEngine2, byte[] bArr, v25 v25Var, String str, i8c i8cVar, byte b) {
-        this.a = b;
-        this.b = walletEngine2;
-        this.c = bArr;
-        this.d = v25Var;
-        this.e = str;
-        this.f = i8cVar;
+    public onc(zf5 zf5Var, TL_wallet.walletTransaction[] wallettransactionArr, nnc nncVar, int i, jac jacVar, el7[] el7VarArr, String[] strArr, boolean[] zArr) {
+        this.a = zf5Var;
+        this.b = wallettransactionArr;
+        this.c = nncVar;
+        this.d = i;
+        this.e = jacVar;
+        this.f = el7VarArr;
+        this.h = strArr;
+        this.n = zArr;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        i8c i8cVar = this.f;
-        String str = this.e;
-        v25 v25Var = this.d;
-        byte[] bArr = this.c;
-        WalletEngine2 walletEngine2 = this.b;
-        switch (b) {
-            case 0:
-                walletEngine2.lambda$signMessage$14(bArr, v25Var, str, i8cVar);
-                return;
-            default:
-                walletEngine2.lambda$prepareTonConnectTransfer$5(bArr, v25Var, str, i8cVar);
-                return;
+    public final void onViewAttachedToWindow(View view) {
+        this.a.a(this.b[0]);
+        nnc nncVar = this.c;
+        if (nncVar != null) {
+            int i = this.d;
+            nm7.f(i).b(nncVar, nm7.e4);
+            nm7.f(i).b(nncVar, nm7.f4);
+        }
+        jac jacVar = this.e;
+        if (jacVar != null) {
+            this.f[0].n(new gcc(jacVar, this.h, this.n, (byte) 14));
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        nnc nncVar = this.c;
+        if (nncVar != null) {
+            int i = this.d;
+            nm7.f(i).n(nncVar, nm7.e4);
+            nm7.f(i).n(nncVar, nm7.f4);
         }
     }
 }

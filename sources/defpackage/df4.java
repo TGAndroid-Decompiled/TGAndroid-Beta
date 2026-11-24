@@ -1,34 +1,36 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.FiltersSetupActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class df4 implements Runnable {
-    public final byte a;
-    public final FiltersSetupActivity b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+public final class df4 extends io {
+    public final Paint s;
+    public final ef4 w;
 
-    public df4(FiltersSetupActivity filtersSetupActivity, byte b) {
-        this.a = b;
-        this.b = filtersSetupActivity;
+    public df4(ef4 ef4Var, Context context) {
+        super(context, false, true, true);
+        this.w = ef4Var;
+        this.s = new Paint(1);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        FiltersSetupActivity filtersSetupActivity = this.b;
-        switch (b) {
-            case 0:
-                filtersSetupActivity.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
-            case 1:
-                filtersSetupActivity.a.f1(new kx3(filtersSetupActivity, (byte) 17), 700, true);
-                return;
-            case 2:
-                filtersSetupActivity.showDialog(new jh8((d) filtersSetupActivity, 9, true));
-                return;
-            default:
-                filtersSetupActivity.getMessagesController().d3(true, null);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        ef4 ef4Var = this.w;
+        int a = ef4Var.x.a(ef4Var.w, false);
+        setTextColor(a);
+        if (cmb.I.o()) {
+            f = 0.2f;
+        } else {
+            f = 0.1f;
         }
+        int p1 = cmb.p1(f, a);
+        Paint paint = this.s;
+        paint.setColor(p1);
+        RectF rectF = gm.P;
+        rectF.set((getWidth() - getDrawable().c()) - gm.N(9.32f), (getHeight() - gm.N(14.66f)) / 2.0f, getWidth(), (gm.N(14.66f) + getHeight()) / 2.0f);
+        canvas.drawRoundRect(rectF, gm.L(4.0f), gm.L(4.0f), paint);
+        super.dispatchDraw(canvas);
     }
 }

@@ -1,3 +1,6 @@
 package defpackage;
-public final class a3d extends ezc {
+
+import android.os.IBinder;
+public interface a3d {
+    Object a(IBinder iBinder);
 }

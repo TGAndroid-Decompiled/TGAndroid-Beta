@@ -1,28 +1,25 @@
 package defpackage;
-public final class j55 implements eec {
-    public final h75 a;
 
-    public j55(h75 h75Var) {
-        this.a = h75Var;
+import android.os.SystemClock;
+public final class j55 {
+    public final mk7 a;
+    public final h55 b;
+    public final long c = SystemClock.uptimeMillis();
+    public boolean d;
+    public boolean e;
+    public boolean f;
+    public Runnable g;
+    public bm3 h;
+
+    public j55(mk7 mk7Var, h55 h55Var) {
+        this.a = mk7Var;
+        this.b = h55Var;
     }
 
-    @Override
-    public final void a(int i) {
-        h75 h75Var = this.a;
-        h75Var.l1.E0.k(i);
-        f55 f55Var = h75Var.t4;
-        f55Var.K = f55Var.M;
-        f55Var.L = f55Var.N;
-        f55Var.O = 0.0f;
-        f55Var.P = 1;
-        f55Var.invalidate();
-    }
-
-    @Override
-    public final void c(int i) {
-    }
-
-    @Override
-    public final void b(float f, int i, int i2) {
+    public final boolean a() {
+        if (SystemClock.uptimeMillis() - this.c < 700) {
+            return true;
+        }
+        return false;
     }
 }

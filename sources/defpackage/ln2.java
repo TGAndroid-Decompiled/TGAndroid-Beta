@@ -1,93 +1,169 @@
 package defpackage;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class ln2 extends b4c {
-    public static final int b = 0;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ln2 extends my0 {
+    public static final int t1 = 0;
+    public final nh2 l1;
+    public final ImageView m1;
+    public final dn2 n1;
+    public final Path o1;
+    public int p1;
+    public gu2 q1;
+    public ry r1;
+    public boolean s1;
 
-    static {
-        b4c.h(new b4c());
+    public ln2(Context context, ylb ylbVar) {
+        super(1, ylbVar, context, true);
+        this.o1 = new Path();
+        K(-14342875);
+        Drawable mutate = context.getResources().getDrawable(2131232745).mutate();
+        this.s0 = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(-14342875, PorterDuff.Mode.MULTIPLY));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, gm.L(16.0f), 0, 0);
+        ImageView imageView = new ImageView(context);
+        this.m1 = imageView;
+        imageView.setImageResource(2131232555);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        imageView.setBackground(cmb.f0(1090519039, 1, -1));
+        imageView.setOnClickListener(new rc1(this, context, (byte) 21));
+        ImageView imageView2 = new ImageView(context);
+        imageView2.setImageResource(2131231246);
+        imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        imageView2.setBackground(cmb.f0(1090519039, 1, -1));
+        imageView2.setOnClickListener(new k81(this, (byte) 17));
+        dn2 dn2Var = new dn2(this, context);
+        this.n1 = dn2Var;
+        dn2Var.c = 1.0f;
+        dn2Var.a();
+        dn2Var.invalidate();
+        nh2 nh2Var = new nh2(context, (byte) 2);
+        nh2Var.setOrientation(1);
+        in2 in2Var = new in2(this, context);
+        nh2Var.b = in2Var;
+        in2Var.a(this.p1);
+        nh2Var.c = new hn2(this, context);
+        nh2Var.d = new kn2(this, context);
+        wgc wgcVar = new wgc(context, this.J0);
+        wgcVar.setAdapter(new fn2(nh2Var, (byte) 0));
+        nh2Var.addView(wgcVar, qoe.l(1.0f, -1, 0));
+        nh2Var.addView(dn2Var, qoe.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
+        linearLayout2.setGravity(16);
+        linearLayout2.addView(imageView, qoe.o(28, 28));
+        linearLayout2.addView(wgcVar.l(8, false), qoe.q(-1, 40, 1.0f, 16, 12, 0, 12, 0));
+        linearLayout2.addView(imageView2, qoe.o(28, 28));
+        nh2Var.addView(linearLayout2, qoe.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
+        this.l1 = nh2Var;
+        linearLayout.addView(nh2Var, qoe.o(-1, 0));
+        cn2 cn2Var = new cn2(this, context, linearLayout);
+        cn2Var.addView(linearLayout);
+        this.O = cn2Var;
     }
 
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        int i;
-        String o0;
-        mn2 mn2Var = (mn2) view;
-        kn2 kn2Var = (kn2) c4cVar.H;
-        TLRPC.User user = kn2Var.b;
-        long j = kn2Var.a;
-        boolean z2 = kn2Var.c;
-        boolean z3 = !c4cVar.j;
-        int i2 = mn2.I;
-        TextView textView = mn2Var.d;
-        mn2Var.F = (jn2) c4cVar.I;
-        mn2Var.G = j;
-        mn2Var.H = user.id;
-        int i3 = mn2Var.b;
-        TLRPC.Chat K0 = na7.q1(i3).K0(Long.valueOf(-j));
-        TLRPC.User V1 = na7.q1(i3).V1(Long.valueOf(j));
-        mn2Var.f.setText(cf3.k(y6c.t0, j));
-        TextView textView2 = mn2Var.h;
-        if (V1 != null) {
-            i = 2131751886;
-        } else if (hc2.V(K0)) {
-            i = 2131751885;
-        } else {
-            i = 2131751884;
-        }
-        textView2.setText(gl.N2(k96.a0(null, null, i, cf3.t(user)), bkb.Yl, null, new jc((byte) 10), false));
-        if (V1 != null) {
-            textView.setVisibility(8);
-        } else if (K0 != null && K0.participants_count > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(mn2Var.s, 0, 1, 33);
-            long j2 = K0.participants_count;
-            if (j2 < 1000000) {
-                o0 = k96.E(j2, ',');
-            } else {
-                o0 = gl.o0((int) j2, 1000000);
+    public final void D0(int i, int i2) {
+        boolean z;
+        float B;
+        View findFocus;
+        if (!this.s1) {
+            if (i2 != 2) {
+                return;
             }
-            spannableStringBuilder.append((CharSequence) o0);
-            textView.setText(spannableStringBuilder);
-            textView.setVisibility(0);
-        } else {
-            textView.setVisibility(8);
+            this.s1 = true;
         }
-        TextView textView3 = mn2Var.n;
-        if (z2) {
-            textView3.setVisibility(0);
-        } else {
-            textView3.setVisibility(8);
+        nh2 nh2Var = this.l1;
+        if (i2 != 5 && (findFocus = nh2Var.findFocus()) != null) {
+            findFocus.clearFocus();
+            gm.t1(findFocus);
         }
-        mn2Var.y = z3;
-        be0 be0Var = mn2Var.c;
-        if (V1 != null) {
-            be0Var.f(V1, new pb0(0, V1));
-        } else {
-            be0Var.f(K0, new pb0(K0));
+        if (i2 != 3) {
+            ((in2) nh2Var.b).a(i);
         }
-        mn2Var.e.f(user, new pb0(0, user));
+        if (i2 != 0) {
+            hn2 hn2Var = (hn2) nh2Var.c;
+            if (i2 != 1) {
+                z = true;
+            } else {
+                z = false;
+            }
+            hn2Var.n.p1 = i;
+            float[] fArr = hn2Var.h;
+            Color.colorToHSV(i, fArr);
+            if (z) {
+                float f = (fArr[1] * 0.5f) + 1.0f;
+                float f2 = fArr[2];
+                if (f2 <= 0.5f) {
+                    B = 1.0f - (((1.0f - f2) * 0.22000003f) + 0.78f);
+                } else {
+                    B = kt6.B(1.0f, f2, 0.22f, 1.0f);
+                }
+                hn2Var.d = f - B;
+                hn2Var.e = fArr[0] / 360.0f;
+            }
+            hn2Var.invalidate();
+        }
+        if (i2 != 1) {
+            dn2 dn2Var = this.n1;
+            dn2Var.c = Color.alpha(i) / 255.0f;
+            dn2Var.a();
+            dn2Var.invalidate();
+        }
+        kn2 kn2Var = (kn2) nh2Var.d;
+        kn2Var.e = true;
+        kn2Var.a.b();
+        kn2Var.b.b();
+        kn2Var.c.b();
+        EditTextBoldCursor editTextBoldCursor = kn2Var.d;
+        if (!editTextBoldCursor.isFocused()) {
+            int selectionStart = editTextBoldCursor.getSelectionStart();
+            int selectionEnd = editTextBoldCursor.getSelectionEnd();
+            StringBuilder sb = new StringBuilder(Integer.toHexString(kn2Var.f.p1));
+            while (sb.length() < 8) {
+                sb.insert(0, "0");
+            }
+            editTextBoldCursor.setText(sb.toString().toUpperCase().substring(2));
+            editTextBoldCursor.setSelection(selectionStart, selectionEnd);
+        }
+        kn2Var.e = false;
     }
 
     @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        mn2 mn2Var = new mn2(i, wjbVar, context);
-        mn2Var.setLayoutParams(new e49(-1, -2));
-        mn2Var.setClickable(false);
-        return mn2Var;
+    public final void dismiss() {
+        super.dismiss();
+        gu2 gu2Var = this.q1;
+        if (gu2Var != null) {
+            gu2Var.accept(Integer.valueOf(this.p1));
+        }
     }
 
     @Override
-    public final boolean e(c4c c4cVar, c4c c4cVar2) {
-        kn2 kn2Var = (kn2) c4cVar.H;
-        kn2 kn2Var2 = (kn2) c4cVar2.H;
-        if (kn2Var.a == kn2Var2.a && cf3.d(kn2Var.b) == cf3.d(kn2Var2.b)) {
-            return true;
+    public final void show() {
+        ry ryVar = this.r1;
+        boolean z = false;
+        switch (ryVar.a) {
+            case 5:
+                if (((Bitmap) ryVar.c) != null) {
+                    z = true;
+                    break;
+                }
+                break;
         }
-        return false;
+        if (!z) {
+            this.m1.setVisibility(8);
+        }
+        super.show();
     }
 }

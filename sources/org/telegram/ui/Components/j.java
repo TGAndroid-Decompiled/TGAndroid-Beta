@@ -17,10 +17,10 @@ public final class j extends AnimatorListenerAdapter {
         ChatActivityEnterView chatActivityEnterView = this.b;
         if (animator.equals(chatActivityEnterView.j3)) {
             byte b = this.a;
-            if (b != 3 && chatActivityEnterView.F0 != null && !gl.A1()) {
+            if (b != 3 && chatActivityEnterView.F0 != null && !gm.A1()) {
                 chatActivityEnterView.F0.requestFocus();
             }
-            chatActivityEnterView.E();
+            chatActivityEnterView.C();
             if (b != 3) {
                 l lVar = chatActivityEnterView.E2;
                 if (lVar != null) {

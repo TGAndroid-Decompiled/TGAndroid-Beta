@@ -1,31 +1,513 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.widget.ListAdapter;
-public interface eq {
-    boolean a();
+import android.graphics.drawable.LayerDrawable;
+import android.location.Location;
+import android.location.LocationManager;
+import android.media.MediaCrypto;
+import android.media.MediaFormat;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
+import android.view.Surface;
+import com.google.android.gms.tasks.Tasks;
+import j$.util.Objects;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import org.telegram.messenger.a;
+public class eq {
+    public Object a;
+    public Object b;
+    public Object c;
+    public Object d;
+    public Object e;
+    public Object f;
 
-    int b();
+    public eq(byte b) {
+        switch (b) {
+            case 1:
+                Paint paint = new Paint(1);
+                this.a = paint;
+                this.d = new RectF();
+                this.f = new Matrix();
+                Bitmap createBitmap = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
+                this.c = createBitmap;
+                this.b = new Canvas(createBitmap);
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(createBitmap, tileMode, tileMode);
+                this.e = bitmapShader;
+                paint.setShader(bitmapShader);
+                p();
+                return;
+            case 2:
+                this.a = new RectF();
+                this.b = new RectF();
+                this.c = new RectF();
+                this.d = new RectF();
+                return;
+            case 7:
+                this.a = new ArrayList();
+                this.b = new ArrayList();
+                this.c = new ArrayList();
+                this.d = new ArrayList();
+                this.e = new ArrayList();
+                this.f = new ArrayList();
+                return;
+            default:
+                this.a = new int[]{2131230859, 2131230857, 2131230783};
+                this.b = new int[]{2131230807, 2131230842, 2131230814, 2131230809, 2131230810, 2131230813, 2131230812};
+                this.c = new int[]{2131230856, 2131230858, 2131230800, 2131230852, 2131230853, 2131230854, 2131230855};
+                this.d = new int[]{2131230832, 2131230798, 2131230831};
+                this.e = new int[]{2131230850, 2131230860};
+                this.f = new int[]{2131230786, 2131230792, 2131230787, 2131230793};
+                return;
+        }
+    }
 
-    void c(int i);
+    public static boolean b(int[] iArr, int i) {
+        for (int i2 : iArr) {
+            if (i2 == i) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    CharSequence d();
+    public static ColorStateList d(Context context, int i) {
+        int c = dpb.c(context, 2130968728);
+        return new ColorStateList(new int[][]{dpb.b, dpb.d, dpb.c, dpb.f}, new int[]{dpb.b(context, 2130968726), on2.l(c, i), on2.l(c, i), i});
+    }
 
-    void dismiss();
+    public static rz6 e(h74 h74Var, mo5 mo5Var, rz6 rz6Var, ypb ypbVar) {
+        Object l;
+        int i;
+        bqb y0 = h74Var.y0();
+        int A = h74Var.A();
+        if (y0.p()) {
+            l = null;
+        } else {
+            l = y0.l(A);
+        }
+        if (!h74Var.m() && !y0.p()) {
+            i = y0.f(A, ypbVar, false).b(hac.T(h74Var.k()) - ypbVar.e);
+        } else {
+            i = -1;
+        }
+        int i2 = i;
+        for (int i3 = 0; i3 < mo5Var.size(); i3++) {
+            rz6 rz6Var2 = (rz6) mo5Var.get(i3);
+            if (h(rz6Var2, l, h74Var.m(), h74Var.k0(), h74Var.L(), i2)) {
+                return rz6Var2;
+            }
+        }
+        if (!mo5Var.isEmpty() || rz6Var == null || !h(rz6Var, l, h74Var.m(), h74Var.k0(), h74Var.L(), i2)) {
+            return null;
+        }
+        return rz6Var;
+    }
 
-    Drawable g();
+    public static LayerDrawable f(hc9 hc9Var, Context context, int i) {
+        BitmapDrawable bitmapDrawable;
+        BitmapDrawable bitmapDrawable2;
+        BitmapDrawable bitmapDrawable3;
+        int dimensionPixelSize = context.getResources().getDimensionPixelSize(i);
+        Drawable g = hc9Var.g(context, 2131230846);
+        Drawable g2 = hc9Var.g(context, 2131230847);
+        if ((g instanceof BitmapDrawable) && g.getIntrinsicWidth() == dimensionPixelSize && g.getIntrinsicHeight() == dimensionPixelSize) {
+            bitmapDrawable = (BitmapDrawable) g;
+            bitmapDrawable2 = new BitmapDrawable(bitmapDrawable.getBitmap());
+        } else {
+            Bitmap createBitmap = Bitmap.createBitmap(dimensionPixelSize, dimensionPixelSize, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            g.setBounds(0, 0, dimensionPixelSize, dimensionPixelSize);
+            g.draw(canvas);
+            bitmapDrawable = new BitmapDrawable(createBitmap);
+            bitmapDrawable2 = new BitmapDrawable(createBitmap);
+        }
+        bitmapDrawable2.setTileModeX(Shader.TileMode.REPEAT);
+        if ((g2 instanceof BitmapDrawable) && g2.getIntrinsicWidth() == dimensionPixelSize && g2.getIntrinsicHeight() == dimensionPixelSize) {
+            bitmapDrawable3 = (BitmapDrawable) g2;
+        } else {
+            Bitmap createBitmap2 = Bitmap.createBitmap(dimensionPixelSize, dimensionPixelSize, Bitmap.Config.ARGB_8888);
+            Canvas canvas2 = new Canvas(createBitmap2);
+            g2.setBounds(0, 0, dimensionPixelSize, dimensionPixelSize);
+            g2.draw(canvas2);
+            bitmapDrawable3 = new BitmapDrawable(createBitmap2);
+        }
+        LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{bitmapDrawable, bitmapDrawable3, bitmapDrawable2});
+        layerDrawable.setId(0, 16908288);
+        layerDrawable.setId(1, 16908303);
+        layerDrawable.setId(2, 16908301);
+        return layerDrawable;
+    }
 
-    void h(CharSequence charSequence);
+    public static boolean h(rz6 rz6Var, Object obj, boolean z, int i, int i2, int i3) {
+        Object obj2 = rz6Var.a;
+        int i4 = rz6Var.b;
+        if (!obj2.equals(obj)) {
+            return false;
+        }
+        if (!z || i4 != i || rz6Var.c != i2) {
+            if (z || i4 != -1 || rz6Var.e != i3) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
 
-    void j(Drawable drawable);
+    public static void l(Drawable drawable, int i, PorterDuff.Mode mode) {
+        PorterDuffColorFilter h;
+        int[] iArr = vr3.a;
+        Drawable mutate = drawable.mutate();
+        if (mode == null) {
+            mode = fq.b;
+        }
+        PorterDuff.Mode mode2 = fq.b;
+        synchronized (fq.class) {
+            h = hc9.h(i, mode);
+        }
+        mutate.setColorFilter(h);
+    }
 
-    void k(int i);
+    public final void a(kq kqVar, rz6 rz6Var, bqb bqbVar) {
+        if (rz6Var != null) {
+            if (bqbVar.b(rz6Var.a) != -1) {
+                kqVar.w(rz6Var, bqbVar);
+                return;
+            }
+            bqb bqbVar2 = (bqb) ((d89) this.c).get(rz6Var);
+            if (bqbVar2 != null) {
+                kqVar.w(rz6Var, bqbVar2);
+            }
+        }
+    }
 
-    void l(int i);
+    public final void c() {
+        ((LocationManager) this.b).removeUpdates((bd6) this.c);
+        ((LocationManager) this.b).removeUpdates((bd6) this.d);
+        this.f = null;
+        this.e = null;
+    }
 
-    void m(int i, int i2);
+    public final ColorStateList g(Context context, int i) {
+        if (i == 2131230803) {
+            return rs.e(context, 2131099669);
+        }
+        if (i == 2131230849) {
+            return rs.e(context, 2131099672);
+        }
+        if (i == 2131230848) {
+            int[][] iArr = new int[3];
+            int[] iArr2 = new int[3];
+            ColorStateList d = dpb.d(context, 2130968734);
+            if (d != null && d.isStateful()) {
+                int[] iArr3 = dpb.b;
+                iArr[0] = iArr3;
+                iArr2[0] = d.getColorForState(iArr3, 0);
+                iArr[1] = dpb.e;
+                iArr2[1] = dpb.c(context, 2130968727);
+                iArr[2] = dpb.f;
+                iArr2[2] = d.getDefaultColor();
+            } else {
+                iArr[0] = dpb.b;
+                iArr2[0] = dpb.b(context, 2130968734);
+                iArr[1] = dpb.e;
+                iArr2[1] = dpb.c(context, 2130968727);
+                iArr[2] = dpb.f;
+                iArr2[2] = dpb.c(context, 2130968734);
+            }
+            return new ColorStateList(iArr, iArr2);
+        } else if (i == 2131230791) {
+            return d(context, dpb.c(context, 2130968726));
+        } else {
+            if (i == 2131230785) {
+                return d(context, 0);
+            }
+            if (i == 2131230790) {
+                return d(context, dpb.c(context, 2130968724));
+            }
+            if (i != 2131230844 && i != 2131230845) {
+                if (b((int[]) this.b, i)) {
+                    return dpb.d(context, 2130968729);
+                }
+                if (b((int[]) this.e, i)) {
+                    return rs.e(context, 2131099668);
+                }
+                if (b((int[]) this.f, i)) {
+                    return rs.e(context, 2131099667);
+                }
+                if (i == 2131230841) {
+                    return rs.e(context, 2131099670);
+                }
+                return null;
+            }
+            return rs.e(context, 2131099671);
+        }
+    }
 
-    int n();
+    public final void i(float f, float f2, float f3, float f4) {
+        RectF rectF = gm.P;
+        rectF.set(f, f2, f3, f4);
+        RectF rectF2 = (RectF) this.d;
+        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
+            return;
+        }
+        rectF2.set(rectF);
+        p();
+    }
 
-    void o(ListAdapter listAdapter);
+    public final void j(String str, Bundle bundle, boolean z) {
+        String str2;
+        String str3;
+        bundle.putString("scope", "*");
+        bundle.putString("sender", str);
+        bundle.putString("subtype", str);
+        li4 li4Var = (li4) this.a;
+        li4Var.a();
+        bundle.putString("gmp_app_id", li4Var.c.b);
+        bundle.putString("gmsv", Integer.toString(((mf7) this.b).c()));
+        bundle.putString("osv", Integer.toString(Build.VERSION.SDK_INT));
+        bundle.putString("app_ver", ((mf7) this.b).a());
+        mf7 mf7Var = (mf7) this.b;
+        synchronized (mf7Var) {
+            if (((String) mf7Var.e) == null) {
+                mf7Var.f();
+            }
+            str2 = (String) mf7Var.e;
+        }
+        bundle.putString("app_ver_name", str2);
+        li4 li4Var2 = (li4) this.a;
+        li4Var2.a();
+        try {
+            str3 = Base64.encodeToString(MessageDigest.getInstance("SHA-1").digest(li4Var2.b.getBytes()), 11);
+        } catch (NoSuchAlgorithmException unused) {
+            str3 = "[HASH-ERROR]";
+        }
+        bundle.putString("firebase-app-name-hash", str3);
+        if (z) {
+            li4 li4Var3 = (li4) this.a;
+            li4Var3.a();
+            bundle.putString("Goog-Api-Key", li4Var3.c.a);
+        }
+        try {
+            String str4 = ((xa0) Tasks.await(((si4) ((ti4) this.f)).f())).a;
+            if (!TextUtils.isEmpty(str4)) {
+                bundle.putString("Goog-Firebase-Installations-Auth", str4);
+            } else {
+                Log.w("FirebaseMessaging", "FIS auth token is empty");
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            Log.e("FirebaseMessaging", "Failed to get FIS auth token", e);
+        }
+        bundle.putString("appid", (String) Tasks.await(((si4) ((ti4) this.f)).e()));
+        bundle.putString("cliv", "fcm-25.1.3");
+        pf5 pf5Var = (pf5) ((nv8) this.e).get();
+        ge3 ge3Var = (ge3) ((nv8) this.d).get();
+        if (pf5Var != null && ge3Var != null) {
+            int a = ((ac3) pf5Var).a();
+            int i = 1;
+            if (a != 1) {
+                if (a != 1) {
+                    if (a != 2) {
+                        i = 3;
+                        if (a != 3) {
+                            if (a != 4) {
+                                throw null;
+                            }
+                        } else {
+                            i = 2;
+                        }
+                    }
+                } else {
+                    i = 0;
+                }
+                bundle.putString("Firebase-Client-Log-Type", Integer.toString(i));
+                bundle.putString("Firebase-Client", ge3Var.a());
+            }
+        }
+    }
+
+    public final void k(float f, float f2, float f3, float f4) {
+        Matrix matrix = (Matrix) this.f;
+        matrix.reset();
+        Bitmap bitmap = (Bitmap) this.c;
+        matrix.postRotate(f4, bitmap.getWidth() / 2.0f, bitmap.getHeight() / 2.0f);
+        matrix.postScale(f3, f3);
+        matrix.postTranslate(f, f2);
+        ((BitmapShader) this.e).setLocalMatrix(matrix);
+    }
+
+    public final void m() {
+        LocationManager locationManager = (LocationManager) this.b;
+        if (locationManager == null) {
+            locationManager = (LocationManager) a.b.getSystemService("location");
+            this.b = locationManager;
+        }
+        try {
+            locationManager.requestLocationUpdates("gps", 1L, 0.0f, (bd6) this.c);
+        } catch (Exception e) {
+            fc4.g(e, true);
+        }
+        try {
+            ((LocationManager) this.b).requestLocationUpdates("network", 1L, 0.0f, (bd6) this.d);
+        } catch (Exception e2) {
+            fc4.g(e2, true);
+        }
+        try {
+            Location lastKnownLocation = ((LocationManager) this.b).getLastKnownLocation("gps");
+            this.f = lastKnownLocation;
+            if (lastKnownLocation == null) {
+                this.f = ((LocationManager) this.b).getLastKnownLocation("network");
+            }
+        } catch (Exception e3) {
+            fc4.g(e3, true);
+        }
+        c0a c0aVar = (c0a) this.e;
+        if (c0aVar != null) {
+            gm.r(c0aVar);
+        }
+        c0a c0aVar2 = new c0a(this, (byte) 7);
+        this.e = c0aVar2;
+        gm.d3(c0aVar2, 5000L);
+    }
+
+    public void n() {
+        if (((LocationManager) this.b) == null) {
+            return;
+        }
+        c0a c0aVar = (c0a) this.e;
+        if (c0aVar != null) {
+            gm.r(c0aVar);
+        }
+        c();
+    }
+
+    public final void o(boolean z) {
+        ArrayList arrayList = (ArrayList) this.c;
+        ArrayList arrayList2 = (ArrayList) this.b;
+        ArrayList arrayList3 = (ArrayList) this.a;
+        for (int i = 0; i < arrayList3.size(); i++) {
+            ((ValueAnimator) arrayList3.get(i)).cancel();
+            if (z) {
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ArrayList) this.d).get(i)).floatValue(), 0.0f);
+                ofFloat.addUpdateListener(new w2b(this, i, (byte) 0));
+                ofFloat.setDuration(100L);
+                ofFloat.start();
+            }
+        }
+        for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+            ((ValueAnimator) arrayList2.get(i2)).cancel();
+            if (z) {
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.e).get(i2)).floatValue(), 0.0f);
+                ofFloat2.addUpdateListener(new w2b(this, i2, (byte) 1));
+                ofFloat2.setDuration(100L);
+                ofFloat2.start();
+            }
+        }
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            ((ValueAnimator) arrayList.get(i3)).cancel();
+            if (z) {
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f).get(i3)).floatValue(), 0.0f);
+                ofFloat3.addUpdateListener(new w2b(this, i3, (byte) 2));
+                ofFloat3.setDuration(100L);
+                ofFloat3.start();
+            }
+        }
+        arrayList.clear();
+        arrayList2.clear();
+        arrayList3.clear();
+    }
+
+    public final void p() {
+        Bitmap bitmap = (Bitmap) this.c;
+        RectF rectF = (RectF) this.d;
+        Matrix matrix = (Matrix) this.f;
+        BitmapShader bitmapShader = (BitmapShader) this.e;
+        if (bitmapShader == null) {
+            return;
+        }
+        float width = rectF.width() / bitmap.getWidth();
+        float height = rectF.height() / bitmap.getHeight();
+        matrix.reset();
+        matrix.postTranslate(rectF.left, rectF.top);
+        matrix.preScale(width, height);
+        bitmapShader.setLocalMatrix(matrix);
+    }
+
+    public final void q(bqb bqbVar) {
+        mo5 mo5Var;
+        kq kqVar = new kq(4);
+        if (((mo5) this.b).isEmpty()) {
+            a(kqVar, (rz6) this.e, bqbVar);
+            if (!Objects.equals((rz6) this.f, (rz6) this.e)) {
+                a(kqVar, (rz6) this.f, bqbVar);
+            }
+            if (!Objects.equals((rz6) this.d, (rz6) this.e) && !Objects.equals((rz6) this.d, (rz6) this.f)) {
+                a(kqVar, (rz6) this.d, bqbVar);
+            }
+        } else {
+            int i = 0;
+            while (true) {
+                int size = ((mo5) this.b).size();
+                mo5Var = (mo5) this.b;
+                if (i >= size) {
+                    break;
+                }
+                a(kqVar, (rz6) mo5Var.get(i), bqbVar);
+                i++;
+            }
+            if (!mo5Var.contains((rz6) this.d)) {
+                a(kqVar, (rz6) this.d, bqbVar);
+            }
+        }
+        this.c = kqVar.e(true);
+    }
+
+    public eq(int i, int i2) {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        this.d = new RectF();
+        this.f = new Matrix();
+        Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, i), Math.max(1, i2), Bitmap.Config.ARGB_8888);
+        this.c = createBitmap;
+        this.b = new Canvas(createBitmap);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        BitmapShader bitmapShader = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.e = bitmapShader;
+        paint.setShader(bitmapShader);
+        p();
+    }
+
+    public eq(lm6 lm6Var, MediaFormat mediaFormat, go4 go4Var, Surface surface, MediaCrypto mediaCrypto, bi6 bi6Var) {
+        this.a = lm6Var;
+        this.b = mediaFormat;
+        this.c = go4Var;
+        this.d = surface;
+        this.e = mediaCrypto;
+        this.f = bi6Var;
+    }
+
+    public eq(w5a w5aVar) {
+        this.c = new bd6(this, (byte) 1);
+        this.d = new bd6(this, (byte) 1);
+        this.a = w5aVar;
+    }
 }

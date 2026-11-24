@@ -1,83 +1,32 @@
 package defpackage;
 
-import java.util.ListIterator;
-public final class frd extends v5c implements ListIterator {
-    public final int b;
-    public int c;
-    public final nrd d;
+import java.util.Arrays;
+public final class frd {
+    public final bve a;
+    public final Boolean b;
+    public final mze c;
 
-    public frd(nrd nrdVar, int i) {
-        super((byte) 11);
-        int size = nrdVar.size();
-        if (i >= 0 && i <= size) {
-            this.b = size;
-            this.c = i;
-            this.d = nrdVar;
-            return;
+    public frd(uqd uqdVar) {
+        this.a = (bve) uqdVar.b;
+        this.b = (Boolean) uqdVar.c;
+        this.c = (mze) uqdVar.d;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        k93.i(i1f.c(i, size, "index"));
-        throw null;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
+        if (!(obj instanceof frd)) {
+            return false;
+        }
+        frd frdVar = (frd) obj;
+        if (fse.a(this.a, frdVar.a) && fse.a(this.b, frdVar.b) && fse.a(null, null) && fse.a(this.c, frdVar.c)) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b, null, this.c});
     }
 }

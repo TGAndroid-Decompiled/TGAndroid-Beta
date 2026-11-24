@@ -1,96 +1,48 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Wallet.c;
-public final class jyb extends b4c {
-    public static final int b = 0;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class jyb extends q59 {
+    public final ArrayList c = new ArrayList();
+    public String d;
+    public final oyb e;
 
-    static {
-        b4c.h(new b4c());
+    public jyb(oyb oybVar) {
+        this.e = oybVar;
     }
 
-    public static c4c i(TL_wallet.walletTransaction wallettransaction, kyb kybVar) {
-        String a;
-        c4c K = c4c.K(jyb.class);
-        iyb iybVar = new iyb(wallettransaction);
-        iybVar.set(wallettransaction);
-        iybVar.id = wallettransaction.id;
-        iybVar.random_id = wallettransaction.random_id;
-        iybVar.gasless = wallettransaction.gasless;
-        iybVar.gaslessMessageBodyHash = wallettransaction.gaslessMessageBodyHash;
-        iybVar.normalMessageBodyHash = wallettransaction.normalMessageBodyHash;
-        iybVar.nft = wallettransaction.nft;
-        K.H = iybVar;
-        K.I = kybVar;
-        TL_wallet.WalletTransactionPeer walletTransactionPeer = wallettransaction.peer;
-        if (walletTransactionPeer == null) {
-            a = null;
-        } else {
-            a = kybVar.a(walletTransactionPeer.address);
-        }
-        K.m = a;
-        return K;
-    }
-
-    public static boolean j(TL_wallet.walletTransaction wallettransaction, TL_wallet.walletTransaction wallettransaction2) {
-        TL_wallet.walletTransaction wallettransaction3;
-        TL_wallet.walletTransaction wallettransaction4;
-        if (wallettransaction instanceof iyb) {
-            wallettransaction3 = ((iyb) wallettransaction).a;
-        } else {
-            wallettransaction3 = wallettransaction;
-        }
-        if (wallettransaction2 instanceof iyb) {
-            wallettransaction4 = ((iyb) wallettransaction2).a;
-        } else {
-            wallettransaction4 = wallettransaction2;
-        }
-        if (wallettransaction3 != wallettransaction4 && !c.t0(wallettransaction, wallettransaction2) && !c.t0(wallettransaction3, wallettransaction4)) {
-            return false;
-        }
+    @Override
+    public final boolean D(u69 u69Var) {
         return true;
     }
 
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        ((lyb) view).h((TL_wallet.walletTransaction) c4cVar.H, (kyb) c4cVar.I, z);
-    }
-
-    @Override
-    public final boolean c(c4c c4cVar, c4c c4cVar2) {
-        Object obj = c4cVar.H;
-        if (obj instanceof TL_wallet.walletTransaction) {
-            Object obj2 = c4cVar2.H;
-            if (obj2 instanceof TL_wallet.walletTransaction) {
-                return ((TL_wallet.walletTransaction) obj).equals((TL_wallet.walletTransaction) obj2);
-            }
-            return false;
+    public final void E(ArrayList arrayList, boolean z) {
+        r59 r59Var = this.e.r;
+        if (!z) {
+            f();
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new lyb(i, wjbVar, context);
-    }
-
-    @Override
-    public final boolean e(c4c c4cVar, c4c c4cVar2) {
-        Object obj = c4cVar.H;
-        if (obj instanceof TL_wallet.walletTransaction) {
-            Object obj2 = c4cVar2.H;
-            if (obj2 instanceof TL_wallet.walletTransaction) {
-                return j((TL_wallet.walletTransaction) obj, (TL_wallet.walletTransaction) obj2);
-            }
-            return false;
+        boolean canScrollVertically = r59Var.canScrollVertically(-1);
+        ww7.a(new tk3(this, arrayList, (byte) 5), true).c(this);
+        if (!canScrollVertically) {
+            r59Var.w0(0);
         }
-        return false;
     }
 
     @Override
-    public final boolean f() {
-        return true;
+    public final int b() {
+        return this.c.size();
+    }
+
+    @Override
+    public final void t(defpackage.u69 r34, int r35) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jyb.t(u69, int):void");
+    }
+
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        nyb nybVar = new nyb(this.e, viewGroup.getContext());
+        nybVar.setLayoutParams(new g69(-1, -2));
+        return new u69(nybVar);
     }
 }

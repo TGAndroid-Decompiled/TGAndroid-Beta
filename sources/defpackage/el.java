@@ -1,8 +1,21 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class el {
-    public String a;
-    public ArrayList b;
-    public StringBuilder c;
+import android.util.Log;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public final class el extends be6 {
+    public final byte a;
+    public Object b;
+
+    @Override
+    public final void b(String str) {
+        switch (this.a) {
+            case 0:
+                Log.d("isoparser", ((String) this.b) + ":" + str);
+                return;
+            default:
+                ((Logger) this.b).log(Level.FINE, str);
+                return;
+        }
+    }
 }

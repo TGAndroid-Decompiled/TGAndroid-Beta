@@ -1,17 +1,30 @@
 package defpackage;
-public final class obe implements zn7 {
-    public static final obe a = new Object();
+public abstract class obe {
+    public static hia a;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)), 10)), 11)), 12)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
+    public static final void a() {
+        try {
+            hia hiaVar = a;
+            if (hiaVar == null) {
+                hiaVar = (hia) ((m63) ((kj4) li4.c().b(kj4.class))).o.mo8get();
+                hiaVar.getClass();
+                a = hiaVar;
+            }
+            if (hiaVar != null) {
+                if (hiaVar.i) {
+                    if (hiaVar != null) {
+                        hiaVar.a();
+                        return;
+                    } else {
+                        rr5.e("sharedSessionRepository");
+                        throw null;
+                    }
+                }
+                return;
+            }
+            rr5.e("sharedSessionRepository");
             throw null;
+        } catch (Exception unused) {
         }
-        throw new ClassCastException();
     }
 }

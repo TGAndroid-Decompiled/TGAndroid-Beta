@@ -7,23 +7,23 @@ import android.widget.TextView;
 import java.util.HashMap;
 import org.telegram.ui.LaunchActivity;
 public class AlertDialog$Builder {
-    public final hd a;
+    public final he a;
     public final boolean[] b;
 
-    public AlertDialog$Builder(int i, wjb wjbVar, Context context) {
+    public AlertDialog$Builder(int i, ylb ylbVar, Context context) {
         this.b = new boolean[3];
-        if (context == null && (context = gl.W(LaunchActivity.H1)) == null) {
+        if (context == null && (context = gm.W(LaunchActivity.H1)) == null) {
             context = org.telegram.messenger.a.b;
         }
-        this.a = a(i, wjbVar, context);
+        this.a = a(i, ylbVar, context);
     }
 
-    public hd a(int i, wjb wjbVar, Context context) {
-        return new hd(i, wjbVar, context);
+    public he a(int i, ylb ylbVar, Context context) {
+        return new he(i, ylbVar, context);
     }
 
     public final void b() {
-        int i = hd.k1;
+        int i = he.k1;
         this.a.getClass();
     }
 
@@ -42,35 +42,35 @@ public class AlertDialog$Builder {
     }
 
     public final void e(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
-        hd hdVar = this.a;
-        hdVar.Q = charSequenceArr;
-        hdVar.N = onClickListener;
+        he heVar = this.a;
+        heVar.Q = charSequenceArr;
+        heVar.N = onClickListener;
     }
 
     public final void f(CharSequence charSequence) {
         this.a.U = charSequence;
     }
 
-    public final void g(String str, ed edVar) {
-        hd hdVar = this.a;
-        hdVar.o0 = str;
-        hdVar.p0 = edVar;
+    public final void g(String str, ee eeVar) {
+        he heVar = this.a;
+        heVar.o0 = str;
+        heVar.p0 = eeVar;
     }
 
-    public final void h(String str, ed edVar) {
-        hd hdVar = this.a;
-        hdVar.s0 = str;
-        hdVar.t0 = edVar;
+    public final void h(String str, ee eeVar) {
+        he heVar = this.a;
+        heVar.s0 = str;
+        heVar.t0 = eeVar;
     }
 
     public final void i(DialogInterface.OnDismissListener onDismissListener) {
         this.a.setOnDismissListener(onDismissListener);
     }
 
-    public final void j(CharSequence charSequence, ed edVar) {
-        hd hdVar = this.a;
-        hdVar.m0 = charSequence;
-        hdVar.n0 = edVar;
+    public final void j(CharSequence charSequence, ee eeVar) {
+        he heVar = this.a;
+        heVar.m0 = charSequence;
+        heVar.n0 = eeVar;
     }
 
     public final void k(CharSequence charSequence) {
@@ -78,56 +78,56 @@ public class AlertDialog$Builder {
     }
 
     public final void l(int i, int i2, int i3, HashMap hashMap) {
-        hd hdVar = this.a;
-        hdVar.Y = i;
-        hdVar.Z = i2;
-        hdVar.T0 = false;
-        hdVar.d0 = i3;
-        hdVar.e0 = -1;
-        hdVar.a0 = hashMap;
+        he heVar = this.a;
+        heVar.Y = i;
+        heVar.Z = i2;
+        heVar.T0 = false;
+        heVar.d0 = i3;
+        heVar.e0 = -1;
+        heVar.a0 = hashMap;
     }
 
-    public final void m(int i, wjb wjbVar) {
-        hd hdVar = this.a;
-        hdVar.e0 = i;
-        hdVar.f0 = wjbVar;
-        hdVar.d0 = bkb.v0(i, wjbVar);
+    public final void m(int i, ylb ylbVar) {
+        he heVar = this.a;
+        heVar.e0 = i;
+        heVar.f0 = ylbVar;
+        heVar.d0 = cmb.v0(i, ylbVar);
     }
 
     public final void n(View view) {
-        hd hdVar = this.a;
-        hdVar.b = view;
-        hdVar.e = -2;
+        he heVar = this.a;
+        heVar.b = view;
+        heVar.e = -2;
     }
 
-    public final hd o() {
+    public final he o() {
         TextView textView;
-        hd hdVar = this.a;
-        hdVar.show();
+        he heVar = this.a;
+        heVar.show();
         int i = 0;
         while (true) {
             boolean[] zArr = this.b;
             if (i < zArr.length) {
-                if (zArr[i] && (textView = (TextView) hdVar.c(-(i + 1))) != null) {
-                    zkb.X(textView, bkb.p7, hdVar.j1);
+                if (zArr[i] && (textView = (TextView) heVar.c(-(i + 1))) != null) {
+                    anb.X(textView, cmb.p7, heVar.j1);
                 }
                 i++;
             } else {
-                return hdVar;
+                return heVar;
             }
         }
     }
 
     public AlertDialog$Builder setTopImage(int i, int i2) {
-        hd hdVar = this.a;
-        hdVar.V = i;
-        hdVar.d0 = i2;
-        hdVar.e0 = -1;
+        he heVar = this.a;
+        heVar.V = i;
+        heVar.d0 = i2;
+        heVar.e0 = -1;
         return this;
     }
 
-    public AlertDialog$Builder(Context context, wjb wjbVar) {
-        this(0, wjbVar, context);
+    public AlertDialog$Builder(Context context, ylb ylbVar) {
+        this(0, ylbVar, context);
     }
 
     public AlertDialog$Builder(Context context) {

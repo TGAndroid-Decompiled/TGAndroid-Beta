@@ -1,88 +1,69 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m47 implements RequestDelegate {
-    public final byte a;
-    public final s47 b;
+import android.util.LongSparseArray;
+import android.util.SparseBooleanArray;
+import java.util.ArrayList;
+public final class m47 {
+    public final Boolean a;
+    public final byte b;
+    public final long c;
+    public final ArrayList e;
+    public final SparseBooleanArray g;
+    public final boolean i;
+    public final boolean j;
+    public final o47 k;
+    public final LongSparseArray d = new LongSparseArray();
+    public final ArrayList f = new ArrayList();
+    public final ArrayList h = new ArrayList();
 
-    public m47(s47 s47Var, byte b) {
-        this.a = b;
-        this.b = s47Var;
+    public m47(defpackage.o47 r21, java.lang.Boolean r22, int r23, java.util.ArrayList r24, long r25, android.util.SparseBooleanArray r27) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m47.<init>(o47, java.lang.Boolean, int, java.util.ArrayList, long, android.util.SparseBooleanArray):void");
     }
 
-    @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        final s47 s47Var = this.b;
-        switch (b) {
-            case 0:
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        s47 s47Var2 = s47Var;
-                        switch (b2) {
-                            case 0:
-                                s47Var2.f0(tLObject2, tL_error2);
-                                return;
-                            case 1:
-                                s47Var2.d0(tLObject2, tL_error2);
-                                return;
-                            default:
-                                s47Var2.e0(tLObject2, tL_error2);
-                                return;
+    public final m47 a(ArrayList arrayList) {
+        ArrayList arrayList2 = this.e;
+        if (arrayList2 != null && arrayList2.size() <= 1 && arrayList != null) {
+            boolean z = false;
+            for (int i = 0; i < arrayList2.size(); i++) {
+                k47 k47Var = (k47) arrayList2.get(i);
+                if (k47Var != null) {
+                    int i2 = 0;
+                    while (true) {
+                        if (i2 >= arrayList.size()) {
+                            break;
                         }
-                    }
-                });
-                return;
-            case 1:
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        s47 s47Var2 = s47Var;
-                        switch (b2) {
-                            case 0:
-                                s47Var2.f0(tLObject2, tL_error2);
-                                return;
-                            case 1:
-                                s47Var2.d0(tLObject2, tL_error2);
-                                return;
-                            default:
-                                s47Var2.e0(tLObject2, tL_error2);
-                                return;
+                        k47 k47Var2 = (k47) arrayList.get(i2);
+                        if (k47Var2 != null && k47Var.e1() == k47Var2.e1() && k47.B0(k47Var.k) == k47.B0(k47Var2.k)) {
+                            arrayList2.set(i, k47Var2);
+                            z = true;
+                            break;
                         }
+                        i2++;
                     }
-                });
+                }
+            }
+            if (z) {
+                return new m47(this.k, this.a, this.b, arrayList2, this.c, null);
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final void b(ArrayList arrayList) {
+        arrayList.clear();
+        int i = 0;
+        while (true) {
+            ArrayList arrayList2 = this.e;
+            if (i < arrayList2.size()) {
+                k47 k47Var = (k47) arrayList2.get(i);
+                if (this.g.get(k47Var.e1(), false)) {
+                    arrayList.add(k47Var);
+                }
+                i++;
+            } else {
                 return;
-            default:
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        s47 s47Var2 = s47Var;
-                        switch (b2) {
-                            case 0:
-                                s47Var2.f0(tLObject2, tL_error2);
-                                return;
-                            case 1:
-                                s47Var2.d0(tLObject2, tL_error2);
-                                return;
-                            default:
-                                s47Var2.e0(tLObject2, tL_error2);
-                                return;
-                        }
-                    }
-                });
-                return;
+            }
         }
     }
 }

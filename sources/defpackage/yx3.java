@@ -1,18 +1,32 @@
 package defpackage;
-public final class yx3 extends oh8 {
-    @Override
-    public final void invalidate() {
-        if (pg5.b(this)) {
-            return;
-        }
-        super.invalidate();
+
+import java.util.concurrent.ThreadPoolExecutor;
+public final class yx3 extends bhe {
+    public final bhe a;
+    public final ThreadPoolExecutor b;
+
+    public yx3(bhe bheVar, ThreadPoolExecutor threadPoolExecutor) {
+        this.a = bheVar;
+        this.b = threadPoolExecutor;
     }
 
     @Override
-    public final void invalidate(int i, int i2, int i3, int i4) {
-        if (pg5.b(this)) {
-            return;
+    public final void a(Throwable th) {
+        ThreadPoolExecutor threadPoolExecutor = this.b;
+        try {
+            this.a.a(th);
+        } finally {
+            threadPoolExecutor.shutdown();
         }
-        super.invalidate(i, i2, i3, i4);
+    }
+
+    @Override
+    public final void b(e7a e7aVar) {
+        ThreadPoolExecutor threadPoolExecutor = this.b;
+        try {
+            this.a.b(e7aVar);
+        } finally {
+            threadPoolExecutor.shutdown();
+        }
     }
 }

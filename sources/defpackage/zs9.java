@@ -1,30 +1,15 @@
 package defpackage;
 
-import androidx.appcompat.widget.SearchView;
-public final class zs9 implements Runnable {
-    public final byte a;
-    public final SearchView b;
+import android.os.Build;
+import androidx.core.widget.NestedScrollView;
+public final class zs9 {
+    public final ys9 a;
 
-    public zs9(SearchView searchView, byte b) {
-        this.a = b;
-        this.b = searchView;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        SearchView searchView = this.b;
-        switch (b) {
-            case 0:
-                searchView.r();
-                return;
-            default:
-                d43 d43Var = searchView.i0;
-                if (d43Var instanceof kbb) {
-                    d43Var.b(null);
-                    return;
-                }
-                return;
+    public zs9(NestedScrollView nestedScrollView) {
+        if (Build.VERSION.SDK_INT >= 35) {
+            this.a = new xs9(nestedScrollView);
+        } else {
+            this.a = new q7f((byte) 25);
         }
     }
 }

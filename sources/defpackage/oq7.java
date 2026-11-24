@@ -1,15 +1,8 @@
 package defpackage;
-public final class oq7 implements Runnable {
-    public final byte a;
-    public final Object b;
+public interface oq7 {
+    ix9 D();
 
-    public oq7(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
-    }
+    long p(vb3 vb3Var);
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.oq7.run():void");
-    }
+    void u0(long j);
 }

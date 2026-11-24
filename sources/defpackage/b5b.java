@@ -1,63 +1,35 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
-public final class b5b extends oec {
-    public final byte a;
-    public final Context b;
-    public final y5b c;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+public final class b5b extends FrameLayout {
+    public a58 a;
+    public long b;
+    public ArrayList c;
+    public boolean d;
+    public final eab e;
 
-    public b5b(y5b y5bVar, Context context, byte b) {
-        this.a = b;
-        this.c = y5bVar;
-        this.b = context;
+    public b5b(eab eabVar, Context context) {
+        super(context);
+        this.e = eabVar;
     }
 
-    @Override
-    public final void b(View view, int i, int i2) {
-        switch (this.a) {
-            case 0:
-                ((t5b) view).b(i2);
-                return;
-            default:
-                ((t5b) view).b(i2);
-                return;
+    public final void a(boolean z) {
+        if (this.d != z) {
+            this.d = z;
+            invalidate();
+            this.a.setIsVisible(z);
+            this.e.A();
         }
     }
 
     @Override
-    public final View d(int i) {
-        byte b = this.a;
-        Context context = this.b;
-        y5b y5bVar = this.c;
-        switch (b) {
-            case 0:
-                return new t5b(y5bVar, context);
-            default:
-                return new t5b(y5bVar, context);
+    public final void dispatchDraw(Canvas canvas) {
+        if (!this.d) {
+            return;
         }
-    }
-
-    @Override
-    public final int e() {
-        switch (this.a) {
-            case 0:
-                return 2;
-            default:
-                return 1;
-        }
-    }
-
-    @Override
-    public final int h(int i) {
-        switch (this.a) {
-            case 0:
-                if (i == 0) {
-                    return 0;
-                }
-                return this.c.G1;
-            default:
-                return 5;
-        }
+        super.dispatchDraw(canvas);
     }
 }

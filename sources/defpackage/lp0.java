@@ -1,97 +1,425 @@
 package defpackage;
 
-import android.app.DownloadManager;
-import android.net.Uri;
-import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Pair;
-import java.io.File;
-import org.json.JSONObject;
+import android.app.Activity;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class lp0 {
-    public Long a;
-    public final String b;
-    public final String c;
-    public File d;
-    public final String e;
-    public long f;
-    public long g;
-    public boolean h;
-    public boolean i;
-    public long j;
-    public boolean k;
-    public boolean l;
-    public final Runnable m = new oz(this, (byte) 19);
-    public final mp0 n;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+import org.telegram.ui.ProfileActivity;
+public final class lp0 extends h15 implements jm7 {
+    public final long S;
+    public final int T;
+    public TL_stories.TL_premium_boostsStatus U;
+    public vh1 V;
+    public ScrollSlidingTextTabStrip W;
+    public final ArrayList X;
+    public final ArrayList Y;
+    public boolean Z;
+    public int a0;
+    public boolean b0;
+    public int c0;
+    public final ArrayList d0;
+    public int e0;
+    public LimitPreviewView f0;
+    public final ep0 g0;
+    public boolean h0;
+    public LinearLayout i0;
+    public final TLRPC.Chat j0;
+    public String k0;
+    public String l0;
+    public byte m0;
+    public byte n0;
+    public int o0;
+    public int p0;
 
-    public lp0(mp0 mp0Var, String str, String str2) {
-        String y;
-        this.n = mp0Var;
-        this.b = str;
-        this.c = str2;
-        TLRPC.User V1 = na7.q1(mp0Var.b).V1(Long.valueOf(mp0Var.c));
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
-        request.setTitle(l7c.q(V1));
-        if (TextUtils.isEmpty(str2)) {
-            y = "Downloading file...";
-        } else {
-            y = tb4.y("Downloading ", str2, "...");
-        }
-        request.setDescription(y);
-        request.setNotificationVisibility(0);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str2);
-        this.a = Long.valueOf(mp0Var.d.enqueue(request));
+    public lp0(long j) {
+        int i = z8c.t0;
+        this.T = i;
+        this.X = new ArrayList();
+        this.Y = new ArrayList();
+        this.d0 = new ArrayList();
+        this.e0 = 0;
+        this.g0 = new ep0(this);
+        this.k0 = "";
+        this.l0 = "";
+        this.m0 = (byte) 5;
+        this.n0 = (byte) 5;
+        this.S = j;
+        this.j0 = oc7.r1(i).L0(Long.valueOf(-j));
     }
 
-    public final void a() {
-        mp0 mp0Var = this.n;
-        mp0Var.getClass();
-        this.i = true;
-        Long l = this.a;
-        if (l != null) {
-            mp0Var.d.remove(l.longValue());
-            this.a = null;
-        }
-        mp0Var.e.remove(this);
-        mp0Var.e();
-    }
-
-    public final Pair b() {
-        if (this.h) {
-            return new Pair(Long.valueOf(this.g), Long.valueOf(this.g));
-        }
-        if (this.a != null && !this.i) {
-            if (System.currentTimeMillis() - this.j < 150) {
-                return new Pair(Long.valueOf(this.f), Long.valueOf(this.g));
+    public final void E0(Context context, View view, int i) {
+        boolean z = false;
+        if (view instanceof vx4) {
+            vx4 vx4Var = (vx4) view;
+            TL_stories.Boost boost = vx4Var.getBoost();
+            boolean z2 = boost.giveaway;
+            if (z2 && boost.stars > 0) {
+                nxa.i1(context, this.T, this.S, boost, getResourceProvider());
+            } else {
+                boolean z3 = boost.gift;
+                if (((!z3 && !z2) || boost.user_id < 0) && !boost.unclaimed) {
+                    if (z2 && boost.user_id == -1) {
+                        b31 b31Var = new b31(getParentActivity(), getResourceProvider());
+                        b31Var.c(2131623982, 36, 36, new String[0]);
+                        b31Var.b.setText(jb6.M0(2131753268, null));
+                        b31Var.b.setSingleLine(false);
+                        b31Var.b.setMaxLines(2);
+                        u31.g(this, b31Var, 2750).j();
+                    } else if (!z3 && !z2) {
+                        presentFragment(ProfileActivity.S2(vx4Var.getDialogId()));
+                    }
+                } else {
+                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
+                    tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
+                    tL_payments_checkedGiftCode.to_id = boost.user_id;
+                    tL_payments_checkedGiftCode.from_id = oc7.r1(z8c.t0).x1(-this.j0.id);
+                    int i2 = boost.date;
+                    tL_payments_checkedGiftCode.date = i2;
+                    tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
+                    int i3 = boost.expires - i2;
+                    tL_payments_checkedGiftCode.days = i3 / 86400;
+                    tL_payments_checkedGiftCode.months = (i3 / 30) / 86400;
+                    if (boost.unclaimed) {
+                        tL_payments_checkedGiftCode.to_id = -1L;
+                        tL_payments_checkedGiftCode.flags = -1;
+                    } else {
+                        tL_payments_checkedGiftCode.boost = boost;
+                    }
+                    new rv4(this, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
+                }
             }
-            d();
-            return new Pair(Long.valueOf(this.f), Long.valueOf(this.g));
         }
-        return new Pair(Long.valueOf(this.f), Long.valueOf(this.g));
-    }
-
-    public final boolean c() {
-        if (!this.h && this.a != null) {
-            return true;
+        boolean z4 = view instanceof xib;
+        long j = this.S;
+        if (z4) {
+            do0.D0(this, this.resourceProvider, j, null);
         }
-        return false;
+        if (view instanceof zx4) {
+            do0.D0(this, this.resourceProvider, j, ((zx4) view).getPrepaidGiveaway());
+        }
+        if (((kp0) this.d0.get(i)).a == 9) {
+            if (this.e0 == 1) {
+                z = true;
+            }
+            H0(Boolean.valueOf(z));
+        }
     }
 
-    public final void d() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lp0.d():void");
+    public final void F0(CountDownLatch countDownLatch, bp0 bp0Var) {
+        TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
+        tL_premium_getBoostsList.limit = this.n0;
+        tL_premium_getBoostsList.offset = this.k0;
+        int i = this.T;
+        tL_premium_getBoostsList.peer = oc7.r1(i).i1(this.S);
+        ConnectionsManager.getInstance(i).sendRequest(tL_premium_getBoostsList, new eo0(this, countDownLatch, bp0Var, (byte) 4), 2);
     }
 
-    public lp0(mp0 mp0Var, JSONObject jSONObject) {
-        this.n = mp0Var;
-        this.b = jSONObject.optString("url");
-        this.c = jSONObject.optString("file_name");
-        this.g = jSONObject.optLong("size");
-        this.h = jSONObject.optBoolean("done");
-        this.e = jSONObject.optString("mime");
-        String optString = jSONObject.optString("path");
-        if (TextUtils.isEmpty(optString)) {
+    public final void G0(CountDownLatch countDownLatch, bp0 bp0Var) {
+        TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
+        tL_premium_getBoostsList.limit = this.m0;
+        tL_premium_getBoostsList.gifts = true;
+        tL_premium_getBoostsList.offset = this.l0;
+        int i = this.T;
+        tL_premium_getBoostsList.peer = oc7.r1(i).i1(this.S);
+        ConnectionsManager.getInstance(i).sendRequest(tL_premium_getBoostsList, new eo0(this, countDownLatch, bp0Var, (byte) 5), 2);
+    }
+
+    public final void H0(Boolean bool) {
+        if (this.h0) {
             return;
         }
-        this.d = new File(optString);
+        this.h0 = true;
+        if (bool == null) {
+            Utilities.e.c(new bp0(this, (byte) 1));
+        } else if (bool.booleanValue()) {
+            G0(null, new bp0(this, (byte) 2));
+        } else {
+            F0(null, new bp0(this, (byte) 3));
+        }
+    }
+
+    public final void I0(boolean z) {
+        int i;
+        int i2;
+        View view;
+        float f;
+        if (getParentActivity() == null) {
+            return;
+        }
+        if (this.f0 == null) {
+            LimitPreviewView limitPreviewView = new LimitPreviewView(getParentActivity(), 2131231130, 0, 0, this.resourceProvider);
+            this.f0 = limitPreviewView;
+            limitPreviewView.d0 = true;
+            limitPreviewView.setDarkGradientProvider(new xg0(this, (byte) 9));
+        }
+        if (this.f0.getParent() != null) {
+            ((ViewGroup) this.f0.getParent()).removeView(this.f0);
+        }
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.U;
+        if (tL_premium_boostsStatus != null) {
+            this.f0.h(tL_premium_boostsStatus, false);
+            if (z) {
+                this.f0.setAlpha(0.0f);
+                this.f0.animate().alpha(1.0f).start();
+            }
+        }
+        TLRPC.Chat chat = this.j0;
+        if (sd2.V(chat)) {
+            i = 2131753554;
+        } else {
+            i = 2131753552;
+        }
+        String M0 = jb6.M0(i, null);
+        if (sd2.V(chat)) {
+            i2 = 2131753553;
+        } else {
+            i2 = 2131753551;
+        }
+        SpannableStringBuilder S2 = gm.S2(jb6.M0(i2, null));
+        FrameLayout frameLayout = new FrameLayout(getParentActivity());
+        if (this.U != null) {
+            view = this.f0;
+        } else {
+            view = new View(frameLayout.getContext());
+        }
+        if (this.U != null) {
+            f = -2.0f;
+        } else {
+            f = 110.0f;
+        }
+        frameLayout.addView(view, qoe.d(-1, f, 0, 8.0f, 46.0f, 8.0f, 33.0f));
+        j0(M0, S2, frameLayout, new ip0(this, getParentActivity()));
+    }
+
+    public final void J0(boolean z) {
+        boolean z2;
+        int i;
+        int i2;
+        boolean z3;
+        boolean z4;
+        ArrayList arrayList = new ArrayList(this.d0);
+        this.d0.clear();
+        this.d0.add(new ja(14, false));
+        if (this.U != null) {
+            this.d0.add(new kp0(16, jb6.M0(2131744584, null)));
+            this.d0.add(new ja(0, false));
+            this.d0.add(new ja(2, false));
+            if (this.U.prepaid_giveaways.size() > 0) {
+                this.d0.add(new kp0(12, jb6.M0(2131753289, null)));
+                for (int i3 = 0; i3 < this.U.prepaid_giveaways.size(); i3++) {
+                    TL_stories.PrepaidGiveaway prepaidGiveaway = this.U.prepaid_giveaways.get(i3);
+                    ArrayList arrayList2 = this.d0;
+                    if (i3 == this.U.prepaid_giveaways.size() - 1) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    ?? jaVar = new ja(11, true);
+                    jaVar.e = prepaidGiveaway;
+                    jaVar.f = z4;
+                    arrayList2.add(jaVar);
+                }
+                this.d0.add(new kp0(6, jb6.M0(2131753251, null)));
+            }
+            this.d0.add(new kp0(13, jb6.M0(2131753571, null)));
+            int i4 = 2131753569;
+            if (this.e0 == 0) {
+                if (this.X.isEmpty()) {
+                    this.d0.add(new ja(8, false));
+                    this.d0.add(new ja(2, false));
+                } else {
+                    for (int i5 = 0; i5 < this.X.size(); i5++) {
+                        ArrayList arrayList3 = this.d0;
+                        TL_stories.Boost boost = (TL_stories.Boost) this.X.get(i5);
+                        if (i5 == this.X.size() - 1 && !this.Z) {
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                        arrayList3.add(new kp0(boost, z3, this.e0));
+                    }
+                    boolean z5 = this.Z;
+                    ArrayList arrayList4 = this.d0;
+                    if (z5) {
+                        arrayList4.add(new ja(9, true));
+                    } else {
+                        arrayList4.add(new ja(7, false));
+                    }
+                    ArrayList arrayList5 = this.d0;
+                    if (sd2.V(this.j0)) {
+                        i4 = 2131753570;
+                    }
+                    arrayList5.add(new kp0(6, jb6.M0(i4, null)));
+                }
+            } else if (this.Y.isEmpty()) {
+                this.d0.add(new ja(8, false));
+                this.d0.add(new ja(2, false));
+            } else {
+                for (int i6 = 0; i6 < this.Y.size(); i6++) {
+                    ArrayList arrayList6 = this.d0;
+                    TL_stories.Boost boost2 = (TL_stories.Boost) this.Y.get(i6);
+                    if (i6 == this.Y.size() - 1 && !this.b0) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    arrayList6.add(new kp0(boost2, z2, this.e0));
+                }
+                boolean z6 = this.b0;
+                ArrayList arrayList7 = this.d0;
+                if (z6) {
+                    arrayList7.add(new ja(9, true));
+                } else {
+                    arrayList7.add(new ja(7, false));
+                }
+                ArrayList arrayList8 = this.d0;
+                if (sd2.V(this.j0)) {
+                    i4 = 2131753570;
+                }
+                arrayList8.add(new kp0(6, jb6.M0(i4, null)));
+            }
+            this.d0.add(new kp0(1, jb6.M0(2131748671, null)));
+            this.d0.add(new kp0(3, this.U.boost_url));
+            if (oc7.r1(this.T).l4.O1.f && sd2.N(this.j0)) {
+                ArrayList arrayList9 = this.d0;
+                if (sd2.V(this.j0)) {
+                    i = 2131753234;
+                } else {
+                    i = 2131753233;
+                }
+                arrayList9.add(new kp0(6, jb6.M0(i, null)));
+                this.d0.add(new ja(10, true));
+                ArrayList arrayList10 = this.d0;
+                if (sd2.V(this.j0)) {
+                    i2 = 2131753468;
+                } else {
+                    i2 = 2131753467;
+                }
+                arrayList10.add(new kp0(6, jb6.M0(i2, null)));
+            } else {
+                this.d0.add(new kp0(6, ""));
+            }
+            this.d0.add(new ja(15, false));
+        }
+        ep0 ep0Var = this.g0;
+        if (z) {
+            ep0Var.E(arrayList, this.d0);
+        } else {
+            ep0Var.f();
+        }
+    }
+
+    @Override
+    public final View createView(Context context) {
+        View createView = super.createView(context);
+        I0(false);
+        sc3 sc3Var = new sc3();
+        sc3Var.m = false;
+        sc3Var.C = false;
+        this.c.setItemAnimator(sc3Var);
+        this.c.setOnItemClickListener(new k0(this, context, (byte) 2));
+        Activity parentActivity = getParentActivity();
+        LinearLayout linearLayout = new LinearLayout(parentActivity);
+        this.i0 = linearLayout;
+        linearLayout.setOrientation(1);
+        this.i0.addView(new fp0(parentActivity), qoe.t(100, 100, 17, 0, 120, 0, 0));
+        ((ViewGroup) this.fragmentView).addView(this.i0, qoe.e(-1, -2, 17));
+        this.i0.setAlpha(0.0f);
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.U;
+        LinearLayout linearLayout2 = this.i0;
+        if (tL_premium_boostsStatus == null) {
+            linearLayout2.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
+            getMessagesController().F0().a(this.S, new cp0(this, (byte) 1));
+        } else {
+            linearLayout2.setVisibility(8);
+            H0(null);
+        }
+        J0(false);
+        return createView;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        d dVar;
+        d dVar2;
+        if (i == nm7.X2) {
+            TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
+            boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
+            List fragmentStack = getParentLayout().getFragmentStack();
+            d dVar3 = null;
+            if (fragmentStack.size() >= 2) {
+                dVar = (d) aq1.m(2, fragmentStack);
+            } else {
+                dVar = null;
+            }
+            if (dVar instanceof ba2) {
+                ((ActionBarLayout) getParentLayout()).c0(dVar, false);
+            }
+            List fragmentStack2 = getParentLayout().getFragmentStack();
+            if (fragmentStack2.size() >= 2) {
+                dVar2 = (d) aq1.m(2, fragmentStack2);
+            } else {
+                dVar2 = null;
+            }
+            if (booleanValue) {
+                if (fragmentStack2.size() >= 3) {
+                    dVar3 = (d) aq1.m(3, fragmentStack2);
+                }
+                if (dVar2 instanceof ProfileActivity) {
+                    ((ActionBarLayout) getParentLayout()).c0(dVar2, false);
+                }
+                finishFragment();
+                if (dVar3 instanceof yv1) {
+                    yn0.f(dVar3, chat, true);
+                }
+                if (dVar2 instanceof yv1) {
+                    yn0.f(dVar2, chat, true);
+                    return;
+                }
+                return;
+            }
+            finishFragment();
+            if ((dVar2 instanceof ProfileActivity) || (dVar2 instanceof yv1)) {
+                yn0.f(dVar2, chat, false);
+            }
+        } else if (i == nm7.r3) {
+            if (this.S == ((Long) objArr[2]).longValue()) {
+                this.U = (TL_stories.TL_premium_boostsStatus) objArr[0];
+                this.V = (vh1) objArr[1];
+            }
+        }
+    }
+
+    @Override
+    public final y59 k0() {
+        return this.g0;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        getNotificationCenter().b(this, nm7.X2);
+        getNotificationCenter().b(this, nm7.r3);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getNotificationCenter().n(this, nm7.X2);
+        getNotificationCenter().n(this, nm7.r3);
+        super.onFragmentDestroy();
     }
 }

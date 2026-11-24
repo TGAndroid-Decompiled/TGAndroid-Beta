@@ -1,17 +1,52 @@
 package defpackage;
-public final class pue implements zn7 {
-    public static final pue a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
-    }
+import android.util.Log;
+import android.util.LongSparseArray;
+import java.lang.reflect.Field;
+public abstract class pue {
+    public static Field a;
+    public static boolean b;
+    public static Class c;
+    public static boolean d;
+    public static Field e;
+    public static boolean f;
+    public static Field g;
+    public static boolean h;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static void a(Object obj) {
+        LongSparseArray longSparseArray;
+        if (!d) {
+            try {
+                c = Class.forName("android.content.res.ThemedResourceCache");
+            } catch (ClassNotFoundException e2) {
+                Log.e("ResourcesFlusher", "Could not find ThemedResourceCache class", e2);
+            }
+            d = true;
         }
-        throw new ClassCastException();
+        Class cls = c;
+        if (cls != null) {
+            if (!f) {
+                try {
+                    Field declaredField = cls.getDeclaredField("mUnthemedEntries");
+                    e = declaredField;
+                    declaredField.setAccessible(true);
+                } catch (NoSuchFieldException e3) {
+                    Log.e("ResourcesFlusher", "Could not retrieve ThemedResourceCache#mUnthemedEntries field", e3);
+                }
+                f = true;
+            }
+            Field field = e;
+            if (field != null) {
+                try {
+                    longSparseArray = (LongSparseArray) field.get(obj);
+                } catch (IllegalAccessException e4) {
+                    Log.e("ResourcesFlusher", "Could not retrieve value from ThemedResourceCache#mUnthemedEntries", e4);
+                    longSparseArray = null;
+                }
+                if (longSparseArray != null) {
+                    lc9.a(longSparseArray);
+                }
+            }
+        }
     }
 }

@@ -1,29 +1,29 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-public final class ph3 extends rl0 {
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+import android.animation.ValueAnimator;
+public final class ph3 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final nk3 b;
+
+    public ph3(nk3 nk3Var, byte b) {
+        this.a = b;
+        this.b = nk3Var;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final int z1() {
-        return gl.L(48.0f);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        nk3 nk3Var = this.b;
+        switch (b) {
+            case 0:
+                nk3Var.X4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                nk3Var.Z4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                nk3Var.T4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+        }
     }
 }

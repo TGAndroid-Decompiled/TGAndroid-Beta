@@ -1,35 +1,32 @@
 package defpackage;
+public final class kt7 implements aj2 {
+    public final Class a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class kt7 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final t09 b;
-
-    public kt7(t09 t09Var, byte b) {
-        this.a = b;
-        this.b = t09Var;
+    public kt7(Class cls) {
+        cls.getClass();
+        this.a = cls;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        t09 t09Var = this.b;
-        switch (b) {
-            case 0:
-                gl.B2(t09Var);
-                return;
-            case 1:
-                super.onAnimationEnd(animator);
-                t09Var.M0.e();
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                t09Var.R = null;
-                t09Var.o0 = 0.0f;
-                t09Var.m0 = null;
-                t09Var.invalidate();
-                return;
+    public final Class a() {
+        return this.a;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof kt7) {
+            if (rr5.a(this.a, ((kt7) obj).a)) {
+                return true;
+            }
+            return false;
         }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
+    }
+
+    public final String toString() {
+        return this.a + " (Kotlin reflection is not available)";
     }
 }

@@ -1,9 +1,9 @@
 package defpackage;
-public abstract class kre {
-    public static void a(Object obj, String str) {
-        if (obj != null) {
-            return;
-        }
-        fvc.f(str);
-    }
+public final class kre {
+    public Long a;
+    public Long b;
+    public Long c;
+    public Long d;
+    public Long e;
+    public Long f;
 }

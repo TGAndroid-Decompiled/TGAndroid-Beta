@@ -3,7 +3,7 @@ package defpackage;
 import android.content.Intent;
 import android.net.Uri;
 import org.telegram.messenger.a;
-public final class o8 implements ed {
+public final class o8 implements ee {
     public final byte a;
     public final u8 b;
 
@@ -13,7 +13,7 @@ public final class o8 implements ed {
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
+    public final void r(he heVar, int i) {
         byte b = this.a;
         u8 u8Var = this.b;
         switch (b) {
@@ -24,13 +24,13 @@ public final class o8 implements ed {
                     u8Var.getParentActivity().startActivity(intent);
                     return;
                 } catch (Exception e) {
-                    fa4.g(e, true);
+                    fc4.g(e, true);
                     return;
                 }
             default:
-                mf6 mf6Var = new mf6();
-                mf6Var.G = (byte) 2;
-                u8Var.presentFragment(mf6Var, true);
+                mh6 mh6Var = new mh6();
+                mh6Var.G = (byte) 2;
+                u8Var.presentFragment(mh6Var, true);
                 return;
         }
     }

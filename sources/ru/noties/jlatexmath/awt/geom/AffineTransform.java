@@ -49,7 +49,7 @@ public class AffineTransform implements Cloneable {
         if (affineTransform != null) {
             return affineTransform;
         }
-        sc8.j("Cannot restore root transform instance");
+        dq9.m("Cannot restore root transform instance");
         return null;
     }
 

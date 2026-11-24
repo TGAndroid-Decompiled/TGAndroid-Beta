@@ -1,43 +1,24 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class iw1 implements gj, e39 {
-    public final byte a;
-    public final ChatActivityEnterView b;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class iw1 extends LinearLayout {
+    public final jw1[] a;
 
-    public iw1(ChatActivityEnterView chatActivityEnterView, byte b) {
-        this.a = b;
-        this.b = chatActivityEnterView;
+    public iw1(Context context) {
+        super(context);
+        this.a = new jw1[2];
     }
 
-    @Override
-    public final boolean d(int i, View view) {
-        if (view instanceof cp0) {
-            ChatActivityEnterView chatActivityEnterView = this.b;
-            chatActivityEnterView.setFieldText(((cp0) view).getCommand() + " ");
-            chatActivityEnterView.n0.c();
-            return true;
+    public final void a(os1 os1Var, LinearLayout.LayoutParams layoutParams) {
+        int childCount = getChildCount();
+        if (childCount < 2) {
+            this.a[childCount] = os1Var;
+            addView(os1Var, layoutParams);
         }
-        return false;
     }
 
-    @Override
-    public final void s(int i, int i2, boolean z) {
-        switch (this.a) {
-            case 0:
-                this.b.v1(z, i, i2, 0L, true);
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView = this.b;
-                boolean v1 = chatActivityEnterView.v1(z, i, i2, 0L, true);
-                j47 j47Var = chatActivityEnterView.M0;
-                if (j47Var != null) {
-                    j47Var.f(!v1);
-                    chatActivityEnterView.M0 = null;
-                    return;
-                }
-                return;
-        }
+    public jw1[] getButtons() {
+        return this.a;
     }
 }

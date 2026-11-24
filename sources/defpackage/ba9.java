@@ -1,41 +1,28 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public enum ba9 implements Parcelable {
-    RESIDENT_KEY_DISCOURAGED("discouraged"),
-    RESIDENT_KEY_PREFERRED("preferred"),
-    RESIDENT_KEY_REQUIRED("required");
-    
-    public static final Parcelable.Creator<ba9> CREATOR = new j9d((byte) 5);
-    public final String a;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+public final class ba9 extends su3 {
+    public final ca9 F;
 
-    ba9(String str) {
-        this.a = str;
+    public ba9(ca9 ca9Var, Context context, ylb ylbVar) {
+        super(context, "", true, false, 1024, ylbVar);
+        this.F = ca9Var;
     }
 
-    public static ba9 a(String str) {
-        ba9[] values;
-        for (ba9 ba9Var : values()) {
-            if (str.equals(ba9Var.a)) {
-                return ba9Var;
+    @Override
+    public final void b(Editable editable) {
+        boolean z;
+        ca9 ca9Var = this.F;
+        b61 b61Var = ca9Var.s;
+        if (b61Var != null) {
+            if (!ca9Var.d.optional && TextUtils.isEmpty(ca9Var.n.getText())) {
+                z = false;
+            } else {
+                z = true;
             }
+            b61Var.setEnabled(z);
         }
-        throw new Exception(tb4.y("Resident key requirement ", str, " not supported"));
-    }
-
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public final String toString() {
-        return this.a;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.a);
     }
 }

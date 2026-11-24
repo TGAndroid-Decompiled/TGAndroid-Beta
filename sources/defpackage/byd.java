@@ -1,8 +1,17 @@
 package defpackage;
-public abstract class byd {
-    public static final gcd a = new Object();
+public final class byd implements cq7 {
+    public static final byd a = new Object();
 
     static {
-        jae jaeVar = jae.c;
+        mlb.z(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, mlb.t(mlb.p(kad.class, new d9d(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

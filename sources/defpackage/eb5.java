@@ -1,154 +1,51 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.RadialProgress2;
-public final class eb5 implements sp3 {
-    public boolean E;
-    public TLRPC.MessageExtendedMedia F;
-    public String G;
-    public final RadialProgress2 H;
-    public int I;
-    public final int J;
-    public final int K;
-    public int L;
-    public tgb M;
-    public boolean N;
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public final gb2 e;
-    public final ImageReceiver f;
-    public boolean h;
-    public final int n;
-    public final int r;
-    public final float[] s = new float[8];
-    public String w;
-    public final boolean x;
-    public final boolean y;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public abstract class eb5 extends my0 {
+    public ggc l1;
+    public cb5 m1;
+    public LinearLayout n1;
+    public TextView[] o1;
+    public float p1;
+    public int q1;
 
-    public eb5(gb2 gb2Var, k27 k27Var, TLRPC.MessageExtendedMedia messageExtendedMedia, boolean z, int i, int i2) {
-        int i3;
-        boolean z2;
-        this.I = 4;
-        this.K = 0;
-        this.L = 0;
-        this.e = gb2Var;
-        this.x = z;
-        this.y = false;
-        if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
-            TLRPC.MessageMedia messageMedia = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && k27.J4(messageMedia.document)) {
-                z2 = true;
-            } else {
-                z2 = false;
+    public final void D0() {
+        TextView textView;
+        TextView[] textViewArr = this.o1;
+        int i = this.q1;
+        TextView textView2 = textViewArr[i];
+        if (i < textViewArr.length - 1) {
+            textView = textViewArr[i + 1];
+        } else {
+            textView = null;
+        }
+        this.b.getMeasuredWidth();
+        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
+        float measuredWidth2 = (this.b.getMeasuredWidth() / 2) - measuredWidth;
+        if (textView != null) {
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * this.p1;
+        }
+        for (int i2 = 0; i2 < textViewArr.length; i2++) {
+            int i3 = this.q1;
+            float f = 0.9f;
+            float f2 = 0.7f;
+            if (i2 >= i3 && i2 <= i3 + 1) {
+                float f3 = this.p1;
+                float f4 = 0.3f * f3;
+                if (i2 == i3) {
+                    f2 = 1.0f - f4;
+                    f = 1.0f - (f3 * 0.1f);
+                } else {
+                    f2 = 0.7f + f4;
+                    f = 0.9f + (f3 * 0.1f);
+                }
             }
-            this.y = z2;
-            i3 = (int) Math.max(1L, Math.round(k27.H0(messageMedia.document)));
-            this.K = i3;
-        } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
-            TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia;
-            if ((tL_messageExtendedMediaPreview.flags & 4) != 0) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            this.y = z2;
-            i3 = tL_messageExtendedMediaPreview.video_duration;
-            this.K = i3;
-        } else {
-            i3 = 0;
-            z2 = false;
+            textViewArr[i2].setAlpha(f2);
+            textViewArr[i2].setScaleX(f);
+            textViewArr[i2].setScaleY(f);
         }
-        if (z2) {
-            this.L = i3;
-            this.M = new tgb(gl.g0(i3, true, false), 12.0f, null);
-        }
-        ImageReceiver imageReceiver = new ImageReceiver(gb2Var);
-        this.f = imageReceiver;
-        imageReceiver.p1 = null;
-        this.n = i;
-        this.r = i2;
-        this.J = up3.q(gb2Var.a6).k();
-        c(messageExtendedMedia, k27Var);
-        RadialProgress2 radialProgress2 = new RadialProgress2(gb2Var, gb2Var.getResourcesProvider());
-        this.H = radialProgress2;
-        int a = a();
-        this.I = a;
-        radialProgress2.setIcon(a, false, false);
-    }
-
-    public final int a() {
-        if (this.y && !this.E) {
-            return 0;
-        }
-        return 4;
-    }
-
-    public final void b(int i) {
-        if (i != this.I) {
-            this.I = i;
-            this.H.setIcon(i, true, true);
-        }
-    }
-
-    public final void c(org.telegram.tgnet.TLRPC.MessageExtendedMedia r14, defpackage.k27 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.eb5.c(org.telegram.tgnet.TLRPC$MessageExtendedMedia, k27):void");
-    }
-
-    @Override
-    public final int getObserverTag() {
-        return this.J;
-    }
-
-    @Override
-    public final void i(long j, long j2) {
-        float min;
-        int a;
-        if (j2 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j) / ((float) j2));
-        }
-        this.F.downloadProgress = min;
-        this.H.o(true, min);
-        if (min < 1.0f) {
-            a = 3;
-        } else {
-            a = a();
-        }
-        b(a);
-        this.e.invalidate();
-    }
-
-    @Override
-    public final void l(long j, long j2) {
-        float min;
-        int a;
-        if (j2 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j) / ((float) j2));
-        }
-        this.F.uploadProgress = min;
-        this.H.o(true, min);
-        if (min < 1.0f) {
-            a = 3;
-        } else if (this.x) {
-            a = 6;
-        } else {
-            a = a();
-        }
-        b(a);
-        this.e.invalidate();
-    }
-
-    @Override
-    public final void B(boolean z) {
-    }
-
-    @Override
-    public final void N(String str) {
+        this.n1.setTranslationX(measuredWidth2);
+        this.m1.invalidate();
     }
 }

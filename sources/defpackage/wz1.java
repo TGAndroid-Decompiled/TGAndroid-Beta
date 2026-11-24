@@ -1,176 +1,171 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.os.SystemClock;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class wz1 extends FrameLayout {
-    public final byte a;
-    public final x02 b;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class wz1 extends View {
+    public p09 E;
+    public final float[] F;
+    public boolean G;
+    public long H;
+    public final Paint I;
+    public long J;
+    public final ChatActivityEnterView K;
+    public float a;
+    public boolean b;
+    public boolean c;
+    public final p09 d;
+    public boolean e;
+    public boolean f;
+    public long h;
+    public boolean n;
+    public long r;
+    public float s;
+    public float w;
+    public float x;
+    public float y;
 
-    public wz1(x02 x02Var, Context context, byte b) {
+    public wz1(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.a = b;
-        this.b = x02Var;
+        this.K = chatActivityEnterView;
+        this.h = -1L;
+        this.F = new float[3];
+        this.H = -1L;
+        this.I = new Paint(1);
+        p09 p09Var = new p09(2131623975, gm.L(28.0f), gm.L(28.0f), false, null);
+        this.d = p09Var;
+        p09Var.p0 = true;
+        f();
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 2:
-                canvas.save();
-                canvas.clipRect(0.0f, this.b.S3, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public static float a(long j) {
+        return (((float) Math.cos((((float) (j % 1300)) / 1300.0f) * 3.141592653589793d * 2.0d)) * 0.5f) + 0.5f;
+    }
+
+    public final void b() {
+        this.c = true;
+        this.J = SystemClock.uptimeMillis();
+        p09 p09Var = this.d;
+        p09Var.O(true, 0.0f);
+        if (this.b) {
+            p09Var.start();
         }
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.a) {
-            case 2:
-                x02 x02Var = this.b;
-                wz1 wz1Var = x02Var.A2;
-                if (x02Var.z2.getAlpha() > 0.0f) {
-                    float f = x02Var.T3;
-                    if (f != 0.0f && f != wz1Var.getTop() + x02Var.T3) {
-                        ValueAnimator valueAnimator = x02Var.U3;
-                        if (valueAnimator != null) {
-                            valueAnimator.cancel();
-                        }
-                        float top = x02Var.T3 - (wz1Var.getTop() + x02Var.S3);
-                        x02Var.S3 = top;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                        x02Var.U3 = ofFloat;
-                        ofFloat.addUpdateListener(new uz1(this, (byte) 1));
-                        x02Var.U3.setInterpolator(s33.f);
-                        x02Var.U3.setDuration(200L);
-                        x02Var.U3.start();
-                        x02Var.T3 = 0.0f;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+    public final void c() {
+        ChatActivityEnterView chatActivityEnterView = this.K;
+        chatActivityEnterView.m4.setColor(chatActivityEnterView.F0(cmb.Zf));
+        this.a = 1.0f;
+        System.currentTimeMillis();
+        this.H = -1L;
+        this.h = -1L;
+        this.c = false;
+        this.d.stop();
+        this.n = false;
+        this.y = 0.0f;
+        this.x = 0.0f;
+        this.w = 0.0f;
+        invalidate();
+    }
+
+    public final void d(boolean z) {
+        if (this.G == z) {
+            return;
         }
+        this.G = z;
+        if (z) {
+            g();
+        }
+        invalidate();
+    }
+
+    public final float e() {
+        float i = (1.0f - Utilities.i(this.x / 0.8f, 1.0f, 0.0f)) * this.w;
+        return mlb.B(i, 2.0f, 3.0f, 12.0f * i * i);
+    }
+
+    public final void f() {
+        int i = cmb.Zf;
+        int i2 = ChatActivityEnterView.z7;
+        ChatActivityEnterView chatActivityEnterView = this.K;
+        int F0 = chatActivityEnterView.F0(i);
+        int F02 = chatActivityEnterView.F0(cmb.Ie);
+        int F03 = chatActivityEnterView.F0(cmb.Uf);
+        chatActivityEnterView.m4.setColor(F0);
+        p09 p09Var = this.d;
+        p09Var.a0 = true;
+        p09Var.L(F03, "Cup Red");
+        p09Var.L(F03, "Box Red");
+        p09Var.L(F03, "Cup Grey");
+        p09Var.L(F03, "Box Grey");
+        p09Var.L(F03, "Box_Grey 2");
+        p09Var.L(F03, "Line 1");
+        p09Var.L(F03, "Line 2");
+        p09Var.L(F03, "Line 3");
+        p09Var.L(F02, "Line 1 Dup");
+        p09Var.L(F02, "Line 2 Dup");
+        p09Var.L(F02, "Line 3 Dup");
+        p09Var.j();
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(0.0f);
+        p09Var.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+    }
+
+    public final p09 g() {
+        if (this.E == null) {
+            p09 p09Var = new p09(2131623977, gm.L(28.0f), gm.L(28.0f), false, null);
+            this.E = p09Var;
+            p09Var.E(true);
+            this.E.p0 = false;
+            int i = cmb.Uf;
+            int i2 = ChatActivityEnterView.z7;
+            int F0 = this.K.F0(i);
+            p09 p09Var2 = this.E;
+            p09Var2.a0 = true;
+            p09Var2.L(F0, "Cup Grey");
+            this.E.L(F0, "Box_Grey 2");
+            this.E.L(F0, "Box Grey");
+            this.E.j();
+            this.E.M(this);
+            this.E.O(true, 0.0f);
+        }
+        return this.E;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.a) {
-            case 3:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                x02 x02Var = this.b;
-                p02 p02Var = x02Var.v2;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = x02Var.d2;
-                if (p02Var == chatAttachAlertPhotoLayout) {
-                    accessibilityNodeInfo.setText(k96.G(chatAttachAlertPhotoLayout.getSelectedItemsCount(), "AccDescrSendPhotos", new Object[0]));
-                } else {
-                    d32 d32Var = x02Var.j2;
-                    if (p02Var == d32Var) {
-                        accessibilityNodeInfo.setText(k96.G(d32Var.getSelectedItemsCount(), "AccDescrSendFiles", new Object[0]));
-                    } else {
-                        h12 h12Var = x02Var.f2;
-                        if (p02Var == h12Var) {
-                            accessibilityNodeInfo.setText(k96.G(h12Var.getSelectedItemsCount(), "AccDescrSendAudio", new Object[0]));
-                        }
-                    }
-                }
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.b = true;
+        boolean z = this.c;
+        p09 p09Var = this.d;
+        if (z) {
+            p09Var.start();
         }
+        p09Var.M(this);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                if (this.b.f3.getVisibility() != 0) {
-                    return false;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.b = false;
+        p09 p09Var = this.d;
+        p09Var.stop();
+        p09Var.M(null);
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wz1.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 1:
-                x02 x02Var = this.b;
-                if (x02Var.B1 && x02Var.C1 != 0) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), gl.L(36.0f) + (gl.L(80.0f) * Integer.bitCount(x02Var.C1))), 1073741824), i2);
-                    return;
-                }
-                super.onMeasure(i, i2);
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                if (this.b.f3.getVisibility() != 0) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f) {
-        switch (this.a) {
-            case 0:
-                super.setAlpha(f);
-                x02 x02Var = this.b;
-                x02Var.K1(0);
-                x02Var.b.invalidate();
-                return;
-            case 1:
-            default:
-                super.setAlpha(f);
-                return;
-            case 2:
-                super.setAlpha(f);
-                invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        switch (this.a) {
-            case 1:
-                super.setTranslationY(f);
-                this.b.v2.l();
-                return;
-            default:
-                super.setTranslationY(f);
-                return;
-        }
+        super.onMeasure(i, i2);
+        this.d.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
     }
 }

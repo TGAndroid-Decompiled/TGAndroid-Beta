@@ -1,36 +1,33 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class am extends AnimatorListenerAdapter {
-    public final byte a;
-    public final gm b;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class am extends ClickableSpan {
+    public final boolean a;
+    public final int b;
+    public final ylb c;
+    public final Runnable d;
 
-    public am(gm gmVar, byte b) {
-        this.a = b;
-        this.b = gmVar;
+    public am(boolean z, int i, ylb ylbVar, Runnable runnable) {
+        this.a = z;
+        this.b = i;
+        this.c = ylbVar;
+        this.d = runnable;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        gm gmVar = this.b;
-        switch (b) {
-            case 0:
-                gm.access$002(gmVar, null);
-                gm.access$102(false);
-                return;
-            case 1:
-                gm.access$002(gmVar, null);
-                if (gm.access$200(gmVar) != null) {
-                    gm.access$200(gmVar).run();
-                    gm.access$202(gmVar, null);
-                    return;
-                }
-                return;
-            default:
-                gm.access$302(gmVar, null);
-                return;
+    public final void onClick(View view) {
+        this.d.run();
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(false);
+        if (this.a) {
+            textPaint.setTypeface(gm.o());
         }
+        textPaint.setColor(cmb.v0(this.b, this.c));
     }
 }

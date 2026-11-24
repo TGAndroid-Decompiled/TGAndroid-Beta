@@ -1,32 +1,98 @@
 package defpackage;
-public final class eud extends zud {
-    public final int d;
 
-    public eud(int i, byte[] bArr) {
-        super(bArr);
-        zud.k(0, i, bArr.length);
-        this.d = i;
+import java.util.AbstractList;
+import java.util.Collection;
+import java.util.List;
+import java.util.RandomAccess;
+public abstract class eud extends AbstractList implements d5e {
+    public boolean a;
+
+    public eud(boolean z) {
+        this.a = z;
     }
 
     @Override
-    public final byte h(int i) {
-        int i2 = this.d;
-        if (((i2 - (i + 1)) | i) < 0) {
-            if (i < 0) {
-                throw new ArrayIndexOutOfBoundsException(de9.k(i, "Index < 0: "));
-            }
-            throw new ArrayIndexOutOfBoundsException(b00.g(i, i2, "Index > length: ", ", "));
+    public final boolean addAll(int i, Collection collection) {
+        h();
+        return super.addAll(i, collection);
+    }
+
+    @Override
+    public final void clear() {
+        h();
+        super.clear();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return this.b[i];
+        if (!(obj instanceof List)) {
+            return false;
+        }
+        if (!(obj instanceof RandomAccess)) {
+            return super.equals(obj);
+        }
+        List list = (List) obj;
+        int size = size();
+        if (size != list.size()) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (!get(i).equals(list.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final void h() {
+        if (this.a) {
+            return;
+        }
+        gxc.b();
     }
 
     @Override
-    public final byte i(int i) {
-        return this.b[i];
+    public int hashCode() {
+        int size = size();
+        int i = 1;
+        for (int i2 = 0; i2 < size; i2++) {
+            i = (i * 31) + get(i2).hashCode();
+        }
+        return i;
     }
 
     @Override
-    public final int j() {
-        return this.d;
+    public abstract Object remove(int i);
+
+    @Override
+    public final boolean remove(Object obj) {
+        h();
+        int indexOf = indexOf(obj);
+        if (indexOf == -1) {
+            return false;
+        }
+        remove(indexOf);
+        return true;
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        h();
+        return super.removeAll(collection);
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        h();
+        return super.retainAll(collection);
+    }
+
+    @Override
+    public boolean addAll(Collection collection) {
+        h();
+        return super.addAll(collection);
     }
 }

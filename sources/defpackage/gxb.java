@@ -1,25 +1,32 @@
 package defpackage;
-public final class gxb {
-    public static final gxb a;
-    public static final gxb b;
-    public static final gxb c;
-    public static final gxb[] d;
 
-    static {
-        ?? r0 = new Enum("TOP", 0);
-        a = r0;
-        ?? r1 = new Enum("LEFT", 1);
-        b = r1;
-        ?? r3 = new Enum("BOTTOM", 2);
-        c = r3;
-        d = new gxb[]{r0, r1, r3};
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class gxb extends k69 {
+    public final byte a;
+    public final sxb b;
+
+    public gxb(sxb sxbVar, byte b) {
+        this.a = b;
+        this.b = sxbVar;
     }
 
-    public static gxb valueOf(String str) {
-        return (gxb) Enum.valueOf(gxb.class, str);
-    }
-
-    public static gxb[] values() {
-        return (gxb[]) d.clone();
+    @Override
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        mr3 mr3Var;
+        byte b = this.a;
+        sxb sxbVar = this.b;
+        switch (b) {
+            case 0:
+                sxbVar.z0();
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (mr3Var = sxbVar.i1) != null) {
+                    mr3Var.f(i, i2);
+                    sxbVar.y0();
+                    return;
+                }
+                return;
+        }
     }
 }

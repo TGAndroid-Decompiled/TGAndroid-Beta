@@ -1,5 +1,5 @@
 package defpackage;
-public final class s7 extends gn {
+public final class s7 extends ho {
     public final byte e0;
     public final Object f0;
 

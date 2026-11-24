@@ -1,47 +1,61 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.LaunchActivity;
-public final class va8 extends FrameLayout {
-    public float a;
-    public float b;
-    public boolean c;
-    public boolean d;
-    public final PipRoundVideoView e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.ui.PhotoViewer;
+public final class va8 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final wa8 b;
 
-    public va8(PipRoundVideoView pipRoundVideoView, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.e = pipRoundVideoView;
+    public va8(wa8 wa8Var, byte b) {
+        this.a = b;
+        this.b = wa8Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        wl9 wl9Var = bkb.j3;
-        if (wl9Var != null) {
-            wl9Var.setAlpha((int) (getAlpha() * 255.0f));
-            bkb.j3.setBounds(gl.L(1.0f), gl.L(2.0f), gl.L(125.0f), gl.L(125.0f));
-            bkb.j3.draw(canvas);
-            bkb.R1.setColor(bkb.w0(null, bkb.qa, false));
-            bkb.R1.setAlpha((int) (getAlpha() * 255.0f));
-            canvas.drawCircle(gl.L(63.0f), gl.L(63.0f), gl.L(59.5f), bkb.R1);
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        wa8 wa8Var = this.b;
+        switch (b) {
+            case 0:
+                PhotoViewer photoViewer = (PhotoViewer) wa8Var.b;
+                photoViewer.R1.getNextView().setText((CharSequence) null);
+                ta8 ta8Var = photoViewer.U1;
+                ta8Var.l0 = false;
+                if (ta8Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) ta8Var.o0.getLayoutParams()).topMargin = ta8Var.m0;
+                    ta8Var.m0 = -1;
+                    ta8Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((PhotoViewer) wa8Var.b).R1.setTranslationY(0.0f);
+                return;
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.a = motionEvent.getRawX();
-            this.b = motionEvent.getRawY();
-            this.d = true;
+    public final void onAnimationStart(Animator animator) {
+        switch (this.a) {
+            case 0:
+                ta8 ta8Var = ((PhotoViewer) this.b.b).U1;
+                Method method = ta8Var.f0;
+                if (method != null) {
+                    try {
+                        method.invoke(ta8Var, null);
+                        return;
+                    } catch (Exception e) {
+                        fc4.g(e, true);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.va8.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

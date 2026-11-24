@@ -1,65 +1,172 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class ip0 extends Drawable {
-    public final Paint a = new Paint(1);
-    public final RectF b = new RectF();
-    public final int c;
-    public final Path d;
-    public boolean e;
-    public int f;
-    public final lm g;
-    public final lm h;
+import android.app.Activity;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.d;
+public final class ip0 extends FrameLayout {
+    public final lp0 a;
 
-    public ip0(int i) {
-        Path path = new Path();
-        this.d = path;
-        oz ozVar = new oz(this, (byte) 17);
-        s33 s33Var = s33.h;
-        this.g = new lm(ozVar, 320L, s33Var, 0);
-        this.h = new lm(new oz(this, (byte) 17), 320L, s33Var, 0);
-        this.c = i;
-        path.moveTo(-gl.L(6.5f), 0.0f);
-        path.lineTo(gl.L(6.5f), 0.0f);
-        path.lineTo(0.0f, -gl.L(6.16f));
-        path.close();
-    }
+    public ip0(lp0 lp0Var, Activity activity) {
+        super(activity);
+        this.a = lp0Var;
+        setWillNotDraw(false);
+        jp0 jp0Var = new jp0(lp0Var, getContext());
+        jp0 jp0Var2 = new jp0(lp0Var, getContext());
+        jp0 jp0Var3 = new jp0(lp0Var, getContext());
+        jp0Var.c(2131231086, jb6.M0(2131753629, null));
+        jp0Var2.c(2131231119, jb6.M0(2131749327, null));
+        jp0Var3.c(2131231129, jb6.M0(2131750767, null));
+        jp0Var.setOnClickListener(new View.OnClickListener(this) {
+            public final ip0 b;
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.b;
-        rectF.set(bounds);
-        rectF.inset(gl.L(8.0f), gl.L(8.0f));
-        float f = this.c;
-        Paint paint = this.a;
-        canvas.drawRoundRect(rectF, f, f, paint);
-        float d = this.g.d(this.e);
-        float L = (rectF.right + gl.L(8.0f)) - this.h.e(false, this.f);
-        if (d > 0.0f) {
-            canvas.save();
-            canvas.translate(L, tb4.A(1.0f, d, gl.L(6.16f), gl.L(8.0f)));
-            canvas.drawPath(this.d, paint);
-            canvas.restore();
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                ylb ylbVar;
+                byte b = r2;
+                ip0 ip0Var = this.b;
+                switch (b) {
+                    case 0:
+                        lp0 lp0Var2 = ip0Var.a;
+                        long j = lp0Var2.S;
+                        vh1 vh1Var = lp0Var2.V;
+                        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = lp0Var2.U;
+                        int i = i46.R2;
+                        if (vh1Var != null && tL_premium_boostsStatus != null && lp0Var2.getParentActivity() != null) {
+                            i46 i46Var = new i46(19, lp0Var2.getCurrentAccount(), lp0Var2.getResourceProvider(), lp0Var2.getParentActivity(), lp0Var2);
+                            i46Var.r1(vh1Var);
+                            i46Var.q1(tL_premium_boostsStatus, true);
+                            i46Var.s1(j);
+                            i46Var.b2 = null;
+                            lp0Var2.showDialog(i46Var);
+                            return;
+                        }
+                        return;
+                    case 1:
+                        lp0 lp0Var3 = ip0Var.a;
+                        lp0Var3.y0(true);
+                        long j2 = lp0Var3.S;
+                        ylbVar = ((d) lp0Var3).resourceProvider;
+                        do0.D0(lp0Var3, ylbVar, j2, null);
+                        do0.o1.I0 = new n1(ip0Var, (byte) 5);
+                        return;
+                    default:
+                        lp0 lp0Var4 = ip0Var.a;
+                        i46 i46Var2 = new i46(31, lp0Var4.T, lp0Var4.getResourceProvider(), ip0Var.getContext(), lp0Var4);
+                        i46Var2.q1(lp0Var4.U, true);
+                        i46Var2.s1(lp0Var4.S);
+                        lp0Var4.showDialog(i46Var2);
+                        return;
+                }
+            }
+        });
+        jp0Var2.setOnClickListener(new View.OnClickListener(this) {
+            public final ip0 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                ylb ylbVar;
+                byte b = r2;
+                ip0 ip0Var = this.b;
+                switch (b) {
+                    case 0:
+                        lp0 lp0Var2 = ip0Var.a;
+                        long j = lp0Var2.S;
+                        vh1 vh1Var = lp0Var2.V;
+                        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = lp0Var2.U;
+                        int i = i46.R2;
+                        if (vh1Var != null && tL_premium_boostsStatus != null && lp0Var2.getParentActivity() != null) {
+                            i46 i46Var = new i46(19, lp0Var2.getCurrentAccount(), lp0Var2.getResourceProvider(), lp0Var2.getParentActivity(), lp0Var2);
+                            i46Var.r1(vh1Var);
+                            i46Var.q1(tL_premium_boostsStatus, true);
+                            i46Var.s1(j);
+                            i46Var.b2 = null;
+                            lp0Var2.showDialog(i46Var);
+                            return;
+                        }
+                        return;
+                    case 1:
+                        lp0 lp0Var3 = ip0Var.a;
+                        lp0Var3.y0(true);
+                        long j2 = lp0Var3.S;
+                        ylbVar = ((d) lp0Var3).resourceProvider;
+                        do0.D0(lp0Var3, ylbVar, j2, null);
+                        do0.o1.I0 = new n1(ip0Var, (byte) 5);
+                        return;
+                    default:
+                        lp0 lp0Var4 = ip0Var.a;
+                        i46 i46Var2 = new i46(31, lp0Var4.T, lp0Var4.getResourceProvider(), ip0Var.getContext(), lp0Var4);
+                        i46Var2.q1(lp0Var4.U, true);
+                        i46Var2.s1(lp0Var4.S);
+                        lp0Var4.showDialog(i46Var2);
+                        return;
+                }
+            }
+        });
+        jp0Var3.setOnClickListener(new View.OnClickListener(this) {
+            public final ip0 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                ylb ylbVar;
+                byte b = r2;
+                ip0 ip0Var = this.b;
+                switch (b) {
+                    case 0:
+                        lp0 lp0Var2 = ip0Var.a;
+                        long j = lp0Var2.S;
+                        vh1 vh1Var = lp0Var2.V;
+                        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = lp0Var2.U;
+                        int i = i46.R2;
+                        if (vh1Var != null && tL_premium_boostsStatus != null && lp0Var2.getParentActivity() != null) {
+                            i46 i46Var = new i46(19, lp0Var2.getCurrentAccount(), lp0Var2.getResourceProvider(), lp0Var2.getParentActivity(), lp0Var2);
+                            i46Var.r1(vh1Var);
+                            i46Var.q1(tL_premium_boostsStatus, true);
+                            i46Var.s1(j);
+                            i46Var.b2 = null;
+                            lp0Var2.showDialog(i46Var);
+                            return;
+                        }
+                        return;
+                    case 1:
+                        lp0 lp0Var3 = ip0Var.a;
+                        lp0Var3.y0(true);
+                        long j2 = lp0Var3.S;
+                        ylbVar = ((d) lp0Var3).resourceProvider;
+                        do0.D0(lp0Var3, ylbVar, j2, null);
+                        do0.o1.I0 = new n1(ip0Var, (byte) 5);
+                        return;
+                    default:
+                        lp0 lp0Var4 = ip0Var.a;
+                        i46 i46Var2 = new i46(31, lp0Var4.T, lp0Var4.getResourceProvider(), ip0Var.getContext(), lp0Var4);
+                        i46Var2.q1(lp0Var4.U, true);
+                        i46Var2.s1(lp0Var4.S);
+                        lp0Var4.showDialog(i46Var2);
+                        return;
+                }
+            }
+        });
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        linearLayout.setOrientation(0);
+        linearLayout.addView(jp0Var, qoe.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
+        if (oc7.r1(lp0Var.T).l4.O1.f && sd2.N(lp0Var.j0)) {
+            linearLayout.addView(jp0Var2, qoe.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        linearLayout.addView(jp0Var3, qoe.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
+        addView(linearLayout, qoe.d(-2, -2.0f, 1, 0.0f, 19.0f, 0.0f, 0.0f));
     }
 }

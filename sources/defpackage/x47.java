@@ -1,169 +1,80 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x47 implements RequestDelegate {
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stars;
+public final class x47 implements View.OnClickListener {
     public final byte a;
-    public final na7 b;
-    public final long c;
+    public final boolean b;
+    public final FrameLayout c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
 
-    public x47(na7 na7Var, long j, byte b) {
+    public x47(FrameLayout frameLayout, boolean z, Object obj, Object obj2, Object obj3, byte b) {
         this.a = b;
-        this.b = na7Var;
-        this.c = j;
+        this.c = frameLayout;
+        this.b = z;
+        this.d = obj;
+        this.e = obj2;
+        this.f = obj3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void onClick(View view) {
         byte b = this.a;
-        long j = this.c;
-        na7 na7Var = this.b;
+        Object obj = this.f;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        boolean z = this.b;
+        FrameLayout frameLayout = this.c;
         switch (b) {
             case 0:
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                } else {
-                    na7Var.getClass();
-                    return;
-                }
-            case 1:
-                gl.d3(new w67(na7Var, j, tLObject));
-                return;
-            case 2:
-                if (tLObject instanceof TLRPC.TL_channels_channelParticipants) {
-                    na7Var.K3(j, (TLRPC.TL_channels_channelParticipants) tLObject);
+                f57 f57Var = (f57) frameLayout;
+                Context context = (Context) obj3;
+                k57 k57Var = (k57) obj2;
+                k57 k57Var2 = (k57) obj;
+                l57 l57Var = f57Var.d0;
+                o47 o47Var = l57Var.d;
+                if (!z) {
+                    new c41(l57Var, l57Var.G).Q(2131624211, 36, gm.N2(jb6.M0(2131750515, null), -1, 0, new v47(f57Var, context, (byte) 0), null)).j();
                     return;
                 }
-                return;
-            case 3:
-                if (tL_error == null) {
-                    na7Var.Q3((TLRPC.Updates) tLObject, false);
+                boolean z2 = o47Var.k;
+                o47Var.k = !z2;
+                l57Var.y = false;
+                if (z2) {
+                    o47Var.l = false;
+                    if (k57Var != null) {
+                        k57Var.a(false, true);
+                    }
                 }
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                }
-                return;
-            case 4:
-                if (tL_error == null) {
-                    na7Var.Q3((TLRPC.Updates) tLObject, false);
-                }
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                }
-                return;
-            case 5:
-                if (tL_error == null) {
-                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    na7Var.O3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
-                }
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                }
-                return;
-            case 6:
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                }
-                return;
-            case 7:
-                if (tL_error == null) {
-                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages2 = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    na7Var.O3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
-                }
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                }
-                return;
-            case 8:
-                na7Var.getMessagesStorage().n1(j);
-                return;
-            case 9:
-                if (tL_error == null) {
-                    gl.d3(new w67(na7Var, tLObject, j));
-                    return;
-                }
-                return;
-            case 10:
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                } else {
-                    na7Var.getClass();
-                    return;
-                }
-            case 11:
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                }
-                return;
-            case 12:
-                if (tL_error == null) {
-                    na7Var.Q3((TLRPC.Updates) tLObject, false);
-                }
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                    return;
-                }
-                return;
-            case 13:
-                if (tLObject != null) {
-                    TLRPC.TL_chatOnlines tL_chatOnlines = (TLRPC.TL_chatOnlines) tLObject;
-                    na7 na7Var2 = this.b;
-                    ad7 messagesStorage = na7Var2.getMessagesStorage();
-                    int i = tL_chatOnlines.onlines;
-                    co3 co3Var = messagesStorage.a;
-                    long j2 = this.c;
-                    co3Var.c(new bb7(messagesStorage, i, j2, (byte) 7));
-                    gl.d3(new go6(na7Var2, j2, tL_chatOnlines, (byte) 2));
-                    return;
-                }
-                return;
-            case 14:
-                if (tL_error == null) {
-                    na7Var.getMessagesController().Q3((TLRPC.Updates) tLObject, false);
-                    gl.e3(new r57(na7Var, j, (byte) 20), 1000L);
-                    return;
-                }
-                return;
-            case 15:
-                if (tL_error == null) {
-                    na7Var.getMessagesController().Q3((TLRPC.Updates) tLObject, false);
-                    gl.e3(new r57(na7Var, j, (byte) 18), 1000L);
-                    return;
-                }
-                na7Var.getClass();
-                return;
-            case 16:
-                if (j != 0) {
-                    na7Var.getMessagesStorage().n1(j);
-                }
-                if (tLObject != null) {
-                    na7Var.Q3((TLRPC.Updates) tLObject, false);
-                    return;
-                }
+                k57Var2.a(o47Var.k, true);
+                f57Var.i();
+                f57Var.l(true);
                 return;
             default:
-                if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    long j3 = -j;
-                    if (na7Var.L0(j3) == null) {
-                        na7Var.X2(0, j3, true);
-                        return;
-                    }
-                    return;
-                } else if (tL_error != null && tL_error.code == 400) {
-                    na7Var.X2(0, -j, true);
-                    return;
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
+                bu5 bu5Var = (bu5) obj;
+                lea leaVar = ((rs8) frameLayout).a;
+                if (!z) {
+                    yua yuaVar = leaVar.e;
+                    int i = tL_starGiftCollection.collection_id;
+                    yuaVar.getClass();
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(savedStarGift);
+                    yuaVar.a(i, arrayList);
+                    c41.b0(leaVar.a).R(savedStarGift.gift.getDocument(), gm.S2(jb6.a0(null, null, 2131750326, wsa.t1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 } else {
-                    return;
+                    leaVar.e.k(tL_starGiftCollection.collection_id, savedStarGift);
+                    c41.b0(leaVar.a).R(savedStarGift.gift.getDocument(), gm.S2(jb6.a0(null, null, 2131749970, wsa.t1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 }
+                bu5Var.u();
+                leaVar.o();
+                return;
         }
     }
 }

@@ -1,19 +1,30 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class qhe extends b4 {
-    public static final Parcelable.Creator<qhe> CREATOR = new rhe((byte) 6);
-    public final byte[] a;
-
-    public qhe(byte[] bArr) {
-        this.a = bArr;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.c(parcel, 2, this.a);
-        jte.s(parcel, r);
+import android.content.Context;
+import android.util.Log;
+public abstract class qhe {
+    public static String a(Context context, int i) {
+        if (context == null) {
+            return "";
+        }
+        if (i != 1) {
+            if (i != 7) {
+                switch (i) {
+                    case 9:
+                        break;
+                    case 10:
+                        return context.getString(2131689613);
+                    case 11:
+                        return context.getString(2131689612);
+                    case 12:
+                        return context.getString(2131689610);
+                    default:
+                        Log.e("BiometricUtils", "Unknown error code: " + i);
+                        return context.getString(2131689578);
+                }
+            }
+            return context.getString(2131689611);
+        }
+        return context.getString(2131689609);
     }
 }

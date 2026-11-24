@@ -1,17 +1,17 @@
 package defpackage;
+public final class vue implements cq7 {
+    public static final vue a = new Object();
 
-import java.io.Serializable;
-public abstract class vue {
-    public static qbb a(qbb qbbVar) {
-        if (!(qbbVar instanceof sbb)) {
-            if (qbbVar instanceof rbb) {
-                return qbbVar;
-            }
-            if (qbbVar instanceof Serializable) {
-                return new rbb(qbbVar);
-            }
-            return new sbb(qbbVar);
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)), 5)), 6)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        return qbbVar;
+        throw new ClassCastException();
     }
 }

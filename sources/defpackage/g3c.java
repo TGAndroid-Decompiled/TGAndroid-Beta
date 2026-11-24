@@ -1,35 +1,22 @@
 package defpackage;
-public final class g3c implements ed {
-    public final byte a;
-    public final p3c b;
 
-    public g3c(p3c p3cVar, byte b) {
-        this.a = b;
-        this.b = p3cVar;
+import java.util.Set;
+public final class g3c implements f3c {
+    public final Set a;
+    public final rb0 b;
+    public final i3c c;
+
+    public g3c(Set set, rb0 rb0Var, i3c i3cVar) {
+        this.a = set;
+        this.b = rb0Var;
+        this.c = i3cVar;
     }
 
-    @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        p3c p3cVar = this.b;
-        switch (b) {
-            case 0:
-                p3cVar.finishFragment();
-                return;
-            case 1:
-                p3cVar.F0();
-                p3cVar.finishFragment();
-                return;
-            case 2:
-                p3cVar.S = "";
-                p3cVar.I0(false);
-                return;
-            case 3:
-                p3cVar.n0();
-                return;
-            default:
-                p3cVar.t0();
-                return;
+    public final h3c a(String str, d44 d44Var, z0c z0cVar) {
+        Set set = this.a;
+        if (set.contains(d44Var)) {
+            return new h3c(this.b, str, d44Var, z0cVar, this.c);
         }
+        throw new IllegalArgumentException(String.format("%s is not supported byt this factory. Supported encodings are: %s.", d44Var, set));
     }
 }

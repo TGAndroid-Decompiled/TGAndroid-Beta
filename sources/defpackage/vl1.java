@@ -1,26 +1,15 @@
 package defpackage;
-
-import android.content.DialogInterface;
-public final class vl1 implements DialogInterface.OnShowListener {
+public final class vl1 implements Runnable {
     public final byte a;
-    public final mu1 b;
+    public final cm1 b;
 
-    public vl1(mu1 mu1Var, byte b) {
+    public vl1(cm1 cm1Var, byte b) {
         this.a = b;
-        this.b = mu1Var;
+        this.b = cm1Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        byte b = this.a;
-        mu1 mu1Var = this.b;
-        switch (b) {
-            case 0:
-                mu1Var.bc(false);
-                return;
-            default:
-                mu1Var.bc(false);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vl1.run():void");
     }
 }

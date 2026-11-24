@@ -1,87 +1,185 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class gi9 extends b4c {
-    public static final int b = 0;
-
-    static {
-        b4c.h(new b4c());
-    }
-
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        boolean z2;
-        ii9 ii9Var = (ii9) view;
-        lk0 lk0Var = (lk0) c4cVar.H;
-        ge9 ge9Var = (ge9) c4cVar.I;
-        ki9 ki9Var = ii9Var.w;
-        boolean z3 = true;
-        if (ii9Var.a != lk0Var) {
-            z2 = true;
-        } else {
-            z2 = false;
+import org.telegram.tgnet.tl.TL_keyboard;
+public abstract class gi9 {
+    public static ArrayList a(int i, ArrayList arrayList) {
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            b((TL_iv.PageBlock) obj, linkedHashSet);
         }
-        ii9Var.a = lk0Var;
-        ii9Var.F = ge9Var;
-        ii9Var.E = k96.a0;
-        ii9Var.c(lk0Var);
-        TL_iv.PageBlock pageBlock = lk0Var.b;
-        if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
-            return;
-        }
-        ffb ffbVar = new ffb((TL_iv.pageBlockTable) pageBlock);
-        ii9Var.G = ffbVar;
-        ki9Var.setModel(ffbVar);
-        LinkedHashSet linkedHashSet = ii9Var.I;
-        Objects.requireNonNull(linkedHashSet);
-        ki9Var.setSelectionProvider(new wh9(linkedHashSet, (byte) 2));
-        ii9Var.A();
-        mc9 mc9Var = ii9Var.r;
-        lk0 lk0Var2 = ii9Var.a;
-        if (lk0Var2 != null) {
-            TL_iv.PageBlock pageBlock2 = lk0Var2.b;
-            if (pageBlock2 instanceof TL_iv.pageBlockTable) {
-                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
-                TL_iv.RichText richText = pageblocktable.title;
-                if (richText == null) {
-                    richText = new TL_iv.textEmpty();
-                    pageblocktable.title = richText;
-                }
-                String l = yi9.l(richText);
-                SpannableStringBuilder r = yi9.r(pageblocktable.title, null, true);
-                lk0 lk0Var3 = ii9Var.a;
-                if (!lk0Var3.s) {
-                    lk0Var3.s = true;
-                    if (r.length() != 0 && (yi9.q(0, r.length(), r) & 1) == 0) {
-                        z3 = false;
-                    }
-                    lk0Var3.r = z3;
-                }
-                mc9Var.setAutoBold(ii9Var.a.r);
-                if (z2 || !String.valueOf(mc9Var.getText()).equals(l)) {
-                    mc9Var.setTextSilently(vu3.m(r, mc9Var.getPaint().getFontMetricsInt(), false, null, 0));
-                    mc9Var.f();
+        ArrayList arrayList2 = new ArrayList(linkedHashSet.size());
+        oc7 r1 = oc7.r1(i);
+        Iterator it = linkedHashSet.iterator();
+        while (it.hasNext()) {
+            Long l = (Long) it.next();
+            l.getClass();
+            TLRPC.User W1 = r1.W1(l);
+            if (W1 != null) {
+                TLRPC.InputUser p1 = r1.p1(W1);
+                if (!(p1 instanceof TLRPC.TL_inputUserEmpty)) {
+                    arrayList2.add(p1);
                 }
             }
         }
-        ii9Var.updateColors();
-        ii9Var.x.requestLayout();
+        return arrayList2;
     }
 
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        ii9 ii9Var = new ii9(context, wjbVar);
-        ii9Var.setBackground(new ed9(bkb.v0(bkb.c6, wjbVar)));
-        return ii9Var;
+    public static void b(TL_iv.PageBlock pageBlock, LinkedHashSet linkedHashSet) {
+        ArrayList<TL_iv.pageTableCell> arrayList;
+        if (pageBlock != null) {
+            d(pageBlock.text, linkedHashSet);
+            TL_iv.PageCaption pageCaption = pageBlock.caption;
+            if (pageCaption != null) {
+                d(pageCaption.text, linkedHashSet);
+                d(pageCaption.credit, linkedHashSet);
+            }
+            int i = 0;
+            if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
+                ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
+                if (arrayList2 != null) {
+                    int size = arrayList2.size();
+                    while (i < size) {
+                        TL_keyboard.PageButton pageButton = arrayList2.get(i);
+                        i++;
+                        TL_keyboard.PageButton pageButton2 = pageButton;
+                        if (pageButton2 != null) {
+                            TL_keyboard.InlineButtonType inlineButtonType = pageButton2.type;
+                            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                                long j = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
+                                if (j != 0) {
+                                    linkedHashSet.add(Long.valueOf(j));
+                                }
+                            }
+                            d(pageButton2.text, linkedHashSet);
+                        }
+                    }
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
+                d(((TL_iv.pageBlockBlockquote) pageBlock).caption, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockPullquote) {
+                d(((TL_iv.pageBlockPullquote) pageBlock).caption, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
+                TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
+                d(pageblockblockquoteblocks.caption, linkedHashSet);
+                c(pageblockblockquoteblocks.blocks, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
+                TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
+                d(pageblockdetails.title, linkedHashSet);
+                c(pageblockdetails.blocks, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockList) {
+                ArrayList<TL_iv.PageListItem> arrayList3 = ((TL_iv.pageBlockList) pageBlock).items;
+                if (arrayList3 != null) {
+                    int size2 = arrayList3.size();
+                    while (i < size2) {
+                        TL_iv.PageListItem pageListItem = arrayList3.get(i);
+                        i++;
+                        TL_iv.PageListItem pageListItem2 = pageListItem;
+                        if (pageListItem2 instanceof TL_iv.TL_pageListItemText) {
+                            d(((TL_iv.TL_pageListItemText) pageListItem2).text, linkedHashSet);
+                        } else if (pageListItem2 instanceof TL_iv.TL_pageListItemBlocks) {
+                            c(((TL_iv.TL_pageListItemBlocks) pageListItem2).blocks, linkedHashSet);
+                        }
+                    }
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
+                ArrayList<TL_iv.PageListOrderedItem> arrayList4 = ((TL_iv.pageBlockOrderedList) pageBlock).items;
+                if (arrayList4 != null) {
+                    int size3 = arrayList4.size();
+                    while (i < size3) {
+                        TL_iv.PageListOrderedItem pageListOrderedItem = arrayList4.get(i);
+                        i++;
+                        TL_iv.PageListOrderedItem pageListOrderedItem2 = pageListOrderedItem;
+                        if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemText) {
+                            d(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem2).text, linkedHashSet);
+                        } else if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemBlocks) {
+                            c(((TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem2).blocks, linkedHashSet);
+                        }
+                    }
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockTable) {
+                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
+                d(pageblocktable.title, linkedHashSet);
+                ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
+                if (arrayList5 != null) {
+                    int size4 = arrayList5.size();
+                    int i2 = 0;
+                    while (i2 < size4) {
+                        TL_iv.pageTableRow pagetablerow = arrayList5.get(i2);
+                        i2++;
+                        TL_iv.pageTableRow pagetablerow2 = pagetablerow;
+                        if (pagetablerow2 != null && (arrayList = pagetablerow2.cells) != null) {
+                            int size5 = arrayList.size();
+                            int i3 = 0;
+                            while (i3 < size5) {
+                                TL_iv.pageTableCell pagetablecell = arrayList.get(i3);
+                                i3++;
+                                TL_iv.pageTableCell pagetablecell2 = pagetablecell;
+                                if (pagetablecell2 != null) {
+                                    d(pagetablecell2.text, linkedHashSet);
+                                }
+                            }
+                        }
+                    }
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
+                c(((TL_iv.pageBlockCollage) pageBlock).items, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
+                c(((TL_iv.pageBlockSlideshow) pageBlock).items, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockEmbedPost) {
+                c(((TL_iv.pageBlockEmbedPost) pageBlock).blocks, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockCover) {
+                b(((TL_iv.pageBlockCover) pageBlock).cover, linkedHashSet);
+            } else if (pageBlock instanceof TL_iv.pageBlockRelatedArticles) {
+                d(((TL_iv.pageBlockRelatedArticles) pageBlock).title, linkedHashSet);
+            }
+        }
     }
 
-    @Override
-    public final boolean f() {
-        return false;
+    public static void c(ArrayList arrayList, LinkedHashSet linkedHashSet) {
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                b((TL_iv.PageBlock) obj, linkedHashSet);
+            }
+        }
+    }
+
+    public static void d(TL_iv.RichText richText, LinkedHashSet linkedHashSet) {
+        if (richText != null) {
+            if (richText instanceof TL_iv.textButton) {
+                TL_keyboard.InlineButtonType inlineButtonType = ((TL_iv.textButton) richText).type;
+                if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                    long j = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
+                    if (j != 0) {
+                        linkedHashSet.add(Long.valueOf(j));
+                    }
+                }
+            } else if (richText instanceof TL_iv.textDiff) {
+                d(((TL_iv.textDiff) richText).old_text, linkedHashSet);
+            }
+            d(richText.text, linkedHashSet);
+            ArrayList<TL_iv.RichText> arrayList = richText.texts;
+            if (arrayList != null) {
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    TL_iv.RichText richText2 = arrayList.get(i);
+                    i++;
+                    d(richText2, linkedHashSet);
+                }
+            }
+        }
     }
 }

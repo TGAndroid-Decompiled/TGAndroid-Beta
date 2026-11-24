@@ -1,32 +1,35 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class oq5 extends ClickableSpan {
-    public final fx0[] a;
-    public final TLRPC.TL_chatInviteImporter b;
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.q;
+public final class oq5 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final q b;
 
-    public oq5(fx0[] fx0VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.a = fx0VarArr;
-        this.b = tL_chatInviteImporter;
+    public oq5(q qVar, byte b) {
+        this.a = b;
+        this.b = qVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.a[0].dismiss();
-        d S = LaunchActivity.S();
-        if (S != null) {
-            S.presentFragment(ProfileActivity.P2(this.b.user_id));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        q qVar = this.b;
+        switch (b) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * qVar.getMeasuredHeight() * 0.5f;
+                qVar.z0 = floatValue;
+                qVar.w.setTranslationY(floatValue + qVar.y0);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qVar.B0 = floatValue2;
+                un9 un9Var = qVar.Q;
+                if (un9Var != null) {
+                    un9Var.y(floatValue2);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
     }
 }

@@ -8,7 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class z9 extends b4 {
-    public static final Parcelable.Creator<z9> CREATOR = new j9d((byte) 19);
+    public static final Parcelable.Creator<z9> CREATOR = new lbd((byte) 19);
     public final long a;
     public final String b;
     public final long c;
@@ -32,7 +32,7 @@ public final class z9 extends b4 {
         try {
             jSONObject.put("id", this.b);
             long j = this.a;
-            Pattern pattern = id1.a;
+            Pattern pattern = qe1.a;
             jSONObject.put("position", j / 1000.0d);
             jSONObject.put("isWatched", this.d);
             jSONObject.put("isEmbedded", this.f);
@@ -59,7 +59,7 @@ public final class z9 extends b4 {
             return false;
         }
         z9 z9Var = (z9) obj;
-        if (id1.d(this.b, z9Var.b) && this.a == z9Var.a && this.c == z9Var.c && this.d == z9Var.d && Arrays.equals(this.e, z9Var.e) && this.f == z9Var.f && this.h == z9Var.h) {
+        if (qe1.d(this.b, z9Var.b) && this.a == z9Var.a && this.c == z9Var.c && this.d == z9Var.d && Arrays.equals(this.e, z9Var.e) && this.f == z9Var.f && this.h == z9Var.h) {
             return true;
         }
         return false;
@@ -71,19 +71,19 @@ public final class z9 extends b4 {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 8);
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 8);
         parcel.writeLong(this.a);
-        jte.l(parcel, 3, this.b);
-        jte.q(parcel, 4, 8);
+        mve.l(parcel, 3, this.b);
+        mve.q(parcel, 4, 8);
         parcel.writeLong(this.c);
-        jte.q(parcel, 5, 4);
+        mve.q(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
-        jte.m(parcel, 6, this.e);
-        jte.q(parcel, 7, 4);
+        mve.m(parcel, 6, this.e);
+        mve.q(parcel, 7, 4);
         parcel.writeInt(this.f ? 1 : 0);
-        jte.q(parcel, 8, 4);
+        mve.q(parcel, 8, 4);
         parcel.writeInt(this.h ? 1 : 0);
-        jte.s(parcel, r);
+        mve.s(parcel, r);
     }
 }

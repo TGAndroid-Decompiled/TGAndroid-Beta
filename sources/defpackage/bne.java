@@ -1,20 +1,17 @@
 package defpackage;
+public final class bne implements cq7 {
+    public static final bne a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class bne extends b4 {
-    public static final Parcelable.Creator<bne> CREATOR = new rhe((byte) 19);
-    public final boolean a;
-
-    public bne(boolean z) {
-        this.a = z;
+    static {
+        mlb.z(mlb.q(ikd.class, new cid(1)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a ? 1 : 0);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

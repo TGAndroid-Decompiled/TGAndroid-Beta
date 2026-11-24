@@ -1,28 +1,26 @@
 package defpackage;
 
-import java.util.HashMap;
-public final class wf implements Runnable {
+import android.content.DialogInterface;
+import android.widget.EditText;
+public final class wf implements DialogInterface.OnDismissListener {
     public final byte a;
-    public final p8c b;
-    public final HashMap c;
+    public final EditText b;
 
-    public wf(p8c p8cVar, HashMap hashMap, byte b) {
+    public wf(EditText editText, byte b) {
         this.a = b;
-        this.b = p8cVar;
-        this.c = hashMap;
+        this.b = editText;
     }
 
     @Override
-    public final void run() {
+    public final void onDismiss(DialogInterface dialogInterface) {
         byte b = this.a;
-        HashMap hashMap = this.c;
-        p8c p8cVar = this.b;
+        EditText editText = this.b;
         switch (b) {
             case 0:
-                p8cVar.a(hashMap);
+                gm.t1(editText);
                 return;
             default:
-                p8cVar.a(hashMap);
+                gm.t1(editText);
                 return;
         }
     }

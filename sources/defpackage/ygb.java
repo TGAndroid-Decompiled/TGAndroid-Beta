@@ -1,34 +1,32 @@
 package defpackage;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ygb extends AnimatorListenerAdapter {
-    public final byte a;
+public final class ygb {
+    public final int a;
     public final int b;
-    public final ahb c;
 
-    public ygb(ahb ahbVar, int i, byte b) {
-        this.a = b;
-        this.c = ahbVar;
-        this.b = i;
+    public ygb(int i, int i2) {
+        this.a = i;
+        this.b = i2;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        int i = this.b;
-        ahb ahbVar = this.c;
-        switch (b) {
-            case 0:
-                ahbVar.r = 0;
-                ahbVar.setBackgroundColor(i);
-                ahbVar.invalidate();
-                return;
-            default:
-                ahbVar.setBackgroundColor(i);
-                ahbVar.r = 0;
-                ahbVar.invalidate();
-                return;
+    public final int a() {
+        return this.b - this.a;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || ygb.class != obj.getClass()) {
+            return false;
+        }
+        ygb ygbVar = (ygb) obj;
+        if (this.b == ygbVar.b && this.a == ygbVar.a) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return (this.a * 31) + this.b;
     }
 }

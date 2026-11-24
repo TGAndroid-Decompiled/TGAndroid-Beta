@@ -74,7 +74,7 @@ public interface EglBase {
                 this.openGlesVersion = i;
                 return this;
             }
-            w26.j(tb4.n(i, "OpenGL ES version ", " not supported"));
+            u36.j(td4.o(i, "OpenGL ES version ", " not supported"));
             return null;
         }
 

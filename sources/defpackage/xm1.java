@@ -1,104 +1,37 @@
 package defpackage;
 
-import android.content.DialogInterface;
-public final class xm1 implements Runnable {
+import android.graphics.RectF;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.function.ToIntFunction;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.ProfileActivity;
+public final class xm1 implements ToIntFunction {
     public final byte a;
-    public final mu1 b;
-    public final hd[] c;
-    public final int d;
+    public final Object b;
 
-    public xm1(mu1 mu1Var, hd[] hdVarArr, int i, byte b) {
+    public xm1(Object obj, byte b) {
         this.a = b;
-        this.b = mu1Var;
-        this.c = hdVarArr;
-        this.d = i;
+        this.b = obj;
     }
 
     @Override
-    public final void run() {
+    public final int applyAsInt(Object obj) {
         byte b = this.a;
-        final int i = this.d;
-        hd[] hdVarArr = this.c;
-        final mu1 mu1Var = this.b;
+        Object obj2 = this.b;
         switch (b) {
             case 0:
-                hd hdVar = hdVarArr[0];
-                if (hdVar != null) {
-                    hdVar.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            byte b2 = r3;
-                            int i2 = i;
-                            mu1 mu1Var2 = mu1Var;
-                            switch (b2) {
-                                case 0:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                                case 1:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                                default:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                            }
-                        }
-                    });
-                    mu1Var.showDialog(hdVarArr[0]);
-                    return;
-                }
-                return;
+                return ((Integer) ((HashMap) obj2).get((View) obj)).intValue();
             case 1:
-                hd hdVar2 = hdVarArr[0];
-                if (hdVar2 != null) {
-                    hdVar2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            byte b2 = r3;
-                            int i2 = i;
-                            mu1 mu1Var2 = mu1Var;
-                            switch (b2) {
-                                case 0:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                                case 1:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                                default:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                            }
-                        }
-                    });
-                    mu1Var.showDialog(hdVarArr[0]);
-                    return;
-                }
-                return;
+                RectF rectF = ProfileActivity.e7;
+                return ((Integer) ((ArrayList) obj2).get(((Integer) obj).intValue())).intValue();
+            case 2:
+                return ((SpannableStringBuilder) obj2).getSpanStart((rj9) obj);
             default:
-                hd hdVar3 = hdVarArr[0];
-                if (hdVar3 != null) {
-                    hdVar3.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            byte b2 = r3;
-                            int i2 = i;
-                            mu1 mu1Var2 = mu1Var;
-                            switch (b2) {
-                                case 0:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                                case 1:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                                default:
-                                    mu1Var2.getConnectionsManager().cancelRequest(i2, true);
-                                    return;
-                            }
-                        }
-                    });
-                    mu1Var.showDialog(hdVarArr[0]);
-                    return;
-                }
-                return;
+                return ((int[]) ((IdentityHashMap) obj2).get((TL_iv.pageTableCell) obj))[1];
         }
     }
 }

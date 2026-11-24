@@ -1,0 +1,21 @@
+package defpackage;
+
+import android.view.View;
+import java.io.Serializable;
+public final class m22 implements oac, pac {
+    public final s22 a;
+
+    @Override
+    public final Object b(c6c c6cVar, View view, Integer num, Float f, Float f2) {
+        this.a.P(c6cVar, view);
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        this.a.P((c6c) obj, (View) obj2);
+    }
+}

@@ -1,25 +1,37 @@
 package defpackage;
-public final class vpc implements Runnable {
-    public final byte a;
-    public final ypc b;
 
-    public vpc(ypc ypcVar, byte b) {
-        this.a = b;
-        this.b = ypcVar;
+import org.telegram.ui.Wallet.WalletEngine2;
+public final class vpc implements Runnable {
+    public final byte a = 0;
+    public final WalletEngine2 b;
+    public final qac c;
+    public final String d;
+
+    public vpc(WalletEngine2 walletEngine2, qac qacVar, String str) {
+        this.b = walletEngine2;
+        this.c = qacVar;
+        this.d = str;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        ypc ypcVar = this.b;
+        String str = this.d;
+        qac qacVar = this.c;
+        WalletEngine2 walletEngine2 = this.b;
         switch (b) {
             case 0:
-                ypcVar.e0 = null;
+                walletEngine2.lambda$getTransactionByHash$42(str, qacVar);
                 return;
             default:
-                ypcVar.getClass();
-                u21.b0(ypcVar).N(k96.M0(2131745669, null), k96.M0(2131751093, null)).j();
+                walletEngine2.lambda$previewSignMessage$10(qacVar, str);
                 return;
         }
+    }
+
+    public vpc(WalletEngine2 walletEngine2, String str, qac qacVar) {
+        this.b = walletEngine2;
+        this.d = str;
+        this.c = qacVar;
     }
 }

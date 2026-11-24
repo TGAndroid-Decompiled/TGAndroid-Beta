@@ -18,43 +18,43 @@ public final class q5 implements ValueAnimator.AnimatorUpdateListener {
         a aVar = this.b;
         switch (b) {
             case 0:
-                sr8 sr8Var = aVar.f1;
-                if (sr8Var != null) {
-                    sr8Var.run();
+                kf9 kf9Var = aVar.f1;
+                if (kf9Var != null) {
+                    kf9Var.run();
                     return;
                 }
                 return;
             case 1:
-                sr8 sr8Var2 = aVar.f1;
-                if (sr8Var2 != null) {
-                    sr8Var2.run();
+                kf9 kf9Var2 = aVar.f1;
+                if (kf9Var2 != null) {
+                    kf9Var2.run();
                     return;
                 }
                 return;
             case 2:
                 aVar.p0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (aVar.a != null && aVar.S0) {
-                    float L = gl.L(23.0f);
-                    float U1 = gl.U1(aVar.p0, gl.L(18.33f), gl.L(23.0f));
+                    float L = gm.L(23.0f);
+                    float U1 = gm.U1(aVar.p0, gm.L(18.33f), gm.L(23.0f));
                     aVar.a.s(U1, L, L, U1);
                     aVar.invalidate();
                 }
                 if (aVar.Q0 && (r6Var = aVar.F) != null) {
-                    r6Var.setTranslationX(-gl.R1(gl.L(10.0f), gl.L(5.0f), aVar.p0));
+                    r6Var.setTranslationX(-gm.R1(gm.L(10.0f), gm.L(5.0f), aVar.p0));
                 }
-                sr8 sr8Var3 = aVar.f1;
-                if (sr8Var3 != null) {
-                    sr8Var3.run();
+                kf9 kf9Var3 = aVar.f1;
+                if (kf9Var3 != null) {
+                    kf9Var3.run();
                     return;
                 }
                 return;
             case 3:
                 aVar.E1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aVar.i();
+                aVar.j();
                 return;
             default:
                 aVar.E1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aVar.i();
+                aVar.j();
                 return;
         }
     }

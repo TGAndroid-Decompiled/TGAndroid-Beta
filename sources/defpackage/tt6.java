@@ -1,16 +1,20 @@
 package defpackage;
-public final class tt6 {
-    public final zs6 a;
-    public final int b;
-    public final boolean c;
-    public final boolean d;
-    public final boolean e;
+public interface tt6 extends s6a {
+    long c(t74[] t74VarArr, boolean[] zArr, jr9[] jr9VarArr, boolean[] zArr2, long j);
 
-    public tt6(zs6 zs6Var, int i, boolean z, boolean z2, boolean z3) {
-        this.a = zs6Var;
-        this.b = i;
-        this.c = z;
-        this.d = z2;
-        this.e = z3;
-    }
+    void e();
+
+    long h(long j, jx9 jx9Var);
+
+    void j();
+
+    long k(long j);
+
+    void l(long j);
+
+    long n();
+
+    void o(st6 st6Var, long j);
+
+    vzb q();
 }

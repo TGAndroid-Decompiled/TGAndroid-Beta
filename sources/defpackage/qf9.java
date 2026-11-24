@@ -1,26 +1,33 @@
 package defpackage;
+public final class qf9 implements Runnable {
+    public final byte a;
+    public final ch9 b;
+    public final int c;
 
-import android.content.Context;
-import android.view.View;
-public final class qf9 extends b4c {
-    public static final int b = 0;
-
-    static {
-        b4c.h(new b4c());
+    public qf9(ch9 ch9Var, int i, byte b) {
+        this.a = b;
+        this.b = ch9Var;
+        this.c = i;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        ((rf9) view).g((lk0) c4cVar.H, (ee9) c4cVar.I);
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new rf9(context, wjbVar);
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+    public final void run() {
+        byte b = this.a;
+        int i = this.c;
+        ch9 ch9Var = this.b;
+        switch (b) {
+            case 0:
+                ch9Var.d4(i);
+                return;
+            case 1:
+                ch9Var.f4(i);
+                return;
+            case 2:
+                ch9Var.scrollBy(0, i);
+                return;
+            default:
+                ch9Var.e4(i);
+                return;
+        }
     }
 }

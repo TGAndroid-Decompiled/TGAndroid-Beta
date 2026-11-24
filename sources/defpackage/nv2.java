@@ -1,91 +1,94 @@
 package defpackage;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class nv2 implements View.OnClickListener {
-    public final byte a = 2;
-    public final boolean b;
-    public final Object c;
-    public final Object d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nv2 implements RequestDelegate {
+    public final byte a;
+    public final bw2 b;
 
-    public nv2(tv2 tv2Var, ArrayList arrayList, boolean z) {
-        this.c = tv2Var;
-        this.d = arrayList;
-        this.b = z;
+    public nv2(bw2 bw2Var, byte b) {
+        this.a = b;
+        this.b = bw2Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        String str;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         byte b = this.a;
-        boolean z = this.b;
-        Object obj = this.d;
-        Object obj2 = this.c;
+        final bw2 bw2Var = this.b;
         switch (b) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                xv2 xv2Var = ((tv2) obj2).a;
-                if (xv2Var.w != null && xv2Var.l != null) {
-                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
-                    if (intValue == 0) {
-                        xv2Var.l.y(xv2Var.W);
-                    } else if (intValue == 1) {
-                        xv2Var.l.r(xv2Var.W);
-                    } else if (intValue == 2) {
-                        xv2Var.l.r(null);
-                    } else if (intValue == 3) {
-                        xv2Var.l.D(xv2Var.W);
-                    } else if (intValue == 4) {
-                        xv2Var.l.o(xv2Var.W);
-                    } else if (intValue == 5) {
-                        hq6.d0(xv2Var.r).d(2, xv2Var.b0, xv2Var.W, (int) (System.currentTimeMillis() / 1000), this.b);
-                    }
-                    xv2Var.d();
-                    return;
-                }
-                return;
-            case 1:
-                i61 i61Var = (i61) obj2;
-                Runnable runnable = (Runnable) obj;
-                d Q = LaunchActivity.Q();
-                if (Q != null) {
-                    if (z) {
-                        str = "lastseen";
-                    } else {
-                        str = "readtime";
-                    }
-                    Q.presentFragment(new PremiumPreviewFragment(0, str));
-                    i61Var.dismiss();
-                    if (runnable != null) {
-                        runnable.run();
+                if (tLObject != null) {
+                    TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
+                    if (tL_help_inviteText.message.length() != 0) {
+                        gm.c3(new pf2(bw2Var, tL_help_inviteText, (byte) 1));
                         return;
                     }
                     return;
                 }
                 return;
+            case 1:
+                gm.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        bw2 bw2Var2 = bw2Var;
+                        switch (b2) {
+                            case 0:
+                                if (tL_error2 == null) {
+                                    bw2Var2.Y = (TLRPC.GlobalPrivacySettings) tLObject2;
+                                    bw2Var2.G = (byte) 2;
+                                } else {
+                                    bw2Var2.G = (byte) 0;
+                                }
+                                bw2Var2.getNotificationCenter().k(48, new Object[0]);
+                                return;
+                            default:
+                                if (tL_error2 == null) {
+                                    bw2Var2.I = ((TLRPC.TL_accountDaysTTL) tLObject2).days;
+                                    bw2Var2.H = (byte) 2;
+                                } else {
+                                    bw2Var2.H = (byte) 0;
+                                }
+                                bw2Var2.getNotificationCenter().k(48, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
             default:
-                g29 g29Var = (g29) obj2;
-                Runnable runnable2 = (Runnable) obj;
-                if (z) {
-                    ((nfa) g29Var.b).J.p();
-                }
-                runnable2.run();
+                gm.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        bw2 bw2Var2 = bw2Var;
+                        switch (b2) {
+                            case 0:
+                                if (tL_error2 == null) {
+                                    bw2Var2.Y = (TLRPC.GlobalPrivacySettings) tLObject2;
+                                    bw2Var2.G = (byte) 2;
+                                } else {
+                                    bw2Var2.G = (byte) 0;
+                                }
+                                bw2Var2.getNotificationCenter().k(48, new Object[0]);
+                                return;
+                            default:
+                                if (tL_error2 == null) {
+                                    bw2Var2.I = ((TLRPC.TL_accountDaysTTL) tLObject2).days;
+                                    bw2Var2.H = (byte) 2;
+                                } else {
+                                    bw2Var2.H = (byte) 0;
+                                }
+                                bw2Var2.getNotificationCenter().k(48, new Object[0]);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public nv2(g29 g29Var, boolean z, Runnable runnable) {
-        this.c = g29Var;
-        this.b = z;
-        this.d = runnable;
-    }
-
-    public nv2(boolean z, i61 i61Var, Runnable runnable) {
-        this.b = z;
-        this.c = i61Var;
-        this.d = runnable;
     }
 }

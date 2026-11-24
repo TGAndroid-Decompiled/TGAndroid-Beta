@@ -1,28 +1,49 @@
 package defpackage;
 
+import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable;
-public final class ek5 extends b4 {
-    public static final Parcelable.Creator<ek5> CREATOR = new qyd((byte) 21);
-    public final int a;
-    public final int b;
-    public final int c;
+public final class ek5 implements gk5 {
+    public IBinder a;
 
-    public ek5(int i, int i2, int i3) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(this.b);
-        jte.q(parcel, 4, 4);
-        parcel.writeInt(this.c);
-        jte.s(parcel, r);
+    public final void g(int i) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(i);
+            this.a.transact(9, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void i(int i) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(i);
+            this.a.transact(12, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void j(ge8 ge8Var) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(1);
+            ge8Var.writeToParcel(obtain, 0);
+            this.a.transact(3, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
     }
 }

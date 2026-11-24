@@ -1,75 +1,155 @@
 package defpackage;
-public final class lx implements vd3 {
-    public final char a;
 
-    public lx(byte b) {
-        this('*');
-        switch (b) {
-            case 1:
-                this('_');
-                return;
-            default:
-                return;
-        }
+import android.view.View;
+import java.io.File;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.o;
+public final class lx implements mb8 {
+    public final TLRPC.WebPage a;
+    public final List b;
+    public final o c;
+
+    public lx(o oVar, TLRPC.WebPage webPage, List list) {
+        this.c = oVar;
+        this.a = webPage;
+        this.b = list;
     }
 
     @Override
-    public final void a(ugb ugbVar, ugb ugbVar2, int i) {
-        u14 u14Var;
-        String.valueOf(this.a);
-        if (i == 1) {
-            u14Var = new u14((byte) 0);
-        } else {
-            u14Var = new u14((byte) 3);
+    public final boolean a(int i) {
+        if (i < this.b.size() && i >= 0 && dy.g(this.a, get(i))) {
+            return true;
         }
-        for (tg6 tg6Var = (tg6) ugbVar.f; tg6Var != null && tg6Var != ugbVar2; tg6Var = (tg6) tg6Var.f) {
-            u14Var.b(tg6Var);
-        }
-        u14Var.g();
-        tg6 tg6Var2 = (tg6) ugbVar.f;
-        u14Var.f = tg6Var2;
-        if (tg6Var2 != null) {
-            tg6Var2.e = u14Var;
-        }
-        u14Var.e = ugbVar;
-        ugbVar.f = u14Var;
-        tg6 tg6Var3 = (tg6) ugbVar.b;
-        u14Var.b = tg6Var3;
-        if (((tg6) u14Var.f) == null) {
-            tg6Var3.d = u14Var;
-        }
+        return false;
     }
 
     @Override
-    public final char b() {
-        return this.a;
-    }
-
-    @Override
-    public final int c() {
-        return 1;
-    }
-
-    @Override
-    public final int d(ud3 ud3Var, ud3 ud3Var2) {
-        if (ud3Var.d || ud3Var2.c) {
-            int i = ud3Var2.h;
-            if (i % 3 != 0 && (ud3Var.h + i) % 3 == 0) {
-                return 0;
+    public final File b(int i) {
+        TLRPC.Document a;
+        TLRPC.PhotoSize w;
+        if (i < this.b.size() && i >= 0) {
+            TL_iv.PageBlock pageBlock = get(i);
+            boolean z = pageBlock instanceof TL_iv.pageBlockPhoto;
+            TLRPC.WebPage webPage = this.a;
+            if (z) {
+                TLRPC.Photo e = dy.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                if (e != null && (w = bc4.w(e.sizes, gm.Y0(false), false, null, false)) != null) {
+                    return dy.c(w);
+                }
+            } else if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a = dy.a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+                return dy.c(a);
             }
         }
-        if (ud3Var.g >= 2 && ud3Var2.g >= 2) {
-            return 2;
-        }
-        return 1;
+        return null;
     }
 
     @Override
-    public final char e() {
+    public final String c(int i) {
+        TLObject d = d(i);
+        if (d instanceof TLRPC.Photo) {
+            d = bc4.w(((TLRPC.Photo) d).sizes, gm.Y0(false), false, null, false);
+        }
+        return bc4.r(null, d);
+    }
+
+    @Override
+    public final TLObject d(int i) {
+        if (i < this.b.size() && i >= 0) {
+            TL_iv.PageBlock pageBlock = get(i);
+            boolean z = pageBlock instanceof TL_iv.pageBlockPhoto;
+            TLRPC.WebPage webPage = this.a;
+            if (z) {
+                return dy.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+            }
+            if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                return dy.a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean e(int i) {
+        if (i < this.b.size() && i >= 0 && !dy.g(this.a, get(i))) {
+            ey eyVar = this.c.v0[0].c;
+            TL_iv.PageBlock pageBlock = get(i);
+            eyVar.getClass();
+            if (ey.I(pageBlock) == 5) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PhotoSize f(TLObject tLObject, int[] iArr) {
+        TLRPC.PhotoSize w;
+        if (tLObject instanceof TLRPC.Photo) {
+            TLRPC.PhotoSize w2 = bc4.w(((TLRPC.Photo) tLObject).sizes, gm.Y0(false), false, null, false);
+            if (w2 != null) {
+                int i = w2.size;
+                iArr[0] = i;
+                if (i == 0) {
+                    iArr[0] = -1;
+                }
+                return w2;
+            }
+            iArr[0] = -1;
+            return null;
+        } else if (!(tLObject instanceof TLRPC.Document) || (w = bc4.w(((TLRPC.Document) tLObject).thumbs, 90, false, null, false)) == null) {
+            return null;
+        } else {
+            int i2 = w.size;
+            iArr[0] = i2;
+            if (i2 == 0) {
+                iArr[0] = -1;
+            }
+            return w;
+        }
+    }
+
+    @Override
+    public final Object g() {
         return this.a;
     }
 
-    public lx(char c) {
-        this.a = c;
+    @Override
+    public final TL_iv.PageBlock get(int i) {
+        return (TL_iv.PageBlock) this.b.get(i);
+    }
+
+    @Override
+    public final List getAll() {
+        return this.b;
+    }
+
+    @Override
+    public final void h(TL_iv.PageBlock pageBlock) {
+        o oVar = this.c;
+        int childCount = oVar.v0[0].b.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = oVar.v0[0].b.getChildAt(i);
+            if (childAt instanceof pw) {
+                pw pwVar = (pw) childAt;
+                int indexOf = pwVar.e.items.indexOf(pageBlock);
+                if (indexOf != -1) {
+                    pwVar.b.x(indexOf, false);
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final java.lang.CharSequence i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lx.i(int):java.lang.CharSequence");
+    }
+
+    @Override
+    public final int j() {
+        return this.b.size();
     }
 }

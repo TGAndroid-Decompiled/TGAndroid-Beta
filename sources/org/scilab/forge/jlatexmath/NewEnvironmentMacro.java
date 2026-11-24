@@ -3,7 +3,7 @@ package org.scilab.forge.jlatexmath;
 import java.util.HashMap;
 public class NewEnvironmentMacro extends NewCommandMacro {
     public static void addNewEnvironment(String str, String str2, String str3, int i) {
-        String o = tb4.o(str, "@env");
+        String p = td4.p(str, "@env");
         StringBuilder sb = new StringBuilder();
         sb.append(str2);
         sb.append(" #");
@@ -11,13 +11,13 @@ public class NewEnvironmentMacro extends NewCommandMacro {
         sb.append(i2);
         sb.append(" ");
         sb.append(str3);
-        NewCommandMacro.addNewCommand(o, sb.toString(), i2);
+        NewCommandMacro.addNewCommand(p, sb.toString(), i2);
     }
 
     public static void addReNewEnvironment(String str, String str2, String str3, int i) {
         HashMap<String, String> hashMap = NewCommandMacro.macrocode;
         if (hashMap.get(str + "@env") != null) {
-            String o = tb4.o(str, "@env");
+            String p = td4.p(str, "@env");
             StringBuilder sb = new StringBuilder();
             sb.append(str2);
             sb.append(" #");
@@ -25,9 +25,9 @@ public class NewEnvironmentMacro extends NewCommandMacro {
             sb.append(i2);
             sb.append(" ");
             sb.append(str3);
-            NewCommandMacro.addReNewCommand(o, sb.toString(), i2);
+            NewCommandMacro.addReNewCommand(p, sb.toString(), i2);
             return;
         }
-        qm0.g(tb4.y("Environment ", str, "is not defined ! Use newenvironment instead ..."));
+        qn0.g(kt6.o("Environment ", str, "is not defined ! Use newenvironment instead ..."));
     }
 }

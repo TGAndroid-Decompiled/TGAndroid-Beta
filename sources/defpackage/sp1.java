@@ -1,31 +1,17 @@
 package defpackage;
+public final class sp1 implements iac {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-import android.app.Activity;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class sp1 extends FrameLayout {
-    public final mu1 a;
-
-    public sp1(mu1 mu1Var, Activity activity) {
-        super(activity);
-        this.a = mu1Var;
+    public sp1(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            this.a.F5(true);
-        }
-        return super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int min = Math.min(View.MeasureSpec.getSize(i2), gl.L(300.0f));
-        if (min == 0) {
-            min = gl.L(300.0f);
-        }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
+    public final java.lang.Object run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sp1.run():java.lang.Object");
     }
 }

@@ -1,22 +1,16 @@
 package defpackage;
-public enum sy8 implements jj {
-    RS256(-257),
-    RS384(-258),
-    RS512(-259),
-    LEGACY_RS1(-262),
-    PS256(-37),
-    PS384(-38),
-    PS512(-39),
-    RS1(-65535);
-    
-    public final int a;
-
-    sy8(int i) {
-        this.a = i;
-    }
-
-    @Override
-    public final int a() {
-        return this.a;
-    }
+public final class sy8 {
+    public final long[] a = new long[4096];
+    public final boolean[] b = new boolean[4096];
+    public final float[] c = new float[4096];
+    public final float[] d = new float[4096];
+    public final float[] e = new float[4096];
+    public final float[] f = new float[4096];
+    public final float[] g = new float[4096];
+    public final float[] h = new float[4096];
+    public final float[] i = new float[4096];
+    public final float[] j = new float[4096];
+    public final int[] k = new int[4096];
+    public final int[] l = new int[4096];
+    public int m;
 }

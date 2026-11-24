@@ -1,67 +1,60 @@
 package defpackage;
 
-import android.os.Build;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.WindowInsets;
-public final class p9a implements mw4, no7, k8, nw4 {
+import java.util.AbstractSet;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+public abstract class p9a extends AbstractSet {
     public final byte a;
-    public final taa b;
-
-    public p9a(taa taaVar, byte b) {
-        this.a = b;
-        this.b = taaVar;
-    }
 
     @Override
-    public final vxc W(View view, vxc vxcVar) {
-        WindowInsets g = vxcVar.g();
-        taa taaVar = this.b;
-        taaVar.q0(g);
-        io5 f = vxcVar.a.f(519);
-        if (!taaVar.B2.equals(f)) {
-            taaVar.B2 = f;
-            taaVar.c.requestLayout();
-        }
-        return vxc.b;
-    }
-
-    @Override
-    public final int i() {
-        return bkb.v0(bkb.c6, this.b.J0);
-    }
-
-    @Override
-    public final void j(int i) {
-        taa taaVar = this.b;
-        cq3 cq3Var = taaVar.J2;
-        if (Build.VERSION.SDK_INT >= 31 && cq3Var != null) {
-            if (fod.a(i, 4)) {
-                cq3Var.h(taaVar.X0.e());
-            }
-            cq3Var.e(taaVar.O2, taaVar.b.getWidth(), taaVar.b.getHeight());
-        }
-    }
-
-    @Override
-    public final void r(KeyEvent keyEvent) {
-        m8 m8Var;
-        m8 m8Var2;
-        byte b = this.a;
-        taa taaVar = this.b;
-        switch (b) {
-            case 2:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m8Var = taaVar.E2) != null && m8Var.isShowing()) {
-                    taaVar.E2.d(true);
-                    return;
+    public boolean removeAll(Collection collection) {
+        switch (this.a) {
+            case 0:
+                collection.getClass();
+                if (collection instanceof wo5) {
+                    e89 e89Var = (e89) ((wo5) collection);
+                    vo5 vo5Var = e89Var.h;
+                    if (vo5Var == null) {
+                        vo5Var = new vo5(e89Var, (byte) 1);
+                        e89Var.h = vo5Var;
+                    }
+                    collection = vo5Var;
                 }
-                return;
+                boolean z = false;
+                if ((collection instanceof Set) && collection.size() > size()) {
+                    Iterator<E> it = iterator();
+                    while (it.hasNext()) {
+                        if (collection.contains(it.next())) {
+                            it.remove();
+                            z = true;
+                        }
+                    }
+                } else {
+                    for (Object obj : collection) {
+                        z |= remove(obj);
+                    }
+                }
+                return z;
+            case 1:
+                return p2f.a(this, collection);
             default:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m8Var2 = taaVar.E2) != null && m8Var2.isShowing()) {
-                    taaVar.E2.d(true);
-                    return;
-                }
-                return;
+                return v2f.a(this, collection);
+        }
+    }
+
+    @Override
+    public boolean retainAll(Collection collection) {
+        switch (this.a) {
+            case 0:
+                collection.getClass();
+                return super.retainAll(collection);
+            case 1:
+                collection.getClass();
+                return super.retainAll(collection);
+            default:
+                collection.getClass();
+                return super.retainAll(collection);
         }
     }
 }

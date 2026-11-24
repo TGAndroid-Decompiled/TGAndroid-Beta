@@ -1,61 +1,44 @@
 package defpackage;
+public abstract class nfd {
+    public static final byte[] a = {0, 0, 0, 0, 16, 0, Byte.MIN_VALUE, 0, 0, -86, 0, 56, -101, 113};
+    public static final byte[] b = {0, 0, 33, 7, -45, 17, -122, 68, -56, -63, -54, 0, 0, 0};
 
-import android.os.Parcel;
-public final class nfd {
-    public byte a;
-    public Object b;
-
-    public nfd(int i, Object obj) {
-        this.a = i;
-        this.b = obj;
+    public static boolean a(vb3 vb3Var) {
+        yw7 yw7Var = new yw7(8);
+        int i = vtc.a(vb3Var, yw7Var).a;
+        if (i != 1380533830 && i != 1380333108) {
+            return false;
+        }
+        vb3Var.d(yw7Var.a, 0, 4, false);
+        yw7Var.N(0);
+        int m = yw7Var.m();
+        if (m != 1463899717) {
+            ncd.c("WavHeaderReader", "Unsupported form type: " + m);
+            return false;
+        }
+        return true;
     }
 
-    public final String a(h7f h7fVar) {
-        String str;
-        lid lidVar = (lid) this.b;
-        byte b = this.a;
-        try {
-            if (lidVar.E != null) {
-                z9d z9dVar = lidVar.E;
-                String packageName = lidVar.C.getPackageName();
-                if (b != 2) {
-                    if (b != 3) {
-                        if (b != 4) {
-                            if (b != 5) {
-                                if (b != 6) {
-                                    str = "QUERY_PRODUCT_DETAILS_ASYNC";
-                                } else {
-                                    str = "START_CONNECTION";
-                                }
-                            } else {
-                                str = "IS_FEATURE_SUPPORTED";
-                            }
-                        } else {
-                            str = "CONSUME_ASYNC";
-                        }
-                    } else {
-                        str = "ACKNOWLEDGE_PURCHASE";
-                    }
-                } else {
-                    str = "LAUNCH_BILLING_FLOW";
+    public static vtc b(int i, vb3 vb3Var, yw7 yw7Var) {
+        vtc a2 = vtc.a(vb3Var, yw7Var);
+        while (true) {
+            int i2 = a2.a;
+            if (i2 != i) {
+                b10.o(i2, "Ignoring unknown WAV chunk: ", "WavHeaderReader");
+                long j = a2.b;
+                long j2 = 8 + j;
+                if (j % 2 != 0) {
+                    j2 = 9 + j;
                 }
-                vhd vhdVar = new vhd(h7fVar);
-                d9d d9dVar = (d9d) z9dVar;
-                Parcel X = d9dVar.X();
-                X.writeString(packageName);
-                X.writeString(str);
-                int i = b9d.a;
-                X.writeStrongBinder(vhdVar);
-                d9dVar.b.transact(1, X, null, 1);
-                X.recycle();
-                return "billingOverrideService.getBillingOverride";
+                if (j2 <= 2147483647L) {
+                    vb3Var.m((int) j2, false);
+                    a2 = vtc.a(vb3Var, yw7Var);
+                } else {
+                    throw bx7.d("Chunk is too large (~2GB+) to skip; id: " + i2);
+                }
+            } else {
+                return a2;
             }
-            throw null;
-        } catch (Exception e) {
-            lidVar.E(95, 28, qjd.p);
-            xgd.i("BillingClientTesting", "An error occurred while retrieving billing override.", e);
-            h7fVar.a(0);
-            return "billingOverrideService.getBillingOverride";
         }
     }
 }

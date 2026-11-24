@@ -1,25 +1,19 @@
 package defpackage;
 
-import android.view.View;
-public final class zd6 implements View.OnAttachStateChangeListener {
-    public boolean b;
-    public final ae6 d;
-    public long a = System.currentTimeMillis();
-    public final yd6 c = new yd6(this, (byte) 0);
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
+public final class zd6 {
+    public static final int c = 0;
+    public final String a;
+    public final List b;
 
-    public zd6(ae6 ae6Var) {
-        this.d = ae6Var;
+    static {
+        DesugarCollections.unmodifiableList(new ArrayList());
     }
 
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.b = true;
-        view.post(this.c);
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.b = false;
-        view.removeCallbacks(this.c);
+    public zd6(String str, List list) {
+        this.a = str;
+        this.b = list;
     }
 }

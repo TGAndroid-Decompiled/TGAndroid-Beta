@@ -503,7 +503,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                                     break;
                                                 }
                                             default:
-                                                w26.j("Illegal pattern component: ".concat(parseToken));
+                                                u36.j("Illegal pattern component: ".concat(parseToken));
                                                 return null;
                                         }
                                         numberRule2 = textField;
@@ -803,7 +803,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                 this.mSize = i2;
                 return;
             }
-            sc8.e();
+            i98.g();
             throw null;
         }
 

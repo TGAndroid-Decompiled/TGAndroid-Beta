@@ -1,17 +1,39 @@
 package defpackage;
-public final class lod implements zn7 {
-    public static final lod a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+import java.io.Serializable;
+public final class lod extends mnd implements Serializable {
+    public final mnd a;
+
+    public lod(mnd mndVar) {
+        this.a = mndVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final mnd a() {
+        return this.a;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        return this.a.compare(obj2, obj);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        throw new ClassCastException();
+        if (obj instanceof lod) {
+            return this.a.equals(((lod) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return -this.a.hashCode();
+    }
+
+    public final String toString() {
+        return this.a.toString().concat(".reverse()");
     }
 }

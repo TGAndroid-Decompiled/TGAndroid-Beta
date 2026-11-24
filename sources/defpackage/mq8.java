@@ -1,142 +1,124 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
+import java.util.Arrays;
+import org.telegram.ui.ActionBar.a;
 import org.telegram.ui.ProfileActivity;
-public final class mq8 extends fs5 {
-    public final lca e;
-    public final pq8 f;
+public final class mq8 extends View implements pr8 {
+    public final float[] E;
+    public boolean F;
+    public float G;
+    public float H;
+    public float[] I;
+    public long J;
+    public float K;
+    public int L;
+    public float M;
+    public int N;
+    public float O;
+    public int P;
+    public final ProfileActivity Q;
+    public final int a;
+    public final Rect b;
+    public final Rect c;
+    public final RectF d;
+    public final GradientDrawable e;
+    public final GradientDrawable f;
+    public final ValueAnimator h;
+    public final float[] n;
+    public final Paint r;
+    public final Paint s;
+    public final Paint w;
+    public final GradientDrawable[] x;
+    public final boolean[] y;
 
-    public mq8(pq8 pq8Var, lca lcaVar) {
-        this.f = pq8Var;
-        this.e = lcaVar;
+    public mq8(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mq8.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
     }
 
-    public static TL_stars.SavedStarGift v(s49 s49Var) {
-        View view = s49Var.a;
-        if (view instanceof nv4) {
-            return ((nv4) view).getSavedGift();
+    @Override
+    public final void a() {
+        Arrays.fill(this.y, false);
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void b(boolean z) {
+        this.y[!z ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void c() {
+        RectF rectF = ProfileActivity.e7;
+        this.Q.h4(false);
+    }
+
+    @Override
+    public final void d() {
+        invalidate();
+    }
+
+    public final void e(boolean z, float f) {
+        int i = (int) (255.0f * f);
+        this.e.setAlpha(i);
+        this.f.setAlpha(i);
+        this.r.setAlpha((int) (66.0f * f));
+        this.s.setAlpha((int) (85.0f * f));
+        this.w.setAlpha(i);
+        this.H = f;
+        if (!z) {
+            this.G = f;
         }
-        return null;
+        invalidate();
     }
 
-    @Override
-    public final void a(RecyclerView recyclerView, s49 s49Var) {
-        super.a(recyclerView, s49Var);
-        s49Var.a.setPressed(false);
-    }
-
-    @Override
-    public final int f(RecyclerView recyclerView, s49 s49Var) {
-        if (u(v(s49Var))) {
-            return fs5.m(15, 0);
-        }
-        return fs5.m(0, 0);
-    }
-
-    @Override
-    public final boolean k() {
-        return this.f.h;
-    }
-
-    @Override
-    public final boolean l() {
-        return this.f.h;
-    }
-
-    @Override
-    public final boolean o(RecyclerView recyclerView, s49 s49Var, s49 s49Var2) {
-        vq8 vq8Var;
-        pq8 pq8Var = this.f;
-        va vaVar = pq8Var.f;
-        if (pq8Var.e != null && pq8Var.h && u(v(s49Var)) && u(v(s49Var2))) {
-            int b = s49Var.b();
-            int b2 = s49Var2.b();
-            int indexOf = pq8Var.e.l.indexOf(v(s49Var));
-            int indexOf2 = pq8Var.e.l.indexOf(v(s49Var2));
-            if (indexOf >= 0 && indexOf2 >= 0) {
-                boolean z = pq8Var.d;
-                xsa xsaVar = pq8Var.e;
-                lca lcaVar = this.e;
-                if (z) {
-                    xsaVar.n(indexOf, indexOf2);
-                    lcaVar.e.n(pq8Var.e.d);
-                } else {
-                    if (xsaVar.q == null) {
-                        xsaVar.q = xsaVar.i();
-                    }
-                    xsaVar.n(indexOf, indexOf2);
-                }
-                vaVar.g3.j(b, b2);
-                vaVar.g3.T();
-                if (pq8Var.d) {
-                    HashMap hashMap = tq8.V;
-                    lcaVar.f(true);
-                }
-                d S = LaunchActivity.S();
-                if ((S instanceof ProfileActivity) && (vq8Var = ((ProfileActivity) S).w0) != null) {
-                    vq8Var.a();
-                }
-                return true;
+    public final void f(boolean z, float f) {
+        if (z != this.F) {
+            this.F = z;
+            ValueAnimator valueAnimator = this.h;
+            valueAnimator.cancel();
+            float f2 = this.G;
+            float[] fArr = this.n;
+            float S1 = gm.S1(f2, fArr);
+            float f3 = 1.0f;
+            if (z) {
+                valueAnimator.setDuration(((1.0f - S1) * 250.0f) / f);
+            } else {
+                valueAnimator.setDuration((250.0f * S1) / f);
             }
-            return false;
+            fArr[0] = S1;
+            if (!z) {
+                f3 = 0.0f;
+            }
+            fArr[1] = f3;
+            valueAnimator.start();
         }
-        return false;
     }
 
     @Override
-    public final void q(s49 s49Var, int i) {
-        pq8 pq8Var = this.f;
-        if (i == 0) {
-            xsa xsaVar = pq8Var.e;
-            if (xsaVar != null) {
-                ArrayList arrayList = xsaVar.q;
-                if (arrayList != null) {
-                    ArrayList i2 = xsaVar.i();
-                    if (arrayList.size() == i2.size()) {
-                        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                            if (arrayList.get(i3) == i2.get(i3)) {
-                            }
-                        }
-                    }
-                    xsaVar.p();
-                    xsaVar.q = null;
-                    return;
-                }
-                xsaVar.q = null;
-                return;
-            }
-            return;
-        }
-        va vaVar = pq8Var.f;
-        if (vaVar != null) {
-            vaVar.J0(false);
-        }
-        if (s49Var != null) {
-            s49Var.a.setPressed(true);
-        }
-    }
-
-    public final boolean u(TL_stars.SavedStarGift savedStarGift) {
-        pq8 pq8Var = this.f;
-        if (pq8Var.h) {
-            if (pq8Var.e == this.e.d) {
-                if (savedStarGift == null || !savedStarGift.pinned_to_top) {
-                    return false;
-                }
-                return true;
-            }
-            return true;
-        }
-        return false;
+    public final void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mq8.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void r(s49 s49Var) {
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        int currentActionBarHeight = a.getCurrentActionBarHeight() + this.a;
+        Rect rect = this.b;
+        rect.set(0, 0, i, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.c;
+        rect2.set(0, (int) (i2 - (gm.L(72.0f) * 0.5f)), i, i2);
+        this.e.setBounds(0, rect.bottom, i, gm.L(16.0f) + currentActionBarHeight);
+        RectF rectF = ProfileActivity.e7;
+        this.f.setBounds(0, ((i2 - this.Q.Y1()) - gm.L(72.0f)) - gm.L(24.0f), i, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.x;
+        int i5 = i / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i5, i2);
+        gradientDrawableArr[1].setBounds(i - i5, 0, i, i2);
     }
 }

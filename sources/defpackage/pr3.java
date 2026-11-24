@@ -1,96 +1,72 @@
 package defpackage;
 
-import android.text.TextUtils;
-public final class pr3 {
-    public final int a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
+import java.io.File;
+import java.util.ArrayList;
+public final class pr3 implements qac {
+    public final byte a;
+    public final tr3 b;
 
-    public pr3(int i, int i2, int i3, int i4, int i5, int i6) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = i4;
-        this.e = i5;
-        this.f = i6;
+    public pr3(tr3 tr3Var, byte b) {
+        this.a = b;
+        this.b = tr3Var;
     }
 
-    public static pr3 a(String str) {
-        char c;
-        gre.f(str.startsWith("Format:"));
-        String[] split = TextUtils.split(str.substring(7), ",");
-        int i = -1;
-        int i2 = -1;
-        int i3 = -1;
-        int i4 = -1;
-        int i5 = -1;
-        for (int i6 = 0; i6 < split.length; i6++) {
-            String c2 = smd.c(split[i6].trim());
-            c2.getClass();
-            switch (c2.hashCode()) {
-                case 100571:
-                    if (c2.equals("end")) {
-                        c = 0;
-                        break;
+    @Override
+    public final void a(Object obj) {
+        File file;
+        File file2;
+        byte b = this.a;
+        tr3 tr3Var = this.b;
+        switch (b) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                long currentTimeMillis = System.currentTimeMillis();
+                ArrayList arrayList2 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                for (int i = 0; i < arrayList.size(); i++) {
+                    g6b a = ((sr3) arrayList.get(i)).a();
+                    if ((!a.v() && ((file = a.L) == null || !file.exists())) || currentTimeMillis - a.d > 604800000) {
+                        arrayList3.add(a);
+                    } else {
+                        arrayList4.add(a);
+                        arrayList2.add(Long.valueOf(a.b));
                     }
-                    c = 65535;
-                    break;
-                case 3556653:
-                    if (c2.equals("text")) {
-                        c = 1;
-                        break;
+                }
+                tr3Var.c(arrayList3);
+                tr3Var.f = false;
+                tr3Var.e = true;
+                h4b N1 = oc7.r1(tr3Var.a).N1();
+                int size = arrayList4.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj2 = arrayList4.get(i2);
+                    i2++;
+                    g4b g4bVar = new g4b(N1, (g6b) obj2);
+                    N1.c(g4bVar.K, g4bVar, N1.b, false);
+                }
+                nm7.f(N1.a).k(329, new Object[0]);
+                return;
+            default:
+                ArrayList arrayList5 = (ArrayList) obj;
+                tr3Var.getClass();
+                long currentTimeMillis2 = System.currentTimeMillis();
+                ArrayList arrayList6 = new ArrayList();
+                ArrayList arrayList7 = new ArrayList();
+                for (int i3 = 0; i3 < arrayList5.size(); i3++) {
+                    g6b a2 = ((sr3) arrayList5.get(i3)).a();
+                    if ((!a2.v() && ((file2 = a2.L) == null || !file2.exists())) || (!a2.g ? currentTimeMillis2 - a2.d > 604800000 : currentTimeMillis2 > a2.J)) {
+                        arrayList7.add(a2);
+                    } else {
+                        tr3Var.b.add(a2);
+                        arrayList6.add(Long.valueOf(a2.b));
                     }
-                    c = 65535;
-                    break;
-                case 102749521:
-                    if (c2.equals("layer")) {
-                        c = 2;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 109757538:
-                    if (c2.equals("start")) {
-                        c = 3;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 109780401:
-                    if (c2.equals("style")) {
-                        c = 4;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                default:
-                    c = 65535;
-                    break;
-            }
-            switch (c) {
-                case 0:
-                    i3 = i6;
-                    break;
-                case 1:
-                    i5 = i6;
-                    break;
-                case 2:
-                    i = i6;
-                    break;
-                case 3:
-                    i2 = i6;
-                    break;
-                case 4:
-                    i4 = i6;
-                    break;
-            }
+                }
+                tr3Var.c(arrayList7);
+                tr3Var.d = false;
+                tr3Var.c = true;
+                nm7.f(tr3Var.a).k(332, new Object[0]);
+                return;
         }
-        if (i2 != -1 && i3 != -1 && i5 != -1) {
-            return new pr3(i, i2, i3, i4, i5, split.length);
-        }
-        return null;
     }
 }

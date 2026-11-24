@@ -1,27 +1,44 @@
 package defpackage;
+public final class xm8 {
+    public static final wm8 Companion = new Object();
+    public final int a;
+    public final String b;
 
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class xm8 extends wn8 {
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ml mlVar;
-        super.dispatchDraw(canvas);
-        vl vlVar = this.e;
-        if (vlVar != null && (mlVar = vlVar.k) != null) {
-            mlVar.w0(false);
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().E()) {
-            accessibilityNodeInfo.setText(k96.M0(2131754797, null));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, k96.M0(2131747624, null)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, k96.M0(2131754817, null)));
+    public xm8(int i, int i2, String str) {
+        if (3 == (i & 3)) {
+            this.a = i2;
+            this.b = str;
             return;
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
+        dte.a(i, 3, vm8.a.d());
+        throw null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof xm8)) {
+            return false;
+        }
+        xm8 xm8Var = (xm8) obj;
+        if (this.a == xm8Var.a && rr5.a(this.b, xm8Var.b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode() + (this.a * 31);
+    }
+
+    public final String toString() {
+        return "ProcessData(pid=" + this.a + ", uuid=" + this.b + ')';
+    }
+
+    public xm8(int i, String str) {
+        str.getClass();
+        this.a = i;
+        this.b = str;
     }
 }

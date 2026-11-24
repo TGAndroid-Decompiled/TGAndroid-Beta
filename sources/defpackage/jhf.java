@@ -1,51 +1,37 @@
 package defpackage;
 
-import java.util.Set;
-public abstract class jhf extends x8d implements Set {
-    public transient jff f;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class jhf extends b4 {
+    public static final Parcelable.Creator<jhf> CREATOR = new yhf((byte) 5);
+    public final boolean a;
 
-    @Override
+    public jhf(boolean z) {
+        this.a = z;
+    }
+
     public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
+        if (this == obj) {
             return true;
         }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
+        if ((obj instanceof jhf) && this.a == ((jhf) obj).a) {
+            return true;
         }
         return false;
     }
 
-    @Override
     public final int hashCode() {
-        int i;
-        int i2 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i = obj.hashCode();
-            } else {
-                i = 0;
-            }
-            i2 += i;
+        if (this.a) {
+            return 1;
         }
-        return i2;
+        return 0;
     }
 
-    public final jff l() {
-        jff jffVar = this.f;
-        if (jffVar == null) {
-            zhf zhfVar = new zhf((c5d) this);
-            this.f = zhfVar;
-            return zhfVar;
-        }
-        return jffVar;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        mve.s(parcel, r);
     }
 }

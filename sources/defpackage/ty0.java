@@ -1,48 +1,40 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class ty0 extends av9 {
-    public final byte n0;
+import android.content.DialogInterface;
+public final class ty0 implements DialogInterface.OnDismissListener {
+    public final byte a = 1;
+    public final qac b;
+    public final boolean[] c;
 
-    public ty0(Context context, slb slbVar) {
-        super(slbVar, context, false);
-        this.n0 = (byte) 3;
+    public ty0(qac qacVar, boolean[] zArr) {
+        this.b = qacVar;
+        this.c = zArr;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.n0) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        byte b = this.a;
+        boolean[] zArr = this.c;
+        qac qacVar = this.b;
+        switch (b) {
             case 0:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
+                if (!zArr[0]) {
+                    qacVar.a(Boolean.FALSE);
+                    zArr[0] = true;
+                    return;
                 }
-                return d(motionEvent);
-            case 1:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return d(motionEvent);
-            case 2:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return d(motionEvent);
+                return;
             default:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
+                if (!zArr[0]) {
+                    qacVar.a(Boolean.FALSE);
+                    return;
                 }
-                return d(motionEvent);
+                return;
         }
     }
 
-    public ty0(Context context, boolean z, wjb wjbVar, byte b) {
-        super(wjbVar, context, z);
-        this.n0 = b;
-    }
-
-    public ty0(Context context) {
-        super(context);
-        this.n0 = (byte) 1;
+    public ty0(boolean[] zArr, qac qacVar) {
+        this.c = zArr;
+        this.b = qacVar;
     }
 }

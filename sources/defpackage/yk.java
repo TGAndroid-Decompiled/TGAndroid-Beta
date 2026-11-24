@@ -1,49 +1,30 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class yk extends CharacterStyle {
+import android.net.Uri;
+public final class yk implements Runnable {
     public final byte a;
-    public final Object b;
+    public final al b;
 
-    public yk(ey8 ey8Var) {
-        this.a = (byte) 1;
-        this.b = ey8Var;
+    public yk(al alVar, byte b) {
+        this.a = b;
+        this.b = alVar;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public final void run() {
         byte b = this.a;
-        Object obj = this.b;
+        al alVar = this.b;
         switch (b) {
             case 0:
-                textPaint.setTypeface(gl.o());
-                int alpha = textPaint.getAlpha();
-                textPaint.setColor(bkb.v0(bkb.m6, (wjb) obj));
-                textPaint.setAlpha(alpha);
+                alVar.a.unregisterReceiver(alVar.d);
                 return;
             case 1:
-                textPaint.setColor(bkb.v(bkb.p1(0.55f, textPaint.getColor()), bkb.p1(0.4f, ((ey8) obj).J)));
-                return;
-            case 2:
-                textPaint.setColor(bkb.v(bkb.p1(0.55f, textPaint.getColor()), bkb.p1(0.4f, bkb.v0(bkb.Ei, ((wi9) obj).a))));
-                return;
-            case 3:
-                textPaint.setColor(((nkc) obj).t0);
+                alVar.a();
                 return;
             default:
-                float[] fArr = ((smc) obj).b0;
-                int i = -9577217;
-                if (fArr != null) {
-                    i = bm2.f(fArr[8], znc.p(-9577217, 0, fArr), znc.p(-9577217, 3, fArr));
-                }
-                textPaint.setColor(i);
+                Uri uri = al.g;
+                alVar.b();
                 return;
         }
-    }
-
-    public yk(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
     }
 }

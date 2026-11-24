@@ -1,34 +1,48 @@
 package defpackage;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-public interface i54 {
-    Map b(byte[] bArr);
+import java.util.UUID;
+public final class i54 implements cs3 {
+    public final bs3 a;
 
-    h54 c();
+    public i54(bs3 bs3Var) {
+        this.a = bs3Var;
+    }
 
-    kp4 g(byte[] bArr);
+    @Override
+    public final UUID a() {
+        return n61.b;
+    }
 
-    byte[] j();
+    @Override
+    public final boolean b() {
+        return false;
+    }
 
-    void k(byte[] bArr, byte[] bArr2);
+    @Override
+    public final int e() {
+        return 1;
+    }
 
-    void l(byte[] bArr);
+    @Override
+    public final boolean f(String str) {
+        return false;
+    }
 
-    void n(lj9 lj9Var);
+    @Override
+    public final bs3 g() {
+        return this.a;
+    }
 
-    byte[] p(byte[] bArr, byte[] bArr2);
+    @Override
+    public final lr4 h() {
+        return null;
+    }
 
-    void release();
+    @Override
+    public final void c(fs3 fs3Var) {
+    }
 
-    void s(byte[] bArr);
-
-    g54 t(byte[] bArr, List list, int i, HashMap hashMap);
-
-    int v();
-
-    void w(byte[] bArr, uc8 uc8Var);
-
-    boolean x(String str, byte[] bArr);
+    @Override
+    public final void d(fs3 fs3Var) {
+    }
 }

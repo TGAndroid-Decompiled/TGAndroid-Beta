@@ -1,15 +1,17 @@
 package defpackage;
+public final class uce implements cq7 {
+    public static final uce a = new Object();
 
-import java.util.Calendar;
-import java.util.Locale;
-public abstract class uce {
-    public static int a(int i) {
-        if (i < 100 && i >= 0) {
-            if (ize.G == null) {
-                ize.G = new ize((byte) 15);
-            }
-            return Integer.parseInt(String.format(Locale.US, "%s%02d", ir2.n(2, 0, String.valueOf(Calendar.getInstance().get(1))), Integer.valueOf(i)));
+    static {
+        mlb.z(mlb.r(mmd.class, new eld(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        return i;
+        throw new ClassCastException();
     }
 }

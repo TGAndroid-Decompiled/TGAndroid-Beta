@@ -1,8 +1,15 @@
 package defpackage;
 
-import java.util.concurrent.CancellationException;
-public interface oe1 extends v0a {
-    public static final ne1 p = ne1.a;
+import com.google.android.gms.cast.MediaError;
+public final class oe1 extends j89 {
+    @Override
+    public final void b(MediaError mediaError) {
+        fc4.d("Chromecast Media Error: " + mediaError);
+    }
 
-    void cancel(CancellationException cancellationException);
+    @Override
+    public final void g() {
+        fc4.b("onStatusUpdated");
+        fp.E();
+    }
 }

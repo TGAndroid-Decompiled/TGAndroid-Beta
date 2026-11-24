@@ -10,19 +10,19 @@ public interface ILocationServiceProvider {
     public static final int STATUS_SETTINGS_CHANGE_UNAVAILABLE = 2;
     public static final int STATUS_SUCCESS = 0;
 
-    void checkLocationSettings(oh5 oh5Var, vs2 vs2Var);
+    void checkLocationSettings(nj5 nj5Var, gu2 gu2Var);
 
     boolean checkServices();
 
-    void getLastLocation(vs2 vs2Var);
+    void getLastLocation(gu2 gu2Var);
 
     void init(Context context);
 
-    oh5 onCreateLocationRequest();
+    nj5 onCreateLocationRequest();
 
-    ph5 onCreateLocationServicesAPI(Context context, lh5 lh5Var, mh5 mh5Var);
+    oj5 onCreateLocationServicesAPI(Context context, kj5 kj5Var, lj5 lj5Var);
 
-    void removeLocationUpdates(nh5 nh5Var);
+    void removeLocationUpdates(mj5 mj5Var);
 
-    void requestLocationUpdates(oh5 oh5Var, nh5 nh5Var);
+    void requestLocationUpdates(nj5 nj5Var, mj5 mj5Var);
 }

@@ -1,53 +1,74 @@
 package defpackage;
 
-import android.view.Choreographer;
-import android.view.Display;
-public final class xac extends wac implements Choreographer.FrameCallback {
-    @Override
-    public final void a() {
-        long j;
-        this.b.registerDisplayListener(this, g8c.q(null));
-        this.a.removeFrameCallback(this);
-        this.a.postFrameCallback(this);
-        Display display = this.b.getDisplay(0);
-        if (display != null) {
-            j = (long) (1.0E9d / display.getRefreshRate());
-        } else {
-            lad.f("VideoFrameReleaseHelper", "Unable to query display refresh rate");
-            j = -9223372036854775807L;
-        }
-        this.d = j;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import org.json.JSONArray;
+import org.json.JSONException;
+public final class xac extends b4 {
+    public static final Parcelable.Creator<xac> CREATOR = new lbd((byte) 22);
+    public final ArrayList a;
+
+    public xac(ArrayList arrayList) {
+        this.a = arrayList;
     }
 
-    @Override
-    public final void b() {
-        this.b.unregisterDisplayListener(this);
-        this.a.removeFrameCallback(this);
-        this.c = -9223372036854775807L;
-        this.d = -9223372036854775807L;
-    }
-
-    @Override
-    public final void doFrame(long j) {
-        this.c = j;
-        this.a.removeFrameCallback(this);
-        this.a.postFrameCallbackDelayed(this, 500L);
-    }
-
-    @Override
-    public final void onDisplayChanged(int i) {
-        long j;
-        if (i == 0) {
-            this.a.removeFrameCallback(this);
-            this.a.postFrameCallback(this);
-            Display display = this.b.getDisplay(0);
-            if (display != null) {
-                j = (long) (1.0E9d / display.getRefreshRate());
-            } else {
-                lad.f("VideoFrameReleaseHelper", "Unable to query display refresh rate");
-                j = -9223372036854775807L;
+    public final JSONArray b() {
+        try {
+            JSONArray jSONArray = new JSONArray();
+            ArrayList arrayList = this.a;
+            if (arrayList != null) {
+                for (int i = 0; i < arrayList.size(); i++) {
+                    yac yacVar = (yac) arrayList.get(i);
+                    JSONArray jSONArray2 = new JSONArray();
+                    jSONArray2.put((int) yacVar.c);
+                    jSONArray2.put((int) yacVar.b);
+                    jSONArray2.put((int) yacVar.c);
+                    jSONArray.put(i, jSONArray2);
+                }
             }
-            this.d = j;
+            return jSONArray;
+        } catch (JSONException e) {
+            rjb.k("Error encoding UvmEntries to JSON object", e);
+            return null;
         }
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof xac) {
+            ArrayList arrayList = ((xac) obj).a;
+            ArrayList arrayList2 = this.a;
+            if (arrayList2 == null) {
+                if (arrayList == null) {
+                    return true;
+                }
+                return false;
+            } else if (arrayList != null && arrayList2.containsAll(arrayList) && arrayList.containsAll(arrayList2)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        HashSet hashSet;
+        ArrayList arrayList = this.a;
+        if (arrayList == null) {
+            hashSet = null;
+        } else {
+            hashSet = new HashSet(arrayList);
+        }
+        return Arrays.hashCode(new Object[]{hashSet});
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.p(parcel, 1, this.a);
+        mve.s(parcel, r);
     }
 }

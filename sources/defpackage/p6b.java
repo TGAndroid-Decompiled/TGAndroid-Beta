@@ -1,14 +1,26 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Path;
-public final class p6b extends dh7 {
-    public final Path O;
-    public final t7b P;
+import android.view.View;
+public final class p6b implements View.OnClickListener {
+    public final byte a;
+    public final u6b b;
 
-    public p6b(t7b t7bVar, Context context, f53 f53Var, sl0 sl0Var) {
-        super(context, f53Var, sl0Var);
-        this.P = t7bVar;
-        this.O = new Path();
+    public p6b(u6b u6bVar, byte b) {
+        this.a = b;
+        this.b = u6bVar;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        byte b = this.a;
+        u6b u6bVar = this.b;
+        switch (b) {
+            case 0:
+                u6bVar.Z0();
+                return;
+            default:
+                u6bVar.c1();
+                return;
+        }
     }
 }

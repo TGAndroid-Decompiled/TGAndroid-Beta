@@ -1,34 +1,68 @@
 package defpackage;
 
-import java.util.function.ToLongFunction;
-public final class td implements ToLongFunction {
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.LaunchActivity;
+public final class td implements Runnable {
     public final byte a;
+    public final he b;
 
-    public td(byte b) {
+    public td(he heVar, byte b) {
         this.a = b;
+        this.b = heVar;
     }
 
     @Override
-    public final long applyAsLong(Object obj) {
-        switch (this.a) {
+    public final void run() {
+        byte b = this.a;
+        he heVar = this.b;
+        switch (b) {
             case 0:
-                return ((k27) obj).Z0();
+                heVar.dismiss();
+                return;
             case 1:
-                return Long.parseLong((String) obj);
-            case 2:
-                return ((hm7) obj).e;
-            case 3:
-                return ((hm7) obj).e;
-            case 4:
-                k27 k27Var = ((rxa) obj).b;
-                if (k27Var == null) {
-                    return 0L;
+                if (!heVar.isShowing()) {
+                    try {
+                        heVar.show();
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
                 }
-                return k27Var.k.date;
+                return;
+            case 2:
+                try {
+                    heVar.dismiss();
+                    return;
+                } catch (Exception e) {
+                    fc4.g(e, true);
+                    return;
+                }
+            case 3:
+                heVar.dismiss();
+                return;
+            case 4:
+                heVar.dismiss();
+                return;
             case 5:
-                return ((joc) obj).I;
+                String[] strArr = MediaController.W1;
+                try {
+                    heVar.dismiss();
+                    return;
+                } catch (Exception e2) {
+                    fc4.g(e2, true);
+                    return;
+                }
             default:
-                return ((joc) obj).J;
+                heVar.dismiss();
+                d S = LaunchActivity.S();
+                if (S != null) {
+                    u31 Q = c41.b0(S).Q(2131624012, 36, jb6.M0(2131748309, null));
+                    Q.u = true;
+                    Q.j();
+                    return;
+                }
+                return;
         }
     }
 }

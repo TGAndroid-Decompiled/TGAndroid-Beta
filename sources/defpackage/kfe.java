@@ -1,63 +1,31 @@
 package defpackage;
-
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.zip.Deflater;
-import java.util.zip.DeflaterOutputStream;
 public abstract class kfe {
-    public static byte[] a(byte[] bArr) {
-        Deflater deflater = new Deflater(1);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        try {
-            DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream, deflater);
-            deflaterOutputStream.write(bArr);
-            deflaterOutputStream.close();
-            deflater.end();
-            return byteArrayOutputStream.toByteArray();
-        } catch (Throwable th) {
-            deflater.end();
-            throw th;
-        }
-    }
-
-    public static byte[] b(int i, InputStream inputStream) {
-        byte[] bArr = new byte[i];
-        int i2 = 0;
-        while (i2 < i) {
-            int read = inputStream.read(bArr, i2, i - i2);
-            if (read >= 0) {
-                i2 += read;
-            } else {
-                sc8.j(de9.k(i, "Not enough bytes to read: "));
-                return null;
+    public static final Object a(long j, px2 px2Var) {
+        if (j > 0) {
+            vb1 vb1Var = new vb1(1, fne.a(px2Var));
+            vb1Var.s();
+            if (j < Long.MAX_VALUE) {
+                b(vb1Var.e).b(j, vb1Var);
+            }
+            Object q = vb1Var.q();
+            if (q == ly2.a) {
+                return q;
             }
         }
-        return bArr;
+        return g7c.a;
     }
 
-    public static byte[] c(java.io.FileInputStream r8, int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kfe.c(java.io.FileInputStream, int, int):byte[]");
-    }
-
-    public static long d(int i, InputStream inputStream) {
-        byte[] b = b(i, inputStream);
-        long j = 0;
-        for (int i2 = 0; i2 < i; i2++) {
-            j += (b[i2] & 255) << (i2 << 3);
+    public static final pe3 b(cy2 cy2Var) {
+        pe3 pe3Var;
+        ay2 ay2Var = cy2Var.get(jk2.b);
+        if (ay2Var instanceof pe3) {
+            pe3Var = (pe3) ay2Var;
+        } else {
+            pe3Var = null;
         }
-        return j;
-    }
-
-    public static void e(OutputStream outputStream, long j, int i) {
-        byte[] bArr = new byte[i];
-        for (int i2 = 0; i2 < i; i2++) {
-            bArr[i2] = (byte) ((j >> (i2 << 3)) & 255);
+        if (pe3Var == null) {
+            return ub3.a;
         }
-        outputStream.write(bArr);
-    }
-
-    public static void f(ByteArrayOutputStream byteArrayOutputStream, int i) {
-        e(byteArrayOutputStream, i, 2);
+        return pe3Var;
     }
 }

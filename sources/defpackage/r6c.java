@@ -1,17 +1,15 @@
 package defpackage;
+public final class r6c implements Runnable {
+    public final byte a;
+    public final v6c b;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class r6c extends b4 {
-    public static final Parcelable.Creator<r6c> CREATOR = new rhe((byte) 29);
-    public String a;
-    public String b;
+    public r6c(v6c v6cVar, byte b) {
+        this.a = b;
+        this.b = v6cVar;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a);
-        jte.l(parcel, 3, this.b);
-        jte.s(parcel, r);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.r6c.run():void");
     }
 }

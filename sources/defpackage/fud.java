@@ -1,10 +1,17 @@
 package defpackage;
-public final class fud {
-    public final vid a;
-    public final gud b;
+public final class fud implements cq7 {
+    public static final fud a = new Object();
 
-    public fud(vid vidVar, String str, Object[] objArr) {
-        this.a = vidVar;
-        this.b = new gud(vidVar.getClass(), str, objArr);
+    static {
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

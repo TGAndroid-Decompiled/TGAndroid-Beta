@@ -1,25 +1,28 @@
 package defpackage;
+public final class ivb extends ehc {
+    public boolean a = false;
+    public final byte b;
+    public final jvb c;
 
-import org.telegram.tgnet.TLRPC;
-public final class ivb extends ja {
-    public final TLRPC.TL_forumTopic c;
-
-    public ivb(int i, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i, true);
-        this.c = tL_forumTopic;
+    public ivb(jvb jvbVar, int i) {
+        this.c = jvbVar;
+        this.b = i;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void a() {
+        this.a = true;
+    }
+
+    @Override
+    public final void b() {
+        this.c.a.setVisibility(0);
+    }
+
+    @Override
+    public final void c() {
+        if (!this.a) {
+            this.c.a.setVisibility(this.b);
         }
-        if (obj != null && ivb.class == obj.getClass()) {
-            ivb ivbVar = (ivb) obj;
-            int i = this.a;
-            if (i == ivbVar.a && i == 0 && this.c.id == ivbVar.c.id) {
-                return true;
-            }
-        }
-        return false;
     }
 }

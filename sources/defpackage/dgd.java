@@ -1,83 +1,54 @@
 package defpackage;
 
-import java.util.ListIterator;
-public final class dgd extends v5c implements ListIterator {
-    public final int b;
-    public int c;
-    public final xhd d;
+import java.util.Iterator;
+import java.util.Map;
+public final class dgd extends xcd {
+    public final transient h9d h;
+    public final transient Object[] n;
+    public final transient boolean r;
 
-    public dgd(xhd xhdVar, int i) {
-        super((byte) 10);
-        int size = xhdVar.size();
-        if (i >= 0 && i <= size) {
-            this.b = size;
-            this.c = i;
-            this.d = xhdVar;
-            return;
-        }
-        k93.i(k0f.c(i, size, "index"));
-        throw null;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
+    public dgd(h9d h9dVar, Object[] objArr) {
+        super((byte) 0);
+        this.h = h9dVar;
+        this.n = objArr;
+        this.r = true;
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.h.get(key))) {
+                return true;
+            }
         }
         return false;
     }
 
     @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
+    public final int h(Object[] objArr) {
+        ccd ccdVar = this.f;
+        if (ccdVar == null) {
+            ccdVar = new yfd(this);
+            this.f = ccdVar;
         }
-        return false;
+        return ccdVar.h(objArr);
     }
 
     @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
+    public final Iterator iterator() {
+        ccd ccdVar = this.f;
+        if (ccdVar == null) {
+            ccdVar = new yfd(this);
+            this.f = ccdVar;
         }
-        w26.g();
-        return null;
+        return ccdVar.listIterator(0);
     }
 
     @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int size() {
+        return this.r ? 1 : 0;
     }
 }

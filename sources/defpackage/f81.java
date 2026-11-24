@@ -1,70 +1,29 @@
 package defpackage;
 
-import java.util.HashSet;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f81 implements RequestDelegate {
-    public final byte a;
-    public final z81 b;
-    public final hd c;
-    public final HashSet d;
-    public final TLRPC.TL_inputGroupCallInviteMessage e;
-    public final boolean f;
+import android.view.View;
+public final class f81 implements f59 {
+    public final r59 a;
+    public final g81 b;
 
-    public f81(z81 z81Var, hd hdVar, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z, byte b) {
-        this.a = b;
-        this.b = z81Var;
-        this.c = hdVar;
-        this.d = hashSet;
-        this.e = tL_inputGroupCallInviteMessage;
-        this.f = z;
+    public f81(g81 g81Var, r59 r59Var) {
+        this.b = g81Var;
+        this.a = r59Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.a) {
-            case 0:
-                final z81 z81Var = this.b;
-                z81Var.getClass();
-                final hd hdVar = this.c;
-                final HashSet hashSet = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.e;
-                final boolean z = this.f;
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r8) {
-                            case 0:
-                                z81Var.h0(hdVar, tLObject, hashSet, tL_inputGroupCallInviteMessage, z, tL_error);
-                                return;
-                            default:
-                                z81Var.g0(hdVar, tLObject, hashSet, tL_inputGroupCallInviteMessage, z, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final z81 z81Var2 = this.b;
-                final hd hdVar2 = this.c;
-                final HashSet hashSet2 = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.e;
-                final boolean z2 = this.f;
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r8) {
-                            case 0:
-                                z81Var2.h0(hdVar2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z2, tL_error);
-                                return;
-                            default:
-                                z81Var2.g0(hdVar2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z2, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void g(int i, View view) {
+        w81 w81Var = this.b.f;
+        r59 r59Var = this.a;
+        h81 h81Var = (h81) r59Var.getAdapter();
+        p81 p81Var = (p81) h81Var.e.get(i);
+        if (view instanceof sha) {
+            int i2 = w81.H;
+            w81Var.c(p81Var, (r81) h81Var, r59Var);
+            return;
+        }
+        l81 l81Var = w81Var.G;
+        if (l81Var != null) {
+            l81Var.h(p81Var.c, p81Var.d, false);
         }
     }
 }

@@ -1,44 +1,20 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.TextView;
-public final class mha implements View.OnClickListener {
-    public final byte a;
-    public final pha b;
+import android.content.Context;
+public final class mha {
+    public final int a;
+    public final int b;
+    public final lha c;
+    public final kha d;
+    public final nha e;
 
-    public mha(pha phaVar, byte b) {
-        this.a = b;
-        this.b = phaVar;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        pha phaVar = this.b;
-        switch (b) {
-            case 0:
-                if (!phaVar.H && phaVar.G) {
-                    phaVar.n(true);
-                    return;
-                }
-                c6 c6Var = phaVar.W;
-                if (c6Var != null) {
-                    c6Var.b(-1);
-                    return;
-                }
-                return;
-            default:
-                if (phaVar.s.length() != 0) {
-                    phaVar.s.setText("");
-                } else {
-                    TextView textView = phaVar.x;
-                    if (textView != null && textView.getVisibility() == 0) {
-                        phaVar.m();
-                    }
-                }
-                phaVar.s.requestFocus();
-                gl.F3(phaVar.s);
-                return;
-        }
+    public mha(nha nhaVar, Context context, int i) {
+        this.e = nhaVar;
+        this.b = i;
+        int i2 = nhaVar.o2;
+        nhaVar.o2 = i2 + 1;
+        this.a = (i2 & 65535) | 65536;
+        this.c = new lha(this, context, i);
+        this.d = new kha(nhaVar, context, i, false);
     }
 }

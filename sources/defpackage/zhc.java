@@ -1,23 +1,19 @@
 package defpackage;
 
-import android.content.Context;
-import org.webrtc.TextureViewRenderer;
-public final class zhc extends TextureViewRenderer {
-    public final aic a;
+import org.webrtc.RendererCommon;
+public final class zhc implements RendererCommon.RendererEvents {
+    public final iic a;
 
-    public zhc(aic aicVar, Context context) {
-        super(context);
-        this.a = aicVar;
+    public zhc(iic iicVar) {
+        this.a = iicVar;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        super.onFirstFrameRendered();
-        this.a.b();
+        gm.c3(new f8c(this, (byte) 14));
     }
 
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
+    public final void onFrameResolutionChanged(int i, int i2, int i3) {
     }
 }

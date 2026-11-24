@@ -1,159 +1,124 @@
 package defpackage;
 
-import java.util.Arrays;
+import android.net.Uri;
+import j$.util.Objects;
 public final class aqb {
-    public static final char[] r;
-    public static final int[] s = {8364, 129, 8218, 402, 8222, 8230, 8224, 8225, 710, 8240, 352, 8249, 338, 141, 381, 143, 144, 8216, 8217, 8220, 8221, 8226, 8211, 8212, 732, 8482, 353, 8250, 339, 157, 382, 376};
-    public final zj1 a;
-    public final yu7 b;
-    public fs5 d;
-    public vpb i;
-    public final upb j;
-    public final tpb k;
-    public final ppb l;
-    public final rpb m;
-    public final qpb n;
-    public String o;
-    public final int[] p;
-    public final int[] q;
-    public qsb c = qsb.a;
-    public boolean e = false;
-    public String f = null;
-    public final StringBuilder g = new StringBuilder(1024);
-    public final StringBuilder h = new StringBuilder(1024);
+    public static final String A;
+    public static final String B;
+    public static final String C;
+    public static final String D;
+    public static final String E;
+    public static final Object p = new Object();
+    public static final bt6 q;
+    public static final String r;
+    public static final String s;
+    public static final String t;
+    public static final String u;
+    public static final String v;
+    public static final String w;
+    public static final String x;
+    public static final String y;
+    public static final String z;
+    public Object a = p;
+    public bt6 b = q;
+    public Object c;
+    public long d;
+    public long e;
+    public long f;
+    public boolean g;
+    public boolean h;
+    public ws6 i;
+    public boolean j;
+    public long k;
+    public long l;
+    public int m;
+    public int n;
+    public long o;
 
     static {
-        char[] cArr = {'\t', '\n', '\r', '\f', ' ', '<', '&'};
-        r = cArr;
-        Arrays.sort(cArr);
+        ps6 ps6Var = new ps6();
+        ps6Var.a = "androidx.media3.common.Timeline";
+        ps6Var.b = Uri.EMPTY;
+        q = ps6Var.a();
+        r = "1";
+        s = "2";
+        t = "3";
+        u = "4";
+        v = "5";
+        w = "6";
+        x = "7";
+        y = "8";
+        z = "9";
+        A = "a";
+        B = "b";
+        C = "c";
+        D = "d";
+        E = "e";
     }
 
-    public aqb(zj1 zj1Var, yu7 yu7Var) {
-        ?? vpbVar = new vpb(2);
-        vpbVar.m = new fy();
-        this.j = vpbVar;
-        this.k = new vpb(3);
-        this.l = new fs5(5, (byte) 2);
-        this.m = new rpb();
-        this.n = new qpb();
-        this.p = new int[1];
-        this.q = new int[2];
-        this.a = zj1Var;
-        this.b = yu7Var;
-    }
-
-    public final void a(qsb qsbVar) {
-        this.a.a();
-        this.c = qsbVar;
-    }
-
-    public final void b(String str) {
-        yu7 yu7Var = this.b;
-        if (yu7Var.size() < 0) {
-            zj1 zj1Var = this.a;
-            yu7Var.add(new ng5(zj1Var.f + zj1Var.e, "Invalid character reference: %s", new Object[]{str}));
-        }
-    }
-
-    public final int[] c(java.lang.Character r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.aqb.c(java.lang.Character, boolean):int[]");
-    }
-
-    public final vpb d(boolean z) {
-        vpb vpbVar;
-        if (z) {
-            vpbVar = this.j;
-            vpbVar.B();
-        } else {
-            vpbVar = this.k;
-            vpbVar.s();
-        }
-        this.i = vpbVar;
-        return vpbVar;
-    }
-
-    public final void e() {
-        fs5.t(this.h);
-    }
-
-    public final void f(char c) {
-        h(String.valueOf(c));
-    }
-
-    public final void g(fs5 fs5Var) {
-        if (!this.e) {
-            this.d = fs5Var;
-            this.e = true;
-            int i = fs5Var.b;
-            if (i == 2) {
-                this.o = ((upb) fs5Var).e;
-                return;
-            } else if (i == 3 && ((tpb) fs5Var).m != null) {
-                yu7 yu7Var = this.b;
-                if (yu7Var.size() < 0) {
-                    zj1 zj1Var = this.a;
-                    ng5 ng5Var = new ng5();
-                    ng5Var.b = zj1Var.f + zj1Var.e;
-                    ng5Var.c = "Attributes incorrectly present on end tag";
-                    yu7Var.add(ng5Var);
-                    return;
-                }
-                return;
-            } else {
-                return;
-            }
-        }
-        w26.j("There is an unread token pending!");
-    }
-
-    public final void h(String str) {
-        if (this.f == null) {
-            this.f = str;
-            return;
-        }
-        StringBuilder sb = this.g;
-        if (sb.length() == 0) {
-            sb.append(this.f);
-        }
-        sb.append(str);
-    }
-
-    public final void i() {
-        g(this.n);
-    }
-
-    public final void j() {
-        g(this.m);
-    }
-
-    public final void k() {
-        vpb vpbVar = this.i;
-        if (vpbVar.g != null) {
-            vpbVar.A();
-        }
-        g(this.i);
-    }
-
-    public final void l(qsb qsbVar) {
-        yu7 yu7Var = this.b;
-        if (yu7Var.size() < 0) {
-            zj1 zj1Var = this.a;
-            yu7Var.add(new ng5(zj1Var.f + zj1Var.e, "Unexpectedly reached end of file (EOF) in input state [%s]", new Object[]{qsbVar}));
-        }
-    }
-
-    public final void m(qsb qsbVar) {
-        yu7 yu7Var = this.b;
-        if (yu7Var.size() < 0) {
-            zj1 zj1Var = this.a;
-            yu7Var.add(new ng5(zj1Var.f + zj1Var.e, "Unexpected character '%s' in input state [%s]", new Object[]{Character.valueOf(zj1Var.i()), qsbVar}));
-        }
-    }
-
-    public final boolean n() {
-        if (this.o != null && this.i.z().equalsIgnoreCase(this.o)) {
+    public final boolean a() {
+        if (this.i != null) {
             return true;
         }
         return false;
+    }
+
+    public final void b(Object obj, bt6 bt6Var, Object obj2, long j, long j2, long j3, boolean z2, boolean z3, ws6 ws6Var, long j4, long j5, int i, int i2, long j6) {
+        this.a = obj;
+        if (bt6Var == null) {
+            bt6Var = q;
+        }
+        this.b = bt6Var;
+        this.c = obj2;
+        this.d = j;
+        this.e = j2;
+        this.f = j3;
+        this.g = z2;
+        this.h = z3;
+        this.i = ws6Var;
+        this.k = j4;
+        this.l = j5;
+        this.m = i;
+        this.n = i2;
+        this.o = j6;
+        this.j = false;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && aqb.class.equals(obj.getClass())) {
+                aqb aqbVar = (aqb) obj;
+                if (Objects.equals(this.a, aqbVar.a) && Objects.equals(this.b, aqbVar.b) && Objects.equals(this.c, aqbVar.c) && Objects.equals(this.i, aqbVar.i) && this.d == aqbVar.d && this.e == aqbVar.e && this.f == aqbVar.f && this.g == aqbVar.g && this.h == aqbVar.h && this.j == aqbVar.j && this.k == aqbVar.k && this.l == aqbVar.l && this.m == aqbVar.m && this.n == aqbVar.n && this.o == aqbVar.o) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2 = (this.b.hashCode() + ((this.a.hashCode() + 217) * 31)) * 31;
+        Object obj = this.c;
+        int i = 0;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
+        }
+        int i2 = (hashCode2 + hashCode) * 31;
+        ws6 ws6Var = this.i;
+        if (ws6Var != null) {
+            i = ws6Var.hashCode();
+        }
+        long j = this.d;
+        long j2 = this.e;
+        long j3 = this.f;
+        long j4 = this.k;
+        long j5 = this.l;
+        long j6 = this.o;
+        return ((((((((((((((((((((((i2 + i) * 31) + ((int) (j ^ (j >>> 32)))) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + (this.g ? 1 : 0)) * 31) + (this.h ? 1 : 0)) * 31) + (this.j ? 1 : 0)) * 31) + ((int) (j4 ^ (j4 >>> 32)))) * 31) + ((int) (j5 ^ (j5 >>> 32)))) * 31) + this.m) * 31) + this.n) * 31) + ((int) (j6 ^ (j6 >>> 32)));
     }
 }

@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class oy2 {
+public final class oy2 extends Error {
 }

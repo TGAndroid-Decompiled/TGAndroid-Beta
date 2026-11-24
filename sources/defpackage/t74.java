@@ -1,70 +1,50 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class t74 implements TextWatcher {
-    public boolean a;
-    public final int b;
-    public final r74 c;
-    public final TextView[] d;
-    public final TLRPC.TL_factCheck e;
+import java.util.List;
+public interface t74 {
+    boolean a(int i, long j);
 
-    public t74(int i, r74 r74Var, TextView[] textViewArr, TLRPC.TL_factCheck tL_factCheck) {
-        this.b = i;
-        this.c = r74Var;
-        this.d = textViewArr;
-        this.e = tL_factCheck;
-    }
+    void b(long j, long j2, long j3, List list, em6[] em6VarArr);
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        int i;
-        int i2;
-        if (!this.a) {
-            int length = editable.length();
-            boolean z = true;
-            int i3 = this.b;
-            if (length > i3) {
-                this.a = true;
-                editable.delete(i3, editable.length());
-                r74 r74Var = this.c;
-                gl.A3(r74Var);
-                try {
-                    r74Var.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                this.a = false;
-            }
-            TextView[] textViewArr = this.d;
-            if (textViewArr[0] != null) {
-                if (editable.length() <= 0 && this.e != null) {
-                    z = false;
-                }
-                TextView textView = textViewArr[0];
-                if (z) {
-                    i = 2131751342;
-                } else {
-                    i = 2131746128;
-                }
-                textView.setText(k96.M0(i, null));
-                TextView textView2 = textViewArr[0];
-                if (z) {
-                    i2 = bkb.G5;
-                } else {
-                    i2 = bkb.p7;
-                }
-                textView2.setTextColor(bkb.w0(null, i2, false));
-            }
-        }
-    }
+    uzb c();
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
+    int d();
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
+    int e(go4 go4Var);
+
+    void f();
+
+    boolean g(long j, ni2 ni2Var, List list);
+
+    void h(boolean z);
+
+    go4 i(int i);
+
+    void j();
+
+    int k(int i);
+
+    int l(long j, List list);
+
+    int length();
+
+    void m();
+
+    int n();
+
+    go4 o();
+
+    int p();
+
+    boolean q(int i, long j);
+
+    void r(float f);
+
+    Object s();
+
+    void t();
+
+    void u();
+
+    int v(int i);
 }

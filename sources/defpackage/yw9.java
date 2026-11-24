@@ -1,7 +1,10 @@
 package defpackage;
+public final class yw9 {
+    public final byte[] a;
+    public final byte[] b;
 
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class yw9 extends FrameLayout {
-    public TextView a;
+    public yw9(byte[] bArr, byte[] bArr2) {
+        this.a = bArr;
+        this.b = bArr2;
+    }
 }

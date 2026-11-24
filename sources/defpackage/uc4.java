@@ -1,28 +1,32 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class uc4 implements RequestDelegate {
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_ephemeral;
+public final class uc4 implements Runnable {
     public final byte a;
-    public final pd4 b;
+    public final ad4 b;
+    public final TL_ephemeral.TL_sendMessage c;
+    public final Object[] d;
 
-    public uc4(pd4 pd4Var, byte b) {
+    public uc4(ad4 ad4Var, TL_ephemeral.TL_sendMessage tL_sendMessage, Object[] objArr, byte b) {
         this.a = b;
-        this.b = pd4Var;
+        this.b = ad4Var;
+        this.c = tL_sendMessage;
+        this.d = objArr;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void run() {
         byte b = this.a;
-        pd4 pd4Var = this.b;
+        Object[] objArr = this.d;
+        ad4 ad4Var = this.b;
         switch (b) {
             case 0:
-                gl.d3(new vc4(pd4Var, tLObject, (byte) 1));
+                boolean booleanValue = ((Boolean) objArr[5]).booleanValue();
+                ad4Var.getSendMessagesHelper().O(this.c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (m5a) objArr[4], booleanValue);
                 return;
             default:
-                pd4Var.getClass();
-                gl.d3(new mg3(pd4Var, tL_error, tLObject, (byte) 26));
+                ad4Var.getSendMessagesHelper().O(this.c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (m5a) objArr[4], ((Boolean) objArr[5]).booleanValue());
                 return;
         }
     }

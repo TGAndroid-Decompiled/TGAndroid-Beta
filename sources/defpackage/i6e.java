@@ -1,35 +1,17 @@
 package defpackage;
+public final class i6e implements cq7 {
+    public static final i6e a = new Object();
 
-import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-public final class i6e extends y1f implements Serializable {
-    public final MessageDigest a;
-    public final int b;
-    public final boolean c;
-    public final String d;
-
-    public i6e() {
-        boolean z;
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            this.a = messageDigest;
-            this.b = messageDigest.getDigestLength();
-            this.d = "Hashing.sha256()";
-            try {
-                messageDigest.clone();
-                z = true;
-            } catch (CloneNotSupportedException unused) {
-                z = false;
-            }
-            this.c = z;
-        } catch (NoSuchAlgorithmException e) {
-            fi7.g(e);
-            throw null;
-        }
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)), 5)));
     }
 
-    public final String toString() {
-        return this.d;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

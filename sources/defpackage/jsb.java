@@ -1,27 +1,24 @@
 package defpackage;
-public enum jsb extends qsb {
+public enum jsb extends rub {
     public jsb() {
-        super("AfterDoctypeSystemIdentifier", 64);
+        super("ScriptDataLessthanSign", 16);
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char d = zj1Var.d();
-        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
-            lqb lqbVar = qsb.a;
-            if (d != '>') {
-                if (d != 65535) {
-                    aqbVar.m(this);
-                    aqbVar.c = qsb.D0;
-                    return;
-                }
-                aqbVar.l(this);
-                aqbVar.j();
-                aqbVar.c = lqbVar;
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        char d = hl1Var.d();
+        if (d != '!') {
+            if (d != '/') {
+                bsbVar.h("<");
+                hl1Var.q();
+                bsbVar.c = rub.f;
                 return;
             }
-            aqbVar.j();
-            aqbVar.c = lqbVar;
+            bsbVar.e();
+            bsbVar.c = rub.H;
+            return;
         }
+        bsbVar.h("<!");
+        bsbVar.c = rub.J;
     }
 }

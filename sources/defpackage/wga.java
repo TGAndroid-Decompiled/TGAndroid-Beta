@@ -1,82 +1,113 @@
 package defpackage;
 
-import java.util.Arrays;
-import java.util.Random;
-public final class wga {
-    public final Random a;
-    public final int[] b;
-    public final int[] c;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.Calendar;
+import org.telegram.tgnet.TLRPC;
+public final class wga extends q59 {
+    public final Context c;
+    public final int d;
+    public final ylb e;
+    public final uga f;
+    public final ArrayList h = new ArrayList(10);
+    public final ArrayList n = new ArrayList();
+    public sea r;
+    public final nha s;
 
-    public wga(int[] iArr, Random random) {
-        this.b = iArr;
-        this.a = random;
-        this.c = new int[iArr.length];
-        for (int i = 0; i < iArr.length; i++) {
-            this.c[iArr[i]] = i;
-        }
+    public wga(nha nhaVar, Context context, int i, ylb ylbVar) {
+        this.s = nhaVar;
+        this.c = context;
+        this.d = i;
+        this.e = ylbVar;
+        this.f = new uga(this, i, ylbVar);
+        E();
     }
 
-    public final wga a() {
-        return new wga(new Random(this.a.nextLong()));
+    @Override
+    public final boolean D(u69 u69Var) {
+        return false;
     }
 
-    public final wga b(int i, int i2) {
-        int[] iArr;
-        Random random;
-        int[] iArr2 = new int[i2];
-        int[] iArr3 = new int[i2];
-        int i3 = 0;
-        while (true) {
-            iArr = this.b;
-            random = this.a;
-            if (i3 >= i2) {
-                break;
+    public final void E() {
+        ArrayList arrayList = this.n;
+        arrayList.clear();
+        ArrayList c = this.s.w1[8].c();
+        int i = 0;
+        for (int i2 = 0; i2 < c.size(); i2++) {
+            k47 k47Var = (k47) c.get(i2);
+            if (k47Var.X != i) {
+                int i3 = k47Var.k.date;
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                long j = i3;
+                tL_message.message = jb6.u(j, false);
+                tL_message.id = 0;
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(j * 1000);
+                calendar.set(11, 0);
+                calendar.set(12, 0);
+                calendar.set(13, 0);
+                calendar.set(14, 0);
+                tL_message.date = (int) (calendar.getTimeInMillis() / 1000);
+                k47 k47Var2 = new k47(this.d, tL_message, false, false);
+                k47Var2.D = 10;
+                k47Var2.U = 1;
+                k47Var2.l0 = true;
+                arrayList.add(k47Var2);
+                i = k47Var.X;
             }
-            iArr2[i3] = random.nextInt(iArr.length + 1);
-            int i4 = i3 + 1;
-            int nextInt = random.nextInt(i4);
-            iArr3[i3] = iArr3[nextInt];
-            iArr3[nextInt] = i3 + i;
-            i3 = i4;
+            arrayList.add(k47Var);
         }
-        Arrays.sort(iArr2);
-        int[] iArr4 = new int[iArr.length + i2];
-        int i5 = 0;
-        int i6 = 0;
-        for (int i7 = 0; i7 < iArr.length + i2; i7++) {
-            if (i5 < i2 && i6 == iArr2[i5]) {
-                iArr4[i7] = iArr3[i5];
-                i5++;
-            } else {
-                int i8 = i6 + 1;
-                int i9 = iArr[i6];
-                iArr4[i7] = i9;
-                if (i9 >= i) {
-                    iArr4[i7] = i9 + i2;
-                }
-                i6 = i8;
-            }
-        }
-        return new wga(iArr4, new Random(random.nextLong()));
     }
 
-    public final int c() {
-        return this.b.length;
+    @Override
+    public final int b() {
+        return this.n.size();
     }
 
+    @Override
     public final int d(int i) {
-        int i2 = this.c[i] - 1;
-        if (i2 < 0) {
-            return -1;
+        if (i >= 0) {
+            ArrayList arrayList = this.n;
+            if (i < arrayList.size()) {
+                return ((k47) arrayList.get(i)).U;
+            }
+            return 0;
         }
-        return this.b[i2];
+        return 0;
     }
 
-    public wga() {
-        this(new Random());
+    @Override
+    public final void f() {
+        E();
+        super.f();
     }
 
-    public wga(Random random) {
-        this(new int[0], random);
+    @Override
+    public final void t(u69 u69Var, int i) {
+        if (i >= 0) {
+            ArrayList arrayList = this.n;
+            if (i < arrayList.size()) {
+                k47 k47Var = (k47) arrayList.get(i);
+                int i2 = u69Var.f;
+                View view = u69Var.a;
+                if (i2 == 0) {
+                    ((rc2) view).z3(k47Var, null, false, false, false, false);
+                } else {
+                    ((cm1) view).setMessageObject(k47Var);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        if (i == 0) {
+            vga vgaVar = new vga(this.c, this.d, false, null, this.e);
+            vgaVar.setDelegate(this.f);
+            return new u69(vgaVar);
+        }
+        return new u69(new cm1(this.e, this.c, false));
     }
 }

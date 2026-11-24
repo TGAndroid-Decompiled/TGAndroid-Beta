@@ -1,29 +1,34 @@
 package defpackage;
 public final class za6 implements Runnable {
     public final byte a;
-    public final eb6 b;
-    public final Integer c;
+    public final jb6 b;
+    public final int c;
 
-    public za6(eb6 eb6Var, Integer num, byte b) {
+    public za6(jb6 jb6Var, int i, byte b) {
         this.a = b;
-        this.b = eb6Var;
-        this.c = num;
+        this.b = jb6Var;
+        this.c = i;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        Integer num = this.c;
-        eb6 eb6Var = this.b;
+        int i = this.c;
+        jb6 jb6Var = this.b;
         switch (b) {
             case 0:
-                if (!eb6Var.b.isEmpty()) {
-                    gl.d3(new za6(eb6Var, num, (byte) 1));
-                    return;
-                }
+                jb6Var.P = false;
+                jb6Var.j(i);
+                return;
+            case 1:
+                jb6Var.P = false;
+                jb6Var.j(i);
+                return;
+            case 2:
+                jb6Var.Z0(i, null, true, null);
                 return;
             default:
-                eb6Var.getNotificationCenter().k(76, num);
+                jb6Var.Z0(i, null, true, null);
                 return;
         }
     }

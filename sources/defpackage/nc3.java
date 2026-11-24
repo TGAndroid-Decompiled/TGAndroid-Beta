@@ -1,194 +1,88 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.SparseArray;
-import android.util.SparseBooleanArray;
-import j$.util.Objects;
-import java.util.ArrayList;
-import java.util.Map;
-public final class nc3 extends byb {
-    public static final nc3 F0 = new nc3(new mc3());
-    public static final String G0;
-    public static final String H0;
-    public static final String I0;
-    public static final String J0;
-    public static final String K0;
-    public static final String L0;
-    public static final String M0;
-    public static final String N0;
-    public static final String O0;
-    public static final String P0;
-    public static final String Q0;
-    public static final String R0;
-    public static final String S0;
-    public static final String T0;
-    public static final String U0;
-    public static final String V0;
-    public static final String W0;
-    public static final String X0;
-    public static final String Y0;
-    public final boolean A0;
-    public final boolean B0;
-    public final boolean C0;
-    public final SparseArray D0;
-    public final SparseBooleanArray E0;
-    public final boolean w0;
-    public final boolean x0;
-    public final boolean y0;
-    public final boolean z0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class nc3 extends AnimatorListenerAdapter {
+    public final byte a = 1;
+    public final u69 b;
+    public final View c;
+    public final ViewPropertyAnimator d;
+    public final sc3 e;
 
-    static {
-        String str = g8c.a;
-        G0 = "rs";
-        H0 = "rt";
-        I0 = "ru";
-        J0 = "rv";
-        K0 = "rw";
-        L0 = "rx";
-        M0 = "ry";
-        N0 = "rz";
-        O0 = "s0";
-        P0 = "s1";
-        Q0 = "s2";
-        R0 = "s3";
-        S0 = "s4";
-        T0 = "s5";
-        U0 = "s6";
-        V0 = "s7";
-        W0 = "s8";
-        X0 = "s9";
-        Y0 = "sa";
-    }
-
-    public nc3(mc3 mc3Var) {
-        super(mc3Var);
-        this.w0 = mc3Var.J;
-        this.x0 = mc3Var.K;
-        this.y0 = mc3Var.L;
-        this.z0 = mc3Var.M;
-        this.A0 = mc3Var.N;
-        this.B0 = mc3Var.O;
-        this.C0 = mc3Var.P;
-        this.D0 = mc3Var.Q;
-        this.E0 = mc3Var.R;
+    public nc3(sc3 sc3Var, u69 u69Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.e = sc3Var;
+        this.b = u69Var;
+        this.d = viewPropertyAnimator;
+        this.c = view;
     }
 
     @Override
-    public final ayb a() {
-        return new mc3(this);
-    }
-
-    @Override
-    public final Bundle c() {
-        Bundle c = super.c();
-        c.putBoolean(G0, this.w0);
-        c.putBoolean(H0, false);
-        c.putBoolean(I0, this.x0);
-        c.putBoolean(U0, false);
-        c.putBoolean(J0, this.y0);
-        c.putBoolean(K0, false);
-        c.putBoolean(L0, false);
-        c.putBoolean(M0, false);
-        c.putBoolean(V0, false);
-        c.putBoolean(Y0, this.z0);
-        c.putBoolean(W0, this.A0);
-        c.putBoolean(N0, this.B0);
-        c.putBoolean(O0, false);
-        c.putBoolean(P0, this.C0);
-        c.putBoolean(X0, false);
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        SparseArray sparseArray = new SparseArray();
-        int i = 0;
-        while (true) {
-            SparseArray sparseArray2 = this.D0;
-            if (i < sparseArray2.size()) {
-                int keyAt = sparseArray2.keyAt(i);
-                for (Map.Entry entry : ((Map) sparseArray2.valueAt(i)).entrySet()) {
-                    if (entry.getValue() == null) {
-                        arrayList2.add((txb) entry.getKey());
-                        arrayList.add(Integer.valueOf(keyAt));
-                    } else {
-                        fyb.g();
-                        return null;
-                    }
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.a) {
+            case 1:
+                View view = this.c;
+                view.setAlpha(1.0f);
+                if (this.e.A(view) > 0.0f) {
+                    view.setScaleX(1.0f);
+                    view.setScaleY(1.0f);
+                    return;
                 }
-                c.putIntArray(Q0, gle.e(arrayList));
-                c.putParcelableArrayList(R0, v21.c(arrayList2, new g31((byte) 5)));
-                SparseArray<? extends Parcelable> sparseArray3 = new SparseArray<>(sparseArray.size());
-                if (sparseArray.size() <= 0) {
-                    c.putSparseParcelableArray(S0, sparseArray3);
-                    i++;
-                } else {
-                    sparseArray.keyAt(0);
-                    ir2.u(sparseArray.valueAt(0));
-                    throw null;
-                }
-            } else {
-                SparseBooleanArray sparseBooleanArray = this.E0;
-                int[] iArr = new int[sparseBooleanArray.size()];
-                for (int i2 = 0; i2 < sparseBooleanArray.size(); i2++) {
-                    iArr[i2] = sparseBooleanArray.keyAt(i2);
-                }
-                c.putIntArray(T0, iArr);
-                return c;
-            }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && nc3.class == obj.getClass()) {
-                nc3 nc3Var = (nc3) obj;
-                if (super.equals(nc3Var) && this.w0 == nc3Var.w0 && this.x0 == nc3Var.x0 && this.y0 == nc3Var.y0 && this.z0 == nc3Var.z0 && this.A0 == nc3Var.A0 && this.B0 == nc3Var.B0 && this.C0 == nc3Var.C0) {
-                    SparseBooleanArray sparseBooleanArray = nc3Var.E0;
-                    SparseBooleanArray sparseBooleanArray2 = this.E0;
-                    int size = sparseBooleanArray2.size();
-                    if (sparseBooleanArray.size() == size) {
-                        int i = 0;
-                        while (true) {
-                            if (i < size) {
-                                if (sparseBooleanArray.indexOfKey(sparseBooleanArray2.keyAt(i)) < 0) {
-                                    break;
-                                }
-                                i++;
-                            } else {
-                                SparseArray sparseArray = nc3Var.D0;
-                                SparseArray sparseArray2 = this.D0;
-                                int size2 = sparseArray2.size();
-                                if (sparseArray.size() == size2) {
-                                    for (int i2 = 0; i2 < size2; i2++) {
-                                        int indexOfKey = sparseArray.indexOfKey(sparseArray2.keyAt(i2));
-                                        if (indexOfKey >= 0) {
-                                            Map map = (Map) sparseArray2.valueAt(i2);
-                                            Map map2 = (Map) sparseArray.valueAt(indexOfKey);
-                                            if (map2.size() == map.size()) {
-                                                for (Map.Entry entry : map.entrySet()) {
-                                                    txb txbVar = (txb) entry.getKey();
-                                                    if (map2.containsKey(txbVar)) {
-                                                        if (!Objects.equals(entry.getValue(), map2.get(txbVar))) {
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        u69 u69Var = this.b;
+        sc3 sc3Var = this.e;
+        ViewPropertyAnimator viewPropertyAnimator = this.d;
+        switch (b) {
+            case 0:
+                viewPropertyAnimator.setListener(null);
+                View view = this.c;
+                view.setAlpha(1.0f);
+                if (sc3Var.A(view) > 0.0f) {
+                    view.setScaleX(1.0f);
+                    view.setScaleY(1.0f);
                 }
-            }
-            return false;
+                view.setTranslationX(0.0f);
+                view.setTranslationY(0.0f);
+                sc3Var.Q();
+                sc3Var.d(u69Var);
+                sc3Var.A.remove(u69Var);
+                sc3Var.G();
+                return;
+            default:
+                viewPropertyAnimator.setListener(null);
+                sc3Var.M();
+                sc3Var.u(u69Var);
+                sc3Var.y.remove(u69Var);
+                sc3Var.G();
+                return;
         }
-        return true;
     }
 
     @Override
-    public final int hashCode() {
-        return (((((((((((((((super.hashCode() + 31) * 31) + (this.w0 ? 1 : 0)) * 961) + (this.x0 ? 1 : 0)) * 961) + (this.y0 ? 1 : 0)) * 28629151) + (this.z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
+    public final void onAnimationStart(Animator animator) {
+        byte b = this.a;
+    }
+
+    public nc3(sc3 sc3Var, u69 u69Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.e = sc3Var;
+        this.b = u69Var;
+        this.c = view;
+        this.d = viewPropertyAnimator;
+    }
+
+    private final void a(Animator animator) {
+    }
+
+    private final void b(Animator animator) {
     }
 }

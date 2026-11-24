@@ -1,46 +1,17 @@
 package defpackage;
+public final class kv7 extends mx5 {
+    public final z8b m;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class kv7 implements ActionMode.Callback {
-    public final byte a;
-
-    @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        byte b = this.a;
-        return false;
+    public kv7(z8b z8bVar, u9b u9bVar, u35 u35Var) {
+        super(u9bVar, false, u35Var);
+        this.m = z8bVar;
     }
 
     @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        byte b = this.a;
-        return false;
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        byte b = this.a;
-        return false;
-    }
-
-    private final void a(ActionMode actionMode) {
-    }
-
-    private final void b(ActionMode actionMode) {
-    }
-
-    private final void c(ActionMode actionMode) {
-    }
-
-    private final void d(ActionMode actionMode) {
-    }
-
-    private final void e(ActionMode actionMode) {
+    public final void b(boolean z) {
+        super.b(z);
+        if (z) {
+            this.m.P0(false);
+        }
     }
 }

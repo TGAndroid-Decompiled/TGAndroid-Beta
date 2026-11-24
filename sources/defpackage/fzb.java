@@ -1,32 +1,29 @@
 package defpackage;
-public final class fzb implements Runnable {
-    public final byte a;
-    public final i8c b;
-    public final String c;
 
-    public fzb(i8c i8cVar, String str, byte b) {
+import android.animation.ValueAnimator;
+public final class fzb implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final hzb b;
+
+    public fzb(hzb hzbVar, byte b) {
         this.a = b;
-        this.b = i8cVar;
-        this.c = str;
+        this.b = hzbVar;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        String str = this.c;
-        i8c i8cVar = this.b;
+        hzb hzbVar = this.b;
         switch (b) {
             case 0:
-                i8cVar.a(str, Boolean.FALSE);
-                return;
-            case 1:
-                i8cVar.a(null, str);
-                return;
-            case 2:
-                i8cVar.a(null, str);
+                yc ycVar = hzbVar.f;
+                ycVar.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                ycVar.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                ycVar.invalidate();
                 return;
             default:
-                i8cVar.a(null, str);
+                hzbVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hzbVar.h();
                 return;
         }
     }

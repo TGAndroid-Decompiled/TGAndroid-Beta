@@ -1,44 +1,108 @@
 package defpackage;
-public class p86 extends odc {
-    public static final pd5 d = new pd5((byte) 21);
-    public final qka b = new qka();
-    public boolean c = false;
 
-    @Override
-    public final void b() {
-        qka qkaVar = this.b;
-        int i = qkaVar.c;
-        for (int i2 = 0; i2 < i; i2++) {
-            o86 o86Var = (o86) qkaVar.b[i2];
-            v3d v3dVar = o86Var.l;
-            v3dVar.b();
-            v3dVar.c = true;
-            e31 e31Var = o86Var.n;
-            if (e31Var != null) {
-                o86Var.h(e31Var);
+import java.io.ByteArrayOutputStream;
+import org.telegram.ui.Dictation.DictationLid;
+public final class p86 {
+    public final int a;
+    public int c;
+    public kn3 d;
+    public long e;
+    public long f;
+    public int g;
+    public int h;
+    public boolean i;
+    public String k;
+    public int l;
+    public String m;
+    public int n;
+    public int o;
+    public int r;
+    public int s;
+    public int t;
+    public boolean u;
+    public boolean v;
+    public int w;
+    public final q86 x;
+    public final byte[] b = new byte[16000];
+    public String j = "";
+    public final ByteArrayOutputStream p = new ByteArrayOutputStream();
+    public final ByteArrayOutputStream q = new ByteArrayOutputStream();
+
+    public p86(q86 q86Var, int i) {
+        this.x = q86Var;
+        this.a = i;
+    }
+
+    public final void a() {
+        ByteArrayOutputStream byteArrayOutputStream = this.p;
+        if (this.s >= 0 && !this.u && this.d != null && DictationLid.c != 0) {
+            int size = byteArrayOutputStream.size();
+            if (size - this.t >= 16000) {
+                this.t = size;
+                this.u = true;
+                int i = this.r;
+                DictationLid.h(DictationLid.j[this.s], new ji(this, i, (byte) 12), null, byteArrayOutputStream.toByteArray());
             }
-            o86 o86Var2 = v3dVar.a;
-            if (o86Var2 != null) {
-                if (o86Var2 == o86Var) {
-                    v3dVar.a = null;
-                    v3dVar.d = true;
-                    v3dVar.b = false;
-                    v3dVar.c = false;
-                    v3dVar.e = false;
-                } else {
-                    w26.j("Attempting to unregister the wrong listener");
-                    return;
-                }
-            } else {
-                sc8.j("No listener register");
+        }
+    }
+
+    public final void b() {
+        p86 p86Var;
+        if (!this.j.isEmpty()) {
+            p86Var = this;
+            gm.c3(new i71((Object) p86Var, this.f, (Object) this.j, true, (byte) 2));
+            p86Var.j = "";
+        } else {
+            p86Var = this;
+        }
+        q86 q86Var = p86Var.x;
+        long j = q86Var.f;
+        q86Var.f = 1 + j;
+        p86Var.f = j;
+        p86Var.q.reset();
+    }
+
+    public final void c(int i, int i2, byte[] bArr) {
+        ByteArrayOutputStream byteArrayOutputStream = this.q;
+        ByteArrayOutputStream byteArrayOutputStream2 = this.p;
+        if (this.s >= 0 && DictationLid.c != 0) {
+            if (byteArrayOutputStream2.size() > 1920000) {
+                this.s = -1;
+                byteArrayOutputStream2.reset();
+                byteArrayOutputStream.reset();
                 return;
             }
+            byteArrayOutputStream2.write(bArr, i, i2);
+            byteArrayOutputStream.write(bArr, i, i2);
         }
-        int i3 = qkaVar.c;
-        Object[] objArr = qkaVar.b;
-        for (int i4 = 0; i4 < i3; i4++) {
-            objArr[i4] = null;
+    }
+
+    public final void d(int i, int i2, byte[] bArr) {
+        byte[] bArr2 = this.b;
+        if (i2 >= 16000) {
+            System.arraycopy(bArr, (i + i2) - 16000, bArr2, 0, 16000);
+            this.c = 16000;
+            return;
         }
-        qkaVar.c = 0;
+        int min = Math.min(this.c, 16000 - i2);
+        System.arraycopy(bArr2, this.c - min, bArr2, 0, min);
+        System.arraycopy(bArr, i, bArr2, min, i2);
+        this.c = min + i2;
+    }
+
+    public final void e() {
+        int i;
+        this.r++;
+        this.p.reset();
+        this.q.reset();
+        if (this.x.c) {
+            i = 0;
+        } else {
+            i = -1;
+        }
+        this.s = i;
+        this.t = 0;
+        this.o = 0;
+        this.v = false;
     }
 }

@@ -1,48 +1,12 @@
 package defpackage;
-public final class bgd implements gid {
-    public final short a;
+public abstract class bgd {
+    public static final o94 a;
+    public static final o94[] b;
 
-    public bgd(int i) {
-        this.a = i;
-    }
-
-    @Override
-    public final Class annotationType() {
-        return gid.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof gid) {
-                gid gidVar = (gid) obj;
-                if (this.a == gidVar.zza() && aid.a.equals(gidVar.zzb())) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (this.a ^ 14552422) + (aid.a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + ((int) this.a) + "intEncoding=" + aid.a + ')';
-    }
-
-    @Override
-    public final int zza() {
-        return this.a;
-    }
-
-    @Override
-    public final aid zzb() {
-        return aid.a;
+    static {
+        o94 o94Var = new o94("auth_api_credentials_begin_sign_in", 9L);
+        o94 o94Var2 = new o94("auth_api_credentials_sign_out", 2L);
+        a = o94Var2;
+        b = new o94[]{o94Var, o94Var2, new o94("auth_api_credentials_authorize", 1L), new o94("auth_api_credentials_revoke_access", 1L), new o94("auth_api_credentials_save_password", 4L), new o94("auth_api_credentials_get_sign_in_intent", 6L), new o94("auth_api_credentials_save_account_linking_token", 3L), new o94("auth_api_credentials_get_phone_number_hint_intent", 3L)};
     }
 }

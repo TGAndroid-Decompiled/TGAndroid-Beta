@@ -53,7 +53,7 @@ public class NetworkMonitor {
         if (z) {
             return;
         }
-        fi7.g("Expected to be true");
+        bh7.j("Expected to be true");
     }
 
     public static NetworkMonitorAutoDetect createAndSetAutoDetectForTest(Context context, String str) {

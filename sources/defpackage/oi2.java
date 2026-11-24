@@ -1,92 +1,59 @@
 package defpackage;
-public final class oi2 implements ip9 {
-    public final ip9 a;
-    public final boolean b;
-    public boolean c;
-    public final pi2 d;
 
-    public oi2(pi2 pi2Var, ip9 ip9Var, boolean z) {
-        this.d = pi2Var;
-        this.a = ip9Var;
-        this.b = z;
+import java.util.Arrays;
+public final class oi2 implements ix9 {
+    public final int a;
+    public final int[] b;
+    public final long[] c;
+    public final long[] d;
+    public final long[] e;
+    public final long f;
+
+    public oi2(int[] iArr, long[] jArr, long[] jArr2, long[] jArr3) {
+        this.b = iArr;
+        this.c = jArr;
+        this.d = jArr2;
+        this.e = jArr3;
+        int length = iArr.length;
+        this.a = length;
+        if (length > 0) {
+            int i = length - 1;
+            this.f = jArr2[i] + jArr3[i];
+            return;
+        }
+        this.f = 0L;
     }
 
     @Override
-    public final int a() {
-        int a = this.a.a();
-        if (this.d.r != Long.MIN_VALUE) {
-            a |= 1;
-        }
-        if (this.b) {
-            return (a & (-3)) | 4;
-        }
-        return a;
+    public final boolean c() {
+        return true;
     }
 
     @Override
-    public final void b() {
-        this.a.b();
-    }
-
-    @Override
-    public final int h(sk4 sk4Var, z83 z83Var, int i) {
-        pi2 pi2Var = this.d;
-        if (pi2Var.c()) {
-            return -3;
-        }
-        if (this.c) {
-            z83Var.setFlags(4);
-            return -4;
-        }
-        long s = pi2Var.s();
-        int h = this.a.h(sk4Var, z83Var, i);
-        if (pi2Var.h != -9223372036854775807L && h != -3) {
-            pi2Var.h = -9223372036854775807L;
-        }
-        if (h == -5) {
-            long j = pi2Var.n;
-            long j2 = pi2Var.r;
-            fm4 fm4Var = (fm4) sk4Var.c;
-            fm4Var.getClass();
-            int i2 = fm4Var.S;
-            int i3 = fm4Var.R;
-            if (i3 != 0 || i2 != 0) {
-                if (j != 0) {
-                    i3 = 0;
-                }
-                if (j2 != Long.MIN_VALUE) {
-                    i2 = 0;
-                }
-                em4 a = fm4Var.a();
-                a.Q = i3;
-                a.R = i2;
-                sk4Var.c = new fm4(a);
-            }
-            return -5;
-        }
-        long j3 = pi2Var.r;
-        if (j3 != Long.MIN_VALUE && ((h == -4 && z83Var.e >= j3) || (h == -3 && s == Long.MIN_VALUE && !z83Var.d))) {
-            z83Var.clear();
-            z83Var.setFlags(4);
-            this.c = true;
-            return -4;
-        }
-        return h;
-    }
-
-    @Override
-    public final boolean j() {
-        if (!this.d.c() && this.a.j()) {
-            return true;
-        }
+    public final boolean d() {
         return false;
     }
 
     @Override
-    public final int n(long j) {
-        if (this.d.c()) {
-            return -3;
+    public final hx9 f(long j) {
+        long[] jArr = this.e;
+        int f = hac.f(jArr, j, true);
+        long j2 = jArr[f];
+        long[] jArr2 = this.c;
+        kx9 kx9Var = new kx9(j2, jArr2[f]);
+        if (j2 < j && f != this.a - 1) {
+            int i = f + 1;
+            return new hx9(kx9Var, new kx9(jArr[i], jArr2[i]));
         }
-        return this.a.n(j);
+        return new hx9(kx9Var, kx9Var);
+    }
+
+    @Override
+    public final long h() {
+        return this.f;
+    }
+
+    public final String toString() {
+        return "ChunkIndex(length=" + this.a + ", sizes=" + Arrays.toString(this.b) + ", offsets=" + Arrays.toString(this.c) + ", timeUs=" + Arrays.toString(this.e) + ", durationsUs=" + Arrays.toString(this.d) + ")";
     }
 }

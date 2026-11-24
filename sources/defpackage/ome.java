@@ -1,3 +1,5 @@
 package defpackage;
-public final class ome extends ezc implements iwe {
+
+import java.util.RandomAccess;
+public abstract class ome extends pge implements aye, RandomAccess {
 }

@@ -1,26 +1,26 @@
 package defpackage;
-public final class tp extends pm4 {
-    public final cq s;
-    public final fq w;
 
-    public tp(fq fqVar, fq fqVar2, cq cqVar) {
-        super(fqVar2);
-        this.w = fqVar;
-        this.s = cqVar;
-    }
-
-    @Override
-    public final vga b() {
-        return this.s;
-    }
-
-    @Override
-    public final boolean c() {
-        fq fqVar = this.w;
-        if (!fqVar.getInternalPopup().a()) {
-            fqVar.f.m(wp.b(fqVar), wp.a(fqVar));
-            return true;
+import android.content.res.Configuration;
+import android.os.LocaleList;
+public abstract class tp {
+    public static void a(Configuration configuration, Configuration configuration2, Configuration configuration3) {
+        LocaleList locales = configuration.getLocales();
+        LocaleList locales2 = configuration2.getLocales();
+        if (!locales.equals(locales2)) {
+            configuration3.setLocales(locales2);
+            configuration3.locale = configuration2.locale;
         }
-        return true;
+    }
+
+    public static lb6 b(Configuration configuration) {
+        return lb6.b(configuration.getLocales().toLanguageTags());
+    }
+
+    public static void c(lb6 lb6Var) {
+        LocaleList.setDefault(LocaleList.forLanguageTags(lb6Var.a.a()));
+    }
+
+    public static void d(Configuration configuration, lb6 lb6Var) {
+        configuration.setLocales(LocaleList.forLanguageTags(lb6Var.a.a()));
     }
 }

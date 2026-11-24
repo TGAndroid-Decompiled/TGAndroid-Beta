@@ -1,17 +1,10 @@
 package defpackage;
-public final class wjd implements zn7 {
-    public static final wjd a = new Object();
+public final class wjd extends e1d {
+    public final j9f b;
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public wjd(j9f j9fVar) {
+        super((byte) 3, false);
+        attachInterface(this, "com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideServiceCallback");
+        this.b = j9fVar;
     }
 }

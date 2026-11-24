@@ -2,7 +2,7 @@ package defpackage;
 
 import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReference;
-public final class fa implements oq4, Serializable {
+public final class fa implements ps4, Serializable {
     public final AtomicReference a;
     public final boolean b = false;
     public final int c = 2;
@@ -17,7 +17,7 @@ public final class fa implements oq4, Serializable {
         }
         if (obj instanceof fa) {
             fa faVar = (fa) obj;
-            if (this.b == faVar.b && this.c == faVar.c && rp5.a(this.a, faVar.a) && AtomicReference.class.equals(AtomicReference.class)) {
+            if (this.b == faVar.b && this.c == faVar.c && rr5.a(this.a, faVar.a) && AtomicReference.class.equals(AtomicReference.class)) {
                 return true;
             }
             return false;
@@ -49,7 +49,7 @@ public final class fa implements oq4, Serializable {
     }
 
     public final String toString() {
-        f59.a.getClass();
-        return g59.a(this);
+        h79.a.getClass();
+        return i79.a(this);
     }
 }

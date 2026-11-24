@@ -1,8 +1,6 @@
 package defpackage;
-public final class udc {
-    public final rj4 a;
+public interface udc {
+    void f(float f);
 
-    public udc(rj4 rj4Var) {
-        this.a = rj4Var;
-    }
+    void h(float f);
 }

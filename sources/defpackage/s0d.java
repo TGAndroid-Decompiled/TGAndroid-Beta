@@ -1,36 +1,32 @@
 package defpackage;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-public abstract class s0d implements Runnable {
-    private final TaskCompletionSource a;
+import android.content.Context;
+public final class s0d {
+    public static final s0d b;
+    public n63 a;
 
-    public s0d() {
-        this.a = null;
+    static {
+        ?? obj = new Object();
+        obj.a = null;
+        b = obj;
     }
 
-    public void a(Exception exc) {
-        TaskCompletionSource taskCompletionSource = this.a;
-        if (taskCompletionSource != null) {
-            taskCompletionSource.trySetException(exc);
+    public static n63 a(Context context) {
+        n63 n63Var;
+        s0d s0dVar = b;
+        synchronized (s0dVar) {
+            n63 n63Var2 = s0dVar.a;
+            n63Var = n63Var2;
+            if (n63Var2 == null) {
+                if (context.getApplicationContext() != null) {
+                    context = context.getApplicationContext();
+                }
+                ?? obj = new Object();
+                obj.a = context;
+                s0dVar.a = obj;
+                n63Var = obj;
+            }
         }
-    }
-
-    public abstract void b();
-
-    public final TaskCompletionSource c() {
-        return this.a;
-    }
-
-    @Override
-    public final void run() {
-        try {
-            b();
-        } catch (Exception e) {
-            a(e);
-        }
-    }
-
-    public s0d(TaskCompletionSource taskCompletionSource) {
-        this.a = taskCompletionSource;
+        return n63Var;
     }
 }

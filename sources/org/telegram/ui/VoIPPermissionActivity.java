@@ -41,7 +41,7 @@ public class VoIPPermissionActivity extends Activity {
                 }
                 requestPermissions(strArr, i);
             } catch (Exception e) {
-                fa4.g(e, true);
+                fc4.g(e, true);
             }
         }
     }
@@ -78,7 +78,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            rgc.h(this, new kbc(this, (byte) 12), i);
+            sic.h(this, new f8c(this, (byte) 20), i);
         } else {
             finish();
         }

@@ -1,28 +1,548 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeProvider;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.ui.ProfileActivity;
-public final class qn8 implements wc2 {
-    public final cj3 a;
-    public final rn8 b;
+public final class qn8 extends View {
+    public final HashSet E;
+    public byte F;
+    public boolean G;
+    public boolean H;
+    public nn8 I;
+    public nn8 J;
+    public nn8 K;
+    public final float L;
+    public final float M;
+    public final float N;
+    public int O;
+    public boolean P;
+    public RadialGradient Q;
+    public final Matrix R;
+    public int S;
+    public PorterDuffColorFilter T;
+    public nn8 U;
+    public float V;
+    public float W;
+    public final ArrayList a;
+    public long a0;
+    public final Paint b;
+    public v4 b0;
+    public final Paint c;
+    public float d;
+    public boolean e;
+    public float f;
+    public km0 h;
+    public final ArrayList n;
+    public int r;
+    public int s;
+    public final int w;
+    public float x;
+    public pn8 y;
 
-    public qn8(rn8 rn8Var, cj3 cj3Var) {
-        this.b = rn8Var;
-        this.a = cj3Var;
+    public qn8(Context context, int i) {
+        super(context);
+        this.a = new ArrayList();
+        Paint paint = new Paint();
+        this.b = paint;
+        this.c = new Paint();
+        this.e = true;
+        this.f = -1.0f;
+        this.n = new ArrayList();
+        this.s = 0;
+        this.x = 0.0f;
+        this.y = null;
+        this.E = new HashSet();
+        this.F = (byte) 6;
+        this.I = null;
+        this.O = 0;
+        this.R = new Matrix();
+        this.U = null;
+        paint.setColor(-16777216);
+        paint.setAlpha(40);
+        this.L = gm.N(14.0f);
+        float N = gm.N(12.0f);
+        this.M = N;
+        float N2 = gm.N(8.0f);
+        this.N = N2;
+        this.w = (int) ((i - N) - N2);
+        setBackgroundColor(0);
+        setImportantForAccessibility(1);
+    }
+
+    private float getItemWidth() {
+        int measuredWidth = getMeasuredWidth();
+        float f = this.L;
+        int i = this.s;
+        return ((measuredWidth - ((f / 2.0f) * (i - 1))) - (f * 2.0f)) / i;
+    }
+
+    public static nn8 i(int i, ArrayList arrayList) {
+        int size = arrayList.size();
+        for (int i2 = 0; i2 < size; i2++) {
+            nn8 nn8Var = (nn8) arrayList.get(i2);
+            if (!nn8Var.o && nn8Var.a == i) {
+                return nn8Var;
+            }
+        }
+        return null;
+    }
+
+    public final void a() {
+        nn8 nn8Var = new nn8(this, on8.J);
+        nn8Var.a = (byte) 14;
+        this.a.add(nn8Var);
+    }
+
+    public final void b() {
+        nn8 nn8Var = new nn8(this, on8.K);
+        nn8Var.a = (byte) 16;
+        this.a.add(nn8Var);
+    }
+
+    public final void c() {
+        nn8 nn8Var = new nn8(this, on8.L);
+        nn8Var.a = (byte) 17;
+        this.a.add(nn8Var);
+    }
+
+    public final void d() {
+        boolean z;
+        if (this.G) {
+            return;
+        }
+        if (this.F == 6) {
+            this.s = this.a.size();
+            invalidate();
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        HashSet hashSet = this.E;
+        if (hashSet.contains(7) && !hashSet.contains(9)) {
+            z = true;
+        } else {
+            z = false;
+        }
+        byte b = this.F;
+        if (b != 0) {
+            if (b != 1) {
+                if (b != 2) {
+                    if (b != 3 && b != 4) {
+                        if (b == 5) {
+                            m(0, arrayList);
+                            m(1, arrayList);
+                        }
+                    } else {
+                        if (z) {
+                            m(7, arrayList);
+                        } else {
+                            m(0, arrayList);
+                        }
+                        m(1, arrayList);
+                        if (z) {
+                            arrayList.add(j(8));
+                        } else {
+                            m(10, arrayList);
+                            n(11, 10, arrayList);
+                            m(12, arrayList);
+                            m(9, arrayList);
+                        }
+                    }
+                } else {
+                    m(0, arrayList);
+                    m(1, arrayList);
+                    m(4, arrayList);
+                    arrayList.add(j(13));
+                }
+            } else {
+                if (z) {
+                    m(7, arrayList);
+                } else {
+                    m(10, arrayList);
+                    n(11, 10, arrayList);
+                }
+                m(1, arrayList);
+                if (!z) {
+                    m(2, arrayList);
+                    if (hashSet.contains(3) && !hashSet.contains(2) && !hashSet.contains(12)) {
+                        arrayList.add(j(3));
+                    }
+                }
+                n(4, 12, arrayList);
+                if (z) {
+                    arrayList.add(j(8));
+                } else {
+                    m(12, arrayList);
+                    n(9, 12, arrayList);
+                }
+            }
+        } else {
+            m(0, arrayList);
+            m(1, arrayList);
+            m(5, arrayList);
+            m(6, arrayList);
+            n(3, 6, arrayList);
+        }
+        gm.c3(new mn8(this, arrayList, (byte) 0));
+    }
+
+    public final void e() {
+        this.G = true;
+    }
+
+    public final boolean f() {
+        byte b = this.F;
+        if (b == 1 || b == 3) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void g() {
+        float f;
+        int i = this.O;
+        if (i != 0) {
+            if (!this.P) {
+                this.b.setColor(i);
+                return;
+            }
+            int measuredWidth = getMeasuredWidth();
+            if (measuredWidth <= 0) {
+                return;
+            }
+            float f2 = this.L;
+            float max = ((measuredWidth - ((f2 / 2.0f) * Math.max(0, this.s - 1))) - (f2 * 2.0f)) / Math.max(1, this.s);
+            float f3 = max / 2.0f;
+            float f4 = this.w / 2.0f;
+            if (this.P) {
+                f = max * 0.65f;
+            } else {
+                f = 1.0f;
+            }
+            RadialGradient radialGradient = new RadialGradient(f3, f4, f, cmb.p1(0.8f, this.O), this.O, Shader.TileMode.CLAMP);
+            this.Q = radialGradient;
+            this.c.setShader(radialGradient);
+        }
     }
 
     @Override
-    public final void b(int i, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        ProfileActivity profileActivity = this.b.b;
-        profileActivity.N1 = true;
-        this.a.removeSelfFromStack();
-        kk7 notificationCenter = profileActivity.getNotificationCenter();
-        int i2 = kk7.s;
-        notificationCenter.n(profileActivity, i2);
-        profileActivity.getNotificationCenter().k(i2, new Object[0]);
+    public AccessibilityNodeProvider getAccessibilityNodeProvider() {
+        v4 v4Var = this.b0;
+        if (v4Var == null) {
+            v4 v4Var2 = new v4(this);
+            this.b0 = v4Var2;
+            return v4Var2;
+        }
+        return v4Var;
+    }
+
+    public float getRoundRadius() {
+        return gm.L(16.0f);
+    }
+
+    public final void h(Canvas canvas, Drawable drawable, float f) {
+        if (drawable == null) {
+            return;
+        }
+        drawable.setColorFilter(this.T);
+        drawable.setAlpha((int) (f * 255.0f));
+        drawable.draw(canvas);
+    }
+
+    public final nn8 j(int i) {
+        nn8 i2 = i(i, this.a);
+        if (i2 != null) {
+            if (i == 1) {
+                p(i2, false);
+            }
+            return i2;
+        }
+        switch (i) {
+            case 0:
+                i2 = new nn8(this, on8.d);
+                break;
+            case 1:
+                i2 = new nn8(this);
+                p(i2, false);
+                break;
+            case 2:
+                i2 = new nn8(this, on8.h);
+                break;
+            case 3:
+                i2 = new nn8(this, on8.n);
+                i2.t = true;
+                i2.x = (short) 200;
+                break;
+            case 4:
+                i2 = new nn8(this, on8.r);
+                break;
+            case 5:
+                i2 = new nn8(this, on8.s);
+                this.I = i2;
+                i2.t = true;
+                i2.x = (short) 500;
+                break;
+            case 6:
+                i2 = new nn8(this, on8.w);
+                i2.t = true;
+                i2.x = (short) 500;
+                break;
+            case 7:
+                i2 = new nn8(this, on8.x);
+                i2.t = true;
+                i2.v = (short) 300;
+                break;
+            case 8:
+                i2 = new nn8(this, on8.y);
+                i2.t = true;
+                i2.x = (short) 500;
+                break;
+            case 9:
+                i2 = new nn8(this, on8.E);
+                i2.t = true;
+                i2.u = 2131624163;
+                i2.x = (short) 300;
+                break;
+            case 10:
+                i2 = new nn8(this, on8.F);
+                i2.t = true;
+                i2.u = 2131624166;
+                i2.x = (short) 500;
+                break;
+            case 11:
+                i2 = new nn8(this, on8.G);
+                i2.t = true;
+                i2.u = 2131624166;
+                i2.x = (short) 500;
+                break;
+            case 12:
+                i2 = new nn8(this, on8.H);
+                break;
+            case 13:
+                i2 = new nn8(this, on8.I);
+                i2.t = true;
+                i2.x = (short) 300;
+                break;
+        }
+        if (i2 != null) {
+            i2.a = i;
+        }
+        return i2;
+    }
+
+    public final boolean k() {
+        if (this.E.contains(5) && this.I != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void l() {
+        int i = this.r;
+        while (true) {
+            ArrayList arrayList = this.n;
+            if (i < arrayList.size()) {
+                im0 im0Var = (im0) arrayList.get(i);
+                if (!im0Var.getBounds().isEmpty()) {
+                    im0Var.setBounds(0, 0, 0, 0);
+                }
+                i++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void m(int i, ArrayList arrayList) {
+        if (this.E.contains(Integer.valueOf(i))) {
+            arrayList.add(j(i));
+        }
+    }
+
+    public final void n(int i, int i2, ArrayList arrayList) {
+        Integer valueOf = Integer.valueOf(i);
+        HashSet hashSet = this.E;
+        if (hashSet.contains(valueOf) && !hashSet.contains(Integer.valueOf(i2))) {
+            arrayList.add(j(i));
+        }
+    }
+
+    public final void o(int i, boolean z) {
+        boolean remove;
+        HashSet hashSet = this.E;
+        if (z) {
+            remove = hashSet.add(Integer.valueOf(i));
+        } else {
+            remove = hashSet.remove(Integer.valueOf(i));
+        }
+        if (remove) {
+            d();
+        }
     }
 
     @Override
-    public final void a(TLRPC.User user) {
+    public final void onDraw(android.graphics.Canvas r31) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qn8.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.makeMeasureSpec((int) (this.w + this.N + this.M), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        nn8 nn8Var;
+        if (this.x >= gm.L(8.0f)) {
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
+            int action = motionEvent.getAction();
+            if (action == 0) {
+                this.U = null;
+                ArrayList arrayList = this.a;
+                int size = arrayList.size();
+                int i = 0;
+                while (true) {
+                    if (i >= size) {
+                        break;
+                    }
+                    nn8 nn8Var2 = (nn8) arrayList.get(i);
+                    if (!nn8Var2.o && nn8Var2.d.contains(x, y)) {
+                        this.U = nn8Var2;
+                        this.V = x;
+                        this.W = y;
+                        this.a0 = System.currentTimeMillis();
+                        this.U.b.c(true);
+                        break;
+                    }
+                    i++;
+                }
+            } else if (action == 2) {
+                if (this.U != null && (Math.abs(x - this.V) > 20.0f || Math.abs(y - this.W) > 20.0f)) {
+                    this.U.b.c(false);
+                    this.U = null;
+                }
+            } else if ((action == 1 || action == 3) && (nn8Var = this.U) != null) {
+                nn8Var.b.c(false);
+                if (action == 1 && this.U.d.contains(x, y)) {
+                    if (System.currentTimeMillis() - this.a0 > 250) {
+                        try {
+                            performHapticFeedback(0, 1);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    nn8 nn8Var3 = this.U;
+                    if (nn8Var3.t && !nn8Var3.s) {
+                        nn8Var3.s = true;
+                        invalidate();
+                    }
+                    nn8 nn8Var4 = this.U;
+                    int i2 = nn8Var4.u;
+                    if (i2 != 0) {
+                        nn8Var4.d(i2, 0, 0);
+                    }
+                    this.U.w = System.currentTimeMillis();
+                    nn8 nn8Var5 = this.U;
+                    pn8 pn8Var = this.y;
+                    if (pn8Var != null) {
+                        short s = nn8Var5.v;
+                        if (s == 0) {
+                            byte b = nn8Var5.a;
+                            RectF rectF = nn8Var5.d;
+                            float f = rectF.left;
+                            float f2 = rectF.top;
+                            ProfileActivity profileActivity = ((tn8) pn8Var).b;
+                            RectF rectF2 = ProfileActivity.e7;
+                            profileActivity.w2(f, f2, b);
+                        } else {
+                            postDelayed(new mn8(this, nn8Var5, (byte) 1), s);
+                        }
+                    }
+                }
+                this.U = null;
+                return true;
+            }
+            if (this.U != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void p(nn8 nn8Var, boolean z) {
+        on8 on8Var;
+        boolean z2 = this.H;
+        if (z) {
+            if (z2) {
+                nn8Var.c(jb6.M0(2131746420, null));
+                nn8Var.d(2131624165, 2131231158, 2131232512);
+                return;
+            }
+            nn8Var.c(jb6.M0(2131746419, null));
+            nn8Var.d(2131624164, 2131231164, 2131232517);
+            return;
+        }
+        if (z2) {
+            on8Var = on8.e;
+        } else {
+            on8Var = on8.f;
+        }
+        nn8Var.d(0, on8Var.b, on8Var.c);
+        nn8Var.c(jb6.M0(on8Var.a, null));
+    }
+
+    public void setGlassFactory(km0 km0Var) {
+        this.h = km0Var;
+        this.n.clear();
+        this.r = 0;
+        invalidate();
+    }
+
+    public void setNotifications(boolean z) {
+        boolean z2;
+        if (this.H != z) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        this.H = z;
+        nn8 i = i(1, this.a);
+        if (i != null) {
+            p(i, z2);
+            invalidate();
+            return;
+        }
+        this.E.add(1);
+        d();
+    }
+
+    public void setOnActionClickListener(pn8 pn8Var) {
+        this.y = pn8Var;
+    }
+
+    public void setParentExpanded(float f) {
+        if (this.d != f) {
+            this.d = f;
+            invalidate();
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && !(drawable instanceof qa6)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -41,7 +41,7 @@ public class TL_toncenter {
 
         @Override
         public Vector<onrampProviderInfo> deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserialize(inputSerializedData, i, z, new sdb((byte) 11));
+            return Vector.TLDeserialize(inputSerializedData, i, z, new tfb((byte) 17));
         }
 
         @Override
@@ -91,7 +91,7 @@ public class TL_toncenter {
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.state = inputSerializedData.readString(z);
             }
-            this.methods = Vector.deserialize(inputSerializedData, new sdb((byte) 12), z);
+            this.methods = Vector.deserialize(inputSerializedData, new tfb((byte) 18), z);
         }
 
         @Override

@@ -1,16 +1,43 @@
 package defpackage;
-public final class h2d {
-    public final w56 a;
-    public final f84[] b;
-    public final boolean c;
-    public final short d;
-    public final t59 e;
 
-    public h2d(t59 t59Var, w56 w56Var, f84[] f84VarArr, boolean z, int i) {
-        this.e = t59Var;
-        this.a = w56Var;
-        this.b = f84VarArr;
-        this.c = z;
-        this.d = i;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class h2d extends u1d {
+    @Override
+    public final boolean a(int i, Parcel parcel, Parcel parcel2, int i2) {
+        if (i != 2) {
+            if (i != 3) {
+                if (i != 4) {
+                    if (i != 5) {
+                        return false;
+                    }
+                    Parcelable.Creator creator = Bundle.CREATOR;
+                    z1d.b(parcel);
+                    b((Bundle) z1d.a(parcel));
+                    return true;
+                }
+                Parcelable.Creator creator2 = Bundle.CREATOR;
+                z1d.b(parcel);
+                d((Bundle) z1d.a(parcel));
+                return true;
+            }
+            Parcelable.Creator creator3 = Bundle.CREATOR;
+            z1d.b(parcel);
+            c((Bundle) z1d.a(parcel));
+            return true;
+        }
+        Parcelable.Creator creator4 = Bundle.CREATOR;
+        z1d.b(parcel);
+        e((Bundle) z1d.a(parcel));
+        return true;
     }
+
+    public abstract void b(Bundle bundle);
+
+    public abstract void c(Bundle bundle);
+
+    public abstract void d(Bundle bundle);
+
+    public abstract void e(Bundle bundle);
 }

@@ -1,3 +1,6 @@
 package defpackage;
-public interface dwe {
+
+import android.content.SharedPreferences;
+public abstract class dwe {
+    public static SharedPreferences a;
 }

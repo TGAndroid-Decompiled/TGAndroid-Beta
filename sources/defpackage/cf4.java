@@ -1,233 +1,201 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.text.TextUtils;
-import android.util.Property;
-import android.view.View;
-import android.view.ViewGroup;
+import android.graphics.Paint;
+import android.text.SpannableStringBuilder;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_chatlists;
 import org.telegram.ui.ActionBar.d;
-public final class cf4 extends fx0 implements gk7 {
-    public static final int w1 = 0;
-    public int l1;
-    public final fu m1;
-    public final s20 n1;
-    public final TextView o1;
-    public AnimatorSet p1;
-    public final View q1;
-    public int r1;
-    public boolean s1;
-    public vu2 t1;
-    public final ArrayList u1;
-    public final ArrayList v1;
+public final class cf4 extends mz0 {
+    public int S1;
+    public final ub7 T1;
+    public final ArrayList U1;
+    public final FrameLayout V1;
+    public bf4 W1;
+    public final TextView X1;
+    public final ArrayList Y1;
+    public final ArrayList Z1;
 
-    public cf4(cj3 cj3Var, ArrayList arrayList) {
-        super(cj3Var.getParentActivity(), false);
-        K();
-        this.v1 = arrayList;
-        this.u1 = new ArrayList(cj3Var.getMessagesController().G0);
+    public cf4(d dVar, ub7 ub7Var, ArrayList arrayList) {
+        super(dVar, false);
+        ArrayList arrayList2 = new ArrayList();
+        this.U1 = arrayList2;
+        this.Y1 = new ArrayList();
+        this.Z1 = new ArrayList();
+        this.T1 = ub7Var;
+        if (arrayList != null) {
+            arrayList2.addAll(arrayList);
+        }
+        c1(false);
+        this.o1.setTitle(Z0(null));
+        K(cmb.w0(null, cmb.g5, false));
+        this.S1 = this.H0;
+        TextView textView = new TextView(getContext());
+        this.X1 = textView;
+        textView.setTextSize(1, 14.0f);
+        anb.X(textView, cmb.Ii, null);
+        textView.setTypeface(gm.o());
+        textView.setBackground(ulb.f(cmb.Ei, 8.0f));
+        textView.setText(jb6.M0(2131750578, null));
+        textView.setGravity(17);
+        textView.setOnClickListener(new sf3(this, (byte) 12));
+        FrameLayout.LayoutParams d = qoe.d(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 10.0f);
+        int i = d.leftMargin;
+        int i2 = this.u0;
+        d.leftMargin = i + i2;
+        d.rightMargin += i2;
+        this.b.addView(textView, d);
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        this.V1 = frameLayout;
+        this.b.addView(frameLayout, qoe.d(-1, 100.0f, 80, 6.0f, 0.0f, 6.0f, 0.0f));
+        b1();
+    }
+
+    public static void a1(d dVar, ub7 ub7Var, a14 a14Var) {
+        long currentTimeMillis = System.currentTimeMillis();
+        TL_chatlists.TL_chatlists_getExportedInvites tL_chatlists_getExportedInvites = new TL_chatlists.TL_chatlists_getExportedInvites();
+        TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
+        tL_chatlists_getExportedInvites.chatlist = tL_inputChatlistDialogFilter;
+        tL_inputChatlistDialogFilter.filter_id = ub7Var.a;
+        dVar.getConnectionsManager().sendRequest(tL_chatlists_getExportedInvites, new eu0(dVar, ub7Var, a14Var, currentTimeMillis, (byte) 1));
+    }
+
+    @Override
+    public final q59 G0(r59 r59Var) {
+        bf4 bf4Var = new bf4(this);
+        this.W1 = bf4Var;
+        return bf4Var;
+    }
+
+    @Override
+    public final CharSequence J0() {
+        return Z0(null);
+    }
+
+    @Override
+    public final void P0(ela elaVar) {
+        r59 r59Var = this.n1;
+        r59Var.setOverScrollMode(2);
+        r59Var.setOnItemClickListener(new u(this, (byte) 29));
+        sc3 sc3Var = new sc3();
+        sc3Var.m = false;
+        sc3Var.C = false;
+        sc3Var.o(d53.h);
+        sc3Var.n(350L);
+        r59Var.setItemAnimator(sc3Var);
+    }
+
+    public final void Y0() {
+        ub7 ub7Var;
+        d dVar;
+        ArrayList<TLRPC.InputPeer> arrayList = new ArrayList<>();
         int i = 0;
-        while (i < this.u1.size()) {
-            if (((t97) this.u1.get(i)).d()) {
-                this.u1.remove(i);
-                i--;
+        while (true) {
+            ub7Var = this.T1;
+            int size = ub7Var.h.size();
+            dVar = this.r1;
+            if (i >= size) {
+                break;
+            }
+            long longValue = ((Long) ub7Var.h.get(i)).longValue();
+            if (longValue < 0 && qf4.j0(dVar.getMessagesController().L0(Long.valueOf(-longValue)))) {
+                arrayList.add(dVar.getMessagesController().i1(longValue));
             }
             i++;
         }
-        Activity parentActivity = cj3Var.getParentActivity();
-        z92 z92Var = new z92(this, parentActivity);
-        this.b = z92Var;
-        z92Var.setWillNotDraw(false);
-        ViewGroup viewGroup = this.b;
-        int i2 = this.u0;
-        viewGroup.setPadding(i2, 0, i2, 0);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, gl.e1(), 51);
-        layoutParams.topMargin = gl.L(48.0f);
-        View view = new View(parentActivity);
-        this.q1 = view;
-        zkb.h(bkb.U5, null, view);
-        view.setAlpha(0.0f);
-        view.setVisibility(4);
-        view.setTag(1);
-        this.b.addView(view, layoutParams);
-        fu fuVar = new fu((byte) 20, parentActivity, this);
-        this.m1 = fuVar;
-        fuVar.setTag(14);
-        getContext();
-        fuVar.setLayoutManager(new t26(1, false));
-        s20 s20Var = new s20(this, parentActivity, (byte) 5);
-        this.n1 = s20Var;
-        fuVar.setAdapter(s20Var);
-        fuVar.setVerticalScrollBarEnabled(false);
-        fuVar.setPadding(gl.L(10.0f), 0, gl.L(10.0f), 0);
-        fuVar.setClipToPadding(false);
-        zkb.l(fuVar, 21, bkb.z5, null);
-        fuVar.setOnScrollListener(new ao2(this, (byte) 12));
-        fuVar.setOnItemClickListener(new bf4(this, (byte) 0));
-        this.b.addView(fuVar, nme.d(-1, -1.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(parentActivity);
-        this.o1 = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        zkb.X(textView, bkb.i5, null);
-        textView.setTextSize(1, 20.0f);
-        zkb.G(textView, bkb.j5, null);
-        zkb.C(textView, bkb.k5, null);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setPadding(gl.L(24.0f), 0, gl.L(24.0f), 0);
-        textView.setGravity(16);
-        textView.setText(k96.M0(2131750781, null));
-        textView.setTypeface(gl.o());
-        this.b.addView(textView, nme.d(-1, 50.0f, 51, 0.0f, 0.0f, 40.0f, 0.0f));
-        kk7.e().b(this, kk7.k4);
-    }
-
-    public static ArrayList D0(d dVar, t97 t97Var, ArrayList arrayList, boolean z, boolean z2) {
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            long longValue = ((Long) arrayList.get(i)).longValue();
-            if (cf3.B(longValue)) {
-                TLRPC.EncryptedChat Y0 = dVar.getMessagesController().Y0(Integer.valueOf((int) (longValue & 4294967295L)));
-                if (Y0 != null) {
-                    longValue = Y0.user_id;
-                    if (arrayList2.contains(Long.valueOf(longValue))) {
-                        continue;
-                    }
-                } else {
-                    continue;
-                }
-            }
-            if (t97Var != null) {
-                if (z) {
-                    if (t97Var.h.contains(Long.valueOf(longValue))) {
-                        continue;
-                    }
-                } else if (t97Var.i.contains(Long.valueOf(longValue))) {
-                    continue;
-                }
-            }
-            arrayList2.add(Long.valueOf(longValue));
-            if (z2) {
-                break;
-            }
+        if (arrayList.isEmpty()) {
+            dismiss();
+            dVar.presentFragment(new me4(ub7Var, null));
+            return;
         }
-        return arrayList2;
+        TL_chatlists.TL_chatlists_exportChatlistInvite tL_chatlists_exportChatlistInvite = new TL_chatlists.TL_chatlists_exportChatlistInvite();
+        TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
+        tL_chatlists_exportChatlistInvite.chatlist = tL_inputChatlistDialogFilter;
+        tL_inputChatlistDialogFilter.filter_id = ub7Var.a;
+        tL_chatlists_exportChatlistInvite.peers = arrayList;
+        tL_chatlists_exportChatlistInvite.title = "";
+        dVar.getConnectionsManager().sendRequest(tL_chatlists_exportChatlistInvite, new tg(this, (byte) 27));
     }
 
-    @Override
-    public final boolean E() {
-        return false;
-    }
-
-    public final void E0(boolean z) {
-        Integer num;
-        float f;
-        View view = this.q1;
-        Object tag = view.getTag();
-        if (z) {
-            if (tag != null) {
-                num = null;
+    public final CharSequence Z0(xna xnaVar) {
+        Object obj;
+        Paint.FontMetricsInt fontMetricsInt;
+        ub7 ub7Var = this.T1;
+        if (ub7Var != null) {
+            if (xnaVar == null) {
+                fontMetricsInt = null;
             } else {
-                return;
+                fontMetricsInt = xnaVar.getPaint().getFontMetricsInt();
             }
-        } else if (tag == null) {
-            num = 1;
+            obj = k47.A5(gw3.m(new SpannableStringBuilder(ub7Var.b), fontMetricsInt, false, null, 0), ub7Var.c, fontMetricsInt, false);
         } else {
-            return;
+            obj = "";
         }
-        view.setTag(num);
-        if (z) {
-            view.setVisibility(0);
-        }
-        AnimatorSet animatorSet = this.p1;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.p1 = animatorSet2;
-        Property property = View.ALPHA;
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, f));
-        this.p1.setDuration(150L);
-        this.p1.addListener(new id4((byte) 1, this, z));
-        this.p1.start();
+        return jb6.V(null, null, 2131750575, obj);
     }
 
-    public final void F0() {
-        fu fuVar = this.m1;
-        int childCount = fuVar.getChildCount();
-        View view = this.q1;
-        TextView textView = this.o1;
-        if (childCount <= 0) {
-            int paddingTop = fuVar.getPaddingTop();
-            this.r1 = paddingTop;
-            fuVar.setTopGlowOffset(paddingTop);
-            textView.setTranslationY(this.r1);
-            view.setTranslationY(this.r1);
-            this.b.invalidate();
-            return;
-        }
-        int i = 0;
-        View childAt = fuVar.getChildAt(0);
-        y29 y29Var = (y29) fuVar.G(childAt);
-        int top = childAt.getTop();
-        if (top >= 0 && y29Var != null && y29Var.b() == 0) {
-            E0(false);
-            i = top;
+    public final void b1() {
+        int i;
+        int i2;
+        ArrayList arrayList = this.U1;
+        if (arrayList.isEmpty()) {
+            i = 0;
         } else {
-            E0(true);
+            i = 8;
         }
-        if (this.r1 != i) {
-            this.r1 = i;
-            fuVar.setTopGlowOffset(i);
-            textView.setTranslationY(this.r1);
-            view.setTranslationY(this.r1);
-            this.b.invalidate();
+        this.X1.setVisibility(i);
+        int L = gm.L(6.0f);
+        int L2 = gm.L(6.0f);
+        if (arrayList.isEmpty()) {
+            i2 = gm.L(68.0f);
+        } else {
+            i2 = 0;
         }
+        this.n1.setPadding(L, 0, L2, i2);
     }
 
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.k4) {
-            gl.d0(this.m1, new bm0((byte) 11));
+    public final void c1(boolean z) {
+        ArrayList arrayList = this.Y1;
+        arrayList.clear();
+        ArrayList arrayList2 = this.Z1;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        ?? jaVar = new ja(0, false);
+        jaVar.d = null;
+        arrayList2.add(jaVar);
+        ArrayList arrayList3 = this.U1;
+        if (!arrayList3.isEmpty()) {
+            arrayList2.add(gf4.d(null));
+            arrayList2.add(new ja(8, false));
+            for (int i = 0; i < arrayList3.size(); i++) {
+                ?? jaVar2 = new ja(7, false);
+                jaVar2.m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i);
+                arrayList2.add(jaVar2);
+            }
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        kk7.e().n(this, kk7.k4);
+        bf4 bf4Var = this.W1;
+        if (bf4Var != null) {
+            if (z) {
+                bf4Var.E(arrayList, arrayList2);
+            } else {
+                this.n1.getAdapter().f();
+            }
+        }
     }
 
     @Override
     public final void p0() {
+        int w0;
         super.p0();
-        fu fuVar = this.m1;
-        if (fuVar != null) {
-            try {
-                int v0 = bkb.v0(bkb.Ei, this.J0);
-                if (v0 != this.l1) {
-                    this.l1 = v0;
-                    for (int i = 0; i < fuVar.getChildCount(); i++) {
-                        View childAt = fuVar.getChildAt(i);
-                        if ((childAt instanceof zw0) && ((zw0) childAt).getTextView() != null) {
-                            ((zw0) childAt).getTextView().setEmojiColor(v0);
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                fa4.g(e, true);
+        try {
+            if (this.H0 == this.S1 && (w0 = cmb.w0(null, cmb.g5, false)) != this.H0) {
+                K(w0);
+                this.S1 = this.H0;
             }
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
     }
 }

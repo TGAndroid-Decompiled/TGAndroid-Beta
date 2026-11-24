@@ -1,36 +1,21 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.ProfileActivity;
-public final class wf0 implements h8c {
-    public final byte a;
-    public final Object b;
-
-    public wf0(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class wf0 extends b4 {
+    public static final Parcelable.Creator<wf0> CREATOR = new sje((byte) 27);
+    public String a;
+    public String b;
+    public int c;
 
     @Override
-    public final Object run() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return ((d) obj).getSimpleMenuOverlay();
-            case 1:
-                return Boolean.valueOf(((EditTextBoldCursor) obj).w());
-            case 2:
-                return ((vl5) obj).getCloseIntoObject();
-            case 3:
-                return Boolean.valueOf(((gt3) obj).w());
-            case 4:
-                return ((ProfileActivity) obj).getSimpleMenuOverlay();
-            case 5:
-                return ((on9) obj).K;
-            default:
-                return ((vqa) obj).j();
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.l(parcel, 2, this.a);
+        mve.l(parcel, 3, this.b);
+        int i2 = this.c;
+        mve.q(parcel, 4, 4);
+        parcel.writeInt(i2);
+        mve.s(parcel, r);
     }
 }

@@ -1,17 +1,10 @@
 package defpackage;
-public final class hjd implements zn7 {
-    public static final hjd a = new Object();
+public final class hjd {
+    public final ovd a;
+    public final f64 b;
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public hjd(ovd ovdVar, f64 f64Var) {
+        this.a = ovdVar;
+        this.b = f64Var;
     }
 }

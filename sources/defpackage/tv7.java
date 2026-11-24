@@ -1,316 +1,137 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Property;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
-public final class tv7 extends FrameLayout {
-    public static final int n = 0;
-    public final byte a = 1;
-    public final Object b;
-    public final Object c;
-    public final Object d;
-    public Object e;
-    public Object f;
-    public Object h;
+import android.view.MotionEvent;
+public final class tv7 extends p44 {
+    public final Paint h;
+    public long n;
+    public float r;
+    public float s;
+    public int w;
+    public int x;
+    public final z8b y;
 
-    public tv7(yv7 yv7Var, Context context) {
-        super(context);
-        this.h = yv7Var;
-        this.b = new ArrayList(4);
-        this.c = new ArrayList(4);
-        this.d = new StringBuilder(4);
-        for (int i = 0; i < 4; i++) {
-            TextView textView = new TextView(context);
-            textView.setTextColor(-1);
-            textView.setTypeface(gl.o());
-            textView.setTextSize(1, 36.0f);
-            textView.setGravity(17);
-            textView.setAlpha(0.0f);
-            textView.setPivotX(gl.L(25.0f));
-            textView.setPivotY(gl.L(25.0f));
-            addView(textView, nme.e(50, 50, 51));
-            ((ArrayList) this.b).add(textView);
-            TextView textView2 = new TextView(context);
-            textView2.setTextColor(-1);
-            textView2.setTypeface(gl.o());
-            textView2.setTextSize(1, 36.0f);
-            textView2.setGravity(17);
-            textView2.setAlpha(0.0f);
-            textView2.setText("•");
-            textView2.setPivotX(gl.L(25.0f));
-            textView2.setPivotY(gl.L(25.0f));
-            addView(textView2, nme.e(50, 50, 51));
-            ((ArrayList) this.c).add(textView2);
-        }
+    public tv7(z8b z8bVar, Context context, fk3 fk3Var) {
+        super(context, fk3Var);
+        this.y = z8bVar;
+        Paint paint = new Paint();
+        this.h = paint;
+        setWillNotDraw(false);
+        paint.setStrokeWidth(gm.L(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
     }
 
-    public final void a(String str) {
-        ArrayList arrayList = (ArrayList) this.c;
-        ArrayList arrayList2 = (ArrayList) this.b;
-        StringBuilder sb = (StringBuilder) this.d;
-        if (sb.length() == 4) {
-            return;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.y.g2) {
+            return false;
         }
-        try {
-            performHapticFeedback(3);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-        ArrayList arrayList3 = new ArrayList();
-        int length = sb.length();
-        sb.append(str);
-        TextView textView = (TextView) arrayList2.get(length);
-        textView.setText(str);
-        textView.setTranslationX(c(length));
-        Property property = View.SCALE_X;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property, 0.0f, 1.0f));
-        Property property2 = View.SCALE_Y;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property2, 0.0f, 1.0f));
-        Property property3 = View.ALPHA;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property3, 0.0f, 1.0f));
-        Property property4 = View.TRANSLATION_Y;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property4, gl.L(20.0f), 0.0f));
-        TextView textView2 = (TextView) arrayList.get(length);
-        textView2.setTranslationX(c(length));
-        textView2.setAlpha(0.0f);
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f, 1.0f));
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f, 1.0f));
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property4, gl.L(20.0f), 0.0f));
-        for (int i = length + 1; i < 4; i++) {
-            TextView textView3 = (TextView) arrayList2.get(i);
-            if (textView3.getAlpha() != 0.0f) {
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property2, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property3, 0.0f));
-            }
-            TextView textView4 = (TextView) arrayList.get(i);
-            if (textView4.getAlpha() != 0.0f) {
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property2, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
-            }
-        }
-        ef0 ef0Var = (ef0) this.f;
-        if (ef0Var != null) {
-            gl.r(ef0Var);
-        }
-        ef0 ef0Var2 = new ef0(this, length, (byte) 3);
-        this.f = ef0Var2;
-        gl.e3(ef0Var2, 1500L);
-        for (int i2 = 0; i2 < length; i2++) {
-            TextView textView5 = (TextView) arrayList2.get(i2);
-            Property property5 = View.TRANSLATION_X;
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property5, c(i2)));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property2, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property3, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property4, 0.0f));
-            TextView textView6 = (TextView) arrayList.get(i2);
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property5, c(i2)));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property2, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property3, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property4, 0.0f));
-        }
-        AnimatorSet animatorSet = (AnimatorSet) this.e;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.e = animatorSet2;
-        animatorSet2.setDuration(150L);
-        ((AnimatorSet) this.e).playTogether(arrayList3);
-        ((AnimatorSet) this.e).addListener(new sv7(this, (byte) 0));
-        ((AnimatorSet) this.e).start();
-        ((yv7) this.h).e();
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public final void b(boolean z) {
-        ArrayList arrayList = (ArrayList) this.c;
-        ArrayList arrayList2 = (ArrayList) this.b;
-        StringBuilder sb = (StringBuilder) this.d;
-        if (sb.length() == 0) {
-            return;
-        }
-        ef0 ef0Var = (ef0) this.f;
-        if (ef0Var != null) {
-            gl.r(ef0Var);
-            this.f = null;
-        }
-        AnimatorSet animatorSet = (AnimatorSet) this.e;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.e = null;
-        }
-        sb.delete(0, sb.length());
-        if (z) {
-            ArrayList arrayList3 = new ArrayList();
-            for (int i = 0; i < 4; i++) {
-                TextView textView = (TextView) arrayList2.get(i);
-                int i2 = (textView.getAlpha() > 0.0f ? 1 : (textView.getAlpha() == 0.0f ? 0 : -1));
-                Property property = View.ALPHA;
-                Property property2 = View.SCALE_Y;
-                Property property3 = View.SCALE_X;
-                if (i2 != 0) {
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
-                }
-                TextView textView2 = (TextView) arrayList.get(i);
-                if (textView2.getAlpha() != 0.0f) {
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property3, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f));
-                }
-            }
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.e = animatorSet2;
-            animatorSet2.setDuration(150L);
-            ((AnimatorSet) this.e).playTogether(arrayList3);
-            ((AnimatorSet) this.e).addListener(new sv7(this, (byte) 2));
-            ((AnimatorSet) this.e).start();
-        } else {
-            for (int i3 = 0; i3 < 4; i3++) {
-                ((TextView) arrayList2.get(i3)).setAlpha(0.0f);
-                ((TextView) arrayList.get(i3)).setAlpha(0.0f);
-            }
-        }
-        ((yv7) this.h).e();
-    }
-
-    public final int c(int i) {
-        return de9.y(30.0f, i, (getMeasuredWidth() - (gl.L(30.0f) * ((StringBuilder) this.d).length())) / 2) - gl.L(10.0f);
-    }
-
-    public final void d(boolean z) {
+    @Override
+    public final void onDraw(Canvas canvas) {
         int i;
-        float f;
-        float f2;
-        ImageView imageView = (ImageView) this.c;
-        if (z) {
+        int i2;
+        Canvas canvas2;
+        int measuredWidth;
+        float measuredWidth2;
+        int measuredHeight;
+        float measuredHeight2;
+        super.onDraw(canvas);
+        long min = Math.min(16L, System.currentTimeMillis() - this.n);
+        this.n = System.currentTimeMillis();
+        z8b z8bVar = this.y;
+        w44 w44Var = z8bVar.z0;
+        if (w44Var != null && !w44Var.r && w44Var.n) {
+            i = w44Var.getStickyX();
+            i2 = z8bVar.z0.getStickyY();
+        } else {
             i = 0;
+            i2 = 0;
+        }
+        if (i != 0) {
+            this.w = i;
+        }
+        if (i2 != 0) {
+            this.x = i2;
+        }
+        float f = this.r;
+        if (i != 0) {
+            if (f != 1.0f) {
+                this.r = kt6.A((float) min, 150.0f, f, 1.0f);
+                invalidate();
+            }
+        } else if (f != 0.0f) {
+            this.r = aq1.x((float) min, 150.0f, f, 0.0f);
+            invalidate();
+        }
+        float f2 = this.s;
+        if (i2 != 0) {
+            if (f2 != 1.0f) {
+                this.s = kt6.A((float) min, 150.0f, f2, 1.0f);
+                invalidate();
+            }
+        } else if (f2 != 0.0f) {
+            this.s = aq1.x((float) min, 150.0f, f2, 0.0f);
+            invalidate();
+        }
+        float f3 = this.s;
+        int i3 = (f3 > 0.0f ? 1 : (f3 == 0.0f ? 0 : -1));
+        Paint paint = this.h;
+        if (i3 != 0) {
+            paint.setAlpha((int) (f3 * 255.0f));
+            int i4 = this.x;
+            if (i4 == 1) {
+                measuredHeight = gm.L(64.0f);
+            } else if (i4 == 2) {
+                measuredHeight2 = getMeasuredHeight() / 2.0f;
+                float f4 = measuredHeight2;
+                canvas2 = canvas;
+                canvas2.drawLine(0.0f, f4, getMeasuredWidth(), f4, paint);
+            } else {
+                measuredHeight = getMeasuredHeight() - gm.L(64.0f);
+            }
+            measuredHeight2 = measuredHeight;
+            float f42 = measuredHeight2;
+            canvas2 = canvas;
+            canvas2.drawLine(0.0f, f42, getMeasuredWidth(), f42, paint);
         } else {
-            i = 8;
+            canvas2 = canvas;
         }
-        imageView.setVisibility(i);
-        TextView textView = (TextView) this.d;
-        boolean z2 = k96.a0;
-        if (!z2 && z) {
-            f = 53.0f;
-        } else {
-            f = 22.0f;
-        }
-        if (z2 && z) {
-            f2 = 53.0f;
-        } else {
-            f2 = 22.0f;
-        }
-        textView.setLayoutParams(nme.d(-1, -2.0f, 23, f, 0.0f, f2, 0.0f));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 1:
-                super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.f;
-                paint.setColor(bkb.v0(bkb.c7, (wjb) this.b));
-                canvas.drawRect(0.0f, getHeight() - gl.e1(), getWidth(), getHeight(), paint);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    public final void e(String str) {
-        ((TextView) this.d).setText(str);
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        switch (this.a) {
-            case 0:
-                ArrayList arrayList = (ArrayList) this.c;
-                ef0 ef0Var = (ef0) this.f;
-                if (ef0Var != null) {
-                    gl.r(ef0Var);
-                    this.f = null;
-                }
-                AnimatorSet animatorSet = (AnimatorSet) this.e;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    this.e = null;
-                }
-                for (int i5 = 0; i5 < 4; i5++) {
-                    int length = ((StringBuilder) this.d).length();
-                    ArrayList arrayList2 = (ArrayList) this.b;
-                    if (i5 < length) {
-                        TextView textView = (TextView) arrayList2.get(i5);
-                        textView.setAlpha(0.0f);
-                        textView.setScaleX(1.0f);
-                        textView.setScaleY(1.0f);
-                        textView.setTranslationY(0.0f);
-                        textView.setTranslationX(c(i5));
-                        TextView textView2 = (TextView) arrayList.get(i5);
-                        textView2.setAlpha(1.0f);
-                        textView2.setScaleX(1.0f);
-                        textView2.setScaleY(1.0f);
-                        textView2.setTranslationY(0.0f);
-                        textView2.setTranslationX(c(i5));
-                    } else {
-                        ((TextView) arrayList2.get(i5)).setAlpha(0.0f);
-                        ((TextView) arrayList.get(i5)).setAlpha(0.0f);
-                    }
-                }
-                super.onLayout(z, i, i2, i3, i4);
-                return;
-            default:
-                super.onLayout(z, i, i2, i3, i4);
-                return;
+        float f5 = this.r;
+        if (f5 != 0.0f) {
+            paint.setAlpha((int) (f5 * 255.0f));
+            int i5 = this.w;
+            if (i5 == 1) {
+                measuredWidth = gm.L(8.0f);
+            } else if (i5 == 2) {
+                measuredWidth2 = getMeasuredWidth() / 2.0f;
+                float f6 = measuredWidth2;
+                canvas2.drawLine(f6, 0.0f, f6, getMeasuredHeight(), paint);
+            } else {
+                measuredWidth = getMeasuredWidth() - gm.L(8.0f);
+            }
+            measuredWidth2 = measuredWidth;
+            float f62 = measuredWidth2;
+            canvas2.drawLine(f62, 0.0f, f62, getMeasuredHeight(), paint);
         }
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(56.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
+        super.onMeasure(i, i2);
+        z8b z8bVar = this.y;
+        tv7 tv7Var = z8bVar.H0;
+        if (z8bVar.H1 <= 0) {
+            z8bVar.H1 = tv7Var.getMeasuredWidth();
         }
-    }
-
-    public tv7(Context context, wjb wjbVar) {
-        super(context);
-        this.f = new Paint(1);
-        this.b = wjbVar;
-        TextView textView = new TextView(context);
-        this.d = textView;
-        ug8.v(textView, 1, 20.0f);
-        textView.setGravity(k96.a0 ? 5 : 3);
-        zkb.X(textView, bkb.i5, wjbVar);
-        boolean z = k96.a0;
-        addView(textView, nme.d(-1, -2.0f, 23, z ? 16.0f : 53.0f, 0.0f, z ? 53.0f : 16.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.c = imageView;
-        ed0 ed0Var = new ed0(false);
-        this.e = ed0Var;
-        imageView.setImageDrawable(ed0Var);
-        ed0Var.a(-1);
-        ed0Var.b(-1);
-        ed0Var.k = 220.0f;
-        addView(imageView, nme.d(24, 24.0f, (k96.a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new bna(this, (byte) 14));
+        if (z8bVar.I1 <= 0) {
+            z8bVar.I1 = tv7Var.getMeasuredHeight();
+        }
+        z8bVar.H0();
     }
 }

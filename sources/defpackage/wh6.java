@@ -1,30 +1,75 @@
 package defpackage;
-public final class wh6 implements e36 {
-    public final f36 a;
-    public final xh6 b;
 
-    public wh6(xh6 xh6Var, f36 f36Var) {
-        this.b = xh6Var;
-        this.a = f36Var;
+import android.content.SharedPreferences;
+import java.util.function.LongSupplier;
+import org.telegram.tgnet.TLRPC;
+public abstract class wh6 extends qs2 {
+    public final LongSupplier d;
+    public final long e;
+    public final long f;
+    public final int g;
+    public volatile boolean h;
+    public volatile long i;
+
+    public wh6(String str, LongSupplier longSupplier, long j, long j2, int i) {
+        super(str);
+        this.d = longSupplier;
+        this.e = j;
+        this.f = j2;
+        this.g = i;
     }
 
     @Override
-    public final void c() {
-        this.b.d.j0();
+    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+        if (jSONValue instanceof TLRPC.TL_jsonNumber) {
+            double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+            if (d == Math.rint(d) && d >= -9.223372036854776E18d && d < 9.223372036854776E18d) {
+                long max = Math.max(this.e, Math.min(this.f, (long) d));
+                if (max != f()) {
+                    this.i = max;
+                    this.h = true;
+                    editor.putLong(e(), max);
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
-    public final void i() {
-        yh6 yh6Var = this.b.d;
-        yh6Var.m0 = new zq5(this.a.getContext(), yh6Var.e, yh6Var.d, yh6Var.l0, yh6Var, yh6Var.n, true, yh6Var.h);
-        yh6Var.m0.show();
+    public final boolean c(SharedPreferences.Editor editor) {
+        if (this.g == 2 && this.h) {
+            long j = this.i;
+            this.h = false;
+            editor.remove(e());
+            if (j != f()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void a() {
+    public final void d(SharedPreferences sharedPreferences) {
+        try {
+            if (sharedPreferences.contains(e())) {
+                this.i = Math.max(this.e, Math.min(this.f, sharedPreferences.getLong(e(), 0L)));
+                this.h = true;
+                return;
+            }
+            this.h = false;
+        } catch (ClassCastException e) {
+            fc4.g(e, true);
+            this.h = false;
+        }
     }
 
-    @Override
-    public final void k() {
+    public final long f() {
+        if (this.h) {
+            return this.i;
+        }
+        return Math.max(this.e, Math.min(this.f, this.d.getAsLong()));
     }
 }

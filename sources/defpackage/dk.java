@@ -1,13 +1,23 @@
 package defpackage;
-public final class dk extends c2 implements qw2 {
-    private volatile Object _preHandler;
 
-    public dk() {
-        super(pd5.b);
-        this._preHandler = this;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class dk extends FrameLayout {
+    public final oh2[] a;
+
+    public dk(Context context, oh2[] oh2VarArr) {
+        super(context);
+        this.a = oh2VarArr;
     }
 
-    public final void c(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dk.c(java.lang.Throwable):void");
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        oh2[] oh2VarArr = this.a;
+        if (oh2VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, gm.L(7.0f) + oh2VarArr[0].getMeasuredHeight() + measuredHeight);
+        }
     }
 }

@@ -1,19 +1,21 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.d;
-public final class x19 extends q5c {
-    public final int n3;
+import android.content.Context;
+public final class x19 extends tk4 {
+    public final c29 V;
 
-    public x19(d dVar, w19 w19Var, int i) {
-        super(dVar, w19Var, null, null);
-        this.n3 = i;
+    public x19(c29 c29Var, Context context, ylb ylbVar) {
+        super(context, ylbVar);
+        this.V = c29Var;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        int min = Math.min(gl.L(220.0f), View.MeasureSpec.getSize(i));
-        View.MeasureSpec.getSize(i2);
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(moe.b(this.n3, 1, 5) * 48), 1073741824));
+    public final int getAdditionalHeight() {
+        j37 j37Var;
+        c29 c29Var = this.V;
+        if (!c29Var.I.isEmpty() && (j37Var = c29Var.K) != null) {
+            return gm.L(8.0f) + j37Var.getMeasuredHeight();
+        }
+        return 0;
     }
 }

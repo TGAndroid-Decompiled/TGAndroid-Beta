@@ -1,8 +1,18 @@
 package defpackage;
 public final class zn4 {
-    public final go4 a;
+    public final String a;
+    public final int b;
+    public final boolean c;
+    public final String d;
+    public final int e;
+    public final int f;
 
-    public zn4(go4 go4Var) {
-        this.a = go4Var;
+    public zn4(String str, int i, boolean z, String str2, int i2, int i3) {
+        this.a = str;
+        this.b = i;
+        this.c = z;
+        this.d = str2;
+        this.e = i2;
+        this.f = i3;
     }
 }

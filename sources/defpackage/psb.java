@@ -1,26 +1,33 @@
 package defpackage;
-public enum psb extends qsb {
+public enum psb extends rub {
     public psb() {
-        super("EndTagOpen", 8);
+        super("ScriptDataEscaped", 21);
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        boolean j = zj1Var.j();
-        lqb lqbVar = qsb.a;
-        if (j) {
-            aqbVar.l(this);
-            aqbVar.h("</");
-            aqbVar.c = lqbVar;
-        } else if (zj1Var.o()) {
-            aqbVar.d(false);
-            aqbVar.c = qsb.r;
-        } else if (zj1Var.m('>')) {
-            aqbVar.m(this);
-            aqbVar.a(lqbVar);
-        } else {
-            aqbVar.m(this);
-            aqbVar.a(qsb.g0);
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        if (hl1Var.j()) {
+            bsbVar.l(this);
+            bsbVar.c = rub.a;
+            return;
         }
+        char i = hl1Var.i();
+        if (i != 0) {
+            if (i != '-') {
+                if (i != '<') {
+                    bsbVar.h(hl1Var.g('-', '<', 0));
+                    return;
+                } else {
+                    bsbVar.a(rub.O);
+                    return;
+                }
+            }
+            bsbVar.f('-');
+            bsbVar.a(rub.M);
+            return;
+        }
+        bsbVar.m(this);
+        hl1Var.a();
+        bsbVar.f((char) 65533);
     }
 }

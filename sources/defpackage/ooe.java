@@ -1,52 +1,33 @@
 package defpackage;
-public abstract class ooe {
-    public static Integer a(String str) {
-        if (str != null) {
-            switch (str.hashCode()) {
-                case -1118317585:
-                    if (str.equals("REPEAT_ALL_AND_SHUFFLE")) {
-                        return 3;
-                    }
-                    return null;
-                case -962896020:
-                    if (str.equals("REPEAT_SINGLE")) {
-                        return 2;
-                    }
-                    return null;
-                case 1645938909:
-                    if (str.equals("REPEAT_ALL")) {
-                        return 1;
-                    }
-                    return null;
-                case 1645952171:
-                    if (str.equals("REPEAT_OFF")) {
-                        return 0;
-                    }
-                    return null;
-                default:
-                    return null;
-            }
-        }
-        return null;
+public final class ooe extends f4e {
+    private static final ooe zzb;
+    private int zzd;
+    private int zze;
+
+    static {
+        ?? f4eVar = new f4e();
+        zzb = f4eVar;
+        f4e.k(ooe.class, f4eVar);
     }
 
-    public static String b(Integer num) {
-        if (num != null) {
-            int intValue = num.intValue();
-            if (intValue != 0) {
-                if (intValue != 1) {
-                    if (intValue != 2) {
-                        if (intValue != 3) {
-                            return null;
+    @Override
+    public final Object d(int i) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 == 5) {
+                            return zzb;
                         }
-                        return "REPEAT_ALL_AND_SHUFFLE";
+                        throw null;
                     }
-                    return "REPEAT_SINGLE";
+                    return new h2e(zzb);
                 }
-                return "REPEAT_ALL";
+                return new f4e();
             }
-            return "REPEAT_OFF";
+            return new wce(zzb, "\u0004\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001᠌\u0000", new Object[]{"zzd", "zze", btd.g});
         }
-        return null;
+        return (byte) 1;
     }
 }

@@ -68,7 +68,7 @@ public class FileVideoCapturer implements VideoCapturer {
                         }
                         Logging.d("VideoReaderY4M", "Color space: " + str2);
                         if (!str2.equals("420") && !str2.equals("420mpeg2")) {
-                            w26.j("Does not support any other color space than I420 or I420mpeg2");
+                            u36.j("Does not support any other color space than I420 or I420mpeg2");
                             throw null;
                         } else if (i % 2 != 1 && i2 % 2 != 1) {
                             this.frameWidth = i;
@@ -76,13 +76,13 @@ public class FileVideoCapturer implements VideoCapturer {
                             Logging.d("VideoReaderY4M", "frame dim: (" + i + ", " + i2 + ")");
                             return;
                         } else {
-                            w26.j("Does not support odd width or height");
+                            u36.j("Does not support odd width or height");
                             throw null;
                         }
                     }
                     sb.append((char) read);
                 } else {
-                    wn4.j(b00.h("Found end of file before end of header for file: ", str));
+                    zo4.k(b10.h("Found end of file before end of header for file: ", str));
                     throw null;
                 }
             }
@@ -125,7 +125,7 @@ public class FileVideoCapturer implements VideoCapturer {
                 }
                 throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
             } catch (IOException e) {
-                sdb.b(e);
+                rjb.m(e);
                 return null;
             }
         }

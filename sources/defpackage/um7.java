@@ -1,60 +1,46 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.ui.NotificationsSettingsActivity;
-public final class um7 implements Runnable {
-    public final NotificationsSettingsActivity a;
-    public final byte b;
-    public final boolean c;
-    public final vl7 d;
-    public final int e;
+import android.app.Notification;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.Build;
+import androidx.core.graphics.drawable.IconCompat;
+public final class um7 extends jn7 {
+    public IconCompat e;
+    public IconCompat f;
+    public boolean g;
 
-    public um7(NotificationsSettingsActivity notificationsSettingsActivity, int i, boolean z, vl7 vl7Var, int i2) {
-        this.a = notificationsSettingsActivity;
-        this.b = i;
-        this.c = z;
-        this.d = vl7Var;
-        this.e = i2;
+    @Override
+    public final void b(p41 p41Var) {
+        Context context = (Context) p41Var.b;
+        Notification.BigPictureStyle bigContentTitle = new Notification.BigPictureStyle((Notification.Builder) p41Var.c).setBigContentTitle(this.b);
+        IconCompat iconCompat = this.e;
+        if (iconCompat != null) {
+            if (Build.VERSION.SDK_INT >= 31) {
+                tm7.a(bigContentTitle, pme.a(iconCompat, context));
+            } else if (iconCompat.i() == 1) {
+                bigContentTitle = bigContentTitle.bigPicture(this.e.f());
+            }
+        }
+        if (this.g) {
+            IconCompat iconCompat2 = this.f;
+            if (iconCompat2 == null) {
+                bigContentTitle.bigLargeIcon((Bitmap) null);
+            } else {
+                sm7.a(bigContentTitle, pme.a(iconCompat2, context));
+            }
+        }
+        if (this.d) {
+            bigContentTitle.setSummaryText(this.c);
+        }
+        if (Build.VERSION.SDK_INT >= 31) {
+            tm7.c(bigContentTitle, false);
+            tm7.b(bigContentTitle, null);
+        }
     }
 
     @Override
-    public final void run() {
-        int i;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.a;
-        notificationsSettingsActivity.getClass();
-        byte b = this.b;
-        boolean z = this.c;
-        if (b == 3) {
-            SharedPreferences.Editor edit = notificationsSettingsActivity.getNotificationsSettings().edit();
-            if (z) {
-                edit.remove("EnableAllStories");
-            } else {
-                edit.putBoolean("EnableAllStories", true);
-            }
-            edit.apply();
-            notificationsSettingsActivity.getNotificationsController().b0(b);
-        } else if (b != 4 && b != 5) {
-            im7 notificationsController = notificationsSettingsActivity.getNotificationsController();
-            if (!z) {
-                i = 0;
-            } else {
-                i = Integer.MAX_VALUE;
-            }
-            notificationsController.U(b, i);
-        } else {
-            SharedPreferences.Editor edit2 = notificationsSettingsActivity.getNotificationsSettings().edit();
-            if (z) {
-                edit2.putBoolean("EnableReactionsMessages", false);
-                edit2.putBoolean("EnableReactionsStories", false);
-            } else {
-                edit2.putBoolean("EnableReactionsMessages", true);
-                edit2.putBoolean("EnableReactionsStories", true);
-            }
-            edit2.apply();
-            notificationsSettingsActivity.getNotificationsController().b0(b);
-            notificationsSettingsActivity.getNotificationsController().g(b);
-        }
-        this.d.e.b(0, !z, true);
-        notificationsSettingsActivity.c.g(this.e);
+    public final String c() {
+        return "androidx.core.app.NotificationCompat$BigPictureStyle";
     }
 }

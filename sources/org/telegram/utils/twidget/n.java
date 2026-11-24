@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.SystemClock;
 import android.util.Log;
 import java.nio.charset.StandardCharsets;
-public final class n extends Binder implements hj5 {
+public final class n extends Binder implements gl5 {
     public static final int b = 0;
     public final WidgetEngineService a;
 
@@ -18,41 +18,58 @@ public final class n extends Binder implements hj5 {
     }
 
     @Override
-    public final void B(long j, boolean z) {
+    public final void A(long j, boolean z) {
         WidgetSandboxNative.visible(j, z);
     }
 
     @Override
-    public final void E(long j, float f) {
+    public final void D(long j, float f) {
         WidgetSandboxNative.width(j, f);
     }
 
     @Override
-    public final long H(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, jj5 jj5Var) {
+    public final long G(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, il5 il5Var) {
         if (!WidgetEngineService.e) {
             SystemClock.uptimeMillis();
-            String f3 = WidgetEngineService.f(new dkc(this.a.getAssets(), (byte) 8));
+            String f3 = WidgetEngineService.f(new lcc(this.a.getAssets(), (byte) 12));
             SystemClock.uptimeMillis();
-            long create = WidgetSandboxNative.create(f3.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f, f2, i, bArr3, bArr4, bArr5, bArr6, z, new WidgetEngineBackend(jj5Var, f2));
-            Object obj = odd.a;
+            long create = WidgetSandboxNative.create(f3.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f, f2, i, bArr3, bArr4, bArr5, bArr6, z, new WidgetEngineBackend(il5Var, f2));
+            Object obj = qfd.a;
             synchronized (obj) {
-                odd.b++;
+                qfd.b++;
                 obj.notifyAll();
             }
             return create;
         }
-        sc8.j("Widget engine: no seccomp filter on this device");
+        dq9.m("Widget engine: no seccomp filter on this device");
         return 0L;
     }
 
     @Override
-    public final void I(long j) {
+    public final void H(long j) {
         WidgetSandboxNative.repaint(j);
     }
 
     @Override
-    public final void L(long j, int i, float f, float f2, int i2) {
+    public final void K(long j, int i, float f, float f2, int i2) {
         WidgetSandboxNative.hover(j, i, f, f2, i2);
+    }
+
+    @Override
+    public final void L() {
+        if (WidgetEngineService.e) {
+            return;
+        }
+        SystemClock.uptimeMillis();
+        try {
+            String f = WidgetEngineService.f(new lcc(this.a.getAssets(), (byte) 12));
+            SystemClock.uptimeMillis();
+            WidgetEngineBackend.warmFonts(this.a.getResources().getDisplayMetrics().density);
+            SystemClock.uptimeMillis();
+            WidgetSandboxNative.prepare(f.getBytes(StandardCharsets.UTF_8));
+        } catch (RuntimeException e) {
+            Log.e("WidgetEngine", "warmup failed", e);
+        }
     }
 
     @Override
@@ -73,7 +90,7 @@ public final class n extends Binder implements hj5 {
     @Override
     public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
         Parcel parcel3;
-        jj5 jj5Var;
+        il5 il5Var;
         boolean z;
         boolean z2;
         boolean z3;
@@ -89,7 +106,6 @@ public final class n extends Binder implements hj5 {
             parcel2.writeString("org.telegram.utils.twidget.IWidgetEngine");
             return true;
         }
-        boolean z6 = false;
         switch (i) {
             case 1:
                 byte[] createByteArray = parcel.createByteArray();
@@ -100,27 +116,27 @@ public final class n extends Binder implements hj5 {
                 byte[] createByteArray3 = parcel.createByteArray();
                 byte[] createByteArray4 = parcel.createByteArray();
                 byte[] createByteArray5 = parcel.createByteArray();
-                boolean z7 = false;
+                boolean z6 = false;
                 byte[] createByteArray6 = parcel.createByteArray();
                 if (parcel.readInt() != 0) {
-                    z7 = true;
+                    z6 = true;
                 }
                 IBinder readStrongBinder = parcel.readStrongBinder();
                 if (readStrongBinder == null) {
-                    jj5Var = null;
+                    il5Var = null;
                 } else {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("org.telegram.utils.twidget.IWidgetEngineCallback");
-                    if (queryLocalInterface != null && (queryLocalInterface instanceof jj5)) {
-                        jj5Var = (jj5) queryLocalInterface;
+                    if (queryLocalInterface != null && (queryLocalInterface instanceof il5)) {
+                        il5Var = (il5) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
                         obj.a = readStrongBinder;
-                        jj5Var = obj;
+                        il5Var = obj;
                     }
                 }
-                long H = H(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z7, jj5Var);
+                long G = G(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z6, il5Var);
                 parcel2.writeNoException();
-                parcel2.writeLong(H);
+                parcel2.writeLong(G);
                 break;
             case 2:
                 r(parcel.readLong());
@@ -154,11 +170,11 @@ public final class n extends Binder implements hj5 {
                 break;
             case 10:
                 long readLong2 = parcel.readLong();
-                boolean z8 = false;
+                boolean z7 = false;
                 float readFloat3 = parcel.readFloat();
                 if (parcel.readInt() != 0) {
                     z2 = false;
-                    z8 = true;
+                    z7 = true;
                 } else {
                     z2 = false;
                 }
@@ -171,7 +187,7 @@ public final class n extends Binder implements hj5 {
                 if (parcel.readInt() != 0) {
                     z3 = true;
                 }
-                WidgetSandboxNative.tick(readLong2, readFloat3, z8, z2, z3);
+                WidgetSandboxNative.tick(readLong2, readFloat3, z7, z2, z3);
                 break;
             case 11:
                 long readLong3 = parcel.readLong();
@@ -195,10 +211,7 @@ public final class n extends Binder implements hj5 {
                 WidgetSandboxNative.hover(parcel.readLong(), parcel.readInt(), parcel.readFloat(), parcel.readFloat(), parcel.readInt());
                 break;
             case 13:
-                if (parcel3.readInt() != 0) {
-                    z6 = true;
-                }
-                w(z6);
+                L();
                 break;
             case 14:
                 v(parcel3.readStrongBinder());
@@ -222,8 +235,8 @@ public final class n extends Binder implements hj5 {
             @Override
             public final void run() {
                 WidgetSandboxNative.destroy(j);
-                synchronized (odd.a) {
-                    odd.b = Math.max(0, odd.b - 1);
+                synchronized (qfd.a) {
+                    qfd.b = Math.max(0, qfd.b - 1);
                 }
             }
         });
@@ -247,24 +260,7 @@ public final class n extends Binder implements hj5 {
     }
 
     @Override
-    public final void w(boolean z) {
-        if (WidgetEngineService.e) {
-            return;
-        }
-        SystemClock.uptimeMillis();
-        try {
-            String f = WidgetEngineService.f(new dkc(this.a.getAssets(), (byte) 8));
-            SystemClock.uptimeMillis();
-            WidgetEngineBackend.warmFonts(this.a.getResources().getDisplayMetrics().density);
-            SystemClock.uptimeMillis();
-            WidgetSandboxNative.prepare(f.getBytes(StandardCharsets.UTF_8), z);
-        } catch (RuntimeException e) {
-            Log.e("WidgetEngine", "warmup failed", e);
-        }
-    }
-
-    @Override
-    public final void y(long j, int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4) {
+    public final void x(long j, int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4) {
         WidgetSandboxNative.touch(j, i, f, f2, i2, z, z2, i3, i4);
     }
 

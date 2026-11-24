@@ -1,166 +1,370 @@
 package defpackage;
 
-import android.os.SystemClock;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.LaunchActivity;
-import org.webrtc.RendererCommon;
-public final class f91 extends ViewGroup {
-    public final e91 E;
-    public final FrameLayout a;
-    public final aic b;
-    public final int c;
-    public final int d;
-    public boolean e;
-    public boolean f;
-    public boolean h;
-    public float n;
-    public volatile long r;
-    public volatile int s;
-    public volatile int w;
-    public volatile boolean x;
-    public final d91 y;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.d;
+public final class f91 extends GestureDetector.SimpleOnGestureListener {
+    public final Context a;
+    public final h91 b;
 
-    public f91(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.c = gl.L(6.0f);
-        this.d = gl.L(6.0f);
-        this.h = true;
-        this.y = new d91(this, (byte) 0);
-        this.E = new e91(this, (byte) 0);
-        FrameLayout frameLayout = new FrameLayout(launchActivity);
-        this.a = frameLayout;
-        frameLayout.setBackgroundColor(-14999773);
-        frameLayout.setOutlineProvider(new cl0(this, (byte) 1));
-        frameLayout.setClipToOutline(true);
-        frameLayout.setElevation(gl.L(2.0f));
-        aic aicVar = new aic(launchActivity, false, true, false, false);
-        this.b = aicVar;
-        RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
-        zhc zhcVar = aicVar.d;
-        zhcVar.setScalingType(scalingType);
-        zhcVar.setEnableHardwareScaler(true);
-        zhcVar.setMirror(true);
-        aicVar.b0 = (byte) 0;
-        View view = aicVar.h;
-        if (view != null) {
-            view.setVisibility(8);
-        }
-        frameLayout.addView(aicVar);
-        frameLayout.setAlpha(0.0f);
-        frameLayout.setScaleX(0.6f);
-        frameLayout.setScaleY(0.6f);
-        frameLayout.setVisibility(4);
-        addView(frameLayout);
+    public f91(h91 h91Var, Context context) {
+        this.b = h91Var;
+        this.a = context;
     }
 
-    public final void a() {
-        if (this.e) {
-            return;
+    public final i91 a(float f, float f2) {
+        i91 i91Var;
+        h91 h91Var = this.b;
+        if (h91Var.n != null) {
+            int i = h91Var.e;
+            float measuredWidth = h91Var.getMeasuredWidth() / 7.0f;
+            float L = gm.L(52.0f);
+            int L2 = gm.L(44.0f) / 2;
+            int i2 = 0;
+            for (int i3 = 0; i3 < h91Var.d; i3++) {
+                float f3 = (measuredWidth / 2.0f) + (i * measuredWidth);
+                float L3 = (L / 2.0f) + (i2 * L) + gm.L(44.0f);
+                float f4 = L2;
+                if (f >= f3 - f4 && f <= f3 + f4 && f2 >= L3 - f4 && f2 <= L3 + f4 && (i91Var = (i91) h91Var.n.get(i3, null)) != null) {
+                    return i91Var;
+                }
+                i++;
+                if (i >= 7) {
+                    i2++;
+                    i = 0;
+                }
+            }
         }
-        this.e = true;
-        this.b.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null) {
-            sharedInstance.addExtraLocalSink(this.E);
-        }
-        c();
+        return null;
     }
 
-    public final void b() {
-        if (!this.e) {
-            return;
-        }
-        this.e = false;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null) {
-            sharedInstance.removeExtraLocalSink(this.E);
-        }
-        gl.r(this.y);
-        this.x = false;
-        this.b.d.release();
+    @Override
+    public final boolean onDown(MotionEvent motionEvent) {
+        return true;
     }
 
-    public final void c() {
-        boolean z;
-        boolean z2;
-        float f;
-        boolean z3;
-        if (this.e) {
-            VoIPService sharedInstance = VoIPService.getSharedInstance();
-            if (sharedInstance != null && sharedInstance.getVideoState(false) == 2 && !sharedInstance.isScreencast()) {
-                z = true;
+    @Override
+    public final void onLongPress(MotionEvent motionEvent) {
+        final i91 a;
+        super.onLongPress(motionEvent);
+        h91 h91Var = this.b;
+        k91 k91Var = h91Var.y;
+        if (k91Var.f0 == 0 && !gm.O1() && (a = a(motionEvent.getX(), motionEvent.getY())) != null) {
+            try {
+                h91Var.performHapticFeedback(0);
+            } catch (Exception unused) {
+            }
+            Bundle bundle = new Bundle();
+            long j = k91Var.y;
+            if (j > 0) {
+                bundle.putLong("user_id", j);
             } else {
-                z = false;
+                bundle.putLong("chat_id", -j);
             }
-            if (SystemClock.elapsedRealtime() - this.r < 1000) {
-                z2 = true;
-            } else {
-                z2 = false;
+            bundle.putInt("start_from_date", a.h);
+            bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+            yv1 yv1Var = new yv1(bundle);
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232581, 0, k91Var.getResourceProvider(), k91Var.getParentActivity());
+            anb.h(cmb.F8, k91Var.getResourceProvider(), actionBarPopupWindow$ActionBarPopupWindowLayout);
+            a8 a8Var = new a8(k91Var.getParentActivity(), true, false);
+            a8Var.j(jb6.M0(2131748822, null), 2131232230, null);
+            a8Var.setMinimumWidth(160);
+            a8Var.setOnClickListener(new View.OnClickListener(this) {
+                public final f91 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    tk5 tk5Var;
+                    tk5 tk5Var2;
+                    tk5 tk5Var3;
+                    tk5 tk5Var4;
+                    byte b = r3;
+                    i91 i91Var = a;
+                    f91 f91Var = this.b;
+                    switch (b) {
+                        case 0:
+                            k91 k91Var2 = f91Var.b.y;
+                            tk5Var = ((d) k91Var2).parentLayout;
+                            if (tk5Var != null) {
+                                tk5Var2 = ((d) k91Var2).parentLayout;
+                                if (tk5Var2.getFragmentStack().size() >= 3) {
+                                    tk5Var3 = ((d) k91Var2).parentLayout;
+                                    List fragmentStack = tk5Var3.getFragmentStack();
+                                    tk5Var4 = ((d) k91Var2).parentLayout;
+                                    d dVar = (d) fragmentStack.get(tk5Var4.getFragmentStack().size() - 3);
+                                    if (dVar instanceof yv1) {
+                                        gm.d3(new tv0(f91Var, (yv1) dVar, i91Var, (byte) 12), 300L);
+                                    }
+                                }
+                            }
+                            k91Var2.finishPreviewFragment();
+                            return;
+                        default:
+                            k91 k91Var3 = f91Var.b.y;
+                            int i = i91Var.h;
+                            k91Var3.R = i;
+                            k91Var3.Q = i;
+                            k91Var3.H = true;
+                            k91Var3.B0();
+                            k91Var3.s0();
+                            k91Var3.finishPreviewFragment();
+                            return;
+                    }
+                }
+            });
+            actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var);
+            if (k91Var.e0) {
+                a8 a8Var2 = new a8(k91Var.getParentActivity(), false, false);
+                a8Var2.j(jb6.M0(2131745384, null), 2131232363, null);
+                a8Var2.setMinimumWidth(160);
+                a8Var2.setOnClickListener(new View.OnClickListener(this) {
+                    public final f91 b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        tk5 tk5Var;
+                        tk5 tk5Var2;
+                        tk5 tk5Var3;
+                        tk5 tk5Var4;
+                        byte b = r3;
+                        i91 i91Var = a;
+                        f91 f91Var = this.b;
+                        switch (b) {
+                            case 0:
+                                k91 k91Var2 = f91Var.b.y;
+                                tk5Var = ((d) k91Var2).parentLayout;
+                                if (tk5Var != null) {
+                                    tk5Var2 = ((d) k91Var2).parentLayout;
+                                    if (tk5Var2.getFragmentStack().size() >= 3) {
+                                        tk5Var3 = ((d) k91Var2).parentLayout;
+                                        List fragmentStack = tk5Var3.getFragmentStack();
+                                        tk5Var4 = ((d) k91Var2).parentLayout;
+                                        d dVar = (d) fragmentStack.get(tk5Var4.getFragmentStack().size() - 3);
+                                        if (dVar instanceof yv1) {
+                                            gm.d3(new tv0(f91Var, (yv1) dVar, i91Var, (byte) 12), 300L);
+                                        }
+                                    }
+                                }
+                                k91Var2.finishPreviewFragment();
+                                return;
+                            default:
+                                k91 k91Var3 = f91Var.b.y;
+                                int i = i91Var.h;
+                                k91Var3.R = i;
+                                k91Var3.Q = i;
+                                k91Var3.H = true;
+                                k91Var3.B0();
+                                k91Var3.s0();
+                                k91Var3.finishPreviewFragment();
+                                return;
+                        }
+                    }
+                });
+                actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var2);
+                a8 a8Var3 = new a8(k91Var.getParentActivity(), false, true);
+                a8Var3.j(jb6.M0(2131752026, null), 2131232114, null);
+                a8Var3.setMinimumWidth(160);
+                a8Var3.setOnClickListener(new View.OnClickListener(this) {
+                    public final f91 b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        tk5 tk5Var;
+                        tk5 tk5Var2;
+                        tk5 tk5Var3;
+                        byte b = r2;
+                        f91 f91Var = this.b;
+                        switch (b) {
+                            case 0:
+                                k91 k91Var2 = f91Var.b.y;
+                                tk5Var = ((d) k91Var2).parentLayout;
+                                if (tk5Var.getFragmentStack().size() >= 3) {
+                                    tk5Var2 = ((d) k91Var2).parentLayout;
+                                    List fragmentStack = tk5Var2.getFragmentStack();
+                                    tk5Var3 = ((d) k91Var2).parentLayout;
+                                    d dVar = (d) fragmentStack.get(tk5Var3.getFragmentStack().size() - 3);
+                                    if (dVar instanceof yv1) {
+                                        ik.q(k91Var2, 1, k91Var2.getMessagesController().W1(Long.valueOf(k91Var2.y)), null, false, new lx6(f91Var, (yv1) dVar, false, (byte) 12), null);
+                                    }
+                                }
+                                k91Var2.finishPreviewFragment();
+                                return;
+                            default:
+                                f91Var.b.y.finishPreviewFragment();
+                                return;
+                        }
+                    }
+                });
+                actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var3);
             }
-            if (sharedInstance != null && this.h != sharedInstance.isFrontFaceCamera()) {
-                boolean isFrontFaceCamera = sharedInstance.isFrontFaceCamera();
-                this.h = isFrontFaceCamera;
-                this.b.d.setMirror(isFrontFaceCamera);
-            }
-            int i = this.s;
-            int i2 = this.w;
-            if (i > 0 && i2 > 0) {
-                f = i / i2;
-            } else {
-                f = 0.0f;
-            }
-            if (f > 0.0f && Math.abs(f - this.n) > 0.01f) {
-                this.n = f;
-                requestLayout();
-            }
-            if (z && z2) {
-                z3 = true;
-            } else {
-                z3 = false;
-            }
-            FrameLayout frameLayout = this.a;
-            if (this.f == z3) {
-                return;
-            }
-            this.f = z3;
-            frameLayout.animate().cancel();
-            if (z3) {
-                frameLayout.setVisibility(0);
-                frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(220L).setInterpolator(s33.h).withEndAction(null).start();
-                return;
-            }
-            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setDuration(180L).setInterpolator(s33.g).withEndAction(new d91(this, (byte) 1)).start();
+            actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
+            k91Var.w = new sb((byte) 4, this.a, this);
+            k91Var.w.setOnClickListener(new View.OnClickListener(this) {
+                public final f91 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    tk5 tk5Var;
+                    tk5 tk5Var2;
+                    tk5 tk5Var3;
+                    byte b = r2;
+                    f91 f91Var = this.b;
+                    switch (b) {
+                        case 0:
+                            k91 k91Var2 = f91Var.b.y;
+                            tk5Var = ((d) k91Var2).parentLayout;
+                            if (tk5Var.getFragmentStack().size() >= 3) {
+                                tk5Var2 = ((d) k91Var2).parentLayout;
+                                List fragmentStack = tk5Var2.getFragmentStack();
+                                tk5Var3 = ((d) k91Var2).parentLayout;
+                                d dVar = (d) fragmentStack.get(tk5Var3.getFragmentStack().size() - 3);
+                                if (dVar instanceof yv1) {
+                                    ik.q(k91Var2, 1, k91Var2.getMessagesController().W1(Long.valueOf(k91Var2.y)), null, false, new lx6(f91Var, (yv1) dVar, false, (byte) 12), null);
+                                }
+                            }
+                            k91Var2.finishPreviewFragment();
+                            return;
+                        default:
+                            f91Var.b.y.finishPreviewFragment();
+                            return;
+                    }
+                }
+            });
+            k91Var.w.setVisibility(8);
+            k91Var.w.setFitsSystemWindows(true);
+            k91.f0(k91Var).getOverlayContainerView().addView(k91Var.w, qoe.c(-1.0f, -1));
+            k91Var.x0();
+            k91Var.presentFragmentAsPreviewWithMenu(yv1Var, actionBarPopupWindow$ActionBarPopupWindowLayout);
         }
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int i5 = this.c;
-        int i6 = (i3 - i) - i5;
-        FrameLayout frameLayout = this.a;
-        frameLayout.layout(i6 - frameLayout.getMeasuredWidth(), i5, i6, frameLayout.getMeasuredHeight() + i5);
-        frameLayout.setPivotX(frameLayout.getMeasuredWidth());
-        frameLayout.setPivotY(0.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        float f2;
-        int size = View.MeasureSpec.getSize(i);
-        int size2 = View.MeasureSpec.getSize(i2);
-        setMeasuredDimension(size, size2);
-        float f3 = this.n;
-        if (f3 <= 0.0f) {
-            f3 = 0.75f;
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        i91 a;
+        k47 k47Var;
+        oo8 oo8Var;
+        h91 h91Var = this.b;
+        k91 k91Var = h91Var.y;
+        if (k91.a0(k91Var) != null) {
+            if (((k91Var.f0 == 1 && h91Var.n != null) || k91Var.g0 != null) && (a = a(motionEvent.getX(), motionEvent.getY())) != null && (k47Var = a.a) != null && (oo8Var = k91Var.N) != null) {
+                if (k91Var.g0 != null) {
+                    oab orCreateStoryViewer = k91Var.getOrCreateStoryViewer();
+                    Context context = h91Var.getContext();
+                    k47 k47Var2 = a.a;
+                    TL_stories.StoryItem storyItem = k47Var2.l;
+                    int e1 = k47Var2.e1();
+                    z3b z3bVar = k91Var.g0;
+                    k6d k6dVar = k91Var.h0;
+                    orCreateStoryViewer.h = z8c.t0;
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(Long.valueOf(z3bVar.d));
+                    orCreateStoryViewer.P0 = e1;
+                    orCreateStoryViewer.K(context, storyItem, arrayList, 0, z3bVar, null, k6dVar, true);
+                } else {
+                    int e12 = k47Var.e1();
+                    int i = a.c;
+                    nha nhaVar = (nha) oo8Var.b;
+                    cha[] chaVarArr = nhaVar.w1;
+                    int i2 = -1;
+                    for (int i3 = 0; i3 < chaVarArr[0].a.size(); i3++) {
+                        if (((k47) chaVarArr[0].a.get(i3)).e1() == e12) {
+                            i2 = i3;
+                        }
+                    }
+                    iga P = nhaVar.P(0);
+                    if (i2 >= 0 && P != null) {
+                        P.x.g1(i2, 0);
+                    } else {
+                        nhaVar.v0(0, e12, i, true);
+                    }
+                    if (P != null) {
+                        P.J = e12;
+                        P.K = false;
+                    }
+                    k91Var.finishFragment();
+                }
+            }
+            if (h91Var.n != null) {
+                if (k91Var.H) {
+                    i91 a2 = a(motionEvent.getX(), motionEvent.getY());
+                    if (a2 != null) {
+                        ValueAnimator valueAnimator = k91Var.S;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                            k91Var.S = null;
+                        }
+                        int i4 = k91Var.Q;
+                        if (i4 == 0 && k91Var.R == 0) {
+                            int i5 = a2.h;
+                            k91Var.R = i5;
+                            k91Var.Q = i5;
+                        } else {
+                            int i6 = a2.h;
+                            int i7 = k91Var.R;
+                            if (i4 == i6) {
+                                if (i7 == i6) {
+                                    k91Var.R = 0;
+                                    k91Var.Q = 0;
+                                } else {
+                                    k91Var.Q = i7;
+                                }
+                            } else if (i7 == i6) {
+                                k91Var.R = i4;
+                            } else if (i4 == i7) {
+                                if (i6 > i7) {
+                                    k91Var.R = i6;
+                                } else {
+                                    k91Var.Q = i6;
+                                }
+                            } else {
+                                k91Var.R = i6;
+                                k91Var.Q = i6;
+                            }
+                        }
+                        k91Var.B0();
+                        k91Var.s0();
+                        return false;
+                    }
+                } else {
+                    i91 a3 = a(motionEvent.getX(), motionEvent.getY());
+                    if (a3 != null && k91.b0(k91Var) != null && k91.c0(k91Var).getFragmentStack().size() >= 2) {
+                        d dVar = (d) k91.e0(k91Var).getFragmentStack().get(k91.d0(k91Var).getFragmentStack().size() - 2);
+                        if (dVar instanceof yv1) {
+                            k91Var.finishFragment();
+                            ((yv1) dVar).l8(a3.h);
+                            return false;
+                        }
+                    } else if (a3 != null && k91Var.O != null) {
+                        k91Var.finishFragment();
+                        k91Var.O.l8(a3.h);
+                    }
+                }
+            }
         }
-        float sqrt = (float) Math.sqrt(((0.1f * f) * f2) / f3);
-        float f4 = f3 * sqrt;
-        float min = Math.min(1.0f, Math.min((size * 0.42f) / Math.max(1.0f, f4), (size2 * 0.42f) / Math.max(1.0f, sqrt)));
-        this.a.measure(View.MeasureSpec.makeMeasureSpec(Math.max(1, Math.round(f4 * min)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(1, Math.round(sqrt * min)), 1073741824));
+        return false;
     }
 }

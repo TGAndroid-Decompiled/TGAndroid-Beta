@@ -1,104 +1,97 @@
 package defpackage;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-public final class oj9 extends bya {
-    public float d;
-    public final Paint f;
-    public boolean a = false;
-    public long b = 0;
-    public boolean c = false;
-    public int e = 1;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+public final class oj9 extends qi9 implements Drawable.Callback {
+    public final g8c X;
+    public final int Y;
+    public final int Z;
+    public final int a0;
+    public final int b0;
+    public dhf c0;
+    public Bitmap d0;
 
-    public oj9(boolean z) {
-        if (z) {
-            this.f = new Paint(1);
-        }
+    public oj9(uj9 uj9Var, Rect rect, int i, int i2, int i3) {
+        super(uj9Var, rect, i);
+        this.a0 = i2;
+        this.b0 = i3;
+        g8c g8cVar = new g8c();
+        this.X = g8cVar;
+        g8cVar.setCallback(this);
+        g8cVar.n = jb6.M0(2131743518, null);
+        g8cVar.o = jb6.M0(2131743519, null);
+        g8cVar.p = jb6.M0(2131743513, null);
+        g8cVar.j = new kf9(uj9Var, (byte) 4);
+        int i4 = this.c;
+        this.Y = i4;
+        this.Z = g8cVar.a(i4);
     }
 
     @Override
-    public final void b(int i) {
-        Paint paint = this.f;
-        if (paint != null) {
-            paint.setColor(i);
-        }
+    public final int H() {
+        Rect rect = this.b;
+        return rect.top + this.Z + rect.bottom;
     }
 
     @Override
-    public final void c(boolean z) {
-        this.a = z;
+    public final boolean X(MotionEvent motionEvent) {
+        View view = this.W;
+        if (view != null) {
+            return this.X.i.a(view, motionEvent);
+        }
+        return false;
     }
 
-    @Override
-    public final void d() {
-        this.b = System.currentTimeMillis();
-        this.c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f;
-        Paint paint = this.f;
-        if (paint == null) {
-            paint = bkb.b2;
-        }
-        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
-        float L = gl.L(6.0f);
-        if (this.a) {
-            f = 8.0f;
-        } else {
-            f = 9.0f;
-        }
-        canvas.drawCircle(L, gl.L(f), gl.L(4.0f), paint);
-        if (this.c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j = currentTimeMillis - this.b;
-            this.b = currentTimeMillis;
-            if (j > 50) {
-                j = 50;
+    public final float h0(yc2 yc2Var) {
+        int i;
+        if (yc2Var != null) {
+            uj9 uj9Var = this.a;
+            if (uj9Var.s || uj9Var.u) {
+                i = gm.U1(Math.max(0.0f, Math.min(1.0f, yc2Var.L1)), this.Q, this.O);
+                return i;
             }
-            float f2 = this.d;
-            int i = this.e;
-            float f3 = (((float) (i * j)) / 400.0f) + f2;
-            this.d = f3;
-            if (i > 0 && f3 >= 1.0f) {
-                this.e = -1;
-                this.d = 1.0f;
-            } else if (i < 0 && f3 <= 0.0f) {
-                this.e = 1;
-                this.d = 0.0f;
+        }
+        i = this.O;
+        return i;
+    }
+
+    public final float i0(yc2 yc2Var) {
+        if (yc2Var != null) {
+            uj9 uj9Var = this.a;
+            if (uj9Var.s || uj9Var.u) {
+                return gm.R1(this.P, this.N, Math.max(0.0f, Math.min(1.0f, yc2Var.L1)));
             }
-            a();
+        }
+        return this.N;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        View view = this.W;
+        if (view != null) {
+            view.invalidate();
         }
     }
 
     @Override
-    public final void e() {
-        this.c = false;
+    public final void p(Canvas canvas) {
+        Rect rect = this.b;
+        int i = rect.left;
+        int i2 = rect.top;
+        g8c g8cVar = this.X;
+        g8cVar.setBounds(i, i2, this.Y + i, this.Z + i2);
+        g8cVar.draw(canvas);
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return gl.L(10.0f);
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return gl.L(12.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
     }
 }

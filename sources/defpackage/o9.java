@@ -32,7 +32,7 @@ public final class o9 implements Application.ActivityLifecycleCallbacks {
             try {
                 Object obj2 = p9.c.get(activity);
                 if (obj2 == obj && activity.hashCode() == this.c) {
-                    p9.g.postAtFrontOfQueue(new rld(p9.b.get(activity), obj2, (byte) 2));
+                    p9.g.postAtFrontOfQueue(new tnd(p9.b.get(activity), obj2, (byte) 2));
                     this.f = true;
                     this.a = null;
                 }

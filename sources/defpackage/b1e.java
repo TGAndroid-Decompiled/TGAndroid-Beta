@@ -1,53 +1,71 @@
 package defpackage;
-public final class b1e extends nne {
-    private static final b1e zzg;
-    private static volatile dwe zzh;
-    private int zzc;
-    private int zzd;
-    private int zze;
-    private String zzf = "";
 
-    static {
-        b1e b1eVar = new b1e();
-        zzg = b1eVar;
-        nne.g(b1e.class, b1eVar);
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Parcel;
+import android.os.RemoteException;
+public final class b1e extends AsyncTask {
+    public static final ce6 c = new ce6("FetchBitmapTask", null);
+    public final yje a;
+    public final sm2 b;
+
+    public b1e(Context context, int i, int i2, sm2 sm2Var) {
+        yje yjeVar;
+        this.b = sm2Var;
+        Context applicationContext = context.getApplicationContext();
+        t7d t7dVar = new t7d(this);
+        ce6 ce6Var = v8d.a;
+        try {
+            q9d b = v8d.b(applicationContext.getApplicationContext());
+            eq7 eq7Var = new eq7(applicationContext.getApplicationContext());
+            Parcel T = b.T(b.R(), 8);
+            int readInt = T.readInt();
+            T.recycle();
+            if (readInt >= 233700000) {
+                yjeVar = b.d0(eq7Var, new eq7(this), t7dVar, i, i2);
+            } else {
+                yjeVar = b.c0(new eq7(this), t7dVar, i, i2);
+            }
+        } catch (RemoteException | sg7 e) {
+            v8d.a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", q9d.class.getSimpleName());
+            yjeVar = null;
+        }
+        this.a = yjeVar;
     }
 
     @Override
-    public final Object d(int i) {
-        dwe dweVar;
-        switch (l2e.a[i - 1]) {
-            case 1:
-                return new b1e();
-            case 2:
-                return new jne(zzg);
-            case 3:
-                return new swe(zzg, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0000\u0001ဌ\u0000\u0002ဌ\u0001\u0003ဈ\u0002", new Object[]{"zzc", "zzd", b3e.h, "zze", b3e.i, "zzf"});
-            case 4:
-                return zzg;
-            case 5:
-                dwe dweVar2 = zzh;
-                if (dweVar2 == null) {
-                    synchronized (b1e.class) {
-                        dwe dweVar3 = zzh;
-                        dweVar = dweVar3;
-                        if (dweVar3 == null) {
-                            ?? obj = new Object();
-                            zzh = obj;
-                            dweVar = obj;
-                        }
-                    }
-                    return dweVar;
-                }
-                return dweVar2;
-            case 6:
-                return (byte) 1;
-            case 7:
-                break;
-            default:
-                fvc.b();
-                break;
+    public final Object doInBackground(Object[] objArr) {
+        Uri uri;
+        yje yjeVar;
+        Uri[] uriArr = (Uri[]) objArr;
+        if (uriArr.length == 1 && (uri = uriArr[0]) != null && (yjeVar = this.a) != null) {
+            try {
+                e8e e8eVar = (e8e) yjeVar;
+                Parcel R = e8eVar.R();
+                kid.c(R, uri);
+                Parcel T = e8eVar.T(R, 1);
+                Bitmap bitmap = (Bitmap) kid.a(T, Bitmap.CREATOR);
+                T.recycle();
+                return bitmap;
+            } catch (RemoteException e) {
+                c.a(e, "Unable to call %s on %s.", "doFetch", yje.class.getSimpleName());
+            }
         }
         return null;
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        sm2 sm2Var = this.b;
+        if (sm2Var != null) {
+            z6d z6dVar = (z6d) sm2Var.f;
+            if (z6dVar != null) {
+                z6dVar.d(bitmap);
+            }
+            sm2Var.e = null;
+        }
     }
 }

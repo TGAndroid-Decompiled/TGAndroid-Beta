@@ -1,119 +1,87 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.ProfileActivity;
-public final class hn8 implements wc2 {
-    public final int a;
-    public final TLRPC.ChatParticipant b;
-    public final boolean c;
-    public final boolean[] d;
-    public final ProfileActivity e;
+import java.util.concurrent.CancellationException;
+import sun.misc.Unsafe;
+public final class hn8 extends b2 implements wf1, x2a {
+    public final y11 e;
 
-    public hn8(ProfileActivity profileActivity, int i, TLRPC.ChatParticipant chatParticipant, boolean z, boolean[] zArr) {
-        this.e = profileActivity;
-        this.a = i;
-        this.b = chatParticipant;
-        this.c = z;
-        this.d = zArr;
+    public hn8(cy2 cy2Var, y11 y11Var) {
+        super(cy2Var, true);
+        this.e = y11Var;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i;
-        ProfileActivity profileActivity = this.e;
-        UndoView undoView = profileActivity.M;
-        long j = -profileActivity.f1;
-        if (profileActivity.F2.megagroup) {
-            i = 10;
-        } else {
-            i = 9;
+    public final void P(Throwable th, boolean z) {
+        if (!this.e.c(th, false) && !z) {
+            dbe.a(this.d, th);
         }
-        undoView.m(user, i, j);
     }
 
     @Override
-    public final void b(int i, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.ChatFull chatFull;
-        boolean z;
-        TLRPC.ChatParticipant tL_chatParticipant;
-        TLRPC.ChannelParticipant tL_channelParticipant;
-        int i2 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.b;
-        ProfileActivity profileActivity = this.e;
-        int i3 = this.a;
-        if (i3 == 0) {
-            if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
-                TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
-                if (i == 1) {
-                    tL_channelParticipant = new TLRPC.TL_channelParticipantAdmin();
-                    tL_chatChannelParticipant.channelParticipant = tL_channelParticipant;
-                    tL_channelParticipant.flags |= 4;
-                } else {
-                    tL_channelParticipant = new TLRPC.TL_channelParticipant();
-                    tL_chatChannelParticipant.channelParticipant = tL_channelParticipant;
-                }
-                tL_channelParticipant.inviter_id = profileActivity.getUserConfig().e();
-                tL_chatChannelParticipant.channelParticipant.peer = new TLRPC.TL_peerUser();
-                TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
-                channelParticipant.peer.user_id = chatParticipant.user_id;
-                channelParticipant.date = chatParticipant.date;
-                channelParticipant.banned_rights = tL_chatBannedRights;
-                channelParticipant.admin_rights = tL_chatAdminRights;
-                channelParticipant.rank = str;
-            } else if (chatParticipant != null) {
-                if (i == 1) {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipantAdmin();
-                } else {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                }
-                tL_chatParticipant.user_id = chatParticipant.user_id;
-                tL_chatParticipant.date = chatParticipant.date;
-                tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                int indexOf = profileActivity.v2.participants.participants.indexOf(chatParticipant);
-                if (indexOf >= 0) {
-                    profileActivity.v2.participants.participants.set(indexOf, tL_chatParticipant);
-                }
+    public final void Q(Object obj) {
+        g7c g7cVar = (g7c) obj;
+        this.e.c(null, false);
+    }
+
+    public final void S(z23 z23Var) {
+        Unsafe unsafe;
+        Unsafe unsafe2;
+        y11 y11Var = this.e;
+        y11Var.getClass();
+        long j = y11.s;
+        do {
+            unsafe = fy.a;
+            if (unsafe.compareAndSwapObject(y11Var, y11.s, (Object) null, z23Var)) {
+                return;
             }
-            if (i == 1 && !this.c) {
-                this.d[0] = true;
-            }
-        } else if (i3 == 1 && i == 0 && profileActivity.F2.megagroup && (chatFull = profileActivity.v2) != null && chatFull.participants != null) {
-            int i4 = 0;
-            while (true) {
-                if (i4 < profileActivity.v2.participants.participants.size()) {
-                    if (k27.B1(((TLRPC.TL_chatChannelParticipant) profileActivity.v2.participants.participants.get(i4)).channelParticipant.peer) == chatParticipant.user_id) {
-                        TLRPC.ChatFull chatFull2 = profileActivity.v2;
-                        chatFull2.participants_count--;
-                        chatFull2.participants.participants.remove(i4);
-                        z = true;
-                        break;
+        } while (unsafe.getObjectVolatile(y11Var, j) == null);
+        while (true) {
+            Object objectVolatile = fy.a.getObjectVolatile(y11Var, j);
+            du2 du2Var = a21.q;
+            if (objectVolatile == du2Var) {
+                du2 du2Var2 = a21.r;
+                do {
+                    unsafe2 = fy.a;
+                    if (unsafe2.compareAndSwapObject(y11Var, y11.s, du2Var, du2Var2)) {
+                        z23Var.invoke(y11Var.k());
+                        return;
                     }
-                    i4++;
-                } else {
-                    z = false;
-                    break;
-                }
-            }
-            TLRPC.ChatFull chatFull3 = profileActivity.v2;
-            if (chatFull3 != null && chatFull3.participants != null) {
-                while (true) {
-                    if (i2 >= profileActivity.v2.participants.participants.size()) {
-                        break;
-                    } else if (profileActivity.v2.participants.participants.get(i2).user_id == chatParticipant.user_id) {
-                        profileActivity.v2.participants.participants.remove(i2);
-                        z = true;
-                        break;
-                    } else {
-                        i2++;
-                    }
-                }
-            }
-            if (z) {
-                profileActivity.b4(true);
-                profileActivity.e4();
-                profileActivity.d.f();
+                } while (unsafe2.getObjectVolatile(y11Var, j) == du2Var);
+            } else if (objectVolatile == a21.r) {
+                dq9.m("Another handler was already registered and successfully invoked");
+                return;
+            } else {
+                zo4.p(objectVolatile, "Another handler is already registered: ");
+                return;
             }
         }
+    }
+
+    @Override
+    public final Object a(px2 px2Var, Object obj) {
+        return this.e.a(px2Var, obj);
+    }
+
+    @Override
+    public final void cancel(CancellationException cancellationException) {
+        if (isCancelled()) {
+            return;
+        }
+        if (cancellationException == null) {
+            cancellationException = new bv5(l(), null, this);
+        }
+        j(cancellationException);
+    }
+
+    @Override
+    public final Object d(Object obj) {
+        return this.e.d(g7c.a);
+    }
+
+    @Override
+    public final void j(CancellationException cancellationException) {
+        CancellationException M = ov5.M(this, cancellationException);
+        this.e.c(M, true);
+        i(M);
     }
 }

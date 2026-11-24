@@ -1,48 +1,13 @@
 package defpackage;
-public final class vx implements et8 {
-    public final byte a;
 
-    public vx(int i) {
-        this.a = i;
-    }
-
-    @Override
-    public final Class annotationType() {
-        return et8.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof et8) {
-                et8 et8Var = (et8) obj;
-                if (this.a == et8Var.tag() && dt8.a.equals(et8Var.intEncoding())) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (this.a ^ 14552422) + (dt8.a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final dt8 intEncoding() {
-        return dt8.a;
-    }
-
-    @Override
-    public final int tag() {
-        return this.a;
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + ((int) this.a) + "intEncoding=" + dt8.a + ')';
-    }
+import org.telegram.tgnet.tl.TL_iv;
+public final class vx extends TL_iv.PageBlock {
+    public boolean a;
+    public boolean b;
+    public wx c;
+    public TL_iv.PageBlock d;
+    public TL_iv.RichText e;
+    public String f;
+    public bx i;
+    public int j = Integer.MAX_VALUE;
 }

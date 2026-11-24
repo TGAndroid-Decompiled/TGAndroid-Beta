@@ -1,87 +1,44 @@
 package defpackage;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.RandomAccess;
-import java.util.Set;
-import java.util.SortedMap;
-public final class wg7 extends q3 implements Serializable {
-    public final transient Map e;
-    public transient int f;
-    public transient vg7 h;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+public final class wg7 extends tg7 implements ScheduledExecutorService {
+    public final ScheduledExecutorService b;
 
-    public wg7(Map map) {
-        gre.f(map.isEmpty());
-        this.e = map;
+    public wg7(ScheduledExecutorService scheduledExecutorService) {
+        super(scheduledExecutorService);
+        this.b = scheduledExecutorService;
     }
 
     @Override
-    public final void b() {
-        Map map = this.e;
-        for (Collection collection : map.values()) {
-            collection.clear();
-        }
-        map.clear();
-        this.f = 0;
+    public final void close() {
+        z2.g(this);
     }
 
     @Override
-    public final Map d() {
-        Map map = this.e;
-        if (map instanceof NavigableMap) {
-            return new f3(this, (NavigableMap) map);
-        }
-        if (map instanceof SortedMap) {
-            return new i3(this, (SortedMap) map);
-        }
-        return new d3(this, map, (byte) 0);
+    public final ScheduledFuture schedule(Runnable runnable, long j, TimeUnit timeUnit) {
+        i4c i4cVar = new i4c(Executors.callable(runnable, null));
+        return new ug7(i4cVar, this.b.schedule(i4cVar, j, timeUnit));
     }
 
     @Override
-    public final Set f() {
-        Map map = this.e;
-        if (map instanceof NavigableMap) {
-            return new g3(this, (NavigableMap) map);
-        }
-        if (map instanceof SortedMap) {
-            return new j3(this, (SortedMap) map);
-        }
-        return new e3(this, map);
+    public final ScheduledFuture scheduleAtFixedRate(Runnable runnable, long j, long j2, TimeUnit timeUnit) {
+        vg7 vg7Var = new vg7(runnable);
+        return new ug7(vg7Var, this.b.scheduleAtFixedRate(vg7Var, j, j2, timeUnit));
     }
 
     @Override
-    public final Collection g() {
-        return super.g();
+    public final ScheduledFuture scheduleWithFixedDelay(Runnable runnable, long j, long j2, TimeUnit timeUnit) {
+        vg7 vg7Var = new vg7(runnable);
+        return new ug7(vg7Var, this.b.scheduleWithFixedDelay(vg7Var, j, j2, timeUnit));
     }
 
     @Override
-    public final Iterator h() {
-        return new a3(this, (byte) 1);
-    }
-
-    @Override
-    public final Collection i(Object obj) {
-        Collection collection = (Collection) this.e.get(obj);
-        if (collection == null) {
-            collection = m();
-        }
-        List list = (List) collection;
-        if (list instanceof RandomAccess) {
-            return new l3(this, obj, list, (l3) null);
-        }
-        return new l3(this, obj, list, (l3) null);
-    }
-
-    @Override
-    public final int l() {
-        return this.f;
-    }
-
-    public final Collection m() {
-        return (List) this.h.get();
+    public final ScheduledFuture schedule(Callable callable, long j, TimeUnit timeUnit) {
+        i4c i4cVar = new i4c(callable);
+        return new ug7(i4cVar, this.b.schedule(i4cVar, j, timeUnit));
     }
 }

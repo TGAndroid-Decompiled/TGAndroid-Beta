@@ -1,105 +1,66 @@
 package defpackage;
 
-import android.graphics.RectF;
 import java.util.ArrayList;
-public final class zw4 {
-    public final ArrayList a = new ArrayList();
-    public int b;
+import java.util.Iterator;
+import java.util.List;
+public final class zw4 implements g94, py4, bj0 {
+    public final ux4 a;
 
-    public final RectF a(float f, float f2, float f3, float f4) {
-        RectF rectF;
-        int i = this.b;
-        ArrayList arrayList = this.a;
-        if (i < arrayList.size()) {
-            rectF = (RectF) arrayList.get(this.b);
-            rectF.set(f, f2, f3, f4);
-        } else {
-            rectF = new RectF(f, f2, f3, f4);
-            arrayList.add(rectF);
-        }
-        this.b++;
-        return rectF;
+    public zw4(ux4 ux4Var) {
+        this.a = ux4Var;
     }
 
-    public final void b(float f, float f2, float f3) {
-        int i = 0;
-        while (i < this.b) {
-            RectF rectF = (RectF) this.a.get(i);
-            float f4 = rectF.right;
-            if (f4 > 0.0f) {
-                float f5 = rectF.bottom;
-                if (f5 > f) {
-                    float f6 = rectF.left;
-                    if (f6 < f2) {
-                        float f7 = rectF.top;
-                        if (f7 < f3) {
-                            if (f6 < 0.0f) {
-                                rectF.left = 0.0f;
-                            }
-                            if (f7 < f) {
-                                rectF.top = f;
-                            }
-                            if (f4 > f2) {
-                                rectF.right = f2;
-                            }
-                            if (f5 > f3) {
-                                rectF.bottom = f3;
-                            }
-                            i++;
+    @Override
+    public final void D(int i, float f, float f2, h94 h94Var) {
+        rja rjaVar = this.a.u2;
+        if (rjaVar != null) {
+            rjaVar.setTitlesAlpha(f);
+        }
+    }
+
+    @Override
+    public final void b(fj0 fj0Var, List list) {
+        int i;
+        ux4 ux4Var = this.a;
+        ArrayList arrayList = ux4Var.g2;
+        Iterator it = list.iterator();
+        long j = 0;
+        while (true) {
+            i = 0;
+            if (!it.hasNext()) {
+                break;
+            }
+            ln8 ln8Var = (ln8) it.next();
+            int size = arrayList.size();
+            while (true) {
+                if (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    nw4 nw4Var = (nw4) obj;
+                    if (nw4Var.h() != null && nw4Var.h().equals(ln8Var.c)) {
+                        nw4Var.h = ln8Var;
+                        if (nw4Var.f() > j) {
+                            j = nw4Var.f();
                         }
                     }
                 }
             }
-            d(i);
         }
+        int size2 = arrayList.size();
+        while (i < size2) {
+            Object obj2 = arrayList.get(i);
+            i++;
+            ((nw4) obj2).g = j;
+        }
+        gm.c3(new qn4(ux4Var, (byte) 8));
     }
 
-    public final RectF c(int i) {
-        if (i >= 0 && i < this.b) {
-            return (RectF) this.a.get(i);
-        }
-        w26.h(this.b, de9.m(i, "index=", ", size="));
-        return null;
+    @Override
+    public final int i() {
+        return cmb.v0(cmb.a6, this.a.J0);
     }
 
-    public final void d(int i) {
-        int i2;
-        if (i >= 0 && i < (i2 = this.b)) {
-            int i3 = i2 - 1;
-            ArrayList arrayList = this.a;
-            RectF rectF = (RectF) arrayList.get(i);
-            if (i != i3) {
-                arrayList.set(i, (RectF) arrayList.get(i3));
-                arrayList.set(i3, rectF);
-            }
-            this.b = i3;
-            return;
-        }
-        w26.h(this.b, de9.m(i, "index=", ", size="));
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof zw4) {
-                zw4 zw4Var = (zw4) obj;
-                if (this.b == zw4Var.b) {
-                    for (int i = 0; i < this.b; i++) {
-                        if (((RectF) this.a.get(i)).equals(zw4Var.a.get(i))) {
-                        }
-                    }
-                    return true;
-                }
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int i = 1;
-        for (int i2 = 0; i2 < this.b; i2++) {
-            i = (i * 31) + ((RectF) this.a.get(i2)).hashCode();
-        }
-        return i;
+    @Override
+    public final void V(float f, int i) {
     }
 }

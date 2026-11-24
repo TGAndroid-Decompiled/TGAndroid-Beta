@@ -1,20 +1,19 @@
 package defpackage;
 
-import android.view.animation.OvershootInterpolator;
-import org.telegram.ui.LaunchActivity;
-public final class r45 extends j75 {
-    public final OvershootInterpolator d;
-    public int e;
-    public final h75 f;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class r45 {
+    public final String a;
+    public final String b;
+    public final String c;
+    public final String d;
+    public TL_wallet.tonConnectSession e;
+    public boolean f;
 
-    public r45(h75 h75Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f = h75Var;
-        this.d = new OvershootInterpolator(1.5f);
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r43) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.r45.dispatchDraw(android.graphics.Canvas):void");
+    public r45(TL_wallet.tonConnectSession tonconnectsession, String str, String str2, String str3, String str4) {
+        this.e = tonconnectsession;
+        this.a = str;
+        this.b = str2;
+        this.c = str3;
+        this.d = str4;
     }
 }

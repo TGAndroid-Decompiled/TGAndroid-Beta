@@ -1,33 +1,53 @@
 package defpackage;
+public final class z22 implements ht3 {
+    public final byte a;
+    public final float b;
+    public final Object c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class z22 extends AnimatorListenerAdapter {
-    public final byte a = 0;
-    public final a32 b;
-
-    public z22(a32 a32Var) {
-        this.b = a32Var;
+    public z22(Object obj, float f, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = f;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void a(zna znaVar, boolean z, float f, float f2) {
         byte b = this.a;
-        a32 a32Var = this.b;
+        float f3 = this.b;
+        Object obj = this.c;
         switch (b) {
             case 0:
-                ((c32) a32Var.d).V.e();
+                d32 d32Var = (d32) obj;
+                d32Var.w = null;
+                if (!z) {
+                    d32Var.f = f3;
+                    d32Var.c();
+                    return;
+                }
+                d32Var.h = f3;
+                return;
+            case 1:
+                op9 op9Var = (op9) obj;
+                pp9 pp9Var = op9Var.P;
+                if (pp9Var.l0 == znaVar) {
+                    pp9Var.l0 = null;
+                    if (!z) {
+                        op9Var.k(f3);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                pi4 pi4Var = a32Var.b;
-                pi4Var.setAlpha(1.0f);
-                d49.w0(pi4Var);
-                ((c32) a32Var.d).Y.r.removeView(pi4Var);
+                v9b v9bVar = (v9b) obj;
+                if (!z) {
+                    v9bVar.N0.setTranslationY(f3);
+                    v9bVar.N0.L = false;
+                    v9bVar.p2 = null;
+                    v9bVar.q2 = null;
+                    return;
+                }
                 return;
         }
-    }
-
-    public z22(a32 a32Var, d49 d49Var) {
-        this.b = a32Var;
     }
 }

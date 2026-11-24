@@ -1,85 +1,138 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.TextView;
-public class fm extends TextView {
-    public int a;
-    public PorterDuffColorFilter b;
-    public cm c;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Calendar;
+import org.telegram.messenger.Utilities;
+public final class fm {
+    public int c;
+    public final ArrayList a = new ArrayList();
+    public String b = "";
+    public boolean d = true;
 
-    public fm(Context context) {
-        super(context);
-        this.a = 0;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.c = gm.update(this.a, this, this.c, getLayout());
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        gm.release(this, this.c);
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        float f;
-        int paddingLeft;
-        Canvas canvas2;
-        super.onDraw(canvas);
-        if ((getGravity() & 16) != 0 && getLayout() != null) {
-            f = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
-        } else {
-            f = 0.0f;
+    public final String a(boolean z) {
+        int indexOf = this.b.indexOf(58);
+        if (indexOf >= 0) {
+            String substring = this.b.substring(0, indexOf);
+            if (this.c == 20) {
+                String[] split = substring.substring(2).split(";");
+                if (z) {
+                    return split[0];
+                }
+                if (split.length > 1) {
+                    return split[split.length - 1];
+                }
+                return "";
+            }
+            String[] split2 = substring.split(";");
+            for (int i = 0; i < split2.length; i++) {
+                if (split2[i].indexOf(61) < 0) {
+                    substring = split2[i];
+                }
+            }
+            return substring;
         }
-        if (k96.a0) {
-            paddingLeft = getPaddingRight();
-        } else {
-            paddingLeft = getPaddingLeft();
-        }
-        float f2 = paddingLeft;
-        int i = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
-        if (i == 0 && f2 == 0.0f) {
-            canvas2 = canvas;
-        } else {
-            canvas.save();
-            canvas2 = canvas;
-            canvas2.translate(f2, f);
-        }
-        gm.drawAnimatedEmojis(canvas2, getLayout(), this.c, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.b);
-        if (i == 0 && f2 == 0.0f) {
-            return;
-        }
-        canvas.restore();
+        return "";
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.c = gm.update(this.a, this, this.c, getLayout());
-    }
-
-    public void setCacheType(int i) {
-        if (this.a == i) {
-            return;
+    public final String[] b() {
+        byte[] H;
+        int indexOf = this.b.indexOf(58);
+        if (indexOf < 0) {
+            return new String[0];
         }
-        this.a = i;
-        this.c = gm.update(i, this, this.c, getLayout());
+        String substring = this.b.substring(0, indexOf);
+        String substring2 = this.b.substring(indexOf + 1);
+        String str = null;
+        String str2 = "UTF-8";
+        for (String str3 : substring.split(";")) {
+            String[] split = str3.split("=");
+            if (split.length == 2) {
+                if (split[0].equals("CHARSET")) {
+                    str2 = split[1];
+                } else if (split[0].equals("ENCODING")) {
+                    str = split[1];
+                }
+            }
+        }
+        String[] split2 = substring2.split(";");
+        for (int i = 0; i < split2.length; i++) {
+            if (!TextUtils.isEmpty(split2[i]) && str != null && str.equalsIgnoreCase("QUOTED-PRINTABLE") && (H = gm.H(gm.g1(split2[i]))) != null && H.length != 0) {
+                try {
+                    split2[i] = new String(H, str2);
+                } catch (Exception unused) {
+                }
+            }
+        }
+        return split2;
     }
 
-    public void setEmojiColor(int i) {
-        this.b = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(charSequence, bufferType);
-        this.c = gm.update(this.a, this, this.c, getLayout());
+    public final String c(boolean z) {
+        byte[] H;
+        StringBuilder sb = new StringBuilder();
+        int indexOf = this.b.indexOf(58);
+        if (indexOf < 0) {
+            return "";
+        }
+        if (sb.length() > 0) {
+            sb.append(", ");
+        }
+        String substring = this.b.substring(0, indexOf);
+        String substring2 = this.b.substring(indexOf + 1);
+        String str = null;
+        String str2 = "UTF-8";
+        for (String str3 : substring.split(";")) {
+            String[] split = str3.split("=");
+            if (split.length == 2) {
+                if (split[0].equals("CHARSET")) {
+                    str2 = split[1];
+                } else if (split[0].equals("ENCODING")) {
+                    str = split[1];
+                }
+            }
+        }
+        String[] split2 = substring2.split(";");
+        boolean z2 = false;
+        for (int i = 0; i < split2.length; i++) {
+            if (!TextUtils.isEmpty(split2[i])) {
+                if (str != null && str.equalsIgnoreCase("QUOTED-PRINTABLE") && (H = gm.H(gm.g1(split2[i]))) != null && H.length != 0) {
+                    try {
+                        split2[i] = new String(H, str2);
+                    } catch (Exception unused) {
+                    }
+                }
+                if (z2 && sb.length() > 0) {
+                    sb.append(" ");
+                }
+                sb.append(split2[i]);
+                if (!z2) {
+                    if (split2[i].length() > 0) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                }
+            }
+        }
+        if (z) {
+            int i2 = this.c;
+            if (i2 == 0) {
+                return r58.f().e(sb.toString());
+            }
+            if (i2 == 5) {
+                String[] split3 = sb.toString().split("T");
+                if (split3.length > 0) {
+                    String[] split4 = split3[0].split("-");
+                    if (split4.length == 3) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(1, Utilities.z(split4[0]).intValue());
+                        calendar.set(2, Utilities.z(split4[1]).intValue() - 1);
+                        calendar.set(5, Utilities.z(split4[2]).intValue());
+                        return jb6.D0().C0().format(calendar.getTime());
+                    }
+                }
+            }
+        }
+        return sb.toString();
     }
 }

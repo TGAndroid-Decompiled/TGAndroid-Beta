@@ -1,10 +1,17 @@
 package defpackage;
-public final class gzd implements zn7 {
+public final class gzd implements cq7 {
     public static final gzd a = new Object();
-    public static final w84 b = new w84("identifiedLanguage", b00.m(yjb.o(i8d.class, new b7d(1))));
+
+    static {
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)), 3)), 4)));
+    }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ao7) obj2).a(b, ((hne) obj).a);
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

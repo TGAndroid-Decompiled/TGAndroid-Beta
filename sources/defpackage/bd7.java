@@ -1,17 +1,19 @@
 package defpackage;
-public enum bd7 implements ct8 {
-    UNKNOWN_EVENT(0),
-    MESSAGE_DELIVERED(1),
-    MESSAGE_OPEN(2);
-    
+public final class bd7 implements Runnable {
     public final byte a;
+    public final cf7 b;
+    public final long c;
+    public final boolean d;
 
-    bd7(int i) {
-        this.a = i;
+    public bd7(cf7 cf7Var, long j, boolean z, byte b) {
+        this.a = b;
+        this.b = cf7Var;
+        this.c = j;
+        this.d = z;
     }
 
     @Override
-    public final int a() {
-        return this.a;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bd7.run():void");
     }
 }

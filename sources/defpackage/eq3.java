@@ -1,116 +1,106 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
-public final class eq3 extends View {
-    public final Paint a;
-    public final TextPaint b;
-    public final StaticLayout c;
-    public final float d;
-    public final float e;
-    public final Path f;
-    public li3 h;
-    public boolean n;
-    public final lm r;
-
-    public eq3(Context context) {
-        super(context);
-        Point point;
-        float f;
-        float f2;
-        Paint paint = new Paint(1);
-        this.a = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.b = textPaint;
-        this.f = new Path();
-        lm lmVar = new lm(this);
-        this.r = lmVar;
-        paint.setColor(-869783512);
-        paint.setPathEffect(new CornerPathEffect(gl.L(6.0f)));
-        textPaint.setTextSize(gl.L(14.0f));
-        textPaint.setColor(-1);
-        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(k96.N0("StoryDraftSaved"), textPaint, point.x, TextUtils.TruncateAt.END), textPaint, gl.q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.c = staticLayout;
-        if (staticLayout.getLineCount() > 0) {
-            f = staticLayout.getLineWidth(0);
-        } else {
-            f = 0.0f;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public abstract class eq3 {
+    public static meb a(int i) {
+        try {
+            meb mebVar = new meb();
+            feb febVar = new feb(256.0f, 256.0f, 204.8f);
+            mebVar.a.add(febVar);
+            mebVar.b.put(febVar, new Paint(1));
+            mebVar.e = 512;
+            mebVar.f = 512;
+            mebVar.e(i, null, 0.65f, false);
+            return mebVar;
+        } catch (Exception e) {
+            fc4.g(e, true);
+            return null;
         }
-        this.d = f;
-        if (staticLayout.getLineCount() > 0) {
-            f2 = staticLayout.getLineLeft(0);
-        } else {
-            f2 = 0.0f;
-        }
-        this.e = f2;
-        lmVar.e(true, 0.0f);
     }
 
-    public final void a(boolean z) {
-        li3 li3Var;
-        if (!z && (li3Var = this.h) != null) {
-            gl.r(li3Var);
-            this.h = null;
-        }
-        this.n = z;
-        invalidate();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        float d = this.r.d(this.n);
-        if (d <= 0.0f) {
-            return;
-        }
-        canvas.save();
-        if (this.n) {
-            f = s33.k.getInterpolation(d);
-        } else {
-            f = 1.0f;
-        }
-        canvas.translate(0.0f, f * gl.L(12.0f));
-        float interpolation = s33.h.getInterpolation(d);
-        float measuredWidth = getMeasuredWidth();
-        float measuredHeight = getMeasuredHeight();
-        float L = gl.L(22.0f) + this.d;
-        float min = (measuredWidth / 2.0f) - Math.min(gl.L(135.0f), 0.35f * measuredWidth);
-        float max = Math.max(gl.L(8.0f), min - (L / 2.0f));
-        Path path = this.f;
-        path.rewind();
-        path.moveTo(max, 0.0f);
-        float f2 = L + max;
-        path.lineTo(f2, 0.0f);
-        path.lineTo(f2, measuredHeight - gl.L(18.0f));
-        path.lineTo(gl.L(7.0f) + min, measuredHeight - gl.L(18.0f));
-        path.lineTo(gl.L(1.0f) + min, measuredHeight - gl.L(12.0f));
-        path.lineTo(min - gl.L(1.0f), measuredHeight - gl.L(12.0f));
-        path.lineTo(min - gl.L(7.0f), measuredHeight - gl.L(18.0f));
-        path.lineTo(max, measuredHeight - gl.L(18.0f));
+    public static meb b(int i) {
+        Path path = new Path();
+        path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
         path.close();
-        Paint paint = this.a;
-        paint.setAlpha((int) (204.0f * interpolation));
-        canvas.drawPath(path, paint);
-        canvas.save();
-        StaticLayout staticLayout = this.c;
-        canvas.translate((max + gl.L(11.0f)) - this.e, ((measuredHeight - gl.L(18.0f)) - staticLayout.getHeight()) / 2.0f);
-        this.b.setAlpha((int) (interpolation * 255.0f));
-        staticLayout.draw(canvas);
-        canvas.restore();
-        canvas.restore();
+        meb mebVar = new meb();
+        mebVar.a.add(path);
+        mebVar.b.put(path, new Paint(1));
+        mebVar.e = 512;
+        mebVar.f = 512;
+        mebVar.e(i, null, 1.0f, false);
+        return mebVar;
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(50.0f));
+    public static meb c(float f, int i) {
+        meb g = neb.g(2131624085, -65536);
+        if (g != null) {
+            g.e(i, null, f, false);
+        }
+        return g;
+    }
+
+    public static meb d(ArrayList arrayList, int i, float f, boolean z) {
+        int size = arrayList.size();
+        int i2 = 512;
+        int i3 = 512;
+        TLRPC.TL_photoPathSize tL_photoPathSize = null;
+        for (int i4 = 0; i4 < size; i4++) {
+            TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) arrayList.get(i4);
+            if (photoSize instanceof TLRPC.TL_photoPathSize) {
+                tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
+            } else if ((photoSize instanceof TLRPC.TL_photoSize) && z) {
+                i2 = photoSize.w;
+                i3 = photoSize.h;
+            }
+        }
+        if (tL_photoPathSize == null || i2 == 0 || i3 == 0) {
+            return null;
+        }
+        meb i5 = neb.i(i2, i3, tL_photoPathSize.svgPath);
+        if (i5 != null) {
+            i5.e(i, null, f, false);
+        }
+        return i5;
+    }
+
+    public static meb e(TLRPC.Document document, int i, float f) {
+        return f(document, i, f, null);
+    }
+
+    public static meb f(TLRPC.Document document, int i, float f, ylb ylbVar) {
+        int i2;
+        int i3;
+        if (document != null) {
+            int size = document.thumbs.size();
+            for (int i4 = 0; i4 < size; i4++) {
+                TLRPC.PhotoSize photoSize = document.thumbs.get(i4);
+                if (photoSize instanceof TLRPC.TL_photoPathSize) {
+                    int size2 = document.attributes.size();
+                    for (int i5 = 0; i5 < size2; i5++) {
+                        TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i5);
+                        if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                            i2 = documentAttribute.w;
+                            i3 = documentAttribute.h;
+                            break;
+                        }
+                    }
+                    i2 = 512;
+                    i3 = 512;
+                    if (i2 != 0 && i3 != 0) {
+                        meb i6 = neb.i((int) (i2 * 1.0f), (int) (i3 * 1.0f), ((TLRPC.TL_photoPathSize) photoSize).svgPath);
+                        if (i6 != null) {
+                            i6.e(i, ylbVar, f, false);
+                        }
+                        return i6;
+                    }
+                    return null;
+                }
+            }
+            return null;
+        }
+        return null;
     }
 }

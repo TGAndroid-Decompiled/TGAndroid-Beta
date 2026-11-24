@@ -1,61 +1,38 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class dyb {
-    public static final String f;
-    public static final String g;
-    public static final String h;
-    public static final String i;
-    public final int a;
-    public final sxb b;
-    public final boolean c;
-    public final int[] d;
-    public final boolean[] e;
+import j$.util.Objects;
+import java.util.ArrayList;
+public final class dyb implements lac {
+    public final oyb a;
+    public final String b;
+    public final long c;
+    public final Boolean d;
 
-    static {
-        String str = g8c.a;
-        f = "0";
-        g = "1";
-        h = "3";
-        i = "4";
+    public dyb(oyb oybVar, String str, long j, Boolean bool) {
+        this.a = oybVar;
+        this.b = str;
+        this.c = j;
+        this.d = bool;
     }
 
-    public dyb(sxb sxbVar, boolean z, int[] iArr, boolean[] zArr) {
-        boolean z2;
-        int i2 = sxbVar.a;
-        this.a = i2;
-        boolean z3 = false;
-        if (i2 == iArr.length && i2 == zArr.length) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        gre.f(z2);
-        this.b = sxbVar;
-        if (z && i2 > 1) {
-            z3 = true;
-        }
-        this.c = z3;
-        this.d = (int[]) iArr.clone();
-        this.e = (boolean[]) zArr.clone();
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && dyb.class == obj.getClass()) {
-                dyb dybVar = (dyb) obj;
-                if (this.c == dybVar.c && this.b.equals(dybVar.b) && Arrays.equals(this.d, dybVar.d) && Arrays.equals(this.e, dybVar.e)) {
-                    return true;
+    @Override
+    public final void a(Object obj, Object obj2, Object obj3) {
+        ArrayList arrayList = (ArrayList) obj;
+        pwb pwbVar = (pwb) obj2;
+        Integer num = (Integer) obj3;
+        oyb oybVar = this.a;
+        ArrayList arrayList2 = oybVar.N;
+        boolean z = false;
+        oybVar.O = 0;
+        if (this.b.equals(oybVar.M)) {
+            if (this.c == oybVar.V) {
+                if (Objects.equals(this.d, oybVar.W)) {
+                    arrayList2.addAll(arrayList);
+                    oybVar.Q = pwbVar;
+                    oybVar.R = (pwbVar == null || arrayList2.size() >= num.intValue()) ? true : true;
+                    oybVar.n();
                 }
-                return false;
             }
-            return false;
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode = Arrays.hashCode(this.d);
-        return Arrays.hashCode(this.e) + ((hashCode + (((this.b.hashCode() * 31) + (this.c ? 1 : 0)) * 31)) * 31);
     }
 }

@@ -1,80 +1,59 @@
 package defpackage;
 
-import j$.util.Collection;
-import java.util.Arrays;
-public abstract class wm5 extends gm5 implements Collection, java.util.Collection {
-    public static final int d = 0;
-    public transient w59 b;
-    public transient ym5 c;
+import android.os.AsyncTask;
+import android.os.SystemClock;
+import java.io.File;
+import java.io.RandomAccessFile;
+import org.telegram.messenger.Utilities;
+public final class wm5 extends AsyncTask {
+    public final String a;
+    public final File b;
+    public final String c;
+    public int d;
+    public RandomAccessFile e = null;
+    public boolean f = true;
+    public long g;
+    public final int h;
+    public final fn5 i;
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof wm5) {
-                wm5 wm5Var = (wm5) obj;
-                c69 c69Var = (c69) this;
-                if (c69Var.size() == wm5Var.size() && o().size() == wm5Var.o().size()) {
-                    for (vn7 vn7Var : wm5Var.o()) {
-                        if (c69Var.e.b(vn7Var.a) != vn7Var.a()) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-                return false;
+    public wm5(fn5 fn5Var, String str, File file, String str2, int i) {
+        this.i = fn5Var;
+        this.a = str;
+        this.b = file;
+        this.c = str2;
+        this.h = i;
+    }
+
+    public final void a(long j, long j2) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (j != j2) {
+            long j3 = this.g;
+            if (j3 != 0 && j3 >= elapsedRealtime - 100) {
+                return;
             }
-            return false;
         }
-        return true;
+        this.g = elapsedRealtime;
+        Utilities.d.c(new vm5(this, j, j2, (byte) 0));
     }
 
     @Override
-    public final mm5 h() {
-        w59 w59Var = this.b;
-        if (w59Var == null) {
-            mm5 h = super.h();
-            this.b = (w59) h;
-            return h;
+    public final java.lang.Object doInBackground(java.lang.Object[] r12) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wm5.doInBackground(java.lang.Object[]):java.lang.Object");
+    }
+
+    @Override
+    public final void onCancelled() {
+        gm.c3(new ob4(this.i, this, 2, (byte) 4));
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        int i;
+        if (((Boolean) obj).booleanValue()) {
+            i = 2;
+        } else {
+            i = 1;
         }
-        return w59Var;
-    }
-
-    @Override
-    public final int hashCode() {
-        return yte.c(o());
-    }
-
-    @Override
-    public final int i(int i, Object[] objArr) {
-        v5c n = o().n();
-        while (n.hasNext()) {
-            vn7 vn7Var = (vn7) n.next();
-            Arrays.fill(objArr, i, vn7Var.a() + i, vn7Var.a);
-            i += vn7Var.a();
-        }
-        return i;
-    }
-
-    @Override
-    public final v5c iterator() {
-        return new tm5(o().n());
-    }
-
-    public final ym5 o() {
-        ym5 ym5Var = this.c;
-        if (ym5Var == null) {
-            if (isEmpty()) {
-                ym5Var = d69.s;
-            } else {
-                ym5Var = new vm5(this, (byte) 0);
-            }
-            this.c = ym5Var;
-        }
-        return ym5Var;
-    }
-
-    @Override
-    public final String toString() {
-        return o().toString();
+        gm.c3(new ob4(this.i, this, i, (byte) 4));
     }
 }

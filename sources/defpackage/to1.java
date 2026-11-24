@@ -1,46 +1,43 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class to1 implements y60 {
-    public final mu1 a;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.ui.PhotoViewer;
+public final class to1 implements View.OnClickListener {
+    public final byte a;
+    public final bu5 b;
 
-    public to1(mu1 mu1Var) {
-        this.a = mu1Var;
+    public to1(bu5 bu5Var, jd jdVar) {
+        this.a = (byte) 1;
+        this.b = bu5Var;
     }
 
     @Override
-    public final void dismiss() {
-        m8 m8Var = this.a.g9;
-        if (m8Var != null) {
-            m8Var.dismiss();
-        }
-    }
-
-    @Override
-    public final void n(int i, int i2) {
-        int i3;
-        mu1 mu1Var = this.a;
-        mu1Var.getMessagesController().M4(i, mu1Var.l6);
-        if (mu1Var.s8 != null || mu1Var.r8 != null) {
-            mu1Var.Z5();
-            UndoView undoView = mu1Var.N3;
-            if (undoView == null) {
+    public final void onClick(View view) {
+        byte b = this.a;
+        bu5 bu5Var = this.b;
+        switch (b) {
+            case 0:
+                bu5Var.r();
                 return;
-            }
-            long j = mu1Var.l6;
-            TLRPC.User user = mu1Var.f;
-            TLRPC.UserFull userFull = mu1Var.s8;
-            if (userFull != null) {
-                i3 = userFull.ttl_period;
-            } else {
-                i3 = mu1Var.r8.ttl_period;
-            }
-            undoView.k(j, i2, user, Integer.valueOf(i3), null, null);
+            case 1:
+                if (bu5Var.J) {
+                    bu5Var.u();
+                    return;
+                }
+                return;
+            case 2:
+                Drawable[] drawableArr = PhotoViewer.d9;
+                bu5Var.r();
+                return;
+            default:
+                bu5Var.r();
+                return;
         }
     }
 
-    @Override
-    public final void F() {
+    public to1(bu5 bu5Var, byte b) {
+        this.a = b;
+        this.b = bu5Var;
     }
 }

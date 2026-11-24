@@ -1,129 +1,202 @@
 package defpackage;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
-import java.io.Serializable;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.Switch;
 import org.telegram.ui.LaunchActivity;
-public final class fh implements p8c {
-    public final byte a = 0;
-    public final long b;
-    public final int c;
+import org.telegram.ui.p;
+public final class fh implements View.OnClickListener {
+    public final byte a;
+    public final Object b;
+    public final long c;
     public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object g;
-    public final Serializable h;
 
-    public fh(int i, long j, wjb wjbVar, p8c p8cVar, Activity activity, ArrayList arrayList, HashMap hashMap) {
-        this.c = i;
-        this.d = arrayList;
-        this.b = j;
-        this.e = activity;
-        this.f = wjbVar;
-        this.g = p8cVar;
-        this.h = hashMap;
+    public fh(Object obj, Object obj2, long j, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.d = obj2;
+        this.c = j;
     }
 
     @Override
-    public final void a(Object obj) {
+    public final void onClick(View view) {
+        Activity W;
         byte b = this.a;
-        boolean z = false;
-        Serializable serializable = this.h;
-        Object obj2 = this.g;
-        Object obj3 = this.f;
-        Object obj4 = this.e;
-        Object obj5 = this.d;
+        long j = this.c;
+        Object obj = this.d;
+        Object obj2 = this.b;
         switch (b) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj5;
-                Activity activity = (Activity) obj4;
-                wjb wjbVar = (wjb) obj3;
-                p8c p8cVar = (p8c) obj2;
-                HashMap hashMap = (HashMap) serializable;
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                int i = this.c;
-                if (booleanValue) {
-                    SharedPreferences.Editor edit = na7.q1(i).X3.edit();
-                    int size = arrayList.size();
-                    int i2 = 0;
-                    while (i2 < size) {
-                        Object obj6 = arrayList.get(i2);
-                        i2++;
-                        Long l = (Long) obj6;
-                        long longValue = l.longValue();
-                        long K1 = na7.q1(i).K1(longValue);
-                        if (K1 <= 0 && longValue > 0) {
-                            K1 = cf3.j(na7.q1(i).I2(longValue));
-                        }
-                        edit.putLong(ug8.n(longValue, "ask_paid_message_", "_price"), K1);
-                        gta.v(i, false).O.put(l, Long.valueOf(System.currentTimeMillis()));
-                    }
-                    edit.apply();
-                }
-                pe peVar = new pe(i, this.b, wjbVar, p8cVar, activity, arrayList, hashMap);
-                if (!gta.v(i, false).e) {
-                    gta v = gta.v(i, false);
-                    v.e = false;
-                    v.n(peVar, false, true);
-                    v.e = true;
-                    return;
-                }
-                peVar.run();
+                ((he[]) obj2)[0].dismiss();
+                ((af3) obj).run(-j);
                 return;
             case 1:
-                kf2 kf2Var = (kf2) obj5;
-                TLObject tLObject = (TLObject) obj4;
-                TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) obj3;
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) obj2;
-                String str = (String) serializable;
-                int intValue = ((Integer) obj).intValue();
-                boolean[] zArr = new boolean[1];
-                if ((tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) {
-                    z = true;
+                ((he[]) obj2)[0].dismiss();
+                ((af3) obj).run(-j);
+                return;
+            case 2:
+                final ba2 ba2Var = (ba2) obj2;
+                final boolean[] zArr = (boolean[]) obj;
+                if (!zArr[0]) {
+                    final he heVar = new he(3, null, ba2Var.getParentActivity());
+                    heVar.q(400L);
+                    zArr[0] = true;
+                    final boolean z = !ba2Var.N.d();
+                    if (ba2Var.N.getCheckBox().G == null) {
+                        ba2Var.N.setChecked(z);
+                    }
+                    wh1 F0 = ba2Var.getMessagesController().F0();
+                    final long j2 = this.c;
+                    F0.a(j2, new qac() {
+                        @Override
+                        public final void a(Object obj3) {
+                            int i;
+                            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj3;
+                            ba2 ba2Var2 = ba2.this;
+                            TLRPC.Chat chat = ba2Var2.x0;
+                            int i2 = chat.level;
+                            int i3 = tL_premium_boostsStatus.level;
+                            if (i2 != i3) {
+                                chat.level = i3;
+                                ba2Var2.getMessagesController().V3(ba2Var2.x0, false);
+                            }
+                            Switch checkBox = ba2Var2.N.getCheckBox();
+                            if (tL_premium_boostsStatus.level < ba2Var2.getMessagesController().l4.U1.f()) {
+                                i = 2131232530;
+                            } else {
+                                i = 0;
+                            }
+                            checkBox.setIcon(i);
+                            boolean z2 = z;
+                            boolean[] zArr2 = zArr;
+                            he heVar2 = heVar;
+                            if (z2 && tL_premium_boostsStatus.level < ba2Var2.getMessagesController().l4.U1.f()) {
+                                ba2Var2.N.setChecked(false);
+                                zArr2[0] = false;
+                                wh1 F02 = ba2Var2.getMessagesController().F0();
+                                long j3 = j2;
+                                F02.b(j3, tL_premium_boostsStatus, new s2c(ba2Var2, heVar2, tL_premium_boostsStatus, j3, (byte) 1));
+                                return;
+                            }
+                            TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
+                            ba2Var2.getMessagesController();
+                            tL_channels_toggleAutotranslation.channel = oc7.h1(ba2Var2.x0);
+                            tL_channels_toggleAutotranslation.enabled = z2;
+                            ba2Var2.N.setChecked(z2);
+                            zArr2[0] = false;
+                            heVar2.dismiss();
+                            ba2Var2.getConnectionsManager().sendRequest(tL_channels_toggleAutotranslation, new r91((byte) 2, ba2Var2, z2), 64);
+                        }
+                    });
+                    return;
                 }
-                long j = kf2Var.N;
-                TLRPC.TL_chatBannedRights tL_chatBannedRights2 = kf2Var.E;
-                long j2 = this.b;
-                se2 se2Var = new se2(kf2Var, j2, j, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j2);
-                se2Var.Y0 = new te2(kf2Var, intValue, j2, this.c, z, zArr);
-                kf2Var.presentFragment(se2Var);
+                return;
+            case 3:
+                nk3 nk3Var = (nk3) obj2;
+                boolean hasUnread = ((hg3) obj).getHasUnread();
+                long j3 = this.c;
+                if (hasUnread) {
+                    nk3Var.y4(j3);
+                } else {
+                    nk3Var.getMessagesController().o3(j3, null, 0L);
+                }
+                nk3Var.finishPreviewFragment();
+                return;
+            case 4:
+                it5 it5Var = (it5) obj2;
+                Context context = (Context) obj;
+                vh6 vh6Var = it5Var.Z1;
+                if ((it5Var.g2 != null || !vh6Var.i()) && (W = gm.W(context)) != null) {
+                    if (it5Var.g2 != null) {
+                        ArrayList arrayList = new ArrayList();
+                        for (int i = 0; i < vh6Var.m(); i++) {
+                            arrayList.add(Long.valueOf(vh6Var.j(i)));
+                        }
+                        kv3 kv3Var = (kv3) it5Var.g2.b;
+                        ArrayList arrayList2 = kv3Var.e;
+                        arrayList2.clear();
+                        arrayList2.addAll(arrayList);
+                        kv3Var.e0();
+                        jv3 jv3Var = kv3Var.f;
+                        if (jv3Var != null) {
+                            jv3Var.a();
+                        }
+                        it5Var.dismiss();
+                        return;
+                    }
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(W);
+                    String G = jb6.G(vh6Var.m(), "AddManyMembersAlertTitle", new Object[0]);
+                    he heVar2 = alertDialog$Builder.a;
+                    heVar2.S = G;
+                    StringBuilder sb = new StringBuilder();
+                    for (int i2 = 0; i2 < vh6Var.m(); i2++) {
+                        TLRPC.User W1 = oc7.r1(it5Var.a).W1(Long.valueOf(vh6Var.j(i2)));
+                        if (W1 != null) {
+                            if (sb.length() > 0) {
+                                sb.append(", ");
+                            }
+                            sb.append("**");
+                            sb.append(bw2.m(0, W1.first_name, W1.last_name));
+                            sb.append("**");
+                        }
+                    }
+                    TLRPC.Chat L0 = oc7.r1(it5Var.a).L0(Long.valueOf(j));
+                    if (vh6Var.m() > 5) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(gm.S2(jb6.G(vh6Var.m(), "AddManyMembersAlertNamesText", L0.title)));
+                        String format = String.format("%d", Integer.valueOf(vh6Var.m()));
+                        int indexOf = TextUtils.indexOf(spannableStringBuilder, format);
+                        if (indexOf >= 0) {
+                            spannableStringBuilder.setSpan(new z5c(gm.o()), indexOf, format.length() + indexOf, 33);
+                        }
+                        heVar2.U = spannableStringBuilder;
+                    } else {
+                        heVar2.U = gm.S2(jb6.a0("AddMembersAlertNamesText", null, 2131754396, sb, L0.title));
+                    }
+                    alertDialog$Builder.j(jb6.M0(2131754483, null), new wx4(it5Var, (byte) 15));
+                    alertDialog$Builder.g(jb6.M0(2131752542, null), null);
+                    alertDialog$Builder.o();
+                    return;
+                }
+                return;
+            case 5:
+                p pVar = (p) obj2;
+                long longValue = ((Long) ((TextView) obj).getTag()).longValue();
+                Long l = pVar.I0;
+                if (l != null && longValue == l.longValue()) {
+                    pVar.n0 = true;
+                    pVar.f[0].setText("");
+                    pVar.n0 = false;
+                    pVar.I0 = 0L;
+                    pVar.R0();
+                } else {
+                    pVar.f[0].setText(jb6.D0().q(this.c, false, true, true, pVar.D0.invoice.currency));
+                }
+                EditTextBoldCursor editTextBoldCursor = pVar.f[0];
+                editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 return;
             default:
-                Boolean bool = (Boolean) obj;
-                String str2 = LaunchActivity.C1;
-                TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                int i3 = this.c;
-                tL_messages_toggleBotInAttachMenu.bot = na7.q1(i3).m1(this.b);
-                tL_messages_toggleBotInAttachMenu.enabled = true;
-                tL_messages_toggleBotInAttachMenu.write_allowed = true;
-                ConnectionsManager.getInstance(i3).sendRequest(tL_messages_toggleBotInAttachMenu, new ot((LaunchActivity) obj5, i3, (cj3) obj4, (d) obj3, (TLRPC.User) obj2, (String) serializable), 66);
+                wsa wsaVar = (wsa) obj2;
+                String str = (String) obj;
+                d Q = LaunchActivity.Q();
+                if (Q != 0) {
+                    ?? obj3 = new Object();
+                    obj3.a = true;
+                    zb9 zb9Var = new zb9(wsaVar.S1, str, this.c, wsaVar.J0);
+                    zb9Var.e = new qpa(wsaVar, (byte) 1);
+                    Q.showAsSheet(zb9Var, obj3);
+                    return;
+                }
                 return;
         }
-    }
-
-    public fh(kf2 kf2Var, long j, int i, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z) {
-        this.d = kf2Var;
-        this.b = j;
-        this.c = i;
-        this.e = tLObject;
-        this.f = tL_chatAdminRights;
-        this.g = tL_chatBannedRights;
-        this.h = str;
-    }
-
-    public fh(LaunchActivity launchActivity, int i, long j, cj3 cj3Var, d dVar, TLRPC.User user, String str) {
-        this.d = launchActivity;
-        this.c = i;
-        this.b = j;
-        this.e = cj3Var;
-        this.f = dVar;
-        this.g = user;
-        this.h = str;
     }
 }

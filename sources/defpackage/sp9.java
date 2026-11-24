@@ -1,56 +1,66 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.util.LongSparseArray;
-public final class sp9 extends rp9 {
-    public byte d;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.voip.VideoCapturerDevice;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.LaunchActivity;
+import org.webrtc.RendererCommon;
+public final class sp9 extends FrameLayout {
+    public final akc a;
+    public boolean b;
+    public boolean c;
+    public final long d;
+    public final ei7 e;
+    public final tp9 f;
 
-    public static sp9 d(String str, SharedPreferences sharedPreferences) {
-        ?? rp9Var = new rp9();
-        rp9Var.a = sharedPreferences.getBoolean(str.concat("_save_gallery_photo"), false);
-        rp9Var.b = sharedPreferences.getBoolean(str.concat("_save_gallery_video"), false);
-        rp9Var.c = sharedPreferences.getLong(str.concat("_save_gallery_limitVideo"), 104857600L);
-        return rp9Var;
+    public sp9(tp9 tp9Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f = tp9Var;
+        this.c = true;
+        this.d = SystemClock.elapsedRealtime();
+        this.e = new ei7(this, (byte) 23);
+        setBackgroundColor(-16777216);
+        la1 la1Var = new la1(launchActivity);
+        addView(la1Var, qoe.c(-1.0f, -1));
+        akc akcVar = new akc(launchActivity, false, false, false, false);
+        this.a = akcVar;
+        RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
+        zjc zjcVar = akcVar.d;
+        zjcVar.setScalingType(scalingType);
+        akcVar.b0 = (byte) 0;
+        zjcVar.setRotateTextureWithScreen(true);
+        zjcVar.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
+        View view = akcVar.h;
+        if (view != null) {
+            view.setVisibility(8);
+        }
+        addView(akcVar, qoe.c(-1.0f, -1));
+        qd2 b = tp9.b();
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (b != null && sharedInstance != null && sharedInstance.getChat() != null) {
+            sharedInstance.getAccount();
+            la1Var.a(sharedInstance.getChat());
+        }
     }
 
-    @Override
-    public final void b() {
-        super.b();
-        mte.f(this.d);
-    }
-
-    public final CharSequence c(int i) {
-        StringBuilder sb = new StringBuilder();
-        if (a()) {
-            if (this.a) {
-                sb.append(k96.M0(2131745728, null));
-            }
-            if (this.b) {
-                if (sb.length() != 0) {
-                    sb.append(", ");
-                }
-                sb.append(k96.M0(2131745721, null));
-                long j = this.c;
-                if (j > 0 && j < 4194304000L) {
-                    sb.append(" (");
-                    sb.append(gl.i0(this.c, true, false));
-                    sb.append(")");
-                }
-            }
+    public final void a() {
+        float f;
+        boolean a = this.f.b.a(this.d);
+        if (this.c == a) {
+            return;
+        }
+        this.c = a;
+        akc akcVar = this.a;
+        akcVar.animate().cancel();
+        ViewPropertyAnimator animate = akcVar.animate();
+        if (a) {
+            f = 1.0f;
         } else {
-            sb.append(k96.M0(2131745729, null));
+            f = 0.0f;
         }
-        LongSparseArray l = y6c.h(i).l(this.d);
-        if (l.size() != 0) {
-            if (sb.length() != 0) {
-                sb.append(", ");
-            }
-            sb.append(k96.G(l.size(), "Exception", Integer.valueOf(l.size())));
-        }
-        return sb;
-    }
-
-    public final void e(String str, SharedPreferences sharedPreferences) {
-        sharedPreferences.edit().putBoolean(str.concat("_save_gallery_photo"), this.a).putBoolean(str.concat("_save_gallery_video"), this.b).putLong(str.concat("_save_gallery_limitVideo"), this.c).apply();
+        wi8.s(animate, f, 200L);
     }
 }

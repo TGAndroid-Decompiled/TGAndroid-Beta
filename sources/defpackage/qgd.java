@@ -1,27 +1,14 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
 public abstract class qgd {
-    public static final int a = 0;
+    public static final o94 a;
+    public static final o94 b;
+    public static final o94[] c;
 
     static {
-        qgd.class.getClassLoader();
-    }
-
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
-    }
-
-    public static void b(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-            return;
-        }
-        parcel.writeInt(1);
-        parcelable.writeToParcel(parcel, 0);
+        o94 o94Var = new o94("EXECUTE", 1L);
+        a = o94Var;
+        o94 o94Var2 = new o94("INIT", 1L);
+        b = o94Var2;
+        c = new o94[]{o94Var, o94Var2};
     }
 }

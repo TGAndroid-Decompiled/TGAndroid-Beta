@@ -1,86 +1,91 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import j$.util.Objects;
-import org.telegram.ui.ActionBar.d;
-public final class d11 implements View.OnLayoutChangeListener {
-    public final boolean a;
-    public final m21 b;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.telegram.messenger.voip.NativeInstance;
+public final class d11 {
+    public final NativeInstance a;
+    public volatile boolean f;
+    public final ConcurrentHashMap b = new ConcurrentHashMap();
+    public final Set c = Collections.newSetFromMap(new ConcurrentHashMap());
+    public volatile Set d = Collections.EMPTY_SET;
+    public final CopyOnWriteArrayList e = new CopyOnWriteArrayList();
+    public final HashMap g = new HashMap();
+    public final HashMap h = new HashMap();
+    public final HashMap i = new HashMap();
+    public final HashSet j = new HashSet();
 
-    public d11(m21 m21Var, boolean z) {
-        this.b = m21Var;
-        this.a = z;
+    public d11(NativeInstance nativeInstance) {
+        this.a = nativeInstance;
     }
 
-    @Override
-    public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-        i11 i11Var;
-        int i9;
-        m21 m21Var = this.b;
-        q11 q11Var = m21Var.e;
-        q11Var.removeOnLayoutChangeListener(this);
-        if (m21Var.l) {
-            q11Var.onShow();
-            d dVar = m21Var.g;
-            boolean z = this.a;
-            if (z && (dVar instanceof jec)) {
-                dVar = ((jec) dVar).b0();
+    public static java.lang.String c(java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.d11.c(java.lang.String):java.lang.String");
+    }
+
+    public final boolean a(long r11, defpackage.v01 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.d11.a(long, v01):boolean");
+    }
+
+    public final void b(String str, Throwable th) {
+        if (e21.a) {
+            fc4.e("[BroadcastHwVideo] " + str + " falls back to software", th);
+        }
+        this.c.add(str);
+        HashSet hashSet = new HashSet(this.d);
+        hashSet.remove(str);
+        this.d = hashSet;
+        e(str);
+    }
+
+    public final void d(long j, int i, long j2) {
+        long[] jArr = {j, j2, i};
+        CopyOnWriteArrayList copyOnWriteArrayList = this.e;
+        copyOnWriteArrayList.add(jArr);
+        long nanoTime = System.nanoTime() / 1000000;
+        while (copyOnWriteArrayList.size() > 2 && ((long[]) copyOnWriteArrayList.get(1))[1] <= nanoTime) {
+            copyOnWriteArrayList.remove(0);
+        }
+        Iterator it = copyOnWriteArrayList.iterator();
+        long[] jArr2 = null;
+        while (it.hasNext()) {
+            long[] jArr3 = (long[]) it.next();
+            if (jArr3[1] > nanoTime) {
+                break;
             }
-            FrameLayout frameLayout = m21Var.h;
-            if (dVar == null || (i11Var = dVar.getBulletinDelegate()) == null) {
-                if (frameLayout != null) {
-                    Object tag = frameLayout.getTag(2131296353);
-                    if (tag instanceof i11) {
-                        i11Var = (i11) tag;
-                    }
+            jArr2 = jArr3;
+        }
+        if (jArr2 != null) {
+            HashSet hashSet = this.j;
+            ArrayList arrayList = new ArrayList(hashSet);
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                String str = (String) obj;
+                HashMap hashMap = this.h;
+                Long l = (Long) hashMap.get(str);
+                if (l == null || jArr2[0] > l.longValue()) {
+                    hashSet.remove(str);
+                    hashMap.remove(str);
+                    this.i.remove(str);
+                    e(str);
                 }
-                i11Var = null;
             }
-            m21Var.p = i11Var;
-            if (i11Var == null && dVar != null) {
-                i11Var = new xf0(dVar, (byte) 1);
-                m21Var.p = i11Var;
-            }
-            yla ylaVar = m21Var.d;
-            if (ylaVar == null || !ylaVar.f) {
-                if (i11Var != null) {
-                    i9 = i11Var.e(m21Var.a);
-                } else {
-                    i9 = 0;
-                }
-                m21Var.o = i9;
-            }
-            i11 i11Var2 = m21Var.p;
-            if (i11Var2 != null) {
-                i11Var2.g(m21Var);
-            }
-            if (dVar != null) {
-                dVar.setupBulletinGlass(m21Var);
-            }
-            if (na7.c1().getBoolean("view_animations", true) && !m21Var.s) {
-                if (q11Var != null && m21Var.q == null) {
-                    m21Var.q = q11Var.createTransition();
-                }
-                q11Var.transitionRunningEnter = true;
-                q11Var.delegate = m21Var.p;
-                q11Var.invalidate();
-                p11 p11Var = m21Var.q;
-                Objects.requireNonNull(q11Var);
-                p11Var.f(q11Var, new b11(q11Var, (byte) 1), new nv0(this, (byte) 7), new i42((byte) 2, this, z));
-                return;
-            }
-            i11 i11Var3 = m21Var.p;
-            q11Var.delegate = i11Var3;
-            if (i11Var3 != null && !z) {
-                i11Var3.b(q11Var.getHeight());
-            }
-            m21Var.l();
-            q11Var.onEnterTransitionStart();
-            q11Var.onEnterTransitionEnd();
-            if (m21Var.u) {
-                m21Var.i(true);
-            }
+        }
+    }
+
+    public final void e(String str) {
+        c11 c11Var = (c11) this.b.remove(str);
+        if (c11Var != null) {
+            c11Var.c.post(new a11(c11Var, (byte) 0));
         }
     }
 }

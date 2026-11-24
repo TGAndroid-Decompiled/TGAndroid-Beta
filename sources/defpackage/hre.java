@@ -1,9 +1,17 @@
 package defpackage;
-public abstract class hre {
-    public static void a(Object obj, String str) {
-        if (obj != null) {
-            return;
+public final class hre implements cq7 {
+    public static final hre a = new Object();
+
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
         }
-        fvc.f(str);
+        throw new ClassCastException();
     }
 }

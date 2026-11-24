@@ -1,115 +1,98 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
+import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public class ih2 extends Drawable {
-    public static final c84 h = new c84();
-    public float a;
-    public final float b;
-    public long c;
-    public final float[] d;
-    public final Paint e;
-    public float f;
-    public final RectF g;
+import android.widget.RemoteViews;
+import android.widget.RemoteViewsService;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.TLRPC;
+public final class ih2 implements RemoteViewsService.RemoteViewsFactory {
+    public ArrayList a;
+    public Context b;
+    public int c;
+    public j5 d;
+    public Paint e;
+    public RectF f;
+    public vh6 g;
+    public vh6 h;
+    public boolean i;
 
-    public ih2(float f, float f2, int i) {
-        this.a = gl.L(18.0f);
-        this.b = gl.L(2.25f);
-        this.c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.e = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.g = new RectF();
-        this.a = f;
-        this.b = f2;
-        b(i);
+    @Override
+    public final int getCount() {
+        if (this.i) {
+            return 1;
+        }
+        return this.a.size() + 1;
     }
 
-    public static void a(float f, float[] fArr) {
-        int i;
-        float f2 = (1520.0f * f) / 5400.0f;
-        fArr[0] = Math.max(0.0f, f2 - 20.0f);
-        fArr[1] = f2;
-        for (int i2 = 0; i2 < 4; i2++) {
-            c84 c84Var = h;
-            fArr[1] = (c84Var.getInterpolation((f - (i2 * 1350)) / 667.0f) * 250.0f) + fArr[1];
-            fArr[0] = (c84Var.getInterpolation((f - (i + 667)) / 667.0f) * 250.0f) + fArr[0];
+    @Override
+    public final long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public final RemoteViews getLoadingView() {
+        return null;
+    }
+
+    @Override
+    public final android.widget.RemoteViews getViewAt(int r25) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ih2.getViewAt(int):android.widget.RemoteViews");
+    }
+
+    @Override
+    public final int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public final boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public final void onCreate() {
+        a.v();
+    }
+
+    @Override
+    public final void onDataSetChanged() {
+        ArrayList arrayList = this.a;
+        arrayList.clear();
+        vh6 vh6Var = this.h;
+        vh6Var.b();
+        j5 j5Var = this.d;
+        if (j5Var != null) {
+            int i = j5Var.a;
+            if (z8c.h(i).o()) {
+                ArrayList arrayList2 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
+                vh6 vh6Var2 = new vh6();
+                cf7 Y = cf7.Y(i);
+                int i2 = this.c;
+                vh6 vh6Var3 = this.g;
+                CountDownLatch countDownLatch = new CountDownLatch(1);
+                Y.a.c(new le7(Y, i2, arrayList, 0, vh6Var3, vh6Var2, arrayList3, arrayList2, countDownLatch));
+                try {
+                    countDownLatch.await();
+                } catch (Exception e) {
+                    Y.n(e, true);
+                }
+                oc7.r1(i).d4(arrayList2, true);
+                oc7.r1(i).X3(arrayList3, true);
+                vh6Var.b();
+                int m = vh6Var2.m();
+                for (int i3 = 0; i3 < m; i3++) {
+                    vh6Var.k(new k47(j5Var.a, (TLRPC.Message) vh6Var2.n(i3), (vh6) null, (vh6) null, false, true), vh6Var2.j(i3));
+                }
+            }
         }
     }
 
-    public final void b(int i) {
-        this.e.setColor(i);
-    }
-
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.c < 0) {
-            this.c = SystemClock.elapsedRealtime();
-        }
-        float[] fArr = this.d;
-        a((float) ((SystemClock.elapsedRealtime() - this.c) % 5400), fArr);
-        float f = this.f;
-        float f2 = fArr[0];
-        Paint paint = this.e;
-        canvas.drawArc(this.g, f + f2, fArr[1] - f2, false, paint);
-        invalidateSelf();
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return (int) (this.a + this.b);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return (int) (this.a + this.b);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.e.setAlpha(i);
-    }
-
-    @Override
-    public final void setBounds(int i, int i2, int i3, int i4) {
-        float f = i;
-        float f2 = i3 - i;
-        float f3 = this.b;
-        float f4 = this.a;
-        float f5 = i2;
-        float f6 = i4 - i2;
-        this.g.set(oo1.z(f2 - (f3 / 2.0f), f4, 2.0f, f), (((f6 - (f3 / 2.0f)) - f4) / 2.0f) + f5, ((((f3 / 2.0f) + f2) + f4) / 2.0f) + f, ((((f3 / 2.0f) + f6) + f4) / 2.0f) + f5);
-        super.setBounds(i, i2, i3, i4);
-        this.e.setStrokeWidth(f3);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public ih2(int i) {
-        this.a = gl.L(18.0f);
-        this.b = gl.L(2.25f);
-        this.c = -1L;
-        this.d = new float[2];
-        Paint paint = new Paint();
-        this.e = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.g = new RectF();
-        b(i);
+    public final void onDestroy() {
     }
 }

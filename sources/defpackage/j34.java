@@ -1,30 +1,29 @@
 package defpackage;
-public interface j34 {
-    void A(l34 l34Var);
 
-    void B(boolean z);
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class j34 extends FrameLayout {
+    public int a;
 
-    void C();
+    public j34(Context context) {
+        this(context, 8);
+    }
 
-    void d(boolean z);
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.a, 1073741824));
+    }
 
-    void e(boolean z);
+    public void setHeight(int i) {
+        if (this.a != i) {
+            this.a = i;
+            requestLayout();
+        }
+    }
 
-    void f();
-
-    void g();
-
-    boolean i(l34 l34Var);
-
-    void j(boolean z);
-
-    boolean o();
-
-    boolean p();
-
-    void u(float f, float f2, float[] fArr);
-
-    int[] v(l34 l34Var);
-
-    void x();
+    public j34(Context context, int i) {
+        super(context);
+        this.a = i;
+    }
 }

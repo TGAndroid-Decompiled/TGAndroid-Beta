@@ -1,9 +1,15 @@
 package defpackage;
+public final class rea extends yp {
+    public final pea c;
+    public final nha d;
 
-import org.telegram.tgnet.TLRPC;
-public final class rea extends k27 {
+    public rea(nha nhaVar, pea peaVar) {
+        this.d = nhaVar;
+        this.c = peaVar;
+    }
+
     @Override
-    public final boolean s(TLRPC.Chat chat, boolean z) {
-        return false;
+    public final int i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rea.i(int):int");
     }
 }

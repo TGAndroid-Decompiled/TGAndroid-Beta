@@ -1,171 +1,103 @@
 package defpackage;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.ImageView;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class mda implements ir9 {
-    public final nfa a;
-
-    public mda(nfa nfaVar) {
-        this.a = nfaVar;
-    }
+import java.util.HashSet;
+import java.util.Random;
+public final class mda extends View implements vlb {
+    public Random a;
+    public Paint b;
+    public Paint c;
+    public Paint d;
+    public Paint e;
+    public float f;
+    public float h;
+    public float n;
 
     @Override
-    public final void B() {
-        int a;
-        int K0;
-        nfa nfaVar = this.a;
-        iea[] ieaVarArr = nfaVar.n0;
-        int i = ieaVarArr[0].F;
-        if (i != 0) {
-            if (i != 1 && i != 2) {
-                if (i != 3) {
-                    if (i != 4) {
-                        if (i != 5) {
-                            a = gl.L(58.0f);
-                        } else {
-                            a = gl.L(60.0f);
-                        }
-                    }
-                } else {
-                    a = gl.L(100.0f);
-                }
-            }
-            a = gl.L(56.0f);
+    public final void onDraw(Canvas canvas) {
+        float f;
+        float f2;
+        Paint paint = this.c;
+        Paint paint2 = this.b;
+        super.onDraw(canvas);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
+        float f3 = 3.0f;
+        int measuredWidth = (getMeasuredWidth() / 2) - gm.L(3.0f);
+        int L = gm.L(1.0f) + ((gm.L(1.0f) + measuredWidth) * 7);
+        d53 d53Var = d53.g;
+        float f4 = this.f;
+        if (f4 > 0.4f) {
+            f = (f4 - 0.4f) / 0.6f;
         } else {
-            a = rfa.a(1);
+            f = 0.0f;
         }
-        iea ieaVar = ieaVarArr[0];
-        int i2 = ieaVar.F;
-        qca qcaVar = ieaVar.x;
-        if (i2 == 0) {
-            K0 = (qcaVar.K0() / nfaVar.p1[0]) * a;
-        } else {
-            K0 = qcaVar.K0() * a;
+        float interpolation = d53Var.getInterpolation(f);
+        float f5 = (this.n * interpolation) + ((1.0f - interpolation) * this.h);
+        canvas.save();
+        canvas.translate(0.0f, (-hg9.f(4.0f, getMeasuredHeight(), L)) * f5);
+        int i = 0;
+        for (int i2 = 7; i < i2; i2 = 7) {
+            int L2 = ((gm.L(1.0f) + measuredWidth) * i) + gm.L(f3);
+            RectF rectF = gm.P;
+            float f6 = L2;
+            float f7 = L2 + measuredWidth;
+            rectF.set(0.0f, f6, measuredWidth, f7);
+            canvas.drawRoundRect(rectF, gm.L(2.0f), gm.L(2.0f), paint2);
+            rectF.set(gm.L(1.0f) + measuredWidth, f6, hg9.v(1.0f, measuredWidth, measuredWidth), f7);
+            canvas.drawRoundRect(rectF, gm.L(2.0f), gm.L(2.0f), paint2);
+            i++;
+            f3 = f3;
         }
-        if (K0 >= ieaVarArr[0].h.getMeasuredHeight() * 1.2f) {
-            cu6 cu6Var = ieaVarArr[0].E;
-            cu6Var.b = 1;
-            cu6Var.k(0, 0, false, false);
-            return;
+        float f8 = f3;
+        canvas.restore();
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), gm.L(4.0f), this.d);
+        canvas.translate(0.0f, getMeasuredHeight() - gm.L(4.0f));
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), gm.L(4.0f), this.e);
+        canvas.restore();
+        float measuredHeight = ((getMeasuredHeight() - gm.L(21.0f)) * f5) + gm.L(f8);
+        RectF rectF2 = gm.P;
+        rectF2.set(getMeasuredWidth() - gm.L(f8), measuredHeight, getMeasuredWidth(), gm.L(15.0f) + measuredHeight);
+        canvas.drawRoundRect(rectF2, gm.L(1.5f), gm.L(1.5f), paint);
+        float centerY = rectF2.centerY();
+        float L3 = gm.L(0.5f) + measuredWidth;
+        rectF2.set(L3 - gm.L(8.0f), centerY - gm.L(f8), L3 + gm.L(8.0f), centerY + gm.L(f8));
+        canvas.drawRoundRect(rectF2, gm.L(f8), gm.L(f8), paint);
+        float f9 = this.f + 0.016f;
+        this.f = f9;
+        if (f9 > 1.0f) {
+            this.h = this.n;
+            float abs = Math.abs(this.a.nextInt() % 1001) / 1000.0f;
+            this.n = abs;
+            if (abs > this.h) {
+                f2 = abs + 0.3f;
+                this.n = f2;
+            } else {
+                f2 = abs - 0.3f;
+                this.n = f2;
+            }
+            this.n = Math.max(0.0f, Math.min(1.0f, f2));
+            this.f = 0.0f;
         }
-        ieaVarArr[0].h.z0(0);
+        invalidate();
     }
 
     @Override
-    public final void a(int i, boolean z) {
-        nfa nfaVar = this.a;
-        iea[] ieaVarArr = nfaVar.n0;
-        if (ieaVarArr[0].F == i) {
-            return;
-        }
-        oca ocaVar = nfaVar.c0;
-        if (ocaVar != null && i == 8) {
-            ocaVar.b.g(1.0f, 0);
-        }
-        iea ieaVar = ieaVarArr[1];
-        ieaVar.F = i;
-        ieaVar.setVisibility(0);
-        nfaVar.g0();
-        nfaVar.z1(true);
-        nfaVar.k1 = z;
-        nfaVar.S0();
-        nfaVar.j(!nfaVar.p0(i));
-        nfaVar.G1(true);
-    }
-
-    @Override
-    public final void g(float f) {
-        iea ieaVar;
-        int i;
-        int i2;
-        iea ieaVar2;
-        nfa nfaVar = this.a;
-        r7 r7Var = nfaVar.q0;
-        iea[] ieaVarArr = nfaVar.n0;
-        int i3 = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
-        if (i3 != 0 || ieaVarArr[1].getVisibility() == 0) {
-            if (nfaVar.k1) {
-                ieaVarArr[0].setTranslationX((-f) * ieaVar2.getMeasuredWidth());
-                ieaVarArr[1].setTranslationX(ieaVarArr[0].getMeasuredWidth() - (ieaVarArr[0].getMeasuredWidth() * f));
-            } else {
-                ieaVarArr[0].setTranslationX(ieaVar.getMeasuredWidth() * f);
-                ieaVarArr[1].setTranslationX((ieaVarArr[0].getMeasuredWidth() * f) - ieaVarArr[0].getMeasuredWidth());
-            }
-            nfaVar.T0(nfaVar.getTabProgress());
-            float U = nfaVar.U(f);
-            nfaVar.s0 = U;
-            ImageView imageView = nfaVar.u0;
-            int i4 = 4;
-            if (U != 0.0f && nfaVar.q() && !nfaVar.k0()) {
-                i = 0;
-            } else {
-                i = 4;
-            }
-            imageView.setVisibility(i);
-            if (r7Var != null && !nfaVar.q()) {
-                if (nfaVar.s0()) {
-                    i2 = 8;
-                } else {
-                    i2 = 4;
-                }
-                nfaVar.setSearchItemVisibility(i2);
-                nfaVar.r0 = 0.0f;
-            } else {
-                nfaVar.r0 = nfaVar.V(f);
-                nfaVar.L1();
-            }
-            nfaVar.G1(false);
-            if (i3 == 0) {
-                iea ieaVar3 = ieaVarArr[0];
-                ieaVarArr[0] = ieaVarArr[1];
-                ieaVarArr[1] = ieaVar3;
-                ieaVar3.setVisibility(8);
-                if (r7Var != null && nfaVar.A0 == 2) {
-                    if (nfaVar.s0()) {
-                        i4 = 8;
-                    }
-                    nfaVar.setSearchItemVisibility(i4);
-                }
-                nfaVar.A0 = (byte) 0;
-                nfaVar.q1();
-            }
+    public final void updateColors() {
+        try {
+            Paint paint = this.b;
+            int i = cmb.fg;
+            paint.setColor(on2.p(cmb.w0(null, i, false), 76));
+            this.c.setColor(cmb.w0(null, i, false));
+            invalidate();
+        } catch (Exception e) {
+            fc4.g(e, true);
         }
     }
 
     @Override
-    public final boolean q2(int i, View view) {
-        TLRPC.UserFull userFull;
-        TLRPC.ProfileTab profileTab;
-        nfa nfaVar = this.a;
-        d dVar = nfaVar.y1;
-        if (dVar != null) {
-            boolean m0 = nfaVar.m0();
-            if (nfa.Y(i, m0) != null) {
-                if (m0) {
-                    if (hc2.w(5, dVar.getMessagesController().K0(Long.valueOf(nfaVar.g1.id)))) {
-                        profileTab = nfaVar.g1.main_tab;
-                        if (profileTab != null || (i != nfa.Z(profileTab) && nfaVar.V1 != i)) {
-                            cs5 I = cs5.I(dVar, view);
-                            I.X(bkb.b0(gl.L(24.0f), bkb.w0(null, bkb.c6, false)));
-                            I.b(2131232778, k96.M0(2131746429, null), new z54(this, m0, i, (byte) 4), false);
-                            I.a0();
-                            return true;
-                        }
-                    }
-                } else if (nfaVar.m1 == dVar.getUserConfig().e() && (userFull = nfaVar.h1) != null) {
-                    profileTab = userFull.main_tab;
-                    if (profileTab != null) {
-                    }
-                    cs5 I2 = cs5.I(dVar, view);
-                    I2.X(bkb.b0(gl.L(24.0f), bkb.w0(null, bkb.c6, false)));
-                    I2.b(2131232778, k96.M0(2131746429, null), new z54(this, m0, i, (byte) 4), false);
-                    I2.a0();
-                    return true;
-                }
-            }
-        }
-        return false;
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

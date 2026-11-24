@@ -1,39 +1,63 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class iw9 extends r35 {
-    public final byte Q;
-    public final tx9 R;
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.transition.Fade;
+import android.transition.TransitionValues;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.ui.SecretMediaViewer;
+public final class iw9 extends Fade {
+    public final byte a;
+    public final boolean b;
+    public final boolean c;
+    public final SecretMediaViewer d;
 
-    public iw9(tx9 tx9Var, byte b) {
-        super(40);
-        this.Q = b;
-        this.R = tx9Var;
+    public iw9(SecretMediaViewer secretMediaViewer, boolean z, boolean z2, byte b) {
+        super(1);
+        this.a = b;
+        switch (b) {
+            case 1:
+                this.d = secretMediaViewer;
+                this.b = z;
+                this.c = z2;
+                super(2);
+                return;
+            default:
+                this.d = secretMediaViewer;
+                this.b = z;
+                this.c = z2;
+                return;
+        }
     }
 
     @Override
-    public final void u0(RecyclerView recyclerView, p49 p49Var, int i) {
-        switch (this.Q) {
+    public final Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.a) {
             case 0:
-                try {
-                    gv3 gv3Var = new gv3((byte) 3, recyclerView.getContext(), this);
-                    gv3Var.a = i;
-                    v0(gv3Var);
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return;
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.b && !this.c && view == this.d.Y) {
+                    onAppear.addListener(new c39(this, (byte) 7));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new p29(this, (byte) 14));
                 }
+                return onAppear;
             default:
-                try {
-                    gv3 gv3Var2 = new gv3((byte) 5, recyclerView.getContext(), this);
-                    gv3Var2.a = i;
-                    v0(gv3Var2);
-                    return;
-                } catch (Exception e2) {
-                    fa4.g(e2, true);
-                    return;
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+        }
+    }
+
+    @Override
+    public final Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.b && this.c && view == this.d.Y) {
+                    onDisappear.addListener(new c39(this, (byte) 8));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new p29(this, (byte) 15));
                 }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
         }
     }
 }

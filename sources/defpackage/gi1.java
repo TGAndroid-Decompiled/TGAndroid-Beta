@@ -1,32 +1,59 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class gi1 implements b3c {
+import android.animation.ValueAnimator;
+public final class gi1 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final zi1 b;
-    public final TwoStepVerificationActivity c;
+    public boolean b = false;
+    public final jm7 c;
 
-    public gi1(zi1 zi1Var, TwoStepVerificationActivity twoStepVerificationActivity, byte b) {
+    public gi1(jm7 jm7Var, byte b) {
         this.a = b;
-        this.b = zi1Var;
-        this.c = twoStepVerificationActivity;
+        this.c = jm7Var;
     }
 
     @Override
-    public final void g(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.c;
-        zi1 zi1Var = this.b;
+        jm7 jm7Var = this.c;
         switch (b) {
             case 0:
-                zi1Var.G(false, tL_inputCheckPasswordSRP, twoStepVerificationActivity);
+                vi1 vi1Var = (vi1) jm7Var;
+                vi1Var.o0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vi1Var.n0.invalidate();
+                if (!this.b && vi1Var.o0 > 0.5f) {
+                    this.b = true;
+                    return;
+                }
                 return;
             case 1:
-                zi1Var.G(true, tL_inputCheckPasswordSRP, twoStepVerificationActivity);
+                d38 d38Var = (d38) jm7Var;
+                d38Var.Z = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d38Var.Y.invalidate();
+                if (!this.b && d38Var.Z > 0.5f) {
+                    this.b = true;
+                    return;
+                }
+                return;
+            case 2:
+                v9b v9bVar = (v9b) jm7Var;
+                v9bVar.E2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f9b f9bVar = v9bVar.D2;
+                if (f9bVar != null) {
+                    f9bVar.invalidate();
+                }
+                if (!this.b && v9bVar.E2 > 0.5f) {
+                    this.b = true;
+                    return;
+                }
                 return;
             default:
-                zi1Var.G(true, tL_inputCheckPasswordSRP, twoStepVerificationActivity);
+                rob robVar = (rob) jm7Var;
+                robVar.k2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                robVar.j2.invalidate();
+                if (!this.b && robVar.k2 > 0.5f) {
+                    this.b = true;
+                    return;
+                }
                 return;
         }
     }

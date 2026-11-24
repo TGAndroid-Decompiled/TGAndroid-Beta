@@ -1,50 +1,99 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.SurfaceView;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.PhotoViewer;
-public final class c78 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final View b;
-    public final PhotoViewer c;
+import android.graphics.Bitmap;
+import android.graphics.PointF;
+public final class c78 {
+    public final float a;
+    public final float b;
+    public final PointF c;
+    public final PointF d;
+    public final float e;
+    public final PointF f;
+    public final PointF g;
 
-    public c78(PhotoViewer photoViewer, View view, byte b) {
-        this.a = b;
-        this.c = photoViewer;
-        this.b = view;
+    public c78(w84 w84Var, Bitmap bitmap, xka xkaVar, boolean z) {
+        float degrees;
+        PointF pointF = null;
+        PointF pointF2 = null;
+        PointF pointF3 = null;
+        PointF pointF4 = null;
+        for (wy5 wy5Var : w84Var.b) {
+            PointF pointF5 = wy5Var.a;
+            int i = wy5Var.b;
+            if (i != 4) {
+                if (i != 5) {
+                    if (i != 10) {
+                        if (i == 11) {
+                            pointF4 = b(pointF5, bitmap, xkaVar, z);
+                        }
+                    } else {
+                        pointF2 = b(pointF5, bitmap, xkaVar, z);
+                    }
+                } else {
+                    pointF3 = b(pointF5, bitmap, xkaVar, z);
+                }
+            } else {
+                pointF = b(pointF5, bitmap, xkaVar, z);
+            }
+        }
+        if (pointF != null && pointF2 != null) {
+            if (pointF.x < pointF2.x) {
+                PointF pointF6 = pointF2;
+                pointF2 = pointF;
+                pointF = pointF6;
+            }
+            PointF pointF7 = new PointF((pointF2.x * 0.5f) + (pointF.x * 0.5f), (pointF2.y * 0.5f) + (pointF.y * 0.5f));
+            this.d = pointF7;
+            float hypot = (float) Math.hypot(pointF2.x - pointF.x, pointF2.y - pointF.y);
+            this.e = hypot;
+            this.b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
+            this.a = 2.35f * hypot;
+            float f = hypot * 0.8f;
+            float f2 = pointF7.x;
+            double radians = (float) Math.toRadians(degrees - 90.0f);
+            this.c = new PointF((((float) Math.cos(radians)) * f) + f2, (f * ((float) Math.sin(radians))) + pointF7.y);
+        }
+        if (pointF3 != null && pointF4 != null) {
+            if (pointF3.x < pointF4.x) {
+                PointF pointF8 = pointF4;
+                pointF4 = pointF3;
+                pointF3 = pointF8;
+            }
+            PointF pointF9 = new PointF((pointF4.x * 0.5f) + (pointF3.x * 0.5f), (pointF4.y * 0.5f) + (pointF3.y * 0.5f));
+            this.f = pointF9;
+            float f3 = this.e * 0.7f;
+            float f4 = pointF9.x;
+            double radians2 = (float) Math.toRadians(this.b + 90.0f);
+            this.g = new PointF((((float) Math.cos(radians2)) * f3) + f4, (f3 * ((float) Math.sin(radians2))) + pointF9.y);
+        }
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        View view = this.b;
-        PhotoViewer photoViewer = this.c;
-        switch (b) {
-            case 0:
-                photoViewer.B3 = false;
-                view.setOutlineProvider(null);
-                ImageView imageView = photoViewer.x3;
-                if (imageView != null) {
-                    imageView.setOutlineProvider(null);
-                }
-                j98 j98Var = photoViewer.F2;
-                if (j98Var != null) {
-                    j98Var.setOutlineProvider(null);
-                }
-                SurfaceView surfaceView = photoViewer.D2;
-                if (surfaceView != null) {
-                    surfaceView.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                photoViewer.B3 = false;
-                photoViewer.i4.run();
-                gl.e3(new h18(this, view, (byte) 9), 100L);
-                return;
+    public static PointF b(PointF pointF, Bitmap bitmap, xka xkaVar, boolean z) {
+        float width;
+        int height;
+        if (z) {
+            width = bitmap.getHeight();
+            height = bitmap.getWidth();
+        } else {
+            width = bitmap.getWidth();
+            height = bitmap.getHeight();
         }
+        return new PointF((xkaVar.a * pointF.x) / width, (xkaVar.b * pointF.y) / height);
+    }
+
+    public final PointF a(int i) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 3) {
+                        return null;
+                    }
+                    return this.g;
+                }
+                return this.f;
+            }
+            return this.d;
+        }
+        return this.c;
     }
 }

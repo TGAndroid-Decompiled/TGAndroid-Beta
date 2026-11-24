@@ -1,10 +1,21 @@
 package defpackage;
 
-import android.graphics.Canvas;
-public final class kx4 implements gx4 {
-    public static final kx4 a = new Object();
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+public final class kx4 extends tm {
+    public final lx4 N;
+
+    public kx4(lx4 lx4Var, ViewGroup viewGroup, int i) {
+        super(i, viewGroup);
+        this.N = lx4Var;
+    }
 
     @Override
-    public final void e(float f, float f2, float f3, float f4, Canvas canvas) {
+    public final void invalidate() {
+        super.invalidate();
+        Drawable drawable = this.N;
+        if (drawable.getCallback() != null) {
+            drawable.getCallback().invalidateDrawable(drawable);
+        }
     }
 }

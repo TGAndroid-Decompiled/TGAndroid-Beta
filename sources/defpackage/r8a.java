@@ -1,30 +1,51 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class r8a implements p8c {
-    public final byte a;
-    public final pt0 b;
-    public final TLRPC.Document c;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+import org.json.JSONObject;
+public final class r8a extends b4 {
+    public static final Parcelable.Creator<r8a> CREATOR = new urd((byte) 4);
+    public final gt6 a;
+    public String b;
+    public final JSONObject c;
 
-    public r8a(pt0 pt0Var, TLRPC.Document document, byte b) {
-        this.a = b;
-        this.b = pt0Var;
-        this.c = document;
+    public r8a(gt6 gt6Var, JSONObject jSONObject) {
+        this.a = gt6Var;
+        this.c = jSONObject;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof r8a)) {
+            return false;
+        }
+        r8a r8aVar = (r8a) obj;
+        if (!vw5.a(this.c, r8aVar.c)) {
+            return false;
+        }
+        return fse.a(this.a, r8aVar.a);
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, String.valueOf(this.c)});
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        TLRPC.Document document = this.c;
-        pt0 pt0Var = this.b;
-        String str = (String) obj;
-        switch (b) {
-            case 0:
-                pt0Var.a(str, document);
-                return;
-            default:
-                pt0Var.a(str, document);
-                return;
+    public final void writeToParcel(Parcel parcel, int i) {
+        String jSONObject;
+        JSONObject jSONObject2 = this.c;
+        if (jSONObject2 == null) {
+            jSONObject = null;
+        } else {
+            jSONObject = jSONObject2.toString();
         }
+        this.b = jSONObject;
+        int r = mve.r(parcel, 20293);
+        mve.k(parcel, 2, this.a, i);
+        mve.l(parcel, 3, this.b);
+        mve.s(parcel, r);
     }
 }

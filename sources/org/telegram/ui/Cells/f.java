@@ -11,13 +11,13 @@ import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadioButton;
-public abstract class f extends o39 implements gk7 {
+public abstract class f extends r59 implements jm7 {
     public static final byte[] q3 = new byte[1024];
     public boolean f3;
-    public final zr g3;
+    public final zs g3;
     public final HashMap h3;
     public final HashMap i3;
-    public akb j3;
+    public bmb j3;
     public final e k3;
     public final ArrayList l3;
     public final ArrayList m3;
@@ -34,39 +34,39 @@ public abstract class f extends o39 implements gk7 {
         this.n3 = i;
         this.p3 = dVar;
         if (i == 2) {
-            zkb.h(bkb.g5, null, this);
+            anb.h(cmb.g5, null, this);
         } else {
-            zkb.h(bkb.c6, null, this);
+            anb.h(cmb.c6, null, this);
         }
         setItemAnimator(null);
         setLayoutAnimation(null);
-        zr zrVar = new zr((byte) 18);
-        this.g3 = zrVar;
+        zs zsVar = new zs((byte) 18);
+        this.g3 = zsVar;
         setPadding(0, 0, 0, 0);
         setClipToPadding(false);
-        zrVar.i1(0);
-        setLayoutManager(zrVar);
+        zsVar.i1(0);
+        setLayoutManager(zsVar);
         e eVar = new e(this, context);
         this.k3 = eVar;
         setAdapter(eVar);
-        setOnItemClickListener(new c39() {
+        setOnItemClickListener(new f59() {
             @Override
-            public final void d(int i2, View view) {
-                akb akbVar = ((ThemesHorizontalListCell$InnerThemeView) view).b;
+            public final void g(int i2, View view) {
+                bmb bmbVar = ((ThemesHorizontalListCell$InnerThemeView) view).b;
                 f fVar = f.this;
-                fVar.B1(akbVar, view);
+                fVar.B1(bmbVar, view);
                 int left = view.getLeft();
                 int right = view.getRight();
                 if (left < 0) {
-                    fVar.x0(left - gl.L(8.0f), 0, null);
+                    fVar.x0(left - gm.L(8.0f), 0, null);
                 } else if (right > fVar.getMeasuredWidth()) {
                     fVar.x0(right - fVar.getMeasuredWidth(), 0, null);
                 }
             }
         });
-        setOnItemLongClickListener(new e39() {
+        setOnItemLongClickListener(new h59() {
             @Override
-            public final boolean d(int i2, View view) {
+            public final boolean g(int i2, View view) {
                 f.this.C1(((ThemesHorizontalListCell$InnerThemeView) view).b);
                 return true;
             }
@@ -74,16 +74,16 @@ public abstract class f extends o39 implements gk7 {
     }
 
     public final void A1(int i) {
-        akb B0;
+        bmb B0;
         View view;
         if (i == 0 && (view = (View) getParent()) != null) {
             i = view.getMeasuredWidth();
         }
         if (i != 0) {
             if (this.n3 == 1) {
-                B0 = bkb.J;
+                B0 = cmb.J;
             } else {
-                B0 = bkb.B0();
+                B0 = cmb.B0();
             }
             this.j3 = B0;
             ArrayList arrayList = this.m3;
@@ -91,22 +91,22 @@ public abstract class f extends o39 implements gk7 {
             if (indexOf < 0 && (indexOf = this.l3.indexOf(this.j3) + arrayList.size()) < 0) {
                 return;
             }
-            this.g3.g1(indexOf, (i - gl.L(76.0f)) / 2);
+            this.g3.g1(indexOf, (i - gm.L(76.0f)) / 2);
         }
     }
 
-    public final void B1(akb akbVar, View view) {
+    public final void B1(bmb bmbVar, View view) {
         String str;
-        akb B0;
+        bmb B0;
         boolean z;
         boolean z2;
-        TLRPC.TL_theme tL_theme = akbVar.G;
+        TLRPC.TL_theme tL_theme = bmbVar.G;
         if (tL_theme != null) {
-            if (akbVar.V) {
+            if (bmbVar.V) {
                 if (tL_theme.document == null) {
                     org.telegram.ui.ActionBar.d dVar = this.p3;
                     if (dVar != null) {
-                        dVar.presentFragment(new ymb(akbVar, null, true));
+                        dVar.presentFragment(new zob(bmbVar, null, true));
                         return;
                     }
                     return;
@@ -116,29 +116,29 @@ public abstract class f extends o39 implements gk7 {
             }
         }
         SharedPreferences.Editor edit = org.telegram.messenger.a.b.getSharedPreferences("themeconfig", 0).edit();
-        if (this.n3 != 1 && !akbVar.o()) {
+        if (this.n3 != 1 && !bmbVar.o()) {
             str = "lastDayTheme";
         } else {
             str = "lastDarkTheme";
         }
-        edit.putString(str, akbVar.k());
+        edit.putString(str, bmbVar.k());
         edit.commit();
         if (this.n3 == 1) {
-            if (akbVar != bkb.J) {
-                if (bkb.I == bkb.J) {
+            if (bmbVar != cmb.J) {
+                if (cmb.I == cmb.J) {
                     z2 = true;
                 } else {
                     z2 = false;
                 }
-                bkb.J = akbVar;
+                cmb.J = bmbVar;
                 if (z2) {
-                    bkb.l(true);
+                    cmb.l(true);
                 }
             } else {
                 return;
             }
-        } else if (akbVar != bkb.B0()) {
-            bkb.I1(akbVar, false, -1, view);
+        } else if (bmbVar != cmb.B0()) {
+            cmb.I1(bmbVar, false, -1, view);
         } else {
             return;
         }
@@ -149,9 +149,9 @@ public abstract class f extends o39 implements gk7 {
             if (childAt instanceof ThemesHorizontalListCell$InnerThemeView) {
                 ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) childAt;
                 if (themesHorizontalListCell$InnerThemeView.b0.n3 == 1) {
-                    B0 = bkb.J;
+                    B0 = cmb.J;
                 } else {
-                    B0 = bkb.B0();
+                    B0 = cmb.B0();
                 }
                 RadioButton radioButton = themesHorizontalListCell$InnerThemeView.a;
                 if (themesHorizontalListCell$InnerThemeView.b == B0) {
@@ -162,9 +162,9 @@ public abstract class f extends o39 implements gk7 {
                 radioButton.a(z, true);
             }
         }
-        jy3.q(akbVar, akbVar.Z);
+        tz3.q(bmbVar, bmbVar.Z);
         if (this.n3 != 1) {
-            bkb.K1(this.p3);
+            cmb.K1(this.p3);
         }
     }
 
@@ -172,19 +172,19 @@ public abstract class f extends o39 implements gk7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.X1) {
+        if (i == nm7.Y1) {
             String str = (String) objArr[0];
             File file = (File) objArr[1];
-            akb akbVar = (akb) this.h3.get(str);
-            if (akbVar != null) {
+            bmb bmbVar = (bmb) this.h3.get(str);
+            if (bmbVar != null) {
                 this.h3.remove(str);
-                if (this.i3.remove(akbVar) != null) {
-                    Utilities.e.c(new r1b(this, akbVar, file, (byte) 14));
+                if (this.i3.remove(bmbVar) != null) {
+                    Utilities.e.c(new j2b(this, bmbVar, file, (byte) 17));
                 } else {
-                    z1(akbVar);
+                    z1(bmbVar);
                 }
             }
-        } else if (i == kk7.Y1) {
+        } else if (i == nm7.Z1) {
             this.h3.remove((String) objArr[0]);
         }
     }
@@ -193,8 +193,8 @@ public abstract class f extends o39 implements gk7 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         for (int i = 0; i < 4; i++) {
-            kk7.f(i).b(this, kk7.X1);
-            kk7.f(i).b(this, kk7.Y1);
+            nm7.f(i).b(this, nm7.Y1);
+            nm7.f(i).b(this, nm7.Z1);
         }
     }
 
@@ -202,8 +202,8 @@ public abstract class f extends o39 implements gk7 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         for (int i = 0; i < 4; i++) {
-            kk7.f(i).n(this, kk7.X1);
-            kk7.f(i).n(this, kk7.Y1);
+            nm7.f(i).n(this, nm7.Y1);
+            nm7.f(i).n(this, nm7.Z1);
         }
     }
 
@@ -213,20 +213,20 @@ public abstract class f extends o39 implements gk7 {
         int i;
         super.onDraw(canvas);
         if (this.f3) {
-            if (k96.a0) {
+            if (jb6.a0) {
                 L = 0.0f;
             } else {
-                L = gl.L(20.0f);
+                L = gm.L(20.0f);
             }
             float f = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (k96.a0) {
-                i = gl.L(20.0f);
+            if (jb6.a0) {
+                i = gm.L(20.0f);
             } else {
                 i = 0;
             }
-            canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, bkb.j0);
+            canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, cmb.j0);
         }
     }
 
@@ -248,13 +248,13 @@ public abstract class f extends o39 implements gk7 {
         this.f3 = z;
     }
 
-    public final void z1(akb akbVar) {
+    public final void z1(bmb bmbVar) {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
             if (childAt instanceof ThemesHorizontalListCell$InnerThemeView) {
                 ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) childAt;
-                if (themesHorizontalListCell$InnerThemeView.b == akbVar && themesHorizontalListCell$InnerThemeView.c()) {
+                if (themesHorizontalListCell$InnerThemeView.b == bmbVar && themesHorizontalListCell$InnerThemeView.c()) {
                     themesHorizontalListCell$InnerThemeView.b.V = true;
                     themesHorizontalListCell$InnerThemeView.a();
                 }
@@ -262,6 +262,6 @@ public abstract class f extends o39 implements gk7 {
         }
     }
 
-    public void C1(akb akbVar) {
+    public void C1(bmb bmbVar) {
     }
 }

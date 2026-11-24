@@ -1,38 +1,7 @@
 package defpackage;
-
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class wn0 implements p8c {
-    public final ao0 a;
-    public final TL_stories.TL_prepaidStarsGiveaway b;
-    public final long c;
-    public final long d;
-    public final TL_stories.PrepaidGiveaway e;
-
-    public wn0(ao0 ao0Var, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j, long j2, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.a = ao0Var;
-        this.b = tL_prepaidStarsGiveaway;
-        this.c = j;
-        this.d = j2;
-        this.e = prepaidGiveaway;
-    }
-
+public final class wn0 extends lp7 {
     @Override
-    public final void a(Object obj) {
-        Void r6 = (Void) obj;
-        ao0 ao0Var = this.a;
-        ao0Var.dismiss();
-        if (this.b != null) {
-            d S = LaunchActivity.S();
-            if (S != null) {
-                mu1 U9 = mu1.U9(this.c);
-                U9.whenFullyVisible(new xn0(U9, this.d, (byte) 0));
-                S.presentFragment(U9);
-                return;
-            }
-            return;
-        }
-        gl.e3(new z20(ao0Var, this.e, (byte) 13), 220L);
+    public final CharSequence d(int i) {
+        return jb6.G(i, "Hours", new Object[0]);
     }
 }

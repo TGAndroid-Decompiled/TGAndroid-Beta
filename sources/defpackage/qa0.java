@@ -1,90 +1,49 @@
 package defpackage;
 public final class qa0 {
-    public final String a;
-    public final long b;
+    public static final qa0 f = new qa0(10485760, 200, 10000, 81920, 604800000);
+    public final long a;
+    public final int b;
     public final int c;
+    public final long d;
+    public final int e;
 
-    public qa0(String str, long j, int i) {
-        this.a = str;
-        this.b = j;
-        this.c = i;
+    public qa0(long j, int i, int i2, int i3, long j2) {
+        this.a = j;
+        this.b = i;
+        this.c = i2;
+        this.d = j2;
+        this.e = i3;
     }
 
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof qa0) {
-                qa0 qa0Var = (qa0) obj;
-                String str = qa0Var.a;
-                String str2 = this.a;
-                if (str2 == null) {
-                    if (str != null) {
-                        return false;
-                    }
-                } else if (!str2.equals(str)) {
-                    return false;
-                }
-                if (this.b == qa0Var.b) {
-                    int i = qa0Var.c;
-                    int i2 = this.c;
-                    if (i2 == 0) {
-                        if (i == 0) {
-                            return true;
-                        }
-                        return false;
-                    } else if (ug8.c(i2, i)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                return false;
-            }
-            return false;
+        if (obj == this) {
+            return true;
         }
-        return true;
+        if (obj instanceof qa0) {
+            qa0 qa0Var = (qa0) obj;
+            if (this.a == qa0Var.a && this.b == qa0Var.b && this.c == qa0Var.c && this.d == qa0Var.d && this.e == qa0Var.e) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public final int hashCode() {
-        int hashCode;
-        int i = 0;
-        String str = this.a;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        long j = this.b;
-        int i2 = (((hashCode ^ 1000003) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003;
-        int i3 = this.c;
-        if (i3 != 0) {
-            i = ug8.F(i3);
-        }
-        return i2 ^ i;
+        long j = this.a;
+        long j2 = this.d;
+        return ((((((((((int) ((j >>> 32) ^ j)) ^ 1000003) * 1000003) ^ this.b) * 1000003) ^ this.c) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003) ^ this.e;
     }
 
     public final String toString() {
-        String str;
-        StringBuilder sb = new StringBuilder("TokenResult{token=");
+        StringBuilder sb = new StringBuilder("EventStoreConfig{maxStorageSizeInBytes=");
         sb.append(this.a);
-        sb.append(", tokenExpirationTimestamp=");
+        sb.append(", loadBatchSize=");
         sb.append(this.b);
-        sb.append(", responseCode=");
-        int i = this.c;
-        if (i != 1) {
-            if (i != 2) {
-                if (i != 3) {
-                    str = "null";
-                } else {
-                    str = "AUTH_ERROR";
-                }
-            } else {
-                str = "BAD_CONFIG";
-            }
-        } else {
-            str = "OK";
-        }
-        sb.append(str);
-        sb.append("}");
-        return sb.toString();
+        sb.append(", criticalSectionEnterTimeoutMs=");
+        sb.append(this.c);
+        sb.append(", eventCleanUpAge=");
+        sb.append(this.d);
+        sb.append(", maxBlobByteSizePerRow=");
+        return hg9.k(sb, this.e, "}");
     }
 }

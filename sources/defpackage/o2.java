@@ -1,3 +1,3 @@
 package defpackage;
-public interface o2 extends t56 {
+public interface o2 extends t76 {
 }

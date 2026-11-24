@@ -1,55 +1,56 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.widget.TextView;
-public final class ey3 extends efe {
-    public final dy3 a;
+import android.text.Editable;
+import android.text.method.KeyListener;
+import android.text.method.MetaKeyKeyListener;
+import android.view.KeyEvent;
+import android.view.View;
+public final class ey3 implements KeyListener {
+    public final KeyListener a;
 
-    public ey3(TextView textView) {
-        this.a = new dy3(textView);
+    public ey3(KeyListener keyListener) {
+        this.a = keyListener;
     }
 
     @Override
-    public final InputFilter[] a(InputFilter[] inputFilterArr) {
-        boolean z;
-        if (lw3.j != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (!z) {
-            return inputFilterArr;
-        }
-        return this.a.a(inputFilterArr);
+    public final void clearMetaKeyState(View view, Editable editable, int i) {
+        this.a.clearMetaKeyState(view, editable, i);
     }
 
     @Override
-    public final void b(boolean z) {
-        boolean z2;
-        if (lw3.j != null) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        if (!z2) {
-            return;
-        }
-        this.a.b(z);
+    public final int getInputType() {
+        return this.a.getInputType();
     }
 
     @Override
-    public final void c(boolean z) {
-        boolean z2;
-        if (lw3.j != null) {
-            z2 = true;
+    public final boolean onKeyDown(View view, Editable editable, int i, KeyEvent keyEvent) {
+        boolean j;
+        if (i != 67) {
+            if (i != 112) {
+                j = false;
+            } else {
+                j = hi2.j(editable, keyEvent, true);
+            }
         } else {
-            z2 = false;
+            j = hi2.j(editable, keyEvent, false);
         }
-        dy3 dy3Var = this.a;
-        if (!z2) {
-            dy3Var.c = z;
+        if (j) {
+            MetaKeyKeyListener.adjustMetaAfterKeypress(editable);
+            return true;
+        } else if (this.a.onKeyDown(view, editable, i, keyEvent)) {
+            return true;
         } else {
-            dy3Var.c(z);
+            return false;
         }
+    }
+
+    @Override
+    public final boolean onKeyOther(View view, Editable editable, KeyEvent keyEvent) {
+        return this.a.onKeyOther(view, editable, keyEvent);
+    }
+
+    @Override
+    public final boolean onKeyUp(View view, Editable editable, int i, KeyEvent keyEvent) {
+        return this.a.onKeyUp(view, editable, i, keyEvent);
     }
 }

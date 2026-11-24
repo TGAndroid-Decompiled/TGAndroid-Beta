@@ -1,40 +1,41 @@
 package defpackage;
 
-import android.security.identity.IdentityCredential;
-import java.security.Signature;
-import javax.crypto.Cipher;
-import javax.crypto.Mac;
-public final class gj0 {
-    public final Signature a;
-    public final Cipher b;
-    public final Mac c;
-    public final IdentityCredential d;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class gj0 extends TLObject {
+    public int a;
+    public long b;
+    public TLRPC.InputStorePaymentPurpose c;
 
-    public gj0(Signature signature) {
-        this.a = signature;
-        this.b = null;
-        this.c = null;
-        this.d = null;
+    public static gj0 a(int i, SerializedData serializedData) {
+        TLObject tLObject;
+        if (i != 495638674) {
+            tLObject = null;
+        } else {
+            tLObject = new TLObject();
+        }
+        return (gj0) TLObject.TLdeserialize(gj0.class, tLObject, serializedData, i, true);
     }
 
-    public gj0(Cipher cipher) {
-        this.a = null;
-        this.b = cipher;
-        this.c = null;
-        this.d = null;
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
+        this.a = inputSerializedData.readInt32(z);
+        this.b = inputSerializedData.readInt64(z);
+        if ((this.a & 1) != 0) {
+            this.c = TLRPC.InputStorePaymentPurpose.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
     }
 
-    public gj0(Mac mac) {
-        this.a = null;
-        this.b = null;
-        this.c = mac;
-        this.d = null;
-    }
-
-    public gj0(IdentityCredential identityCredential) {
-        this.a = null;
-        this.b = null;
-        this.c = null;
-        this.d = identityCredential;
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt32(495638674);
+        outputSerializedData.writeInt32(this.a);
+        outputSerializedData.writeInt64(this.b);
+        if ((this.a & 1) != 0) {
+            this.c.serializeToStream(outputSerializedData);
+        }
     }
 }

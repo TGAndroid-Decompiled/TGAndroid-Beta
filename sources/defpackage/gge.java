@@ -1,17 +1,12 @@
 package defpackage;
-public final class gge implements zn7 {
-    public static final gge a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class gge {
+    public static Exception a(h1 h1Var, String str, Exception exc) {
+        if (exc instanceof l23) {
+            return new l23(h1Var, str);
         }
-        throw new ClassCastException();
+        if (exc instanceof bv4) {
+            return new bv4(h1Var, str);
+        }
+        throw new Exception();
     }
 }

@@ -1,44 +1,42 @@
 package defpackage;
+public enum xtb extends rub {
+    public xtb() {
+        super("DoctypeName", 52);
+    }
 
-import android.util.Log;
-import j$.util.Objects;
-import java.util.regex.Pattern;
-public final class xtb {
-    public static final Pattern d = Pattern.compile("[a-zA-Z0-9-_.~%]{1,900}");
-    public final String a;
-    public final String b;
-    public final String c;
-
-    public xtb(String str, String str2) {
-        String str3;
-        if (str2 != null && str2.startsWith("/topics/")) {
-            Log.w("FirebaseMessaging", "Format /topics/topic-name is deprecated. Only 'topic-name' should be used in " + str + ".");
-            str3 = str2.substring(8);
-        } else {
-            str3 = str2;
-        }
-        if (str3 != null && d.matcher(str3).matches()) {
-            this.a = str3;
-            this.b = str;
-            this.c = tb4.p(str, "!", str2);
+    @Override
+    public final void c(bsb bsbVar, hl1 hl1Var) {
+        srb srbVar = bsbVar.m;
+        if (hl1Var.o()) {
+            srbVar.e.append(hl1Var.e());
             return;
         }
-        w26.j(tb4.y("Invalid topic name: ", str3, " does not match the allowed format [a-zA-Z0-9-_.~%]{1,900}."));
-        throw null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof xtb) {
-            xtb xtbVar = (xtb) obj;
-            if (this.a.equals(xtbVar.a) && this.b.equals(xtbVar.b)) {
-                return true;
+        char d = hl1Var.d();
+        if (d != 0) {
+            if (d != ' ') {
+                msb msbVar = rub.a;
+                if (d != '>') {
+                    if (d != 65535) {
+                        if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
+                            srbVar.e.append(d);
+                            return;
+                        }
+                    } else {
+                        bsbVar.l(this);
+                        bsbVar.j();
+                        bsbVar.c = msbVar;
+                        return;
+                    }
+                } else {
+                    bsbVar.j();
+                    bsbVar.c = msbVar;
+                    return;
+                }
             }
-            return false;
+            bsbVar.c = rub.r0;
+            return;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.b, this.a);
+        bsbVar.m(this);
+        srbVar.e.append((char) 65533);
     }
 }

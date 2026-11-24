@@ -1,23 +1,19 @@
 package defpackage;
-
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.RandomAccess;
 public abstract class tne {
-    public static ArrayList a(Object... objArr) {
-        int length = objArr.length;
-        krd.b(length, "arraySize");
-        ArrayList arrayList = new ArrayList(gle.d(length + 5 + (length / 10)));
-        Collections.addAll(arrayList, objArr);
-        return arrayList;
-    }
-
-    public static AbstractList b(List list, aq4 aq4Var) {
-        if (list instanceof RandomAccess) {
-            return new c66(list, aq4Var);
+    public static pfc a(Class cls) {
+        try {
+            Object newInstance = cls.getDeclaredConstructor(null).newInstance(null);
+            newInstance.getClass();
+            return (pfc) newInstance;
+        } catch (IllegalAccessException e) {
+            dq9.n("Cannot create an instance of ", cls, e);
+            return null;
+        } catch (InstantiationException e2) {
+            dq9.n("Cannot create an instance of ", cls, e2);
+            return null;
+        } catch (NoSuchMethodException e3) {
+            dq9.n("Cannot create an instance of ", cls, e3);
+            return null;
         }
-        return new d66(list, aq4Var);
     }
 }

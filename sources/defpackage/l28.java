@@ -1,28 +1,35 @@
 package defpackage;
-
-import android.view.View;
-public final class l28 implements View.OnClickListener {
+public final class l28 implements Runnable {
     public final byte a;
-    public final s28 b;
-    public final f53 c;
-    public final m8b d;
+    public final w28 b;
 
-    public l28(s28 s28Var, m8b m8bVar, f53 f53Var) {
-        this.a = (byte) 0;
-        this.b = s28Var;
-        this.d = m8bVar;
-        this.c = f53Var;
+    public l28(w28 w28Var, byte b) {
+        this.a = b;
+        this.b = w28Var;
     }
 
     @Override
-    public final void onClick(android.view.View r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.l28.onClick(android.view.View):void");
-    }
-
-    public l28(s28 s28Var, f53 f53Var, m8b m8bVar, byte b) {
-        this.a = b;
-        this.b = s28Var;
-        this.c = f53Var;
-        this.d = m8bVar;
+    public final void run() {
+        byte b = this.a;
+        w28 w28Var = this.b;
+        switch (b) {
+            case 0:
+                if (w28Var.H) {
+                    w28Var.b.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                w28Var.h();
+                return;
+            case 2:
+                int i = w28.r0;
+                w28Var.h();
+                return;
+            default:
+                int i2 = w28.r0;
+                w28Var.h();
+                return;
+        }
     }
 }

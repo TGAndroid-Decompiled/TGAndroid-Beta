@@ -1,28 +1,39 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.voip.ConferenceCall;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class hs2 implements Runnable {
     public final byte a;
-    public final ConnectionsManager b;
-    public final int c;
+    public final ConferenceCall b;
+    public final long c;
+    public final TLObject d;
+    public final TLRPC.TL_error e;
 
-    public hs2(ConnectionsManager connectionsManager, int i, byte b) {
+    public hs2(ConferenceCall conferenceCall, long j, TLObject tLObject, TLRPC.TL_error tL_error, byte b) {
         this.a = b;
-        this.b = connectionsManager;
-        this.c = i;
+        this.b = conferenceCall;
+        this.c = j;
+        this.d = tLObject;
+        this.e = tL_error;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        int i = this.c;
-        ConnectionsManager connectionsManager = this.b;
+        TLRPC.TL_error tL_error = this.e;
+        TLObject tLObject = this.d;
+        long j = this.c;
+        ConferenceCall conferenceCall = this.b;
         switch (b) {
             case 0:
-                ConnectionsManager.D(connectionsManager, i);
+                conferenceCall.lambda$pull_outbound$5(j, tLObject, tL_error);
+                return;
+            case 1:
+                conferenceCall.lambda$kick$12(j, tLObject, tL_error);
                 return;
             default:
-                ConnectionsManager.l(connectionsManager, i);
+                conferenceCall.lambda$updateParticipants$10(j, tLObject, tL_error);
                 return;
         }
     }

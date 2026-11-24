@@ -1,66 +1,96 @@
 package defpackage;
 
-import android.graphics.Insets;
-public final class io5 {
-    public static final io5 e = new io5(0, 0, 0, 0);
-    public final int a;
+import java.io.Serializable;
+public final class io5 implements Serializable {
+    public static final io5 c = new io5(new int[0], 0);
+    public final int[] a;
     public final int b;
-    public final int c;
-    public final int d;
 
-    public io5(int i, int i2, int i3, int i4) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = i4;
+    public io5(int[] iArr, int i) {
+        this.a = iArr;
+        this.b = i;
     }
 
-    public static io5 a(io5 io5Var, io5 io5Var2) {
-        return b(Math.max(io5Var.a, io5Var2.a), Math.max(io5Var.b, io5Var2.b), Math.max(io5Var.c, io5Var2.c), Math.max(io5Var.d, io5Var2.d));
-    }
-
-    public static io5 b(int i, int i2, int i3, int i4) {
-        if (i == 0 && i2 == 0 && i3 == 0 && i4 == 0) {
-            return e;
+    public static io5 c(int... iArr) {
+        boolean z;
+        if (iArr.length <= 2147483646) {
+            z = true;
+        } else {
+            z = false;
         }
-        return new io5(i, i2, i3, i4);
+        jte.e("the total number of elements must fit in an int", z);
+        int length = iArr.length + 1;
+        int[] iArr2 = new int[length];
+        iArr2[0] = 0;
+        System.arraycopy(iArr, 0, iArr2, 1, iArr.length);
+        return new io5(iArr2, length);
     }
 
-    public static io5 c(Insets insets) {
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        i = insets.left;
-        i2 = insets.top;
-        i3 = insets.right;
-        i4 = insets.bottom;
-        return b(i, i2, i3, i4);
+    public final boolean a(int i) {
+        int i2 = 0;
+        while (true) {
+            if (i2 < this.b) {
+                if (this.a[i2] == i) {
+                    break;
+                }
+                i2++;
+            } else {
+                i2 = -1;
+                break;
+            }
+        }
+        if (i2 < 0) {
+            return false;
+        }
+        return true;
     }
 
-    public final Insets d() {
-        return rr.m(this.a, this.b, this.c, this.d);
+    public final int b(int i) {
+        jte.j(i, this.b);
+        return this.a[i];
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || io5.class != obj.getClass()) {
+        if (obj != this) {
+            if (obj instanceof io5) {
+                io5 io5Var = (io5) obj;
+                int i = io5Var.b;
+                int i2 = this.b;
+                if (i2 == i) {
+                    for (int i3 = 0; i3 < i2; i3++) {
+                        if (b(i3) == io5Var.b(i3)) {
+                        }
+                    }
+                    return true;
+                }
+            }
             return false;
         }
-        io5 io5Var = (io5) obj;
-        if (this.d == io5Var.d && this.a == io5Var.a && this.c == io5Var.c && this.b == io5Var.b) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        return (((((this.a * 31) + this.b) * 31) + this.c) * 31) + this.d;
+        int i = 1;
+        for (int i2 = 0; i2 < this.b; i2++) {
+            i = (i * 31) + this.a[i2];
+        }
+        return i;
     }
 
     public final String toString() {
-        return "Insets{left=" + this.a + ", top=" + this.b + ", right=" + this.c + ", bottom=" + this.d + '}';
+        int i = this.b;
+        if (i == 0) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder(i * 5);
+        sb.append('[');
+        int[] iArr = this.a;
+        sb.append(iArr[0]);
+        for (int i2 = 1; i2 < i; i2++) {
+            sb.append(", ");
+            sb.append(iArr[i2]);
+        }
+        sb.append(']');
+        return sb.toString();
     }
 }

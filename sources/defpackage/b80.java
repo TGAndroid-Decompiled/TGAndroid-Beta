@@ -1,41 +1,18 @@
 package defpackage;
+public final class b80 implements cq7 {
+    public static final b80 a = new Object();
+    public static final wa4 b = new wa4("window", b10.m(b10.l(fv8.class, new wy(1))));
+    public static final wa4 c = new wa4("logSourceMetrics", b10.m(b10.l(fv8.class, new wy(2))));
+    public static final wa4 d = new wa4("globalMetrics", b10.m(b10.l(fv8.class, new wy(3))));
+    public static final wa4 e = new wa4("appNamespace", b10.m(b10.l(fv8.class, new wy(4))));
 
-import java.io.File;
-public final class b80 {
-    public final a80 a;
-    public final String b;
-    public final File c;
-
-    public b80(a80 a80Var, String str, File file) {
-        this.a = a80Var;
-        if (str != null) {
-            this.b = str;
-            this.c = file;
-            return;
-        }
-        fvc.f("Null sessionId");
-        throw null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof b80) {
-                b80 b80Var = (b80) obj;
-                if (this.a.equals(b80Var.a) && this.b.equals(b80Var.b) && this.c.equals(b80Var.c)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode();
-    }
-
-    public final String toString() {
-        return "CrashlyticsReportWithSessionId{report=" + this.a + ", sessionId=" + this.b + ", reportFile=" + this.c + "}";
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ak2 ak2Var = (ak2) obj;
+        dq7 dq7Var = (dq7) obj2;
+        dq7Var.a(b, ak2Var.a);
+        dq7Var.a(c, ak2Var.b);
+        dq7Var.a(d, ak2Var.c);
+        dq7Var.a(e, ak2Var.d);
     }
 }

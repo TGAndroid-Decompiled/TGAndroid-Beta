@@ -1,18 +1,16 @@
 package defpackage;
+public abstract class gk6 {
+    public static final fk6 a;
+    public static final fk6 b;
 
-import android.os.Bundle;
-public interface gk6 {
-    void a(int i, o33 o33Var, long j, int i2);
-
-    void b(int i, int i2, int i3, long j);
-
-    void c();
-
-    void flush();
-
-    void setParameters(Bundle bundle);
-
-    void shutdown();
-
-    void start();
+    static {
+        gv8 gv8Var = gv8.c;
+        fk6 fk6Var = null;
+        try {
+            fk6Var = (fk6) Class.forName("androidx.datastore.preferences.protobuf.MapFieldSchemaFull").getDeclaredConstructor(null).newInstance(null);
+        } catch (Exception unused) {
+        }
+        a = fk6Var;
+        b = new Object();
+    }
 }

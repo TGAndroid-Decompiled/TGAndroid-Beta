@@ -1,57 +1,35 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pza extends AnimatorListenerAdapter {
-    public final byte a;
+import org.telegram.tgnet.TLRPC;
+public final class pza implements he2 {
+    public final TLRPC.TL_chatChannelParticipant a;
     public final boolean b;
-    public final rza c;
+    public final boolean[] c;
 
-    public pza(rza rzaVar, boolean z, byte b) {
-        this.a = b;
-        this.c = rzaVar;
+    public pza(TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant, boolean z, boolean[] zArr) {
+        this.a = tL_chatChannelParticipant;
         this.b = z;
+        this.c = zArr;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        rza rzaVar = this.c;
-        boolean z = this.b;
-        switch (b) {
-            case 0:
-                if (!z) {
-                    rzaVar.h.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!z) {
-                    rzaVar.y.setVisibility(4);
-                    return;
-                }
-                return;
+    public final void b(int i, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.a;
+        if (i == 0) {
+            TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
+            channelParticipant.admin_rights = null;
+            channelParticipant.rank = "";
+            return;
+        }
+        TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant.channelParticipant;
+        channelParticipant2.admin_rights = tL_chatAdminRights;
+        channelParticipant2.rank = str;
+        if (this.b) {
+            this.c[0] = true;
         }
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
-        byte b = this.a;
-        rza rzaVar = this.c;
-        boolean z = this.b;
-        switch (b) {
-            case 0:
-                if (z) {
-                    rzaVar.h.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                if (z) {
-                    rzaVar.y.setVisibility(0);
-                    return;
-                }
-                return;
-        }
+    public final void a(TLRPC.User user) {
     }
 }

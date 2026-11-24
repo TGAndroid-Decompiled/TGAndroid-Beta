@@ -1,109 +1,109 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public final class v86 extends Drawable {
-    public final Bitmap a;
-    public final Paint b = new Paint(2);
-    public long c;
-    public LinearGradient d;
-    public final Matrix e;
-    public float f;
-    public float g;
-    public final be0 h;
-    public int i;
-    public int j;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
+public final class v86 implements kac, g59 {
+    public final n38 a;
 
-    public v86(be0 be0Var, String str, int i, int i2) {
-        Bitmap bitmap;
-        try {
-            Path b = lcb.b(str);
-            bitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            canvas.scale(i / 512.0f, i2 / 512.0f);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawPath(b, paint);
-        } catch (Exception e) {
-            fa4.g(e, true);
-            bitmap = null;
-        }
-        this.a = bitmap;
-        this.h = be0Var;
-        this.e = new Matrix();
+    public v86(n38 n38Var) {
+        this.a = n38Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.a;
-        if (bitmap == null) {
-            return;
-        }
-        int i = bkb.g5;
-        int i2 = bkb.h5;
-        int w0 = bkb.w0(null, i, false);
-        int w02 = bkb.w0(null, i2, false);
-        int i3 = this.i;
-        Paint paint = this.b;
-        Matrix matrix = this.e;
-        if (i3 != w0 || this.j != w02) {
-            this.i = w0;
-            this.j = w02;
-            int w03 = gl.w0(w02, w0);
-            paint.setColor(w02);
-            float L = gl.L(500.0f);
-            this.g = L;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{w02, w03, w02}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
-        }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
-        }
-        this.c = elapsedRealtime;
-        this.f = ls6.d((float) abs, this.g, 1800.0f, this.f);
+    public final void d(float f, float f2, int i, View view) {
+        long j;
+        int i2;
+        int i3;
+        int i4;
+        n38 n38Var = this.a;
+        fv fvVar = n38Var.c;
+        ArrayList arrayList = n38Var.r;
+        j96 j96Var = ((h96) view).f;
+        int i5 = n38Var.O;
+        int currentTime = ConnectionsManager.getInstance(i5).getCurrentTime();
+        HashSet hashSet = new HashSet();
+        int i6 = 0;
+        int i7 = 0;
         while (true) {
-            float f = this.f;
-            float f2 = this.g * 2.0f;
-            if (f >= f2) {
-                this.f = f - f2;
+            j = 0;
+            if (i7 >= j96Var.f.size()) {
+                break;
+            }
+            i96 i96Var = (i96) j96Var.f.get(i7);
+            long j2 = i96Var.g;
+            if (j2 > 0 && currentTime - i96Var.d <= bg5.b(i5, (int) j2, 0)) {
+                hashSet.add(Integer.valueOf(i96Var.a));
+            }
+            i7++;
+        }
+        s96 s96Var = n38Var.Q;
+        if (s96Var != null) {
+            j = s96Var.m();
+        }
+        int i8 = 0;
+        int i9 = 0;
+        while (true) {
+            i2 = -1;
+            if (i8 < arrayList.size()) {
+                i96 i96Var2 = (i96) arrayList.get(i8);
+                if (i96Var2.b || !i96Var2.e || i96Var2.g >= j) {
+                    if (!hashSet.contains(Integer.valueOf(i96Var2.a)) || (n38Var.x == j96Var.b && (i4 = n38Var.y) != 0 && i96Var2.a >= i4)) {
+                        i9++;
+                    }
+                }
+                i8++;
             } else {
-                matrix.setTranslate(f, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
+                i3 = -1;
+                break;
             }
         }
+        if (i3 < 0) {
+            int i10 = 0;
+            while (true) {
+                if (i6 >= arrayList.size()) {
+                    break;
+                }
+                i96 i96Var3 = (i96) arrayList.get(i6);
+                if (i96Var3.b || !i96Var3.e || i96Var3.g >= j) {
+                    if (hashSet.contains(Integer.valueOf(i96Var3.a))) {
+                        i2 = i96Var3.a;
+                        break;
+                    }
+                    i10++;
+                }
+                i6++;
+            }
+            i9 = i10;
+        } else {
+            i2 = i3;
+        }
+        if (i2 < 0) {
+            return;
+        }
+        n38Var.x = j96Var.b;
+        n38Var.y = i2;
+        n38Var.E = true;
+        d69 itemAnimator = fvVar.getItemAnimator();
+        fvVar.setItemAnimator(null);
+        n38Var.d.h1(i9, fvVar.getHeight() / 2, true);
+        n38Var.e.g(i9);
+        fvVar.setItemAnimator(itemAnimator);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final Object j(Integer num, Object obj) {
+        Long l = (Long) num;
+        return this.a.f((Long) obj);
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public final boolean u(View view) {
+        return false;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void p(View view, float f, float f2) {
     }
 }

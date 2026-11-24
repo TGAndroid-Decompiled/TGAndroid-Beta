@@ -1,17 +1,19 @@
 package defpackage;
-public final class pmd implements zn7 {
-    public static final pmd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class pmd extends dpe {
+    public final TaskCompletionSource b;
+
+    public pmd(TaskCompletionSource taskCompletionSource) {
+        this.b = taskCompletionSource;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void t(z7e z7eVar) {
+        fxe.a(z7eVar.a, Boolean.TRUE, this.b);
+    }
+
+    @Override
+    public final void zze() {
     }
 }

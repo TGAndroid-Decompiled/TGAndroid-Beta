@@ -1,232 +1,113 @@
 package defpackage;
 
-import android.util.Base64;
-import android.util.JsonWriter;
-import java.io.Writer;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-public final class wu5 implements ao7, z8c {
-    public final boolean a = true;
-    public final JsonWriter b;
-    public final HashMap c;
-    public final HashMap d;
-    public final nu5 e;
-    public final boolean f;
+import android.content.Context;
+import android.os.Process;
+import android.util.Log;
+import java.util.LinkedHashSet;
+import java.util.List;
+public final class wu5 {
+    public static final bx5[] d;
+    public final String a;
+    public final ThreadLocal b;
+    public final li8 c;
 
-    public wu5(Writer writer, HashMap hashMap, HashMap hashMap2, nu5 nu5Var, boolean z) {
-        this.b = new JsonWriter(writer);
-        this.c = hashMap;
-        this.d = hashMap2;
-        this.e = nu5Var;
-        this.f = z;
+    static {
+        av8 av8Var = new av8(sa1.NO_RECEIVER, wu5.class, "dataStore", "getDataStore(Landroid/content/Context;)Landroidx/datastore/core/DataStore;", 0);
+        h79.a.getClass();
+        d = new bx5[]{av8Var};
     }
 
-    @Override
-    public final ao7 a(w84 w84Var, Object obj) {
-        i(obj, w84Var.a);
-        return this;
-    }
+    public wu5(Context context, String str) {
+        li8 li8Var;
+        context.getClass();
+        this.a = str;
+        this.b = new ThreadLocal();
+        ai4 ai4Var = new ai4(new rr4(this) {
+            public final wu5 b;
 
-    @Override
-    public final z8c b(String str) {
-        j();
-        this.b.value(str);
-        return this;
-    }
+            {
+                this.b = this;
+            }
 
-    @Override
-    public final z8c c(boolean z) {
-        j();
-        this.b.value(z);
-        return this;
-    }
-
-    @Override
-    public final ao7 d(w84 w84Var, boolean z) {
-        String str = w84Var.a;
-        j();
-        JsonWriter jsonWriter = this.b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(z);
-        return this;
-    }
-
-    @Override
-    public final ao7 e(w84 w84Var, int i) {
-        String str = w84Var.a;
-        j();
-        JsonWriter jsonWriter = this.b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(i);
-        return this;
-    }
-
-    @Override
-    public final ao7 f(w84 w84Var, double d) {
-        String str = w84Var.a;
-        j();
-        JsonWriter jsonWriter = this.b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(d);
-        return this;
-    }
-
-    @Override
-    public final ao7 g(w84 w84Var, long j) {
-        String str = w84Var.a;
-        j();
-        JsonWriter jsonWriter = this.b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(j);
-        return this;
-    }
-
-    public final wu5 h(Object obj) {
-        JsonWriter jsonWriter = this.b;
-        if (obj == null) {
-            jsonWriter.nullValue();
-            return this;
-        } else if (obj instanceof Number) {
-            jsonWriter.value((Number) obj);
-            return this;
-        } else {
-            int i = 0;
-            if (obj.getClass().isArray()) {
-                if (obj instanceof byte[]) {
-                    j();
-                    jsonWriter.value(Base64.encodeToString((byte[]) obj, 2));
-                    return this;
-                }
-                jsonWriter.beginArray();
-                if (obj instanceof int[]) {
-                    int[] iArr = (int[]) obj;
-                    int length = iArr.length;
-                    while (i < length) {
-                        jsonWriter.value(iArr[i]);
-                        i++;
-                    }
-                } else if (obj instanceof long[]) {
-                    long[] jArr = (long[]) obj;
-                    int length2 = jArr.length;
-                    while (i < length2) {
-                        long j = jArr[i];
-                        j();
-                        jsonWriter.value(j);
-                        i++;
-                    }
-                } else if (obj instanceof double[]) {
-                    double[] dArr = (double[]) obj;
-                    int length3 = dArr.length;
-                    while (i < length3) {
-                        jsonWriter.value(dArr[i]);
-                        i++;
-                    }
-                } else if (obj instanceof boolean[]) {
-                    boolean[] zArr = (boolean[]) obj;
-                    int length4 = zArr.length;
-                    while (i < length4) {
-                        jsonWriter.value(zArr[i]);
-                        i++;
-                    }
-                } else if (obj instanceof Number[]) {
-                    Number[] numberArr = (Number[]) obj;
-                    int length5 = numberArr.length;
-                    while (i < length5) {
-                        h(numberArr[i]);
-                        i++;
-                    }
-                } else {
-                    Object[] objArr = (Object[]) obj;
-                    int length6 = objArr.length;
-                    while (i < length6) {
-                        h(objArr[i]);
-                        i++;
-                    }
-                }
-                jsonWriter.endArray();
-                return this;
-            } else if (obj instanceof Collection) {
-                jsonWriter.beginArray();
-                for (Object obj2 : (Collection) obj) {
-                    h(obj2);
-                }
-                jsonWriter.endArray();
-                return this;
-            } else if (obj instanceof Map) {
-                jsonWriter.beginObject();
-                for (Map.Entry entry : ((Map) obj).entrySet()) {
-                    Object key = entry.getKey();
-                    try {
-                        i(entry.getValue(), (String) key);
-                    } catch (ClassCastException e) {
-                        throw new RuntimeException(String.format("Only String keys are currently supported in maps, got %s of type %s instead.", key, key.getClass()), e);
-                    }
-                }
-                jsonWriter.endObject();
-                return this;
-            } else {
-                zn7 zn7Var = (zn7) this.c.get(obj.getClass());
-                if (zn7Var != null) {
-                    jsonWriter.beginObject();
-                    zn7Var.a(obj, this);
-                    jsonWriter.endObject();
-                    return this;
-                }
-                y8c y8cVar = (y8c) this.d.get(obj.getClass());
-                if (y8cVar != null) {
-                    y8cVar.a(obj, this);
-                    return this;
-                } else if (obj instanceof Enum) {
-                    if (obj instanceof jn7) {
-                        int a = ((jn7) obj).a();
-                        j();
-                        jsonWriter.value(a);
-                        return this;
-                    }
-                    String name = ((Enum) obj).name();
-                    j();
-                    jsonWriter.value(name);
-                    return this;
-                } else {
-                    jsonWriter.beginObject();
-                    this.e.a(obj, this);
-                    throw null;
+            @Override
+            public final Object invoke(Object obj) {
+                byte b = r2;
+                wu5 wu5Var = this.b;
+                switch (b) {
+                    case 0:
+                        py2 py2Var = (py2) obj;
+                        py2Var.getClass();
+                        String b2 = h79.a(wu5.class).b();
+                        Log.w(b2, "CorruptionException in " + wu5Var.a + " DataStore running in process " + Process.myPid(), py2Var);
+                        return new lj7(true);
+                    default:
+                        Context context2 = (Context) obj;
+                        context2.getClass();
+                        String str2 = wu5Var.a;
+                        LinkedHashSet linkedHashSet = zha.a;
+                        linkedHashSet.getClass();
+                        return lm2.a(new xha(context2, str2, aia.a, new p83(linkedHashSet, null, (byte) 3), new eeb(3, null)));
                 }
             }
-        }
-    }
+        }, (byte) 28);
+        rr4 rr4Var = new rr4(this) {
+            public final wu5 b;
 
-    public final wu5 i(Object obj, String str) {
-        boolean z = this.f;
-        JsonWriter jsonWriter = this.b;
-        if (z) {
-            if (obj == null) {
-                return this;
+            {
+                this.b = this;
             }
-            j();
-            jsonWriter.name(str);
-            h(obj);
-            return this;
+
+            @Override
+            public final Object invoke(Object obj) {
+                byte b = r2;
+                wu5 wu5Var = this.b;
+                switch (b) {
+                    case 0:
+                        py2 py2Var = (py2) obj;
+                        py2Var.getClass();
+                        String b2 = h79.a(wu5.class).b();
+                        Log.w(b2, "CorruptionException in " + wu5Var.a + " DataStore running in process " + Process.myPid(), py2Var);
+                        return new lj7(true);
+                    default:
+                        Context context2 = (Context) obj;
+                        context2.getClass();
+                        String str2 = wu5Var.a;
+                        LinkedHashSet linkedHashSet = zha.a;
+                        linkedHashSet.getClass();
+                        return lm2.a(new xha(context2, str2, aia.a, new p83(linkedHashSet, null, (byte) 3), new eeb(3, null)));
+                }
+            }
+        };
+        jd3 jd3Var = up3.a;
+        jc3 jc3Var = jc3.c;
+        cv5 cv5Var = new cv5();
+        jc3Var.getClass();
+        nx2 a = ibe.a(nwd.c(jc3Var, cv5Var));
+        f26 f26Var = new f26(str, ai4Var, rr4Var, a);
+        d[0].getClass();
+        li8 li8Var2 = (li8) f26Var.c;
+        if (li8Var2 == null) {
+            synchronized (f26Var.b) {
+                if (((li8) f26Var.c) == null) {
+                    Context applicationContext = context.getApplicationContext();
+                    applicationContext.getClass();
+                    mi8 mi8Var = new mi8((byte) 0, applicationContext, f26Var);
+                    f26Var.c = new li8(new li8(new h93(new ed4(fgf.d, cd4.c, new dd4(mi8Var, (byte) 2)), lm2.a(new hj1((List) rr4Var.invoke(applicationContext), null, (byte) 3)), ai4Var, a)));
+                }
+                li8Var = (li8) f26Var.c;
+                li8Var.getClass();
+            }
+            li8Var2 = li8Var;
         }
-        j();
-        jsonWriter.name(str);
-        if (obj == null) {
-            jsonWriter.nullValue();
-            return this;
-        }
-        h(obj);
-        return this;
+        this.c = li8Var2;
     }
 
-    public final void j() {
-        if (this.a) {
-            return;
-        }
-        sc8.j("Parent context used since this context was created. Cannot use this context anymore.");
+    public final void a(rr4 rr4Var) {
+        lj7 lj7Var = (lj7) lrd.a(new hj1(this, rr4Var, null, (byte) 6));
+    }
+
+    public final Object b(ni8 ni8Var, Long l) {
+        ni8Var.getClass();
+        return lrd.a(new uu5(this, ni8Var, l, null, (byte) 0));
     }
 }

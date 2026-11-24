@@ -10,7 +10,7 @@ public final class q6 {
     public int e;
     public Drawable f;
     public int g;
-    public wjb h;
+    public ylb h;
     public float i;
     public Boolean j;
     public Boolean k;
@@ -63,17 +63,17 @@ public final class q6 {
                 while (i < size) {
                     Object obj = arrayList2.get(i);
                     i++;
-                    ((p8c) obj).a(this.m);
+                    ((qac) obj).a(this.m);
                 }
                 this.n = null;
             }
         }
     }
 
-    public final void b(hl1 hl1Var) {
+    public final void b(qm1 qm1Var) {
         r7 r7Var = this.m;
         if (r7Var != null) {
-            hl1Var.a(r7Var);
+            qm1Var.a(r7Var);
             return;
         }
         ArrayList arrayList = this.n;
@@ -81,7 +81,7 @@ public final class q6 {
             arrayList = new ArrayList();
             this.n = arrayList;
         }
-        arrayList.add(hl1Var);
+        arrayList.add(qm1Var);
     }
 
     public final void c() {

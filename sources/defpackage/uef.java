@@ -1,45 +1,41 @@
 package defpackage;
-public abstract class uef implements Cloneable {
-    public final vef a;
-    public vef b;
 
-    public uef(vef vefVar) {
-        this.a = vefVar;
-        if (!vefVar.g()) {
-            this.b = (vef) vefVar.h(4, null);
-        } else {
-            w26.j("Default instance must be immutable.");
-            throw null;
+import java.util.Set;
+public abstract class uef extends zad implements Set {
+    public transient h9f f;
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
+            return true;
         }
-    }
-
-    public final defpackage.vef a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.uef.a():vef");
-    }
-
-    public final vef b() {
-        boolean g = this.b.g();
-        vef vefVar = this.b;
-        if (!g) {
-            return vefVar;
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
         }
-        vefVar.getClass();
-        qgf.c.a(vefVar.getClass()).a(vefVar);
-        vefVar.d();
-        return this.b;
+        return false;
     }
 
-    public final void c() {
-        if (!this.b.g()) {
-            vef vefVar = (vef) this.a.h(4, null);
-            qgf.c.a(vefVar.getClass()).d(vefVar, this.b);
-            this.b = vefVar;
+    @Override
+    public final int hashCode() {
+        int i;
+        int i2 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i = obj.hashCode();
+            } else {
+                i = 0;
+            }
+            i2 += i;
         }
-    }
-
-    public final Object clone() {
-        uef uefVar = (uef) this.a.h(5, null);
-        uefVar.b = b();
-        return uefVar;
+        return i2;
     }
 }

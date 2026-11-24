@@ -37,7 +37,7 @@ public final class q2 implements PrivilegedExceptionAction {
                 }
                 return null;
             case 2:
-                Unsafe unsafe = tjd.a;
+                Unsafe unsafe = vld.a;
                 Field[] declaredFields3 = Unsafe.class.getDeclaredFields();
                 int length3 = declaredFields3.length;
                 while (i < length3) {

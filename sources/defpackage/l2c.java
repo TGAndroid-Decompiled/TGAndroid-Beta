@@ -1,45 +1,24 @@
 package defpackage;
-public final class l2c {
-    public final String a;
-    public final int b;
-    public final short c;
-    public int d;
-    public String e;
+public final class l2c implements zy5, yy5 {
+    public final b3c a;
+    public final k47 b;
+    public final long c;
+    public final int d;
 
-    public l2c(int i, int i2, int i3) {
-        String str;
-        if (i == Integer.MIN_VALUE) {
-            str = "";
-        } else {
-            str = oo1.n(i, "/");
-        }
-        this.a = str;
-        this.b = i2;
-        this.c = i3;
-        this.d = Integer.MIN_VALUE;
-        this.e = "";
-    }
-
-    public final void a() {
-        int i;
-        int i2 = this.d;
-        if (i2 == Integer.MIN_VALUE) {
-            i = this.b;
-        } else {
-            i = i2 + this.c;
-        }
+    public l2c(b3c b3cVar, k47 k47Var, long j, int i) {
+        this.a = b3cVar;
+        this.b = k47Var;
+        this.c = j;
         this.d = i;
-        this.e = this.a + this.d;
     }
 
-    public final void b() {
-        if (this.d != Integer.MIN_VALUE) {
-            return;
-        }
-        sc8.j("generateNewId() must be called before retrieving ids.");
+    @Override
+    public final void a(String str) {
+        gm.c3(new i2c(this.a, str, this.b, this.c, this.d, (byte) 1));
     }
 
-    public l2c(int i, int i2) {
-        this(Integer.MIN_VALUE, i, i2);
+    @Override
+    public final void o(Exception exc) {
+        gm.c3(new o77(this.a, this.b, this.c, this.d, (byte) 20));
     }
 }

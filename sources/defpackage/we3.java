@@ -1,20 +1,35 @@
 package defpackage;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
-public final class we3 implements DialogInterface.OnCancelListener {
-    public final ze3 a;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+public final class we3 extends a4 implements ScheduledFuture {
+    public final ScheduledFuture n;
 
-    public we3(ze3 ze3Var) {
-        this.a = ze3Var;
+    public we3(ve3 ve3Var) {
+        this.n = ve3Var.a(new k6d(this, (byte) 27));
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        ze3 ze3Var = this.a;
-        Dialog dialog = ze3Var.w0;
-        if (dialog != null) {
-            ze3Var.onCancel(dialog);
+    public final int compareTo(Delayed delayed) {
+        return this.n.compareTo(delayed);
+    }
+
+    @Override
+    public final void d() {
+        boolean z;
+        ScheduledFuture scheduledFuture = this.n;
+        Object obj = this.a;
+        if ((obj instanceof t3) && ((t3) obj).a) {
+            z = true;
+        } else {
+            z = false;
         }
+        scheduledFuture.cancel(z);
+    }
+
+    @Override
+    public final long getDelay(TimeUnit timeUnit) {
+        return this.n.getDelay(timeUnit);
     }
 }

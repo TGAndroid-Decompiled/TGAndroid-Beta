@@ -24,7 +24,7 @@ import org.telegram.tgnet.TLRPC;
 public abstract class DictationAsr {
     public static boolean c;
     public static int i;
-    public static volatile vl3[] a = new vl3[0];
+    public static volatile gn3[] a = new gn3[0];
     public static volatile String[] b = new String[0];
     public static final ExecutorService d = Executors.newSingleThreadExecutor();
     public static final ExecutorService e = Executors.newSingleThreadExecutor();
@@ -32,8 +32,8 @@ public abstract class DictationAsr {
     public static final ArrayList g = new ArrayList();
     public static final ConcurrentHashMap h = new ConcurrentHashMap();
 
-    public static boolean A(vl3 vl3Var) {
-        if (vl3Var != null && vl3Var.f != 0) {
+    public static boolean A(gn3 gn3Var) {
+        if (gn3Var != null && gn3Var.f != 0) {
             return true;
         }
         return false;
@@ -41,24 +41,24 @@ public abstract class DictationAsr {
 
     public static boolean B(int i2) {
         String str;
-        SharedPreferences c1 = na7.c1();
-        if (y6c.h(i2).p()) {
+        SharedPreferences d1 = oc7.d1();
+        if (z8c.h(i2).p()) {
             str = "asr_local_premium";
         } else {
             str = "asr_local_free";
         }
-        return c1.getBoolean(str, !y6c.h(i2).p());
+        return d1.getBoolean(str, !z8c.h(i2).p());
     }
 
     public static boolean C(int i2) {
-        if (w(i2) && zm3.h()) {
+        if (w(i2) && jo3.h()) {
             return true;
         }
         return false;
     }
 
     public static boolean D() {
-        if (w(y6c.t0) && zm3.h()) {
+        if (w(z8c.t0) && jo3.h()) {
             return true;
         }
         return false;
@@ -66,19 +66,19 @@ public abstract class DictationAsr {
 
     public static boolean E() {
         if (D()) {
-            for (vl3 vl3Var : M()) {
-                if (y(vl3Var)) {
+            for (gn3 gn3Var : M()) {
+                if (y(gn3Var)) {
                     return true;
                 }
             }
-            if (zm3.b()) {
+            if (jo3.b()) {
                 return true;
             }
         }
         return false;
     }
 
-    public static void F(String str, boolean[] zArr, syb sybVar, xl3 xl3Var) {
+    public static void F(String str, boolean[] zArr, t0c t0cVar, in3 in3Var) {
         float[] fArr;
         try {
             fArr = nativeDecode(str);
@@ -88,13 +88,13 @@ public abstract class DictationAsr {
         }
         if (fArr == null) {
             Log.d("Dictation", "tinyasr: can't decode " + str);
-            gl.d3(new nl3(zArr, sybVar, (byte) 0));
+            gm.c3(new ym3(zArr, t0cVar, (byte) 0));
             return;
         }
         if (!zArr[0]) {
-            xl3Var = q(fArr, xl3Var);
+            in3Var = q(fArr, in3Var);
         }
-        gl.d3(new ol3(zArr, xl3Var, sybVar, fArr));
+        gm.c3(new zm3(zArr, in3Var, t0cVar, fArr));
     }
 
     public static String[] G() {
@@ -104,48 +104,48 @@ public abstract class DictationAsr {
         return b;
     }
 
-    public static void H(vl3 vl3Var) {
+    public static void H(gn3 gn3Var) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        File file = new File(r(), vl3Var.b());
+        File file = new File(r(), gn3Var.b());
         File file2 = new File(r(), "silero_vad.onnx");
         try {
             long nativeLoad = nativeLoad(file.getAbsolutePath(), file2.getAbsolutePath());
             if (nativeLoad == 0) {
-                Log.e("Dictation", "tinyasr: " + vl3Var.a + " rejected (" + file.length() + " + " + file2.length() + " bytes)");
+                Log.e("Dictation", "tinyasr: " + gn3Var.a + " rejected (" + file.length() + " + " + file2.length() + " bytes)");
                 file.delete();
-                zm3.g(file);
-                SharedPreferences.Editor edit = na7.c1().edit();
+                jo3.g(file);
+                SharedPreferences.Editor edit = oc7.d1().edit();
                 StringBuilder sb = new StringBuilder("tinyasr_checked_");
-                sb.append(vl3Var.a);
+                sb.append(gn3Var.a);
                 edit.remove(sb.toString()).apply();
-                vl3Var.i = false;
-                if (vl3Var.f == 0) {
-                    gl.d3(new sl3(false, vl3Var, (byte) 1));
+                gn3Var.i = false;
+                if (gn3Var.f == 0) {
+                    gm.c3(new dn3(false, gn3Var, (byte) 1));
                 }
                 n();
                 return;
             }
             String[] nativeLangs = nativeLangs(nativeLoad);
             if (nativeLangs != null && nativeLangs.length > 0) {
-                vl3Var.d = nativeLangs;
+                gn3Var.d = nativeLangs;
             }
-            synchronized (vl3Var) {
-                long j = vl3Var.f;
-                vl3Var.f = nativeLoad;
+            synchronized (gn3Var) {
+                long j = gn3Var.f;
+                gn3Var.f = nativeLoad;
                 if (j != 0) {
-                    if (vl3Var.g > 0) {
-                        vl3Var.h.add(Long.valueOf(j));
+                    if (gn3Var.g > 0) {
+                        gn3Var.h.add(Long.valueOf(j));
                     } else {
                         nativeFree(j);
                     }
                 }
             }
-            Log.d("Dictation", "tinyasr: " + vl3Var.a + " loaded in " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms");
-            gl.d3(new sl3(true, vl3Var, (byte) 1));
+            Log.d("Dictation", "tinyasr: " + gn3Var.a + " loaded in " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms");
+            gm.c3(new dn3(true, gn3Var, (byte) 1));
         } catch (Throwable th) {
             Log.e("Dictation", "tinyasr: load failed", th);
-            vl3Var.i = false;
-            gl.d3(new sl3(false, vl3Var, (byte) 1));
+            gn3Var.i = false;
+            gm.c3(new dn3(false, gn3Var, (byte) 1));
         }
     }
 
@@ -169,43 +169,43 @@ public abstract class DictationAsr {
         return !concurrentHashMap.isEmpty();
     }
 
-    public static vl3 K(String str, xl3 xl3Var, boolean z, boolean z2) {
+    public static gn3 K(String str, in3 in3Var, boolean z, boolean z2) {
         ArrayList arrayList;
-        vl3[] M;
+        gn3[] M;
         ArrayList arrayList2;
         if (z) {
             arrayList = null;
         } else {
-            arrayList = (ArrayList) xl3Var.d;
+            arrayList = (ArrayList) in3Var.d;
         }
-        vl3 vl3Var = (vl3) xl3Var.b;
-        if (vl3Var.c(str) && k(str, vl3Var, arrayList)) {
-            return vl3Var;
+        gn3 gn3Var = (gn3) in3Var.b;
+        if (gn3Var.c(str) && k(str, gn3Var, arrayList)) {
+            return gn3Var;
         }
-        for (vl3 vl3Var2 : M()) {
-            if (vl3Var2.c(str) && y(vl3Var2) && k(str, vl3Var2, arrayList)) {
-                return vl3Var2;
+        for (gn3 gn3Var2 : M()) {
+            if (gn3Var2.c(str) && y(gn3Var2) && k(str, gn3Var2, arrayList)) {
+                return gn3Var2;
             }
         }
-        vl3 L = L(str);
-        if (L == null || (((arrayList2 = (ArrayList) xl3Var.d) == null || !arrayList2.contains(str)) && (!z2 || !k(str, L, arrayList)))) {
+        gn3 L = L(str);
+        if (L == null || (((arrayList2 = (ArrayList) in3Var.d) == null || !arrayList2.contains(str)) && (!z2 || !k(str, L, arrayList)))) {
             return null;
         }
         return L;
     }
 
-    public static vl3 L(String str) {
-        vl3[] M;
-        vl3 vl3Var = null;
-        for (vl3 vl3Var2 : M()) {
-            if (vl3Var2.c(str) && (vl3Var == null || Q(vl3Var2, str) > Q(vl3Var, str))) {
-                vl3Var = vl3Var2;
+    public static gn3 L(String str) {
+        gn3[] M;
+        gn3 gn3Var = null;
+        for (gn3 gn3Var2 : M()) {
+            if (gn3Var2.c(str) && (gn3Var == null || Q(gn3Var2, str) > Q(gn3Var, str))) {
+                gn3Var = gn3Var2;
             }
         }
-        return vl3Var;
+        return gn3Var;
     }
 
-    public static vl3[] M() {
+    public static gn3[] M() {
         if (!c) {
             R();
         }
@@ -228,17 +228,17 @@ public abstract class DictationAsr {
         }
     }
 
-    public static void P(ul3 ul3Var, boolean[] zArr, String str, ArrayList arrayList, boolean z) {
+    public static void P(fn3 fn3Var, boolean[] zArr, String str, ArrayList arrayList, boolean z) {
         int size = arrayList.size();
         int[] iArr = new int[size];
         for (int i2 = 0; i2 < size; i2++) {
             iArr[i2] = ((Integer) arrayList.get(i2)).intValue();
         }
-        gl.d3(new z77(zArr, ul3Var, str, iArr, z, (byte) 9));
+        gm.c3(new aa7(zArr, fn3Var, str, iArr, z, (byte) 9));
     }
 
-    public static int Q(vl3 vl3Var, String str) {
-        String[] d2 = vl3Var.d(str);
+    public static int Q(gn3 gn3Var, String str) {
+        String[] d2 = gn3Var.d(str);
         int length = d2.length;
         int i2 = 0;
         int i3 = 0;
@@ -257,14 +257,14 @@ public abstract class DictationAsr {
     }
 
     public static synchronized void R() {
-        vl3 vl3Var;
+        gn3 gn3Var;
         int i2;
         boolean z;
         int i3;
         String[] strArr;
         synchronized (DictationAsr.class) {
             c = true;
-            vl3[] vl3VarArr = a;
+            gn3[] gn3VarArr = a;
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             File[] listFiles = r().listFiles();
@@ -297,7 +297,7 @@ public abstract class DictationAsr {
                     }
                 }
             }
-            ArrayList a2 = zm3.a();
+            ArrayList a2 = jo3.a();
             if (a2 != null) {
                 int size = a2.size();
                 int i6 = 0;
@@ -317,7 +317,7 @@ public abstract class DictationAsr {
                                 strArr3 = strArr4;
                             }
                         }
-                        j(arrayList, vl3VarArr, strArr3, strArr2, tL_transcriptionModel.document.size);
+                        j(arrayList, gn3VarArr, strArr3, strArr2, tL_transcriptionModel.document.size);
                     }
                     i6 = i7;
                 }
@@ -333,10 +333,10 @@ public abstract class DictationAsr {
                 while (i11 < size4) {
                     Object obj2 = arrayList.get(i11);
                     i11++;
-                    z2 |= Y(((vl3) obj2).c, strArr5);
+                    z2 |= Y(((gn3) obj2).c, strArr5);
                 }
                 if (!z2) {
-                    j(arrayList, vl3VarArr, strArr5, strArr5, new File(r(), N(strArr5) + ".tzf").length());
+                    j(arrayList, gn3VarArr, strArr5, strArr5, new File(r(), N(strArr5) + ".tzf").length());
                 }
                 i9 = i10;
             }
@@ -346,23 +346,23 @@ public abstract class DictationAsr {
                 while (i12 < size5) {
                     Object obj3 = arrayList.get(i12);
                     i12++;
-                    vl3Var = (vl3) obj3;
-                    String[] strArr6 = vl3Var.b;
+                    gn3Var = (gn3) obj3;
+                    String[] strArr6 = gn3Var.b;
                     int length2 = strArr6.length;
                     int i13 = i4;
                     int i14 = i13;
                     while (i13 < length2) {
                         String str = strArr6[i13];
-                        int Q = Q(vl3Var, str);
+                        int Q = Q(gn3Var, str);
                         int size6 = arrayList.size();
                         int i15 = i4;
                         int i16 = i15;
                         while (i16 < size6) {
                             Object obj4 = arrayList.get(i16);
                             i16++;
-                            vl3 vl3Var2 = (vl3) obj4;
-                            if (vl3Var2 != vl3Var) {
-                                i15 = Math.max(i15, Q(vl3Var2, str));
+                            gn3 gn3Var2 = (gn3) obj4;
+                            if (gn3Var2 != gn3Var) {
+                                i15 = Math.max(i15, Q(gn3Var2, str));
                             }
                         }
                         if (i15 >= Q && i15 != 0) {
@@ -384,16 +384,16 @@ public abstract class DictationAsr {
                     while (i17 < size7) {
                         Object obj5 = arrayList.get(i17);
                         i17++;
-                        vl3 vl3Var3 = (vl3) obj5;
-                        if (i14 == 0 && vl3Var3 != vl3Var) {
-                            int length3 = vl3Var3.b.length;
-                            String[] strArr7 = vl3Var.b;
+                        gn3 gn3Var3 = (gn3) obj5;
+                        if (i14 == 0 && gn3Var3 != gn3Var) {
+                            int length3 = gn3Var3.b.length;
+                            String[] strArr7 = gn3Var.b;
                             if (length3 > strArr7.length) {
                                 int length4 = strArr7.length;
                                 boolean z3 = true;
                                 for (int i18 = i4; i18 < length4; i18++) {
                                     String str2 = strArr7[i18];
-                                    if (Q(vl3Var3, str2) >= Q(vl3Var, str2)) {
+                                    if (Q(gn3Var3, str2) >= Q(gn3Var, str2)) {
                                         z = true;
                                     } else {
                                         z = false;
@@ -412,7 +412,7 @@ public abstract class DictationAsr {
                         i4 = 0;
                     }
                 }
-                arrayList.remove(vl3Var);
+                arrayList.remove(gn3Var);
                 i4 = 0;
             }
             LinkedHashSet linkedHashSet = new LinkedHashSet();
@@ -421,21 +421,21 @@ public abstract class DictationAsr {
             while (i19 < size8) {
                 Object obj6 = arrayList.get(i19);
                 i19++;
-                Collections.addAll(linkedHashSet, ((vl3) obj6).b);
+                Collections.addAll(linkedHashSet, ((gn3) obj6).b);
             }
-            a = (vl3[]) arrayList.toArray(new vl3[0]);
+            a = (gn3[]) arrayList.toArray(new gn3[0]);
             b = (String[]) linkedHashSet.toArray(new String[0]);
         }
     }
 
-    public static void S(vl3 vl3Var) {
-        synchronized (vl3Var) {
-            int i2 = vl3Var.g - 1;
-            vl3Var.g = i2;
+    public static void S(gn3 gn3Var) {
+        synchronized (gn3Var) {
+            int i2 = gn3Var.g - 1;
+            gn3Var.g = i2;
             if (i2 > 0) {
                 return;
             }
-            ArrayList arrayList = vl3Var.h;
+            ArrayList arrayList = gn3Var.h;
             int size = arrayList.size();
             int i3 = 0;
             while (i3 < size) {
@@ -443,7 +443,7 @@ public abstract class DictationAsr {
                 i3++;
                 nativeFree(((Long) obj).longValue());
             }
-            vl3Var.h.clear();
+            gn3Var.h.clear();
         }
     }
 
@@ -451,26 +451,26 @@ public abstract class DictationAsr {
         g.remove(runnable);
     }
 
-    public static xl3 U(String str, ArrayList arrayList, ArrayList arrayList2) {
-        vl3[] M;
-        vl3 L = L(str);
+    public static in3 U(String str, ArrayList arrayList, ArrayList arrayList2) {
+        gn3[] M;
+        gn3 L = L(str);
         if (L != null) {
             int i2 = -1;
-            for (vl3 vl3Var : M()) {
-                if (vl3Var.c(str)) {
-                    int Q = (y(vl3Var) ? 1 : 0) + (Q(vl3Var, str) * 1000);
+            for (gn3 gn3Var : M()) {
+                if (gn3Var.c(str)) {
+                    int Q = (y(gn3Var) ? 1 : 0) + (Q(gn3Var, str) * 1000);
                     int size = arrayList.size();
                     int i3 = 0;
                     while (i3 < size) {
                         Object obj = arrayList.get(i3);
                         i3++;
                         String str2 = (String) obj;
-                        if (!str.equals(str2) && vl3Var.c(str2)) {
+                        if (!str.equals(str2) && gn3Var.c(str2)) {
                             Q += 10;
                         }
                     }
                     if (Q > i2) {
-                        L = vl3Var;
+                        L = gn3Var;
                         i2 = Q;
                     }
                 }
@@ -488,10 +488,10 @@ public abstract class DictationAsr {
                 sb.append(str3);
             }
         }
-        return new xl3(L, sb.toString(), arrayList2, (byte) 0);
+        return new in3(L, sb.toString(), arrayList2, (byte) 0);
     }
 
-    public static xl3 V(ArrayList arrayList) {
+    public static in3 V(ArrayList arrayList) {
         String[] G;
         ArrayList arrayList2 = new ArrayList();
         int i2 = 0;
@@ -542,41 +542,41 @@ public abstract class DictationAsr {
                 return U(str4, arrayList2, arrayList2);
             }
         }
-        vl3[] M = M();
+        gn3[] M = M();
         if (M.length == 0) {
-            zm3.j();
+            jo3.j();
             return null;
         }
-        vl3 vl3Var = M[0];
+        gn3 gn3Var = M[0];
         int length = M.length;
         int i5 = 0;
         while (true) {
             if (i5 >= length) {
                 break;
             }
-            vl3 vl3Var2 = M[i5];
-            if (y(vl3Var2)) {
-                vl3Var = vl3Var2;
+            gn3 gn3Var2 = M[i5];
+            if (y(gn3Var2)) {
+                gn3Var = gn3Var2;
                 break;
             }
             i5++;
         }
-        return new xl3(vl3Var, TextUtils.join(",", vl3Var.b), arrayList2, (byte) 0);
+        return new in3(gn3Var, TextUtils.join(",", gn3Var.b), arrayList2, (byte) 0);
     }
 
-    public static xl3 W(String[] strArr, float[] fArr, xl3 xl3Var, boolean z) {
+    public static in3 W(String[] strArr, float[] fArr, in3 in3Var, boolean z) {
         if (strArr != null && fArr != null && strArr.length == fArr.length) {
-            vl3[] M = M();
+            gn3[] M = M();
             if (M.length != 0) {
-                vl3[] vl3VarArr = new vl3[fArr.length];
+                gn3[] gn3VarArr = new gn3[fArr.length];
                 float[] fArr2 = new float[M.length];
                 for (int i2 = 0; i2 < fArr.length; i2++) {
                     if (fArr[i2] >= 0.1f) {
-                        vl3 K = K(strArr[i2], xl3Var, z, false);
-                        vl3VarArr[i2] = K;
+                        gn3 K = K(strArr[i2], in3Var, z, false);
+                        gn3VarArr[i2] = K;
                         if (K != null) {
                             for (int i3 = 0; i3 < M.length; i3++) {
-                                if (M[i3] == vl3VarArr[i2]) {
+                                if (M[i3] == gn3VarArr[i2]) {
                                     fArr2[i3] = fArr2[i3] + fArr[i2];
                                 }
                             }
@@ -590,31 +590,31 @@ public abstract class DictationAsr {
                     }
                 }
                 if (fArr2[i4] != 0.0f) {
-                    vl3 vl3Var = M[i4];
+                    gn3 gn3Var = M[i4];
                     StringBuilder sb = new StringBuilder();
                     int length = fArr.length;
                     Integer[] numArr = new Integer[length];
                     for (int i6 = 0; i6 < length; i6++) {
                         numArr[i6] = Integer.valueOf(i6);
                     }
-                    Arrays.sort(numArr, new ml3(fArr, (byte) 0));
+                    Arrays.sort(numArr, new xm3(fArr, (byte) 0));
                     for (int i7 = 0; i7 < length; i7++) {
                         int intValue = numArr[i7].intValue();
-                        if (fArr[intValue] >= 0.1f && vl3VarArr[intValue] == vl3Var) {
+                        if (fArr[intValue] >= 0.1f && gn3VarArr[intValue] == gn3Var) {
                             if (sb.length() > 0) {
                                 sb.append(',');
                             }
                             sb.append(strArr[intValue]);
                         }
                     }
-                    String u = xl3Var.u();
-                    if (vl3Var.c(u)) {
-                        if (!("," + ((Object) sb) + ",").contains("," + u + ",")) {
+                    String t = in3Var.t();
+                    if (gn3Var.c(t)) {
+                        if (!("," + ((Object) sb) + ",").contains("," + t + ",")) {
                             sb.append(',');
-                            sb.append(u);
+                            sb.append(t);
                         }
                     }
-                    return new xl3(vl3Var, sb.toString(), (ArrayList) xl3Var.d, (byte) 0);
+                    return new in3(gn3Var, sb.toString(), (ArrayList) in3Var.d, (byte) 0);
                 }
                 return null;
             }
@@ -623,12 +623,12 @@ public abstract class DictationAsr {
         return null;
     }
 
-    public static xl3 X(String str, xl3 xl3Var, boolean z) {
-        vl3 K = K(str, xl3Var, z, true);
+    public static in3 X(String str, in3 in3Var, boolean z) {
+        gn3 K = K(str, in3Var, z, true);
         if (K == null) {
             return null;
         }
-        return new xl3(K, str, (ArrayList) xl3Var.d, (byte) 0);
+        return new in3(K, str, (ArrayList) in3Var.d, (byte) 0);
     }
 
     public static boolean Y(String[] strArr, String[] strArr2) {
@@ -646,15 +646,15 @@ public abstract class DictationAsr {
     }
 
     public static void Z(String str) {
-        na7.c1().edit().putBoolean("asr_auto", false).putString("asr_langs", str).apply();
+        oc7.d1().edit().putBoolean("asr_auto", false).putString("asr_langs", str).apply();
     }
 
     public static void a0(boolean z) {
-        na7.c1().edit().putBoolean("asr_auto", z).apply();
+        oc7.d1().edit().putBoolean("asr_auto", z).apply();
     }
 
     public static void b0(String str, String str2) {
-        SharedPreferences.Editor edit = na7.c1().edit();
+        SharedPreferences.Editor edit = oc7.d1().edit();
         edit.putString("asr_variant_" + str, str2).apply();
     }
 
@@ -675,7 +675,7 @@ public abstract class DictationAsr {
         return str;
     }
 
-    public static void d0(float[] fArr, xl3 xl3Var, ul3 ul3Var, boolean[] zArr) {
+    public static void d0(float[] fArr, in3 in3Var, fn3 fn3Var, boolean[] zArr) {
         int i2;
         long nativeFileNew;
         String nativeFileNext;
@@ -683,15 +683,15 @@ public abstract class DictationAsr {
             nativePinFast();
         } catch (Throwable unused) {
         }
-        vl3 vl3Var = (vl3) xl3Var.b;
-        long h2 = h(vl3Var);
+        gn3 gn3Var = (gn3) in3Var.b;
+        long h2 = h(gn3Var);
         long elapsedRealtime = SystemClock.elapsedRealtime();
         int i3 = (h2 > 0L ? 1 : (h2 == 0L ? 0 : -1));
         if (i3 == 0) {
             nativeFileNew = 0;
         } else {
-            String a2 = vl3Var.a((String) xl3Var.c);
-            if (gba.o() == 0) {
+            String a2 = gn3Var.a((String) in3Var.c);
+            if (gda.o() == 0) {
                 i2 = 2;
             } else {
                 i2 = 4;
@@ -700,10 +700,10 @@ public abstract class DictationAsr {
         }
         if (nativeFileNew == 0) {
             if (i3 != 0) {
-                S(vl3Var);
+                S(gn3Var);
             }
             Log.d("Dictation", "tinyasr: can't transcribe");
-            gl.d3(new wc3(zArr, ul3Var, (byte) 16));
+            gm.c3(new rd3(zArr, fn3Var, (byte) 17));
             return;
         }
         StringBuilder sb = new StringBuilder();
@@ -715,26 +715,26 @@ public abstract class DictationAsr {
                 } catch (Exception e2) {
                     Log.e("Dictation", "tinyasr: words " + nativeFileNext, e2);
                 }
-                P(ul3Var, zArr, sb.toString(), arrayList, false);
+                P(fn3Var, zArr, sb.toString(), arrayList, false);
             } catch (Throwable th) {
                 nativeFileFree(nativeFileNew);
-                S(vl3Var);
+                S(gn3Var);
                 throw th;
             }
         }
-        Log.d("Dictation", "tinyasr: file " + xl3Var + " in " + nativeFileLang(nativeFileNew) + ", " + sb.length() + " chars in " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms");
+        Log.d("Dictation", "tinyasr: file " + in3Var + " in " + nativeFileLang(nativeFileNew) + ", " + sb.length() + " chars in " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms");
         nativeFileFree(nativeFileNew);
-        S(vl3Var);
-        P(ul3Var, zArr, sb.toString(), arrayList, true);
+        S(gn3Var);
+        P(fn3Var, zArr, sb.toString(), arrayList, true);
     }
 
-    public static vl3 e0(String str) {
-        vl3[] M;
-        for (vl3 vl3Var : M()) {
-            if (vl3Var.c(str) && y(vl3Var)) {
-                ArrayList a2 = zm3.a();
-                if (zm3.i(zm3.f(a2, vl3Var.c), new File(r(), vl3Var.b())) || zm3.i(zm3.f(a2, "silero-vad"), new File(r(), "silero_vad.onnx"))) {
-                    return vl3Var;
+    public static gn3 e0(String str) {
+        gn3[] M;
+        for (gn3 gn3Var : M()) {
+            if (gn3Var.c(str) && y(gn3Var)) {
+                ArrayList a2 = jo3.a();
+                if (jo3.i(jo3.f(a2, gn3Var.c), new File(r(), gn3Var.b())) || jo3.i(jo3.f(a2, "silero-vad"), new File(r(), "silero_vad.onnx"))) {
+                    return gn3Var;
                 }
             }
         }
@@ -763,13 +763,13 @@ public abstract class DictationAsr {
         return null;
     }
 
-    public static String g0(vl3 vl3Var, String str) {
-        String[] d2 = vl3Var.d(str);
+    public static String g0(gn3 gn3Var, String str) {
+        String[] d2 = gn3Var.d(str);
         if (d2.length == 0) {
             return str;
         }
-        SharedPreferences c1 = na7.c1();
-        String string = c1.getString("asr_variant_" + str, null);
+        SharedPreferences d1 = oc7.d1();
+        String string = d1.getString("asr_variant_" + str, null);
         int length = d2.length;
         for (int i2 = 0; i2 < length; i2++) {
             String str2 = d2[i2];
@@ -780,13 +780,13 @@ public abstract class DictationAsr {
         return d2[0];
     }
 
-    public static long h(vl3 vl3Var) {
+    public static long h(gn3 gn3Var) {
         long j;
-        synchronized (vl3Var) {
-            if (vl3Var.f != 0) {
-                vl3Var.g++;
+        synchronized (gn3Var) {
+            if (gn3Var.f != 0) {
+                gn3Var.g++;
             }
-            j = vl3Var.f;
+            j = gn3Var.f;
         }
         return j;
     }
@@ -810,26 +810,26 @@ public abstract class DictationAsr {
         g.add(runnable);
     }
 
-    public static void i0(vl3 vl3Var, boolean z, wl3 wl3Var) {
-        if (vl3Var.f != 0) {
-            wl3Var.a(true);
-        } else if (!y(vl3Var) && !z && !zm3.b()) {
-            wl3Var.a(false);
+    public static void i0(gn3 gn3Var, boolean z, hn3 hn3Var) {
+        if (gn3Var.f != 0) {
+            hn3Var.a(true);
+        } else if (!y(gn3Var) && !z && !jo3.b()) {
+            hn3Var.a(false);
         } else {
-            vl3Var.l.add(wl3Var);
-            if (y(vl3Var)) {
-                if (vl3Var.i) {
+            gn3Var.l.add(hn3Var);
+            if (y(gn3Var)) {
+                if (gn3Var.i) {
                     return;
                 }
-                vl3Var.i = true;
-                d.execute(new rl3(vl3Var, (byte) 0));
+                gn3Var.i = true;
+                d.execute(new cn3(gn3Var, (byte) 0));
                 return;
             }
-            t(vl3Var, false);
+            t(gn3Var, false);
         }
     }
 
-    public static void j(ArrayList arrayList, vl3[] vl3VarArr, String[] strArr, String[] strArr2, long j) {
+    public static void j(ArrayList arrayList, gn3[] gn3VarArr, String[] strArr, String[] strArr2, long j) {
         String N = N(strArr);
         List<String> asList = Arrays.asList(strArr2);
         LinkedHashSet linkedHashSet = new LinkedHashSet();
@@ -842,24 +842,24 @@ public abstract class DictationAsr {
         while (i2 < size) {
             Object obj = arrayList.get(i2);
             i2++;
-            if (((vl3) obj).a.equals(N)) {
+            if (((gn3) obj).a.equals(N)) {
                 return;
             }
         }
-        for (vl3 vl3Var : vl3VarArr) {
-            if (vl3Var.a.equals(N)) {
+        for (gn3 gn3Var : gn3VarArr) {
+            if (gn3Var.a.equals(N)) {
                 if (j > 0) {
-                    vl3Var.e = j;
+                    gn3Var.e = j;
                 }
-                vl3Var.c = strArr2;
-                arrayList.add(vl3Var);
+                gn3Var.c = strArr2;
+                arrayList.add(gn3Var);
                 return;
             }
         }
-        arrayList.add(new vl3(N, strArr3, strArr2, j));
+        arrayList.add(new gn3(N, strArr3, strArr2, j));
     }
 
-    public static boolean k(String str, vl3 vl3Var, ArrayList arrayList) {
+    public static boolean k(String str, gn3 gn3Var, ArrayList arrayList) {
         if (arrayList != null && !"en".equals(str) && !arrayList.contains(str)) {
             if (x() || !z(str)) {
                 int size = arrayList.size();
@@ -868,7 +868,7 @@ public abstract class DictationAsr {
                     Object obj = arrayList.get(i2);
                     i2++;
                     String str2 = (String) obj;
-                    if (!"en".equals(str2) && vl3Var.c(str2)) {
+                    if (!"en".equals(str2) && gn3Var.c(str2)) {
                         return false;
                     }
                 }
@@ -914,7 +914,7 @@ public abstract class DictationAsr {
     }
 
     public static void n() {
-        gl.d3(new ql3((byte) 0));
+        gm.c3(new bn3((byte) 0));
     }
 
     private static native float[] nativeDecode(String str);
@@ -955,22 +955,22 @@ public abstract class DictationAsr {
         if (z) {
             return str.concat(str2);
         }
-        return tb4.y(str, " ", str2);
+        return kt6.o(str, " ", str2);
     }
 
     public static void p() {
-        vl3[] M;
-        for (vl3 vl3Var : M()) {
-            synchronized (vl3Var) {
-                if (vl3Var.f != 0) {
-                    if (vl3Var.g > 0) {
-                        vl3Var.h.add(Long.valueOf(vl3Var.f));
+        gn3[] M;
+        for (gn3 gn3Var : M()) {
+            synchronized (gn3Var) {
+                if (gn3Var.f != 0) {
+                    if (gn3Var.g > 0) {
+                        gn3Var.h.add(Long.valueOf(gn3Var.f));
                     } else {
-                        nativeFree(vl3Var.f);
+                        nativeFree(gn3Var.f);
                     }
-                    vl3Var.f = 0L;
+                    gn3Var.f = 0L;
                 }
-                vl3Var.i = false;
+                gn3Var.i = false;
             }
         }
         File[] listFiles = r().listFiles();
@@ -983,19 +983,19 @@ public abstract class DictationAsr {
         ExecutorService executorService = DictationLid.a;
         File file2 = new File(context.getApplicationContext().getFilesDir(), "tinylid.bin");
         file2.delete();
-        zm3.g(file2);
-        na7.c1().edit().remove("tinylid_etag").remove("tinylid_checked").apply();
+        jo3.g(file2);
+        oc7.d1().edit().remove("tinylid_etag").remove("tinylid_checked").apply();
         DictationLid.e = false;
-        DictationLid.a.execute(new ql3((byte) 2));
-        SharedPreferences.Editor edit = na7.c1().edit();
-        for (String str : na7.c1().getAll().keySet()) {
+        DictationLid.a.execute(new bn3((byte) 2));
+        SharedPreferences.Editor edit = oc7.d1().edit();
+        for (String str : oc7.d1().getAll().keySet()) {
             if (str.startsWith("tinyasr_etag_") || str.startsWith("tinyasr_checked_")) {
                 edit.remove(str);
             }
         }
         edit.apply();
-        SharedPreferences.Editor edit2 = na7.c1().edit();
-        for (String str2 : na7.c1().getAll().keySet()) {
+        SharedPreferences.Editor edit2 = oc7.d1().edit();
+        for (String str2 : oc7.d1().getAll().keySet()) {
             if (str2.startsWith("speech_doc_")) {
                 edit2.remove(str2);
             }
@@ -1006,37 +1006,37 @@ public abstract class DictationAsr {
         n();
     }
 
-    public static defpackage.xl3 q(float[] r13, defpackage.xl3 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Dictation.DictationAsr.q(float[], xl3):xl3");
+    public static defpackage.in3 q(float[] r13, defpackage.in3 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Dictation.DictationAsr.q(float[], in3):in3");
     }
 
     public static File r() {
         return new File(a.b.getFilesDir(), "tinyasr");
     }
 
-    public static void s(vl3 vl3Var) {
-        if (vl3Var != null && !y(vl3Var)) {
-            t(vl3Var, false);
+    public static void s(gn3 gn3Var) {
+        if (gn3Var != null && !y(gn3Var)) {
+            t(gn3Var, false);
         }
     }
 
-    public static void t(vl3 vl3Var, boolean z) {
+    public static void t(gn3 gn3Var, boolean z) {
         long j;
         long j2;
-        if (vl3Var.j) {
+        if (gn3Var.j) {
             return;
         }
-        vl3Var.j = true;
-        vl3Var.k = 0.0f;
+        gn3Var.j = true;
+        gn3Var.k = 0.0f;
         if (!new File(r(), "silero_vad.onnx").exists()) {
-            TLRPC.TL_transcriptionModel f2 = zm3.f(zm3.a(), "silero-vad");
+            TLRPC.TL_transcriptionModel f2 = jo3.f(jo3.a(), "silero-vad");
             if (f2 != null) {
                 j = f2.document.size;
             } else {
                 j = 0;
             }
             if (j > 0) {
-                TLRPC.TL_transcriptionModel f3 = zm3.f(zm3.a(), "silero-vad");
+                TLRPC.TL_transcriptionModel f3 = jo3.f(jo3.a(), "silero-vad");
                 if (f3 != null) {
                     j2 = f3.document.size;
                 } else {
@@ -1048,21 +1048,21 @@ public abstract class DictationAsr {
             h.putIfAbsent("silero_vad.onnx", new long[]{0, j2});
             n();
         }
-        if (!new File(r(), vl3Var.b()).exists()) {
-            h.putIfAbsent(vl3Var.b(), new long[]{0, vl3Var.e});
+        if (!new File(r(), gn3Var.b()).exists()) {
+            h.putIfAbsent(gn3Var.b(), new long[]{0, gn3Var.e});
             n();
         }
         n();
-        e.execute(new sl3(z, vl3Var, (byte) 0));
+        e.execute(new dn3(z, gn3Var, (byte) 0));
     }
 
-    public static int u(String str, TLRPC.TL_transcriptionModel tL_transcriptionModel, vl3 vl3Var, boolean z) {
+    public static int u(String str, TLRPC.TL_transcriptionModel tL_transcriptionModel, gn3 gn3Var, boolean z) {
         File file = new File(r(), str);
         if (tL_transcriptionModel == null && !file.exists()) {
             Log.d("Dictation", "tinyasr: " + str + " isn't on the server");
         }
         try {
-            return zm3.c(tL_transcriptionModel, file, z, new lt2(str, vl3Var, new long[]{0}, (byte) 7));
+            return jo3.c(tL_transcriptionModel, file, z, new wu2(str, gn3Var, new long[]{0}, (byte) 7));
         } finally {
             I(str);
         }
@@ -1089,27 +1089,27 @@ public abstract class DictationAsr {
     }
 
     public static boolean x() {
-        return na7.c1().getBoolean("asr_auto", true);
+        return oc7.d1().getBoolean("asr_auto", true);
     }
 
-    public static boolean y(vl3 vl3Var) {
-        if (vl3Var != null && new File(r(), vl3Var.b()).exists() && new File(r(), "silero_vad.onnx").exists()) {
+    public static boolean y(gn3 gn3Var) {
+        if (gn3Var != null && new File(r(), gn3Var.b()).exists() && new File(r(), "silero_vad.onnx").exists()) {
             return true;
         }
         return false;
     }
 
     public static boolean z(String str) {
-        vl3[] M;
-        String string = na7.c1().getString("asr_langs", null);
+        gn3[] M;
+        String string = oc7.d1().getString("asr_langs", null);
         if (string == null) {
-            for (vl3 vl3Var : M()) {
-                if (vl3Var.c(str) && y(vl3Var)) {
+            for (gn3 gn3Var : M()) {
+                if (gn3Var.c(str) && y(gn3Var)) {
                     return true;
                 }
             }
             return false;
         }
-        return tb4.y(",", string, ",").contains("," + str + ",");
+        return kt6.o(",", string, ",").contains("," + str + ",");
     }
 }

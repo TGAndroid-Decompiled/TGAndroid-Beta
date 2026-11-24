@@ -1,43 +1,42 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import java.util.HashSet;
-public final class cc9 extends View implements tjb {
-    public final wjb a;
-    public final Paint b;
-    public lk0 c;
+import java.util.concurrent.atomic.AtomicReferenceArray;
+public final class cc9 {
+    private volatile AtomicReferenceArray<Object> array;
 
-    public cc9(Context context, wjb wjbVar) {
-        super(context);
-        this.b = new Paint();
-        this.a = wjbVar;
-        updateColors();
+    public cc9(int i) {
+        this.array = new AtomicReferenceArray<>(i);
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.vl));
+    public final int a() {
+        return this.array.length();
     }
 
-    public lk0 getRow() {
-        return this.c;
+    public final Object b(int i) {
+        AtomicReferenceArray<Object> atomicReferenceArray = this.array;
+        if (i < atomicReferenceArray.length()) {
+            return atomicReferenceArray.get(i);
+        }
+        return null;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, gl.L(6.0f), getMeasuredWidth(), gl.L(6.0f) + 1, this.b);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(6.0f) + 1);
-    }
-
-    @Override
-    public final void updateColors() {
-        this.b.setColor(bkb.v0(bkb.vl, this.a));
+    public final void c(int i, hy2 hy2Var) {
+        AtomicReferenceArray<Object> atomicReferenceArray = this.array;
+        int length = atomicReferenceArray.length();
+        if (i < length) {
+            atomicReferenceArray.set(i, hy2Var);
+            return;
+        }
+        int i2 = i + 1;
+        int i3 = length << 1;
+        if (i2 < i3) {
+            i2 = i3;
+        }
+        AtomicReferenceArray<Object> atomicReferenceArray2 = new AtomicReferenceArray<>(i2);
+        for (int i4 = 0; i4 < length; i4++) {
+            atomicReferenceArray2.set(i4, atomicReferenceArray.get(i4));
+        }
+        atomicReferenceArray2.set(i, hy2Var);
+        this.array = atomicReferenceArray2;
     }
 }

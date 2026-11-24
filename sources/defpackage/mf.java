@@ -1,26 +1,46 @@
 package defpackage;
-public final class mf implements Runnable {
-    public final byte a;
-    public final p8c b;
-    public final long c;
 
-    public mf(p8c p8cVar, long j, byte b) {
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ProfileActivity;
+public final class mf implements View.OnClickListener {
+    public final byte a;
+    public final TLRPC.User b;
+    public final d c;
+    public final AlertDialog$Builder d;
+
+    public mf(TLRPC.User user, d dVar, AlertDialog$Builder alertDialog$Builder, byte b) {
         this.a = b;
-        this.b = p8cVar;
-        this.c = j;
+        this.b = user;
+        this.c = dVar;
+        this.d = alertDialog$Builder;
     }
 
     @Override
-    public final void run() {
+    public final void onClick(View view) {
         byte b = this.a;
-        long j = this.c;
-        p8c p8cVar = this.b;
+        AlertDialog$Builder alertDialog$Builder = this.d;
+        d dVar = this.c;
+        TLRPC.User user = this.b;
         switch (b) {
             case 0:
-                p8cVar.a(Long.valueOf(j));
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", user.id);
+                if (dVar.getMessagesController().A(bundle, dVar, null, null)) {
+                    dVar.presentFragment(new ProfileActivity(bundle, null));
+                }
+                alertDialog$Builder.a.M0.run();
                 return;
             default:
-                p8cVar.a(Long.valueOf(j));
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", user.id);
+                if (dVar.getMessagesController().A(bundle2, dVar, null, null)) {
+                    dVar.presentFragment(new ProfileActivity(bundle2, null));
+                }
+                alertDialog$Builder.a.M0.run();
                 return;
         }
     }

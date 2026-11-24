@@ -1,106 +1,75 @@
 package defpackage;
 
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import android.os.Parcel;
-import android.os.ParcelFileDescriptor;
-import com.google.android.gms.common.api.Status;
-public final class x43 extends Binder implements IInterface {
-    public final byte a = 1;
-    public final Object b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class x43 extends Drawable {
+    public final Drawable a;
+    public final Drawable b;
+    public float c;
+    public float d = 255.0f;
 
-    public x43(ize izeVar) {
-        attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
-        this.b = new Handler(Looper.getMainLooper());
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        byte b = this.a;
-        return this;
-    }
-
-    @Override
-    public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
-        switch (this.a) {
-            case 0:
-                Handler handler = (Handler) this.b;
-                Bundle bundle = null;
-                if (i != 2) {
-                    if (i != 3) {
-                        if (i != 4) {
-                            if (i != 5) {
-                                if (i != 1598968902) {
-                                    return super.onTransact(i, parcel, parcel2, i2);
-                                }
-                                parcel2.writeString("android.support.customtabs.ICustomTabsCallback");
-                                return true;
-                            }
-                            parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                            String readString = parcel.readString();
-                            if (parcel.readInt() != 0) {
-                                bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                            }
-                            handler.post(new sv(this, readString, bundle, (byte) 5));
-                            parcel2.writeNoException();
-                            return true;
-                        }
-                        parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                        if (parcel.readInt() != 0) {
-                            bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                        }
-                        handler.post(new sv(this, bundle, (byte) 4));
-                        parcel2.writeNoException();
-                        return true;
-                    }
-                    parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                    String readString2 = parcel.readString();
-                    if (parcel.readInt() != 0) {
-                        bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                    }
-                    handler.post(new sv(this, readString2, bundle, (byte) 3));
-                    parcel2.writeNoException();
-                    return true;
-                }
-                parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
-                int readInt = parcel.readInt();
-                if (parcel.readInt() != 0) {
-                    bundle = (Bundle) Bundle.CREATOR.createFromParcel(parcel);
-                }
-                handler.post(new sv(this, readInt, bundle));
-                parcel2.writeNoException();
-                return true;
-            default:
-                if (i > 16777215) {
-                    if (super.onTransact(i, parcel, parcel2, i2)) {
-                        return true;
-                    }
-                } else {
-                    parcel.enforceInterface(getInterfaceDescriptor());
-                }
-                if (i != 1) {
-                    if (i != 2) {
-                        if (i != 4) {
-                            return false;
-                        }
-                        w4f w4fVar = (w4f) pgd.a(parcel, w4f.CREATOR);
-                        return true;
-                    }
-                    Status status = (Status) pgd.a(parcel, Status.CREATOR);
-                    ParcelFileDescriptor parcelFileDescriptor = (ParcelFileDescriptor) pgd.a(parcel, ParcelFileDescriptor.CREATOR);
-                    return true;
-                }
-                ((h9f) this.b).a((Status) pgd.a(parcel, Status.CREATOR));
-                return true;
+    public x43(Drawable drawable, Drawable drawable2) {
+        this.a = drawable;
+        this.b = drawable2;
+        if (drawable != null) {
+            drawable.setCallback(new w43(this, (byte) 0));
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(new w43(this, (byte) 1));
         }
     }
 
-    public x43(h9f h9fVar) {
-        attachInterface(this, "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearchCallbacks");
-        this.b = h9fVar;
+    public final void a(float f) {
+        this.c = f;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i = (int) ((1.0f - this.c) * this.d);
+        Drawable drawable = this.a;
+        drawable.setAlpha(i);
+        int i2 = (int) (this.d * this.c);
+        Drawable drawable2 = this.b;
+        drawable2.setAlpha(i2);
+        if (i > 0) {
+            drawable.draw(canvas);
+        }
+        if (i2 > 0) {
+            drawable2.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.a.setBounds(rect);
+        this.b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.d = i;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
     }
 }

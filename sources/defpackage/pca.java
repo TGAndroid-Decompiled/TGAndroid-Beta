@@ -1,65 +1,72 @@
 package defpackage;
 
 import android.content.Context;
-import android.widget.ImageView;
-public final class pca extends iea {
-    public final nfa Q;
+import org.telegram.tgnet.TLRPC;
+public final class pca extends hm3 {
+    public final qca n;
 
-    public pca(nfa nfaVar, Context context) {
-        super(context);
-        this.Q = nfaVar;
+    public pca(qca qcaVar, Context context, int i, ylb ylbVar) {
+        super(i, ylbVar, context, true, true);
+        this.n = qcaVar;
     }
 
     @Override
-    public final void setTranslationX(float f) {
-        iea ieaVar;
-        int i;
-        float translationX = getTranslationX();
-        super.setTranslationX(f);
-        nfa nfaVar = this.Q;
-        iea[] ieaVarArr = nfaVar.n0;
-        if (ieaVarArr[0] == this) {
-            float f2 = translationX - f;
-            qw4 qw4Var = nfaVar.h2;
-            if (qw4Var != null) {
-                float f3 = nfaVar.i2 + f2;
-                nfaVar.i2 = f3;
-                int i2 = (int) f3;
-                if (i2 != 0) {
-                    nfaVar.i2 = f3 - i2;
-                    qw4Var.h(i2, 0);
-                }
-            }
+    public final void t(u69 u69Var, int i) {
+        TLRPC.Chat chat;
+        boolean z;
+        String str;
+        cg5 cg5Var = (cg5) u69Var.a;
+        tca tcaVar = this.n.L;
+        TLRPC.User user = null;
+        if (tcaVar.c2 || tcaVar.d2) {
+            int i2 = cmb.dh;
+            int i3 = cmb.Vg;
+            anb.X(cg5Var.b, i2, null);
+            cg5Var.I = i3;
+            cg5Var.w.b(cmb.A5, i3, cmb.B5);
         }
-        if (nfaVar.j1 && (ieaVar = ieaVarArr[0]) == this) {
-            float abs = Math.abs(ieaVar.getTranslationX()) / ieaVarArr[0].getMeasuredWidth();
-            nfaVar.g1(abs, ieaVarArr[1].F);
-            if (nfaVar.q()) {
-                byte b = nfaVar.A0;
-                if (b == 2) {
-                    nfaVar.r0 = 1.0f - abs;
-                } else if (b == 1) {
-                    nfaVar.r0 = abs;
-                }
-                nfaVar.K1(abs);
-                float U = nfaVar.U(abs);
-                nfaVar.s0 = U;
-                ImageView imageView = nfaVar.u0;
-                if (U != 0.0f && nfaVar.q() && !nfaVar.k0()) {
-                    i = 0;
-                } else {
-                    i = 4;
-                }
-                imageView.setVisibility(i);
+        TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) hs6.d0(tcaVar.a).j1.get(i);
+        TLRPC.Peer peer = tL_topPeer.peer;
+        long j = peer.user_id;
+        if (j != 0) {
+            user = oc7.r1(tcaVar.a).W1(Long.valueOf(tL_topPeer.peer.user_id));
+            chat = null;
+        } else {
+            long j2 = peer.channel_id;
+            if (j2 != 0) {
+                j = -j2;
+                chat = oc7.r1(tcaVar.a).L0(Long.valueOf(tL_topPeer.peer.channel_id));
             } else {
-                nfaVar.r0 = 0.0f;
+                long j3 = peer.chat_id;
+                if (j3 != 0) {
+                    j = -j3;
+                    chat = oc7.r1(tcaVar.a).L0(Long.valueOf(tL_topPeer.peer.chat_id));
+                } else {
+                    chat = null;
+                    j = 0;
+                }
             }
-            nfaVar.G1(false);
         }
-        nfaVar.C();
-        fj3 fj3Var = nfaVar.S0;
-        if (fj3Var != null) {
-            fj3Var.setTranslationY(nfaVar.O1);
+        boolean z2 = false;
+        if (j == cg5Var.getDialogId()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        cg5Var.setTag(Long.valueOf(j));
+        if (user != null) {
+            str = m9c.k(user, true);
+        } else if (chat != null) {
+            str = chat.title;
+        } else {
+            str = "";
+        }
+        cg5Var.a(j, true, str);
+        if (tcaVar.P1.h(j) >= 0) {
+            z2 = true;
+        }
+        if (cg5Var.x) {
+            cg5Var.w.a(z2, z);
         }
     }
 }

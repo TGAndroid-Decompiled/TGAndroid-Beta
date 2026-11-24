@@ -2,7 +2,7 @@ package defpackage;
 
 import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
-public final class w8 extends pm4 {
+public final class w8 extends qo4 {
     public final byte s = 1;
     public final View w;
 
@@ -12,7 +12,7 @@ public final class w8 extends pm4 {
     }
 
     @Override
-    public final vga b() {
+    public final xia b() {
         y8 y8Var;
         byte b = this.s;
         View view = this.w;
@@ -34,14 +34,14 @@ public final class w8 extends pm4 {
 
     @Override
     public final boolean c() {
-        vga b;
+        xia b;
         byte b2 = this.s;
         View view = this.w;
         switch (b2) {
             case 0:
                 ActionMenuItemView actionMenuItemView = (ActionMenuItemView) view;
-                xz6 xz6Var = actionMenuItemView.w;
-                if (xz6Var != null && xz6Var.a(actionMenuItemView.n) && (b = b()) != null && b.a()) {
+                x17 x17Var = actionMenuItemView.w;
+                if (x17Var != null && x17Var.a(actionMenuItemView.n) && (b = b()) != null && b.a()) {
                     return true;
                 }
                 return false;

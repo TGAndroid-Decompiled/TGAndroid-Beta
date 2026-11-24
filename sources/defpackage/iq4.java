@@ -1,3 +1,3 @@
 package defpackage;
-public interface iq4 extends fq4 {
+public final class iq4 extends hq4 {
 }

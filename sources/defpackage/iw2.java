@@ -1,3 +1,3 @@
 package defpackage;
-public interface iw2 {
+public final class iw2 extends d83 {
 }

@@ -1,32 +1,37 @@
 package defpackage;
-public final class v91 implements yr3 {
-    public final byte a;
-    public final da1 b;
 
-    public v91(da1 da1Var, byte b) {
-        this.a = b;
-        this.b = da1Var;
+import android.view.View;
+import java.io.Serializable;
+public final class v91 implements oac, pac, qq7 {
+    public final ia1 a;
+
+    public v91(ia1 ia1Var) {
+        this.a = ia1Var;
     }
 
     @Override
-    public final void a(yla ylaVar, float f, float f2) {
-        float f3;
-        byte b = this.a;
-        da1 da1Var = this.b;
-        switch (b) {
-            case 0:
-                da1Var.F = f / 500.0f;
-                da1Var.fragmentView.invalidate();
-                return;
-            default:
-                if (da1Var.O) {
-                    f3 = f / 500.0f;
-                } else {
-                    f3 = 1.0f - (f / 500.0f);
-                }
-                da1Var.c0 = f3;
-                da1Var.fragmentView.invalidate();
-                return;
+    public final wzc C0(View view, wzc wzcVar) {
+        return this.a.onInsetsInternal(view, wzcVar);
+    }
+
+    @Override
+    public final Object b(c6c c6cVar, View view, Integer num, Float f, Float f2) {
+        boolean z;
+        Object obj = c6cVar.H;
+        if (obj instanceof fa1) {
+            this.a.a0(((fa1) obj).c, (ea1) view);
+            z = true;
+        } else {
+            z = false;
         }
+        return Boolean.valueOf(z);
+    }
+
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        this.a.j0((c6c) obj, (View) obj2);
     }
 }

@@ -1,185 +1,41 @@
 package defpackage;
+public final class cg9 implements Runnable {
+    public final byte a;
+    public final ne9 b;
+    public final int c;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-public abstract class cg9 {
-    public static ArrayList a(int i, ArrayList arrayList) {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            b((TL_iv.PageBlock) obj, linkedHashSet);
-        }
-        ArrayList arrayList2 = new ArrayList(linkedHashSet.size());
-        na7 q1 = na7.q1(i);
-        Iterator it = linkedHashSet.iterator();
-        while (it.hasNext()) {
-            Long l = (Long) it.next();
-            l.getClass();
-            TLRPC.User V1 = q1.V1(l);
-            if (V1 != null) {
-                TLRPC.InputUser o1 = q1.o1(V1);
-                if (!(o1 instanceof TLRPC.TL_inputUserEmpty)) {
-                    arrayList2.add(o1);
-                }
-            }
-        }
-        return arrayList2;
+    public cg9(ne9 ne9Var, int i, byte b) {
+        this.a = b;
+        this.b = ne9Var;
+        this.c = i;
     }
 
-    public static void b(TL_iv.PageBlock pageBlock, LinkedHashSet linkedHashSet) {
-        ArrayList<TL_iv.pageTableCell> arrayList;
-        if (pageBlock != null) {
-            d(pageBlock.text, linkedHashSet);
-            TL_iv.PageCaption pageCaption = pageBlock.caption;
-            if (pageCaption != null) {
-                d(pageCaption.text, linkedHashSet);
-                d(pageCaption.credit, linkedHashSet);
-            }
-            int i = 0;
-            if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
-                ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
-                if (arrayList2 != null) {
-                    int size = arrayList2.size();
-                    while (i < size) {
-                        TL_keyboard.PageButton pageButton = arrayList2.get(i);
-                        i++;
-                        TL_keyboard.PageButton pageButton2 = pageButton;
-                        if (pageButton2 != null) {
-                            TL_keyboard.InlineButtonType inlineButtonType = pageButton2.type;
-                            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                                long j = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-                                if (j != 0) {
-                                    linkedHashSet.add(Long.valueOf(j));
-                                }
-                            }
-                            d(pageButton2.text, linkedHashSet);
-                        }
-                    }
-                }
-            } else if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
-                d(((TL_iv.pageBlockBlockquote) pageBlock).caption, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockPullquote) {
-                d(((TL_iv.pageBlockPullquote) pageBlock).caption, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
-                TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
-                d(pageblockblockquoteblocks.caption, linkedHashSet);
-                c(pageblockblockquoteblocks.blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
-                d(pageblockdetails.title, linkedHashSet);
-                c(pageblockdetails.blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockList) {
-                ArrayList<TL_iv.PageListItem> arrayList3 = ((TL_iv.pageBlockList) pageBlock).items;
-                if (arrayList3 != null) {
-                    int size2 = arrayList3.size();
-                    while (i < size2) {
-                        TL_iv.PageListItem pageListItem = arrayList3.get(i);
-                        i++;
-                        TL_iv.PageListItem pageListItem2 = pageListItem;
-                        if (pageListItem2 instanceof TL_iv.TL_pageListItemText) {
-                            d(((TL_iv.TL_pageListItemText) pageListItem2).text, linkedHashSet);
-                        } else if (pageListItem2 instanceof TL_iv.TL_pageListItemBlocks) {
-                            c(((TL_iv.TL_pageListItemBlocks) pageListItem2).blocks, linkedHashSet);
-                        }
-                    }
-                }
-            } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
-                ArrayList<TL_iv.PageListOrderedItem> arrayList4 = ((TL_iv.pageBlockOrderedList) pageBlock).items;
-                if (arrayList4 != null) {
-                    int size3 = arrayList4.size();
-                    while (i < size3) {
-                        TL_iv.PageListOrderedItem pageListOrderedItem = arrayList4.get(i);
-                        i++;
-                        TL_iv.PageListOrderedItem pageListOrderedItem2 = pageListOrderedItem;
-                        if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemText) {
-                            d(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem2).text, linkedHashSet);
-                        } else if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemBlocks) {
-                            c(((TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem2).blocks, linkedHashSet);
-                        }
-                    }
-                }
-            } else if (pageBlock instanceof TL_iv.pageBlockTable) {
-                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
-                d(pageblocktable.title, linkedHashSet);
-                ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
-                if (arrayList5 != null) {
-                    int size4 = arrayList5.size();
-                    int i2 = 0;
-                    while (i2 < size4) {
-                        TL_iv.pageTableRow pagetablerow = arrayList5.get(i2);
-                        i2++;
-                        TL_iv.pageTableRow pagetablerow2 = pagetablerow;
-                        if (pagetablerow2 != null && (arrayList = pagetablerow2.cells) != null) {
-                            int size5 = arrayList.size();
-                            int i3 = 0;
-                            while (i3 < size5) {
-                                TL_iv.pageTableCell pagetablecell = arrayList.get(i3);
-                                i3++;
-                                TL_iv.pageTableCell pagetablecell2 = pagetablecell;
-                                if (pagetablecell2 != null) {
-                                    d(pagetablecell2.text, linkedHashSet);
-                                }
-                            }
-                        }
-                    }
-                }
-            } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
-                c(((TL_iv.pageBlockCollage) pageBlock).items, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
-                c(((TL_iv.pageBlockSlideshow) pageBlock).items, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockEmbedPost) {
-                c(((TL_iv.pageBlockEmbedPost) pageBlock).blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockCover) {
-                b(((TL_iv.pageBlockCover) pageBlock).cover, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockRelatedArticles) {
-                d(((TL_iv.pageBlockRelatedArticles) pageBlock).title, linkedHashSet);
-            }
-        }
-    }
-
-    public static void c(ArrayList arrayList, LinkedHashSet linkedHashSet) {
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                b((TL_iv.PageBlock) obj, linkedHashSet);
-            }
-        }
-    }
-
-    public static void d(TL_iv.RichText richText, LinkedHashSet linkedHashSet) {
-        if (richText != null) {
-            if (richText instanceof TL_iv.textButton) {
-                TL_keyboard.InlineButtonType inlineButtonType = ((TL_iv.textButton) richText).type;
-                if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                    long j = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-                    if (j != 0) {
-                        linkedHashSet.add(Long.valueOf(j));
-                    }
-                }
-            } else if (richText instanceof TL_iv.textDiff) {
-                d(((TL_iv.textDiff) richText).old_text, linkedHashSet);
-            }
-            d(richText.text, linkedHashSet);
-            ArrayList<TL_iv.RichText> arrayList = richText.texts;
-            if (arrayList != null) {
-                int size = arrayList.size();
-                int i = 0;
-                while (i < size) {
-                    TL_iv.RichText richText2 = arrayList.get(i);
-                    i++;
-                    d(richText2, linkedHashSet);
-                }
-            }
+    @Override
+    public final void run() {
+        byte b = this.a;
+        int i = this.c;
+        ne9 ne9Var = this.b;
+        switch (b) {
+            case 0:
+                ne9Var.O();
+                ne9Var.setSelection(Math.max(0, Math.min(i, ne9Var.length())));
+                return;
+            case 1:
+                ne9Var.O();
+                ne9Var.setSelection(Math.max(0, Math.min(i, ne9Var.length())));
+                return;
+            case 2:
+                ne9Var.O();
+                ne9Var.setSelection(Math.max(0, Math.min(i, ne9Var.length())));
+                return;
+            case 3:
+                ne9Var.O();
+                ne9Var.setSelection(Math.min(i, ne9Var.length()));
+                return;
+            default:
+                ne9Var.O();
+                ne9Var.setSelection(Math.max(0, Math.min(i, ne9Var.length())));
+                return;
         }
     }
 }

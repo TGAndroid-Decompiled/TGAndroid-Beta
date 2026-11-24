@@ -1,23 +1,19 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ytd extends b4 {
-    public static final Parcelable.Creator<ytd> CREATOR = new rpd((byte) 20);
-    public final int a;
-    public final String b;
-
-    public ytd(int i, String str) {
-        this.a = i;
-        this.b = str;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.l(parcel, 3, this.b);
-        jte.s(parcel, r);
+public abstract class ytd {
+    public static int a(int i) {
+        if (i != 0) {
+            if (i != 90) {
+                if (i != 180) {
+                    if (i == 270) {
+                        return 3;
+                    }
+                    u36.j(hg9.j(i, "Invalid rotation: "));
+                    return 0;
+                }
+                return 2;
+            }
+            return 1;
+        }
+        return 0;
     }
 }

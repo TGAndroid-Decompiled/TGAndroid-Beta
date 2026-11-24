@@ -1,3 +1,3 @@
 package defpackage;
-public final class v8f extends uef {
+public abstract class v8f {
 }

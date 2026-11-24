@@ -1,10 +1,7 @@
 package defpackage;
-
-import java.util.LinkedHashMap;
-public final class f15 {
-    public int a;
-    public boolean b;
-    public boolean c;
-    public long d;
-    public Object e = new LinkedHashMap();
+public final class f15 extends cta {
+    @Override
+    public final int b() {
+        return on2.p(cmb.D0(this.P), 200);
+    }
 }

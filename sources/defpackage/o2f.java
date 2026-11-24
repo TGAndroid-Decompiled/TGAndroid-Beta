@@ -1,6 +1,6 @@
 package defpackage;
 public abstract class o2f {
     public static int a(int i) {
-        return (i >>> 1) ^ (-(i & 1));
+        return (int) (Integer.rotateLeft((int) (i * (-862048943)), 15) * 461845907);
     }
 }

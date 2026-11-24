@@ -1,116 +1,134 @@
 package defpackage;
-
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.File;
-import java.io.IOException;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.messenger.a;
 public final class la4 {
-    public co3 a;
-    public final int b;
-    public SQLiteDatabase c;
-    public File d;
-    public File e;
-    public final ConcurrentHashMap f = new ConcurrentHashMap();
-    public final ka4 g = new Object();
-    public boolean h;
+    public final long a;
+    public final long b;
+    public final long c;
+    public final int d;
+    public final String e;
+    public final ja4 f;
+    public String g;
+    public String h;
+    public Integer i;
+    public final int j;
+    public long k;
+    public int l;
 
-    public la4(int i) {
-        this.b = i;
+    public la4(long j, long j2, int i, String str, String str2, String str3, ja4 ja4Var, int i2, long j3) {
+        this.a = j;
+        this.b = j2;
+        this.d = i;
+        this.g = str;
+        this.h = str2;
+        this.e = str3;
+        this.f = ja4Var;
+        this.j = i2;
+        this.c = j3;
     }
 
-    public final void a() {
-        File h = a.h();
-        int i = this.b;
-        if (i != 0) {
-            File file = new File(h, tb4.n(i, "account", "/"));
-            file.mkdirs();
-            h = file;
+    public static la4 a(String str) {
+        Long valueOf;
+        String str2;
+        ja4 ja4Var;
+        String[] split = str.split("\t");
+        Integer num = null;
+        if (split[6].equals("null")) {
+            valueOf = null;
+        } else {
+            valueOf = Long.valueOf(split[6]);
         }
-        File file2 = new File(h, "file_to_path_backup.db");
-        try {
-            gl.E(this.d, file2);
-            fa4.b("file db backup created " + file2.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
+        long parseLong = Long.parseLong(split[0]);
+        long parseLong2 = Long.parseLong(split[1]);
+        int parseInt = Integer.parseInt(split[2]);
+        String str3 = split[3];
+        String str4 = split[4];
+        if (str4.equals("null")) {
+            str2 = null;
+        } else {
+            str2 = str4;
         }
-    }
-
-    public final void b(int r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.la4.b(int, boolean):void");
-    }
-
-    public final void c() {
-        if (!this.h) {
-            if (!gi7.a) {
-                int i = 0;
-                while (!gi7.a) {
-                    try {
-                        Thread.sleep(1000L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    i++;
-                    if (i > 5) {
-                        break;
-                    }
-                }
+        String str5 = split[5];
+        if (valueOf == null && split[8].equals("null")) {
+            ja4Var = null;
+        } else {
+            int parseInt2 = Integer.parseInt(split[7]);
+            String str6 = split[8];
+            if (str6.equals("null")) {
+                str6 = null;
             }
-            b(0, false);
-            this.h = true;
+            ja4Var = new ja4(valueOf, parseInt2, str6);
         }
+        la4 la4Var = new la4(parseLong, parseLong2, parseInt, str3, str2, str5, ja4Var, Integer.parseInt(split[10]), Long.parseLong(split[11]));
+        if (!split[9].equals("null")) {
+            num = Integer.valueOf(split[9]);
+        }
+        la4Var.i = num;
+        la4Var.k = Long.parseLong(split[12]);
+        la4Var.l = Integer.parseInt(split[13]);
+        return la4Var;
     }
 
-    public final void d() {
-        if (this.a == null) {
-            synchronized (this) {
-                if (this.a == null) {
-                    co3 co3Var = new co3("files_database_queue_" + this.b);
-                    this.a = co3Var;
-                    co3Var.setPriority(10);
-                }
-            }
+    public final String b() {
+        ja4 ja4Var;
+        String str;
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.a);
+        sb.append("\t");
+        sb.append(this.b);
+        sb.append("\t");
+        sb.append(this.d);
+        sb.append("\t");
+        sb.append(this.g);
+        sb.append("\t");
+        sb.append(this.h);
+        sb.append("\t");
+        sb.append(this.e);
+        sb.append("\t");
+        if (this.f == null) {
+            str = "null\t0\tnull";
+        } else {
+            str = ja4Var.a + "\t" + ja4Var.b + "\t" + ja4Var.c;
         }
+        sb.append(str);
+        sb.append("\t");
+        sb.append(this.i);
+        sb.append("\t");
+        sb.append(this.j);
+        sb.append("\t");
+        sb.append(this.c);
+        sb.append("\t");
+        sb.append(this.k);
+        sb.append("\t");
+        sb.append(this.l);
+        return sb.toString();
     }
 
-    public final defpackage.ka4 e(java.io.File r11, defpackage.ka4 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.la4.e(java.io.File, ka4):ka4");
-    }
-
-    public final java.lang.String f(final int r22, final int r23, final long r24, boolean r26) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.la4.f(int, int, long, boolean):java.lang.String");
-    }
-
-    public final void g(int i) {
-        if (i == 1) {
-            ir2.y(this.c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
-            ir2.y(this.c, "PRAGMA user_version = 2");
-            i = 2;
+    public final String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.g);
+        String str2 = "";
+        if (this.h == null) {
+            str = "";
+        } else {
+            str = b10.j(new StringBuilder("("), this.h, ")");
         }
-        if (i == 2) {
-            ir2.y(this.c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
-            ir2.y(this.c, "PRAGMA user_version = 3");
-            i = 3;
+        sb.append(str);
+        sb.append(" ");
+        sb.append(-this.a);
+        sb.append(":");
+        sb.append(this.d);
+        sb.append(" ");
+        sb.append(this.e);
+        sb.append(" ");
+        Object obj = this.f;
+        if (obj == null) {
+            obj = "-#0 -";
         }
-        if (i == 3) {
-            ir2.y(this.c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
-            ir2.y(this.c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
-            ir2.y(this.c, "PRAGMA user_version = 4");
-            i = 4;
+        sb.append(obj);
+        if (this.i != null) {
+            str2 = " " + this.i + "ms";
         }
-        if (i != 4 && i != 5 && i != 6) {
-            return;
-        }
-        try {
-            this.c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
-        } catch (Throwable th) {
-            fa4.g(th, true);
-        }
-        ir2.y(this.c, "PRAGMA user_version = 7");
-    }
-
-    public final void h(Runnable runnable) {
-        d();
-        this.a.c(runnable);
+        sb.append(str2);
+        return sb.toString();
     }
 }

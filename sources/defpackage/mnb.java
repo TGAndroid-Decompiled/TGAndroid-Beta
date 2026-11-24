@@ -1,81 +1,91 @@
 package defpackage;
-public final class mnb implements gs4 {
-    public static final mnb a;
-    private static final w4a descriptor;
 
-    static {
-        ?? obj = new Object();
-        a = obj;
-        gd8 gd8Var = new gd8("com.google.firebase.sessions.Time", obj, 3);
-        gd8Var.j("ms", false);
-        gd8Var.j("us", true);
-        gd8Var.j("seconds", true);
-        descriptor = gd8Var;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class mnb implements RequestDelegate {
+    public final byte a;
+    public final rob b;
+
+    public mnb(rob robVar, byte b) {
+        this.a = b;
+        this.b = robVar;
     }
 
     @Override
-    public final cv5[] a() {
-        uf6 uf6Var = uf6.a;
-        return new cv5[]{uf6Var, uf6Var, uf6Var};
-    }
-
-    @Override
-    public final void b(c30 c30Var, Object obj) {
-        onb onbVar = (onb) obj;
-        onbVar.getClass();
-        w4a w4aVar = descriptor;
-        c30 a2 = c30Var.a(w4aVar);
-        long j = onbVar.a;
-        long j2 = onbVar.c;
-        long j3 = onbVar.b;
-        a2.f(w4aVar, 0, j);
-        if (a2.p(w4aVar) || j3 != j * 1000) {
-            a2.f(w4aVar, 1, j3);
-        }
-        if (a2.p(w4aVar) || j2 != j / 1000) {
-            a2.f(w4aVar, 2, j2);
-        }
-        a2.l(w4aVar);
-    }
-
-    @Override
-    public final Object c(igf igfVar) {
-        w4a w4aVar = descriptor;
-        igf a2 = igfVar.a(w4aVar);
-        int i = 0;
-        long j = 0;
-        long j2 = 0;
-        long j3 = 0;
-        boolean z = true;
-        while (z) {
-            int b = a2.b(w4aVar);
-            if (b != -1) {
-                if (b != 0) {
-                    if (b != 1) {
-                        if (b == 2) {
-                            j3 = a2.h(w4aVar, 2);
-                            i |= 4;
-                        } else {
-                            throw new tu5(b);
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        final rob robVar = this.b;
+        switch (b) {
+            case 0:
+                robVar.getClass();
+                gm.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        TLObject tLObject2 = tLObject;
+                        rob robVar2 = robVar;
+                        switch (b2) {
+                            case 0:
+                                robVar2.a1(tLObject2);
+                                return;
+                            default:
+                                robVar2.getClass();
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        robVar2.Y0 = tL_wallPaper;
+                                        robVar2.g1(false);
+                                        robVar2.o1();
+                                        robVar2.W0.add(0, robVar2.Y0);
+                                        pob pobVar = robVar2.S0;
+                                        if (pobVar != null) {
+                                            pobVar.f();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
                         }
-                    } else {
-                        j2 = a2.h(w4aVar, 1);
-                        i |= 2;
                     }
-                } else {
-                    j = a2.h(w4aVar, 0);
-                    i |= 1;
-                }
-            } else {
-                z = false;
-            }
+                });
+                return;
+            default:
+                gm.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        TLObject tLObject2 = tLObject;
+                        rob robVar2 = robVar;
+                        switch (b2) {
+                            case 0:
+                                robVar2.a1(tLObject2);
+                                return;
+                            default:
+                                robVar2.getClass();
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        robVar2.Y0 = tL_wallPaper;
+                                        robVar2.g1(false);
+                                        robVar2.o1();
+                                        robVar2.W0.add(0, robVar2.Y0);
+                                        pob pobVar = robVar2.S0;
+                                        if (pobVar != null) {
+                                            pobVar.f();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        a2.o(w4aVar);
-        return new onb(i, j, j2, j3);
-    }
-
-    @Override
-    public final w4a d() {
-        return descriptor;
     }
 }

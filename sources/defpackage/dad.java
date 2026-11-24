@@ -1,92 +1,50 @@
 package defpackage;
 
-import java.util.AbstractList;
-import java.util.Collection;
-import java.util.List;
-import java.util.RandomAccess;
-public abstract class dad extends AbstractList implements mkd {
-    public boolean a = true;
+import j$.util.Objects;
+public final class dad extends t8d {
+    public static final dad w = new dad(0, new Object[0]);
+    public final transient Object[] r;
+    public final transient int s;
 
-    @Override
-    public final boolean add(Object obj) {
-        h();
-        return super.add(obj);
+    public dad(int i, Object[] objArr) {
+        super((byte) 2);
+        this.r = objArr;
+        this.s = i;
     }
 
     @Override
-    public boolean addAll(int i, Collection collection) {
-        h();
-        return super.addAll(i, collection);
+    public final Object get(int i) {
+        m6f.a(i, this.s);
+        Object obj = this.r[i];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
     @Override
-    public void clear() {
-        h();
-        super.clear();
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof List)) {
-            return false;
-        }
-        if (!(obj instanceof RandomAccess)) {
-            return super.equals(obj);
-        }
-        List list = (List) obj;
-        int size = size();
-        if (size != list.size()) {
-            return false;
-        }
-        for (int i = 0; i < size; i++) {
-            if (!get(i).equals(list.get(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public final void h() {
-        if (this.a) {
-            return;
-        }
-        fvc.b();
-    }
-
-    @Override
-    public final int hashCode() {
-        int size = size();
-        int i = 1;
-        for (int i2 = 0; i2 < size; i2++) {
-            i = (i * 31) + get(i2).hashCode();
-        }
+    public final int p(Object[] objArr) {
+        Object[] objArr2 = this.r;
+        int i = this.s;
+        System.arraycopy(objArr2, 0, objArr, 0, i);
         return i;
     }
 
     @Override
-    public final boolean remove(Object obj) {
-        h();
-        return super.remove(obj);
+    public final int q() {
+        return this.s;
     }
 
     @Override
-    public final boolean removeAll(Collection collection) {
-        h();
-        return super.removeAll(collection);
+    public final int s() {
+        return 0;
     }
 
     @Override
-    public final boolean retainAll(Collection collection) {
-        h();
-        return super.retainAll(collection);
+    public final int size() {
+        return this.s;
     }
 
     @Override
-    public boolean addAll(Collection collection) {
-        h();
-        return super.addAll(collection);
+    public final Object[] v() {
+        return this.r;
     }
 }

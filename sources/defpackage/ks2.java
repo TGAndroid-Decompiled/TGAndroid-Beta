@@ -1,51 +1,34 @@
 package defpackage;
 
-import java.util.concurrent.ExecutorService;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Dictation.DictationAsr;
-import org.telegram.ui.Dictation.DictationLid;
-public final class ks2 implements Runnable {
+import org.telegram.messenger.voip.ConferenceCall;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ks2 implements RequestDelegate {
     public final byte a;
-    public final Runnable b;
+    public final ConferenceCall b;
+    public final long c;
 
-    public ks2(Runnable runnable, byte b) {
+    public ks2(ConferenceCall conferenceCall, long j, byte b) {
         this.a = b;
-        this.b = runnable;
+        this.b = conferenceCall;
+        this.c = j;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        Runnable runnable = this.b;
+        long j = this.c;
+        ConferenceCall conferenceCall = this.b;
         switch (b) {
             case 0:
-                ConnectionsManager.lambda$cancelRequest$9(runnable);
+                conferenceCall.lambda$updateParticipants$11(j, tLObject, tL_error);
                 return;
             case 1:
-                runnable.run();
-                return;
-            case 2:
-                ExecutorService executorService = DictationLid.a;
-                DictationAsr.O();
-                runnable.run();
-                return;
-            case 3:
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 4:
-                gl.r(runnable);
-                gl.d3(runnable);
-                return;
-            case 5:
-                gl.r(runnable);
-                gl.d3(runnable);
+                conferenceCall.lambda$pull_outbound$6(j, tLObject, tL_error);
                 return;
             default:
-                gl.r(runnable);
-                gl.d3(runnable);
+                conferenceCall.lambda$kick$13(j, tLObject, tL_error);
                 return;
         }
     }

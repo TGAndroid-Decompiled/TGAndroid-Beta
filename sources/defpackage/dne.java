@@ -1,19 +1,20 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Build;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 public abstract class dne {
-    public static Parcelable a(Parcelable parcelable, Parcelable.Creator creator) {
-        if (parcelable == null) {
-            return null;
+    public static InputConnection a(InputConnection inputConnection, EditorInfo editorInfo, dq5 dq5Var) {
+        if (editorInfo != null) {
+            if (Build.VERSION.SDK_INT >= 25) {
+                return new bq5(inputConnection, dq5Var);
+            }
+            if (lv3.a(editorInfo).length == 0) {
+                return inputConnection;
+            }
+            return new cq5(inputConnection, dq5Var);
         }
-        Parcel obtain = Parcel.obtain();
-        try {
-            parcelable.writeToParcel(obtain, 0);
-            obtain.setDataPosition(0);
-            return (Parcelable) creator.createFromParcel(obtain);
-        } finally {
-            obtain.recycle();
-        }
+        gxc.d("editorInfo must be non-null");
+        return null;
     }
 }

@@ -1,65 +1,65 @@
 package defpackage;
 
 import java.util.List;
-public final class kb implements j74 {
+public final class kb implements s84 {
     public final int a;
-    public final xu7 d;
-    public final qd1 e;
-    public l74 f;
+    public final yw7 d;
+    public final ye1 e;
+    public u84 f;
     public long g;
     public boolean j;
     public boolean k;
     public boolean l;
     public final lb b = new lb(0, null, "audio/mp4a-latm", true);
-    public final xu7 c = new xu7(2048);
+    public final yw7 c = new yw7(2048);
     public int i = -1;
     public long h = -1;
 
     public kb(int i) {
         this.a = i;
-        xu7 xu7Var = new xu7(10);
-        this.d = xu7Var;
-        byte[] bArr = xu7Var.a;
-        this.e = new qd1(bArr.length, bArr);
+        yw7 yw7Var = new yw7(10);
+        this.d = yw7Var;
+        byte[] bArr = yw7Var.a;
+        this.e = new ye1(bArr.length, bArr);
     }
 
     @Override
-    public final int b(defpackage.k74 r20, defpackage.m11 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kb.b(k74, m11):int");
+    public final int b(defpackage.t84 r20, defpackage.u21 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kb.b(t84, u21):int");
     }
 
     @Override
-    public final boolean c(k74 k74Var) {
-        ja3 ja3Var = (ja3) k74Var;
-        int g = g(ja3Var);
+    public final boolean c(t84 t84Var) {
+        vb3 vb3Var = (vb3) t84Var;
+        int g = g(vb3Var);
         int i = g;
         int i2 = 0;
         int i3 = 0;
         do {
-            xu7 xu7Var = this.d;
-            ja3Var.d(xu7Var.a, 0, 2, false);
-            xu7Var.N(0);
-            if ((xu7Var.H() & 65526) == 65520) {
+            yw7 yw7Var = this.d;
+            vb3Var.d(yw7Var.a, 0, 2, false);
+            yw7Var.N(0);
+            if ((yw7Var.H() & 65526) == 65520) {
                 i2++;
                 if (i2 >= 4 && i3 > 188) {
                     return true;
                 }
-                ja3Var.d(xu7Var.a, 0, 4, false);
-                qd1 qd1Var = this.e;
-                qd1Var.l(14);
-                int f = qd1Var.f(13);
+                vb3Var.d(yw7Var.a, 0, 4, false);
+                ye1 ye1Var = this.e;
+                ye1Var.l(14);
+                int f = ye1Var.f(13);
                 if (f <= 6) {
                     i++;
-                    ja3Var.f = 0;
-                    ja3Var.a(i, false);
+                    vb3Var.f = 0;
+                    vb3Var.a(i, false);
                 } else {
-                    ja3Var.a(f - 6, false);
+                    vb3Var.a(f - 6, false);
                     i3 += f;
                 }
             } else {
                 i++;
-                ja3Var.f = 0;
-                ja3Var.a(i, false);
+                vb3Var.f = 0;
+                vb3Var.a(i, false);
             }
             i2 = 0;
             i3 = 0;
@@ -76,33 +76,33 @@ public final class kb implements j74 {
 
     @Override
     public final List e() {
-        km5 km5Var = mm5.b;
-        return w59.e;
+        ko5 ko5Var = mo5.b;
+        return y79.e;
     }
 
     @Override
-    public final void f(l74 l74Var) {
-        this.f = l74Var;
-        this.b.h(l74Var, new l2c(0, 1));
-        l74Var.B();
+    public final void f(u84 u84Var) {
+        this.f = u84Var;
+        this.b.h(u84Var, new l4c(0, 1));
+        u84Var.B();
     }
 
-    public final int g(ja3 ja3Var) {
+    public final int g(vb3 vb3Var) {
         int i = 0;
         while (true) {
-            xu7 xu7Var = this.d;
-            ja3Var.d(xu7Var.a, 0, 10, false);
-            xu7Var.N(0);
-            if (xu7Var.D() != 4801587) {
+            yw7 yw7Var = this.d;
+            vb3Var.d(yw7Var.a, 0, 10, false);
+            yw7Var.N(0);
+            if (yw7Var.D() != 4801587) {
                 break;
             }
-            xu7Var.O(3);
-            int z = xu7Var.z();
+            yw7Var.O(3);
+            int z = yw7Var.z();
             i += z + 10;
-            ja3Var.a(z, false);
+            vb3Var.a(z, false);
         }
-        ja3Var.f = 0;
-        ja3Var.a(i, false);
+        vb3Var.f = 0;
+        vb3Var.a(i, false);
         if (this.h == -1) {
             this.h = i;
         }
@@ -110,7 +110,7 @@ public final class kb implements j74 {
     }
 
     @Override
-    public final j74 a() {
+    public final s84 a() {
         return this;
     }
 

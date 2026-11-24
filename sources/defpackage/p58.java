@@ -1,110 +1,220 @@
 package defpackage;
+public final class p58 implements m4c {
+    public final rv3 a;
+    public final ye1 b = new ye1(10, new byte[10]);
+    public byte c = 0;
+    public int d;
+    public vqb e;
+    public boolean f;
+    public boolean g;
+    public boolean h;
+    public int i;
+    public int j;
+    public boolean k;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.view.View;
-public final class p58 extends cja {
-    public int m0;
-    public boolean n0;
-    public int o0;
-    public final u58 p0;
-
-    public p58(u58 u58Var, Context context) {
-        super(context, null);
-        this.p0 = u58Var;
+    public p58(rv3 rv3Var) {
+        this.a = rv3Var;
     }
 
     @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.p58.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        rt3 rt3Var;
-        int size = View.MeasureSpec.getSize(i2);
-        int size2 = View.MeasureSpec.getSize(i);
-        boolean O1 = gl.O1();
-        u58 u58Var = this.p0;
-        if (O1) {
-            u58Var.h0 = (byte) 4;
-        } else {
-            Point point = gl.q;
-            if (point.x > point.y) {
-                u58Var.h0 = (byte) 4;
-            } else {
-                u58Var.h0 = (byte) 3;
-            }
-        }
-        this.n0 = true;
-        int L = ((size2 - gl.L(4.0f)) - gl.L(4.0f)) / u58Var.h0;
-        u58Var.S = L;
-        if (this.o0 != L) {
-            this.o0 = L;
-            gl.d3(new oq7(this, (byte) 23));
-        }
-        boolean z = u58Var.Z;
-        q58 q58Var = u58Var.N;
-        if (z) {
-            q58Var.x1(1);
-        } else {
-            q58Var.x1(Math.max(1, ((u58Var.h0 - 1) * gl.L(2.0f)) + (u58Var.S * u58Var.h0)));
-        }
-        this.n0 = false;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int size3 = View.MeasureSpec.getSize(i);
-        int size4 = View.MeasureSpec.getSize(makeMeasureSpec);
-        setMeasuredDimension(size3, size4);
-        int Q = Q();
-        if (gl.L(20.0f) >= 0 && !gl.E && u58Var.e0 != null && u58Var.a0.getParent() == this) {
-            size4 -= u58Var.e0.getEmojiPadding();
-            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size4, 1073741824);
-        }
-        int i3 = size4;
-        int i4 = makeMeasureSpec;
-        if (Q > gl.L(20.0f) && (rt3Var = u58Var.e0) != null) {
-            this.n0 = true;
-            rt3Var.j();
-            this.n0 = false;
-        }
-        rt3 rt3Var2 = u58Var.e0;
-        if (rt3Var2 != null && rt3Var2.e) {
-            u58Var.fragmentView.setTranslationY(0.0f);
-            u58Var.L.setTranslationY(0.0f);
-            u58Var.O.setTranslationY(0.0f);
-        }
-        int childCount = getChildCount();
-        for (int i5 = 0; i5 < childCount; i5++) {
-            View childAt = getChildAt(i5);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                rt3 rt3Var3 = u58Var.e0;
-                if (rt3Var3 != null && rt3Var3.l(childAt)) {
-                    if (!gl.E && !gl.O1()) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                    } else if (gl.O1()) {
-                        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
-                        if (gl.O1()) {
-                            f = 200.0f;
-                        } else {
-                            f = 320.0f;
+    public final void a(int i, yw7 yw7Var) {
+        int i2;
+        byte b;
+        byte b2;
+        int i3;
+        long j;
+        this.e.getClass();
+        int i4 = i & 1;
+        int i5 = -1;
+        byte b3 = 2;
+        int i6 = 0;
+        byte b4 = 3;
+        rv3 rv3Var = this.a;
+        if (i4 != 0) {
+            byte b5 = this.c;
+            if (b5 != 0 && b5 != 1) {
+                if (b5 != 2) {
+                    if (b5 == 3) {
+                        if (this.j != -1) {
+                            ncd.f("PesReader", "Unexpected start indicator: expected " + this.j + " more bytes");
                         }
-                        childAt.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(Math.min(gl.L(f), getPaddingTop() + (i3 - gl.m)), 1073741824));
+                        rv3Var.e();
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (i3 - gl.m), 1073741824));
+                        rjb.h();
+                        return;
                     }
                 } else {
-                    measureChildWithMargins(childAt, i, 0, i4, 0);
+                    ncd.f("PesReader", "Unexpected start indicator reading extended header");
                 }
             }
+            if (yw7Var.c == 0) {
+                rv3Var.f();
+            }
+            this.c = (byte) 1;
+            this.d = 0;
+        }
+        int i7 = i;
+        while (yw7Var.a() > 0) {
+            byte b6 = this.c;
+            if (b6 != 0) {
+                ye1 ye1Var = this.b;
+                if (b6 != 1) {
+                    if (b6 != b3) {
+                        if (b6 == b4) {
+                            int a = yw7Var.a();
+                            int i8 = this.j;
+                            if (i8 == i5) {
+                                i3 = i6;
+                            } else {
+                                i3 = a - i8;
+                            }
+                            if (i3 > 0) {
+                                a -= i3;
+                                yw7Var.M(yw7Var.b + a);
+                            }
+                            rv3Var.b(yw7Var);
+                            int i9 = this.j;
+                            if (i9 != i5) {
+                                int i10 = i9 - a;
+                                this.j = i10;
+                                if (i10 == 0) {
+                                    rv3Var.e();
+                                    this.c = (byte) 1;
+                                    this.d = i6;
+                                }
+                            }
+                            i2 = i6;
+                            b = b4;
+                        } else {
+                            rjb.h();
+                            return;
+                        }
+                    } else {
+                        if (b(yw7Var, ye1Var.b, Math.min(10, this.i)) && b(yw7Var, null, this.i)) {
+                            ye1Var.l(i6);
+                            int i11 = 4;
+                            if (this.f) {
+                                ye1Var.n(4);
+                                ye1Var.n(1);
+                                ye1Var.n(1);
+                                long f = (ye1Var.f(b4) << 30) | (ye1Var.f(15) << 15) | ye1Var.f(15);
+                                ye1Var.n(1);
+                                if (!this.h && this.g) {
+                                    ye1Var.n(4);
+                                    ye1Var.n(1);
+                                    ye1Var.n(1);
+                                    ye1Var.n(1);
+                                    this.e.b((ye1Var.f(b4) << 30) | (ye1Var.f(15) << 15) | ye1Var.f(15));
+                                    this.h = true;
+                                }
+                                j = this.e.b(f);
+                            } else {
+                                j = -9223372036854775807L;
+                            }
+                            if (!this.k) {
+                                i11 = 0;
+                            }
+                            i7 |= i11;
+                            rv3Var.g(i7, j);
+                            this.c = (byte) 3;
+                            this.d = 0;
+                            b4 = 3;
+                            i5 = -1;
+                            b3 = 2;
+                            i6 = 0;
+                        } else {
+                            b = b4;
+                            i2 = i6;
+                        }
+                    }
+                } else {
+                    b = b4;
+                    if (b(yw7Var, ye1Var.b, 9)) {
+                        if (e()) {
+                            b2 = 2;
+                        } else {
+                            b2 = 0;
+                        }
+                        this.c = b2;
+                        i2 = 0;
+                        this.d = 0;
+                    } else {
+                        i2 = 0;
+                    }
+                }
+            } else {
+                i2 = i6;
+                b = b4;
+                yw7Var.O(yw7Var.a());
+            }
+            b4 = b;
+            i6 = i2;
+            i5 = -1;
+            b3 = 2;
         }
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.n0) {
-            return;
+    public final boolean b(yw7 yw7Var, byte[] bArr, int i) {
+        int min = Math.min(yw7Var.a(), i - this.d);
+        if (min <= 0) {
+            return true;
         }
-        super.requestLayout();
+        if (bArr == null) {
+            yw7Var.O(min);
+        } else {
+            yw7Var.k(this.d, min, bArr);
+        }
+        int i2 = this.d + min;
+        this.d = i2;
+        if (i2 == i) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(vqb vqbVar, u84 u84Var, l4c l4cVar) {
+        this.e = vqbVar;
+        this.a.h(u84Var, l4cVar);
+    }
+
+    @Override
+    public final void d() {
+        this.c = (byte) 0;
+        this.d = 0;
+        this.h = false;
+        this.a.d();
+    }
+
+    public final boolean e() {
+        ye1 ye1Var = this.b;
+        ye1Var.l(0);
+        int f = ye1Var.f(24);
+        if (f != 1) {
+            b10.o(f, "Unexpected start code prefix: ", "PesReader");
+            this.j = -1;
+            return false;
+        }
+        ye1Var.n(8);
+        int f2 = ye1Var.f(16);
+        ye1Var.n(5);
+        this.k = ye1Var.e();
+        ye1Var.n(2);
+        this.f = ye1Var.e();
+        this.g = ye1Var.e();
+        ye1Var.n(6);
+        int f3 = ye1Var.f(8);
+        this.i = f3;
+        if (f2 == 0) {
+            this.j = -1;
+            return true;
+        }
+        int i = (f2 - 3) - f3;
+        this.j = i;
+        if (i < 0) {
+            ncd.f("PesReader", "Found negative packet payload size: " + this.j);
+            this.j = -1;
+        }
+        return true;
     }
 }

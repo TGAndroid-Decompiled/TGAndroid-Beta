@@ -1,5 +1,4 @@
 package defpackage;
-public final class rr9 {
-    public String a;
-    public nu2 b;
+public final class rr9 extends sr9 {
+    public long d;
 }

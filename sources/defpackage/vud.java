@@ -1,16 +1,12 @@
 package defpackage;
-public interface vud {
-    Object a();
+public final class vud {
+    public final lud a;
+    public final Integer b;
+    public final f5f c;
 
-    void b(Object obj);
-
-    void c(Object obj, byte[] bArr, int i, int i2, sad sadVar);
-
-    void d(vid vidVar, vid vidVar2);
-
-    int e(vid vidVar);
-
-    boolean f(vid vidVar, vid vidVar2);
-
-    boolean g(Object obj);
+    public vud(uqd uqdVar) {
+        this.a = (lud) uqdVar.b;
+        this.b = (Integer) uqdVar.c;
+        this.c = (f5f) uqdVar.d;
+    }
 }

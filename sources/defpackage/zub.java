@@ -1,24 +1,46 @@
 package defpackage;
 
-import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class zub extends jr5 {
-    public final long u2;
-    public final bvb v2;
+public final class zub extends q59 {
+    public final ArrayList c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public yub e;
+    public int f;
+    public final avb h;
 
-    public zub(bvb bvbVar, Context context, int i, vf6 vf6Var, long j, d dVar, long j2) {
-        super(context, i, vf6Var, j, dVar, null);
-        this.v2 = bvbVar;
-        this.u2 = j2;
+    public zub(avb avbVar) {
+        this.h = avbVar;
     }
 
     @Override
-    public final boolean M0() {
-        TLRPC.Chat K0 = this.v2.b.getMessagesController().K0(Long.valueOf(this.u2));
-        if (K0 != null && hc2.y(3, K0)) {
-            return true;
+    public final boolean D(u69 u69Var) {
+        return true;
+    }
+
+    @Override
+    public final int b() {
+        return this.c.size();
+    }
+
+    @Override
+    public final void t(u69 u69Var, int i) {
+        ArrayList arrayList = this.c;
+        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i);
+        String str = (String) this.d.get(i);
+        xc5 xc5Var = (xc5) u69Var.a;
+        String str2 = chat.title;
+        boolean z = true;
+        if (i == arrayList.size() - 1) {
+            z = false;
         }
-        return false;
+        xc5Var.e(chat, str2, str, z);
+        xc5Var.c(this.h.x.contains(Long.valueOf(chat.id)), false);
+    }
+
+    @Override
+    public final u69 x(ViewGroup viewGroup, int i) {
+        return new u69(new xc5(viewGroup.getContext(), 1, 0, false));
     }
 }

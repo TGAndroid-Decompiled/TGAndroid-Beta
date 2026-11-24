@@ -1,97 +1,50 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.widget.HeaderViewListAdapter;
-import android.widget.ListAdapter;
-import androidx.appcompat.view.menu.ListMenuItemView;
-public final class p07 extends er3 {
-    public final byte E;
-    public b07 F;
-    public c07 G;
-    public final byte y;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class p07 implements RequestDelegate {
+    public final byte a = 1;
+    public final boolean b;
+    public final boolean c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
 
-    public p07(Context context, boolean z) {
-        super(context, z);
-        if (1 == o07.a(context.getResources().getConfiguration())) {
-            this.y = (byte) 21;
-            this.E = (byte) 22;
-            return;
-        }
-        this.y = (byte) 22;
-        this.E = (byte) 21;
+    public p07(x07 x07Var, boolean z, o07 o07Var, String str, boolean z2) {
+        this.d = x07Var;
+        this.b = z;
+        this.e = o07Var;
+        this.f = str;
+        this.c = z2;
     }
 
     @Override
-    public final boolean onHoverEvent(MotionEvent motionEvent) {
-        vz6 vz6Var;
-        int i;
-        c07 c07Var;
-        int pointToPosition;
-        int i2;
-        if (this.F != null) {
-            ListAdapter adapter = getAdapter();
-            if (adapter instanceof HeaderViewListAdapter) {
-                HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter;
-                i = headerViewListAdapter.getHeadersCount();
-                vz6Var = (vz6) headerViewListAdapter.getWrappedAdapter();
-            } else {
-                vz6Var = (vz6) adapter;
-                i = 0;
-            }
-            if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i2 = pointToPosition - i) >= 0 && i2 < vz6Var.getCount()) {
-                c07Var = vz6Var.getItem(i2);
-            } else {
-                c07Var = null;
-            }
-            c07 c07Var2 = this.G;
-            if (c07Var2 != c07Var) {
-                yz6 yz6Var = vz6Var.a;
-                if (c07Var2 != null) {
-                    this.F.i(yz6Var, c07Var2);
-                }
-                this.G = c07Var;
-                if (c07Var != null) {
-                    this.F.q(yz6Var, c07Var);
-                }
-            }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        Object obj = this.f;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        switch (b) {
+            case 0:
+                x07 x07Var = (x07) obj3;
+                x07Var.getClass();
+                gm.c3(new zq6(x07Var, this.b, (o07) obj2, (String) obj, tL_error, tLObject, this.c));
+                return;
+            default:
+                wsa wsaVar = (wsa) obj3;
+                wsaVar.getClass();
+                gm.c3(new zq6(wsaVar, tLObject, this.b, (TLRPC.Document) obj2, this.c, tL_error, (TL_stars.saveStarGift) obj));
+                return;
         }
-        return super.onHoverEvent(motionEvent);
     }
 
-    @Override
-    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
-        vz6 vz6Var;
-        ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null) {
-            if (i == this.y) {
-                if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
-                    performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
-                }
-                return true;
-            } else if (i == this.E) {
-                setSelection(-1);
-                ListAdapter adapter = getAdapter();
-                if (adapter instanceof HeaderViewListAdapter) {
-                    vz6Var = (vz6) ((HeaderViewListAdapter) adapter).getWrappedAdapter();
-                } else {
-                    vz6Var = (vz6) adapter;
-                }
-                vz6Var.a.c(false);
-                return true;
-            }
-        }
-        return super.onKeyDown(i, keyEvent);
-    }
-
-    public void setHoverListener(b07 b07Var) {
-        this.F = b07Var;
-    }
-
-    @Override
-    public void setSelector(Drawable drawable) {
-        super.setSelector(drawable);
+    public p07(wsa wsaVar, boolean z, TLRPC.Document document, boolean z2, TL_stars.saveStarGift savestargift) {
+        this.d = wsaVar;
+        this.b = z;
+        this.e = document;
+        this.c = z2;
+        this.f = savestargift;
     }
 }

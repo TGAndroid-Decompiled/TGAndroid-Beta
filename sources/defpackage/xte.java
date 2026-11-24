@@ -1,17 +1,19 @@
 package defpackage;
-public final class xte implements zn7 {
-    public static final xte a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.util.Base64;
+import java.util.LinkedHashMap;
+import org.json.JSONException;
+import org.json.JSONObject;
+public abstract class xte {
+    public static byte[] a(JSONObject jSONObject) {
+        LinkedHashMap linkedHashMap = mw8.a;
+        String optString = jSONObject.optString("challenge", "");
+        optString.getClass();
+        if (optString.length() != 0) {
+            byte[] decode = Base64.decode(optString, 11);
+            decode.getClass();
+            return decode;
         }
-        throw new ClassCastException();
+        throw new JSONException("Challenge not found in request or is unexpectedly empty");
     }
 }

@@ -1,194 +1,112 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-public final class bpc extends d {
-    public final ArrayList a;
-    public ScrollView b;
-    public ImageView c;
-    public LinearLayout d;
-    public u41 e;
-    public Runnable f;
-    public boolean h;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.a;
+public final class bpc extends Drawable {
+    public static float[] k;
+    public static Bitmap l;
+    public static Bitmap m;
+    public final int b;
+    public final int c;
+    public final Drawable d;
+    public float f;
+    public float g;
+    public static final float[] j = {0.2126f, 0.7152f, 0.0722f};
+    public static final int[] n = new int[2];
+    public static final int[] o = new int[2];
+    public final Paint a = new Paint(3);
+    public float e = -1.0f;
+    public int h = 255;
+    public float i = 1.0f;
 
-    public bpc() {
-        super(null);
-        this.a = new ArrayList();
-    }
-
-    public final void Y() {
-        ArrayList arrayList = this.a;
-        if (arrayList.size() != 12 && arrayList.size() != 24) {
+    public bpc(int i, int i2) {
+        this.b = i;
+        this.c = i2;
+        Drawable d = b10.d(a.b, 2131232827);
+        this.d = d;
+        if (l != null) {
             return;
         }
-        fqc fqcVar = new fqc(arrayList, new kbc(this, (byte) 26));
-        fqcVar.setCurrentAccount(this.currentAccount);
-        presentFragment(fqcVar);
+        Bitmap createBitmap = Bitmap.createBitmap(84, 84, Bitmap.Config.ARGB_8888);
+        d.setBounds(0, 0, 84, 84);
+        d.draw(new Canvas(createBitmap));
+        Paint paint = new Paint();
+        BlurMaskFilter.Blur blur = BlurMaskFilter.Blur.NORMAL;
+        paint.setMaskFilter(new BlurMaskFilter(15.0f, blur));
+        l = createBitmap.extractAlpha(paint, n);
+        paint.setMaskFilter(new BlurMaskFilter(4.5f, blur));
+        m = createBitmap.extractAlpha(paint, o);
+        createBitmap.recycle();
     }
 
-    public final void Z() {
-        LinearLayout linearLayout = this.d;
-        if (linearLayout != null) {
-            linearLayout.removeAllViews();
-            Context context = this.d.getContext();
-            ArrayList arrayList = this.a;
-            boolean z = true;
-            int size = (arrayList.size() + 1) / 2;
-            this.d.addView(toc.i0(0, size, this.resourceProvider, context, arrayList), nme.p(0, -2, 1.0f, 48));
-            this.d.addView(new View(context), nme.o(10, 0));
-            this.d.addView(toc.i0(size, arrayList.size(), this.resourceProvider, context, arrayList), nme.p(0, -2, 1.0f, 48));
-            u41 u41Var = this.e;
-            if (u41Var != null) {
-                if (arrayList.size() != 12 && arrayList.size() != 24) {
-                    z = false;
-                }
-                u41Var.setEnabled(z);
+    public static float[] a(float f, float f2, float f3) {
+        float max = Math.max(f, Math.max(f2, f3));
+        float min = max - Math.min(f, Math.min(f2, f3));
+        float f4 = 0.55f * max;
+        if (min > f4) {
+            float f5 = f4 / min;
+            f = td4.A(f, max, f5, max);
+            f2 = td4.A(f2, max, f5, max);
+            f3 = td4.A(f3, max, f5, max);
+        }
+        return new float[]{f, f2, f3};
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.h > 0 && this.e >= 0.0f) {
+            Rect bounds = getBounds();
+            if (this.i > 0.0f) {
+                float width = bounds.width() / 84.0f;
+                canvas.save();
+                canvas.translate(bounds.left, bounds.top);
+                canvas.scale(width, bounds.height() / 84.0f);
+                Paint paint = this.a;
+                paint.setColor(-16777216);
+                paint.setAlpha((int) (this.h * 0.35f * this.i));
+                Bitmap bitmap = l;
+                int[] iArr = n;
+                canvas.drawBitmap(bitmap, iArr[0], (gm.L(1.0f) / width) + iArr[1], paint);
+                paint.setAlpha((int) (this.h * 0.55f * this.i));
+                Bitmap bitmap2 = m;
+                int[] iArr2 = o;
+                canvas.drawBitmap(bitmap2, iArr2[0], iArr2[1], paint);
+                canvas.restore();
             }
+            Drawable drawable = this.d;
+            drawable.setBounds(bounds);
+            drawable.setAlpha(this.h);
+            drawable.draw(canvas);
         }
     }
 
     @Override
-    public final View createView(Context context) {
-        int i;
-        int i2;
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setOccupyStatusBar(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        zkb.h(bkb.c6, this.resourceProvider, frameLayout);
-        this.fragmentView = frameLayout;
-        ScrollView scrollView = new ScrollView(context);
-        this.b = scrollView;
-        scrollView.setFillViewport(true);
-        this.b.setVerticalScrollBarEnabled(false);
-        this.b.setClipToPadding(false);
-        this.b.setPadding(0, gl.L(96.0f), 0, 0);
-        frameLayout.addView(this.b, nme.c(-1.0f, -1));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(gl.L(36.0f), 0, gl.L(36.0f), gl.L(24.0f));
-        linearLayout.setClipToPadding(false);
-        this.b.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
-        ImageView imageView = new ImageView(context);
-        this.c = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        ImageView imageView2 = this.c;
-        int i3 = bkb.F6;
-        zkb.s(imageView2, i3, this.resourceProvider, PorterDuff.Mode.SRC_IN);
-        this.c.setImageResource(2131231244);
-        ImageView imageView3 = this.c;
-        int i4 = bkb.h6;
-        zkb.R(imageView3, bkb.f0(bkb.v0(i4, this.resourceProvider), 3, -1), null, zkb.M(i4), this.resourceProvider);
-        this.c.setOnClickListener(new View.OnClickListener(this) {
-            public final bpc b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                byte b = r2;
-                bpc bpcVar = this.b;
-                switch (b) {
-                    case 0:
-                        bpcVar.finishFragment();
-                        return;
-                    default:
-                        bpcVar.Y();
-                        return;
-                }
-            }
-        });
-        frameLayout.addView(this.c, nme.d(48, 48.0f, 51, 4.0f, 12.0f, 0.0f, 0.0f));
-        be0 be0Var = new be0(context);
-        be0Var.setAspectFit(true);
-        be0Var.getImageReceiver().d = gl.t0();
-        hq6.d0(gl.t0()).e2(be0Var, "RestrictedEmoji", "📝", "100_100");
-        be0Var.getImageReceiver().N(1);
-        linearLayout.addView(be0Var, nme.t(100, 100, 1, 0, 0, 0, 12));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(gl.o());
-        textView.setGravity(1);
-        zkb.X(textView, i3, this.resourceProvider);
-        if (this.h) {
-            i = 2131742903;
-        } else {
-            i = 2131742826;
-        }
-        textView.setText(k96.M0(i, null));
-        TextView m = ug8.m(linearLayout, textView, nme.t(-1, -2, 1, 32, 0, 32, 10), context);
-        m.setTextSize(1, 14.0f);
-        m.setGravity(1);
-        zkb.X(m, bkb.y6, this.resourceProvider);
-        if (this.h) {
-            i2 = 2131742902;
-        } else {
-            i2 = 2131742825;
-        }
-        m.setText(k96.M0(i2, null));
-        linearLayout.addView(m, nme.t(-1, -2, 1, 32, 0, 32, 8));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        this.d = linearLayout2;
-        linearLayout2.setOrientation(0);
-        this.d.setGravity(1);
-        linearLayout.addView(this.d, nme.t(-1, -2, 1, 4, 24, 4, 0));
-        linearLayout.addView(new View(context), nme.l(1.0f, -1, 0));
-        u41 u41Var = new u41(this.resourceProvider, context, true);
-        this.e = u41Var;
-        u41Var.f();
-        this.e.setText(k96.M0(2131742911, null));
-        this.e.setOnClickListener(new View.OnClickListener(this) {
-            public final bpc b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                byte b = r2;
-                bpc bpcVar = this.b;
-                switch (b) {
-                    case 0:
-                        bpcVar.finishFragment();
-                        return;
-                    default:
-                        bpcVar.Y();
-                        return;
-                }
-            }
-        });
-        linearLayout.addView(this.e, nme.t(-1, 48, 1, 0, 24, 0, 0));
-        Z();
-        return this.fragmentView;
+    public final int getIntrinsicHeight() {
+        return this.c;
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
+    public final int getIntrinsicWidth() {
+        return this.b;
     }
 
     @Override
-    public final void onInsets(int i, int i2, int i3, int i4) {
-        ScrollView scrollView = this.b;
-        if (scrollView != null) {
-            scrollView.setPadding(i, gl.L(96.0f) + i2, i3, i4);
-        }
-        ImageView imageView = this.c;
-        if (imageView != null) {
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imageView.getLayoutParams();
-            layoutParams.leftMargin = gl.L(4.0f) + i;
-            layoutParams.topMargin = gl.L(12.0f) + i2;
-            this.c.setLayoutParams(layoutParams);
-        }
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.h = i;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

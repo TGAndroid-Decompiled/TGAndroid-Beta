@@ -1,37 +1,14 @@
 package defpackage;
-public final class oqe extends c2e {
-    private static final oqe zzb;
-    private int zzd;
-    private int zze;
-
-    static {
-        ?? c2eVar = new c2e();
-        zzb = c2eVar;
-        c2e.k(oqe.class, c2eVar);
+public abstract class oqe {
+    public static float a(float f, float f2, float f3, float f4) {
+        double d = f - f3;
+        double d2 = f2 - f4;
+        return (float) Math.sqrt((d2 * d2) + (d * d));
     }
 
-    public static oqe n() {
-        return zzb;
-    }
-
-    @Override
-    public final Object d(int i) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 == 5) {
-                            return zzb;
-                        }
-                        throw null;
-                    }
-                    return new e0e(zzb);
-                }
-                return new c2e();
-            }
-            return new vae(zzb, "\u0004\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001᠌\u0000", new Object[]{"zzd", "zze", yqd.i});
-        }
-        return (byte) 1;
+    public static float b(int i, int i2, int i3, int i4) {
+        double d = i - i3;
+        double d2 = i2 - i4;
+        return (float) Math.sqrt((d2 * d2) + (d * d));
     }
 }

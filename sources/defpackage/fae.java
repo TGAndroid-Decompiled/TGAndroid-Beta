@@ -1,77 +1,162 @@
 package defpackage;
+public final class fae implements cq7 {
+    public static final fae a = new Object();
+    public static final wa4 b = new wa4("systemInfo", b10.m(mlb.r(mmd.class, new eld(1))));
+    public static final wa4 c = new wa4("eventName", b10.m(mlb.r(mmd.class, new eld(2))));
+    public static final wa4 d = new wa4("isThickClient", b10.m(mlb.r(mmd.class, new eld(37))));
+    public static final wa4 e = new wa4("clientType", b10.m(mlb.r(mmd.class, new eld(61))));
+    public static final wa4 f = new wa4("modelDownloadLogEvent", b10.m(mlb.r(mmd.class, new eld(3))));
+    public static final wa4 g = new wa4("customModelLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(20))));
+    public static final wa4 h = new wa4("customModelInferenceLogEvent", b10.m(mlb.r(mmd.class, new eld(4))));
+    public static final wa4 i = new wa4("customModelCreateLogEvent", b10.m(mlb.r(mmd.class, new eld(29))));
+    public static final wa4 j = new wa4("onDeviceFaceDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(5))));
+    public static final wa4 k = new wa4("onDeviceFaceLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(59))));
+    public static final wa4 l = new wa4("onDeviceTextDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(6))));
+    public static final wa4 m = new wa4("onDeviceTextDetectionLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(79))));
+    public static final wa4 n = new wa4("onDeviceBarcodeDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(7))));
+    public static final wa4 o = new wa4("onDeviceBarcodeLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(58))));
+    public static final wa4 p = new wa4("onDeviceImageLabelCreateLogEvent", b10.m(mlb.r(mmd.class, new eld(48))));
+    public static final wa4 q = new wa4("onDeviceImageLabelLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(49))));
+    public static final wa4 r = new wa4("onDeviceImageLabelDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(18))));
+    public static final wa4 s = new wa4("onDeviceObjectCreateLogEvent", b10.m(mlb.r(mmd.class, new eld(26))));
+    public static final wa4 t = new wa4("onDeviceObjectLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(27))));
+    public static final wa4 u = new wa4("onDeviceObjectInferenceLogEvent", b10.m(mlb.r(mmd.class, new eld(28))));
+    public static final wa4 v = new wa4("onDevicePoseDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(44))));
+    public static final wa4 w = new wa4("onDeviceSegmentationLogEvent", b10.m(mlb.r(mmd.class, new eld(45))));
+    public static final wa4 x = new wa4("onDeviceSmartReplyLogEvent", b10.m(mlb.r(mmd.class, new eld(19))));
+    public static final wa4 y = new wa4("onDeviceLanguageIdentificationLogEvent", b10.m(mlb.r(mmd.class, new eld(21))));
+    public static final wa4 z = new wa4("onDeviceTranslationLogEvent", b10.m(mlb.r(mmd.class, new eld(22))));
+    public static final wa4 A = new wa4("cloudFaceDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(8))));
+    public static final wa4 B = new wa4("cloudCropHintDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(9))));
+    public static final wa4 C = new wa4("cloudDocumentTextDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(10))));
+    public static final wa4 D = new wa4("cloudImagePropertiesDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(11))));
+    public static final wa4 E = new wa4("cloudImageLabelDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(12))));
+    public static final wa4 F = new wa4("cloudLandmarkDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(13))));
+    public static final wa4 G = new wa4("cloudLogoDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(14))));
+    public static final wa4 H = new wa4("cloudSafeSearchDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(15))));
+    public static final wa4 I = new wa4("cloudTextDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(16))));
+    public static final wa4 J = new wa4("cloudWebSearchDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(17))));
+    public static final wa4 K = new wa4("automlImageLabelingCreateLogEvent", b10.m(mlb.r(mmd.class, new eld(23))));
+    public static final wa4 L = new wa4("automlImageLabelingLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(24))));
+    public static final wa4 M = new wa4("automlImageLabelingInferenceLogEvent", b10.m(mlb.r(mmd.class, new eld(25))));
+    public static final wa4 N = new wa4("isModelDownloadedLogEvent", b10.m(mlb.r(mmd.class, new eld(39))));
+    public static final wa4 O = new wa4("deleteModelLogEvent", b10.m(mlb.r(mmd.class, new eld(40))));
+    public static final wa4 P = new wa4("aggregatedAutomlImageLabelingInferenceLogEvent", b10.m(mlb.r(mmd.class, new eld(30))));
+    public static final wa4 Q = new wa4("aggregatedCustomModelInferenceLogEvent", b10.m(mlb.r(mmd.class, new eld(31))));
+    public static final wa4 R = new wa4("aggregatedOnDeviceFaceDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(32))));
+    public static final wa4 S = new wa4("aggregatedOnDeviceBarcodeDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(33))));
+    public static final wa4 T = new wa4("aggregatedOnDeviceImageLabelDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(34))));
+    public static final wa4 U = new wa4("aggregatedOnDeviceObjectInferenceLogEvent", b10.m(mlb.r(mmd.class, new eld(35))));
+    public static final wa4 V = new wa4("aggregatedOnDeviceTextDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(36))));
+    public static final wa4 W = new wa4("aggregatedOnDevicePoseDetectionLogEvent", b10.m(mlb.r(mmd.class, new eld(46))));
+    public static final wa4 X = new wa4("aggregatedOnDeviceSegmentationLogEvent", b10.m(mlb.r(mmd.class, new eld(47))));
+    public static final wa4 Y = new wa4("pipelineAccelerationInferenceEvents", b10.m(mlb.r(mmd.class, new eld(69))));
+    public static final wa4 Z = new wa4("remoteConfigLogEvent", b10.m(mlb.r(mmd.class, new eld(42))));
+    public static final wa4 a0 = new wa4("inputImageConstructionLogEvent", b10.m(mlb.r(mmd.class, new eld(50))));
+    public static final wa4 b0 = new wa4("leakedHandleEvent", b10.m(mlb.r(mmd.class, new eld(51))));
+    public static final wa4 c0 = new wa4("cameraSourceLogEvent", b10.m(mlb.r(mmd.class, new eld(52))));
+    public static final wa4 d0 = new wa4("imageLabelOptionalModuleLogEvent", b10.m(mlb.r(mmd.class, new eld(53))));
+    public static final wa4 e0 = new wa4("languageIdentificationOptionalModuleLogEvent", b10.m(mlb.r(mmd.class, new eld(54))));
+    public static final wa4 f0 = new wa4("faceDetectionOptionalModuleLogEvent", b10.m(mlb.r(mmd.class, new eld(60))));
+    public static final wa4 g0 = new wa4("nlClassifierOptionalModuleLogEvent", b10.m(mlb.r(mmd.class, new eld(55))));
+    public static final wa4 h0 = new wa4("nlClassifierClientLibraryLogEvent", b10.m(mlb.r(mmd.class, new eld(56))));
+    public static final wa4 i0 = new wa4("accelerationAllowlistLogEvent", b10.m(mlb.r(mmd.class, new eld(57))));
+    public static final wa4 j0 = new wa4("toxicityDetectionCreateEvent", b10.m(mlb.r(mmd.class, new eld(62))));
+    public static final wa4 k0 = new wa4("toxicityDetectionLoadEvent", b10.m(mlb.r(mmd.class, new eld(63))));
+    public static final wa4 l0 = new wa4("toxicityDetectionInferenceEvent", b10.m(mlb.r(mmd.class, new eld(64))));
+    public static final wa4 m0 = new wa4("barcodeDetectionOptionalModuleLogEvent", b10.m(mlb.r(mmd.class, new eld(65))));
+    public static final wa4 n0 = new wa4("customImageLabelOptionalModuleLogEvent", b10.m(mlb.r(mmd.class, new eld(66))));
+    public static final wa4 o0 = new wa4("codeScannerScanApiEvent", b10.m(mlb.r(mmd.class, new eld(67))));
+    public static final wa4 p0 = new wa4("codeScannerOptionalModuleEvent", b10.m(mlb.r(mmd.class, new eld(68))));
+    public static final wa4 q0 = new wa4("onDeviceExplicitContentCreateLogEvent", b10.m(mlb.r(mmd.class, new eld(70))));
+    public static final wa4 r0 = new wa4("onDeviceExplicitContentLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(71))));
+    public static final wa4 s0 = new wa4("onDeviceExplicitContentInferenceLogEvent", b10.m(mlb.r(mmd.class, new eld(72))));
+    public static final wa4 t0 = new wa4("aggregatedOnDeviceExplicitContentLogEvent", b10.m(mlb.r(mmd.class, new eld(73))));
+    public static final wa4 u0 = new wa4("onDeviceSelfieFaceCreateLogEvent", b10.m(mlb.r(mmd.class, new eld(74))));
+    public static final wa4 v0 = new wa4("onDeviceSelfieFaceLoadLogEvent", b10.m(mlb.r(mmd.class, new eld(75))));
+    public static final wa4 w0 = new wa4("onDeviceSelfieFaceLogEvent", b10.m(mlb.r(mmd.class, new eld(76))));
+    public static final wa4 x0 = new wa4("aggregatedOnDeviceSelfieFaceLogEvent", b10.m(mlb.r(mmd.class, new eld(77))));
+    public static final wa4 y0 = new wa4("smartReplyOptionalModuleLogEvent", b10.m(mlb.r(mmd.class, new eld(78))));
 
-import android.os.Bundle;
-import org.json.JSONObject;
-public abstract class fae {
-    public static l13 a(String str, Bundle bundle) {
-        bundle.getClass();
-        try {
-            switch (str.hashCode()) {
-                case -1678407252:
-                    if (str.equals("androidx.credentials.TYPE_DIGITAL_CREDENTIAL")) {
-                        try {
-                            String string = bundle.getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON");
-                            string.getClass();
-                            l13 l13Var = new l13("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", bundle);
-                            if (string.length() != 0) {
-                                try {
-                                    new JSONObject(string);
-                                    return l13Var;
-                                } catch (Exception unused) {
-                                }
-                            }
-                            throw new IllegalArgumentException("credentialJson must not be empty, and must be a valid JSON");
-                        } catch (Exception unused2) {
-                            throw new Exception();
-                        }
-                    }
-                    throw new Exception();
-                case -1072734346:
-                    if (str.equals("androidx.credentials.TYPE_RESTORE_CREDENTIAL")) {
-                        String string2 = bundle.getString("androidx.credentials.BUNDLE_KEY_GET_RESTORE_CREDENTIAL_RESPONSE");
-                        if (string2 != null) {
-                            l13 l13Var2 = new l13("androidx.credentials.TYPE_RESTORE_CREDENTIAL", bundle);
-                            if (string2.length() != 0) {
-                                try {
-                                    new JSONObject(string2);
-                                    return l13Var2;
-                                } catch (Exception unused3) {
-                                }
-                            }
-                            throw new IllegalArgumentException("authenticationResponseJson must not be empty, and must be a valid JSON");
-                        }
-                        throw new pj7("The device does not contain a restore credential.");
-                    }
-                    throw new Exception();
-                case -543568185:
-                    if (str.equals("android.credentials.TYPE_PASSWORD_CREDENTIAL")) {
-                        try {
-                            String string3 = bundle.getString("androidx.credentials.BUNDLE_KEY_ID");
-                            String string4 = bundle.getString("androidx.credentials.BUNDLE_KEY_PASSWORD");
-                            string3.getClass();
-                            string4.getClass();
-                            return new f43(string4, bundle, (byte) 2);
-                        } catch (Exception unused4) {
-                            throw new Exception();
-                        }
-                    }
-                    throw new Exception();
-                case -95037569:
-                    if (str.equals("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL")) {
-                        try {
-                            String string5 = bundle.getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON");
-                            string5.getClass();
-                            return new f43(string5, bundle, (byte) 3);
-                        } catch (Exception unused5) {
-                            throw new Exception();
-                        }
-                    }
-                    throw new Exception();
-                default:
-                    throw new Exception();
-            }
-        } catch (jp4 unused6) {
-            return new f43(str, bundle, (byte) 0);
-        }
+    @Override
+    public final void a(Object obj, Object obj2) {
+        sve sveVar = (sve) obj;
+        dq7 dq7Var = (dq7) obj2;
+        dq7Var.a(b, sveVar.a);
+        dq7Var.a(c, sveVar.b);
+        dq7Var.a(d, null);
+        dq7Var.a(e, sveVar.c);
+        dq7Var.a(f, null);
+        dq7Var.a(g, null);
+        dq7Var.a(h, null);
+        dq7Var.a(i, null);
+        dq7Var.a(j, null);
+        dq7Var.a(k, null);
+        dq7Var.a(l, null);
+        dq7Var.a(m, null);
+        dq7Var.a(n, null);
+        dq7Var.a(o, null);
+        dq7Var.a(p, null);
+        dq7Var.a(q, sveVar.d);
+        dq7Var.a(r, sveVar.e);
+        dq7Var.a(s, null);
+        dq7Var.a(t, null);
+        dq7Var.a(u, null);
+        dq7Var.a(v, null);
+        dq7Var.a(w, null);
+        dq7Var.a(x, null);
+        dq7Var.a(y, null);
+        dq7Var.a(z, null);
+        dq7Var.a(A, null);
+        dq7Var.a(B, null);
+        dq7Var.a(C, null);
+        dq7Var.a(D, null);
+        dq7Var.a(E, null);
+        dq7Var.a(F, null);
+        dq7Var.a(G, null);
+        dq7Var.a(H, null);
+        dq7Var.a(I, null);
+        dq7Var.a(J, null);
+        dq7Var.a(K, null);
+        dq7Var.a(L, null);
+        dq7Var.a(M, null);
+        dq7Var.a(N, null);
+        dq7Var.a(O, null);
+        dq7Var.a(P, null);
+        dq7Var.a(Q, null);
+        dq7Var.a(R, null);
+        dq7Var.a(S, null);
+        dq7Var.a(T, sveVar.f);
+        dq7Var.a(U, null);
+        dq7Var.a(V, null);
+        dq7Var.a(W, null);
+        dq7Var.a(X, null);
+        dq7Var.a(Y, null);
+        dq7Var.a(Z, null);
+        dq7Var.a(a0, null);
+        dq7Var.a(b0, null);
+        dq7Var.a(c0, null);
+        dq7Var.a(d0, null);
+        dq7Var.a(e0, null);
+        dq7Var.a(f0, null);
+        dq7Var.a(g0, null);
+        dq7Var.a(h0, null);
+        dq7Var.a(i0, null);
+        dq7Var.a(j0, null);
+        dq7Var.a(k0, null);
+        dq7Var.a(l0, null);
+        dq7Var.a(m0, null);
+        dq7Var.a(n0, null);
+        dq7Var.a(o0, null);
+        dq7Var.a(p0, null);
+        dq7Var.a(q0, null);
+        dq7Var.a(r0, null);
+        dq7Var.a(s0, null);
+        dq7Var.a(t0, null);
+        dq7Var.a(u0, null);
+        dq7Var.a(v0, null);
+        dq7Var.a(w0, null);
+        dq7Var.a(x0, null);
+        dq7Var.a(y0, null);
     }
 }

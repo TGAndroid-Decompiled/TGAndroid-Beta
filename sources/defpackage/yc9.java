@@ -1,58 +1,29 @@
 package defpackage;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class yc9 implements t22 {
-    public final x02 a;
-    public final hd9 b;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+public class yc9 implements Parcelable {
+    public static final Parcelable.Creator<yc9> CREATOR = new hx6((byte) 18);
+    public zk5 a;
 
-    public yc9(hd9 hd9Var, x02 x02Var) {
-        this.b = hd9Var;
-        this.a = x02Var;
+    @Override
+    public final int describeContents() {
+        return 0;
     }
 
     @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, long j2) {
-        String str2;
-        boolean isEmpty = arrayList.isEmpty();
-        hd9 hd9Var = this.b;
-        if (!isEmpty) {
-            hd9Var.Q.X1((String) arrayList.get(0));
-        } else if (!arrayList3.isEmpty()) {
-            ye9 ye9Var = hd9Var.Q;
-            k27 k27Var = (k27) arrayList3.get(0);
-            ye9Var.getClass();
-            if (k27Var != null && k27Var.F0() != null) {
-                TLRPC.Document F0 = k27Var.F0();
-                TLRPC.Message message = k27Var.k;
-                if (message != null) {
-                    str2 = message.attachPath;
-                } else {
-                    str2 = null;
-                }
-                ye9Var.Y1(F0, str2);
+    public final void writeToParcel(Parcel parcel, int i) {
+        synchronized (this) {
+            zk5 zk5Var = this.a;
+            if (zk5Var == null) {
+                zk5Var = new xc9(this);
+                this.a = zk5Var;
             }
-        }
-        this.a.a(true);
-    }
-
-    @Override
-    public final void z() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.b.startActivityForResult(intent, 21);
-        } catch (Exception e) {
-            fa4.g(e, true);
+            parcel.writeStrongBinder(zk5Var.asBinder());
         }
     }
 
-    @Override
-    public final void S() {
-    }
-
-    @Override
-    public final void m(ArrayList arrayList, boolean z, int i, long j) {
+    public void a(int i, Bundle bundle) {
     }
 }

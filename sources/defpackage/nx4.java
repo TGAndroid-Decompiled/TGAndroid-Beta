@@ -1,126 +1,186 @@
 package defpackage;
-public final class nx4 {
-    public static final nx4 E;
-    public static final nx4 F;
-    public static final nx4 G;
-    public static final nx4 H;
-    public static final nx4 I;
-    public static final nx4 J;
-    public static final nx4 K;
-    public static final nx4 L;
-    public static final nx4 M;
-    public static final nx4 N;
-    public static final nx4 O;
-    public static final nx4 P;
-    public static final nx4 Q;
-    public static final nx4 R;
-    public static final nx4 S;
-    public static final nx4[] T;
-    public static final nx4 f;
-    public static final nx4 h;
-    public static final nx4 n;
-    public static final nx4 r;
-    public static final nx4 s;
-    public static final nx4 w;
-    public static final nx4 x;
-    public static final nx4 y;
-    public final int a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    nx4 EF7;
-    nx4 EF0;
+
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.tgnet.tl.TL_stars;
+public final class nx4 extends b6c {
+    public static final int b = 0;
 
     static {
-        nx4 nx4Var = new nx4("CONTACTS", 0, 2131624255);
-        f = nx4Var;
-        nx4 nx4Var2 = new nx4("CALLS", 1, 2131624249);
-        h = nx4Var2;
-        nx4 nx4Var3 = new nx4("CHATS", 2, 2131624250);
-        n = nx4Var3;
-        nx4 nx4Var4 = new nx4("SETTINGS", 3, 2131624274);
-        r = nx4Var4;
-        nx4 nx4Var5 = new nx4(4, 2131624251, 2131624252, "CHECKLIST");
-        s = nx4Var5;
-        nx4 nx4Var6 = new nx4(5, 2131624253, 2131624254, "COLORS");
-        w = nx4Var6;
-        nx4 nx4Var7 = new nx4(6, 2131624258, 2131624259, "FILES");
-        x = nx4Var7;
-        nx4 nx4Var8 = new nx4(7, 2131624260, 2131624261, "GALLERY");
-        y = nx4Var8;
-        nx4 nx4Var9 = new nx4(8, 2131624262, 2131624263, "GIFT");
-        nx4 nx4Var10 = new nx4(9, 2131624264, 2131624265, "LOCATION");
-        E = nx4Var10;
-        nx4 nx4Var11 = new nx4(10, 2131624275, 2131624276, "STICKER");
-        F = nx4Var11;
-        nx4 nx4Var12 = new nx4(11, 2131624256, 2131624257, "EMOJI");
-        G = nx4Var12;
-        nx4 nx4Var13 = new nx4(12, 2131624266, 2131624267, "MODELS");
-        H = nx4Var13;
-        nx4 nx4Var14 = new nx4(13, 2131624268, 2131624269, "MUSIC");
-        I = nx4Var14;
-        nx4 nx4Var15 = new nx4(14, 2131624270, 2131624271, "POLL");
-        J = nx4Var15;
-        nx4 nx4Var16 = new nx4(15, 2131624277, 2131624278, "SYMBOLS");
-        K = nx4Var16;
-        nx4 nx4Var17 = new nx4(16, 2131624272, 2131624273, "REPLIES");
-        L = nx4Var17;
-        nx4 nx4Var18 = new nx4(17, 2131624279, 2131624280, "WALLET");
-        nx4 nx4Var19 = new nx4();
-        M = nx4Var19;
-        nx4 nx4Var20 = new nx4(19, 2131624247, 2131624248, "ARTICLE");
-        N = nx4Var20;
-        nx4 nx4Var21 = new nx4(20, 2131624041, 2131624042, "GRAM");
-        O = nx4Var21;
-        nx4 nx4Var22 = new nx4(21, 2131623944, 25, 49, "BOOSTS");
-        P = nx4Var22;
-        nx4 nx4Var23 = new nx4(22, 2131624091, 19, 45, "MONETIZATION");
-        Q = nx4Var23;
-        nx4 nx4Var24 = new nx4(23, 2131624102, 20, 40, "STORIES_SAVED");
-        R = nx4Var24;
-        nx4 nx4Var25 = new nx4("STORIES_ARCHIVE", 24, 2131624101);
-        S = nx4Var25;
-        T = new nx4[]{nx4Var, nx4Var2, nx4Var3, nx4Var4, nx4Var5, nx4Var6, nx4Var7, nx4Var8, nx4Var9, nx4Var10, nx4Var11, nx4Var12, nx4Var13, nx4Var14, nx4Var15, nx4Var16, nx4Var17, nx4Var18, nx4Var19, nx4Var20, nx4Var21, nx4Var22, nx4Var23, nx4Var24, nx4Var25};
+        b6c.h(new b6c());
     }
 
-    public nx4() {
-        this.c = 2131232777;
-        this.a = -1;
-        this.b = -1;
-        this.d = -1;
-        this.e = -1;
+    public static c6c i(int i, TL_stars.StarGift starGift, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
+        c6c K = c6c.K(nx4.class);
+        K.v = 1;
+        K.A = i;
+        K.H = starGift;
+        K.e = z;
+        K.I = Boolean.valueOf(z2);
+        K.s = z4;
+        K.r = z3;
+        K.u = z5;
+        return K;
     }
 
-    public static nx4 valueOf(String str) {
-        return (nx4) Enum.valueOf(nx4.class, str);
+    @Override
+    public final void a(r59 r59Var, View view, c6c c6cVar) {
+        ((ox4) view).e(c6cVar.h, false);
     }
 
-    public static nx4[] values() {
-        return (nx4[]) T.clone();
+    @Override
+    public final void b(View view, c6c c6cVar, boolean z, l7c l7cVar, q7c q7cVar) {
+        boolean z2;
+        float f;
+        int i;
+        ox4 ox4Var = (ox4) view;
+        Object obj = c6cVar.H;
+        boolean z3 = false;
+        if (obj instanceof nw4) {
+            nw4 nw4Var = (nw4) obj;
+            yd ydVar = ox4Var.K;
+            TextView textView = ox4Var.J;
+            TextView textView2 = ox4Var.I;
+            TextView textView3 = ox4Var.N;
+            lx4 lx4Var = ox4Var.e;
+            bf0 bf0Var = ox4Var.E;
+            TextView textView4 = ox4Var.M;
+            int d = nw4Var.d();
+            if (ox4Var.k0 != nw4Var) {
+                gwa g1 = nxa.g1(bf0Var, bf0Var.getImageReceiver(), d);
+                ox4Var.O = g1;
+                g1.run();
+                ox4Var.O = null;
+            }
+            lx4Var.d(null);
+            lx4Var.e(null);
+            lx4Var.g(null);
+            textView2.setText(jb6.G(d, "Gift2Months", new Object[0]));
+            textView.setText(jb6.M0(2131743915, null));
+            textView2.setVisibility(0);
+            textView.setVisibility(0);
+            bf0Var.setTranslationY(-gm.L(8.0f));
+            ox4Var.n.setVisibility(8);
+            ox4Var.G.setVisibility(8);
+            if (nw4Var.c == null && nw4Var.d == null) {
+                textView3.setVisibility(8);
+            } else {
+                if (cmb.I.o()) {
+                    i = -1333971;
+                } else {
+                    i = -2722014;
+                }
+                textView3.setTextColor(i);
+                textView3.setVisibility(0);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jb6.E(nw4Var.g(), ','));
+                spannableStringBuilder.setSpan(new z5c(gm.o()), 0, spannableStringBuilder.length(), 33);
+                pn2[] pn2VarArr = new pn2[1];
+                textView3.setText(nxa.b1(false, jb6.V(null, null, 2131746763, spannableStringBuilder), 0.48f, pn2VarArr));
+                pn2VarArr[0].H = 0.8f;
+            }
+            FrameLayout.LayoutParams layoutParams = ox4Var.F;
+            layoutParams.gravity = 49;
+            bf0Var.setLayoutParams(layoutParams);
+            textView4.setPadding(gm.L(10.0f), 0, gm.L(10.0f), 0);
+            textView4.setTextSize(1, 12.0f);
+            textView4.setText(nw4Var.c());
+            ox4Var.t0 = (byte) 0;
+            ox4Var.L.setBackground(cmb.b0(gm.L(13.0f), 422810068));
+            textView4.setTextColor(-13397548);
+            ((ViewGroup.MarginLayoutParams) ydVar.getLayoutParams()).topMargin = gm.L(130.0f);
+            ((FrameLayout.LayoutParams) ydVar.getLayoutParams()).gravity = 49;
+            ox4Var.k0 = nw4Var;
+            ox4Var.l0 = null;
+            ox4Var.b0 = nw4Var;
+            ox4Var.c0 = null;
+            ox4Var.e0 = false;
+            ox4Var.f0 = null;
+            ox4Var.g0 = false;
+            ox4Var.h0 = false;
+            ox4Var.i0 = false;
+            ox4Var.R = null;
+            ox4Var.S = null;
+            ox4Var.d(false, false);
+            ox4Var.l();
+        } else if (obj instanceof TL_stars.StarGift) {
+            TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
+            boolean z4 = c6cVar.e;
+            Object obj2 = c6cVar.I;
+            if (obj2 instanceof Boolean) {
+                z2 = ((Boolean) obj2).booleanValue();
+            } else {
+                z2 = false;
+            }
+            ox4Var.h(starGift, z4, z2, c6cVar.r, c6cVar.s, c6cVar.u);
+        } else if (obj instanceof TL_stars.SavedStarGift) {
+            z3 = ox4Var.i((TL_stars.SavedStarGift) obj, c6cVar.r, c6cVar.s);
+        }
+        if (c6cVar.f) {
+            ox4Var.c(c6cVar.e, z3);
+        }
+        ox4Var.e(c6cVar.h, z3);
+        FrameLayout frameLayout = ox4Var.d;
+        float f2 = 1.0f;
+        if (c6cVar.g) {
+            f = 1.0f;
+        } else {
+            f = 0.65f;
+        }
+        frameLayout.setAlpha(f);
+        px4 px4Var = ox4Var.f;
+        if (!c6cVar.g) {
+            f2 = 0.5f;
+        }
+        px4Var.setAlpha(f2);
     }
 
-    public nx4(int i, int i2, int i3, int i4, String str) {
-        this.a = i2;
-        this.b = i2;
-        this.d = i3;
-        this.e = i4;
-        this.c = -1;
+    @Override
+    public final View d(Context context, r59 r59Var, int i, ylb ylbVar) {
+        return new ox4(i, ylbVar, context);
     }
 
-    public nx4(String str, int i, int i2) {
-        this.a = i2;
-        this.b = i2;
-        this.d = -1;
-        this.e = -1;
-        this.c = -1;
-    }
-
-    public nx4(int i, int i2, int i3, String str) {
-        this.a = i2;
-        this.b = i3;
-        this.d = -1;
-        this.e = -1;
-        this.c = -1;
+    @Override
+    public final boolean e(c6c c6cVar, c6c c6cVar2) {
+        if (c6cVar.r == c6cVar2.r) {
+            Object obj = c6cVar.H;
+            if (obj != null || c6cVar2.H != null) {
+                if (obj instanceof nw4) {
+                    if (obj == c6cVar2.H) {
+                        return true;
+                    }
+                    return false;
+                }
+                if (obj instanceof TL_stars.StarGift) {
+                    Object obj2 = c6cVar2.H;
+                    if (obj2 instanceof TL_stars.StarGift) {
+                        if (((TL_stars.StarGift) obj).id == ((TL_stars.StarGift) obj2).id) {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+                if (obj instanceof TL_stars.SavedStarGift) {
+                    Object obj3 = c6cVar2.H;
+                    if (obj3 instanceof TL_stars.SavedStarGift) {
+                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
+                        TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
+                        if (savedStarGift.gift.id == savedStarGift2.gift.id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            }
+            if (c6cVar.A == c6cVar2.A && c6cVar.e == c6cVar2.e && c6cVar.C == c6cVar2.C && TextUtils.equals(c6cVar.m, c6cVar2.m)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

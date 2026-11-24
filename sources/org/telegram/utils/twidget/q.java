@@ -1,5 +1,5 @@
 package org.telegram.utils.twidget;
-public final class q implements xvc, lvc {
+public final class q implements yxc, mxc {
     public final byte a;
     public final Object b;
     public final int c;

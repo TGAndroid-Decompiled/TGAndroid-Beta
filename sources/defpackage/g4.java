@@ -1,33 +1,33 @@
 package defpackage;
 
 import java.util.List;
-public final class g4 implements j74 {
+public final class g4 implements s84 {
     public final f4 a = new f4(null, 0, "audio/ac4", (byte) 1);
-    public final xu7 b = new xu7(16384);
+    public final yw7 b = new yw7(16384);
     public boolean c;
 
     @Override
-    public final int b(k74 k74Var, m11 m11Var) {
-        xu7 xu7Var = this.b;
-        int read = ((ja3) k74Var).read(xu7Var.a, 0, 16384);
+    public final int b(t84 t84Var, u21 u21Var) {
+        yw7 yw7Var = this.b;
+        int read = ((vb3) t84Var).read(yw7Var.a, 0, 16384);
         if (read == -1) {
             return -1;
         }
-        xu7Var.N(0);
-        xu7Var.M(read);
+        yw7Var.N(0);
+        yw7Var.M(read);
         boolean z = this.c;
         f4 f4Var = this.a;
         if (!z) {
             f4Var.o = 0L;
             this.c = true;
         }
-        f4Var.b(xu7Var);
+        f4Var.b(yw7Var);
         return 0;
     }
 
     @Override
-    public final boolean c(defpackage.k74 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.g4.c(k74):boolean");
+    public final boolean c(defpackage.t84 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.g4.c(t84):boolean");
     }
 
     @Override
@@ -38,19 +38,19 @@ public final class g4 implements j74 {
 
     @Override
     public final List e() {
-        km5 km5Var = mm5.b;
-        return w59.e;
+        ko5 ko5Var = mo5.b;
+        return y79.e;
     }
 
     @Override
-    public final void f(l74 l74Var) {
-        this.a.h(l74Var, new l2c(0, 1));
-        l74Var.B();
-        l74Var.f0(new oc0(-9223372036854775807L));
+    public final void f(u84 u84Var) {
+        this.a.h(u84Var, new l4c(0, 1));
+        u84Var.B();
+        u84Var.f0(new od0(-9223372036854775807L));
     }
 
     @Override
-    public final j74 a() {
+    public final s84 a() {
         return this;
     }
 

@@ -1,17 +1,36 @@
 package defpackage;
-public final class p8e implements zn7 {
-    public static final p8e a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)));
+import java.util.Iterator;
+public final class p8e extends t6e {
+    public final transient b9e s;
+    public final transient v8e w;
+
+    public p8e(b9e b9eVar, v8e v8eVar) {
+        super((byte) 5);
+        this.s = b9eVar;
+        this.w = v8eVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final boolean contains(Object obj) {
+        if (this.s.get(obj) != null) {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.w.listIterator(0);
+    }
+
+    @Override
+    public final int p(Object[] objArr) {
+        return this.w.p(objArr);
+    }
+
+    @Override
+    public final int size() {
+        return this.s.h;
     }
 }

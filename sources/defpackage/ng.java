@@ -1,47 +1,33 @@
 package defpackage;
-
-import android.view.View;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class ng implements View.OnClickListener {
+public final class ng implements jp7 {
     public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
+    public final lp7 b;
+    public final lp7 c;
+    public final lp7 d;
 
-    public ng(m8 m8Var, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, d dVar, wjb wjbVar) {
-        this.a = (byte) 14;
-        this.c = m8Var;
-        this.d = arrayList;
-        this.e = tL_messages_stickerSet;
-        this.b = dVar;
-        this.f = wjbVar;
+    public ng(lp7 lp7Var, lp7 lp7Var2, lp7 lp7Var3, byte b) {
+        this.a = b;
+        this.b = lp7Var;
+        this.c = lp7Var2;
+        this.d = lp7Var3;
     }
 
     @Override
-    public final void onClick(android.view.View r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ng.onClick(android.view.View):void");
-    }
-
-    public ng(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-        this.d = obj3;
-        this.e = obj4;
-        this.f = obj5;
-    }
-
-    public ng(AtomicReference atomicReference, cd0 cd0Var, ui5 ui5Var, TLRPC.TL_forumTopic tL_forumTopic, d dVar) {
-        this.a = (byte) 1;
-        this.c = atomicReference;
-        this.d = cd0Var;
-        this.e = ui5Var;
-        this.f = tL_forumTopic;
-        this.b = dVar;
+    public final void g(lp7 lp7Var, int i) {
+        byte b = this.a;
+        lp7 lp7Var2 = this.d;
+        lp7 lp7Var3 = this.c;
+        lp7 lp7Var4 = this.b;
+        switch (b) {
+            case 0:
+                ik.v0(lp7Var4, lp7Var3, lp7Var2);
+                return;
+            case 1:
+                ik.v0(lp7Var4, lp7Var3, lp7Var2);
+                return;
+            default:
+                ik.b(lp7Var4, lp7Var3, lp7Var2);
+                return;
+        }
     }
 }

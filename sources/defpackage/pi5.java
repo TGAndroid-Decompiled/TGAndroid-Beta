@@ -1,22 +1,54 @@
 package defpackage;
-public final class pi5 {
-    public static final pi5 a;
-    public static final pi5 b;
-    public static final pi5[] c;
 
-    static {
-        ?? r0 = new Enum("BACK", 0);
-        a = r0;
-        ?? r1 = new Enum("MENU", 1);
-        b = r1;
-        c = new pi5[]{r0, r1};
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import java.util.Iterator;
+public abstract class pi5 extends FrameLayout {
+    public static final HashSet b = new HashSet();
+    public static boolean c = false;
+    public final boolean a;
+
+    public pi5(Context context) {
+        super(context);
+        boolean z;
+        if (gda.o() == 2) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.a = z;
     }
 
-    public static pi5 valueOf(String str) {
-        return (pi5) Enum.valueOf(pi5.class, str);
+    public final void a(boolean z) {
+        c = false;
+        if (z) {
+            setLayerType(0, null);
+        }
+        HashSet hashSet = b;
+        Iterator it = hashSet.iterator();
+        while (it.hasNext()) {
+            ((View) it.next()).invalidate();
+        }
+        hashSet.clear();
     }
 
-    public static pi5[] values() {
-        return (pi5[]) c.clone();
+    @Override
+    public final void invalidate() {
+        if (c) {
+            b.add(this);
+        } else {
+            super.invalidate();
+        }
+    }
+
+    @Override
+    public final void invalidate(int i, int i2, int i3, int i4) {
+        if (c) {
+            b.add(this);
+        } else {
+            super.invalidate(i, i2, i3, i4);
+        }
     }
 }

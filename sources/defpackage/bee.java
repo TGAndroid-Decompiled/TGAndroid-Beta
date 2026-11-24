@@ -1,17 +1,30 @@
 package defpackage;
-public final class bee implements zn7 {
-    public static final bee a = new Object();
+public enum bee implements eqe {
+    UNRECOGNIZED(0),
+    CODE_128(1),
+    CODE_39(2),
+    CODE_93(3),
+    CODABAR(4),
+    DATA_MATRIX(5),
+    EAN_13(6),
+    EAN_8(7),
+    ITF(8),
+    QR_CODE(9),
+    UPC_A(10),
+    UPC_E(11),
+    PDF417(12),
+    AZTEC(13),
+    DATABAR(14),
+    TEZ_CODE(16);
+    
+    public final byte a;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+    bee(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final String toString() {
+        return "<" + bee.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

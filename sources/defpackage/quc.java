@@ -1,104 +1,45 @@
 package defpackage;
 
-import android.net.Uri;
-import android.text.TextUtils;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class quc {
-    public int a;
-    public long b;
-    public long c;
-    public long d;
-    public String e;
-    public String f;
-    public int g;
-    public int h;
-    public long i;
-    public TLRPC.BotApp j;
-    public boolean k;
-    public String l;
-    public TLRPC.User m;
-    public byte n;
-    public boolean o;
-    public boolean p;
-    public TLObject q;
-    public long r;
+    public oh2 a;
+    public he b;
+    public TextView c;
 
-    public static quc b(int i, long j, long j2, String str, String str2, int i2, int i3, long j3, TLRPC.BotApp botApp, boolean z, String str3, TLRPC.User user, int i4, boolean z2, boolean z3) {
+    public static void a(Context context, qac qacVar, Runnable runnable) {
         ?? obj = new Object();
-        obj.a = i;
-        obj.b = j;
-        obj.c = j2;
-        obj.e = str;
-        obj.f = str2;
-        obj.g = i2;
-        obj.h = i3;
-        obj.i = j3;
-        obj.j = botApp;
-        obj.k = z;
-        obj.l = str3;
-        obj.m = user;
-        obj.n = i4;
-        obj.o = z2;
-        obj.p = z3;
-        if (!z2 && !z3 && !TextUtils.isEmpty(str2)) {
-            try {
-                Uri parse = Uri.parse(str2);
-                obj.o = TextUtils.equals(parse.getQueryParameter("mode"), "compact");
-                obj.p = TextUtils.equals(parse.getQueryParameter("mode"), "fullscreen");
-                return obj;
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
-        }
-        return obj;
-    }
-
-    public final void a(TLObject tLObject) {
-        this.q = tLObject;
-        this.r = System.currentTimeMillis();
-    }
-
-    public final boolean equals(Object obj) {
-        long j;
-        long j2;
-        long j3;
-        if (obj instanceof quc) {
-            quc qucVar = (quc) obj;
-            if (this.a == qucVar.a && this.b == qucVar.b && this.c == qucVar.c && TextUtils.equals(this.f, qucVar.f) && this.g == qucVar.g && this.h == qucVar.h) {
-                TLRPC.BotApp botApp = this.j;
-                long j4 = 0;
-                if (botApp == null) {
-                    j = 0;
-                } else {
-                    j = botApp.id;
-                }
-                TLRPC.BotApp botApp2 = qucVar.j;
-                if (botApp2 == null) {
-                    j2 = 0;
-                } else {
-                    j2 = botApp2.id;
-                }
-                if (j == j2 && this.k == qucVar.k && TextUtils.equals(this.l, qucVar.l)) {
-                    TLRPC.User user = this.m;
-                    if (user == null) {
-                        j3 = 0;
-                    } else {
-                        j3 = user.id;
-                    }
-                    TLRPC.User user2 = qucVar.m;
-                    if (user2 != null) {
-                        j4 = user2.id;
-                    }
-                    if (j3 == j4 && this.n == qucVar.n) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
+        String M0 = jb6.M0(2131743880, null);
+        he heVar = alertDialog$Builder.a;
+        heVar.S = M0;
+        LinearLayout i = hg9.i(context, 1);
+        TextView textView = new TextView(context);
+        textView.setLetterSpacing(0.025f);
+        anb.X(textView, cmb.i5, null);
+        textView.setTextSize(1, 14.0f);
+        i.addView(textView, qoe.t(-1, -2, 0, 24, 0, 24, 0));
+        oh2 oh2Var = new oh2(1, null, context);
+        obj.a = oh2Var;
+        oh2Var.getTextView().getLayoutParams().width = -1;
+        obj.a.getTextView().setTextSize(1, 14.0f);
+        i.addView(obj.a, qoe.t(-1, 48, 3, 8, 0, 8, 0));
+        boolean[] zArr = new boolean[1];
+        textView.setText(gm.S2(jb6.M0(2131752872, null)));
+        obj.a.e(gm.N2(jb6.M0(2131752873, null), -1, 0, new dh1(context, (byte) 28), null), "", false, false, false);
+        alertDialog$Builder.n(i);
+        alertDialog$Builder.j(jb6.M0(2131751708, null), new ai((byte) 1, qacVar, zArr));
+        alertDialog$Builder.g(jb6.M0(2131752542, null), new rjb((byte) 26));
+        obj.b = heVar;
+        heVar.show();
+        TextView textView2 = (TextView) obj.b.c(-1);
+        obj.c = textView2;
+        textView2.setEnabled(false);
+        obj.c.setAlpha(0.5f);
+        obj.a.setOnClickListener(new kpc(obj, (byte) 3));
+        obj.a.setBackground(cmb.f0(cmb.w0(null, cmb.h6, false), 7, -1));
+        obj.b.setOnDismissListener(new vg(zArr, runnable));
     }
 }

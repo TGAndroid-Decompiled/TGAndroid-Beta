@@ -1,52 +1,71 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class g19 extends f19 {
-    public final i19 g0;
+import android.os.Bundle;
+public abstract class g19 {
+    public static final String a;
 
-    public g19(i19 i19Var, f19 f19Var, TLRPC.ReactionCount reactionCount, boolean z) {
-        super(f19Var, i19Var.l, i19Var.w, reactionCount, z, i19Var.y);
-        this.g0 = i19Var;
+    static {
+        String str = hac.a;
+        a = "0";
     }
 
-    @Override
-    public final float j() {
-        return this.g0.a;
-    }
-
-    @Override
-    public final ImageReceiver k() {
-        return (ImageReceiver) this.g0.E.get(this.r);
-    }
-
-    @Override
-    public final boolean l() {
-        return this.g0.x.O3();
-    }
-
-    @Override
-    public final boolean m() {
-        i19 i19Var = this.g0;
-        int e1 = i19Var.x.e1();
-        long c1 = i19Var.x.c1();
-        d19 d19Var = d19.B;
-        if (d19Var != null) {
-            int i = d19Var.a;
-            if (i == 2 || i == 0) {
-                long j = d19Var.o;
-                if (((j != 0 && c1 == j) || e1 == d19Var.n) && d19Var.p.equals(this.r)) {
-                    return true;
+    public static g19 a(Bundle bundle) {
+        String str = a;
+        int i = bundle.getInt(str, -1);
+        boolean z = false;
+        boolean z2 = true;
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i == 3) {
+                        String str2 = lpb.d;
+                        if (bundle.getInt(str, -1) != 3) {
+                            z2 = false;
+                        }
+                        jte.f(z2);
+                        if (bundle.getBoolean(lpb.d, false)) {
+                            return new lpb(bundle.getBoolean(lpb.e, false));
+                        }
+                        return new lpb();
+                    }
+                    u36.j(hg9.j(i, "Unknown RatingType: "));
+                    return null;
                 }
-                return false;
+                String str3 = eta.d;
+                if (bundle.getInt(str, -1) == 2) {
+                    z = true;
+                }
+                jte.f(z);
+                int i2 = bundle.getInt(eta.d, 5);
+                float f = bundle.getFloat(eta.e, -1.0f);
+                if (f == -1.0f) {
+                    return new eta(i2);
+                }
+                return new eta(i2, f);
             }
-            return false;
+            String str4 = g58.c;
+            if (bundle.getInt(str, -1) == 1) {
+                z = true;
+            }
+            jte.f(z);
+            float f2 = bundle.getFloat(g58.c, -1.0f);
+            if (f2 == -1.0f) {
+                return new g58();
+            }
+            return new g58(f2);
         }
-        return false;
+        String str5 = sf5.d;
+        if (bundle.getInt(str, -1) != 0) {
+            z2 = false;
+        }
+        jte.f(z2);
+        if (bundle.getBoolean(sf5.d, false)) {
+            return new sf5(bundle.getBoolean(sf5.e, false));
+        }
+        return new sf5();
     }
 
-    @Override
-    public final void n() {
-        this.g0.E.remove(this.r);
-    }
+    public abstract boolean b();
+
+    public abstract Bundle c();
 }

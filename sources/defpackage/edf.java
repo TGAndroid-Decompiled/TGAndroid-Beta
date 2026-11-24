@@ -1,60 +1,25 @@
 package defpackage;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.RunnableFuture;
-import java.util.concurrent.locks.LockSupport;
-public final class edf extends vbf implements RunnableFuture {
-    public volatile h2c n;
+import android.util.LruCache;
+import java.util.ArrayList;
+public final class edf extends LruCache {
+    public final xt6 a;
 
-    public edf(Callable callable) {
-        this.n = new h2c(this, callable);
+    public edf(xt6 xt6Var) {
+        super(20);
+        this.a = xt6Var;
     }
 
     @Override
-    public final String a() {
-        h2c h2cVar = this.n;
-        if (h2cVar != null) {
-            return tb4.y("task=[", h2cVar.toString(), "]");
+    public final void entryRemoved(boolean z, Object obj, Object obj2, Object obj3) {
+        ArrayList arrayList = this.a.g;
+        Integer num = (Integer) obj;
+        au6 au6Var = (au6) obj2;
+        au6 au6Var2 = (au6) obj3;
+        if (!z) {
+            return;
         }
-        return super.a();
-    }
-
-    @Override
-    public final void d() {
-        h2c h2cVar;
-        Object obj = this.a;
-        if ((obj instanceof nbf) && ((nbf) obj).a && (h2cVar = this.n) != null) {
-            sv svVar = h2c.h;
-            sv svVar2 = h2c.f;
-            Runnable runnable = (Runnable) h2cVar.get();
-            if (runnable instanceof Thread) {
-                jcf jcfVar = new jcf(h2cVar);
-                jcf.a(jcfVar, Thread.currentThread());
-                if (h2cVar.compareAndSet(runnable, jcfVar)) {
-                    try {
-                        Thread thread = (Thread) runnable;
-                        thread.interrupt();
-                        if (((Runnable) h2cVar.getAndSet(svVar2)) == svVar) {
-                            LockSupport.unpark(thread);
-                        }
-                    } catch (Throwable th) {
-                        if (((Runnable) h2cVar.getAndSet(svVar2)) == svVar) {
-                            LockSupport.unpark((Thread) runnable);
-                        }
-                        throw th;
-                    }
-                }
-            }
-        }
-        this.n = null;
-    }
-
-    @Override
-    public final void run() {
-        h2c h2cVar = this.n;
-        if (h2cVar != null) {
-            h2cVar.run();
-        }
-        this.n = null;
+        ite.h(arrayList);
+        arrayList.add(num);
     }
 }

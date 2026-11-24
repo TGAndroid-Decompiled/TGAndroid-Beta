@@ -1,37 +1,28 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class oqa implements ValueAnimator.AnimatorUpdateListener {
+import org.telegram.tgnet.TLRPC;
+public final class oqa implements Runnable {
     public final byte a;
-    public final rqa b;
+    public final wsa b;
+    public final TLRPC.TL_payments_paymentResult c;
 
-    public oqa(rqa rqaVar, byte b) {
+    public oqa(wsa wsaVar, TLRPC.TL_payments_paymentResult tL_payments_paymentResult, byte b) {
         this.a = b;
-        this.b = rqaVar;
+        this.b = wsaVar;
+        this.c = tL_payments_paymentResult;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final void run() {
         byte b = this.a;
-        rqa rqaVar = this.b;
+        TLRPC.TL_payments_paymentResult tL_payments_paymentResult = this.c;
+        wsa wsaVar = this.b;
         switch (b) {
             case 0:
-                rqaVar.z0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rqaVar.d(rqaVar.b0);
-                return;
-            case 1:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float w = b00.w((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
-                rqaVar.A0 = w;
-                FrameLayout frameLayout = rqaVar.b;
-                frameLayout.setScaleX(w);
-                frameLayout.setScaleY(rqaVar.A0);
-                rqaVar.invalidate();
+                oc7.r1(wsaVar.a).T3(tL_payments_paymentResult.updates, false);
                 return;
             default:
-                rqaVar.z0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rqaVar.d(rqaVar.b0);
+                oc7.r1(wsaVar.a).T3(tL_payments_paymentResult.updates, false);
                 return;
         }
     }

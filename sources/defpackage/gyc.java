@@ -1,3 +1,12 @@
 package defpackage;
-public enum gyc extends kyc {
+public interface gyc {
+    void b(boolean z);
+
+    void d();
+
+    void f();
+
+    void h();
+
+    void setCursor(String str);
 }

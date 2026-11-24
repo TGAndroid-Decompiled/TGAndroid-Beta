@@ -1,307 +1,286 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.ContextThemeWrapper;
-import android.view.MotionEvent;
+import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.PhotoViewer;
-public final class v48 extends FrameLayout {
-    public final wjb E;
-    public final s48 F;
-    public final s48 G;
-    public u48 a;
-    public final j33 b;
-    public final b33 c;
-    public final boolean d;
-    public final ImageReceiver e;
-    public boolean f;
-    public boolean h;
-    public float n;
-    public float r;
-    public AnimatorSet s;
-    public AnimatorSet w;
-    public float x;
-    public final Paint y;
+import android.widget.LinearLayout;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class v48 extends f9 {
+    public boolean c;
+    public final r63 d;
+    public final oab e;
+    public final boolean f;
+    public final boolean h;
+    public final boolean n;
+    public final Context r;
+    public final y48 s;
+    public final boolean[] w;
+    public final a58 x;
 
-    public v48(ContextThemeWrapper contextThemeWrapper, wjb wjbVar) {
-        super(contextThemeWrapper);
-        this.h = true;
-        this.r = 1.0f;
-        this.x = 0.0f;
-        this.y = new Paint(1);
-        this.F = new s48(this, (byte) 0);
-        this.G = new s48(this, (byte) 1);
-        this.E = wjbVar;
-        this.d = contextThemeWrapper instanceof BubbleActivity;
-        j33 j33Var = new j33(contextThemeWrapper);
-        this.b = j33Var;
-        j33Var.setListener(new s34(this, (byte) 22));
-        j33Var.setBottomPadding(gl.L(64.0f));
-        addView(j33Var);
-        this.e = new ImageReceiver(this);
-        b33 b33Var = new b33(contextThemeWrapper);
-        this.c = b33Var;
-        b33Var.setListener(new r23(this, (byte) 2));
-        addView(b33Var, nme.d(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
-    }
-
-    public final void a() {
-        j33 j33Var = this.b;
-        j33Var.b.setVisibility(4);
-        CropAreaView cropAreaView = j33Var.a;
-        cropAreaView.setDimVisibility(false);
-        cropAreaView.f(false, false);
-        cropAreaView.invalidate();
-    }
-
-    public final void b(Bitmap bitmap, int i, boolean z, boolean z2, c33 c33Var, kac kacVar, zl6 zl6Var) {
-        boolean z3;
-        zl6 zl6Var2;
-        requestLayout();
-        int i2 = 0;
-        this.f = false;
-        Bitmap bitmap2 = null;
-        this.e.g0(null);
-        j33 j33Var = this.b;
-        ImageView imageView = j33Var.b;
-        j33Var.y = z;
-        j33Var.d = kacVar;
-        j33Var.e = c33Var;
-        j33Var.L = i;
-        j33Var.x = bitmap;
-        CropAreaView cropAreaView = j33Var.a;
-        boolean z4 = true;
-        if (kacVar != null) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        cropAreaView.setIsVideo(z3);
-        if (bitmap == null && kacVar == null) {
-            j33Var.M = null;
-            imageView.setImageDrawable(null);
-            zl6Var2 = zl6Var;
-        } else {
-            int currentWidth = j33Var.getCurrentWidth();
-            int currentHeight = j33Var.getCurrentHeight();
-            h33 h33Var = j33Var.M;
-            if (h33Var != null && z2) {
-                float f = currentWidth;
-                h33Var.e *= h33Var.a / f;
-                h33Var.a = f;
-                h33Var.b = currentHeight;
-                h33Var.h();
-                Matrix matrix = h33Var.k;
-                j33 j33Var2 = h33Var.l;
-                matrix.getValues(j33Var2.I);
-                matrix.reset();
-                float f2 = h33Var.e;
-                matrix.postScale(f2, f2);
-                float[] fArr = j33Var2.I;
-                matrix.postTranslate(fArr[2], fArr[5]);
-                j33Var2.r(false);
-                zl6Var2 = zl6Var;
-            } else {
-                j33Var.M = new h33(j33Var, currentWidth, currentHeight);
-                zl6Var2 = zl6Var;
-                cropAreaView.getViewTreeObserver().addOnPreDrawListener(new f33(j33Var, zl6Var2, currentHeight, currentWidth, (byte) 1));
-            }
-            if (kacVar == null) {
-                bitmap2 = j33Var.x;
-            }
-            imageView.setImageBitmap(bitmap2);
-        }
-        b33 b33Var = this.c;
-        b33Var.setFreeform(z);
-        b33Var.b(0.0f);
-        b33Var.setMirrored(false);
-        b33Var.setRotated(false);
-        if (zl6Var2 != null) {
-            b33Var.b(zl6Var2.d);
-            if (zl6Var2.k == 0) {
-                z4 = false;
-            }
-            b33Var.setRotated(z4);
-            b33Var.setMirrored(zl6Var2.l);
-        } else {
-            b33Var.setRotated(false);
-            b33Var.setMirrored(false);
-        }
-        if (!z) {
-            i2 = 4;
-        }
-        b33Var.setVisibility(i2);
+    public v48(a58 a58Var, Context context, r63 r63Var, r63 r63Var2, oab oabVar, boolean z, boolean z2, boolean z3, Context context2, y48 y48Var, boolean[] zArr) {
+        super(context, r63Var, true);
+        this.x = a58Var;
+        this.d = r63Var2;
+        this.e = oabVar;
+        this.f = z;
+        this.h = z2;
+        this.n = z3;
+        this.r = context2;
+        this.s = y48Var;
+        this.w = zArr;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        j33 j33Var;
-        boolean drawChild = super.drawChild(canvas, view, j);
-        if (this.f && view == (j33Var = this.b)) {
-            RectF actualRect = j33Var.getActualRect();
-            int L = gl.L(32.0f);
-            d78 d78Var = (d78) this.a;
-            d78Var.getClass();
-            PhotoViewer photoViewer = d78Var.a;
-            float measuredWidth = (photoViewer.Y7.getMeasuredWidth() - gl.L(32.0f)) * photoViewer.C8;
-            int i = L / 2;
-            int L2 = gl.L(2.0f) + (((int) (measuredWidth + gl.L(16.0f))) - i);
-            int measuredHeight = getMeasuredHeight() - gl.L(156.0f);
-            float f = actualRect.left;
-            float f2 = this.r;
-            float f3 = ((L2 - f) * f2) + f;
-            float f4 = actualRect.top;
-            float A = tb4.A(measuredHeight, f4, f2, f4);
-            float width = ((L - actualRect.width()) * this.r) + actualRect.width();
-            ImageReceiver imageReceiver = this.e;
-            imageReceiver.q0((int) (width / 2.0f));
-            imageReceiver.i0(f3, A, width, width);
-            imageReceiver.setAlpha(this.n);
-            imageReceiver.h(canvas, null);
-            int i2 = (this.x > 0.0f ? 1 : (this.x == 0.0f ? 0 : -1));
-            Paint paint = this.y;
-            if (i2 > 0) {
-                paint.setColor(-1);
-                paint.setAlpha((int) (this.x * 255.0f));
-                canvas.drawCircle(actualRect.centerX(), actualRect.centerY(), actualRect.width() / 2.0f, paint);
+    public final void j(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout r35) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.v48.j(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout):void");
+    }
+
+    @Override
+    public final void k() {
+        if (!this.c && !this.w[0]) {
+            gm.c3(new p48(this, (byte) 0));
+        }
+        a58 a58Var = this.x;
+        a58Var.j1 = null;
+        a58Var.i1 = null;
+    }
+
+    public final void r(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, boolean z) {
+        z48 z48Var;
+        boolean z2 = this.f;
+        a58 a58Var = this.x;
+        if (z2 && ((z48Var = a58Var.E1) == null || z48Var.b == null)) {
+            Context context = a58Var.getContext();
+            th8 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
+            final wm4 wm4Var = new wm4(this, actionBarPopupWindow$ActionBarPopupWindowLayout, false, (byte) 17);
+            mx6 mx6Var = new mx6((byte) 22);
+            a8[] a8VarArr = new a8[5];
+            mx6Var.d = a8VarArr;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, null, context);
+            mx6Var.b = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
+            a8 c = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232063, jb6.M0(2131753721, null), false, null);
+            c.setOnClickListener(new w70(swipeBack, (byte) 3));
+            c.d(-328966, -328966);
+            c.setSelectorColor(268435455);
+            View a6Var = new a6(context, (byte) 8);
+            a6Var.setMinimumWidth(gm.L(196.0f));
+            a6Var.setBackgroundColor(-15198184);
+            actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(a6Var);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) a6Var.getLayoutParams();
+            if (jb6.a0) {
+                layoutParams.gravity = 5;
             }
-            paint.setColor(bkb.v0(bkb.pg, this.E));
-            paint.setAlpha(Math.min(255, (int) (this.r * 255.0f * this.n)));
-            canvas.drawCircle(L2 + i, gl.L(8.0f) + measuredHeight + L, gl.L(3.0f), paint);
-        }
-        return drawChild;
-    }
-
-    public float getRectSizeX() {
-        return this.b.getCropWidth();
-    }
-
-    public float getRectSizeY() {
-        return this.b.getCropHeight();
-    }
-
-    public float getRectX() {
-        return this.b.getCropLeft() - gl.L(14.0f);
-    }
-
-    public float getRectY() {
-        int i;
-        float cropTop = this.b.getCropTop() - gl.L(14.0f);
-        if (!this.d) {
-            i = gl.m;
-        } else {
-            i = 0;
-        }
-        return cropTop - i;
-    }
-
-    public Bitmap getVideoThumb() {
-        if (this.f && this.h) {
-            return this.e.n();
-        }
-        return null;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.b.invalidate();
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.h && this.f) {
-            if (this.e.H(motionEvent.getX(), motionEvent.getY())) {
-                if (motionEvent.getAction() == 1) {
-                    ((d78) this.a).c();
+            layoutParams.width = -1;
+            layoutParams.height = gm.L(8.0f);
+            a6Var.setLayoutParams(layoutParams);
+            v7 v7Var = new v7(context, null);
+            mx6Var.c = v7Var;
+            v7Var.setMinimumWidth(gm.L(196.0f));
+            v7Var.setDrawShadow(false);
+            v7Var.setBackgroundColor(-14540254);
+            v7Var.setTextColor(-1);
+            v7Var.setOnValueChange(new h92(wm4Var, (byte) 6));
+            actionBarPopupWindow$ActionBarPopupWindowLayout2.a(v7Var, qoe.o(-1, 44));
+            View a6Var2 = new a6(context, (byte) 9);
+            a6Var2.setMinimumWidth(gm.L(196.0f));
+            a6Var2.setBackgroundColor(-15198184);
+            actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(a6Var2);
+            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) a6Var2.getLayoutParams();
+            if (jb6.a0) {
+                layoutParams2.gravity = 5;
+            }
+            layoutParams2.width = -1;
+            layoutParams2.height = gm.L(8.0f);
+            a6Var2.setLayoutParams(layoutParams2);
+            a8 c2 = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232375, jb6.M0(2131744952, null), false, null);
+            c2.d(-328966, -328966);
+            c2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    wm4 wm4Var2 = wm4Var;
+                    switch (b) {
+                        case 0:
+                            wm4Var2.c0(true, true, 0.2f);
+                            return;
+                        case 1:
+                            wm4Var2.c0(true, true, 0.5f);
+                            return;
+                        case 2:
+                            wm4Var2.c0(true, true, 1.0f);
+                            return;
+                        case 3:
+                            wm4Var2.c0(true, true, 1.5f);
+                            return;
+                        default:
+                            wm4Var2.c0(true, true, 2.0f);
+                            return;
+                    }
                 }
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        h33 h33Var;
-        super.onLayout(z, i, i2, i3, i4);
-        j33 j33Var = this.b;
-        CropAreaView cropAreaView = j33Var.a;
-        float cropWidth = cropAreaView.getCropWidth();
-        if (cropWidth != 0.0f && (h33Var = j33Var.M) != null) {
-            cropAreaView.a(j33Var.h, h33Var.a / h33Var.b);
-            cropAreaView.setActualRect(cropAreaView.getAspectRatio());
-            cropAreaView.d(j33Var.f);
-            j33Var.M.f(cropAreaView.getCropWidth() / cropWidth, 0.0f, 0.0f);
-            j33Var.r(false);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.h && this.f) {
-            if (this.e.H(motionEvent.getX(), motionEvent.getY())) {
-                if (motionEvent.getAction() == 1) {
-                    ((d78) this.a).c();
+            });
+            c2.setSelectorColor(268435455);
+            a8VarArr[0] = c2;
+            a8 c3 = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232379, jb6.M0(2131744955, null), false, null);
+            c3.d(-328966, -328966);
+            c3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    wm4 wm4Var2 = wm4Var;
+                    switch (b) {
+                        case 0:
+                            wm4Var2.c0(true, true, 0.2f);
+                            return;
+                        case 1:
+                            wm4Var2.c0(true, true, 0.5f);
+                            return;
+                        case 2:
+                            wm4Var2.c0(true, true, 1.0f);
+                            return;
+                        case 3:
+                            wm4Var2.c0(true, true, 1.5f);
+                            return;
+                        default:
+                            wm4Var2.c0(true, true, 2.0f);
+                            return;
+                    }
                 }
-                return true;
+            });
+            c3.setSelectorColor(268435455);
+            a8VarArr[1] = c3;
+            a8 c4 = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232378, jb6.M0(2131744956, null), false, null);
+            c4.d(-328966, -328966);
+            c4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    wm4 wm4Var2 = wm4Var;
+                    switch (b) {
+                        case 0:
+                            wm4Var2.c0(true, true, 0.2f);
+                            return;
+                        case 1:
+                            wm4Var2.c0(true, true, 0.5f);
+                            return;
+                        case 2:
+                            wm4Var2.c0(true, true, 1.0f);
+                            return;
+                        case 3:
+                            wm4Var2.c0(true, true, 1.5f);
+                            return;
+                        default:
+                            wm4Var2.c0(true, true, 2.0f);
+                            return;
+                    }
+                }
+            });
+            c4.setSelectorColor(268435455);
+            a8VarArr[2] = c4;
+            a8 c5 = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232376, jb6.M0(2131744959, null), false, null);
+            c5.d(-328966, -328966);
+            c5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    wm4 wm4Var2 = wm4Var;
+                    switch (b) {
+                        case 0:
+                            wm4Var2.c0(true, true, 0.2f);
+                            return;
+                        case 1:
+                            wm4Var2.c0(true, true, 0.5f);
+                            return;
+                        case 2:
+                            wm4Var2.c0(true, true, 1.0f);
+                            return;
+                        case 3:
+                            wm4Var2.c0(true, true, 1.5f);
+                            return;
+                        default:
+                            wm4Var2.c0(true, true, 2.0f);
+                            return;
+                    }
+                }
+            });
+            c5.setSelectorColor(268435455);
+            a8VarArr[3] = c5;
+            a8 c6 = r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232380, jb6.M0(2131744953, null), false, null);
+            c6.d(-328966, -328966);
+            c6.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    byte b = r2;
+                    wm4 wm4Var2 = wm4Var;
+                    switch (b) {
+                        case 0:
+                            wm4Var2.c0(true, true, 0.2f);
+                            return;
+                        case 1:
+                            wm4Var2.c0(true, true, 0.5f);
+                            return;
+                        case 2:
+                            wm4Var2.c0(true, true, 1.0f);
+                            return;
+                        case 3:
+                            wm4Var2.c0(true, true, 1.5f);
+                            return;
+                        default:
+                            wm4Var2.c0(true, true, 2.0f);
+                            return;
+                    }
+                }
+            });
+            c6.setSelectorColor(268435455);
+            a8VarArr[4] = c6;
+            a58Var.s3 = mx6Var;
+            mx6Var.B0(true, oab.B1);
+            Context context2 = a58Var.getContext();
+            r63 r63Var = this.d;
+            a8 a8Var = new a8(0, r63Var, context2, false, false);
+            a58Var.t3 = a8Var;
+            a8Var.j(jb6.M0(2131744960, null), 2131232374, null);
+            a58Var.g1(true);
+            a58Var.t3.setMinimumWidth(gm.L(196.0f));
+            a58Var.t3.setRightIcon(2131232065);
+            actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a58Var.t3);
+            LinearLayout.LayoutParams layoutParams3 = (LinearLayout.LayoutParams) a58Var.t3.getLayoutParams();
+            if (jb6.a0) {
+                layoutParams3.gravity = 5;
             }
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void setAspectRatio(float f) {
-        this.b.setAspectRatio(f);
-    }
-
-    public void setDelegate(u48 u48Var) {
-        this.a = u48Var;
-    }
-
-    public void setFreeform(boolean z) {
-        this.b.setFreeform(z);
-    }
-
-    public void setSubtitle(String str) {
-        this.b.setSubtitle(str);
-    }
-
-    public void setVideoThumbFlashAlpha(float f) {
-        this.x = f;
-        invalidate();
-    }
-
-    public void setVideoThumbVisible(boolean z) {
-        float f;
-        if (this.h == z) {
+            layoutParams3.width = -1;
+            layoutParams3.height = gm.L(48.0f);
+            a58Var.t3.setLayoutParams(layoutParams3);
+            int b = actionBarPopupWindow$ActionBarPopupWindowLayout.b((ActionBarPopupWindow$ActionBarPopupWindowLayout) a58Var.s3.b);
+            a8 a8Var2 = a58Var.t3;
+            a8Var2.Q = new q48(actionBarPopupWindow$ActionBarPopupWindowLayout, b, (byte) 0);
+            a8Var2.setOnClickListener(new m48(this, (byte) 11));
+            actionBarPopupWindow$ActionBarPopupWindowLayout.c = true;
+            if (z) {
+                j8 j8Var = new j8(cmb.G8, r63Var, a58Var.getContext());
+                j8Var.setTag(2131296439, 1);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.a(j8Var, qoe.o(-1, 8));
+                return;
+            }
             return;
         }
-        this.h = z;
-        AnimatorSet animatorSet = this.w;
-        if (animatorSet != null) {
-            animatorSet.cancel();
+        a58Var.s3 = null;
+        a58Var.t3 = null;
+    }
+
+    public final void s(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, TL_stories.StoryItem storyItem) {
+        TLRPC.Chat L0;
+        a58 a58Var = this.x;
+        if (a58Var.t1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (L0 = oc7.r1(a58Var.s2).L0(Long.valueOf(-a58Var.r1))) != null) {
+            TLRPC.ChatFull M0 = oc7.r1(a58Var.s2).M0(L0.id);
+            if (M0 == null) {
+                M0 = cf7.Y(a58Var.s2).C0(L0.id, true, new CountDownLatch(1), false, false, 0);
+            }
+            if (M0 != null && M0.can_view_stats) {
+                r7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232384, jb6.M0(2131743226, null), false, this.d).setOnClickListener(new ef(this, storyItem, this.e, L0, (byte) 13));
+            }
         }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.w = animatorSet2;
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.G, f));
-        this.w.setDuration(180L);
-        this.w.addListener(new t48(this, (byte) 1));
-        this.w.start();
     }
 }

@@ -1,10 +1,12 @@
 package defpackage;
-public final class mj {
-    public final byte[] a;
-    public final int b;
 
-    public mj(int i, byte[] bArr) {
-        this.a = bArr;
-        this.b = i;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+public final class mj extends hk {
+    @Override
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        editorInfo.imeOptions &= -1073741825;
+        return onCreateInputConnection;
     }
 }

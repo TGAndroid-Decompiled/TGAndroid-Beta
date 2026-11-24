@@ -8,24 +8,24 @@ public class GcmPushListenerService extends FirebaseMessagingService {
     public static final int n = 0;
 
     @Override
-    public final void c(j69 j69Var) {
+    public final void c(l89 l89Var) {
         long parseLong;
-        Bundle bundle = j69Var.a;
+        Bundle bundle = l89Var.a;
         String string = bundle.getString("from");
-        if (j69Var.b == null) {
-            ?? aiaVar = new aia(0);
+        if (l89Var.b == null) {
+            ?? ckaVar = new cka(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
                 if (obj instanceof String) {
                     String str2 = (String) obj;
                     if (!str.startsWith("google.") && !str.startsWith("gcm.") && !str.equals("from") && !str.equals("message_type") && !str.equals("collapse_key")) {
-                        aiaVar.put(str, str2);
+                        ckaVar.put(str, str2);
                     }
                 }
             }
-            j69Var.b = aiaVar;
+            l89Var.b = ckaVar;
         }
-        HashMap hashMap = new HashMap(j69Var.b);
+        HashMap hashMap = new HashMap(l89Var.b);
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             parseLong = ((Long) obj2).longValue();
@@ -39,14 +39,14 @@ public class GcmPushListenerService extends FirebaseMessagingService {
             }
             parseLong = 0;
         }
-        if (w01.a) {
-            fa4.b("FCM received data: " + hashMap + " from: " + string);
+        if (e21.a) {
+            fc4.b("FCM received data: " + hashMap + " from: " + string);
         }
         PushListenerController.processRemoteMessage(2, (String) hashMap.get("p"), parseLong);
     }
 
     @Override
     public final void d(String str) {
-        gl.d3(new xt2(str, (byte) 4));
+        gm.c3(new iv2(str, (byte) 5));
     }
 }

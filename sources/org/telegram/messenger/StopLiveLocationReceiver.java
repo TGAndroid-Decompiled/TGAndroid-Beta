@@ -7,7 +7,7 @@ public class StopLiveLocationReceiver extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
         for (int i = 0; i < 4; i++) {
-            Utilities.d.c(new va6(eb6.f(i), (byte) 6));
+            Utilities.d.c(new uc6(dd6.f(i), (byte) 6));
         }
     }
 }

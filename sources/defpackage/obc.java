@@ -1,32 +1,45 @@
 package defpackage;
+public abstract class obc extends nbc {
+    public m08[] a;
+    public String b;
+    public int c;
 
-import org.telegram.messenger.video.VideoPlayerHolderBase;
-public final class obc implements Runnable {
-    public final byte a;
-    public final VideoPlayerHolderBase b;
-    public final float c;
-
-    public obc(VideoPlayerHolderBase videoPlayerHolderBase, float f, byte b) {
-        this.a = b;
-        this.b = videoPlayerHolderBase;
-        this.c = f;
+    public obc(obc obcVar) {
+        this.a = null;
+        this.c = 0;
+        this.b = obcVar.b;
+        this.a = pse.e(obcVar.a);
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        float f = this.c;
-        VideoPlayerHolderBase videoPlayerHolderBase = this.b;
-        switch (b) {
-            case 0:
-                videoPlayerHolderBase.lambda$setSpeed$5(f);
-                return;
-            case 1:
-                videoPlayerHolderBase.lambda$play$7(f);
-                return;
-            default:
-                videoPlayerHolderBase.lambda$setVolume$10(f);
-                return;
+    public m08[] getPathData() {
+        return this.a;
+    }
+
+    public String getPathName() {
+        return this.b;
+    }
+
+    public void setPathData(m08[] m08VarArr) {
+        if (!pse.a(this.a, m08VarArr)) {
+            this.a = pse.e(m08VarArr);
+            return;
         }
+        m08[] m08VarArr2 = this.a;
+        for (int i = 0; i < m08VarArr.length; i++) {
+            m08VarArr2[i].a = m08VarArr[i].a;
+            int i2 = 0;
+            while (true) {
+                float[] fArr = m08VarArr[i].b;
+                if (i2 < fArr.length) {
+                    m08VarArr2[i].b[i2] = fArr[i2];
+                    i2++;
+                }
+            }
+        }
+    }
+
+    public obc() {
+        this.a = null;
+        this.c = 0;
     }
 }

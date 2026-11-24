@@ -1,54 +1,41 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class w59 extends mm5 {
-    public static final w59 e = new w59(0, new Object[0]);
-    public final transient Object[] c;
-    public final transient int d;
+import androidx.recyclerview.widget.RecyclerView;
+public final class w59 implements Runnable {
+    public final byte a;
+    public final RecyclerView b;
 
-    public w59(int i, Object[] objArr) {
-        this.c = objArr;
-        this.d = i;
+    public w59(RecyclerView recyclerView, byte b) {
+        this.a = b;
+        this.b = recyclerView;
     }
 
     @Override
-    public final Object get(int i) {
-        gre.j(i, this.d);
-        Object obj = this.c[i];
-        Objects.requireNonNull(obj);
-        return obj;
-    }
-
-    @Override
-    public final int i(int i, Object[] objArr) {
-        Object[] objArr2 = this.c;
-        int i2 = this.d;
-        System.arraycopy(objArr2, 0, objArr, i, i2);
-        return i + i2;
-    }
-
-    @Override
-    public final Object[] j() {
-        return this.c;
-    }
-
-    @Override
-    public final int k() {
-        return this.d;
-    }
-
-    @Override
-    public final int l() {
-        return 0;
-    }
-
-    @Override
-    public final boolean m() {
-        return false;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final void run() {
+        byte b = this.a;
+        RecyclerView recyclerView = this.b;
+        switch (b) {
+            case 0:
+                if (recyclerView.J && !recyclerView.isLayoutRequested()) {
+                    if (!recyclerView.H) {
+                        recyclerView.requestLayout();
+                        return;
+                    } else if (recyclerView.M) {
+                        recyclerView.L = true;
+                        return;
+                    } else {
+                        recyclerView.p();
+                        return;
+                    }
+                }
+                return;
+            default:
+                d69 d69Var = recyclerView.d0;
+                if (d69Var != null) {
+                    d69Var.m();
+                }
+                recyclerView.B0 = false;
+                return;
+        }
     }
 }

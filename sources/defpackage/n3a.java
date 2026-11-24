@@ -1,19 +1,29 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class n3a implements RequestDelegate {
-    public final String a;
-    public final p3a b;
+public final class n3a implements Runnable {
+    public final byte a;
+    public final a6a b;
+    public final TLRPC.Updates c;
 
-    public n3a(p3a p3aVar, String str) {
-        this.b = p3aVar;
-        this.a = str;
+    public n3a(a6a a6aVar, TLRPC.Updates updates, byte b) {
+        this.a = b;
+        this.b = a6aVar;
+        this.c = updates;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        gl.d3(new tj9(this, this.a, (byte) 25));
+    public final void run() {
+        byte b = this.a;
+        TLRPC.Updates updates = this.c;
+        a6a a6aVar = this.b;
+        switch (b) {
+            case 0:
+                a6aVar.getMessagesController().T3(updates, false);
+                return;
+            default:
+                a6aVar.getMessagesController().T3(updates, false);
+                return;
+        }
     }
 }

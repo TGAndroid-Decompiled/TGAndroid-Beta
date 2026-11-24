@@ -1,17 +1,17 @@
 package defpackage;
+public final class m2e implements cq7 {
+    public static final m2e a = new Object();
 
-import com.google.android.gms.common.api.Status;
-public final class m2e implements ua9 {
-    public final Status a;
-    public final int b;
-
-    public m2e(Status status, int i) {
-        this.a = status;
-        this.b = i;
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)));
     }
 
     @Override
-    public final Status a() {
-        return this.a;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,225 +1,230 @@
 package defpackage;
+public enum wne implements y8d {
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(0),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(1),
+    MODEL_UPDATE(2),
+    ON_DEVICE_FACE_CLOSE(3),
+    ON_DEVICE_FACE_LOAD(4),
+    ON_DEVICE_TEXT_DETECT(11),
+    ON_DEVICE_TEXT_CREATE(12),
+    ON_DEVICE_TEXT_CLOSE(13),
+    ON_DEVICE_TEXT_LOAD(14),
+    ON_DEVICE_BARCODE_DETECT(21),
+    ON_DEVICE_BARCODE_CREATE(22),
+    ON_DEVICE_BARCODE_CLOSE(23),
+    ON_DEVICE_BARCODE_LOAD(24),
+    ON_DEVICE_IMAGE_LABEL_DETECT(141),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(142),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(143),
+    ON_DEVICE_IMAGE_LABEL_LOAD(144),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(151),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(152),
+    MODEL_UPDATE(153),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(154),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(155),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(161),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(162),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(164),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(163),
+    MODEL_UPDATE(171),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(172),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(173),
+    MODEL_UPDATE(174),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(175),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(241),
+    MODEL_UPDATE(242),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(243),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(244),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(245),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(191),
+    MODEL_UPDATE(192),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(193),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(194),
+    MODEL_UPDATE(311),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(312),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(313),
+    MODEL_UPDATE(314),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(315),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(321),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(322),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(323),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(324),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(325),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(331),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(332),
+    MODEL_UPDATE(333),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(334),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(341),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(342),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(343),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(344),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(351),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(352),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(353),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(354),
+    MODEL_UPDATE(31),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(32),
+    MODEL_UPDATE(33),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(41),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(42),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(43),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(51),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(52),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(53),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(61),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(62),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(63),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(71),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(72),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(73),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(81),
+    MODEL_UPDATE(82),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(83),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(91),
+    MODEL_UPDATE(92),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(93),
+    MODEL_UPDATE(111),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(112),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(113),
+    MODEL_UPDATE(121),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(122),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(123),
+    MODEL_UPDATE(131),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(132),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(133),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(102),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(103),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(104),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(105),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(181),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(182),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(183),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(184),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(100),
+    MODEL_UPDATE(101),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(251),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(252),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(260),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(261),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(200),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(201),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(202),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(203),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(204),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(205),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(206),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(207),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(208),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(209),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(210),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(211),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(212),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(213),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(214),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(271),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(272),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(273),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(281),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(291),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(292),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(293),
+    INSTALLATION_ID_FIS_CREATE_INSTALLATION(301),
+    INSTALLATION_ID_FIS_GENERATE_AUTH_TOKEN(302),
+    INPUT_IMAGE_CONSTRUCTION(361),
+    HANDLE_LEAKED(371),
+    CAMERA_SOURCE(381),
+    OPTIONAL_MODULE_IMAGE_LABELING(391),
+    OPTIONAL_MODULE_LANGUAGE_ID(401),
+    OPTIONAL_MODULE_LANGUAGE_ID_CREATE(402),
+    OPTIONAL_MODULE_LANGUAGE_ID_INIT(403),
+    OPTIONAL_MODULE_LANGUAGE_ID_INFERENCE(404),
+    OPTIONAL_MODULE_LANGUAGE_ID_RELEASE(405),
+    OPTIONAL_MODULE_NLCLASSIFIER(411),
+    OPTIONAL_MODULE_NLCLASSIFIER_CREATE(412),
+    OPTIONAL_MODULE_NLCLASSIFIER_INIT(413),
+    OPTIONAL_MODULE_NLCLASSIFIER_INFERENCE(414),
+    OPTIONAL_MODULE_NLCLASSIFIER_RELEASE(415),
+    NLCLASSIFIER_CLIENT_LIBRARY(421),
+    NLCLASSIFIER_CLIENT_LIBRARY_CREATE(422),
+    NLCLASSIFIER_CLIENT_LIBRARY_CLASSIFY(423),
+    NLCLASSIFIER_CLIENT_LIBRARY_CLOSE(424),
+    OPTIONAL_MODULE_FACE_DETECTION(441),
+    OPTIONAL_MODULE_FACE_DETECTION_CREATE(461),
+    OPTIONAL_MODULE_FACE_DETECTION_INIT(462),
+    OPTIONAL_MODULE_FACE_DETECTION_INFERENCE(463),
+    OPTIONAL_MODULE_FACE_DETECTION_RELEASE(464),
+    ACCELERATION_ALLOWLIST_GET(431),
+    ACCELERATION_ALLOWLIST_FETCH(432),
+    ODML_IMAGE(442),
+    OPTIONAL_MODULE_BARCODE_DETECTION(443),
+    OPTIONAL_MODULE_BARCODE_DETECTION_CREATE(471),
+    OPTIONAL_MODULE_BARCODE_DETECTION_INIT(472),
+    OPTIONAL_MODULE_BARCODE_DETECTION_INFERENCE(473),
+    OPTIONAL_MODULE_BARCODE_DETECTION_RELEASE(474),
+    OPTIONAL_MODULE_BARCODE_DETECTION_INFERENCE_AFTER_RELEASE(475),
+    TOXICITY_DETECTION_CREATE_EVENT(451),
+    TOXICITY_DETECTION_LOAD_EVENT(452),
+    TOXICITY_DETECTION_INFERENCE_EVENT(453),
+    TOXICITY_DETECTION_DOWNLOAD_EVENT(454),
+    OPTIONAL_MODULE_CUSTOM_IMAGE_LABELING_CREATE(481),
+    OPTIONAL_MODULE_CUSTOM_IMAGE_LABELING_INIT(482),
+    OPTIONAL_MODULE_CUSTOM_IMAGE_LABELING_INFERENCE(483),
+    OPTIONAL_MODULE_CUSTOM_IMAGE_LABELING_RELEASE(484),
+    CODE_SCANNER_SCAN_API(491),
+    CODE_SCANNER_OPTIONAL_MODULE(492),
+    ON_DEVICE_EXPLICIT_CONTENT_CREATE(501),
+    ON_DEVICE_EXPLICIT_CONTENT_LOAD(502),
+    ON_DEVICE_EXPLICIT_CONTENT_DETECT(503),
+    ON_DEVICE_EXPLICIT_CONTENT_CLOSE(504),
+    ON_DEVICE_FACE_MESH_CREATE(511),
+    ON_DEVICE_FACE_MESH_LOAD(512),
+    ON_DEVICE_FACE_MESH_DETECT(513),
+    ON_DEVICE_FACE_MESH_CLOSE(514),
+    OPTIONAL_MODULE_SMART_REPLY_CREATE(521),
+    OPTIONAL_MODULE_SMART_REPLY_INIT(522),
+    OPTIONAL_MODULE_SMART_REPLY_INFERENCE(523),
+    OPTIONAL_MODULE_SMART_REPLY_RELEASE(524),
+    OPTIONAL_MODULE_TEXT_CREATE(531),
+    OPTIONAL_MODULE_TEXT_INIT(532),
+    OPTIONAL_MODULE_TEXT_INFERENCE(533),
+    OPTIONAL_MODULE_TEXT_RELEASE(534),
+    ON_DEVICE_IMAGE_QUALITY_ANALYSIS_CREATE(541),
+    ON_DEVICE_IMAGE_QUALITY_ANALYSIS_LOAD(542),
+    ON_DEVICE_IMAGE_QUALITY_ANALYSIS_DETECT(543),
+    ON_DEVICE_IMAGE_QUALITY_ANALYSIS_CLOSE(544),
+    OPTIONAL_MODULE_DOCUMENT_DETECT_CREATE(551),
+    OPTIONAL_MODULE_DOCUMENT_DETECT_INIT(552),
+    OPTIONAL_MODULE_DOCUMENT_DETECT_PROCESS(553),
+    OPTIONAL_MODULE_DOCUMENT_DETECT_RELEASE(554),
+    OPTIONAL_MODULE_DOCUMENT_CROP_CREATE(561),
+    OPTIONAL_MODULE_DOCUMENT_CROP_INIT(562),
+    OPTIONAL_MODULE_DOCUMENT_CROP_PROCESS(563),
+    OPTIONAL_MODULE_DOCUMENT_CROP_RELEASE(564),
+    OPTIONAL_MODULE_DOCUMENT_ENHANCE_CREATE(571),
+    OPTIONAL_MODULE_DOCUMENT_ENHANCE_INIT(572),
+    OPTIONAL_MODULE_DOCUMENT_ENHANCE_PROCESS(573),
+    OPTIONAL_MODULE_DOCUMENT_ENHANCE_RELEASE(574),
+    OPTIONAL_MODULE_IMAGE_QUALITY_ANALYSIS_CREATE(581),
+    OPTIONAL_MODULE_IMAGE_QUALITY_ANALYSIS_INIT(582),
+    OPTIONAL_MODULE_IMAGE_QUALITY_ANALYSIS_INFERENCE(583),
+    OPTIONAL_MODULE_IMAGE_QUALITY_ANALYSIS_RELEASE(584),
+    OPTIONAL_MODULE_IMAGE_CAPTIONING_CREATE(591),
+    OPTIONAL_MODULE_IMAGE_CAPTIONING_INIT(592),
+    OPTIONAL_MODULE_IMAGE_CAPTIONING_INFERENCE(593),
+    OPTIONAL_MODULE_IMAGE_CAPTIONING_RELEASE(594),
+    ON_DEVICE_IMAGE_CAPTIONING_CREATE(601),
+    ON_DEVICE_IMAGE_CAPTIONING_LOAD(602),
+    ON_DEVICE_IMAGE_CAPTIONING_INFERENCE(603),
+    ON_DEVICE_IMAGE_CAPTIONING_CLOSE(604);
+    
+    public final short a;
 
-import java.nio.charset.Charset;
-import java.util.AbstractList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.RandomAccess;
-public final class wne extends oee implements yve, RandomAccess {
-    public static final wne d;
-    public int[] b;
-    public int c;
-
-    static {
-        wne wneVar = new wne(new int[0], 0);
-        d = wneVar;
-        wneVar.a = false;
-    }
-
-    public wne(int[] iArr, int i) {
-        this.b = iArr;
-        this.c = i;
+    wne(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void add(int i, Object obj) {
-        int i2;
-        int intValue = ((Integer) obj).intValue();
-        h();
-        if (i >= 0 && i <= (i2 = this.c)) {
-            int[] iArr = this.b;
-            if (i2 < iArr.length) {
-                System.arraycopy(iArr, i, iArr, i + 1, i2 - i);
-            } else {
-                int[] iArr2 = new int[ls6.y(i2, 3, 2, 1)];
-                System.arraycopy(iArr, 0, iArr2, 0, i);
-                System.arraycopy(this.b, i, iArr2, i + 1, this.c - i);
-                this.b = iArr2;
-            }
-            this.b[i] = intValue;
-            this.c++;
-            ((AbstractList) this).modCount++;
-            return;
-        }
-        k93.i(k(i));
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        h();
-        Charset charset = foe.a;
-        collection.getClass();
-        if (!(collection instanceof wne)) {
-            return super.addAll(collection);
-        }
-        wne wneVar = (wne) collection;
-        int i = wneVar.c;
-        if (i == 0) {
-            return false;
-        }
-        int i2 = this.c;
-        if (Integer.MAX_VALUE - i2 >= i) {
-            int i3 = i2 + i;
-            int[] iArr = this.b;
-            if (i3 > iArr.length) {
-                iArr = Arrays.copyOf(iArr, i3);
-                this.b = iArr;
-            }
-            System.arraycopy(wneVar.b, 0, iArr, this.c, wneVar.c);
-            this.c = i3;
-            ((AbstractList) this).modCount++;
-            return true;
-        }
-        throw new OutOfMemoryError();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) != -1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof wne)) {
-            return super.equals(obj);
-        }
-        wne wneVar = (wne) obj;
-        if (this.c != wneVar.c) {
-            return false;
-        }
-        int[] iArr = wneVar.b;
-        for (int i = 0; i < this.c; i++) {
-            if (this.b[i] != iArr[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final Object get(int i) {
-        j(i);
-        return Integer.valueOf(this.b[i]);
-    }
-
-    @Override
-    public final int hashCode() {
-        int i = 1;
-        for (int i2 = 0; i2 < this.c; i2++) {
-            i = (i * 31) + this.b[i2];
-        }
-        return i;
-    }
-
-    public final void i(int i) {
-        h();
-        int i2 = this.c;
-        int[] iArr = this.b;
-        if (i2 == iArr.length) {
-            int[] iArr2 = new int[ls6.y(i2, 3, 2, 1)];
-            System.arraycopy(iArr, 0, iArr2, 0, i2);
-            this.b = iArr2;
-            iArr = iArr2;
-        }
-        int i3 = this.c;
-        this.c = i3 + 1;
-        iArr[i3] = i;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        if (!(obj instanceof Integer)) {
-            return -1;
-        }
-        int intValue = ((Integer) obj).intValue();
-        int i = this.c;
-        for (int i2 = 0; i2 < i; i2++) {
-            if (this.b[i2] == intValue) {
-                return i2;
-            }
-        }
-        return -1;
-    }
-
-    public final void j(int i) {
-        if (i >= 0 && i < this.c) {
-            return;
-        }
-        k93.i(k(i));
-    }
-
-    public final String k(int i) {
-        int i2 = this.c;
-        StringBuilder sb = new StringBuilder(35);
-        sb.append("Index:");
-        sb.append(i);
-        sb.append(", Size:");
-        sb.append(i2);
-        return sb.toString();
-    }
-
-    @Override
-    public final Object remove(int i) {
-        int i2;
-        h();
-        j(i);
-        int[] iArr = this.b;
-        int i3 = iArr[i];
-        if (i < this.c - 1) {
-            System.arraycopy(iArr, i + 1, iArr, i, (i2 - i) - 1);
-        }
-        this.c--;
-        ((AbstractList) this).modCount++;
-        return Integer.valueOf(i3);
-    }
-
-    @Override
-    public final void removeRange(int i, int i2) {
-        h();
-        if (i2 >= i) {
-            int[] iArr = this.b;
-            System.arraycopy(iArr, i2, iArr, i, this.c - i2);
-            this.c -= i2 - i;
-            ((AbstractList) this).modCount++;
-            return;
-        }
-        k93.i("toIndex < fromIndex");
-    }
-
-    @Override
-    public final Object set(int i, Object obj) {
-        int intValue = ((Integer) obj).intValue();
-        h();
-        j(i);
-        int[] iArr = this.b;
-        int i2 = iArr[i];
-        iArr[i] = intValue;
-        return Integer.valueOf(i2);
-    }
-
-    @Override
-    public final int size() {
-        return this.c;
-    }
-
-    @Override
-    public final kpe zza(int i) {
-        if (i >= this.c) {
-            return new wne(Arrays.copyOf(this.b, i), this.c);
-        }
-        sc8.e();
-        return null;
-    }
-
-    @Override
-    public final boolean add(Object obj) {
-        i(((Integer) obj).intValue());
-        return true;
+    public final int zza() {
+        return this.a;
     }
 }

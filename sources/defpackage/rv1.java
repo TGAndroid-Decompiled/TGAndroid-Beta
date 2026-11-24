@@ -1,31 +1,29 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class rv1 implements View.OnLongClickListener {
+import android.animation.ValueAnimator;
+public final class rv1 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final ChatActivityEnterView b;
+    public final ah7 b;
 
-    public rv1(ChatActivityEnterView chatActivityEnterView, byte b) {
+    public rv1(ah7 ah7Var, byte b) {
         this.a = b;
-        this.b = chatActivityEnterView;
+        this.b = ah7Var;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        ChatActivityEnterView chatActivityEnterView = this.b;
+        ah7 ah7Var = this.b;
         switch (b) {
             case 0:
-                int i = ChatActivityEnterView.r7;
-                return chatActivityEnterView.f1(view);
+                ah7Var.q(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                ah7Var.q(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             default:
-                int i2 = ChatActivityEnterView.r7;
-                ex1 ex1Var = chatActivityEnterView.F0;
-                if (ex1Var != null && ex1Var.length() > 0) {
-                    return chatActivityEnterView.f1(view);
-                }
-                return false;
+                ah7Var.q(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

@@ -1,17 +1,26 @@
 package defpackage;
-public final class lfd implements zn7 {
-    public static final lfd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)));
+import android.content.Context;
+public final class lfd implements red, lt3, lr2, ahf {
+    @Override
+    public final Object X(sm2 sm2Var) {
+        return new m89(sm2Var.d(f8e.class));
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int a(Context context, String str, boolean z) {
+        return nt3.d(context, str, z);
+    }
+
+    @Override
+    public final int b(Context context, String str) {
+        return nt3.a(context, str);
+    }
+
+    @Override
+    public final byte[] c(int i, int i2, byte[] bArr) {
+        byte[] bArr2 = new byte[i2];
+        System.arraycopy(bArr, i, bArr2, 0, i2);
+        return bArr2;
     }
 }

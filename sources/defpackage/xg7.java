@@ -1,57 +1,35 @@
 package defpackage;
+public final class xg7 {
+    public final float[] a;
+    public final float[] b;
+    public final float c;
+    public final float d;
+    public final float e;
+    public final boolean f;
+    public final float[] g;
+    public final float[] h;
+    public final float[] i;
+    public final float[] j = new float[3];
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-public final class xg7 extends q3 {
-    public final q3 e;
-    public final gi3 f;
-
-    public xg7(q3 q3Var, gi3 gi3Var) {
-        q3Var.getClass();
-        this.e = q3Var;
-        this.f = gi3Var;
+    public xg7(float[] fArr, float[] fArr2, float f, float f2, float f3) {
+        boolean z;
+        this.a = fArr;
+        this.b = fArr2;
+        this.c = f;
+        this.d = f2;
+        this.e = f3;
+        if (f2 > f) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.f = z;
+        this.g = new float[fArr.length];
+        this.h = new float[fArr.length];
+        this.i = new float[fArr.length];
     }
 
-    @Override
-    public final void b() {
-        this.e.b();
-    }
-
-    @Override
-    public final Map d() {
-        return new oi6(this.e.a(), new im6(this, (byte) 10));
-    }
-
-    @Override
-    public final Collection e() {
-        return new p3(this, (byte) 0);
-    }
-
-    @Override
-    public final Set f() {
-        return this.e.j();
-    }
-
-    @Override
-    public final Iterator h() {
-        return new ks5(this.e.g().iterator(), new li6(this.f));
-    }
-
-    @Override
-    public final Collection i(Object obj) {
-        return tne.b((List) this.e.i(obj), new ji6(this.f, obj));
-    }
-
-    @Override
-    public final boolean k(Object obj, Object obj2) {
-        return i(obj).remove(obj2);
-    }
-
-    @Override
-    public final int l() {
-        return this.e.l();
+    public final void a(int[] r43, int[] r44, float r45, defpackage.yg7 r46, boolean r47) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xg7.a(int[], int[], float, yg7, boolean):void");
     }
 }

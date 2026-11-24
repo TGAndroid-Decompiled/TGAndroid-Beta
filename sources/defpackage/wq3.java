@@ -1,12 +1,29 @@
 package defpackage;
-public interface wq3 {
-    void I(int i, rx6 rx6Var);
 
-    void N(int i, rx6 rx6Var, vi2 vi2Var);
+import android.view.ViewGroup;
+public final class wq3 implements Runnable {
+    public final byte a;
+    public final xq3 b;
 
-    void i(int i, rx6 rx6Var, Exception exc);
+    public wq3(xq3 xq3Var, byte b) {
+        this.a = b;
+        this.b = xq3Var;
+    }
 
-    void n(int i, rx6 rx6Var, int i2);
-
-    void y(int i, rx6 rx6Var);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        xq3 xq3Var = this.b;
+        switch (b) {
+            case 0:
+                if (xq3Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) xq3Var.getParent()).removeView(xq3Var);
+                    return;
+                }
+                return;
+            default:
+                xq3Var.a();
+                return;
+        }
+    }
 }

@@ -1,38 +1,29 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.voip.ConferenceCall;
 public final class is2 implements Runnable {
     public final byte a;
-    public final boolean b;
-    public final int c;
-    public final int d;
+    public final ConferenceCall b;
 
-    public is2(boolean z, int i, int i2) {
-        this.a = (byte) 1;
-        this.b = z;
-        this.c = i;
-        this.d = i2;
+    public is2(ConferenceCall conferenceCall, byte b) {
+        this.a = b;
+        this.b = conferenceCall;
     }
 
     @Override
     public final void run() {
-        switch (this.a) {
+        byte b = this.a;
+        ConferenceCall conferenceCall = this.b;
+        switch (b) {
             case 0:
-                ConnectionsManager.lambda$onPremiumFloodWait$24(this.c, this.b, this.d);
+                ConferenceCall.n(conferenceCall);
                 return;
             case 1:
-                ConnectionsManager.lambda$onPremiumFloodWait$23(this.b, this.c, this.d);
+                ConferenceCall.g(conferenceCall);
                 return;
             default:
-                ConnectionsManager.lambda$onRequestNewServerIpAndPort$17(this.c, this.b, this.d);
+                ConferenceCall.j(conferenceCall);
                 return;
         }
-    }
-
-    public is2(int i, boolean z, int i2, byte b) {
-        this.a = b;
-        this.c = i;
-        this.b = z;
-        this.d = i2;
     }
 }

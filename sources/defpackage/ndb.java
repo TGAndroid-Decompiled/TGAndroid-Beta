@@ -1,79 +1,95 @@
 package defpackage;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class ndb implements Vector.TLDeserializer {
-    public final byte a;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class ndb extends Drawable {
+    public boolean a;
+    public final ln b;
+    public final Drawable c;
+    public final Drawable d;
+    public int e = 255;
 
-    public ndb(byte b) {
-        this.a = b;
+    public ndb(rc2 rc2Var) {
+        this.b = new ln(420L, rc2Var, d53.h);
+        this.c = rc2Var.getContext().getResources().getDrawable(2131232786);
+        this.d = rc2Var.getContext().getResources().getDrawable(2131232787);
     }
 
     @Override
-    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-        switch (this.a) {
-            case 0:
-                return TLRPC.MessagePeerReaction.TLdeserialize(inputSerializedData, i, z);
-            case 1:
-                return TLRPC.MessageReactor.TLdeserialize(inputSerializedData, i, z);
-            case 2:
-                return TLRPC.StickerSet.TLdeserialize(inputSerializedData, i, z);
-            case 3:
-                return TLRPC.StickerSetCovered.TLdeserialize(inputSerializedData, i, z);
-            case 4:
-                return TLRPC.TL_availableEffect.TLdeserialize(inputSerializedData, i, z);
-            case 5:
-                return TLRPC.TL_availableReaction.TLdeserialize(inputSerializedData, i, z);
-            case 6:
-                return TLRPC.BotInlineResult.TLdeserialize(inputSerializedData, i, z);
-            case 7:
-                return TLRPC.Message.TLdeserialize(inputSerializedData, i, z);
-            case 8:
-                return TLRPC.TL_forumTopic.TLdeserialize(inputSerializedData, i, z);
-            case 9:
-                return TLRPC.TL_chatAdminWithInvites.TLdeserialize(inputSerializedData, i, z);
-            case 10:
-                return TLRPC.TL_chatInviteImporter.TLdeserialize(inputSerializedData, i, z);
-            case 11:
-                return TLRPC.DialogFilter.TLdeserialize(inputSerializedData, i, z);
-            case 12:
-                return TLRPC.ForumTopic.TLdeserialize(inputSerializedData, i, z);
-            case 13:
-                return TLRPC.Dialog.TLdeserialize(inputSerializedData, i, z);
-            case 14:
-                return TLRPC.EmojiGroup.TLdeserialize(inputSerializedData, i, z);
-            case 15:
-                return TLRPC.ExportedChatInvite.TLdeserialize(inputSerializedData, i, z);
-            case 16:
-                return TLRPC.TL_stickerPack.TLdeserialize(inputSerializedData, i, z);
-            case 17:
-                return TLRPC.DialogPeer.TLdeserialize(inputSerializedData, i, z);
-            case 18:
-                return TLRPC.TL_emojiLanguage.TLdeserialize(inputSerializedData, i, z);
-            case 19:
-                return TLRPC.TL_readParticipantDate.TLdeserialize(inputSerializedData, i, z);
-            case 20:
-                return TLRPC.TL_messages_searchCounter.TLdeserialize(inputSerializedData, i, z);
-            case 21:
-                return TLRPC.TL_dialogFilterSuggested.TLdeserialize(inputSerializedData, i, z);
-            case 22:
-                return TLRPC.TL_transcriptionModel.TLdeserialize(inputSerializedData, i, z);
-            case 23:
-                return TLRPC.TL_highScore.TLdeserialize(inputSerializedData, i, z);
-            case 24:
-                return TLRPC.TL_missingInvitee.TLdeserialize(inputSerializedData, i, z);
-            case 25:
-                return TLRPC.TL_messageViews.TLdeserialize(inputSerializedData, i, z);
-            case 26:
-                return TLRPC.InlineQueryPeerType.TLdeserialize(inputSerializedData, i, z);
-            case 27:
-                return TLRPC.TL_quickReply.TLdeserialize(inputSerializedData, i, z);
-            case 28:
-                return TLRPC.savedDialog.TLdeserialize(inputSerializedData, i, z);
-            default:
-                return TLRPC.TL_savedReactionTag.TLdeserialize(inputSerializedData, i, z);
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        Drawable drawable = this.d;
+        drawable.setBounds(bounds);
+        drawable.setAlpha(this.e);
+        drawable.draw(canvas);
+        float d = this.b.d(this.a);
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float width = getBounds().width();
+        canvas.save();
+        if (d < 0.5f) {
+            float abs = Math.abs(d - 0.5f) + 0.5f;
+            canvas.scale(abs, abs, centerX, centerY);
         }
+        canvas.save();
+        int i = (d > 0.5f ? 1 : (d == 0.5f ? 0 : -1));
+        if (i > 0) {
+            float abs2 = Math.abs(d - 0.5f) + 0.5f;
+            float f = -abs2;
+            float f2 = width * 0.32f;
+            canvas.scale(f, f, getBounds().left + f2, getBounds().bottom - f2);
+            float f3 = 1.0f - abs2;
+            canvas.translate((-width) * f3 * 0.4f, f3 * width * 0.4f);
+        }
+        Rect bounds2 = getBounds();
+        Drawable drawable2 = this.c;
+        drawable2.setBounds(bounds2);
+        drawable2.setAlpha(this.e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.save();
+        if (i > 0) {
+            float f4 = -(Math.abs(d - 0.5f) + 0.5f);
+            float f5 = 0.32f * width;
+            canvas.scale(f4, f4, getBounds().right - f5, getBounds().top + f5);
+        }
+        canvas.rotate(180.0f, centerX, centerY);
+        if (i > 0) {
+            float abs3 = 1.0f - (Math.abs(d - 0.5f) + 0.5f);
+            canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
+        }
+        drawable2.setBounds(getBounds());
+        drawable2.setAlpha(this.e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.c.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.c.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.e = i;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
     }
 }

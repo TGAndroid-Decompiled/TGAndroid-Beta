@@ -1,55 +1,31 @@
 package defpackage;
 
-import android.app.Activity;
-public final class i38 implements p8c {
+import android.animation.ValueAnimator;
+public final class i38 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final String[] b;
-    public final Activity c;
-    public final p8c d;
+    public final a58 b;
 
-    public i38(String[] strArr, Activity activity, p8c p8cVar, byte b) {
+    public i38(a58 a58Var, byte b) {
         this.a = b;
-        this.b = strArr;
-        this.c = activity;
-        this.d = p8cVar;
+        this.b = a58Var;
     }
 
     @Override
-    public final void a(Object obj) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        boolean z = false;
-        p8c p8cVar = this.d;
-        Activity activity = this.c;
-        String[] strArr = this.b;
-        int[] iArr = (int[]) obj;
+        a58 a58Var = this.b;
         switch (b) {
             case 0:
-                int length = strArr.length;
-                int i = 0;
-                while (true) {
-                    if (i < length) {
-                        if (activity.checkSelfPermission(strArr[i]) == 0) {
-                            z = true;
-                        } else {
-                            i++;
-                        }
-                    }
-                }
-                p8cVar.a(Boolean.valueOf(z));
+                a58Var.x2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a58Var.invalidate();
+                return;
+            case 1:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a58Var.j3 = floatValue;
+                a58Var.h3.setTransitionProgress(floatValue);
                 return;
             default:
-                int length2 = strArr.length;
-                int i2 = 0;
-                while (true) {
-                    if (i2 < length2) {
-                        if (activity.checkSelfPermission(strArr[i2]) == 0) {
-                            i2++;
-                        }
-                    } else {
-                        z = true;
-                    }
-                }
-                p8cVar.a(Boolean.valueOf(z));
+                a58Var.D0(valueAnimator);
                 return;
         }
     }

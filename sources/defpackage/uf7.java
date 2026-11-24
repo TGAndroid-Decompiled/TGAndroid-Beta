@@ -1,80 +1,50 @@
 package defpackage;
-public final class uf7 implements gu3 {
-    public String e;
-    public wxb f;
-    public boolean i;
-    public int k;
-    public int l;
-    public int n;
-    public int o;
-    public int s;
-    public boolean u;
-    public byte d = 0;
-    public final xu7 a = new xu7(2, new byte[15]);
-    public final qd1 b = new qd1();
-    public final xu7 c = new xu7();
-    public final iz0 p = new iz0();
-    public int q = -2147483647;
-    public int r = -1;
-    public long t = -1;
-    public boolean j = true;
-    public boolean m = true;
-    public double g = -9.223372036854776E18d;
-    public double h = -9.223372036854776E18d;
 
-    @Override
-    public final void b(defpackage.xu7 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.uf7.b(xu7):void");
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class uf7 extends b4 {
+    public static final Parcelable.Creator<uf7> CREATOR = new d3d((byte) 13);
+    public final int a;
+    public final int b;
+    public final int c;
+    public final long d;
+    public final long e;
+    public final String f;
+    public final String h;
+    public final int n;
+    public final int r;
+
+    public uf7(int i, int i2, int i3, long j, long j2, String str, String str2, int i4, int i5) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = j;
+        this.e = j2;
+        this.f = str;
+        this.h = str2;
+        this.n = i4;
+        this.r = i5;
     }
 
     @Override
-    public final void d() {
-        this.d = (byte) 0;
-        this.l = 0;
-        this.a.K(2);
-        this.n = 0;
-        this.o = 0;
-        this.q = -2147483647;
-        this.r = -1;
-        this.s = 0;
-        this.t = -1L;
-        this.u = false;
-        this.i = false;
-        this.m = true;
-        this.j = true;
-        this.g = -9.223372036854776E18d;
-        this.h = -9.223372036854776E18d;
-    }
-
-    @Override
-    public final void g(int i, long j) {
-        this.k = i;
-        if (!this.j && (this.o != 0 || !this.m)) {
-            this.i = true;
-        }
-        if (j != -9223372036854775807L) {
-            if (this.i) {
-                this.h = j;
-            } else {
-                this.g = j;
-            }
-        }
-    }
-
-    @Override
-    public final void h(l74 l74Var, l2c l2cVar) {
-        l2cVar.a();
-        l2cVar.b();
-        this.e = l2cVar.e;
-        l2cVar.b();
-        this.f = l74Var.T(l2cVar.d, 1);
-    }
-
-    @Override
-    public final void e() {
-    }
-
-    @Override
-    public final void f() {
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        mve.q(parcel, 3, 4);
+        parcel.writeInt(this.c);
+        mve.q(parcel, 4, 8);
+        parcel.writeLong(this.d);
+        mve.q(parcel, 5, 8);
+        parcel.writeLong(this.e);
+        mve.l(parcel, 6, this.f);
+        mve.l(parcel, 7, this.h);
+        mve.q(parcel, 8, 4);
+        parcel.writeInt(this.n);
+        mve.q(parcel, 9, 4);
+        parcel.writeInt(this.r);
+        mve.s(parcel, r);
     }
 }

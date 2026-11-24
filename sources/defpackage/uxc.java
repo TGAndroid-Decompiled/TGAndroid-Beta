@@ -1,50 +1,29 @@
 package defpackage;
 
-import android.view.WindowInsets;
-public abstract class uxc {
-    public static int a(int i) {
-        int statusBars;
-        int i2 = 0;
-        for (int i3 = 1; i3 <= 512; i3 <<= 1) {
-            if ((i & i3) != 0) {
-                if (i3 != 1) {
-                    if (i3 != 2) {
-                        if (i3 != 4) {
-                            if (i3 != 8) {
-                                if (i3 != 16) {
-                                    if (i3 != 32) {
-                                        if (i3 != 64) {
-                                            if (i3 != 128) {
-                                                if (i3 == 512) {
-                                                    statusBars = WindowInsets.Type.systemOverlays();
-                                                }
-                                            } else {
-                                                statusBars = WindowInsets.Type.displayCutout();
-                                            }
-                                        } else {
-                                            statusBars = WindowInsets.Type.tappableElement();
-                                        }
-                                    } else {
-                                        statusBars = WindowInsets.Type.mandatorySystemGestures();
-                                    }
-                                } else {
-                                    statusBars = WindowInsets.Type.systemGestures();
-                                }
-                            } else {
-                                statusBars = WindowInsets.Type.ime();
-                            }
-                        } else {
-                            statusBars = WindowInsets.Type.captionBar();
-                        }
-                    } else {
-                        statusBars = WindowInsets.Type.navigationBars();
-                    }
-                } else {
-                    statusBars = WindowInsets.Type.statusBars();
-                }
-                i2 |= statusBars;
+import java.util.ArrayList;
+public final class uxc {
+    public final ArrayList a = new ArrayList();
+
+    public final synchronized boolean a(int i, int i2, boolean z) {
+        int i3 = 0;
+        while (true) {
+            if (i3 >= this.a.size()) {
+                break;
+            }
+            int[] iArr = (int[]) this.a.get(i3);
+            if (iArr[0] != i) {
+                i3++;
+            } else if (iArr[1] == i2 && iArr[2] == z && i3 == 0) {
+                return false;
+            } else {
+                this.a.remove(i3);
             }
         }
-        return i2;
+        this.a.add(0, new int[]{i, i2, z ? 1 : 0});
+        while (this.a.size() > 4) {
+            ArrayList arrayList = this.a;
+            arrayList.remove(arrayList.size() - 1);
+        }
+        return true;
     }
 }

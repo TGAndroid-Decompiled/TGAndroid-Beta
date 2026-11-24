@@ -1,6 +1,8 @@
 package defpackage;
-public final class fc8 {
-    static {
-        vue.a(new k40((byte) 6));
-    }
+
+import android.animation.ValueAnimator;
+public final class fc8 extends ooa {
+    public float q;
+    public float r;
+    public ValueAnimator s;
 }

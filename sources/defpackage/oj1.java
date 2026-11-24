@@ -1,46 +1,33 @@
 package defpackage;
-public final class oj1 {
-    public static final char[] a = new char[117];
-    public static final byte[] b = new byte[126];
 
-    static {
-        int i = 0;
-        for (int i2 = 0; i2 < 32; i2++) {
-        }
-        a('b', 8);
-        a('t', 9);
-        a('n', 10);
-        a('f', 12);
-        a('r', 13);
-        a('/', 47);
-        a('\"', 34);
-        a('\\', 92);
-        while (true) {
-            byte[] bArr = b;
-            if (i < 33) {
-                bArr[i] = Byte.MAX_VALUE;
-                i++;
-            } else {
-                bArr[9] = 3;
-                bArr[10] = 3;
-                bArr[13] = 3;
-                bArr[32] = 3;
-                bArr[44] = 4;
-                bArr[58] = 5;
-                bArr[123] = 6;
-                bArr[125] = 7;
-                bArr[91] = 8;
-                bArr[93] = 9;
-                bArr[34] = 1;
-                bArr[92] = 2;
-                return;
-            }
-        }
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class oj1 implements c5c {
+    public final byte a;
+    public final ik1 b;
+    public final TwoStepVerificationActivity c;
+
+    public oj1(ik1 ik1Var, TwoStepVerificationActivity twoStepVerificationActivity, byte b) {
+        this.a = b;
+        this.b = ik1Var;
+        this.c = twoStepVerificationActivity;
     }
 
-    public static void a(char c, int i) {
-        if (c != 'u') {
-            a[c] = (char) i;
+    @Override
+    public final void h(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
+        byte b = this.a;
+        TwoStepVerificationActivity twoStepVerificationActivity = this.c;
+        ik1 ik1Var = this.b;
+        switch (b) {
+            case 0:
+                ik1Var.G(false, tL_inputCheckPasswordSRP, twoStepVerificationActivity);
+                return;
+            case 1:
+                ik1Var.G(true, tL_inputCheckPasswordSRP, twoStepVerificationActivity);
+                return;
+            default:
+                ik1Var.G(true, tL_inputCheckPasswordSRP, twoStepVerificationActivity);
+                return;
         }
     }
 }

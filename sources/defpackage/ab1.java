@@ -1,64 +1,30 @@
 package defpackage;
-public final class ab1 extends bl0 {
-    public final byte s;
 
-    public ab1(int i, wjb wjbVar) {
-        super(i, wjbVar);
-        this.s = (byte) 2;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraSession;
+public final class ab1 implements Runnable {
+    public final byte a;
+    public final CameraController b;
+    public final CameraSession c;
+
+    public ab1(CameraController cameraController, CameraSession cameraSession, byte b) {
+        this.a = b;
+        this.b = cameraController;
+        this.c = cameraSession;
     }
 
     @Override
-    public final int L() {
-        switch (this.s) {
-            case 2:
-                if (c()) {
-                    return 117440511;
-                }
-                return 285212672;
-            default:
-                return super.L();
-        }
-    }
-
-    @Override
-    public final boolean c() {
-        switch (this.s) {
+    public final void run() {
+        byte b = this.a;
+        CameraSession cameraSession = this.c;
+        CameraController cameraController = this.b;
+        switch (b) {
             case 0:
-            case 1:
-                return true;
+                CameraController.n(cameraController, cameraSession);
+                return;
             default:
-                return super.c();
+                CameraController.j(cameraController, cameraSession);
+                return;
         }
-    }
-
-    @Override
-    public final int d1() {
-        switch (this.s) {
-            case 2:
-                if (c()) {
-                    return 83886079;
-                }
-                return 536870912;
-            default:
-                return super.d1();
-        }
-    }
-
-    @Override
-    public final int m0() {
-        switch (this.s) {
-            case 2:
-                if (c()) {
-                    return 301989887;
-                }
-                return 536870912;
-            default:
-                return super.m0();
-        }
-    }
-
-    public ab1(wjb wjbVar, int i, float f, byte b) {
-        super(wjbVar, i, f);
-        this.s = b;
     }
 }

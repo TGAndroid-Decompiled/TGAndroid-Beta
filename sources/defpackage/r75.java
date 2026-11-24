@@ -1,12 +1,7 @@
 package defpackage;
-
-import android.os.Parcelable;
-public final class r75 {
-    public int a;
-    public int b;
-    public Parcelable c;
-    public Object d;
-    public Object e;
-    public Object f;
-    public Object g;
+public final class r75 extends lp7 {
+    @Override
+    public final CharSequence d(int i) {
+        return jb6.G(i, "Hours", new Object[0]);
+    }
 }

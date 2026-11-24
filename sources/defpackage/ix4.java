@@ -1,20 +1,39 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-public final class ix4 implements gx4 {
-    public final Paint a = new Paint(1);
-    public int b;
+import android.content.Context;
+import android.view.View;
+public final class ix4 extends wsa {
+    public final byte y3 = 0;
+    public final mz0 z3;
 
-    public final void a(int i) {
-        if (this.b != i) {
-            this.b = i;
-            this.a.setColor(i);
+    public ix4(ux4 ux4Var, Context context, int i, long j, ylb ylbVar) {
+        super(context, i, j, ylbVar, null);
+        this.z3 = ux4Var;
+    }
+
+    @Override
+    public final int O() {
+        switch (this.y3) {
+            case 1:
+                return ((wsa) this.z3).O();
+            default:
+                return super.O();
         }
     }
 
     @Override
-    public final void e(float f, float f2, float f3, float f4, Canvas canvas) {
-        canvas.drawRect(f, f2, f3, f4, this.a);
+    public final c41 j() {
+        switch (this.y3) {
+            case 0:
+                ux4 ux4Var = (ux4) this.z3;
+                return new c41(ux4Var.c, ux4Var.J0);
+            default:
+                return super.j();
+        }
+    }
+
+    public ix4(wsa wsaVar, Context context, int i, long j, ylb ylbVar, View view) {
+        super(context, i, j, ylbVar, view);
+        this.z3 = wsaVar;
     }
 }

@@ -1,225 +1,110 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
-import android.util.DisplayMetrics;
-import android.widget.FrameLayout;
-public class zq8 extends FrameLayout {
-    public final Paint a;
-    public final Path b;
-    public final yq8 c;
-    public float d;
-    public float e;
-    public float f;
-    public boolean h;
-    public vj7 n;
+import j$.time.LocalDate;
+import j$.time.Period;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class zq8 {
+    public final int a;
+    public boolean b;
+    public br8 c;
+    public final boolean[] g;
+    public boolean i;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public final ArrayList j = new ArrayList();
 
-    public zq8(Context context) {
-        super(context);
-        float f;
-        Paint paint = new Paint(1);
-        this.a = paint;
-        this.b = new Path();
-        paint.setColor(-16777216);
-        if (Build.VERSION.SDK_INT >= 31 && gba.o() >= 1) {
-            if (gba.o() == 2) {
-                f = 1.0f;
-            } else {
-                f = 1.5f;
-            }
-            this.c = new xq8(this, f);
+    public zq8(int i, int i2) {
+        boolean[] zArr = new boolean[2];
+        this.g = zArr;
+        this.a = i2;
+        if (i2 <= 0) {
+            zArr[0] = true;
         } else {
-            this.c = new wq8(this);
-        }
-        setIntensity(15.0f);
-        setBlurIntensity(0.0f);
-        setWillNotDraw(false);
-    }
-
-    public final void a(Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, gl.L(32.0f));
-        super.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (!this.h) {
-            super.draw(canvas);
-            return;
-        }
-        this.c.c(new k88(this, (byte) 12), canvas);
-    }
-
-    public float getAvatarEndScale() {
-        float min;
-        int L;
-        vj7 vj7Var = this.n;
-        if (vj7Var == null) {
-            return 0.8f;
-        }
-        boolean z = vj7Var.c;
-        RectF rectF = vj7Var.e;
-        if (z) {
-            min = rectF.width() - gl.L(2.0f);
-            L = gl.L(100.0f);
-        } else {
-            min = Math.min(rectF.width(), this.n.e.height());
-            L = gl.L(100.0f);
-        }
-        return Math.min(0.8f, min / L);
-    }
-
-    public float getHiddenAvatarSizeDp() {
-        vj7 vj7Var = this.n;
-        if (vj7Var != null && vj7Var.c) {
-            return (vj7Var.e.width() * 0.5f) / gl.p;
-        }
-        return 24.0f;
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        vj7 vj7Var;
-        float f;
-        byte b;
-        boolean z;
-        super.onSizeChanged(i, i2, i3, i4);
-        Context context = getContext();
-        if (Build.VERSION.SDK_INT >= 28) {
-            ?? obj = new Object();
-            int identifier = context.getResources().getIdentifier("config_mainBuiltInDisplayCutout", "string", "android");
-            if (identifier != 0) {
-                String string = context.getString(identifier);
-                if (!string.isEmpty()) {
-                    String trim = string.trim();
-                    DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-                    int i5 = displayMetrics.widthPixels;
-                    float f2 = displayMetrics.density;
-                    byte b2 = 3;
-                    byte b3 = 5;
-                    boolean z2 = false;
-                    if (trim.endsWith("@right")) {
-                        f = i5;
-                        trim = trim.substring(0, trim.length() - 6).trim();
-                        b = 5;
-                    } else if (trim.endsWith("@left")) {
-                        trim = trim.substring(0, trim.length() - 5).trim();
-                        f = 0.0f;
-                        b = 3;
-                    } else {
-                        f = i5 / 2.0f;
-                        b = 17;
-                    }
-                    boolean endsWith = trim.endsWith("@dp");
-                    if (endsWith) {
-                        trim = ir2.n(3, 0, trim);
-                    }
-                    if (trim.contains("@bottom")) {
-                        trim = trim.split("@bottom", 2)[0].trim();
-                    }
-                    try {
-                        ky7[] c = mqe.c(trim);
-                        Path path = new Path();
-                        mqe.f(c, path);
-                        Matrix matrix = new Matrix();
-                        if (endsWith) {
-                            matrix.postScale(f2, f2);
-                        }
-                        matrix.postTranslate(f, 0.0f);
-                        path.transform(matrix);
-                        obj.d = path;
-                        RectF rectF = new RectF();
-                        path.computeBounds(rectF, true);
-                        obj.e = rectF;
-                        DisplayMetrics displayMetrics2 = context.getResources().getDisplayMetrics();
-                        if (b != 17 && Math.abs(rectF.centerX() - (displayMetrics2.widthPixels / 2.0f)) <= gl.L(2.0f)) {
-                            b = 17;
-                        }
-                        if (b != 17 || rectF.left >= displayMetrics2.widthPixels / 4.0f) {
-                            b2 = b;
-                        }
-                        if (b2 != 17 || rectF.right <= (displayMetrics2.widthPixels / 4.0f) * 3.0f) {
-                            b3 = b2;
-                        }
-                        obj.a = b3;
-                        if (!trim.contains("C") && !trim.contains("S") && !trim.contains("Q")) {
-                            z = false;
-                        } else {
-                            z = true;
-                        }
-                        obj.b = z;
-                        if (rectF.width() <= gl.L(32.0f) || rectF.width() <= rectF.height()) {
-                            z2 = true;
-                        }
-                        obj.c = z2;
-                        vj7Var = obj;
-                    } catch (Throwable th) {
-                        fa4.e("Failed to parse notch info", th);
-                    }
-                    this.n = vj7Var;
-                    if ((vj7Var != null && vj7Var.a != 17) || getWidth() > getHeight()) {
-                        this.n = null;
-                    }
-                    this.c.d(i, i2);
+            ArrayList arrayList = new ArrayList();
+            HashSet hashSet = new HashSet();
+            String valueOf = String.valueOf(i2);
+            for (int i3 = 0; i3 < valueOf.length(); i3++) {
+                int charAt = valueOf.charAt(i3) - '0';
+                if (charAt >= 0 && charAt <= 9) {
+                    arrayList.add(Integer.valueOf(charAt));
+                    hashSet.add(Integer.valueOf(charAt));
                 }
             }
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+            String[] strArr = cr8.s;
+            tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
+            hs6.d0(i).m0(tL_inputStickerSetShortName, 0, false, false, new i48(this, hashSet, arrayList, (byte) 3));
         }
-        vj7Var = null;
-        this.n = vj7Var;
-        if (vj7Var != null) {
-            this.n = null;
-            this.c.d(i, i2);
-        }
-        this.n = null;
-        this.c.d(i, i2);
+        String str = cr8.s[Utilities.b.nextInt(3)];
+        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
+        tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
+        hs6.d0(i).m0(tL_inputStickerSetShortName2, 0, false, false, new u35(this, str, (byte) 22));
     }
 
-    public void setBlurIntensity(float f) {
-        this.f = f;
-        this.c.b(f);
-        invalidate();
+    public static zq8 c(int i, TLRPC.UserFull userFull, zq8 zq8Var) {
+        int i2;
+        TL_account.TL_birthday tL_birthday;
+        if (e86.e(2) && ok0.d(userFull)) {
+            if (userFull != null && (tL_birthday = userFull.birthday) != null && (tL_birthday.flags & 1) != 0) {
+                i2 = Period.between(LocalDate.of(tL_birthday.year, tL_birthday.month, tL_birthday.day), LocalDate.now()).getYears();
+            } else {
+                i2 = 0;
+            }
+            if (zq8Var != null) {
+                if (zq8Var.a == i2) {
+                    return zq8Var;
+                }
+                zq8Var.b(false);
+            }
+            return new zq8(i, i2);
+        } else if (zq8Var != null) {
+            zq8Var.b(false);
+            return null;
+        } else {
+            return null;
+        }
     }
 
-    public void setGooeyEnabled(boolean z) {
-        if (this.h == z) {
+    public final void a() {
+        if (!this.b && this.f.size() >= this.e.size()) {
+            boolean[] zArr = this.g;
+            int i = 0;
+            if (zArr[0] && zArr[1]) {
+                this.b = true;
+                ArrayList arrayList = this.h;
+                int size = arrayList.size();
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    ((Runnable) obj).run();
+                }
+                arrayList.clear();
+            }
+        }
+    }
+
+    public final void b(boolean z) {
+        if (!z && !this.j.isEmpty()) {
+            this.i = true;
             return;
         }
-        this.h = z;
-        invalidate();
-    }
-
-    public void setHideProgress(float f) {
-        boolean z;
-        setPullProgress(f);
-        setBlurIntensity(Math.min((moe.a(f, 0.2f, 0.7f) - 0.2f) / 0.5f, 0.75f));
+        this.h.clear();
         int i = 0;
-        if (f > 0.0f && f < 1.0f) {
-            z = true;
-        } else {
-            z = false;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i < arrayList.size()) {
+                ((br8) arrayList.get(i)).K();
+                i++;
+            } else {
+                arrayList.clear();
+                return;
+            }
         }
-        setGooeyEnabled(z);
-        if (f >= 1.0f) {
-            i = 8;
-        }
-        setVisibility(i);
-    }
-
-    public void setIntensity(float f) {
-        this.d = f;
-        this.c.a(f);
-        invalidate();
-    }
-
-    public void setPullProgress(float f) {
-        this.e = f;
-        invalidate();
     }
 }

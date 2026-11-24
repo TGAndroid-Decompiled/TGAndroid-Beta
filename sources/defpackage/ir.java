@@ -1,286 +1,354 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.TextView;
+import java.lang.ref.WeakReference;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class ir implements c39 {
-    public final byte a;
-    public final gk7 b;
-    public final Object c;
-    public final Object d;
+import java.util.Map;
+import java.util.WeakHashMap;
+public class ir {
+    public int a;
+    public int b;
+    public Object c;
+    public Object d;
 
-    public ir(Object obj, Object obj2, Object obj3, byte b) {
-        this.a = b;
-        this.b = (gk7) obj;
-        this.c = obj2;
-        this.d = obj3;
+    public ir(int[] iArr) {
+        SecureRandom secureRandom = ag7.a;
+        int i = Integer.MAX_VALUE;
+        for (int i2 : iArr) {
+            if (i2 < i) {
+                i = i2;
+            }
+        }
+        this.a = Math.max(i, 1);
+        int i3 = Integer.MIN_VALUE;
+        for (int i4 : iArr) {
+            if (i3 < i4) {
+                i3 = i4;
+            }
+        }
+        this.b = i3;
+        int i5 = i3 + 1;
+        int[] iArr2 = new int[i5];
+        for (int i6 : iArr) {
+            iArr2[i6] = iArr2[i6] + 1;
+        }
+        int i7 = this.b + 1;
+        int[] iArr3 = new int[i7];
+        for (int i8 = 0; i8 < i7; i8++) {
+            iArr3[i8] = -1;
+        }
+        iArr2[0] = 0;
+        int[] iArr4 = new int[i7];
+        int i9 = 0;
+        int i10 = 0;
+        for (int i11 = 1; i11 < i5; i11++) {
+            i10 = (i10 + iArr2[i11 - 1]) << 1;
+            iArr4[i11] = i10;
+            i9 = (iArr2[i11] + i10) - 1;
+            iArr3[i11] = i9;
+        }
+        Object[] objArr = {iArr4, Integer.valueOf(i9)};
+        this.c = iArr3;
+        int[] iArr5 = (int[]) objArr[0];
+        int[] iArr6 = new int[((Integer) objArr[1]).intValue() + 1];
+        for (int i12 = 0; i12 < iArr.length; i12++) {
+            int i13 = iArr[i12];
+            if (i13 != 0) {
+                int i14 = iArr5[i13];
+                iArr5[i13] = i14 + 1;
+                iArr6[i14] = i12;
+            }
+        }
+        this.d = iArr6;
     }
 
-    @Override
-    public final void d(int i, View view) {
-        kz9 kz9Var;
-        TLRPC.User user;
-        TLRPC.WebPage webPage;
-        byte b = this.a;
-        int i2 = 8;
-        String str = null;
-        Object obj = this.c;
-        Object obj2 = this.d;
-        gk7 gk7Var = this.b;
-        boolean z = false;
-        boolean z2 = false;
-        z = false;
-        switch (b) {
-            case 0:
-                or orVar = (or) gk7Var;
-                d dVar = (d) obj;
-                Context context = (Context) obj2;
-                nr nrVar = (nr) view;
-                c06 c06Var = (c06) orVar.f3.get(i);
-                if (c06Var.e && !y6c.n()) {
-                    dVar.showDialog(new jh8(dVar, 10, true));
-                    return;
-                } else if (!jme.a(c06Var)) {
-                    u26 u26Var = new u26(context);
-                    u26Var.a = i;
-                    orVar.g3.v0(u26Var);
-                    jme.b(c06Var);
-                    int i3 = nr.h;
-                    nrVar.b(true, true);
-                    for (int i4 = 0; i4 < orVar.getChildCount(); i4++) {
-                        nr nrVar2 = (nr) orVar.getChildAt(i4);
-                        if (nrVar2 != nrVar) {
-                            nrVar2.b(false, true);
-                        }
-                    }
-                    kk7.e().k(295, 5, c06Var);
-                    return;
-                } else {
-                    return;
+    public final synchronized void a(Object obj, long j) {
+        int i = this.b;
+        if (i > 0) {
+            if (j <= ((long[]) this.c)[((this.a + i) - 1) % ((Object[]) this.d).length]) {
+                c();
+            }
+        }
+        d();
+        int i2 = this.a;
+        int i3 = this.b;
+        Object[] objArr = (Object[]) this.d;
+        int length = (i2 + i3) % objArr.length;
+        ((long[]) this.c)[length] = j;
+        objArr[length] = obj;
+        this.b = i3 + 1;
+    }
+
+    public final void b() {
+        new Handler(Looper.getMainLooper()).post(new bo6(this, (byte) 17));
+    }
+
+    public final synchronized void c() {
+        this.a = 0;
+        this.b = 0;
+        Arrays.fill((Object[]) this.d, (Object) null);
+    }
+
+    public final void d() {
+        int length = ((Object[]) this.d).length;
+        if (this.b < length) {
+            return;
+        }
+        int i = length << 1;
+        long[] jArr = new long[i];
+        Object[] objArr = new Object[i];
+        int i2 = this.a;
+        int i3 = length - i2;
+        System.arraycopy((long[]) this.c, i2, jArr, 0, i3);
+        System.arraycopy((Object[]) this.d, this.a, objArr, 0, i3);
+        int i4 = this.a;
+        if (i4 > 0) {
+            System.arraycopy((long[]) this.c, 0, jArr, i3, i4);
+            System.arraycopy((Object[]) this.d, 0, objArr, i3, this.a);
+        }
+        this.c = jArr;
+        this.d = objArr;
+        this.a = 0;
+    }
+
+    public final Object f(String str) {
+        if (str != null) {
+            synchronized (this) {
+                Object obj = ((LinkedHashMap) this.c).get(str);
+                if (obj == null) {
+                    return null;
                 }
-            case 1:
-                xu4 xu4Var = (xu4) gk7Var;
-                LinkedHashMap linkedHashMap = xu4Var.Z1;
-                vu4 vu4Var = (vu4) obj;
-                tu4 tu4Var = (tu4) obj2;
-                ww0 ww0Var = xu4Var.c;
-                c4c G = xu4Var.i2.G(i - 1);
-                if (G != null) {
-                    if (G.d == 1 && G.a == 3) {
-                        ij.l(xu4Var.getContext(), k96.M0(2131751226, null), k96.M0(2131751231, null), null, new ou4(xu4Var, (byte) 2), new nu4(xu4Var, (byte) 3), false, false, xu4Var.J0).M2();
-                        return;
-                    } else if (vu4Var != null) {
-                        if (G.H(uu4.class)) {
-                            xu4Var.h1(G.d);
-                            return;
-                        }
-                        Object obj3 = G.H;
-                        if (obj3 instanceof TLRPC.User) {
-                            xu4Var.h1(((TLRPC.User) obj3).id);
-                            return;
-                        } else if (obj3 instanceof TLRPC.Chat) {
-                            xu4Var.h1(-((TLRPC.Chat) obj3).id);
-                            return;
-                        } else {
-                            return;
-                        }
-                    } else {
-                        Object obj4 = G.H;
-                        if (obj4 instanceof TLRPC.User) {
-                            if (tu4Var != null) {
-                                TLRPC.User user2 = (TLRPC.User) obj4;
-                                o39 o39Var = xu4Var.n1;
-                                if (linkedHashMap.remove(Long.valueOf(user2.id)) == null) {
-                                    int size = linkedHashMap.size();
-                                    xu4Var.U1.getClass();
-                                    if (size >= 10) {
-                                        new u21(ww0Var, xu4Var.J0).Q(2131623982, 36, k96.G(10, "BotMultiContactsSelectorLimit", new Object[0])).k(true);
-                                        try {
-                                            ww0Var.performHapticFeedback(3, 2);
-                                            return;
-                                        } catch (Exception unused) {
-                                            return;
-                                        }
-                                    }
-                                    linkedHashMap.put(Long.valueOf(user2.id), user2);
-                                }
-                                boolean containsKey = linkedHashMap.containsKey(Long.valueOf(user2.id));
-                                for (int i5 = 0; i5 < xu4Var.i2.E.size(); i5++) {
-                                    c4c G2 = xu4Var.i2.G(i5);
-                                    if (G2 != null && (G2.H instanceof TLRPC.User) && G2.y == user2.id) {
-                                        G2.e = containsKey;
-                                    }
-                                }
-                                for (int i6 = 0; i6 < o39Var.getChildCount(); i6++) {
-                                    View childAt = o39Var.getChildAt(i6);
-                                    if ((childAt instanceof kz9) && (user = (kz9Var = (kz9) childAt).getUser()) != null && user.id == user2.id) {
-                                        kz9Var.c(containsKey, true);
-                                    }
-                                }
-                                u41 u41Var = xu4Var.a2;
-                                if (u41Var != null) {
-                                    u41Var.c(linkedHashMap.size(), true);
-                                    u41Var.setEnabled(!linkedHashMap.isEmpty());
-                                    return;
-                                }
-                                return;
-                            }
-                            TLRPC.User user3 = (TLRPC.User) obj4;
-                            gl.t1(xu4Var.p2);
-                            if (xu4Var.S1) {
-                                vua vuaVar = new vua(xu4Var.getContext(), xu4Var.J0, user3, new nu4(xu4Var, (byte) 1));
-                                if (!gl.O1()) {
-                                    vuaVar.X(xu4Var.i1);
-                                }
-                                vuaVar.show();
-                                return;
-                            } else if (l7c.b(user3.id)) {
-                                b00.u(k96.a0(null, null, 2131743503, cf3.s(user3.id)), new u21(ww0Var, xu4Var.J0), 2131624012, 36);
-                                return;
-                            } else {
-                                tv4 tv4Var = new tv4(xu4Var.getContext(), xu4Var.a, user3.id, on0.d(on0.c(1, xu4Var.h2)), new ou4(xu4Var, (byte) 0));
-                                long j = user3.id;
-                                mj0 mj0Var = xu4Var.T1;
-                                if (mj0Var != null && mj0Var.a(j)) {
-                                    z = true;
-                                }
-                                tv4Var.a1(z);
-                                tv4Var.show();
-                                return;
-                            }
-                        }
-                        return;
-                    }
-                }
-                return;
-            case 2:
-                l18 l18Var = (l18) gk7Var;
-                d76 d76Var = (d76) view;
-                i76 i76Var = d76Var.L;
-                cs5 G3 = cs5.G((b8b) obj, new f53(), view);
-                G3.o(15, -1, k96.a0(null, null, 2131748616, k96.x(i76Var.d, true)));
-                G3.j();
-                G3.b(2131232271, k96.M0(2131747593, null), new kz5((m8b) obj2, i76Var, (byte) 8), false);
-                G3.k(2131232108, k96.M0(2131751755, null), new kz5(l18Var, d76Var, (byte) 9), !i76Var.e);
-                G3.k(2131232113, k96.M0(2131751586, null), new kz5(l18Var, i76Var, (byte) 10), (l18Var.N == y6c.h(l18Var.O).e() || l18Var.e()) ? true : true);
-                G3.a0();
-                return;
-            case 3:
-                ((pr8) gk7Var).n0((Context) obj2, (String) obj, view, i);
-                return;
-            case 4:
-                yx9 yx9Var = (yx9) gk7Var;
-                p8c p8cVar = (p8c) obj;
-                f53 f53Var = (f53) obj2;
-                if (view instanceof eba) {
-                    k27 message = ((eba) view).getMessage();
-                    if (message != null) {
-                        up3.q(yx9Var.a).v(yx9Var);
-                        if (yx9Var.b2 != null) {
-                            ba4.G(yx9Var.a).f(yx9Var.b2.F0());
-                            yx9Var.b2 = null;
-                        }
-                        if (!message.y0 && !message.z0) {
-                            String S0 = message.S0();
-                            if (!TextUtils.isEmpty(S0)) {
-                                yx9Var.b2 = message;
-                                up3.q(yx9Var.a).a(S0, message, yx9Var);
-                                ba4.G(yx9Var.a).X(message.F0(), message, 1, 0);
-                                return;
-                            }
-                            return;
-                        }
-                        yx9Var.a2.a(message);
-                        yx9 yx9Var2 = yx9Var.V1;
-                        if (yx9Var2 != null) {
-                            yx9Var2.dismiss();
-                        }
-                        yx9Var.dismiss();
-                        return;
-                    }
-                    return;
-                }
-                c4c G4 = yx9Var.j2.G(i - 1);
-                if (G4 != null) {
-                    int i7 = G4.d;
-                    if (i7 == 1) {
-                        new yx9(yx9Var.getContext(), true, yx9Var, p8cVar, f53Var).show();
-                        return;
-                    } else if (i7 == 2) {
-                        yx9Var.Z1.b();
-                        return;
-                    } else if (i7 == 3) {
-                        yx9Var.c1();
-                        return;
-                    } else if (i7 == 4) {
-                        yx9Var.b1();
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-            default:
-                t4b t4bVar = (t4b) gk7Var;
-                Context context2 = (Context) obj2;
-                i7b i7bVar = (i7b) obj;
-                it3 it3Var = t4bVar.U1;
-                it3 it3Var2 = t4bVar.T1;
-                c4c G5 = t4bVar.S1.G(i - 1);
-                if (G5 != null) {
-                    if (G5.H(r4b.class) && (webPage = t4bVar.b2) != null && !t4b.b1(webPage)) {
-                        m4b m4bVar = new m4b(context2, t4bVar.a);
-                        c46 c46Var = new c46();
-                        c46Var.c = it3Var2.d.getText().toString();
-                        if (t4bVar.h2) {
-                            str = it3Var.d.getText().toString();
-                        }
-                        c46Var.b = str;
-                        TLRPC.WebPage webPage2 = t4bVar.b2;
-                        c46Var.d = webPage2;
-                        c46Var.e = t4bVar.j2;
-                        c46Var.f = t4bVar.i2;
-                        ae9 ae9Var = new ae9(t4bVar, (byte) 16);
-                        m4bVar.H = c46Var;
-                        if (webPage2 != null && (webPage2.photo != null || k27.J4(webPage2.document))) {
-                            i2 = 0;
-                        }
-                        k37 k37Var = m4bVar.y;
-                        k37Var.setVisibility(i2);
-                        m4bVar.f.b(m4bVar.a, c46Var, false);
-                        m4bVar.x.a(!c46Var.f, false);
-                        k37Var.a(!c46Var.e, false);
-                        m4bVar.I = ae9Var;
-                        m4bVar.e.setImageDrawable(new f6(i7bVar, (byte) 6));
-                        m4bVar.show();
-                        return;
-                    } else if (G5.d == 2 && (view instanceof ahb)) {
-                        boolean z3 = !t4bVar.h2;
-                        t4bVar.h2 = z3;
-                        ((ahb) view).setChecked(z3);
-                        t4bVar.S1.O(true);
-                        if (t4bVar.h2) {
-                            it3Var.requestFocus();
-                            return;
-                        } else {
-                            it3Var2.requestFocus();
-                            return;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-                return;
+                return obj;
+            }
+        }
+        gxc.d("key == null");
+        return null;
+    }
+
+    public final void g(String str) {
+        LinkedHashMap linkedHashMap = (LinkedHashMap) this.c;
+        Object remove = linkedHashMap.remove(str);
+        if (remove != null) {
+            linkedHashMap.put(str, remove);
         }
     }
 
-    public ir(gk7 gk7Var, Context context, Object obj, byte b) {
-        this.a = b;
-        this.b = gk7Var;
-        this.d = context;
-        this.c = obj;
+    public final void h(Typeface typeface) {
+        int i;
+        boolean z;
+        if (Build.VERSION.SDK_INT >= 28 && (i = this.a) != -1) {
+            if ((this.b & 2) != 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            typeface = or.a(typeface, i, z);
+        }
+        pr prVar = (pr) this.d;
+        WeakReference weakReference = (WeakReference) this.c;
+        if (prVar.m) {
+            prVar.l = typeface;
+            TextView textView = (TextView) weakReference.get();
+            if (textView != null) {
+                WeakHashMap weakHashMap = kfc.a;
+                boolean isAttachedToWindow = textView.isAttachedToWindow();
+                int i2 = prVar.j;
+                if (isAttachedToWindow) {
+                    textView.post(new jr(textView, typeface, i2, (byte) 0));
+                } else {
+                    textView.setTypeface(typeface, i2);
+                }
+            }
+        }
+    }
+
+    public final synchronized Object i() {
+        Object k;
+        if (this.b == 0) {
+            k = null;
+        } else {
+            k = k();
+        }
+        return k;
+    }
+
+    public final synchronized Object j(long j) {
+        Object obj;
+        obj = null;
+        while (this.b > 0 && j - ((long[]) this.c)[this.a] >= 0) {
+            obj = k();
+        }
+        return obj;
+    }
+
+    public final Object k() {
+        boolean z;
+        if (this.b > 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        jte.p(z);
+        Object[] objArr = (Object[]) this.d;
+        int i = this.a;
+        Object obj = objArr[i];
+        objArr[i] = null;
+        this.a = (i + 1) % objArr.length;
+        this.b--;
+        return obj;
+    }
+
+    public Object l(String str, Object obj) {
+        Object put;
+        if (str != null && obj != null) {
+            synchronized (this) {
+                this.a += o(obj, str);
+                put = ((LinkedHashMap) this.c).put(str, obj);
+                if (put != null) {
+                    this.a -= o(put, str);
+                }
+            }
+            String[] split = str.split("@");
+            if (split.length > 1) {
+                ArrayList arrayList = (ArrayList) ((LinkedHashMap) this.d).get(split[0]);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    ((LinkedHashMap) this.d).put(split[0], arrayList);
+                }
+                if (!arrayList.contains(split[1])) {
+                    arrayList.add(split[1]);
+                }
+            }
+            if (put != null) {
+                e(put, obj, str);
+            }
+            r(this.b, str);
+            return put;
+        }
+        gxc.d("key == null || value == null");
+        return null;
+    }
+
+    public final int m(de deVar, int[] iArr) {
+        int i = this.a;
+        while (true) {
+            int i2 = 1;
+            if (i <= this.b) {
+                int i3 = ((int[]) this.c)[i];
+                if (i3 >= 0) {
+                    int i4 = iArr[0];
+                    int i5 = i - 1;
+                    int i6 = 0;
+                    while (i5 >= 0) {
+                        if (deVar.h0(i4 + i5)) {
+                            i6 += i2;
+                        }
+                        i5--;
+                        i2 <<= 1;
+                    }
+                    if (i3 >= i6) {
+                        int i7 = ((int[]) this.d)[i6];
+                        iArr[0] = iArr[0] + i;
+                        return i7;
+                    }
+                }
+                i++;
+            } else {
+                throw new Exception(String.format("[%s] Bad code at the bit index '%d'.", getClass().getSimpleName(), Integer.valueOf(iArr[0])));
+            }
+        }
+    }
+
+    public final void n(String str) {
+        Object remove;
+        ArrayList arrayList;
+        if (str != null) {
+            synchronized (this) {
+                remove = ((LinkedHashMap) this.c).remove(str);
+                if (remove != null) {
+                    this.a -= o(remove, str);
+                }
+            }
+            if (remove != null) {
+                String[] split = str.split("@");
+                if (split.length > 1 && (arrayList = (ArrayList) ((LinkedHashMap) this.d).get(split[0])) != null) {
+                    arrayList.remove(split[1]);
+                    if (arrayList.isEmpty()) {
+                        ((LinkedHashMap) this.d).remove(split[0]);
+                    }
+                }
+                e(remove, null, str);
+                return;
+            }
+            return;
+        }
+        gxc.d("key == null");
+    }
+
+    public final int o(Object obj, String str) {
+        int q = q(obj);
+        if (q >= 0) {
+            return q;
+        }
+        throw new IllegalStateException("Negative size: " + str + "=" + obj);
+    }
+
+    public final synchronized int p() {
+        return this.b;
+    }
+
+    public int q(Object obj) {
+        return 1;
+    }
+
+    public final void r(int i, String str) {
+        ArrayList arrayList;
+        synchronized (this) {
+            Iterator it = ((LinkedHashMap) this.c).entrySet().iterator();
+            while (it.hasNext() && this.a > i && !((LinkedHashMap) this.c).isEmpty()) {
+                Map.Entry entry = (Map.Entry) it.next();
+                String str2 = (String) entry.getKey();
+                if (str == null || !str.equals(str2)) {
+                    Object value = entry.getValue();
+                    this.a -= o(value, str2);
+                    it.remove();
+                    String[] split = str2.split("@");
+                    if (split.length > 1 && (arrayList = (ArrayList) ((LinkedHashMap) this.d).get(split[0])) != null) {
+                        arrayList.remove(split[1]);
+                        if (arrayList.isEmpty()) {
+                            ((LinkedHashMap) this.d).remove(split[0]);
+                        }
+                    }
+                    e(value, null, str2);
+                }
+            }
+        }
+    }
+
+    public void e(Object obj, Object obj2, String str) {
+    }
+
+    public ir(int i) {
+        if (i > 0) {
+            this.b = i;
+            this.c = new LinkedHashMap(0, 0.75f, true);
+            this.d = new LinkedHashMap();
+            return;
+        }
+        u36.j("maxSize <= 0");
+        throw null;
+    }
+
+    public ir() {
+        this.c = new long[10];
+        this.d = new Object[10];
     }
 }

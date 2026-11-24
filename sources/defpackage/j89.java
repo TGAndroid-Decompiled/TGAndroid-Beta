@@ -1,17 +1,50 @@
 package defpackage;
 
-import android.os.Process;
-public final class j89 extends Thread {
-    public final byte a;
-
-    public j89(Runnable runnable) {
-        super(runnable, "fonts-androidx");
-        this.a = (byte) 10;
+import com.google.android.gms.cast.MediaError;
+import java.util.ArrayList;
+public abstract class j89 {
+    public void a() {
     }
 
-    @Override
-    public final void run() {
-        Process.setThreadPriority(this.a);
-        super.run();
+    public void c() {
+    }
+
+    public void d() {
+    }
+
+    public void e() {
+    }
+
+    public void f() {
+    }
+
+    public void g() {
+    }
+
+    public void o() {
+    }
+
+    public void b(MediaError mediaError) {
+    }
+
+    public void i(int[] iArr) {
+    }
+
+    public void k(au6[] au6VarArr) {
+    }
+
+    public void l(int[] iArr) {
+    }
+
+    public void n(int[] iArr) {
+    }
+
+    public void j(int[] iArr, int i) {
+    }
+
+    public void m(ArrayList arrayList, ArrayList arrayList2, int i) {
+    }
+
+    public void h(String str, long j, int i, long j2, long j3) {
     }
 }

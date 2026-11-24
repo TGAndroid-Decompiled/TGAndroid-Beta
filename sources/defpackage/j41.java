@@ -1,120 +1,54 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
+import android.os.Bundle;
+import android.os.IBinder;
+import java.util.Arrays;
 public final class j41 {
-    public static volatile j41[] e = new j41[4];
-    public static final Object[] f = new Object[4];
-    public final int a;
-    public final ArrayList b = new ArrayList();
-    public boolean c = false;
-    public boolean d = false;
+    public static final int b = n61.a;
+    public final e41 a;
 
-    static {
-        for (int i = 0; i < 4; i++) {
-            f[i] = new Object();
+    public j41(byte[] bArr) {
+        jo5 p = mo5.p();
+        int length = bArr.length;
+        int i = b;
+        int g = hac.g(length, i);
+        for (int i2 = 0; i2 < g; i2++) {
+            Bundle bundle = new Bundle();
+            int i3 = i2 * i;
+            bundle.putByteArray("bytes", Arrays.copyOfRange(bArr, i3, Math.min(i3 + i, bArr.length)));
+            p.c(bundle);
         }
+        this.a = new e41(p.f());
     }
 
-    public j41(int i) {
-        this.a = i;
-    }
-
-    public static j41 d(int i) {
-        j41 j41Var;
-        j41 j41Var2 = e[i];
-        if (j41Var2 == null) {
-            synchronized (f[i]) {
-                j41Var = e[i];
-                if (j41Var == null) {
-                    j41[] j41VarArr = e;
-                    j41 j41Var3 = new j41(i);
-                    j41VarArr[i] = j41Var3;
-                    j41Var = j41Var3;
+    public static byte[] a(Bundle bundle) {
+        IBinder binder = bundle.getBinder(k41.g);
+        if (binder != null) {
+            try {
+                mo5 a = e41.a(binder);
+                if (a.isEmpty()) {
+                    return hac.b;
                 }
-            }
-            return j41Var;
-        }
-        return j41Var2;
-    }
-
-    public final void a(f41 f41Var, String str) {
-        TL_account.TL_businessChatLink c = c(str);
-        if (c != null) {
-            ArrayList arrayList = this.b;
-            int indexOf = arrayList.indexOf(c);
-            arrayList.remove(c);
-            kk7.f(this.a).k(kk7.I1, new Object[0]);
-            u21.b0(f41Var).U(k96.M0(2131752703, null), true, new va7(this, indexOf, c, (byte) 8), new fv0(this, str, c, (byte) 7)).j();
-        }
-    }
-
-    public final void b(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, av1 av1Var) {
-        TL_account.editBusinessChatLink editbusinesschatlink = new TL_account.editBusinessChatLink();
-        editbusinesschatlink.slug = tL_businessChatLink.link;
-        if (!tL_inputBusinessChatLink.entities.isEmpty()) {
-            tL_inputBusinessChatLink.flags |= 1;
-        }
-        if (!TextUtils.isEmpty(tL_inputBusinessChatLink.title)) {
-            tL_inputBusinessChatLink.flags |= 2;
-        }
-        editbusinesschatlink.link = tL_inputBusinessChatLink;
-        ConnectionsManager.getInstance(this.a).sendRequest(editbusinesschatlink, new en0(this, tL_businessChatLink, av1Var, (byte) 9));
-    }
-
-    public final TL_account.TL_businessChatLink c(String str) {
-        TL_account.TL_businessChatLink tL_businessChatLink;
-        int i = 0;
-        while (true) {
-            ArrayList arrayList = this.b;
-            if (i < arrayList.size()) {
-                tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList.get(i);
-                if (!TextUtils.equals(tL_businessChatLink.link, str)) {
-                    String str2 = tL_businessChatLink.link;
-                    if (!TextUtils.equals(str2, "https://" + str)) {
-                        String str3 = tL_businessChatLink.link;
-                        if (!TextUtils.equals(str3, "https://t.me/m/" + str)) {
-                            String str4 = tL_businessChatLink.link;
-                            if (TextUtils.equals(str4, "tg://message?slug=" + str)) {
-                                break;
-                            }
-                            i++;
-                        } else {
-                            break;
+                byte[] byteArray = ((Bundle) lne.b(a)).getByteArray("bytes");
+                if (byteArray != null) {
+                    int size = a.size() - 1;
+                    int i = b;
+                    int i2 = size * i;
+                    byte[] bArr = new byte[byteArray.length + i2];
+                    System.arraycopy(byteArray, 0, bArr, i2, byteArray.length);
+                    for (int i3 = 0; i3 < size; i3++) {
+                        byte[] byteArray2 = ((Bundle) a.get(i3)).getByteArray("bytes");
+                        if (byteArray2 != null && byteArray2.length == i) {
+                            System.arraycopy(byteArray2, 0, bArr, i3 * i, i);
                         }
-                    } else {
-                        break;
                     }
-                } else {
-                    break;
+                    return bArr;
                 }
-            } else {
+            } catch (RuntimeException e) {
+                ncd.g("BundleableByteArray", "Failed to read byte array from bundle list retriever", e);
                 return null;
             }
         }
-        return tL_businessChatLink;
-    }
-
-    public final void e(boolean z, boolean z2) {
-        if (!this.c) {
-            if (!this.d || (z2 && !z)) {
-                this.c = true;
-                int i = this.a;
-                if (z) {
-                    ad7 Y = ad7.Y(i);
-                    Y.a.c(new mn6(this, Y, z2, (byte) 7));
-                    return;
-                }
-                ConnectionsManager.getInstance(i).sendRequest(new TL_account.getBusinessChatLinks(), new h41(this, (byte) 0));
-            }
-        }
-    }
-
-    public final void f() {
-        ArrayList arrayList = new ArrayList(this.b);
-        ad7 Y = ad7.Y(this.a);
-        Y.a.c(new i41(Y, arrayList, (byte) 0));
+        return null;
     }
 }

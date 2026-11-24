@@ -1,75 +1,86 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.widget.LinearLayout;
-public final class l21 extends h11 {
-    public final hc0 a;
-    public final l46 b;
-    public final l46 c;
-    public final LinearLayout d;
+import android.view.View;
+import android.widget.FrameLayout;
+import j$.util.Objects;
+import org.telegram.ui.ActionBar.d;
+public final class l21 implements View.OnLayoutChangeListener {
+    public final boolean a;
+    public final u31 b;
 
-    public l21(wjb wjbVar, Context context, boolean z) {
-        super(context, wjbVar);
-        s11 s11Var;
-        hc0 hc0Var = new hc0(context, false);
-        this.a = hc0Var;
-        hc0Var.setStyle(11);
-        hc0Var.setAvatarsTextSize(gl.L(18.0f));
-        addView(hc0Var, nme.i(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
-        if (!z) {
-            s11Var = new s11(context, null, (byte) 1);
-            this.b = s11Var;
-            kk7.i(s11Var);
-            s11Var.setTypeface(Typeface.SANS_SERIF);
-            s11Var.setTextSize(1, 15.0f);
-            s11Var.setEllipsize(TextUtils.TruncateAt.END);
-            s11Var.setPadding(0, gl.L(8.0f), 0, gl.L(8.0f));
-            s11Var.setGravity(k96.a0 ? 5 : 3);
-            addView(s11Var, nme.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
-        } else {
-            LinearLayout linearLayout = new LinearLayout(getContext());
-            this.d = linearLayout;
-            linearLayout.setOrientation(1);
-            addView(linearLayout, nme.i(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
-            s11 s11Var2 = new s11(context, null, (byte) 2);
-            this.b = s11Var2;
-            kk7.i(s11Var2);
-            Typeface typeface = Typeface.SANS_SERIF;
-            s11Var2.setTypeface(typeface);
-            s11Var2.setTextSize(1, 14.0f);
-            s11Var2.setTypeface(gl.o());
-            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            s11Var2.setEllipsize(truncateAt);
-            s11Var2.setMaxLines(1);
-            linearLayout.addView(s11Var2);
-            l46 l46Var = new l46(context, null);
-            this.c = l46Var;
-            l46Var.setTypeface(typeface);
-            l46Var.setTextSize(1, 12.0f);
-            l46Var.setEllipsize(truncateAt);
-            l46Var.setSingleLine(false);
-            l46Var.setMaxLines(3);
-            zkb.G(l46Var, bkb.wj, wjbVar);
-            linearLayout.addView(l46Var, nme.t(-2, -2, 0, 0, 0, 0, 0));
-            s11Var = s11Var2;
-        }
-        zkb.G(s11Var, bkb.wj, wjbVar);
-        setTextColor(getThemedColor(bkb.xj));
-        setBackground(getThemedColor(bkb.vj));
+    public l21(u31 u31Var, boolean z) {
+        this.b = u31Var;
+        this.a = z;
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.b.getText();
-    }
-
-    public void setTextColor(int i) {
-        this.b.setTextColor(i);
-        l46 l46Var = this.c;
-        if (l46Var != null) {
-            l46Var.setTextColor(i);
+    public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+        q21 q21Var;
+        int i9;
+        u31 u31Var = this.b;
+        y21 y21Var = u31Var.e;
+        y21Var.removeOnLayoutChangeListener(this);
+        if (u31Var.m) {
+            y21Var.onShow();
+            d dVar = u31Var.g;
+            boolean z = this.a;
+            if (z && (dVar instanceof jgc)) {
+                dVar = ((jgc) dVar).b0();
+            }
+            FrameLayout frameLayout = u31Var.h;
+            if (dVar == null || (q21Var = dVar.getBulletinDelegate()) == null) {
+                if (frameLayout != null) {
+                    Object tag = frameLayout.getTag(2131296353);
+                    if (tag instanceof q21) {
+                        q21Var = (q21) tag;
+                    }
+                }
+                q21Var = null;
+            }
+            u31Var.q = q21Var;
+            if (q21Var == null && dVar != null) {
+                q21Var = new yg0(dVar, (byte) 1);
+                u31Var.q = q21Var;
+            }
+            zna znaVar = u31Var.d;
+            if (znaVar == null || !znaVar.f) {
+                if (q21Var != null) {
+                    i9 = q21Var.e(u31Var.a);
+                } else {
+                    i9 = 0;
+                }
+                u31Var.p = i9;
+            }
+            q21 q21Var2 = u31Var.q;
+            if (q21Var2 != null) {
+                q21Var2.g(u31Var);
+            }
+            if (dVar != null) {
+                dVar.setupBulletinGlass(u31Var);
+            }
+            if (oc7.d1().getBoolean("view_animations", true) && !u31Var.t) {
+                if (y21Var != null && u31Var.r == null) {
+                    u31Var.r = y21Var.createTransition();
+                }
+                y21Var.transitionRunningEnter = true;
+                y21Var.delegate = u31Var.q;
+                y21Var.invalidate();
+                x21 x21Var = u31Var.r;
+                Objects.requireNonNull(y21Var);
+                x21Var.g0(y21Var, new j21(y21Var, (byte) 1), new yt0(this, (byte) 10), new t52((byte) 2, this, z));
+                return;
+            }
+            q21 q21Var3 = u31Var.q;
+            y21Var.delegate = q21Var3;
+            if (q21Var3 != null && !z) {
+                q21Var3.b(y21Var.getHeight());
+            }
+            u31Var.l();
+            y21Var.onEnterTransitionStart();
+            y21Var.onEnterTransitionEnd();
+            if (u31Var.v) {
+                u31Var.i(true);
+            }
         }
     }
 }

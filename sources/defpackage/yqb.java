@@ -1,39 +1,14 @@
 package defpackage;
-public enum yqb extends qsb {
-    public yqb() {
-        super("ScriptDataDoubleEscapedDashDash", 30);
-    }
 
-    @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char d = zj1Var.d();
-        vqb vqbVar = qsb.S;
-        if (d != 0) {
-            if (d != '-') {
-                if (d != '<') {
-                    if (d != '>') {
-                        if (d != 65535) {
-                            aqbVar.f(d);
-                            aqbVar.c = vqbVar;
-                            return;
-                        }
-                        aqbVar.l(this);
-                        aqbVar.c = qsb.a;
-                        return;
-                    }
-                    aqbVar.f(d);
-                    aqbVar.c = qsb.f;
-                    return;
-                }
-                aqbVar.f(d);
-                aqbVar.c = qsb.V;
-                return;
-            }
-            aqbVar.f(d);
-            return;
+import android.content.Context;
+import android.content.ContextWrapper;
+public abstract class yqb extends ContextWrapper {
+    public static final Object a = null;
+
+    public static void a(Context context) {
+        if (!(context.getResources() instanceof zqb)) {
+            context.getResources();
+            int i = tbc.a;
         }
-        aqbVar.m(this);
-        aqbVar.f((char) 65533);
-        aqbVar.c = vqbVar;
     }
 }

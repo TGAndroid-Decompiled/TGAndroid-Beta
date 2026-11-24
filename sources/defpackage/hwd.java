@@ -1,24 +1,32 @@
 package defpackage;
+public final class hwd extends cxd {
+    public final int d;
 
-import android.os.Parcel;
-import android.os.ParcelFileDescriptor;
-import android.os.Parcelable;
-public final class hwd extends b4 {
-    public static final Parcelable.Creator<hwd> CREATOR = new rpd((byte) 26);
-    public final int a;
-    public final ParcelFileDescriptor b;
-
-    public hwd(int i, ParcelFileDescriptor parcelFileDescriptor) {
-        this.a = i;
-        this.b = parcelFileDescriptor;
+    public hwd(int i, byte[] bArr) {
+        super(bArr);
+        cxd.k(0, i, bArr.length);
+        this.d = i;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.k(parcel, 3, this.b, i | 1);
-        jte.s(parcel, r);
+    public final byte h(int i) {
+        int i2 = this.d;
+        if (((i2 - (i + 1)) | i) < 0) {
+            if (i < 0) {
+                throw new ArrayIndexOutOfBoundsException(hg9.j(i, "Index < 0: "));
+            }
+            throw new ArrayIndexOutOfBoundsException(b10.g(i, i2, "Index > length: ", ", "));
+        }
+        return this.b[i];
+    }
+
+    @Override
+    public final byte i(int i) {
+        return this.b[i];
+    }
+
+    @Override
+    public final int j() {
+        return this.d;
     }
 }

@@ -1,45 +1,46 @@
 package defpackage;
+public final class wk1 {
+    public static final char[] a = new char[117];
+    public static final byte[] b = new byte[126];
 
-import android.animation.ValueAnimator;
-public final class wk1 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final mu1 b;
-
-    public wk1(mu1 mu1Var, byte b) {
-        this.a = b;
-        this.b = mu1Var;
+    static {
+        int i = 0;
+        for (int i2 = 0; i2 < 32; i2++) {
+        }
+        a('b', 8);
+        a('t', 9);
+        a('n', 10);
+        a('f', 12);
+        a('r', 13);
+        a('/', 47);
+        a('\"', 34);
+        a('\\', 92);
+        while (true) {
+            byte[] bArr = b;
+            if (i < 33) {
+                bArr[i] = Byte.MAX_VALUE;
+                i++;
+            } else {
+                bArr[9] = 3;
+                bArr[10] = 3;
+                bArr[13] = 3;
+                bArr[32] = 3;
+                bArr[44] = 4;
+                bArr[58] = 5;
+                bArr[123] = 6;
+                bArr[125] = 7;
+                bArr[91] = 8;
+                bArr[93] = 9;
+                bArr[34] = 1;
+                bArr[92] = 2;
+                return;
+            }
+        }
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        mu1 mu1Var = this.b;
-        switch (b) {
-            case 0:
-                mu1Var.a9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                at1 at1Var = mu1Var.m1;
-                if (at1Var != null) {
-                    at1Var.invalidate();
-                    mu1Var.A0.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                mu1Var.x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mu1Var.Fc();
-                return;
-            case 2:
-                mu1Var.x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mu1Var.Fc();
-                return;
-            case 3:
-                mu1Var.bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mu1Var.E7();
-                return;
-            default:
-                mu1Var.bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mu1Var.E7();
-                return;
+    public static void a(char c, int i) {
+        if (c != 'u') {
+            a[c] = (char) i;
         }
     }
 }

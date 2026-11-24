@@ -1,104 +1,109 @@
 package defpackage;
 
-import android.util.Log;
+import org.telegram.messenger.voip.VoIPService;
 public final class cjc implements Runnable {
     public final byte a;
-    public final gjc b;
+    public final VoIPService b;
 
-    public cjc(gjc gjcVar, byte b) {
+    public cjc(VoIPService voIPService, byte b) {
         this.a = b;
-        this.b = gjcVar;
+        this.b = voIPService;
     }
 
     @Override
     public final void run() {
-        boolean z;
-        String str;
         byte b = this.a;
-        boolean z2 = true;
-        gjc gjcVar = this.b;
+        VoIPService voIPService = this.b;
         switch (b) {
             case 0:
-                if (gjcVar.c == 3) {
-                    if (!gjcVar.b.c()) {
-                        gjcVar.j("draft gone", true);
-                        return;
-                    } else {
-                        gl.e3(this, 300L);
-                        return;
-                    }
-                }
+                VoIPService.w0(voIPService);
                 return;
             case 1:
-                float[] fArr = gjcVar.V;
-                if (gjcVar.c == 4) {
-                    if (gjcVar.b.b(fArr)) {
-                        float f = fArr[0];
-                        float f2 = fArr[1];
-                        if (fArr[2] > 0.5f) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        if (Math.abs(f - gjcVar.P) > 5.0E-4f || Math.abs(f2 - gjcVar.Q) > 5.0E-4f || z != gjcVar.T) {
-                            if (z && !gjcVar.T) {
-                                gjcVar.R = gjcVar.P;
-                                gjcVar.S = gjcVar.Q;
-                            }
-                            if (z != gjcVar.T) {
-                                StringBuilder sb = new StringBuilder("field: trim ");
-                                if (z) {
-                                    str = "drag";
-                                } else {
-                                    str = "release";
-                                }
-                                sb.append(str);
-                                sb.append(" l=");
-                                sb.append(f);
-                                sb.append(" r=");
-                                sb.append(f2);
-                                sb.append(" total=");
-                                sb.append(gjcVar.O);
-                                sb.append(" frozen=");
-                                if (gjcVar.e0 == null) {
-                                    z2 = false;
-                                }
-                                sb.append(z2);
-                                Log.d("VoiceLive", sb.toString());
-                            }
-                            gjcVar.P = f;
-                            gjcVar.Q = f2;
-                            gjcVar.T = z;
-                            gjcVar.p();
-                            if (!z) {
-                                int i = 0;
-                                for (boolean z3 : gjcVar.i(gjcVar.b(), gjcVar.P, gjcVar.Q)) {
-                                    if (z3) {
-                                        i++;
-                                    }
-                                }
-                                StringBuilder m = de9.m(i, "field: trim applied, ", " of ");
-                                m.append(gjcVar.b().size());
-                                m.append(" words cut, text ");
-                                m.append(gjcVar.n.length());
-                                m.append(" chars");
-                                Log.d("VoiceLive", m.toString());
-                            }
-                        }
-                    }
-                    gl.e3(this, 50L);
-                    return;
-                }
+                VoIPService.N0(voIPService);
+                return;
+            case 2:
+                VoIPService.d(voIPService);
+                return;
+            case 3:
+                VoIPService.t1(voIPService);
+                return;
+            case 4:
+                VoIPService.i(voIPService);
+                return;
+            case 5:
+                VoIPService.K0(voIPService);
+                return;
+            case 6:
+                VoIPService.d0(voIPService);
+                return;
+            case 7:
+                VoIPService.j(voIPService);
+                return;
+            case 8:
+                VoIPService.p(voIPService);
+                return;
+            case 9:
+                VoIPService.R(voIPService);
+                return;
+            case 10:
+                VoIPService.k0(voIPService);
+                return;
+            case 11:
+                VoIPService.M0(voIPService);
+                return;
+            case 12:
+                VoIPService.D(voIPService);
+                return;
+            case 13:
+                VoIPService.U0(voIPService);
+                return;
+            case 14:
+                VoIPService.v0(voIPService);
+                return;
+            case 15:
+                VoIPService.b(voIPService);
+                return;
+            case 16:
+                VoIPService.E0(voIPService);
+                return;
+            case 17:
+                VoIPService.Y0(voIPService);
+                return;
+            case 18:
+                VoIPService.c1(voIPService);
+                return;
+            case 19:
+                VoIPService.D0(voIPService);
+                return;
+            case 20:
+                VoIPService.n1(voIPService);
+                return;
+            case 21:
+                VoIPService.O0(voIPService);
+                return;
+            case 22:
+                VoIPService.a0(voIPService);
+                return;
+            case 23:
+                VoIPService.m0(voIPService);
+                return;
+            case 24:
+                VoIPService.w(voIPService);
+                return;
+            case 25:
+                VoIPService.o0(voIPService);
+                return;
+            case 26:
+                VoIPService.P(voIPService);
+                return;
+            case 27:
+                VoIPService.P0(voIPService);
+                return;
+            case 28:
+                VoIPService.p1(voIPService);
                 return;
             default:
-                if (gjcVar.c != 0) {
-                    gjcVar.t();
-                    if (gjcVar.c != 0) {
-                        gl.e3(this, 250L);
-                        return;
-                    }
-                    return;
-                }
+                VoIPService.h0(voIPService);
                 return;
         }
     }

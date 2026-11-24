@@ -1,269 +1,175 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class jra extends View {
-    public float E;
-    public ValueAnimator F;
-    public long G;
-    public float H;
-    public final ira I;
-    public boolean J;
-    public final ArrayList K;
-    public final int[] L;
-    public final mu1 a;
-    public hf0 b;
-    public int c;
-    public final int[] d;
-    public final int[] e;
-    public final RectF f;
-    public final RectF h;
-    public final Paint n;
-    public boolean r;
-    public final lm s;
-    public final gn w;
-    public boolean x;
-    public final t7a y;
+import org.telegram.tgnet.tl.TL_stars;
+public final class jra implements View.OnClickListener {
+    public final byte a;
+    public final ura b;
 
-    public jra(mu1 mu1Var) {
-        super(mu1Var.getParentActivity());
-        this.d = new int[2];
-        this.e = new int[2];
-        this.f = new RectF();
-        this.h = new RectF();
-        this.n = new Paint();
-        this.s = new lm(this, 0L, 420L, s33.h);
-        gn gnVar = new gn(false, false, false);
-        this.w = gnVar;
-        this.K = new ArrayList();
-        this.L = new int[]{2131624215, 2131624216, 2131624217, 2131624218, 2131624219};
-        this.a = mu1Var;
-        gnVar.setCallback(this);
-        gnVar.r(false, true);
-        gnVar.w(gl.L(40.0f));
-        gnVar.x(gl.n1("fonts/num.otf"));
-        gnVar.s(gl.L(12.0f), gl.L(3.5f), 0);
-        gnVar.N = gl.q.x;
-        gnVar.u(-1);
-        gnVar.b = 17;
-        this.I = new ira(this, (byte) 0);
-        this.y = new t7a(this, mu1Var, (byte) 24);
+    public jra(ura uraVar, byte b) {
+        this.a = b;
+        this.b = uraVar;
     }
 
-    private k27 getMessageObject() {
-        hf0 hf0Var = this.b;
-        if (hf0Var instanceof gb2) {
-            return ((gb2) hf0Var).getPrimaryMessageObject();
-        }
-        if (hf0Var instanceof uk1) {
-            return ((uk1) hf0Var).getMessageObject();
-        }
-        return null;
-    }
-
-    public final void a() {
-        String str;
-        if (getMessageObject() != null) {
-            k27 messageObject = getMessageObject();
-            mu1 mu1Var = this.a;
-            gta v = gta.v(mu1Var.getCurrentAccount(), false);
-            long B = v.B(messageObject);
-            if (v.e && v.n(null, false, false).amount < B) {
-                eta etaVar = gta.v(mu1Var.getCurrentAccount(), false).B;
-                if (etaVar != null) {
-                    etaVar.a();
-                }
-                long a = mu1Var.a();
-                if (a >= 0) {
-                    str = l7c.l(mu1Var.getMessagesController().V1(Long.valueOf(a)));
-                } else {
-                    TLRPC.Chat K0 = mu1Var.getMessagesController().K0(Long.valueOf(-a));
-                    if (K0 == null) {
-                        str = "";
-                    } else {
-                        str = K0.title;
-                    }
-                }
-                new zua(mu1Var.getParentActivity(), mu1Var.getResourceProvider(), B, 5, str, new mx8(this, v, messageObject, B, (byte) 6), 0L).show();
-            }
-        }
-    }
-
-    public final void b(float f, ira iraVar) {
-        ValueAnimator valueAnimator = this.F;
-        if (valueAnimator != null) {
-            this.F = null;
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.E, f);
-        this.F = ofFloat;
-        ofFloat.addUpdateListener(new gja(this, (byte) 5));
-        this.F.addListener(new ji4(this, f, iraVar, (byte) 4));
-        this.F.setInterpolator(s33.h);
-        this.F.setDuration(320L);
-        this.F.start();
-    }
-
-    public final void c() {
-        this.J = true;
-        gl.r(this.I);
-        this.w.t("", true, true);
-        this.r = false;
-        invalidate();
-        b(0.0f, new ira(this, (byte) 2));
-    }
-
-    public final void d(float f, float f2, boolean z) {
-        ArrayList arrayList;
-        if (this.b != null && !this.J) {
-            k27 messageObject = getMessageObject();
-            i19 reactionsLayoutInBubble = getReactionsLayoutInBubble();
-            if (messageObject != null && reactionsLayoutInBubble != null) {
-                mu1 mu1Var = this.a;
-                gta v = gta.v(mu1Var.getCurrentAccount(), false);
-                while (true) {
-                    arrayList = this.K;
-                    if (arrayList.size() <= 4) {
-                        break;
-                    }
-                    ((oy8) arrayList.remove(0)).x(true);
-                }
-                yyc yycVar = Utilities.c;
-                int[] iArr = this.L;
-                oy8 oy8Var = new oy8(iArr[yycVar.nextInt(iArr.length)], gl.L(70.0f), gl.L(70.0f));
-                oy8Var.M(this);
-                oy8Var.E(true);
-                oy8Var.F(0);
-                oy8Var.start();
-                arrayList.add(oy8Var);
-                invalidate();
-                f19 l = reactionsLayoutInBubble.l("stars");
-                if (l != null) {
-                    l.p();
-                }
-                if (z) {
-                    try {
-                        performHapticFeedback(3, 1);
-                    } catch (Exception unused) {
-                    }
-                    gta.v(mu1Var.getCurrentAccount(), false).b0(messageObject, this.a, 1L, true, false, null);
-                }
-                gn gnVar = this.w;
-                gnVar.a();
-                gnVar.t("+" + v.B(messageObject), true, true);
-                this.r = true;
-                ira iraVar = this.I;
-                gl.r(iraVar);
-                gl.e3(iraVar, 1500L);
-                long currentTimeMillis = System.currentTimeMillis();
-                long j = currentTimeMillis - this.G;
-                int i = (j > 100L ? 1 : (j == 100L ? 0 : -1));
-                float f3 = this.H;
-                if (i < 0) {
-                    this.H = f3 + 0.5f;
+    @Override
+    public final void onClick(View view) {
+        TL_stars.StarGift starGift;
+        TL_stars.StarGift starGift2;
+        TL_stars.StarGift starGift3;
+        sra sraVar;
+        byte b = this.a;
+        boolean z = true;
+        ura uraVar = this.b;
+        switch (b) {
+            case 0:
+                if (uraVar.Q.getAlpha() >= 1.0f) {
+                    uraVar.h0.run();
                     return;
                 }
-                this.H = Utilities.i(1.0f - (((float) (j - 100)) / 200.0f), 1.0f, 0.0f) * f3;
-                int measuredWidth = getMeasuredWidth();
-                int[] iArr2 = this.e;
-                if (measuredWidth == 0 && mu1Var.getLayoutContainer() != null) {
-                    mu1Var.getLayoutContainer().getLocationInWindow(iArr2);
-                } else {
-                    getLocationInWindow(iArr2);
+                return;
+            case 1:
+                if (uraVar.Q.getAlpha() >= 1.0f) {
+                    uraVar.h0.run();
+                    return;
                 }
-                LaunchActivity.a0(iArr2[0] + f, iArr2[1] + f2, Utilities.i(this.H, 0.9f, 0.3f));
-                this.H = 0.0f;
-                this.G = currentTimeMillis;
-            }
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r24) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jra.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    public i19 getReactionsLayoutInBubble() {
-        hf0 hf0Var = this.b;
-        if (hf0Var instanceof gb2) {
-            return ((gb2) hf0Var).O;
-        }
-        if (hf0Var instanceof uk1) {
-            return ((uk1) hf0Var).F0;
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        i19 reactionsLayoutInBubble;
-        if (this.b == null || this.J || (reactionsLayoutInBubble = getReactionsLayoutInBubble()) == null) {
-            return false;
-        }
-        int action = motionEvent.getAction();
-        t7a t7aVar = this.y;
-        if (action == 0) {
-            if (this.h.contains(motionEvent.getX(), motionEvent.getY())) {
-                this.x = true;
-                f19 l = reactionsLayoutInBubble.l("stars");
-                if (l != null) {
-                    l.X.c(true);
+                return;
+            case 2:
+                uraVar.b((kra) view);
+                return;
+            case 3:
+                uraVar.b((kra) view);
+                return;
+            case 4:
+                ura uraVar2 = this.b;
+                LinearLayout linearLayout = uraVar2.H;
+                sra[] sraVarArr = uraVar2.n;
+                if (uraVar2.getAlpha() >= 1.0f && !uraVar2.i0) {
+                    if (uraVar2.k0) {
+                        uraVar2.a(uraVar2.a0, uraVar2.b0, uraVar2.c0, uraVar2.d0);
+                        return;
+                    }
+                    ArrayList arrayList = new ArrayList();
+                    for (sra sraVar2 : sraVarArr) {
+                        if (sraVar2 != null) {
+                            TL_stars.StarGift starGift4 = sraVar2.h;
+                            if (starGift4 != null) {
+                                starGift3 = starGift4;
+                            } else {
+                                starGift3 = null;
+                            }
+                            if (starGift3 != null) {
+                                if (starGift4 == null) {
+                                    starGift4 = null;
+                                }
+                                arrayList.add(starGift4);
+                            }
+                        }
+                    }
+                    if (!arrayList.isEmpty() && uraVar2.f0 != null) {
+                        TextView textView = uraVar2.L;
+                        uraVar2.i0 = true;
+                        uraVar2.k0 = false;
+                        hg5 hg5Var = uraVar2.U;
+                        if (hg5Var != null) {
+                            hg5Var.f(true);
+                            uraVar2.U = null;
+                        }
+                        textView.setText("");
+                        uraVar2.M.setText(jb6.a0(null, null, 2131749709, bc.J0(uraVar2.getGiftsSuccessChance())));
+                        for (int i = 0; i < sraVarArr.length; i++) {
+                            sra sraVar3 = sraVarArr[i];
+                            if (sraVar3 != null) {
+                                sraVar3.setClickable(false);
+                                sra sraVar4 = sraVarArr[i];
+                                TL_stars.StarGift starGift5 = sraVar4.h;
+                                if (starGift5 == null) {
+                                    starGift5 = null;
+                                }
+                                if (starGift5 == null) {
+                                    sraVar4.animate().alpha(0.0f).start();
+                                }
+                            }
+                        }
+                        int i2 = 0;
+                        while (true) {
+                            if (i2 < sraVarArr.length) {
+                                sra sraVar5 = sraVarArr[i2];
+                                if (sraVar5 != null) {
+                                    TL_stars.StarGift starGift6 = sraVar5.h;
+                                    if (starGift6 != null) {
+                                        starGift2 = starGift6;
+                                    } else {
+                                        starGift2 = null;
+                                    }
+                                    if (starGift2 != null) {
+                                        if (starGift6 == null) {
+                                            starGift6 = null;
+                                        }
+                                        textView.setText(starGift6.title + " #" + jb6.E(starGift6.num, ','));
+                                    }
+                                }
+                                i2++;
+                            }
+                        }
+                        uraVar2.R.animate().alpha(0.0f).start();
+                        linearLayout.animate().alpha(0.0f).start();
+                        uraVar2.S.animate().alpha(1.0f).start();
+                        uraVar2.Q.animate().alpha(0.25f).start();
+                        uraVar2.K.d();
+                        ArrayList arrayList2 = new ArrayList();
+                        for (sra sraVar6 : sraVarArr) {
+                            TL_stars.StarGift starGift7 = sraVar6.h;
+                            if (starGift7 != null) {
+                                starGift = starGift7;
+                            } else {
+                                starGift = null;
+                            }
+                            if (starGift != null) {
+                                if (starGift7 == null) {
+                                    starGift7 = null;
+                                }
+                                arrayList2.add(starGift7);
+                            }
+                        }
+                        uraVar2.f0.a(arrayList2, new s87(uraVar2, arrayList2, (byte) 13), new c0a(uraVar2, (byte) 25));
+                        return;
+                    }
+                    gm.B3(linearLayout);
+                    return;
                 }
-                gl.r(t7aVar);
-                gl.e3(t7aVar, ViewConfiguration.getLongPressTimeout());
-            }
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            f19 l2 = reactionsLayoutInBubble.l("stars");
-            if (motionEvent.getAction() == 1) {
-                d(motionEvent.getX(), motionEvent.getY(), true);
-            }
-            if (l2 != null) {
-                l2.X.c(false);
-            }
-            this.x = false;
-            gl.r(t7aVar);
+                return;
+            default:
+                sra sraVar7 = (sra) view;
+                TL_stars.StarGift starGift8 = sraVar7.h;
+                if (starGift8 == null) {
+                    starGift8 = null;
+                }
+                if (starGift8 != null && !sraVar7.n) {
+                    sraVar7.a(null, true);
+                    uraVar.d(true);
+                    return;
+                }
+                int i3 = 0;
+                while (true) {
+                    sra[] sraVarArr2 = uraVar.n;
+                    if (i3 < sraVarArr2.length && (sraVar = sraVarArr2[i3]) != view) {
+                        if (sraVar != null) {
+                            TL_stars.StarGift starGift9 = sraVar.h;
+                            if (starGift9 == null) {
+                                starGift9 = null;
+                            }
+                            if (starGift9 != null) {
+                                z = false;
+                            }
+                        }
+                        i3++;
+                    }
+                }
+                uraVar.g0.a(new ts9(uraVar, sraVar7, (byte) 11), Boolean.valueOf(z));
+                return;
         }
-        return this.x;
-    }
-
-    public void setMessageCell(hf0 hf0Var) {
-        int e1;
-        hf0 hf0Var2 = this.b;
-        if (hf0Var2 == hf0Var) {
-            return;
-        }
-        if (hf0Var2 instanceof gb2) {
-            ((gb2) hf0Var2).setScrimReaction(null);
-            ((gb2) this.b).setInvalidateListener(null);
-            this.b.invalidate();
-        } else if (hf0Var2 instanceof uk1) {
-            ((uk1) hf0Var2).setScrimReaction(null);
-            ((uk1) this.b).setInvalidateListener(null);
-            this.b.invalidate();
-        }
-        this.b = hf0Var;
-        if (getMessageObject() == null) {
-            e1 = 0;
-        } else {
-            e1 = getMessageObject().e1();
-        }
-        this.c = e1;
-        hf0 hf0Var3 = this.b;
-        if (hf0Var3 instanceof gb2) {
-            hf0Var3.invalidate();
-            ((gb2) this.b).setInvalidateListener(new ira(this, (byte) 1));
-        } else if (hf0Var3 instanceof uk1) {
-            hf0Var3.invalidate();
-            ((uk1) this.b).setInvalidateListener(new ira(this, (byte) 1));
-        }
-        invalidate();
     }
 }

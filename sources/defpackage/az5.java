@@ -1,25 +1,20 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-public final class az5 implements Runnable {
-    public final byte a;
-    public final TLObject b;
-    public final int c;
+import java.util.Arrays;
+public final class az5 {
+    public static final az5 a = new Object();
 
-    public az5(int i, TLObject tLObject) {
-        this.a = (byte) 2;
-        this.c = i;
-        this.b = tLObject;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if ((obj instanceof az5) && fse.a(null, null) && fse.a(null, null)) {
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.az5.run():void");
-    }
-
-    public az5(TLObject tLObject, int i, byte b) {
-        this.a = b;
-        this.b = tLObject;
-        this.c = i;
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{null, null});
     }
 }

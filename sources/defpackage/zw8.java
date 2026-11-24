@@ -1,53 +1,32 @@
 package defpackage;
-public class zw8 {
-    public static final zw8 d = new zw8(0, 0, (byte) 0);
+
+import org.telegram.messenger.PushListenerController;
+public final class zw8 implements Runnable {
     public final byte a;
-    public int b;
-    public int c;
+    public final String b;
+    public final String c;
+    public final long d;
 
-    public zw8(int i, int i2, byte b) {
+    public zw8(String str, String str2, long j, byte b) {
         this.a = b;
-        this.b = i;
-        this.c = i2;
+        this.b = str;
+        this.c = str2;
+        this.d = j;
     }
 
-    public final int a() {
-        int i = this.c;
-        if (i != 2) {
-            if (i != 5) {
-                if (i != 29) {
-                    if (i != 42) {
-                        if (i != 22) {
-                            if (i != 23) {
-                                return 0;
-                            }
-                            return 15;
-                        }
-                        return 1073741824;
-                    }
-                    return 16;
-                }
-                return 12;
-            }
-            return 11;
-        }
-        return 10;
-    }
-
-    public final int b() {
-        return this.b | this.c;
-    }
-
-    public final String toString() {
-        switch (this.a) {
+    @Override
+    public final void run() {
+        byte b = this.a;
+        long j = this.d;
+        String str = this.c;
+        String str2 = this.b;
+        switch (b) {
             case 0:
-                StringBuilder sb = new StringBuilder(zw8.class.getSimpleName());
-                sb.append("[position = ");
-                sb.append(this.b);
-                sb.append(", length = ");
-                return de9.l(sb, this.c, "]");
+                PushListenerController.c(j, str2, str);
+                return;
             default:
-                return super.toString();
+                PushListenerController.h(j, str2, str);
+                return;
         }
     }
 }

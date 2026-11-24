@@ -1,16 +1,17 @@
 package defpackage;
-
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-public abstract class zce {
-    public static final byte[] a;
+public final class zce implements cq7 {
+    public static final zce a = new Object();
 
     static {
-        Charset.forName("US-ASCII");
-        Charset.forName("UTF-8");
-        Charset.forName("ISO-8859-1");
-        byte[] bArr = new byte[0];
-        a = bArr;
-        ByteBuffer.wrap(bArr);
+        mlb.z(mlb.o(i9d.class, mlb.s(mlb.o(i9d.class, new f8d(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

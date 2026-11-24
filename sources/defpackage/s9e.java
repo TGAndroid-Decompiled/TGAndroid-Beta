@@ -1,56 +1,129 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.json.JSONObject;
-public abstract class s9e {
-    public static k03 a(String str, Bundle bundle) {
-        str.getClass();
-        bundle.getClass();
-        try {
-            int hashCode = str.hashCode();
-            if (hashCode != -1678407252) {
-                if (hashCode != -543568185) {
-                    if (hashCode == -95037569 && str.equals("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL")) {
-                        try {
-                            String string = bundle.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON");
-                            string.getClass();
-                            return new b13(string, bundle);
-                        } catch (Exception unused) {
-                            throw new Exception();
-                        }
-                    }
-                } else if (str.equals("android.credentials.TYPE_PASSWORD_CREDENTIAL")) {
-                    return new k03("android.credentials.TYPE_PASSWORD_CREDENTIAL", bundle);
-                }
-                throw new Exception();
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+public final class s9e extends LinkedHashMap {
+    public static final s9e b;
+    public boolean a = true;
+
+    static {
+        s9e s9eVar = new s9e();
+        b = s9eVar;
+        s9eVar.a = false;
+    }
+
+    public static int b(Object obj) {
+        if (obj instanceof byte[]) {
+            byte[] bArr = (byte[]) obj;
+            int length = bArr.length;
+            Charset charset = k5e.a;
+            int i = length;
+            for (byte b2 : bArr) {
+                i = (i * 31) + b2;
             }
-            if (str.equals("androidx.credentials.TYPE_DIGITAL_CREDENTIAL")) {
-                try {
-                    String string2 = bundle.getString("androidx.credentials.BUNDLE_KEY_RESPONSE_JSON");
-                    string2.getClass();
-                    Bundle bundle2 = new Bundle();
-                    bundle2.putString("androidx.credentials.BUNDLE_KEY_RESPONSE_JSON", string2);
-                    k03 k03Var = new k03("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", bundle2);
-                    if (string2.length() != 0) {
-                        try {
-                            new JSONObject(string2);
-                            return k03Var;
-                        } catch (Exception unused2) {
-                        }
-                    }
-                    throw new IllegalArgumentException("responseJson must not be empty, and must be a valid JSON");
-                } catch (Exception unused3) {
-                    throw new Exception();
-                }
+            if (i == 0) {
+                return 1;
             }
-            throw new Exception();
-        } catch (jp4 unused4) {
-            k03 k03Var2 = new k03(str, bundle);
-            if (str.length() > 0) {
-                return k03Var2;
-            }
-            w26.j("type should not be empty");
-            return null;
+            return i;
+        } else if (!(obj instanceof fme)) {
+            return obj.hashCode();
+        } else {
+            gxc.b();
+            return 0;
         }
+    }
+
+    public final void c() {
+        if (this.a) {
+            return;
+        }
+        gxc.b();
+    }
+
+    @Override
+    public final void clear() {
+        c();
+        super.clear();
+    }
+
+    @Override
+    public final Set entrySet() {
+        if (isEmpty()) {
+            return Collections.EMPTY_SET;
+        }
+        return super.entrySet();
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        boolean equals;
+        if (obj instanceof Map) {
+            Map map = (Map) obj;
+            if (this != map) {
+                if (size() == map.size()) {
+                    for (Map.Entry entry : entrySet()) {
+                        if (map.containsKey(entry.getKey())) {
+                            Object value = entry.getValue();
+                            Object obj2 = map.get(entry.getKey());
+                            if ((value instanceof byte[]) && (obj2 instanceof byte[])) {
+                                equals = Arrays.equals((byte[]) value, (byte[]) obj2);
+                                continue;
+                            } else {
+                                equals = value.equals(obj2);
+                                continue;
+                            }
+                            if (!equals) {
+                                return false;
+                            }
+                        } else {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        int i = 0;
+        for (Map.Entry entry : entrySet()) {
+            i += b(entry.getKey()) ^ b(entry.getValue());
+        }
+        return i;
+    }
+
+    @Override
+    public final Object put(Object obj, Object obj2) {
+        c();
+        Charset charset = k5e.a;
+        obj.getClass();
+        obj2.getClass();
+        return super.put(obj, obj2);
+    }
+
+    @Override
+    public final void putAll(Map map) {
+        c();
+        for (Object obj : map.keySet()) {
+            Charset charset = k5e.a;
+            obj.getClass();
+            map.get(obj).getClass();
+        }
+        super.putAll(map);
+    }
+
+    @Override
+    public final Object remove(Object obj) {
+        c();
+        return super.remove(obj);
     }
 }

@@ -1,31 +1,54 @@
 package defpackage;
-public final class b11 implements Runnable {
-    public final byte a;
-    public final q11 b;
 
-    public b11(q11 q11Var, byte b) {
+import java.util.Iterator;
+import org.webrtc.VideoFrame;
+import org.webrtc.VideoSink;
+import org.webrtc.VideoSource;
+public final class b11 implements VideoSink {
+    public final byte a;
+    public final Object b;
+
+    public b11(Object obj, byte b) {
         this.a = b;
-        this.b = q11Var;
+        this.b = obj;
     }
 
     @Override
-    public final void run() {
+    public final void onFrame(VideoFrame videoFrame) {
         byte b = this.a;
-        q11 q11Var = this.b;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                q11Var.onExitTransitionStart();
-                return;
-            case 1:
-                q11Var.onEnterTransitionStart();
-                return;
-            default:
-                try {
-                    q11Var.performHapticFeedback(3, 2);
-                    return;
-                } catch (Exception unused) {
+                c11 c11Var = (c11) obj;
+                VideoSink incomingVideoSink = c11Var.v.a.getIncomingVideoSink(c11Var.a);
+                if (incomingVideoSink != null) {
+                    incomingVideoSink.onFrame(videoFrame);
                     return;
                 }
+                return;
+            case 1:
+                Iterator it = ((cq9) obj).a.iterator();
+                while (it.hasNext()) {
+                    ((VideoSink) it.next()).onFrame(videoFrame);
+                }
+                return;
+            default:
+                ((VideoSource) obj).lambda$setVideoProcessor$1(videoFrame);
+                return;
         }
+    }
+
+    @Override
+    public final void setParentSink(VideoSink videoSink) {
+        byte b = this.a;
+    }
+
+    private final void a(VideoSink videoSink) {
+    }
+
+    private final void b(VideoSink videoSink) {
+    }
+
+    private final void c(VideoSink videoSink) {
     }
 }

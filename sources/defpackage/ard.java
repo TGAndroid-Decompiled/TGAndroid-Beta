@@ -1,78 +1,32 @@
 package defpackage;
-
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Collection;
-public abstract class ard extends AbstractCollection implements Serializable {
-    public static final Object[] a = new Object[0];
+public final class ard implements ssd {
+    public ssd[] a;
 
     @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract int h(Object[] objArr);
-
-    public abstract int i();
-
-    public int j() {
-        return 0;
-    }
-
-    public boolean k() {
-        return true;
-    }
-
-    public abstract Object[] l();
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] l = l();
-            if (l == null) {
-                objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
-            } else {
-                return Arrays.copyOfRange(l, j(), i(), objArr.getClass());
+    public final boolean zza(Class cls) {
+        for (ssd ssdVar : this.a) {
+            if (ssdVar.zza(cls)) {
+                return true;
             }
-        } else if (length > size) {
-            objArr[size] = null;
         }
-        h(objArr);
-        return objArr;
+        return false;
     }
 
     @Override
-    public final Object[] toArray() {
-        return toArray(a);
+    public final iwd zzb(Class cls) {
+        ssd[] ssdVarArr;
+        String str;
+        for (ssd ssdVar : this.a) {
+            if (ssdVar.zza(cls)) {
+                return ssdVar.zzb(cls);
+            }
+        }
+        String name = cls.getName();
+        if (name.length() != 0) {
+            str = "No factory is available for message type: ".concat(name);
+        } else {
+            str = new String("No factory is available for message type: ");
+        }
+        throw new UnsupportedOperationException(str);
     }
 }

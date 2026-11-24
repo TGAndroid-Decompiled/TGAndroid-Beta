@@ -1,17 +1,23 @@
 package defpackage;
-public final class bwd implements zn7 {
-    public static final bwd a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class bwd extends b4 {
+    public static final Parcelable.Creator<bwd> CREATOR = new urd((byte) 20);
+    public final int a;
+    public final String b;
+
+    public bwd(int i, String str) {
+        this.a = i;
+        this.b = str;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = mve.r(parcel, 20293);
+        mve.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        mve.l(parcel, 3, this.b);
+        mve.s(parcel, r);
     }
 }

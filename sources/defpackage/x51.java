@@ -1,149 +1,111 @@
 package defpackage;
 
-import android.os.StatFs;
+import android.content.Context;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextUtils;
-import android.util.LongSparseArray;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-public final class x51 implements Runnable {
-    public final byte a;
-    public final r61 b;
+import android.view.MotionEvent;
+public class x51 extends l66 {
+    public final Path M;
+    public final RectF N;
+    public y51 O;
+    public y51 P;
 
-    public x51(r61 r61Var, byte b) {
-        this.a = b;
-        this.b = r61Var;
+    public x51(Context context) {
+        super(context, null);
+        this.M = new Path();
+        this.N = new RectF();
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                r61 r61Var = this.b;
-                r61Var.resumeDelayedFragmentAnimation();
-                r61Var.L = false;
-                r61Var.z0(true);
-                r61Var.x0();
-                return;
-            case 1:
-                r61 r61Var2 = this.b;
-                r61Var2.getFileLoader().d.c();
-                v61 v61Var = new v61(false);
-                LongSparseArray longSparseArray = new LongSparseArray();
-                r61Var2.j0(ba4.j(4), 6, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(0), 0, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(100), 0, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(2), 1, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(101), 1, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(1), 4, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(6), 6, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(3), 2, longSparseArray, v61Var);
-                r61Var2.j0(ba4.j(5), 2, longSparseArray, v61Var);
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                for (int i = 0; i < longSparseArray.size(); i++) {
-                    l61 l61Var = (l61) longSparseArray.valueAt(i);
-                    arrayList.add(l61Var);
-                    if (r61Var2.getMessagesController().Z1(((l61) arrayList.get(i)).a) == null) {
-                        long j = l61Var.a;
-                        if (j > 0) {
-                            arrayList2.add(Long.valueOf(j));
-                        } else {
-                            arrayList3.add(Long.valueOf(j));
-                        }
-                    }
-                }
-                Collections.sort(v61Var.d, new sa((byte) 14));
-                Collections.sort(v61Var.e, new sa((byte) 14));
-                Collections.sort(v61Var.f, new sa((byte) 14));
-                Collections.sort(v61Var.g, new sa((byte) 14));
-                Collections.sort(v61Var.h, new sa((byte) 14));
-                r61Var2.getMessagesStorage().a.c(new y51(r61Var2, arrayList2, arrayList3, arrayList, v61Var, (byte) 0));
-                return;
-            default:
-                r61 r61Var3 = this.b;
-                r61Var3.f = r61.m0(ba4.j(4), 5);
-                if (!r61.i0) {
-                    r61Var3.n = r61.m0(ba4.j(4), 4);
-                    if (!r61.i0) {
-                        long m0 = r61.m0(ba4.j(0), 0);
-                        r61Var3.y = m0;
-                        r61Var3.y = r61.m0(ba4.j(100), 0) + m0;
-                        if (!r61.i0) {
-                            long m02 = r61.m0(ba4.j(2), 0);
-                            r61Var3.E = m02;
-                            r61Var3.E = r61.m0(ba4.j(101), 0) + m02;
-                            if (!r61.i0) {
-                                r61Var3.F = r61.m0(gl.O0(), 1);
-                                boolean z = w01.a;
-                                if (!r61.i0) {
-                                    long m03 = r61.m0(ba4.j(3), 1);
-                                    r61Var3.r = m03;
-                                    r61Var3.r = r61.m0(ba4.j(5), 1) + m03;
-                                    if (!r61.i0) {
-                                        long m04 = r61.m0(ba4.j(3), 2);
-                                        r61Var3.x = m04;
-                                        r61Var3.x = r61.m0(ba4.j(5), 2) + m04;
-                                        if (!r61.i0) {
-                                            r61Var3.G = r61.m0(new File(ba4.j(4), "acache"), 0);
-                                            if (!r61.i0) {
-                                                r61Var3.h = r61.m0(ba4.j(4), 3);
-                                                if (!r61.i0) {
-                                                    r61Var3.G += r61Var3.h;
-                                                    r61Var3.s = r61.m0(ba4.j(1), 0);
-                                                    r61Var3.w = r61.m0(ba4.j(6), 0);
-                                                    if (!r61.i0) {
-                                                        long j2 = r61Var3.f + r61Var3.n + r61Var3.E + r61Var3.F + r61Var3.s + r61Var3.y + r61Var3.r + r61Var3.x + r61Var3.w + r61Var3.G;
-                                                        r61.k0 = Long.valueOf(j2);
-                                                        r61Var3.H = j2;
-                                                        r61.j0 = System.currentTimeMillis();
-                                                        ArrayList c1 = gl.c1();
-                                                        File file = (File) c1.get(0);
-                                                        file.getAbsolutePath();
-                                                        if (!TextUtils.isEmpty(gba.e0)) {
-                                                            int size = c1.size();
-                                                            for (int i2 = 0; i2 < size; i2++) {
-                                                                File file2 = (File) c1.get(i2);
-                                                                if (file2.getAbsolutePath().startsWith(gba.e0)) {
-                                                                    file = file2;
-                                                                }
-                                                            }
-                                                        }
-                                                        try {
-                                                            StatFs statFs = new StatFs(file.getPath());
-                                                            long blockSizeLong = statFs.getBlockSizeLong();
-                                                            long availableBlocksLong = statFs.getAvailableBlocksLong();
-                                                            r61Var3.I = statFs.getBlockCountLong() * blockSizeLong;
-                                                            r61Var3.J = availableBlocksLong * blockSizeLong;
-                                                        } catch (Exception e) {
-                                                            fa4.g(e, true);
-                                                        }
-                                                        gl.d3(new x51(r61Var3, (byte) 0));
-                                                        la4 la4Var = r61Var3.getFileLoader().d;
-                                                        la4Var.d();
-                                                        la4Var.a.c(new x51(r61Var3, (byte) 1));
-                                                        return;
-                                                    }
-                                                    return;
-                                                }
-                                                return;
-                                            }
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (this.P != null && getMeasuredWidth() > 0) {
+            SpannableString spannableString = new SpannableString(" btn");
+            spannableString.setSpan(this.P, 1, spannableString.length(), 33);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.ellipsize(getText(), getPaint(), (((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - this.P.a()) - gm.L(4.0f), TextUtils.TruncateAt.END));
+            spannableStringBuilder.append((CharSequence) spannableString);
+            setText(spannableStringBuilder);
+            this.P = null;
         }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        y51 y51Var;
+        Runnable runnable;
+        y51 y51Var2;
+        Layout layout;
+        int action = motionEvent.getAction();
+        float x = motionEvent.getX() - getPaddingLeft();
+        int y = ((int) motionEvent.getY()) - getPaddingTop();
+        if ((getText() instanceof Spanned) && (layout = getLayout()) != null && y >= 0 && y < layout.getHeight()) {
+            int lineForVertical = layout.getLineForVertical(y);
+            Spanned spanned = (Spanned) getText();
+            y51[] y51VarArr = (y51[]) spanned.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), y51.class);
+            for (int i = 0; i < y51VarArr.length; i++) {
+                y51Var = y51VarArr[i];
+                int spanStart = spanned.getSpanStart(y51Var);
+                int spanEnd = spanned.getSpanEnd(y51Var);
+                Path path = this.M;
+                layout.getSelectionPath(spanStart, spanEnd, path);
+                RectF rectF = this.N;
+                path.computeBounds(rectF, true);
+                if (rectF.contains(x, y)) {
+                    break;
+                }
+            }
+        }
+        y51Var = null;
+        if (action == 0) {
+            this.O = y51Var;
+            if (y51Var != null) {
+                u51 u51Var = y51Var.e;
+                if (u51Var == null) {
+                    u51Var = new u51(this);
+                    y51Var.e = u51Var;
+                }
+                u51Var.c(true);
+                return true;
+            }
+        } else if (action != 1 && action != 3) {
+            if (action == 2 && (y51Var2 = this.O) != null && y51Var2 != y51Var) {
+                u51 u51Var2 = y51Var2.e;
+                if (u51Var2 == null) {
+                    u51Var2 = new u51(this);
+                    y51Var2.e = u51Var2;
+                }
+                u51Var2.c(false);
+                this.O = null;
+            }
+        } else {
+            y51 y51Var3 = this.O;
+            if (y51Var3 != null) {
+                u51 u51Var3 = y51Var3.e;
+                if (u51Var3 == null) {
+                    u51Var3 = new u51(this);
+                    y51Var3.e = u51Var3;
+                }
+                u51Var3.c(false);
+                if (action == 1 && (runnable = this.O.d) != null) {
+                    runnable.run();
+                }
+            }
+            this.O = null;
+        }
+        if (this.O == null && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public x51(Context context, ylb ylbVar) {
+        super(context, ylbVar);
+        this.M = new Path();
+        this.N = new RectF();
     }
 }

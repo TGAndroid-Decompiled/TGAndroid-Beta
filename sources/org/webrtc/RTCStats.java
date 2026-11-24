@@ -55,19 +55,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder r = tb4.r("{ timestampUs: ");
-        r.append(this.timestampUs);
-        r.append(", type: ");
-        r.append(this.type);
-        r.append(", id: ");
-        r.append(this.id);
+        StringBuilder s = td4.s("{ timestampUs: ");
+        s.append(this.timestampUs);
+        s.append(", type: ");
+        s.append(this.type);
+        s.append(", id: ");
+        s.append(this.id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            r.append(", ");
-            r.append(entry.getKey());
-            r.append(": ");
-            appendValue(r, entry.getValue());
+            s.append(", ");
+            s.append(entry.getKey());
+            s.append(": ");
+            appendValue(s, entry.getValue());
         }
-        r.append(" }");
-        return r.toString();
+        s.append(" }");
+        return s.toString();
     }
 }

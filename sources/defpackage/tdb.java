@@ -1,46 +1,41 @@
 package defpackage;
-public final class tdb implements zga, x74 {
-    public final byte a;
-    public final ydb b;
 
-    public tdb(ydb ydbVar, byte b) {
-        this.a = b;
-        this.b = ydbVar;
+import java.io.Serializable;
+public final class tdb implements sdb, Serializable {
+    public final transient Object a = new Object();
+    public final sdb b;
+    public volatile transient boolean c;
+    public transient Object d;
+
+    public tdb(sdb sdbVar) {
+        this.b = sdbVar;
     }
 
     @Override
-    public final void D(float f, int i) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final int b() {
-        return this.b.b0;
-    }
-
-    @Override
-    public final void p(int i, float f, float f2, y74 y74Var) {
-        byte b = this.a;
-        ydb ydbVar = this.b;
-        switch (b) {
-            case 1:
-                ydbVar.G0();
-                return;
-            case 2:
-                ydbVar.G0();
-                return;
-            default:
-                ydbVar.X.setAlpha(f);
-                return;
+    public final Object get() {
+        if (!this.c) {
+            synchronized (this.a) {
+                if (!this.c) {
+                    Object obj = this.b.get();
+                    this.d = obj;
+                    this.c = true;
+                    return obj;
+                }
+            }
         }
+        return this.d;
     }
 
-    private final void a(float f, int i) {
-    }
-
-    private final void c(float f, int i) {
-    }
-
-    private final void d(float f, int i) {
+    public final String toString() {
+        Object obj;
+        StringBuilder sb = new StringBuilder("Suppliers.memoize(");
+        if (this.c) {
+            obj = "<supplier that returned " + this.d + ">";
+        } else {
+            obj = this.b;
+        }
+        sb.append(obj);
+        sb.append(")");
+        return sb.toString();
     }
 }

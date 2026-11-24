@@ -12,15 +12,15 @@ public class MusicBrowserService extends MediaBrowserService {
     public final void onCreate() {
         super.onCreate();
         a.v();
-        setSessionToken((MediaSession.Token) ((zu6) hgb.a(this).b.b).c.b);
+        setSessionToken((MediaSession.Token) ((zw6) iib.a(this).b.b).c.b);
     }
 
     @Override
     public final MediaBrowserService.BrowserRoot onGetRoot(String str, int i, Bundle bundle) {
         if (str != null) {
             if (1000 != i && Process.myUid() != i) {
-                HashSet hashSet = lr7.a;
-                if (i != 1000 && i != Process.myUid() && !lr7.a.contains(str)) {
+                HashSet hashSet = mt7.a;
+                if (i != 1000 && i != Process.myUid() && !mt7.a.contains(str)) {
                     PackageManager packageManager = getPackageManager();
                     try {
                         if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) != 0) {
@@ -33,11 +33,11 @@ public class MusicBrowserService extends MediaBrowserService {
                     }
                 }
             }
-            hgb.a(this).getClass();
-            if (hgb.b()) {
+            iib.a(this).getClass();
+            if (iib.b()) {
                 return null;
             }
-            hgb.a(this).getClass();
+            iib.a(this).getClass();
             Bundle bundle2 = new Bundle();
             bundle2.putBoolean("android.media.browse.CONTENT_STYLE_SUPPORTED", true);
             bundle2.putInt("android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", 2);
@@ -49,15 +49,15 @@ public class MusicBrowserService extends MediaBrowserService {
 
     @Override
     public final void onLoadChildren(String str, MediaBrowserService.Result result) {
-        hgb a = hgb.a(this);
+        iib a = iib.a(this);
         a.getClass();
-        if (hgb.b()) {
-            Toast.makeText(getApplicationContext(), k96.M0(2131751098, null), 1).show();
+        if (iib.b()) {
+            Toast.makeText(getApplicationContext(), jb6.M0(2131751047, null), 1).show();
             stopSelf();
             result.detach();
             return;
         }
         result.detach();
-        a.c(str, new im6(result, (byte) 12));
+        a.c(str, new cj6(result, (byte) 15));
     }
 }

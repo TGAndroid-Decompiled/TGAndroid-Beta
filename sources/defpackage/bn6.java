@@ -1,107 +1,50 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bn6 implements RequestDelegate {
+import android.media.AudioRecord;
+import org.telegram.messenger.MediaController;
+public final class bn6 implements Runnable {
     public final byte a;
-    public final hq6 b;
-    public final SharedPreferences c;
+    public final MediaController b;
+    public final boolean c;
 
-    public bn6(hq6 hq6Var, SharedPreferences sharedPreferences, byte b) {
+    public bn6(MediaController mediaController, boolean z, byte b) {
         this.a = b;
-        this.b = hq6Var;
-        this.c = sharedPreferences;
+        this.b = mediaController;
+        this.c = z;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void run() {
         byte b = this.a;
-        final SharedPreferences sharedPreferences = this.c;
-        final hq6 hq6Var = this.b;
+        boolean z = this.c;
+        MediaController mediaController = this.b;
         switch (b) {
             case 0:
-                hq6Var.getClass();
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r4;
-                        SharedPreferences sharedPreferences2 = sharedPreferences;
-                        TLObject tLObject2 = tLObject;
-                        hq6 hq6Var2 = hq6Var;
-                        switch (b2) {
-                            case 0:
-                                hq6Var2.getClass();
-                                if (tLObject2 instanceof TLRPC.TL_emojiList) {
-                                    SerializedData serializedData = new SerializedData(tLObject2.getObjectSize());
-                                    tLObject2.serializeToStream(serializedData);
-                                    SharedPreferences.Editor edit = sharedPreferences2.edit();
-                                    hq6Var2.O1 = (TLRPC.TL_emojiList) tLObject2;
-                                    edit.putString("replyicons", Utilities.f(serializedData.toByteArray()));
-                                    edit.putLong("replyicons_last_check", System.currentTimeMillis());
-                                    edit.apply();
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (tLObject2 instanceof TLRPC.TL_emojiList) {
-                                    SerializedData serializedData2 = new SerializedData(tLObject2.getObjectSize());
-                                    tLObject2.serializeToStream(serializedData2);
-                                    SharedPreferences.Editor edit2 = sharedPreferences2.edit();
-                                    hq6Var2.P1 = (TLRPC.TL_emojiList) tLObject2;
-                                    edit2.putString("restrictedstatuses", Utilities.f(serializedData2.toByteArray()));
-                                    edit2.putLong("restrictedstatuses_last_check", System.currentTimeMillis());
-                                    edit2.apply();
-                                    return;
-                                }
-                                return;
+                String[] strArr = MediaController.W1;
+                mp3 mp3Var = mediaController.N1;
+                if (mediaController.g1 != null && mediaController.k1 != null) {
+                    boolean z2 = mediaController.e1;
+                    mediaController.e1 = !z2;
+                    if (!z2) {
+                        AudioRecord audioRecord = mediaController.f1;
+                        if (audioRecord != null) {
+                            mediaController.C1 = (byte) 4;
+                            audioRecord.stop();
+                            mediaController.f1.release();
+                            mediaController.f1 = null;
+                            mp3Var.c(new bn6(mediaController, z, (byte) 1));
+                            return;
                         }
+                        return;
                     }
-                });
-                return;
-            case 1:
-                gl.d3(new e45(this.b, tL_error, tLObject, this.c, (byte) 25));
+                    mp3Var.a(mediaController.P1);
+                    mp3Var.c(new zm6(mediaController, (byte) 6));
+                    return;
+                }
                 return;
             default:
-                gl.d3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r4;
-                        SharedPreferences sharedPreferences2 = sharedPreferences;
-                        TLObject tLObject2 = tLObject;
-                        hq6 hq6Var2 = hq6Var;
-                        switch (b2) {
-                            case 0:
-                                hq6Var2.getClass();
-                                if (tLObject2 instanceof TLRPC.TL_emojiList) {
-                                    SerializedData serializedData = new SerializedData(tLObject2.getObjectSize());
-                                    tLObject2.serializeToStream(serializedData);
-                                    SharedPreferences.Editor edit = sharedPreferences2.edit();
-                                    hq6Var2.O1 = (TLRPC.TL_emojiList) tLObject2;
-                                    edit.putString("replyicons", Utilities.f(serializedData.toByteArray()));
-                                    edit.putLong("replyicons_last_check", System.currentTimeMillis());
-                                    edit.apply();
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (tLObject2 instanceof TLRPC.TL_emojiList) {
-                                    SerializedData serializedData2 = new SerializedData(tLObject2.getObjectSize());
-                                    tLObject2.serializeToStream(serializedData2);
-                                    SharedPreferences.Editor edit2 = sharedPreferences2.edit();
-                                    hq6Var2.P1 = (TLRPC.TL_emojiList) tLObject2;
-                                    edit2.putString("restrictedstatuses", Utilities.f(serializedData2.toByteArray()));
-                                    edit2.putLong("restrictedstatuses_last_check", System.currentTimeMillis());
-                                    edit2.apply();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+                String[] strArr2 = MediaController.W1;
+                mediaController.L(z);
                 return;
         }
     }

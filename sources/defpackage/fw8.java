@@ -1,9 +1,10 @@
 package defpackage;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class fw8 extends ViewOutlineProvider {
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class fw8 implements TextWatcher {
     public final byte a;
     public final gw8 b;
 
@@ -13,20 +14,77 @@ public final class fw8 extends ViewOutlineProvider {
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
+    public final void afterTextChanged(Editable editable) {
         byte b = this.a;
         gw8 gw8Var = this.b;
         switch (b) {
             case 0:
-                float translationY = view.getTranslationY() + view.getTop();
-                float translationX = view.getTranslationX() + view.getLeft();
-                outline.setRoundRect(Math.round(gw8Var.n - translationX), Math.round(gw8Var.r - translationY), Math.round(gw8Var.s - translationX), Math.round(gw8Var.w - translationY), gw8Var.x);
+                gw8Var.Z(true);
+                return;
+            case 1:
+                if (!gw8Var.L) {
+                    EditTextBoldCursor editTextBoldCursor = gw8Var.a[1];
+                    int selectionStart = editTextBoldCursor.getSelectionStart();
+                    String obj = editTextBoldCursor.getText().toString();
+                    StringBuilder sb = new StringBuilder(obj.length());
+                    int i = 0;
+                    while (i < obj.length()) {
+                        int i2 = i + 1;
+                        String substring = obj.substring(i, i2);
+                        if ("0123456789".contains(substring)) {
+                            sb.append(substring);
+                        }
+                        i = i2;
+                    }
+                    gw8Var.L = true;
+                    int intValue = Utilities.z(sb.toString()).intValue();
+                    if (intValue >= 0 && intValue <= 65535 && obj.equals(sb.toString())) {
+                        if (selectionStart >= 0) {
+                            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+                        }
+                    } else if (intValue < 0) {
+                        editTextBoldCursor.setText("0");
+                    } else if (intValue > 65535) {
+                        editTextBoldCursor.setText("65535");
+                    } else {
+                        editTextBoldCursor.setText(sb.toString());
+                    }
+                    gw8Var.L = false;
+                    gw8Var.Z(true);
+                    return;
+                }
                 return;
             default:
-                int height = view.getHeight();
-                int i = gw8Var.c0;
-                outline.setRoundRect(gw8Var.b0, i, view.getWidth() - gw8Var.b0, view.getHeight() - gw8Var.d0, ((height - i) - gw8Var.d0) / 2.0f);
+                gw8Var.Z(true);
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+    }
+
+    private final void a(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void b(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void c(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void d(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void e(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void f(int i, int i2, int i3, CharSequence charSequence) {
     }
 }

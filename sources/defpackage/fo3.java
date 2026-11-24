@@ -1,31 +1,28 @@
 package defpackage;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.PriorityBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-public final class fo3 extends ThreadPoolExecutor implements AutoCloseable {
-    public final yv2 a;
+import java.util.Locale;
+public final class fo3 {
+    public final String a;
+    public final float b;
+    public final boolean c;
 
-    public fo3(yv2 yv2Var, PriorityBlockingQueue priorityBlockingQueue) {
-        super(1, 1, 60L, TimeUnit.SECONDS, priorityBlockingQueue);
-        this.a = yv2Var;
+    public fo3(String str, float f, boolean z) {
+        this.a = str;
+        this.b = f;
+        this.c = z;
     }
 
-    @Override
-    public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = (CountDownLatch) this.a.c;
-        if (countDownLatch != null) {
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e) {
-                fa4.g(e, true);
-            }
+    public final String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.a);
+        sb.append(String.format(Locale.US, " %.2f", Float.valueOf(this.b)));
+        if (this.c) {
+            str = " sure";
+        } else {
+            str = "";
         }
-    }
-
-    @Override
-    public final void close() {
-        z2.d(this);
+        sb.append(str);
+        return sb.toString();
     }
 }

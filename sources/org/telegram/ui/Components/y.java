@@ -16,7 +16,7 @@ public final class y extends AnimatorListenerAdapter {
         if (editorAlert.m1.getAdapter() == editorAlert.s1) {
             e0 e0Var = editorAlert.p1.b;
             e0Var.requestFocus();
-            gl.F3(e0Var);
+            gm.E3(e0Var);
         }
         editorAlert.l1.setVisibility(8);
         editorAlert.u1.setVisibility(8);

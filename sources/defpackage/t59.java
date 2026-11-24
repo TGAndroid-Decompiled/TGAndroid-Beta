@@ -1,34 +1,57 @@
 package defpackage;
-public final class t59 {
-    public f69 a;
-    public f69 b;
-    public w56 c;
-    public f84[] d;
-    public boolean e;
-    public short f;
 
-    public final wk4 a() {
-        boolean z;
-        boolean z2;
-        boolean z3 = false;
-        if (this.a != null) {
-            z = true;
-        } else {
-            z = false;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+public abstract class t59 extends r59 {
+    public boolean f3;
+
+    @Override
+    public final void K0(Canvas canvas, RectF rectF, long j) {
+        super.K0(canvas, rectF, j);
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt instanceof s59) {
+                float x = childAt.getX();
+                float y = childAt.getY();
+                if (rectF.intersects(x, y, childAt.getWidth() + x, childAt.getHeight() + y)) {
+                    canvas.save();
+                    canvas.translate(x, y);
+                    y0b y0bVar = (y0b) ((s59) childAt);
+                    if (y0bVar.M) {
+                        y0bVar.b(canvas, this);
+                    }
+                    canvas.restore();
+                }
+            }
         }
-        fre.a("Must set register function", z);
-        if (this.b != null) {
-            z2 = true;
-        } else {
-            z2 = false;
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        this.f3 = false;
+        for (int i = 0; i < getChildCount(); i++) {
+            if (getChildAt(i) instanceof s59) {
+                s59 s59Var = (s59) getChildAt(i);
+                canvas.save();
+                canvas.translate(s59Var.getX(), s59Var.getY());
+                y0b y0bVar = (y0b) s59Var;
+                if (y0bVar.M) {
+                    y0bVar.b(canvas, this);
+                }
+                canvas.restore();
+            }
         }
-        fre.a("Must set unregister function", z2);
-        if (this.c != null) {
-            z3 = true;
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void invalidate() {
+        if (this.f3) {
+            return;
         }
-        fre.a("Must set holder", z3);
-        u56 u56Var = this.c.b;
-        fre.i(u56Var, "Key must not be null");
-        return new wk4(new h2d(this, this.c, this.d, this.e, this.f), new v8b(this, u56Var, (byte) 9), (byte) 22);
+        super.invalidate();
+        this.f3 = true;
     }
 }

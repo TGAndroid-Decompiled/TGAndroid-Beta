@@ -505,10 +505,10 @@ public class PeerConnection {
                 this.senders.add(nativeAddTrack);
                 return nativeAddTrack;
             }
-            sc8.j("C++ addTrack failed.");
+            dq9.m("C++ addTrack failed.");
             return null;
         }
-        fvc.f("No MediaStreamTrack specified in addTrack.");
+        gxc.d("No MediaStreamTrack specified in addTrack.");
         return null;
     }
 
@@ -522,10 +522,10 @@ public class PeerConnection {
                 this.transceivers.add(nativeAddTransceiverWithTrack);
                 return nativeAddTransceiverWithTrack;
             }
-            sc8.j("C++ addTransceiver failed.");
+            dq9.m("C++ addTransceiver failed.");
             return null;
         }
-        fvc.f("No MediaStreamTrack specified for addTransceiver.");
+        gxc.d("No MediaStreamTrack specified for addTransceiver.");
         return null;
     }
 
@@ -658,7 +658,7 @@ public class PeerConnection {
         if (rtpSender != null) {
             return nativeRemoveTrack(rtpSender.getNativeRtpSender());
         }
-        fvc.f("No RtpSender specified for removeTrack.");
+        gxc.d("No RtpSender specified for removeTrack.");
         return false;
     }
 
@@ -734,7 +734,7 @@ public class PeerConnection {
                 if (list != null && !list.isEmpty()) {
                     this.urls = list;
                 } else {
-                    w26.i(list, "urls == null || urls.isEmpty(): ");
+                    u36.i(list, "urls == null || urls.isEmpty(): ");
                     throw null;
                 }
             }
@@ -778,7 +778,7 @@ public class PeerConnection {
             if (str != null && list != null && !list.isEmpty()) {
                 for (String str5 : list) {
                     if (str5 == null) {
-                        w26.i(list, "urls element is null: ");
+                        u36.i(list, "urls element is null: ");
                         throw null;
                     }
                 }
@@ -795,16 +795,16 @@ public class PeerConnection {
                             this.tlsEllipticCurves = list3;
                             return;
                         }
-                        w26.j("hostname == null");
+                        u36.j("hostname == null");
                         throw null;
                     }
-                    w26.j("password == null");
+                    u36.j("password == null");
                     throw null;
                 }
-                w26.j("username == null");
+                u36.j("username == null");
                 throw null;
             }
-            w26.j("uri == null || urls == null || urls.isEmpty()");
+            u36.j("uri == null || urls == null || urls.isEmpty()");
             throw null;
         }
 
@@ -932,10 +932,10 @@ public class PeerConnection {
                 this.transceivers.add(nativeAddTransceiverOfType);
                 return nativeAddTransceiverOfType;
             }
-            sc8.j("C++ addTransceiver failed.");
+            dq9.m("C++ addTransceiver failed.");
             return null;
         }
-        fvc.f("No MediaType specified for addTransceiver.");
+        gxc.d("No MediaType specified for addTransceiver.");
         return null;
     }
 }

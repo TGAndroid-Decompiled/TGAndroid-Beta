@@ -1,55 +1,44 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class ue8 extends gb2 {
-    public final byte Ld;
-    public final int Md;
-    public final int Nd;
+import android.os.Handler;
+import android.os.Message;
+import java.util.TreeMap;
+public final class ue8 implements Handler.Callback {
+    public final mx6 a;
+    public final sz4 b;
+    public t63 f;
+    public boolean h;
+    public boolean n;
+    public boolean r;
+    public final TreeMap e = new TreeMap();
+    public final Handler d = hac.q(this);
+    public final qs c = new qs((byte) 1);
 
-    public ue8(Context context, int i, wjb wjbVar, int i2, int i3, byte b) {
-        super(context, i, false, null, wjbVar);
-        this.Ld = b;
-        this.Md = i2;
-        this.Nd = i3;
+    public ue8(t63 t63Var, sz4 sz4Var, mx6 mx6Var) {
+        this.f = t63Var;
+        this.b = sz4Var;
+        this.a = mx6Var;
     }
 
     @Override
-    public final void j1(Canvas canvas) {
-        switch (this.Ld) {
-            case 0:
-                this.S4 = 0;
-                this.T4 = this.Q4.size() - 1;
-                super.j1(canvas);
-                return;
-            default:
-                this.S4 = 0;
-                this.T4 = this.Q4.size() - 1;
-                super.j1(canvas);
-                return;
+    public final boolean handleMessage(Message message) {
+        if (!this.r) {
+            if (message.what != 1) {
+                return false;
+            }
+            se8 se8Var = (se8) message.obj;
+            long j = se8Var.a;
+            long j2 = se8Var.b;
+            Long valueOf = Long.valueOf(j2);
+            TreeMap treeMap = this.e;
+            Long l = (Long) treeMap.get(valueOf);
+            if (l == null) {
+                treeMap.put(Long.valueOf(j2), Long.valueOf(j));
+                return true;
+            } else if (l.longValue() > j) {
+                treeMap.put(Long.valueOf(j2), Long.valueOf(j));
+            }
         }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.Ld) {
-            case 0:
-                setMeasuredDimension(this.Md, this.Nd);
-                return;
-            default:
-                setMeasuredDimension(this.Md, this.Nd);
-                return;
-        }
-    }
-
-    @Override
-    public final void setPressed(boolean z) {
-        byte b = this.Ld;
-    }
-
-    private final void h4(boolean z) {
-    }
-
-    private final void i4(boolean z) {
+        return true;
     }
 }

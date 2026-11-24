@@ -1,17 +1,15 @@
 package defpackage;
-public final class mld implements zn7 {
-    public static final mld a = new Object();
+public final class mld extends Throwable {
+    public final byte a;
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+    public mld(String str, byte b) {
+        super(str);
+        this.a = b;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Throwable fillInStackTrace() {
+        byte b = this.a;
+        return this;
     }
 }

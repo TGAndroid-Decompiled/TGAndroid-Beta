@@ -1,28 +1,34 @@
 package defpackage;
-public abstract class zne {
-    public static long[] a(long[]... jArr) {
-        boolean z;
-        long j = 0;
-        for (long[] jArr2 : jArr) {
-            j += jArr2.length;
-        }
-        int i = (int) j;
-        if (j == i) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gre.d(j, "the total number of elements (%s) in the arrays must fit in an int", z);
-        long[] jArr3 = new long[i];
-        int i2 = 0;
-        for (long[] jArr4 : jArr) {
-            System.arraycopy(jArr4, 0, jArr3, i2, jArr4.length);
-            i2 += jArr4.length;
-        }
-        return jArr3;
+public final class zne extends f4e {
+    private static final zne zzb;
+    private int zzd;
+    private boolean zze;
+    private boolean zzf;
+
+    static {
+        ?? f4eVar = new f4e();
+        zzb = f4eVar;
+        f4e.k(zne.class, f4eVar);
     }
 
-    public static int b(long j) {
-        return (int) (j ^ (j >>> 32));
+    @Override
+    public final Object d(int i) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 == 5) {
+                            return zzb;
+                        }
+                        throw null;
+                    }
+                    return new h2e(zzb);
+                }
+                return new f4e();
+            }
+            return new wce(zzb, "\u0004\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဇ\u0000\u0002ဇ\u0001", new Object[]{"zzd", "zze", "zzf"});
+        }
+        return (byte) 1;
     }
 }

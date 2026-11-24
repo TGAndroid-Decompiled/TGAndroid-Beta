@@ -8,14 +8,14 @@ public final class a3 implements Iterator {
     public final Iterator a;
     public Object b = null;
     public Collection c = null;
-    public Iterator d = ms5.a;
-    public final wg7 e;
+    public Iterator d = lu5.a;
+    public final zi7 e;
     public final byte f;
 
-    public a3(wg7 wg7Var, byte b) {
+    public a3(zi7 zi7Var, byte b) {
         this.f = b;
-        this.e = wg7Var;
-        this.a = wg7Var.e.entrySet().iterator();
+        this.e = zi7Var;
+        this.a = zi7Var.e.entrySet().iterator();
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class a3 implements Iterator {
             case 0:
                 return next;
             default:
-                return new hm5(obj, next);
+                return new ho5(obj, next);
         }
     }
 
@@ -53,7 +53,7 @@ public final class a3 implements Iterator {
         if (collection.isEmpty()) {
             this.a.remove();
         }
-        wg7 wg7Var = this.e;
-        wg7Var.f--;
+        zi7 zi7Var = this.e;
+        zi7Var.f--;
     }
 }

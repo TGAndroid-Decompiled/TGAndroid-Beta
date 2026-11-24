@@ -1,20 +1,12 @@
 package defpackage;
+public interface ax5 extends yw5, gs4 {
+    boolean isExternal();
 
-import java.util.Arrays;
-public final class ax5 {
-    public static final ax5 a = new Object();
+    boolean isInfix();
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if ((obj instanceof ax5) && cqe.a(null, null) && cqe.a(null, null)) {
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
+    boolean isInline();
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, null});
-    }
+    boolean isOperator();
+
+    boolean isSuspend();
 }

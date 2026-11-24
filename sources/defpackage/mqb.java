@@ -1,16 +1,18 @@
 package defpackage;
-public enum mqb extends qsb {
-    public mqb() {
-        super("ScriptDataEscapeStart", 19);
+public final class mqb extends to4 {
+    public final bt6 f;
+
+    public mqb(bqb bqbVar, bt6 bt6Var) {
+        super(bqbVar);
+        this.f = bt6Var;
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        if (zj1Var.m('-')) {
-            aqbVar.f('-');
-            aqbVar.a(qsb.K);
-            return;
-        }
-        aqbVar.c = qsb.f;
+    public final aqb m(int i, aqb aqbVar, long j) {
+        super.m(i, aqbVar, j);
+        bt6 bt6Var = this.f;
+        aqbVar.b = bt6Var;
+        xs6 xs6Var = bt6Var.b;
+        return aqbVar;
     }
 }

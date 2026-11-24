@@ -1,354 +1,585 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public class anb extends FrameLayout implements gk7, tjb {
-    public ValueAnimator E;
-    public TextPaint F;
-    public StaticLayout G;
-    public wd2 H;
-    public final be0 I;
-    public final int J;
-    public cib K;
-    public final byte L;
-    public int M;
-    public float N;
-    public p72 O;
-    public boolean P;
-    public final ImageReceiver Q;
-    public pb0 R;
-    public final m17 S;
-    public final m17 T;
-    public TLRPC.WallPaper U;
-    public long V;
-    public int W;
-    public final float a;
-    public boolean a0;
-    public final float b;
-    public final float c;
-    public final float d;
-    public final float e;
-    public zmb f;
-    public zmb h;
-    public float n;
-    public final Paint r;
-    public final Paint s;
-    public final RectF w;
-    public final Path x;
-    public final wjb y;
+import java.util.List;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.RadioButton;
+public abstract class anb {
+    public static final zmb a = new zmb();
+    public static int b = 1;
+    public static long c = -1;
+    public static float d;
 
-    public anb(int i, int i2, wjb wjbVar, Context context) {
-        super(context);
-        this.a = gl.L(8.0f);
-        this.b = gl.L(6.0f);
-        this.c = gl.L(4.0f);
-        this.d = gl.L(21.0f);
-        this.e = gl.L(41.0f);
-        this.f = new zmb(this);
-        this.n = 1.0f;
-        Paint paint = new Paint(1);
-        this.r = paint;
-        this.s = new Paint(1);
-        this.w = new RectF();
-        this.x = new Path();
-        this.S = new m17(0, true, false, null);
-        this.T = new m17(0, false, false, null);
-        this.L = i2;
-        this.J = i;
-        this.y = wjbVar;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.Q = imageReceiver;
-        imageReceiver.q0(gl.L(8.0f));
-        zkb.h(bkb.h5, wjbVar, this);
-        be0 be0Var = new be0(context);
-        this.I = be0Var;
-        be0Var.getImageReceiver().B0 = true;
-        be0Var.getImageReceiver().v0 = false;
-        be0Var.getImageReceiver().M(0);
-        if (i2 != 0 && i2 != 3 && i2 != 2) {
-            addView(be0Var, nme.d(36, 36.0f, 81, 0.0f, 0.0f, 0.0f, 12.0f));
-        } else {
-            addView(be0Var, nme.d(28, 28.0f, 81, 0.0f, 0.0f, 0.0f, 12.0f));
-        }
-        paint.setStrokeWidth(gl.L(2.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(551805923);
+    public static void A(EditTextBoldCursor editTextBoldCursor, int i, ylb ylbVar) {
+        l(editTextBoldCursor, 34, i, ylbVar);
     }
 
-    public static Bitmap e(Bitmap bitmap) {
-        if (bitmap == null) {
+    public static void B(View view, Drawable drawable, wmb wmbVar, ylb ylbVar) {
+        view.setBackground(drawable);
+        j(view, drawable, wmbVar, null, ylbVar);
+    }
+
+    public static void C(TextView textView, int i, ylb ylbVar) {
+        n(textView, 3, i, -1, 0, 0.0f, ylbVar);
+    }
+
+    public static void D(TextView textView, int i, ylb ylbVar) {
+        n(textView, 1, i, -1, 0, 0.0f, ylbVar);
+    }
+
+    public static void E(EditTextBoldCursor editTextBoldCursor, int i) {
+        D(editTextBoldCursor, i, null);
+    }
+
+    public static void F(EditTextBoldCursor editTextBoldCursor, int i, int i2, int i3, ylb ylbVar) {
+        editTextBoldCursor.u(cmb.v0(i, ylbVar), cmb.v0(i2, ylbVar), cmb.v0(i3, ylbVar));
+        T(editTextBoldCursor, 31, i, ylbVar).g = editTextBoldCursor.getLineColor();
+        T(editTextBoldCursor, 32, i2, ylbVar).g = editTextBoldCursor.getActiveLineColor();
+        T(editTextBoldCursor, 33, i3, ylbVar).g = editTextBoldCursor.getErrorLineColor();
+    }
+
+    public static void G(TextView textView, int i, ylb ylbVar) {
+        n(textView, 2, i, -1, 0, 0.0f, ylbVar);
+    }
+
+    public static void H(RecyclerView recyclerView, int i, ylb ylbVar) {
+        l(recyclerView, 21, i, ylbVar);
+    }
+
+    public static void I(int i, p85 p85Var) {
+        l(p85Var, 20, i, null);
+    }
+
+    public static void J(r59 r59Var, int i, ylb ylbVar) {
+        l(r59Var, 20, i, ylbVar);
+    }
+
+    public static wmb K(float f, int i) {
+        return new wmb(i, -1, f, 2);
+    }
+
+    public static zmb L(boolean z, int i, HashSet hashSet) {
+        zmb zmbVar = a;
+        if (zmbVar.e) {
+            zmbVar = new zmb();
+        }
+        zmbVar.e = true;
+        zmbVar.b = z;
+        zmbVar.c = i;
+        zmbVar.d = hashSet;
+        zmbVar.a.clear();
+        return zmbVar;
+    }
+
+    public static wmb M(int i) {
+        return new wmb(i, -1, 0.0f, 0);
+    }
+
+    public static umb N(View view, int i, int i2, int i3, int i4, float f, ylb ylbVar, int i5, PorterDuffColorFilter porterDuffColorFilter) {
+        umb[] umbVarArr = o(view, true).a;
+        umb umbVar = umbVarArr[i];
+        if (umbVar == null) {
+            umbVar = new umb();
+            umbVarArr[i] = umbVar;
+        }
+        umb umbVar2 = umbVar;
+        umbVar2.c(i2, i3, i4, f, ylbVar);
+        umbVar2.g = i5;
+        umbVar2.i = porterDuffColorFilter;
+        return umbVar2;
+    }
+
+    public static void O(RadioButton radioButton, int i, int i2, ylb ylbVar) {
+        radioButton.b(cmb.v0(i, ylbVar), cmb.v0(i2, ylbVar));
+        l(radioButton, 23, i, ylbVar);
+        l(radioButton, 24, i2, ylbVar);
+    }
+
+    public static int P(int i, int i2, int i3, float f, ylb ylbVar) {
+        int v0 = cmb.v0(i, ylbVar);
+        if (i3 != 1) {
+            if (i3 != 2) {
+                if (i3 != 3) {
+                    if (i3 != 4) {
+                        if (i3 != 5) {
+                            return v0;
+                        }
+                        return ulb.b(v0);
+                    }
+                    return cmb.v(v0, cmb.v0(i2, ylbVar));
+                }
+                return on2.f(f, v0, cmb.v0(i2, ylbVar));
+            }
+            return cmb.p1(f, v0);
+        }
+        return on2.p(v0, (int) f);
+    }
+
+    public static void Q(View view, fg0 fg0Var, wmb wmbVar, wmb wmbVar2) {
+        R(view, fg0Var, wmbVar, wmbVar2, null);
+    }
+
+    public static void R(View view, Drawable drawable, wmb wmbVar, wmb wmbVar2, ylb ylbVar) {
+        view.setBackground(drawable);
+        j(view, drawable, wmbVar, wmbVar2, ylbVar);
+    }
+
+    public static void S(View view, umb umbVar, int i) {
+        Drawable drawable;
+        byte b2 = umbVar.l;
+        boolean z = false;
+        switch (b2) {
+            case 1:
+            case 2:
+                if (view instanceof a) {
+                    a aVar = (a) view;
+                    if (b2 == 2) {
+                        z = true;
+                    }
+                    aVar.H(i, z);
+                    return;
+                }
+                return;
+            case 3:
+            case 4:
+                if (view instanceof a) {
+                    a aVar2 = (a) view;
+                    if (b2 == 4) {
+                        z = true;
+                    }
+                    aVar2.G(i, z);
+                    return;
+                }
+                return;
+            case 5:
+                if (view instanceof a) {
+                    ((a) view).setTitleColor(i);
+                    return;
+                }
+                return;
+            case 6:
+                if (view instanceof a) {
+                    ((a) view).setSubtitleColor(i);
+                    return;
+                }
+                return;
+            default:
+                switch (b2) {
+                    case 20:
+                        if (view instanceof r59) {
+                            ((r59) view).setSelectorDrawableColor(i);
+                            return;
+                        }
+                        return;
+                    case 21:
+                        if (view instanceof RecyclerView) {
+                            ((RecyclerView) view).setGlowColor(i);
+                            return;
+                        }
+                        return;
+                    case 22:
+                        WeakReference weakReference = umbVar.j;
+                        if (weakReference != null) {
+                            drawable = (Drawable) weakReference.get();
+                        } else {
+                            drawable = null;
+                        }
+                        if (drawable != null && i != umbVar.g) {
+                            drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                            view.invalidate();
+                            return;
+                        }
+                        return;
+                    case 23:
+                        if (view instanceof RadioButton) {
+                            ((RadioButton) view).setBackgroundColor(i);
+                            return;
+                        }
+                        return;
+                    case 24:
+                        if (view instanceof RadioButton) {
+                            ((RadioButton) view).setCheckedColor(i);
+                            return;
+                        }
+                        return;
+                    default:
+                        if (view instanceof EditTextBoldCursor) {
+                            EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                            switch (b2) {
+                                case 30:
+                                    editTextBoldCursor.setCursorColor(i);
+                                    return;
+                                case 31:
+                                    editTextBoldCursor.setLineColor(i);
+                                    return;
+                                case 32:
+                                    editTextBoldCursor.setActiveLineColor(i);
+                                    return;
+                                case 33:
+                                    editTextBoldCursor.setErrorLineColor(i);
+                                    return;
+                                case 34:
+                                    editTextBoldCursor.setHintColor(i);
+                                    return;
+                                case 35:
+                                    editTextBoldCursor.setHeaderHintColor(i);
+                                    return;
+                                case 36:
+                                    editTextBoldCursor.setHandlesColor(i);
+                                    return;
+                                default:
+                                    return;
+                            }
+                        }
+                        return;
+                }
+        }
+    }
+
+    public static umb T(View view, int i, int i2, ylb ylbVar) {
+        umb w = w(i, view);
+        w.c(i2, -1, 0, 0.0f, ylbVar);
+        w.n = null;
+        w.o = null;
+        w.m = true;
+        return w;
+    }
+
+    public static void U(io ioVar, int i, ylb ylbVar) {
+        m(ioVar, i, -1, 0, 0.0f, ylbVar);
+    }
+
+    public static void V(lka lkaVar, int i) {
+        W(lkaVar, i, null);
+    }
+
+    public static void W(lka lkaVar, int i, ylb ylbVar) {
+        m(lkaVar, i, -1, 0, 0.0f, ylbVar);
+    }
+
+    public static void X(TextView textView, int i, ylb ylbVar) {
+        m(textView, i, -1, 0, 0.0f, ylbVar);
+    }
+
+    public static void Y(TextView textView, wmb wmbVar, ylb ylbVar) {
+        m(textView, wmbVar.a, wmbVar.b, wmbVar.c, wmbVar.d, ylbVar);
+    }
+
+    public static void Z(View view, Context context, int i, int i2) {
+        Drawable V0 = cmb.V0(context, i, cmb.v0(i2, null));
+        view.setBackground(V0);
+        if (V0 == null) {
+            return;
+        }
+        umb T = T(view, 22, i2, null);
+        T.j = new WeakReference(V0);
+        T.g = cmb.w0(null, i2, false);
+    }
+
+    public static void a(a aVar, int i, ylb ylbVar, boolean z) {
+        int i2;
+        if (z) {
+            i2 = 4;
+        } else {
+            i2 = 3;
+        }
+        l(aVar, i2, i, ylbVar);
+    }
+
+    public static void a0(android.view.View r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.anb.a0(android.view.View):void");
+    }
+
+    public static void b(a aVar, int i, ylb ylbVar, boolean z) {
+        int i2;
+        if (z) {
+            i2 = 2;
+        } else {
+            i2 = 1;
+        }
+        l(aVar, i2, i, ylbVar);
+    }
+
+    public static void b0(ActionBarLayout actionBarLayout, boolean z) {
+        b++;
+        zmb L = L(z, 0, null);
+        try {
+            List j = gm.j();
+            if (j == null) {
+                j = new ArrayList();
+            }
+            for (int i = 0; i < j.size(); i++) {
+                L.b((View) j.get(i));
+            }
+            L.b(actionBarLayout);
+        } finally {
+            L.a();
+        }
+    }
+
+    public static void c(a85 a85Var, int i) {
+        l(a85Var, 5, i, null);
+    }
+
+    public static void c0(FrameLayout frameLayout, boolean z) {
+        zmb L = L(z, 0, null);
+        try {
+            L.b(frameLayout);
+        } finally {
+            L.a();
+        }
+    }
+
+    public static void d(a aVar, int i, ylb ylbVar) {
+        l(aVar, 5, i, ylbVar);
+    }
+
+    public static wmb e(int i) {
+        return new wmb(i, -1, 0.0f, 5);
+    }
+
+    public static void f(umb umbVar, HashSet hashSet) {
+        hashSet.add(Integer.valueOf(umbVar.a));
+        int i = umbVar.b;
+        if (i >= 0) {
+            hashSet.add(Integer.valueOf(i));
+        }
+    }
+
+    public static wmb g(int i, int i2) {
+        return new wmb(i, -1, i2, 1);
+    }
+
+    public static void h(int i, ylb ylbVar, View view) {
+        int P = P(i, -1, 0, 0.0f, ylbVar);
+        view.setBackgroundColor(P);
+        N(view, 4, i, -1, 0, 0.0f, ylbVar, P, null);
+    }
+
+    public static void i(View view, wmb wmbVar, ylb ylbVar) {
+        int i = wmbVar.a;
+        int i2 = wmbVar.b;
+        byte b2 = wmbVar.c;
+        float f = wmbVar.d;
+        int P = P(i, i2, b2, f, ylbVar);
+        view.setBackgroundColor(P);
+        N(view, 4, i, i2, b2, f, ylbVar, P, null);
+    }
+
+    public static void j(View view, Drawable drawable, wmb wmbVar, wmb wmbVar2, ylb ylbVar) {
+        vmb o = o(view, true);
+        o.d = drawable;
+        o.e = null;
+        o.f = null;
+        if (drawable != null) {
+            if (wmbVar != null) {
+                umb umbVar = new umb();
+                o.e = umbVar;
+                umbVar.c(wmbVar.a, wmbVar.b, wmbVar.c, wmbVar.d, ylbVar);
+                umbVar.g = t(drawable);
+            }
+            if (wmbVar2 != null) {
+                umb umbVar2 = new umb();
+                o.f = umbVar2;
+                umbVar2.c(wmbVar2.a, wmbVar2.b, wmbVar2.c, wmbVar2.d, ylbVar);
+                umbVar2.g = umbVar2.b();
+            }
+        }
+    }
+
+    public static void k(View view, Drawable drawable, int i, int i2, int i3, float f, ylb ylbVar, PorterDuff.Mode mode) {
+        int P = P(i, i2, i3, f, ylbVar);
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(P, mode);
+        drawable.setColorFilter(porterDuffColorFilter);
+        if (view == null) {
+            return;
+        }
+        boolean z = true;
+        vmb o = o(view, true);
+        ArrayList arrayList = o.b;
+        if (arrayList == null) {
+            arrayList = new ArrayList(2);
+            o.b = arrayList;
+        }
+        umb umbVar = null;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            umb umbVar2 = (umb) o.b.get(size);
+            Drawable drawable2 = (Drawable) umbVar2.j.get();
+            if (drawable2 == drawable) {
+                umbVar = umbVar2;
+            } else if (drawable2 == null || (!umbVar2.k && drawable2.getColorFilter() != umbVar2.i)) {
+                o.b.remove(size);
+            }
+        }
+        if (umbVar == null) {
+            umbVar = new umb();
+            umbVar.j = new WeakReference(drawable);
+            o.b.add(umbVar);
+        }
+        umb umbVar3 = umbVar;
+        umbVar3.c(i, i2, i3, f, ylbVar);
+        umbVar3.g = P;
+        umbVar3.i = porterDuffColorFilter;
+        umbVar3.h = mode;
+        if (drawable.getColorFilter() == porterDuffColorFilter) {
+            z = false;
+        }
+        umbVar3.k = z;
+    }
+
+    public static void l(View view, int i, int i2, ylb ylbVar) {
+        umb T = T(view, i, i2, ylbVar);
+        int b2 = T.b();
+        S(view, T, b2);
+        T.g = b2;
+    }
+
+    public static void m(View view, int i, int i2, int i3, float f, ylb ylbVar) {
+        int P = P(i, i2, i3, f, ylbVar);
+        if (view instanceof TextView) {
+            ((TextView) view).setTextColor(P);
+        } else if (view instanceof lka) {
+            ((lka) view).setTextColor(P);
+        } else {
+            ((io) view).setTextColor(P);
+        }
+        N(view, 0, i, i2, i3, f, ylbVar, P, null);
+    }
+
+    public static void n(TextView textView, int i, int i2, int i3, int i4, float f, ylb ylbVar) {
+        int P = P(i2, i3, i4, f, ylbVar);
+        if (i != 1) {
+            if (i != 2) {
+                if (i == 3) {
+                    textView.setHighlightColor(P);
+                }
+            } else {
+                textView.setLinkTextColor(P);
+            }
+        } else {
+            textView.setHintTextColor(P);
+        }
+        N(textView, i, i2, i3, i4, f, ylbVar, P, null);
+    }
+
+    public static vmb o(View view, boolean z) {
+        Object tag = view.getTag(2131296711);
+        if (tag instanceof vmb) {
+            return (vmb) tag;
+        }
+        if (!z) {
             return null;
         }
-        float max = Math.max(gl.L(120.0f) / bitmap.getWidth(), gl.L(140.0f) / bitmap.getHeight());
-        if (bitmap.getWidth() > 0 && bitmap.getHeight() > 0 && Math.abs(max - 1.0f) >= 0.0125f) {
-            int width = (int) (bitmap.getWidth() * max);
-            int height = (int) (bitmap.getHeight() * max);
-            if (height > 0 && width > 0) {
-                return Bitmap.createScaledBitmap(bitmap, width, height, true);
-            }
-            return bitmap;
-        }
-        return bitmap;
+        vmb vmbVar = new vmb();
+        view.setTag(2131296711, vmbVar);
+        return vmbVar;
     }
 
-    public StaticLayout getNoThemeStaticLayout() {
-        StaticLayout staticLayout = this.G;
-        if (staticLayout != null) {
-            return staticLayout;
-        }
-        TextPaint textPaint = new TextPaint(129);
-        this.F = textPaint;
-        textPaint.setColor(bkb.v0(bkb.Nf, this.y));
-        this.F.setTextSize(gl.L(c()));
-        this.F.setTypeface(gl.o());
-        int L = gl.L(52.0f);
-        byte b = this.L;
-        if (b == 3 || b == 4) {
-            L = gl.L(77.0f);
-        }
-        String b2 = b();
-        TextPaint textPaint2 = this.F;
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        StaticLayout d = lwa.d(b2, textPaint2, true, L, 3);
-        this.G = d;
-        return d;
+    public static wmb p(int i, int i2) {
+        return new wmb(i, i2, 0.0f, 4);
     }
 
-    public String b() {
-        return k96.M0(2131752205, null);
-    }
-
-    public int c() {
-        return 14;
-    }
-
-    public final void d() {
-        if (this.I.getImageReceiver().y() != null) {
-            gl.r(this.K);
-            this.I.setVisibility(0);
-            if (!this.I.getImageReceiver().y().l0) {
-                this.I.getImageReceiver().y().I(0, true, false);
-                this.I.getImageReceiver().y().start();
-            }
-            this.I.animate().scaleX(2.0f).scaleY(2.0f).setDuration(300L).setInterpolator(gl.H).start();
-            cib cibVar = new cib(this, (byte) 6);
-            this.K = cibVar;
-            gl.e3(cibVar, 2500L);
+    public static void q(View view) {
+        if (view != null) {
+            view.setTag(2131296711, null);
         }
     }
 
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.k4) {
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        zmb zmbVar;
-        zmb zmbVar2;
-        if (this.H == null) {
-            super.dispatchDraw(canvas);
-            return;
-        }
-        if (this.O != null) {
-            canvas.save();
-            canvas.clipPath(this.x);
-            this.O.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.O.draw(canvas);
-            canvas.restore();
-        }
-        if (this.n != 1.0f && (zmbVar2 = this.h) != null) {
-            zmbVar2.b(canvas, 1.0f);
-        }
-        float f = this.n;
-        if (f != 0.0f) {
-            this.f.b(canvas, f);
-        }
-        if (this.n != 1.0f && (zmbVar = this.h) != null) {
-            zmbVar.a(canvas, 1.0f);
-        }
-        float f2 = this.n;
-        if (f2 != 0.0f) {
-            this.f.a(canvas, f2);
-        }
-        float f3 = this.n;
-        if (f3 != 1.0f) {
-            float f4 = f3 + 0.10666667f;
-            this.n = f4;
-            if (f4 >= 1.0f) {
-                this.n = 1.0f;
-            }
-            invalidate();
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    public final void f(defpackage.wd2 r26, long r27, boolean r29) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.anb.f(wd2, long, boolean):void");
-    }
-
-    public final void g(boolean z, boolean z2) {
-        float f = 0.0f;
-        if (!z2) {
-            ValueAnimator valueAnimator = this.E;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.a0 = z;
-            if (z) {
-                f = 1.0f;
-            }
-            this.N = f;
-            invalidate();
-            return;
-        }
-        if (this.a0 != z) {
-            float f2 = this.N;
-            ValueAnimator valueAnimator2 = this.E;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-            }
-            if (z) {
-                f = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.E = ofFloat;
-            ofFloat.addUpdateListener(new gja(this, (byte) 24));
-            this.E.addListener(new pu9((byte) 8, this, z));
-            this.E.setDuration(250L);
-            this.E.start();
-        }
-        this.a0 = z;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        kk7.e().b(this, kk7.k4);
-        this.P = true;
-        p72 p72Var = this.O;
-        if (p72Var != null) {
-            p72Var.f(this);
-        }
-        this.Q.I();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        kk7.e().n(this, kk7.k4);
-        this.P = false;
-        p72 p72Var = this.O;
-        if (p72Var != null) {
-            p72Var.g(this);
-        }
-        this.Q.K();
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setSelected(this.a0);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        byte b = this.L;
-        if (b != 1 && b != 4) {
-            if (b == 0) {
-                f = 77.0f;
-            } else {
-                f = 83.0f;
-            }
-            int L = gl.L(f);
-            int size = View.MeasureSpec.getSize(i2);
-            if (size == 0) {
-                size = (int) (L * 1.35f);
-            }
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        } else {
-            int size2 = View.MeasureSpec.getSize(i);
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 1.2f), 1073741824));
-        }
-        be0 be0Var = this.I;
-        be0Var.setPivotY(be0Var.getMeasuredHeight());
-        be0Var.setPivotX(be0Var.getMeasuredWidth() / 2.0f);
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        if (i == i3 && i2 == i4) {
-            return;
-        }
-        float f = this.c;
-        RectF rectF = this.w;
-        rectF.set(f, f, i - f, i2 - f);
-        Path path = this.x;
-        path.reset();
-        float f2 = this.b;
-        path.addRoundRect(rectF, f2, f2, Path.Direction.CW);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        int i2 = bkb.h5;
-        wjb wjbVar = this.y;
-        this.s.setColor(bkb.v0(i2, wjbVar));
-        TextPaint textPaint = this.F;
-        if (textPaint != null) {
-            textPaint.setColor(bkb.v0(bkb.Nf, wjbVar));
-        }
-        invalidate();
-    }
-
-    public void setFallbackWallpaper(TLRPC.WallPaper wallPaper) {
-        if (this.U != wallPaper) {
-            this.U = wallPaper;
-            wd2 wd2Var = this.H;
-            if (wd2Var != null) {
-                this.H = null;
-                f(wd2Var, 0L, false);
-            }
-        }
-    }
-
-    @Override
-    public final void updateColors() {
-        wjb wjbVar = this.y;
+    public static HashSet r() {
+        HashSet hashSet = new HashSet();
+        zmb L = L(true, 1, hashSet);
         try {
-            this.s.setColor(bkb.v0(bkb.h5, wjbVar));
-            TextPaint textPaint = this.F;
-            if (textPaint != null) {
-                textPaint.setColor(bkb.v0(bkb.Nf, wjbVar));
+            List j = gm.j();
+            if (j == null) {
+                j = new ArrayList();
             }
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+            for (int i = 0; i < j.size(); i++) {
+                L.b((View) j.get(i));
+            }
+            return hashSet;
+        } finally {
+            L.a();
         }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public static void s(ImageView imageView, int i, ylb ylbVar, PorterDuff.Mode mode) {
+        int P = P(i, -1, 0, 0.0f, ylbVar);
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(P, mode);
+        imageView.setColorFilter(porterDuffColorFilter);
+        N(imageView, 5, i, -1, 0, 0.0f, ylbVar, P, porterDuffColorFilter).h = mode;
+    }
+
+    public static int t(Drawable drawable) {
+        if (drawable instanceof InsetDrawable) {
+            drawable = ((InsetDrawable) drawable).getDrawable();
+        }
+        if (drawable instanceof RippleDrawable) {
+            RippleDrawable rippleDrawable = (RippleDrawable) drawable;
+            if (rippleDrawable.getNumberOfLayers() > 0 && rippleDrawable.getId(0) != 16908334) {
+                drawable = rippleDrawable.getDrawable(0);
+            } else {
+                drawable = null;
+            }
+        }
+        if (drawable instanceof ShapeDrawable) {
+            return ((ShapeDrawable) drawable).getPaint().getColor();
+        }
+        if (!(drawable instanceof ColorDrawable)) {
+            return 0;
+        }
+        return ((ColorDrawable) drawable).getColor();
+    }
+
+    public static void u(EditTextBoldCursor editTextBoldCursor, int i) {
+        v(editTextBoldCursor, i, null);
+    }
+
+    public static void v(EditTextBoldCursor editTextBoldCursor, int i, ylb ylbVar) {
+        l(editTextBoldCursor, 30, i, ylbVar);
+    }
+
+    public static umb w(int i, View view) {
+        vmb o = o(view, true);
+        if (o.c == null) {
+            o.c = new ArrayList(2);
+        }
+        for (int i2 = 0; i2 < o.c.size(); i2++) {
+            if (((umb) o.c.get(i2)).l == i) {
+                return (umb) o.c.get(i2);
+            }
+        }
+        umb umbVar = new umb();
+        umbVar.l = i;
+        o.c.add(umbVar);
+        return umbVar;
+    }
+
+    public static void x(View view, Drawable drawable, int i, ylb ylbVar, PorterDuff.Mode mode) {
+        k(view, drawable, i, -1, 0, 0.0f, ylbVar, mode);
+    }
+
+    public static void y(EditTextBoldCursor editTextBoldCursor, int i, ylb ylbVar) {
+        l(editTextBoldCursor, 36, i, ylbVar);
+    }
+
+    public static void z(EditTextBoldCursor editTextBoldCursor, int i, ylb ylbVar) {
+        l(editTextBoldCursor, 35, i, ylbVar);
     }
 }

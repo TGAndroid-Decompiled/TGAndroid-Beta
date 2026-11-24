@@ -1,10 +1,11 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-public interface yx {
-    void a(ry8 ry8Var);
-
-    void b(ImageReceiver imageReceiver);
-
-    void c(ImageReceiver imageReceiver);
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class yx extends TL_iv.PageBlock {
+    public final ArrayList a = new ArrayList();
+    public int b;
+    public int c;
+    public int d;
+    public int e;
 }

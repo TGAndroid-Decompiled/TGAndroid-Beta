@@ -1,19 +1,31 @@
 package defpackage;
-public final class m69 extends gw2 {
-    public nh7 a;
-    public Object b;
-    public final n69 c;
-    public int d;
 
-    public m69(n69 n69Var, gw2 gw2Var) {
-        super(gw2Var);
-        this.c = n69Var;
+import android.util.SparseArray;
+public final class m69 {
+    public final SparseArray a = new SparseArray();
+    public int b = 0;
+
+    public final void a() {
+        int i = 0;
+        while (true) {
+            SparseArray sparseArray = this.a;
+            if (i < sparseArray.size()) {
+                ((l69) sparseArray.valueAt(i)).a.clear();
+                i++;
+            } else {
+                return;
+            }
+        }
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.c.a(this);
+    public final l69 b(int i) {
+        SparseArray sparseArray = this.a;
+        l69 l69Var = (l69) sparseArray.get(i);
+        if (l69Var == null) {
+            l69 l69Var2 = new l69();
+            sparseArray.put(i, l69Var2);
+            return l69Var2;
+        }
+        return l69Var;
     }
 }

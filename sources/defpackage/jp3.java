@@ -1,40 +1,65 @@
 package defpackage;
 
-import java.io.File;
-import org.telegram.messenger.MediaController;
-public final class jp3 implements Runnable {
+import android.os.Handler;
+import android.os.Message;
+import java.util.Iterator;
+public final class jp3 implements Handler.Callback {
     public final byte a;
-    public final op3 b;
-    public final File c;
+    public final Object b;
 
-    public jp3(op3 op3Var, File file, byte b) {
+    public jp3(Object obj, byte b) {
         this.a = b;
-        this.b = op3Var;
-        this.c = file;
+        this.b = obj;
     }
 
     @Override
-    public final void run() {
+    public final boolean handleMessage(Message message) {
         byte b = this.a;
-        File file = this.c;
-        op3 op3Var = this.b;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                if (op3Var.c && op3Var.r != null) {
-                    MediaController.d0(file.getAbsolutePath(), op3Var.getContext(), 1, null, null, new kp3(op3Var, (byte) 1));
-                    return;
-                }
-                return;
+                ((np3) obj).handleMessage(message);
+                return true;
             case 1:
-                op3Var.r.c(file);
-                if (op3Var.c && op3Var.r != null) {
-                    gl.d3(new jp3(op3Var, file, (byte) 2));
-                    return;
+                a86 a86Var = (a86) obj;
+                y76 y76Var = a86Var.c;
+                y76Var.getClass();
+                Iterator it = a86Var.d.iterator();
+                while (it.hasNext()) {
+                    z76 z76Var = (z76) it.next();
+                    if (!z76Var.d && z76Var.c) {
+                        lk4 f = z76Var.b.f();
+                        z76Var.b = new m41();
+                        z76Var.c = false;
+                        y76Var.c(z76Var.a, f);
+                    }
+                    dfb dfbVar = a86Var.b;
+                    dfbVar.getClass();
+                    if (dfbVar.a.hasMessages(1)) {
+                        return true;
+                    }
                 }
-                return;
+                return true;
             default:
-                MediaController.d0(file.getAbsolutePath(), op3Var.getContext(), 0, null, null, new kp3(op3Var, (byte) 2));
-                return;
+                oa0 oa0Var = (oa0) obj;
+                int i = message.what;
+                if (i != 1) {
+                    if (i != 2) {
+                        if (i != 3) {
+                            if (i != 4) {
+                                return false;
+                            }
+                            ((bcb) oa0Var.j).a();
+                        } else {
+                            ((acb) oa0Var.i).a();
+                        }
+                    } else {
+                        ((zbb) oa0Var.h).a();
+                    }
+                } else {
+                    ((ybb) oa0Var.g).a();
+                }
+                return true;
         }
     }
 }

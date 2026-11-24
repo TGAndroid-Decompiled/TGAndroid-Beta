@@ -1,12 +1,28 @@
 package defpackage;
-public final class mbf {
-    public final m5f a;
-    public final Long b;
-    public final ocf c;
 
-    public mbf(rod rodVar) {
-        this.a = (m5f) rodVar.b;
-        this.b = (Long) rodVar.c;
-        this.c = (ocf) rodVar.d;
+import android.os.Parcel;
+public final class mbf extends f1d {
+    public final xk5 Z(eq7 eq7Var, String str, int i, eq7 eq7Var2) {
+        Parcel R = R();
+        nid.b(R, eq7Var);
+        R.writeString(str);
+        R.writeInt(i);
+        nid.b(R, eq7Var2);
+        Parcel P = P(R, 2);
+        xk5 T = eq7.T(P.readStrongBinder());
+        P.recycle();
+        return T;
+    }
+
+    public final xk5 a0(eq7 eq7Var, String str, int i, eq7 eq7Var2) {
+        Parcel R = R();
+        nid.b(R, eq7Var);
+        R.writeString(str);
+        R.writeInt(i);
+        nid.b(R, eq7Var2);
+        Parcel P = P(R, 3);
+        xk5 T = eq7.T(P.readStrongBinder());
+        P.recycle();
+        return T;
     }
 }

@@ -1,17 +1,42 @@
 package defpackage;
-public final class t9e implements zn7 {
-    public static final t9e a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)));
+import java.util.Iterator;
+public final class t9e extends t6e {
+    public final transient Object s;
+
+    public t9e(Object obj) {
+        super((byte) 5);
+        this.s = obj;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final boolean contains(Object obj) {
+        return this.s.equals(obj);
+    }
+
+    @Override
+    public final int hashCode() {
+        return this.s.hashCode();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new y6e(this.s);
+    }
+
+    @Override
+    public final int p(Object[] objArr) {
+        objArr[0] = this.s;
+        return 1;
+    }
+
+    @Override
+    public final int size() {
+        return 1;
+    }
+
+    @Override
+    public final String toString() {
+        return kt6.o("[", this.s.toString(), "]");
     }
 }

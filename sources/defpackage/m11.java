@@ -1,40 +1,33 @@
 package defpackage;
 
-import android.animation.ObjectAnimator;
-public final class m11 implements p11 {
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class m11 extends TLObject {
     public long a;
+    public long b;
+    public String c;
+    public ivc d;
 
-    public m11(k27 k27Var) {
-        this.a = k27.B0(k27Var.k);
-        k27Var.e1();
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
+        this.a = inputSerializedData.readInt64(z);
+        this.b = inputSerializedData.readInt64(z);
+        this.c = inputSerializedData.readString(z);
+        ivc ivcVar = new ivc();
+        this.d = ivcVar;
+        ivcVar.readParams(inputSerializedData, z);
     }
 
-    public final boolean a(rg6 rg6Var) {
-        if (rg6Var.b == this.a && ah5.c(rg6Var)) {
-            return true;
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt64(this.a);
+        outputSerializedData.writeInt64(this.b);
+        String str = this.c;
+        if (str == null) {
+            str = "";
         }
-        return false;
-    }
-
-    @Override
-    public final void f(q11 q11Var, b11 b11Var, nv0 nv0Var, i42 i42Var) {
-        q11Var.setInOutOffset(q11Var.getMeasuredHeight());
-        i42Var.accept(Float.valueOf(q11Var.getTranslationY()));
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(q11Var, q11.IN_OUT_OFFSET_Y2, 0.0f);
-        ofFloat.setDuration(this.a);
-        ofFloat.setInterpolator(ls3.d);
-        ofFloat.addListener(new u5(b11Var, nv0Var, false, (byte) 5));
-        ofFloat.addUpdateListener(new pk(i42Var, q11Var, (byte) 5));
-        ofFloat.start();
-    }
-
-    @Override
-    public final void g(q11 q11Var, b11 b11Var, z01 z01Var, gw gwVar) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(q11Var, q11.IN_OUT_OFFSET_Y2, q11Var.getHeight());
-        ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(ls3.c);
-        ofFloat.addListener(new u5(b11Var, z01Var, false, (byte) 6));
-        ofFloat.addUpdateListener(new pk(gwVar, q11Var, (byte) 4));
-        ofFloat.start();
+        outputSerializedData.writeString(str);
+        this.d.serializeToStream(outputSerializedData);
     }
 }

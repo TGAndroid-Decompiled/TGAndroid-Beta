@@ -1,85 +1,103 @@
 package defpackage;
 
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import java.security.SecureRandom;
-import org.telegram.messenger.Utilities;
-public final class g75 {
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public Shader g;
-    public final byte i;
-    public float a = -1.0f;
-    public float b = -1.0f;
-    public final Matrix h = new Matrix();
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.LaunchActivity;
+public final class g75 extends FrameLayout {
+    public final Rect a;
+    public final RectF b;
+    public final Path c;
+    public final g95 d;
 
-    public g75(int i) {
-        this.i = i;
+    public g75(g95 g95Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.d = g95Var;
+        this.a = new Rect();
+        this.b = new RectF();
+        this.c = new Path();
     }
 
-    public final void a() {
-        byte b = this.i;
-        if (h75.h1(b)) {
-            this.a = ls6.d(Utilities.b.nextInt(100), 0.2f, 100.0f, 0.85f);
-            this.b = 1.0f;
-        } else if (b == 1) {
-            SecureRandom secureRandom = Utilities.b;
-            this.a = ls6.d(secureRandom.nextInt(100), 0.3f, 100.0f, 0.2f);
-            this.b = ls6.d(secureRandom.nextInt(100), 0.3f, 100.0f, 0.7f);
-        } else {
-            SecureRandom secureRandom2 = Utilities.b;
-            this.a = b00.A(secureRandom2.nextInt(100), 100.0f, 0.2f, 0.8f);
-            this.b = secureRandom2.nextInt(100) / 100.0f;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        View view;
+        ha5 ha5Var;
+        g95 g95Var = this.d;
+        e75 e75Var = g95Var.l1;
+        if (g95Var.W3 != 1.0f) {
+            if (g95Var.M4 != null && g95Var.Q4) {
+                canvas.save();
+                float measuredHeight = (g95Var.M4.getAvatarImageView().getMeasuredHeight() / 2.0f) * (getMeasuredHeight() / g95Var.M4.getAvatarImageView().getMeasuredHeight());
+                float f = g95Var.W3;
+                int L = (int) ((gm.L(13.0f) * f) + ((1.0f - g95Var.W3) * measuredHeight));
+                int i = (int) ((1.0f - f) * measuredHeight);
+                g95Var.M4.getAvatarWavesDrawable().a(canvas, g95Var.M4.getAvatarImageView().getMeasuredHeight() / 2, g95Var.M4.getAvatarImageView().getMeasuredHeight() / 2, this);
+                g95Var.M4.getAvatarImageView().getImageReceiver().i0(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                g95Var.M4.getAvatarImageView().s(L, L, i, i);
+                g95Var.M4.getAvatarImageView().getImageReceiver().h(canvas, null);
+                g95Var.M4.getAvatarImageView().setRoundRadius(g95Var.M4.getAvatarImageView().getMeasuredHeight() / 2);
+                canvas.restore();
+            } else if (g95Var.P4 != null && g95Var.O4 == null && g95Var.E4) {
+                canvas.save();
+                float measuredHeight2 = (g95Var.P4.getAvatarImageView().getMeasuredHeight() / 2.0f) * (getMeasuredHeight() / g95Var.P4.getAvatarImageView().getMeasuredHeight());
+                float f2 = g95Var.W3;
+                int L2 = (int) ((gm.L(13.0f) * f2) + ((1.0f - g95Var.W3) * measuredHeight2));
+                int i2 = (int) ((1.0f - f2) * measuredHeight2);
+                g95Var.P4.getAvatarImageView().getImageReceiver().i0(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                g95Var.P4.getAvatarImageView().s(L2, L2, i2, i2);
+                g95Var.P4.getAvatarImageView().getImageReceiver().h(canvas, null);
+                g95Var.P4.getAvatarImageView().setRoundRadius(g95Var.P4.getAvatarImageView().getMeasuredHeight() / 2);
+                canvas.restore();
+            }
         }
+        e75Var.setAlpha(g95Var.W3);
+        Path path = this.c;
+        path.reset();
+        RectF rectF = this.b;
+        rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
+        path.addRoundRect(rectF, new float[]{gm.L(13.0f), gm.L(13.0f), gm.L(13.0f), gm.L(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
+        canvas.save();
+        canvas.clipPath(path);
+        if (e75Var.j1) {
+            for (int i3 = 0; i3 < e75Var.getChildCount(); i3++) {
+                view = e75Var.getChildAt(i3);
+                if (view instanceof rr8) {
+                    break;
+                }
+            }
+        }
+        view = null;
+        if (view != null && (ha5Var = g95Var.O4) != null && ha5Var.w && !g95Var.v4) {
+            canvas.save();
+            Rect rect = this.a;
+            rect.setEmpty();
+            e75Var.getChildVisibleRect(view, rect, null);
+            int i4 = rect.left;
+            if (i4 < (-e75Var.getMeasuredWidth())) {
+                i4 += e75Var.getMeasuredWidth() << 1;
+            } else if (i4 > e75Var.getMeasuredWidth()) {
+                i4 -= e75Var.getMeasuredWidth() << 1;
+            }
+            canvas.translate(i4, 0.0f);
+            g95Var.O4.draw(canvas);
+            canvas.restore();
+        }
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public final void b(int i, int i2, int i3, long j, float f) {
-        float f2;
-        if (this.g == null) {
-            return;
-        }
-        float f3 = this.e;
-        if (f3 == 0.0f || this.f >= f3) {
-            this.e = Utilities.b.nextInt(200) + 1500;
-            this.f = 0.0f;
-            if (this.a == -1.0f) {
-                a();
-            }
-            this.c = this.a;
-            this.d = this.b;
-            a();
-        }
-        float f4 = (float) j;
-        float f5 = 1.0f;
-        float f6 = (f4 * 0.02f * f) + (f4 * 1.0f) + this.f;
-        this.f = f6;
-        float f7 = this.e;
-        if (f6 > f7) {
-            this.f = f7;
-            f6 = f7;
-        }
-        float interpolation = s33.g.getInterpolation(f6 / f7);
-        float f8 = i3;
-        float f9 = this.c;
-        float f10 = (((((this.a - f9) * interpolation) + f9) * f8) + i2) - 200.0f;
-        float f11 = this.d;
-        float f12 = (((((this.b - f11) * interpolation) + f11) * f8) + i) - 200.0f;
-        byte b = this.i;
-        if (!h75.h1(b)) {
-            if (b == 1) {
-                f2 = 4.0f;
-            } else {
-                f2 = 2.5f;
-            }
-            f5 = f2;
-        }
-        float L = (gl.L(122.0f) / 400.0f) * f5;
-        Matrix matrix = this.h;
-        matrix.reset();
-        matrix.postTranslate(f10, f12);
-        matrix.postScale(L, L, f10 + 200.0f, f12 + 200.0f);
-        this.g.setLocalMatrix(matrix);
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.d.b.invalidate();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int min = Math.min(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + min, 1073741824));
     }
 }

@@ -1,60 +1,88 @@
 package defpackage;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class y68 implements Runnable {
-    public final byte a;
-    public final PhotoViewer b;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.ui.Components.RadioButton;
+public final class y68 extends FrameLayout {
+    public final TextView a;
+    public final LinearLayout b;
+    public View.OnClickListener c;
+    public int d;
+    public final int[] e;
 
-    public y68(PhotoViewer photoViewer, byte b) {
-        this.a = b;
-        this.b = photoViewer;
+    public y68(Context context) {
+        super(context);
+        this.e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setGravity(5);
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 12.0f);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, qoe.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.b = linearLayout;
+        linearLayout.setOrientation(0);
+        for (int i = 0; i < this.e.length; i++) {
+            RadioButton radioButton = new RadioButton(context);
+            radioButton.setSize(gm.L(20.0f));
+            radioButton.setTag(Integer.valueOf(i));
+            this.b.addView(radioButton, qoe.l(1.0f / this.e.length, 0, -1));
+            radioButton.setOnClickListener(new m67(this, (byte) 13));
+        }
+        addView(this.b, qoe.d(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
+    }
+
+    public final void a(int i, String str) {
+        this.d = i;
+        this.a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        b(false);
+    }
+
+    public final void b(boolean z) {
+        boolean z2;
+        int i;
+        LinearLayout linearLayout = this.b;
+        int childCount = linearLayout.getChildCount();
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = linearLayout.getChildAt(i2);
+            if (childAt instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) childAt;
+                int intValue = ((Integer) radioButton.getTag()).intValue();
+                int[] iArr = this.e;
+                if (this.d == iArr[intValue]) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                radioButton.a(z2, z);
+                if (intValue == 0) {
+                    i = -1;
+                } else {
+                    i = iArr[intValue];
+                }
+                radioButton.b(i, i);
+            }
+        }
+    }
+
+    public int getCurrentColor() {
+        return this.d;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        PhotoViewer photoViewer = this.b;
-        switch (b) {
-            case 0:
-                Drawable[] drawableArr = PhotoViewer.f9;
-                this.b.E1(false, 0, 0, true, false, false);
-                return;
-            case 1:
-                Drawable[] drawableArr2 = PhotoViewer.f9;
-                photoViewer.h2();
-                return;
-            case 2:
-                Drawable[] drawableArr3 = PhotoViewer.f9;
-                this.b.E1(false, 0, 0, false, false, false);
-                return;
-            case 3:
-                Drawable[] drawableArr4 = PhotoViewer.f9;
-                photoViewer.B(false, false);
-                x02 x02Var = photoViewer.b2;
-                if (x02Var != null) {
-                    x02Var.a(true);
-                }
-                d dVar = photoViewer.m4;
-                if (dVar != null) {
-                    dVar.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
-                    return;
-                }
-                return;
-            case 4:
-                Drawable[] drawableArr5 = PhotoViewer.f9;
-                photoViewer.t7 = null;
-                return;
-            case 5:
-                Drawable[] drawableArr6 = PhotoViewer.f9;
-                photoViewer.B(true, false);
-                return;
-            default:
-                Drawable[] drawableArr7 = PhotoViewer.f9;
-                photoViewer.E2();
-                return;
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gm.L(40.0f), 1073741824));
+    }
+
+    @Override
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.c = onClickListener;
     }
 }

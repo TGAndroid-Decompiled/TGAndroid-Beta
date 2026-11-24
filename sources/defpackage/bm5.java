@@ -1,36 +1,37 @@
 package defpackage;
+public final class bm5 extends ui6 {
+    public final byte g;
+    public final String h;
+    public final String i;
 
-import java.util.Set;
-public final class bm5 extends kp {
-    public final v59 C() {
-        if (this.b == 0) {
-            return v59.r;
+    public bm5(String str, String str2, byte b) {
+        this.g = b;
+        this.h = str;
+        this.i = str2;
+    }
+
+    @Override
+    public final void a(knd kndVar) {
+        switch (this.g) {
+            case 0:
+                kndVar.i(this);
+                return;
+            default:
+                kndVar.s(this);
+                return;
         }
-        return new v59(this.b, (Object[]) this.c);
-    }
-
-    public final void D(sxb sxbVar, String str) {
-        super.w(sxbVar, str);
-    }
-
-    public final void E(Set set) {
-        super.x(set);
     }
 
     @Override
-    public final qm5 e() {
-        throw new UnsupportedOperationException("Not supported for bimaps");
-    }
-
-    @Override
-    public final kp w(Object obj, Object obj2) {
-        super.w(obj, obj2);
-        return this;
-    }
-
-    @Override
-    public final kp x(Set set) {
-        super.x(set);
-        return this;
+    public final String f() {
+        byte b = this.g;
+        String str = this.i;
+        String str2 = this.h;
+        switch (b) {
+            case 0:
+                return "destination=" + str2 + ", title=" + str;
+            default:
+                return "destination=" + str2 + ", title=" + str;
+        }
     }
 }

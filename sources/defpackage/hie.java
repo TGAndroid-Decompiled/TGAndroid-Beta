@@ -1,14 +1,17 @@
 package defpackage;
-public final class hie {
-    public final bte a;
-    public final jhe b;
-    public final vge c;
-    public final goe d;
+public final class hie implements cq7 {
+    public static final hie a = new Object();
 
-    public hie(wtc wtcVar) {
-        this.a = (bte) wtcVar.a;
-        this.b = (jhe) wtcVar.b;
-        this.c = (vge) wtcVar.c;
-        this.d = (goe) wtcVar.d;
+    static {
+        mlb.z(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, mlb.u(mlb.q(ikd.class, new cid(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

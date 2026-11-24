@@ -1,12 +1,17 @@
 package defpackage;
+public final class mje implements cq7 {
+    public static final mje a = new Object();
 
-import java.io.IOException;
-public final class mje extends IOException {
-    public mje(java.lang.String r3, java.lang.IndexOutOfBoundsException r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.mje.<init>(java.lang.String, java.lang.IndexOutOfBoundsException):void");
+    static {
+        mlb.z(mlb.r(mmd.class, mlb.v(mlb.r(mmd.class, new eld(1)), 2)));
     }
 
-    public mje(IndexOutOfBoundsException indexOutOfBoundsException) {
-        super("CodedOutputStream was writing to a flat byte array and ran out of space.", indexOutOfBoundsException);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            dq7 dq7Var = (dq7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

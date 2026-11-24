@@ -1,182 +1,243 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Message;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-public final class rx4 extends Handler {
-    public final ArrayList a = new ArrayList();
-    public final ArrayList b = new ArrayList();
-    public final ux4 c;
+import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_stars;
+public class rx4 extends jq2 {
+    public uib c;
+    public uib d;
+    public final ln e;
+    public final Path f;
+    public final Path h;
+    public final Paint n;
+    public final Paint r;
+    public final float s;
+    public yxa w;
+    public boolean x;
+    public int y;
 
-    public rx4(ux4 ux4Var) {
-        this.c = ux4Var;
+    public rx4(View view, float f) {
+        super(view);
+        this.e = new ln(new qn4(this, (byte) 10), 320L, d53.h, 0);
+        Path path = new Path();
+        this.f = path;
+        this.h = new Path();
+        Paint paint = new Paint(1);
+        this.n = paint;
+        Paint paint2 = new Paint(1);
+        this.r = paint2;
+        this.y = -1;
+        this.s = f;
+        d(path, f, false);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        ((Paint) this.b).setColor(-698031);
+        ((Paint) this.b).setPathEffect(new CornerPathEffect(gm.L(2.33f)));
+        paint2.setColor(0);
+        paint2.setStyle(Paint.Style.STROKE);
+        paint2.setStrokeJoin(Paint.Join.ROUND);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    public static void a(au6 au6Var, int i, Object obj, int i2) {
-        eu6 eu6Var;
-        eu6 eu6Var2;
-        boolean z;
-        gu6 gu6Var = au6Var.a;
-        zt6 zt6Var = au6Var.b;
-        int i3 = 65280 & i;
-        if (i3 != 256) {
-            if (i3 != 512) {
-                if (i3 == 768 && i == 769) {
-                    zt6Var.l((iu6) obj);
-                    return;
-                }
-                return;
-            }
-            du6 du6Var = (du6) obj;
-            switch (i) {
-                case 513:
-                    zt6Var.a();
-                    return;
-                case 514:
-                    zt6Var.c();
-                    return;
-                case 515:
-                    zt6Var.b();
-                    return;
-                default:
-                    return;
-            }
-        }
-        if (i != 264 && i != 262) {
-            eu6Var = (eu6) obj;
-        } else {
-            eu6Var = (eu6) ((lu7) obj).b;
-        }
-        if (i != 264 && i != 262) {
-            eu6Var2 = null;
-        } else {
-            eu6Var2 = (eu6) ((lu7) obj).a;
-        }
-        if (eu6Var != null) {
-            boolean z2 = true;
-            if ((au6Var.d & 2) == 0 && !eu6Var.h(au6Var.c)) {
-                iu6 iu6Var = gu6.c().u;
-                if (iu6Var == null) {
-                    z = false;
+    public static void d(Path path, float f, final boolean z) {
+        rac racVar = new rac() {
+            @Override
+            public final Object a(Object obj) {
+                float floatValue;
+                Float f2 = (Float) obj;
+                if (z) {
+                    floatValue = 48.0f - f2.floatValue();
                 } else {
-                    z = iu6Var.d;
+                    floatValue = f2.floatValue();
                 }
-                z2 = (z && eu6Var.d() && i == 262 && i2 == 3 && eu6Var2 != null) ? true ^ eu6Var2.d() : false;
+                return Float.valueOf(floatValue);
             }
-            if (z2) {
-                switch (i) {
-                    case 257:
-                        zt6Var.d(eu6Var);
-                        return;
-                    case 258:
-                        zt6Var.f(eu6Var);
-                        return;
-                    case 259:
-                        zt6Var.e(eu6Var);
-                        return;
-                    case 260:
-                        zt6Var.k(eu6Var);
-                        return;
-                    case 261:
-                        zt6Var.getClass();
-                        return;
-                    case 262:
-                        zt6Var.h(gu6Var, eu6Var, i2);
-                        return;
-                    case 263:
-                        zt6Var.j(gu6Var, eu6Var, i2);
-                        return;
-                    case 264:
-                        zt6Var.h(gu6Var, eu6Var, i2);
-                        return;
-                    default:
-                        return;
-                }
-            }
-        }
+        };
+        path.rewind();
+        float f2 = f * 24.5f;
+        path.moveTo(td4.i((Float) racVar.a(Float.valueOf(46.83f)), f), gm.L(f2));
+        path.lineTo(td4.i((Float) racVar.a(Float.valueOf(23.5f)), f), gm.L(1.17f * f));
+        path.cubicTo(td4.i((Float) racVar.a(Float.valueOf(22.75f)), f), gm.L(0.42f * f), td4.i((Float) racVar.a(Float.valueOf(21.73f)), f), 0.0f, td4.i((Float) racVar.a(Float.valueOf(20.68f)), f), 0.0f);
+        float f3 = f * 0.05f;
+        path.cubicTo(td4.i((Float) racVar.a(Float.valueOf(19.62f)), f), 0.0f, td4.i((Float) racVar.a(Float.valueOf(2.73f)), f), gm.L(f3), td4.i((Float) racVar.a(Float.valueOf(1.55f)), f), gm.L(f3));
+        path.cubicTo(td4.i((Float) racVar.a(Float.valueOf(0.36f)), f), gm.L(f3), td4.i((Float) racVar.a(Float.valueOf(-0.23f)), f), gm.L(1.4885f * f), td4.i((Float) racVar.a(Float.valueOf(0.6f)), f), gm.L(2.32f * f));
+        path.lineTo(td4.i((Float) racVar.a(Float.valueOf(45.72f)), f), gm.L(47.44f * f));
+        Float valueOf = Float.valueOf(48.0f);
+        path.cubicTo(td4.i((Float) racVar.a(Float.valueOf(46.56f)), f), gm.L(48.28f * f), td4.i((Float) racVar.a(valueOf), f), gm.L(47.68f * f), td4.i((Float) racVar.a(valueOf), f), gm.L(46.5f * f));
+        path.cubicTo(td4.i((Float) racVar.a(valueOf), f), gm.L(45.31f * f), td4.i((Float) racVar.a(valueOf), f), gm.L(28.38f * f), td4.i((Float) racVar.a(valueOf), f), gm.L(27.32f * f));
+        path.cubicTo(td4.i((Float) racVar.a(valueOf), f), gm.L(26.26f * f), td4.i((Float) racVar.a(Float.valueOf(47.5f)), f), gm.L(25.24f * f), td4.i((Float) racVar.a(Float.valueOf(46.82f)), f), gm.L(f2));
+        path.close();
     }
 
-    public final void b(int i, Object obj) {
-        obtainMessage(i, obj).sendToTarget();
+    public final void c(Canvas canvas, uib uibVar, float f) {
+        float f2;
+        float f3;
+        canvas.save();
+        canvas.translate(f, f);
+        float width = getBounds().width() / 2.0f;
+        float f4 = 6.0f;
+        if (this.x) {
+            f2 = -7.0f;
+        } else {
+            f2 = 6.0f;
+        }
+        float L = width + gm.L(f2);
+        float height = getBounds().height() / 2.0f;
+        if (this.x) {
+            f4 = 5.0f;
+        }
+        float L2 = height - gm.L(f4);
+        if (this.x) {
+            f3 = -45.0f;
+        } else {
+            f3 = 45.0f;
+        }
+        canvas.rotate(f3, L, L2);
+        float min = Math.min(1.0f, gm.L(40.0f) / uibVar.c);
+        canvas.scale(min, min, L, L2);
+        uibVar.c(L - (uibVar.j() / 2.0f), L2 + gm.L(1.0f), 1.0f, this.y, canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void handleMessage(Message message) {
-        int q;
-        ArrayList arrayList = this.a;
-        ux4 ux4Var = this.c;
-        ArrayList arrayList2 = ux4Var.i;
-        vb8 vb8Var = ux4Var.s;
-        int i = message.what;
-        Object obj = message.obj;
-        int i2 = message.arg1;
-        if (i == 259 && ux4Var.e().c.equals(((eu6) obj).c)) {
-            ux4Var.o(true);
+    public final void draw(Canvas canvas) {
+        Canvas canvas2;
+        canvas.save();
+        canvas.translate(getBounds().right - gm.L(48.0f), getBounds().top);
+        Paint paint = this.r;
+        int alpha = paint.getAlpha();
+        Path path = this.f;
+        if (alpha > 0) {
+            paint.setStrokeWidth(gm.L(1.33f) << 1);
+            canvas.drawPath(path, paint);
         }
-        int i3 = 0;
-        ArrayList arrayList3 = this.b;
-        if (i != 262) {
-            if (i != 264) {
-                switch (i) {
-                    case 257:
-                        vb8Var.v((eu6) obj);
-                        break;
-                    case 258:
-                        vb8Var.w((eu6) obj);
-                        break;
-                    case 259:
-                        eu6 eu6Var = (eu6) obj;
-                        vb8Var.getClass();
-                        if (eu6Var.c() != vb8Var && (q = vb8Var.q(eu6Var)) >= 0) {
-                            vb8Var.C((ub8) vb8Var.I.get(q));
-                            break;
-                        }
-                        break;
-                }
-            } else {
-                eu6 eu6Var2 = (eu6) ((lu7) obj).b;
-                arrayList3.add(eu6Var2);
-                vb8Var.v(eu6Var2);
-                vb8Var.x(eu6Var2);
-            }
+        canvas.drawPath(path, (Paint) this.b);
+        yxa yxaVar = this.w;
+        float f = this.s;
+        if (yxaVar != null) {
+            float f2 = f * 48.0f;
+            canvas2 = canvas;
+            canvas2.saveLayer(0.0f, 0.0f, gm.L(f2), gm.L(f2), null);
+            this.w.f(0, 0, gm.L(48.0f), gm.L(48.0f));
+            this.w.d();
+            this.w.a(canvas2, -1);
+            Path path2 = this.h;
+            path2.set(path);
+            path2.toggleInverseFillType();
+            canvas2.drawPath(path2, this.n);
+            canvas2.restore();
+            invalidateSelf();
         } else {
-            eu6 eu6Var3 = (eu6) ((lu7) obj).b;
-            vb8Var.x(eu6Var3);
-            if (ux4Var.v != null && eu6Var3.d()) {
-                int size = arrayList3.size();
-                int i4 = 0;
-                while (i4 < size) {
-                    Object obj2 = arrayList3.get(i4);
-                    i4++;
-                    vb8Var.w((eu6) obj2);
-                }
-                arrayList3.clear();
-            }
+            canvas2 = canvas;
         }
-        try {
-            int size2 = arrayList2.size();
-            while (true) {
-                size2--;
-                if (size2 >= 0) {
-                    gu6 gu6Var = (gu6) ((WeakReference) arrayList2.get(size2)).get();
-                    if (gu6Var == null) {
-                        arrayList2.remove(size2);
-                    } else {
-                        arrayList.addAll(gu6Var.b);
-                    }
-                } else {
-                    int size3 = arrayList.size();
-                    while (i3 < size3) {
-                        Object obj3 = arrayList.get(i3);
-                        i3++;
-                        a((au6) obj3, i, obj, i2);
-                    }
-                    return;
-                }
+        if (this.c != null) {
+            ln lnVar = this.e;
+            float e = lnVar.e(false, 1.0f);
+            if (!lnVar.i) {
+                this.d = null;
             }
-        } finally {
-            arrayList.clear();
+            canvas2.save();
+            if (this.d != null && lnVar.i) {
+                canvas2.clipPath(path);
+                float L = gm.L(f * 64.0f);
+                c(canvas2, this.d, L * e);
+                c(canvas2, this.c, (1.0f - e) * (-L));
+            } else {
+                c(canvas2, this.c, 0.0f);
+            }
+            canvas2.restore();
+        }
+        canvas2.restore();
+    }
+
+    public final void e(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, boolean z, boolean z2) {
+        boolean z3;
+        float f;
+        float f2;
+        float f3;
+        Paint paint = (Paint) this.b;
+        if (stargiftattributebackdrop == null) {
+            paint.setShader(null);
+            return;
+        }
+        if (this.x) {
+            z3 = !z;
+        } else {
+            z3 = z;
+        }
+        float L = gm.L(48.0f);
+        float L2 = gm.L(48.0f);
+        int i = stargiftattributebackdrop.center_color | (-16777216);
+        float f4 = -0.1f;
+        float f5 = 0.05f;
+        if (z3) {
+            f = -0.15f;
+            f2 = 0.07f;
+        } else {
+            f = -0.1f;
+            f2 = 0.05f;
+        }
+        float f6 = 0.125f;
+        float f7 = 0.0f;
+        if (z2) {
+            f3 = 0.125f;
+        } else {
+            f3 = 0.0f;
+        }
+        int a = cmb.a(f2, f - f3, i);
+        int i2 = stargiftattributebackdrop.edge_color | (-16777216);
+        if (z3) {
+            f4 = -0.15f;
+            f5 = 0.07f;
+        }
+        if (!z2) {
+            f6 = 0.0f;
+        }
+        int[] iArr = {a, cmb.a(f5, f4 - f6, i2)};
+        float f8 = 1.0f;
+        if (!z3) {
+            f7 = 1.0f;
+            f8 = 0.0f;
+        }
+        paint.setShader(new LinearGradient(0.0f, 0.0f, L, L2, iArr, new float[]{f8, f7}, Shader.TileMode.CLAMP));
+    }
+
+    public final void f(int i) {
+        Paint paint = (Paint) this.b;
+        paint.setShader(null);
+        paint.setColor(i);
+    }
+
+    public final void g(int i, String str, boolean z) {
+        Typeface typeface = null;
+        this.d = null;
+        this.e.e(true, 1.0f);
+        float f = i;
+        if (z) {
+            typeface = gm.o();
+        }
+        this.c = new uib(str, f, typeface);
+        invalidateSelf();
+    }
+
+    public final void h(int i, String str) {
+        uib uibVar = this.c;
+        if (uibVar == null) {
+            g(i, str, true);
+        } else if (TextUtils.equals(uibVar.i(), str)) {
+        } else {
+            this.d = this.c;
+            this.c = new uib(str, i, gm.o());
+            this.e.e(true, 0.0f);
+            invalidateSelf();
         }
     }
 }

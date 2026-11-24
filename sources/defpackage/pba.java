@@ -1,87 +1,67 @@
 package defpackage;
 
+import android.os.Build;
+import android.view.KeyEvent;
 import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.d;
-public final class pba implements View.OnClickListener {
+import android.view.WindowInsets;
+public final class pba implements oy4, qq7, k8, py4 {
     public final byte a;
-    public final nfa b;
+    public final tca b;
 
-    public pba(nfa nfaVar, byte b) {
+    public pba(tca tcaVar, byte b) {
         this.a = b;
-        this.b = nfaVar;
+        this.b = tcaVar;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final wzc C0(View view, wzc wzcVar) {
+        WindowInsets g = wzcVar.g();
+        tca tcaVar = this.b;
+        tcaVar.q0(g);
+        iq5 f = wzcVar.a.f(519);
+        if (!tcaVar.B2.equals(f)) {
+            tcaVar.B2 = f;
+            tcaVar.c.requestLayout();
+        }
+        return wzc.b;
+    }
+
+    @Override
+    public final int i() {
+        return cmb.v0(cmb.c6, this.b.J0);
+    }
+
+    @Override
+    public final void q(KeyEvent keyEvent) {
+        m8 m8Var;
+        m8 m8Var2;
         byte b = this.a;
-        nfa nfaVar = this.b;
+        tca tcaVar = this.b;
         switch (b) {
-            case 0:
-                int closestTab = nfaVar.getClosestTab();
-                cs5 I = cs5.I(nfaVar.y1, view);
-                I.J = false;
-                if (nfaVar.K(closestTab, new u39(I, (byte) 12))) {
-                    if (closestTab != 13 && closestTab != 11) {
-                        I.b0 = true;
-                    } else {
-                        I.b0(0.0f, -gl.L(52.0f));
-                    }
-                    I.s = (short) 0;
-                    I.a0();
-                    return;
-                }
-                return;
-            case 1:
-                xha xhaVar = nfaVar.J;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = xhaVar.b;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.d();
-                }
-                if (nfaVar.K(nfaVar.getClosestTab(), new g29(nfaVar, (byte) 10))) {
-                    xhaVar.U(null, null);
-                    return;
-                }
-                return;
             case 2:
-                nfaVar.E(true);
-                return;
-            case 3:
-                oca ocaVar = nfaVar.c0;
-                lca lcaVar = nfaVar.b0;
-                if (nfaVar.t0.getAlpha() >= 0.1f) {
-                    if (lcaVar != null && lcaVar.g()) {
-                        lcaVar.i();
-                    }
-                    if (ocaVar != null && ocaVar.f) {
-                        mfa t1 = nfaVar.t1(nfaVar.s1(nfaVar.getClosestTab()));
-                        iea P = nfaVar.P(t1.a);
-                        if (P != null) {
-                            ocaVar.setReorderingAlbums(false);
-                            sca scaVar = P.h;
-                            for (int i = 0; i < scaVar.getChildCount(); i++) {
-                                View childAt = scaVar.getChildAt(i);
-                                if (childAt instanceof qfa) {
-                                    ((qfa) childAt).l(false, true);
-                                }
-                            }
-                            lfa lfaVar = t1.c;
-                            if (lfaVar != null && lfaVar.y) {
-                                lfaVar.y = false;
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m8Var = tcaVar.E2) != null && m8Var.isShowing()) {
+                    tcaVar.E2.d(true);
                     return;
                 }
                 return;
             default:
-                d dVar = nfaVar.y1;
-                dVar.getMessagesController().X3.edit().putBoolean("story_keep", true).apply();
-                t7b.C(dVar.getParentActivity(), dVar.getCurrentAccount()).Q(null);
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m8Var2 = tcaVar.E2) != null && m8Var2.isShowing()) {
+                    tcaVar.E2.d(true);
+                    return;
+                }
                 return;
+        }
+    }
+
+    @Override
+    public final void s(int i) {
+        tca tcaVar = this.b;
+        mr3 mr3Var = tcaVar.J2;
+        if (Build.VERSION.SDK_INT >= 31 && mr3Var != null) {
+            if (iqd.a(i, 4)) {
+                mr3Var.h(tcaVar.X0.e());
+            }
+            mr3Var.e(tcaVar.O2, tcaVar.b.getWidth(), tcaVar.b.getHeight());
         }
     }
 }

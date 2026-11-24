@@ -1,222 +1,161 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
-public final class icb extends DefaultHandler {
-    public final HashMap E;
-    public boolean F;
-    public boolean G;
-    public StringBuilder H;
-    public boolean I;
-    public int J;
-    public ArrayList K;
-    public Canvas a;
-    public Bitmap b;
-    public final kcb c;
-    public final int d;
-    public final int e;
-    public float f;
-    public final Paint h;
-    public final RectF n;
-    public final RectF r;
-    public final Integer s;
-    public final float w;
-    public final int x;
-    public boolean y;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class icb implements vcb {
+    public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
+    public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
+    public final StringBuilder a = new StringBuilder();
+    public final ArrayList b = new ArrayList();
+    public final yw7 c = new yw7();
 
-    public icb(int i, int i2, Integer num, boolean z, float f, int i3) {
-        this.f = 1.0f;
-        this.h = new Paint(1);
-        this.n = new RectF();
-        this.r = new RectF();
-        this.w = 1.0f;
-        this.y = false;
-        this.E = new HashMap();
-        this.I = false;
-        this.J = 0;
-        this.w = f;
-        this.d = i;
-        this.e = i2;
-        this.s = num;
-        this.x = i3;
-        if (z) {
-            this.c = new kcb();
+    public static defpackage.f53 a(android.text.Spanned r21, java.lang.String r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.icb.a(android.text.Spanned, java.lang.String):f53");
+    }
+
+    public static long b(Matcher matcher, int i) {
+        long j;
+        String group = matcher.group(i + 1);
+        if (group != null) {
+            j = Long.parseLong(group) * 3600000;
+        } else {
+            j = 0;
         }
-    }
-
-    public final void a(defpackage.v8b r2, java.lang.Integer r3, boolean r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.icb.a(v8b, java.lang.Integer, boolean):void");
-    }
-
-    public final boolean b(v8b v8bVar) {
-        if (!"none".equals(v8bVar.j("display"))) {
-            String j = v8bVar.j("fill");
-            if (j != null && j.startsWith("url(#")) {
-                j.substring(5, j.length() - 1);
-                return false;
-            }
-            Integer k = v8bVar.k("fill");
-            Paint paint = this.h;
-            if (k != null) {
-                a(v8bVar, k, true);
-                paint.setStyle(Paint.Style.FILL);
-                return true;
-            } else if (v8bVar.j("fill") == null && v8bVar.j("stroke") == null) {
-                paint.setStyle(Paint.Style.FILL);
-                Integer num = this.s;
-                if (num != null) {
-                    paint.setColor(num.intValue());
-                    return true;
-                }
-                paint.setColor(-16777216);
-                return true;
-            }
+        String group2 = matcher.group(i + 2);
+        group2.getClass();
+        long parseLong = (Long.parseLong(group2) * 60000) + j;
+        String group3 = matcher.group(i + 3);
+        group3.getClass();
+        long parseLong2 = (Long.parseLong(group3) * 1000) + parseLong;
+        String group4 = matcher.group(i + 4);
+        if (group4 != null) {
+            parseLong2 += Long.parseLong(group4);
         }
-        return false;
-    }
-
-    public final boolean c(defpackage.v8b r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.icb.c(v8b):boolean");
+        return parseLong2 * 1000;
     }
 
     @Override
-    public final void characters(char[] cArr, int i, int i2) {
-        StringBuilder sb = this.H;
-        if (sb != null) {
-            sb.append(cArr, i, i2);
-        }
-    }
-
-    public final Bitmap d() {
-        return this.b;
-    }
-
-    public final List e() {
-        return this.K;
+    public final lcb g(int i, int i2, byte[] bArr) {
+        return hg9.c(this, bArr, i2);
     }
 
     @Override
-    public final void endElement(String str, String str2, String str3) {
-        int indexOf;
-        if (this.I) {
-            int i = this.J - 1;
-            this.J = i;
-            if (i == 0) {
-                this.I = false;
-                return;
-            }
-            return;
+    public final void p(byte[] bArr, int i, int i2, ucb ucbVar, fu2 fu2Var) {
+        ArrayList arrayList;
+        String n;
+        String str;
+        icb icbVar = this;
+        long j = ucbVar.a;
+        yw7 yw7Var = icbVar.c;
+        yw7Var.L(i + i2, bArr);
+        yw7Var.N(i);
+        Charset J = yw7Var.J();
+        if (J == null) {
+            J = StandardCharsets.UTF_8;
         }
-        str2.getClass();
-        char c = 65535;
-        switch (str2.hashCode()) {
-            case 103:
-                if (str2.equals("g")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case 3079438:
-                if (str2.equals("defs")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case 109780401:
-                if (str2.equals("style")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 917656469:
-                if (str2.equals("clipPath")) {
-                    c = 3;
-                    break;
-                }
-                break;
+        long j2 = -9223372036854775807L;
+        if (j != -9223372036854775807L && ucbVar.b) {
+            arrayList = new ArrayList();
+        } else {
+            arrayList = null;
         }
-        switch (c) {
-            case 0:
-            case 1:
-            case 3:
-                this.G = false;
-                return;
-            case 2:
-                StringBuilder sb = this.H;
-                if (sb != null) {
-                    String[] split = sb.toString().split("\\}");
-                    for (int i2 = 0; i2 < split.length; i2++) {
-                        String replace = split[i2].trim().replace("\t", "").replace("\n", "");
-                        split[i2] = replace;
-                        if (replace.length() != 0 && split[i2].charAt(0) == '.' && (indexOf = split[i2].indexOf(123)) >= 0) {
-                            this.E.put(split[i2].substring(1, indexOf).trim(), new jcb(split[i2].substring(indexOf + 1)));
+        while (true) {
+            String n2 = yw7Var.n(J);
+            if (n2 == null) {
+                break;
+            } else if (!n2.isEmpty()) {
+                try {
+                    Integer.parseInt(n2);
+                    n = yw7Var.n(J);
+                } catch (NumberFormatException unused) {
+                    ncd.f("SubripParser", "Skipping invalid index: ".concat(n2));
+                }
+                if (n == null) {
+                    ncd.f("SubripParser", "Unexpected end");
+                    break;
+                }
+                Matcher matcher = d.matcher(n);
+                if (matcher.matches()) {
+                    long b = b(matcher, 1);
+                    long b2 = b(matcher, 6);
+                    StringBuilder sb = icbVar.a;
+                    sb.setLength(0);
+                    long j3 = j2;
+                    ArrayList arrayList2 = icbVar.b;
+                    arrayList2.clear();
+                    for (String n3 = yw7Var.n(J); !TextUtils.isEmpty(n3); n3 = yw7Var.n(J)) {
+                        if (sb.length() > 0) {
+                            sb.append("<br>");
+                        }
+                        String trim = n3.trim();
+                        StringBuilder sb2 = new StringBuilder(trim);
+                        Matcher matcher2 = e.matcher(trim);
+                        int i3 = 0;
+                        while (matcher2.find()) {
+                            String group = matcher2.group();
+                            arrayList2.add(group);
+                            int start = matcher2.start() - i3;
+                            int length = group.length();
+                            sb2.replace(start, start + length, "");
+                            i3 += length;
+                            j = j;
+                        }
+                        sb.append(sb2.toString());
+                    }
+                    long j4 = j;
+                    Spanned fromHtml = Html.fromHtml(sb.toString());
+                    int i4 = 0;
+                    while (true) {
+                        if (i4 < arrayList2.size()) {
+                            str = (String) arrayList2.get(i4);
+                            if (str.matches("\\{\\\\an[1-9]\\}")) {
+                                break;
+                            }
+                            i4++;
+                        } else {
+                            str = null;
+                            break;
                         }
                     }
-                    this.H = null;
-                    return;
+                    if (j4 != j3 && b2 < j4) {
+                        if (arrayList != null) {
+                            arrayList.add(new i53(b, b2 - b, mo5.u(a(fromHtml, str))));
+                        }
+                    } else {
+                        fu2Var.accept(new i53(b, b2 - b, mo5.u(a(fromHtml, str))));
+                    }
+                    icbVar = this;
+                    j2 = j3;
+                    j = j4;
+                } else {
+                    ncd.f("SubripParser", "Skipping invalid timing: ".concat(n));
+                    icbVar = this;
                 }
-                return;
-            default:
-                return;
-        }
-    }
-
-    public final void f() {
-        if (this.y) {
-            kcb kcbVar = this.c;
-            if (kcbVar != null) {
-                int[] iArr = kcb.u;
-                kcbVar.a.add(null);
-                return;
             }
-            this.a.restore();
         }
-    }
-
-    public final void g(Attributes attributes) {
-        boolean z;
-        String k = lcb.k("transform", attributes);
-        if (k != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.y = z;
-        if (z) {
-            Matrix n = lcb.n(k);
-            kcb kcbVar = this.c;
-            if (kcbVar != null) {
-                int[] iArr = kcb.u;
-                kcbVar.a.add(n);
-                return;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i5 = 0;
+            while (i5 < size) {
+                Object obj = arrayList.get(i5);
+                i5++;
+                fu2Var.accept((i53) obj);
             }
-            this.a.save();
-            this.a.concat(n);
         }
     }
 
     @Override
-    public final void startElement(java.lang.String r27, java.lang.String r28, java.lang.String r29, org.xml.sax.Attributes r30) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.icb.startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes):void");
+    public final int r() {
+        return 1;
     }
 
     @Override
-    public final void endDocument() {
-    }
-
-    @Override
-    public final void startDocument() {
-    }
-
-    public icb(int i, int i2, Integer num, boolean z) {
-        this(i, i2, num, z, 1.0f, 1);
+    public final void reset() {
     }
 }

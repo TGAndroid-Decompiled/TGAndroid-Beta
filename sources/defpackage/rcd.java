@@ -1,4 +1,4 @@
 package defpackage;
 public abstract class rcd {
-    public static final cff a = new cff((byte) 25);
+    public static final Object a = new Object();
 }

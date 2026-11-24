@@ -1,63 +1,35 @@
 package defpackage;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a70 implements Runnable {
-    public final byte a;
-    public final Object b;
-    public final int c;
-    public final long d;
-    public final int e;
-    public final Object f;
-
-    public a70(int i, int i2, long j, ad7 ad7Var, ArrayList arrayList) {
-        this.a = (byte) 5;
-        this.b = ad7Var;
-        this.d = j;
-        this.f = arrayList;
-        this.c = i;
-        this.e = i2;
-    }
+public final class a70 implements cq7 {
+    public static final a70 a = new Object();
+    public static final wa4 b = wa4.c("generator");
+    public static final wa4 c = wa4.c("identifier");
+    public static final wa4 d = wa4.c("appQualitySessionId");
+    public static final wa4 e = wa4.c("startedAt");
+    public static final wa4 f = wa4.c("endedAt");
+    public static final wa4 g = wa4.c("crashed");
+    public static final wa4 h = wa4.c("app");
+    public static final wa4 i = wa4.c("user");
+    public static final wa4 j = wa4.c("os");
+    public static final wa4 k = wa4.c("device");
+    public static final wa4 l = wa4.c("events");
+    public static final wa4 m = wa4.c("generatorType");
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a70.run():void");
-    }
-
-    public a70(j5 j5Var, TLObject tLObject, int i, long j, int i2, byte b) {
-        this.a = b;
-        this.b = j5Var;
-        this.f = tLObject;
-        this.c = i;
-        this.d = j;
-        this.e = i2;
-    }
-
-    public a70(p66 p66Var, int i, float[] fArr, int i2, long j) {
-        this.a = (byte) 2;
-        this.b = p66Var;
-        this.c = i;
-        this.f = fArr;
-        this.e = i2;
-        this.d = j;
-    }
-
-    public a70(hq6 hq6Var, ArrayList arrayList, int i, int i2, long j) {
-        this.a = (byte) 3;
-        this.b = hq6Var;
-        this.f = arrayList;
-        this.c = i;
-        this.e = i2;
-        this.d = j;
-    }
-
-    public a70(ad7 ad7Var, int i, TLRPC.TL_forumTopic tL_forumTopic, long j, int i2) {
-        this.a = (byte) 4;
-        this.b = ad7Var;
-        this.c = i;
-        this.f = tL_forumTopic;
-        this.d = j;
-        this.e = i2;
+    public final void a(Object obj, Object obj2) {
+        r03 r03Var = (r03) obj;
+        dq7 dq7Var = (dq7) obj2;
+        dq7Var.a(b, ((l90) r03Var).a);
+        l90 l90Var = (l90) r03Var;
+        dq7Var.a(c, l90Var.b.getBytes(s03.a));
+        dq7Var.a(d, l90Var.c);
+        dq7Var.g(e, l90Var.d);
+        dq7Var.a(f, l90Var.e);
+        dq7Var.d(g, l90Var.f);
+        dq7Var.a(h, l90Var.g);
+        dq7Var.a(i, l90Var.h);
+        dq7Var.a(j, l90Var.i);
+        dq7Var.a(k, l90Var.j);
+        dq7Var.a(l, l90Var.k);
+        dq7Var.e(m, l90Var.l);
     }
 }

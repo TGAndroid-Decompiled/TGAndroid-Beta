@@ -1,167 +1,137 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.Layout;
 import android.view.View;
-public final class sd9 implements Runnable {
-    public final byte a;
-    public final ye9 b;
-    public final lk0 c;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class sd9 {
+    public final ne9 a;
+    public final ylb b;
+    public final rd9 c;
+    public boolean d;
 
-    public sd9(ye9 ye9Var, lk0 lk0Var, byte b) {
-        this.a = b;
-        this.b = ye9Var;
-        this.c = lk0Var;
+    public sd9(Context context, ylb ylbVar, rd9 rd9Var) {
+        this.b = ylbVar;
+        this.c = rd9Var;
+        ne9 ne9Var = new ne9(context, ylbVar);
+        this.a = ne9Var;
+        ne9Var.setPadding(gm.L(2.0f), gm.L(4.0f), gm.L(2.0f), gm.L(2.0f));
+        ne9Var.setAllowNewlines(false);
+        ne9Var.setInputType(147457);
+        ne9Var.setGravity(8388659);
+        ne9Var.setTextSize(1, Math.max(8, gda.S0 - 2));
+        ne9Var.setHint(jb6.M0(2131754451, null));
+        ne9Var.setListener(new wm4(this, rd9Var, false, (byte) 24));
+        ne9Var.setDelegate(new xr8(this, rd9Var, (byte) 8));
+        a();
     }
 
-    @Override
-    public final void run() {
-        int i;
-        byte b = this.a;
-        lk0 lk0Var = this.c;
-        ye9 ye9Var = this.b;
-        switch (b) {
-            case 0:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 1:
-                View C1 = ye9Var.C1(lk0Var);
-                if (C1 instanceof wi9) {
-                    wi9 wi9Var = (wi9) C1;
-                    wi9Var.A();
-                    wi9Var.getEditText().setSelection(0);
-                    return;
-                }
-                return;
-            case 2:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 3:
-                ye9Var.Y2(lk0Var, true);
-                return;
-            case 4:
-                ye9Var.Y2(lk0Var, false);
-                return;
-            case 5:
-                ye9Var.Y2(lk0Var, true);
-                return;
-            case 6:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 7:
-                ye9Var.X2(lk0Var, false);
-                return;
-            case 8:
-                ye9Var.X2(lk0Var, true);
-                return;
-            case 9:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 10:
-                ye9Var.X2(lk0Var, true);
-                return;
-            case 11:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 12:
-                ye9Var.Y2(lk0Var, false);
-                return;
-            case 13:
-                ye9Var.X2(lk0Var, true);
-                return;
-            case 14:
-                View C12 = ye9Var.C1(lk0Var);
-                if (C12 instanceof eib) {
-                    ye9Var.v3.a0(0, 0, (eib) C12);
-                    return;
-                }
-                return;
-            case 15:
-                View C13 = ye9Var.C1(lk0Var);
-                if (C13 instanceof eib) {
-                    if (C13 instanceof wi9) {
-                        i = ((wi9) C13).getEditText().length();
-                    } else {
-                        i = 0;
-                    }
-                    ye9Var.v3.a0(0, i, (eib) C13);
-                    return;
-                }
-                return;
-            case 16:
-                ye9Var.b3(lk0Var);
-                return;
-            case 17:
-                View C14 = ye9Var.C1(lk0Var);
-                if (C14 instanceof wi9) {
-                    wi9 wi9Var2 = (wi9) C14;
-                    wi9Var2.A();
-                    wi9Var2.getEditText().setSelection(0);
-                    return;
-                }
-                return;
-            case 18:
-                View C15 = ye9Var.C1(lk0Var);
-                if (C15 instanceof wi9) {
-                    wi9 wi9Var3 = (wi9) C15;
-                    wi9Var3.A();
-                    wi9Var3.getEditText().setSelection(wi9Var3.getEditText().length());
-                    return;
-                } else if (C15 instanceof ii9) {
-                    ii9 ii9Var = (ii9) C15;
-                    if (ii9Var.getGrid().getChildCount() > 0) {
-                        View childAt = ii9Var.getGrid().getChildAt(0);
-                        if (childAt instanceof li9) {
-                            ((li9) childAt).a.O();
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                } else {
-                    return;
-                }
-            case 19:
-                ye9Var.a3(lk0Var);
-                return;
-            case 20:
-                View C16 = ye9Var.C1(lk0Var);
-                if (C16 instanceof ac9) {
-                    ((ac9) C16).d.O();
-                    return;
-                }
-                return;
-            case 21:
-                ye9Var.a3(lk0Var);
-                return;
-            case 22:
-                ye9Var.a3(lk0Var);
-                return;
-            case 23:
-                View C17 = ye9Var.C1(lk0Var);
-                if (C17 instanceof wi9) {
-                    wi9 wi9Var4 = (wi9) C17;
-                    wi9Var4.A();
-                    wi9Var4.getEditText().setSelection(0);
-                    return;
-                }
-                return;
-            case 24:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 25:
-                ye9Var.d5(lk0Var, "");
-                return;
-            case 26:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 27:
-                ye9Var.Z2(lk0Var);
-                return;
-            case 28:
-                ye9Var.Z2(lk0Var);
-                return;
-            default:
-                ye9Var.Z2(lk0Var);
-                return;
+    public static void d(TL_iv.PageBlock pageBlock) {
+        if (pageBlock != null) {
+            TL_iv.PageCaption pageCaption = pageBlock.caption;
+            if (pageCaption == null) {
+                pageCaption = new TL_iv.PageCaption();
+                pageBlock.caption = pageCaption;
+            }
+            if (pageCaption.text == null) {
+                pageCaption.text = new TL_iv.textEmpty();
+            }
+            TL_iv.PageCaption pageCaption2 = pageBlock.caption;
+            if (pageCaption2.credit == null) {
+                pageCaption2.credit = new TL_iv.textEmpty();
+            }
+        }
+    }
+
+    public final void a() {
+        ne9 ne9Var = this.a;
+        ne9Var.updateColors();
+        int i = cmb.F6;
+        ylb ylbVar = this.b;
+        cmb.v0(i, ylbVar);
+        anb.Y(ne9Var, anb.K(0.5f, i), ylbVar);
+        wmb K = anb.K(0.35f, i);
+        anb.n(ne9Var, 1, K.a, -1, 2, K.d, ylbVar);
+    }
+
+    public final void b() {
+        TL_iv.PageBlock pageBlock;
+        ll0 d1 = this.c.d1();
+        if (d1 != null && (pageBlock = d1.b) != null) {
+            d(pageBlock);
+            TL_iv.RichText richText = d1.b.caption.text;
+            String l = zk9.l(richText);
+            ne9 ne9Var = this.a;
+            if (!String.valueOf(ne9Var.getText()).equals(l)) {
+                ne9Var.setTextSilently(zk9.r(richText, null, true));
+                ne9Var.f();
+            }
+        }
+    }
+
+    public final void c(Canvas canvas) {
+        rd9 rd9Var = this.c;
+        gkb H0 = rd9Var.H0();
+        if (H0 != null) {
+            ne9 ne9Var = this.a;
+            if (ne9Var.getLayout() != null) {
+                canvas.save();
+                canvas.translate(ne9Var.getPaddingLeft() + ne9Var.getLeft(), ne9Var.getPaddingTop() + ne9Var.getTop());
+                H0.Y(canvas, rd9Var.Y0(), 0);
+                canvas.restore();
+            }
+        }
+    }
+
+    public final void e(ArrayList arrayList) {
+        ne9 ne9Var = this.a;
+        Layout layout = ne9Var.getLayout();
+        if (layout == null) {
+            return;
+        }
+        arrayList.add(new qd9(this, layout, ne9Var.getPaddingLeft() + ne9Var.getLeft(), ne9Var.getPaddingTop() + ne9Var.getTop()));
+    }
+
+    public final boolean f(int i, int i2) {
+        int lineForVertical;
+        ne9 ne9Var = this.a;
+        Layout layout = ne9Var.getLayout();
+        if (layout == null) {
+            return false;
+        }
+        int paddingLeft = i - (ne9Var.getPaddingLeft() + ne9Var.getLeft());
+        int paddingTop = i2 - (ne9Var.getPaddingTop() + ne9Var.getTop());
+        if (paddingTop >= 0 && paddingTop < layout.getHeight() && (lineForVertical = layout.getLineForVertical(paddingTop)) >= 0 && lineForVertical < layout.getLineCount()) {
+            float f = paddingLeft;
+            if (f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void g(int i, int i2, int i3, int i4) {
+        int L = gm.L(16.0f) + i;
+        int max = Math.max(L, (i3 - i2) - gm.L(16.0f));
+        ne9 ne9Var = this.a;
+        ne9Var.layout(L, i4, max, ne9Var.getMeasuredHeight() + i4);
+    }
+
+    public final int h(int i, int i2, int i3) {
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, ((i3 - i) - i2) - (gm.L(16.0f) << 1)), 1073741824);
+        ne9 ne9Var = this.a;
+        ne9Var.measure(makeMeasureSpec, 0);
+        return ne9Var.getMeasuredHeight();
+    }
+
+    public final void i() {
+        TL_iv.PageBlock pageBlock;
+        ll0 d1 = this.c.d1();
+        if (d1 != null && (pageBlock = d1.b) != null) {
+            d(pageBlock);
+            d1.b.caption.text = zk9.f(this.a.getText());
         }
     }
 }

@@ -1,17 +1,40 @@
 package defpackage;
-public final class jkd implements zn7 {
-    public static final jkd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+import java.util.Iterator;
+public final class jkd extends yhd {
+    public final transient skd c;
+    public final transient mkd d;
+
+    public jkd(skd skdVar, mkd mkdVar) {
+        this.c = skdVar;
+        this.d = mkdVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final boolean contains(Object obj) {
+        if (this.c.get(obj) != null) {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        return this.d.h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
+    }
+
+    @Override
+    public final fhd k() {
+        return this.d;
+    }
+
+    @Override
+    public final int size() {
+        return this.c.h;
     }
 }

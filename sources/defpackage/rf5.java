@@ -1,126 +1,127 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.io.EOFException;
-import java.util.Arrays;
-public final class rf5 implements wxb {
-    public static final fm4 f;
-    public static final fm4 g;
-    public final wxb a;
-    public final fm4 b;
-    public fm4 c;
-    public byte[] d;
-    public int e;
+import android.content.Context;
+import android.os.Build;
+import j$.time.ZoneOffset;
+import j$.time.format.DateTimeFormatter;
+import j$.util.DateRetargetClass;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+public final class rf5 {
+    public static final ni8 b = new ni8("fire-global");
+    public static final ni8 c = new ni8("fire-count");
+    public static final ni8 d = new ni8("last-used-date");
+    public final wu5 a;
 
-    static {
-        em4 em4Var = new em4();
-        em4Var.s = ud7.n("application/id3");
-        f = new fm4(em4Var);
-        em4 em4Var2 = new em4();
-        em4Var2.s = ud7.n("application/x-emsg");
-        g = new fm4(em4Var2);
+    public rf5(Context context, String str) {
+        this.a = new wu5(context, "FirebaseHeartBeat".concat(str));
     }
 
-    public rf5(wxb wxbVar, int i) {
-        this.a = wxbVar;
-        if (i != 1) {
-            if (i == 3) {
-                this.b = g;
-            } else {
-                w26.j(de9.k(i, "Unknown metadataType: "));
-                throw null;
-            }
-        } else {
-            this.b = f;
+    public static String c(long j) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            return DateRetargetClass.toInstant(new Date(j)).atOffset(ZoneOffset.UTC).toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE);
         }
-        this.d = new byte[0];
-        this.e = 0;
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.UK).format(new Date(j));
     }
 
-    @Override
-    public final void a(long j, int i, int i2, int i3, vxb vxbVar) {
-        this.c.getClass();
-        int i4 = this.e - i3;
-        xu7 xu7Var = new xu7(Arrays.copyOfRange(this.d, i4 - i2, i4));
-        byte[] bArr = this.d;
-        System.arraycopy(bArr, i4, bArr, 0, i3);
-        this.e = i3;
-        String str = this.c.t;
-        fm4 fm4Var = this.b;
-        String str2 = fm4Var.t;
-        String str3 = fm4Var.t;
-        if (!Objects.equals(str, str2)) {
-            if ("application/x-emsg".equals(this.c.t)) {
-                j44 c = qr.c(xu7Var);
-                fm4 a = c.a();
-                if (a != null && Objects.equals(str3, a.t)) {
-                    byte[] c2 = c.c();
-                    c2.getClass();
-                    xu7Var = new xu7(c2);
-                } else {
-                    fm4 a2 = c.a();
-                    lad.f("HlsSampleStreamWrapper", "Ignoring EMSG. Expected it to contain wrapped " + str3 + " but actual wrapped format: " + a2);
-                    return;
+    public static ni8 d(lj7 lj7Var, String str) {
+        for (Map.Entry entry : lj7Var.a().entrySet()) {
+            if (entry.getValue() instanceof Set) {
+                for (String str2 : (Set) entry.getValue()) {
+                    if (str.equals(str2)) {
+                        String str3 = ((ni8) entry.getKey()).a;
+                        str3.getClass();
+                        return new ni8(str3);
+                    }
                 }
-            } else {
-                lad.f("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.c.t);
-                return;
+                continue;
             }
         }
-        int a3 = xu7Var.a();
-        wxb wxbVar = this.a;
-        wxbVar.e(a3, xu7Var);
-        wxbVar.a(j, i, a3, 0, vxbVar);
+        return null;
     }
 
-    @Override
-    public final void b(xu7 xu7Var, int i, int i2) {
-        int i3 = this.e + i;
-        byte[] bArr = this.d;
-        if (bArr.length < i3) {
-            bArr = Arrays.copyOf(bArr, (i3 / 2) + i3);
-            this.d = bArr;
+    public static void f(lj7 lj7Var, String str) {
+        ni8 d2 = d(lj7Var, str);
+        if (d2 == null) {
+            return;
         }
-        xu7Var.k(this.e, i, bArr);
-        this.e += i;
+        HashSet hashSet = new HashSet((Collection) one.a(lj7Var, d2, new HashSet()));
+        hashSet.remove(str);
+        if (hashSet.isEmpty()) {
+            lj7Var.b();
+            lj7Var.a.remove(d2);
+            return;
+        }
+        lj7Var.d(d2, hashSet);
     }
 
-    @Override
-    public final int c(g63 g63Var, int i, boolean z) {
-        int i2 = this.e + i;
-        byte[] bArr = this.d;
-        if (bArr.length < i2) {
-            bArr = Arrays.copyOf(bArr, (i2 / 2) + i2);
-            this.d = bArr;
-        }
-        int read = g63Var.read(bArr, this.e, i);
-        if (read == -1) {
-            if (z) {
-                return -1;
+    public final synchronized void a() {
+        this.a.a(new dy2(this));
+    }
+
+    public final synchronized ArrayList b() {
+        ArrayList arrayList;
+        arrayList = new ArrayList();
+        String c2 = c(System.currentTimeMillis());
+        for (Map.Entry entry : ((Map) lrd.a(new n83(this.a, null, (byte) 1))).entrySet()) {
+            if (entry.getValue() instanceof Set) {
+                HashSet hashSet = new HashSet((Set) entry.getValue());
+                hashSet.remove(c2);
+                if (!hashSet.isEmpty()) {
+                    arrayList.add(new ua0(((ni8) entry.getKey()).a, new ArrayList(hashSet)));
+                }
             }
-            throw new EOFException();
         }
-        this.e += read;
-        return read;
+        j(System.currentTimeMillis());
+        return arrayList;
     }
 
-    @Override
-    public final void e(int i, xu7 xu7Var) {
-        yjb.b(this, xu7Var, i);
+    public final synchronized void e() {
+        this.a.a(new z1(this, c(System.currentTimeMillis())));
     }
 
-    @Override
-    public final int f(g63 g63Var, int i, boolean z) {
-        return c(g63Var, i, z);
+    public final synchronized boolean g(long j) {
+        return h(b, j);
     }
 
-    @Override
-    public final void g(fm4 fm4Var) {
-        this.c = fm4Var;
-        this.a.g(this.b);
+    public final synchronized boolean h(ni8 ni8Var, long j) {
+        if (c(((Long) this.a.b(ni8Var, -1L)).longValue()).equals(c(j))) {
+            return false;
+        }
+        lj7 lj7Var = (lj7) lrd.a(new uu5(this.a, ni8Var, Long.valueOf(j), null, (byte) 1));
+        return true;
     }
 
-    @Override
-    public final void d(long j) {
+    public final synchronized void i(long j, String str) {
+        try {
+            try {
+                String c2 = c(j);
+                str.getClass();
+                ni8 ni8Var = new ni8(str);
+                this.a.a(new f23(this, c2, str, ni8Var, (byte) 2));
+            } catch (Throwable th) {
+                th = th;
+                throw th;
+            }
+        } catch (Throwable th2) {
+            th = th2;
+            throw th;
+        }
+    }
+
+    public final synchronized void j(final long j) {
+        this.a.a(new rr4() {
+            @Override
+            public final Object invoke(Object obj) {
+                ((lj7) obj).c(rf5.b, Long.valueOf(j));
+                return null;
+            }
+        });
     }
 }

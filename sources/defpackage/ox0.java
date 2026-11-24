@@ -1,131 +1,107 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.text.TextUtils;
-import java.util.ArrayList;
-public final class ox0 extends s64 {
-    public final RectF o;
-    public final Rect p;
-    public final qx0 q;
+import android.content.Context;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+public final class ox0 extends qw0 {
+    public final byte U0;
+    public final Object V0;
 
-    public ox0(qx0 qx0Var, qx0 qx0Var2) {
-        super(qx0Var2);
-        this.q = qx0Var;
-        this.o = new RectF();
-        this.p = new Rect();
+    public ox0(Object obj, Context context, ylb ylbVar, int i, byte b) {
+        super(i, ylbVar, context, true);
+        this.U0 = b;
+        this.V0 = obj;
     }
 
     @Override
-    public final int g(float f, float f2) {
-        nx0 c;
-        qx0 qx0Var = this.q;
-        if (qx0Var.b) {
-            ArrayList<px0> tabs = qx0Var.getTabs();
-            if (!tabs.isEmpty() && (c = qx0Var.c(tabs.get(0))) != null) {
-                float c2 = c.c();
-                RectF rectF = this.o;
-                qx0Var.d(rectF, c2);
-                Rect bounds = c.l.getBounds();
-                if (!bounds.isEmpty() && bounds.contains((int) (f - rectF.left), (int) (f2 - rectF.centerY()))) {
-                    return 2;
+    public final void B(boolean z, String str) {
+        String r;
+        boolean z2;
+        switch (this.U0) {
+            case 0:
+                wx0 wx0Var = (wx0) this.V0;
+                Paint paint = wx0Var.R;
+                if (z) {
+                    wx0Var.j();
+                    cx cxVar = wx0Var.Z0;
+                    if (wx0Var.o()) {
+                        r = wx0Var.x0.e;
+                    } else {
+                        r = m9c.r(oc7.r1(wx0Var.I).W1(Long.valueOf(wx0Var.J)));
+                    }
+                    cxVar.a(r, str);
+                    cx cxVar2 = wx0Var.Z0;
+                    if (gm.B(paint.getColor()) <= 0.721f) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    cxVar2.b(z2, false);
+                    wx0Var.Z0.setBackgroundColor(paint.getColor());
+                    wx0Var.Y0 = str;
                 }
-                if (rectF.contains(f, f2)) {
-                    return 1;
-                }
-                return -1;
-            }
-            return -1;
-        }
-        return -1;
-    }
-
-    @Override
-    public final void h(ArrayList arrayList) {
-        qx0 qx0Var = this.q;
-        if (qx0Var.b) {
-            ArrayList<px0> tabs = qx0Var.getTabs();
-            if (tabs.isEmpty() || qx0Var.c(tabs.get(0)) == null) {
+                cx cxVar3 = wx0Var.Z0;
+                wx0Var.X0 = z;
+                gm.T3(cxVar3, z, 1.0f, true, false);
+                invalidate();
                 return;
-            }
-            arrayList.add(1);
-            arrayList.add(2);
+            default:
+                return;
         }
     }
 
     @Override
-    public final boolean k(int i, int i2) {
-        if (i2 == 16) {
-            qx0 qx0Var = this.q;
-            ArrayList<px0> tabs = qx0Var.getTabs();
-            if (!tabs.isEmpty()) {
-                px0 px0Var = tabs.get(0);
-                if (i == 1) {
-                    qx0Var.b();
-                    return true;
-                } else if (i == 2) {
-                    qx0Var.g(px0Var, new bm0((byte) 2));
-                    return true;
+    public final void H(mw0 mw0Var) {
+        byte b = this.U0;
+        Object obj = this.V0;
+        switch (b) {
+            case 0:
+                wx0 wx0Var = (wx0) obj;
+                wx0Var.x.setWebView(mw0Var);
+                ws0 ws0Var = wx0Var.D0;
+                if (ws0Var != null) {
+                    ws0Var.k = mw0Var;
                 }
-            }
+                wx0Var.o0.setWebView(mw0Var);
+                wx0Var.K();
+                return;
+            default:
+                ((e32) obj).K.setWebView(mw0Var);
+                return;
         }
-        return false;
     }
 
     @Override
-    public final void l(int i, u4 u4Var) {
-        px0 px0Var;
-        nx0 c;
-        String j;
-        String j2;
-        qx0 qx0Var = this.q;
-        ArrayList<px0> tabs = qx0Var.getTabs();
-        if (tabs.isEmpty()) {
-            px0Var = null;
-        } else {
-            px0Var = tabs.get(0);
+    public final void I(mw0 mw0Var) {
+        switch (this.U0) {
+            case 0:
+                wx0 wx0Var = (wx0) this.V0;
+                ws0 ws0Var = wx0Var.D0;
+                if (ws0Var != null && ws0Var.k == mw0Var) {
+                    ws0Var.k = null;
+                    ws0Var.b();
+                }
+                wx0Var.o0.setWebView(null);
+                return;
+            default:
+                return;
         }
-        if (px0Var == null) {
-            c = null;
-        } else {
-            c = qx0Var.c(px0Var);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.U0) {
+            case 1:
+                if (motionEvent.getAction() == 0) {
+                    e32 e32Var = (e32) this.V0;
+                    if (!e32Var.Q) {
+                        e32Var.Q = true;
+                        e32Var.n.O();
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
-        u4Var.i("android.widget.Button");
-        u4Var.b(r4.c);
-        String str = "";
-        Rect rect = this.p;
-        if (c == null) {
-            rect.set(0, 0, 1, 1);
-            u4Var.h(rect);
-            u4Var.j("");
-            u4Var.p(false);
-            return;
-        }
-        float c2 = c.c();
-        RectF rectF = this.o;
-        qx0Var.d(rectF, c2);
-        if (px0Var.b() != null) {
-            str = px0Var.b();
-        }
-        if (i == 2) {
-            Rect bounds = c.l.getBounds();
-            rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
-            u4Var.h(rect);
-            if (TextUtils.isEmpty(str)) {
-                j2 = k96.M0(2131752029, null);
-            } else {
-                j2 = b00.j(new StringBuilder(k96.M0(2131752029, null)), ", ", str);
-            }
-            u4Var.j(j2);
-            return;
-        }
-        rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        u4Var.h(rect);
-        if (TextUtils.isEmpty(str)) {
-            j = k96.M0(2131747624, null);
-        } else {
-            j = b00.j(new StringBuilder(k96.M0(2131747624, null)), ", ", str);
-        }
-        u4Var.j(j);
     }
 }

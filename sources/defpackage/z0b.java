@@ -1,28 +1,30 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.NumberTextView;
-public final class z0b implements TextWatcher {
-    public final NumberTextView a;
-    public final y0b b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class z0b extends AnimatorListenerAdapter {
+    public final byte a;
+    public final a1b b;
 
-    public z0b(NumberTextView numberTextView, y0b y0bVar) {
-        this.a = numberTextView;
-        this.b = y0bVar;
+    public z0b(a1b a1bVar, byte b) {
+        this.a = b;
+        this.b = a1bVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
-        this.b.setErrorText(null);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        a1b a1bVar = this.b;
+        switch (b) {
+            case 0:
+                a1bVar.s.setVisibility(8);
+                return;
+            case 1:
+                a1bVar.s.setVisibility(8);
+                return;
+            default:
+                a1bVar.s.setVisibility(8);
+                return;
+        }
     }
 }

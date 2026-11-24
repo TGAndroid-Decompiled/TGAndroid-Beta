@@ -1,101 +1,207 @@
 package defpackage;
 
-import android.content.Intent;
-import android.content.IntentSender;
-import android.graphics.Typeface;
-import android.widget.TextView;
-import com.google.android.gms.vision.clearcut.DynamiteClearcutLogger;
-import java.util.ArrayList;
-public final class jq implements Runnable {
-    public final byte a;
-    public final int b;
-    public final Object c;
-    public final Object d;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
+import android.net.Uri;
+import android.util.AttributeSet;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+public class jq extends ImageButton {
+    public final kp a;
+    public final kq b;
+    public boolean c;
 
-    public jq(hq6 hq6Var, ArrayList arrayList, int i) {
-        this.a = (byte) 3;
-        this.d = hq6Var;
-        this.c = arrayList;
-        this.b = i;
+    public jq(Context context, AttributeSet attributeSet, int i) {
+        super(context, attributeSet, i);
+        yqb.a(context);
+        this.c = false;
+        dpb.a(getContext(), this);
+        kp kpVar = new kp(this);
+        this.a = kpVar;
+        kpVar.g(attributeSet, i);
+        kq kqVar = new kq(this);
+        this.b = kqVar;
+        kqVar.t(attributeSet, i);
     }
 
     @Override
-    public final void run() {
-        int i = 0;
-        switch (this.a) {
-            case 0:
-                ((TextView) this.c).setTypeface((Typeface) this.d, this.b);
-                return;
-            case 1:
-                qp2 qp2Var = (qp2) this.d;
-                int i2 = this.b;
-                Object obj = ((l69) this.c).b;
-                String str = (String) qp2Var.a.get(Integer.valueOf(i2));
-                if (str != null) {
-                    v9 v9Var = (v9) qp2Var.e.get(str);
-                    if (v9Var != null) {
-                        r9 r9Var = v9Var.a;
-                        if (qp2Var.d.remove(str)) {
-                            r9Var.i(obj);
-                            return;
-                        }
-                        return;
-                    }
-                    qp2Var.g.remove(str);
-                    qp2Var.f.put(str, obj);
-                    return;
-                }
-                return;
-            case 2:
-                ((qp2) this.d).a(this.b, 0, new Intent().setAction("androidx.activity.result.contract.action.INTENT_SENDER_REQUEST").putExtra("androidx.activity.result.contract.extra.SEND_INTENT_EXCEPTION", (IntentSender.SendIntentException) this.c));
-                return;
-            case 3:
-                ArrayList arrayList = (ArrayList) this.c;
-                while (i < arrayList.size()) {
-                    ((wd2) arrayList.get(i)).a.m(this.b);
-                    i++;
-                }
-                gl.d3(new oh6(this, arrayList, (byte) 13));
-                return;
-            case 4:
-                ArrayList arrayList2 = (ArrayList) this.c;
-                while (i < arrayList2.size()) {
-                    if (!((String) this.d).equals(((k27) arrayList2.get(i)).S0())) {
-                        arrayList2.remove(i);
-                        i--;
-                    }
-                    i++;
-                }
-                if (arrayList2.size() > 0) {
-                    ba4.G(this.b).l(arrayList2);
-                    return;
-                }
-                return;
-            case 5:
-                DynamiteClearcutLogger.zza((DynamiteClearcutLogger) this.d).zza(this.b, (x1e) this.c);
-                return;
-            default:
-                ocd ocdVar = (ocd) this.c;
-                yt6 yt6Var = (yt6) this.d;
-                int i3 = this.b;
-                synchronized (ocdVar.d) {
-                    ocdVar.U(yt6Var, i3);
-                }
-                return;
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.b();
+        }
+        kq kqVar = this.b;
+        if (kqVar != null) {
+            kqVar.d();
         }
     }
 
-    public jq(Object obj, Object obj2, int i, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.b = i;
+    public ColorStateList getSupportBackgroundTintList() {
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            return kpVar.e();
+        }
+        return null;
     }
 
-    public jq(Object obj, int i, Object obj2, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.b = i;
-        this.c = obj2;
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            return kpVar.f();
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportImageTintList() {
+        s34 s34Var;
+        kq kqVar = this.b;
+        if (kqVar == null || (s34Var = (s34) kqVar.d) == null) {
+            return null;
+        }
+        return (ColorStateList) s34Var.c;
+    }
+
+    public PorterDuff.Mode getSupportImageTintMode() {
+        s34 s34Var;
+        kq kqVar = this.b;
+        if (kqVar == null || (s34Var = (s34) kqVar.d) == null) {
+            return null;
+        }
+        return (PorterDuff.Mode) s34Var.d;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        if (!(((ImageView) this.b.c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.h();
+        }
+    }
+
+    @Override
+    public void setBackgroundResource(int i) {
+        super.setBackgroundResource(i);
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.i(i);
+        }
+    }
+
+    @Override
+    public void setImageBitmap(Bitmap bitmap) {
+        super.setImageBitmap(bitmap);
+        kq kqVar = this.b;
+        if (kqVar != null) {
+            kqVar.d();
+        }
+    }
+
+    @Override
+    public void setImageDrawable(Drawable drawable) {
+        kq kqVar = this.b;
+        if (kqVar != null && drawable != null && !this.c) {
+            kqVar.b = drawable.getLevel();
+        }
+        super.setImageDrawable(drawable);
+        if (kqVar != null) {
+            kqVar.d();
+            if (!this.c) {
+                ImageView imageView = (ImageView) kqVar.c;
+                if (imageView.getDrawable() != null) {
+                    imageView.getDrawable().setLevel(kqVar.b);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void setImageLevel(int i) {
+        super.setImageLevel(i);
+        this.c = true;
+    }
+
+    @Override
+    public void setImageResource(int i) {
+        kq kqVar = this.b;
+        ImageView imageView = (ImageView) kqVar.c;
+        if (i != 0) {
+            Drawable a = kod.a(imageView.getContext(), i);
+            if (a != null) {
+                vr3.a(a);
+            }
+            imageView.setImageDrawable(a);
+        } else {
+            imageView.setImageDrawable(null);
+        }
+        kqVar.d();
+    }
+
+    @Override
+    public void setImageURI(Uri uri) {
+        super.setImageURI(uri);
+        kq kqVar = this.b;
+        if (kqVar != null) {
+            kqVar.d();
+        }
+    }
+
+    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.m(colorStateList);
+        }
+    }
+
+    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+        kp kpVar = this.a;
+        if (kpVar != null) {
+            kpVar.n(mode);
+        }
+    }
+
+    public void setSupportImageTintList(ColorStateList colorStateList) {
+        kq kqVar = this.b;
+        if (kqVar != null) {
+            s34 s34Var = (s34) kqVar.d;
+            s34 s34Var2 = s34Var;
+            if (s34Var == null) {
+                Object obj = new Object();
+                kqVar.d = obj;
+                s34Var2 = obj;
+            }
+            s34Var2.c = colorStateList;
+            s34Var2.b = true;
+            kqVar.d();
+        }
+    }
+
+    public void setSupportImageTintMode(PorterDuff.Mode mode) {
+        kq kqVar = this.b;
+        if (kqVar != null) {
+            s34 s34Var = (s34) kqVar.d;
+            s34 s34Var2 = s34Var;
+            if (s34Var == null) {
+                Object obj = new Object();
+                kqVar.d = obj;
+                s34Var2 = obj;
+            }
+            s34Var2.d = mode;
+            s34Var2.a = true;
+            kqVar.d();
+        }
     }
 }

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class y9 extends b4 {
-    public static final Parcelable.Creator<y9> CREATOR = new b1d((byte) 27);
+    public static final Parcelable.Creator<y9> CREATOR = new d3d((byte) 27);
     public final String a;
     public final String b;
     public final long c;
@@ -22,10 +22,10 @@ public final class y9 extends b4 {
     public final String r;
     public final long s;
     public final String w;
-    public final d9c x;
+    public final ebc x;
     public final JSONObject y;
 
-    public y9(String str, String str2, long j, String str3, String str4, String str5, String str6, String str7, String str8, long j2, String str9, d9c d9cVar) {
+    public y9(String str, String str2, long j, String str3, String str4, String str5, String str6, String str7, String str8, long j2, String str9, ebc ebcVar) {
         this.a = str;
         this.b = str2;
         this.c = j;
@@ -37,7 +37,7 @@ public final class y9 extends b4 {
         this.r = str8;
         this.s = j2;
         this.w = str9;
-        this.x = d9cVar;
+        this.x = ebcVar;
         if (!TextUtils.isEmpty(str6)) {
             try {
                 this.y = new JSONObject(str6);
@@ -59,7 +59,7 @@ public final class y9 extends b4 {
         try {
             jSONObject.put("id", this.a);
             long j = this.c;
-            Pattern pattern = id1.a;
+            Pattern pattern = qe1.a;
             jSONObject.put("duration", j / 1000.0d);
             long j2 = this.s;
             if (j2 != -1) {
@@ -97,9 +97,9 @@ public final class y9 extends b4 {
             if (str7 != null) {
                 jSONObject.put("hlsSegmentFormat", str7);
             }
-            d9c d9cVar = this.x;
-            if (d9cVar != null) {
-                jSONObject.put("vastAdsRequest", d9cVar.b());
+            ebc ebcVar = this.x;
+            if (ebcVar != null) {
+                jSONObject.put("vastAdsRequest", ebcVar.b());
             }
         } catch (JSONException unused) {
         }
@@ -114,7 +114,7 @@ public final class y9 extends b4 {
             return false;
         }
         y9 y9Var = (y9) obj;
-        if (id1.d(this.a, y9Var.a) && id1.d(this.b, y9Var.b) && this.c == y9Var.c && id1.d(this.d, y9Var.d) && id1.d(this.e, y9Var.e) && id1.d(this.f, y9Var.f) && id1.d(this.h, y9Var.h) && id1.d(this.n, y9Var.n) && id1.d(this.r, y9Var.r) && this.s == y9Var.s && id1.d(this.w, y9Var.w) && id1.d(this.x, y9Var.x)) {
+        if (qe1.d(this.a, y9Var.a) && qe1.d(this.b, y9Var.b) && this.c == y9Var.c && qe1.d(this.d, y9Var.d) && qe1.d(this.e, y9Var.e) && qe1.d(this.f, y9Var.f) && qe1.d(this.h, y9Var.h) && qe1.d(this.n, y9Var.n) && qe1.d(this.r, y9Var.r) && this.s == y9Var.s && qe1.d(this.w, y9Var.w) && qe1.d(this.x, y9Var.x)) {
             return true;
         }
         return false;
@@ -126,21 +126,21 @@ public final class y9 extends b4 {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a);
-        jte.l(parcel, 3, this.b);
-        jte.q(parcel, 4, 8);
+        int r = mve.r(parcel, 20293);
+        mve.l(parcel, 2, this.a);
+        mve.l(parcel, 3, this.b);
+        mve.q(parcel, 4, 8);
         parcel.writeLong(this.c);
-        jte.l(parcel, 5, this.d);
-        jte.l(parcel, 6, this.e);
-        jte.l(parcel, 7, this.f);
-        jte.l(parcel, 8, this.h);
-        jte.l(parcel, 9, this.n);
-        jte.l(parcel, 10, this.r);
-        jte.q(parcel, 11, 8);
+        mve.l(parcel, 5, this.d);
+        mve.l(parcel, 6, this.e);
+        mve.l(parcel, 7, this.f);
+        mve.l(parcel, 8, this.h);
+        mve.l(parcel, 9, this.n);
+        mve.l(parcel, 10, this.r);
+        mve.q(parcel, 11, 8);
         parcel.writeLong(this.s);
-        jte.l(parcel, 12, this.w);
-        jte.k(parcel, 13, this.x, i);
-        jte.s(parcel, r);
+        mve.l(parcel, 12, this.w);
+        mve.k(parcel, 13, this.x, i);
+        mve.s(parcel, r);
     }
 }

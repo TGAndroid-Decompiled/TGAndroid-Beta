@@ -1,28 +1,47 @@
 package defpackage;
-public final class w73 {
-    public static final lz2 b = new Object();
-    public static final String c = a("hts/cahyiseot-agolai.o/1frlglgc/aclg", "tp:/rsltcrprsp.ogepscmv/ieo/eaybtho");
-    public static final String d = a("AzSBpY4F0rHiHFdinTvM", "IayrSTFL9eJ69YeSUO2");
-    public static final jz2 e = new jz2((byte) 8);
-    public final f89 a;
 
-    public w73(f89 f89Var) {
-        this.a = f89Var;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import org.telegram.ui.DataSettingsActivity;
+public final class w73 implements DialogInterface.OnClickListener {
+    public final DataSettingsActivity a;
+    public final SharedPreferences b;
+    public final int c;
+
+    public w73(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i) {
+        this.a = dataSettingsActivity;
+        this.b = sharedPreferences;
+        this.c = i;
     }
 
-    public static String a(String str, String str2) {
-        int length = str.length() - str2.length();
-        if (length >= 0 && length <= 1) {
-            StringBuilder sb = new StringBuilder(str2.length() + str.length());
-            for (int i = 0; i < str.length(); i++) {
-                sb.append(str.charAt(i));
-                if (str2.length() > i) {
-                    sb.append(str2.charAt(i));
+    @Override
+    public final void onClick(DialogInterface dialogInterface, int i) {
+        int i2;
+        DataSettingsActivity dataSettingsActivity = this.a;
+        dataSettingsActivity.getClass();
+        if (i != 0) {
+            i2 = 3;
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 3) {
+                        i2 = -1;
+                    } else {
+                        i2 = 2;
+                    }
+                } else {
+                    i2 = 1;
                 }
             }
-            return sb.toString();
+        } else {
+            i2 = 0;
         }
-        w26.j("Invalid input received");
-        return null;
+        if (i2 != -1) {
+            this.b.edit().putInt("VoipDataSaving", i2).commit();
+            dataSettingsActivity.V = true;
+        }
+        s30 s30Var = dataSettingsActivity.a;
+        if (s30Var != null) {
+            s30Var.g(this.c);
+        }
     }
 }

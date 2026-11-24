@@ -1,6 +1,4 @@
 package defpackage;
-
-import android.widget.LinearLayout;
-public abstract class vq4 extends LinearLayout {
-    public static final float a = 1.0f;
+public final class vq4 {
+    public static final vq4 a = new Object();
 }

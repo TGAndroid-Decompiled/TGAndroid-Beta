@@ -1,162 +1,129 @@
 package defpackage;
 
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.animation.DecelerateInterpolator;
-public final class ed0 extends Drawable {
+import android.text.Spannable;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class ed0 extends ReplacementSpan {
     public final Paint a;
-    public boolean b;
-    public long c;
+    public final ImageReceiver b;
+    public final pc0 c;
     public float d;
-    public float e;
-    public int f;
-    public final boolean g;
-    public final DecelerateInterpolator h;
-    public int i;
-    public int j;
-    public float k;
-    public short l;
+    public final int e;
+    public View f;
+    public boolean h;
+    public final wd n;
+    public float r;
+    public int s;
+    public boolean w;
 
-    public ed0(boolean z) {
+    public ed0(float f, int i, View view) {
+        this.h = true;
+        this.n = new wd(this, (byte) 2);
+        this.s = 255;
+        this.w = true;
+        this.e = i;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.b = imageReceiver;
+        imageReceiver.K0 = true;
+        this.c = new pc0((ylb) null);
+        imageReceiver.q0(gm.L(f));
+        this.d = f;
         Paint paint = new Paint(1);
         this.a = paint;
-        Paint paint2 = new Paint(1);
-        this.h = new DecelerateInterpolator();
-        this.i = -1;
-        this.j = -9079435;
-        this.k = 300.0f;
-        paint.setStrokeWidth(gl.L(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(gl.L(2.0f));
-        paint2.setColor(-65536);
-        this.g = z;
+        paint.setShadowLayer(gm.L(1.0f), 0.0f, gm.L(0.66f), 855638016);
+        d(view);
     }
 
-    public final void a(int i) {
-        this.i = i;
-        invalidateSelf();
-    }
-
-    public final void b(int i) {
-        this.j = i;
-        invalidateSelf();
-    }
-
-    public final void c(boolean z, float f) {
-        this.c = 0L;
-        float f2 = this.e;
-        if (f2 == 1.0f) {
-            this.b = true;
-        } else if (f2 == 0.0f) {
-            this.b = false;
-        }
-        this.c = 0L;
-        if (z) {
-            int i = (f2 > f ? 1 : (f2 == f ? 0 : -1));
-            float f3 = this.k;
-            if (i < 0) {
-                this.f = (int) (f2 * f3);
-            } else {
-                this.f = (int) ((1.0f - f2) * f3);
+    public static void a(CharSequence charSequence, bjb bjbVar) {
+        if (charSequence != null && (charSequence instanceof Spannable)) {
+            Spannable spannable = (Spannable) charSequence;
+            for (ed0 ed0Var : (ed0[]) spannable.getSpans(0, spannable.length(), ed0.class)) {
+                ed0Var.d(bjbVar);
             }
-            this.c = System.currentTimeMillis();
-            this.d = f;
-        } else {
-            this.e = f;
-            this.d = f;
         }
-        invalidateSelf();
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        int i;
-        int i2;
-        if (this.e != this.d) {
-            if (this.c != 0) {
-                int currentTimeMillis = this.f + ((int) (System.currentTimeMillis() - this.c));
-                this.f = currentTimeMillis;
-                float f = currentTimeMillis;
-                float f2 = this.k;
-                if (f >= f2) {
-                    this.e = this.d;
-                } else {
-                    int i3 = (this.e > this.d ? 1 : (this.e == this.d ? 0 : -1));
-                    DecelerateInterpolator decelerateInterpolator = this.h;
-                    float f3 = f / f2;
-                    if (i3 < 0) {
-                        this.e = decelerateInterpolator.getInterpolation(f3) * this.d;
-                    } else {
-                        this.e = 1.0f - decelerateInterpolator.getInterpolation(f3);
-                    }
+    public final void b(TLRPC.Chat chat) {
+        pc0 pc0Var = this.c;
+        pc0Var.p(chat);
+        this.b.U(chat, pc0Var, null);
+    }
+
+    public final void c(long j) {
+        int i = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+        int i2 = this.e;
+        if (i >= 0) {
+            e(oc7.r1(i2).W1(Long.valueOf(j)));
+        } else {
+            b(oc7.r1(i2).L0(Long.valueOf(-j)));
+        }
+    }
+
+    public final void d(View view) {
+        View view2 = this.f;
+        if (view2 != view) {
+            wd wdVar = this.n;
+            ImageReceiver imageReceiver = this.b;
+            if (view2 != null) {
+                view2.removeOnAttachStateChangeListener(wdVar);
+                if (this.f.isAttachedToWindow() && !view.isAttachedToWindow()) {
+                    imageReceiver.K();
                 }
             }
-            this.c = System.currentTimeMillis();
-            invalidateSelf();
-        }
-        int f4 = bm2.f(this.e, this.i, this.j);
-        Paint paint = this.a;
-        paint.setColor(f4);
-        canvas.save();
-        canvas.translate(gl.L(24.0f) / 2.0f, gl.L(24.0f) / 2.0f);
-        short s = this.l;
-        if (s != 0) {
-            canvas.rotate(s);
-        }
-        float f5 = this.e;
-        canvas.translate(-gl.L(0.66f), 0.0f);
-        float f6 = this.e;
-        boolean z = this.b;
-        if (!this.g) {
-            if (z) {
-                i2 = -225;
-            } else {
-                i2 = 135;
+            View view3 = this.f;
+            if ((view3 == null || !view3.isAttachedToWindow()) && view != null && view.isAttachedToWindow()) {
+                imageReceiver.I();
             }
-            canvas.rotate(f6 * i2);
-        } else {
-            if (z) {
-                i = -180;
-            } else {
-                i = 180;
+            this.f = view;
+            imageReceiver.p0(view);
+            if (view != null) {
+                view.addOnAttachStateChangeListener(wdVar);
             }
-            canvas.rotate((f6 * i) + 135.0f);
-            f5 = 1.0f;
         }
-        float f7 = 1.0f - f5;
-        canvas.drawLine(gl.L(gl.R1(-6.75f, -8.0f, f5)), 0.0f, gl.L(8.0f) - ((paint.getStrokeWidth() / 2.0f) * f7), 0.0f, paint);
-        float L = gl.L(-0.25f);
-        float L2 = gl.L(gl.R1(7.0f, 8.0f, f5)) - ((paint.getStrokeWidth() / 4.0f) * f7);
-        float L3 = gl.L(gl.R1(-7.25f, 0.0f, f5));
-        canvas.drawLine(L3, -L, 0.0f, -L2, paint);
-        canvas.drawLine(L3, L, 0.0f, L2, paint);
-        canvas.restore();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return gl.L(24.0f);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        float f2 = 1.0f;
+        if (this.h) {
+            int i6 = this.s;
+            int alpha = paint.getAlpha();
+            Paint paint2 = this.a;
+            if (i6 != alpha) {
+                int alpha2 = paint.getAlpha();
+                this.s = alpha2;
+                paint2.setAlpha(alpha2);
+                paint2.setShadowLayer(gm.L(1.0f), 0.0f, gm.L(0.66f), cmb.p1(this.s / 255.0f, 855638016));
+            }
+            canvas.drawCircle((gm.L(this.d) / 2.0f) + 0.0f + f, ((i3 + i5) / 2.0f) + this.r, gm.L(this.d) / 2.0f, paint2);
+        }
+        float f3 = 0.0f + f;
+        float f4 = (i3 + i5) / 2.0f;
+        ImageReceiver imageReceiver = this.b;
+        imageReceiver.i0(f3, (f4 + this.r) - (gm.L(this.d) / 2.0f), gm.L(this.d), gm.L(this.d));
+        if (this.w) {
+            f2 = paint.getAlpha() / 255.0f;
+        }
+        imageReceiver.setAlpha(f2);
+        imageReceiver.h(canvas, null);
+    }
+
+    public final void e(TLRPC.User user) {
+        pc0 pc0Var = this.c;
+        pc0Var.q(user);
+        this.b.U(user, pc0Var, null);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return gl.L(24.0f);
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        return gm.L(this.d);
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.a.setAlpha(i);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.a.setColorFilter(colorFilter);
+    public ed0(int i, View view) {
+        this(18.0f, i, view);
     }
 }

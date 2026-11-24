@@ -1,26 +1,22 @@
 package defpackage;
-public final class nx7 implements ed {
-    public final byte a;
-    public final rx7 b;
 
-    public nx7(rx7 rx7Var, byte b) {
-        this.a = b;
-        this.b = rx7Var;
-    }
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class nx7 extends FrameLayout {
+    public final s09 a;
 
-    @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        rx7 rx7Var = this.b;
-        switch (b) {
-            case 0:
-                rx7Var.d(true);
-                rx7Var.R.M1(null, 0, true);
-                return;
-            default:
-                rx7Var.d(true);
-                rx7Var.R.finishFragment();
-                return;
-        }
+    public nx7(Context context) {
+        super(context);
+        ?? imageView = new ImageView(context);
+        this.a = imageView;
+        imageView.setOnClickListener(new m67(this, (byte) 7));
+        int L = gm.L(120.0f);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(L, L);
+        layoutParams.gravity = 1;
+        addView((View) imageView, layoutParams);
+        setPadding(0, gm.L(32.0f), 0, 0);
+        setLayoutParams(new g69(-1, -2));
     }
 }

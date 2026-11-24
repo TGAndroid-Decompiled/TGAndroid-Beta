@@ -1,80 +1,70 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class je9 implements ag9 {
-    public final iy6 a;
-    public final lk0 b;
-    public final String c;
-    public final ye9 d;
+import android.os.SystemClock;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class je9 implements TextWatcher {
+    public final ne9 a;
 
-    public je9(ye9 ye9Var, iy6 iy6Var, lk0 lk0Var, String str) {
-        this.d = ye9Var;
-        this.a = iy6Var;
-        this.b = lk0Var;
-        this.c = str;
+    public je9(ne9 ne9Var) {
+        this.a = ne9Var;
     }
 
     @Override
-    public final void a() {
-        iy6 iy6Var = this.a;
-        iy6Var.a = (byte) 3;
-        ye9 ye9Var = this.d;
-        ye9Var.h4.remove(iy6Var);
-        ye9Var.t3.remove(this.b);
-        ye9Var.g3.O(true);
-        ye9Var.p3.onContentChanged();
-    }
-
-    @Override
-    public final void e(TLRPC.Document document) {
-        String str = this.c;
-        document.localPath = str;
-        ye9 ye9Var = this.d;
-        ba4.G(ye9Var.n3).e0(str, document);
-        iy6 iy6Var = this.a;
-        iy6Var.h = document;
-        iy6Var.a = (byte) 2;
-        TL_iv.PageBlock pageBlock = this.b.b;
-        if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.id;
+    public final void afterTextChanged(Editable editable) {
+        Editable editable2;
+        ne9 ne9Var = this.a;
+        if (!ne9Var.i2 && ne9Var.e2 != null) {
+            if (ne9Var.q2 && editable.length() > 0) {
+                editable2 = editable;
+                zk9.o(editable2, 0, editable.length(), 1, true, ne9Var.x2);
+            } else {
+                editable2 = editable;
+            }
+            if (!ne9Var.n2 && !ne9Var.j2 && !ne9Var.k2) {
+                ne9Var.i2 = true;
+                boolean z = false;
+                for (int length = editable2.length() - 1; length >= 0; length--) {
+                    if (editable2.charAt(length) == '\n') {
+                        editable2.delete(length, length + 1);
+                        z = true;
+                    }
+                }
+                ne9Var.i2 = false;
+                me9 me9Var = ne9Var.e2;
+                if (z) {
+                    me9Var.W(ne9Var);
+                    return;
+                } else {
+                    me9Var.S(editable2);
+                    return;
+                }
+            }
+            ne9Var.e2.S(editable2);
         }
-        ye9Var.h4.remove(iy6Var);
-        ye9Var.g3.O(false);
-        ye9Var.p3.onContentChanged();
     }
 
     @Override
-    public final void g(float f) {
-        this.a.f = f;
-        lk0 lk0Var = this.b;
-        ye9 ye9Var = this.d;
-        View C1 = ye9Var.C1(lk0Var);
-        if (C1 instanceof gc9) {
-            gc9 gc9Var = (gc9) C1;
-            gc9Var.g(gc9Var.h());
-            gc9Var.m();
-            gc9Var.n(false);
-            gc9Var.requestLayout();
-            gc9Var.invalidate();
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        me9 me9Var;
+        ne9 ne9Var = this.a;
+        if (!ne9Var.i2 && (me9Var = ne9Var.e2) != null) {
+            me9Var.k(i2, i3);
         }
-        ye9Var.p3.onContentChanged();
     }
 
     @Override
-    public final void c(TLRPC.Photo photo) {
-    }
-
-    @Override
-    public final void d(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void f(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void b(int i, int i2) {
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        ne9 ne9Var = this.a;
+        if (i2 > 0 && i3 == 0) {
+            ne9Var.y2 = SystemClock.uptimeMillis();
+        }
+        boolean z = true;
+        ne9Var.v2 = true;
+        ne9Var.N();
+        if (ne9Var.length() != 0) {
+            z = false;
+        }
+        ne9Var.setLongClickable(z);
     }
 }

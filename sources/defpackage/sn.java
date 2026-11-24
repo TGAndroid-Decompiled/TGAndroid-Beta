@@ -1,43 +1,53 @@
 package defpackage;
 
-import android.animation.TypeEvaluator;
-public final class sn implements TypeEvaluator {
-    public ky7[] a;
+import java.util.ArrayList;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class sn extends vk4 {
+    public final byte a;
+    public final Object b;
+
+    public sn(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
+    }
 
     @Override
-    public final Object evaluate(float f, Object obj, Object obj2) {
-        ky7[] ky7VarArr = (ky7[]) obj;
-        ky7[] ky7VarArr2 = (ky7[]) obj2;
-        if (mqe.a(ky7VarArr, ky7VarArr2)) {
-            if (!mqe.a(this.a, ky7VarArr)) {
-                this.a = mqe.e(ky7VarArr);
-            }
-            int i = 0;
-            while (true) {
-                int length = ky7VarArr.length;
-                ky7[] ky7VarArr3 = this.a;
-                if (i < length) {
-                    ky7 ky7Var = ky7VarArr3[i];
-                    ky7 ky7Var2 = ky7VarArr[i];
-                    ky7 ky7Var3 = ky7VarArr2[i];
-                    ky7Var.getClass();
-                    ky7Var.a = ky7Var2.a;
-                    int i2 = 0;
-                    while (true) {
-                        float[] fArr = ky7Var2.b;
-                        if (i2 < fArr.length) {
-                            ky7Var.b[i2] = (ky7Var3.b[i2] * f) + ((1.0f - f) * fArr[i2]);
-                            i2++;
-                        }
-                    }
-                    i++;
-                } else {
-                    return ky7VarArr3;
+    public final float a(Object obj) {
+        byte b = this.a;
+        Object obj2 = this.b;
+        switch (b) {
+            case 0:
+                Integer num = (Integer) obj;
+                int intValue = num.intValue();
+                ArrayList arrayList = ((AnimatedPhoneNumberEditText) obj2).W1;
+                if (intValue < arrayList.size()) {
+                    return ((Float) arrayList.get(num.intValue())).floatValue() * 100.0f;
                 }
-            }
-        } else {
-            w26.j("Can't interpolate between two incompatible pathData");
-            return null;
+                return 0.0f;
+            default:
+                return ((xk4) obj2).a;
+        }
+    }
+
+    @Override
+    public final void b(Object obj, float f) {
+        byte b = this.a;
+        Object obj2 = this.b;
+        switch (b) {
+            case 0:
+                Integer num = (Integer) obj;
+                int intValue = num.intValue();
+                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) obj2;
+                ArrayList arrayList = animatedPhoneNumberEditText.W1;
+                if (intValue < arrayList.size()) {
+                    arrayList.set(num.intValue(), Float.valueOf(f / 100.0f));
+                    animatedPhoneNumberEditText.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((xk4) obj2).a = f;
+                return;
         }
     }
 }

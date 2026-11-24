@@ -1,18 +1,18 @@
 package defpackage;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-public final class e69 implements Executor {
-    public final ExecutorService a;
-    public final w26 b;
-
-    public e69(ExecutorService executorService, w26 w26Var) {
-        this.a = executorService;
-        this.b = w26Var;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public abstract class e69 {
+    public void d(Rect rect, View view, RecyclerView recyclerView, r69 r69Var) {
+        ((g69) view.getLayoutParams()).b();
+        rect.set(0, 0, 0, 0);
     }
 
-    @Override
-    public final void execute(Runnable runnable) {
-        this.a.execute(runnable);
+    public void e(Canvas canvas, RecyclerView recyclerView) {
+    }
+
+    public void f(Canvas canvas, RecyclerView recyclerView) {
     }
 }

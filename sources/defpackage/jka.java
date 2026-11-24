@@ -1,40 +1,63 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-public interface jka {
-    void a(int i, ByteBuffer byteBuffer);
+import java.util.ArrayList;
+public abstract class jka extends d69 {
+    public boolean m;
+    public boolean n;
 
-    void b(int i, ByteBuffer byteBuffer);
+    public jka() {
+        this.a = null;
+        this.b = new ArrayList();
+        this.c = (short) 120;
+        this.d = (short) 120;
+        this.e = (short) 250;
+        this.f = (short) 250;
+        this.g = (short) 250;
+        this.l = (short) 0;
+        this.m = true;
+    }
 
-    void c(int i, int i2);
+    @Override
+    public boolean a(u69 u69Var, az8 az8Var, az8 az8Var2) {
+        int i;
+        int i2;
+        if (az8Var != null && ((i = az8Var.b) != (i2 = az8Var2.b) || az8Var.c != az8Var2.c || this.n)) {
+            return r(u69Var, az8Var, i, az8Var.c, i2, az8Var2.c);
+        }
+        p(u69Var);
+        return true;
+    }
 
-    void d(int i, int i2);
+    public abstract void p(u69 u69Var);
 
-    int e(int i, int i2, int i3);
+    public abstract boolean q(u69 u69Var, u69 u69Var2, az8 az8Var, int i, int i2, int i3, int i4);
 
-    void f();
+    public abstract boolean r(u69 u69Var, az8 az8Var, int i, int i2, int i3, int i4);
 
-    void flush();
+    public abstract void s(u69 u69Var, az8 az8Var);
 
-    Object g();
+    public boolean t(u69 u69Var) {
+        if (this.m && !u69Var.h()) {
+            return false;
+        }
+        return true;
+    }
 
-    Object h();
+    public final void u(u69 u69Var) {
+        w(u69Var);
+        d(u69Var);
+    }
 
-    void i(int i);
+    public final void v(u69 u69Var) {
+        x(u69Var);
+        d(u69Var);
+    }
 
-    boolean j();
+    public abstract void y();
 
-    void k(long j, int i, long j2);
+    public void w(u69 u69Var) {
+    }
 
-    Object l();
-
-    void m(int i, int i2, int i3, int i4, int i5);
-
-    void n(int i);
-
-    int o();
-
-    void p(int i);
-
-    int q(int i, int i2);
+    public void x(u69 u69Var) {
+    }
 }

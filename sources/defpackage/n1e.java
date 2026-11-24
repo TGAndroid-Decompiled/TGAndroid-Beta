@@ -1,3 +1,5 @@
 package defpackage;
-public final class n1e extends jne {
+
+import java.util.RandomAccess;
+public abstract class n1e extends eud implements RandomAccess {
 }

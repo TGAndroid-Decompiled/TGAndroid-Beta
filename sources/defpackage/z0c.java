@@ -1,3 +1,4 @@
 package defpackage;
-public final class z0c {
+public interface z0c {
+    Object apply(Object obj);
 }

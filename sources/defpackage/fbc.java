@@ -1,53 +1,67 @@
 package defpackage;
+public final class fbc implements nx9 {
+    public final long[] a;
+    public final long[] b;
+    public final long c;
+    public final long d;
+    public final long e;
+    public final int f;
 
-import android.content.Context;
-import java.nio.ByteBuffer;
-public final class fbc extends vb3 {
-    public final lbc d;
-
-    public fbc(lbc lbcVar, Context context) {
-        super(context);
-        this.d = lbcVar;
+    public fbc(long[] jArr, long[] jArr2, long j, long j2, long j3) {
+        this.a = jArr;
+        this.b = jArr2;
+        this.c = j;
+        this.d = j2;
+        this.e = j3;
+        this.f = jre.a(j3 - j2, j);
     }
 
     @Override
-    public final q93 b(Context context) {
-        c30 c30Var = new c30(context, (byte) 2);
-        ?? obj = new Object();
-        obj.f = this.d;
-        ?? obj2 = new Object();
-        obj2.e = new float[0];
-        obj2.b = (byte) 3;
-        obj2.d = new float[513];
-        obj2.a = new float[1024];
-        obj2.c = new float[1024];
-        int[] iArr = new int[1024];
-        obj2.h = iArr;
-        iArr[0] = 0;
-        int i = 512;
-        int i2 = 1;
-        while (i2 < 1024) {
-            for (int i3 = 0; i3 < i2; i3++) {
-                int[] iArr2 = (int[]) obj2.h;
-                iArr2[i3 + i2] = iArr2[i3] + i;
-            }
-            i2 <<= 1;
-            i >>= 1;
+    public final long a() {
+        return this.e;
+    }
+
+    @Override
+    public final long b() {
+        return this.d;
+    }
+
+    @Override
+    public final boolean c() {
+        return true;
+    }
+
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final long e(long j) {
+        return this.a[hac.f(this.b, j, true)];
+    }
+
+    @Override
+    public final hx9 f(long j) {
+        long[] jArr = this.a;
+        int f = hac.f(jArr, j, true);
+        long j2 = jArr[f];
+        long[] jArr2 = this.b;
+        kx9 kx9Var = new kx9(j2, jArr2[f]);
+        if (j2 < j && f != jArr.length - 1) {
+            int i = f + 1;
+            return new hx9(kx9Var, new kx9(jArr[i], jArr2[i]));
         }
-        obj2.f = new float[1024];
-        obj2.g = new float[1024];
-        for (int i4 = 0; i4 < 1024; i4++) {
-            double d = (-3.1415927f) / i4;
-            ((float[]) obj2.f)[i4] = (float) Math.sin(d);
-            ((float[]) obj2.g)[i4] = (float) Math.cos(d);
-        }
-        obj.c = obj2;
-        obj.d = new float[1024];
-        obj.a = 0;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-        obj.e = allocateDirect;
-        allocateDirect.position(0);
-        c30Var.d = new mv6(new p20[]{new egb(obj)});
-        return c30Var.b();
+        return new hx9(kx9Var, kx9Var);
+    }
+
+    @Override
+    public final int g() {
+        return this.f;
+    }
+
+    @Override
+    public final long h() {
+        return this.c;
     }
 }

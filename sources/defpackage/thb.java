@@ -1,39 +1,34 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public class thb extends MetricAffectingSpan {
-    public final TextPaint a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+public final class thb extends ReplacementSpan {
+    public float a;
     public final String b;
+    public final int c;
+    public final Paint d;
 
-    public thb(TextPaint textPaint, String str) {
-        this.a = textPaint;
+    public thb(int i, Paint paint, String str) {
         this.b = str;
+        this.c = i;
+        this.d = paint;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        float f2 = (i3 + i5) / 2.0f;
+        paint.setColor(this.c);
+        float L = gm.L(19.0f) / 2.0f;
+        canvas.drawRoundRect(f, f2 - L, f + this.a + gm.L(11.33f), f2 + L, L, L, this.d);
+        canvas.drawText(this.b, gm.N(5.66f) + f, i5 - gm.L(6.0f), paint);
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        float N = gm.N(11.33f);
+        float measureText = paint.measureText(this.b);
+        this.a = measureText;
+        return (int) (N + measureText);
     }
 }

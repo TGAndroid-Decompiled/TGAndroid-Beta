@@ -1,14 +1,8 @@
 package defpackage;
+public final class gq {
+    public final hq a;
 
-import android.view.textclassifier.TextClassificationManager;
-import android.view.textclassifier.TextClassifier;
-import android.widget.TextView;
-public abstract class gq {
-    public static TextClassifier a(TextView textView) {
-        TextClassificationManager textClassificationManager = (TextClassificationManager) textView.getContext().getSystemService(TextClassificationManager.class);
-        if (textClassificationManager != null) {
-            return textClassificationManager.getTextClassifier();
-        }
-        return TextClassifier.NO_OP;
+    public gq(hq hqVar) {
+        this.a = hqVar;
     }
 }

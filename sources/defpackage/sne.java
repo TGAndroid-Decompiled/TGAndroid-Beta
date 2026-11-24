@@ -1,70 +1,57 @@
 package defpackage;
 public abstract class sne {
-    public static int a(int r7, java.lang.CharSequence r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sne.a(int, java.lang.CharSequence):int");
-    }
-
-    public static int b(int i, CharSequence charSequence) {
-        while (i < charSequence.length()) {
-            switch (charSequence.charAt(i)) {
-                case '[':
-                    return -1;
-                case '\\':
-                    int i2 = i + 1;
-                    if (!lqe.a(i2, charSequence)) {
-                        break;
-                    } else {
-                        i = i2;
-                        break;
+    public static final Class a(cj2 cj2Var) {
+        Class a = cj2Var.a();
+        if (a.isPrimitive()) {
+            String name = a.getName();
+            switch (name.hashCode()) {
+                case -1325958191:
+                    if (name.equals("double")) {
+                        return Double.class;
                     }
-                case ']':
-                    return i;
+                    break;
+                case 104431:
+                    if (name.equals("int")) {
+                        return Integer.class;
+                    }
+                    break;
+                case 3039496:
+                    if (name.equals("byte")) {
+                        return Byte.class;
+                    }
+                    break;
+                case 3052374:
+                    if (name.equals("char")) {
+                        return Character.class;
+                    }
+                    break;
+                case 3327612:
+                    if (name.equals("long")) {
+                        return Long.class;
+                    }
+                    break;
+                case 3625364:
+                    if (name.equals("void")) {
+                        return Void.class;
+                    }
+                    break;
+                case 64711720:
+                    if (name.equals("boolean")) {
+                        return Boolean.class;
+                    }
+                    break;
+                case 97526364:
+                    if (name.equals("float")) {
+                        return Float.class;
+                    }
+                    break;
+                case 109413500:
+                    if (name.equals("short")) {
+                        return Short.class;
+                    }
+                    break;
             }
-            i++;
         }
-        return charSequence.length();
-    }
-
-    public static int c(int i, CharSequence charSequence) {
-        if (i >= charSequence.length()) {
-            return -1;
-        }
-        char charAt = charSequence.charAt(i);
-        char c = '\"';
-        if (charAt != '\"') {
-            c = '\'';
-            if (charAt != '\'') {
-                if (charAt != '(') {
-                    return -1;
-                }
-                c = ')';
-            }
-        }
-        int d = d(charSequence, i + 1, c);
-        if (d == -1 || d >= charSequence.length() || charSequence.charAt(d) != c) {
-            return -1;
-        }
-        return d + 1;
-    }
-
-    public static int d(CharSequence charSequence, int i, char c) {
-        while (i < charSequence.length()) {
-            char charAt = charSequence.charAt(i);
-            if (charAt == '\\') {
-                int i2 = i + 1;
-                if (lqe.a(i2, charSequence)) {
-                    i = i2;
-                    i++;
-                }
-            }
-            if (charAt == c) {
-                return i;
-            }
-            if (c == ')' && charAt == '(') {
-                return -1;
-            }
-            i++;
-        }
-        return charSequence.length();
+        return a;
     }
 }
