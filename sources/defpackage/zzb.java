@@ -47,7 +47,7 @@ public final class zzb extends e {
         }
         arrayList2.clear();
         arrayList2.add(new yzb(1, null));
-        ArrayList l = getMessagesController().g4.l(-this.c);
+        ArrayList l = getMessagesController().h4.l(-this.c);
         int i = 0;
         if (l != null) {
             int i2 = 0;

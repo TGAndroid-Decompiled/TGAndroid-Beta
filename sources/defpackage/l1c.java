@@ -137,7 +137,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j9 = -j8;
                         TLRPC.Chat M0 = s1.M0(Long.valueOf(j9));
                         TLRPC.User X1 = uc7.s1(i5).X1(Long.valueOf(j8));
-                        qyb qybVar2 = uc7.s1(i5).g4;
+                        qyb qybVar2 = uc7.s1(i5).h4;
                         ArrayList l = qybVar2.l(j9);
                         boolean z12 = l1cVar.n;
                         int i6 = f1c.b;
@@ -260,7 +260,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         ((Integer) obj).getClass();
                         ArrayList arrayList2 = (ArrayList) obj2;
                         long j11 = l1cVar.f;
-                        qyb qybVar4 = uc7.s1(l1cVar.e).g4;
+                        qyb qybVar4 = uc7.s1(l1cVar.e).h4;
                         ArrayList arrayList3 = new ArrayList();
                         for (int i10 = 0; i10 < arrayList2.size(); i10 = qd4.g(((b8c) arrayList2.get(i10)).d, i10, 1, arrayList3)) {
                         }
@@ -278,7 +278,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j14 = -j13;
                         TLRPC.Chat M02 = s12.M0(Long.valueOf(j14));
                         TLRPC.User X12 = uc7.s1(i11).X1(Long.valueOf(j13));
-                        qyb qybVar5 = uc7.s1(i11).g4;
+                        qyb qybVar5 = uc7.s1(i11).h4;
                         ArrayList l2 = qybVar5.l(j14);
                         boolean z15 = l1cVar.r;
                         if (!z15) {
@@ -439,7 +439,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j9 = -j8;
                         TLRPC.Chat M0 = s1.M0(Long.valueOf(j9));
                         TLRPC.User X1 = uc7.s1(i5).X1(Long.valueOf(j8));
-                        qyb qybVar2 = uc7.s1(i5).g4;
+                        qyb qybVar2 = uc7.s1(i5).h4;
                         ArrayList l = qybVar2.l(j9);
                         boolean z12 = l1cVar.n;
                         int i6 = f1c.b;
@@ -562,7 +562,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         ((Integer) obj).getClass();
                         ArrayList arrayList2 = (ArrayList) obj2;
                         long j11 = l1cVar.f;
-                        qyb qybVar4 = uc7.s1(l1cVar.e).g4;
+                        qyb qybVar4 = uc7.s1(l1cVar.e).h4;
                         ArrayList arrayList3 = new ArrayList();
                         for (int i10 = 0; i10 < arrayList2.size(); i10 = qd4.g(((b8c) arrayList2.get(i10)).d, i10, 1, arrayList3)) {
                         }
@@ -580,7 +580,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j14 = -j13;
                         TLRPC.Chat M02 = s12.M0(Long.valueOf(j14));
                         TLRPC.User X12 = uc7.s1(i11).X1(Long.valueOf(j13));
-                        qyb qybVar5 = uc7.s1(i11).g4;
+                        qyb qybVar5 = uc7.s1(i11).h4;
                         ArrayList l2 = qybVar5.l(j14);
                         boolean z15 = l1cVar.r;
                         if (!z15) {
@@ -776,7 +776,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j9 = -j8;
                         TLRPC.Chat M0 = s1.M0(Long.valueOf(j9));
                         TLRPC.User X1 = uc7.s1(i5).X1(Long.valueOf(j8));
-                        qyb qybVar2 = uc7.s1(i5).g4;
+                        qyb qybVar2 = uc7.s1(i5).h4;
                         ArrayList l = qybVar2.l(j9);
                         boolean z12 = l1cVar.n;
                         int i6 = f1c.b;
@@ -899,7 +899,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         ((Integer) obj).getClass();
                         ArrayList arrayList2 = (ArrayList) obj2;
                         long j11 = l1cVar.f;
-                        qyb qybVar4 = uc7.s1(l1cVar.e).g4;
+                        qyb qybVar4 = uc7.s1(l1cVar.e).h4;
                         ArrayList arrayList3 = new ArrayList();
                         for (int i10 = 0; i10 < arrayList2.size(); i10 = qd4.g(((b8c) arrayList2.get(i10)).d, i10, 1, arrayList3)) {
                         }
@@ -917,7 +917,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j14 = -j13;
                         TLRPC.Chat M02 = s12.M0(Long.valueOf(j14));
                         TLRPC.User X12 = uc7.s1(i11).X1(Long.valueOf(j13));
-                        qyb qybVar5 = uc7.s1(i11).g4;
+                        qyb qybVar5 = uc7.s1(i11).h4;
                         ArrayList l2 = qybVar5.l(j14);
                         boolean z15 = l1cVar.r;
                         if (!z15) {
@@ -1078,7 +1078,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j9 = -j8;
                         TLRPC.Chat M0 = s1.M0(Long.valueOf(j9));
                         TLRPC.User X1 = uc7.s1(i5).X1(Long.valueOf(j8));
-                        qyb qybVar2 = uc7.s1(i5).g4;
+                        qyb qybVar2 = uc7.s1(i5).h4;
                         ArrayList l = qybVar2.l(j9);
                         boolean z12 = l1cVar.n;
                         int i6 = f1c.b;
@@ -1201,7 +1201,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         ((Integer) obj).getClass();
                         ArrayList arrayList2 = (ArrayList) obj2;
                         long j11 = l1cVar.f;
-                        qyb qybVar4 = uc7.s1(l1cVar.e).g4;
+                        qyb qybVar4 = uc7.s1(l1cVar.e).h4;
                         ArrayList arrayList3 = new ArrayList();
                         for (int i10 = 0; i10 < arrayList2.size(); i10 = qd4.g(((b8c) arrayList2.get(i10)).d, i10, 1, arrayList3)) {
                         }
@@ -1219,7 +1219,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                         long j14 = -j13;
                         TLRPC.Chat M02 = s12.M0(Long.valueOf(j14));
                         TLRPC.User X12 = uc7.s1(i11).X1(Long.valueOf(j13));
-                        qyb qybVar5 = uc7.s1(i11).g4;
+                        qyb qybVar5 = uc7.s1(i11).h4;
                         ArrayList l2 = qybVar5.l(j14);
                         boolean z15 = l1cVar.r;
                         if (!z15) {
@@ -1409,8 +1409,8 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
         this.G = g4;
         frameLayout2.addView(g3, tre.e(44, 36, 51));
         viewGroup.addView(g4, tre.e(64, 48, 51));
-        uc7.s1(i).g4.n(3, j2, false);
-        SharedPreferences sharedPreferences = uc7.s1(i).X3;
+        uc7.s1(i).h4.n(3, j2, false);
+        SharedPreferences sharedPreferences = uc7.s1(i).Y3;
         if (z && qu6.v("topicssidetabs", j, sharedPreferences, false)) {
             this.V = 1.0f;
             this.U = true;
@@ -1457,7 +1457,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
         if (z) {
             jn7.f(i3).b(this, i2);
             jn7.f(i3).b(this, 2);
-            qyb qybVar = uc7.s1(i3).g4;
+            qyb qybVar = uc7.s1(i3).h4;
             long j2 = -j;
             LongSparseIntArray longSparseIntArray = qybVar.r;
             longSparseIntArray.put(j2, longSparseIntArray.get(j2, 0) + 1);
@@ -1465,7 +1465,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
             return;
         }
         long j3 = -j;
-        LongSparseIntArray longSparseIntArray2 = uc7.s1(i3).g4.r;
+        LongSparseIntArray longSparseIntArray2 = uc7.s1(i3).h4.r;
         int i4 = longSparseIntArray2.get(j3, 0) - 1;
         if (i4 >= 0) {
             i = i4;
@@ -1546,7 +1546,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
 
     public final void d(boolean z) {
         boolean z2;
-        ArrayList l = uc7.s1(this.e).g4.l(-this.f);
+        ArrayList l = uc7.s1(this.e).h4.l(-this.f);
         if (l != null && !l.isEmpty() && !this.k0) {
             z2 = true;
         } else {
@@ -1565,9 +1565,9 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
             }
         } else if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i4 = uc7.r5;
+            int i4 = uc7.s5;
             if ((intValue & 512) > 0) {
-                uc7.s1(this.e).g4.y(-j, false);
+                uc7.s1(this.e).h4.y(-j, false);
                 n();
             }
         }
@@ -1732,7 +1732,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
     }
 
     public final void j() {
-        qyb qybVar = uc7.s1(this.e).g4;
+        qyb qybVar = uc7.s1(this.e).h4;
         long j = this.f;
         if (!qybVar.e(-j)) {
             qybVar.o(-j);
@@ -1794,7 +1794,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
             }
             TLRPC.Chat chat2 = chat;
             fu5 fu5Var2 = J;
-            fu5Var2.b(2131232097, ob6.M0(2131752054, null), new y09(this, fu5Var2, n, chat2, (byte) 16), false);
+            fu5Var2.b(2131232097, ob6.M0(2131752054, null), new z09(this, fu5Var2, n, chat2, (byte) 16), false);
             long j2 = chat2.id;
             if (xc2.p0(chat2) && xc2.A(i7, chat2, 24)) {
                 long j3 = chat2.linked_monoforum_id;
@@ -1863,7 +1863,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                                 return;
                             case 1:
                                 fu5Var4.u();
-                                uc7.s1(l1cVar3.e).g4.z(tL_forumTopic3.id, -l1cVar3.f, !tL_forumTopic3.closed);
+                                uc7.s1(l1cVar3.e).h4.z(tL_forumTopic3.id, -l1cVar3.f, !tL_forumTopic3.closed);
                                 return;
                             default:
                                 fu5Var4.u();
@@ -1878,7 +1878,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                                 ArrayList arrayList = new ArrayList(hashSet);
                                 long j4 = l1cVar4.f0;
                                 if (hashSet.size() == 1) {
-                                    idVar.U = ob6.a0(null, null, 2131751463, uc7.s1(l1cVar4.e).g4.f(-l1cVar4.f, ((Integer) arrayList.get(0)).intValue()).title);
+                                    idVar.U = ob6.a0(null, null, 2131751463, uc7.s1(l1cVar4.e).h4.f(-l1cVar4.f, ((Integer) arrayList.get(0)).intValue()).title);
                                 } else {
                                     idVar.U = ob6.M0(2131751462, null);
                                 }
@@ -1952,7 +1952,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                                 return;
                             case 1:
                                 fu5Var42.u();
-                                uc7.s1(l1cVar3.e).g4.z(tL_forumTopic3.id, -l1cVar3.f, !tL_forumTopic3.closed);
+                                uc7.s1(l1cVar3.e).h4.z(tL_forumTopic3.id, -l1cVar3.f, !tL_forumTopic3.closed);
                                 return;
                             default:
                                 fu5Var42.u();
@@ -1967,7 +1967,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                                 ArrayList arrayList = new ArrayList(hashSet);
                                 long j42 = l1cVar4.f0;
                                 if (hashSet.size() == 1) {
-                                    idVar.U = ob6.a0(null, null, 2131751463, uc7.s1(l1cVar4.e).g4.f(-l1cVar4.f, ((Integer) arrayList.get(0)).intValue()).title);
+                                    idVar.U = ob6.a0(null, null, 2131751463, uc7.s1(l1cVar4.e).h4.f(-l1cVar4.f, ((Integer) arrayList.get(0)).intValue()).title);
                                 } else {
                                     idVar.U = ob6.M0(2131751462, null);
                                 }
@@ -2009,7 +2009,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                                 return;
                             case 1:
                                 fu5Var42.u();
-                                uc7.s1(l1cVar3.e).g4.z(tL_forumTopic3.id, -l1cVar3.f, !tL_forumTopic3.closed);
+                                uc7.s1(l1cVar3.e).h4.z(tL_forumTopic3.id, -l1cVar3.f, !tL_forumTopic3.closed);
                                 return;
                             default:
                                 fu5Var42.u();
@@ -2024,7 +2024,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
                                 ArrayList arrayList = new ArrayList(hashSet);
                                 long j42 = l1cVar4.f0;
                                 if (hashSet.size() == 1) {
-                                    idVar.U = ob6.a0(null, null, 2131751463, uc7.s1(l1cVar4.e).g4.f(-l1cVar4.f, ((Integer) arrayList.get(0)).intValue()).title);
+                                    idVar.U = ob6.a0(null, null, 2131751463, uc7.s1(l1cVar4.e).h4.f(-l1cVar4.f, ((Integer) arrayList.get(0)).intValue()).title);
                                 } else {
                                     idVar.U = ob6.M0(2131751462, null);
                                 }
@@ -2235,7 +2235,7 @@ public final class l1c extends FrameLayout implements fn7, s84, snb {
             this.T = false;
             this.H.setImageResource(2131231888);
             this.I.setImageResource(2131231887);
-            SharedPreferences.Editor edit = uc7.s1(this.e).X3.edit();
+            SharedPreferences.Editor edit = uc7.s1(this.e).Y3.edit();
             edit.putBoolean("topicssidetabsb" + this.f, false).apply();
             o(true);
         }

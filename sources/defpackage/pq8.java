@@ -56,9 +56,9 @@ public class pq8 implements be8, mu8, iz8, ifc, hj, on5, uw8, rfc, tw8, dia, bl0
         if (rz8Var.G == jz8Var) {
             rz8Var.G = null;
         }
-        f09 f09Var = rz8Var.d;
-        if (f09Var != null) {
-            f09Var.setScanHidden(false);
+        g09 g09Var = rz8Var.d;
+        if (g09Var != null) {
+            g09Var.setScanHidden(false);
         }
     }
 

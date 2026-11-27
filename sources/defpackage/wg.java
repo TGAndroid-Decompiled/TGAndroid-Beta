@@ -30,7 +30,7 @@ import org.telegram.ui.Dictation.DictationLid;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.ProfileActivity;
-public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd, o69, ot2, occ {
+public final class wg implements dq7, on5, lz0, cf7, hj, s69, ln3, b86, qc6, fd, o69, ot2, occ {
     public final byte a;
     public final int b;
     public final Object c;
@@ -235,9 +235,9 @@ public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd,
                 ((ContactsActivity) obj).k0(view, i2, i);
                 return;
             default:
-                pi7 pi7Var = (pi7) obj;
-                mi7 mi7Var = pi7Var.T1;
-                HashSet hashSet = pi7Var.Y1;
+                qi7 qi7Var = (qi7) obj;
+                ni7 ni7Var = qi7Var.T1;
+                HashSet hashSet = qi7Var.Y1;
                 if (view instanceof e3a) {
                     TLRPC.User user = ((e3a) view).getUser();
                     long j = user.id;
@@ -245,13 +245,13 @@ public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd,
                         hashSet.remove(Long.valueOf(j));
                     } else {
                         hashSet.add(Long.valueOf(j));
-                        pi7Var.d2.put(Long.valueOf(j), user);
+                        qi7Var.d2.put(Long.valueOf(j), user);
                     }
                     if (hashSet.size() == i2 + 1) {
                         hashSet.remove(Long.valueOf(j));
-                        String G = ob6.G(pi7Var.k2, "BotMultiContactsSelectorLimit", new Object[0]);
-                        ex0 ex0Var = pi7Var.c;
-                        new d31(ex0Var, pi7Var.J0).Q(2131623982, 36, G).k(true);
+                        String G = ob6.G(qi7Var.k2, "BotMultiContactsSelectorLimit", new Object[0]);
+                        ex0 ex0Var = qi7Var.c;
+                        new d31(ex0Var, qi7Var.J0).Q(2131623982, 36, G).k(true);
                         try {
                             ex0Var.performHapticFeedback(3, 2);
                             return;
@@ -259,13 +259,13 @@ public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd,
                             return;
                         }
                     }
-                    mi7Var.b(true, hashSet, new hi7(pi7Var, (byte) 2), null);
-                    pi7Var.c1(true, false);
-                    if (!TextUtils.isEmpty(pi7Var.e2)) {
-                        pi7Var.e2 = null;
-                        mi7Var.setText("");
-                        hl.r(pi7Var.o2);
-                        pi7Var.b1(true, true);
+                    ni7Var.b(true, hashSet, new ii7(qi7Var, (byte) 2), null);
+                    qi7Var.c1(true, false);
+                    if (!TextUtils.isEmpty(qi7Var.e2)) {
+                        qi7Var.e2 = null;
+                        ni7Var.setText("");
+                        hl.r(qi7Var.o2);
+                        qi7Var.b1(true, true);
                         return;
                     }
                     return;
@@ -277,25 +277,21 @@ public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd,
     @Override
     public final Boolean e(b8c b8cVar, View view, Integer num, Float f, Float f2) {
         int i;
-        boolean z;
-        boolean z2;
         int i2;
-        int i3;
-        int i4;
-        final lm7 lm7Var = (lm7) this.c;
+        lm7 lm7Var = (lm7) this.c;
         Object obj = b8cVar.H;
         if ((obj instanceof r47) && (view instanceof v94)) {
             v94 v94Var = (v94) view;
             r47 r47Var = (r47) obj;
             ArrayList arrayList = (ArrayList) b8cVar.I;
             HashMap hashMap = lm7Var.V;
-            int i5 = this.b;
-            km7 km7Var = (km7) hashMap.get(lm7.B0(i5, r47Var));
+            int i3 = this.b;
+            km7 km7Var = (km7) hashMap.get(lm7.z0(i3, r47Var));
             if (km7Var == null) {
                 km7Var = lm7Var.U;
             }
             if (!km7Var.b() && lm7Var.fragmentView != null) {
-                if (i5 != 1) {
+                if (i3 != 1) {
                     i = 1;
                 } else {
                     i = 0;
@@ -303,101 +299,36 @@ public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd,
                 if (arrayList == null || arrayList.isEmpty()) {
                     arrayList = new ArrayList(Collections.singletonList(r47Var));
                 }
-                final TLRPC.Chat M0 = lm7Var.getMessagesController().M0(Long.valueOf(-r47.B0(r47Var.k)));
-                boolean V = xc2.V(M0);
-                if (V && M0.in_news) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (V && !z && !xc2.r0(M0)) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
                 fu5 I = fu5.I(lm7Var, v94Var);
                 if (i != 0) {
-                    I.b(2131232327, ob6.M0(2131747991, null), new yl7(lm7Var, i5, r47Var, (byte) 0), false);
-                    b8 z3 = I.z();
-                    if (z3 != null && z3.getImageView() != null) {
-                        z3.getImageView().setScaleX(1.25f);
-                        z3.getImageView().setScaleY(1.25f);
+                    I.b(2131232327, ob6.M0(2131747991, null), new zl7(lm7Var, i3, r47Var, (byte) 0), false);
+                    b8 z = I.z();
+                    if (z != null && z.getImageView() != null) {
+                        z.getImageView().setScaleX(1.25f);
+                        z.getImageView().setScaleY(1.25f);
                     }
-                    I.b(2131232326, ob6.M0(2131747986, null), new yl7(lm7Var, i5, r47Var, (byte) 1), false);
-                    b8 z4 = I.z();
-                    if (z4 != null && z4.getImageView() != null) {
-                        z4.getImageView().setScaleX(1.25f);
-                        z4.getImageView().setScaleY(1.25f);
+                    I.b(2131232326, ob6.M0(2131747986, null), new zl7(lm7Var, i3, r47Var, (byte) 1), false);
+                    b8 z2 = I.z();
+                    if (z2 != null && z2.getImageView() != null) {
+                        z2.getImageView().setScaleX(1.25f);
+                        z2.getImageView().setScaleY(1.25f);
                     }
                     I.j();
                 }
-                I.b(2131232209, ob6.M0(2131751727, null), new yl7(i5, r47Var, lm7Var), false);
-                I.b(2131232170, ob6.M0(2131750547, null), new y36(lm7Var, i5, r47Var, arrayList), false);
-                if (V && !z2) {
-                    I.j();
-                    I.b(2131232260, ob6.M0(2131752504, null), new Runnable() {
-                        @Override
-                        public final void run() {
-                            byte b = r3;
-                            TLRPC.Chat chat = M0;
-                            lm7 lm7Var2 = lm7Var;
-                            switch (b) {
-                                case 0:
-                                    lm7Var2.d0(chat, false);
-                                    return;
-                                default:
-                                    lm7Var2.d0(chat, true);
-                                    return;
-                            }
-                        }
-                    }, false);
-                    if (!z) {
-                        I.b(2131232455, ob6.M0(2131752502, null), new Runnable() {
-                            @Override
-                            public final void run() {
-                                byte b = r3;
-                                TLRPC.Chat chat = M0;
-                                lm7 lm7Var2 = lm7Var;
-                                switch (b) {
-                                    case 0:
-                                        lm7Var2.d0(chat, false);
-                                        return;
-                                    default:
-                                        lm7Var2.d0(chat, true);
-                                        return;
-                                }
-                            }
-                        }, false);
-                    }
-                }
+                I.b(2131232209, ob6.M0(2131751727, null), new zl7(i3, r47Var, lm7Var), false);
+                I.b(2131232170, ob6.M0(2131750547, null), new y36(lm7Var, i3, r47Var, arrayList), false);
                 if (i != 0) {
                     i2 = 2;
                 } else {
                     i2 = 0;
                 }
-                int i6 = i2 + 2;
-                if (V && !z2) {
-                    if (z) {
-                        i3 = 1;
-                    } else {
-                        i3 = 2;
-                    }
-                } else {
-                    i3 = 0;
-                }
-                int i7 = i6 + i3;
-                if (V && !z2) {
-                    i4 = 1;
-                } else {
-                    i4 = 0;
-                }
-                int L = hl.L(16.0f) + uh9.y(8.0f, i + i4, hl.L(48.0f) * i7);
+                int L = hl.L(16.0f) + uh9.y(8.0f, i, hl.L(48.0f) * (i2 + 2));
                 int[] iArr = new int[2];
                 lm7Var.fragmentView.getLocationInWindow(iArr);
-                int p0 = lm7Var.p0() + iArr[1];
+                int o0 = lm7Var.o0() + iArr[1];
                 int L2 = hl.L(72.0f) + ((lm7Var.fragmentView.getRootView().getHeight() - iArr[1]) - lm7Var.fragmentView.getHeight()) + lm7Var.G;
                 int width = v94Var.getWidth();
-                float w = qu6.w((((lm7Var.fragmentView.getRootView().getHeight() - p0) - L2) - L) - hl.L(32.0f), v94Var.getHeight(), (width - hl.L(32.0f)) / width, 0.3f);
+                float w = qu6.w((((lm7Var.fragmentView.getRootView().getHeight() - o0) - L2) - L) - hl.L(32.0f), v94Var.getHeight(), (width - hl.L(32.0f)) / width, 0.3f);
                 float L3 = hl.L(20.0f) / w;
                 I.X(new gm7(lm7Var.getThemedColor(aob.d6), L3));
                 I.l = (int) L3;
@@ -407,7 +338,7 @@ public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd,
                 I.L = true;
                 I.U = w;
                 I.T = true;
-                I.P = p0;
+                I.P = o0;
                 I.Q = L2;
                 I.c0 = true;
                 I.V = true;
@@ -510,7 +441,7 @@ public final class wg implements dq7, on5, lz0, bf7, hj, s69, ln3, b86, qc6, fd,
                 if (Y1 != null) {
                     Y1.flags2 &= -4194305;
                     Y1.note = null;
-                    profileActivity.getMessagesStorage().g2(Y1, true);
+                    profileActivity.getMessagesStorage().l2(Y1, true);
                 }
                 TLRPC.TL_updateContactNote tL_updateContactNote = new TLRPC.TL_updateContactNote();
                 tL_updateContactNote.id = profileActivity.getMessagesController().o1(profileActivity.e1);

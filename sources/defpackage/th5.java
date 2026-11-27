@@ -14,10 +14,10 @@ public final class th5 implements x1c {
 
     static {
         jo4 jo4Var = new jo4();
-        jo4Var.s = dg7.n("application/id3");
+        jo4Var.s = eg7.n("application/id3");
         f = new ko4(jo4Var);
         jo4 jo4Var2 = new jo4();
-        jo4Var2.s = dg7.n("application/x-emsg");
+        jo4Var2.s = eg7.n("application/x-emsg");
         g = new ko4(jo4Var2);
     }
 

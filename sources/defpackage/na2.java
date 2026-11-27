@@ -220,7 +220,7 @@ public final class na2 extends e implements fn7 {
             }
         } else if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i3 = uc7.r5;
+            int i3 = uc7.s5;
             if ((intValue & 8192) != 0 && this.f != null) {
                 TLRPC.Chat M02 = getMessagesController().M0(Long.valueOf(this.f.id));
                 if (M02 != null) {

@@ -267,7 +267,7 @@ public final class sh9 implements pcc {
                 ((n9b) obj2).n.a0.B1 = ((Integer) obj).intValue();
                 return;
             case 18:
-                ((rab) obj2).h((pcc) obj);
+                ((sab) obj2).h((pcc) obj);
                 return;
             case 19:
                 ueb uebVar = (ueb) obj2;
@@ -281,7 +281,7 @@ public final class sh9 implements pcc {
                     tL_birthday = Y1.birthday;
                     Y1.flags2 |= 32;
                     Y1.birthday = tL_birthday2;
-                    jf7.Y(i4).g2(Y1, false);
+                    kf7.a0(i4).l2(Y1, false);
                 }
                 ConnectionsManager.getInstance(i4).sendRequest(updatebirthday, new qn8(uebVar, Y1, tL_birthday, (byte) 23), 1024);
                 uc7.s1(i4).j2();
@@ -312,7 +312,7 @@ public final class sh9 implements pcc {
                 ((snc) ((lyc) obj2).e).m(obj);
                 return;
             case 27:
-                hl.c3(new vlc((wsc) obj2, (TLRPC.UserFull) obj, (byte) 19));
+                hl.c3(new slc((wsc) obj2, (TLRPC.UserFull) obj, (byte) 20));
                 return;
             case 28:
                 atc atcVar = (atc) obj2;

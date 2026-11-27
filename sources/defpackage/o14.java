@@ -178,7 +178,7 @@ public final class o14 extends c79 {
                         zcVar = view2;
                     }
                 } else {
-                    zcVar = new t3b(o24Var.getContext(), true, false, o24Var.a2, o24Var.j2);
+                    zcVar = new u3b(o24Var.getContext(), true, false, o24Var.a2, o24Var.j2);
                 }
             } else {
                 View view3 = new View(o24Var.getContext());

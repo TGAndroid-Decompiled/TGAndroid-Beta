@@ -73,7 +73,7 @@ public final class xf9 extends ze9 implements snb, zlb, jf9, jq3 {
         this.F = imageReceiver;
         imageReceiver.A1 = true;
         imageReceiver.q0(hl.L(6.0f));
-        if9 if9Var = new if9(context, vnbVar, new k09(this, (byte) 3));
+        if9 if9Var = new if9(context, vnbVar, new l09(this, (byte) 3));
         this.G = if9Var;
         addView(if9Var.a, tre.e(-2, -2, 51));
         updateColors();

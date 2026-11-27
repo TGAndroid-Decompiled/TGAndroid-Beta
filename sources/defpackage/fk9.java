@@ -17,7 +17,7 @@ public final class fk9 extends dk9 {
     public fk9(hl9 hl9Var, Rect rect, int i, TL_iv.pageBlockButtonRow pageblockbuttonrow) {
         super(hl9Var, rect, i);
         this.Z = -1;
-        this.c0 = new dj2(new k09(this, (byte) 5));
+        this.c0 = new dj2(new l09(this, (byte) 5));
         this.X = new ek9[pageblockbuttonrow.buttons.size()];
         int size = pageblockbuttonrow.buttons.size();
         for (int i2 = 0; i2 < size; i2++) {

@@ -50,10 +50,10 @@ public final class u5a implements Runnable {
                 return;
             case 1:
                 r7a r7aVar2 = (r7a) rf0Var;
-                jf7 messagesStorage = r7aVar2.getMessagesStorage();
+                kf7 messagesStorage = r7aVar2.getMessagesStorage();
                 ArrayList arrayList2 = this.c;
                 boolean z3 = this.d;
-                messagesStorage.g1(arrayList2, true, false, false, 0, false, z3 ? 1 : 0, 0L);
+                messagesStorage.k1(arrayList2, true, false, false, 0, false, z3 ? 1 : 0, 0L);
                 int i3 = this.e;
                 boolean z4 = this.h;
                 int i4 = this.s;
@@ -78,7 +78,7 @@ public final class u5a implements Runnable {
                 if (userFull != null) {
                     if (zh6Var.f(user.id) == null) {
                         zh6Var.k(user.id, userFull);
-                        uc7Var.i4.M(user.id);
+                        uc7Var.j4.M(user.id);
                         jxa.v(uc7Var.currentAccount, false).N(userFull);
                         int indexOfKey = longSparseIntArray.indexOfKey(user.id);
                         if (userFull.blocked) {

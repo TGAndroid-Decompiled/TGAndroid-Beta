@@ -101,7 +101,7 @@ public abstract class zt7 {
         h05 h05Var = new h05(context, qa4.p, wn.g, g05.c);
         fo b2 = fo.b(arrayList, true);
         if (b2.a.isEmpty()) {
-            e = Tasks.forResult(new xg7(0, false));
+            e = Tasks.forResult(new yg7(0, false));
         } else {
             wjb b3 = xjb.b();
             b3.c = new a94[]{nid.a};

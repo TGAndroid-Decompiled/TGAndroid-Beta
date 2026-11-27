@@ -167,7 +167,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
             this.J = new ArrayList();
             this.I = new ArrayList();
             if (globalPrivacySettings != null && (globalPrivacySettings.flags & 32) != 0) {
-                long k = Utilities.k(globalPrivacySettings.noncontact_peers_paid_stars, getMessagesController().k4.P1.f(), 1L);
+                long k = Utilities.k(globalPrivacySettings.noncontact_peers_paid_stars, getMessagesController().l4.P1.f(), 1L);
                 this.N = k;
                 this.M = k;
                 this.K = (byte) 3;
@@ -524,7 +524,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
             uc7.s1(this.currentAccount).j4(privacyrules.users, false);
             uc7.s1(this.currentAccount).c4(privacyrules.chats, false);
             lv2.r(this.currentAccount).M(13, privacyrules.rules);
-            hl.c3(new h68(this, zArr, (byte) 23));
+            hl.c3(new a58(this, zArr, (byte) 24));
             return;
         }
         L0();
@@ -565,7 +565,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
         if (Y1 != null && (photo = Y1.fallback_photo) != null) {
             Y1.flags &= -4194305;
             Y1.fallback_photo = null;
-            getMessagesStorage().g2(Y1, true);
+            getMessagesStorage().l2(Y1, true);
             N0();
             Q0(true);
             TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
@@ -608,7 +608,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
                 this.v0.K(43);
                 this.w0.e.d();
             }
-        } else if (this.E == 10 && i == this.Q && !getMessagesController().k4.v2.f && !getUserConfig().p()) {
+        } else if (this.E == 10 && i == this.Q && !getMessagesController().l4.v2.f && !getUserConfig().p()) {
             d31.b0(this).L(2131624211, ob6.M0(2131747498, null), hl.S2(ob6.M0(2131747499, null)), ob6.M0(2131747500, null), new cn8(this, (byte) 2)).j();
             yw0Var.a();
             int i3 = -this.Q0;
@@ -945,7 +945,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
             TLRPC.UserFull Y1 = getMessagesController().Y1(getUserConfig().n);
             Y1.flags |= 4194304;
             Y1.fallback_photo = tL_photos_photo.photo;
-            getMessagesStorage().g2(Y1, true);
+            getMessagesStorage().l2(Y1, true);
             jn7.f(this.currentAccount).k(jn7.c0, new Object[0]);
             TLRPC.PhotoSize w = xb4.w(tL_photos_photo.photo.sizes, 100, false, null, false);
             TLRPC.PhotoSize w2 = xb4.w(tL_photos_photo.photo.sizes, 1000, false, null, false);
@@ -1180,7 +1180,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
             this.t0 = i6 + 4;
             this.nobodyRow = i7;
         }
-        if (getMessagesController().k4.S1.f && this.E == 10) {
+        if (getMessagesController().l4.S1.f && this.E == 10) {
             int i8 = this.t0;
             this.t0 = i8 + 1;
             this.i0 = i8;
@@ -1665,7 +1665,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
                         setprivacy.rules.add(tL_inputPrivacyValueAllowUsers);
                         setprivacy.rules.add(tL_inputPrivacyValueAllowChatParticipants);
                     }
-                    getConnectionsManager().sendRequest(setprivacy, new ol7(this, zArr, (byte) 10));
+                    getConnectionsManager().sendRequest(setprivacy, new pl7(this, zArr, (byte) 10));
                 }
             }
             TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
@@ -1964,7 +1964,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
                                         default:
                                             if (globalPrivacySettings7.display_gifts_button != setglobalprivacysettings4.settings.display_gifts_button && (Y1 = privacyControlActivity2.getMessagesController().Y1(privacyControlActivity2.getUserConfig().e())) != null) {
                                                 Y1.display_gifts_button = setglobalprivacysettings4.settings.display_gifts_button;
-                                                privacyControlActivity2.getMessagesStorage().g2(Y1, false);
+                                                privacyControlActivity2.getMessagesStorage().l2(Y1, false);
                                             }
                                             boolean z3 = setglobalprivacysettings4.settings.display_gifts_button;
                                             privacyControlActivity2.E0 = z3;
@@ -2029,7 +2029,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
                                         default:
                                             if (globalPrivacySettings72.display_gifts_button != setglobalprivacysettings42.settings.display_gifts_button && (Y1 = privacyControlActivity22.getMessagesController().Y1(privacyControlActivity22.getUserConfig().e())) != null) {
                                                 Y1.display_gifts_button = setglobalprivacysettings42.settings.display_gifts_button;
-                                                privacyControlActivity22.getMessagesStorage().g2(Y1, false);
+                                                privacyControlActivity22.getMessagesStorage().l2(Y1, false);
                                             }
                                             boolean z3 = setglobalprivacysettings42.settings.display_gifts_button;
                                             privacyControlActivity22.E0 = z3;
@@ -2131,7 +2131,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
                                         default:
                                             if (globalPrivacySettings72.display_gifts_button != setglobalprivacysettings42.settings.display_gifts_button && (Y1 = privacyControlActivity22.getMessagesController().Y1(privacyControlActivity22.getUserConfig().e())) != null) {
                                                 Y1.display_gifts_button = setglobalprivacysettings42.settings.display_gifts_button;
-                                                privacyControlActivity22.getMessagesStorage().g2(Y1, false);
+                                                privacyControlActivity22.getMessagesStorage().l2(Y1, false);
                                             }
                                             boolean z3 = setglobalprivacysettings42.settings.display_gifts_button;
                                             privacyControlActivity22.E0 = z3;
@@ -2196,7 +2196,7 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.e implemen
                                         default:
                                             if (globalPrivacySettings722.display_gifts_button != setglobalprivacysettings42.settings.display_gifts_button && (Y1 = privacyControlActivity22.getMessagesController().Y1(privacyControlActivity22.getUserConfig().e())) != null) {
                                                 Y1.display_gifts_button = setglobalprivacysettings42.settings.display_gifts_button;
-                                                privacyControlActivity22.getMessagesStorage().g2(Y1, false);
+                                                privacyControlActivity22.getMessagesStorage().l2(Y1, false);
                                             }
                                             boolean z3 = setglobalprivacysettings42.settings.display_gifts_button;
                                             privacyControlActivity22.E0 = z3;

@@ -5,13 +5,13 @@ public final class hpa implements Iterator {
     public String b;
     public final CharSequence c;
     public final zj1 d;
-    public final k09 h;
+    public final l09 h;
     public int a = 2;
     public int e = 0;
     public int f = Integer.MAX_VALUE;
 
-    public hpa(k09 k09Var, um4 um4Var, CharSequence charSequence) {
-        this.h = k09Var;
+    public hpa(l09 l09Var, um4 um4Var, CharSequence charSequence) {
+        this.h = l09Var;
         this.d = (zj1) um4Var.b;
         this.c = charSequence;
     }

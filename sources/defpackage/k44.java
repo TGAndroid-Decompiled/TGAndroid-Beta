@@ -16,7 +16,7 @@ public final class k44 {
         if (!this.c) {
             synchronized (this) {
                 if (!this.c) {
-                    SharedPreferences sharedPreferences = zba.a;
+                    SharedPreferences sharedPreferences = aca.a;
                     String str = this.a;
                     Enum r2 = this.b;
                     String string = sharedPreferences.getString(str, r2.name());
@@ -37,6 +37,6 @@ public final class k44 {
     public final synchronized void b(Enum r3) {
         this.d = r3;
         this.c = true;
-        zba.a.edit().putString(this.a, r3.name()).apply();
+        aca.a.edit().putString(this.a, r3.name()).apply();
     }
 }

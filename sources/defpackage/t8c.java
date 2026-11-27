@@ -36,7 +36,7 @@ public final class t8c extends TLObject {
 
     public final long a() {
         u8c u8cVar = this.i;
-        return (uc7.s1(u8cVar.a).k4.q3.g(TimeUnit.SECONDS) + ConnectionsManager.getInstance(u8cVar.a).getCurrentTime()) - this.d;
+        return (uc7.s1(u8cVar.a).l4.q3.g(TimeUnit.SECONDS) + ConnectionsManager.getInstance(u8cVar.a).getCurrentTime()) - this.d;
     }
 
     @Override

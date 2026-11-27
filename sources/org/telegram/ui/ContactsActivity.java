@@ -212,7 +212,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.e implements s84
         }
         if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i3 = uc7.r5;
+            int i3 = uc7.s5;
             if (((intValue & 2) != 0 || (intValue & 1) != 0 || (intValue & 4) != 0) && (d79Var = this.d) != null) {
                 int childCount = d79Var.getChildCount();
                 for (int i4 = 0; i4 < childCount; i4++) {
@@ -222,7 +222,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.e implements s84
                     }
                 }
             }
-            int i5 = uc7.r5;
+            int i5 = uc7.s5;
             if ((intValue & 4) != 0 && !this.r && this.b != null && !this.g0) {
                 this.g0 = true;
                 p1 p1Var = this.h0;
@@ -490,7 +490,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.e implements s84
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(user);
                     getMessagesController().j4(arrayList, false);
-                    jf7.Y(this.currentAccount).j1(arrayList, null, false, true);
+                    kf7.a0(this.currentAccount).n1(arrayList, null, false, true);
                 }
                 if (this.J) {
                     g0(user, true, null);
@@ -518,9 +518,9 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.e implements s84
                         i5.b(this.currentAccount);
                         return;
                     }
-                    rl7 rl7Var = new rl7(this, getParentActivity());
-                    rl7Var.I0(str2, true);
-                    rl7Var.show();
+                    sl7 sl7Var = new sl7(this, getParentActivity());
+                    sl7Var.I0(str2, true);
+                    sl7Var.show();
                     return;
                 }
                 return;
@@ -626,7 +626,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.e implements s84
         if (uc7.s1(this.currentAccount).x2()) {
             i5.b(this.currentAccount);
         } else {
-            new rl7(this, getParentActivity()).show();
+            new sl7(this, getParentActivity()).show();
         }
     }
 

@@ -1,66 +1,44 @@
 package defpackage;
+public final class gk7 {
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final float g;
+    public final int h;
+    public final int i;
+    public final boolean j;
+    public final boolean k;
+    public final int l;
+    public final int m;
+    public final int n;
+    public final boolean o;
+    public final int p;
+    public final int q;
+    public final int r;
+    public final int s;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.util.List;
-import java.util.logging.Level;
-public final class gk7 implements Runnable {
-    public final InputStream a;
-    public final Socket b;
-    public final nk7 c;
-
-    public gk7(nk7 nk7Var, InputStream inputStream, Socket socket) {
-        this.c = nk7Var;
-        this.a = inputStream;
-        this.b = socket;
-    }
-
-    @Override
-    public final void run() {
-        OutputStream outputStream;
-        InputStream inputStream = this.a;
-        nk7 nk7Var = this.c;
-        Socket socket = this.b;
-        OutputStream outputStream2 = null;
-        try {
-            try {
-                outputStream = socket.getOutputStream();
-            } catch (Throwable th) {
-                th = th;
-            }
-        } catch (Exception e) {
-            e = e;
-        }
-        try {
-            jk7 jk7Var = new jk7(nk7Var, new jk4((byte) 1), this.a, outputStream, socket.getInetAddress());
-            while (!socket.isClosed()) {
-                jk7Var.c();
-            }
-            nk7.c(outputStream);
-        } catch (Exception e2) {
-            e = e2;
-            outputStream2 = outputStream;
-            if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
-                nk7.d.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
-            }
-            nk7.c(outputStream2);
-            nk7.c(inputStream);
-            nk7.c(socket);
-            ((List) nk7Var.c.c).remove(this);
-        } catch (Throwable th2) {
-            th = th2;
-            outputStream2 = outputStream;
-            nk7.c(outputStream2);
-            nk7.c(inputStream);
-            nk7.c(socket);
-            ((List) nk7Var.c.c).remove(this);
-            throw th;
-        }
-        nk7.c(inputStream);
-        nk7.c(socket);
-        ((List) nk7Var.c.c).remove(this);
+    public gk7(int i, int i2, int i3, int i4, int i5, int i6, float f, int i7, int i8, boolean z, boolean z2, int i9, int i10, int i11, boolean z3, int i12, int i13, int i14, int i15) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
+        this.e = i5;
+        this.f = i6;
+        this.g = f;
+        this.h = i7;
+        this.i = i8;
+        this.j = z;
+        this.k = z2;
+        this.l = i9;
+        this.m = i10;
+        this.n = i11;
+        this.o = z3;
+        this.p = i12;
+        this.q = i13;
+        this.r = i14;
+        this.s = i15;
     }
 }

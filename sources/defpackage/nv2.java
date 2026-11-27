@@ -34,9 +34,9 @@ public final class nv2 implements fn7 {
                 ((fx0) obj).invalidate();
                 return;
             case 3:
-                f09 f09Var = (f09) obj;
-                if (objArr.length > 1 && objArr[1] == f09Var.j2) {
-                    f09Var.y0();
+                g09 g09Var = (g09) obj;
+                if (objArr.length > 1 && objArr[1] == g09Var.j2) {
+                    g09Var.y0();
                     return;
                 }
                 return;

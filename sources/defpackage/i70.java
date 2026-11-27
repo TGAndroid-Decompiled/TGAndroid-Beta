@@ -5,6 +5,6 @@ public final class i70 implements zq7 {
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ar7) obj2).a(b, ((of7) obj).a);
+        ((ar7) obj2).a(b, ((pf7) obj).a);
     }
 }

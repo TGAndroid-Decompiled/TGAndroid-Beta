@@ -42,7 +42,7 @@ public final class sqa extends ny0 {
         this.c.addView(ie0Var, 0, tre.d(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
         iye.a(ie0Var);
         ie0Var.setOnClickListener(new ly(context, vnbVar, (byte) 2));
-        TLRPC.EmojiGameInfo emojiGameInfo = uc7.s1(i).l5;
+        TLRPC.EmojiGameInfo emojiGameInfo = uc7.s1(i).m5;
         if (!(emojiGameInfo instanceof TLRPC.TL_emojiGameDiceInfo)) {
             return;
         }
@@ -152,13 +152,13 @@ public final class sqa extends ny0 {
         textView.setAlpha(1.0f);
         StringBuilder sb = new StringBuilder("≈");
         di0.h();
-        sb.append(di0.f("USD", 2, (long) ((j / 1.0E9d) * uc7.s1(i).k4.k.i * 100.0d), false));
+        sb.append(di0.f("USD", 2, (long) ((j / 1.0E9d) * uc7.s1(i).l4.k.i * 100.0d), false));
         textView.setText(sb.toString());
         final int[] iArr = {2};
         lu7Var.c(false, !TextUtils.isEmpty(editTextBoldCursor.getText()));
         editTextBoldCursor.addTextChangedListener(new rqa(i, editTextBoldCursor, lu7Var, iArr, textView));
         r rVar = new r(context, vnbVar, editTextBoldCursor);
-        long[] jArr = uc7.s1(i).U3;
+        long[] jArr = uc7.s1(i).V3;
         int i5 = 0;
         while (true) {
             int length2 = jArr.length;
@@ -206,17 +206,17 @@ public final class sqa extends ny0 {
                                 parseDouble = Double.parseDouble(text.toString());
                             }
                             int i9 = i;
-                            int i10 = (parseDouble > (uc7.s1(i9).k4.V2.f() / 1.0E9d) ? 1 : (parseDouble == (uc7.s1(i9).k4.V2.f() / 1.0E9d) ? 0 : -1));
+                            int i10 = (parseDouble > (uc7.s1(i9).l4.V2.f() / 1.0E9d) ? 1 : (parseDouble == (uc7.s1(i9).l4.V2.f() / 1.0E9d) ? 0 : -1));
                             lu7 lu7Var2 = lu7Var;
                             int[] iArr2 = iArr;
                             if (i10 > 0) {
-                                editTextBoldCursor2.setText(Double.toString(uc7.s1(i9).k4.V2.f() / 1.0E9d));
+                                editTextBoldCursor2.setText(Double.toString(uc7.s1(i9).l4.V2.f() / 1.0E9d));
                                 editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
                                 int i11 = -iArr2[0];
                                 iArr2[0] = i11;
                                 hl.A3(i11, lu7Var2, null);
-                            } else if (!TextUtils.isEmpty(text) && parseDouble < uc7.s1(i9).k4.U2.f() / 1.0E9d) {
-                                editTextBoldCursor2.setText(Double.toString(uc7.s1(i9).k4.U2.f() / 1.0E9d));
+                            } else if (!TextUtils.isEmpty(text) && parseDouble < uc7.s1(i9).l4.U2.f() / 1.0E9d) {
+                                editTextBoldCursor2.setText(Double.toString(uc7.s1(i9).l4.U2.f() / 1.0E9d));
                                 editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
                                 int i12 = -iArr2[0];
                                 iArr2[0] = i12;

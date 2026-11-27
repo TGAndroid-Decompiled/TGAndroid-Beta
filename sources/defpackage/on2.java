@@ -1,5 +1,5 @@
 package defpackage;
-public final class on2 implements ef7 {
+public final class on2 implements ff7 {
     public final byte a;
     public final id b;
     public final long c;

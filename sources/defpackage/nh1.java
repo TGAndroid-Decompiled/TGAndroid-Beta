@@ -30,7 +30,7 @@ public final class nh1 extends FrameLayout implements snb {
     }
 
     public final void a(int i, boolean z) {
-        lc7 lc7Var = uc7.s1(this.d).E3;
+        lc7 lc7Var = uc7.s1(this.d).F3;
         int i2 = 0;
         if (lc7Var != null) {
             ArrayList arrayList = lc7Var.c;
@@ -70,7 +70,7 @@ public final class nh1 extends FrameLayout implements snb {
 
     @Override
     public final void updateColors() {
-        hl.d0(this.b, new y0(this, uc7.s1(this.d).E3, (byte) 15));
+        hl.d0(this.b, new y0(this, uc7.s1(this.d).F3, (byte) 15));
     }
 
     @Override

@@ -57,7 +57,7 @@ public final class lcb implements fn7, ag0 {
     public i6b N;
     public boolean N0;
     public float O;
-    public u5b O0;
+    public v5b O0;
     public float P;
     public int P0;
     public float Q;
@@ -82,7 +82,7 @@ public final class lcb implements fn7, ag0 {
     public float a0;
     public boolean a1;
     public boolean b0;
-    public final x58 b1;
+    public final y58 b1;
     public float c0;
     public boolean c1;
     public boolean d0;
@@ -110,15 +110,15 @@ public final class lcb implements fn7, ag0 {
     public WindowManager n;
     public boolean n0;
     public s8b n1;
-    public acb o0;
-    public x58 o1;
+    public bcb o0;
+    public y58 o1;
     public boolean p1;
     public int q0;
     public float q1;
     public WindowManager.LayoutParams r;
     public boolean r0;
     public boolean r1;
-    public ybb s;
+    public zbb s;
     public float s0;
     public boolean s1;
     public final icb t0;
@@ -127,7 +127,7 @@ public final class lcb implements fn7, ag0 {
     public g6b u1;
     public Dialog v0;
     public ValueAnimator v1;
-    public zbb w;
+    public acb w;
     public ag0 w0;
     public boolean w1;
     public g4a x;
@@ -157,7 +157,7 @@ public final class lcb implements fn7, ag0 {
         this.J0 = new pn(null);
         this.M0 = new ArrayList();
         this.Z0 = false;
-        this.b1 = new x58(this, (byte) 4);
+        this.b1 = new y58(this, (byte) 4);
         this.e1 = new LongSparseIntArray();
         new Paint(1);
         this.f = eVar;
@@ -239,7 +239,7 @@ public final class lcb implements fn7, ag0 {
         }
     }
 
-    public final void F(int i, Context context, TL_stories.StoryItem storyItem, ArrayList arrayList, int i2, u5b u5bVar, TL_stories.PeerStories peerStories, hcb hcbVar, boolean z) {
+    public final void F(int i, Context context, TL_stories.StoryItem storyItem, ArrayList arrayList, int i2, v5b v5bVar, TL_stories.PeerStories peerStories, hcb hcbVar, boolean z) {
         boolean z2;
         boolean z3;
         int i3;
@@ -285,7 +285,7 @@ public final class lcb implements fn7, ag0 {
             i3 = storyItem.messageId;
         }
         this.U0 = i3;
-        if (storyItem != null && u5bVar == null && peerStories == null) {
+        if (storyItem != null && v5bVar == null && peerStories == null) {
             z4 = true;
         } else {
             z4 = false;
@@ -296,16 +296,16 @@ public final class lcb implements fn7, ag0 {
             this.T0 = storyItem;
             z1 = storyItem;
         }
-        this.O0 = u5bVar;
+        this.O0 = v5bVar;
         this.Q0 = peerStories;
         this.u0 = hcbVar;
         this.R0 = z;
         this.h = i;
         this.X = 0.0f;
         this.Y = 0.0f;
-        acb acbVar = this.o0;
-        if (acbVar != null) {
-            acbVar.setHorizontalProgressToDismiss(0.0f);
+        bcb bcbVar = this.o0;
+        if (bcbVar != null) {
+            bcbVar.setHorizontalProgressToDismiss(0.0f);
             this.o0.G0 = 0;
         }
         this.e0 = 0.0f;
@@ -331,14 +331,14 @@ public final class lcb implements fn7, ag0 {
         this.c1 = false;
         e Q = LaunchActivity.Q();
         if (this.s == null) {
-            this.j0 = new GestureDetector(new ubb(this));
-            this.s = new ybb(this, context, Q);
+            this.j0 = new GestureDetector(new vbb(this));
+            this.s = new zbb(this, context, Q);
         }
         if (this.w == null) {
-            this.w = new zbb(this, context);
-            acb acbVar2 = new acb(this, this.h, context, this, this.E);
-            this.o0 = acbVar2;
-            acbVar2.setDelegate(new ccb(this, u5bVar, arrayList, context));
+            this.w = new acb(this, context);
+            bcb bcbVar2 = new bcb(this, this.h, context, this, this.E);
+            this.o0 = bcbVar2;
+            bcbVar2.setDelegate(new ccb(this, v5bVar, arrayList, context));
             this.w.addView(this.o0, tre.e(-1, -1, 1));
             this.z0 = new jx(context);
             if (this.a) {
@@ -382,17 +382,17 @@ public final class lcb implements fn7, ag0 {
         if (this.N0) {
             W();
         }
-        acb acbVar3 = this.o0;
-        if (u5bVar != null) {
-            acbVar3.D(this.h, u5bVar.d, u5bVar.h());
+        bcb bcbVar3 = this.o0;
+        if (v5bVar != null) {
+            bcbVar3.D(this.h, v5bVar.d, v5bVar.h());
         } else {
             int i4 = this.h;
-            acbVar3.B0 = arrayList;
-            acbVar3.z0 = i4;
-            acbVar3.setAdapter(null);
-            acbVar3.setAdapter(acbVar3.A0);
-            acbVar3.setCurrentItem(i2);
-            acbVar3.D0 = true;
+            bcbVar3.B0 = arrayList;
+            bcbVar3.z0 = i4;
+            bcbVar3.setAdapter(null);
+            bcbVar3.setAdapter(bcbVar3.A0);
+            bcbVar3.setCurrentItem(i2);
+            bcbVar3.D0 = true;
         }
         this.n = (WindowManager) context.getSystemService("window");
         if (Q == null || Q.getLayoutContainer() == null || Q.isSupportEdgeToEdge()) {
@@ -404,21 +404,21 @@ public final class lcb implements fn7, ag0 {
             z5 = false;
         }
         this.c = z5;
-        zbb zbbVar = this.w;
+        acb acbVar = this.w;
         hja hjaVar = new hja(this, (byte) 21);
         WeakHashMap weakHashMap = ihc.a;
-        ahc.i(zbbVar, hjaVar);
+        ahc.i(acbVar, hjaVar);
         boolean z7 = this.b;
-        ybb ybbVar = this.s;
+        zbb zbbVar = this.s;
         if (z7) {
-            hl.B2(ybbVar);
+            hl.B2(zbbVar);
             this.s.setTag(2131296649, new Object());
             Q.getLayoutContainer().addView(this.s);
             if (!this.c) {
                 hl.V2(Q.getParentActivity(), Q.getClassGuid());
             }
         } else {
-            ybbVar.setFocusable(false);
+            zbbVar.setFocusable(false);
             this.w.setFocusable(false);
             this.w.setSystemUiVisibility(1792);
             hl.s3(this.n, this.s, this.r);
@@ -451,12 +451,12 @@ public final class lcb implements fn7, ag0 {
         }
     }
 
-    public final void G(Context context, int i, u5b u5bVar, l6b l6bVar) {
+    public final void G(Context context, int i, v5b v5bVar, l6b l6bVar) {
         this.h = yac.t0;
         ArrayList arrayList = new ArrayList();
-        arrayList.add(Long.valueOf(u5bVar.d));
+        arrayList.add(Long.valueOf(v5bVar.d));
         this.P0 = i;
-        K(context, null, arrayList, 0, u5bVar, null, l6bVar, false);
+        K(context, null, arrayList, 0, v5bVar, null, l6bVar, false);
     }
 
     public final void H(Context context, long j, hcb hcbVar) {
@@ -506,8 +506,8 @@ public final class lcb implements fn7, ag0 {
         E(yac.t0, context, storyItem, l6bVar);
     }
 
-    public final void K(Context context, TL_stories.StoryItem storyItem, ArrayList arrayList, int i, u5b u5bVar, TL_stories.PeerStories peerStories, hcb hcbVar, boolean z) {
-        F(yac.t0, context, storyItem, arrayList, i, u5bVar, peerStories, hcbVar, z);
+    public final void K(Context context, TL_stories.StoryItem storyItem, ArrayList arrayList, int i, v5b v5bVar, TL_stories.PeerStories peerStories, hcb hcbVar, boolean z) {
+        F(yac.t0, context, storyItem, arrayList, i, v5bVar, peerStories, hcbVar, z);
     }
 
     public final void L(e eVar) {
@@ -625,8 +625,8 @@ public final class lcb implements fn7, ag0 {
                 this.l0 = true;
             }
             U();
-            acb acbVar = this.o0;
-            if (acbVar != null && (currentPeerView = acbVar.getCurrentPeerView()) != null) {
+            bcb bcbVar = this.o0;
+            if (bcbVar != null && (currentPeerView = bcbVar.getCurrentPeerView()) != null) {
                 currentPeerView.setLongpressed(this.a1);
             }
         }
@@ -659,7 +659,7 @@ public final class lcb implements fn7, ag0 {
         if (currentPeerView != null && currentPeerView.L1 != null && (((xbVar = currentPeerView.L2) == null || xbVar.getVisibility() != 0) && (editField = currentPeerView.L1.getEditField()) != null)) {
             editField.requestFocus();
             hl.E3(editField);
-            hl.d3(new x58(this, (byte) 6), 200L);
+            hl.d3(new y58(this, (byte) 6), 200L);
             return;
         }
         i();
@@ -735,9 +735,9 @@ public final class lcb implements fn7, ag0 {
                 w96Var.F((1.0f - this.W) * this.V);
             }
         }
-        ybb ybbVar = this.s;
-        if (ybbVar != null) {
-            ybbVar.invalidate();
+        zbb zbbVar = this.s;
+        if (zbbVar != null) {
+            zbbVar.invalidate();
         }
     }
 
@@ -808,11 +808,11 @@ public final class lcb implements fn7, ag0 {
         ArrayList arrayList;
         int i3 = 0;
         if (i == jn7.A5) {
-            if (this.O0 == ((u5b) objArr[0])) {
+            if (this.O0 == ((v5b) objArr[0])) {
                 w();
-                acb acbVar = this.o0;
-                u5b u5bVar = this.O0;
-                acbVar.D(this.h, u5bVar.d, u5bVar.h());
+                bcb bcbVar = this.o0;
+                v5b v5bVar = this.O0;
+                bcbVar.D(this.h, v5bVar.d, v5bVar.h());
                 g4a g4aVar = this.x;
                 if (g4aVar != null) {
                     TL_stories.StoryItem selectedStory = g4aVar.getSelectedStory();
@@ -933,8 +933,8 @@ public final class lcb implements fn7, ag0 {
             this.m0 = false;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.a0, 0.0f);
             this.I = ofFloat;
-            ofFloat.addUpdateListener(new sbb(this, (byte) 2));
-            this.I.addListener(new tbb(this, (byte) 1));
+            ofFloat.addUpdateListener(new tbb(this, (byte) 2));
+            this.I.addListener(new ubb(this, (byte) 1));
             this.I.setDuration(250L);
             this.I.setInterpolator(hb.w);
             this.I.start();
@@ -973,7 +973,7 @@ public final class lcb implements fn7, ag0 {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f5, f);
             this.v1 = ofFloat;
-            ofFloat.addUpdateListener(new sbb(this, (byte) 3));
+            ofFloat.addUpdateListener(new tbb(this, (byte) 3));
             this.v1.addListener(new i1a((byte) 6, this, z));
             ValueAnimator valueAnimator = this.v1;
             if (z) {
@@ -1026,7 +1026,7 @@ public final class lcb implements fn7, ag0 {
         this.F = false;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.V, 0.0f);
         this.G = ofFloat;
-        ofFloat.addUpdateListener(new sbb(this, (byte) 0));
+        ofFloat.addUpdateListener(new tbb(this, (byte) 0));
         if (!z) {
             this.P = 0.0f;
             this.O = 0.0f;
@@ -1044,7 +1044,7 @@ public final class lcb implements fn7, ag0 {
         } else {
             C();
         }
-        hl.d3(new x58(this, (byte) 2), 16L);
+        hl.d3(new y58(this, (byte) 2), 16L);
         if (this.c1) {
             this.c1 = false;
         }
@@ -1076,8 +1076,8 @@ public final class lcb implements fn7, ag0 {
             k(false);
             return;
         }
-        acb acbVar = this.o0;
-        if (acbVar != null && (currentPeerView = acbVar.getCurrentPeerView()) != null) {
+        bcb bcbVar = this.o0;
+        if (bcbVar != null && (currentPeerView = bcbVar.getCurrentPeerView()) != null) {
             z = currentPeerView.i0();
         }
         if (z) {
@@ -1088,16 +1088,16 @@ public final class lcb implements fn7, ag0 {
 
     public final void q() {
         o68 o68Var;
-        acb acbVar = this.o0;
-        if (acbVar != null) {
-            ArrayList arrayList = acbVar.Q0;
-            for (int i = 0; i < acbVar.getChildCount(); i++) {
-                View childAt = acbVar.getChildAt(i);
+        bcb bcbVar = this.o0;
+        if (bcbVar != null) {
+            ArrayList arrayList = bcbVar.Q0;
+            for (int i = 0; i < bcbVar.getChildCount(); i++) {
+                View childAt = bcbVar.getChildAt(i);
                 if ((childAt instanceof w6b) && (o68Var = ((w6b) childAt).a) != null && !o68Var.E3) {
                     o68Var.E3 = true;
-                    g58 g58Var = o68Var.L1;
-                    if (g58Var != null) {
-                        g58Var.g1();
+                    h58 h58Var = o68Var.L1;
+                    if (h58Var != null) {
+                        h58Var.g1();
                     }
                 }
             }
@@ -1105,9 +1105,9 @@ public final class lcb implements fn7, ag0 {
                 o68 o68Var2 = (o68) arrayList.get(i2);
                 if (!o68Var2.E3) {
                     o68Var2.E3 = true;
-                    g58 g58Var2 = o68Var2.L1;
-                    if (g58Var2 != null) {
-                        g58Var2.g1();
+                    h58 h58Var2 = o68Var2.L1;
+                    if (h58Var2 != null) {
+                        h58Var2.g1();
                     }
                 }
             }
@@ -1156,10 +1156,10 @@ public final class lcb implements fn7, ag0 {
         }
     }
 
-    public final boolean v(ybb ybbVar, float f, float f2, boolean z) {
-        g58 g58Var;
-        g58 g58Var2;
-        if (ybbVar != null) {
+    public final boolean v(zbb zbbVar, float f, float f2, boolean z) {
+        h58 h58Var;
+        h58 h58Var2;
+        if (zbbVar != null) {
             if (!this.X0) {
                 if (this.x == null || this.f0 == 0.0f) {
                     o68 currentPeerView = this.o0.getCurrentPeerView();
@@ -1175,15 +1175,15 @@ public final class lcb implements fn7, ag0 {
                     if (z) {
                         return false;
                     }
-                    if (currentPeerView != null && (g58Var2 = currentPeerView.L1) != null && g58Var2.getVisibility() == 0) {
+                    if (currentPeerView != null && (h58Var2 = currentPeerView.L1) != null && h58Var2.getVisibility() == 0) {
                         if (f2 > currentPeerView.L1.getY() + currentPeerView.getY() + this.o0.getY() + this.w.getY()) {
                             return true;
                         }
                     }
-                    if ((currentPeerView != null && (g58Var = currentPeerView.L1) != null && g58Var.X0()) || this.u1 != null) {
+                    if ((currentPeerView != null && (h58Var = currentPeerView.L1) != null && h58Var.X0()) || this.u1 != null) {
                         return true;
                     }
-                    return hl.Y(ybbVar, f, f2, currentPeerView);
+                    return hl.Y(zbbVar, f, f2, currentPeerView);
                 }
                 return true;
             }
@@ -1193,11 +1193,11 @@ public final class lcb implements fn7, ag0 {
     }
 
     public final o68 w() {
-        acb acbVar = this.o0;
-        if (acbVar == null) {
+        bcb bcbVar = this.o0;
+        if (bcbVar == null) {
             return null;
         }
-        return acbVar.getCurrentPeerView();
+        return bcbVar.getCurrentPeerView();
     }
 
     public final void y() {
@@ -1221,9 +1221,9 @@ public final class lcb implements fn7, ag0 {
             }
             icbVar.c = null;
             icbVar.b = null;
-            zbb zbbVar = this.w;
-            if (zbbVar != null) {
-                zbbVar.a(true);
+            acb acbVar = this.w;
+            if (acbVar != null) {
+                acbVar.a(true);
             }
             this.J0.e();
             d30 d30Var = this.G0;
@@ -1241,9 +1241,9 @@ public final class lcb implements fn7, ag0 {
             this.n0 = false;
             this.d = false;
             l();
-            x58 x58Var = this.o1;
-            if (x58Var != null) {
-                x58Var.run();
+            y58 y58Var = this.o1;
+            if (y58Var != null) {
+                y58Var.run();
                 this.o1 = null;
             }
         }

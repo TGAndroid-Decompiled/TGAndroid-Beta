@@ -36,7 +36,7 @@ public final class jo4 {
     public int i;
     public int j;
     public String k;
-    public uf7 l;
+    public vf7 l;
     public String m;
     public boolean n;
     public long o;

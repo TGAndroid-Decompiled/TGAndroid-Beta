@@ -1121,7 +1121,7 @@ public class nd9 extends e implements s84 {
                 }
                 arrayList.remove(Long.valueOf(j));
             } else {
-                int f = uc7.s1(this.currentAccount).k4.w.f();
+                int f = uc7.s1(this.currentAccount).l4.w.f();
                 if (arrayList.size() >= f) {
                     hl.A3(-3.0f, view, null);
                     d31.b0(this).Q(2131623982, 36, ob6.H(',', "Gift2ResaleCollectionsLimit", f)).j();

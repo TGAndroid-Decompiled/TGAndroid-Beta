@@ -17,7 +17,7 @@ public final class m40 implements mfb {
     @Override
     public final Object get() {
         boolean z;
-        Object ah7Var;
+        Object bh7Var;
         switch (this.a) {
             case 0:
                 if (Build.VERSION.SDK_INT > 37 && Objects.equals(gcc.J("persist.audio.compressed_offload_implicit_aac"), "false")) {
@@ -28,15 +28,15 @@ public final class m40 implements mfb {
                 return Boolean.valueOf(z);
             case 1:
                 ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor();
-                if (newSingleThreadExecutor instanceof ah7) {
-                    return (ah7) newSingleThreadExecutor;
+                if (newSingleThreadExecutor instanceof bh7) {
+                    return (bh7) newSingleThreadExecutor;
                 }
                 if (newSingleThreadExecutor instanceof ScheduledExecutorService) {
-                    ah7Var = new dh7((ScheduledExecutorService) newSingleThreadExecutor);
+                    bh7Var = new eh7((ScheduledExecutorService) newSingleThreadExecutor);
                 } else {
-                    ah7Var = new ah7(newSingleThreadExecutor);
+                    bh7Var = new bh7(newSingleThreadExecutor);
                 }
-                return ah7Var;
+                return bh7Var;
             case 2:
                 byte[] bArr = new byte[12];
                 nc3.i.nextBytes(bArr);

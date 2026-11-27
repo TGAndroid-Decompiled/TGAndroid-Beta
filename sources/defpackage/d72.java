@@ -52,20 +52,20 @@ public final class d72 extends c79 {
 
     @Override
     public final f89 x(ViewGroup viewGroup, int i) {
-        View v09Var;
+        View w09Var;
         Context context = this.c;
         if (i != 0) {
             if (i != 1) {
-                v09Var = new View(context);
-                v09Var.setTag(-33024);
+                w09Var = new View(context);
+                w09Var.setTag(-33024);
             } else {
-                v09Var = new View(context);
-                v09Var.setLayoutParams(new r79(-1, hl.L(56.0f)));
-                v09Var.setTag(-33024);
+                w09Var = new View(context);
+                w09Var.setLayoutParams(new r79(-1, hl.L(56.0f)));
+                w09Var.setTag(-33024);
             }
         } else {
-            v09Var = new v09(this.f.a, context, false);
+            w09Var = new w09(this.f.a, context, false);
         }
-        return new f89(v09Var);
+        return new f89(w09Var);
     }
 }

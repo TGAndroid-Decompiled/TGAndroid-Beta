@@ -20,7 +20,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
 import org.xml.sax.Attributes;
-public final class rj2 implements lx2, fzc, tq2, h4e, y2c, e30, xy1, j30, tw8, rb2, up5, mu8, bl0, yba, d23 {
+public final class rj2 implements lx2, fzc, tq2, h4e, y2c, e30, xy1, j30, tw8, rb2, up5, mu8, bl0, zba, d23 {
     public final byte a;
     public static final rj2 b = new rj2((byte) 1);
     public static final String[] c = new String[0];

@@ -52,7 +52,7 @@ import org.telegram.messenger.a;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.PhotoViewer;
-public class lh2 implements caa, ty9, xj0, bf7, ni9, f73, l71, vt3, iy7 {
+public class lh2 implements caa, ty9, xj0, cf7, ni9, f73, l71, vt3, iy7 {
     public static volatile lh2 d;
     public static final int[] e = {16843067, 16843068};
     public static final sae f = new Object();
@@ -739,7 +739,7 @@ public class lh2 implements caa, ty9, xj0, bf7, ni9, f73, l71, vt3, iy7 {
         return arrayList2;
     }
 
-    public final ui7 r(int i, long j, boolean z) {
+    public final vi7 r(int i, long j, boolean z) {
         zm9 zm9Var = (zm9) this.b;
         if (i > 0) {
             i = ((SparseIntArray) this.c).get(i, 0);
@@ -753,13 +753,13 @@ public class lh2 implements caa, ty9, xj0, bf7, ni9, f73, l71, vt3, iy7 {
         if (H0 != null) {
             obj = H0.get(j2);
         }
-        ui7 ui7Var = (ui7) obj;
-        if (ui7Var == null && z) {
-            ui7 ui7Var2 = new ui7();
-            zm9Var.N0(j, 0L, j2, ui7Var2);
-            return ui7Var2;
+        vi7 vi7Var = (vi7) obj;
+        if (vi7Var == null && z) {
+            vi7 vi7Var2 = new vi7();
+            zm9Var.N0(j, 0L, j2, vi7Var2);
+            return vi7Var2;
         }
-        return ui7Var;
+        return vi7Var;
     }
 
     public final e84 s(Object... objArr) {

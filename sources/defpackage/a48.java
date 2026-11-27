@@ -484,7 +484,7 @@ public final class a48 extends FrameLayout {
             u38Var.invalidate();
         }
         j(true);
-        hl.d0(this.b, new ii7(this, (byte) 10));
+        hl.d0(this.b, new ji7(this, (byte) 10));
         g48 g48Var = this.F;
         if (g48Var != null) {
             l(g48Var);

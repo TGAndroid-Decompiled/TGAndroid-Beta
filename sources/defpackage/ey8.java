@@ -44,7 +44,7 @@ public abstract class ey8 {
     public final dy8 a0;
     public final dy8 b0;
     public int c0;
-    public final ki7 d0;
+    public final li7 d0;
     public boolean e0;
     public final TextPaint k;
     public final ee1 l;
@@ -89,7 +89,7 @@ public abstract class ey8 {
         this.U = 1.0f;
         this.a0 = new dy8(this, (byte) 1);
         this.b0 = new dy8(this, (byte) 2);
-        this.d0 = new ki7(this, (byte) 10);
+        this.d0 = new li7(this, (byte) 10);
         this.e0 = false;
         textPaint.setTypeface(hl.o());
         textPaint.setTextSize(hl.L(16.0f));
@@ -493,9 +493,9 @@ public abstract class ey8 {
                 } else {
                     this.e0 = true;
                     of3 of3Var2 = this.H;
-                    ki7 ki7Var = this.d0;
-                    of3Var2.removeCallbacks(ki7Var);
-                    this.H.postDelayed(ki7Var, 200L);
+                    li7 li7Var = this.d0;
+                    of3Var2.removeCallbacks(li7Var);
+                    this.H.postDelayed(li7Var, 200L);
                 }
             }
             float height2 = (this.H.getHeight() - (i19 / 2.0f)) + hl.L(6.0f);

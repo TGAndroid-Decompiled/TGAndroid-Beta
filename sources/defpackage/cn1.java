@@ -1,5 +1,5 @@
 package defpackage;
-public final class cn1 implements df7 {
+public final class cn1 implements ef7 {
     public final byte a;
     public final zu1 b;
 

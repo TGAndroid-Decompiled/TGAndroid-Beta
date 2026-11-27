@@ -1,5 +1,5 @@
 package defpackage;
-public final class joc implements sf7 {
+public final class joc implements tf7 {
     public final String a;
     public final String b;
 

@@ -200,7 +200,7 @@ public class r47 {
     public boolean i1;
     public final Drawable[] i2;
     public jfc i3;
-    public o5b j;
+    public p5b j;
     public int j0;
     public TLRPC.TL_forumTopic j1;
     public final boolean j2;
@@ -3742,7 +3742,7 @@ public class r47 {
         }
         uc7 s1 = uc7.s1(i2);
         boolean p = s1.getUserConfig().p();
-        hr hrVar = s1.k4;
+        hr hrVar = s1.l4;
         if (p) {
             ds2Var = hrVar.v1;
         } else {
@@ -4401,7 +4401,7 @@ public class r47 {
             if (this.h1) {
                 this.U = 0;
                 this.D = 27;
-                this.i1 = uc7.s1(i4).X3.getBoolean("c" + B0(this.k) + "_rec", true);
+                this.i1 = uc7.s1(i4).Y3.getBoolean("c" + B0(this.k) + "_rec", true);
             } else {
                 TLRPC.Message message = this.k;
                 if (!(message instanceof TLRPC.TL_message) && !(message instanceof TLRPC.TL_messageForwarded_old2)) {
@@ -5055,7 +5055,7 @@ public class r47 {
         if (!xea.D0) {
             if (this.X2 == 0 && (message = this.k) != null && (B0(message)) != 0) {
                 int i2 = this.K1;
-                if (!xea.D0 && (i <= 0 || !uc7.s1(i2).k4.z0.f.contains(Long.valueOf(B0)))) {
+                if (!xea.D0 && (i <= 0 || !uc7.s1(i2).l4.z0.f.contains(Long.valueOf(B0)))) {
                     b = 1;
                 } else {
                     b = 2;
@@ -5075,7 +5075,7 @@ public class r47 {
             if (message.paid_suggested_post_stars || message.paid_suggested_post_ton) {
                 int i = this.K1;
                 int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
-                if (currentTime - this.k.date < uc7.s1(i).k4.h.g(TimeUnit.SECONDS)) {
+                if (currentTime - this.k.date < uc7.s1(i).l4.h.g(TimeUnit.SECONDS)) {
                     return true;
                 }
                 return false;
@@ -5148,12 +5148,12 @@ public class r47 {
                     TLRPC.TL_factCheck tL_factCheck3 = this.k.factcheck;
                     int i = b.a;
                     if (tL_factCheck3 != null) {
-                        jf7 Y = jf7.Y(i);
-                        Y.a.c(new vx3(Y, tL_factCheck3, (byte) 13));
+                        kf7 a0 = kf7.a0(i);
+                        a0.a.c(new vx3(a0, tL_factCheck3, (byte) 13));
                         if (!b.f) {
                             b.f = true;
-                            jf7 Y2 = jf7.Y(i);
-                            Y2.a.c(new be7(Y2, (byte) 6));
+                            kf7 a02 = kf7.a0(i);
+                            a02.a.c(new hd7(a02, (byte) 9));
                         }
                     }
                 }
@@ -5608,7 +5608,7 @@ public class r47 {
     public final void X5() {
         boolean z = !this.i1;
         this.i1 = z;
-        uc7.s1(this.K1).X3.edit().putBoolean("c" + B0(this.k) + "_rec", z).apply();
+        uc7.s1(this.K1).Y3.edit().putBoolean("c" + B0(this.k) + "_rec", z).apply();
     }
 
     public final String Y0() {
@@ -6020,9 +6020,9 @@ public class r47 {
             }
             if (z) {
                 int i2 = this.K1;
-                jf7 Y = jf7.Y(i2);
+                kf7 a0 = kf7.a0(i2);
                 TLRPC.Message message = this.k;
-                Y.H(new ae7(Y, message.dialog_id, b2(i2, message, false, false), this.k.id, (byte) 7));
+                a0.J(new ae7(a0, message.dialog_id, b2(i2, message, false, false), this.k.id, (byte) 7));
             }
         }
     }
@@ -6898,7 +6898,7 @@ public class r47 {
         TLRPC.MessageMedia n1 = n1(this.k);
         if ((n1 instanceof TLRPC.TL_messageMediaToDo) && !l3(this.k)) {
             TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) n1;
-            if (tL_messageMediaToDo.todo.list.size() < uc7.s1(this.K1).k4.F3.f()) {
+            if (tL_messageMediaToDo.todo.list.size() < uc7.s1(this.K1).l4.F3.f()) {
                 if (!O3()) {
                     TLRPC.TodoList todoList = tL_messageMediaToDo.todo;
                     if (!todoList.others_can_complete || !todoList.others_can_append) {
@@ -7962,7 +7962,7 @@ public class r47 {
     }
 
     public final boolean v5() {
-        if (!R4() && F0() != null && wm9.i.contains(F0().mime_type) && F0().size < (uc7.s1(this.K1).k4.Z0.f() << 1)) {
+        if (!R4() && F0() != null && wm9.i.contains(F0().mime_type) && F0().size < (uc7.s1(this.K1).l4.Z0.f() << 1)) {
             for (int i = 0; i < F0().attributes.size(); i++) {
                 TLRPC.DocumentAttribute documentAttribute = F0().attributes.get(i);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration < 5.0d) {

@@ -20,13 +20,13 @@ public final class cg5 implements pcc {
     public final Object k;
     public final Object l;
 
-    public cg5(LinearLayout linearLayout, ypc ypcVar, vnb vnbVar, int i, TextView textView, jl7[] jl7VarArr, hjb hjbVar, kcc kccVar, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
+    public cg5(LinearLayout linearLayout, ypc ypcVar, vnb vnbVar, int i, TextView textView, kl7[] kl7VarArr, hjb hjbVar, kcc kccVar, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
         this.c = linearLayout;
         this.d = ypcVar;
         this.e = vnbVar;
         this.b = i;
         this.f = textView;
-        this.g = jl7VarArr;
+        this.g = kl7VarArr;
         this.h = hjbVar;
         this.i = kccVar;
         this.j = context;

@@ -279,16 +279,16 @@ public final class z4b extends c79 {
                     }
                     return;
                 }
-                t3b t3bVar = (t3b) view;
+                u3b u3bVar = (u3b) view;
                 Object obj = sparseArray.get(i);
                 if (obj instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
                     if (!TextUtils.isEmpty(this.S) && this.H.containsKey(tL_messages_stickerSet)) {
                         TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                         if (stickerSet != null) {
-                            t3bVar.a(0, stickerSet.title);
+                            u3bVar.a(0, stickerSet.title);
                         }
-                        t3bVar.c(this.S.length(), tL_messages_stickerSet.set.short_name);
+                        u3bVar.c(this.S.length(), tL_messages_stickerSet.set.short_name);
                         return;
                     }
                     Integer num = (Integer) this.I.get(tL_messages_stickerSet);
@@ -301,9 +301,9 @@ public final class z4b extends c79 {
                         } else {
                             i2 = 0;
                         }
-                        t3bVar.b(str, 0, null, intValue, i2);
+                        u3bVar.b(str, 0, null, intValue, i2);
                     }
-                    t3bVar.c(0, null);
+                    u3bVar.c(0, null);
                     return;
                 }
                 return;
@@ -366,7 +366,7 @@ public final class z4b extends c79 {
                         view = h94Var;
                     }
                 } else {
-                    view = new t3b(this.d, false, true, this.U, false);
+                    view = new u3b(this.d, false, true, this.U, false);
                 }
             } else {
                 view = new t24(context);

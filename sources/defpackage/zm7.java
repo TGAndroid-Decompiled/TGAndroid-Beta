@@ -139,7 +139,7 @@ public abstract class zm7 {
                                 }
                                 intent2.putExtra("android.intent.extra.update_application_message_text", String.valueOf(obj));
                                 if (zm7.a(intent2)) {
-                                    hl.c3(new ki7(intent2, (byte) 2));
+                                    hl.c3(new li7(intent2, (byte) 2));
                                 }
                             }
                         }

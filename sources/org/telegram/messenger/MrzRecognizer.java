@@ -326,36 +326,36 @@ public class MrzRecognizer {
         return c - '0';
     }
 
-    public static void f(String str, ei7 ei7Var) {
+    public static void f(String str, fi7 fi7Var) {
         int i;
         try {
             int parseInt = Integer.parseInt(str.substring(0, 2));
-            ei7Var.i = parseInt;
+            fi7Var.i = parseInt;
             int i2 = (Calendar.getInstance().get(1) % 100) - 5;
-            int i3 = ei7Var.i;
+            int i3 = fi7Var.i;
             if (parseInt < i2) {
                 i = i3 + 2000;
             } else {
                 i = i3 + 1900;
             }
-            ei7Var.i = i;
-            ei7Var.j = Integer.parseInt(str.substring(2, 4));
-            ei7Var.k = Integer.parseInt(str.substring(4));
+            fi7Var.i = i;
+            fi7Var.j = Integer.parseInt(str.substring(2, 4));
+            fi7Var.k = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {
         }
     }
 
     private static native int[] findCornerPoints(Bitmap bitmap);
 
-    public static void g(String str, ei7 ei7Var) {
+    public static void g(String str, fi7 fi7Var) {
         try {
             if ("<<<<<<".equals(str)) {
-                ei7Var.o = true;
+                fi7Var.o = true;
                 return;
             }
-            ei7Var.f = Integer.parseInt(str.substring(0, 2)) + 2000;
-            ei7Var.g = Integer.parseInt(str.substring(2, 4));
-            ei7Var.h = Integer.parseInt(str.substring(4));
+            fi7Var.f = Integer.parseInt(str.substring(0, 2)) + 2000;
+            fi7Var.g = Integer.parseInt(str.substring(2, 4));
+            fi7Var.h = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {
         }
     }
@@ -370,7 +370,7 @@ public class MrzRecognizer {
         return 2;
     }
 
-    public static ei7 i(Bitmap bitmap) {
+    public static fi7 i(Bitmap bitmap) {
         re0 re0Var;
         byte b;
         af0 af0Var = new af0(new cgd(a.b, (qwe) new Object()));
@@ -478,8 +478,8 @@ public class MrzRecognizer {
         return null;
     }
 
-    public static defpackage.ei7 j(android.graphics.Bitmap r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.j(android.graphics.Bitmap):ei7");
+    public static defpackage.fi7 j(android.graphics.Bitmap r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.j(android.graphics.Bitmap):fi7");
     }
 
     public static String k(String str) {

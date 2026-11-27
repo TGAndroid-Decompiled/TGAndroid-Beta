@@ -15,7 +15,7 @@ import org.telegram.ui.ProfileActivity;
 public abstract class gv8 extends FrameLayout implements fn7 {
     public final uq0 a;
     public final uic b;
-    public final q5b c;
+    public final r5b c;
     public final fv8 d;
     public int e;
     public boolean f;
@@ -25,19 +25,19 @@ public abstract class gv8 extends FrameLayout implements fn7 {
     public final Rect s;
     public final uk8 w;
 
-    public gv8(Context context, q5b q5bVar, final ega egaVar) {
+    public gv8(Context context, r5b r5bVar, final ega egaVar) {
         super(context);
         this.s = new Rect();
-        this.c = q5bVar;
-        Objects.requireNonNull(q5bVar);
-        this.w = new uk8(q5bVar, (byte) 16);
+        this.c = r5bVar;
+        Objects.requireNonNull(r5bVar);
+        this.w = new uk8(r5bVar, (byte) 16);
         final fga fgaVar = (fga) this;
         uq0 uq0Var = new uq0(fgaVar, context, egaVar, (byte) 2);
         this.a = uq0Var;
         uq0Var.setAllowDisallowInterceptTouch(true);
         fv8 fv8Var = new fv8(fgaVar);
         this.d = fv8Var;
-        fv8Var.a = q5bVar.a();
+        fv8Var.a = r5bVar.a();
         uq0Var.setAdapter(fv8Var);
         uq0Var.setTranslationY(hl.L(42.0f));
         uic l = uq0Var.l(10, true);
@@ -319,7 +319,7 @@ public abstract class gv8 extends FrameLayout implements fn7 {
             }
         });
         addView(l, tre.e(-1, 42, 48));
-        c(!q5bVar.h.isEmpty(), false, true);
+        c(!r5bVar.h.isEmpty(), false, true);
     }
 
     public final void a() {
@@ -330,19 +330,19 @@ public abstract class gv8 extends FrameLayout implements fn7 {
         } else {
             i = 0;
         }
-        q5b q5bVar = this.c;
-        boolean a = q5bVar.a();
+        r5b r5bVar = this.c;
+        boolean a = r5bVar.a();
         fv8 fv8Var = this.d;
         fv8Var.a = a;
         this.a.m(true);
-        c(!q5bVar.h.isEmpty(), true, false);
+        c(!r5bVar.h.isEmpty(), true, false);
         int i2 = this.e;
         if (i2 > 0) {
             if (fv8Var.i(i2) != -1) {
                 hl.d3(new dv8(this, this.e, (byte) 1), 500L);
                 this.e = 0;
             }
-        } else if (uicVar != null && i > 0 && q5bVar.b(i) == null) {
+        } else if (uicVar != null && i > 0 && r5bVar.b(i) == null) {
             uicVar.e(0, 0);
         }
     }
@@ -411,9 +411,9 @@ public abstract class gv8 extends FrameLayout implements fn7 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        q5b q5bVar = this.c;
-        jn7.f(q5bVar.a).b(this, jn7.l3);
-        if (this.r != q5bVar.h.isEmpty() && this.d.a == q5bVar.a()) {
+        r5b r5bVar = this.c;
+        jn7.f(r5bVar.a).b(this, jn7.l3);
+        if (this.r != r5bVar.h.isEmpty() && this.d.a == r5bVar.a()) {
             return;
         }
         a();
@@ -483,9 +483,9 @@ public abstract class gv8 extends FrameLayout implements fn7 {
             }
             if (!z) {
                 hl.r(this.w);
-                q5b q5bVar = this.c;
-                q5bVar.e();
-                q5bVar.f(false);
+                r5b r5bVar = this.c;
+                r5bVar.e();
+                r5bVar.f(false);
                 int currentPosition = uicVar.getCurrentPosition();
                 fv8 fv8Var = this.d;
                 int f4 = fv8Var.f(currentPosition);

@@ -3,7 +3,7 @@ package defpackage;
 import java.util.ArrayList;
 import java.util.Arrays;
 public abstract class xte {
-    public static fh7 a(float[] fArr, float[] fArr2, float f, float f2, int[] iArr, float f3) {
+    public static gh7 a(float[] fArr, float[] fArr2, float f, float f2, int[] iArr, float f3) {
         int[][] iArr2;
         float f4;
         float f5;
@@ -138,7 +138,7 @@ public abstract class xte {
         for (int i19 = 0; i19 < length; i19++) {
             fArr4[i19] = fArr2[i19];
         }
-        eh7 eh7Var = new eh7(fArr, fArr4, f, f2, f3);
+        fh7 fh7Var = new fh7(fArr, fArr4, f, f2, f3);
         float f12 = f5 / f2;
         float f13 = f5 / f;
         if (f3 > f4) {
@@ -146,10 +146,10 @@ public abstract class xte {
         } else {
             f6 = f4;
         }
-        eh7 eh7Var2 = new eh7(fArr3, fArr4, f12, f13, f6);
+        fh7 fh7Var2 = new fh7(fArr3, fArr4, f12, f13, f6);
         int length2 = iArr7.length;
         int i20 = 0;
-        fh7 fh7Var = obj;
+        gh7 gh7Var = obj;
         while (i20 < length2) {
             int[] iArr11 = iArr7[i20];
             int i21 = 0;
@@ -161,27 +161,27 @@ public abstract class xte {
             float f14 = i21 * 0.05f;
             int length3 = iArr3.length;
             int i23 = 0;
-            fh7 fh7Var2 = fh7Var;
+            gh7 gh7Var2 = gh7Var;
             while (i23 < length3) {
                 int[] iArr12 = iArr3[i23];
-                eh7 eh7Var3 = eh7Var;
+                fh7 fh7Var3 = fh7Var;
                 int[] iArr13 = iArr11;
                 float f15 = f14;
-                fh7 fh7Var3 = fh7Var2;
-                eh7Var3.a(iArr13, iArr12, f15, fh7Var3, false);
+                gh7 gh7Var3 = gh7Var2;
+                fh7Var3.a(iArr13, iArr12, f15, gh7Var3, false);
                 if (iArr12.length > 1) {
-                    eh7Var2.a(iArr13, iArr12, f15, fh7Var3, true);
+                    fh7Var2.a(iArr13, iArr12, f15, gh7Var3, true);
                 }
                 i23++;
-                fh7Var2 = fh7Var3;
-                eh7Var = eh7Var3;
+                gh7Var2 = gh7Var3;
+                fh7Var = fh7Var3;
                 iArr11 = iArr13;
                 f14 = f15;
             }
             i20++;
-            eh7Var = eh7Var;
-            fh7Var = fh7Var2;
+            fh7Var = fh7Var;
+            gh7Var = gh7Var2;
         }
-        return fh7Var;
+        return gh7Var;
     }
 }

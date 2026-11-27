@@ -9,7 +9,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class lf implements fd, b86, on5, mz6, pz6, hf7, ot2 {
+public final class lf implements fd, b86, on5, mz6, pz6, if7, ot2 {
     public final byte a;
     public final long b;
     public final int c;
@@ -164,7 +164,7 @@ public final class lf implements fd, b86, on5, mz6, pz6, hf7, ot2 {
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
-                SharedPreferences.Editor edit = uc7.s1(yac.t0).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(yac.t0).X3.edit();
                 if (j != 0) {
                     edit.putInt("color_" + j, 0);
                 } else if (i2 == 1) {

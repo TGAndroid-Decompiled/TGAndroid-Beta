@@ -1228,7 +1228,7 @@ public final class mkc implements VoIPService.StateListener, fn7 {
         if (this.G != null && (wmcVar = this.w) != null) {
             int i2 = wmcVar.W;
             if ((i2 == 2 || i2 == 3) && this.j1) {
-                hl.d3(new me7(this, i, (byte) 26), 400L);
+                hl.d3(new oe7(this, i, (byte) 26), 400L);
             }
         }
     }

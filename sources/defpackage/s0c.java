@@ -11,16 +11,16 @@ public final class s0c implements Runnable {
     public static Boolean h;
     public static Boolean n;
     public final Context a;
-    public final tf7 b;
+    public final uf7 b;
     public final PowerManager.WakeLock c;
     public final q0c d;
     public final long e;
 
-    public s0c(q0c q0cVar, Context context, tf7 tf7Var, long j) {
+    public s0c(q0c q0cVar, Context context, uf7 uf7Var, long j) {
         this.d = q0cVar;
         this.a = context;
         this.e = j;
-        this.b = tf7Var;
+        this.b = uf7Var;
         this.c = ((PowerManager) context.getSystemService("power")).newWakeLock(1, "wake:com.google.firebase.messaging");
     }
 

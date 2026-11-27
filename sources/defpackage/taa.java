@@ -23,7 +23,7 @@ public final class taa extends UndoView {
             TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
             resetauthorization.hash = tL_authorization.hash;
             i2 = ((e) this.k0).currentAccount;
-            ConnectionsManager.getInstance(i2).sendRequest(resetauthorization, new ol7(this, tL_authorization, (byte) 22));
+            ConnectionsManager.getInstance(i2).sendRequest(resetauthorization, new pl7(this, tL_authorization, (byte) 22));
         }
         super.d(i, z);
     }

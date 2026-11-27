@@ -347,7 +347,7 @@ public final class vt7 extends e implements fn7 {
             Y1.business_work_hours = null;
         }
         getConnectionsManager().sendRequest(updatebusinessworkhours, new w15(this, (byte) 16));
-        getMessagesStorage().g2(Y1, false);
+        getMessagesStorage().l2(Y1, false);
     }
 
     public final void i0() {

@@ -124,7 +124,7 @@ public final class al9 extends dk9 {
             i2 = aob.Xc;
         }
         textPaint.linkColor = aob.v0(i2, hl9Var.D);
-        ui7.b(canvas, gl9Var.b, i, f, new m88(this, this.W, (byte) 24));
+        vi7.b(canvas, gl9Var.b, i, f, new m88(this, this.W, (byte) 24));
         canvas.restore();
         textPaint.setColor(color);
         i0();

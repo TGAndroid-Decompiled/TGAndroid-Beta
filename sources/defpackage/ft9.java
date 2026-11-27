@@ -155,7 +155,7 @@ public final class ft9 extends la {
                 view = linearLayout;
                 break;
             case 3:
-                uacVar = new rca(viewGroup.getContext(), (uh9) null);
+                uacVar = new sca(viewGroup.getContext(), (uh9) null);
                 view = uacVar;
                 break;
             case 4:
@@ -231,7 +231,7 @@ public final class ft9 extends la {
                 view = uacVar;
                 break;
             case 10:
-                uacVar = new rca(viewGroup.getContext(), (uh9) null);
+                uacVar = new sca(viewGroup.getContext(), (uh9) null);
                 view = uacVar;
                 break;
         }

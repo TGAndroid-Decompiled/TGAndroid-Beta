@@ -79,7 +79,7 @@ public final class mw0 extends AnimatorListenerAdapter {
                 return;
             default:
                 if (i3 != i2) {
-                    ((rbb) obj).P(i3, i2);
+                    ((sbb) obj).P(i3, i2);
                     return;
                 }
                 return;

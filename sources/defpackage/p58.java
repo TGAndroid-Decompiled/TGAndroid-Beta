@@ -1,65 +1,90 @@
 package defpackage;
 
-import android.app.Activity;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stories;
-public final class p58 implements yq5 {
-    public final o68 a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.widget.FrameLayout;
+public final class p58 extends FrameLayout {
+    public final byte a;
+    public final o68 b;
 
-    public p58(o68 o68Var) {
-        this.a = o68Var;
+    public p58(o68 o68Var, Context context, byte b) {
+        super(context);
+        this.a = b;
+        this.b = o68Var;
     }
 
     @Override
-    public final void G(no6 no6Var, oec oecVar, boolean z, int i, boolean z2, long j) {
-        k5 accountInstance;
-        k5 accountInstance2;
-        boolean z3;
-        k5 accountInstance3;
-        o68 o68Var = this.a;
-        TL_stories.StoryItem storyItem = o68Var.y1.a;
-        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            storyItem.dialogId = o68Var.l1;
-            if (no6Var.b) {
-                accountInstance3 = o68Var.getAccountInstance();
-                String str = no6Var.I;
-                long j2 = o68Var.l1;
-                ArrayList arrayList = no6Var.n;
-                r7a.a0(no6Var.x, i, j2, 0L, j, 0L, accountInstance3, null, null, null, null, null, null, oecVar, no6Var.a, str, null, arrayList, null, storyItem, z, false, no6Var.M);
-            } else if (no6Var.h != null) {
-                accountInstance2 = o68Var.getAccountInstance();
-                r7a.Y(accountInstance2, no6Var.h, no6Var.c, null, o68Var.l1, null, null, null, no6Var.n, no6Var.r, null, no6Var.x, null, oecVar, z, i, false, no6Var.a, null, 0L, j, 0L, null);
-            } else if (no6Var.I != null) {
-                accountInstance = o68Var.getAccountInstance();
-                r7a.Y(accountInstance, no6Var.I, no6Var.c, null, o68Var.l1, null, null, null, no6Var.n, no6Var.r, null, no6Var.x, null, oecVar, z, i, false, no6Var.a, null, 0L, j, 0L, null);
-            }
-            if (j <= 0) {
-                z3 = true;
-            } else {
-                z3 = false;
-            }
-            o68Var.a0(z3);
+    public final void dispatchDraw(Canvas canvas) {
+        int x;
+        byte b = this.a;
+        float f = 1.0f;
+        o68 o68Var = this.b;
+        switch (b) {
+            case 0:
+                if (o68Var.p2.getVisibility() == 0 && o68Var.p2.getLayoutParams().width != (x = (int) (((o68Var.k2.getX() + o68Var.k2.getMeasuredWidth()) - o68Var.p2.getX()) + hl.L(10.0f)))) {
+                    o68Var.p2.getLayoutParams().width = x;
+                    o68Var.p2.invalidate();
+                    o68Var.p2.requestLayout();
+                }
+                super.dispatchDraw(canvas);
+                return;
+            case 1:
+                super.dispatchDraw(canvas);
+                if (o68Var.n1 && o68Var.B0 != null) {
+                    canvas.save();
+                    canvas.translate((getMeasuredWidth() - o68Var.B0.c()) - hl.L(6.0f), 0.0f);
+                    mm mmVar = o68Var.D0;
+                    if (!o68Var.F0) {
+                        f = 0.0f;
+                    }
+                    float e = mmVar.e(false, f);
+                    canvas.scale(e, e, o68Var.B0.c() / 2.0f, hl.L(20.0f));
+                    hn hnVar = o68Var.B0;
+                    hnVar.C = 255;
+                    hnVar.draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                if (o68Var.n1 && o68Var.A0 != null) {
+                    canvas.save();
+                    canvas.translate((getMeasuredWidth() - o68Var.A0.c()) - hl.L(6.0f), 0.0f);
+                    mm mmVar2 = o68Var.C0;
+                    if (!o68Var.E0) {
+                        f = 0.0f;
+                    }
+                    float e2 = mmVar2.e(false, f);
+                    canvas.scale(e2, e2, o68Var.A0.c() / 2.0f, hl.L(20.0f));
+                    hn hnVar2 = o68Var.A0;
+                    hnVar2.C = 255;
+                    hnVar2.draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final int getClassGuid() {
-        return this.a.j2;
-    }
-
-    @Override
-    public final View getFragmentView() {
-        return this.a;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return hl.W(this.a.getContext());
-    }
-
-    @Override
-    public final boolean y() {
-        return false;
+    public final boolean verifyDrawable(Drawable drawable) {
+        byte b = this.a;
+        o68 o68Var = this.b;
+        switch (b) {
+            case 1:
+                if (drawable == o68Var.B0 || super.verifyDrawable(drawable)) {
+                    return true;
+                }
+                return false;
+            case 2:
+                if (drawable == o68Var.A0 || super.verifyDrawable(drawable)) {
+                    return true;
+                }
+                return false;
+            default:
+                return super.verifyDrawable(drawable);
+        }
     }
 }

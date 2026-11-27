@@ -24,16 +24,16 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
                                 case 0:
                                     int i = AutoMessageHeardReceiver.a;
                                     k5 k5Var = a2;
-                                    jf7 Y = jf7.Y(k5Var.a);
+                                    kf7 a0 = kf7.a0(k5Var.a);
                                     long j = longExtra;
-                                    hl.c3(new c70(k5Var, Y.h0(j), intExtra2, j, intExtra, (byte) 0));
+                                    hl.c3(new c70(k5Var, a0.j0(j), intExtra2, j, intExtra, (byte) 0));
                                     return;
                                 default:
                                     int i2 = AutoMessageHeardReceiver.a;
                                     k5 k5Var2 = a2;
-                                    jf7 Y2 = jf7.Y(k5Var2.a);
+                                    kf7 a02 = kf7.a0(k5Var2.a);
                                     long j2 = longExtra;
-                                    hl.c3(new c70(k5Var2, Y2.O(-j2), intExtra2, j2, intExtra, (byte) 1));
+                                    hl.c3(new c70(k5Var2, a02.Q(-j2), intExtra2, j2, intExtra, (byte) 1));
                                     return;
                             }
                         }
@@ -48,16 +48,16 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
                             case 0:
                                 int i = AutoMessageHeardReceiver.a;
                                 k5 k5Var = a2;
-                                jf7 Y = jf7.Y(k5Var.a);
+                                kf7 a0 = kf7.a0(k5Var.a);
                                 long j = longExtra;
-                                hl.c3(new c70(k5Var, Y.h0(j), intExtra2, j, intExtra, (byte) 0));
+                                hl.c3(new c70(k5Var, a0.j0(j), intExtra2, j, intExtra, (byte) 0));
                                 return;
                             default:
                                 int i2 = AutoMessageHeardReceiver.a;
                                 k5 k5Var2 = a2;
-                                jf7 Y2 = jf7.Y(k5Var2.a);
+                                kf7 a02 = kf7.a0(k5Var2.a);
                                 long j2 = longExtra;
-                                hl.c3(new c70(k5Var2, Y2.O(-j2), intExtra2, j2, intExtra, (byte) 1));
+                                hl.c3(new c70(k5Var2, a02.Q(-j2), intExtra2, j2, intExtra, (byte) 1));
                                 return;
                         }
                     }

@@ -578,7 +578,7 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e impleme
         this.autoDeleteMesages = 2;
         this.P = 4;
         this.passcodeRow = 3;
-        if (getMessagesController().k4.G.f && Build.VERSION.SDK_INT >= 28 && f11.i) {
+        if (getMessagesController().l4.G.f && Build.VERSION.SDK_INT >= 28 && f11.i) {
             int i2 = this.P;
             this.P = i2 + 1;
             this.passkeysRow = i2;
@@ -631,7 +631,7 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e impleme
         this.n = i7 + 4;
         this.P = i7 + 6;
         this.h = i7 + 5;
-        if (!getMessagesController().k4.T0.f && !getUserConfig().p()) {
+        if (!getMessagesController().l4.T0.f && !getUserConfig().p()) {
             this.x = -1;
             this.newChatsRow = -1;
             this.y = -1;
@@ -739,7 +739,7 @@ public class PrivacySettingsActivity extends org.telegram.ui.ActionBar.e impleme
         frameLayout.addView(this.b, tre.c(-1.0f, -1));
         this.b.setAdapter(this.a);
         this.b.setOnItemClickListener(new l0(this, context, (byte) 19));
-        uo0.c(getParentActivity(), this.currentAccount, new ii7(this, (byte) 19));
+        uo0.c(getParentActivity(), this.currentAccount, new ji7(this, (byte) 19));
         return this.fragmentView;
     }
 

@@ -80,7 +80,7 @@ public final class oo1 implements fd, s69, gw4 {
                     } else {
                         l1cVar.l0.addAll(hashSet);
                         l1cVar.n();
-                        d31.b0(l1cVar.s).U(ob6.J0(hashSet.size(), "TopicsDeleted"), false, new y09(l1cVar, hashSet, arrayList, j, (byte) 17), new bcb(l1cVar, arrayList, kcVar)).j();
+                        d31.b0(l1cVar.s).U(ob6.J0(hashSet.size(), "TopicsDeleted"), false, new z09(l1cVar, hashSet, arrayList, j, (byte) 17), new hab(l1cVar, arrayList, kcVar)).j();
                         idVar.dismiss();
                         return;
                     }

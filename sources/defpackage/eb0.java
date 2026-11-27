@@ -14,7 +14,7 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.a;
 import org.telegram.ui.ActionBar.e;
 public final class eb0 extends wma {
-    public final l09 g0;
+    public final m09 g0;
     public final ob0 h0;
     public boolean i0;
     public boolean j0;
@@ -26,7 +26,7 @@ public final class eb0 extends wma {
         super(context, null);
         this.m0 = ob0Var;
         this.h0 = ob0Var;
-        this.g0 = new l09((byte) 3);
+        this.g0 = new m09((byte) 3);
     }
 
     @Override

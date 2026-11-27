@@ -43,7 +43,9 @@ public final class tj3 extends FrameLayout {
     }
 
     public final void b(boolean z) {
-        if (!((e) this.L).isPaused) {
+        boolean z2;
+        z2 = ((e) this.L).isPaused;
+        if (!z2) {
             th3 th3Var = this.K;
             if (z) {
                 hl.r(th3Var);
@@ -68,6 +70,7 @@ public final class tj3 extends FrameLayout {
 
     @Override
     public void setTranslationX(float f) {
+        vy4 vy4Var;
         tj3 tj3Var;
         if (getTranslationX() != f) {
             super.setTranslationX(f);
@@ -75,14 +78,17 @@ public final class tj3 extends FrameLayout {
             if (uj3Var.j3 && (tj3Var = uj3Var.f0[0]) == this) {
                 uj3Var.A0.j(Math.abs(tj3Var.getTranslationX()) / uj3Var.f0[0].getMeasuredWidth(), uj3Var.f0[1].h);
             }
-            ((e) uj3Var).glassEngine.g();
+            vy4Var = ((e) uj3Var).glassEngine;
+            vy4Var.g();
         }
     }
 
     @Override
     public void setTranslationY(float f) {
+        vy4 vy4Var;
         if (getTranslationY() != f) {
-            ((e) this.L).glassEngine.g();
+            vy4Var = ((e) this.L).glassEngine;
+            vy4Var.g();
         }
         super.setTranslationY(f);
     }

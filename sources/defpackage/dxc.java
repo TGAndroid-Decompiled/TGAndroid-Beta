@@ -160,6 +160,7 @@ public abstract class dxc extends FrameLayout {
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
+                boolean z;
                 float f;
                 View childAt;
                 byte b = r2;
@@ -206,45 +207,44 @@ public abstract class dxc extends FrameLayout {
                                 G.b(2131232359, ob6.M0(2131745564, null), (Runnable) p12Var.a(1), false);
                                 G.k(2131232368, ob6.M0(2131745187, null), (Runnable) p12Var.a(2), !xtVar2.r0);
                                 G.b(2131232366, ob6.M0(2131745223, null), (Runnable) p12Var.a(4), false);
-                            } else {
-                                boolean z = true;
-                                if (i4 == 1) {
-                                    if (!xtVar2.q0) {
-                                        G.b(2131232270, ob6.M0(2131747523, null), (Runnable) p12Var.a(3), false);
-                                        G.j();
-                                    }
-                                    if (xtVar2.p0) {
-                                        G.b(2131232063, ob6.M0(2131742552, null), (Runnable) p12Var.a(9), false);
-                                    }
-                                    pxc instantViewLoader = xtVar2.getInstantViewLoader();
-                                    if (instantViewLoader != null && (((!instantViewLoader.g || !instantViewLoader.i) && instantViewLoader.h == null && instantViewLoader.j == null && !instantViewLoader.c) || instantViewLoader.b() != null)) {
-                                        G.b(2131231838, ob6.M0(2131747515, null), (Runnable) p12Var.a(10), false);
-                                        b8 z2 = G.z();
-                                        if (instantViewLoader.b() == null) {
-                                            z = false;
-                                        }
-                                        z2.setEnabled(z);
-                                        if (z2.isEnabled()) {
-                                            f = 1.0f;
-                                        } else {
-                                            f = 0.5f;
-                                        }
-                                        z2.setAlpha(f);
-                                        cxc cxcVar = new cxc(z2, instantViewLoader, (byte) 0);
-                                        instantViewLoader.m.add(cxcVar);
-                                        G.p = new cxc(instantViewLoader, (Object) cxcVar, (byte) 3);
-                                    }
-                                    G.b(2131232346, ob6.M0(2131746067, null), (Runnable) p12Var.a(5), false);
-                                    G.b(2131232359, ob6.M0(2131745564, null), (Runnable) p12Var.a(1), false);
-                                    G.b(2131232356, ob6.M0(2131742573, null), (Runnable) p12Var.a(6), false);
-                                    G.b(2131232368, ob6.M0(2131745187, null), (Runnable) p12Var.a(2), false);
+                            } else if (i4 == 1) {
+                                if (!xtVar2.q0) {
+                                    G.b(2131232270, ob6.M0(2131747523, null), (Runnable) p12Var.a(3), false);
                                     G.j();
-                                    if (!ptd.a(null).isEmpty()) {
-                                        G.b(2131231923, ob6.M0(2131742551, null), (Runnable) p12Var.a(8), false);
-                                    }
-                                    G.b(2131231773, ob6.M0(2131742570, null), (Runnable) p12Var.a(7), false);
-                                    G.b(2131232366, ob6.M0(2131745223, null), (Runnable) p12Var.a(4), false);
                                 }
+                                if (xtVar2.p0) {
+                                    G.b(2131232063, ob6.M0(2131742552, null), (Runnable) p12Var.a(9), false);
+                                }
+                                pxc instantViewLoader = xtVar2.getInstantViewLoader();
+                                if (instantViewLoader != null && (((!instantViewLoader.g || !instantViewLoader.i) && instantViewLoader.h == null && instantViewLoader.j == null && !instantViewLoader.c) || instantViewLoader.b() != null)) {
+                                    G.b(2131231838, ob6.M0(2131747515, null), (Runnable) p12Var.a(10), false);
+                                    b8 z2 = G.z();
+                                    if (instantViewLoader.b() != null) {
+                                        z = true;
+                                    } else {
+                                        z = false;
+                                    }
+                                    z2.setEnabled(z);
+                                    if (z2.isEnabled()) {
+                                        f = 1.0f;
+                                    } else {
+                                        f = 0.5f;
+                                    }
+                                    z2.setAlpha(f);
+                                    zwc zwcVar = new zwc(z2, instantViewLoader, (byte) 1);
+                                    instantViewLoader.m.add(zwcVar);
+                                    G.p = new zwc(instantViewLoader, zwcVar, (byte) 4);
+                                }
+                                G.b(2131232346, ob6.M0(2131746067, null), (Runnable) p12Var.a(5), false);
+                                G.b(2131232359, ob6.M0(2131745564, null), (Runnable) p12Var.a(1), false);
+                                G.b(2131232356, ob6.M0(2131742573, null), (Runnable) p12Var.a(6), false);
+                                G.b(2131232368, ob6.M0(2131745187, null), (Runnable) p12Var.a(2), false);
+                                G.j();
+                                if (!ptd.a(null).isEmpty()) {
+                                    G.b(2131231923, ob6.M0(2131742551, null), (Runnable) p12Var.a(8), false);
+                                }
+                                G.b(2131231773, ob6.M0(2131742570, null), (Runnable) p12Var.a(7), false);
+                                G.b(2131232366, ob6.M0(2131745223, null), (Runnable) p12Var.a(4), false);
                             }
                             G.p = new osa(xtVar2);
                             G.a0();
@@ -353,6 +353,7 @@ public abstract class dxc extends FrameLayout {
         imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
+                boolean z;
                 float f;
                 View childAt;
                 byte b = r2;
@@ -399,45 +400,44 @@ public abstract class dxc extends FrameLayout {
                                 G.b(2131232359, ob6.M0(2131745564, null), (Runnable) p12Var.a(1), false);
                                 G.k(2131232368, ob6.M0(2131745187, null), (Runnable) p12Var.a(2), !xtVar2.r0);
                                 G.b(2131232366, ob6.M0(2131745223, null), (Runnable) p12Var.a(4), false);
-                            } else {
-                                boolean z = true;
-                                if (i4 == 1) {
-                                    if (!xtVar2.q0) {
-                                        G.b(2131232270, ob6.M0(2131747523, null), (Runnable) p12Var.a(3), false);
-                                        G.j();
-                                    }
-                                    if (xtVar2.p0) {
-                                        G.b(2131232063, ob6.M0(2131742552, null), (Runnable) p12Var.a(9), false);
-                                    }
-                                    pxc instantViewLoader = xtVar2.getInstantViewLoader();
-                                    if (instantViewLoader != null && (((!instantViewLoader.g || !instantViewLoader.i) && instantViewLoader.h == null && instantViewLoader.j == null && !instantViewLoader.c) || instantViewLoader.b() != null)) {
-                                        G.b(2131231838, ob6.M0(2131747515, null), (Runnable) p12Var.a(10), false);
-                                        b8 z2 = G.z();
-                                        if (instantViewLoader.b() == null) {
-                                            z = false;
-                                        }
-                                        z2.setEnabled(z);
-                                        if (z2.isEnabled()) {
-                                            f = 1.0f;
-                                        } else {
-                                            f = 0.5f;
-                                        }
-                                        z2.setAlpha(f);
-                                        cxc cxcVar = new cxc(z2, instantViewLoader, (byte) 0);
-                                        instantViewLoader.m.add(cxcVar);
-                                        G.p = new cxc(instantViewLoader, (Object) cxcVar, (byte) 3);
-                                    }
-                                    G.b(2131232346, ob6.M0(2131746067, null), (Runnable) p12Var.a(5), false);
-                                    G.b(2131232359, ob6.M0(2131745564, null), (Runnable) p12Var.a(1), false);
-                                    G.b(2131232356, ob6.M0(2131742573, null), (Runnable) p12Var.a(6), false);
-                                    G.b(2131232368, ob6.M0(2131745187, null), (Runnable) p12Var.a(2), false);
+                            } else if (i4 == 1) {
+                                if (!xtVar2.q0) {
+                                    G.b(2131232270, ob6.M0(2131747523, null), (Runnable) p12Var.a(3), false);
                                     G.j();
-                                    if (!ptd.a(null).isEmpty()) {
-                                        G.b(2131231923, ob6.M0(2131742551, null), (Runnable) p12Var.a(8), false);
-                                    }
-                                    G.b(2131231773, ob6.M0(2131742570, null), (Runnable) p12Var.a(7), false);
-                                    G.b(2131232366, ob6.M0(2131745223, null), (Runnable) p12Var.a(4), false);
                                 }
+                                if (xtVar2.p0) {
+                                    G.b(2131232063, ob6.M0(2131742552, null), (Runnable) p12Var.a(9), false);
+                                }
+                                pxc instantViewLoader = xtVar2.getInstantViewLoader();
+                                if (instantViewLoader != null && (((!instantViewLoader.g || !instantViewLoader.i) && instantViewLoader.h == null && instantViewLoader.j == null && !instantViewLoader.c) || instantViewLoader.b() != null)) {
+                                    G.b(2131231838, ob6.M0(2131747515, null), (Runnable) p12Var.a(10), false);
+                                    b8 z2 = G.z();
+                                    if (instantViewLoader.b() != null) {
+                                        z = true;
+                                    } else {
+                                        z = false;
+                                    }
+                                    z2.setEnabled(z);
+                                    if (z2.isEnabled()) {
+                                        f = 1.0f;
+                                    } else {
+                                        f = 0.5f;
+                                    }
+                                    z2.setAlpha(f);
+                                    zwc zwcVar = new zwc(z2, instantViewLoader, (byte) 1);
+                                    instantViewLoader.m.add(zwcVar);
+                                    G.p = new zwc(instantViewLoader, zwcVar, (byte) 4);
+                                }
+                                G.b(2131232346, ob6.M0(2131746067, null), (Runnable) p12Var.a(5), false);
+                                G.b(2131232359, ob6.M0(2131745564, null), (Runnable) p12Var.a(1), false);
+                                G.b(2131232356, ob6.M0(2131742573, null), (Runnable) p12Var.a(6), false);
+                                G.b(2131232368, ob6.M0(2131745187, null), (Runnable) p12Var.a(2), false);
+                                G.j();
+                                if (!ptd.a(null).isEmpty()) {
+                                    G.b(2131231923, ob6.M0(2131742551, null), (Runnable) p12Var.a(8), false);
+                                }
+                                G.b(2131231773, ob6.M0(2131742570, null), (Runnable) p12Var.a(7), false);
+                                G.b(2131232366, ob6.M0(2131745223, null), (Runnable) p12Var.a(4), false);
                             }
                             G.p = new osa(xtVar2);
                             G.a0();

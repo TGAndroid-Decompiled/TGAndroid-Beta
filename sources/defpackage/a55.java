@@ -61,8 +61,8 @@ public final class a55 {
         return str.substring(0, 4) + "…" + str.substring(str.length() - 4);
     }
 
-    public static defpackage.jl7 D(android.content.Context r30, final int r31, final defpackage.v45 r32, final org.telegram.tgnet.TLRPC.TL_urlAuthResultRequest r33, final defpackage.vnb r34, final defpackage.o45 r35, final java.lang.Runnable r36) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.a55.D(android.content.Context, int, v45, org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest, vnb, o45, java.lang.Runnable):jl7");
+    public static defpackage.kl7 D(android.content.Context r30, final int r31, final defpackage.v45 r32, final org.telegram.tgnet.TLRPC.TL_urlAuthResultRequest r33, final defpackage.vnb r34, final defpackage.o45 r35, final java.lang.Runnable r36) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.a55.D(android.content.Context, int, v45, org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest, vnb, o45, java.lang.Runnable):kl7");
     }
 
     public static LinearLayout F(Context context, String str, vnb vnbVar) {
@@ -322,7 +322,7 @@ public final class a55 {
         a55 a55Var = C.g;
         g45 g45Var = new g45(context, i, C, vnbVar, w56Var);
         if (!a55Var.h && a55Var.g == null) {
-            String string = uc7.s1(a55Var.a).X3.getString(k(j, i2), null);
+            String string = uc7.s1(a55Var.a).Y3.getString(k(j, i2), null);
             if (string != null) {
                 a55Var.h = true;
                 v35 v35Var = new v35(a55Var, g45Var, (byte) 2);
@@ -559,7 +559,7 @@ public final class a55 {
             int i = w45Var.b;
             TL_wallet.tonConnectSession tonconnectsession = w45Var.a;
             if (A && !i(w45Var)) {
-                String string = uc7.s1(this.a).X3.getString(k(tonconnectsession.id, i).concat(".transfer"), null);
+                String string = uc7.s1(this.a).Y3.getString(k(tonconnectsession.id, i).concat(".transfer"), null);
                 if (string != null) {
                     try {
                         JSONObject jSONObject = new JSONObject(string);
@@ -611,7 +611,7 @@ public final class a55 {
 
     public final void d(int i, long j, pcc pccVar) {
         long j2 = i;
-        uc7.s1(this.a).X3.edit().remove(k(j, j2)).remove(k(j, j2).concat(".transfer")).apply();
+        uc7.s1(this.a).Y3.edit().remove(k(j, j2)).remove(k(j, j2).concat(".transfer")).apply();
         w45 w45Var = this.g;
         if (w45Var != null && w45Var.a.id == j && w45Var.b == i) {
             w45Var.n = true;
@@ -628,7 +628,7 @@ public final class a55 {
         if (!w45Var.n && !i(w45Var) && A(w45Var) && (z || w45Var.l >= 0 || "disconnect".equals(w45Var.e) || w45Var.p)) {
             w45Var.m = true;
             gt gtVar = new gt(this, w45Var, pccVar, (byte) 22);
-            String string = uc7.s1(this.a).X3.getString(k(tonconnectsession.id, w45Var.b), null);
+            String string = uc7.s1(this.a).Y3.getString(k(tonconnectsession.id, w45Var.b), null);
             if (string != null) {
                 try {
                     try {

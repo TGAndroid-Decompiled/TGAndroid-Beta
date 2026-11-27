@@ -472,13 +472,13 @@ public final class snc implements bo3 {
         if (kncVar == null) {
             return;
         }
-        vlc vlcVar = new vlc(this, kncVar, (byte) 2);
+        slc slcVar = new slc(this, kncVar, (byte) 3);
         if (z) {
             j = 470;
         } else {
             j = 60;
         }
-        hl.d3(vlcVar, j);
+        hl.d3(slcVar, j);
     }
 
     public final void o(ByteBuffer byteBuffer, int i, int i2, int i3) {

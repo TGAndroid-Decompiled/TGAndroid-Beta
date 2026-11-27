@@ -14,7 +14,7 @@ import org.telegram.messenger.ImageReceiver;
 public final class du9 extends View {
     public boolean E;
     public cu9 F;
-    public fbb G;
+    public gbb G;
     public Object H;
     public a39 I;
     public String J;

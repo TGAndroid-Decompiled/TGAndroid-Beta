@@ -90,7 +90,7 @@ public final class t02 implements TextWatcher {
             n12Var.R2 = z2;
             n12Var.F2.invalidate();
         }
-        if (!n12Var.f4 && !uc7.s1(i2).M3() && !yac.h(i2).p() && n12Var.F1 > uc7.s1(i2).k4.o1.f() && n12Var.F1 < uc7.s1(i2).k4.p1.f()) {
+        if (!n12Var.f4 && !uc7.s1(i2).M3() && !yac.h(i2).p() && n12Var.F1 > uc7.s1(i2).l4.o1.f() && n12Var.F1 < uc7.s1(i2).l4.p1.f()) {
             n12Var.f4 = true;
             n12Var.z1(this.c);
         }

@@ -22,11 +22,11 @@ public final class w14 {
             ArrayList arrayList = this.a;
             if (z) {
                 arrayList.add(y);
-                jf7.Y(i).L(y, si1Var);
+                kf7.a0(i).N(y, si1Var);
                 return;
             }
             uc7 s1 = uc7.s1(i);
-            TLObject c2 = s1.c2(s1.o3);
+            TLObject c2 = s1.c2(s1.p3);
             if (!(c2 instanceof TLRPC.User)) {
                 return;
             }

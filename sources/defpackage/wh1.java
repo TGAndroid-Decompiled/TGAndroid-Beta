@@ -140,7 +140,7 @@ public class wh1 extends e implements fn7 {
     }
 
     public int D0() {
-        return getMessagesController().k4.o2.f();
+        return getMessagesController().l4.o2.f();
     }
 
     public int E0() {
@@ -180,7 +180,7 @@ public class wh1 extends e implements fn7 {
     }
 
     public int J0() {
-        return getMessagesController().k4.f2.f();
+        return getMessagesController().l4.f2.f();
     }
 
     public int K0() {
@@ -196,7 +196,7 @@ public class wh1 extends e implements fn7 {
     }
 
     public int N0() {
-        return getMessagesController().k4.e2.f();
+        return getMessagesController().l4.e2.f();
     }
 
     public int O0() {
@@ -216,7 +216,7 @@ public class wh1 extends e implements fn7 {
     }
 
     public int S0() {
-        return getMessagesController().k4.n2.f();
+        return getMessagesController().l4.n2.f();
     }
 
     public int T0() {
@@ -263,7 +263,7 @@ public class wh1 extends e implements fn7 {
         kc7 kc7Var = null;
         int i = 0;
         if (this.e != this.f) {
-            lc7 lc7Var = getMessagesController().E3;
+            lc7 lc7Var = getMessagesController().F3;
             if (lc7Var == null) {
                 d = null;
             } else {
@@ -274,10 +274,10 @@ public class wh1 extends e implements fn7 {
             }
         }
         if (this.h != this.n) {
-            i = Math.max(i, getMessagesController().k4.d2.f());
+            i = Math.max(i, getMessagesController().l4.d2.f());
         }
         if (this.r != this.s) {
-            lc7 lc7Var2 = getMessagesController().F3;
+            lc7 lc7Var2 = getMessagesController().G3;
             if (lc7Var2 != null) {
                 kc7Var = lc7Var2.d(this.s);
             }

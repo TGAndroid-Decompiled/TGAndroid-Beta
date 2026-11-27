@@ -125,7 +125,7 @@ public final class eo0 extends la {
                         this.d.W.f();
                         lo0 lo0Var5 = this.d;
                         lo0Var5.W.a(0, ob6.G(lo0Var5.p0, "BoostingBoostsCount", new Object[0]), null);
-                        if (uc7.s1(this.d.T).k4.W1.f && (i2 = (lo0Var = this.d).o0) > 0 && i2 != lo0Var.p0) {
+                        if (uc7.s1(this.d.T).l4.W1.f && (i2 = (lo0Var = this.d).o0) > 0 && i2 != lo0Var.p0) {
                             lo0Var.W.a(1, ob6.G(i2, "BoostingGiftsCount", new Object[0]), null);
                         }
                         lo0 lo0Var6 = this.d;
@@ -167,7 +167,7 @@ public final class eo0 extends la {
                 viewGroup2 = qk1Var;
                 break;
             case 2:
-                viewGroup2 = new rca(viewGroup.getContext(), 0, 0);
+                viewGroup2 = new sca(viewGroup.getContext(), 0, 0);
                 break;
             case 3:
                 i56 i56Var = new i56(lo0Var.getParentActivity(), lo0Var, null, false, false);

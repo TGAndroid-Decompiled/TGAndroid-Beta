@@ -11,7 +11,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class ch9 {
-    public final k09 a;
+    public final l09 a;
     public boolean e;
     public boolean f;
     public final ArrayDeque b = new ArrayDeque();
@@ -19,8 +19,8 @@ public final class ch9 {
     public final v59 g = new v59(this, (byte) 8);
     public bh9 d = b();
 
-    public ch9(k09 k09Var) {
-        this.a = k09Var;
+    public ch9(l09 l09Var) {
+        this.a = l09Var;
     }
 
     public static void e(TL_iv.PageBlock pageBlock) {
@@ -169,8 +169,8 @@ public final class ch9 {
         ArrayList arrayList;
         ArrayList arrayList2;
         ah9[] ah9VarArr;
-        k09 k09Var = this.a;
-        ArrayList arrayList3 = ((pi9) k09Var.b).t3;
+        l09 l09Var = this.a;
+        ArrayList arrayList3 = ((pi9) l09Var.b).t3;
         HashMap hashMap = new HashMap();
         bh9 bh9Var = this.d;
         if (bh9Var != null) {
@@ -226,7 +226,7 @@ public final class ch9 {
             i2++;
             arrayList3 = arrayList;
         }
-        View findFocus = ((pi9) k09Var.b).findFocus();
+        View findFocus = ((pi9) l09Var.b).findFocus();
         if (findFocus instanceof dg9) {
             dg9 dg9Var = (dg9) findFocus;
             int selectionStart = dg9Var.getSelectionStart();

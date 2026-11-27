@@ -6,7 +6,7 @@ import java.util.Iterator;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-public final class lu0 implements oi7, oj3 {
+public final class lu0 implements pi7, oj3 {
     public final rv0 a;
     public final boolean[] b;
     public final String c;
@@ -65,7 +65,7 @@ public final class lu0 implements oi7, oj3 {
             while (i3 < size) {
                 Object obj = arrayList.get(i3);
                 i3++;
-                hashSet.add(Long.valueOf(((if7) obj).a));
+                hashSet.add(Long.valueOf(((jf7) obj).a));
             }
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {

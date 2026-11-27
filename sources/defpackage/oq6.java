@@ -185,7 +185,7 @@ public final class oq6 implements Runnable {
                 TLObject tLObject = (TLObject) this.e;
                 TLRPC.User user = (TLRPC.User) this.f;
                 String str3 = (String) this.h;
-                jf7 jf7Var = (jf7) this.n;
+                kf7 kf7Var = (kf7) this.n;
                 String str4 = (String) this.r;
                 w17 w17Var = r17Var.W;
                 if (str2.equals(r17Var.s0)) {
@@ -198,7 +198,7 @@ public final class oq6 implements Runnable {
                     if (tLObject instanceof TLRPC.TL_messages_botResults) {
                         TLRPC.TL_messages_botResults tL_messages_botResults = (TLRPC.TL_messages_botResults) tLObject;
                         if (!z10 && tL_messages_botResults.cache_time != 0) {
-                            jf7Var.s1(str4, tL_messages_botResults);
+                            kf7Var.w1(str4, tL_messages_botResults);
                         }
                         r17Var.t0 = tL_messages_botResults.next_offset;
                         if (r17Var.U == null) {

@@ -44,7 +44,7 @@ public final class gg2 implements RequestDelegate {
                 String str = (String) this.f;
                 if (tL_error == null) {
                     lv2Var.getMessagesController().Y3((TLRPC.Updates) tLObject, false);
-                    jf7 messagesStorage = lv2Var.getMessagesStorage();
+                    kf7 messagesStorage = lv2Var.getMessagesStorage();
                     messagesStorage.getClass();
                     if (!arrayList.isEmpty()) {
                         messagesStorage.a.c(new q41(messagesStorage, arrayList, (byte) 18));
@@ -106,7 +106,7 @@ public final class gg2 implements RequestDelegate {
                         }
                     }
                 }
-                hl.c3(new en9(r7aVar, r47Var, (byte) 23));
+                hl.c3(new dn9(r7aVar, r47Var, (byte) 24));
                 if (eVar != null) {
                     hl.c3(new z6a(r7aVar, tL_error, eVar, tL_messages_editMessage, (byte) 0));
                     return;

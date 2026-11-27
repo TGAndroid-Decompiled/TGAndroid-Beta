@@ -171,11 +171,11 @@ public class a29 extends b29 {
         if (rLottieNative == null && rLottieNative2 == null) {
             return;
         }
-        z09 z09Var = new z09(rLottieNative, rLottieNative2, (byte) 4);
+        yz8 yz8Var = new yz8(rLottieNative, rLottieNative2, (byte) 5);
         if (z) {
-            vo3.a(z09Var);
+            vo3.a(yz8Var);
         } else {
-            Utilities.e.c(z09Var);
+            Utilities.e.c(yz8Var);
         }
     }
 }

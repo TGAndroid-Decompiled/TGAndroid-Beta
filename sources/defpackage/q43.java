@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.List;
 public final class q43 implements heb {
-    public static final d51 c = new d51(new p31((byte) 3), pk7.b);
+    public static final d51 c = new d51(new p31((byte) 3), qk7.b);
     public final po5 a;
     public final long[] b;
 

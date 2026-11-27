@@ -1,21 +1,29 @@
 package defpackage;
-public final class zc7 implements Runnable {
-    public final byte a;
-    public final jf7 b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final long h;
 
-    public zc7(jf7 jf7Var, int i, int i2, int i3, int i4, long j) {
-        this.a = (byte) 1;
-        this.b = jf7Var;
-        this.c = i;
-        this.d = i2;
-        this.e = i3;
-        this.f = i4;
-        this.h = j;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class zc7 implements Runnable {
+    public final byte a = 1;
+    public final boolean b;
+    public final long c;
+    public final int d;
+    public final long e;
+    public final Object f;
+    public final Object h;
+    public final Object n;
+    public final Object r;
+    public final Object s;
+
+    public zc7(kf7 kf7Var, long j, boolean z, String str, long j2, int i, String str2, String str3, String str4) {
+        this.f = kf7Var;
+        this.c = j;
+        this.b = z;
+        this.h = str;
+        this.e = j2;
+        this.d = i;
+        this.n = str2;
+        this.r = str3;
+        this.s = str4;
     }
 
     @Override
@@ -23,13 +31,15 @@ public final class zc7 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.zc7.run():void");
     }
 
-    public zc7(jf7 jf7Var, long j, int i, int i2, int i3, int i4, byte b) {
-        this.a = b;
-        this.b = jf7Var;
-        this.h = j;
-        this.c = i;
-        this.d = i2;
-        this.e = i3;
-        this.f = i4;
+    public zc7(jxa jxaVar, TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error, boolean z, long j, int i, r47 r47Var, long j2) {
+        this.f = jxaVar;
+        this.h = tLObject;
+        this.n = runnable;
+        this.r = tL_error;
+        this.b = z;
+        this.c = j;
+        this.d = i;
+        this.s = r47Var;
+        this.e = j2;
     }
 }

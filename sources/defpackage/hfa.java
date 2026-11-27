@@ -7,7 +7,7 @@ import java.util.Collections;
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.ProfileActivity;
-public final class hfa implements wp4, hf7, oj3 {
+public final class hfa implements wp4, if7, oj3 {
     public final eja a;
 
     public hfa(eja ejaVar) {
@@ -70,8 +70,8 @@ public final class hfa implements wp4, hf7, oj3 {
             piaVar.x.clear();
         }
         UndoView undoView2 = null;
-        if (arrayList.size() <= 1 && ((if7) arrayList.get(0)).a != eVar.getUserConfig().e() && charSequence == null) {
-            long j = ((if7) arrayList.get(0)).a;
+        if (arrayList.size() <= 1 && ((jf7) arrayList.get(0)).a != eVar.getUserConfig().e() && charSequence == null) {
+            long j = ((jf7) arrayList.get(0)).a;
             Bundle l = bs2.l("scrollToTopOnResume", true);
             if (wf3.B(j)) {
                 l.putInt("enc_id", (int) (j & 4294967295L));
@@ -87,7 +87,7 @@ public final class hfa implements wp4, hf7, oj3 {
             }
             eVar.getNotificationCenter().k(jn7.s, new Object[0]);
             zu1 zu1Var = new zu1(l);
-            ro4.a(zu1Var, (if7) arrayList.get(0));
+            ro4.a(zu1Var, (jf7) arrayList.get(0));
             uj3Var.presentFragment(zu1Var, true);
             zu1Var.cc(arrayList2);
             return true;
@@ -95,7 +95,7 @@ public final class hfa implements wp4, hf7, oj3 {
         ejaVar.J1(true);
         int i6 = 0;
         while (i6 < arrayList.size()) {
-            long j2 = ((if7) arrayList.get(i6)).a;
+            long j2 = ((jf7) arrayList.get(i6)).a;
             if (charSequence != null) {
                 eVar.getSendMessagesHelper().q0(p7a.b(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
             }
@@ -114,7 +114,7 @@ public final class hfa implements wp4, hf7, oj3 {
         }
         if (undoView != null) {
             if (arrayList.size() == z4) {
-                undoView.m(((if7) arrayList.get(0)).a, Integer.valueOf(arrayList2.size()), 53);
+                undoView.m(((jf7) arrayList.get(0)).a, Integer.valueOf(arrayList2.size()), 53);
                 return z4;
             }
             undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);

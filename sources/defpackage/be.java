@@ -162,7 +162,7 @@ public final class be implements View.OnClickListener {
                 vnb vnbVar2 = (vnb) obj4;
                 TL_wallet.walletTransaction[] wallettransactionArr = (TL_wallet.walletTransaction[]) obj2;
                 Context context = (Context) obj;
-                fu5 G = fu5.G(((jl7[]) obj5)[0].c, vnbVar2, (ImageView) obj3);
+                fu5 G = fu5.G(((kl7[]) obj5)[0].c, vnbVar2, (ImageView) obj3);
                 if (!TextUtils.isEmpty(wallettransactionArr[0].tx_hash)) {
                     G.b(2131232359, ob6.M0(2131742594, null), new mpc(context, i, wallettransactionArr, (byte) 1), false);
                 }

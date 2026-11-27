@@ -166,7 +166,7 @@ public abstract class aob {
     public static TextPaint[] E0;
     public static int E1;
     public static TextPaint E2;
-    public static gi7 E3;
+    public static hi7 E3;
     public static Drawable E4;
     public static final int E5;
     public static final int E6;
@@ -572,7 +572,7 @@ public abstract class aob {
     public static final int Vk;
     public static final int Vl;
     public static int W;
-    public static gi7 W0;
+    public static hi7 W0;
     public static Paint W1;
     public static TextPaint W2;
     public static Drawable W3;
@@ -1344,8 +1344,8 @@ public abstract class aob {
         }
         if (drawable instanceof d2b) {
             ((d2b) drawable).b(i10);
-        } else if (drawable instanceof gi7) {
-            ((gi7) drawable).a(i10);
+        } else if (drawable instanceof hi7) {
+            ((hi7) drawable).a(i10);
         } else if (drawable instanceof ShapeDrawable) {
             ((ShapeDrawable) drawable).getPaint().setColor(i10);
         } else if (drawable instanceof yt9) {
@@ -1944,7 +1944,7 @@ public abstract class aob {
             D3 = resources.getDrawable(2131232182).mutate();
             G3 = resources.getDrawable(2131232183).mutate();
             I3 = resources.getDrawable(2131232183).mutate();
-            E3 = new gi7();
+            E3 = new hi7();
             L3 = resources.getDrawable(2131231313).mutate();
             M3 = resources.getDrawable(2131232429).mutate();
             N3 = resources.getDrawable(2131232429).mutate();
@@ -2712,7 +2712,7 @@ public abstract class aob {
         return (Drawable) dm.get(str);
     }
 
-    public static hh7 R(int i10, int i11) {
+    public static ih7 R(int i10, int i11) {
         boolean z10;
         int i12;
         int i13;
@@ -2721,7 +2721,7 @@ public abstract class aob {
         } else {
             z10 = false;
         }
-        hh7 hh7Var = new hh7(-2368069, -9722489, -2762611, -7817084, z10, false);
+        ih7 ih7Var = new ih7(-2368069, -9722489, -2762611, -7817084, z10, false);
         Bitmap bitmap = null;
         if (i10 > 0 && i11 > 0) {
             i13 = i10;
@@ -2740,9 +2740,9 @@ public abstract class aob {
         if (bitmap == null) {
             bitmap = hgb.c(1.0f, 2131623998, i13, i12, -16777216, 2);
         }
-        hh7Var.r(34, bitmap);
-        hh7Var.s(hh7Var.f());
-        return hh7Var;
+        ih7Var.r(34, bitmap);
+        ih7Var.s(ih7Var.f());
+        return ih7Var;
     }
 
     public static SparseIntArray R0(File file, String str, String[] strArr) {
@@ -2925,7 +2925,7 @@ public abstract class aob {
             T0 = resources.getDrawable(2131231988).mutate();
             U0 = resources.getDrawable(2131231626).mutate();
             V0 = resources.getDrawable(2131231628);
-            W0 = new gi7();
+            W0 = new hi7();
             X0 = resources.getDrawable(2131231635);
             Y0 = resources.getDrawable(2131231631).mutate();
             b1 = resources.getDrawable(2131231629).mutate();
@@ -3373,12 +3373,12 @@ public abstract class aob {
             return;
         }
         int i10 = lm.get(yd);
-        if ((drawable instanceof hh7) && xea.o() != 0 && i10 == 0) {
+        if ((drawable instanceof ih7) && xea.o() != 0 && i10 == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (z10 && X != (bitmap = ((hh7) drawable).k)) {
+        if (z10 && X != (bitmap = ((ih7) drawable).k)) {
             X = bitmap;
             Bitmap bitmap2 = X;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -3482,9 +3482,9 @@ public abstract class aob {
                 i12 = a0;
             }
         }
-        if (!z11 && ((((z10 = drawable instanceof hh7)) || (drawable instanceof BitmapDrawable)) && xea.o() != 0 && i86.e(32))) {
+        if (!z11 && ((((z10 = drawable instanceof ih7)) || (drawable instanceof BitmapDrawable)) && xea.o() != 0 && i86.e(32))) {
             if (z10) {
-                bitmap = ((hh7) drawable).k;
+                bitmap = ((ih7) drawable).k;
             } else {
                 if (drawable instanceof BitmapDrawable) {
                     WeakReference weakReference = Am;
@@ -3606,11 +3606,11 @@ public abstract class aob {
         }
         f2.setColor(i11);
         g2.setColor(i12);
-        if (Y != null && (lm.indexOfKey(i17) < 0 || (drawable instanceof hh7) || (drawable instanceof BitmapDrawable))) {
+        if (Y != null && (lm.indexOfKey(i17) < 0 || (drawable instanceof ih7) || (drawable instanceof BitmapDrawable))) {
             ColorMatrix colorMatrix2 = new ColorMatrix();
-            if (drawable instanceof hh7) {
+            if (drawable instanceof ih7) {
                 float f14 = -0.06f;
-                if (((hh7) drawable).q >= 0.0f) {
+                if (((ih7) drawable).q >= 0.0f) {
                     colorMatrix2.setSaturation(1.6f);
                     if (I.o()) {
                         f13 = 0.97f;
@@ -4538,8 +4538,8 @@ public abstract class aob {
 
     public static void s1(boolean z10) {
         Drawable drawable = d0;
-        if (drawable instanceof hh7) {
-            S = ((hh7) drawable).i;
+        if (drawable instanceof ih7) {
+            S = ((ih7) drawable).i;
         } else {
             S = 0;
         }

@@ -40,12 +40,12 @@ public class ai4 extends tf3 {
         mj0Var.d(1);
         mj0 mj0Var2 = this.D0;
         String q = q(2131689608);
-        qj7 qj7Var = mj0Var2.y;
-        if (qj7Var == null) {
-            qj7Var = new qj7();
-            mj0Var2.y = qj7Var;
+        rj7 rj7Var = mj0Var2.y;
+        if (rj7Var == null) {
+            rj7Var = new rj7();
+            mj0Var2.y = rj7Var;
         }
-        mj0.f(qj7Var, q);
+        mj0.f(rj7Var, q);
     }
 
     @Override
@@ -126,12 +126,12 @@ public class ai4 extends tf3 {
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
         mj0 mj0Var = this.D0;
-        qj7 qj7Var = mj0Var.v;
-        if (qj7Var == null) {
-            qj7Var = new qj7();
-            mj0Var.v = qj7Var;
+        rj7 rj7Var = mj0Var.v;
+        if (rj7Var == null) {
+            rj7Var = new rj7();
+            mj0Var.v = rj7Var;
         }
-        mj0.f(qj7Var, Boolean.TRUE);
+        mj0.f(rj7Var, Boolean.TRUE);
     }
 
     @Override
@@ -142,19 +142,19 @@ public class ai4 extends tf3 {
         if (k != null) {
             mj0 mj0Var = (mj0) new pq8(k).n(mj0.class);
             this.D0 = mj0Var;
-            qj7 qj7Var = mj0Var.x;
-            if (qj7Var == null) {
-                qj7Var = new qj7();
-                mj0Var.x = qj7Var;
+            rj7 rj7Var = mj0Var.x;
+            if (rj7Var == null) {
+                rj7Var = new rj7();
+                mj0Var.x = rj7Var;
             }
-            qj7Var.d(this, new xh4(this, (byte) 0));
+            rj7Var.d(this, new xh4(this, (byte) 0));
             mj0 mj0Var2 = this.D0;
-            qj7 qj7Var2 = mj0Var2.y;
-            if (qj7Var2 == null) {
-                qj7Var2 = new qj7();
-                mj0Var2.y = qj7Var2;
+            rj7 rj7Var2 = mj0Var2.y;
+            if (rj7Var2 == null) {
+                rj7Var2 = new rj7();
+                mj0Var2.y = rj7Var2;
             }
-            qj7Var2.d(this, new aj3(this, (byte) 4));
+            rj7Var2.d(this, new aj3(this, (byte) 4));
         }
         if (Build.VERSION.SDK_INT >= 26) {
             this.E0 = Q(zh4.a());

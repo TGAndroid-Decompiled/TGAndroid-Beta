@@ -807,7 +807,7 @@ public final class hb4 {
     public final void r() {
         boolean z;
         byte b;
-        if (!uc7.s1(this.R).k4.C0.f && this.b0 > 0 && this.h0 == null && !this.n0 && !this.y && this.J == 0) {
+        if (!uc7.s1(this.R).l4.C0.f && this.b0 > 0 && this.h0 == null && !this.n0 && !this.y && this.J == 0) {
             z = true;
         } else {
             z = false;
@@ -832,7 +832,7 @@ public final class hb4 {
     public final void s() {
         int i;
         int i2 = 131072;
-        if ((this.J > 0 || uc7.s1(this.R).k4.Z2.f) && !this.e) {
+        if ((this.J > 0 || uc7.s1(this.R).l4.Z2.f) && !this.e) {
             i = 524288;
             this.n = 524288;
             this.o = (byte) 8;
@@ -892,7 +892,7 @@ public final class hb4 {
         this.X = jxcVar;
         this.W = jxcVar.b;
         this.b0 = jxcVar.d;
-        int i2 = uc7.s1(i).r3;
+        int i2 = uc7.s1(i).s3;
         this.T = i2;
         this.U = i2;
         String H = xb4.H(jxcVar.e);

@@ -74,14 +74,14 @@ public final class x11 implements ps3 {
                 return;
             case 5:
                 fz7 fz7Var = (fz7) obj2;
-                hh7 hh7Var = (hh7) obj;
+                ih7 ih7Var = (ih7) obj;
                 LinkedList linkedList = fz7Var.V;
                 fz7Var.U = null;
-                hh7Var.C = null;
-                hh7Var.x();
+                ih7Var.C = null;
+                ih7Var.x();
                 if (!z) {
-                    hh7Var.h = 1.0f;
-                    hh7Var.x();
+                    ih7Var.h = 1.0f;
+                    ih7Var.x();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
                         fz7Var.W.poll();

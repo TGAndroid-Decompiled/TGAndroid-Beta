@@ -36,7 +36,7 @@ public final class ij8 extends e {
         long j2 = chat != null ? chat.send_paid_messages_stars : 0L;
         z = (M0 == null || !M0.broadcast_messages_allowed) ? false : false;
         this.f = z;
-        long k = Utilities.k(z ? j2 : getMessagesController().k4.c.f(), getMessagesController().k4.P1.f(), 0L);
+        long k = Utilities.k(z ? j2 : getMessagesController().l4.c.f(), getMessagesController().l4.P1.f(), 0L);
         this.h = k;
         this.n = z;
         this.r = k;
@@ -52,8 +52,8 @@ public final class ij8 extends e {
     }
 
     public final String Z() {
-        int f = getMessagesController().k4.Q1.f();
-        return ob6.a0(null, null, 2131746802, cc.J0(f), String.valueOf(((int) (((((float) this.r) * (f / 1000.0f)) / 1000.0d) * getMessagesController().k4.A3.i)) / 100.0d));
+        int f = getMessagesController().l4.Q1.f();
+        return ob6.a0(null, null, 2131746802, cc.J0(f), String.valueOf(((int) (((((float) this.r) * (f / 1000.0f)) / 1000.0d) * getMessagesController().l4.A3.i)) / 100.0d));
     }
 
     public final boolean a0() {
@@ -108,7 +108,7 @@ public final class ij8 extends e {
             }
             updatepaidmessagesprice.send_paid_messages_stars = j;
             updatepaidmessagesprice.suggestions_allowed = z;
-            getConnectionsManager().sendRequest(updatepaidmessagesprice, new ol7(this, updatepaidmessagesprice, (byte) 9));
+            getConnectionsManager().sendRequest(updatepaidmessagesprice, new pl7(this, updatepaidmessagesprice, (byte) 9));
             TLRPC.Chat M0 = getMessagesController().M0(Long.valueOf(j3));
             if (M0 != null) {
                 boolean z2 = this.n;

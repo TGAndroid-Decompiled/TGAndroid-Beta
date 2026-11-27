@@ -21,7 +21,7 @@ public final class rr extends yye {
     }
 
     @Override
-    public final uf7 b(wf7 wf7Var, ByteBuffer byteBuffer) {
+    public final vf7 b(xf7 xf7Var, ByteBuffer byteBuffer) {
         switch (this.a) {
             case 0:
                 if (byteBuffer.get() != 116) {
@@ -78,9 +78,9 @@ public final class rr extends yye {
                 if (arrayList.isEmpty()) {
                     return null;
                 }
-                return new uf7(arrayList);
+                return new vf7(arrayList);
             default:
-                return new uf7(c(new ey7(byteBuffer.limit(), byteBuffer.array())));
+                return new vf7(c(new ey7(byteBuffer.limit(), byteBuffer.array())));
         }
     }
 }

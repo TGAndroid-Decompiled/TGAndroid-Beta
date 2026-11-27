@@ -9,7 +9,7 @@ public final class o88 extends FrameLayout {
     public TextView b;
     public q88 c;
     public AnimatorSet d;
-    public ki7 e;
+    public li7 e;
 
     public final void a(String str, int i, float f) {
         TextView textView = this.a;

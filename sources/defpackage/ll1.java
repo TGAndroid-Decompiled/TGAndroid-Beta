@@ -101,7 +101,7 @@ public final class ll1 implements View.OnClickListener {
             case 9:
                 zu1 zu1Var8 = this.b;
                 if (zu1Var8.r4 != null) {
-                    qyb qybVar = zu1Var8.getMessagesController().g4;
+                    qyb qybVar = zu1Var8.getMessagesController().h4;
                     long j2 = zu1Var8.e.id;
                     TLRPC.TL_forumTopic tL_forumTopic = zu1Var8.r4;
                     int i3 = tL_forumTopic.id;
@@ -210,7 +210,7 @@ public final class ll1 implements View.OnClickListener {
                 r47 r47Var2 = zu1Var14.v5;
                 if (r47Var2 != null) {
                     zu1Var14.Z9(r47Var2, false, false);
-                    m01.t(zu1Var14.getParentActivity(), Uri.parse(zu1Var14.v5.T0), true, false, false, null, null, false, zu1Var14.getMessagesController().k4.I2.f, false, false);
+                    m01.t(zu1Var14.getParentActivity(), Uri.parse(zu1Var14.v5.T0), true, false, false, null, null, false, zu1Var14.getMessagesController().l4.I2.f, false, false);
                     return;
                 }
                 return;

@@ -255,9 +255,9 @@ public final class bt5 extends nx0 {
         yob.X(m2, i2, vnbVar);
         int i6 = tL_starsSubscriptionPricing.period;
         if (i6 == 2592000) {
-            m2.setText(ob6.a0(null, null, 2131744715, di0.h().e((int) ((tL_starsSubscriptionPricing.amount / 1000.0d) * uc7.s1(i).k4.A3.i), "USD")));
+            m2.setText(ob6.a0(null, null, 2131744715, di0.h().e((int) ((tL_starsSubscriptionPricing.amount / 1000.0d) * uc7.s1(i).l4.A3.i), "USD")));
         } else {
-            m2.setText(String.format(Locale.US, "appx. %1$s per %2$s", di0.h().e((int) (uc7.s1(i).k4.A3.i * (tL_starsSubscriptionPricing.amount / 1000.0d)), "USD"), i6 == 300 ? "5min" : "min"));
+            m2.setText(String.format(Locale.US, "appx. %1$s per %2$s", di0.h().e((int) (uc7.s1(i).l4.A3.i * (tL_starsSubscriptionPricing.amount / 1000.0d)), "USD"), i6 == 300 ? "5min" : "min"));
         }
         j2.addView(m2, tre.t(-1, -2, 17, 20, 0, 20, 4));
         ?? hjbVar = new hjb(context, vnbVar);

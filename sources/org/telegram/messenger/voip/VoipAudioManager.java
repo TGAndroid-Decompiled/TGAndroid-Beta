@@ -71,7 +71,7 @@ public class VoipAudioManager {
     }
 
     public void isBluetoothAndSpeakerOnAsync(icc iccVar) {
-        Utilities.e.c(new vlc(this, iccVar, (byte) 6));
+        Utilities.e.c(new slc(this, iccVar, (byte) 7));
     }
 
     public boolean isBluetoothOn() {
@@ -116,7 +116,7 @@ public class VoipAudioManager {
                 return;
             }
             this.isSpeakerphoneOn = Boolean.FALSE;
-            Utilities.e.c(new vlc(audioManager, findBluetoothDevice, (byte) 5));
+            Utilities.e.c(new slc(audioManager, findBluetoothDevice, (byte) 6));
             return;
         }
         audioManager.startBluetoothSco();

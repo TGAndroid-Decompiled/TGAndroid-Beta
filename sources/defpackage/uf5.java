@@ -30,8 +30,8 @@ public final class uf5 {
         return new SimpleDateFormat("yyyy-MM-dd", Locale.UK).format(new Date(j));
     }
 
-    public static zj8 d(rj7 rj7Var, String str) {
-        for (Map.Entry entry : rj7Var.a().entrySet()) {
+    public static zj8 d(sj7 sj7Var, String str) {
+        for (Map.Entry entry : sj7Var.a().entrySet()) {
             if (entry.getValue() instanceof Set) {
                 for (String str2 : (Set) entry.getValue()) {
                     if (str.equals(str2)) {
@@ -46,19 +46,19 @@ public final class uf5 {
         return null;
     }
 
-    public static void f(rj7 rj7Var, String str) {
-        zj8 d2 = d(rj7Var, str);
+    public static void f(sj7 sj7Var, String str) {
+        zj8 d2 = d(sj7Var, str);
         if (d2 == null) {
             return;
         }
-        HashSet hashSet = new HashSet((Collection) eqe.a(rj7Var, d2, new HashSet()));
+        HashSet hashSet = new HashSet((Collection) eqe.a(sj7Var, d2, new HashSet()));
         hashSet.remove(str);
         if (hashSet.isEmpty()) {
-            rj7Var.b();
-            rj7Var.a.remove(d2);
+            sj7Var.b();
+            sj7Var.a.remove(d2);
             return;
         }
-        rj7Var.d(d2, hashSet);
+        sj7Var.d(d2, hashSet);
     }
 
     public final synchronized void a() {
@@ -94,7 +94,7 @@ public final class uf5 {
         if (c(((Long) this.a.b(zj8Var, -1L)).longValue()).equals(c(j))) {
             return false;
         }
-        rj7 rj7Var = (rj7) ytd.a(new yu5(this.a, zj8Var, Long.valueOf(j), null, (byte) 1));
+        sj7 sj7Var = (sj7) ytd.a(new yu5(this.a, zj8Var, Long.valueOf(j), null, (byte) 1));
         return true;
     }
 
@@ -119,7 +119,7 @@ public final class uf5 {
         this.a.a(new ur4() {
             @Override
             public final Object invoke(Object obj) {
-                ((rj7) obj).c(uf5.b, Long.valueOf(j));
+                ((sj7) obj).c(uf5.b, Long.valueOf(j));
                 return null;
             }
         });

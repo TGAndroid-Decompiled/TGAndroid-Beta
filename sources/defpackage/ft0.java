@@ -13,12 +13,12 @@ public final class ft0 implements RequestDelegate {
     public final Object d;
     public final Object e;
 
-    public ft0(id idVar, long j, k5 k5Var, bf7 bf7Var) {
+    public ft0(id idVar, long j, k5 k5Var, cf7 cf7Var) {
         this.a = (byte) 2;
         this.d = idVar;
         this.b = j;
         this.c = k5Var;
-        this.e = bf7Var;
+        this.e = cf7Var;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class ft0 implements RequestDelegate {
                 hl.c3(new nm1((e) obj3, tLObject, (ac7) obj2, tL_error, (lw3) obj, this.b, (byte) 2));
                 return;
             case 2:
-                hl.c3(new da7((id) obj2, tLObject, this.b, (k5) obj3, (bf7) obj, (byte) 8));
+                hl.c3(new da7((id) obj2, tLObject, this.b, (k5) obj3, (cf7) obj, (byte) 8));
                 return;
             case 3:
                 hl.c3(new da7((uc7) obj3, tLObject, this.b, (TLRPC.messages_SavedReactionTags) obj2, (TLRPC.TL_messages_getSavedReactionTags) obj, (byte) 11));
@@ -52,8 +52,8 @@ public final class ft0 implements RequestDelegate {
                         uc7Var.g0(j, iArr[0], inputPeer);
                     }
                     uc7Var.W3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
-                    jf7 messagesStorage = uc7Var.getMessagesStorage();
-                    messagesStorage.a.c(new le7(messagesStorage, j, (byte) 4));
+                    kf7 messagesStorage = uc7Var.getMessagesStorage();
+                    messagesStorage.a.c(new me7(messagesStorage, j, (byte) 4));
                     return;
                 }
                 return;

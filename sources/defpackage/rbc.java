@@ -23,7 +23,7 @@ public final class rbc implements s69, u69 {
         mbc mbcVar;
         sbc sbcVar = this.a;
         dr0 dr0Var = sbcVar.Y1;
-        mi7 mi7Var = sbcVar.U1;
+        ni7 ni7Var = sbcVar.U1;
         HashSet hashSet = sbcVar.b2;
         if (view instanceof skb) {
             z55 z55Var = sbcVar.r2;
@@ -101,7 +101,7 @@ public final class rbc implements s69, u69 {
                 }
             }
             sbcVar.Z0();
-            mi7Var.b(true, hashSet, new mbc(sbcVar, (byte) 2), null);
+            ni7Var.b(true, hashSet, new mbc(sbcVar, (byte) 2), null);
             sbcVar.h1(true, true);
             sbcVar.a1();
         }

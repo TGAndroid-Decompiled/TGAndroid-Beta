@@ -230,16 +230,16 @@ public final class ba6 implements je8 {
     }
 
     public final void d(boolean z) {
-        ybb ybbVar;
+        zbb zbbVar;
         int i;
         lcb lcbVar = this.c;
-        if (lcbVar != null && (ybbVar = lcbVar.s) != null) {
+        if (lcbVar != null && (zbbVar = lcbVar.s) != null) {
             if (z) {
                 i = 8;
             } else {
                 i = 0;
             }
-            ybbVar.setVisibility(i);
+            zbbVar.setVisibility(i);
         }
     }
 

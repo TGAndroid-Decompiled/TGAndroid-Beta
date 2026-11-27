@@ -194,7 +194,7 @@ public final class ap8 extends View {
             m(6, arrayList);
             n(3, 6, arrayList);
         }
-        hl.c3(new h68(this, arrayList, (byte) 27));
+        hl.c3(new a58(this, arrayList, (byte) 28));
     }
 
     public final void e() {
@@ -466,7 +466,7 @@ public final class ap8 extends View {
                             RectF rectF2 = ProfileActivity.Z6;
                             profileActivity.u2(f, f2, b);
                         } else {
-                            postDelayed(new h68(this, xo8Var5, (byte) 28), s);
+                            postDelayed(new a58(this, xo8Var5, (byte) 29), s);
                         }
                     }
                 }

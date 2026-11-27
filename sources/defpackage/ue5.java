@@ -19,7 +19,7 @@ public final class ue5 extends e implements fn7 {
     public final String a;
     public final String b;
     public final String c;
-    public final p5b d;
+    public final q5b d;
     public b6 e;
     public jr1 f;
     public FrameLayout h;
@@ -52,7 +52,7 @@ public final class ue5 extends e implements fn7 {
             str2 = "@" + this.c;
         }
         this.a = trim.concat(str2);
-        this.d = new p5b(this.currentAccount, this.c, trim);
+        this.d = new q5b(this.currentAccount, this.c, trim);
     }
 
     public final int Y() {
@@ -232,13 +232,13 @@ public final class ue5 extends e implements fn7 {
             this.n.getSearchOptionsItem().setTranslationY(0.0f);
         }
         re5 re5Var2 = this.n;
-        p5b p5bVar = this.d;
-        re5Var2.X1 = p5bVar;
+        q5b q5bVar = this.d;
+        re5Var2.X1 = q5bVar;
         oha ohaVar = re5Var2.f0;
-        ohaVar.s = p5bVar;
+        ohaVar.s = q5bVar;
         ohaVar.f();
         bja bjaVar = re5Var2.g0;
-        bjaVar.s = p5bVar;
+        bjaVar.s = q5bVar;
         bjaVar.f();
         this.n.i1(0, eg0.e(hl.m) + hl.L(48.0f) + Y(), hl.L(8.0f), 0);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -253,7 +253,7 @@ public final class ue5 extends e implements fn7 {
         textView.setTypeface(hl.o());
         this.w.setTextSize(1, 15.0f);
         yob.X(this.w, aob.qf, getResourceProvider());
-        this.w.setText(ob6.G(p5bVar.J, "FoundStories", new Object[0]));
+        this.w.setText(ob6.G(q5bVar.J, "FoundStories", new Object[0]));
         this.s.addView(this.w, tre.d(-1, -2.0f, 19, 18.0f, 0.0f, 18.0f, 0.0f));
         View view = new View(context);
         yob.h(aob.d7, this.resourceProvider, view);
@@ -271,7 +271,7 @@ public final class ue5 extends e implements fn7 {
         xc7Var.setBackground(g0);
         yob.j(xc7Var, g0, M, M2, resourceProvider);
         this.r.setOnClickListener(new sa5(this, (byte) 8));
-        a0(this.r.a(p5bVar), false);
+        a0(this.r.a(q5bVar), false);
         this.r.b(df5.a(this.currentAccount).d.m, this.b, this.c);
         frameLayout.addView(this.r, tre.e(-1, 48, 55));
         hl.v3(this.r, 0, Y(), 0, 0);
@@ -290,15 +290,15 @@ public final class ue5 extends e implements fn7 {
         jr1 jr1Var;
         if (i == jn7.A5) {
             Object obj = objArr[0];
-            p5b p5bVar = this.d;
-            if (obj == p5bVar) {
+            q5b q5bVar = this.d;
+            if (obj == q5bVar) {
                 xc7 xc7Var = this.r;
                 if (xc7Var != null) {
-                    a0(xc7Var.a(p5bVar), true);
+                    a0(xc7Var.a(q5bVar), true);
                 }
                 TextView textView = this.w;
                 if (textView != null) {
-                    textView.setText(ob6.G(p5bVar.J, "FoundStories", new Object[0]));
+                    textView.setText(ob6.G(q5bVar.J, "FoundStories", new Object[0]));
                 }
             }
         } else if (i == jn7.I0 && (jr1Var = this.f) != null && jr1Var.a != null && ((Integer) objArr[0]).intValue() == this.f.a.getClassGuid()) {
@@ -321,11 +321,11 @@ public final class ue5 extends e implements fn7 {
     @Override
     public final boolean onFragmentCreate() {
         ArrayList arrayList = getMessagesController().O1().I;
-        p5b p5bVar = this.d;
-        arrayList.add(p5bVar);
+        q5b q5bVar = this.d;
+        arrayList.add(q5bVar);
         jn7.f(this.currentAccount).b(this, jn7.A5);
         jn7.f(this.currentAccount).b(this, jn7.I0);
-        p5bVar.p(18, true);
+        q5bVar.p(18, true);
         return super.onFragmentCreate();
     }
 

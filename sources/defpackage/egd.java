@@ -106,7 +106,7 @@ public final class egd implements tq2, bde, us3 {
     public final Object b0(am2 am2Var) {
         switch (this.a) {
             case 0:
-                return new lg7();
+                return new mg7();
             default:
                 pi2 pi2Var = new pi2();
                 tv tvVar = new tv((byte) 15);

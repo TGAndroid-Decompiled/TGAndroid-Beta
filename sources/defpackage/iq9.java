@@ -15,6 +15,6 @@ public final class iq9 implements lr9 {
 
     @Override
     public final void onStreamChannels(ArrayList arrayList) {
-        hl.c3(new en9(this, arrayList, (byte) 8));
+        hl.c3(new dn9(this, arrayList, (byte) 9));
     }
 }

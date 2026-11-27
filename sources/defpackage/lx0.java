@@ -28,7 +28,7 @@ public abstract class lx0 extends FrameLayout implements snb {
     public boolean e;
     public boolean f;
     public AnimatorSet h;
-    public final l09 n;
+    public final m09 n;
     public final Rect r;
     public final Paint s;
     public boolean w;
@@ -48,7 +48,7 @@ public abstract class lx0 extends FrameLayout implements snb {
         this.y = 0.0f;
         this.E = 0.0f;
         this.G = new Paint(1);
-        this.n = new l09((byte) 3);
+        this.n = new m09((byte) 3);
         setWillNotDraw(false);
     }
 

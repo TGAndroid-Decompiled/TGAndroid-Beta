@@ -104,17 +104,17 @@ public final class nw3 extends j79 {
                         str = "";
                     }
                     String str2 = str;
-                    t3b t3bVar = (t3b) view;
+                    u3b u3bVar = (u3b) view;
                     if (this.J == null) {
-                        t3bVar.a(0, str2);
+                        u3bVar.a(0, str2);
                         return;
                     }
                     int indexOf = str2.toLowerCase().indexOf(this.J.toLowerCase());
                     if (indexOf < 0) {
-                        t3bVar.a(0, str2);
+                        u3bVar.a(0, str2);
                         return;
                     } else {
-                        t3bVar.b(str2, 0, null, indexOf, this.J.length());
+                        u3bVar.b(str2, 0, null, indexOf, this.J.length());
                         return;
                     }
                 }
@@ -237,7 +237,7 @@ public final class nw3 extends j79 {
         } else if (i == 1) {
             Context context = ow3Var.getContext();
             int i3 = zw3.C1;
-            xw3Var = new t3b(context, true, false, zw3Var.J0, false);
+            xw3Var = new u3b(context, true, false, zw3Var.J0, false);
         } else if (i == 3) {
             Context context2 = ow3Var.getContext();
             if (ow3Var.a == 0) {

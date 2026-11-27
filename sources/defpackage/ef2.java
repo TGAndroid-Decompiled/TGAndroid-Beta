@@ -1,7 +1,7 @@
 package defpackage;
 
 import android.view.View;
-public final class ef2 implements ef7, fd, s69, t69 {
+public final class ef2 implements ff7, fd, s69, t69 {
     public final byte a;
     public final bg2 b;
 

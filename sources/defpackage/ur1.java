@@ -48,7 +48,7 @@ public final class ur1 extends b0f {
                             return;
                         }
                         return;
-                    } else if (g57Var.v - g57Var.u > uc7.s1(s57Var.x).k4.V1.f()) {
+                    } else if (g57Var.v - g57Var.u > uc7.s1(s57Var.x).l4.V1.f()) {
                         m57Var.f();
                         return;
                     } else {

@@ -1,11 +1,11 @@
 package defpackage;
 
 import android.content.Context;
-public final class dbb extends q33 {
-    public final rbb G;
+public final class dbb extends l33 {
+    public final sbb F;
 
-    public dbb(rbb rbbVar, Context context, gbb gbbVar) {
-        super(context, gbbVar);
-        this.G = rbbVar;
+    public dbb(sbb sbbVar, Context context, hbb hbbVar) {
+        super(context, hbbVar);
+        this.F = sbbVar;
     }
 }

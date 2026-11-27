@@ -83,7 +83,7 @@ public final class axa implements bxa {
                 }
                 getsavedstargifts2.offset = str;
                 if (z) {
-                    i2 = Math.max(uc7.s1(i3).k4.R1.f(), 15);
+                    i2 = Math.max(uc7.s1(i3).l4.R1.f(), 15);
                 }
                 getsavedstargifts2.limit = i2;
                 getsavedstargifts = getsavedstargifts2;
@@ -393,11 +393,11 @@ public final class axa implements bxa {
                     return z3;
                 }
             } else if (z) {
-                if (i.size() + 1 > uc7.s1(i2).k4.R1.f()) {
+                if (i.size() + 1 > uc7.s1(i2).l4.R1.f()) {
                     if (!z2) {
                         return true;
                     }
-                    while (i.size() > 0 && i.size() + 1 > uc7.s1(i2).k4.R1.f()) {
+                    while (i.size() > 0 && i.size() + 1 > uc7.s1(i2).l4.R1.f()) {
                         ((TL_stars.SavedStarGift) qd4.l(1, i)).pinned_to_top = false;
                     }
                     z3 = true;

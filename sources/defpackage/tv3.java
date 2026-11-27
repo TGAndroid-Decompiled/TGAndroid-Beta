@@ -778,7 +778,7 @@ public class tv3 implements fn7 {
                 }
                 wb2Var.getMessageObject().R = false;
                 wb2Var.getMessageObject().k.premiumEffectWasPlayed = true;
-                zu1Var.getMessagesStorage().U1(this.J, wb2Var.getMessageObject().k);
+                zu1Var.getMessagesStorage().Z1(this.J, wb2Var.getMessageObject().k);
             }
         }
     }

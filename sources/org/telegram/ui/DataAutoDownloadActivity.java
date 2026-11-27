@@ -277,7 +277,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.e {
                 kq3Var.d = r9.h;
             }
         }
-        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).Y3.edit();
         edit.putString(str, kq3Var.toString());
         this.e = 3;
         edit.putInt(str2, 3);
@@ -402,7 +402,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.e {
                 t20Var.q(i12, 9);
             }
             this.a.g(this.n ? 1 : 0);
-            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
+            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).Y3.edit();
             edit.putString(this.K, kq3Var4.toString());
             this.e = 3;
             edit.putInt(this.L, 3);
@@ -714,7 +714,7 @@ public class DataAutoDownloadActivity extends org.telegram.ui.ActionBar.e {
                     i26++;
                 }
             }
-            SharedPreferences.Editor edit2 = uc7.s1(this.currentAccount).X3.edit();
+            SharedPreferences.Editor edit2 = uc7.s1(this.currentAccount).Y3.edit();
             edit2.putString(str5, kq3Var4.toString());
             this.e = 3;
             edit2.putInt(str6, 3);

@@ -103,7 +103,7 @@ public final class ag5 {
                         lycVar3 = rfd.j(i22, i22 + H4, bArr);
                     } else {
                         if (A3 == 33 && i20 == 0) {
-                            ck7 i23 = rfd.i(bArr, i22, i22 + H4, lycVar3);
+                            dk7 i23 = rfd.i(bArr, i22, i22 + H4, lycVar3);
                             i8 = i23.a + 1;
                             i9 = i23.g;
                             int i24 = i23.h;
@@ -115,10 +115,10 @@ public final class ag5 {
                             int i27 = i23.m;
                             float f2 = i23.i;
                             int i28 = i23.j;
-                            zj7 zj7Var = i23.b;
-                            if (zj7Var != null) {
+                            ak7 ak7Var = i23.b;
+                            if (ak7Var != null) {
                                 i = i28;
-                                str2 = rk2.a(zj7Var.a, zj7Var.c, zj7Var.d, zj7Var.f, zj7Var.b, zj7Var.e);
+                                str2 = rk2.a(ak7Var.a, ak7Var.c, ak7Var.d, ak7Var.f, ak7Var.b, ak7Var.e);
                             } else {
                                 i = i28;
                             }
@@ -129,7 +129,7 @@ public final class ag5 {
                             i13 = i25;
                         } else if (A3 == 39 && i20 == 0 && (h = rfd.h(i22, i22 + H4, bArr)) != null && lycVar3 != null) {
                             i4 = 0;
-                            if (h.a == ((yj7) ((po5) lycVar3.b).get(0)).b) {
+                            if (h.a == ((zj7) ((po5) lycVar3.b).get(0)).b) {
                                 i16 = 4;
                             } else {
                                 i16 = 5;

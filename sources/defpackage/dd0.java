@@ -192,7 +192,7 @@ public final class dd0 extends e implements fn7 {
                 Y1.business_away_message = null;
             }
             getConnectionsManager().sendRequest(updatebusinessawaymessage, new ye(this, (byte) 2));
-            getMessagesStorage().g2(Y1, false);
+            getMessagesStorage().l2(Y1, false);
         }
     }
 

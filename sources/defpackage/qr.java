@@ -1,5 +1,5 @@
 package defpackage;
-public final class qr implements sf7 {
+public final class qr implements tf7 {
     public final int a;
     public final String b;
 

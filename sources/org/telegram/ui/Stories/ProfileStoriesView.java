@@ -643,7 +643,7 @@ public class ProfileStoriesView extends View implements fn7 {
             } else {
                 i7 = -1;
             }
-            lc7 lc7Var = uc7.s1(r6bVar.a).F3;
+            lc7 lc7Var = uc7.s1(r6bVar.a).G3;
             if (lc7Var == null) {
                 d2 = null;
             } else {
@@ -664,7 +664,7 @@ public class ProfileStoriesView extends View implements fn7 {
             } else {
                 i6 = -1;
             }
-            lc7 lc7Var2 = uc7.s1(r6bVar.a).F3;
+            lc7 lc7Var2 = uc7.s1(r6bVar.a).G3;
             if (lc7Var2 == null) {
                 d = null;
             } else {

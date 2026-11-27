@@ -7,7 +7,7 @@ public final class kr5 {
         if (!this.a) {
             synchronized (this) {
                 if (!this.a) {
-                    this.b = zba.a.getInt("round_video_video_bitrate", 1200000);
+                    this.b = aca.a.getInt("round_video_video_bitrate", 1200000);
                     this.a = true;
                 }
             }

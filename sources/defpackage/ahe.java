@@ -18,7 +18,7 @@ public final class ahe extends qi6 {
         g9d g9dVar = new g9d();
         g9dVar.b = Float.valueOf(lm5Var.a);
         this.e = new b2f(g9dVar);
-        this.h = new q2f(jg7.c().b(), (byte) 1);
+        this.h = new q2f(kg7.c().b(), (byte) 1);
     }
 
     @Override
@@ -57,7 +57,7 @@ public final class ahe extends qi6 {
                 a = this.f.a(jq5Var);
                 f(pxe.NO_ERROR, jq5Var, elapsedRealtime);
                 this.d = false;
-            } catch (kg7 e) {
+            } catch (lg7 e) {
                 if (e.a == 14) {
                     pxeVar = pxe.MODEL_NOT_DOWNLOADED;
                 } else {
@@ -114,7 +114,7 @@ public final class ahe extends qi6 {
             if (q2fVar.b.get() != -1 && elapsedRealtime3 - q2fVar.b.get() <= 1800000) {
                 return;
             }
-            q2fVar.a.i(new ikb(0, Arrays.asList(new bg7(24305, s, 0, j2, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new zg2(q2fVar, elapsedRealtime3, (byte) 11));
+            q2fVar.a.i(new ikb(0, Arrays.asList(new cg7(24305, s, 0, j2, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new zg2(q2fVar, elapsedRealtime3, (byte) 11));
         }
     }
 }

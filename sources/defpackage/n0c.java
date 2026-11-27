@@ -769,7 +769,7 @@ public final class n0c extends FrameLayout implements fn7 {
             String str = this.M;
             long j = this.V;
             Boolean bool = this.W;
-            qyb qybVar = uc7.s1(this.a).g4;
+            qyb qybVar = uc7.s1(this.a).h4;
             long j2 = -this.b;
             pyb pybVar = this.Q;
             d0c d0cVar = new d0c(this, str, j, bool);
@@ -898,14 +898,14 @@ public final class n0c extends FrameLayout implements fn7 {
         } else {
             f = 0.0f;
             z2 = z;
-            l = uc7.s1(i).g4.l(-j);
+            l = uc7.s1(i).h4.l(-j);
         }
         if (!z5) {
             ox0 ox0Var = n0cVar.T;
             ArrayList arrayList4 = n0cVar.U;
             if (n0cVar.g()) {
                 f2 = f;
-                arrayList = (ArrayList) uc7.s1(i).g4.f.f(-j);
+                arrayList = (ArrayList) uc7.s1(i).h4.f.f(-j);
             } else {
                 f2 = f;
                 arrayList = null;
@@ -1059,7 +1059,7 @@ public final class n0c extends FrameLayout implements fn7 {
         jn7.f(i).a(this, jn7.i3);
         jn7.e().a(this, jn7.l4);
         if (g()) {
-            qyb qybVar = uc7.s1(i).g4;
+            qyb qybVar = uc7.s1(i).h4;
             long j = -this.b;
             LongSparseIntArray longSparseIntArray = qybVar.n;
             long j2 = -j;

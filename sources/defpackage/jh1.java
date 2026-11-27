@@ -117,8 +117,8 @@ public final class jh1 extends c79 {
                             i6 = ((e) wh1Var).currentAccount;
                             kh1Var.a(i6, wh1Var.f, true);
                             emaVar.l(ob6.M0(2131752275, null), false);
-                            if (wh1Var.b < wh1Var.getMessagesController().k4.d2.f()) {
-                                kh1Var.e(wh1Var.getMessagesController().k4.d2.f());
+                            if (wh1Var.b < wh1Var.getMessagesController().l4.d2.f()) {
+                                kh1Var.e(wh1Var.getMessagesController().l4.d2.f());
                             } else {
                                 kh1Var.e(0);
                             }

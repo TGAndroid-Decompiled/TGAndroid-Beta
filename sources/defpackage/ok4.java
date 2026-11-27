@@ -112,24 +112,24 @@ public final class ok4 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                rbb rbbVar = (rbb) obj;
-                rbbVar.M = null;
-                rbbVar.J = f;
-                rbbVar.h();
-                rbbVar.r.invalidate();
-                rbbVar.n.invalidate();
+                sbb sbbVar = (sbb) obj;
+                sbbVar.M = null;
+                sbbVar.J = f;
+                sbbVar.h();
+                sbbVar.r.invalidate();
+                sbbVar.n.invalidate();
                 runnable.run();
-                rbbVar.Q.e();
+                sbbVar.Q.e();
                 jn7.e().k(100, 512);
                 jn7.e().o();
-                rbbVar.l();
-                Runnable runnable2 = rbbVar.R;
+                sbbVar.l();
+                Runnable runnable2 = sbbVar.R;
                 if (runnable2 != null) {
                     runnable2.run();
-                    rbbVar.R = null;
+                    sbbVar.R = null;
                 }
-                rbbVar.r.invalidate();
-                rbbVar.i0.invalidate();
+                sbbVar.r.invalidate();
+                sbbVar.i0.invalidate();
                 return;
         }
     }

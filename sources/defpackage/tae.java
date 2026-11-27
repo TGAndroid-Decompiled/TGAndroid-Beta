@@ -5,7 +5,7 @@ import com.google.mlkit.nl.languageid.IdentifiedLanguage;
 import com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdentifier;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
-public final class tae extends sg7 {
+public final class tae extends tg7 {
     public ThickLanguageIdentifier d;
     public final Context e;
     public final l8d f;

@@ -30,9 +30,9 @@ public final class nx2 implements ur4 {
                 Log.w("FirebaseSessions", "CorruptionException in session configs DataStore", zx2Var);
                 return sjf.e;
             default:
-                rj7 rj7Var = (rj7) obj;
-                Map a = rj7Var.a();
-                LinkedHashMap linkedHashMap = rj7Var.a;
+                sj7 sj7Var = (sj7) obj;
+                Map a = sj7Var.a();
+                LinkedHashMap linkedHashMap = sj7Var.a;
                 Iterator it = a.entrySet().iterator();
                 long j = 0;
                 while (true) {
@@ -47,14 +47,14 @@ public final class nx2 implements ur4 {
                                 Object obj2 = objArr[0];
                                 Objects.requireNonNull(obj2);
                                 if (hashSet.add(obj2)) {
-                                    rj7Var.c(zj8Var, DesugarCollections.unmodifiableSet(hashSet));
+                                    sj7Var.c(zj8Var, DesugarCollections.unmodifiableSet(hashSet));
                                     j++;
                                 } else {
                                     lq5.q(obj2, "duplicate element: ");
                                 }
                             } else {
                                 zj8Var.getClass();
-                                rj7Var.b();
+                                sj7Var.b();
                                 linkedHashMap.remove(zj8Var);
                             }
                         }
@@ -63,10 +63,10 @@ public final class nx2 implements ur4 {
                         zj8 zj8Var2 = uf5.c;
                         if (i == 0) {
                             zj8Var2.getClass();
-                            rj7Var.b();
+                            sj7Var.b();
                             linkedHashMap.remove(zj8Var2);
                         } else {
-                            rj7Var.c(zj8Var2, Long.valueOf(j));
+                            sj7Var.c(zj8Var2, Long.valueOf(j));
                         }
                     }
                 }

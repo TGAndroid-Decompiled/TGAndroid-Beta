@@ -233,7 +233,7 @@ public class uc6 extends e implements fn7 {
             } else {
                 user = null;
             }
-            showDialog(jj.B(getParentActivity(), z, user, new df7() {
+            showDialog(jj.B(getParentActivity(), z, user, new ef7() {
                 @Override
                 public final void a(int i) {
                     boolean z2 = z;
@@ -2000,7 +2000,7 @@ public class uc6 extends e implements fn7 {
                 r47 r47Var = h.h;
                 if (r47Var != null && (message = r47Var.k) != null && (messageMedia = message.media) != null) {
                     messageMedia.period = i2;
-                    getMessagesStorage().o1(h.h.k, null, null, true);
+                    getMessagesStorage().s1(h.h.k, null, null, true);
                 }
                 getConnectionsManager().sendRequest(tL_messages_editMessage, null);
                 jn7.e().k(jn7.G4, new Object[0]);

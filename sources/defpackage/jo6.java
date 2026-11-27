@@ -27,7 +27,7 @@ public final class jo6 implements fn7 {
     public boolean h;
     public int n;
     public CountDownLatch r;
-    public df7 s;
+    public ef7 s;
     public boolean w;
 
     public final void a(java.io.File r28, java.io.File r29, java.lang.String r30) {

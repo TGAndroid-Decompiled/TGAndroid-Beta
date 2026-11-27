@@ -1,7 +1,7 @@
 package defpackage;
 public final class hma extends ax2 {
     public Object a;
-    public wj7 b;
+    public xj7 b;
     public Object c;
     public final kma d;
     public int e;

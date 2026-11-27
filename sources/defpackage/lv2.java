@@ -102,7 +102,7 @@ public final class lv2 extends rf0 {
         this.k0 = new ArrayList();
         this.l0 = new HashMap();
         this.m0 = new HashMap();
-        if (uc7.s1(this.currentAccount).X3.getBoolean("needGetStatuses", false)) {
+        if (uc7.s1(this.currentAccount).Y3.getBoolean("needGetStatuses", false)) {
             I();
         }
         hashMap.put("À", "A");
@@ -319,8 +319,8 @@ public final class lv2 extends rf0 {
             if (f11.a) {
                 cc4.b("load contacts from cache");
             }
-            jf7 messagesStorage = getMessagesStorage();
-            messagesStorage.a.c(new be7(messagesStorage, (byte) 16));
+            kf7 messagesStorage = getMessagesStorage();
+            messagesStorage.a.c(new hd7(messagesStorage, (byte) 18));
             return;
         }
         if (f11.a) {
@@ -393,14 +393,14 @@ public final class lv2 extends rf0 {
             }
         }
         if (!arrayList4.isEmpty()) {
-            jf7 messagesStorage = getMessagesStorage();
+            kf7 messagesStorage = getMessagesStorage();
             messagesStorage.getClass();
             if (!arrayList4.isEmpty()) {
                 messagesStorage.a.c(new q41(messagesStorage, arrayList4, (byte) 18));
             }
         }
         if (!arrayList3.isEmpty()) {
-            getMessagesStorage().Z0(arrayList3, false);
+            getMessagesStorage().d1(arrayList3, false);
         }
         if (this.h && this.r) {
             c(arrayList, concurrentHashMap, arrayList3, arrayList4);
@@ -421,14 +421,14 @@ public final class lv2 extends rf0 {
         uc7 messagesController = getMessagesController();
         messagesController.i1.clear();
         messagesController.p1.clear();
-        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).Y3.edit();
         edit.putBoolean("needGetStatuses", true).commit();
         getConnectionsManager().sendRequest(new TLRPC.TL_contacts_getStatuses(), new ql(this, edit, (byte) 28));
     }
 
     public final void J(boolean z) {
         try {
-            if (uc7.s1(this.currentAccount).X3.getLong("lastReloadStatusTime", 0L) >= System.currentTimeMillis() - 10800000 && !z) {
+            if (uc7.s1(this.currentAccount).Y3.getLong("lastReloadStatusTime", 0L) >= System.currentTimeMillis() - 10800000 && !z) {
                 return;
             }
             I();
@@ -443,7 +443,7 @@ public final class lv2 extends rf0 {
 
     public final void L() {
         try {
-            uc7.s1(this.currentAccount).X3.edit().putLong("lastReloadStatusTime", System.currentTimeMillis()).commit();
+            uc7.s1(this.currentAccount).Y3.edit().putLong("lastReloadStatusTime", System.currentTimeMillis()).commit();
         } catch (Exception e) {
             cc4.g(e, true);
         }
@@ -774,7 +774,7 @@ public final class lv2 extends rf0 {
     }
 
     public final void f() {
-        SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).X3;
+        SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).Y3;
         this.y = sharedPreferences.getString("invitelink", null);
         int i = sharedPreferences.getInt("invitelinktime", 0);
         if (!this.E) {

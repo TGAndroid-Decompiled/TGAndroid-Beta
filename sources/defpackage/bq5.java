@@ -27,7 +27,7 @@ public final class bq5 {
     public double p;
     public double q;
     public ValueAnimator r;
-    public final xca s;
+    public final yca s;
     public Matrix t;
     public long v;
     public float w;
@@ -50,7 +50,7 @@ public final class bq5 {
         obj.l = new Runnable() {
             @Override
             public final void run() {
-                throw new UnsupportedOperationException("Method not decompiled: defpackage.uca.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: defpackage.vca.run():void");
             }
         };
         obj.f = context;
@@ -59,10 +59,10 @@ public final class bq5 {
         obj.g = sharedPreferences;
         obj.h = sharedPreferences.getBoolean("learning", false);
         obj.a = sharedPreferences.getInt("scoreall", 0);
-        xca.m.postRunnable(new Runnable() {
+        yca.m.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                throw new UnsupportedOperationException("Method not decompiled: defpackage.uca.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: defpackage.vca.run():void");
             }
         });
         this.s = obj;

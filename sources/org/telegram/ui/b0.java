@@ -181,7 +181,7 @@ public final class b0 extends c79 {
     @Override
     public final f89 x(ViewGroup viewGroup, int i) {
         View jl8Var;
-        View rcaVar;
+        View scaVar;
         vnb vnbVar;
         Context context = viewGroup.getContext();
         switch (i) {
@@ -189,8 +189,8 @@ public final class b0 extends c79 {
                 jl8Var = new jl8(this, context);
                 break;
             case 2:
-                rcaVar = new rca(context, 0, 0);
-                jl8Var = rcaVar;
+                scaVar = new sca(context, 0, 0);
+                jl8Var = scaVar;
                 break;
             case 3:
             default:
@@ -198,8 +198,8 @@ public final class b0 extends c79 {
                 jl8Var.setTag(-33024);
                 break;
             case 4:
-                rcaVar = new u1(context, (byte) 0);
-                jl8Var = rcaVar;
+                scaVar = new u1(context, (byte) 0);
+                jl8Var = scaVar;
                 break;
             case 5:
                 jl8Var = new ilb(context);

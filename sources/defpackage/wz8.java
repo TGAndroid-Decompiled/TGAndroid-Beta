@@ -7,12 +7,12 @@ import android.graphics.Paint;
 import java.nio.ByteBuffer;
 public final class wz8 implements Runnable {
     public final byte a;
-    public final f09 b;
+    public final g09 b;
     public final int c;
 
-    public wz8(f09 f09Var, int i, byte b) {
+    public wz8(g09 g09Var, int i, byte b) {
         this.a = b;
-        this.b = f09Var;
+        this.b = g09Var;
         this.c = i;
     }
 
@@ -22,11 +22,11 @@ public final class wz8 implements Runnable {
         byte[] bArr;
         switch (this.a) {
             case 0:
-                f09 f09Var = this.b;
+                g09 g09Var = this.b;
                 int i = this.c;
-                synchronized (f09.class) {
-                    if (f09.M9 != null) {
-                        bArr = f09.M9;
+                synchronized (g09.class) {
+                    if (g09.M9 != null) {
+                        bArr = g09.M9;
                     } else {
                         float L2 = hl.L(30.0f) / 4.0f;
                         int ceil = (int) Math.ceil(3.0f * L);
@@ -48,20 +48,20 @@ public final class wz8 implements Runnable {
                         for (int i3 = 0; i3 < i2; i3++) {
                             System.arraycopy(bArr2, i3 * rowBytes, bArr3, i3 * i2, i2);
                         }
-                        f09.N9 = i2;
-                        f09.O9 = ceil;
-                        f09.P9 = ceil2;
-                        f09.M9 = bArr3;
+                        g09.N9 = i2;
+                        g09.O9 = ceil;
+                        g09.P9 = ceil2;
+                        g09.M9 = bArr3;
                         bArr = bArr3;
                     }
                 }
-                int i4 = f09.N9;
+                int i4 = g09.N9;
                 Bitmap createBitmap2 = Bitmap.createBitmap(i4, i4, Bitmap.Config.ARGB_8888);
                 int[] iArr = new int[i4 * i4];
-                f09.s(iArr, bArr, i);
+                g09.s(iArr, bArr, i);
                 createBitmap2.setPixels(iArr, 0, i4, 0, 0, i4, i4);
                 createBitmap2.prepareToDraw();
-                hl.c3(new y36(f09Var, createBitmap2, iArr, i, (byte) 23));
+                hl.c3(new y36(g09Var, createBitmap2, iArr, i, (byte) 23));
                 return;
             case 1:
                 this.b.F0(this.c);

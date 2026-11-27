@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 public abstract class ste {
-    public static yf7 a(MappedByteBuffer mappedByteBuffer) {
+    public static zf7 a(MappedByteBuffer mappedByteBuffer) {
         long j;
         ByteBuffer duplicate = mappedByteBuffer.duplicate();
         duplicate.order(ByteOrder.BIG_ENDIAN);

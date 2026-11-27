@@ -10,7 +10,7 @@ import org.telegram.ui.Components.Crop.CropAreaView;
 public abstract class q33 extends FrameLayout {
     public final u33 E;
     public boolean F;
-    public final gbb a;
+    public final hbb a;
     public v98 b;
     public final mm c;
     public final mm d;
@@ -24,14 +24,14 @@ public abstract class q33 extends FrameLayout {
     public final int[] x;
     public final int[] y;
 
-    public q33(Context context, gbb gbbVar) {
+    public q33(Context context, hbb hbbVar) {
         super(context);
         this.s = 0.0f;
         this.w = new int[2];
         this.x = new int[2];
         this.y = new int[2];
         this.E = new Object();
-        this.a = gbbVar;
+        this.a = hbbVar;
         p33 p33Var = new p33(this, context);
         this.e = p33Var;
         k43 k43Var = k43.h;
@@ -71,7 +71,7 @@ public abstract class q33 extends FrameLayout {
                 q33 q33Var = this.b;
                 switch (b) {
                     case 0:
-                        ((dbb) q33Var).G.k0(-1, false, true);
+                        ((ebb) q33Var).G.k0(-1, false, true);
                         return;
                     case 1:
                         q33Var.h.l(true);
@@ -93,7 +93,7 @@ public abstract class q33 extends FrameLayout {
                             q33Var.b.B0.invalidate();
                             q33Var.b.B0.post(new vd2(q33Var, (byte) 21));
                         }
-                        ((dbb) q33Var).G.k0(-1, false, true);
+                        ((ebb) q33Var).G.k0(-1, false, true);
                         return;
                 }
             }
@@ -119,7 +119,7 @@ public abstract class q33 extends FrameLayout {
                 q33 q33Var = this.b;
                 switch (b) {
                     case 0:
-                        ((dbb) q33Var).G.k0(-1, false, true);
+                        ((ebb) q33Var).G.k0(-1, false, true);
                         return;
                     case 1:
                         q33Var.h.l(true);
@@ -141,7 +141,7 @@ public abstract class q33 extends FrameLayout {
                             q33Var.b.B0.invalidate();
                             q33Var.b.B0.post(new vd2(q33Var, (byte) 21));
                         }
-                        ((dbb) q33Var).G.k0(-1, false, true);
+                        ((ebb) q33Var).G.k0(-1, false, true);
                         return;
                 }
             }
@@ -167,7 +167,7 @@ public abstract class q33 extends FrameLayout {
                 q33 q33Var = this.b;
                 switch (b) {
                     case 0:
-                        ((dbb) q33Var).G.k0(-1, false, true);
+                        ((ebb) q33Var).G.k0(-1, false, true);
                         return;
                     case 1:
                         q33Var.h.l(true);
@@ -189,7 +189,7 @@ public abstract class q33 extends FrameLayout {
                             q33Var.b.B0.invalidate();
                             q33Var.b.B0.post(new vd2(q33Var, (byte) 21));
                         }
-                        ((dbb) q33Var).G.k0(-1, false, true);
+                        ((ebb) q33Var).G.k0(-1, false, true);
                         return;
                 }
             }

@@ -15,23 +15,23 @@ public final class wpc extends nic {
     public final vnb c;
     public final Rect d;
     public final int e;
-    public final jl7[] f;
+    public final kl7[] f;
 
-    public wpc(ArrayList arrayList, Context context, vnb vnbVar, Rect rect, int i, jl7[] jl7VarArr) {
+    public wpc(ArrayList arrayList, Context context, vnb vnbVar, Rect rect, int i, kl7[] kl7VarArr) {
         this.a = arrayList;
         this.b = context;
         this.c = vnbVar;
         this.d = rect;
         this.e = i;
-        this.f = jl7VarArr;
+        this.f = kl7VarArr;
     }
 
     @Override
     public final void b(View view, int i, int i2) {
         FrameLayout frameLayout = (FrameLayout) view;
         frameLayout.removeAllViews();
-        jl7[] jl7VarArr = this.f;
-        frameLayout.addView(uqc.j0(this.b, this.e, (TL_wallet.walletTransaction) this.a.get(i), null, null, null, null, this.c, jl7VarArr, true), tre.c(-2.0f, -1));
+        kl7[] kl7VarArr = this.f;
+        frameLayout.addView(uqc.j0(this.b, this.e, (TL_wallet.walletTransaction) this.a.get(i), null, null, null, null, this.c, kl7VarArr, true), tre.c(-2.0f, -1));
     }
 
     @Override

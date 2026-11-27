@@ -27,7 +27,7 @@ public final class r8b extends ny0 implements fn7 {
     public boolean i2;
     public boolean j2;
 
-    public r8b(Context context, uk5 uk5Var, gbb gbbVar, v35 v35Var) {
+    public r8b(Context context, uk5 uk5Var, hbb hbbVar, v35 v35Var) {
         super(context, null, true, true, 2, uk5Var);
         this.f2 = new n8b(this, (byte) 0);
         this.Z1 = v35Var;
@@ -64,10 +64,10 @@ public final class r8b extends ny0 implements fn7 {
         yob.j(textView, i0, K, K2, uk5Var);
         iye.b(textView, 0.1f, 1.5f);
         zt3Var.addView(textView, tre.d(-2, 26.0f, 21, 0.0f, 4.0f, 24.0f, 3.0f));
-        z3b z3bVar = new z3b(this, textView, (byte) 23);
-        textView.setOnClickListener(new jy8(this, z3bVar, (byte) 25));
-        z3bVar.run();
-        yt3Var.addTextChangedListener(new ry(this, z3bVar, (byte) 18));
+        n3b n3bVar = new n3b(this, textView, (byte) 24);
+        textView.setOnClickListener(new jy8(this, n3bVar, (byte) 25));
+        n3bVar.run();
+        yt3Var.addTextChangedListener(new ry(this, n3bVar, (byte) 18));
         zt3 zt3Var2 = new zt3(context, ob6.M0(2131744290, null), true, false, -1, uk5Var);
         this.U1 = zt3Var2;
         n8b n8bVar2 = new n8b(this, (byte) 1);
@@ -95,7 +95,7 @@ public final class r8b extends ny0 implements fn7 {
         d79 d79Var = this.n1;
         int i2 = this.u0;
         d79Var.setPadding(i2, 0, i2, 0);
-        this.n1.setOnItemClickListener(new jr((fn7) this, context, (Object) gbbVar, (byte) 5));
+        this.n1.setOnItemClickListener(new jr((fn7) this, context, (Object) hbbVar, (byte) 5));
         i74 i74Var = this.S1;
         if (i74Var != null) {
             i74Var.O(false);

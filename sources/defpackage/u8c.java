@@ -17,7 +17,7 @@ public final class u8c {
         this.a = i;
         if (!this.c && !this.d) {
             this.d = true;
-            jf7.Y(i).a.c(new q8c(this, (byte) 2));
+            kf7.a0(i).a.c(new q8c(this, (byte) 2));
         }
     }
 
@@ -81,7 +81,7 @@ public final class u8c {
             return;
         }
         this.g = true;
-        jf7.Y(this.a).a.c(new q8c(this, (byte) 1));
+        kf7.a0(this.a).a.c(new q8c(this, (byte) 1));
     }
 
     public final void e() {

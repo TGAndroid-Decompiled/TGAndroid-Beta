@@ -1,124 +1,118 @@
 package defpackage;
 
-import android.os.Build;
+import java.io.ByteArrayInputStream;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 public abstract class ok7 {
-    public static volatile boolean a = false;
-    public static final StringBuilder b = new StringBuilder();
-    public static final int[] c = {2002, 2000, 1920, 1601, 1600, 1001, 1000, 960, 800, 800, 480, 400, 400, 2048};
+    public static final Logger d;
+    public volatile ServerSocket a;
+    public Thread b;
+    public zg2 c;
 
-    public static String a() {
-        String str = "mips";
-        String str2 = "armeabi";
+    static {
+        Pattern.compile("([ |\t]*Content-Disposition[ |\t]*:)(.*)", 2);
+        Pattern.compile("([ |\t]*content-type[ |\t]*:)(.*)", 2);
+        Pattern.compile("[ |\t]*([a-zA-Z]*)[ |\t]*=[ |\t]*['|\"]([^\"^']*)['|\"]");
+        d = Logger.getLogger(ok7.class.getName());
+    }
+
+    public static String a(String str) {
         try {
-            String str3 = Build.CPU_ABI;
-            if (str3.equalsIgnoreCase("x86_64")) {
-                str = "x86_64";
-            } else if (str3.equalsIgnoreCase("arm64-v8a")) {
-                str = "arm64-v8a";
-            } else if (str3.equalsIgnoreCase("armeabi-v7a")) {
-                str = "armeabi-v7a";
-            } else {
-                if (!str3.equalsIgnoreCase("armeabi")) {
-                    if (str3.equalsIgnoreCase("x86")) {
-                        str = "x86";
-                    } else if (!str3.equalsIgnoreCase("mips")) {
-                        if (f11.a) {
-                            cc4.d("Unsupported arch: ".concat(str3));
-                        }
-                    }
+            return URLDecoder.decode(str, "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            d.log(Level.WARNING, "Encoding not supported, ignored", (Throwable) e);
+            return null;
+        }
+    }
+
+    public static mk7 b(int i, String str, String str2) {
+        String str3;
+        byte[] bArr;
+        ik7 ik7Var = new ik7(str);
+        if (str2 == null) {
+            return new mk7(i, str, new ByteArrayInputStream(new byte[0]), 0L);
+        }
+        String str4 = "US-ASCII";
+        String str5 = ik7Var.b;
+        if (str5 == null) {
+            str3 = "US-ASCII";
+        } else {
+            str3 = str5;
+        }
+        try {
+            if (!Charset.forName(str3).newEncoder().canEncode(str2) && str5 == null) {
+                ik7Var = new ik7(str + "; charset=UTF-8");
+            }
+            String str6 = ik7Var.b;
+            if (str6 != null) {
+                str4 = str6;
+            }
+            bArr = str2.getBytes(str4);
+        } catch (UnsupportedEncodingException e) {
+            d.log(Level.SEVERE, "encoding problem, responding nothing", (Throwable) e);
+            bArr = new byte[0];
+        }
+        return new mk7(i, ik7Var.a, new ByteArrayInputStream(bArr), bArr.length);
+    }
+
+    public static final void c(Object obj) {
+        if (obj != null) {
+            try {
+                if (obj instanceof Closeable) {
+                    ((Closeable) obj).close();
+                } else if (obj instanceof Socket) {
+                    ((Socket) obj).close();
+                } else if (obj instanceof ServerSocket) {
+                    ((ServerSocket) obj).close();
+                } else {
+                    throw new IllegalArgumentException("Unknown object to close");
                 }
-                str = "armeabi";
-            }
-            str2 = str;
-        } catch (Exception e) {
-            cc4.g(e, true);
-        }
-        String property = System.getProperty("os.arch");
-        if (property != null && property.contains("686")) {
-            return "x86";
-        }
-        return str2;
-    }
-
-    public static void b(int i, ey7 ey7Var) {
-        ey7Var.K(7);
-        byte[] bArr = ey7Var.a;
-        bArr[0] = -84;
-        bArr[1] = 64;
-        bArr[2] = -1;
-        bArr[3] = -1;
-        bArr[4] = (byte) ((i >> 16) & 255);
-        bArr[5] = (byte) ((i >> 8) & 255);
-        bArr[6] = (byte) (i & 255);
-    }
-
-    public static synchronized void c(android.content.Context r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ok7.c(android.content.Context):void");
-    }
-
-    public static boolean d(android.content.Context r6, java.io.File r7, java.io.File r8, java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ok7.d(android.content.Context, java.io.File, java.io.File, java.lang.String):boolean");
-    }
-
-    public static defpackage.j4 e(defpackage.zd1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ok7.e(zd1):j4");
-    }
-
-    public static void f(zd1 zd1Var, i4 i4Var) {
-        int f = zd1Var.f(5);
-        zd1Var.n(2);
-        if (zd1Var.e()) {
-            zd1Var.n(5);
-        }
-        if (f >= 7 && f <= 10) {
-            zd1Var.m();
-        }
-        if (zd1Var.e()) {
-            int f2 = zd1Var.f(3);
-            if (i4Var.b == -1 && f >= 0 && f <= 15 && (f2 == 0 || f2 == 1)) {
-                i4Var.b = f;
-            }
-            if (zd1Var.e()) {
-                h(zd1Var);
+            } catch (IOException e) {
+                d.log(Level.SEVERE, "Could not close", (Throwable) e);
             }
         }
     }
 
-    public static void g(zd1 zd1Var, i4 i4Var) {
-        zd1Var.n(2);
-        boolean e = zd1Var.e();
-        int f = zd1Var.f(8);
-        for (int i = 0; i < f; i++) {
-            zd1Var.n(2);
-            if (zd1Var.e()) {
-                zd1Var.n(5);
+    public static boolean f(mk7 mk7Var) {
+        String str = mk7Var.b;
+        if (str != null) {
+            if (str.toLowerCase().contains("text/") || str.toLowerCase().contains("/json")) {
+                return true;
             }
-            if (e) {
-                zd1Var.n(24);
-            } else {
-                if (zd1Var.e()) {
-                    if (!zd1Var.e()) {
-                        zd1Var.n(4);
-                    }
-                    i4Var.c = zd1Var.f(6) + 1;
-                }
-                zd1Var.n(4);
-            }
+            return false;
         }
-        if (zd1Var.e()) {
-            zd1Var.n(3);
-            if (zd1Var.e()) {
-                h(zd1Var);
-            }
-        }
+        return false;
     }
 
-    public static void h(zd1 zd1Var) {
-        int f = zd1Var.f(6);
-        if (f >= 2 && f <= 42) {
-            zd1Var.n(f << 3);
+    public abstract mk7 d(kk7 kk7Var);
+
+    public final void e() {
+        this.a = new ServerSocket();
+        this.a.setReuseAddress(true);
+        q6 q6Var = new q6(this);
+        Thread thread = new Thread(q6Var);
+        this.b = thread;
+        thread.setDaemon(true);
+        this.b.setName("NanoHttpd Main Listener");
+        this.b.start();
+        while (!q6Var.b && ((IOException) q6Var.c) == null) {
+            try {
+                Thread.sleep(10L);
+            } catch (Throwable unused) {
+            }
+        }
+        IOException iOException = (IOException) q6Var.c;
+        if (iOException == null) {
             return;
         }
-        throw hy7.d(String.format("Invalid language tag bytes number: %d. Must be between 2 and 42.", Integer.valueOf(f)));
+        throw iOException;
     }
 }

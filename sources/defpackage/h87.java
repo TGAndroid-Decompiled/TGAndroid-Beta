@@ -48,7 +48,7 @@ public final class h87 implements Runnable {
                     boolean z = dialog.unread_mark;
                     if (z) {
                         dialog.unread_mark = false;
-                        uc7Var.getMessagesStorage().C1(dialog.id, false);
+                        uc7Var.getMessagesStorage().H1(dialog.id, false);
                     }
                     if ((i3 != 0 || z) && dialog.unread_count == 0) {
                         j = j2;

@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.ArrayList;
 public final class v4c {
-    public z5b a;
+    public j5b a;
     public String d;
     public final ArrayList b = new ArrayList();
     public final ArrayList c = new ArrayList();

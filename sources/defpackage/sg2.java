@@ -799,7 +799,7 @@ public final class sg2 extends FrameLayout {
         } else {
             o = lv2.o(tLObject);
         }
-        if (z && ((TLRPC.User) tLObject).id == uc7.s1(yac.t0).L3) {
+        if (z && ((TLRPC.User) tLObject).id == uc7.s1(yac.t0).M3) {
             o = ob6.M0(2131752435, null);
         }
         if (this.I) {

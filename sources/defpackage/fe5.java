@@ -10,9 +10,9 @@ public final class fe5 implements av3 {
     public boolean l;
     public boolean n;
     public final boolean[] h = new boolean[3];
-    public final xj7 d = new xj7(7);
-    public final xj7 e = new xj7(8);
-    public final xj7 f = new xj7(6);
+    public final yj7 d = new yj7(7);
+    public final yj7 e = new yj7(8);
+    public final yj7 f = new yj7(6);
     public long m = -9223372036854775807L;
     public final ey7 o = new ey7();
 

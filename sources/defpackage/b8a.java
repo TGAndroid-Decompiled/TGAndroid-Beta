@@ -16,7 +16,7 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 public abstract class b8a extends n8 {
     public boolean A;
     public y7a B;
-    public en9 C;
+    public dn9 C;
     public boolean D;
     public int E;
     public int F;
@@ -60,9 +60,9 @@ public abstract class b8a extends n8 {
                 if (this.B == null) {
                     this.B = new y7a(this, context);
                 }
-                en9 en9Var = this.C;
-                if (en9Var != null) {
-                    hl.r(en9Var);
+                dn9 dn9Var = this.C;
+                if (dn9Var != null) {
+                    hl.r(dn9Var);
                 }
                 if (this.B.getParent() == null) {
                     WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -80,7 +80,7 @@ public abstract class b8a extends n8 {
                 if (zu1Var != null) {
                     y7a y7aVar = this.B;
                     xu1 xu1Var = zu1Var.Ba;
-                    en9 en9Var2 = new en9(this, zu1Var, (byte) 26);
+                    dn9 dn9Var2 = new dn9(this, zu1Var, (byte) 27);
                     ?? h21Var = new h21(context, xu1Var);
                     Drawable drawable = context.getDrawable(2131232315);
                     de0 de0Var = h21Var.a;
@@ -91,15 +91,15 @@ public abstract class b8a extends n8 {
                     h21Var.b.setText(hl.S2(ob6.M0(2131745383, null)));
                     t21 t21Var = new t21(xu1Var, context, true);
                     t21Var.e(ob6.M0(2131745382, null));
-                    t21Var.b = en9Var2;
+                    t21Var.b = dn9Var2;
                     h21Var.setButton(t21Var);
                     v21 f = v21.f(y7aVar, h21Var, 1500);
                     f.e.addCallback(new z7a(this, f));
                     f.j();
                 }
-                en9 en9Var3 = new en9(this, windowManager, (byte) 27);
-                this.C = en9Var3;
-                hl.d3(en9Var3, 2500L);
+                dn9 dn9Var3 = new dn9(this, windowManager, (byte) 28);
+                this.C = dn9Var3;
+                hl.d3(dn9Var3, 2500L);
                 return;
             }
             this.y = true;
@@ -124,7 +124,7 @@ public abstract class b8a extends n8 {
                 TLRPC.ChatFull N0 = uc7Var.N0(-j);
                 if (N0 != null) {
                     N0.default_send_as = uc7Var.y1(n);
-                    uc7Var.getMessagesStorage().K1(N0, false);
+                    uc7Var.getMessagesStorage().P1(N0, false);
                     uc7Var.getNotificationCenter().k(jn7.F, Long.valueOf(j), N0.default_send_as);
                 }
                 TLRPC.TL_messages_saveDefaultSendAs tL_messages_saveDefaultSendAs = new TLRPC.TL_messages_saveDefaultSendAs();

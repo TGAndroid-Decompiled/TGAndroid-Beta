@@ -228,7 +228,7 @@ public class VoIPPreNotificationService {
         stopRinging();
         if (!z) {
             for (int i = 0; i < 4; i++) {
-                uc7.s1(i).Z3 = false;
+                uc7.s1(i).a4 = false;
             }
             hl.c3(new osa((byte) 12));
         }

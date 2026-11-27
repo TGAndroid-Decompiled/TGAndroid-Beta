@@ -336,7 +336,7 @@ public class SessionsActivity extends org.telegram.ui.ActionBar.e implements fn7
         } else if (i >= this.M && i < this.N) {
             if (getParentActivity() != null && (arrayList = this.f) != null && !arrayList.isEmpty()) {
                 int i11 = i - this.M;
-                new dg2(getParentActivity(), (TL_account.TL_connectedBot) this.f.get(i11), new me7(this, i11, (byte) 17), this.resourceProvider).show();
+                new dg2(getParentActivity(), (TL_account.TL_connectedBot) this.f.get(i11), new oe7(this, i11, (byte) 17), this.resourceProvider).show();
             }
         } else if (((i >= this.K && i < this.L) || ((i >= this.G && i < this.H) || i == this.y)) && getParentActivity() != null) {
             ArrayList arrayList4 = this.d;
@@ -1091,7 +1091,7 @@ public class SessionsActivity extends org.telegram.ui.ActionBar.e implements fn7
         this.T = -1;
         this.ttlRow = -1;
         this.U = -1;
-        if (!this.w && getMessagesController().k4.R0.f) {
+        if (!this.w && getMessagesController().l4.R0.f) {
             int i = this.S;
             this.Q = i;
             this.S = i + 2;

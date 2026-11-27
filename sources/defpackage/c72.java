@@ -66,7 +66,7 @@ public final class c72 extends y69 {
     @Override
     public final void W(int i, int i2, f89 f89Var) {
         if (f89Var.f == 0) {
-            v09 v09Var = (v09) f89Var.a;
+            w09 w09Var = (w09) f89Var.a;
             Object O = O(i, i2);
             boolean z = true;
             if (i == 1 && i2 == M(i) - 1) {
@@ -74,8 +74,8 @@ public final class c72 extends y69 {
             }
             if (O instanceof a19) {
                 a19 a19Var = (a19) O;
-                v09Var.a(a19Var, null, z);
-                v09Var.d.a(this.x.x.contains(Integer.valueOf(a19Var.a)), false);
+                w09Var.a(a19Var, null, z);
+                w09Var.d.a(this.x.x.contains(Integer.valueOf(a19Var.a)), false);
             }
         }
     }
@@ -91,20 +91,20 @@ public final class c72 extends y69 {
 
     @Override
     public final f89 x(ViewGroup viewGroup, int i) {
-        View v09Var;
+        View w09Var;
         Context context = this.w;
         if (i != 0) {
             if (i != 1) {
-                v09Var = new View(context);
-                v09Var.setTag(-33024);
+                w09Var = new View(context);
+                w09Var.setTag(-33024);
             } else {
-                v09Var = new View(context);
-                v09Var.setLayoutParams(new r79(-1, hl.L(56.0f)));
-                v09Var.setTag(-33024);
+                w09Var = new View(context);
+                w09Var.setLayoutParams(new r79(-1, hl.L(56.0f)));
+                w09Var.setTag(-33024);
             }
         } else {
-            v09Var = new v09(this.x.a, context, false);
+            w09Var = new w09(this.x.a, context, false);
         }
-        return new f89(v09Var);
+        return new f89(w09Var);
     }
 }

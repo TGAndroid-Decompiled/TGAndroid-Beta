@@ -22,7 +22,7 @@ public final class pqa implements Runnable {
 
     @Override
     public final void run() {
-        mbb mbbVar;
+        nbb nbbVar;
         byte b = this.a;
         int i = 0;
         long j = this.b;
@@ -41,8 +41,8 @@ public final class pqa implements Runnable {
                 e d0 = w1b.d0(uc7.s1(((c6b) obj).a).M0(Long.valueOf(-j)), true);
                 e Q = LaunchActivity.Q();
                 if (Q != 0) {
-                    rbb rbbVar = rbb.G2;
-                    if (rbbVar != null && rbbVar.d) {
+                    sbb sbbVar = sbb.G2;
+                    if (sbbVar != null && sbbVar.d) {
                         ?? obj2 = new Object();
                         obj2.a = true;
                         Q.showAsSheet(d0, obj2);
@@ -53,14 +53,14 @@ public final class pqa implements Runnable {
                 }
                 return;
             case 4:
-                jf7 jf7Var = ((o6b) obj).b;
-                SQLiteDatabase sQLiteDatabase = jf7Var.b;
+                kf7 kf7Var = ((o6b) obj).b;
+                SQLiteDatabase sQLiteDatabase = kf7Var.b;
                 try {
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM stories WHERE dialog_id = " + j).stepThis().dispose();
                     return;
                 } catch (Throwable th) {
-                    jf7Var.n(th, true);
+                    kf7Var.p(th, true);
                     return;
                 }
             case 5:
@@ -72,43 +72,43 @@ public final class pqa implements Runnable {
                 jj.P(context, eVar, w9bVar.J0, new i02(r9bVar, j, (byte) 11));
                 return;
             case 6:
-                rbb rbbVar2 = (rbb) obj;
-                mbb mbbVar2 = rbbVar2.G;
-                if (mbbVar2 != null) {
-                    mbbVar2.f(true);
-                    rbbVar2.G = null;
+                sbb sbbVar2 = (sbb) obj;
+                nbb nbbVar2 = sbbVar2.G;
+                if (nbbVar2 != null) {
+                    nbbVar2.f(true);
+                    sbbVar2.G = null;
                 }
-                ibb ibbVar = rbbVar2.y;
-                if (ibbVar != null) {
-                    mbbVar = ibbVar.b(j);
+                jbb jbbVar = sbbVar2.y;
+                if (jbbVar != null) {
+                    nbbVar = jbbVar.b(j);
                 } else {
-                    mbbVar = null;
+                    nbbVar = null;
                 }
-                rbbVar2.G = mbbVar;
-                if (mbbVar != null) {
-                    rbbVar2.K = mbbVar.a;
-                    rbbVar2.r.c();
-                    ebb ebbVar = rbbVar2.i0;
-                    boolean z = rbbVar2.K;
+                sbbVar2.G = nbbVar;
+                if (nbbVar != null) {
+                    sbbVar2.K = nbbVar.a;
+                    sbbVar2.r.c();
+                    fbb fbbVar = sbbVar2.i0;
+                    boolean z = sbbVar2.K;
                     if (!z && z) {
                         i = -14737633;
                     }
-                    ebbVar.setBackgroundColor(i);
-                    rbbVar2.I.set(rbbVar2.G.c);
-                    mbb mbbVar3 = rbbVar2.G;
-                    rbbVar2.H = mbbVar3.b;
-                    mbbVar3.e();
+                    fbbVar.setBackgroundColor(i);
+                    sbbVar2.I.set(sbbVar2.G.c);
+                    nbb nbbVar3 = sbbVar2.G;
+                    sbbVar2.H = nbbVar3.b;
+                    nbbVar3.e();
                     if (xea.o() > 1) {
                         i86.e(360928);
                     }
                 }
-                rbbVar2.y = null;
-                Activity activity = rbbVar2.b;
+                sbbVar2.y = null;
+                Activity activity = sbbVar2.b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).y0.post(new bab(rbbVar2, (byte) 4));
+                    ((LaunchActivity) activity).y0.post(new bab(sbbVar2, (byte) 4));
                     return;
                 } else {
-                    rbbVar2.o(true);
+                    sbbVar2.o(true);
                     return;
                 }
             case 7:

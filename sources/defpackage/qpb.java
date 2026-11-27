@@ -26,8 +26,8 @@ public final class qpb implements View.OnClickListener {
                 fqb fqbVar = fqbVarArr[0];
                 if (fqbVar != null) {
                     Drawable background = fqbVar.getBackground();
-                    if (background instanceof hh7) {
-                        ((hh7) background).v(false);
+                    if (background instanceof ih7) {
+                        ((ih7) background).v(false);
                     } else {
                         ynb ynbVar = pqbVar.w;
                         if (pqbVar.b == 2) {
@@ -56,8 +56,8 @@ public final class qpb implements View.OnClickListener {
                 fqb fqbVar2 = fqbVarArr[1];
                 if (fqbVar2 != null) {
                     Drawable background2 = fqbVar2.getBackground();
-                    if (background2 instanceof hh7) {
-                        ((hh7) background2).v(false);
+                    if (background2 instanceof ih7) {
+                        ((ih7) background2).v(false);
                         return;
                     }
                     return;

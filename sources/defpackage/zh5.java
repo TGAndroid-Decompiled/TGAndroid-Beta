@@ -122,14 +122,14 @@ public final class zh5 extends HorizontalScrollView {
         this.c.e(z2, linearLayout.getChildAt(i).getRight());
     }
 
-    public final void b(ArrayList arrayList, df7 df7Var) {
+    public final void b(ArrayList arrayList, ef7 ef7Var) {
         LinearLayout linearLayout = this.d;
         linearLayout.removeAllViews();
         for (int i = 0; i < arrayList.size(); i++) {
             CharSequence charSequence = (CharSequence) arrayList.get(i);
             tb tbVar = new tb(getContext(), (byte) 16);
             tbVar.setDrawingCacheEnabled(false);
-            tbVar.setOnClickListener(new ae(this, i, df7Var, (byte) 8));
+            tbVar.setOnClickListener(new ae(this, i, ef7Var, (byte) 8));
             tbVar.setPadding(hl.L(12.0f), hl.L(5.0f), hl.L(12.0f), hl.L(5.0f));
             LinearLayout.LayoutParams o = tre.o(-2, -2);
             if (i < arrayList.size() - 1) {

@@ -93,14 +93,14 @@ public final class eq8 implements t69 {
             edit.putBoolean("inappCamera", xea.v0);
             edit.apply();
         } else if (i == 6) {
-            jf7 messagesStorage = this.c.getMessagesStorage();
-            messagesStorage.a.c(new be7(messagesStorage, (byte) 11));
+            kf7 messagesStorage = this.c.getMessagesStorage();
+            messagesStorage.a.c(new hd7(messagesStorage, (byte) 13));
             DictationLid.b();
             xea.C(false);
             qu6.i(qu6.i(qu6.i(qu6.i(qu6.i(qu6.i(qu6.i(qu6.i(qu6.i(uc7.e1().edit().remove("archivehint").remove("proximityhint"), "archivehint_l", "searchpostsnew", "speedhint", "gifhint"), "reminderhint", "soundHint", "themehint", "bganimationhint"), "filterhint", "n_0", "storyprvhint", "storyhint"), "storyhint2", "storydualhint", "storysvddualhint", "stories_camera"), "dualcam", "dualmatrix", "dual_available", "archivehint"), "askNotificationsAfter", "askNotificationsDuration", "viewoncehint", "voicepausehint"), "taptostorysoundhint", "nothanos", "voiceoncehint", "savedhint"), "savedsearchhint", "savedsearchtaghint", "newppsms", "monetizationadshint"), "seekSpeedHintShowed", "unsupport_video/av01", "statusgiftpage", "multistorieshint").remove("trimvoicehint").remove("taptostoryhighlighthint").apply();
             ioe.a();
             i6 = ((e) this.c).currentAccount;
-            uc7.s1(i6).Y3.edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
+            uc7.s1(i6).Z3.edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
             xea.I = 0;
             xea.N = 0;
             xea.Q = false;
@@ -124,7 +124,7 @@ public final class eq8 implements t69 {
             ee9.Z();
             i8 = ((e) this.c).currentAccount;
             a78.e(i8).a();
-            SharedPreferences sharedPreferences = this.c.getMessagesController().X3;
+            SharedPreferences sharedPreferences = this.c.getMessagesController().Y3;
             SharedPreferences.Editor edit2 = sharedPreferences.edit();
             qu6.i(edit2, "peerColors", "profilePeerColors", "boostingappearance", "bizbothint").remove("movecaptionhint");
             for (String str6 : sharedPreferences.getAll().keySet()) {
@@ -134,9 +134,9 @@ public final class eq8 implements t69 {
             }
             edit2.apply();
             i9 = ((e) this.c).currentAccount;
-            SharedPreferences.Editor edit3 = uc7.s1(i9).W3.edit();
+            SharedPreferences.Editor edit3 = uc7.s1(i9).X3.edit();
             i10 = ((e) this.c).currentAccount;
-            for (String str7 : uc7.s1(i10).W3.getAll().keySet()) {
+            for (String str7 : uc7.s1(i10).X3.getAll().keySet()) {
                 if (str7.startsWith("dialog_bar_botver")) {
                     edit3.remove(str7);
                 }
@@ -147,8 +147,8 @@ public final class eq8 implements t69 {
         } else if (i == 9) {
             ((LaunchActivity) this.c.getParentActivity()).A(true);
         } else if (i == 10) {
-            jf7 messagesStorage2 = this.c.getMessagesStorage();
-            messagesStorage2.a.c(new ad7(messagesStorage2, -1, (byte) 2));
+            kf7 messagesStorage2 = this.c.getMessagesStorage();
+            messagesStorage2.a.c(new bd7(messagesStorage2, -1, (byte) 2));
         } else if (i == 11) {
             xea.U = !xea.U;
             SharedPreferences.Editor edit4 = uc7.e1().edit();
@@ -159,7 +159,7 @@ public final class eq8 implements t69 {
             xea.x();
             jn7.e().k(jn7.T4, new Object[0]);
         } else if (i == 13) {
-            Set set = this.c.getMessagesController().u3;
+            Set set = this.c.getMessagesController().v3;
             set.add("VALIDATE_PHONE_NUMBER");
             set.add("VALIDATE_PASSWORD");
             this.c.getNotificationCenter().k(i11, new Object[0]);
@@ -420,7 +420,7 @@ public final class eq8 implements t69 {
                     uo0.a();
                     tq0.b();
                     mp0.a();
-                    oca.c();
+                    pca.c();
                 } else if (i == 30) {
                     r40.a();
                 } else if (i == 31) {

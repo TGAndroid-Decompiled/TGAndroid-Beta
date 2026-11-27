@@ -86,7 +86,7 @@ public final class jn8 implements View.OnClickListener {
                 ProxyListActivity proxyListActivity = hx8Var.s;
                 wea weaVar = hx8Var.d;
                 ?? eVar = new e(null);
-                eVar.e = new rca[3];
+                eVar.e = new sca[3];
                 eVar.f = new ilb[2];
                 eVar.s = new i29[3];
                 eVar.E = 1.0f;

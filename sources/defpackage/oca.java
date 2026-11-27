@@ -1,176 +1,254 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.SpannableStringBuilder;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.ConnectionsManager;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.e;
-import org.telegram.ui.LaunchActivity;
-public abstract class oca {
-    public static void a(int i, long j, yt0 yt0Var) {
-        TLRPC.User X1 = uc7.s1(i).X1(Long.valueOf(j));
-        TLRPC.UserFull Y1 = uc7.s1(i).Y1(j);
-        if (Y1 == null) {
-            uc7.s1(i).f3(X1, 0, true, new i61(yt0Var, i, X1, (byte) 4));
-        } else {
-            b(i, X1, Y1, yt0Var);
+public final class oca extends Drawable implements zx, fn7 {
+    public final Paint a;
+    public final Paint b;
+    public final ImageReceiver c;
+    public final ImageReceiver d;
+    public int e;
+    public final wl[] f;
+    public final pkb h;
+    public final RectF n;
+    public final boolean r;
+    public final mm s;
+    public boolean w;
+    public boolean x;
+    public e29 y;
+
+    public oca(TLRPC.User user, TLRPC.Document document) {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        Paint paint2 = new Paint(1);
+        this.b = paint2;
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.c = imageReceiver;
+        ImageReceiver imageReceiver2 = new ImageReceiver(null);
+        this.d = imageReceiver2;
+        this.e = 1;
+        this.f = new wl[2];
+        this.n = new RectF();
+        this.s = new mm(new nca(this, (byte) 1), 320L, k43.h, 0);
+        this.r = true;
+        int i = aob.d6;
+        paint.setColor(aob.w0(null, i, false));
+        paint2.setColor(aob.w0(null, i, false));
+        paint2.setShadowLayer(hl.L(2.33f), 0.0f, hl.L(2.0f), aob.p1(0.18f, -16777216));
+        rb0 rb0Var = new rb0((vnb) null);
+        rb0Var.q(user);
+        imageReceiver.U(user, rb0Var, null);
+        imageReceiver.q0(hl.L(16.0f));
+        TLRPC.PhotoSize w = xb4.w(document.thumbs, 120, false, null, false);
+        imageReceiver2.Z(jn5.b(document), "120_120", jn5.c(w, document), "120_120", lp3.d(document.thumbs, aob.a7, 0.35f, false), 0L, null, null, 0);
+        this.h = new pkb(lbc.r(user), 14.0f, null);
+    }
+
+    @Override
+    public final void a(e29 e29Var) {
+        this.y = e29Var;
+        this.d.p0(e29Var);
+        this.c.p0(e29Var);
+    }
+
+    @Override
+    public final void b(ImageReceiver imageReceiver) {
+        this.x = false;
+        this.c.K();
+        this.d.K();
+        jn7.f(yac.t0).n(this, jn7.C1);
+        wl[] wlVarArr = this.f;
+        wl wlVar = wlVarArr[0];
+        if (wlVar != null) {
+            wlVar.o(this.y);
+        }
+        wl wlVar2 = wlVarArr[1];
+        if (wlVar2 != null) {
+            wlVar2.o(this.y);
         }
     }
 
-    public static void b(final int i, final TLRPC.User user, final TLRPC.UserFull userFull, final yt0 yt0Var) {
-        if (userFull.bot_can_manage_emoji_status) {
-            yt0Var.a(Boolean.FALSE, "allowed");
+    @Override
+    public final void c(ImageReceiver imageReceiver) {
+        this.x = true;
+        this.c.I();
+        this.d.I();
+        jn7.f(yac.t0).b(this, jn7.C1);
+        wl[] wlVarArr = this.f;
+        wl wlVar = wlVarArr[0];
+        if (wlVar != null) {
+            wlVar.b(this.y);
+        }
+        wl wlVar2 = wlVarArr[1];
+        if (wlVar2 != null) {
+            wlVar2.b(this.y);
+        }
+    }
+
+    public final void d() {
+        wl wlVar;
+        TLRPC.TL_messages_stickerSet n0 = ls6.d0(yac.t0).n0(new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
+        if (n0 != null && !n0.documents.isEmpty()) {
+            TLRPC.Document document = n0.documents.get((int) Math.floor(Math.random() * n0.documents.size()));
+            int i = 1 - this.e;
+            this.e = i;
+            wl[] wlVarArr = this.f;
+            wl wlVar2 = wlVarArr[i];
+            if (wlVar2 != null) {
+                wlVar2.o(this.y);
+            }
+            wlVarArr[this.e] = wl.l(yac.t0, 9, document);
+            wlVarArr[this.e].setColorFilter(new PorterDuffColorFilter(aob.w0(null, aob.Fi, false), PorterDuff.Mode.SRC_IN));
+            if (this.x && (wlVar = wlVarArr[this.e]) != null) {
+                wlVar.b(this.y);
+            }
+            hl.d3(new nca(this, (byte) 0), 2500L);
             return;
         }
-        Context W = hl.W(LaunchActivity.H1);
-        if (W == null) {
-            W = a.b;
-        }
-        final Context context = W;
-        TLRPC.User f = yac.h(i).f();
-        final boolean[] zArr = new boolean[1];
-        final boolean[] zArr2 = new boolean[1];
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, null, context);
-        nca ncaVar = new nca(f);
-        int i2 = aob.L5;
-        int w0 = aob.w0(null, i2, false);
-        id idVar = alertDialog$Builder.a;
-        idVar.c0 = ncaVar;
-        idVar.d0 = w0;
-        idVar.e0 = -1;
-        alertDialog$Builder.m(i2, null);
-        alertDialog$Builder.a.U = hl.S2(ob6.a0(null, null, 2131753081, lbc.r(user), lbc.r(user)));
-        alertDialog$Builder.j(ob6.M0(2131753083, null), new fd() {
-            @Override
-            public final void w(id idVar2, int i3) {
-                int i4 = i;
-                boolean p = yac.h(i4).p();
-                boolean[] zArr3 = zArr2;
-                boolean[] zArr4 = zArr;
-                yt0 yt0Var2 = yt0Var;
-                if (!p) {
-                    new xk8(new e(null), 12, false).show();
-                    if (!zArr3[0] && !zArr4[0]) {
-                        zArr4[0] = true;
-                        yt0Var2.a(Boolean.TRUE, "cancelled");
-                        return;
-                    }
-                    return;
-                }
-                zArr3[0] = true;
-                TLRPC.User user2 = user;
-                oca.e(context, i4, user2.id);
-                TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
-                toggleuseremojistatuspermission.bot = uc7.s1(i4).q1(user2);
-                toggleuseremojistatuspermission.enabled = true;
-                ConnectionsManager.getInstance(i4).sendRequest(toggleuseremojistatuspermission, new qn8(zArr4, yt0Var2, userFull, (byte) 13));
-            }
-        });
-        alertDialog$Builder.g(ob6.M0(2131753082, null), null);
-        id idVar2 = alertDialog$Builder.a;
-        idVar2.show();
-        idVar2.setOnDismissListener(new o03(zArr2, zArr, context, i, user, yt0Var));
+        this.w = true;
     }
 
-    public static void c() {
-        Context context = a.b;
-        if (context != null) {
-            for (int i = 0; i < 4; i++) {
-                context.getSharedPreferences("botemojistatus_" + i, 0).edit().clear().apply();
-            }
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.B0 && this.w && this.x) {
+            this.w = false;
+            d();
         }
     }
 
-    public static boolean d(Activity activity, int i, long j) {
-        if (activity == null) {
-            return false;
+    @Override
+    public final void draw(Canvas canvas) {
+        int i;
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        wl wlVar;
+        wl wlVar2;
+        int i2;
+        Rect bounds = getBounds();
+        int w0 = aob.w0(null, aob.d6, false);
+        Paint paint = this.a;
+        if (paint.getColor() != w0) {
+            paint.setColor(w0);
         }
-        return qu6.v("requested_", j, activity.getSharedPreferences("botemojistatus_" + i, 0), false);
-    }
-
-    public static void e(Context context, int i, long j) {
-        if (context == null) {
+        Paint paint2 = this.b;
+        if (paint2.getColor() != w0) {
+            paint2.setColor(w0);
+        }
+        boolean z = this.r;
+        if (z) {
+            i = 48;
+        } else {
+            i = 28;
+        }
+        float L = (hl.L((i + 38) + 6.66f) + this.h.c) / 2.0f;
+        float L2 = hl.L(32.0f) / 2.0f;
+        RectF rectF = this.n;
+        rectF.set(bounds.centerX() - L, bounds.centerY() - L2, bounds.centerX() + L, bounds.centerY() + L2);
+        canvas.drawRoundRect(rectF, L2, L2, paint);
+        ImageReceiver imageReceiver = this.c;
+        imageReceiver.i0(rectF.left, rectF.top, hl.L(32.0f), hl.L(32.0f));
+        imageReceiver.h(canvas, null);
+        this.h.c(hl.L(36.0f) + rectF.left, rectF.centerY(), 1.0f, aob.w0(null, aob.G6, false), canvas);
+        if (z) {
+            float L3 = rectF.right - hl.L(22.66f);
+            canvas.drawCircle(L3, rectF.centerY(), hl.L(24.0f), paint2);
+            ImageReceiver imageReceiver2 = this.d;
+            imageReceiver2.i0(L3 - hl.L(16.0f), rectF.centerY() - hl.L(16.0f), hl.L(32.0f), hl.L(32.0f));
+            imageReceiver2.h(canvas, null);
             return;
         }
-        SharedPreferences.Editor edit = context.getSharedPreferences("botemojistatus_" + i, 0).edit();
-        edit.putBoolean("requested_" + j, true).apply();
+        float e = this.s.e(false, this.e);
+        canvas.save();
+        canvas.translate((int) (rectF.right - hl.L(30.66f)), (int) (rectF.centerY() - hl.L(12.0f)));
+        int i3 = (e > 1.0f ? 1 : (e == 1.0f ? 0 : -1));
+        int i4 = -1;
+        wl[] wlVarArr = this.f;
+        if (i3 < 0 && (wlVar2 = wlVarArr[0]) != null) {
+            canvas.save();
+            f = 24.0f;
+            if (this.e == 0) {
+                i2 = -1;
+            } else {
+                i2 = 1;
+            }
+            canvas.translate(0.0f, i2 * hl.L(9.0f) * e);
+            float f5 = 1.0f - e;
+            f2 = 1.0f;
+            float f6 = (f5 * 0.4f) + 0.6f;
+            f3 = 12.0f;
+            f4 = 255.0f;
+            canvas.scale(f6, f6, hl.L(12.0f), hl.L(12.0f));
+            wlVar2.setBounds(0, 0, hl.L(24.0f), hl.L(24.0f));
+            wlVar2.setAlpha((int) (f5 * 255.0f));
+            wlVar2.draw(canvas);
+            canvas.restore();
+        } else {
+            f = 24.0f;
+            f2 = 1.0f;
+            f3 = 12.0f;
+            f4 = 255.0f;
+        }
+        if (e > 0.0f && (wlVar = wlVarArr[1]) != null) {
+            canvas.save();
+            if (this.e != 1) {
+                i4 = 1;
+            }
+            canvas.translate(0.0f, (f2 - e) * hl.L(9.0f) * i4);
+            float f7 = (0.4f * e) + 0.6f;
+            canvas.scale(f7, f7, hl.L(f3), hl.L(f3));
+            wlVar.setBounds(0, 0, hl.L(f), hl.L(f));
+            wlVar.setAlpha((int) (e * f4));
+            wlVar.draw(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
     }
 
-    public static void f(final int i, final TLRPC.User user, long j, final int i2, final yt0 yt0Var) {
-        TLRPC.Document e = wl.e(i, j);
-        if (e != null) {
-            g(i, user, e, i2, new hca(yt0Var, e, (byte) 1));
-        } else {
-            wl.g(i).b(j, new tl() {
-                @Override
-                public final void a(TLRPC.Document document) {
-                    hl.c3(new hz0(i, user, document, i2, yt0Var));
-                }
-            });
-        }
+    @Override
+    public final int getOpacity() {
+        return -2;
     }
 
-    public static void g(int i, TLRPC.User user, TLRPC.Document document, int i2, pcc pccVar) {
-        SpannableStringBuilder S2;
-        if (document instanceof TLRPC.TL_documentEmpty) {
-            pccVar.a("SUGGESTED_EMOJI_INVALID");
-            return;
-        }
-        Context W = hl.W(LaunchActivity.H1);
-        if (W == null) {
-            W = a.b;
-        }
-        ConnectionsManager.getInstance(i).getCurrentTime();
-        TLRPC.User f = yac.h(i).f();
-        boolean[] zArr = new boolean[1];
-        boolean[] zArr2 = new boolean[1];
-        if (i2 > 0) {
-            int i3 = i2 / 86400;
-            int i4 = i2 - (86400 * i3);
-            int i5 = i4 / 3600;
-            int round = Math.round((i4 - (i5 * 3600)) / 60.0f);
-            StringBuilder sb = new StringBuilder();
-            if (i3 > 0) {
-                if (sb.length() > 0) {
-                    sb.append(" ");
-                }
-                sb.append(ob6.G(i3, "BotEmojiStatusSetRequestForDay", new Object[0]));
-            }
-            if (i5 > 0) {
-                if (sb.length() > 0) {
-                    sb.append(" ");
-                }
-                sb.append(ob6.G(i5, "BotEmojiStatusSetRequestForHour", new Object[0]));
-            }
-            if (round > 0) {
-                if (sb.length() > 0) {
-                    sb.append(" ");
-                }
-                sb.append(ob6.G(round, "BotEmojiStatusSetRequestForMinute", new Object[0]));
-            }
-            S2 = hl.S2(ob6.a0(null, null, 2131753078, lbc.r(user), sb));
-        } else {
-            S2 = hl.S2(ob6.a0(null, null, 2131753079, lbc.r(user)));
-        }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, null, W);
-        nca ncaVar = new nca(f, document);
-        int i6 = aob.L5;
-        int w0 = aob.w0(null, i6, false);
-        id idVar = alertDialog$Builder.a;
-        idVar.c0 = ncaVar;
-        idVar.d0 = w0;
-        idVar.e0 = -1;
-        alertDialog$Builder.m(i6, null);
-        alertDialog$Builder.a.U = S2;
-        alertDialog$Builder.j(ob6.M0(2131753084, null), new qm0(i, zArr2, document, i2, zArr, pccVar));
-        alertDialog$Builder.g(ob6.M0(2131752570, null), null);
-        id idVar2 = alertDialog$Builder.a;
-        idVar2.show();
-        idVar2.setOnDismissListener(new cf(zArr2, zArr, pccVar, (byte) 8));
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public oca(TLRPC.User user) {
+        Paint paint = new Paint(1);
+        this.a = paint;
+        Paint paint2 = new Paint(1);
+        this.b = paint2;
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.c = imageReceiver;
+        this.d = new ImageReceiver(null);
+        this.e = 1;
+        this.f = new wl[2];
+        this.n = new RectF();
+        this.s = new mm(new nca(this, (byte) 1), 320L, k43.h, 0);
+        this.r = false;
+        int i = aob.d6;
+        paint.setColor(aob.w0(null, i, false));
+        paint2.setColor(aob.w0(null, i, false));
+        paint2.setShadowLayer(hl.L(2.33f), 0.0f, hl.L(2.0f), aob.p1(0.18f, -16777216));
+        rb0 rb0Var = new rb0((vnb) null);
+        rb0Var.q(user);
+        imageReceiver.U(user, rb0Var, null);
+        imageReceiver.q0(hl.L(16.0f));
+        d();
+        this.h = new pkb(lbc.r(user), 14.0f, null);
     }
 }

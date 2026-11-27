@@ -10,7 +10,7 @@ public final class pd8 {
 
     @JavascriptInterface
     public void onPlayerError(String str) {
-        hl.c3(new me7(this, Integer.parseInt(str), (byte) 7));
+        hl.c3(new oe7(this, Integer.parseInt(str), (byte) 7));
     }
 
     @JavascriptInterface

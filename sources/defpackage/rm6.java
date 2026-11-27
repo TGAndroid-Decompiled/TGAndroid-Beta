@@ -145,7 +145,7 @@ public final class rm6 implements vm6, nx, ot2, pz6, fd, gc7, s69, qd3, jy2, Nat
     }
 
     @Override
-    public final void c(u9b u9bVar, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, z3b z3bVar, s8b s8bVar) {
+    public final void c(u9b u9bVar, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, n3b n3bVar, s8b s8bVar) {
         boolean z5;
         byte b = this.a;
         Object obj = this.c;
@@ -159,7 +159,7 @@ public final class rm6 implements vm6, nx, ot2, pz6, fd, gc7, s69, qd3, jy2, Nat
                 tL_stories_editStory.id = storyItem.id;
                 tL_stories_editStory.flags |= 4;
                 tL_stories_editStory.privacy_rules = u9bVar.b;
-                ConnectionsManager.getInstance(o68Var.m2).sendRequest(tL_stories_editStory, new au0(o68Var, z3bVar, storyItem, u9bVar, (byte) 14));
+                ConnectionsManager.getInstance(o68Var.m2).sendRequest(tL_stories_editStory, new au0(o68Var, n3bVar, storyItem, u9bVar, (byte) 14));
                 return;
             default:
                 j68 j68Var = (j68) obj2;
@@ -184,7 +184,7 @@ public final class rm6 implements vm6, nx, ot2, pz6, fd, gc7, s69, qd3, jy2, Nat
                         togglegroupcallsettings.call = inputGroupCall;
                         togglegroupcallsettings.messages_enabled = Boolean.valueOf(z);
                         togglegroupcallsettings.send_paid_messages_stars = Long.valueOf(i);
-                        ConnectionsManager.getInstance(o68Var2.m2).sendRequest(togglegroupcallsettings, new ol7(j68Var, w9bVar, (byte) 7));
+                        ConnectionsManager.getInstance(o68Var2.m2).sendRequest(togglegroupcallsettings, new pl7(j68Var, w9bVar, (byte) 7));
                         return;
                     }
                     return;

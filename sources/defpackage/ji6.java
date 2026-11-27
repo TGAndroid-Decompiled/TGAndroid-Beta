@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 public class ji6 {
     public final byte a;
     public final xh4 b;
-    public final rg7 c;
+    public final sg7 c;
     public int d;
     public int e;
     public int f;
@@ -13,7 +13,7 @@ public class ji6 {
         this.a = i;
         if (i > 0) {
             this.b = new xh4((byte) 11);
-            this.c = new rg7((byte) 21);
+            this.c = new sg7((byte) 21);
             return;
         }
         lq5.j("maxSize <= 0");

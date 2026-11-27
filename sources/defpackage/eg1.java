@@ -170,7 +170,7 @@ public final class eg1 implements Runnable {
                     t32Var.H = messages_messages.next_rate;
                     int i5 = k5Var.a;
                     i32 i32Var2 = i32Var;
-                    jf7.Y(i5).j1(messages_messages.users, messages_messages.chats, true, true);
+                    kf7.a0(i5).n1(messages_messages.users, messages_messages.chats, true, true);
                     uc7.s1(i5).j4(messages_messages.users, false);
                     uc7.s1(i5).c4(messages_messages.chats, false);
                     if (!z3) {

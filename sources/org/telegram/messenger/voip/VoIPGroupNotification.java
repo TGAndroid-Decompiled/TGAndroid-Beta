@@ -247,7 +247,7 @@ public class VoIPGroupNotification {
                     if (currentState != null) {
                         hide(context);
                     }
-                } else if (!uc7.s1(i).k4.O2.f) {
+                } else if (!uc7.s1(i).l4.O2.f) {
                     HashSet<Integer> hashSet = ignoreCalls;
                     if (hashSet == null || !hashSet.contains(Integer.valueOf(i2))) {
                         currentCallId = j2;

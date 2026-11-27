@@ -72,7 +72,7 @@ public final class qe implements Runnable {
                 String str2 = w45Var.e;
                 if (a55Var.A(w45Var) && !a55Var.i(w45Var)) {
                     a55Var.g = w45Var;
-                    if ("sendTransaction".equals(str2) && w45Var.f != null && uc7.s1(a55Var.a).X3.contains(a55.k(j, i).concat(".transfer"))) {
+                    if ("sendTransaction".equals(str2) && w45Var.f != null && uc7.s1(a55Var.a).Y3.contains(a55.k(j, i).concat(".transfer"))) {
                         w45Var.m = true;
                         a55Var.B(w45Var, c35Var, new pcc() {
                             @Override
@@ -186,10 +186,10 @@ public final class qe implements Runnable {
                         }
                     }
                     if (!tL_messages_messages.messages.isEmpty()) {
-                        jf7 messagesStorage = uc7Var2.getMessagesStorage();
+                        kf7 messagesStorage = uc7Var2.getMessagesStorage();
                         int i4 = this.c;
                         long j4 = this.b;
-                        messagesStorage.e1(-2, 0, i4, j4, 0L, tL_messages_messages, false);
+                        messagesStorage.i1(-2, 0, i4, j4, 0L, tL_messages_messages, false);
                         uc7Var2.getNotificationCenter().k(50, Long.valueOf(j4), arrayList2);
                         return;
                     }

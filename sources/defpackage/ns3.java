@@ -184,8 +184,8 @@ public final class ns3 implements av3 {
                     jo4 jo4Var = new jo4();
                     l6cVar.b();
                     jo4Var.a = l6cVar.e;
-                    jo4Var.r = dg7.n("video/mp2t");
-                    jo4Var.s = dg7.n("application/dvbsubs");
+                    jo4Var.r = eg7.n("video/mp2t");
+                    jo4Var.s = eg7.n("application/dvbsubs");
                     jo4Var.v = Collections.singletonList(k6cVar.b);
                     jo4Var.d = k6cVar.a;
                     xnb.v(jo4Var, e0);
@@ -200,8 +200,8 @@ public final class ns3 implements av3 {
                 jo4 jo4Var2 = new jo4();
                 l6cVar.b();
                 jo4Var2.a = l6cVar.e;
-                jo4Var2.r = dg7.n("video/mp2t");
-                jo4Var2.s = dg7.n("application/id3");
+                jo4Var2.r = eg7.n("video/mp2t");
+                jo4Var2.s = eg7.n("application/id3");
                 xnb.v(jo4Var2, e02);
                 return;
         }

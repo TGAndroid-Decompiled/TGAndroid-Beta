@@ -139,7 +139,7 @@ public final class nk implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 boolean[] zArr = (boolean[]) obj;
-                o68 o68Var = ((s58) obj3).a;
+                o68 o68Var = ((t58) obj3).a;
                 o68Var.f3 = ((Float) ((ValueAnimator) obj2).getAnimatedValue()).floatValue();
                 o68Var.invalidate();
                 if (o68Var.f3 > 0.8f && !zArr[0]) {

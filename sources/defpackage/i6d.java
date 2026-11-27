@@ -42,7 +42,7 @@ public final class i6d implements q6d, k05 {
         }
         this.e = new b6d(this, looper, (byte) 1);
         this.b = reentrantLock.newCondition();
-        this.m = new k09(this, (byte) 21);
+        this.m = new l09(this, (byte) 21);
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class i6d implements q6d, k05 {
     public final void h() {
         this.a.lock();
         try {
-            this.m = new k09(this, (byte) 21);
+            this.m = new l09(this, (byte) 21);
             this.m.H1();
             this.b.signalAll();
         } finally {

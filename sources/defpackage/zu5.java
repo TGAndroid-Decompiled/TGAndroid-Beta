@@ -19,17 +19,17 @@ public final class zu5 extends yfb implements is4 {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        f9c f9cVar = f9c.a;
-        ((zu5) create((rj7) obj, (zw2) obj2)).invokeSuspend(f9cVar);
-        return f9cVar;
+        g9c g9cVar = g9c.a;
+        ((zu5) create((sj7) obj, (zw2) obj2)).invokeSuspend(g9cVar);
+        return g9cVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
         ixe.b(obj);
-        rj7 rj7Var = (rj7) this.a;
-        rj7Var.getClass();
-        rj7Var.d(this.b, this.c);
-        return f9c.a;
+        sj7 sj7Var = (sj7) this.a;
+        sj7Var.getClass();
+        sj7Var.d(this.b, this.c);
+        return g9c.a;
     }
 }

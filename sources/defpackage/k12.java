@@ -169,7 +169,7 @@ public final class k12 extends c79 {
                 this.d = i16;
                 this.K = i16 + 2;
                 this.n = i16 + 1;
-                if (uc7.s1(this.L.G3).k4.v0.f && ((zu1) this.L.Z1).g4 == 0 && n12.c1(h)) {
+                if (uc7.s1(this.L.G3).l4.v0.f && ((zu1) this.L.Z1).g4 == 0 && n12.c1(h)) {
                     int i17 = this.K;
                     this.K = i17 + 1;
                     this.r = i17;

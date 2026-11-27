@@ -42,7 +42,7 @@ public final class ac7 {
 
     public final boolean c() {
         int i = this.g;
-        int i2 = uc7.r5;
+        int i2 = uc7.s5;
         if ((i & 512) > 0) {
             return true;
         }
@@ -59,7 +59,7 @@ public final class ac7 {
     public final boolean e() {
         if (c()) {
             int i = this.g;
-            int i2 = uc7.r5;
+            int i2 = uc7.s5;
             if ((i & 1024) > 0) {
                 return true;
             }

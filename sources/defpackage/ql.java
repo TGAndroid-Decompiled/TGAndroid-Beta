@@ -107,7 +107,7 @@ public final class ql implements RequestDelegate {
                 hl.c3(new on1((zu1) this.b, tLObject, (TLRPC.User) this.c, (byte) 0));
                 return;
             case 15:
-                hl.c3(new ao1((zu1) this.b, tLObject, tL_error, (jf7) this.c, (byte) 0));
+                hl.c3(new ao1((zu1) this.b, tLObject, tL_error, (kf7) this.c, (byte) 0));
                 return;
             case 16:
                 zu1 zu1Var2 = (zu1) this.b;
@@ -138,7 +138,7 @@ public final class ql implements RequestDelegate {
                 TLRPC.UserFull userFull = g92Var.E0;
                 if (userFull != null) {
                     userFull.about = setbotinfo.about;
-                    g92Var.getMessagesStorage().g2(g92Var.E0, false);
+                    g92Var.getMessagesStorage().l2(g92Var.E0, false);
                 }
                 hl.c3(new b92(g92Var, (byte) 2));
                 return;
@@ -154,7 +154,7 @@ public final class ql implements RequestDelegate {
                 hl.c3(new on1((me2) this.b, tLObject, (znb) this.c, (byte) 22));
                 return;
             case 24:
-                hl.c3(new ea2((dg2) this.b, (me7) this.c, (byte) 17));
+                hl.c3(new ea2((dg2) this.b, (oe7) this.c, (byte) 17));
                 return;
             case 25:
                 ConnectionsManager.lambda$sendRequestTyped$3((Executor) this.b, (icc) this.c, tLObject, tL_error);
@@ -199,7 +199,7 @@ public final class ql implements RequestDelegate {
                             tL_contact.user_id = user3.id;
                             ArrayList arrayList2 = new ArrayList();
                             arrayList2.add(tL_contact);
-                            lv2Var2.getMessagesStorage().Z0(arrayList2, false);
+                            lv2Var2.getMessagesStorage().d1(arrayList2, false);
                             if (!TextUtils.isEmpty(user3.phone)) {
                                 lv2.m(0, user3.first_name, user3.last_name);
                                 lv2Var2.getMessagesStorage().e(user3.phone, "");

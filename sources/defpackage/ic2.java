@@ -66,9 +66,9 @@ public final class ic2 implements Runnable {
         this.h = iArr;
     }
 
-    public ic2(jf7 jf7Var, int i, long j, String str, long j2, String str2) {
+    public ic2(kf7 kf7Var, int i, long j, String str, long j2, String str2) {
         this.a = (byte) 5;
-        this.e = jf7Var;
+        this.e = kf7Var;
         this.b = i;
         this.c = j;
         this.f = str;
@@ -76,9 +76,9 @@ public final class ic2 implements Runnable {
         this.h = str2;
     }
 
-    public ic2(jf7 jf7Var, long j, String str, long j2, int i, mt7 mt7Var) {
+    public ic2(kf7 kf7Var, long j, String str, long j2, int i, mt7 mt7Var) {
         this.a = (byte) 4;
-        this.e = jf7Var;
+        this.e = kf7Var;
         this.c = j;
         this.f = str;
         this.d = j2;

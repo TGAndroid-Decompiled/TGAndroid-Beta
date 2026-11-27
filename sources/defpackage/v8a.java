@@ -11,7 +11,7 @@ public abstract class v8a {
         zed zedVar;
         try {
             zedVar = mbd.b(context).b0(str, str2, new kad(this));
-        } catch (RemoteException | zg7 e) {
+        } catch (ah7 | RemoteException e) {
             mbd.a.a(e, "Unable to call %s on %s.", "newSessionImpl", hcd.class.getSimpleName());
             zedVar = null;
         }

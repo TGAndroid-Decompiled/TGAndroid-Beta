@@ -22,7 +22,7 @@ public final class m23 implements ur4 {
     @Override
     public final Object invoke(Object obj) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         Object obj2 = this.c;
         Object obj3 = this.b;
         switch (b) {
@@ -45,7 +45,7 @@ public final class m23 implements ur4 {
                         }
                     }
                 }
-                return f9cVar;
+                return g9cVar;
             case 1:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) obj3;
                 v23 v23Var = (v23) obj2;
@@ -72,7 +72,7 @@ public final class m23 implements ur4 {
                         }
                     }
                 }
-                return f9cVar;
+                return g9cVar;
             case 2:
                 a33 a33Var = (a33) obj2;
                 Context context3 = a33Var.e;
@@ -86,11 +86,11 @@ public final class m23 implements ur4 {
                     intent3.putExtra("EXTRA_ERROR_NAME", "GET_UNKNOWN");
                     context3.startActivity(intent3);
                 }
-                return f9cVar;
+                return g9cVar;
             default:
                 Throwable th = (Throwable) obj;
                 ((le5) obj3).c.removeCallbacks((iqd) obj2);
-                return f9cVar;
+                return g9cVar;
         }
     }
 }

@@ -67,7 +67,7 @@ public final class t82 extends e implements fn7 {
         this.J = new ArrayList();
         this.K = new LinkedHashMap();
         this.L = new ArrayList();
-        this.O = getMessagesController().k4.a2.f();
+        this.O = getMessagesController().l4.a2.f();
         this.P = false;
         this.Z = -1;
         this.b0 = new l82(this, (byte) 6);
@@ -482,9 +482,9 @@ public final class t82 extends e implements fn7 {
         TLRPC.Chat M0 = messagesController.M0(Long.valueOf(j));
         this.W = M0;
         if (M0 == null) {
-            TLRPC.Chat O = jf7.Y(this.currentAccount).O(j);
-            this.W = O;
-            if (O != null) {
+            TLRPC.Chat Q = kf7.a0(this.currentAccount).Q(j);
+            this.W = Q;
+            if (Q != null) {
                 getMessagesController().a4(this.W, true);
             }
             return false;

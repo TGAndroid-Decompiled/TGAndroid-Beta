@@ -81,13 +81,13 @@ public abstract class f4c extends FrameLayout implements snb {
                 if (!p && (M0 == null || !M0.autotranslation)) {
                     zu1 zu1Var2 = as1Var2.E;
                     i = ((e) zu1Var2).currentAccount;
-                    SharedPreferences.Editor edit = uc7.s1(i).W3.edit();
+                    SharedPreferences.Editor edit = uc7.s1(i).X3.edit();
                     edit.putInt("dialog_show_translate_count" + zu1Var2.a(), 140).commit();
                     zu1Var2.zd(true);
                     return;
                 }
                 int i3 = as1Var2.a;
-                a5c a5cVar = uc7.s1(i3).i4;
+                a5c a5cVar = uc7.s1(i3).j4;
                 Context context = as1Var2.getContext();
                 vnb vnbVar2 = as1Var2.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232583, 1, vnbVar2, context);
@@ -146,7 +146,7 @@ public abstract class f4c extends FrameLayout implements snb {
                 yob.X(p66Var, i4, vnbVar2);
                 yob.G(p66Var, aob.Xc, vnbVar2);
                 p66Var.setEmojiColor(aob.v0(i4, vnbVar2));
-                CharSequence concat = TextUtils.concat(hl.S2(ob6.M0(2131751991, null)), " ", hl.N2(ob6.M0(2131751990, null), -1, 2, new bcb(as1Var2, n8Var, (byte) 22), null));
+                CharSequence concat = TextUtils.concat(hl.S2(ob6.M0(2131751991, null)), " ", hl.N2(ob6.M0(2131751990, null), -1, 2, new hab(as1Var2, n8Var, (byte) 23), null));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("🥚");
                 spannableStringBuilder.setSpan(new hm(5197252827247841976L, p66Var.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
@@ -246,7 +246,7 @@ public abstract class f4c extends FrameLayout implements snb {
         String a0;
         int i;
         int i2 = this.a;
-        a5c a5cVar = uc7.s1(i2).i4;
+        a5c a5cVar = uc7.s1(i2).j4;
         uc7 s1 = uc7.s1(i2);
         long j = this.b;
         TLRPC.Chat M0 = s1.M0(Long.valueOf(-j));

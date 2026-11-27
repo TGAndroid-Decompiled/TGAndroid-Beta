@@ -39,7 +39,7 @@ public final class ks8 {
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
             String[] strArr = ns8.s;
             tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
-            ls6.d0(i).m0(tL_inputStickerSetShortName, 0, false, false, new v58(this, hashSet, arrayList, (byte) 3));
+            ls6.d0(i).m0(tL_inputStickerSetShortName, 0, false, false, new w58(this, hashSet, arrayList, (byte) 3));
         }
         String str = ns8.s[Utilities.b.nextInt(3)];
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();

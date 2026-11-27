@@ -422,7 +422,7 @@ public final class um4 implements mm4, oa9, uw8, esb, iz8, x66, cg9, ifc, tw8, S
         boolean equals = "PHONE_VERIFICATION_NEEDED".equals(str);
         b18 b18Var = ((m08) this.c).a;
         if (equals) {
-            b18Var.R1(true, str2, (fe7) this.b, this, b18Var.C1);
+            b18Var.R1(true, str2, (ge7) this.b, this, b18Var.C1);
         } else {
             b18Var.Q1(true, false);
         }
@@ -522,7 +522,7 @@ public final class um4 implements mm4, oa9, uw8, esb, iz8, x66, cg9, ifc, tw8, S
 
     public final List d0(CharSequence charSequence) {
         charSequence.getClass();
-        hpa hpaVar = new hpa((k09) this.c, this, charSequence);
+        hpa hpaVar = new hpa((l09) this.c, this, charSequence);
         ArrayList arrayList = new ArrayList();
         while (hpaVar.hasNext()) {
             arrayList.add((String) hpaVar.next());
@@ -574,7 +574,7 @@ public final class um4 implements mm4, oa9, uw8, esb, iz8, x66, cg9, ifc, tw8, S
     public final Object mo21get() {
         switch (this.a) {
             case 12:
-                return new vf7((Context) ((pq5) this.b).a, (rx6) ((b23) this.c).mo21get());
+                return new wf7((Context) ((pq5) this.b).a, (rx6) ((b23) this.c).mo21get());
             default:
                 return new z9a((srb) ((tw8) this.b).mo21get(), (vcc) ((tw8) this.c).mo21get());
         }
@@ -645,7 +645,7 @@ public final class um4 implements mm4, oa9, uw8, esb, iz8, x66, cg9, ifc, tw8, S
         int i = secretMediaViewer.a0;
         if (i > 0) {
             secretMediaViewer.a0 = i - 1;
-            hl.d3(new en9(this, (File) this.b, (byte) 16), 100L);
+            hl.d3(new dn9(this, (File) this.b, (byte) 17), 100L);
             return;
         }
         cc4.g(exc, true);
@@ -780,7 +780,7 @@ public final class um4 implements mm4, oa9, uw8, esb, iz8, x66, cg9, ifc, tw8, S
                         Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
                         jn2.b(fileWriter, "Failed to close settings writer.");
                         oy8.e("Loaded settings: ", jSONObject);
-                        String str = ((bca) oy8Var.c).f;
+                        String str = ((cca) oy8Var.c).f;
                         SharedPreferences.Editor edit = ((Context) oy8Var.b).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
                         edit.putString("existing_instance_identifier", str);
                         edit.apply();
@@ -804,7 +804,7 @@ public final class um4 implements mm4, oa9, uw8, esb, iz8, x66, cg9, ifc, tw8, S
             }
             jn2.b(fileWriter, "Failed to close settings writer.");
             oy8.e("Loaded settings: ", jSONObject);
-            String str2 = ((bca) oy8Var.c).f;
+            String str2 = ((cca) oy8Var.c).f;
             SharedPreferences.Editor edit2 = ((Context) oy8Var.b).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
             edit2.putString("existing_instance_identifier", str2);
             edit2.apply();
@@ -1057,10 +1057,10 @@ public final class um4 implements mm4, oa9, uw8, esb, iz8, x66, cg9, ifc, tw8, S
         this.b = new HashMap();
     }
 
-    public um4(k09 k09Var) {
+    public um4(l09 l09Var) {
         this.a = (byte) 29;
         zj1 zj1Var = zj1.f;
-        this.c = k09Var;
+        this.c = l09Var;
         this.b = zj1Var;
     }
 

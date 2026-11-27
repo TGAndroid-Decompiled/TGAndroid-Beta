@@ -59,7 +59,7 @@ public class rz8 extends e {
     public int b0;
     public xh4 c;
     public int c0;
-    public f09 d;
+    public g09 d;
     public int d0;
     public vz8 e;
     public float e0;
@@ -171,8 +171,8 @@ public class rz8 extends e {
     }
 
     public final void b0() {
-        f09 f09Var;
-        if (this.h != null && (f09Var = this.d) != null && f09Var.getWidth() != 0) {
+        g09 g09Var;
+        if (this.h != null && (g09Var = this.d) != null && g09Var.getWidth() != 0) {
             int max = Math.max(1, (int) (this.d.a1() - ((int) this.d.H0())));
             this.d.getClass();
             int width = (int) (this.f.getWidth() - (this.d.getWidth() - hl.L(10.0f)));
@@ -208,9 +208,9 @@ public class rz8 extends e {
             this.e = null;
         }
         super.clearViews();
-        f09 f09Var = this.d;
-        if (f09Var != null) {
-            f09Var.O0();
+        g09 g09Var = this.d;
+        if (g09Var != null) {
+            g09Var.O0();
             this.d = null;
         }
         this.f = null;
@@ -277,7 +277,7 @@ public class rz8 extends e {
             this.G = jz8Var;
             jz8Var.setButtonLabel(ob6.M0(2131746197, null));
             jz8 jz8Var2 = this.G;
-            jz8Var2.setOnGallery(new hp8(this, jz8Var2, (byte) 26));
+            jz8Var2.setOnGallery(new ep8(this, jz8Var2, (byte) 27));
             this.f.addView(this.G, tre.c(-1.0f, -1));
         }
     }
@@ -339,9 +339,9 @@ public class rz8 extends e {
             this.y.setVisibility(0);
         }
         int t0 = this.d.t0();
-        d09 d09Var = this.d.n;
-        if (d09Var != null) {
-            i = d09Var.h;
+        e09 e09Var = this.d.n;
+        if (e09Var != null) {
+            i = e09Var.h;
         } else {
             i = 872415231;
         }
@@ -354,18 +354,18 @@ public class rz8 extends e {
         this.h.invalidateOutline();
         this.h.setAlpha(f2);
         pz8 pz8Var3 = this.h;
-        f09 f09Var = this.d;
-        d09 d09Var2 = f09Var.n;
-        if (d09Var2 != null) {
-            i2 = d09Var2.b;
+        g09 g09Var = this.d;
+        e09 e09Var2 = g09Var.n;
+        if (e09Var2 != null) {
+            i2 = e09Var2.b;
         } else {
             i2 = -16777216;
         }
-        if (i2 != f09Var.b2) {
-            f09Var.b2 = i2;
-            f09Var.c2 = (vm2.f(0.13f, -1, f09.D0(0.75f, 1.3f, 0.16f, i2)) & 16777215) | (-1728053248);
+        if (i2 != g09Var.b2) {
+            g09Var.b2 = i2;
+            g09Var.c2 = (vm2.f(0.13f, -1, g09.D0(0.75f, 1.3f, 0.16f, i2)) & 16777215) | (-1728053248);
         }
-        pz8Var3.setHeaderColor(f09Var.c2);
+        pz8Var3.setHeaderColor(g09Var.c2);
         if (this.h.getVisibility() != 0) {
             pz8 pz8Var4 = this.h;
             if (pz8Var4.K) {
@@ -380,9 +380,9 @@ public class rz8 extends e {
     }
 
     public final void g0() {
-        f09 f09Var;
+        g09 g09Var;
         Activity parentActivity = getParentActivity();
-        if (parentActivity != null && (f09Var = this.d) != null && f09Var.getCurrentLink() != null) {
+        if (parentActivity != null && (g09Var = this.d) != null && g09Var.getCurrentLink() != null) {
             if ((Build.VERSION.SDK_INT <= 28 || f11.b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
                 this.F = true;
                 parentActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 4);
@@ -390,7 +390,7 @@ public class rz8 extends e {
             }
             Bitmap T0 = this.d.T0();
             if (T0 != null) {
-                Utilities.e.c(new hp8(this, T0, (byte) 25));
+                Utilities.e.c(new ep8(this, T0, (byte) 26));
             }
         }
     }
@@ -401,9 +401,9 @@ public class rz8 extends e {
     }
 
     public final void h0(String str) {
-        f09 f09Var;
+        g09 g09Var;
         Uri uri;
-        if (getParentActivity() != null && (f09Var = this.d) != null && f09Var.getCurrentLink() != null) {
+        if (getParentActivity() != null && (g09Var = this.d) != null && g09Var.getCurrentLink() != null) {
             Bitmap T0 = this.d.T0();
             if (T0 != null) {
                 uri = hl.B0(T0, "qr_tmp.jpg", Bitmap.CompressFormat.JPEG);
@@ -512,11 +512,11 @@ public class rz8 extends e {
     }
 
     public final void l0() {
-        f09 f09Var;
+        g09 g09Var;
         float f;
         yy8 yy8Var = this.a0;
-        if (yy8Var != null && (f09Var = this.d) != null) {
-            if (f09Var.J.isEmpty()) {
+        if (yy8Var != null && (g09Var = this.d) != null) {
+            if (g09Var.J.isEmpty()) {
                 f = 12.0f;
             } else {
                 f = 73.0f;
@@ -537,15 +537,15 @@ public class rz8 extends e {
             }
             return false;
         }
-        f09 f09Var = this.d;
-        if (f09Var != null) {
-            float f = f09Var.l1;
-            if (f > 0.5f || f09Var.g1 > 0.5f) {
+        g09 g09Var = this.d;
+        if (g09Var != null) {
+            float f = g09Var.l1;
+            if (f > 0.5f || g09Var.g1 > 0.5f) {
                 if (z) {
                     if (f > 0.5f) {
-                        f09Var.m1 = 0.0f;
-                    } else if (f09Var.g1 > 0.5f) {
-                        f09Var.h1 = 0.0f;
+                        g09Var.m1 = 0.0f;
+                    } else if (g09Var.g1 > 0.5f) {
+                        g09Var.h1 = 0.0f;
                     }
                 }
                 return false;
@@ -560,7 +560,7 @@ public class rz8 extends e {
         long j;
         if (this.d != null && !hl.O1()) {
             this.d.setRevealOpening(z);
-            f09 f09Var = this.d;
+            g09 g09Var = this.d;
             float f2 = 1.0f;
             float f3 = 0.0f;
             if (z) {
@@ -568,7 +568,7 @@ public class rz8 extends e {
             } else {
                 f = 1.0f;
             }
-            f09Var.setReveal(f);
+            g09Var.setReveal(f);
             if (!z) {
                 f3 = 1.0f;
                 f2 = 0.0f;
@@ -585,7 +585,7 @@ public class rz8 extends e {
             animatorSet.setDuration(j);
             animatorSet.setInterpolator(new LinearInterpolator());
             animatorSet.addListener(new rw(this, z, runnable, (byte) 9));
-            hl.c3(new hp8(this, animatorSet, (byte) 24));
+            hl.c3(new ep8(this, animatorSet, (byte) 25));
             return animatorSet;
         }
         return null;
@@ -649,9 +649,9 @@ public class rz8 extends e {
             vz8Var.l();
             this.e = null;
         }
-        f09 f09Var = this.d;
-        if (f09Var != null) {
-            f09Var.O0();
+        g09 g09Var = this.d;
+        if (g09Var != null) {
+            g09Var.O0();
         }
     }
 
@@ -669,9 +669,9 @@ public class rz8 extends e {
             if (this.G == jz8Var2) {
                 this.G = null;
             }
-            f09 f09Var = this.d;
-            if (f09Var != null) {
-                f09Var.setScanHidden(false);
+            g09 g09Var = this.d;
+            if (g09Var != null) {
+                g09Var.setScanHidden(false);
             }
         }
         Activity parentActivity = getParentActivity();
@@ -725,9 +725,9 @@ public class rz8 extends e {
         super.onTransitionAnimationEnd(z, z2);
         if (z) {
             this.H = true;
-            f09 f09Var = this.d;
-            if (f09Var != null) {
-                f09Var.setReveal(1.0f);
+            g09 g09Var = this.d;
+            if (g09Var != null) {
+                g09Var.setReveal(1.0f);
             }
         }
         if (z && !z2 && this.f != null) {

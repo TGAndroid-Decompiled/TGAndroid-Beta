@@ -452,7 +452,7 @@ public final class m57 extends FrameLayout {
         v47 v47Var = s57Var.d;
         if (this.a == 0) {
             g57 g57Var = this.e;
-            if (g57Var.v - g57Var.u <= uc7.s1(s57Var.x).k4.V1.f()) {
+            if (g57Var.v - g57Var.u <= uc7.s1(s57Var.x).l4.V1.f()) {
                 hmb hmbVar = g57Var.W;
                 if (hmbVar != null) {
                     r47Var = ((wb2) hmbVar).getMessageObject();

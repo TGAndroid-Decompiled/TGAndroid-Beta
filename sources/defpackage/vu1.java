@@ -3,10 +3,10 @@ package defpackage;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vu1 extends AnimatorListenerAdapter {
-    public final hh7 a;
+    public final ih7 a;
 
-    public vu1(hh7 hh7Var) {
-        this.a = hh7Var;
+    public vu1(ih7 ih7Var) {
+        this.a = ih7Var;
     }
 
     @Override

@@ -1699,7 +1699,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return false;
     }
 
-    public void lambda$acceptIncomingCall$100(jf7 jf7Var, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$acceptIncomingCall$100(kf7 kf7Var, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
             if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
@@ -1714,21 +1714,21 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     return;
                 }
                 byte[] bArr2 = messages_dhconfig.p;
-                jf7Var.G();
-                jf7Var.y = bArr2;
+                kf7Var.I();
+                kf7Var.y = bArr2;
                 int i2 = messages_dhconfig.g;
-                jf7Var.G();
-                jf7Var.E = i2;
+                kf7Var.I();
+                kf7Var.E = i2;
                 int i3 = messages_dhconfig.version;
-                jf7Var.G();
-                jf7Var.x = i3;
-                jf7 Y = jf7.Y(this.currentAccount);
-                jf7Var.G();
-                int i4 = jf7Var.x;
-                jf7Var.G();
-                int i5 = jf7Var.E;
-                jf7Var.G();
-                Y.a.c(new aq1(Y, i4, i5, jf7Var.y, (byte) 10));
+                kf7Var.I();
+                kf7Var.x = i3;
+                kf7 a0 = kf7.a0(this.currentAccount);
+                kf7Var.I();
+                int i4 = kf7Var.x;
+                kf7Var.I();
+                int i5 = kf7Var.E;
+                kf7Var.I();
+                a0.a.c(new aq1(a0, i4, i5, kf7Var.y, (byte) 10));
             }
             byte[] bArr3 = new byte[256];
             for (int i6 = 0; i6 < 256; i6++) {
@@ -1742,10 +1742,10 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 return;
             }
             this.a_or_b = bArr3;
-            jf7Var.G();
-            BigInteger valueOf = BigInteger.valueOf(jf7Var.E);
-            jf7Var.G();
-            BigInteger modPow = valueOf.modPow(new BigInteger(1, bArr3), new BigInteger(1, jf7Var.y));
+            kf7Var.I();
+            BigInteger valueOf = BigInteger.valueOf(kf7Var.E);
+            kf7Var.I();
+            BigInteger modPow = valueOf.modPow(new BigInteger(1, bArr3), new BigInteger(1, kf7Var.y));
             this.g_a_hash = this.privateCall.g_a_hash;
             byte[] byteArray = modPow.toByteArray();
             if (byteArray.length > 256) {
@@ -2765,7 +2765,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             uc7.s1(this.currentAccount).Y3(updates, false);
             voIPService = this;
-            hl.c3(new slc(voIPService, updates, j, (byte) 1));
+            hl.c3(new tlc(voIPService, updates, j, (byte) 1));
         } else {
             voIPService = this;
             if (tL_error != null && "USER_PRIVACY_RESTRICTED".equalsIgnoreCase(tL_error.text)) {
@@ -2773,7 +2773,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
         }
         if (atomicInteger.incrementAndGet() == i && !hashSet.isEmpty()) {
-            hl.c3(new tlc(voIPService, hashSet, str, (byte) 1));
+            hl.c3(new ulc(voIPService, hashSet, str, (byte) 1));
         }
     }
 
@@ -2922,12 +2922,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             uc7.s1(this.currentAccount).Y3(updates, false);
-            hl.c3(new slc(this, updates, j, (byte) 0));
+            hl.c3(new tlc(this, updates, j, (byte) 0));
         } else if (tL_error != null && "USER_PRIVACY_RESTRICTED".equalsIgnoreCase(tL_error.text)) {
             hashSet.add(Long.valueOf(j));
         }
         if (atomicInteger.incrementAndGet() == i && !hashSet.isEmpty()) {
-            hl.c3(new tlc(this, hashSet, str, (byte) 0));
+            hl.c3(new ulc(this, hashSet, str, (byte) 0));
         }
     }
 
@@ -3196,7 +3196,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 }
                 TLRPC.Update update = updates.updates.get(i);
                 if (update instanceof TL_update.TL_updateGroupCall) {
-                    hl.c3(new vlc(this, (TL_update.TL_updateGroupCall) update, (byte) 0));
+                    hl.c3(new slc(this, (TL_update.TL_updateGroupCall) update, (byte) 1));
                     break;
                 }
                 i++;
@@ -3403,8 +3403,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         hl.c3(new kta(this, tL_error, tLObject, bArr, (byte) 27));
     }
 
-    public void lambda$startOutgoingCall$11(jf7 jf7Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        jf7 jf7Var2;
+    public void lambda$startOutgoingCall$11(kf7 kf7Var, TLObject tLObject, TLRPC.TL_error tL_error) {
+        kf7 kf7Var2;
         this.callReqId = 0;
         if (this.endCallAfterRequest) {
             callEnded();
@@ -3419,33 +3419,33 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     return;
                 }
                 byte[] bArr2 = messages_dhconfig.p;
-                jf7Var.G();
-                jf7Var.y = bArr2;
+                kf7Var.I();
+                kf7Var.y = bArr2;
                 int i2 = messages_dhconfig.g;
-                jf7Var.G();
-                jf7Var.E = i2;
+                kf7Var.I();
+                kf7Var.E = i2;
                 int i3 = messages_dhconfig.version;
-                jf7Var.G();
-                jf7Var.x = i3;
-                jf7Var.G();
-                int i4 = jf7Var.x;
-                jf7Var.G();
-                int i5 = jf7Var.E;
-                jf7Var.G();
-                jf7Var2 = jf7Var;
-                jf7Var.a.c(new aq1(jf7Var2, i4, i5, jf7Var.y, (byte) 10));
+                kf7Var.I();
+                kf7Var.x = i3;
+                kf7Var.I();
+                int i4 = kf7Var.x;
+                kf7Var.I();
+                int i5 = kf7Var.E;
+                kf7Var.I();
+                kf7Var2 = kf7Var;
+                kf7Var.a.c(new aq1(kf7Var2, i4, i5, kf7Var.y, (byte) 10));
             } else {
-                jf7Var2 = jf7Var;
+                kf7Var2 = kf7Var;
             }
             byte[] bArr3 = new byte[256];
             for (int i6 = 0; i6 < 256; i6++) {
                 bArr3[i6] = (byte) (((byte) (Utilities.b.nextDouble() * 256.0d)) ^ messages_dhconfig.random[i6]);
             }
-            jf7Var2.G();
-            BigInteger valueOf = BigInteger.valueOf(jf7Var2.E);
+            kf7Var2.I();
+            BigInteger valueOf = BigInteger.valueOf(kf7Var2.E);
             BigInteger bigInteger = new BigInteger(1, bArr3);
-            jf7Var2.G();
-            byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, jf7Var2.y)).toByteArray();
+            kf7Var2.I();
+            byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, kf7Var2.y)).toByteArray();
             if (byteArray.length > 256) {
                 byte[] bArr4 = new byte[256];
                 System.arraycopy(byteArray, 1, bArr4, 0, 256);
@@ -3624,7 +3624,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (tLObject != null) {
             hl.c3(new ilc(this, i, (byte) 4));
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            hl.c3(new g9c(this, updates, (byte) 29));
+            hl.c3(new slc(this, updates, (byte) 0));
             uc7.s1(this.currentAccount).Y3(updates, false);
             startGroupCheckShortpoll();
             return;
@@ -3654,7 +3654,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         VoipAudioManager voipAudioManager = VoipAudioManager.get();
         if ((!isBluetoothHeadsetConnected() || !hasEarpiece()) && !this.isHeadsetPlugged && !isSpeakerphoneOn()) {
             voipAudioManager.setSpeakerphoneOn(true);
-            voipAudioManager.isBluetoothAndSpeakerOnAsync(new ulc(this, (byte) 0));
+            voipAudioManager.isBluetoothAndSpeakerOnAsync(new vlc(this, (byte) 0));
         }
     }
 
@@ -3786,9 +3786,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private void processAcceptedCall() {
         byte[] bArr;
         dispatchStateChanged(12);
-        jf7 Y = jf7.Y(this.currentAccount);
-        Y.G();
-        BigInteger bigInteger = new BigInteger(1, Y.y);
+        kf7 a0 = kf7.a0(this.currentAccount);
+        a0.I();
+        BigInteger bigInteger = new BigInteger(1, a0.y);
         BigInteger bigInteger2 = new BigInteger(1, this.privateCall.g_b);
         if (!Utilities.w(bigInteger2, bigInteger)) {
             if (f11.a) {
@@ -4119,7 +4119,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     if (z2) {
                         this.conference.reset();
                     }
-                    this.conference.requestLastBlock(new vlc(this, ps1Var, (byte) 1));
+                    this.conference.requestLastBlock(new slc(this, ps1Var, (byte) 2));
                 }
             }
         }
@@ -4233,10 +4233,10 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         Utilities.b.nextBytes(new byte[256]);
         TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
         tL_messages_getDhConfig.random_length = 256;
-        jf7 Y = jf7.Y(this.currentAccount);
-        Y.G();
-        tL_messages_getDhConfig.version = Y.x;
-        this.callReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getDhConfig, new wlc(this, Y, (byte) 0), 65536);
+        kf7 a0 = kf7.a0(this.currentAccount);
+        a0.I();
+        tL_messages_getDhConfig.version = a0.x;
+        this.callReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getDhConfig, new wlc(this, a0, (byte) 0), 65536);
     }
 
     private void startRatingActivity() {
@@ -4467,7 +4467,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     }
 
     private void updateServerConfig() {
-        SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).X3;
+        SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).Y3;
         Instance.setGlobalServerConfig(sharedPreferences.getString("voip_server_config", "{}"));
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_phone.getCallConfig(), new yp9(sharedPreferences, (byte) 24));
     }
@@ -4545,19 +4545,19 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     @Override
     public void acceptIncomingCall() {
         updateCurrentForegroundType();
-        uc7.s1(this.currentAccount).Z3 = false;
+        uc7.s1(this.currentAccount).a4 = false;
         stopRinging();
         showNotification();
         configureDeviceForCall();
         startConnectingSound();
         dispatchStateChanged(12);
         hl.c3(new osa((byte) 18));
-        jf7 Y = jf7.Y(this.currentAccount);
+        kf7 a0 = kf7.a0(this.currentAccount);
         TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
         tL_messages_getDhConfig.random_length = 256;
-        Y.G();
-        tL_messages_getDhConfig.version = Y.x;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getDhConfig, new wlc(this, Y, (byte) 1));
+        a0.I();
+        tL_messages_getDhConfig.version = a0.x;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getDhConfig, new wlc(this, a0, (byte) 1));
     }
 
     public void addExtraLocalSink(VideoSink videoSink) {
@@ -5535,7 +5535,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         stopRinging();
         if (this.currentAccount >= 0) {
             if (org.telegram.messenger.a.x || !org.telegram.messenger.a.w) {
-                uc7.s1(this.currentAccount).Z3 = false;
+                uc7.s1(this.currentAccount).a4 = false;
             }
             jn7.f(this.currentAccount).n(this, jn7.I2);
         }
@@ -6630,7 +6630,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             } else {
                 voipAudioManager.setBluetoothOn(!voipAudioManager.isBluetoothOn());
             }
-            voipAudioManager.isBluetoothAndSpeakerOnAsync(new ulc(this, (byte) 1));
+            voipAudioManager.isBluetoothAndSpeakerOnAsync(new vlc(this, (byte) 1));
             return;
         } else {
             this.speakerphoneStateToSet = !this.speakerphoneStateToSet;

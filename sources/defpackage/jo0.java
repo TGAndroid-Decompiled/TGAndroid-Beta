@@ -55,7 +55,7 @@ public final class jo0 extends FrameLayout {
         addView(textView, tre.d(-1, -2.0f, 17, 17.0f, 40.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.c = textView2;
-        String a0 = ob6.a0(null, null, 2131748452, Integer.valueOf(i91Var.getMessagesController().k4.E3.f()));
+        String a0 = ob6.a0(null, null, 2131748452, Integer.valueOf(i91Var.getMessagesController().l4.E3.f()));
         if (hl.O1() && !hl.N1()) {
             a0 = a0.replace('\n', ' ');
         }

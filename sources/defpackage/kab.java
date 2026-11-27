@@ -1,35 +1,291 @@
 package defpackage;
-public final class kab implements Runnable {
-    public final byte a;
-    public final rbb b;
-    public final boolean c;
 
-    public kab(rbb rbbVar, boolean z, byte b) {
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.text.TextUtils;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.messenger.camera.CameraView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class kab implements CameraView.CameraViewDelegate, nr7, fd, q3d, jec, f9b, a8b {
+    public final byte a;
+    public final sbb b;
+
+    public kab(sbb sbbVar, byte b) {
         this.a = b;
-        this.b = rbbVar;
-        this.c = z;
+        this.b = sbbVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        boolean z = this.c;
-        rbb rbbVar = this.b;
-        switch (b) {
-            case 0:
-                rbbVar.c(z);
-                return;
-            case 1:
-                if (!z) {
-                    rbbVar.K0.b(false, false);
+    public final l2d S(View view, l2d l2dVar) {
+        mq5 H0 = hl.H0(l2dVar, false);
+        int i = H0.a;
+        sbb sbbVar = this.b;
+        sbbVar.Z = i;
+        sbbVar.a0 = H0.b;
+        sbbVar.b0 = H0.c;
+        sbbVar.c0 = H0.d;
+        sbbVar.n.requestLayout();
+        return l2d.b;
+    }
+
+    @Override
+    public final void a(rf4 rf4Var) {
+        c8b c8bVar;
+        po6 po6Var;
+        if (rf4Var != null && (c8bVar = this.b.L1) != null && (po6Var = c8bVar.a1) != null) {
+            rf4Var.c(new ri6(po6Var, (byte) 29));
+        }
+    }
+
+    @Override
+    public final void b(float f) {
+        sbb sbbVar = this.b;
+        xab xabVar = sbbVar.C0;
+        if (xabVar != null) {
+            sbbVar.U1 = f;
+            xabVar.setZoom(f);
+        }
+        sbbVar.i0(true);
+    }
+
+    @Override
+    public final void c(final u9b u9bVar, final boolean z, final boolean z2, boolean z3, final boolean z4, final TLRPC.InputPeer inputPeer, final int i, n3b n3bVar, final s8b s8bVar) {
+        switch (this.a) {
+            case 9:
+                ArrayList arrayList = u9bVar.b;
+                sbb sbbVar = this.b;
+                if (sbbVar.L1 != null) {
+                    sbbVar.Y0.x(5, true);
+                    sbbVar.L1.E0 = u9bVar;
+                    int i2 = sbbVar.c;
+                    int i3 = y9b.a;
+                    SerializedData serializedData = new SerializedData(true);
+                    y9b.c(serializedData, u9bVar);
+                    SerializedData serializedData2 = new SerializedData(serializedData.length());
+                    serializedData.cleanup();
+                    y9b.c(serializedData2, u9bVar);
+                    uc7.s1(i2).Y3.edit().putString("story_privacy2", Utilities.f(serializedData2.toByteArray())).apply();
+                    serializedData2.cleanup();
+                    c8b c8bVar = sbbVar.L1;
+                    c8bVar.G0 = z3;
+                    c8bVar.H0 = z2;
+                    c8bVar.F0.clear();
+                    sbbVar.L1.F0.addAll(arrayList);
+                    c8b c8bVar2 = sbbVar.L1;
+                    c8bVar2.l = true;
+                    c8bVar2.v0 = inputPeer;
+                    ArrayList arrayList2 = sbbVar.I1;
+                    if (arrayList2 != null) {
+                        int size = arrayList2.size();
+                        int i4 = 0;
+                        while (i4 < size) {
+                            Object obj = arrayList2.get(i4);
+                            i4++;
+                            c8b c8bVar3 = (c8b) obj;
+                            c8bVar3.E0 = u9bVar;
+                            ArrayList arrayList3 = c8bVar3.F0;
+                            c8bVar3.G0 = z3;
+                            c8bVar3.H0 = z2;
+                            arrayList3.clear();
+                            arrayList3.addAll(arrayList);
+                            c8bVar3.l = true;
+                            c8bVar3.v0 = inputPeer;
+                        }
+                    }
+                    sbbVar.f(new hab(sbbVar, n3bVar, (byte) 0));
                     return;
                 }
                 return;
             default:
-                rbbVar.S = null;
-                rbbVar.e = false;
-                rbbVar.o(z);
+                String[] strArr = z4 ? new String[0] : new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"};
+                final sbb sbbVar2 = this.b;
+                jve.b(strArr, strArr, new pcc() {
+                    @Override
+                    public final void a(Object obj2) {
+                        boolean z5;
+                        final boolean z6;
+                        TLRPC.InputPeer inputPeer2;
+                        long e;
+                        final sbb sbbVar3 = sbb.this;
+                        int i5 = sbbVar3.c;
+                        boolean booleanValue = ((Boolean) obj2).booleanValue();
+                        final s8b s8bVar2 = s8bVar;
+                        if (!booleanValue) {
+                            s8bVar2.run();
+                            return;
+                        }
+                        xab xabVar = sbbVar3.C0;
+                        if (xabVar != null && !xabVar.isFrontface()) {
+                            z6 = false;
+                            z5 = true;
+                        } else {
+                            z5 = true;
+                            z6 = true;
+                        }
+                        final TL_stories.TL_startLive tL_startLive = new TL_stories.TL_startLive();
+                        tL_startLive.noforwards = z2 ^ z5;
+                        TLRPC.InputPeer inputPeer3 = inputPeer;
+                        if (inputPeer3 == null) {
+                            inputPeer2 = new TLRPC.TL_inputPeerSelf();
+                        } else {
+                            inputPeer2 = inputPeer3;
+                        }
+                        tL_startLive.peer = inputPeer2;
+                        if (inputPeer3 != null && !(inputPeer3 instanceof TLRPC.TL_inputPeerSelf)) {
+                            e = wf3.m(inputPeer3);
+                        } else {
+                            e = yac.h(i5).e();
+                        }
+                        final long j = e;
+                        tL_startLive.privacy_rules.addAll(u9bVar.b);
+                        tL_startLive.random_id = Utilities.b.nextLong();
+                        final boolean z7 = z4;
+                        tL_startLive.rtmp_stream = z7;
+                        tL_startLive.messages_enabled = Boolean.valueOf(z);
+                        tL_startLive.send_paid_messages_stars = Long.valueOf(i);
+                        ConnectionsManager.getInstance(i5).sendRequest(tL_startLive, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                hl.c3(new kwa(sbb.this, tLObject, tL_startLive, z7, j, z6, tL_error, s8bVar2));
+                            }
+                        });
+                    }
+                });
                 return;
+        }
+    }
+
+    @Override
+    public final Bitmap i(BitmapFactory.Options options) {
+        return BitmapFactory.decodeFile(this.b.L1.L.getAbsolutePath(), options);
+    }
+
+    @Override
+    public final void onCameraInit() {
+        sbb sbbVar = this.b;
+        String A = sbbVar.A();
+        String str = null;
+        if (TextUtils.equals(A, sbbVar.D())) {
+            A = null;
+        }
+        if (sbbVar.g0 == 0) {
+            str = A;
+        }
+        sbbVar.d0(str);
+        r3d r3dVar = sbbVar.W0;
+        if (r3dVar != null) {
+            sbbVar.U1 = 0.0f;
+            r3dVar.b(false, 0.0f);
+        }
+        sbbVar.l0(true);
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        byte b = this.a;
+        c8b c8bVar = null;
+        sbb sbbVar = this.b;
+        switch (b) {
+            case 2:
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + a.b.getPackageName()));
+                    sbbVar.b.startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
+            case 3:
+                try {
+                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent2.setData(Uri.parse("package:" + a.b.getPackageName()));
+                    sbbVar.b.startActivity(intent2);
+                    return;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return;
+                }
+            case 4:
+            case 6:
+            default:
+                try {
+                    Intent intent3 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent3.setData(Uri.parse("package:" + a.b.getPackageName()));
+                    sbbVar.b.startActivity(intent3);
+                    return;
+                } catch (Exception e3) {
+                    cc4.g(e3, true);
+                    return;
+                }
+            case 5:
+                try {
+                    Intent intent4 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent4.setData(Uri.parse("package:" + a.b.getPackageName()));
+                    sbbVar.b.startActivity(intent4);
+                    return;
+                } catch (Exception e4) {
+                    cc4.g(e4, true);
+                    return;
+                }
+            case 7:
+                int i2 = sbbVar.c;
+                c8b c8bVar2 = sbbVar.L1;
+                if (c8bVar2 != null) {
+                    c8bVar2.D0 = uc7.s1(i2).l5();
+                    sbbVar.W1 = !sbbVar.L1.c;
+                    sbbVar.f(null);
+                    sbbVar.i();
+                    sbbVar.j();
+                    sbbVar.w();
+                    c8b c8bVar3 = sbbVar.L1;
+                    c8bVar3.i(true);
+                    c8bVar3.C0 = sbbVar.d1.getText();
+                    sbbVar.L1 = null;
+                    sbbVar.V(c8bVar3, true);
+                    ar3 ar3Var = uc7.s1(i2).O1().w;
+                    if (c8bVar3.c) {
+                        ar3Var.d(c8bVar3);
+                    } else {
+                        ArrayList arrayList = ar3Var.b;
+                        if (!c8bVar3.u) {
+                            ar3Var.e(c8bVar3);
+                            c8bVar3.b = Utilities.b.nextLong();
+                            zq3 zq3Var = new zq3(c8bVar3);
+                            arrayList.remove(c8bVar3);
+                            arrayList.add(0, c8bVar3);
+                            ar3Var.a(zq3Var);
+                        }
+                    }
+                    sbbVar.I(0, true);
+                    return;
+                }
+                return;
+            case 8:
+                c8b c8bVar4 = sbbVar.L1;
+                if (c8bVar4 != null && !c8bVar4.g && ((!c8bVar4.n || c8bVar4.u) && c8bVar4.c)) {
+                    uc7.s1(sbbVar.c).O1().w.b(sbbVar.L1);
+                    sbbVar.L1 = null;
+                } else {
+                    c8bVar = c8bVar4;
+                }
+                if (c8bVar != null && (c8bVar.o || c8bVar.g || (c8bVar.n && !c8bVar.u))) {
+                    sbbVar.o(true);
+                    return;
+                } else {
+                    sbbVar.I(0, true);
+                    return;
+                }
         }
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.PhotoViewer;
-public final class n31 implements v76, cr7, um6, ifc, n09 {
+public final class n31 implements v76, cr7, um6, ifc, o09 {
     public final byte a;
     public boolean b;
     public Object c;
@@ -42,7 +42,7 @@ public final class n31 implements v76, cr7, um6, ifc, n09 {
     public final void S0(Object obj) {
         this.b = true;
         Void r2 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) ((k09) this.c).b;
+        SignInHubActivity signInHubActivity = (SignInHubActivity) ((l09) this.c).b;
         signInHubActivity.setResult(signInHubActivity.S, signInHubActivity.T);
         signInHubActivity.finish();
     }
@@ -64,7 +64,7 @@ public final class n31 implements v76, cr7, um6, ifc, n09 {
     }
 
     @Override
-    public final void a(m09 m09Var, int i) {
+    public final void a(n09 n09Var, int i) {
         StringBuilder sb = (StringBuilder) this.c;
         if (this.b) {
             this.b = false;
@@ -399,7 +399,7 @@ public final class n31 implements v76, cr7, um6, ifc, n09 {
     public final String toString() {
         switch (this.a) {
             case 6:
-                return ((k09) this.c).toString();
+                return ((l09) this.c).toString();
             default:
                 return super.toString();
         }
@@ -444,10 +444,10 @@ public final class n31 implements v76, cr7, um6, ifc, n09 {
         this.b = z;
     }
 
-    public n31(m8d m8dVar, k09 k09Var) {
+    public n31(m8d m8dVar, l09 l09Var) {
         this.a = (byte) 6;
         this.b = false;
-        this.c = k09Var;
+        this.c = l09Var;
     }
 
     @Override

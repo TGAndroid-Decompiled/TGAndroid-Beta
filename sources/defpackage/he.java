@@ -191,7 +191,7 @@ public final class he implements Runnable {
                         return;
                     } else if (xc2.T(chat)) {
                         TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                        tL_channels_getParticipants.limit = uc7.s1(i5).k4.V0.f();
+                        tL_channels_getParticipants.limit = uc7.s1(i5).l4.V0.f();
                         tL_channels_getParticipants.offset = 0;
                         tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
                         tL_channels_getParticipants.channel = uc7.s1(i5).h1(chat.id);
@@ -461,7 +461,7 @@ public final class he implements Runnable {
                 }
                 return;
             case 4:
-                ((ts8) this.f).c((TLObject) this.e, (jf7) this.d, this.c, this.b, (ArrayList) this.h);
+                ((ts8) this.f).c((TLObject) this.e, (kf7) this.d, this.c, this.b, (ArrayList) this.h);
                 return;
             case 5:
                 ((hja) this.e).k((ArrayList) this.f, Integer.valueOf(this.b), Long.valueOf(this.c), (ArrayList) this.d, (ArrayList) this.h);
@@ -487,8 +487,8 @@ public final class he implements Runnable {
                 message.voiceTranscriptionOpen = true;
                 message.voiceTranscriptionId = 0L;
                 u2c.q(r47Var);
-                jf7 Y = jf7.Y(i10);
-                Y.a.c(new wy(Y, r47Var.e1(), j10, message, str3, (byte) 6));
+                kf7 a0 = kf7.a0(i10);
+                a0.a.c(new wy(a0, r47Var.e1(), j10, message, str3, (byte) 6));
                 jn7 f = jn7.f(i10);
                 Boolean bool = Boolean.TRUE;
                 f.k(116, r47Var, null, null, bool, bool);
@@ -506,11 +506,11 @@ public final class he implements Runnable {
         this.d = chat;
     }
 
-    public he(ts8 ts8Var, TLObject tLObject, jf7 jf7Var, long j, int i, ArrayList arrayList) {
+    public he(ts8 ts8Var, TLObject tLObject, kf7 kf7Var, long j, int i, ArrayList arrayList) {
         this.a = (byte) 4;
         this.f = ts8Var;
         this.e = tLObject;
-        this.d = jf7Var;
+        this.d = kf7Var;
         this.c = j;
         this.b = i;
         this.h = arrayList;

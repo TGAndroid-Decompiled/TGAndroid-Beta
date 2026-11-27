@@ -1,39 +1,62 @@
 package defpackage;
+public final class lbb extends nbb {
+    public final byte g;
+    public final Object h;
 
-import android.graphics.Canvas;
-import org.telegram.ui.LaunchActivity;
-public final class lbb extends mbb {
-    public final og3 g;
-    public final float h;
-
-    public lbb(og3 og3Var, float f) {
-        this.g = og3Var;
-        this.h = f;
-    }
-
-    @Override
-    public final void a(Canvas canvas, float f) {
-        float pow = (float) Math.pow(f, 16.0d);
-        og3 og3Var = this.g;
-        float f2 = this.h;
-        og3Var.c(canvas, f2, f2, pow);
+    public lbb(Object obj, byte b) {
+        this.g = b;
+        this.h = obj;
     }
 
     @Override
     public final void e() {
-        og3 og3Var = this.g;
-        og3Var.post(new ng3(og3Var, (byte) 1));
+        byte b = this.g;
+        Object obj = this.h;
+        switch (b) {
+            case 0:
+                iq8 iq8Var = (iq8) obj;
+                iq8Var.R = false;
+                iq8Var.invalidate();
+                return;
+            case 1:
+                o68 w = ((lcb) obj).w();
+                if (w != null) {
+                    w.c0(true);
+                    return;
+                }
+                return;
+            default:
+                de0 de0Var = (de0) obj;
+                de0Var.post(new s8b(de0Var, (byte) 6));
+                return;
+        }
     }
 
     @Override
     public final void f(boolean z) {
-        og3 og3Var = this.g;
-        og3Var.x = true;
-        og3Var.invalidate();
-        if (z) {
-            int[] iArr = new int[2];
-            og3Var.getLocationInWindow(iArr);
-            LaunchActivity.a0((og3Var.getWidth() / 2.0f) + iArr[0], (og3Var.getHeight() / 2.0f) + iArr[1], 1.0f);
+        byte b = this.g;
+        Object obj = this.h;
+        switch (b) {
+            case 0:
+                iq8 iq8Var = (iq8) obj;
+                iq8Var.R = true;
+                iq8Var.invalidate();
+                return;
+            case 1:
+                o68 w = ((lcb) obj).w();
+                if (w != null) {
+                    w.c0(false);
+                }
+                u58 u58Var = this.f;
+                if (u58Var != null) {
+                    u58Var.setTranslationX(0.0f);
+                    this.f.setTranslationY(0.0f);
+                    return;
+                }
+                return;
+            default:
+                ((de0) obj).setVisibility(0);
+                return;
         }
     }
 }

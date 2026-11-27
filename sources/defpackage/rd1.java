@@ -39,7 +39,7 @@ import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.p;
 import org.telegram.ui.LaunchActivity;
-public final class rd1 implements t93, fd, ncc, on5, dz5, l39, bf7, cq0, gq5, t69, CameraController.VideoTakeCallback, b88, hcb, kk4, ResultCallback, nu3, n7 {
+public final class rd1 implements t93, fd, ncc, on5, dz5, l39, cf7, cq0, gq5, t69, CameraController.VideoTakeCallback, b88, hcb, kk4, ResultCallback, nu3, n7 {
     public final byte a;
     public final Object b;
 
@@ -525,8 +525,8 @@ public final class rd1 implements t93, fd, ncc, on5, dz5, l39, bf7, cq0, gq5, t6
     }
 
     @Override
-    public final void x(long j, int i, x58 x58Var) {
-        x58Var.run();
+    public final void x(long j, int i, y58 y58Var) {
+        y58Var.run();
     }
 
     @Override

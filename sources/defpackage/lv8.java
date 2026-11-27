@@ -8,7 +8,7 @@ import java.io.IOException;
 public abstract class lv8 {
     public static final sd9 a = new Object();
     public static final Object b = new Object();
-    public static rg7 c = null;
+    public static sg7 c = null;
 
     public static long a(Context context) {
         PackageManager packageManager = context.getApplicationContext().getPackageManager();
@@ -18,10 +18,10 @@ public abstract class lv8 {
         return packageManager.getPackageInfo(context.getPackageName(), 0).lastUpdateTime;
     }
 
-    public static rg7 b() {
-        rg7 rg7Var = new rg7((byte) 24);
-        c = rg7Var;
-        a.k(rg7Var);
+    public static sg7 b() {
+        sg7 sg7Var = new sg7((byte) 24);
+        c = sg7Var;
+        a.k(sg7Var);
         return c;
     }
 

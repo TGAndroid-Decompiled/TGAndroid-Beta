@@ -45,9 +45,9 @@ public final class zia extends hjc {
     @Override
     public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
         TL_stories.StoryItem storyItem;
-        u5b u5bVar = this.h.s;
+        v5b v5bVar = this.h.s;
         ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
-        u5bVar.getClass();
+        v5bVar.getClass();
         if (arrayList != null && arrayList2 != null) {
             boolean z = false;
             for (int i = 0; i < arrayList.size(); i++) {
@@ -57,14 +57,14 @@ public final class zia extends hjc {
                     break;
                 }
                 TL_stories.StoryViews storyViews = arrayList2.get(i);
-                r47 r47Var = (r47) u5bVar.j.get(num);
+                r47 r47Var = (r47) v5bVar.j.get(num);
                 if (r47Var != null && (storyItem = r47Var.l) != null) {
                     storyItem.views = storyViews;
                     z = true;
                 }
             }
             if (z) {
-                u5bVar.x();
+                v5bVar.x();
             }
         }
         return true;

@@ -36,7 +36,7 @@ public final class bb7 implements RequestDelegate {
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
                 long j = this.c;
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                 }
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
@@ -46,8 +46,8 @@ public final class bb7 implements RequestDelegate {
                         uc7Var.W(j2, 0, this.d, this.e, this.g, inputPeer, 0L);
                     }
                     uc7Var.W3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
-                    jf7 messagesStorage = uc7Var.getMessagesStorage();
-                    messagesStorage.a.c(new le7(messagesStorage, j2, (byte) 4));
+                    kf7 messagesStorage = uc7Var.getMessagesStorage();
+                    messagesStorage.a.c(new me7(messagesStorage, j2, (byte) 4));
                     return;
                 }
                 return;

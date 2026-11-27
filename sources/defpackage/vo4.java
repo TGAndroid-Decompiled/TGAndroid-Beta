@@ -57,8 +57,8 @@ public final class vo4 implements bg8 {
     }
 
     @Override
-    public final void L(uf7 uf7Var) {
-        this.a.L(uf7Var);
+    public final void L(vf7 vf7Var) {
+        this.a.L(vf7Var);
     }
 
     @Override

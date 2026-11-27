@@ -634,7 +634,7 @@ public final class u59 extends View implements qk4 {
             invalidate();
             long j3 = currentTimeMillis / 1000;
             if (j3 != this.S / 1000) {
-                ((rab) this.a).a.K0.a(j3, r21);
+                ((sab) this.a).a.K0.a(j3, r21);
             }
             if (j2 > 0 && currentTimeMillis >= j2) {
                 post(new s59(this, (byte) 0));

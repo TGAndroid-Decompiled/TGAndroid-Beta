@@ -19,7 +19,7 @@ public final class r18 extends de0 implements jq3 {
     public int P;
     public int Q;
     public Paint R;
-    public hh7 S;
+    public ih7 S;
     public int T;
     public mqb U;
     public int V;

@@ -52,7 +52,7 @@ public final class ot9 {
         }
         Iterator it = map.entrySet().iterator();
         while (true) {
-            qj7 qj7Var = null;
+            rj7 rj7Var = null;
             int i = 0;
             if (it.hasNext()) {
                 Map.Entry entry2 = (Map.Entry) it.next();
@@ -71,11 +71,11 @@ public final class ot9 {
                     throw new IllegalArgumentException("Can't put value with type " + cls2 + " into saved state");
                 }
                 Object obj = ot9Var.c.get(str);
-                if (obj instanceof qj7) {
-                    qj7Var = (qj7) obj;
+                if (obj instanceof rj7) {
+                    rj7Var = (rj7) obj;
                 }
-                if (qj7Var != null) {
-                    qj7Var.i(c);
+                if (rj7Var != null) {
+                    rj7Var.i(c);
                 } else {
                     linkedHashMap.put(str, c);
                 }

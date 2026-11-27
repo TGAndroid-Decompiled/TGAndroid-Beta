@@ -52,7 +52,7 @@ public final class k69 extends View implements snb {
     public float h;
     public final boolean h0;
     public int i0;
-    public final ki7 j0;
+    public final li7 j0;
     public int k0;
     public float l0;
     public boolean m0;
@@ -86,7 +86,7 @@ public final class k69 extends View implements snb {
         this.L = new Path();
         this.M = new float[8];
         this.a0 = new int[2];
-        this.j0 = new ki7(this, (byte) 13);
+        this.j0 = new li7(this, (byte) 13);
         this.p0 = 1.0f;
         this.S = i;
         if (i == 0) {
@@ -238,9 +238,9 @@ public final class k69 extends View implements snb {
             this.V = true;
             invalidate();
         }
-        ki7 ki7Var = this.j0;
-        hl.r(ki7Var);
-        hl.d3(ki7Var, 2000L);
+        li7 li7Var = this.j0;
+        hl.r(li7Var);
+        hl.d3(li7Var, 2000L);
     }
 
     public final void d() {

@@ -50,7 +50,7 @@ public abstract class gp4 implements ComponentCallbacks, View.OnCreateContextMen
     public z26 d0;
     public k36 e0;
     public Bundle f;
-    public final qj7 f0;
+    public final rj7 f0;
     public wt9 g0;
     public gp4 h;
     public rx h0;
@@ -71,7 +71,7 @@ public abstract class gp4 implements ComponentCallbacks, View.OnCreateContextMen
     public gp4() {
         new zz3(this, (byte) 6);
         this.d0 = z26.e;
-        this.f0 = new qj7();
+        this.f0 = new rj7();
         this.i0 = new ArrayList();
         this.j0 = new dp4(this);
         r();
@@ -199,7 +199,7 @@ public abstract class gp4 implements ComponentCallbacks, View.OnCreateContextMen
     }
 
     @Override
-    public final oj7 d() {
+    public final pj7 d() {
         Application application;
         Context applicationContext = K().getApplicationContext();
         while (true) {
@@ -217,8 +217,8 @@ public abstract class gp4 implements ComponentCallbacks, View.OnCreateContextMen
         if (application == null && kq4.K(3)) {
             Log.d("FragmentManager", "Could not find Application instance from Context " + K().getApplicationContext() + ", you will not be able to use AndroidViewModel with the default ViewModelProvider.Factory");
         }
-        oj7 oj7Var = new oj7();
-        LinkedHashMap linkedHashMap = (LinkedHashMap) oj7Var.a;
+        pj7 pj7Var = new pj7();
+        LinkedHashMap linkedHashMap = (LinkedHashMap) pj7Var.a;
         if (application != null) {
             linkedHashMap.put(phc.I, application);
         }
@@ -228,7 +228,7 @@ public abstract class gp4 implements ComponentCallbacks, View.OnCreateContextMen
         if (bundle != null) {
             linkedHashMap.put(fhd.c, bundle);
         }
-        return oj7Var;
+        return pj7Var;
     }
 
     public final Activity e() {

@@ -1,81 +1,158 @@
 package defpackage;
-public final class ci7 {
-    public int a;
-    public String b;
-    public int c;
-    public int d;
-    public byte e;
-    public int f;
-    public int g;
+public final class ci7 implements av3 {
+    public final ey7 a;
+    public final di7 b;
+    public final String c;
+    public final int d;
+    public final String e;
+    public x1c f;
+    public String g;
+    public byte h = 0;
+    public int i;
+    public boolean j;
+    public boolean k;
+    public long l;
+    public int m;
+    public long n;
 
-    public final boolean a(int i) {
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        if ((i & (-2097152)) != -2097152 || (i2 = (i >>> 19) & 3) == 1 || (i3 = (i >>> 17) & 3) == 0 || (i4 = (i >>> 12) & 15) == 0 || i4 == 15 || (i5 = (i >>> 10) & 3) == 3) {
-            return false;
-        }
-        this.a = i2;
-        this.b = nfd.a[3 - i3];
-        int i8 = nfd.b[i5];
-        this.d = i8;
-        byte b = 2;
-        if (i2 == 2) {
-            i8 /= 2;
-            this.d = i8;
-        } else if (i2 == 0) {
-            i8 /= 4;
-            this.d = i8;
-        }
-        int i9 = (i >>> 9) & 1;
-        int i10 = 1152;
-        if (i3 != 1) {
-            if (i3 != 2) {
-                if (i3 == 3) {
-                    i10 = 384;
+    public ci7(String str, int i, String str2) {
+        ey7 ey7Var = new ey7(4);
+        this.a = ey7Var;
+        ey7Var.a[0] = -1;
+        this.b = new Object();
+        this.n = -9223372036854775807L;
+        this.c = str;
+        this.d = i;
+        this.e = str2;
+    }
+
+    @Override
+    public final void b(ey7 ey7Var) {
+        boolean z;
+        boolean z2;
+        this.f.getClass();
+        while (ey7Var.a() > 0) {
+            byte b = this.h;
+            ey7 ey7Var2 = this.a;
+            boolean z3 = true;
+            if (b != 0) {
+                if (b != 1) {
+                    if (b == 2) {
+                        int min = Math.min(ey7Var.a(), this.m - this.i);
+                        this.f.e(min, ey7Var);
+                        int i = this.i + min;
+                        this.i = i;
+                        if (i >= this.m) {
+                            if (this.n == -9223372036854775807L) {
+                                z3 = false;
+                            }
+                            yve.p(z3);
+                            this.f.a(this.n, 1, this.m, 0, null);
+                            this.n += this.l;
+                            this.i = 0;
+                            this.h = (byte) 0;
+                        }
+                    } else {
+                        grb.g();
+                        return;
+                    }
                 } else {
-                    iy8.d();
-                    return false;
+                    int min2 = Math.min(ey7Var.a(), 4 - this.i);
+                    ey7Var.k(this.i, min2, ey7Var2.a);
+                    int i2 = this.i + min2;
+                    this.i = i2;
+                    if (i2 >= 4) {
+                        ey7Var2.N(0);
+                        int m = ey7Var2.m();
+                        di7 di7Var = this.b;
+                        if (!di7Var.a(m)) {
+                            this.i = 0;
+                            this.h = (byte) 1;
+                        } else {
+                            this.m = di7Var.c;
+                            if (!this.j) {
+                                this.l = (di7Var.g * 1000000) / di7Var.d;
+                                jo4 jo4Var = new jo4();
+                                jo4Var.a = this.g;
+                                jo4Var.r = eg7.n(this.e);
+                                jo4Var.s = eg7.n(di7Var.b);
+                                jo4Var.t = 4096;
+                                jo4Var.M = di7Var.e;
+                                jo4Var.O = di7Var.d;
+                                jo4Var.d = this.c;
+                                jo4Var.f = this.d;
+                                this.f.g(new ko4(jo4Var));
+                                this.j = true;
+                            }
+                            ey7Var2.N(0);
+                            this.f.e(4, ey7Var2);
+                            this.h = (byte) 2;
+                        }
+                    }
                 }
-            }
-        } else if (i2 != 3) {
-            i10 = 576;
-        }
-        this.g = i10;
-        if (i3 == 3) {
-            if (i2 == 3) {
-                i7 = nfd.c[i4 - 1];
             } else {
-                i7 = nfd.d[i4 - 1];
-            }
-            this.f = i7;
-            this.c = qu6.y(i7, 12, i8, i9) << 2;
-        } else {
-            int i11 = 144;
-            if (i2 == 3) {
-                if (i3 == 2) {
-                    i6 = nfd.e[i4 - 1];
-                } else {
-                    i6 = nfd.f[i4 - 1];
+                byte[] bArr = ey7Var.a;
+                int i3 = ey7Var.b;
+                int i4 = ey7Var.c;
+                while (true) {
+                    if (i3 < i4) {
+                        byte b2 = bArr[i3];
+                        if ((b2 & 255) == 255) {
+                            z = true;
+                        } else {
+                            z = false;
+                        }
+                        if (this.k && (b2 & 224) == 224) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                        this.k = z;
+                        if (z2) {
+                            ey7Var.N(i3 + 1);
+                            this.k = false;
+                            ey7Var2.a[1] = bArr[i3];
+                            this.i = 2;
+                            this.h = (byte) 1;
+                            break;
+                        }
+                        i3++;
+                    } else {
+                        ey7Var.N(i4);
+                        break;
+                    }
                 }
-                this.f = i6;
-                this.c = qu6.y(i6, 144, i8, i9);
-            } else {
-                int i12 = nfd.g[i4 - 1];
-                this.f = i12;
-                if (i3 == 1) {
-                    i11 = 72;
-                }
-                this.c = qu6.y(i11, i12, i8, i9);
             }
         }
-        if (((i >> 6) & 3) == 3) {
-            b = 1;
-        }
-        this.e = b;
-        return true;
+    }
+
+    @Override
+    public final void d() {
+        this.h = (byte) 0;
+        this.i = 0;
+        this.k = false;
+        this.n = -9223372036854775807L;
+    }
+
+    @Override
+    public final void g(int i, long j) {
+        this.n = j;
+    }
+
+    @Override
+    public final void h(g84 g84Var, l6c l6cVar) {
+        l6cVar.a();
+        l6cVar.b();
+        this.g = l6cVar.e;
+        l6cVar.b();
+        this.f = g84Var.e0(l6cVar.d, 1);
+    }
+
+    @Override
+    public final void e() {
+    }
+
+    @Override
+    public final void f() {
     }
 }

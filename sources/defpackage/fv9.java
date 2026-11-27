@@ -6,13 +6,13 @@ public final class fv9 {
     public final bp5 a;
 
     static {
-        k09 k09Var = new k09((byte) 7);
-        k09Var.b = bp5.p(2, 1, 5);
-        b = new fv9(k09Var);
+        l09 l09Var = new l09((byte) 7);
+        l09Var.b = bp5.p(2, 1, 5);
+        b = new fv9(l09Var);
     }
 
-    public fv9(k09 k09Var) {
-        this.a = (bp5) k09Var.b;
+    public fv9(l09 l09Var) {
+        this.a = (bp5) l09Var.b;
     }
 
     public final boolean equals(Object obj) {

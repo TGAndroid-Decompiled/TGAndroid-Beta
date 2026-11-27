@@ -22,7 +22,7 @@ public final class zl6 implements Runnable {
             default:
                 Activity parentActivity = em6Var.getParentActivity();
                 Activity parentActivity2 = em6Var.getParentActivity();
-                uo3 uo3Var = xca.m;
+                uo3 uo3Var = yca.m;
                 boolean z = parentActivity2.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
                 SharedPreferences.Editor edit = parentActivity.getSharedPreferences("shapedetector_conf", 0).edit();
                 if (z) {

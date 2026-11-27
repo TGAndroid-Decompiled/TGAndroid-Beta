@@ -190,9 +190,9 @@ public final class lg implements Runnable {
                 spannableStringBuilder.append((CharSequence) "\n\n");
                 oj n = oj.n(message.suggested_post.price);
                 if (n.a == pj.b) {
-                    f = zu1Var.getMessagesController().k4.g.f();
+                    f = zu1Var.getMessagesController().l4.g.f();
                 } else {
-                    f = zu1Var.getMessagesController().k4.d.f();
+                    f = zu1Var.getMessagesController().l4.d.f();
                 }
                 if (z8) {
                     n = oj.j((n.b / 1000) * f, n.a);
@@ -210,7 +210,7 @@ public final class lg implements Runnable {
                 }
                 spannableStringBuilder.append(' ');
                 i4 = ((e) zu1Var).currentAccount;
-                qu6.s(null, null, 2131744046, new Object[]{Long.valueOf(uc7.s1(i4).k4.h.g(TimeUnit.HOURS))}, spannableStringBuilder);
+                qu6.s(null, null, 2131744046, new Object[]{Long.valueOf(uc7.s1(i4).l4.h.g(TimeUnit.HOURS))}, spannableStringBuilder);
                 v21[] v21VarArr = new v21[1];
                 o1 o1Var = new o1(v21VarArr, (byte) 13);
                 id[] idVarArr = new id[1];
@@ -399,7 +399,7 @@ public final class lg implements Runnable {
                     lv2Var.d(false);
                 }
                 jn7 notificationCenter = lv2Var.getNotificationCenter();
-                int i19 = uc7.r5;
+                int i19 = uc7.s5;
                 notificationCenter.k(2, 1);
                 lv2Var.getNotificationCenter().k(25, new Object[0]);
                 if (z15) {
@@ -435,7 +435,7 @@ public final class lg implements Runnable {
                         zw3 zw3Var = hw3Var.r;
                         ArrayList arrayList6 = hw3Var.n;
                         int i20 = zw3.C1;
-                        jf7.Y(zw3Var.a).s1(str6, messages_botresults);
+                        kf7.a0(zw3Var.a).w1(str6, messages_botresults);
                         fw3Var.h = messages_botresults.next_offset;
                         if (z18) {
                             arrayList6.clear();
@@ -748,7 +748,7 @@ public final class lg implements Runnable {
                     TLRPC.contacts_Blocked contacts_blocked = (TLRPC.contacts_Blocked) tLObject8;
                     uc7Var.j4(contacts_blocked.users, false);
                     uc7Var.c4(contacts_blocked.chats, false);
-                    uc7Var.getMessagesStorage().j1(contacts_blocked.users, contacts_blocked.chats, true, true);
+                    uc7Var.getMessagesStorage().n1(contacts_blocked.users, contacts_blocked.chats, true, true);
                     if (z32) {
                         longSparseIntArray.clear();
                     }

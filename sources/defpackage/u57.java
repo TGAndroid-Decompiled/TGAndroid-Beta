@@ -75,7 +75,7 @@ public final class u57 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         addView(imageView, tre.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
         if (i == 1) {
-            if (uc7.s1(i6).k4.f0.f) {
+            if (uc7.s1(i6).l4.f0.f) {
                 i5 = 2131232503;
             } else {
                 i5 = 2131231796;
@@ -252,7 +252,7 @@ public final class u57 extends FrameLayout {
             this.h.setAlpha(0.0f);
             this.f.setVisibility(8);
             TextView textView = this.e;
-            if (uc7.s1(this.a).k4.f0.f) {
+            if (uc7.s1(this.a).l4.f0.f) {
                 long j = this.s * 1000;
                 try {
                     Calendar calendar = Calendar.getInstance();

@@ -23,7 +23,7 @@ public final class ir9 implements je8, fn7 {
     public final int r;
     public long s;
     public final fr9 b = new fr9(this);
-    public final ki7 n = new ki7(this, (byte) 22);
+    public final li7 n = new li7(this, (byte) 22);
 
     public ir9(int i) {
         this.r = i;
@@ -84,9 +84,9 @@ public final class ir9 implements je8, fn7 {
             ir9Var.b.a = ke8Var;
             ir9Var.a();
             ir9Var.s = SystemClock.elapsedRealtime();
-            ki7 ki7Var = ir9Var.n;
-            hl.r(ki7Var);
-            hl.d3(ki7Var, 700L);
+            li7 li7Var = ir9Var.n;
+            hl.r(li7Var);
+            hl.d3(li7Var, 700L);
             j95 j95Var = j95.s5;
             if (j95Var != null) {
                 j95Var.dismiss();
@@ -239,9 +239,9 @@ public final class ir9 implements je8, fn7 {
         this.b.a = ke8Var;
         a();
         this.s = SystemClock.elapsedRealtime();
-        ki7 ki7Var = this.n;
-        hl.r(ki7Var);
-        hl.d3(ki7Var, 700L);
+        li7 li7Var = this.n;
+        hl.r(li7Var);
+        hl.d3(li7Var, 700L);
     }
 
     @Override

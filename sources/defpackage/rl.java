@@ -34,7 +34,7 @@ public final class rl implements Runnable {
                 HashSet hashSet = new HashSet(arrayList);
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList2 = ((Vector) tLObject).objects;
-                    jf7.Y(i).a.c(new ol(slVar, arrayList2, (byte) 1));
+                    kf7.a0(i).a.c(new ol(slVar, arrayList2, (byte) 1));
                     slVar.d(arrayList2);
                     for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                         if (arrayList2.get(i2) instanceof TLRPC.Document) {

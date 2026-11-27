@@ -16,9 +16,9 @@ public final class g32 implements pcc {
     public final Object d;
     public final Object e;
 
-    public g32(p5b p5bVar, boolean z, int i, List list) {
+    public g32(q5b q5bVar, boolean z, int i, List list) {
         this.a = (byte) 2;
-        this.d = p5bVar;
+        this.d = q5bVar;
         this.b = z;
         this.c = i;
         this.e = list;
@@ -42,7 +42,7 @@ public final class g32 implements pcc {
             case 1:
                 TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) obj2;
                 Long l = (Long) obj;
-                o68 o68Var = ((j58) obj3).a;
+                o68 o68Var = ((k58) obj3).a;
                 TLRPC.User user = o68Var.N2.getAdapter().x0;
                 if (user != null) {
                     j = user.id;
@@ -72,20 +72,20 @@ public final class g32 implements pcc {
                 ls6.d0(o68Var.m2).w0(j2, false);
                 return;
             case 2:
-                p5b p5bVar = (p5b) obj3;
+                q5b q5bVar = (q5b) obj3;
                 List list = (List) obj2;
                 Long l2 = (Long) obj;
-                r5b r5bVar = p5bVar.q;
-                TLObject c2 = uc7.s1(p5bVar.c).c2(p5bVar.D);
-                p5bVar.G = false;
+                s5b s5bVar = q5bVar.q;
+                TLObject c2 = uc7.s1(q5bVar.c).c2(q5bVar.D);
+                q5bVar.G = false;
                 if (c2 != null) {
-                    p5bVar.q(i, list, z);
+                    q5bVar.q(i, list, z);
                     return;
                 }
-                p5bVar.J = 0;
-                p5bVar.H = "";
-                hl.r(r5bVar);
-                hl.c3(r5bVar);
+                q5bVar.J = 0;
+                q5bVar.H = "";
+                hl.r(s5bVar);
+                hl.c3(s5bVar);
                 return;
             default:
                 final t8c t8cVar = (t8c) obj2;

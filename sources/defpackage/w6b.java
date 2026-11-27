@@ -9,11 +9,11 @@ public final class w6b extends FrameLayout {
     public long b;
     public ArrayList c;
     public boolean d;
-    public final acb e;
+    public final bcb e;
 
-    public w6b(acb acbVar, Context context) {
+    public w6b(bcb bcbVar, Context context) {
         super(context);
-        this.e = acbVar;
+        this.e = bcbVar;
     }
 
     public final void a(boolean z) {

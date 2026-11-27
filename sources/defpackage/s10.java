@@ -239,8 +239,8 @@ public final class s10 extends iu5 {
                 int b4 = f89Var.b();
                 int b5 = f89Var2.b();
                 ArrayList arrayList2 = br0Var.n;
-                o5b o5bVar = br0Var.e;
-                if (o5bVar == null || b4 < 0 || b4 >= o5bVar.i.size() || b5 < 0 || b5 >= br0Var.e.i.size()) {
+                p5b p5bVar = br0Var.e;
+                if (p5bVar == null || b4 < 0 || b4 >= p5bVar.i.size() || b5 < 0 || b5 >= br0Var.e.i.size()) {
                     return true;
                 }
                 if (ik8.A(br0Var.e)) {

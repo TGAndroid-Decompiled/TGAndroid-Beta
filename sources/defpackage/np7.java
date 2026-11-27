@@ -106,7 +106,7 @@ public final class np7 implements nc2 {
         notificationsCustomSettingsActivity.getClass();
         String p = ip7.p(this.a, 0L, false);
         i = ((e) notificationsCustomSettingsActivity).currentAccount;
-        SharedPreferences sharedPreferences = uc7.s1(i).W3;
+        SharedPreferences sharedPreferences = uc7.s1(i).X3;
         boolean z = sharedPreferences.getBoolean("sound_enabled_" + p, true);
         boolean z2 = !z ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();

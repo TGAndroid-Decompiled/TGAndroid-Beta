@@ -17,7 +17,7 @@ public final class b55 implements icc {
     public final Object f;
     public final Object g;
 
-    public b55(int i, c cVar, sk7 sk7Var, n55 n55Var, String str, byte[] bArr, byte[] bArr2, vnb vnbVar) {
+    public b55(int i, c cVar, tk7 tk7Var, n55 n55Var, String str, byte[] bArr, byte[] bArr2, vnb vnbVar) {
         this.c = i;
         this.d = cVar;
         this.e = n55Var;

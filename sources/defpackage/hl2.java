@@ -45,18 +45,18 @@ public final class hl2 implements Runnable {
                 }
                 return;
             case 1:
-                jf7 jf7Var = (jf7) obj;
+                kf7 kf7Var = (kf7) obj;
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLitePreparedStatement = jf7Var.b.executeFast("REPLACE INTO messages_seq VALUES(?, ?, ?)");
+                        sQLitePreparedStatement = kf7Var.b.executeFast("REPLACE INTO messages_seq VALUES(?, ?, ?)");
                         sQLitePreparedStatement.requery();
                         sQLitePreparedStatement.bindInteger(1, i3);
                         sQLitePreparedStatement.bindInteger(2, i2);
                         sQLitePreparedStatement.bindInteger(3, i);
                         sQLitePreparedStatement.step();
                     } catch (Exception e) {
-                        jf7Var.n(e, true);
+                        kf7Var.p(e, true);
                         if (sQLitePreparedStatement == null) {
                             return;
                         }

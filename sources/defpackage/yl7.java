@@ -1,42 +1,32 @@
 package defpackage;
+
+import org.telegram.tgnet.tl.TL_feed;
 public final class yl7 implements Runnable {
     public final byte a;
     public final lm7 b;
-    public final int c;
-    public final r47 d;
+    public final jm7 c;
 
-    public yl7(int i, r47 r47Var, lm7 lm7Var) {
-        this.a = (byte) 2;
+    public yl7(lm7 lm7Var, jm7 jm7Var, byte b) {
+        this.a = b;
         this.b = lm7Var;
-        this.d = r47Var;
-        this.c = i;
+        this.c = jm7Var;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        int i = this.c;
-        r47 r47Var = this.d;
+        jm7 jm7Var = this.c;
         lm7 lm7Var = this.b;
         switch (b) {
             case 0:
-                lm7Var.J0(i, r47Var, true);
-                return;
-            case 1:
-                lm7Var.J0(i, r47Var, false);
+                lm7Var.x0(jm7Var);
                 return;
             default:
-                hl.g(lm7Var.C0(r47Var));
-                d31.b0(lm7Var).k(false).j();
-                lm7Var.F0(lm7Var.n0(i, r47Var, "forward", "copy_link"));
+                jm7Var.t = null;
+                TL_feed.TL_feed_readFeed tL_feed_readFeed = new TL_feed.TL_feed_readFeed();
+                tL_feed_readFeed.max_position = jm7Var.s;
+                lm7Var.getConnectionsManager().sendRequest(tL_feed_readFeed, new xl7(lm7Var, (byte) 1));
                 return;
         }
-    }
-
-    public yl7(lm7 lm7Var, int i, r47 r47Var, byte b) {
-        this.a = b;
-        this.b = lm7Var;
-        this.c = i;
-        this.d = r47Var;
     }
 }

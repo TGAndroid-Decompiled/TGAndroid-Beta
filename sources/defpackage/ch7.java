@@ -1,24 +1,69 @@
 package defpackage;
-public final class ch7 extends q2 implements Runnable {
-    public final Runnable n;
 
-    public ch7(Runnable runnable) {
-        runnable.getClass();
-        this.n = runnable;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+public final class ch7 extends zme implements ScheduledFuture, x76, Future {
+    public final u2 b;
+    public final ScheduledFuture c;
+
+    public ch7(u2 u2Var, ScheduledFuture scheduledFuture) {
+        this.b = u2Var;
+        this.c = scheduledFuture;
     }
 
     @Override
-    public final String j() {
-        return "task=[" + this.n + "]";
+    public final void b(Runnable runnable, Executor executor) {
+        this.b.b(runnable, executor);
     }
 
     @Override
-    public final void run() {
-        try {
-            this.n.run();
-        } catch (Throwable th) {
-            m(th);
-            throw th;
+    public final boolean cancel(boolean z) {
+        boolean e = e(z);
+        if (e) {
+            this.c.cancel(z);
         }
+        return e;
+    }
+
+    @Override
+    public final int compareTo(Delayed delayed) {
+        return this.c.compareTo(delayed);
+    }
+
+    @Override
+    public final Object d() {
+        return this.b;
+    }
+
+    public final boolean e(boolean z) {
+        return this.b.cancel(z);
+    }
+
+    @Override
+    public final Object get() {
+        return this.b.get();
+    }
+
+    @Override
+    public final long getDelay(TimeUnit timeUnit) {
+        return this.c.getDelay(timeUnit);
+    }
+
+    @Override
+    public final boolean isCancelled() {
+        return this.b.isCancelled();
+    }
+
+    @Override
+    public final boolean isDone() {
+        return this.b.isDone();
+    }
+
+    @Override
+    public final Object get(long j, TimeUnit timeUnit) {
+        return this.b.get(j, timeUnit);
     }
 }

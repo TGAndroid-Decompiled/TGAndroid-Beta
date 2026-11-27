@@ -438,20 +438,20 @@ public final class tg0 implements fd, s84, t36, ncc, jcc, t69, nr7, yyc, dz7, zk
                 }
                 return;
             default:
-                rbb rbbVar = ((hbb) ((zb1) obj)).S1;
-                gbb gbbVar = rbbVar.Y0;
-                if (gbbVar != null) {
-                    gbbVar.s(null, null, true);
-                }
-                vab vabVar = rbbVar.w1;
-                if (vabVar != null) {
-                    vabVar.n0();
-                }
-                hbb hbbVar = rbbVar.d1;
+                sbb sbbVar = ((ibb) ((zb1) obj)).S1;
+                hbb hbbVar = sbbVar.Y0;
                 if (hbbVar != null) {
-                    hbbVar.setHasRoundVideo(false);
+                    hbbVar.s(null, null, true);
                 }
-                c8b c8bVar = rbbVar.L1;
+                wab wabVar = sbbVar.w1;
+                if (wabVar != null) {
+                    wabVar.n0();
+                }
+                ibb ibbVar = sbbVar.d1;
+                if (ibbVar != null) {
+                    ibbVar.setHasRoundVideo(false);
+                }
+                c8b c8bVar = sbbVar.L1;
                 if (c8bVar != null) {
                     File file = c8bVar.o0;
                     if (file != null) {
@@ -459,15 +459,15 @@ public final class tg0 implements fd, s84, t36, ncc, jcc, t69, nr7, yyc, dz7, zk
                             file.delete();
                         } catch (Exception unused) {
                         }
-                        c8bVar = rbbVar.L1;
+                        c8bVar = sbbVar.L1;
                         c8bVar.o0 = null;
                     }
                     if (c8bVar.p0 != null) {
                         try {
-                            new File(rbbVar.L1.p0).delete();
+                            new File(sbbVar.L1.p0).delete();
                         } catch (Exception unused2) {
                         }
-                        rbbVar.L1.p0 = null;
+                        sbbVar.L1.p0 = null;
                         return;
                     }
                     return;

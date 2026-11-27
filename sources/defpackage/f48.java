@@ -153,7 +153,7 @@ public class f48 extends FrameLayout implements snb {
         kc7 kc7Var;
         vnb vnbVar = this.a;
         if (i >= 14) {
-            lc7 lc7Var = uc7.s1(yac.t0).E3;
+            lc7 lc7Var = uc7.s1(yac.t0).F3;
             if (lc7Var != null) {
                 kc7Var = lc7Var.d(i);
             } else {
@@ -189,7 +189,7 @@ public class f48 extends FrameLayout implements snb {
 
     public void b(int i, boolean z) {
         kc7 d;
-        lc7 lc7Var = uc7.s1(this.b).F3;
+        lc7 lc7Var = uc7.s1(this.b).G3;
         if (lc7Var == null) {
             d = null;
         } else {

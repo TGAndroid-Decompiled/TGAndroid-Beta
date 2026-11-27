@@ -204,7 +204,7 @@ public final class yqb {
             this.d.setAlpha((int) (255.0f * f));
             this.d.draw(canvas);
             Drawable drawable2 = this.d;
-            if ((drawable2 instanceof ColorDrawable) || ((drawable2 instanceof hh7) && (i = (iArr = ((hh7) drawable2).a)[0]) == iArr[1] && i == iArr[2] && i == iArr[3])) {
+            if ((drawable2 instanceof ColorDrawable) || ((drawable2 instanceof ih7) && (i = (iArr = ((ih7) drawable2).a)[0]) == iArr[1] && i == iArr[2] && i == iArr[3])) {
                 int alpha = paint.getAlpha();
                 paint.setAlpha((int) (alpha * f));
                 float f3 = zqbVar.c;

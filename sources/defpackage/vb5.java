@@ -44,10 +44,10 @@ public final class vb5 extends RadialProgressView {
                 super.onDraw(canvas);
                 return;
             default:
-                tba tbaVar = (tba) obj;
-                de0 de0Var2 = tbaVar.H;
+                uba ubaVar = (uba) obj;
+                de0 de0Var2 = ubaVar.H;
                 if (de0Var2 != null && de0Var2.getImageReceiver().E()) {
-                    paint.setAlpha((int) (tbaVar.H.getImageReceiver().i1 * 85.0f));
+                    paint.setAlpha((int) (ubaVar.H.getImageReceiver().i1 * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
                 }
                 super.onDraw(canvas);
@@ -55,9 +55,9 @@ public final class vb5 extends RadialProgressView {
         }
     }
 
-    public vb5(tba tbaVar, Context context) {
+    public vb5(uba ubaVar, Context context) {
         super(context, null);
-        this.Q = tbaVar;
+        this.Q = ubaVar;
         Paint paint = new Paint(1);
         this.P = paint;
         paint.setColor(1426063360);

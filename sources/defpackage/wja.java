@@ -33,14 +33,14 @@ public final class wja extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         o9a o9aVar = (o9a) obj;
         zw2 zw2Var = (zw2) obj2;
         switch (b) {
             case 0:
-                return ((wja) create(o9aVar, zw2Var)).invokeSuspend(f9cVar);
+                return ((wja) create(o9aVar, zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((wja) create(o9aVar, zw2Var)).invokeSuspend(f9cVar);
+                return ((wja) create(o9aVar, zw2Var)).invokeSuspend(g9cVar);
         }
     }
 

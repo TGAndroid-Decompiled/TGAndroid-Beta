@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.Map;
 public class f3 extends fba {
     public final Map b;
-    public final fj7 c;
+    public final gj7 c;
 
-    public f3(fj7 fj7Var, Map map) {
+    public f3(gj7 gj7Var, Map map) {
         super((byte) 0);
-        this.c = fj7Var;
+        this.c = gj7Var;
         map.getClass();
         this.b = map;
     }

@@ -24,8 +24,8 @@ public final class cw4 extends wma {
 
     @Override
     public final void T(Drawable drawable) {
-        if (drawable instanceof hh7) {
-            ((hh7) drawable).o();
+        if (drawable instanceof ih7) {
+            ((ih7) drawable).o();
         }
         hw4 hw4Var = this.g0;
         hw4Var.n1.a = hw4Var.m1.c(drawable);

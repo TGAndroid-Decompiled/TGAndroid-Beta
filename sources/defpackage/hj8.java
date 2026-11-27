@@ -354,12 +354,12 @@ public final class hj8 implements icc {
         ArrayList arrayList = (ArrayList) obj;
         l9c l9cVar = (l9c) obj2;
         int i2 = k2aVar.W1;
-        u5b u5bVar = k2aVar.U1;
-        if (u5bVar == null) {
+        v5b v5bVar = k2aVar.U1;
+        if (v5bVar == null) {
             return;
         }
         arrayList.add(b8c.D(hl.L(16.0f)));
-        ArrayList arrayList2 = u5bVar.i;
+        ArrayList arrayList2 = v5bVar.i;
         int size = arrayList2.size();
         int i3 = 0;
         int i4 = i2;
@@ -389,7 +389,7 @@ public final class hj8 implements icc {
                 i4 = i2;
             }
         }
-        if (u5bVar.k() || !u5bVar.r) {
+        if (v5bVar.k() || !v5bVar.r) {
             while (true) {
                 if (i4 <= 0) {
                     i = i2;

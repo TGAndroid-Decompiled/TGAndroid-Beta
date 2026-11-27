@@ -61,7 +61,7 @@ public final class ve2 implements Runnable {
             case 1:
                 lv2 lv2Var = (lv2) obj2;
                 lv2Var.E = false;
-                SharedPreferences.Editor edit = uc7.s1(lv2Var.currentAccount).X3.edit();
+                SharedPreferences.Editor edit = uc7.s1(lv2Var.currentAccount).Y3.edit();
                 String str = ((TLRPC.TL_help_inviteText) obj).message;
                 lv2Var.y = str;
                 edit.putString("invitelink", str);
@@ -103,7 +103,7 @@ public final class ve2 implements Runnable {
                             kq3Var.d(autodownloadsettings.high);
                         }
                     }
-                    SharedPreferences.Editor edit2 = uc7.s1(lq3Var.currentAccount).X3.edit();
+                    SharedPreferences.Editor edit2 = uc7.s1(lq3Var.currentAccount).Y3.edit();
                     edit2.putString("mobilePreset", kq3Var4.toString());
                     edit2.putString("wifiPreset", kq3Var3.toString());
                     edit2.putString("roamingPreset", kq3Var2.toString());
@@ -192,7 +192,7 @@ public final class ve2 implements Runnable {
                 uc7Var2.getDownloadController().s(false);
                 uc7Var2.a3(true);
                 uc7Var2.K(true);
-                uc7Var2.C3 = true;
+                uc7Var2.D3 = true;
                 uc7Var2.Q2 = tL_config.megagroup_size_max;
                 uc7Var2.O2 = tL_config.chat_size_max;
                 uc7Var2.R2 = tL_config.edit_time_limit;
@@ -201,7 +201,7 @@ public final class ve2 implements Runnable {
                 uc7Var2.T2 = tL_config.revoke_time_limit;
                 uc7Var2.U2 = tL_config.revoke_pm_time_limit;
                 uc7Var2.V2 = tL_config.revoke_pm_inbox;
-                uc7Var2.D3 = tL_config.fpnv_allowed;
+                uc7Var2.E3 = tL_config.fpnv_allowed;
                 String str3 = tL_config.me_url_prefix;
                 uc7Var2.N2 = str3;
                 boolean z = tL_config.force_try_ipv6;
@@ -224,23 +224,23 @@ public final class ve2 implements Runnable {
                 uc7Var2.m3 = tL_config.preload_featured_stickers;
                 String str5 = tL_config.gif_search_username;
                 if (str5 != null) {
-                    uc7Var2.o3 = str5;
+                    uc7Var2.p3 = str5;
                 }
-                if (uc7Var2.p3 != null) {
-                    uc7Var2.p3 = tL_config.img_search_username;
+                if (uc7Var2.q3 != null) {
+                    uc7Var2.q3 = tL_config.img_search_username;
                 }
                 uc7Var2.l3 = tL_config.blocked_mode;
-                uc7Var2.q3 = tL_config.dc_txt_domain_name;
-                uc7Var2.r3 = tL_config.webfile_dc_id;
+                uc7Var2.r3 = tL_config.dc_txt_domain_name;
+                uc7Var2.s3 = tL_config.webfile_dc_id;
                 String str6 = tL_config.suggested_lang_code;
                 if (str6 != null) {
-                    String str7 = uc7Var2.s3;
+                    String str7 = uc7Var2.t3;
                     if (str7 != null && str7.equals(str6)) {
                         objArr = null;
                     } else {
                         objArr = 1;
                     }
-                    uc7Var2.s3 = tL_config.suggested_lang_code;
+                    uc7Var2.t3 = tL_config.suggested_lang_code;
                     if (objArr != null) {
                         ob6.D0().V0(uc7Var2.currentAccount, true);
                     }
@@ -286,8 +286,8 @@ public final class ve2 implements Runnable {
                         }
                     }
                 }
-                SharedPreferences.Editor edit3 = uc7Var2.X3.edit();
-                edit3.putBoolean("remoteConfigLoaded", uc7Var2.C3);
+                SharedPreferences.Editor edit3 = uc7Var2.Y3.edit();
+                edit3.putBoolean("remoteConfigLoaded", uc7Var2.D3);
                 edit3.putInt("maxGroupCount", uc7Var2.O2);
                 edit3.putInt("maxMegagroupCount", uc7Var2.Q2);
                 edit3.putInt("maxEditTime", uc7Var2.R2);
@@ -315,16 +315,16 @@ public final class ve2 implements Runnable {
                     edit3.remove("pk");
                 }
                 edit3.putBoolean("canRevokePmInbox", uc7Var2.V2);
-                edit3.putBoolean("fpnvAllowed", uc7Var2.D3);
+                edit3.putBoolean("fpnvAllowed", uc7Var2.E3);
                 edit3.putBoolean("blockedCountry", uc7Var2.l3);
-                edit3.putString("gifSearchBot", uc7Var2.o3);
-                edit3.putString("imageSearchBot", uc7Var2.p3);
-                edit3.putString("dcDomainName2", uc7Var2.q3);
-                edit3.putInt("webFileDatacenterId", uc7Var2.r3);
-                edit3.putString("suggestedLangCode", uc7Var2.s3);
+                edit3.putString("gifSearchBot", uc7Var2.p3);
+                edit3.putString("imageSearchBot", uc7Var2.q3);
+                edit3.putString("dcDomainName2", uc7Var2.r3);
+                edit3.putInt("webFileDatacenterId", uc7Var2.s3);
+                edit3.putString("suggestedLangCode", uc7Var2.t3);
                 edit3.putBoolean("forceTryIpV6", z);
                 String str9 = tL_config.autologin_token;
-                uc7Var2.z3 = str9;
+                uc7Var2.A3 = str9;
                 edit3.putString("autologinToken", str9);
                 edit3.commit();
                 uc7Var2.getConnectionsManager().setForceTryIpV6(z);
@@ -371,7 +371,7 @@ public final class ve2 implements Runnable {
                 uc7Var3.getNotificationCenter().k(30, new Object[0]);
                 return;
             case 10:
-                jf7 jf7Var = (jf7) obj2;
+                kf7 kf7Var = (kf7) obj2;
                 r47 r47Var = (r47) obj;
                 try {
                     NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(r47Var.k.getObjectSize());
@@ -384,7 +384,7 @@ public final class ve2 implements Runnable {
                     if (r47Var.f) {
                         i |= 2;
                     }
-                    SQLitePreparedStatement executeFast2 = jf7Var.b.executeFast("REPLACE INTO unread_push_messages VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    SQLitePreparedStatement executeFast2 = kf7Var.b.executeFast("REPLACE INTO unread_push_messages VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     executeFast2.requery();
                     executeFast2.bindLong(1, r47.B0(r47Var.k));
                     executeFast2.bindInteger(2, r47Var.e1());
@@ -410,14 +410,14 @@ public final class ve2 implements Runnable {
                         executeFast2.bindString(8, str11);
                     }
                     executeFast2.bindInteger(9, i);
-                    executeFast2.bindLong(10, r47.b2(jf7Var.currentAccount, r47Var.k, false, false));
+                    executeFast2.bindLong(10, r47.b2(kf7Var.currentAccount, r47Var.k, false, false));
                     executeFast2.bindInteger(11, (r47Var.I ? 1 : 0) + (r47Var.J ? 1 : 0));
                     executeFast2.step();
                     nativeByteBuffer.reuse();
                     executeFast2.dispose();
                     return;
                 } catch (Exception e3) {
-                    jf7Var.n(e3, true);
+                    kf7Var.p(e3, true);
                     return;
                 }
             case 11:
@@ -427,12 +427,12 @@ public final class ve2 implements Runnable {
                 qyb qybVar = (qyb) obj2;
                 HashMap hashMap = (HashMap) obj;
                 HashSet hashSet = new HashSet();
-                for (if7 if7Var : hashMap.keySet()) {
-                    int intValue = ((Integer) hashMap.get(if7Var)).intValue();
-                    TLRPC.TL_forumTopic f3 = qybVar.f(-if7Var.a, if7Var.b);
+                for (jf7 jf7Var : hashMap.keySet()) {
+                    int intValue = ((Integer) hashMap.get(jf7Var)).intValue();
+                    TLRPC.TL_forumTopic f3 = qybVar.f(-jf7Var.a, jf7Var.b);
                     if (f3 != null) {
                         f3.read_outbox_max_id = Math.max(f3.read_outbox_max_id, intValue);
-                        hashSet.add(Long.valueOf(-if7Var.a));
+                        hashSet.add(Long.valueOf(-jf7Var.a));
                         TLRPC.Message message2 = f3.topMessage;
                         if (message2 != null && f3.read_outbox_max_id >= message2.id) {
                             message2.unread = false;
@@ -523,7 +523,7 @@ public final class ve2 implements Runnable {
                 String M0 = ob6.M0(2131748732, null);
                 id idVar = alertDialog$Builder.a;
                 idVar.S = M0;
-                idVar.U = ob6.a0(null, null, 2131748702, Integer.valueOf(uc7.s1(qybVar3.currentAccount).k4.x1.f()));
+                idVar.U = ob6.a0(null, null, 2131748702, Integer.valueOf(uc7.s1(qybVar3.currentAccount).l4.x1.f()));
                 alertDialog$Builder.j(ob6.M0(2131747558, null), null);
                 eVar.showDialog(idVar);
                 return;

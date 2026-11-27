@@ -1,113 +1,129 @@
 package defpackage;
 
+import android.text.TextUtils;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
-public final class q5b {
-    public final int a;
-    public final long b;
-    public final boolean c;
-    public boolean d;
-    public boolean e;
-    public boolean f;
-    public final ArrayList g = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public boolean i;
-    public final c6b j;
+public final class q5b extends v5b {
+    public final String C;
+    public final String D;
+    public final TL_stories.MediaArea E;
+    public final ArrayList F;
+    public boolean G;
+    public String H;
+    public int I;
+    public int J;
 
-    public q5b(int i, long j, c6b c6bVar) {
-        boolean z;
-        this.j = c6bVar;
-        this.a = i;
-        this.b = j;
-        if (j == yac.h(i).e()) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.c = z;
-        d();
+    public q5b(int i, String str, String str2) {
+        super(i, 0L, 3, -1, null);
+        this.F = new ArrayList();
+        this.H = "";
+        this.C = str2;
+        this.D = str;
+        this.E = null;
     }
 
-    public final boolean a() {
-        if ((this.c || this.j.h(this.b)) && this.f && this.h.size() < uc7.s1(this.a).k4.A.f()) {
-            return true;
+    @Override
+    public final r47 f(int i) {
+        if (i >= 0) {
+            ArrayList arrayList = this.i;
+            if (i < arrayList.size()) {
+                return (r47) arrayList.get(i);
+            }
+            return null;
         }
+        return null;
+    }
+
+    @Override
+    public final int g() {
+        return this.J;
+    }
+
+    @Override
+    public final ArrayList h() {
+        return this.F;
+    }
+
+    @Override
+    public final int i() {
+        return this.i.size();
+    }
+
+    @Override
+    public final boolean k() {
+        return this.G;
+    }
+
+    @Override
+    public final boolean l() {
         return false;
     }
 
-    public final v5b b(int i) {
-        int i2 = 0;
-        while (true) {
-            ArrayList arrayList = this.h;
-            if (i2 < arrayList.size()) {
-                v5b v5bVar = (v5b) arrayList.get(i2);
-                if (i == v5bVar.a) {
-                    return v5bVar;
-                }
-                i2++;
-            } else {
-                return null;
+    @Override
+    public final boolean q(int i, List list, boolean z) {
+        if (this.G || this.H == null) {
+            return false;
+        }
+        TL_stories.TL_stories_searchPosts tL_stories_searchPosts = new TL_stories.TL_stories_searchPosts();
+        tL_stories_searchPosts.offset = this.H;
+        tL_stories_searchPosts.limit = i;
+        String str = this.C;
+        if (str != null) {
+            tL_stories_searchPosts.flags |= 1;
+            tL_stories_searchPosts.hashtag = str;
+        }
+        TL_stories.MediaArea mediaArea = this.E;
+        if (mediaArea != null) {
+            tL_stories_searchPosts.flags |= 2;
+            tL_stories_searchPosts.area = mediaArea;
+        }
+        this.G = true;
+        String str2 = this.D;
+        boolean isEmpty = TextUtils.isEmpty(str2);
+        TLObject tLObject = null;
+        int i2 = this.c;
+        if (!isEmpty) {
+            TLObject c2 = uc7.s1(i2).c2(str2);
+            if (c2 == null) {
+                uc7.s1(i2).a2().a(str2, null, new g32(this, z, i, list));
+                return true;
             }
+            tLObject = c2;
         }
+        if (tLObject != null) {
+            tL_stories_searchPosts.flags |= 4;
+            tL_stories_searchPosts.peer = uc7.k1(tLObject);
+        }
+        this.I = ConnectionsManager.getInstance(i2).sendRequest(tL_stories_searchPosts, new yp9(this, (byte) 10));
+        return true;
     }
 
-    public final int c(int i) {
-        int i2 = 0;
-        while (true) {
-            ArrayList arrayList = this.h;
-            if (i2 < arrayList.size()) {
-                if (i == ((v5b) arrayList.get(i2)).a) {
-                    return i2;
-                }
-                i2++;
-            } else {
-                return -1;
-            }
-        }
+    @Override
+    public final boolean r(int i) {
+        return false;
     }
 
-    public final void d() {
-        if (!this.e && !this.f) {
-            this.e = true;
-            boolean z = this.d;
-            long j = this.b;
-            int i = this.a;
-            if (!z) {
-                jf7 Y = jf7.Y(i);
-                Y.a.c(new cq6(Y, j, new tp8(this, (byte) 1), (byte) 14));
-                return;
-            }
-            TL_stories.TL_getAlbums tL_getAlbums = new TL_stories.TL_getAlbums();
-            tL_getAlbums.peer = uc7.s1(i).j1(j);
-            ConnectionsManager.getInstance(i).sendRequest(tL_getAlbums, new yp9(this, (byte) 11));
-        }
+    public q5b(int i, TL_stories.MediaArea mediaArea) {
+        super(i, 0L, 3, -1, null);
+        this.F = new ArrayList();
+        this.H = "";
+        this.C = null;
+        this.D = null;
+        this.E = mediaArea;
     }
 
-    public final void e() {
-        TL_stories.TL_reorderAlbums tL_reorderAlbums = new TL_stories.TL_reorderAlbums();
-        int i = this.a;
-        tL_reorderAlbums.peer = uc7.s1(i).j1(this.b);
-        tL_reorderAlbums.order = new ArrayList<>();
-        ArrayList arrayList = this.h;
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            tL_reorderAlbums.order.add(Integer.valueOf(((v5b) obj).a));
-        }
-        ConnectionsManager.getInstance(i).sendRequest(tL_reorderAlbums, null);
+    @Override
+    public final void j() {
     }
 
-    public final void f(boolean z) {
-        int i = this.a;
-        jf7 Y = jf7.Y(i);
-        to3 to3Var = Y.a;
-        long j = this.b;
-        to3Var.c(new se7(Y, j, this.h, (byte) 2));
-        if (z) {
-            jn7.f(i).k(jn7.l3, Long.valueOf(j), this);
-        }
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void x() {
     }
 }

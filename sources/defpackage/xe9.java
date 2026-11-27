@@ -66,7 +66,7 @@ public final class xe9 extends ze9 implements snb, zlb, jf9, fn7, jq3 {
         this.y = ry9Var;
         ry9Var.h = new ve9(this, (byte) 0);
         setMinimumHeight(hl.L(66.0f));
-        if9 if9Var = new if9(context, vnbVar, new i09(this, (byte) 4));
+        if9 if9Var = new if9(context, vnbVar, new j09(this, (byte) 4));
         this.V = if9Var;
         addView(if9Var.a, tre.e(-2, -2, 51));
         updateColors();

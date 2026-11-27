@@ -32,7 +32,7 @@ public final class w5f {
         z6f.O3();
         this.g = "vision-common";
         ri6.v();
-        this.e = ri6.G(new tg7(this, (byte) 6));
+        this.e = ri6.G(new ug7(this, (byte) 6));
         ri6.v();
         ljaVar.getClass();
         this.f = ri6.G(new z1f(ljaVar, (byte) 1));

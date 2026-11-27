@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.tgnet.TLRPC;
-public final class xa7 implements df7 {
+public final class xa7 implements ef7 {
     public final uc7 a;
     public final long b;
     public final int c;

@@ -118,7 +118,7 @@ public final class afc {
                         jo4 jo4Var = new jo4();
                         jo4Var.z = ggcVar.a;
                         jo4Var.A = ggcVar.b;
-                        jo4Var.s = dg7.n("video/raw");
+                        jo4Var.s = eg7.n("video/raw");
                         qx6Var.b = new ko4(jo4Var);
                         pd3Var.j.execute(new bv2(qx6Var, ggcVar, (byte) 29));
                     }

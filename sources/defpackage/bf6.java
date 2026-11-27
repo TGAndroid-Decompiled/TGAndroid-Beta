@@ -26,7 +26,7 @@ public final class bf6 extends bk2 {
             case 2:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
                 if (!passcodeActivity.F) {
-                    postDelayed(new fe7(this, (byte) 19), 260L);
+                    postDelayed(new ge7(this, (byte) 19), 260L);
                     return;
                 } else {
                     passcodeActivity.t0();

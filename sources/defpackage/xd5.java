@@ -20,7 +20,7 @@ public final class xd5 extends ny0 {
     public final LinearLayout T1;
     public l9c U1;
 
-    public xd5(Activity activity, vnb vnbVar, en9 en9Var) {
+    public xd5(Activity activity, vnb vnbVar, dn9 dn9Var) {
         super(activity, null, false, false, vnbVar);
         int i;
         J();
@@ -66,7 +66,7 @@ public final class xd5 extends ny0 {
         } else {
             i = 2131745560;
         }
-        linearLayout.addView(new ir8(this, activity, 2131231811, M0, hl.D2(hl.N2(ob6.M0(i, null), -1, 0, new yn6(this, p, en9Var, (byte) 21), null), true)), tre.q(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        linearLayout.addView(new ir8(this, activity, 2131231811, M0, hl.D2(hl.N2(ob6.M0(i, null), -1, 0, new yn6(this, p, dn9Var, (byte) 21), null), true)), tre.q(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
         yob.h(aob.d7, vnbVar, view);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);

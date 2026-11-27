@@ -46,7 +46,7 @@ public final class pz1 {
                 if (i == -1 && chat != null) {
                     uc7 messagesController = eVar.getMessagesController();
                     long j = chat.id;
-                    i = messagesController.X3.getInt("chatPendingRequests" + j, 0);
+                    i = messagesController.Y3.getInt("chatPendingRequests" + j, 0);
                     this.l = i;
                 }
                 if (this.k != i) {

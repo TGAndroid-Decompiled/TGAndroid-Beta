@@ -190,7 +190,7 @@ public final class x61 extends la {
                                     }
                                 }
                                 skb skbVar2 = (skb) view;
-                                w51 w51Var = z61Var.getMessagesController().h4;
+                                w51 w51Var = z61Var.getMessagesController().i4;
                                 int i10 = v61Var.c;
                                 int size = w51Var.d(((v61) arrayList.get(i)).c).size();
                                 if (size > 0) {

@@ -139,14 +139,14 @@ public final class gpb implements on5, s69, ovc, fd {
                     aob.r1(false, false);
                 }
                 Drawable background = pqbVar.z0.getBackground();
-                if (background instanceof hh7) {
-                    hh7 hh7Var = (hh7) background;
-                    hh7Var.r(100, null);
+                if (background instanceof ih7) {
+                    ih7 ih7Var = (ih7) background;
+                    ih7Var.r(100, null);
                     boolean o = aob.I.o();
                     float f2 = pqbVar.n1;
                     if (o) {
                         if (f2 < 0.0f) {
-                            pqbVar.z0.getImageReceiver().W(hh7Var.k);
+                            pqbVar.z0.getImageReceiver().W(ih7Var.k);
                         }
                         bz0 bz0Var = pqbVar.V0;
                         if (bz0Var != null) {

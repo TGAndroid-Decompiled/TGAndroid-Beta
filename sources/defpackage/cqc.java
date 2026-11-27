@@ -8,17 +8,17 @@ public final class cqc implements View.OnAttachStateChangeListener {
     public final bqc c;
     public final int d;
     public final icc e;
-    public final jl7[] f;
+    public final kl7[] f;
     public final String[] h;
     public final boolean[] n;
 
-    public cqc(cg5 cg5Var, TL_wallet.walletTransaction[] wallettransactionArr, bqc bqcVar, int i, icc iccVar, jl7[] jl7VarArr, String[] strArr, boolean[] zArr) {
+    public cqc(cg5 cg5Var, TL_wallet.walletTransaction[] wallettransactionArr, bqc bqcVar, int i, icc iccVar, kl7[] kl7VarArr, String[] strArr, boolean[] zArr) {
         this.a = cg5Var;
         this.b = wallettransactionArr;
         this.c = bqcVar;
         this.d = i;
         this.e = iccVar;
-        this.f = jl7VarArr;
+        this.f = kl7VarArr;
         this.h = strArr;
         this.n = zArr;
     }

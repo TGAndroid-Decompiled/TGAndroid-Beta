@@ -136,7 +136,7 @@ public final class ts0 implements View.OnFocusChangeListener {
             case 15:
                 lm7 lm7Var = (lm7) obj;
                 if (z && lm7Var.y != null) {
-                    lm7Var.K0(true);
+                    lm7Var.I0(true);
                     lm7Var.y.setCloseButtonVisible(true);
                     if (!lm7Var.y.r.isFocused()) {
                         lm7Var.y.r.requestFocus();

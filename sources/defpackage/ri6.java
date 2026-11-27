@@ -361,12 +361,12 @@ public class ri6 implements nr7, rq, cr7, ty9, ka1, y17, s69, tka, ar5, hj, h49,
                         bj0Var.X(charSequence);
                     }
                     mj0 mj0Var = bj0Var.m0;
-                    qj7 qj7Var = mj0Var.q;
-                    if (qj7Var == null) {
-                        qj7Var = new qj7();
-                        mj0Var.q = qj7Var;
+                    rj7 rj7Var = mj0Var.q;
+                    if (rj7Var == null) {
+                        rj7Var = new rj7();
+                        mj0Var.q = rj7Var;
                     }
-                    mj0.f(qj7Var, null);
+                    mj0.f(rj7Var, null);
                     return;
                 }
                 return;
@@ -911,7 +911,7 @@ public class ri6 implements nr7, rq, cr7, ty9, ka1, y17, s69, tka, ar5, hj, h49,
     }
 
     @Override
-    public final void p0(ei7 ei7Var) {
+    public final void p0(fi7 fi7Var) {
     }
 
     @Override

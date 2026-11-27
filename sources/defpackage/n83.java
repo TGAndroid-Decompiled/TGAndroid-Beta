@@ -25,7 +25,7 @@ public final class n83 extends yfb implements is4 {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((n83) create((pd4) obj, (zw2) obj2)).invokeSuspend(f9c.a);
+        return ((n83) create((pd4) obj, (zw2) obj2)).invokeSuspend(g9c.a);
     }
 
     @Override

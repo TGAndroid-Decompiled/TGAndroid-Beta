@@ -20,7 +20,7 @@ public final class q2a implements pcc {
             case 0:
                 String str = (String) obj;
                 ArrayList arrayList = t2aVar.b2;
-                ki7 ki7Var = t2aVar.q2;
+                li7 li7Var = t2aVar.q2;
                 t2aVar.i2 = str;
                 byte b2 = t2aVar.m2;
                 if (b2 != 1) {
@@ -32,20 +32,20 @@ public final class q2a implements pcc {
                         }
                         return;
                     } else if (TextUtils.isEmpty(str)) {
-                        hl.r(ki7Var);
+                        hl.r(li7Var);
                         arrayList.clear();
                         arrayList.addAll(on0.f(t2aVar.l2.id));
                         t2aVar.i1(false, true);
                         t2aVar.f1(true);
                         return;
                     } else {
-                        hl.r(ki7Var);
-                        hl.d3(ki7Var, 350L);
+                        hl.r(li7Var);
+                        hl.d3(li7Var, 350L);
                         return;
                     }
                 }
-                hl.r(ki7Var);
-                hl.d3(ki7Var, 350L);
+                hl.r(li7Var);
+                hl.d3(li7Var, 350L);
                 return;
             default:
                 List list = (List) obj;

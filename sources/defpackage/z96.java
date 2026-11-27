@@ -365,9 +365,9 @@ public final class z96 implements Runnable {
                 ((gn1) obj).run();
                 return;
             default:
-                p5b p5bVar = ((yc7) obj).E;
-                if (p5bVar != null) {
-                    p5bVar.p(3, true);
+                q5b q5bVar = ((yc7) obj).E;
+                if (q5bVar != null) {
+                    q5bVar.p(3, true);
                     return;
                 }
                 return;

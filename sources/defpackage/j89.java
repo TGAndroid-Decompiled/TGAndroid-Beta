@@ -15,7 +15,7 @@ public final class j89 implements u79 {
     public final i89 k;
     public int b = -1;
     public final int j = hl.L(80.0f);
-    public final ki7 l = new ki7(this, (byte) 14);
+    public final li7 l = new li7(this, (byte) 14);
 
     public j89(i89 i89Var) {
         this.k = i89Var;
@@ -34,7 +34,7 @@ public final class j89 implements u79 {
         float y = motionEvent.getY();
         int action = motionEvent.getAction();
         i89 i89Var = this.k;
-        ki7 ki7Var = this.l;
+        li7 li7Var = this.l;
         if (action != 1) {
             if (action == 2) {
                 if (this.j > -1) {
@@ -42,20 +42,20 @@ public final class j89 implements u79 {
                         this.h = false;
                         if (!this.g) {
                             this.g = true;
-                            hl.r(ki7Var);
-                            hl.c3(ki7Var);
+                            hl.r(li7Var);
+                            hl.c3(li7Var);
                         }
                         this.i = ((int) (this.d - (y - 0.0f))) / 2;
                     } else if (y >= this.e && y <= this.f) {
                         this.g = false;
                         if (!this.h) {
                             this.h = true;
-                            hl.r(ki7Var);
-                            hl.c3(ki7Var);
+                            hl.r(li7Var);
+                            hl.c3(li7Var);
                         }
                         this.i = ((int) ((y + this.f) - (this.e + i2))) / 2;
                     } else if (this.g || this.h) {
-                        hl.r(ki7Var);
+                        hl.r(li7Var);
                         this.g = false;
                         this.h = false;
                     }
@@ -72,7 +72,7 @@ public final class j89 implements u79 {
         this.c = false;
         this.g = false;
         this.h = false;
-        hl.r(ki7Var);
+        hl.r(li7Var);
         i89Var.r(false);
     }
 

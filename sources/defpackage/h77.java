@@ -34,7 +34,7 @@ public final class h77 implements RequestDelegate {
                 } else {
                     uc7Var.y2 = uc7Var.getConnectionsManager().getCurrentTime() + 3600;
                 }
-                uc7Var.W3.edit().putInt("nextTosCheckTime", uc7Var.y2).commit();
+                uc7Var.X3.edit().putInt("nextTosCheckTime", uc7Var.y2).commit();
                 return;
             case 1:
                 if (tL_error == null) {
@@ -70,7 +70,7 @@ public final class h77 implements RequestDelegate {
                         uc7Var.U0(X1.id).a(0, 80);
                         ArrayList arrayList2 = new ArrayList();
                         arrayList2.add(X1);
-                        uc7Var.getMessagesStorage().j1(arrayList2, null, false, true);
+                        uc7Var.getMessagesStorage().n1(arrayList2, null, false, true);
                         hl.c3(new l87(uc7Var, (byte) 10));
                         return;
                     }
@@ -186,21 +186,21 @@ public final class h77 implements RequestDelegate {
                         arrayList5.add((TLRPC.DialogFilter) vector.objects.get(i));
                         i++;
                     }
-                    jf7 messagesStorage = uc7Var.getMessagesStorage();
-                    messagesStorage.a.c(new fd7(messagesStorage, arrayList5, new l87(uc7Var, (byte) 2), (byte) 6));
+                    kf7 messagesStorage = uc7Var.getMessagesStorage();
+                    messagesStorage.a.c(new gd7(messagesStorage, arrayList5, new l87(uc7Var, (byte) 2), (byte) 6));
                     return;
                 } else if (tLObject instanceof TLRPC.TL_messages_dialogFilters) {
                     TLRPC.TL_messages_dialogFilters tL_messages_dialogFilters = (TLRPC.TL_messages_dialogFilters) tLObject;
-                    boolean z = uc7Var.l4;
+                    boolean z = uc7Var.m4;
                     boolean z2 = tL_messages_dialogFilters.tags_enabled;
                     if (z != z2) {
-                        SharedPreferences.Editor edit = uc7Var.X3.edit();
-                        uc7Var.l4 = z2;
+                        SharedPreferences.Editor edit = uc7Var.Y3.edit();
+                        uc7Var.m4 = z2;
                         edit.putBoolean("folderTags", z2).apply();
                         hl.c3(new l87(uc7Var, (byte) 3));
                     }
-                    jf7 messagesStorage2 = uc7Var.getMessagesStorage();
-                    messagesStorage2.a.c(new fd7(messagesStorage2, tL_messages_dialogFilters.filters, new l87(uc7Var, (byte) 4), (byte) 6));
+                    kf7 messagesStorage2 = uc7Var.getMessagesStorage();
+                    messagesStorage2.a.c(new gd7(messagesStorage2, tL_messages_dialogFilters.filters, new l87(uc7Var, (byte) 4), (byte) 6));
                     return;
                 } else {
                     hl.c3(new l87(uc7Var, (byte) 5));
@@ -228,14 +228,14 @@ public final class h77 implements RequestDelegate {
                             uc7 uc7Var2 = uc7Var;
                             switch (b2) {
                                 case 0:
-                                    uc7Var2.Q4 = false;
-                                    uc7Var2.E3 = lc7.c(0, tL_help_peerColors2);
-                                    uc7Var2.X3.edit().putString("peerColors", uc7Var2.E3.toString()).apply();
+                                    uc7Var2.R4 = false;
+                                    uc7Var2.F3 = lc7.c(0, tL_help_peerColors2);
+                                    uc7Var2.Y3.edit().putString("peerColors", uc7Var2.F3.toString()).apply();
                                     return;
                                 default:
-                                    uc7Var2.R4 = false;
-                                    uc7Var2.F3 = lc7.c(1, tL_help_peerColors2);
-                                    uc7Var2.X3.edit().putString("profilePeerColors", uc7Var2.F3.toString()).apply();
+                                    uc7Var2.S4 = false;
+                                    uc7Var2.G3 = lc7.c(1, tL_help_peerColors2);
+                                    uc7Var2.Y3.edit().putString("profilePeerColors", uc7Var2.G3.toString()).apply();
                                     return;
                             }
                         }
@@ -254,14 +254,14 @@ public final class h77 implements RequestDelegate {
                             uc7 uc7Var2 = uc7Var;
                             switch (b2) {
                                 case 0:
-                                    uc7Var2.Q4 = false;
-                                    uc7Var2.E3 = lc7.c(0, tL_help_peerColors22);
-                                    uc7Var2.X3.edit().putString("peerColors", uc7Var2.E3.toString()).apply();
+                                    uc7Var2.R4 = false;
+                                    uc7Var2.F3 = lc7.c(0, tL_help_peerColors22);
+                                    uc7Var2.Y3.edit().putString("peerColors", uc7Var2.F3.toString()).apply();
                                     return;
                                 default:
-                                    uc7Var2.R4 = false;
-                                    uc7Var2.F3 = lc7.c(1, tL_help_peerColors22);
-                                    uc7Var2.X3.edit().putString("profilePeerColors", uc7Var2.F3.toString()).apply();
+                                    uc7Var2.S4 = false;
+                                    uc7Var2.G3 = lc7.c(1, tL_help_peerColors22);
+                                    uc7Var2.Y3.edit().putString("profilePeerColors", uc7Var2.G3.toString()).apply();
                                     return;
                             }
                         }
@@ -273,27 +273,27 @@ public final class h77 implements RequestDelegate {
                 uc7Var.a2 = false;
                 if (tL_error == null) {
                     TLRPC.TL_updates_state tL_updates_state = (TLRPC.TL_updates_state) tLObject;
-                    uc7Var.getMessagesStorage().E1(tL_updates_state.date);
-                    uc7Var.getMessagesStorage().F1(tL_updates_state.pts);
-                    uc7Var.getMessagesStorage().H1(tL_updates_state.seq);
-                    uc7Var.getMessagesStorage().G1(tL_updates_state.qts);
+                    uc7Var.getMessagesStorage().J1(tL_updates_state.date);
+                    uc7Var.getMessagesStorage().K1(tL_updates_state.pts);
+                    uc7Var.getMessagesStorage().M1(tL_updates_state.seq);
+                    uc7Var.getMessagesStorage().L1(tL_updates_state.qts);
                     while (i < 3) {
                         uc7Var.Z3(i, 2);
                         i++;
                     }
-                    jf7 messagesStorage3 = uc7Var.getMessagesStorage();
-                    jf7 messagesStorage4 = uc7Var.getMessagesStorage();
-                    messagesStorage4.G();
+                    kf7 messagesStorage3 = uc7Var.getMessagesStorage();
+                    kf7 messagesStorage4 = uc7Var.getMessagesStorage();
+                    messagesStorage4.I();
                     int i3 = messagesStorage4.w;
-                    jf7 messagesStorage5 = uc7Var.getMessagesStorage();
-                    messagesStorage5.G();
+                    kf7 messagesStorage5 = uc7Var.getMessagesStorage();
+                    messagesStorage5.I();
                     int i4 = messagesStorage5.r;
-                    jf7 messagesStorage6 = uc7Var.getMessagesStorage();
-                    messagesStorage6.G();
+                    kf7 messagesStorage6 = uc7Var.getMessagesStorage();
+                    messagesStorage6.I();
                     int i5 = messagesStorage6.n;
-                    jf7 messagesStorage7 = uc7Var.getMessagesStorage();
-                    messagesStorage7.G();
-                    messagesStorage3.x1(i3, i4, i5, messagesStorage7.s);
+                    kf7 messagesStorage7 = uc7Var.getMessagesStorage();
+                    messagesStorage7.I();
+                    messagesStorage3.B1(i3, i4, i5, messagesStorage7.s);
                     return;
                 } else if (tL_error.code != 401) {
                     uc7Var.a2 = true;

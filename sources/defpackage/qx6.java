@@ -616,7 +616,7 @@ public final class qx6 implements ty9, nc2, ep2, SuccessContinuation, u69, nh5, 
         mx2 mx2Var = (mx2) ((aj3) this.c).b;
         context.getClass();
         mx2Var.getClass();
-        return ij4.a(sjf.d, new i09(new nx2((byte) 1), (byte) 3), xde.a(mx2Var), new hj4(context, (byte) 0));
+        return ij4.a(sjf.d, new j09(new nx2((byte) 1), (byte) 3), xde.a(mx2Var), new hj4(context, (byte) 0));
     }
 
     @Override
@@ -690,7 +690,7 @@ public final class qx6 implements ty9, nc2, ep2, SuccessContinuation, u69, nh5, 
         ((fu5) this.b).u();
         zu1 zu1Var = (zu1) this.c;
         i = ((e) zu1Var).currentAccount;
-        SharedPreferences sharedPreferences = uc7.s1(i).W3;
+        SharedPreferences sharedPreferences = uc7.s1(i).X3;
         boolean z = sharedPreferences.getBoolean("sound_enabled_" + ip7.p(zu1Var.l6, zu1Var.c(), false), true);
         boolean z2 = !z ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();
@@ -920,7 +920,7 @@ public final class qx6 implements ty9, nc2, ep2, SuccessContinuation, u69, nh5, 
         byte b;
         if (px3Var.c == 0) {
             eb3 eb3Var = (eb3) this.c;
-            xf7 b2 = px3Var.b();
+            yf7 b2 = px3Var.b();
             int a = b2.a(8);
             if (a != 0) {
                 b2.b.getShort(a + b2.a);

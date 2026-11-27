@@ -29,7 +29,7 @@ public final class kt7 implements View.OnClickListener {
                     } else {
                         z = false;
                     }
-                    G.h(new me7(ot7Var, i2, (byte) 4), ob6.G(i2 / 3600, "GiftOfferHours", new Object[0]), z);
+                    G.h(new oe7(ot7Var, i2, (byte) 4), ob6.G(i2 / 3600, "GiftOfferHours", new Object[0]), z);
                 }
                 G.W(5);
                 ot7Var.C0(textView, G, true);
@@ -52,8 +52,8 @@ public final class kt7 implements View.OnClickListener {
                     HashMap hashMap = vs7.a;
                     r7a.B(i4);
                     long D = r7a.D();
-                    jf7 Y = jf7.Y(i4);
-                    Y.a.c(new ic2(Y, D, str, j, i3, mt7Var));
+                    kf7 a0 = kf7.a0(i4);
+                    a0.a.c(new ic2(a0, D, str, j, i3, mt7Var));
                     return;
                 }
                 return;

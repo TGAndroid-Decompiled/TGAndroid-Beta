@@ -21,7 +21,7 @@ public final class meb implements e84 {
         this.a = rebVar;
         if (ko4Var != null) {
             jo4 a = ko4Var.a();
-            a.s = dg7.n("application/x-media3-cues");
+            a.s = eg7.n("application/x-media3-cues");
             a.k = ko4Var.t;
             a.T = rebVar.s();
             ko4Var2 = new ko4(a);

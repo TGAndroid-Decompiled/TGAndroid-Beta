@@ -56,18 +56,18 @@ public final class la3 implements v2c {
             CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) g.e;
             Iterator it = copyOnWriteArrayList.iterator();
             while (it.hasNext()) {
-                il7 il7Var = (il7) it.next();
-                if (il7Var.a.get() == null) {
-                    copyOnWriteArrayList.remove(il7Var);
+                jl7 jl7Var = (jl7) it.next();
+                if (jl7Var.a.get() == null) {
+                    copyOnWriteArrayList.remove(jl7Var);
                 }
             }
-            il7 il7Var2 = new il7(g, ka3Var, a);
+            jl7 jl7Var2 = new jl7(g, ka3Var, a);
             synchronized (g.f) {
-                ((CopyOnWriteArrayList) g.e).add(il7Var2);
+                ((CopyOnWriteArrayList) g.e).add(jl7Var2);
                 z = g.d;
             }
             if (z) {
-                il7Var2.b.execute(new fe7(il7Var2, (byte) 5));
+                jl7Var2.b.execute(new ge7(jl7Var2, (byte) 5));
                 return;
             }
             return;

@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.attribute.FileAttribute;
 public final class ij4 {
-    public static o83 a(s8a s8aVar, i09 i09Var, xw2 xw2Var, sr4 sr4Var) {
+    public static o83 a(s8a s8aVar, j09 j09Var, xw2 xw2Var, sr4 sr4Var) {
         x24 x24Var = x24.a;
         try {
             System.loadLibrary("datastore_shared_counter");
-            return new o83(new bd4(s8aVar, new l83(xw2Var, (byte) 1), sr4Var), tl2.a(new ii1(x24Var, null, (byte) 3)), i09Var, xw2Var);
+            return new o83(new bd4(s8aVar, new l83(xw2Var, (byte) 1), sr4Var), tl2.a(new ii1(x24Var, null, (byte) 3)), j09Var, xw2Var);
         } catch (SecurityException | UnsatisfiedLinkError unused) {
-            return new o83(new bd4(s8aVar, zc4.c, sr4Var), tl2.a(new ii1(x24Var, null, (byte) 3)), i09Var, xw2Var);
+            return new o83(new bd4(s8aVar, zc4.c, sr4Var), tl2.a(new ii1(x24Var, null, (byte) 3)), j09Var, xw2Var);
         }
     }
 

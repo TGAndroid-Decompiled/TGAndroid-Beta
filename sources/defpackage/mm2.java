@@ -68,7 +68,7 @@ public final class mm2 extends nic {
                 a93Var.e.add(x83Var);
                 return x83Var;
             case 3:
-                return (View) ((sk7) obj).m1.get(i);
+                return (View) ((tk7) obj).m1.get(i);
             default:
                 h48 h48Var = (h48) obj;
                 if (i == 1) {
@@ -96,7 +96,7 @@ public final class mm2 extends nic {
             case 2:
                 return 4;
             case 3:
-                return ((sk7) obj).m1.size();
+                return ((tk7) obj).m1.size();
             default:
                 return 2;
         }

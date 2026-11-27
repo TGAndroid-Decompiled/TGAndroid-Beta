@@ -7,10 +7,10 @@ public final class pw5 implements e84 {
     public byte c;
     public int d;
     public int e;
-    public nh7 g;
+    public oh7 g;
     public cb3 h;
     public zg2 i;
-    public yh7 j;
+    public zh7 j;
     public final ey7 a = new ey7(2);
     public long f = -1;
 
@@ -65,9 +65,9 @@ public final class pw5 implements e84 {
             this.c = (byte) 0;
             this.j = null;
         } else if (this.c == 5) {
-            yh7 yh7Var = this.j;
-            yh7Var.getClass();
-            yh7Var.d(j, j2);
+            zh7 zh7Var = this.j;
+            zh7Var.getClass();
+            zh7Var.d(j, j2);
         }
     }
 
@@ -92,9 +92,9 @@ public final class pw5 implements e84 {
 
     @Override
     public final void release() {
-        yh7 yh7Var = this.j;
-        if (yh7Var != null) {
-            yh7Var.getClass();
+        zh7 zh7Var = this.j;
+        if (zh7Var != null) {
+            zh7Var.getClass();
         }
     }
 

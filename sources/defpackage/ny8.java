@@ -71,7 +71,7 @@ public final class ny8 {
         jy7 jy7Var = new jy7(((e05) this.b).createDataSource(), new n73(build, 1, null, map, 0L, -1L, null, 0), 8, new z6f((byte) 26));
         rx6 rx6Var = (rx6) this.j;
         rx6Var.getClass();
-        rx6Var.w0(jy7Var, (k09) this.c, 0);
+        rx6Var.w0(jy7Var, (l09) this.c, 0);
     }
 
     public final void c(my8 my8Var) {
@@ -99,7 +99,7 @@ public final class ny8 {
 
     public ny8(e05 e05Var) {
         this.b = e05Var;
-        this.c = new k09(this, (byte) 13);
+        this.c = new l09(this, (byte) 13);
         this.d = new xgb(new Handler(gcc.z(), null));
     }
 }

@@ -234,7 +234,7 @@ public final class rj4 implements Runnable {
                 }
                 return;
             case 24:
-                ((sk7) this.b).dismiss();
+                ((tk7) this.b).dismiss();
                 return;
             case 25:
                 r55 r55Var = (r55) this.b;

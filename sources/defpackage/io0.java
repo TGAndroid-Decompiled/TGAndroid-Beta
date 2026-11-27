@@ -163,7 +163,7 @@ public final class io0 extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(0);
         linearLayout.addView(jo0Var, tre.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
-        if (uc7.s1(lo0Var.T).k4.W1.f && xc2.N(lo0Var.j0)) {
+        if (uc7.s1(lo0Var.T).l4.W1.f && xc2.N(lo0Var.j0)) {
             linearLayout.addView(jo0Var2, tre.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
         }
         linearLayout.addView(jo0Var3, tre.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));

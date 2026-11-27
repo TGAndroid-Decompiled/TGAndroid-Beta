@@ -322,7 +322,7 @@ public final class gt implements pcc {
                 wb2 wb2Var = (wb2) this.d;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
                 ((id) this.c).b(200L);
-                if (ju1Var.a.getMessagesController().k4.l.f && !TextUtils.isEmpty(ju1Var.a.getMessagesController().k4.X2.f)) {
+                if (ju1Var.a.getMessagesController().l4.l.f && !TextUtils.isEmpty(ju1Var.a.getMessagesController().l4.X2.f)) {
                     z = true;
                 } else {
                     z = false;
@@ -388,7 +388,7 @@ public final class gt implements pcc {
                     }
                     y0 y0Var = new y0(ju1Var2, r47Var2, (byte) 25);
                     int i9 = sqa.Y1;
-                    TLRPC.EmojiGameInfo emojiGameInfo = uc7.s1(zu1Var3.getCurrentAccount()).l5;
+                    TLRPC.EmojiGameInfo emojiGameInfo = uc7.s1(zu1Var3.getCurrentAccount()).m5;
                     if (emojiGameInfo instanceof TLRPC.TL_emojiGameDiceInfo) {
                         long j = ((TLRPC.TL_emojiGameDiceInfo) emojiGameInfo).prev_stake;
                         c21 c21Var = new c21(zu1Var3.getContext(), zu1Var3.getResourceProvider());
@@ -416,7 +416,7 @@ public final class gt implements pcc {
                         }
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(ob6.M0(2131744893, null));
                         spannableStringBuilder2.append((CharSequence) nza.K0(j));
-                        spannableStringBuilder2.append((CharSequence) "  ").append((CharSequence) z41.b(ob6.M0(2131744891, null), new ida(zu1Var3, y0Var, (byte) 9), zu1Var3.getResourceProvider(), null));
+                        spannableStringBuilder2.append((CharSequence) "  ").append((CharSequence) z41.b(ob6.M0(2131744891, null), new kba(zu1Var3, y0Var, (byte) 10), zu1Var3.getResourceProvider(), null));
                         hl.B2(c21Var.b);
                         y41 y41Var = new y41(zu1Var3.getContext());
                         c21Var.b = y41Var;
@@ -505,7 +505,7 @@ public final class gt implements pcc {
                 ((r47) this.d).k.factcheck = tL_factCheck;
                 return;
             case 17:
-                Utilities.d.c(new ao1((xc4) this.b, (String) this.c, (String) this.d, (n5b) obj, (byte) 19));
+                Utilities.d.c(new ao1((xc4) this.b, (String) this.c, (String) this.d, (o5b) obj, (byte) 19));
                 return;
             case 18:
                 c cVar = (c) this.b;

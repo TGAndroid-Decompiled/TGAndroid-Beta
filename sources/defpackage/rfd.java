@@ -125,8 +125,8 @@ public abstract class rfd {
         return new rc0(vh6Var.e(6), vh6Var.e(6), vh6Var.e(3) - 1);
     }
 
-    public static defpackage.zj7 g(defpackage.vh6 r19, boolean r20, int r21, defpackage.zj7 r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.rfd.g(vh6, boolean, int, zj7):zj7");
+    public static defpackage.ak7 g(defpackage.vh6 r19, boolean r20, int r21, defpackage.ak7 r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rfd.g(vh6, boolean, int, ak7):ak7");
     }
 
     public static h30 h(int i, int i2, byte[] bArr) {
@@ -213,16 +213,16 @@ public abstract class rfd {
         }
     }
 
-    public static defpackage.ck7 i(byte[] r32, int r33, int r34, defpackage.lyc r35) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.rfd.i(byte[], int, int, lyc):ck7");
+    public static defpackage.dk7 i(byte[] r32, int r33, int r34, defpackage.lyc r35) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rfd.i(byte[], int, int, lyc):dk7");
     }
 
     public static defpackage.lyc j(int r40, int r41, byte[] r42) {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.rfd.j(int, int, byte[]):lyc");
     }
 
-    public static defpackage.fk7 k(int r30, int r31, byte[] r32) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.rfd.k(int, int, byte[]):fk7");
+    public static defpackage.gk7 k(int r30, int r31, byte[] r32) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rfd.k(int, int, byte[]):gk7");
     }
 
     public static void l(vh6 vh6Var) {

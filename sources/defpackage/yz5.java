@@ -35,7 +35,7 @@ public final class yz5 implements oj3 {
         switch (b) {
             case 0:
                 String str2 = LaunchActivity.C1;
-                long j = ((if7) arrayList.get(0)).a;
+                long j = ((jf7) arrayList.get(0)).a;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
                 tL_inputMediaGame.id = tL_inputGameShortName;
@@ -57,7 +57,7 @@ public final class yz5 implements oj3 {
                 return true;
             default:
                 String str3 = LaunchActivity.C1;
-                long j2 = ((if7) arrayList.get(0)).a;
+                long j2 = ((jf7) arrayList.get(0)).a;
                 Bundle l2 = bs2.l("scrollToTopOnResume", true);
                 if (wf3.B(j2)) {
                     l2.putInt("enc_id", (int) (j2 & 4294967295L));

@@ -41,7 +41,7 @@ public class g92 extends e implements yn5, fn7 {
     public boolean F0;
     public LinearLayout G;
     public boolean G0;
-    public rca H;
+    public sca H;
     public boolean H0;
     public skb I;
     public boolean I0;
@@ -326,7 +326,7 @@ public class g92 extends e implements yn5, fn7 {
         wh1 wh1Var = new wh1(-this.x0.id);
         wh1Var.m0 = this;
         presentFragment(wh1Var);
-        uc7.s1(this.currentAccount).X3.edit().putInt("boostingappearance", uc7.s1(this.currentAccount).X3.getInt("boostingappearance", 0) + 1).apply();
+        uc7.s1(this.currentAccount).Y3.edit().putInt("boostingappearance", uc7.s1(this.currentAccount).Y3.getInt("boostingappearance", 0) + 1).apply();
     }
 
     @Override
@@ -357,7 +357,7 @@ public class g92 extends e implements yn5, fn7 {
             if (chatFull != null && chatFull.linked_chat_id != 0) {
                 S2 = hl.S2(ob6.M0(2131752246, "ChannelTopicsDiscussionForbidden"));
             } else {
-                S2 = hl.S2(ob6.G(getMessagesController().k4.w1.f(), "ChannelTopicsForbidden", new Object[0]));
+                S2 = hl.S2(ob6.G(getMessagesController().l4.w1.f(), "ChannelTopicsForbidden", new Object[0]));
             }
             d31.b0(this).Q(2131624290, 36, S2).j();
             try {
@@ -467,7 +467,7 @@ public class g92 extends e implements yn5, fn7 {
     public final void j0() {
         this.P0 = true;
         jn7 f = jn7.f(this.currentAccount);
-        int i = uc7.r5;
+        int i = uc7.s5;
         f.k(2, 2);
     }
 
@@ -825,7 +825,7 @@ public class g92 extends e implements yn5, fn7 {
                 }
             }
             arrayList.addAll(arrayList2);
-            if (this.a0 != null && getMessagesController().k4.K2.f && xc2.V(this.x0)) {
+            if (this.a0 != null && getMessagesController().l4.K2.f && xc2.V(this.x0)) {
                 this.a0.setVisibility(0);
             }
         }
@@ -1037,7 +1037,7 @@ public class g92 extends e implements yn5, fn7 {
                     j38Var.s = i7;
                     v0 = aob.v0(i7, vnbVar);
                 } else {
-                    lc7 lc7Var = uc7.s1(yac.t0).E3;
+                    lc7 lc7Var = uc7.s1(yac.t0).F3;
                     if (lc7Var != null) {
                         kc7Var = lc7Var.d(F);
                     }

@@ -1,62 +1,27 @@
 package defpackage;
 
 import android.content.Context;
-public final class mi7 extends b3a {
-    public final byte L;
-    public boolean M;
-    public final ny0 N;
+public final class mi7 extends w2a {
+    public final byte n;
 
-    public mi7(ny0 ny0Var, Context context, vnb vnbVar, byte b) {
+    public mi7(Context context, vnb vnbVar, byte b) {
         super(context, vnbVar);
-        this.L = b;
-        this.N = ny0Var;
+        this.n = b;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        byte b = this.L;
-        ny0 ny0Var = this.N;
-        switch (b) {
+    public final int getHeaderHeight() {
+        switch (this.n) {
             case 0:
-                super.onLayout(z, i, i2, i3, i4);
-                pi7 pi7Var = (pi7) ny0Var;
-                pi7Var.g2 = hl.L(64.0f) + getMeasuredHeight();
-                pi7Var.f2.G();
-                boolean z2 = this.M;
-                boolean z3 = pi7Var.d;
-                if (z2 != z3) {
-                    this.M = z3;
-                    if (z3) {
-                        d79 d79Var = pi7Var.n1;
-                        z46 z46Var = new z46(pi7Var.getContext(), 2, 0.6f);
-                        z46Var.a = 1;
-                        z46Var.p = hl.L(36.0f);
-                        d79Var.getLayoutManager().v0(z46Var);
-                        return;
-                    }
-                    return;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return hl.L(48.0f);
                 }
-                return;
+                return hl.L(54.0f);
             default:
-                super.onLayout(z, i, i2, i3, i4);
-                sbc sbcVar = (sbc) ny0Var;
-                sbcVar.k2 = hl.L(64.0f) + getMeasuredHeight();
-                sbcVar.j2.G();
-                boolean z4 = this.M;
-                boolean z5 = sbcVar.d;
-                if (z4 != z5) {
-                    this.M = z5;
-                    if (z5) {
-                        d79 d79Var2 = sbcVar.n1;
-                        z46 z46Var2 = new z46(sbcVar.getContext(), 2, 0.6f);
-                        z46Var2.a = 1;
-                        z46Var2.p = hl.L(36.0f);
-                        d79Var2.getLayoutManager().v0(z46Var2);
-                        return;
-                    }
-                    return;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return hl.L(48.0f);
                 }
-                return;
+                return hl.L(54.0f);
         }
     }
 }

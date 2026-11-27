@@ -802,7 +802,7 @@ public class f82 extends FrameLayout implements s84, fn7, snb {
                         z4 = false;
                     } else {
                         if (zu1Var.c() == 0) {
-                            qyb qybVar = zu1Var.getMessagesController().g4;
+                            qyb qybVar = zu1Var.getMessagesController().h4;
                             long j = -zu1Var.a();
                             if (qybVar.e(j) && (l = qybVar.l(j)) != null) {
                                 i7 = l.size();
@@ -815,7 +815,7 @@ public class f82 extends FrameLayout implements s84, fn7, snb {
                                 G = ob6.M0(2131752184, null);
                             }
                         } else {
-                            TLRPC.TL_forumTopic f = uc7.s1(i10).g4.f(chat.id, zu1Var.c());
+                            TLRPC.TL_forumTopic f = uc7.s1(i10).h4.f(chat.id, zu1Var.c());
                             if (f != null) {
                                 i6 = f.totalMessagesCount;
                             } else {
@@ -852,7 +852,7 @@ public class f82 extends FrameLayout implements s84, fn7, snb {
                         charSequence = ob6.G(Math.max(1, i5), "SavedMessagesCount", new Object[0]);
                     } else {
                         if (zu1Var.x4 && chat != null) {
-                            TLRPC.TL_forumTopic f2 = uc7.s1(i10).g4.f(chat.id, zu1Var.c());
+                            TLRPC.TL_forumTopic f2 = uc7.s1(i10).h4.f(chat.id, zu1Var.c());
                             if (f2 != null) {
                                 i3 = 1;
                                 i4 = f2.totalMessagesCount - 1;

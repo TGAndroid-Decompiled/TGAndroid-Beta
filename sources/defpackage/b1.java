@@ -133,7 +133,7 @@ public final class b1 extends ny0 implements fn7 {
         frameLayout.addView(a1Var, tre.d(-1, -1.0f, 119, 12.0f, 0.0f, 12.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.w2 = frameLayout2;
-        zt3 zt3Var = new zt3(context, ob6.M0(2131754051, null), true, false, uc7.s1(this.a).k4.c0.f(), vnbVar);
+        zt3 zt3Var = new zt3(context, ob6.M0(2131754051, null), true, false, uc7.s1(this.a).l4.c0.f(), vnbVar);
         this.x2 = zt3Var;
         yt3 yt3Var = zt3Var.d;
         yt3Var.setImeOptions(6);
@@ -375,7 +375,7 @@ public final class b1 extends ny0 implements fn7 {
         if (d31Var.X() == null) {
             return;
         }
-        hr hrVar = uc7.s1(i).k4;
+        hr hrVar = uc7.s1(i).l4;
         boolean p = yac.h(i).p();
         if (!p) {
             i2 = 2131624211;

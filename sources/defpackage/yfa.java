@@ -10,20 +10,20 @@ public final class yfa implements pcc {
 
     @Override
     public final void a(Object obj) {
-        ida idaVar;
+        kba kbaVar;
         byte b = this.a;
         eja ejaVar = this.b;
-        v5b v5bVar = (v5b) obj;
+        w5b w5bVar = (w5b) obj;
         switch (b) {
             case 0:
                 ejaVar.getClass();
-                idaVar = new ida(ejaVar, v5bVar, (byte) 3);
+                kbaVar = new kba(ejaVar, w5bVar, (byte) 4);
                 break;
             default:
                 int[] iArr = eja.t2;
-                idaVar = new ida(ejaVar, v5bVar, (byte) 3);
+                kbaVar = new kba(ejaVar, w5bVar, (byte) 4);
                 break;
         }
-        hl.d3(idaVar, 100L);
+        hl.d3(kbaVar, 100L);
     }
 }

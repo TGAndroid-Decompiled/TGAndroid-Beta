@@ -15,7 +15,7 @@ public final class ozb extends vic implements xg4 {
     public final d79 a0;
     public final x46 b0;
     public final mzb c0;
-    public bcb d0;
+    public hab d0;
     public String e0;
     public final ArrayList f0;
     public final ArrayList g0;
@@ -107,9 +107,9 @@ public final class ozb extends vic implements xg4 {
         tzb tzbVar = this.w0;
         int i2 = 0;
         if (view == frameLayout) {
-            bcb bcbVar = this.d0;
-            if (bcbVar != null) {
-                hl.r(bcbVar);
+            hab habVar = this.d0;
+            if (habVar != null) {
+                hl.r(habVar);
                 this.d0 = null;
             }
             this.s0 = false;
@@ -138,9 +138,9 @@ public final class ozb extends vic implements xg4 {
                 O();
                 this.o0 = true;
                 this.q0.e(true, true);
-                bcb bcbVar2 = new bcb(this, str, (byte) 15);
-                this.d0 = bcbVar2;
-                hl.d3(bcbVar2, 200L);
+                hab habVar2 = new hab(this, str, (byte) 16);
+                this.d0 = habVar2;
+                hl.d3(habVar2, 200L);
             }
         } else if (view instanceof yg4) {
             yg4 yg4Var = (yg4) view;

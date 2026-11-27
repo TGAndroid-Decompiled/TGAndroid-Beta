@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 public abstract class kq4 {
     public final eq4 A;
-    public final rg7 B;
+    public final sg7 B;
     public v9 C;
     public v9 D;
     public v9 E;
@@ -100,9 +100,9 @@ public abstract class kq4 {
                         }
                         return;
                     case 2:
-                        bj7 bj7Var = (bj7) obj;
+                        cj7 cj7Var = (cj7) obj;
                         if (kq4Var.M()) {
-                            boolean z = bj7Var.a;
+                            boolean z = cj7Var.a;
                             kq4Var.n(false);
                             return;
                         }
@@ -145,9 +145,9 @@ public abstract class kq4 {
                         }
                         return;
                     case 2:
-                        bj7 bj7Var = (bj7) obj;
+                        cj7 cj7Var = (cj7) obj;
                         if (kq4Var.M()) {
-                            boolean z = bj7Var.a;
+                            boolean z = cj7Var.a;
                             kq4Var.n(false);
                             return;
                         }
@@ -190,9 +190,9 @@ public abstract class kq4 {
                         }
                         return;
                     case 2:
-                        bj7 bj7Var = (bj7) obj;
+                        cj7 cj7Var = (cj7) obj;
                         if (kq4Var.M()) {
-                            boolean z = bj7Var.a;
+                            boolean z = cj7Var.a;
                             kq4Var.n(false);
                             return;
                         }
@@ -235,9 +235,9 @@ public abstract class kq4 {
                         }
                         return;
                     case 2:
-                        bj7 bj7Var = (bj7) obj;
+                        cj7 cj7Var = (cj7) obj;
                         if (kq4Var.M()) {
-                            boolean z = bj7Var.a;
+                            boolean z = cj7Var.a;
                             kq4Var.n(false);
                             return;
                         }
@@ -256,7 +256,7 @@ public abstract class kq4 {
         this.u = new dq4(this);
         this.v = -1;
         this.A = new eq4(this);
-        this.B = new rg7((byte) 20);
+        this.B = new sg7((byte) 20);
         this.F = new ArrayDeque();
         this.P = new zz3(this, (byte) 8);
     }
@@ -928,7 +928,7 @@ public abstract class kq4 {
         return this.A;
     }
 
-    public final rg7 I() {
+    public final sg7 I() {
         gp4 gp4Var = this.y;
         if (gp4Var != null) {
             return gp4Var.K.I();

@@ -36,7 +36,7 @@ public abstract class jid {
                     if (a5 != null) {
                         j2 = Long.parseLong(a5);
                     }
-                    p.c(new mh7(a2, a3, j, j2));
+                    p.c(new nh7(a2, a3, j, j2));
                 } else {
                     return j99.e;
                 }

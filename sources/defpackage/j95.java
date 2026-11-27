@@ -349,7 +349,7 @@ public final class j95 extends nx0 implements fn7, VoIPService.StateListener, s8
         j95Var.J0 = new w53();
         j95Var.Q0 = true;
         j95Var.R0 = true;
-        j95Var.W1 = uc7.s1(j95Var.a).k4.D.f();
+        j95Var.W1 = uc7.s1(j95Var.a).l4.D.f();
         j95Var.V = true;
         v5 = false;
         u5 = false;
@@ -3200,7 +3200,7 @@ public final class j95 extends nx0 implements fn7, VoIPService.StateListener, s8
             hl.V3(t85Var);
         } else if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i12 = uc7.r5;
+            int i12 = uc7.s5;
             if ((intValue & 16) != 0) {
                 E0(true);
             } else if ((intValue & 524288) == 0) {

@@ -14,7 +14,7 @@ public class bja extends yia {
     public final boolean h;
     public final int n;
     public final ArrayList r;
-    public u5b s;
+    public v5b s;
     public final int w;
     public final zia x;
     public boolean y;
@@ -32,8 +32,8 @@ public class bja extends yia {
     public final String F(int i) {
         r47 r47Var;
         TL_stories.StoryItem storyItem;
-        u5b u5bVar = this.s;
-        if (u5bVar == null || i < 0 || i >= u5bVar.i.size() || (r47Var = (r47) this.s.i.get(i)) == null || (storyItem = r47Var.l) == null) {
+        v5b v5bVar = this.s;
+        if (v5bVar == null || i < 0 || i >= v5bVar.i.size() || (r47Var = (r47) this.s.i.get(i)) == null || (storyItem = r47Var.l) == null) {
             return null;
         }
         return ob6.e0(storyItem.date, true);
@@ -51,22 +51,22 @@ public class bja extends yia {
     }
 
     public final boolean M(int i) {
-        u5b u5bVar;
-        if (!this.h && (u5bVar = this.s) != null) {
-            if (u5bVar instanceof o5b) {
+        v5b v5bVar;
+        if (!this.h && (v5bVar = this.s) != null) {
+            if (v5bVar instanceof p5b) {
                 eja ejaVar = this.G;
                 TLRPC.User X1 = uc7.s1(ejaVar.y1.getCurrentAccount()).X1(Long.valueOf(ejaVar.m1));
                 if (X1 != null && X1.bot && X1.bot_has_main_app && X1.bot_can_edit) {
                     return true;
                 }
                 return false;
-            } else if (i >= 0 && i < u5bVar.i.size()) {
+            } else if (i >= 0 && i < v5bVar.i.size()) {
                 r47 r47Var = (r47) this.s.i.get(i);
-                u5b u5bVar2 = this.s;
-                if (u5bVar2.f > 0) {
+                v5b v5bVar2 = this.s;
+                if (v5bVar2.f > 0) {
                     return true;
                 }
-                return u5bVar2.m(r47Var.e1());
+                return v5bVar2.m(r47Var.e1());
             } else {
                 return false;
             }
@@ -79,13 +79,13 @@ public class bja extends yia {
         zha zhaVar2;
         zha zhaVar3;
         zha zhaVar4;
-        u5b u5bVar = this.s;
-        if (u5bVar != null && !this.h) {
+        v5b v5bVar = this.s;
+        if (v5bVar != null && !this.h) {
             eja ejaVar = this.G;
             boolean z = ejaVar.o1;
             zha[] zhaVarArr = ejaVar.n0;
             int[] iArr = ejaVar.p1;
-            if ((!z || (ejaVar.n1 && u5bVar.g() > 1)) && this.s.g() > 0 && !ejaVar.s0()) {
+            if ((!z || (ejaVar.n1 && v5bVar.g() > 1)) && this.s.g() > 0 && !ejaVar.s0()) {
                 boolean z2 = false;
                 if (this.s.g() < 5) {
                     iArr[1] = this.s.g();

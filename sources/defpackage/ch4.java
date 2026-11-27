@@ -166,11 +166,11 @@ public final class ch4 implements ValueAnimator.AnimatorUpdateListener {
                 v86Var.invalidateSelf();
                 return;
             case 20:
-                b58 b58Var = (b58) obj;
+                c58 c58Var = (c58) obj;
                 float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b58Var.c.setAlpha(floatValue7);
-                b58Var.a.setAlpha(hl.R1(0.0f, 0.5f, floatValue7));
-                b58Var.invalidate();
+                c58Var.c.setAlpha(floatValue7);
+                c58Var.a.setAlpha(hl.R1(0.0f, 0.5f, floatValue7));
+                c58Var.invalidate();
                 return;
             case 21:
                 ((o96) obj).invalidate();
@@ -202,12 +202,12 @@ public final class ch4 implements ValueAnimator.AnimatorUpdateListener {
                 ((gc8) obj).L.f0.invalidate();
                 return;
             case 26:
-                ((mj7) obj).invalidate();
+                ((nj7) obj).invalidate();
                 return;
             case 27:
                 lm7 lm7Var = (lm7) obj;
                 lm7Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lm7Var.P0();
+                lm7Var.N0();
                 return;
             case 28:
                 ro7 ro7Var = (ro7) obj;

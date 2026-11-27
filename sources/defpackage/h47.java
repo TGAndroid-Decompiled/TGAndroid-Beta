@@ -22,7 +22,7 @@ public final class h47 implements tl {
                 hl.c3(new ty8((dz8) obj, document));
                 return;
             default:
-                hl.c3(new ida((p3b) obj, document, (byte) 29));
+                hl.c3(new n3b((q3b) obj, document, (byte) 0));
                 return;
         }
     }

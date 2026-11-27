@@ -42,14 +42,14 @@ public final class crc extends in {
                 float e = (1.0f - frcVar.U) * frcVar.g0.e(false, frcVar.e0);
                 hn drawable = getDrawable();
                 Objects.requireNonNull(drawable);
-                frcVar.c(e, new ftb(drawable, (byte) 16), new vlc(this, canvas, (byte) 14));
+                frcVar.c(e, new ftb(drawable, (byte) 16), new slc(this, canvas, (byte) 15));
                 canvas.restoreToCount(save);
                 return;
             default:
                 float e2 = (1.0f - frcVar.U) * frcVar.g0.e(false, frcVar.e0);
                 hn drawable2 = getDrawable();
                 Objects.requireNonNull(drawable2);
-                frcVar.c(e2, new ftb(drawable2, (byte) 16), new vlc(this, canvas, (byte) 15));
+                frcVar.c(e2, new ftb(drawable2, (byte) 16), new slc(this, canvas, (byte) 16));
                 return;
         }
     }

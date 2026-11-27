@@ -116,7 +116,7 @@ public final class ra9 {
                 if (at9Var2 == at9Var) {
                     if (at9Var != null && !vg0Var.m()) {
                         yt6 yt6Var2 = yt6Var.m;
-                        if (yt6Var.g.f && yt6Var2 != null && yt6Var2.e && ((vg0Var instanceof vlb) || (vg0Var instanceof zf7) || vg0Var.y >= yt6Var2.e())) {
+                        if (yt6Var.g.f && yt6Var2 != null && yt6Var2.e && ((vg0Var instanceof vlb) || (vg0Var instanceof ag7) || vg0Var.y >= yt6Var2.e())) {
                             return true;
                         }
                     } else {

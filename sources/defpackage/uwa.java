@@ -203,7 +203,7 @@ public final class uwa implements Runnable {
                             userFull.flags2 = i6 | 32;
                         }
                         userFull.birthday = tL_birthday;
-                        jf7.Y(uebVar.a).g2(userFull, false);
+                        kf7.a0(uebVar.a).l2(userFull, false);
                     }
                     if (tL_error3 != null && (str = tL_error3.text) != null && str.startsWith("FLOOD_WAIT_")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uebVar.b.getContext());
@@ -219,7 +219,7 @@ public final class uwa implements Runnable {
                 }
                 return;
             case 6:
-                ((ksb) obj5).e((ViewGroup) obj4, (vnb) obj3, (tl0) obj2, (ebb) obj);
+                ((ksb) obj5).e((ViewGroup) obj4, (vnb) obj3, (tl0) obj2, (fbb) obj);
                 return;
             case 7:
                 l1c l1cVar = (l1c) obj5;
@@ -244,7 +244,7 @@ public final class uwa implements Runnable {
                 String str5 = (String) obj3;
                 v11 v11Var = (v11) obj2;
                 r47Var.k.originalLanguage = str5;
-                a5cVar.getMessagesStorage().U1(v11Var.a, r47Var.k);
+                a5cVar.getMessagesStorage().Z1(v11Var.a, r47Var.k);
                 a5cVar.L.remove(v11Var);
                 ((zo2) obj).a(str5);
                 return;

@@ -43,7 +43,7 @@ public final class tq1 implements nc2 {
         int i;
         zu1 zu1Var = this.a;
         i = ((e) zu1Var).currentAccount;
-        SharedPreferences sharedPreferences = uc7.s1(i).W3;
+        SharedPreferences sharedPreferences = uc7.s1(i).X3;
         boolean z = sharedPreferences.getBoolean("sound_enabled_" + ip7.p(zu1Var.l6, zu1Var.c(), false), true);
         boolean z2 = !z ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();

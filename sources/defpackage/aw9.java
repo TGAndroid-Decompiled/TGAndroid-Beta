@@ -132,14 +132,14 @@ public final class aw9 extends FrameLayout implements fn7 {
         int i2;
         if (this.H != null && this.b.H) {
             long currentTimeMillis = System.currentTimeMillis();
-            if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown >= uc7.s1(this.d).k4.r2.f() * 1000) {
+            if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown >= uc7.s1(this.d).l4.r2.f() * 1000) {
                 ConnectionsManager.lastPremiumFloodWaitShown = currentTimeMillis;
                 if (!yac.h(this.d).p() && !uc7.s1(this.d).M3()) {
                     int i3 = this.d;
                     if (z) {
-                        d = uc7.s1(i3).k4.x3.i;
+                        d = uc7.s1(i3).l4.x3.i;
                     } else {
-                        d = uc7.s1(i3).k4.y3.i;
+                        d = uc7.s1(i3).l4.y3.i;
                     }
                     SpannableString spannableString = new SpannableString(Double.toString(Math.round(((float) d) * 10.0f) / 10.0d).replaceAll("\\.0$", ""));
                     spannableString.setSpan(new y7c(hl.o()), 0, spannableString.length(), 33);

@@ -40,7 +40,7 @@ public final class zz5 implements oj3, fd {
         final String str3 = (String) this.e;
         final uj3 uj3Var2 = (uj3) this.f;
         String str4 = LaunchActivity.C1;
-        final long j = ((if7) arrayList.get(0)).a;
+        final long j = ((jf7) arrayList.get(0)).a;
         final TLRPC.Chat M0 = uc7.s1(launchActivity.P).M0(Long.valueOf(-j));
         final int i3 = this.a;
         if (M0 != null && (M0.creator || ((tL_chatAdminRights = M0.admin_rights) != null && tL_chatAdminRights.add_admins))) {

@@ -100,7 +100,7 @@ public final class xjc implements Runnable {
                 mkcVar.L.setAlpha(0.0f);
                 mkcVar.M0.setAlpha(0.0f);
                 mkcVar.Z.c0 = true;
-                hl.d3(new g9c(mkcVar, a, (byte) 28), 32L);
+                hl.d3(new c9c(mkcVar, a, (byte) 29), 32L);
                 return;
             case 12:
                 mkcVar.R0 = false;

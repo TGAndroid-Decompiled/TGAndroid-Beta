@@ -23,12 +23,12 @@ public final class wb extends l9c {
         switch (this.Q) {
             case 2:
                 super.t(f89Var, i);
-                b58 b58Var = (b58) this.R;
-                if (b58Var.E) {
+                c58 c58Var = (c58) this.R;
+                if (c58Var.E) {
                     View view = f89Var.a;
-                    if ((view instanceof h96) && (m96Var = (h96Var = (h96) view).L) != null && m96Var.a == b58Var.y) {
+                    if ((view instanceof h96) && (m96Var = (h96Var = (h96) view).L) != null && m96Var.a == c58Var.y) {
                         h96Var.a();
-                        b58Var.E = false;
+                        c58Var.E = false;
                         return;
                     }
                     return;
@@ -111,12 +111,12 @@ public final class wb extends l9c {
         switch (this.Q) {
             case 2:
                 super.y(f89Var);
-                b58 b58Var = (b58) this.R;
-                if (b58Var.E) {
+                c58 c58Var = (c58) this.R;
+                if (c58Var.E) {
                     View view = f89Var.a;
-                    if ((view instanceof h96) && (m96Var = (h96Var = (h96) view).L) != null && m96Var.a == b58Var.y) {
+                    if ((view instanceof h96) && (m96Var = (h96Var = (h96) view).L) != null && m96Var.a == c58Var.y) {
                         h96Var.a();
-                        b58Var.E = false;
+                        c58Var.E = false;
                         return;
                     }
                     return;

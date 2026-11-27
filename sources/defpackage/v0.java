@@ -74,7 +74,7 @@ public final class v0 implements View.OnLongClickListener {
                     i49Var2.setPadding(0, 0, 0, hl.L(22.0f));
                     o68Var.addView(o68Var.b3, o68Var.getChildCount() - 1, tre.d(-2, 74.0f, 53, 0.0f, 0.0f, 12.0f, 64.0f));
                     o68Var.b3.setVisibility(8);
-                    o68Var.b3.setDelegate(new s58(o68Var));
+                    o68Var.b3.setDelegate(new t58(o68Var));
                     o68Var.b3.m(null, null, true);
                 } else {
                     o68Var.bringChildToFront(i49Var);

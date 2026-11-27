@@ -20,7 +20,7 @@ public final class pa7 implements Runnable {
                 uc7Var.p3();
                 return;
             case 2:
-                uc7Var.getMessagesStorage().q1(false);
+                uc7Var.getMessagesStorage().u1(false);
                 hl.c3(new pa7(uc7Var, (byte) 10));
                 return;
             case 3:

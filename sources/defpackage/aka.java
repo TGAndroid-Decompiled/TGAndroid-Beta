@@ -21,7 +21,7 @@ import org.telegram.tgnet.TLRPC;
 public final class aka extends FrameLayout implements snb {
     public final vnb E;
     public int F;
-    public final ki7 G;
+    public final li7 G;
     public boolean H;
     public double I;
     public double J;
@@ -61,7 +61,7 @@ public final class aka extends FrameLayout implements snb {
         this.s = new RectF();
         this.y = new Location("network");
         this.F = yac.t0;
-        this.G = new ki7(this, (byte) 28);
+        this.G = new li7(this, (byte) 28);
         this.L = "";
         this.E = vnbVar;
         this.r = i;

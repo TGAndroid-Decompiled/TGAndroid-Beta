@@ -2,9 +2,9 @@ package defpackage;
 
 import java.nio.ByteBuffer;
 public abstract class yye {
-    public final uf7 a(wf7 wf7Var) {
+    public final vf7 a(xf7 xf7Var) {
         boolean z;
-        ByteBuffer byteBuffer = wf7Var.c;
+        ByteBuffer byteBuffer = xf7Var.c;
         byteBuffer.getClass();
         if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
             z = true;
@@ -12,8 +12,8 @@ public abstract class yye {
             z = false;
         }
         yve.f(z);
-        return b(wf7Var, byteBuffer);
+        return b(xf7Var, byteBuffer);
     }
 
-    public abstract uf7 b(wf7 wf7Var, ByteBuffer byteBuffer);
+    public abstract vf7 b(xf7 xf7Var, ByteBuffer byteBuffer);
 }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.LaunchActivity;
-public final class e16 implements ef7 {
+public final class e16 implements ff7 {
     public final LaunchActivity a;
     public final int b;
     public final uj3 c;

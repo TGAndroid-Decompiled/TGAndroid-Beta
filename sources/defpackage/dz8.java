@@ -95,7 +95,7 @@ public abstract class dz8 extends FrameLayout implements fn7 {
         String[] split;
         if (this.J == null) {
             this.J = new ArrayList();
-            for (String str : uc7.s1(this.a).X3.getString("qrAppliedEmoji", "").split(",")) {
+            for (String str : uc7.s1(this.a).Y3.getString("qrAppliedEmoji", "").split(",")) {
                 try {
                     if (!str.isEmpty()) {
                         this.J.add(Long.valueOf(Long.parseLong(str)));
@@ -193,7 +193,7 @@ public abstract class dz8 extends FrameLayout implements fn7 {
             this.F = true;
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
             tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-            TLRPC.TL_messages_stickerSet m0 = ls6.d0(i4).m0(tL_inputStickerSetShortName, null, false, true, new ii7(this, (byte) 21));
+            TLRPC.TL_messages_stickerSet m0 = ls6.d0(i4).m0(tL_inputStickerSetShortName, null, false, true, new ji7(this, (byte) 21));
             if (m0 != null && (arrayList5 = m0.documents) != null && !arrayList5.isEmpty()) {
                 this.E = m0;
             }

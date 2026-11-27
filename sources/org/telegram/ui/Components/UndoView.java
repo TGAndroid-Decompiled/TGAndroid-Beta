@@ -90,7 +90,7 @@ public class UndoView extends FrameLayout implements snb {
         yob.X(te1Var, i, vnbVar);
         int i2 = aob.xj;
         yob.G(te1Var, i2, vnbVar);
-        te1Var.setMovementMethod(new c9c(this));
+        te1Var.setMovementMethod(new d9c(this));
         addView(te1Var, tre.d(-2, -2.0f, 51, 45.0f, 13.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.c = textView;

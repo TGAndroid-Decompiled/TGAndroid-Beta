@@ -95,7 +95,7 @@ public final class ji8 extends Dialog {
         q57Var.a(0, ob6.M0(2131746895, null));
         q57Var.a(1, ob6.M0(2131746894, null));
         gi8Var2.addView(q57Var, tre.e(-1, 66, 80));
-        q57Var.setOnTabClick(new ii7(ir1Var, (byte) 16));
+        q57Var.setOnTabClick(new ji7(ir1Var, (byte) 16));
         jl0 c = ll0Var.c(q57Var, null, false);
         c.p(dtd.k(vnbVar));
         c.S.e = true;

@@ -44,7 +44,7 @@ public final class nf3 {
             this.b = i2;
             TextPaint textPaint = aob.E0[0];
             if (chat != null) {
-                ArrayList l = uc7.s1(i).g4.l(chat.id);
+                ArrayList l = uc7.s1(i).h4.l(chat.id);
                 if (l != null && !l.isEmpty()) {
                     ArrayList arrayList2 = new ArrayList(l);
                     Collections.sort(arrayList2, Comparator$CC.comparingInt(new nm((byte) 4)));
@@ -53,7 +53,7 @@ public final class nf3 {
                         j = r47.b2(i, r47Var.k, true, false);
                         i4 = 1;
                         arrayList = arrayList2;
-                        TLRPC.TL_forumTopic f = uc7.s1(i).g4.f(chat.id, j);
+                        TLRPC.TL_forumTopic f = uc7.s1(i).h4.f(chat.id, j);
                         if (f != null) {
                             CharSequence k = ro4.k(f, textPaint, null);
                             spannableStringBuilder.append(k);
@@ -145,8 +145,8 @@ public final class nf3 {
                         spannableStringBuilder.setSpan(metricAffectingSpan, 0, Math.min(spannableStringBuilder.length(), i5 + 2), 0);
                     }
                     this.g = spannableStringBuilder;
-                } else if (!uc7.s1(i).g4.e(chat.id)) {
-                    uc7.s1(i).g4.n(0, chat.id, true);
+                } else if (!uc7.s1(i).h4.e(chat.id)) {
+                    uc7.s1(i).h4.n(0, chat.id, true);
                     this.g = ob6.M0(2131748533, null);
                     this.e = true;
                 } else {

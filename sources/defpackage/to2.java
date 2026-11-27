@@ -188,7 +188,7 @@ public final class to2 extends v79 {
                 return;
             case 28:
                 if (i == 1) {
-                    hl.t1(((pi7) obj).T1.getEditText());
+                    hl.t1(((qi7) obj).T1.getEditText());
                     return;
                 }
                 return;
@@ -249,8 +249,8 @@ public final class to2 extends v79 {
                 df3 df3Var = (df3) obj;
                 hy0 hy0Var = df3Var.t1;
                 if (hy0Var != null) {
-                    cl7 cl7Var = hy0Var.i0;
-                    if (cl7Var != null && cl7Var.getTop() == hy0Var.k0) {
+                    dl7 dl7Var = hy0Var.i0;
+                    if (dl7Var != null && dl7Var.getTop() == hy0Var.k0) {
                         z = true;
                     }
                     df3Var.v1 = !z;

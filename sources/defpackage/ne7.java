@@ -12,7 +12,7 @@ public final class ne7 implements Runnable {
     public final boolean L;
     public final boolean M;
     public final qsb N;
-    public final jf7 a;
+    public final kf7 a;
     public final TLRPC.TL_messages_messages b;
     public final int c;
     public final long d;
@@ -26,8 +26,8 @@ public final class ne7 implements Runnable {
     public final int x;
     public final int y;
 
-    public ne7(jf7 jf7Var, TLRPC.TL_messages_messages tL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, int i11, long j3, int i12, boolean z2, int i13, boolean z3, boolean z4, qsb qsbVar) {
-        this.a = jf7Var;
+    public ne7(kf7 kf7Var, TLRPC.TL_messages_messages tL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, int i11, long j3, int i12, boolean z2, int i13, boolean z3, boolean z4, qsb qsbVar) {
+        this.a = kf7Var;
         this.b = tL_messages_messages;
         this.c = i;
         this.d = j;

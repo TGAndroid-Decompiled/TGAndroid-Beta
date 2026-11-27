@@ -102,15 +102,15 @@ public final class OpusDred {
     }
 
     private static int groupLossPercent(int i) {
-        return uc7.s1(i).k4.J.f();
+        return uc7.s1(i).l4.J.f();
     }
 
     private static boolean isGroupReceiveKilled(int i) {
-        return uc7.s1(i).k4.K.f;
+        return uc7.s1(i).l4.K.f;
     }
 
     private static boolean isKilled(int i) {
-        return uc7.s1(i).k4.L.f;
+        return uc7.s1(i).l4.L.f;
     }
 
     private static boolean isLowEndDevice() {

@@ -22,7 +22,7 @@ public final class xf3 implements oj3, lu2 {
     @Override
     public final boolean q(uj3 uj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, tzb tzbVar) {
         if (!arrayList.isEmpty()) {
-            long j = ((if7) arrayList.get(0)).a;
+            long j = ((jf7) arrayList.get(0)).a;
             if (wf3.D(j)) {
                 bg3 bg3Var = this.a;
                 bg3Var.p0(bg3Var.getMessagesController().X1(Long.valueOf(j)));

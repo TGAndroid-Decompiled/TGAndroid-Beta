@@ -491,7 +491,7 @@ public final class ko6 implements bg8 {
     }
 
     @Override
-    public final void L(uf7 uf7Var) {
+    public final void L(vf7 vf7Var) {
         byte b = this.a;
     }
 
@@ -1439,10 +1439,10 @@ public final class ko6 implements bg8 {
     private final void S(nt6 nt6Var) {
     }
 
-    private final void T(uf7 uf7Var) {
+    private final void T(vf7 vf7Var) {
     }
 
-    private final void U(uf7 uf7Var) {
+    private final void U(vf7 vf7Var) {
     }
 
     private final void W(of8 of8Var) {

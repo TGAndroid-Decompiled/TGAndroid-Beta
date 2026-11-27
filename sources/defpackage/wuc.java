@@ -121,10 +121,10 @@ public final class wuc extends n9c implements fn7 {
                 yob.j(c51Var, background, M2, null, resourceProvider);
             }
             m.addView(c51Var, tre.t(-1, 44, 1, 16, 0, 16, 16));
-            jl7 jl7Var = new jl7(parentActivity, m, resourceProvider);
-            jl7Var.show();
-            imageView.setOnClickListener(new e45(jl7Var, (byte) 1));
-            c51Var.setOnClickListener(new cg(c51Var, ku9Var, jl7Var, resourceProvider, (byte) 21));
+            kl7 kl7Var = new kl7(parentActivity, m, resourceProvider);
+            kl7Var.show();
+            imageView.setOnClickListener(new e45(kl7Var, (byte) 1));
+            c51Var.setOnClickListener(new cg(c51Var, ku9Var, kl7Var, resourceProvider, (byte) 21));
         }
     }
 

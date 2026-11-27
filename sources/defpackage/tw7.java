@@ -23,22 +23,22 @@ public final class tw7 extends zw3 {
                     i++;
                 }
             }
-            int f = uc7.s1(this.a).k4.F1.f();
+            int f = uc7.s1(this.a).l4.F1.f();
             ex0 ex0Var = this.c;
             if (i >= f && !yac.h(this.a).p()) {
-                String G = ob6.G(uc7.s1(this.a).k4.G1.f(), "StoryPremiumWidgets2", new Object[0]);
+                String G = ob6.G(uc7.s1(this.a).l4.G1.f(), "StoryPremiumWidgets2", new Object[0]);
                 try {
                     ex0Var.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
                 new d31(ex0Var, this.J0).I(2131624211, ob6.M0(2131748953, null), hl.N2(G, aob.Xc, 0, new zg3(this, (byte) 28), this.J0)).k(true);
                 return false;
-            } else if (i >= uc7.s1(this.a).k4.G1.f()) {
+            } else if (i >= uc7.s1(this.a).l4.G1.f()) {
                 try {
                     ex0Var.performHapticFeedback(3);
                 } catch (Exception unused2) {
                 }
-                new d31(ex0Var, this.J0).I(2131623982, ob6.M0(2131748732, "LimitReached"), ob6.G(uc7.s1(this.a).k4.G1.f(), "StoryReactionsWidgetLimit2", new Object[0])).k(true);
+                new d31(ex0Var, this.J0).I(2131623982, ob6.M0(2131748732, "LimitReached"), ob6.G(uc7.s1(this.a).l4.G1.f(), "StoryReactionsWidgetLimit2", new Object[0])).k(true);
                 return false;
             }
         }
@@ -52,19 +52,19 @@ public final class tw7 extends zw3 {
 
     @Override
     public final boolean G0(Runnable runnable) {
-        rbb rbbVar = ((vab) this.E1).o2;
-        Activity activity = rbbVar.b;
+        sbb sbbVar = ((wab) this.E1).o2;
+        Activity activity = sbbVar.b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    rbbVar.z2 = (hl3) runnable;
+                    sbbVar.z2 = (hl3) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                rbbVar.z2 = (hl3) runnable;
+                sbbVar.z2 = (hl3) runnable;
                 return false;
             } else {
                 return true;

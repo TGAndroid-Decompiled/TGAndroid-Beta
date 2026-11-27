@@ -13,7 +13,7 @@ import java.util.HashSet;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.PhotoViewer;
-public abstract class w71 extends FrameLayout implements snb, cl7 {
+public abstract class w71 extends FrameLayout implements snb, dl7 {
     public static final int H = 0;
     public boolean E;
     public final gb F;

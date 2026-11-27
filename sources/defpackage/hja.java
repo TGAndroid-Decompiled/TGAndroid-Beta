@@ -56,13 +56,13 @@ public final class hja implements on5, ovc, jcc, yv4, ay2, s84, ncc, z28, nf0, O
         marginLayoutParams.bottomMargin = a;
         marginLayoutParams.leftMargin = H0.a;
         marginLayoutParams.rightMargin = H0.c;
-        ybb ybbVar = lcbVar.s;
-        if (ybbVar != null) {
-            ybbVar.requestLayout();
-        }
-        zbb zbbVar = lcbVar.w;
+        zbb zbbVar = lcbVar.s;
         if (zbbVar != null) {
             zbbVar.requestLayout();
+        }
+        acb acbVar = lcbVar.w;
+        if (acbVar != null) {
+            acbVar.requestLayout();
         }
         return l2d.b;
     }
@@ -249,34 +249,34 @@ public final class hja implements on5, ovc, jcc, yv4, ay2, s84, ncc, z28, nf0, O
 
     @Override
     public final void onFinishVideoRecording(String str, long j) {
-        rab rabVar = (rab) this.b;
-        rbb rbbVar = rabVar.a;
-        u59 u59Var = rbbVar.P0;
-        int i = rbbVar.c;
+        sab sabVar = (sab) this.b;
+        sbb sbbVar = sabVar.a;
+        u59 u59Var = sbbVar.P0;
+        int i = sbbVar.c;
         if (u59Var != null) {
             u59Var.g(true);
         }
-        if (rbbVar.p0()) {
-            rbbVar.s.d();
+        if (sbbVar.p0()) {
+            sbbVar.s.d();
         }
-        if (rbbVar.H1 != null && rbbVar.C0 != null) {
-            rbbVar.R1 = false;
-            rbbVar.S1 = false;
-            oy8 oy8Var = rbbVar.D0;
+        if (sbbVar.H1 != null && sbbVar.C0 != null) {
+            sbbVar.R1 = false;
+            sbbVar.S1 = false;
+            oy8 oy8Var = sbbVar.D0;
             if (oy8Var != null) {
                 oy8Var.f(false);
             }
             if (j <= 800) {
-                rbbVar.e(false, true);
-                rbbVar.c0(false);
-                rbbVar.K0.b(false, true);
-                u59 u59Var2 = rbbVar.P0;
+                sbbVar.e(false, true);
+                sbbVar.c0(false);
+                sbbVar.K0.b(false, true);
+                u59 u59Var2 = sbbVar.P0;
                 if (u59Var2 != null) {
                     u59Var2.g(true);
                 }
                 try {
-                    rbbVar.H1.delete();
-                    rbbVar.H1 = null;
+                    sbbVar.H1.delete();
+                    sbbVar.H1 = null;
                 } catch (Exception e) {
                     cc4.g(e, true);
                 }
@@ -291,50 +291,50 @@ public final class hja implements on5, ovc, jcc, yv4, ay2, s84, ncc, z28, nf0, O
                 }
                 return;
             }
-            rbbVar.h0(false, true);
-            c8b o = c8b.o(rbbVar.H1, str, j);
-            o.J0 = rbbVar.w0;
-            o.K0 = rbbVar.x0;
+            sbbVar.h0(false, true);
+            c8b o = c8b.o(sbbVar.H1, str, j);
+            o.J0 = sbbVar.w0;
+            o.K0 = sbbVar.x0;
             o.A();
-            rbbVar.e(false, true);
-            rbbVar.c0(false);
-            rbbVar.K0.b(false, true);
-            u59 u59Var3 = rbbVar.P0;
+            sbbVar.e(false, true);
+            sbbVar.c0(false);
+            sbbVar.K0.b(false, true);
+            u59 u59Var3 = sbbVar.P0;
             if (u59Var3 != null) {
                 u59Var3.g(true);
             }
-            if (rbbVar.B0.i()) {
-                rbbVar.H1 = null;
+            if (sbbVar.B0.i()) {
+                sbbVar.H1 = null;
                 o.P = 1.0f;
-                if (rbbVar.B0.l(o)) {
-                    c8b a = c8b.a(rbbVar.B0.getLayout(), rbbVar.B0.getContent());
-                    rbbVar.L1 = a;
+                if (sbbVar.B0.l(o)) {
+                    c8b a = c8b.a(sbbVar.B0.getLayout(), sbbVar.B0.getContent());
+                    sbbVar.L1 = a;
                     y9b.a(i, a);
-                    rbbVar.M1 = false;
-                    int videoWidth = rbbVar.C0.getVideoWidth();
-                    int videoHeight = rbbVar.C0.getVideoHeight();
+                    sbbVar.M1 = false;
+                    int videoWidth = sbbVar.C0.getVideoWidth();
+                    int videoHeight = sbbVar.C0.getVideoHeight();
                     if (videoWidth > 0 && videoHeight > 0) {
-                        c8b c8bVar = rbbVar.L1;
+                        c8b c8bVar = sbbVar.L1;
                         c8bVar.k0 = videoWidth;
                         c8bVar.l0 = videoHeight;
                         c8bVar.z();
                     }
                 }
-                rbbVar.l0(true);
+                sbbVar.l0(true);
                 return;
             }
-            rbbVar.L1 = o;
+            sbbVar.L1 = o;
             y9b.a(i, o);
-            rbbVar.M1 = false;
-            int videoWidth2 = rbbVar.C0.getVideoWidth();
-            int videoHeight2 = rbbVar.C0.getVideoHeight();
+            sbbVar.M1 = false;
+            int videoWidth2 = sbbVar.C0.getVideoWidth();
+            int videoHeight2 = sbbVar.C0.getVideoHeight();
             if (videoWidth2 > 0 && videoHeight2 > 0) {
-                c8b c8bVar2 = rbbVar.L1;
+                c8b c8bVar2 = sbbVar.L1;
                 c8bVar2.k0 = videoWidth2;
                 c8bVar2.l0 = videoHeight2;
                 c8bVar2.z();
             }
-            rbbVar.J(new pab(rabVar, (byte) 3), 0L);
+            sbbVar.J(new qab(sabVar, (byte) 3), 0L);
         }
     }
 
@@ -434,9 +434,9 @@ public final class hja implements on5, ovc, jcc, yv4, ay2, s84, ncc, z28, nf0, O
                 }
                 return;
             default:
-                v3b v3bVar = (v3b) obj;
+                w3b w3bVar = (w3b) obj;
                 if (z && !z2 && (y = imageReceiver.y()) != null) {
-                    v3bVar.q(y);
+                    w3bVar.q(y);
                     return;
                 }
                 return;

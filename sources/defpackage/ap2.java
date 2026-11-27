@@ -2,7 +2,7 @@ package defpackage;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e;
-public final class ap2 implements ef7, bf7 {
+public final class ap2 implements ff7, cf7 {
     public final int a;
     public final long b;
     public final boolean c;

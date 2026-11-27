@@ -28,7 +28,7 @@ public final class o3e extends AsyncTask {
             } else {
                 omeVar = b.c0(new br7(this), kadVar, i, i2);
             }
-        } catch (RemoteException | zg7 e) {
+        } catch (ah7 | RemoteException e) {
             mbd.a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", hcd.class.getSimpleName());
             omeVar = null;
         }

@@ -49,7 +49,7 @@ public final class le implements pcc {
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 int i = this.c;
                 if (booleanValue) {
-                    SharedPreferences.Editor edit = uc7.s1(i).X3.edit();
+                    SharedPreferences.Editor edit = uc7.s1(i).Y3.edit();
                     int size = arrayList.size();
                     int i2 = 0;
                     while (i2 < size) {

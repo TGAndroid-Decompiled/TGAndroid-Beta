@@ -45,15 +45,15 @@ public abstract class hg0 {
     public final ArrayList q;
     public dyd r;
     public byte s;
-    public final i09 t;
-    public final k09 u;
+    public final j09 t;
+    public final l09 u;
     public final short v;
     public final String w;
     public volatile String x;
     public volatile hy y;
     public ws2 z;
 
-    public hg0(Context context, Looper looper, aef aefVar, int i, i09 i09Var, k09 k09Var, String str) {
+    public hg0(Context context, Looper looper, aef aefVar, int i, j09 j09Var, l09 l09Var, String str) {
         Object obj = i05.d;
         this.f = null;
         this.l = new Object();
@@ -72,8 +72,8 @@ public abstract class hg0 {
         this.j = aefVar;
         this.k = new igd(this, looper);
         this.v = i;
-        this.t = i09Var;
-        this.u = k09Var;
+        this.t = j09Var;
+        this.u = l09Var;
         this.w = str;
     }
 

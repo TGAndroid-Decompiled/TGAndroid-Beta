@@ -15,7 +15,7 @@ public final class ff9 extends ze9 implements snb {
     public df9 F;
     public int G;
     public int H;
-    public final ki7 I;
+    public final li7 I;
     public final int n;
     public final vnb r;
     public final HorizontalScrollView s;
@@ -26,7 +26,7 @@ public final class ff9 extends ze9 implements snb {
     public ff9(int i, vnb vnbVar, Context context) {
         super(context);
         this.E = new ArrayList();
-        this.I = new ki7(this, (byte) 17);
+        this.I = new li7(this, (byte) 17);
         this.n = i;
         this.r = vnbVar;
         f(hl.L(16.0f), hl.L(4.0f), hl.L(16.0f), hl.L(4.0f));
@@ -315,9 +315,9 @@ public final class ff9 extends ze9 implements snb {
             aob.F1(background, aob.v(v02, aob.p1(0.1f, v0)), false);
             aob.F1(background, aob.p1(0.16f, v0), true);
             textView.invalidate();
-            ki7 ki7Var = this.I;
-            removeCallbacks(ki7Var);
-            postDelayed(ki7Var, 100L);
+            li7 li7Var = this.I;
+            removeCallbacks(li7Var);
+            postDelayed(li7Var, 100L);
             try {
                 if (getBackground() instanceof vg9) {
                     ((vg9) getBackground()).a(aob.v0(i2, vnbVar));

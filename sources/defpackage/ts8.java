@@ -53,8 +53,8 @@ public final class ts8 {
             this.g = i;
             int i3 = this.a;
             long e = yac.h(i3).e();
-            jf7 Y = jf7.Y(i3);
-            Y.a.c(new kd7(this, i, Y, j, e, i2));
+            kf7 a0 = kf7.a0(i3);
+            a0.a.c(new pd7(this, i, a0, j, e, i2));
             return;
         }
         this.e++;
@@ -63,14 +63,14 @@ public final class ts8 {
         a();
     }
 
-    public final void c(TLObject tLObject, jf7 jf7Var, long j, int i, ArrayList arrayList) {
+    public final void c(TLObject tLObject, kf7 kf7Var, long j, int i, ArrayList arrayList) {
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             int i2 = this.a;
             uc7.s1(i2).j4(messages_messages.users, false);
             uc7.s1(i2).c4(messages_messages.chats, false);
-            jf7Var.j1(messages_messages.users, messages_messages.chats, true, true);
-            jf7Var.e1(3, 0, 0, -j, 0L, messages_messages, false);
+            kf7Var.n1(messages_messages.users, messages_messages.chats, true, true);
+            kf7Var.i1(3, 0, 0, -j, 0L, messages_messages, false);
             if (i == this.e && !messages_messages.messages.isEmpty()) {
                 ArrayList arrayList2 = this.d;
                 arrayList2.clear();
@@ -102,7 +102,7 @@ public final class ts8 {
         }
     }
 
-    public final void d(int i, int i2, long j, jf7 jf7Var, ArrayList arrayList) {
+    public final void d(int i, int i2, long j, kf7 kf7Var, ArrayList arrayList) {
         if (i != this.e) {
             return;
         }
@@ -141,6 +141,6 @@ public final class ts8 {
                 tL_channels_getMessages.id.add(Integer.valueOf(i6));
             }
         }
-        ConnectionsManager.getInstance(i3).sendRequest(tL_channels_getMessages, new kb7(this, jf7Var, j, i, arrayList));
+        ConnectionsManager.getInstance(i3).sendRequest(tL_channels_getMessages, new kb7(this, kf7Var, j, i, arrayList));
     }
 }

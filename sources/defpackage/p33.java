@@ -57,7 +57,7 @@ public final class p33 extends View {
         q33 q33Var = this.d;
         i33 i33Var = q33Var.h;
         int[] iArr = q33Var.y;
-        gbb gbbVar = q33Var.a;
+        hbb hbbVar = q33Var.a;
         if (q33Var.b == null) {
             return;
         }
@@ -70,7 +70,7 @@ public final class p33 extends View {
             Path path = this.b;
             path.rewind();
             RectF rectF = this.c;
-            rectF.set(0.0f, 0.0f, gbbVar.getWidth(), gbbVar.getHeight());
+            rectF.set(0.0f, 0.0f, hbbVar.getWidth(), hbbVar.getHeight());
             int[] iArr2 = q33Var.x;
             rectF.offset(iArr2[0], iArr2[1]);
             RectF rectF2 = hl.P;
@@ -98,7 +98,7 @@ public final class p33 extends View {
                 f3 = 1.0f;
                 f4 = 1.0f;
             }
-            float R13 = hl.R1(1.0f, (q33Var.b.getScaleX() * (v98Var.getWidth() / f4)) / gbbVar.getWidth(), f6);
+            float R13 = hl.R1(1.0f, (q33Var.b.getScaleX() * (v98Var.getWidth() / f4)) / hbbVar.getWidth(), f6);
             canvas.scale(R13, R13);
             canvas.rotate(q33Var.b.getRotation() * f6);
             canvas.translate(((q33Var.b.getContentWidth() * f4) / 2.0f) * f6, ((q33Var.b.getContentHeight() * f3) / 2.0f) * f6);

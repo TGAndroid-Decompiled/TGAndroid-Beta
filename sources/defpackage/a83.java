@@ -33,12 +33,12 @@ public final class a83 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         switch (b) {
             case 0:
-                return ((a83) create((nm4) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((a83) create((nm4) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             default:
-                return ((a83) create((so8) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((a83) create((so8) obj, (zw2) obj2)).invokeSuspend(g9cVar);
         }
     }
 

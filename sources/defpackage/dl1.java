@@ -440,9 +440,9 @@ public class dl1 extends jf0 implements jq3, fn7, pk5 {
                                         int i8 = this.I;
                                         pj pjVar2 = pj.a;
                                         if (pjVar == pjVar2) {
-                                            f = uc7.s1(i8).k4.m.f();
+                                            f = uc7.s1(i8).l4.m.f();
                                         } else {
-                                            f = uc7.s1(i8).k4.n.f();
+                                            f = uc7.s1(i8).l4.n.f();
                                         }
                                         oj j2 = oj.j((n.b * f) / 1000, pjVar);
                                         TL_stars.StarGift starGift = tL_messageActionStarGiftPurchaseOffer.gift;
@@ -2060,7 +2060,7 @@ public class dl1 extends jf0 implements jq3, fn7, pk5 {
                     zocVar.j0.start();
                     zocVar.a.invalidate();
                     this.Q0.k.premiumEffectWasPlayed = true;
-                    jf7.Y(this.I).U1(r47.B0(this.Q0.k), this.Q0.k);
+                    kf7.a0(this.I).Z1(r47.B0(this.Q0.k), this.Q0.k);
                     return true;
                 }
             }

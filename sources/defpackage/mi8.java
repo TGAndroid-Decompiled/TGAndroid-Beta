@@ -50,7 +50,7 @@ public abstract class mi8 {
                 }
                 ArrayList<String> arrayList = tL_messageMediaPoll.poll.countries_iso2;
                 if (arrayList != null && !arrayList.isEmpty()) {
-                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(uc7.s1(i3).k4.Z.f)) {
+                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(uc7.s1(i3).l4.Z.f)) {
                         return i2 | 4;
                     }
                     return i2;

@@ -7,7 +7,7 @@ public final class koc extends ucb {
     public int o;
     public boolean p;
     public loc q;
-    public i09 r;
+    public j09 r;
 
     @Override
     public final void a(long j) {
@@ -105,8 +105,8 @@ public final class koc extends ucb {
             ey7Var.A();
             this.q = new loc(A, s, i3, i4, (int) Math.pow(2.0d, A2 & 15), (int) Math.pow(2.0d, (A2 & 240) >> 4), Arrays.copyOf(ey7Var.a, ey7Var.c));
         } else {
-            i09 i09Var = this.r;
-            if (i09Var == null) {
+            j09 j09Var = this.r;
+            if (j09Var == null) {
                 this.r = s2f.b(ey7Var, true, true);
             } else {
                 int i6 = ey7Var.c;
@@ -328,7 +328,7 @@ public final class koc extends ucb {
                             jp5VarArr[i39] = new jp5((byte) 4, e2);
                         }
                         if (zd1Var.e()) {
-                            u8aVar = new u8a(locVar, i09Var, bArr, jp5VarArr);
+                            u8aVar = new u8a(locVar, j09Var, bArr, jp5VarArr);
                         } else {
                             throw hy7.a("framing bit after modes not set as expected", null);
                         }
@@ -345,10 +345,10 @@ public final class koc extends ucb {
         ArrayList arrayList = new ArrayList();
         arrayList.add(locVar2.g);
         arrayList.add((byte[]) u8aVar.c);
-        uf7 a = moc.a(po5.r((String[]) ((i09) u8aVar.b).b));
+        vf7 a = moc.a(po5.r((String[]) ((j09) u8aVar.b).b));
         jo4 jo4Var = new jo4();
-        jo4Var.r = dg7.n("audio/ogg");
-        jo4Var.s = dg7.n("audio/vorbis");
+        jo4Var.r = eg7.n("audio/ogg");
+        jo4Var.s = eg7.n("audio/vorbis");
         jo4Var.i = locVar2.d;
         jo4Var.j = locVar2.c;
         jo4Var.M = locVar2.a;

@@ -35,7 +35,7 @@ public final class i63 extends rg0 {
     public final boolean i;
     public final f73 j;
     public final qx6 k;
-    public final rg7 l;
+    public final sg7 l;
     public final pr3 m;
     public final z6f n;
     public final u8a o;
@@ -55,7 +55,7 @@ public final class i63 extends rg0 {
         gt6.a("media3.exoplayer.dash");
     }
 
-    public i63(ft6 ft6Var, f73 f73Var, iy7 iy7Var, qx6 qx6Var, rg7 rg7Var, pr3 pr3Var, z6f z6fVar, long j, long j2) {
+    public i63(ft6 ft6Var, f73 f73Var, iy7 iy7Var, qx6 qx6Var, sg7 sg7Var, pr3 pr3Var, z6f z6fVar, long j, long j2) {
         this.R = ft6Var;
         this.S = ft6Var.c;
         Uri uri = ft6Var.b.a;
@@ -68,7 +68,7 @@ public final class i63 extends rg0 {
         this.n = z6fVar;
         this.p = (int) j;
         this.q = (int) j2;
-        this.l = rg7Var;
+        this.l = sg7Var;
         this.o = new u8a((byte) 3);
         this.i = false;
         this.r = b(null);
@@ -346,7 +346,7 @@ public final class i63 extends rg0 {
         if (rx6Var == null) {
             rx6Var = new rx6("SntpClient");
         }
-        rx6Var.w0(new qf5((byte) 26), new k09(f63Var, (byte) 11), 1);
+        rx6Var.w0(new qf5((byte) 26), new l09(f63Var, (byte) 11), 1);
     }
 
     public final void x(jy7 jy7Var, long j, long j2) {

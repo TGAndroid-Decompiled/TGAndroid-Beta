@@ -17,7 +17,13 @@ public abstract class b93 {
         }
     }
 
-    public static boolean b(SQLiteDatabase sQLiteDatabase, String str, String str2) {
+    public static void b(SQLiteDatabase sQLiteDatabase, String str) {
+        long currentTimeMillis = System.currentTimeMillis();
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+        cc4.b("db migration: " + (System.currentTimeMillis() - currentTimeMillis) + "ms " + str);
+    }
+
+    public static boolean c(SQLiteDatabase sQLiteDatabase, String str, String str2) {
         SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(qd4.y("PRAGMA table_info(", str, ")"), new Object[0]);
         do {
             try {
@@ -31,7 +37,7 @@ public abstract class b93 {
         return true;
     }
 
-    public static int c(jf7 jf7Var, SQLiteDatabase sQLiteDatabase, int i) {
+    public static int d(kf7 kf7Var, SQLiteDatabase sQLiteDatabase, int i) {
         char c;
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursor2;
@@ -45,8 +51,8 @@ public abstract class b93 {
         SQLiteCursor sQLiteCursor7;
         SQLiteCursor sQLiteCursor8;
         SQLiteDatabase sQLiteDatabase2 = sQLiteDatabase;
-        to3 to3Var = jf7Var.a;
-        int i4 = 0;
+        to3 to3Var = kf7Var.a;
+        int i4 = 2;
         int i5 = 4;
         int i6 = i;
         if (i6 < 4) {
@@ -55,12 +61,12 @@ public abstract class b93 {
             bs2.B(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS user_phones_v6(uid INTEGER, phone TEXT, sphone TEXT, deleted INTEGER, PRIMARY KEY (uid, phone))", "CREATE INDEX IF NOT EXISTS sphone_deleted_idx_user_phones ON user_phones_v6(sphone, deleted);", "CREATE INDEX IF NOT EXISTS mid_idx_randoms ON randoms(mid);", "CREATE TABLE IF NOT EXISTS sent_files_v2(uid TEXT, type INTEGER, data BLOB, PRIMARY KEY (uid, type))");
             bs2.B(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS download_queue(uid INTEGER, type INTEGER, date INTEGER, data BLOB, PRIMARY KEY (uid, type));", "CREATE INDEX IF NOT EXISTS type_date_idx_download_queue ON download_queue(type, date);", "CREATE TABLE IF NOT EXISTS dialog_settings(did INTEGER PRIMARY KEY, flags INTEGER);", "CREATE INDEX IF NOT EXISTS unread_count_idx_dialogs ON dialogs(unread_count);");
             sQLiteDatabase2.executeFast("UPDATE messages SET send_state = 2 WHERE mid < 0 AND send_state = 1").stepThis().dispose();
-            to3Var.c(new be7(jf7Var, (byte) 0));
+            to3Var.c(new hd7(kf7Var, (byte) 2));
             sQLiteDatabase2.executeFast("PRAGMA user_version = 4").stepThis().dispose();
             i6 = 4;
         }
-        int i7 = 2;
-        int i8 = 1;
+        int i7 = 1;
+        int i8 = 0;
         if (i6 == 4) {
             sQLiteDatabase2.executeFast("CREATE TABLE IF NOT EXISTS enc_tasks_v2(mid INTEGER PRIMARY KEY, date INTEGER)").stepThis().dispose();
             sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS date_idx_enc_tasks_v2 ON enc_tasks_v2(date);").stepThis().dispose();
@@ -239,7 +245,7 @@ public abstract class b93 {
             i6 = 40;
         }
         if (i6 == 40) {
-            to3Var.c(new be7(jf7Var, (byte) 0));
+            to3Var.c(new hd7(kf7Var, (byte) 2));
             sQLiteDatabase2.executeFast("PRAGMA user_version = 41").stepThis().dispose();
             i6 = 41;
         }
@@ -440,7 +446,7 @@ public abstract class b93 {
                 while (sQLiteCursor8.next()) {
                     NativeByteBuffer byteBufferValue3 = sQLiteCursor8.byteBufferValue(i5);
                     if (byteBufferValue3 != null) {
-                        int intValue5 = sQLiteCursor8.intValue(i4);
+                        int intValue5 = sQLiteCursor8.intValue(i8);
                         long longValue2 = sQLiteCursor8.longValue(1);
                         char c3 = c2;
                         int intValue6 = sQLiteCursor8.intValue(2);
@@ -465,8 +471,8 @@ public abstract class b93 {
                         }
                         byteBufferValue3.reuse();
                         c2 = c3;
-                        i4 = 0;
                         i5 = 4;
+                        i8 = 0;
                         i10 = 3;
                         i11 = 5;
                     }
@@ -658,11 +664,11 @@ public abstract class b93 {
                     NativeByteBuffer byteBufferValue6 = sQLiteCursor2.byteBufferValue(5);
                     if (byteBufferValue6 != null) {
                         long intValue18 = sQLiteCursor2.intValue(0);
-                        long longValue11 = sQLiteCursor2.longValue(i8);
+                        long longValue11 = sQLiteCursor2.longValue(i7);
                         if (((int) longValue11) == 0) {
                             longValue11 = wf3.E((int) (longValue11 >> c));
                         }
-                        int intValue19 = sQLiteCursor2.intValue(i7);
+                        int intValue19 = sQLiteCursor2.intValue(i4);
                         int intValue20 = sQLiteCursor2.intValue(3);
                         int intValue21 = sQLiteCursor2.intValue(4);
                         int intValue22 = sQLiteCursor2.intValue(6);
@@ -680,7 +686,7 @@ public abstract class b93 {
                             TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue6, byteBufferValue6.readInt32(false), false);
                             if (TLdeserialize2 != null) {
                                 i2 = intValue28;
-                                TLdeserialize2.readAttachPath(byteBufferValue6, jf7Var.getUserConfig().n);
+                                TLdeserialize2.readAttachPath(byteBufferValue6, kf7Var.getUserConfig().n);
                                 if (TLdeserialize2.params == null) {
                                     HashMap<String, String> hashMap = new HashMap<>();
                                     TLdeserialize2.params = hashMap;
@@ -734,8 +740,8 @@ public abstract class b93 {
                         }
                         byteBufferValue6.reuse();
                         sQLiteCursor2 = sQLiteCursor9;
-                        i7 = 2;
-                        i8 = 1;
+                        i4 = 2;
+                        i7 = 1;
                     }
                 }
                 sQLiteCursor2.dispose();
@@ -985,7 +991,7 @@ public abstract class b93 {
             i6 = 113;
         }
         if (i6 == 113) {
-            jf7Var.p1();
+            kf7Var.t1();
             sQLiteDatabase2.executeFast("PRAGMA user_version = 114").stepThis().dispose();
             i6 = 114;
         }
@@ -1000,7 +1006,7 @@ public abstract class b93 {
         if (i6 == 116 || i6 == 117 || i6 == 118) {
             bs2.B(sQLiteDatabase2, "DROP TABLE IF EXISTS stories", "DROP TABLE IF EXISTS stories_counter", "CREATE TABLE stories (dialog_id INTEGER, story_id INTEGER, data BLOB, local_path TEXT, local_thumb_path TEXT, PRIMARY KEY (dialog_id, story_id));", "CREATE TABLE stories_counter (dialog_id INTEGER PRIMARY KEY, count INTEGER, max_read INTEGER);");
             sQLiteDatabase2.executeFast("PRAGMA user_version = 119").stepThis().dispose();
-            jf7Var.getMessagesController().O1().p();
+            kf7Var.getMessagesController().O1().p();
             i6 = 119;
         }
         if (i6 == 119) {
@@ -1245,11 +1251,11 @@ public abstract class b93 {
             i6 = 180;
         }
         if (i6 == 180) {
-            if (b(sQLiteDatabase2, "widget_state", "height")) {
+            if (c(sQLiteDatabase2, "widget_state", "height")) {
                 bs2.y(sQLiteDatabase2, "DROP TABLE widget_state");
             }
             bs2.z(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS widget_state(uid INTEGER, mid INTEGER, local TEXT, PRIMARY KEY(uid, mid));", "CREATE TABLE IF NOT EXISTS widget_heights(uid INTEGER, mid INTEGER, width INTEGER, height INTEGER, date INTEGER, anchor INTEGER default 0, PRIMARY KEY(uid, mid, width));");
-            if (!b(sQLiteDatabase2, "widget_heights", "anchor")) {
+            if (!c(sQLiteDatabase2, "widget_heights", "anchor")) {
                 bs2.y(sQLiteDatabase2, "ALTER TABLE widget_heights ADD COLUMN anchor INTEGER default 0");
             }
             bs2.y(sQLiteDatabase2, "PRAGMA user_version = 181");
@@ -1257,7 +1263,17 @@ public abstract class b93 {
         }
         if (i6 == 181) {
             bs2.z(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS onchain_offer_intents(slug TEXT, amount INTEGER, duration INTEGER, random_id INTEGER, used_at INTEGER, PRIMARY KEY(slug, amount, duration));", "PRAGMA user_version = 182");
-            return 182;
+            i6 = 182;
+        }
+        if (i6 == 182) {
+            b(sQLiteDatabase2, "CREATE INDEX IF NOT EXISTS folder_pinned_date_idx_dialogs ON dialogs(folder_id, pinned, date);");
+            sQLiteDatabase2.executeFast("PRAGMA user_version = 183").stepThis().dispose();
+            i6 = 183;
+        }
+        if (i6 == 183) {
+            b(sQLiteDatabase2, "CREATE INDEX IF NOT EXISTS stickersets2_short_name ON stickersets2(short_name);");
+            sQLiteDatabase2.executeFast("PRAGMA user_version = 184").stepThis().dispose();
+            return 184;
         }
         return i6;
     }

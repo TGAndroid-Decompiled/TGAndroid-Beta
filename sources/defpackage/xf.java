@@ -91,7 +91,7 @@ public final class xf implements View.OnClickListener {
                 calendar3.set(12, 0);
                 calendar3.set(11, 0);
                 calendar3.set(13, 0);
-                ((df7) obj2).a((int) (calendar3.getTimeInMillis() / 1000));
+                ((ef7) obj2).a((int) (calendar3.getTimeInMillis() / 1000));
                 ((nx0) ((z8d) obj).b).y0.run();
                 return;
             case 3:

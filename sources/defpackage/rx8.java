@@ -176,7 +176,7 @@ public final class rx8 implements e84 {
                         this.f = r3;
                         this.h = cb3Var3.d;
                     } else if ((m & 224) == 192) {
-                        av3Var = new bi7(null, r2, "video/mp2p");
+                        av3Var = new ci7(null, r2, "video/mp2p");
                         this.f = r3;
                         this.h = cb3Var3.d;
                     } else if ((m & 240) == 224) {

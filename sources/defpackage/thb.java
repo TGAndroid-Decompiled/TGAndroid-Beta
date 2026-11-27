@@ -137,7 +137,7 @@ public final class thb extends m15 implements fn7 {
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
         boolean z = true;
         jxa v = jxa.v(this.currentAccount, true);
-        double d = getMessagesController().k4.k.i;
+        double d = getMessagesController().l4.k.i;
         TL_stars.StarsAmount m = v.m();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) this.k0);

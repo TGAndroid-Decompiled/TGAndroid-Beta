@@ -49,7 +49,7 @@ public final class yy7 implements ViewTreeObserver.OnGlobalLayoutListener {
             e29Var.getAnimatedDrawable().K(37);
             e29Var.d();
             fz7Var.o(true);
-            hl.d3(new fe7(this, (byte) 20), 350L);
+            hl.d3(new ge7(this, (byte) 20), 350L);
             AnimatorSet animatorSet2 = new AnimatorSet();
             fz7Var.R = animatorSet2;
             ArrayList arrayList2 = new ArrayList();

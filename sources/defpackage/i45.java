@@ -5,17 +5,17 @@ public final class i45 implements pcc {
     public final c51 c;
     public final c51 d;
     public final a55 e;
-    public final sk7 f;
+    public final tk7 f;
     public final boolean[] g;
     public final vnb h;
 
-    public i45(w45 w45Var, boolean[] zArr, c51 c51Var, c51 c51Var2, a55 a55Var, sk7 sk7Var, boolean[] zArr2, vnb vnbVar) {
+    public i45(w45 w45Var, boolean[] zArr, c51 c51Var, c51 c51Var2, a55 a55Var, tk7 tk7Var, boolean[] zArr2, vnb vnbVar) {
         this.a = w45Var;
         this.b = zArr;
         this.c = c51Var;
         this.d = c51Var2;
         this.e = a55Var;
-        this.f = sk7Var;
+        this.f = tk7Var;
         this.g = zArr2;
         this.h = vnbVar;
     }

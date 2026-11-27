@@ -31,13 +31,13 @@ public final class k83 extends yfb implements ur4 {
     @Override
     public final Object invoke(Object obj) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         zw2 zw2Var = (zw2) obj;
         switch (b) {
             case 0:
-                return ((k83) create(zw2Var)).invokeSuspend(f9cVar);
+                return ((k83) create(zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((k83) create(zw2Var)).invokeSuspend(f9cVar);
+                return ((k83) create(zw2Var)).invokeSuspend(g9cVar);
         }
     }
 

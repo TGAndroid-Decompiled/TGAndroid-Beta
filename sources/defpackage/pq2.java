@@ -105,9 +105,9 @@ public abstract class pq2 extends oq2 implements shc, pe5, vt9 {
     }
 
     @Override
-    public final oj7 d() {
-        oj7 oj7Var = new oj7();
-        LinkedHashMap linkedHashMap = (LinkedHashMap) oj7Var.a;
+    public final pj7 d() {
+        pj7 pj7Var = new pj7();
+        LinkedHashMap linkedHashMap = (LinkedHashMap) pj7Var.a;
         if (getApplication() != null) {
             linkedHashMap.put(phc.I, getApplication());
         }
@@ -116,7 +116,7 @@ public abstract class pq2 extends oq2 implements shc, pe5, vt9 {
         if (getIntent() != null && getIntent().getExtras() != null) {
             linkedHashMap.put(fhd.c, getIntent().getExtras());
         }
-        return oj7Var;
+        return pj7Var;
     }
 
     @Override
@@ -231,7 +231,7 @@ public abstract class pq2 extends oq2 implements shc, pe5, vt9 {
             Iterator it = this.G.iterator();
             while (it.hasNext()) {
                 configuration.getClass();
-                ((pt2) it.next()).accept(new bj7(z));
+                ((pt2) it.next()).accept(new cj7(z));
             }
         } catch (Throwable th) {
             this.I = false;
@@ -434,7 +434,7 @@ public abstract class pq2 extends oq2 implements shc, pe5, vt9 {
         }
         Iterator it = this.G.iterator();
         while (it.hasNext()) {
-            ((pt2) it.next()).accept(new bj7(z));
+            ((pt2) it.next()).accept(new cj7(z));
         }
     }
 

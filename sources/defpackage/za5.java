@@ -223,7 +223,7 @@ public final class za5 extends ViewGroup {
         } else {
             f = this.n;
         }
-        fh7 a = xte.a(fArr, fArr2, 0.45f, 2.35f, iArr, f);
+        gh7 a = xte.a(fArr, fArr2, 0.45f, 2.35f, iArr, f);
         int width = getWidth();
         int height = getHeight();
         float f5 = 0.001f;

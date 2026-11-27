@@ -662,9 +662,9 @@ public class vc6 extends og0 {
                             view = jd6Var;
                             break;
                         case 10:
-                            View rcaVar = new rca(context, (uh9) null);
+                            View scaVar = new sca(context, (uh9) null);
                             new zm2(new ColorDrawable(aob.v0(aob.a7, vnbVar)), aob.W0(context, 2131231233, aob.b7)).x = true;
-                            view = rcaVar;
+                            view = scaVar;
                             break;
                         case 11:
                             View view2 = new View(context);

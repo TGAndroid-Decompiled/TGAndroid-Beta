@@ -24,7 +24,7 @@ public final class em7 extends v79 {
             fm7VarArr[i2] = null;
             if (i2 != 2) {
                 if (lm7Var.M && TextUtils.isEmpty(lm7Var.Q)) {
-                    lm7Var.j0();
+                    lm7Var.i0();
                 }
             } else if (lm7Var.getParentActivity() != null) {
                 hl.t1(lm7Var.getParentActivity().getCurrentFocus());
@@ -37,18 +37,18 @@ public final class em7 extends v79 {
         lm7 lm7Var = this.d;
         int i3 = this.a;
         if (i3 != 2) {
-            lm7Var.P0();
+            lm7Var.N0();
         }
         jm7 jm7Var = this.c;
         if (i2 >= 0) {
             im7 im7Var = this.b;
             if (im7Var.f3.M0() >= im7Var.g3.E.size() - 5 && !jm7Var.n) {
-                lm7Var.y0(i3, false);
+                lm7Var.w0(i3, false);
             }
         }
         if (i3 == 1) {
-            lm7Var.z0(jm7Var);
+            lm7Var.x0(jm7Var);
         }
-        lm7Var.O0(i3);
+        lm7Var.M0(i3);
     }
 }

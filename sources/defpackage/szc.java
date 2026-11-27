@@ -159,7 +159,7 @@ public final class szc implements e84 {
     public final x1c g(long j2) {
         x1c e0 = this.f.e0(0, 3);
         jo4 jo4Var = new jo4();
-        jo4Var.s = dg7.n("text/vtt");
+        jo4Var.s = eg7.n("text/vtt");
         jo4Var.d = this.a;
         jo4Var.x = j2;
         xnb.v(jo4Var, e0);

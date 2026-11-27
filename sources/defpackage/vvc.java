@@ -77,10 +77,10 @@ public final class vvc implements fd, oj3 {
         jlaVar2 = ((e) wallpapersListActivity).simpleActionBar;
         jlaVar2.o(true);
         if (arrayList.size() <= 1) {
-            long j = ((if7) arrayList.get(0)).a;
+            long j = ((jf7) arrayList.get(0)).a;
             i5 = ((e) wallpapersListActivity).currentAccount;
             if (j != yac.h(i5).e() && charSequence == null) {
-                long j2 = ((if7) arrayList.get(0)).a;
+                long j2 = ((jf7) arrayList.get(0)).a;
                 Bundle l2 = bs2.l("scrollToTopOnResume", true);
                 if (wf3.B(j2)) {
                     l2.putInt("enc_id", (int) (4294967295L & j2));
@@ -105,7 +105,7 @@ public final class vvc implements fd, oj3 {
         }
         wallpapersListActivity.I0();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            long j3 = ((if7) arrayList.get(i10)).a;
+            long j3 = ((jf7) arrayList.get(i10)).a;
             if (charSequence != null) {
                 i4 = ((e) wallpapersListActivity).currentAccount;
                 r7a.B(i4).q0(p7a.b(charSequence.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
@@ -145,8 +145,8 @@ public final class vvc implements fd, oj3 {
                 yvc yvcVar = (yvc) valueAt;
                 TLRPC.WallPaper wallPaper = yvcVar.k;
                 if (wallPaper != null && wallPaper.id < 0) {
-                    jf7 messagesStorage = wallpapersListActivity.getMessagesStorage();
-                    messagesStorage.a.c(new le7(messagesStorage, yvcVar.k.id, (byte) 3));
+                    kf7 messagesStorage = wallpapersListActivity.getMessagesStorage();
+                    messagesStorage.a.c(new me7(messagesStorage, yvcVar.k.id, (byte) 3));
                     wallpapersListActivity.c0.remove(yvcVar);
                     wallpapersListActivity.a0.remove(yvcVar.a());
                 } else {

@@ -33,7 +33,7 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
             }
             ArrayList arrayList = new ArrayList();
             if (i5 >= 0) {
-                jf7.Y(k5.a(i5).a).n0(i, 0, arrayList, null, null, false);
+                kf7.a0(k5.a(i5).a).p0(i, 0, arrayList, null, null, false);
             }
             if (i3 != 1 && arrayList.size() > 1) {
                 i4 = (i3 == 2 || arrayList.size() <= 2) ? 2131492959 : (i3 == 3 || arrayList.size() <= 3) ? 2131492960 : 2131492961;
@@ -66,8 +66,8 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
         for (int i = 0; i < iArr.length; i++) {
             int i2 = sharedPreferences.getInt("account" + iArr[i], -1);
             if (i2 >= 0) {
-                jf7 Y = jf7.Y(k5.a(i2).a);
-                Y.a.c(new ad7(Y, iArr[i], (byte) 1));
+                kf7 a0 = kf7.a0(k5.a(i2).a);
+                a0.a.c(new bd7(a0, iArr[i], (byte) 1));
             }
             edit.remove("account" + iArr[i]);
             edit.remove("type" + iArr[i]);

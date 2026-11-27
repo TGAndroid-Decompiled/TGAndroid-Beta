@@ -30,6 +30,6 @@ public final class l14 implements View.OnClickListener {
             str = o24Var.X0[0];
         }
         tL_messages_getEmojiURL.lang_code = str;
-        hl.d3(new ze7(this, idVarArr, ConnectionsManager.getInstance(o24Var.d1).sendRequest(tL_messages_getEmojiURL, new fn0(this, idVarArr, this.b, (byte) 23)), (byte) 24), 1000L);
+        hl.d3(new bf7(this, idVarArr, ConnectionsManager.getInstance(o24Var.d1).sendRequest(tL_messages_getEmojiURL, new fn0(this, idVarArr, this.b, (byte) 23)), (byte) 24), 1000L);
     }
 }

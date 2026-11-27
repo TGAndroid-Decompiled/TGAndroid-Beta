@@ -35,7 +35,7 @@ public final class ijf {
         sjf.S();
         this.g = "subject-segmentation";
         ri6.v();
-        this.e = ri6.G(new tg7(this, (byte) 9));
+        this.e = ri6.G(new ug7(this, (byte) 9));
         ri6.v();
         ljaVar.getClass();
         this.f = ri6.G(new z1f(ljaVar, (byte) 4));

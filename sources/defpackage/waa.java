@@ -52,6 +52,6 @@ public final class waa implements ka1 {
     }
 
     @Override
-    public final void p0(ei7 ei7Var) {
+    public final void p0(fi7 fi7Var) {
     }
 }

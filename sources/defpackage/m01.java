@@ -221,7 +221,7 @@ public abstract class m01 {
         } else {
             str = J0.toLowerCase();
         }
-        if (uc7.s1(yac.t0).k4.J3.f.contains(str)) {
+        if (uc7.s1(yac.t0).l4.J3.f.contains(str)) {
             if (zArr != null) {
                 zArr[0] = true;
                 return false;

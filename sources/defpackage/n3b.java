@@ -1,57 +1,25 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class n3b extends AnimatorListenerAdapter {
+import org.telegram.ui.StickersActivity;
+public final class n3b implements Runnable {
     public final byte a;
-    public final boolean b;
-    public final p3b c;
+    public final Object b;
+    public final Object c;
 
-    public n3b(p3b p3bVar, boolean z, byte b) {
+    public n3b(StickersActivity stickersActivity, q3b q3bVar) {
+        this.a = (byte) 1;
+        this.c = stickersActivity;
+        this.b = q3bVar;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.n3b.run():void");
+    }
+
+    public n3b(Object obj, Object obj2, byte b) {
         this.a = b;
-        this.c = p3bVar;
-        this.b = z;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        p3b p3bVar = this.c;
-        boolean z = this.b;
-        switch (b) {
-            case 0:
-                if (!z) {
-                    p3bVar.h.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!z) {
-                    p3bVar.y.setVisibility(4);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        byte b = this.a;
-        p3b p3bVar = this.c;
-        boolean z = this.b;
-        switch (b) {
-            case 0:
-                if (z) {
-                    p3bVar.h.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                if (z) {
-                    p3bVar.y.setVisibility(0);
-                    return;
-                }
-                return;
-        }
+        this.b = obj;
+        this.c = obj2;
     }
 }

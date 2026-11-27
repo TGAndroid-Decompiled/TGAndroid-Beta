@@ -31,7 +31,7 @@ public final class h4a extends nx0 {
         this.a = i;
         this.Q0 = true;
         this.E = true;
-        hr hrVar = uc7.s1(i).k4;
+        hr hrVar = uc7.s1(i).l4;
         long max = Math.max(hrVar.q.f(), 10000000L);
         pj pjVar = pj.b;
         this.w1 = oj.j(max, pjVar);
@@ -345,7 +345,7 @@ public final class h4a extends nx0 {
             }
         }
         if (z4 || z5) {
-            hr hrVar = uc7.s1(this.a).k4;
+            hr hrVar = uc7.s1(this.a).l4;
             oj ojVar8 = this.y1;
             pj pjVar4 = ojVar8.a;
             if (pjVar4 == pjVar2) {
@@ -358,9 +358,9 @@ public final class h4a extends nx0 {
             pj pjVar5 = this.y1.a;
             int i6 = this.a;
             if (pjVar5 == pjVar) {
-                d = uc7.s1(i6).k4.k.i;
+                d = uc7.s1(i6).l4.k.i;
             } else {
-                d = uc7.s1(i6).k4.A3.i * 1.0E-5d;
+                d = uc7.s1(i6).l4.A3.i * 1.0E-5d;
             }
             di0.h();
             sb.append(di0.f("USD", 2, (long) (this.y1.c() * d * 100.0d), false));

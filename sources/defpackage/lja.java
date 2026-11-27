@@ -8,7 +8,7 @@ public final class lja {
 
     static {
         eq2 b2 = fq2.b(lja.class);
-        b2.a(qe3.b(jg7.class));
+        b2.a(qe3.b(kg7.class));
         b2.a(qe3.b(Context.class));
         b2.f = new yad((byte) 4);
         b = b2.b();

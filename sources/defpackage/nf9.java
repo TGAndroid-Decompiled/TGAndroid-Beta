@@ -25,10 +25,10 @@ public final class nf9 extends View {
         switch (this.a) {
             case 12:
                 canvas.save();
-                rbb rbbVar = (rbb) this.b;
-                canvas.translate(rbbVar.d1.getX() + rbbVar.m0.getX(), rbbVar.d1.getY() + rbbVar.m0.getY());
-                hbb hbbVar = rbbVar.d1;
-                hbbVar.k(canvas, hbbVar.getBounds(), rbbVar.d1.getOver2Alpha());
+                sbb sbbVar = (sbb) this.b;
+                canvas.translate(sbbVar.d1.getX() + sbbVar.m0.getX(), sbbVar.d1.getY() + sbbVar.m0.getY());
+                ibb ibbVar = sbbVar.d1;
+                ibbVar.k(canvas, ibbVar.getBounds(), sbbVar.d1.getOver2Alpha());
                 canvas.restore();
                 return;
             default:

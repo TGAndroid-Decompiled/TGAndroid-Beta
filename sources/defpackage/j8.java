@@ -224,7 +224,7 @@ public final class j8 extends AnimatorListenerAdapter {
                 return;
             case 10:
                 h6b h6bVar = (h6b) obj;
-                o68 o68Var = ((s58) obj3).a;
+                o68 o68Var = ((t58) obj3).a;
                 o68Var.e3 = false;
                 o68Var.f3 = 1.0f;
                 o68Var.invalidate();

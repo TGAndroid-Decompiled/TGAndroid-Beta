@@ -129,8 +129,8 @@ public final class rx1 implements pcc {
                 TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages = new TLRPC.TL_messages_sendQuickReplyMessages();
                 tL_messages_sendQuickReplyMessages.peer = uc7.s1(i4).j1(W0);
                 tL_messages_sendQuickReplyMessages.shortcut_id = a19Var.a;
-                jf7 Y = jf7.Y(i4);
-                Y.a.c(new vp8(f2, Y, a19Var, tL_messages_sendQuickReplyMessages, (byte) 7));
+                kf7 a0 = kf7.a0(i4);
+                a0.a.c(new vp8(f2, a0, a19Var, tL_messages_sendQuickReplyMessages, (byte) 7));
                 n12Var3.dismiss();
                 return;
             case 6:
@@ -148,9 +148,9 @@ public final class rx1 implements pcc {
                 return;
             case 7:
                 g82 g82Var = (g82) obj3;
-                hh7 hh7Var = g82Var.f;
-                hh7Var.r(((TLRPC.WallPaper) obj2).settings.intensity, ((avc) obj).a);
-                hh7Var.s(hh7Var.f());
+                ih7 ih7Var = g82Var.f;
+                ih7Var.r(((TLRPC.WallPaper) obj2).settings.intensity, ((avc) obj).a);
+                ih7Var.s(ih7Var.f());
                 View view = g82Var.b;
                 if (view != null) {
                     view.invalidate();

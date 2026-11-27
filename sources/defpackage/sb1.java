@@ -149,13 +149,13 @@ public final class sb1 implements View.OnClickListener {
                     mediaDataController.getClass();
                 } else {
                     if (mediaDataController.A0.c(F0.id) == null) {
-                        if (F0.size > uc7.s1(mediaDataController.currentAccount).k4.Z0.f()) {
-                            jn7.e().k(296, 4, ob6.a0("TooLargeError", null, 2131743696, new Object[0]), ob6.a0("ErrorRingtoneSizeTooBig", null, 2131751067, Integer.valueOf(uc7.s1(yac.t0).k4.Z0.f() / 1024)));
+                        if (F0.size > uc7.s1(mediaDataController.currentAccount).l4.Z0.f()) {
+                            jn7.e().k(296, 4, ob6.a0("TooLargeError", null, 2131743696, new Object[0]), ob6.a0("ErrorRingtoneSizeTooBig", null, 2131751067, Integer.valueOf(uc7.s1(yac.t0).l4.Z0.f() / 1024)));
                         } else {
                             for (int i3 = 0; i3 < F0.attributes.size(); i3++) {
                                 TLRPC.DocumentAttribute documentAttribute = F0.attributes.get(i3);
-                                if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration > uc7.s1(mediaDataController.currentAccount).k4.a1.f()) {
-                                    jn7.e().k(296, 4, ob6.a0("TooLongError", null, 2131743695, new Object[0]), ob6.a0("ErrorRingtoneDurationTooLong", null, 2131751069, Integer.valueOf(uc7.s1(yac.t0).k4.a1.f())));
+                                if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration > uc7.s1(mediaDataController.currentAccount).l4.a1.f()) {
+                                    jn7.e().k(296, 4, ob6.a0("TooLongError", null, 2131743695, new Object[0]), ob6.a0("ErrorRingtoneDurationTooLong", null, 2131751069, Integer.valueOf(uc7.s1(yac.t0).l4.a1.f())));
                                 }
                             }
                             TL_account.saveRingtone saveringtone = new TL_account.saveRingtone();
@@ -383,7 +383,7 @@ public final class sb1 implements View.OnClickListener {
                             view2 = (hc8) rxVar2.d;
                             break;
                         default:
-                            view2 = (vab) rxVar2.d;
+                            view2 = (wab) rxVar2.d;
                             break;
                     }
                     Bitmap H3 = hl.H3(view2);
@@ -411,7 +411,7 @@ public final class sb1 implements View.OnClickListener {
                                     frameLayout = ((hc8) rxVar4.d).O0;
                                     break;
                                 default:
-                                    frameLayout = ((vab) rxVar4.d).F0;
+                                    frameLayout = ((wab) rxVar4.d).F0;
                                     break;
                             }
                             frameLayout.addView(im2Var, tre.c(-1.0f, -1));
@@ -434,7 +434,7 @@ public final class sb1 implements View.OnClickListener {
                             sm2Var.dismiss();
                             return;
                         default:
-                            yw7 yw7Var = ((vab) rxVar3.d).y0;
+                            yw7 yw7Var = ((wab) rxVar3.d).y0;
                             Matrix matrix2 = yw7Var.getMatrix();
                             canvas.save();
                             canvas.translate(yw7Var.getX(), yw7Var.getY());

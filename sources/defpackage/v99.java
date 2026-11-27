@@ -38,7 +38,7 @@ public final class v99 {
         ko9 ko9Var = new ko9(this);
         this.d = ko9Var;
         this.c = rddVar;
-        rddVar.h = new i09(this, (byte) 29);
+        rddVar.h = new j09(this, (byte) 29);
         rddVar.c = ko9Var;
         this.e = new bu6(this);
     }
@@ -424,9 +424,9 @@ public final class v99 {
                                 }
                                 if ((i2 & 32) != 0) {
                                     rddVar.e = SystemClock.elapsedRealtime();
-                                    i09 i09Var = rddVar.h;
-                                    if (i09Var != null) {
-                                        v99 v99Var = (v99) i09Var.b;
+                                    j09 j09Var = rddVar.h;
+                                    if (j09Var != null) {
+                                        v99 v99Var = (v99) j09Var.b;
                                         Iterator it8 = v99Var.h.iterator();
                                         if (!it8.hasNext()) {
                                             Iterator it9 = v99Var.i.iterator();

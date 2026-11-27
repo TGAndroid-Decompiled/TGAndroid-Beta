@@ -8,7 +8,7 @@ public abstract class dzc {
     static {
         fzc rj2Var;
         try {
-            rj2Var = new k09((WebViewProviderFactoryBoundaryInterface) py0.a(WebViewProviderFactoryBoundaryInterface.class, x2f.a()), (byte) 20);
+            rj2Var = new l09((WebViewProviderFactoryBoundaryInterface) py0.a(WebViewProviderFactoryBoundaryInterface.class, x2f.a()), (byte) 20);
         } catch (ClassNotFoundException unused) {
             rj2Var = new rj2((byte) 2);
         } catch (IllegalAccessException e) {

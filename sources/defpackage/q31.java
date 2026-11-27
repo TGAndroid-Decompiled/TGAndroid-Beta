@@ -69,10 +69,10 @@ public final class q31 implements ggd {
                 }
                 return arrayList;
             } catch (RemoteException e) {
-                throw new kg7("Failed to run legacy image labeler.", e);
+                throw new lg7("Failed to run legacy image labeler.", e);
             }
         }
-        throw new kg7("Waiting for the image labeling module to be downloaded. Please wait.", 14);
+        throw new lg7("Waiting for the image labeling module to be downloaded. Please wait.", 14);
     }
 
     @Override
@@ -103,7 +103,7 @@ public final class q31 implements ggd {
                     this.a = true;
                 }
             } catch (RemoteException e) {
-                throw new kg7("Failed to create legacy image labeler.", e);
+                throw new lg7("Failed to create legacy image labeler.", e);
             } catch (ss3 e2) {
                 if (!str.equals("com.google.android.gms.vision.dynamite")) {
                     if (!this.a) {
@@ -114,7 +114,7 @@ public final class q31 implements ggd {
                     }
                     return;
                 }
-                throw new kg7("Failed to load deprecated vision dynamite module.", e2);
+                throw new lg7("Failed to load deprecated vision dynamite module.", e2);
             }
         }
     }

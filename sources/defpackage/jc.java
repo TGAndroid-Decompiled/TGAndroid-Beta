@@ -32,7 +32,7 @@ public final class jc {
         if (!z) {
             this.e = true;
             try {
-                String string = uc7.s1(i).X3.getString("ai_styles", null);
+                String string = uc7.s1(i).Y3.getString("ai_styles", null);
                 if (string != null) {
                     SerializedData serializedData = new SerializedData(Base64.getDecoder().decode(string));
                     TL_aicompose.Tones TLdeserialize = TL_aicompose.Tones.TLdeserialize(serializedData, serializedData.readInt32(true), true);
@@ -63,6 +63,6 @@ public final class jc {
         tL_tones.tones.addAll(this.b);
         SerializedData serializedData = new SerializedData(tL_tones.getObjectSize());
         tL_tones.serializeToStream(serializedData);
-        uc7.s1(this.a).X3.edit().putString("ai_styles", Base64.getEncoder().encodeToString(serializedData.toByteArray())).apply();
+        uc7.s1(this.a).Y3.edit().putString("ai_styles", Base64.getEncoder().encodeToString(serializedData.toByteArray())).apply();
     }
 }

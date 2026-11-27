@@ -202,28 +202,28 @@ public final class c0 implements View.OnClickListener {
                 }
                 return;
             case 13:
-                hbb hbbVar = (hbb) obj3;
+                ibb ibbVar = (ibb) obj3;
                 FrameLayout frameLayout = (FrameLayout) obj2;
                 x53 x53Var = (x53) obj;
-                fu5 fu5Var = hbbVar.V0;
+                fu5 fu5Var = ibbVar.V0;
                 if (fu5Var == null || !fu5Var.E()) {
-                    wb1 wb1Var2 = new wb1(hbbVar, (byte) 0);
-                    boolean p = yac.h(hbbVar.V).p();
+                    wb1 wb1Var2 = new wb1(ibbVar, (byte) 0);
+                    boolean p = yac.h(ibbVar.V).p();
                     if (p) {
                         wb1Var = null;
                     } else {
-                        wb1Var = new wb1(hbbVar, (byte) 1);
+                        wb1Var = new wb1(ibbVar, (byte) 1);
                     }
-                    fu5 G3 = fu5.G(frameLayout, x53Var, hbbVar.T0);
-                    hbbVar.V0 = G3;
+                    fu5 G3 = fu5.G(frameLayout, x53Var, ibbVar.T0);
+                    ibbVar.V0 = G3;
                     G3.o(13, hl.L(200.0f), ob6.N0("StoryPeriodHint"));
-                    hbbVar.V0.j();
+                    ibbVar.V0.j();
                     int i3 = 0;
                     while (true) {
                         int[] iArr = zb1.Q1;
                         if (i3 < i) {
                             int i4 = iArr[i3];
-                            fu5 fu5Var2 = hbbVar.V0;
+                            fu5 fu5Var2 = ibbVar.V0;
                             if (i4 == Integer.MAX_VALUE) {
                                 G = ob6.N0("StoryPeriodKeep");
                             } else {
@@ -238,13 +238,13 @@ public final class c0 implements View.OnClickListener {
                                 zdVar = null;
                             }
                             fu5Var2.N(zdVar);
-                            if (hbbVar.X0 == i3) {
-                                hbbVar.V0.M();
+                            if (ibbVar.X0 == i3) {
+                                ibbVar.V0.M();
                             }
                             i3++;
                             i = 4;
                         } else {
-                            fu5 fu5Var3 = hbbVar.V0;
+                            fu5 fu5Var3 = ibbVar.V0;
                             fu5Var3.s = (short) 0;
                             fu5Var3.a0();
                             return;
@@ -318,7 +318,7 @@ public final class c0 implements View.OnClickListener {
                         u02Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    if (!uc7.s1(i6).M3() && uc7.s1(i6).k4.p1.f() > n12Var2.F1) {
+                    if (!uc7.s1(i6).M3() && uc7.s1(i6).l4.p1.f() > n12Var2.F1) {
                         n12Var2.z1(eVar3);
                     }
                     ox1 ox1Var2 = n12Var2.b2;
@@ -401,7 +401,7 @@ public final class c0 implements View.OnClickListener {
             case 23:
                 dg2 dg2Var = (dg2) obj3;
                 TL_account.TL_connectedBot tL_connectedBot = (TL_account.TL_connectedBot) obj2;
-                me7 me7Var = (me7) obj;
+                oe7 oe7Var = (oe7) obj;
                 c51 c51Var2 = dg2Var.X1;
                 if (!c51Var2.R) {
                     c51Var2.setLoading(true);
@@ -409,7 +409,7 @@ public final class c0 implements View.OnClickListener {
                     updateconnectedbot.deleted = true;
                     updateconnectedbot.bot = uc7.s1(dg2Var.a).o1(tL_connectedBot.bot_id);
                     updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-                    ConnectionsManager.getInstance(dg2Var.a).sendRequest(updateconnectedbot, new ql(dg2Var, me7Var, (byte) 24));
+                    ConnectionsManager.getInstance(dg2Var.a).sendRequest(updateconnectedbot, new ql(dg2Var, oe7Var, (byte) 24));
                     return;
                 }
                 return;

@@ -145,9 +145,9 @@ public final class w6 implements View.OnClickListener {
                 o68 o68Var = (o68) obj;
                 boolean z5 = !z2;
                 uc7 s1 = uc7.s1(o68Var.m2);
-                if (s1.Q3 != z5) {
-                    SharedPreferences.Editor edit2 = s1.X3.edit();
-                    s1.Q3 = z5;
+                if (s1.R3 != z5) {
+                    SharedPreferences.Editor edit2 = s1.Y3.edit();
+                    s1.R3 = z5;
                     edit2.putBoolean("storyQualityFull", z5).apply();
                     s1.getNotificationCenter().k(212, new Object[0]);
                 }

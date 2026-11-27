@@ -416,25 +416,25 @@ public final class y04 extends c79 {
                 }
                 return;
             }
-            t3b t3bVar = (t3b) view;
-            t3bVar.getClass();
+            u3b u3bVar = (u3b) view;
+            u3bVar.getClass();
             int i10 = sparseIntArray.get(i3);
             if (i3 == this.c) {
-                t3bVar.b(ob6.M0(2131750800, null), 2131232101, ob6.M0(2131754895, null), 0, 0);
+                u3bVar.b(ob6.M0(2131750800, null), 2131232101, ob6.M0(2131754895, null), 0, 0);
                 return;
             } else if (i3 == this.f) {
-                t3bVar.a(0, ob6.M0(2131746088, null));
+                u3bVar.a(0, ob6.M0(2131746088, null));
                 return;
             } else if (i10 >= strArr.length) {
                 try {
-                    t3bVar.a(0, ((c14) arrayList.get(i10 - strArr.length)).b.title);
+                    u3bVar.a(0, ((c14) arrayList.get(i10 - strArr.length)).b.title);
                     return;
                 } catch (Exception unused) {
-                    t3bVar.a(0, "");
+                    u3bVar.a(0, "");
                     return;
                 }
             } else {
-                t3bVar.a(0, strArr[i10]);
+                u3bVar.a(0, strArr[i10]);
                 return;
             }
         }
@@ -550,7 +550,7 @@ public final class y04 extends c79 {
 
     @Override
     public final f89 x(ViewGroup viewGroup, int i) {
-        t3b t3bVar;
+        u3b u3bVar;
         o24 o24Var = this.G;
         if (i != 0) {
             if (i != 1) {
@@ -560,7 +560,7 @@ public final class y04 extends c79 {
                             if (i != 6) {
                                 View view = new View(o24Var.getContext());
                                 view.setLayoutParams(new r79(-1, o24Var.c1));
-                                t3bVar = view;
+                                u3bVar = view;
                             } else {
                                 Context context = o24Var.getContext();
                                 vnb vnbVar = o24Var.a2;
@@ -578,10 +578,10 @@ public final class y04 extends c79 {
                                 textView.setTypeface(hl.o());
                                 textView.setPadding(hl.L(6.0f), hl.L(1.66f), hl.L(6.0f), hl.L(2.0f));
                                 frameLayout.addView(textView, tre.e(-2, -2, 17));
-                                t3bVar = frameLayout;
+                                u3bVar = frameLayout;
                             }
                         } else {
-                            t3bVar = new g14(o24Var, o24Var.getContext());
+                            u3bVar = new g14(o24Var, o24Var.getContext());
                         }
                     } else {
                         Context context2 = o24Var.getContext();
@@ -592,19 +592,19 @@ public final class y04 extends c79 {
                         guVar.setClipToPadding(false);
                         guVar.i(new br1((byte) 2));
                         guVar.setOnItemClickListener(new u(this, (byte) 24));
-                        t3bVar = guVar;
+                        u3bVar = guVar;
                     }
                 } else {
-                    t3bVar = new d14(o24Var, o24Var.getContext());
+                    u3bVar = new d14(o24Var, o24Var.getContext());
                 }
             } else {
-                t3b t3bVar2 = new t3b(o24Var.getContext(), true, false, o24Var.a2, o24Var.j2);
-                t3bVar2.setOnIconClickListener(new mh3(this, (byte) 7));
-                t3bVar = t3bVar2;
+                u3b u3bVar2 = new u3b(o24Var.getContext(), true, false, o24Var.a2, o24Var.j2);
+                u3bVar2.setOnIconClickListener(new mh3(this, (byte) 7));
+                u3bVar = u3bVar2;
             }
         } else {
-            t3bVar = new x14(o24Var.getContext());
+            u3bVar = new x14(o24Var.getContext());
         }
-        return new f89(t3bVar);
+        return new f89(u3bVar);
     }
 }

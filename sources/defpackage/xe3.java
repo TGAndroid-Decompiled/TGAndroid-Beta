@@ -1,6 +1,6 @@
 package defpackage;
 public final class xe3 {
-    public static final xe3 c = new xe3(new rg7((byte) 18));
+    public static final xe3 c = new xe3(new sg7((byte) 18));
     public static final String d;
     public static final String e;
     public final int a = 0;
@@ -12,7 +12,7 @@ public final class xe3 {
         e = "2";
     }
 
-    public xe3(rg7 rg7Var) {
+    public xe3(sg7 sg7Var) {
     }
 
     public final boolean equals(Object obj) {

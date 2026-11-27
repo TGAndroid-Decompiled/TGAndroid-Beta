@@ -13,7 +13,7 @@ public final class hr9 extends FrameLayout {
     public boolean b;
     public boolean c;
     public final long d;
-    public final ki7 e;
+    public final li7 e;
     public final ir9 f;
 
     public hr9(ir9 ir9Var, LaunchActivity launchActivity) {
@@ -21,7 +21,7 @@ public final class hr9 extends FrameLayout {
         this.f = ir9Var;
         this.c = true;
         this.d = SystemClock.elapsedRealtime();
-        this.e = new ki7(this, (byte) 23);
+        this.e = new li7(this, (byte) 23);
         setBackgroundColor(-16777216);
         l91 l91Var = new l91(launchActivity);
         addView(l91Var, tre.c(-1.0f, -1));

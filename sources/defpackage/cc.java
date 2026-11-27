@@ -102,9 +102,9 @@ public final class cc extends m15 implements fn7 {
         arrayList.add(ac.i(2131231810, ob6.M0(2131753140, null), ob6.M0(2131753141, null)));
         arrayList.add(b8c.B(1, null));
         arrayList.add(b8c.u(ob6.M0(2131754337, null)));
-        int f = getMessagesController().k4.L2.f();
+        int f = getMessagesController().l4.L2.f();
         int i2 = this.b0.commission_permille;
-        int f2 = getMessagesController().k4.M2.f();
+        int f2 = getMessagesController().l4.M2.f();
         sb sbVar = new sb((byte) 0);
         ob obVar = new ob(this, (byte) 1);
         b8c b8cVar2 = new b8c(15);
@@ -183,7 +183,7 @@ public final class cc extends m15 implements fn7 {
 
     public final TL_payments.starRefProgram E0() {
         TL_payments.starRefProgram starrefprogram = new TL_payments.starRefProgram();
-        starrefprogram.commission_permille = Utilities.j(50, getMessagesController().k4.M2.f(), getMessagesController().k4.L2.f());
+        starrefprogram.commission_permille = Utilities.j(50, getMessagesController().l4.M2.f(), getMessagesController().l4.L2.f());
         starrefprogram.duration_months = 1;
         return starrefprogram;
     }
@@ -197,7 +197,7 @@ public final class cc extends m15 implements fn7 {
             TLRPC.UserFull Y1 = messagesController.Y1(j);
             if (Y1 != null) {
                 Y1.starref_program = starrefprogram;
-                getMessagesStorage().g2(Y1, false);
+                getMessagesStorage().l2(Y1, false);
                 jn7.f(this.currentAccount).k(jn7.E0, Long.valueOf(j), Y1);
             }
             C0(false);
@@ -313,7 +313,7 @@ public final class cc extends m15 implements fn7 {
                 }
                 starrefprogram2.end_date = currentTime + i;
                 Y1.starref_program = starrefprogram;
-                getMessagesStorage().g2(Y1, false);
+                getMessagesStorage().l2(Y1, false);
                 jn7.f(this.currentAccount).k(jn7.E0, Long.valueOf(j), Y1);
             }
             C0(true);

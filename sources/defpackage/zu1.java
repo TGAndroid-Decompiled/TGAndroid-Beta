@@ -1493,7 +1493,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             }
             l1c l1cVar = this.g2;
             long intValue = num.intValue();
-            ArrayList l = uc7.s1(l1cVar.e).g4.l(-l1cVar.f);
+            ArrayList l = uc7.s1(l1cVar.e).h4.l(-l1cVar.f);
             if (l != null) {
                 int size = l.size();
                 int i3 = 0;
@@ -1512,7 +1512,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             } else {
                 message = tL_forumTopic.topicStartMessage;
             }
-            if (message == null && tL_forumTopic != null && (f = getMessagesController().g4.f(-a(), tL_forumTopic.id)) != null) {
+            if (message == null && tL_forumTopic != null && (f = getMessagesController().h4.f(-a(), tL_forumTopic.id)) != null) {
                 message = f.topicStartMessage;
                 tL_forumTopic2 = f;
             } else {
@@ -1529,7 +1529,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     this.F7 = -1;
                 }
                 getConnectionsManager().cancelRequestsForGuid(this.classGuid);
-                getMessagesStorage().j(this.classGuid);
+                getMessagesStorage().k(this.classGuid);
                 this.classGuid = ConnectionsManager.generateClassGuid();
                 kb();
                 this.x5 = null;
@@ -1597,7 +1597,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     zu1Var.a0.y2(true);
                 }
                 if (tL_forumTopic2 != null) {
-                    zu1Var.getMessagesController().g4.k(zu1Var.l6, tL_forumTopic2.id);
+                    zu1Var.getMessagesController().h4.k(zu1Var.l6, tL_forumTopic2.id);
                     i = tL_forumTopic2.unread_reactions_count;
                 } else {
                     i = 0;
@@ -1617,7 +1617,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     qu1Var.k(null);
                 }
                 if (lbc.w(zu1Var.f)) {
-                    zu1Var.getMediaDataController().K0(if7.a(zu1Var.l6, num.intValue()), true);
+                    zu1Var.getMediaDataController().K0(jf7.a(zu1Var.l6, num.intValue()), true);
                 }
             }
         }
@@ -1658,7 +1658,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             }
             zu1 zu1Var = new zu1(bundle);
             if (this.x4) {
-                ro4.a(zu1Var, if7.a(a(), c()));
+                ro4.a(zu1Var, jf7.a(a(), c()));
             }
             zu1Var.n9 = new sq1(this);
             presentFragment(zu1Var, false);
@@ -1777,7 +1777,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                 this.F7 = -1;
             }
             getConnectionsManager().cancelRequestsForGuid(this.classGuid);
-            getMessagesStorage().j(this.classGuid);
+            getMessagesStorage().k(this.classGuid);
             this.classGuid = ConnectionsManager.generateClassGuid();
             kb();
             this.x5 = null;
@@ -1789,13 +1789,13 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             this.b8 = null;
             this.z6.clear();
             this.s4 = l.longValue();
-            TLRPC.TL_forumTopic f = getMessagesController().g4.f(-a(), l.longValue());
+            TLRPC.TL_forumTopic f = getMessagesController().h4.f(-a(), l.longValue());
             if (l.longValue() != 0 && f != null) {
                 int i3 = f.read_inbox_max_id;
                 this.A4 = i3;
                 this.B4 = f.read_outbox_max_id;
                 this.C4 = Math.max(1, i3);
-                getMessagesController().g4.k(this.l6, wf3.n(f.from_id));
+                getMessagesController().h4.k(this.l6, wf3.n(f.from_id));
             } else {
                 this.r4 = null;
                 this.p4 = null;
@@ -2848,7 +2848,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         if (q7Var == null) {
             return;
         }
-        if (getMessagesController().i4.y(a()) && getMessagesController().i4.s(a())) {
+        if (getMessagesController().j4.y(a()) && getMessagesController().j4.s(a())) {
             i = 0;
         } else {
             i = 8;
@@ -2953,7 +2953,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         if (chatFull != null && !this.I5) {
             TLRPC.Chat chat = this.e;
             if (chat.creator && chat.megagroup && !chat.gigagroup && chatFull.pending_suggestions.contains("CONVERT_GIGAGROUP") && this.visibleDialog == null) {
-                SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).W3;
+                SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).X3;
                 int i = sharedPreferences.getInt("group_convert_time", 0);
                 boolean z = f11.a;
                 int currentTime = getConnectionsManager().getCurrentTime();
@@ -3317,7 +3317,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                 bundle2.putInt("dialog_folder_id", this.ma.a);
                 bundle2.putInt("dialog_filter_id", this.ma.b);
                 bundle2.putBoolean("pulled", true);
-                uc7.s1(this.currentAccount).W3.edit().remove("diditem" + this.ma.a0).apply();
+                uc7.s1(this.currentAccount).X3.edit().remove("diditem" + this.ma.a0).apply();
                 zu1 zu1Var = new zu1(bundle2);
                 ArrayList arrayList = this.Qb;
                 if (arrayList != null && arrayList.size() > 1) {
@@ -3393,7 +3393,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
 
     public final void G9(TLRPC.TL_game tL_game, r47 r47Var, String str, long j) {
         oc(tL_game, r47Var, str, false, j);
-        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
         edit.putBoolean("askgame_" + j, false).commit();
     }
 
@@ -3727,7 +3727,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                             }
                             Pc(false);
                             return;
-                        } else if (l == null && l.longValue() != j2 && this.e != null && (f = getMessagesController().g4.f(this.e.id, l.longValue())) != null && (message2 = f.topicStartMessage) != null) {
+                        } else if (l == null && l.longValue() != j2 && this.e != null && (f = getMessagesController().h4.f(this.e.id, l.longValue())) != null && (message2 = f.topicStartMessage) != null) {
                             r47 r47Var5 = new r47(this.currentAccount, message2, (AbstractMap) getMessagesController().d, (AbstractMap) null, false, false);
                             this.F5 = r47Var5;
                             r47Var5.j1 = f;
@@ -4041,11 +4041,11 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                         if (!r47Var2.N3()) {
                             r47Var.k.replies.max_id = r47Var2.e1();
                         }
-                        jf7 messagesStorage = getMessagesStorage();
+                        kf7 messagesStorage = getMessagesStorage();
                         long j = this.e.id;
                         int e1 = r47Var.e1();
                         TLRPC.MessageReplies messageReplies2 = r47Var.k.replies;
-                        messagesStorage.a.c(new ed7(messagesStorage, e1, j, 1, messageReplies2.recent_repliers, messageReplies2.max_id));
+                        messagesStorage.a.c(new fd7(messagesStorage, e1, j, 1, messageReplies2.recent_repliers, messageReplies2.max_id));
                         if (r47Var.z2()) {
                             m47 m47Var = (m47) this.P6.f(r47Var.c1());
                             if (m47Var != null) {
@@ -5325,7 +5325,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         if (this.sd.f && (xg8Var = this.yd) != null && xg8Var.n == wb2Var) {
             Editable text = xg8Var.a.getText();
             int length = text.length();
-            if (length != 0 && length <= getMessagesController().k4.T.f()) {
+            if (length != 0 && length <= getMessagesController().l4.T.f()) {
                 r7a B = r7a.B(this.currentAccount);
                 r47 messageObject = wb2Var.getMessageObject();
                 zg8 attachedMedia = this.yd.getAttachedMedia();
@@ -5578,7 +5578,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         }
         fu5Var.u();
         Z9(this.Bc, false, true);
-        m01.t(getParentActivity(), Uri.parse(this.Bc.T0), true, false, false, null, null, false, uc7.s1(this.currentAccount).k4.I2.f, false, false);
+        m01.t(getParentActivity(), Uri.parse(this.Bc.T0), true, false, false, null, null, false, uc7.s1(this.currentAccount).l4.I2.f, false, false);
     }
 
     public final void Ma(wb2 wb2Var) {
@@ -5633,7 +5633,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     qyVar.setOnKeyListener(new x6(this, (byte) 1));
                     qyVar.setOnEditorActionListener(new j(this, (byte) 5));
                     this.a0.w7 = qyVar;
-                    hl.d3(new ze7(this, measuredHeight, qyVar, (byte) 12), 100L);
+                    hl.d3(new bf7(this, measuredHeight, qyVar, (byte) 12), 100L);
                     fm0Var.a(true, true);
                 }
             }
@@ -5738,7 +5738,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             }
             arrayList = null;
         }
-        if (messagesController.I2(arrayList) && !messagesController.K4.contains(Long.valueOf(j))) {
+        if (messagesController.I2(arrayList) && !messagesController.L4.contains(Long.valueOf(j))) {
             Context parentActivity = getParentActivity();
             if (parentActivity == null) {
                 parentActivity = hl.W(LaunchActivity.H1);
@@ -5873,7 +5873,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
 
     public final void Nc(eq0 eq0Var) {
         String charSequence;
-        if (uc7.s1(this.currentAccount).i4.r()) {
+        if (uc7.s1(this.currentAccount).j4.r()) {
             CharSequence text = eq0Var.getText();
             if (text == null) {
                 charSequence = "";
@@ -5890,7 +5890,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         if (this.g4 != 8) {
             if (r47Var != null) {
                 if (xc2.c0(this.e)) {
-                    TLRPC.TL_forumTopic f = getMessagesController().g4.f(this.e.id, r47.b2(this.currentAccount, r47Var.k, true, false));
+                    TLRPC.TL_forumTopic f = getMessagesController().h4.f(this.e.id, r47.b2(this.currentAccount, r47Var.k, true, false));
                     if (this.g4 == 8 || (f != null && (!f.closed || xc2.i(this.currentAccount, this.e, f)))) {
                         return true;
                     }
@@ -6172,7 +6172,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
     }
 
     public final void P8() {
-        if (this.g4 == 0 && getMessagesController().k4.g3.f() > getConnectionsManager().getCurrentTime() && !i5.a(this.currentAccount, this.f)) {
+        if (this.g4 == 0 && getMessagesController().l4.g3.f() > getConnectionsManager().getCurrentTime() && !i5.a(this.currentAccount, this.f)) {
             i5.c(this.currentAccount, getResourceProvider(), getParentActivity());
         }
     }
@@ -6190,7 +6190,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         boolean z4 = false;
         try {
             String J0 = hl.J0(str, false);
-            if ((this.h == null || getMessagesController().z2 == 1) && getMessagesController().k4.J3.f.contains(J0)) {
+            if ((this.h == null || getMessagesController().z2 == 1) && getMessagesController().l4.J3.f.contains(J0)) {
                 r7a sendMessagesHelper = getSendMessagesHelper();
                 if (i != 0 && i != 2) {
                     z3 = false;
@@ -6369,7 +6369,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
 
     public final void Q8(Context context, TLRPC.TL_error tL_error) {
         boolean z;
-        uc7.s1(this.currentAccount).W3.edit().putLong("dialog_join_requested_time_" + this.l6, System.currentTimeMillis()).commit();
+        uc7.s1(this.currentAccount).X3.edit().putLong("dialog_join_requested_time_" + this.l6, System.currentTimeMillis()).commit();
         if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
             if (xc2.T(this.e) && !this.e.megagroup) {
                 z = true;
@@ -6811,7 +6811,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                                 jn7.e().k(jn7.L4, new Object[0]);
                                 l7 l7Var = this.Z1;
                                 if (l7Var != null && (wz1Var = this.b1) != null && wz1Var.d(l7Var) && this.c2.getVisibility() != 8 && this.c2.getTag(2131296587) != null) {
-                                    uc7.s1(this.currentAccount).W3.edit().putInt("dialog_bar_vis3" + this.l6, 3).commit();
+                                    uc7.s1(this.currentAccount).X3.edit().putInt("dialog_bar_vis3" + this.l6, 3).commit();
                                     getNotificationCenter().k(jn7.Q0, Long.valueOf(this.l6));
                                     return;
                                 }
@@ -7580,7 +7580,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
     public final boolean Tb() {
         if (V7() && this.F5 == null && this.H5 == null) {
             if (this.g4 != 8 && V7() && this.e != null) {
-                TLRPC.TL_forumTopic f = getMessagesController().g4.f(this.e.id, 1L);
+                TLRPC.TL_forumTopic f = getMessagesController().h4.f(this.e.id, 1L);
                 if (this.g4 != 8) {
                     if (f != null) {
                         if (f.closed && !xc2.i(this.currentAccount, this.e, f)) {
@@ -8109,8 +8109,8 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
     }
 
     public final void Vb(wb2 wb2Var) {
-        if (getParentActivity() != null && wb2Var != null && wb2Var.L9 != null && wb2Var.getPrimaryMessageObject() != null && wb2Var.getPrimaryMessageObject().k != null && wb2Var.getPrimaryMessageObject().k.via_business_bot_id != 0 && !getMessagesController().X3.getBoolean("bizbothint", false)) {
-            getMessagesController().X3.edit().putBoolean("bizbothint", true).apply();
+        if (getParentActivity() != null && wb2Var != null && wb2Var.L9 != null && wb2Var.getPrimaryMessageObject() != null && wb2Var.getPrimaryMessageObject().k != null && wb2Var.getPrimaryMessageObject().k.via_business_bot_id != 0 && !getMessagesController().Y3.getBoolean("bizbothint", false)) {
+            getMessagesController().Y3.edit().putBoolean("bizbothint", true).apply();
             if (!this.Fb) {
                 this.Fb = true;
                 if (this.O1 != null) {
@@ -8605,11 +8605,11 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
     public final void X9() {
         this.R4 = true;
         if (this.E6) {
-            jf7 messagesStorage = getMessagesStorage();
+            kf7 messagesStorage = getMessagesStorage();
             messagesStorage.a.c(new o30(messagesStorage, c(), this.l6, new cn1(this, (byte) 1), (byte) 11));
             return;
         }
-        jf7 messagesStorage2 = getMessagesStorage();
+        kf7 messagesStorage2 = getMessagesStorage();
         TLRPC.TL_messages_getUnreadMentions tL_messages_getUnreadMentions = new TLRPC.TL_messages_getUnreadMentions();
         tL_messages_getUnreadMentions.peer = getMessagesController().j1(this.l6);
         tL_messages_getUnreadMentions.limit = 1;
@@ -8862,7 +8862,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
     }
 
     public final boolean Z7() {
-        if (xc2.V(this.e) && !k8() && this.g4 == 0) {
+        if (xc2.V(this.e) && !k8() && this.g4 == 0 && getMessagesController().E3()) {
             return true;
         }
         return false;
@@ -8873,7 +8873,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         fu5 J = fu5.J(this, wb2Var);
         mu9 mu9Var = new mu9(getParentActivity(), this.Ba);
         J.p = new dm1(mu9Var, (byte) 0);
-        if (z && getMessagesController().k4.v0.f) {
+        if (z && getMessagesController().l4.v0.f) {
             J.b(2131231278, ob6.M0(2131742648, null), new hl1(this, str, (byte) 4), false);
         }
         boolean z2 = true;
@@ -9973,22 +9973,22 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     }
                 }
                 hl.r(z96Var);
-                p5b p5bVar = yc7Var.E;
-                if (p5bVar != null && p5bVar.I != 0) {
-                    ConnectionsManager.getInstance(p5bVar.c).cancelRequest(p5bVar.I, true);
-                    p5bVar.I = 0;
+                q5b q5bVar = yc7Var.E;
+                if (q5bVar != null && q5bVar.I != 0) {
+                    ConnectionsManager.getInstance(q5bVar.c).cancelRequest(q5bVar.I, true);
+                    q5bVar.I = 0;
                 }
                 if (!TextUtils.isEmpty(trim)) {
                     yc7Var.y = str;
-                    yc7Var.E = new p5b(yc7Var.r, str2, trim);
+                    yc7Var.E = new q5b(yc7Var.r, str2, trim);
                     if (z) {
                         z96Var.run();
                     } else {
                         hl.d3(z96Var, 1000L);
                     }
                 }
-                p5b p5bVar2 = yc7Var.E;
-                if (p5bVar2 != null && p5bVar2.J > 0) {
+                q5b q5bVar2 = yc7Var.E;
+                if (q5bVar2 != null && q5bVar2.J > 0) {
                     yc7Var.f();
                 }
             }
@@ -10332,7 +10332,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                 }
             } else if (i == 2) {
                 int intValue = ((Integer) objArr[0]).intValue();
-                int i6 = uc7.r5;
+                int i6 = uc7.s5;
                 int i7 = intValue & 1;
                 if (i7 != 0 || (intValue & 16) != 0 || (524288 & intValue) != 0) {
                     if (zu1Var.e != null) {
@@ -11416,7 +11416,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
 
     public final void gb() {
         getConnectionsManager().cancelRequestsForGuid(this.classGuid);
-        getMessagesStorage().j(this.classGuid);
+        getMessagesStorage().k(this.classGuid);
         this.classGuid = ConnectionsManager.generateClassGuid();
         this.M7 = 0;
         this.C7 = false;
@@ -11876,25 +11876,25 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                         if (nt1Var != null) {
                             l = nt1Var.getBackgroundImage();
                         }
-                        if (l instanceof hh7) {
-                            hh7 hh7Var = (hh7) l;
-                            if (hh7Var.M != z2) {
+                        if (l instanceof ih7) {
+                            ih7 ih7Var = (ih7) l;
+                            if (ih7Var.M != z2) {
                                 float f3 = 1.0f;
                                 if (!z2) {
-                                    hh7Var.d();
-                                    if (hh7Var.M) {
-                                        hh7Var.h = 1.0f - ((hh7Var.h - (((int) (f / 0.125f)) * 0.125f)) / 0.125f);
-                                        hh7Var.d = true;
+                                    ih7Var.d();
+                                    if (ih7Var.M) {
+                                        ih7Var.h = 1.0f - ((ih7Var.h - (((int) (f / 0.125f)) * 0.125f)) / 0.125f);
+                                        ih7Var.d = true;
                                     }
                                 }
-                                hh7Var.M = z2;
+                                ih7Var.M = z2;
                                 if (z2) {
                                     f3 = 1.5f;
                                 }
-                                hh7Var.L = f3;
-                                hh7Var.x();
+                                ih7Var.L = f3;
+                                ih7Var.x();
                             } else if (z2) {
-                                hh7Var.x();
+                                ih7Var.x();
                             }
                         }
                     }
@@ -12241,7 +12241,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
     }
 
     public final void jb() {
-        hh7 j;
+        ih7 j;
         xu1 xu1Var = this.Ba;
         if (xu1Var != null) {
             Drawable l = xu1Var.l();
@@ -12251,8 +12251,8 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             if (l instanceof g82) {
                 l = ((g82) l).c(true);
             }
-            if (l instanceof hh7) {
-                ((hh7) l).v(false);
+            if (l instanceof ih7) {
+                ((ih7) l).v(false);
             }
             Drawable themedDrawable = getThemedDrawable("drawableMsgOut");
             if ((themedDrawable instanceof t37) && (j = ((t37) themedDrawable).j()) != null) {
@@ -13158,7 +13158,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     cq1 aa2 = aa(wb2Var, characterStyle);
                     TLRPC.TL_payments_getBankCardData tL_payments_getBankCardData = new TLRPC.TL_payments_getBankCardData();
                     tL_payments_getBankCardData.number = substring2;
-                    aa2.b = new ul1(this, getConnectionsManager().sendRequest(tL_payments_getBankCardData, new in0(this, aa2, wb2Var, substring2, characterStyle, (byte) 3), null, null, 0, getMessagesController().r3, 1, true), (byte) 5);
+                    aa2.b = new ul1(this, getConnectionsManager().sendRequest(tL_payments_getBankCardData, new in0(this, aa2, wb2Var, substring2, characterStyle, (byte) 3), null, null, 0, getMessagesController().s3, 1, true), (byte) 5);
                     aa2.d();
                     wb2Var.i3(-1);
                 } else {
@@ -13887,7 +13887,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
     public final void onBecomeFullyHidden() {
         ArrayList arrayList;
         K7();
-        if (!getMessagesController().M3() && getMessagesController().G3 <= 0 && getMessagesController().a4 < 2 && !getUserConfig().p() && (arrayList = this.M6) != null) {
+        if (!getMessagesController().M3() && getMessagesController().H3 <= 0 && getMessagesController().b4 < 2 && !getUserConfig().p() && (arrayList = this.M6) != null) {
             for (int i = 0; i < arrayList.size(); i++) {
                 r47 r47Var = (r47) arrayList.get(i);
                 if (r47Var != null && !r47Var.O3() && ((r47.Q4(r47Var.k) || r47Var.g4()) && !r47Var.E4() && (r47Var.k.media_unread || xc2.V(this.e)))) {
@@ -14188,7 +14188,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                 u2c.x(r47Var);
             }
         }
-        getMessagesController().B4.remove(Integer.valueOf(this.classGuid));
+        getMessagesController().C4.remove(Integer.valueOf(this.classGuid));
         super.onFragmentDestroy();
         sz1 sz1Var = this.c4;
         if (sz1Var != null) {
@@ -14705,7 +14705,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                 }
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(M0);
-                getMessagesStorage().j1(null, arrayList, true, true);
+                getMessagesStorage().n1(null, arrayList, true, true);
                 this.e = M0;
             }
             if (z3) {
@@ -14715,7 +14715,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             getMessagesController().h5(null);
             getNotificationCenter().k(jn7.r, new Object[0]);
             jn7 notificationCenter = getNotificationCenter();
-            int i2 = uc7.r5;
+            int i2 = uc7.s5;
             notificationCenter.k(2, 8192);
             if (!isFinishing()) {
                 if (z4) {
@@ -14921,7 +14921,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         while (true) {
             int i14 = 8;
             if (i13 < arrayList.size()) {
-                TLRPC.Chat M0 = getMessagesController().M0(Long.valueOf(-((if7) arrayList.get(i13)).a));
+                TLRPC.Chat M0 = getMessagesController().M0(Long.valueOf(-((jf7) arrayList.get(i13)).a));
                 if (M0 != null) {
                     int i15 = i8;
                     while (i15 < arrayList2.size()) {
@@ -15055,7 +15055,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                 i9 = 1;
             } else {
                 int i17 = i8;
-                if (!uj3Var.P0 && (arrayList.size() > 1 || ((if7) arrayList.get(i17)).a == getUserConfig().e() || charSequence != null || i != 0 || !z2)) {
+                if (!uj3Var.P0 && (arrayList.size() > 1 || ((jf7) arrayList.get(i17)).a == getUserConfig().e() || charSequence != null || i != 0 || !z2)) {
                     int i18 = this.currentAccount;
                     int size = arrayList2.size() + (!TextUtils.isEmpty(charSequence) ? 1 : 0);
                     pcc pccVar = new pcc() {
@@ -15098,7 +15098,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                                 if (i22 >= size2) {
                                     break;
                                 }
-                                long j = ((if7) arrayList4.get(i22)).a;
+                                long j = ((jf7) arrayList4.get(i22)).a;
                                 if (hashMap == null) {
                                     l2 = 0L;
                                 } else {
@@ -15142,8 +15142,8 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                             zu1Var.i6();
                             if (zu1Var.N3 != null) {
                                 if (arrayList4.size() == 1) {
-                                    if (!d31.b0(zu1Var).h0(arrayList5.size(), ((if7) arrayList4.get(0)).a)) {
-                                        zu1Var.N3.m(((if7) arrayList4.get(0)).a, Integer.valueOf(arrayList5.size()), 53);
+                                    if (!d31.b0(zu1Var).h0(arrayList5.size(), ((jf7) arrayList4.get(0)).a)) {
+                                        zu1Var.N3.m(((jf7) arrayList4.get(0)).a, Integer.valueOf(arrayList5.size()), 53);
                                         return;
                                     }
                                     return;
@@ -15159,7 +15159,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     while (i19 < size2) {
                         Object obj = arrayList.get(i19);
                         i19++;
-                        hashSet.add(Long.valueOf(((if7) obj).a));
+                        hashSet.add(Long.valueOf(((jf7) obj).a));
                     }
                     return !jj.Z(i18, new ArrayList(hashSet), size, pccVar);
                 }
@@ -15178,9 +15178,9 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     gd(0, true);
                     Gd(false);
                 }
-                if7 if7Var = (if7) arrayList.get(i3);
-                long j = if7Var.a;
-                if (j == this.l6 && c() == if7Var.b && this.g4 != 2) {
+                jf7 jf7Var = (jf7) arrayList.get(i3);
+                long j = jf7Var.a;
+                if (j == this.l6 && c() == jf7Var.b && this.g4 != 2) {
                     ArrayList arrayList4 = new ArrayList(getParentLayout().getFragmentStack());
                     if (!arrayList4.isEmpty() && c00.g(1, arrayList4) == uj3Var) {
                         uj3Var.finishFragment();
@@ -15238,17 +15238,17 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                         return true;
                     }
                 }
-                if (getMessagesController().B2(if7Var.a)) {
+                if (getMessagesController().B2(jf7Var.a)) {
                     bundle.putInt("chatMode", 8);
-                    if (!getMessagesController().C2(if7Var.a)) {
+                    if (!getMessagesController().C2(jf7Var.a)) {
                         bundle.putBoolean("isSubscriberSuggestions", true);
                     }
                 }
                 bundle.putBoolean("historyPreloaded", false);
                 B4();
                 zu1 zu1Var = new zu1(bundle);
-                if (if7Var.b != 0 || tzbVar != null) {
-                    ro4.a(zu1Var, if7Var);
+                if (jf7Var.b != 0 || tzbVar != null) {
+                    ro4.a(zu1Var, jf7Var);
                     uj3Var.removeSelfFromStack();
                 }
                 if (presentFragment(zu1Var, true)) {
@@ -15426,7 +15426,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
 
     public final void q9(long j, boolean z) {
         if (!this.V4.isEmpty()) {
-            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
             edit.putInt("pin_" + this.l6, ((Integer) this.V4.get(0)).intValue()).commit();
             this.V4.clear();
             this.X4.clear();
@@ -15437,18 +15437,18 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         }
         if (xc2.p0(this.e) && xc2.A(this.currentAccount, this.e, 24)) {
             if (j != 0) {
-                jf7 messagesStorage = getMessagesStorage();
-                messagesStorage.a.c(new xd7(messagesStorage, -this.e.id, j, (byte) 2));
+                kf7 messagesStorage = getMessagesStorage();
+                messagesStorage.a.c(new yd7(messagesStorage, -this.e.id, j, (byte) 2));
                 getMessagesController().g0(j, 0, getMessagesController().j1(-this.e.id));
-                getMessagesController().g4.s(this.e.id, j);
+                getMessagesController().h4.s(this.e.id, j);
             }
         } else {
             getMessagesController().V(1, this.l6, z);
-            jf7 messagesStorage2 = getMessagesStorage();
+            kf7 messagesStorage2 = getMessagesStorage();
             long j2 = this.l6;
             messagesStorage2.getClass();
-            messagesStorage2.H(new le7(messagesStorage2, j2, (byte) 0));
-            qyb qybVar = getMessagesController().g4;
+            messagesStorage2.J(new me7(messagesStorage2, j2, (byte) 0));
+            qyb qybVar = getMessagesController().h4;
             qybVar.getClass();
             hl.c3(new dp2((Object) qybVar, -this.l6, true, (byte) 4));
         }
@@ -15834,14 +15834,14 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         int i;
         int i2;
         long currentTimeMillis = System.currentTimeMillis();
-        if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown >= uc7.s1(this.currentAccount).k4.r2.f() * 1000) {
+        if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown >= uc7.s1(this.currentAccount).l4.r2.f() * 1000) {
             ConnectionsManager.lastPremiumFloodWaitShown = currentTimeMillis;
             if (!yac.h(this.currentAccount).p() && !uc7.s1(this.currentAccount).M3()) {
                 int i3 = this.currentAccount;
                 if (z) {
-                    d = uc7.s1(i3).k4.x3.i;
+                    d = uc7.s1(i3).l4.x3.i;
                 } else {
-                    d = uc7.s1(i3).k4.y3.i;
+                    d = uc7.s1(i3).l4.y3.i;
                 }
                 SpannableString spannableString = new SpannableString(Double.toString(Math.round(((float) d) * 10.0f) / 10.0d).replaceAll("\\.0$", ""));
                 spannableString.setSpan(new y7c(hl.o()), 0, spannableString.length(), 33);
@@ -17091,7 +17091,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                     if (intValue6 != 0 || intValue7 != 0 || intValue8 != 0) {
                         return false;
                     }
-                    if (xc2.c0(zu1Var3.e) && (f = zu1Var3.getMessagesController().g4.f(parseLong, parseInt2)) != null) {
+                    if (xc2.c0(zu1Var3.e) && (f = zu1Var3.getMessagesController().h4.f(parseLong, parseInt2)) != null) {
                         TLRPC.TL_forumTopic tL_forumTopic = zu1Var3.r4;
                         if (tL_forumTopic == null || tL_forumTopic.id != f.id) {
                             return false;
@@ -17341,10 +17341,10 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             }
             i3cVar.p0 = false;
             M5(false);
-            SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).W3;
+            SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).X3;
             int i3 = sharedPreferences.getInt("dialog_show_translate_count" + a(), 5);
             if (i3 > 0) {
-                SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
                 edit.putInt("dialog_show_translate_count" + a(), i3 - 1).apply();
                 zd(true);
             }
@@ -17576,10 +17576,10 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             }
             r3c.Q0(getParentActivity(), this, inputPeer, iArr[0], this.v5.M2, str, str4, charSequence, z, do1Var, new gn1(this, (byte) 20)).p0 = false;
             M5(false);
-            SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).W3;
+            SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).X3;
             int i2 = sharedPreferences.getInt("dialog_show_translate_count" + a(), 5);
             if (i2 > 0) {
-                SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
                 edit.putInt("dialog_show_translate_count" + a(), i2 - 1).apply();
                 zd(true);
             }
@@ -17931,10 +17931,10 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             }
             r3c.Q0(getParentActivity(), this, inputPeer, iArr[0], this.v5.M2, strArr[0], str3, charSequence, z, do1Var, new gn1(this, (byte) 15)).p0 = false;
             M5(false);
-            SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).W3;
+            SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).X3;
             int i2 = sharedPreferences.getInt("dialog_show_translate_count" + a(), 5);
             if (i2 > 0) {
-                SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
                 edit.putInt("dialog_show_translate_count" + a(), i2 - 1).apply();
                 zd(true);
             }
@@ -18391,7 +18391,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
                 alertDialog$Builder.g(ob6.M0(2131752570, null), null);
                 showDialog(idVar);
             } else if (!this.V4.isEmpty()) {
-                uc7.s1(this.currentAccount).W3.edit().putInt("pin_" + this.l6, ((Integer) this.V4.get(0)).intValue()).commit();
+                uc7.s1(this.currentAccount).X3.edit().putInt("pin_" + this.l6, ((Integer) this.V4.get(0)).intValue()).commit();
                 gd(0, true);
             }
         }
@@ -18687,7 +18687,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             getMessagesController().b(0, 0, this.l6);
             i6();
             this.N3.j(23, this.l6, null);
-            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
             edit.putBoolean("dialog_bar_archived" + this.l6, false);
             edit.putBoolean("dialog_bar_block" + this.l6, false);
             edit.putBoolean("dialog_bar_report" + this.l6, false);
@@ -18700,7 +18700,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
             String p = ip7.p(j2, c, false);
             SharedPreferences.Editor remove = edit2.remove("notify2_" + p);
             remove.remove("custom_" + p);
-            notificationsController.getMessagesStorage().B1(j2, 0L);
+            notificationsController.getMessagesStorage().G1(j2, 0L);
             TLRPC.Dialog dialog = (TLRPC.Dialog) notificationsController.getMessagesController().R.f(j2);
             if (dialog != null) {
                 dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
@@ -18759,7 +18759,7 @@ public class zu1 extends e implements fn7, oj3, qc6, k32, kz1, el4, yq5, s84 {
         mt9 mt9Var;
         if (j != f7()) {
             getConnectionsManager().cancelRequestsForGuid(this.classGuid);
-            getMessagesStorage().j(this.classGuid);
+            getMessagesStorage().k(this.classGuid);
             this.classGuid = ConnectionsManager.generateClassGuid();
             kb();
             this.x5 = null;

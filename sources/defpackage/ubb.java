@@ -1,183 +1,148 @@
 package defpackage;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.messenger.Utilities;
-public final class ubb implements GestureDetector.OnGestureListener {
-    public final lcb a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.SurfaceView;
+import org.telegram.messenger.ImageReceiver;
+public final class ubb extends AnimatorListenerAdapter {
+    public final byte a;
+    public final lcb b;
 
-    public ubb(lcb lcbVar) {
-        this.a = lcbVar;
+    public ubb(lcb lcbVar, byte b) {
+        this.a = b;
+        this.b = lcbVar;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        lcb lcbVar = this.a;
-        lcbVar.g1 = false;
-        if (lcbVar.v(lcbVar.s, motionEvent.getX(), motionEvent.getY(), false)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-        boolean z;
-        lcb lcbVar = this.a;
-        if (lcbVar.a0 != 0.0f && lcbVar.u1 == null && f2 < -1000.0f && !lcbVar.b0) {
-            lcbVar.b0 = true;
-            try {
-                lcbVar.s.performHapticFeedback(3);
-            } catch (Exception unused) {
-            }
-            lcbVar.R();
-        }
-        if (lcbVar.f0 != 0.0f) {
-            if (f2 < -1000.0f) {
-                lcbVar.k(true);
-            } else if (f2 > 1000.0f) {
-                lcbVar.k(false);
-            } else {
-                if (lcbVar.x.f > 0.5f) {
-                    z = true;
-                } else {
-                    z = false;
+    public final void onAnimationEnd(Animator animator) {
+        o68 w;
+        g29 g29Var;
+        byte b = this.a;
+        lcb lcbVar = this.b;
+        o68 o68Var = null;
+        switch (b) {
+            case 0:
+                super.onAnimationEnd(animator);
+                icb icbVar = lcbVar.t0;
+                acb acbVar = lcbVar.w;
+                if (acbVar != null) {
+                    acbVar.a(true);
                 }
-                lcbVar.k(z);
-            }
-        }
-        lcbVar.g1 = true;
-        return false;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-        float f3;
-        v21 v21Var;
-        lcb lcbVar = this.a;
-        if (!lcbVar.k0) {
-            return false;
-        }
-        if (lcbVar.m0) {
-            lcbVar.a0 += f2;
-            float L = hl.L(200.0f);
-            if (lcbVar.a0 > L && !lcbVar.b0) {
-                lcbVar.b0 = true;
-                lcbVar.R();
+                lcbVar.l();
+                lcbVar.J0.e();
+                g6b g6bVar = lcbVar.u1;
+                if (g6bVar != null) {
+                    g6bVar.b();
+                    hl.B2(lcbVar.u1);
+                    lcbVar.u1 = null;
+                }
+                ImageReceiver imageReceiver = icbVar.b;
+                if (imageReceiver != null) {
+                    imageReceiver.v0(true, true);
+                    icbVar.b = null;
+                }
+                ImageReceiver imageReceiver2 = icbVar.c;
+                if (imageReceiver2 != null) {
+                    imageReceiver2.setAlpha(1.0f);
+                    icbVar.c.v0(true, true);
+                }
+                if (icbVar.d != null && (w = lcbVar.w()) != null && (g29Var = w.Y0.d) != null) {
+                    g29 g29Var2 = icbVar.d;
+                    g29Var2.getClass();
+                    g29Var2.c = g29Var.c;
+                    g29Var2.f = g29Var.f;
+                    g29Var2.b = g29Var.b;
+                    g29Var2.a = System.currentTimeMillis();
+                    g29Var2.c();
+                }
+                d30 d30Var = lcbVar.G0;
+                if (d30Var != null) {
+                    d30Var.m();
+                }
+                SurfaceView surfaceView = lcbVar.D0;
+                if (surfaceView != null) {
+                    surfaceView.setVisibility(4);
+                }
+                lcbVar.M();
                 try {
-                    lcbVar.s.performHapticFeedback(3);
+                    hl.c3(new s8b(this, (byte) 7));
                 } catch (Exception unused) {
                 }
-            }
-            lcbVar.e0 = Utilities.i(lcbVar.a0 / L, 1.0f, 0.0f);
-            if (lcbVar.o0.getCurrentPeerView() != null) {
-                lcbVar.o0.getCurrentPeerView().invalidate();
-            }
-            if (lcbVar.a0 < 0.0f) {
+                lcbVar.n0 = false;
+                lcbVar.d = false;
+                y58 y58Var = lcbVar.o1;
+                if (y58Var != null) {
+                    y58Var.run();
+                    lcbVar.o1 = null;
+                    return;
+                }
+                return;
+            case 1:
+                lcbVar.I = null;
                 lcbVar.a0 = 0.0f;
-                lcbVar.m0 = false;
-            }
-            return true;
-        }
-        if (lcbVar.d0) {
-            float f4 = lcbVar.f0;
-            if (f4 > lcbVar.x.c && f2 > 0.0f) {
-                lcbVar.f0 = (0.05f * f2) + f4;
-            } else {
-                lcbVar.f0 = f4 + f2;
-            }
-            ybb ybbVar = lcbVar.s;
-            v21 v21Var2 = v21.x;
-            if (v21Var2 != null && v21Var2.h == ybbVar) {
-                v21Var2.b();
-            }
-            if (lcbVar.o0.getCurrentPeerView() != null) {
-                lcbVar.o0.getCurrentPeerView().invalidate();
-            }
-            lcbVar.w.invalidate();
-            if (lcbVar.f0 < 0.0f) {
-                lcbVar.f0 = 0.0f;
-                lcbVar.d0 = false;
-            }
-            return true;
-        }
-        if (lcbVar.W > 0.8f) {
-            float f5 = -f2;
-            if ((f5 > 0.0f && lcbVar.X > 0.0f) || (f5 < 0.0f && lcbVar.X < 0.0f)) {
-                f3 = 0.3f;
-                lcbVar.X -= f2 * f3;
-                ybb ybbVar2 = lcbVar.s;
-                v21Var = v21.x;
-                if (v21Var != null && v21Var.h == ybbVar2) {
-                    v21Var.b();
+                lcbVar.e0 = 0.0f;
+                bcb bcbVar = lcbVar.o0;
+                if (bcbVar != null) {
+                    o68Var = bcbVar.getCurrentPeerView();
                 }
-                lcbVar.V();
-                return true;
-            }
-        }
-        f3 = 0.6f;
-        lcbVar.X -= f2 * f3;
-        ybb ybbVar22 = lcbVar.s;
-        v21Var = v21.x;
-        if (v21Var != null) {
-            v21Var.b();
-        }
-        lcbVar.V();
-        return true;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        o68 currentPeerView;
-        boolean z;
-        lcb lcbVar = this.a;
-        if (lcbVar.f0 == 0.0f && lcbVar.g0) {
-            if (!lcbVar.y && !lcbVar.L0 && !lcbVar.m1 && !lcbVar.i1 && !lcbVar.j1) {
-                o68 w = lcbVar.w();
-                if (w == null || !w.y1.f) {
-                    if (motionEvent.getX() > lcbVar.w.getMeasuredWidth() * 0.33f) {
-                        z = true;
-                    } else {
-                        z = false;
+                if (o68Var != null) {
+                    o68Var.invalidate();
+                    return;
+                }
+                return;
+            default:
+                icb icbVar2 = lcbVar.t0;
+                lcbVar.V = 1.0f;
+                lcbVar.l();
+                lcb.x1 = false;
+                acb acbVar2 = lcbVar.w;
+                if (acbVar2 != null) {
+                    acbVar2.a(true);
+                }
+                zbb zbbVar = lcbVar.s;
+                if (zbbVar != null) {
+                    zbbVar.invalidate();
+                }
+                ImageReceiver imageReceiver3 = icbVar2.b;
+                if (imageReceiver3 != null && !lcbVar.d) {
+                    imageReceiver3.v0(true, true);
+                    icbVar2.b = null;
+                }
+                ImageReceiver imageReceiver4 = icbVar2.c;
+                if (imageReceiver4 != null && !lcbVar.d) {
+                    imageReceiver4.setAlpha(1.0f);
+                    icbVar2.c.v0(true, true);
+                    icbVar2.c = null;
+                }
+                o68 w2 = lcbVar.w();
+                if (w2 != null) {
+                    w2.c1(false);
+                }
+                w96 w96Var = lcbVar.B0;
+                if (w96Var != null) {
+                    w96Var.F((1.0f - lcbVar.W) * lcbVar.V);
+                }
+                if (lcbVar.w1) {
+                    lcbVar.w1 = false;
+                    lcbVar.m();
+                    hl.d3(new y58(lcbVar, (byte) 1), 30L);
+                } else if (!xea.T) {
+                    if (lcbVar.u1 == null && lcbVar.w != null) {
+                        g6b g6bVar2 = new g6b(lcbVar.w.getContext(), lcbVar.s);
+                        lcbVar.u1 = g6bVar2;
+                        g6bVar2.setAlpha(0.0f);
+                        lcbVar.w.addView(lcbVar.u1);
                     }
-                    o68 currentPeerView2 = lcbVar.o0.getCurrentPeerView();
-                    if (currentPeerView2 != null && !currentPeerView2.Z0(z)) {
-                        if (!lcbVar.o0.E(z)) {
-                            if (z) {
-                                lcbVar.o(true);
-                                return false;
-                            }
-                            kcb kcbVar = lcbVar.A0;
-                            if (kcbVar != null) {
-                                kcbVar.loopBack();
-                                return false;
-                            }
-                        } else {
-                            acb acbVar = lcbVar.o0;
-                            acbVar.M0 = true;
-                            acbVar.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                            bva bvaVar = acbVar.N0;
-                            hl.r(bvaVar);
-                            hl.d3(bvaVar, 150L);
-                            return false;
-                        }
+                    g6b g6bVar3 = lcbVar.u1;
+                    if (g6bVar3 != null) {
+                        g6bVar3.setOnClickListener(new kla(this, (byte) 16));
+                        lcbVar.u1.animate().alpha(1.0f).setDuration(150L).setListener(new ecb(this, (byte) 1)).start();
                     }
+                    xea.F(true);
                 }
-            } else {
-                acb acbVar2 = lcbVar.o0;
-                if (acbVar2 != null && (currentPeerView = acbVar2.getCurrentPeerView()) != null) {
-                    currentPeerView.i0();
-                }
-            }
+                lcbVar.U();
+                lcbVar.J0.e();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
     }
 }

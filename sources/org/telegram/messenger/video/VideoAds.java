@@ -323,7 +323,7 @@ public class VideoAds {
     }
 
     public void lambda$load$1(TLObject tLObject, TLRPC.TL_error tL_error) {
-        hl.c3(new g9c(this, tLObject, (byte) 6));
+        hl.c3(new c9c(this, tLObject, (byte) 7));
     }
 
     public static void lambda$show$10(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
@@ -391,7 +391,7 @@ public class VideoAds {
 
     public void lambda$show$18(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         logSponsoredClicked(tL_sponsoredMessage);
-        m01.t(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, uc7.s1(yac.t0).k4.I2.f, false, false);
+        m01.t(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, uc7.s1(yac.t0).l4.I2.f, false, false);
     }
 
     public void lambda$show$2(CloseDrawable closeDrawable, View view) {
@@ -480,7 +480,7 @@ public class VideoAds {
     public void lambda$show$7(fu5 fu5Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
         fu5Var.u();
         logSponsoredClicked(tL_sponsoredMessage);
-        m01.t(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, uc7.s1(this.currentAccount).k4.I2.f, false, false);
+        m01.t(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, uc7.s1(this.currentAccount).l4.I2.f, false, false);
     }
 
     public static boolean lambda$show$8(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
@@ -658,7 +658,7 @@ public class VideoAds {
             }
         }, 3, true);
         this.premiumSheet = xk8Var2;
-        xk8Var2.n(new g9c(this, xk8Var2, (byte) 5));
+        xk8Var2.n(new c9c(this, xk8Var2, (byte) 6));
         xk8Var2.show();
         checkPopupShownCallback();
     }

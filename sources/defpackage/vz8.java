@@ -17,7 +17,7 @@ public final class vz8 implements fn7 {
     public boolean F;
     public TLRPC.ShareTheme I;
     public final int a;
-    public final f09 b;
+    public final g09 b;
     public final tz8 c;
     public boolean e;
     public TLRPC.TL_exportedNoPaidMessagesToken f;
@@ -72,9 +72,9 @@ public final class vz8 implements fn7 {
         }
     };
 
-    public vz8(int i, f09 f09Var, tz8 tz8Var) {
+    public vz8(int i, g09 g09Var, tz8 tz8Var) {
         this.a = i;
-        this.b = f09Var;
+        this.b = g09Var;
         this.c = tz8Var;
     }
 
@@ -105,12 +105,12 @@ public final class vz8 implements fn7 {
         this.I = shareTheme;
         boolean z = shareTheme instanceof TLRPC.TL_shareThemeGift;
         boolean z2 = false;
-        f09 f09Var = this.b;
+        g09 g09Var = this.b;
         if (z) {
             TL_stars.StarGift starGift = ((TLRPC.TL_shareThemeGift) shareTheme).stargift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
-                ArrayList arrayList2 = f09Var.w1;
+                ArrayList arrayList2 = g09Var.w1;
                 int i = 0;
                 while (true) {
                     if (i < arrayList2.size()) {
@@ -127,26 +127,26 @@ public final class vz8 implements fn7 {
                     arrayList2.add(0, tL_starGiftUnique);
                     i = 0;
                 }
-                c09 c09Var = f09Var.G;
-                if (c09Var.a == 2 && c09Var.q == i) {
+                d09 d09Var = g09Var.G;
+                if (d09Var.a == 2 && d09Var.q == i) {
                     return;
                 }
-                f09Var.f2 = true;
-                f09Var.J.clear();
-                Runnable runnable = f09Var.e2;
+                g09Var.f2 = true;
+                g09Var.J.clear();
+                Runnable runnable = g09Var.e2;
                 if (runnable != null) {
                     runnable.run();
                 }
-                f09Var.L7 = i;
-                if (f09Var.g2) {
+                g09Var.L7 = i;
+                if (g09Var.g2) {
                     f = 1.0f;
                 } else {
                     f = 0.0f;
                 }
-                f09Var.N7 = f;
-                f09Var.O7 = 1.0f;
-                f09Var.I0(f09Var.getWidth() / 2.0f, (f09Var.l() / 2.0f) + f09Var.m(), i);
-                f09Var.f2 = false;
+                g09Var.N7 = f;
+                g09Var.O7 = 1.0f;
+                g09Var.I0(g09Var.getWidth() / 2.0f, (g09Var.l() / 2.0f) + g09Var.m(), i);
+                g09Var.f2 = false;
                 return;
             }
         }
@@ -162,10 +162,10 @@ public final class vz8 implements fn7 {
             } else {
                 arrayList = null;
             }
-            f09Var.e(i3, arrayList, z2);
+            g09Var.e(i3, arrayList, z2);
             return;
         }
-        f09Var.d(f09.F9);
+        g09Var.d(g09.F9);
     }
 
     public final void b() {
@@ -231,7 +231,7 @@ public final class vz8 implements fn7 {
     }
 
     public final SharedPreferences f() {
-        return uc7.s1(this.a).X3;
+        return uc7.s1(this.a).Y3;
     }
 
     public final void g() {
@@ -252,7 +252,7 @@ public final class vz8 implements fn7 {
             return;
         }
         jn7.f(i).b(this, jn7.T);
-        jf7.Y(i).C0(M0.id, xc2.T(M0), null, true, false, 0);
+        kf7.a0(i).F0(M0.id, xc2.T(M0), null, true, false, 0);
     }
 
     public final void i(TLRPC.ShareTheme shareTheme) {
@@ -279,10 +279,10 @@ public final class vz8 implements fn7 {
             if (!this.y) {
                 TLRPC.ShareTheme shareTheme3 = this.I;
                 if (shareTheme3 == null) {
-                    f09 f09Var = this.b;
-                    f09Var.setInstantTheme(true);
+                    g09 g09Var = this.b;
+                    g09Var.setInstantTheme(true);
                     a(shareTheme);
-                    f09Var.setInstantTheme(false);
+                    g09Var.setInstantTheme(false);
                     return;
                 }
                 byte[] q3 = q(shareTheme);
@@ -304,9 +304,9 @@ public final class vz8 implements fn7 {
         if (!tz8Var.g) {
             return;
         }
-        f09 f09Var = this.b;
-        TL_stars.TL_starGiftUnique themeGift = f09Var.getThemeGift();
-        ArrayList<TLRPC.Reaction> pickedEmoji = f09Var.getPickedEmoji();
+        g09 g09Var = this.b;
+        TL_stars.TL_starGiftUnique themeGift = g09Var.getThemeGift();
+        ArrayList<TLRPC.Reaction> pickedEmoji = g09Var.getPickedEmoji();
         TLRPC.TL_shareThemeGift tL_shareThemeGift2 = null;
         r6 = null;
         r6 = null;
@@ -320,7 +320,7 @@ public final class vz8 implements fn7 {
                     tL_inputSavedStarGiftChat = tL_inputSavedStarGiftSlug;
                 }
             } else {
-                long themeGiftSavedId = f09Var.getThemeGiftSavedId();
+                long themeGiftSavedId = g09Var.getThemeGiftSavedId();
                 TLRPC.InputPeer e = e();
                 if (themeGiftSavedId != 0 && e != null) {
                     TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat2 = new TL_stars.TL_inputSavedStarGiftChat();
@@ -339,8 +339,8 @@ public final class vz8 implements fn7 {
             tL_shareThemeGift2.stargift = themeGift;
             tL_shareThemeGift = tL_inputShareThemeGift;
         } else {
-            int themeBackdropIndex = f09Var.getThemeBackdropIndex();
-            if (themeBackdropIndex >= 0 && themeBackdropIndex != f09.F9) {
+            int themeBackdropIndex = g09Var.getThemeBackdropIndex();
+            if (themeBackdropIndex >= 0 && themeBackdropIndex != g09.F9) {
                 z = true;
             }
             if (z) {
@@ -385,7 +385,7 @@ public final class vz8 implements fn7 {
             TLRPC.UserFull Y1 = s1.Y1(j);
             if (Y1 != null) {
                 Y1.share_theme = shareTheme;
-                jf7.Y(i).g2(Y1, false);
+                kf7.a0(i).l2(Y1, false);
                 return;
             }
             return;
@@ -393,7 +393,7 @@ public final class vz8 implements fn7 {
         TLRPC.ChatFull N0 = s1.N0(-j);
         if (N0 != null) {
             N0.share_theme = shareTheme;
-            jf7.Y(i).K1(N0, false);
+            kf7.a0(i).P1(N0, false);
         }
     }
 
@@ -415,17 +415,17 @@ public final class vz8 implements fn7 {
     public final void m() {
         this.s = SystemClock.elapsedRealtime();
         uc7 s1 = uc7.s1(this.a);
-        ii7 ii7Var = new ii7(this, (byte) 22);
-        if (s1.L4) {
+        ji7 ji7Var = new ji7(this, (byte) 22);
+        if (s1.M4) {
             return;
         }
-        TLRPC.TL_exportedContactToken tL_exportedContactToken = s1.M4;
+        TLRPC.TL_exportedContactToken tL_exportedContactToken = s1.N4;
         if (tL_exportedContactToken != null && tL_exportedContactToken.expires > System.currentTimeMillis() / 1000) {
-            ii7Var.a(s1.M4);
+            ji7Var.a(s1.N4);
             return;
         }
-        s1.L4 = true;
-        s1.getConnectionsManager().sendRequest(new TLRPC.TL_contacts_exportContactToken(), new p87(s1, ii7Var, System.currentTimeMillis(), (byte) 8));
+        s1.M4 = true;
+        s1.getConnectionsManager().sendRequest(new TLRPC.TL_contacts_exportContactToken(), new p87(s1, ji7Var, System.currentTimeMillis(), (byte) 8));
     }
 
     public final void n(boolean z, boolean z2) {
@@ -494,27 +494,27 @@ public final class vz8 implements fn7 {
         } else {
             j = globalPrivacySettings.noncontact_peers_paid_stars;
         }
-        f09 f09Var = this.b;
-        f09Var.setFeeStars(j);
+        g09 g09Var = this.b;
+        g09Var.setFeeStars(j);
         if (j > 0 && !this.e) {
             this.e = true;
             if (!this.c.d && this.d == 0 && f().getBoolean("qrNoPaidPermanent", false)) {
                 this.d = (byte) 2;
-                f09Var.w0 = true;
-                f09Var.x0 = false;
-                f09Var.C0 = 1.0f;
-                f09Var.E0 = 1.0f;
-                f09Var.D0 = 1.0f;
-                f09Var.G0 = true;
-                f09Var.H0 = 1.0f;
-                f09Var.A2 = null;
-                f09Var.B2 = -1;
-                f09Var.t1(false);
-                f09Var.invalidate();
+                g09Var.w0 = true;
+                g09Var.x0 = false;
+                g09Var.C0 = 1.0f;
+                g09Var.E0 = 1.0f;
+                g09Var.D0 = 1.0f;
+                g09Var.G0 = true;
+                g09Var.H0 = 1.0f;
+                g09Var.A2 = null;
+                g09Var.B2 = -1;
+                g09Var.t1(false);
+                g09Var.invalidate();
                 TLRPC.TL_exportedNoPaidMessagesToken c = c();
                 this.f = c;
                 if (c != null) {
-                    f09Var.setFreeLink(d(c));
+                    g09Var.setFreeLink(d(c));
                 }
                 n(false, false);
             }

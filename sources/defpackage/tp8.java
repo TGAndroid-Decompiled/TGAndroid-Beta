@@ -28,7 +28,7 @@ public final class tp8 implements Consumer {
                 ArrayList arrayList = new ArrayList((HashSet) obj);
                 int i = 0;
                 while (i < arrayList.size()) {
-                    if (profileActivity.getMessagesController().g4.f(profileActivity.f1, ((Integer) arrayList.get(i)).intValue()) == null) {
+                    if (profileActivity.getMessagesController().h4.f(profileActivity.f1, ((Integer) arrayList.get(i)).intValue()) == null) {
                         arrayList.remove(i);
                         i--;
                     }
@@ -39,7 +39,7 @@ public final class tp8 implements Consumer {
                 profileActivity.b4(true);
                 return;
             default:
-                hl.c3(new z3b((q5b) obj2, (List) obj, (byte) 4));
+                hl.c3(new n3b((r5b) obj2, (List) obj, (byte) 5));
                 return;
         }
     }

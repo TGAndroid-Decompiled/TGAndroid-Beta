@@ -282,7 +282,7 @@ public class uic extends FrameLayout implements snb {
             if (gw9Var.getVisibility() != 8 && gw9Var.getMeasuredWidth() != 0) {
                 gw9Var.A0(i);
             } else {
-                hl.d3(new me7(this, i, (byte) 25), 100L);
+                hl.d3(new oe7(this, i, (byte) 25), 100L);
             }
         }
     }

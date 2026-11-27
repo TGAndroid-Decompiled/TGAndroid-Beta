@@ -437,7 +437,7 @@ public final class oc2 {
             this.a.setVisibility(8);
         }
         if (!p2 && !this.o) {
-            SharedPreferences sharedPreferences = uc7.s1(i4).W3;
+            SharedPreferences sharedPreferences = uc7.s1(i4).X3;
             i3 = sharedPreferences.getInt("last_selected_mute_until_time", 0);
             i2 = sharedPreferences.getInt("last_selected_mute_until_time2", 0);
         } else {

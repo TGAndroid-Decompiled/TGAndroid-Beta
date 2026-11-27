@@ -88,7 +88,7 @@ public final class svc implements Runnable {
                         z3 = true;
                     }
                     wallpapersListActivity.B0();
-                    wallpapersListActivity.getMessagesStorage().m1(1, tL_wallPapers.wallpapers);
+                    wallpapersListActivity.getMessagesStorage().q1(1, tL_wallPapers.wallpapers);
                 }
                 id idVar = wallpapersListActivity.M;
                 if (idVar != null) {

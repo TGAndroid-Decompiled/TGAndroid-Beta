@@ -38,13 +38,13 @@ public final class vj0 implements im6, fx3 {
         Context context;
         int i = Build.VERSION.SDK_INT;
         if (i >= 31 || ((context = this.a) != null && i >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
-            int h = dg7.h(((ko4) fpVar.c).t);
+            int h = eg7.h(((ko4) fpVar.c).t);
             efd.e("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type ".concat(gcc.K(h)));
             rx rxVar = new rx(new qx(h, (byte) 0), new qx(h, (byte) 1));
             rxVar.b = true;
             return rxVar.a(fpVar);
         }
-        return new rg7((byte) 27).a(fpVar);
+        return new sg7((byte) 27).a(fpVar);
     }
 
     @Override

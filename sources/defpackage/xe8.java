@@ -380,9 +380,9 @@ public final class xe8 {
                                                     bf0Var = bf0.b;
                                                     l3dVar = obj2;
                                                 } else {
-                                                    l3d rg7Var = new rg7((byte) 14);
+                                                    l3d sg7Var = new sg7((byte) 14);
                                                     bf0Var = bf0.a;
-                                                    l3dVar = rg7Var;
+                                                    l3dVar = sg7Var;
                                                 }
                                             } else {
                                                 l3d uifVar = new uif((byte) 22);

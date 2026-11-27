@@ -603,7 +603,7 @@ public class z67 extends e implements fn7 {
             ((g1b) view).d();
             yob.h(aob.d6, getResourceProvider(), view);
         } else {
-            boolean z = view instanceof rca;
+            boolean z = view instanceof sca;
             if (z && (view.getBackground() instanceof zm2) && (((zm2) view.getBackground()).a instanceof ColorDrawable)) {
                 ((ColorDrawable) ((zm2) view.getBackground()).a).setColor(aob.v0(aob.a7, getResourceProvider()));
                 view.invalidate();

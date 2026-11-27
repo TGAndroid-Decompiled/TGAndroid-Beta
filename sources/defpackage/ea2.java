@@ -148,7 +148,7 @@ public final class ea2 implements Runnable {
             case 17:
                 dg2 dg2Var = (dg2) this.b;
                 y31.a(dg2Var.a).b();
-                ((me7) this.c).run();
+                ((oe7) this.c).run();
                 dg2Var.dismiss();
                 return;
             case 18:
@@ -221,7 +221,7 @@ public final class ea2 implements Runnable {
                 }
                 lv2Var.d(true);
                 jn7 notificationCenter = lv2Var.getNotificationCenter();
-                int i4 = uc7.r5;
+                int i4 = uc7.s5;
                 notificationCenter.k(2, 1);
                 lv2Var.getNotificationCenter().k(25, new Object[0]);
                 return;
@@ -265,8 +265,8 @@ public final class ea2 implements Runnable {
                     accountManager.addAccountExplicitly(account2, "", null);
                 } catch (Exception unused2) {
                 }
-                lv2Var2.getMessagesStorage().W0(new HashMap(), false, true);
-                lv2Var2.getMessagesStorage().Z0(new ArrayList(), true);
+                lv2Var2.getMessagesStorage().a1(new HashMap(), false, true);
+                lv2Var2.getMessagesStorage().d1(new ArrayList(), true);
                 lv2Var2.b0.clear();
                 lv2Var2.f0.clear();
                 lv2Var2.g0.clear();

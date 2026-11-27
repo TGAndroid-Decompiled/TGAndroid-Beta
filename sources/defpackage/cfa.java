@@ -45,7 +45,7 @@ public final class cfa extends FrameLayout implements snb {
     public StaticLayout b0;
     public int c;
     public r47 c0;
-    public ki7 d;
+    public li7 d;
     public final TextPaint d0;
     public final m66 e;
     public final TextPaint e0;
@@ -207,9 +207,9 @@ public final class cfa extends FrameLayout implements snb {
         if (gf0Var != null) {
             removeCallbacks(gf0Var);
         }
-        ki7 ki7Var = this.d;
-        if (ki7Var != null) {
-            removeCallbacks(ki7Var);
+        li7 li7Var = this.d;
+        if (li7Var != null) {
+            removeCallbacks(li7Var);
         }
         invalidate();
     }

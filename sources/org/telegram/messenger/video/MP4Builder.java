@@ -110,7 +110,7 @@ public class MP4Builder {
         return this;
     }
 
-    public oh7 createMovieBox(Mp4Movie mp4Movie) {
+    public ph7 createMovieBox(Mp4Movie mp4Movie) {
         ?? b2Var = new b2("moov");
         ?? z1Var = new z1("mvhd");
         z1Var.r = 1.0d;
@@ -118,19 +118,19 @@ public class MP4Builder {
         ol6 ol6Var = ol6.j;
         z1Var.w = ol6Var;
         Date date = new Date();
-        bp1.r(u84.c(ph7.R, z1Var, z1Var, date));
+        bp1.r(u84.c(qh7.R, z1Var, z1Var, date));
         z1Var.e = date;
         long j = 4294967296L;
         if (ehe.a(date) >= 4294967296L) {
             z1Var.h();
         }
         Date date2 = new Date();
-        bp1.r(u84.c(ph7.S, z1Var, z1Var, date2));
+        bp1.r(u84.c(qh7.S, z1Var, z1Var, date2));
         z1Var.f = date2;
         if (ehe.a(date2) >= 4294967296L) {
             z1Var.h();
         }
-        bp1.r(u84.c(ph7.V, z1Var, z1Var, ol6Var));
+        bp1.r(u84.c(qh7.V, z1Var, z1Var, ol6Var));
         z1Var.w = ol6Var;
         long timescale = getTimescale(mp4Movie);
         ArrayList<Track> tracks = mp4Movie.getTracks();
@@ -151,15 +151,15 @@ public class MP4Builder {
             j = j3;
         }
         long j4 = j;
-        bp1.r(u84.c(ph7.U, z1Var, z1Var, new Long(j2)));
+        bp1.r(u84.c(qh7.U, z1Var, z1Var, new Long(j2)));
         z1Var.n = j2;
         if (j2 >= j4) {
             z1Var.h();
         }
-        bp1.r(u84.c(ph7.T, z1Var, z1Var, new Long(timescale)));
+        bp1.r(u84.c(qh7.T, z1Var, z1Var, new Long(timescale)));
         z1Var.h = timescale;
         long size2 = mp4Movie.getTracks().size() + 1;
-        bp1.r(u84.c(ph7.W, z1Var, z1Var, new Long(size2)));
+        bp1.r(u84.c(qh7.W, z1Var, z1Var, new Long(size2)));
         z1Var.x = size2;
         b2Var.a(z1Var);
         ArrayList<Track> tracks2 = mp4Movie.getTracks();

@@ -161,7 +161,7 @@ public final class hjb extends TableLayout implements snb {
         h(str, charSequence, runnable, null, null);
     }
 
-    public final TableRow j(String str, CharSequence charSequence, int i, ida idaVar, String str2, npc npcVar) {
+    public final TableRow j(String str, CharSequence charSequence, int i, kba kbaVar, String str2, npc npcVar) {
         FrameLayout frameLayout = new FrameLayout(getContext());
         final p66 p66Var = new p66(getContext(), null);
         p66Var.setTypeface(hl.n1("fonts/rmono.ttf"));
@@ -185,7 +185,7 @@ public final class hjb extends TableLayout implements snb {
             SpannableString spannableString = new SpannableString("btn");
             spannableString.setSpan(z41Var, 0, spannableString.length(), 33);
             y41Var.setText(spannableString);
-            if (idaVar != null) {
+            if (kbaVar != null) {
                 i3 = 34;
             }
             float f2 = i3 + 12.66f;
@@ -204,13 +204,13 @@ public final class hjb extends TableLayout implements snb {
                 }
             });
         }
-        if (idaVar != null) {
+        if (kbaVar != null) {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(2131232108);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             int i4 = aob.v6;
             yob.s(imageView, i4, vnbVar, PorterDuff.Mode.SRC_IN);
-            imageView.setOnClickListener(new jy8(charSequence, idaVar, (byte) 29));
+            imageView.setOnClickListener(new jy8(charSequence, kbaVar, (byte) 29));
             iye.a(imageView);
             hf0 f0 = aob.f0(aob.p1(0.1f, aob.v0(i4, vnbVar)), 7, -1);
             uob K = yob.K(0.1f, i4);
@@ -221,8 +221,8 @@ public final class hjb extends TableLayout implements snb {
         return l(frameLayout, str);
     }
 
-    public final void k(String str, CharSequence charSequence, int i, ida idaVar) {
-        j(str, charSequence, i, idaVar, null, null);
+    public final void k(String str, CharSequence charSequence, int i, kba kbaVar) {
+        j(str, charSequence, i, kbaVar, null, null);
     }
 
     public final TableRow l(View view, String str) {

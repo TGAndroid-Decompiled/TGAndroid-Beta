@@ -1,5 +1,5 @@
 package defpackage;
-public final class sna implements sf7 {
+public final class sna implements tf7 {
     public final float a;
     public final short b;
 

@@ -16,23 +16,23 @@ public class mj0 extends nhc {
     public boolean m;
     public boolean n;
     public boolean o;
-    public qj7 p;
-    public qj7 q;
-    public qj7 r;
-    public qj7 s;
-    public qj7 t;
-    public qj7 v;
-    public qj7 x;
-    public qj7 y;
+    public rj7 p;
+    public rj7 q;
+    public rj7 r;
+    public rj7 s;
+    public rj7 t;
+    public rj7 v;
+    public rj7 x;
+    public rj7 y;
     public byte j = 0;
     public boolean u = true;
     public int w = 0;
 
-    public static void f(qj7 qj7Var, Object obj) {
+    public static void f(rj7 rj7Var, Object obj) {
         if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
-            qj7Var.i(obj);
+            rj7Var.i(obj);
         } else {
-            qj7Var.g(obj);
+            rj7Var.g(obj);
         }
     }
 
@@ -45,20 +45,20 @@ public class mj0 extends nhc {
     }
 
     public final void d(int i) {
-        qj7 qj7Var = this.x;
-        if (qj7Var == null) {
-            qj7Var = new qj7();
-            this.x = qj7Var;
+        rj7 rj7Var = this.x;
+        if (rj7Var == null) {
+            rj7Var = new rj7();
+            this.x = rj7Var;
         }
-        f(qj7Var, Integer.valueOf(i));
+        f(rj7Var, Integer.valueOf(i));
     }
 
     public final void e(boolean z) {
-        qj7 qj7Var = this.t;
-        if (qj7Var == null) {
-            qj7Var = new qj7();
-            this.t = qj7Var;
+        rj7 rj7Var = this.t;
+        if (rj7Var == null) {
+            rj7Var = new rj7();
+            this.t = rj7Var;
         }
-        f(qj7Var, Boolean.valueOf(z));
+        f(rj7Var, Boolean.valueOf(z));
     }
 }

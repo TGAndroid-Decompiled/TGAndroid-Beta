@@ -35,9 +35,9 @@ public final class t1c {
         this.a = ko4VarArr.length;
         String str2 = ko4VarArr[0].t;
         if (TextUtils.isEmpty(str2)) {
-            h = dg7.h(ko4VarArr[0].s);
+            h = eg7.h(ko4VarArr[0].s);
         } else {
-            h = dg7.h(str2);
+            h = eg7.h(str2);
         }
         this.c = h;
         String str3 = ko4VarArr[0].d;

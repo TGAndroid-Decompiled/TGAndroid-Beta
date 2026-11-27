@@ -721,8 +721,8 @@ public class WallpapersListActivity extends org.telegram.ui.ActionBar.e implemen
             if (arrayList6 != null) {
                 int size2 = arrayList6.size();
                 for (int i7 = 0; i7 < size2; i7++) {
-                    jf7 messagesStorage = getMessagesStorage();
-                    messagesStorage.a.c(new le7(messagesStorage, ((TLRPC.WallPaper) arrayList6.get(i7)).id, (byte) 3));
+                    kf7 messagesStorage = getMessagesStorage();
+                    messagesStorage.a.c(new me7(messagesStorage, ((TLRPC.WallPaper) arrayList6.get(i7)).id, (byte) 3));
                 }
             }
             this.P = aob.I0();
@@ -738,7 +738,7 @@ public class WallpapersListActivity extends org.telegram.ui.ActionBar.e implemen
                 jlaVar.o(true);
             }
         } else if (i == jn7.i4) {
-            getMessagesStorage().m0();
+            getMessagesStorage().o0();
         }
     }
 
@@ -784,13 +784,13 @@ public class WallpapersListActivity extends org.telegram.ui.ActionBar.e implemen
             A0(this.b0, aob.I.o());
             if (z && this.d0.isEmpty()) {
                 jn7.e().b(this, i);
-                getMessagesStorage().m0();
+                getMessagesStorage().o0();
             }
         } else {
             jn7.e().b(this, i);
             jn7.e().b(this, jn7.C4);
             jn7.e().b(this, jn7.i4);
-            getMessagesStorage().m0();
+            getMessagesStorage().o0();
         }
         return super.onFragmentCreate();
     }

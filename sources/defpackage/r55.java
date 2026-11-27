@@ -167,7 +167,7 @@ public final class r55 extends e implements fn7 {
                 Y1.business_greeting_message = null;
             }
             getConnectionsManager().sendRequest(updatebusinessgreetingmessage, new w15(this, (byte) 1));
-            getMessagesStorage().g2(Y1, false);
+            getMessagesStorage().l2(Y1, false);
         }
     }
 

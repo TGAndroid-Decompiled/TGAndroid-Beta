@@ -6,7 +6,7 @@ public final class zd5 implements av3 {
     public final oz9 c;
     public final String d;
     public final ey7 e;
-    public final xj7 f;
+    public final yj7 f;
     public final boolean[] g = new boolean[4];
     public final yd5 h;
     public long i;
@@ -26,7 +26,7 @@ public final class zd5 implements av3 {
         obj.a = new byte[128];
         this.h = obj;
         if (oz9Var != null) {
-            this.f = new xj7(178);
+            this.f = new yj7(178);
             this.e = new ey7();
         } else {
             this.f = null;
@@ -48,9 +48,9 @@ public final class zd5 implements av3 {
         yd5Var.d = false;
         yd5Var.b = 0;
         yd5Var.c = 0;
-        xj7 xj7Var = this.f;
-        if (xj7Var != null) {
-            xj7Var.c();
+        yj7 yj7Var = this.f;
+        if (yj7Var != null) {
+            yj7Var.c();
         }
         this.i = 0L;
         this.j = false;

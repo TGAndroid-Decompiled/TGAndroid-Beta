@@ -35,7 +35,7 @@ public final class bt6 {
 
     public bt6(Uri uri, String str, ys6 ys6Var, ss6 ss6Var, List list, String str2, po5 po5Var, long j2) {
         this.a = uri;
-        this.b = dg7.n(str);
+        this.b = eg7.n(str);
         this.c = ys6Var;
         this.d = ss6Var;
         this.e = list;

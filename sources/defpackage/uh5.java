@@ -20,16 +20,16 @@ public final class uh5 extends ys9 {
         if (hr3Var2 != null && (hr3Var = (hr3) this.K.get(hr3Var2.c)) != null) {
             hr3Var2 = hr3Var;
         }
-        uf7 uf7Var = ko4Var.m;
-        uf7 uf7Var2 = null;
-        if (uf7Var != null) {
-            sf7[] sf7VarArr = uf7Var.a;
-            int length = sf7VarArr.length;
+        vf7 vf7Var = ko4Var.m;
+        vf7 vf7Var2 = null;
+        if (vf7Var != null) {
+            tf7[] tf7VarArr = vf7Var.a;
+            int length = tf7VarArr.length;
             int i = 0;
             while (true) {
                 if (i < length) {
-                    sf7 sf7Var = sf7VarArr[i];
-                    if ((sf7Var instanceof ym8) && "com.apple.streaming.transportStreamTimestamp".equals(((ym8) sf7Var).b)) {
+                    tf7 tf7Var = tf7VarArr[i];
+                    if ((tf7Var instanceof ym8) && "com.apple.streaming.transportStreamTimestamp".equals(((ym8) tf7Var).b)) {
                         break;
                     }
                     i++;
@@ -40,29 +40,29 @@ public final class uh5 extends ys9 {
             }
             if (i != -1) {
                 if (length != 1) {
-                    sf7[] sf7VarArr2 = new sf7[length - 1];
+                    tf7[] tf7VarArr2 = new tf7[length - 1];
                     for (int i2 = 0; i2 < length; i2++) {
                         if (i2 != i) {
-                            sf7VarArr2[i2 < i ? i2 : i2 - 1] = sf7VarArr[i2];
+                            tf7VarArr2[i2 < i ? i2 : i2 - 1] = tf7VarArr[i2];
                         }
                     }
-                    uf7Var2 = new uf7(sf7VarArr2);
+                    vf7Var2 = new vf7(tf7VarArr2);
                 }
             }
-            if (hr3Var2 == ko4Var.x || uf7Var != ko4Var.m) {
+            if (hr3Var2 == ko4Var.x || vf7Var != ko4Var.m) {
                 jo4 a = ko4Var.a();
                 a.w = hr3Var2;
-                a.l = uf7Var;
+                a.l = vf7Var;
                 ko4Var = new ko4(a);
             }
             return super.q(ko4Var);
         }
-        uf7Var = uf7Var2;
+        vf7Var = vf7Var2;
         if (hr3Var2 == ko4Var.x) {
         }
         jo4 a2 = ko4Var.a();
         a2.w = hr3Var2;
-        a2.l = uf7Var;
+        a2.l = vf7Var;
         ko4Var = new ko4(a2);
         return super.q(ko4Var);
     }

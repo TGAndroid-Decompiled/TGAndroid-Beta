@@ -95,7 +95,7 @@ public final class dl8 implements DialogInterface.OnDismissListener {
                 shareActivity.a = null;
                 return;
             case 8:
-                ((ida) obj).run();
+                ((kba) obj).run();
                 return;
             case 9:
                 ((db9) obj).run();

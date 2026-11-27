@@ -90,7 +90,7 @@ public final class fv0 implements Runnable {
             case 11:
                 d61 d61Var = (d61) obj;
                 d61Var.d.clear();
-                d61Var.getMessagesController().h4.h(d61Var.e, d61Var.d);
+                d61Var.getMessagesController().i4.h(d61Var.e, d61Var.d);
                 d61Var.Y();
                 d61Var.finishFragment();
                 return;

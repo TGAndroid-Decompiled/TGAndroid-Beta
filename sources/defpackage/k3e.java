@@ -23,7 +23,7 @@ public final class k3e extends e9d {
             String interfaceDescriptor = iBinder.getInterfaceDescriptor();
             hg0 hg0Var = this.h;
             String l = hg0Var.l();
-            i09 i09Var = hg0Var.t;
+            j09 j09Var = hg0Var.t;
             if (!l.equals(interfaceDescriptor)) {
                 String l2 = hg0Var.l();
                 StringBuilder sb = new StringBuilder(l2.length() + 34 + String.valueOf(interfaceDescriptor).length());
@@ -40,8 +40,8 @@ public final class k3e extends e9d {
             }
             hg0Var.z = null;
             Bundle g = hg0Var.g();
-            if (i09Var != null) {
-                ((k05) i09Var.b).onConnected(g);
+            if (j09Var != null) {
+                ((k05) j09Var.b).onConnected(g);
                 return true;
             }
             return true;
@@ -54,9 +54,9 @@ public final class k3e extends e9d {
     @Override
     public final void b(ws2 ws2Var) {
         hg0 hg0Var = this.h;
-        k09 k09Var = hg0Var.u;
-        if (k09Var != null) {
-            ((l05) k09Var.b).onConnectionFailed(ws2Var);
+        l09 l09Var = hg0Var.u;
+        if (l09Var != null) {
+            ((l05) l09Var.b).onConnectionFailed(ws2Var);
         }
         hg0Var.s(ws2Var);
     }

@@ -14,7 +14,7 @@ public abstract class dm8 extends d79 implements fn7, wu7 {
     public final int j3;
     public boolean k3;
     public boolean l3;
-    public final ki7 m3;
+    public final li7 m3;
     public final k43 n3;
     public final ArrayList o3;
     public final qq7 p3;
@@ -32,7 +32,7 @@ public abstract class dm8 extends d79 implements fn7, wu7 {
         this.h3 = true;
         this.i3 = true;
         rk8 rk8Var = (rk8) this;
-        this.m3 = new ki7(rk8Var, (byte) 9);
+        this.m3 = new li7(rk8Var, (byte) 9);
         this.n3 = new k43(0.0f, 0.5f, 0.5f, 1.0f);
         this.o3 = new ArrayList();
         this.p3 = new qq7((byte) 7);
@@ -74,9 +74,9 @@ public abstract class dm8 extends d79 implements fn7, wu7 {
         if (!this.v3) {
             return;
         }
-        ki7 ki7Var = this.m3;
-        hl.r(ki7Var);
-        hl.d3(ki7Var, 2700L);
+        li7 li7Var = this.m3;
+        hl.r(li7Var);
+        hl.d3(li7Var, 2700L);
     }
 
     @Override

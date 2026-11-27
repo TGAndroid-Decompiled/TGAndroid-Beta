@@ -29,7 +29,7 @@ public final class hk implements Runnable {
                             String stringExtra2 = intent.getStringExtra("com.google.android.voicesearch.extra.RECIPIENT_CONTACT_URI");
                             long parseLong = Long.parseLong(intent.getStringExtra("com.google.android.voicesearch.extra.RECIPIENT_CONTACT_CHAT_ID"));
                             TLRPC.User X1 = uc7.s1(i).X1(Long.valueOf(parseLong));
-                            if (X1 == null && (X1 = jf7.Y(i).h0(parseLong)) != null) {
+                            if (X1 == null && (X1 = kf7.a0(i).j0(parseLong)) != null) {
                                 uc7.s1(i).i4(X1, true, false);
                             }
                             if (X1 != null) {

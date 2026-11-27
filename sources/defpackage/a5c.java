@@ -325,9 +325,9 @@ public final class a5c extends rf0 {
                                 u4cVar = new u4c();
                                 arrayList.add(u4cVar);
                             }
-                            z5b z5bVar = u4cVar.a;
-                            if (z5bVar != null) {
-                                hl.r(z5bVar);
+                            j5b j5bVar = u4cVar.a;
+                            if (j5bVar != null) {
+                                hl.r(j5bVar);
                             }
                             this.x.add(Integer.valueOf(r47Var.e1()));
                             u4cVar.b.add(Integer.valueOf(r47Var.e1()));
@@ -337,9 +337,9 @@ public final class a5c extends rf0 {
                             u4cVar.e = str;
                             u4cVar.g = u4cVar.g + i;
                             u4c u4cVar2 = u4cVar;
-                            z5b z5bVar2 = new z5b(this, B0, u4cVar2, (byte) 9);
-                            u4cVar2.a = z5bVar2;
-                            hl.d3(z5bVar2, u4cVar2.f);
+                            j5b j5bVar2 = new j5b(this, B0, u4cVar2, (byte) 10);
+                            u4cVar2.a = j5bVar2;
+                            hl.d3(j5bVar2, u4cVar2.f);
                             u4cVar2.f /= 2;
                         } catch (Throwable th3) {
                             a5cVar = this;
@@ -531,7 +531,7 @@ public final class a5c extends rf0 {
                 cc4.g(e, true);
             }
         }
-        uc7.s1(this.currentAccount).X3.edit().putString("translating_dialog_languages2", sb.toString()).putStringSet("hidden_translation_at", hashSet).apply();
+        uc7.s1(this.currentAccount).Y3.edit().putString("translating_dialog_languages2", sb.toString()).putStringSet("hidden_translation_at", hashSet).apply();
     }
 
     public final void I(long j, String str) {
@@ -573,12 +573,12 @@ public final class a5c extends rf0 {
         TLRPC.ChatFull N0 = getMessagesController().N0(-j);
         if (N0 != null) {
             N0.translations_disabled = z;
-            getMessagesStorage().K1(N0, true);
+            getMessagesStorage().P1(N0, true);
         }
         TLRPC.UserFull Y1 = getMessagesController().Y1(j);
         if (Y1 != null) {
             Y1.translations_disabled = z;
-            getMessagesStorage().g2(Y1, true);
+            getMessagesStorage().l2(Y1, true);
         }
         synchronized (this) {
             HashSet hashSet = this.h;
@@ -1014,7 +1014,7 @@ public final class a5c extends rf0 {
                                                                 if (z3) {
                                                                     a5cVar.B(r47Var5);
                                                                 }
-                                                                a5cVar.getMessagesStorage().U1(j, r47Var5.k);
+                                                                a5cVar.getMessagesStorage().Z1(j, r47Var5.k);
                                                                 jn7.f(a5cVar.currentAccount).k(129, r47Var5);
                                                                 ArrayList arrayList = (ArrayList) a5cVar.n.S.f(j);
                                                                 if (arrayList != null) {
@@ -1049,7 +1049,7 @@ public final class a5c extends rf0 {
                                                                 if (z3) {
                                                                     a5cVar.B(r47Var5);
                                                                 }
-                                                                a5cVar.getMessagesStorage().U1(j, r47Var5.k);
+                                                                a5cVar.getMessagesStorage().Z1(j, r47Var5.k);
                                                                 jn7.f(a5cVar.currentAccount).k(129, r47Var5);
                                                                 ArrayList arrayList2 = (ArrayList) a5cVar.n.S.f(j);
                                                                 if (arrayList2 != null) {
@@ -1102,9 +1102,9 @@ public final class a5c extends rf0 {
                                                                 v4cVar = new v4c();
                                                                 arrayList.add(v4cVar);
                                                             }
-                                                            z5b z5bVar = v4cVar.a;
-                                                            if (z5bVar != null) {
-                                                                hl.r(z5bVar);
+                                                            j5b j5bVar = v4cVar.a;
+                                                            if (j5bVar != null) {
+                                                                hl.r(j5bVar);
                                                             }
                                                             this.x.add(Integer.valueOf(r47Var2.e1()));
                                                             v4cVar.b.add(Integer.valueOf(r47Var2.e1()));
@@ -1112,9 +1112,9 @@ public final class a5c extends rf0 {
                                                             v4cVar.c.add(kccVar);
                                                             v4cVar.d = l;
                                                             v4c v4cVar2 = v4cVar;
-                                                            z5b z5bVar2 = new z5b(this, B03, v4cVar2, (byte) 8);
-                                                            v4cVar2.a = z5bVar2;
-                                                            hl.d3(z5bVar2, v4cVar2.e);
+                                                            j5b j5bVar2 = new j5b(this, B03, v4cVar2, (byte) 9);
+                                                            v4cVar2.a = j5bVar2;
+                                                            hl.d3(j5bVar2, v4cVar2.e);
                                                             v4cVar2.e /= 2;
                                                             return;
                                                         }
@@ -1170,7 +1170,7 @@ public final class a5c extends rf0 {
                                                                     if (z3) {
                                                                         a5cVar.B(r47Var5);
                                                                     }
-                                                                    a5cVar.getMessagesStorage().U1(j, r47Var5.k);
+                                                                    a5cVar.getMessagesStorage().Z1(j, r47Var5.k);
                                                                     jn7.f(a5cVar.currentAccount).k(129, r47Var5);
                                                                     ArrayList arrayList3 = (ArrayList) a5cVar.n.S.f(j);
                                                                     if (arrayList3 != null) {
@@ -1205,7 +1205,7 @@ public final class a5c extends rf0 {
                                                                     if (z3) {
                                                                         a5cVar.B(r47Var5);
                                                                     }
-                                                                    a5cVar.getMessagesStorage().U1(j, r47Var5.k);
+                                                                    a5cVar.getMessagesStorage().Z1(j, r47Var5.k);
                                                                     jn7.f(a5cVar.currentAccount).k(129, r47Var5);
                                                                     ArrayList arrayList22 = (ArrayList) a5cVar.n.S.f(j);
                                                                     if (arrayList22 != null) {
@@ -1256,10 +1256,10 @@ public final class a5c extends rf0 {
                                                             if (z2) {
                                                                 a5cVar.B(r47Var5);
                                                             }
-                                                            jf7 messagesStorage = a5cVar.getMessagesStorage();
+                                                            kf7 messagesStorage = a5cVar.getMessagesStorage();
                                                             TLRPC.Message message11 = r47Var5.k;
                                                             long j = B0;
-                                                            messagesStorage.U1(j, message11);
+                                                            messagesStorage.Z1(j, message11);
                                                             jn7.f(a5cVar.currentAccount).k(jn7.M1, r47Var5);
                                                             ArrayList arrayList3 = (ArrayList) a5cVar.n.S.f(j);
                                                             if (arrayList3 != null) {
@@ -1402,7 +1402,7 @@ public final class a5c extends rf0 {
                 }
             }
         }
-        uc7.s1(this.currentAccount).X3.edit().remove("translating_dialog_languages2").remove("hidden_translation_at").apply();
+        uc7.s1(this.currentAccount).Y3.edit().remove("translating_dialog_languages2").remove("hidden_translation_at").apply();
         this.a.clear();
         this.b.clear();
         this.c.clear();
@@ -1468,7 +1468,7 @@ public final class a5c extends rf0 {
             message2.summaryText = null;
             message2.translatedSummaryText = null;
             message2.translatedSummaryLanguage = null;
-            getMessagesStorage().U1(B0, r47Var.k);
+            getMessagesStorage().Z1(B0, r47Var.k);
             hl.c3(new ue2(this, r47Var, B0, (byte) 8));
         }
     }
@@ -1487,7 +1487,7 @@ public final class a5c extends rf0 {
         }
         Boolean bool = this.r;
         if (bool == null) {
-            bool = Boolean.valueOf(this.n.X3.getBoolean("translate_chat_button", true));
+            bool = Boolean.valueOf(this.n.Y3.getBoolean("translate_chat_button", true));
             this.r = bool;
         }
         return bool.booleanValue();
@@ -1499,7 +1499,7 @@ public final class a5c extends rf0 {
         }
         Boolean bool = this.s;
         if (bool == null) {
-            bool = Boolean.valueOf(this.n.X3.getBoolean("translate_button", uc7.e1().getBoolean("translate_button", false)));
+            bool = Boolean.valueOf(this.n.Y3.getBoolean("translate_button", uc7.e1().getBoolean("translate_button", false)));
             this.s = bool;
         }
         return bool.booleanValue();

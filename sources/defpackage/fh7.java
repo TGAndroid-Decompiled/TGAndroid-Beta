@@ -1,21 +1,35 @@
 package defpackage;
-
-import java.util.Arrays;
 public final class fh7 {
-    public float a;
-    public float[] b;
-    public int[] c;
-    public boolean d;
-    public int[] e;
-    public float f;
+    public final float[] a;
+    public final float[] b;
+    public final float c;
+    public final float d;
+    public final float e;
+    public final boolean f;
+    public final float[] g;
+    public final float[] h;
+    public final float[] i;
+    public final float[] j = new float[3];
 
-    public final String toString() {
-        String str;
-        if (this.d) {
-            str = "columns ";
+    public fh7(float[] fArr, float[] fArr2, float f, float f2, float f3) {
+        boolean z;
+        this.a = fArr;
+        this.b = fArr2;
+        this.c = f;
+        this.d = f2;
+        this.e = f3;
+        if (f2 > f) {
+            z = true;
         } else {
-            str = "rows ";
+            z = false;
         }
-        return str + Arrays.toString(this.e) + " aspect=" + this.a + " cost=" + this.f + " order=" + Arrays.toString(this.c);
+        this.f = z;
+        this.g = new float[fArr.length];
+        this.h = new float[fArr.length];
+        this.i = new float[fArr.length];
+    }
+
+    public final void a(int[] r43, int[] r44, float r45, defpackage.gh7 r46, boolean r47) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fh7.a(int[], int[], float, gh7, boolean):void");
     }
 }

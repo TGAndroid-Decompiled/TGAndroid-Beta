@@ -60,7 +60,7 @@ public final class ji1 implements vs4 {
         if (b == vx2.a) {
             return b;
         }
-        return f9c.a;
+        return g9c.a;
     }
 
     public final String b() {
@@ -90,7 +90,7 @@ public final class ji1 implements vs4 {
             case 1:
                 int i = this.b;
                 vx2 vx2Var = vx2.a;
-                f9c f9cVar = f9c.a;
+                g9c g9cVar = g9c.a;
                 if (i == -3) {
                     mx2 context = zw2Var.getContext();
                     Boolean bool = Boolean.FALSE;
@@ -104,10 +104,10 @@ public final class ji1 implements vs4 {
                     if (ur5.a(a2, context)) {
                         a = ((mm4) this.e).k(nm4Var, zw2Var);
                         if (a != vx2Var) {
-                            a = f9cVar;
+                            a = g9cVar;
                         }
                         if (a != vx2Var) {
-                            return f9cVar;
+                            return g9cVar;
                         }
                     } else {
                         rj2 rj2Var = rj2.b;
@@ -118,7 +118,7 @@ public final class ji1 implements vs4 {
                             }
                             a = jvd.a(a2, nm4Var, xhd.b(a2), new ii1(this, null, (byte) 1), zw2Var);
                             if (a != vx2Var) {
-                                return f9cVar;
+                                return g9cVar;
                             }
                         }
                     }
@@ -126,7 +126,7 @@ public final class ji1 implements vs4 {
                 }
                 a = a(nm4Var, zw2Var);
                 if (a != vx2Var) {
-                    return f9cVar;
+                    return g9cVar;
                 }
                 return a;
             default:

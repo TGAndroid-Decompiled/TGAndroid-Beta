@@ -72,49 +72,49 @@ public final class oo2 implements icc {
                 }
                 return;
             default:
-                rbb rbbVar = (rbb) fn7Var;
+                sbb sbbVar = (sbb) fn7Var;
                 Bitmap bitmap = (Bitmap) obj2;
-                int i2 = rbbVar.c;
-                if (obj != null && rbbVar.q2 == null && !rbbVar.X && rbbVar.H()) {
+                int i2 = sbbVar.c;
+                if (obj != null && sbbVar.q2 == null && !sbbVar.X && sbbVar.H()) {
                     if (z2) {
-                        if (rbbVar.L1 != null) {
-                            rbbVar.s();
-                            rbbVar.L1.j = true;
+                        if (sbbVar.L1 != null) {
+                            sbbVar.s();
+                            sbbVar.L1.j = true;
                             if (obj instanceof no6) {
-                                vab vabVar = rbbVar.w1;
-                                vabVar.a0(vabVar.h0(((no6) obj).I, false));
+                                wab wabVar = sbbVar.w1;
+                                wabVar.a0(wabVar.h0(((no6) obj).I, false));
                             } else if (obj instanceof TLObject) {
-                                vab vabVar2 = rbbVar.w1;
+                                wab wabVar2 = sbbVar.w1;
                                 TLObject tLObject = (TLObject) obj;
-                                vabVar2.Z1 = true;
-                                zw7 zw7Var = vabVar2.B0;
+                                wabVar2.Z1 = true;
+                                zw7 zw7Var = wabVar2.B0;
                                 if ((tLObject instanceof TLRPC.Photo) && (w = xb4.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false)) != null) {
                                     f = w.w / w.h;
                                 } else {
                                     f = 1.0f;
                                 }
                                 if (f > 1.0f) {
-                                    float floor = (float) Math.floor(Math.max(vabVar2.B1, zw7Var.getMeasuredWidth()) * 0.5d);
+                                    float floor = (float) Math.floor(Math.max(wabVar2.B1, zw7Var.getMeasuredWidth()) * 0.5d);
                                     qmaVar = new qma(floor, floor / f);
                                 } else {
-                                    float floor2 = (float) Math.floor(Math.max(vabVar2.C1, zw7Var.getMeasuredHeight()) * 0.5d);
+                                    float floor2 = (float) Math.floor(Math.max(wabVar2.C1, zw7Var.getMeasuredHeight()) * 0.5d);
                                     qmaVar = new qma(f * floor2, floor2);
                                 }
-                                v98 v98Var = new v98(vabVar2.getContext(), vabVar2.b0(), qmaVar, tLObject);
-                                v98Var.setDelegate(vabVar2);
+                                v98 v98Var = new v98(wabVar2.getContext(), wabVar2.b0(), qmaVar, tLObject);
+                                v98Var.setDelegate(wabVar2);
                                 zw7Var.addView(v98Var);
-                                vabVar2.c0();
-                                vabVar2.a0(v98Var);
+                                wabVar2.c0();
+                                wabVar2.a0(v98Var);
                             }
-                            rbbVar.c(false);
+                            sbbVar.c(false);
                         } else {
                             return;
                         }
                     } else {
-                        rbbVar.h0(false, true);
-                        rbbVar.R0.a(rbbVar.P1);
-                        u59 u59Var = rbbVar.P0;
-                        if (rbbVar.P1 == 1) {
+                        sbbVar.h0(false, true);
+                        sbbVar.R0.a(sbbVar.P1);
+                        u59 u59Var = sbbVar.P0;
+                        if (sbbVar.P1 == 1) {
                             z = true;
                         } else {
                             z = false;
@@ -122,61 +122,61 @@ public final class oo2 implements icc {
                         u59Var.o0 = -1.0f;
                         u59Var.p0 = z;
                         u59Var.invalidate();
-                        rbbVar.c(false);
+                        sbbVar.c(false);
                         boolean z3 = obj instanceof no6;
                         if (z3) {
                             no6 no6Var = (no6) obj;
                             if (no6Var.b && !no6Var.d()) {
                                 i = 1;
                             }
-                            rbbVar.P1 = i;
+                            sbbVar.P1 = i;
                             c8b l = c8b.l(no6Var);
                             l.M0 = bitmap;
-                            l.J0 = rbbVar.w0;
-                            l.K0 = rbbVar.x0;
+                            l.J0 = sbbVar.w0;
+                            l.K0 = sbbVar.x0;
                             l.z();
-                            rbbVar.M1 = true;
-                            if (rbbVar.B0.i()) {
-                                rbbVar.H1 = null;
+                            sbbVar.M1 = true;
+                            if (sbbVar.B0.i()) {
+                                sbbVar.H1 = null;
                                 l.P = 1.0f;
-                                if (rbbVar.B0.l(l)) {
-                                    rbbVar.L1 = c8b.a(rbbVar.B0.getLayout(), rbbVar.B0.getContent());
+                                if (sbbVar.B0.l(l)) {
+                                    sbbVar.L1 = c8b.a(sbbVar.B0.getLayout(), sbbVar.B0.getContent());
                                 }
-                                rbbVar.l0(true);
+                                sbbVar.l0(true);
                             } else {
                                 l.A();
-                                rbbVar.L1 = l;
+                                sbbVar.L1 = l;
                                 if (z3) {
                                     y9b.a(i2, l);
                                 }
-                                rbbVar.I(1, true);
+                                sbbVar.I(1, true);
                             }
                         } else if (obj instanceof c8b) {
                             c8b c8bVar = (c8b) obj;
                             if (c8bVar.L == null && !c8bVar.v()) {
-                                rbbVar.f1.c("Failed to load draft");
+                                sbbVar.f1.c("Failed to load draft");
                                 uc7.s1(i2).O1().w.b(c8bVar);
                                 return;
                             }
-                            c8bVar.J0 = rbbVar.w0;
-                            c8bVar.K0 = rbbVar.x0;
-                            rbbVar.P1 = c8bVar.K ? 1 : 0;
+                            c8bVar.J0 = sbbVar.w0;
+                            c8bVar.K0 = sbbVar.x0;
+                            sbbVar.P1 = c8bVar.K ? 1 : 0;
                             c8bVar.M0 = bitmap;
-                            rbbVar.M1 = false;
-                            rbbVar.B0.n(c8bVar);
-                            rbbVar.L1 = c8bVar;
+                            sbbVar.M1 = false;
+                            sbbVar.B0.n(c8bVar);
+                            sbbVar.L1 = c8bVar;
                             if (z3) {
                                 y9b.a(i2, c8bVar);
                             }
-                            rbbVar.I(1, true);
+                            sbbVar.I(1, true);
                         } else {
                             return;
                         }
                     }
-                    zt4 zt4Var = rbbVar.N0;
+                    zt4 zt4Var = sbbVar.N0;
                     if (zt4Var != null) {
-                        rbbVar.m2 = zt4Var.e.d0();
-                        rbbVar.n2 = rbbVar.N0.getSelectedAlbum();
+                        sbbVar.m2 = zt4Var.e.d0();
+                        sbbVar.n2 = sbbVar.N0.getSelectedAlbum();
                         return;
                     }
                     return;

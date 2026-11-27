@@ -147,7 +147,7 @@ public final class aq7 extends e implements k32, fn7 {
             this.K = new f82(context, null, false, this.f);
             if (this.L < 0) {
                 if (this.Q != 0) {
-                    TLRPC.TL_forumTopic f = getMessagesController().g4.f(-this.L, this.Q);
+                    TLRPC.TL_forumTopic f = getMessagesController().h4.f(-this.L, this.Q);
                     ro4.q(this.K.getAvatarImageView(), f, false, true, this.f);
                     this.simpleActionBar.setTitle(f.title);
                 } else {

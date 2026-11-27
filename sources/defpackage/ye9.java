@@ -19,7 +19,7 @@ import org.webrtc.RtpParameters;
 import org.webrtc.RtpReceiver;
 import org.webrtc.RtpSender;
 import org.webrtc.RtpTransceiver;
-public final class ye9 implements vt3, lf9, ncc, oj3, fd, qy9, yl9, cg0, nl0, on5, NativeLifecycleLock.NativePointerRunnable, NativeLifecycleLock.NativePointerCallable, NativeLifecycleLock.NativeDisposer, t69, ta9, s69, k6b, pg2, hf7 {
+public final class ye9 implements vt3, lf9, ncc, oj3, fd, qy9, yl9, cg0, nl0, on5, NativeLifecycleLock.NativePointerRunnable, NativeLifecycleLock.NativePointerCallable, NativeLifecycleLock.NativeDisposer, t69, ta9, s69, k6b, pg2, if7 {
     public final byte a;
     public final Object b;
 
@@ -181,9 +181,9 @@ public final class ye9 implements vt3, lf9, ncc, oj3, fd, qy9, yl9, cg0, nl0, on
                 }
                 return;
             default:
-                u5b u5bVar = (u5b) obj;
+                v5b v5bVar = (v5b) obj;
                 if (z) {
-                    u5bVar.p(30, false);
+                    v5bVar.p(30, false);
                     return;
                 }
                 return;
@@ -202,7 +202,7 @@ public final class ye9 implements vt3, lf9, ncc, oj3, fd, qy9, yl9, cg0, nl0, on
 
     @Override
     public final fu5 i(dg9 dg9Var) {
-        return fu5.I((yg9) ((i09) this.b).b, dg9Var);
+        return fu5.I((yg9) ((j09) this.b).b, dg9Var);
     }
 
     public final void j(int i) {

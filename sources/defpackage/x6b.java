@@ -33,17 +33,17 @@ public abstract class x6b extends fic {
         boolean z;
         this.B0 = new ArrayList();
         this.E0 = true;
-        acb acbVar = (acb) this;
-        this.N0 = new bva(acbVar, (byte) 4);
+        bcb bcbVar = (bcb) this;
+        this.N0 = new bva(bcbVar, (byte) 4);
         this.P0 = -1;
         this.Q0 = new ArrayList();
         this.z0 = i;
         this.I0 = new m68(context);
         this.O0 = lcbVar;
-        v6b v6bVar = new v6b(acbVar, context, lcbVar, x53Var);
+        v6b v6bVar = new v6b(bcbVar, context, lcbVar, x53Var);
         this.A0 = v6bVar;
         setAdapter(v6bVar);
-        hja hjaVar = new hja(acbVar, (byte) 18);
+        hja hjaVar = new hja(bcbVar, (byte) 18);
         if (this.n0 != null) {
             z = false;
         } else {
@@ -57,7 +57,7 @@ public abstract class x6b extends fic {
             s();
         }
         setOffscreenPageLimit(0);
-        b(new vk8((byte) 1, acbVar, lcbVar));
+        b(new vk8((byte) 1, bcbVar, lcbVar));
         setOverScrollMode(2);
     }
 

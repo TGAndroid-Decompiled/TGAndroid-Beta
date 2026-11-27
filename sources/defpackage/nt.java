@@ -27,7 +27,7 @@ public final class nt implements RequestDelegate {
                 return;
             default:
                 uc7 uc7Var = (uc7) fn7Var;
-                HashMap hashMap = uc7Var.h5;
+                HashMap hashMap = uc7Var.i5;
                 hashMap.remove(this.b + "_" + this.c);
                 if (tL_error == null && tLObject != null) {
                     uc7Var.Y3((TLRPC.Updates) tLObject, false);

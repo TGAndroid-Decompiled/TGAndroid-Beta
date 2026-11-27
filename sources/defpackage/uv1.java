@@ -16,8 +16,8 @@ public final class uv1 implements Runnable {
     public final Object f;
     public final Object h;
 
-    public uv1(jf7 jf7Var, long j, ArrayList arrayList, boolean z, int i, int i2) {
-        this.f = jf7Var;
+    public uv1(kf7 kf7Var, long j, ArrayList arrayList, boolean z, int i, int i2) {
+        this.f = kf7Var;
         this.b = j;
         this.h = arrayList;
         this.c = z;
@@ -50,7 +50,7 @@ public final class uv1 implements Runnable {
                 }
                 return;
             case 1:
-                ((jf7) obj2).N0(this.d, this.e, this.b, (ArrayList) obj, this.c);
+                ((kf7) obj2).Q0(this.d, this.e, this.b, (ArrayList) obj, this.c);
                 return;
             default:
                 TLObject tLObject = (TLObject) obj2;

@@ -39,7 +39,7 @@ public final class td1 implements d5c {
         vw5Var.a(c84.class, m50Var);
         vw5Var.a(u90.class, m50Var);
         q50 q50Var = q50.a;
-        vw5Var.a(gl7.class, q50Var);
+        vw5Var.a(hl7.class, q50Var);
         vw5Var.a(fa0.class, q50Var);
         l50 l50Var = l50.a;
         vw5Var.a(f74.class, l50Var);

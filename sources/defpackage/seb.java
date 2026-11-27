@@ -66,7 +66,7 @@ public final class seb implements x1c {
         reb rebVar;
         ko4Var.t.getClass();
         String str = ko4Var.t;
-        if (dg7.h(str) == 3) {
+        if (eg7.h(str) == 3) {
             z = true;
         } else {
             z = false;
@@ -90,7 +90,7 @@ public final class seb implements x1c {
             return;
         }
         jo4 a = ko4Var.a();
-        a.s = dg7.n("application/x-media3-cues");
+        a.s = eg7.n("application/x-media3-cues");
         a.k = str;
         a.x = Long.MAX_VALUE;
         a.T = pebVar.y(ko4Var);

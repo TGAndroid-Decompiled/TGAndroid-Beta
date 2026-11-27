@@ -58,10 +58,10 @@ public final class vh4 implements f73, j98, g84 {
         return (d2 * d2) + (d * d);
     }
 
-    public static void a(fg7[][][] fg7VarArr, int i, fg7 fg7Var) {
-        fg7[] fg7VarArr2 = fg7VarArr[i + fg7Var.d][fg7Var.c];
-        pg7 pg7Var = fg7Var.a;
-        int ordinal = pg7Var.ordinal();
+    public static void a(gg7[][][] gg7VarArr, int i, gg7 gg7Var) {
+        gg7[] gg7VarArr2 = gg7VarArr[i + gg7Var.d][gg7Var.c];
+        qg7 qg7Var = gg7Var.a;
+        int ordinal = qg7Var.ordinal();
         char c = 2;
         if (ordinal != 1) {
             if (ordinal != 2) {
@@ -69,7 +69,7 @@ public final class vh4 implements f73, j98, g84 {
                     if (ordinal == 6) {
                         c = 0;
                     } else {
-                        xi4.k(pg7Var, "Illegal mode ");
+                        xi4.k(qg7Var, "Illegal mode ");
                         return;
                     }
                 } else {
@@ -79,16 +79,16 @@ public final class vh4 implements f73, j98, g84 {
                 c = 1;
             }
         }
-        fg7 fg7Var2 = fg7VarArr2[c];
-        if (fg7Var2 != null && fg7Var2.f <= fg7Var.f) {
+        gg7 gg7Var2 = gg7VarArr2[c];
+        if (gg7Var2 != null && gg7Var2.f <= gg7Var.f) {
             return;
         }
-        fg7VarArr2[c] = fg7Var;
+        gg7VarArr2[c] = gg7Var;
     }
 
-    public static boolean g(pg7 pg7Var, char c) {
+    public static boolean g(qg7 qg7Var, char c) {
         int i;
-        int ordinal = pg7Var.ordinal();
+        int ordinal = qg7Var.ordinal();
         if (ordinal != 1) {
             if (ordinal != 2) {
                 if (ordinal != 4) {
@@ -417,8 +417,8 @@ public final class vh4 implements f73, j98, g84 {
         }
     }
 
-    public final void b(defpackage.xdc r13, defpackage.fg7[][][] r14, int r15, defpackage.fg7 r16) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vh4.b(xdc, fg7[][][], int, fg7):void");
+    public final void b(defpackage.xdc r13, defpackage.gg7[][][] r14, int r15, defpackage.gg7 r16) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vh4.b(xdc, gg7[][][], int, gg7):void");
     }
 
     public final void c(View view) {
@@ -538,14 +538,14 @@ public final class vh4 implements f73, j98, g84 {
         String str = (String) this.b;
         int length = str.length();
         CharsetEncoder[] charsetEncoderArr = ((xs3) this.c).a;
-        fg7[][][] fg7VarArr = (fg7[][][]) Array.newInstance(fg7.class, length + 1, charsetEncoderArr.length, 4);
-        b(xdcVar, fg7VarArr, 0, null);
+        gg7[][][] gg7VarArr = (gg7[][][]) Array.newInstance(gg7.class, length + 1, charsetEncoderArr.length, 4);
+        b(xdcVar, gg7VarArr, 0, null);
         for (int i2 = 1; i2 <= length; i2++) {
             for (int i3 = 0; i3 < charsetEncoderArr.length; i3++) {
                 for (int i4 = 0; i4 < 4; i4++) {
-                    fg7 fg7Var = fg7VarArr[i2][i3][i4];
-                    if (fg7Var != null && i2 < length) {
-                        b(xdcVar, fg7VarArr, i2, fg7Var);
+                    gg7 gg7Var = gg7VarArr[i2][i3][i4];
+                    if (gg7Var != null && i2 < length) {
+                        b(xdcVar, gg7VarArr, i2, gg7Var);
                     }
                 }
             }
@@ -555,8 +555,8 @@ public final class vh4 implements f73, j98, g84 {
         int i7 = -1;
         for (int i8 = 0; i8 < charsetEncoderArr.length; i8++) {
             for (int i9 = 0; i9 < 4; i9++) {
-                fg7 fg7Var2 = fg7VarArr[length][i8][i9];
-                if (fg7Var2 != null && (i = fg7Var2.f) < i6) {
+                gg7 gg7Var2 = gg7VarArr[length][i8][i9];
+                if (gg7Var2 != null && (i = gg7Var2.f) < i6) {
                     i5 = i8;
                     i7 = i9;
                     i6 = i;
@@ -564,7 +564,7 @@ public final class vh4 implements f73, j98, g84 {
             }
         }
         if (i5 >= 0) {
-            return new pm3(this, xdcVar, fg7VarArr[length][i5][i7]);
+            return new pm3(this, xdcVar, gg7VarArr[length][i5][i7]);
         }
         throw new Exception(qd4.y("Internal error: failed to encode \"", str, "\""));
     }

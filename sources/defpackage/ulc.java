@@ -1,27 +1,32 @@
 package defpackage;
 
+import java.util.HashSet;
 import org.telegram.messenger.voip.VoIPService;
-public final class ulc implements icc {
+public final class ulc implements Runnable {
     public final byte a;
     public final VoIPService b;
+    public final HashSet c;
+    public final String d;
 
-    public ulc(VoIPService voIPService, byte b) {
+    public ulc(VoIPService voIPService, HashSet hashSet, String str, byte b) {
         this.a = b;
         this.b = voIPService;
+        this.c = hashSet;
+        this.d = str;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
+    public final void run() {
         byte b = this.a;
+        String str = this.d;
+        HashSet hashSet = this.c;
         VoIPService voIPService = this.b;
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
         switch (b) {
             case 0:
-                voIPService.lambda$switchToSpeaker$88(bool, bool2);
+                voIPService.lambda$startConferenceGroupCall$53(hashSet, str);
                 return;
             default:
-                voIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$92(bool, bool2);
+                voIPService.lambda$startConferenceGroupCall$45(hashSet, str);
                 return;
         }
     }

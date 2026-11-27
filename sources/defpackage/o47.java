@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.a;
-public final class o47 implements si7 {
+public final class o47 implements ti7 {
     public float E;
     public r47 F;
     public int G;

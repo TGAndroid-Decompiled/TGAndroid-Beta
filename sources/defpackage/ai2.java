@@ -28,9 +28,9 @@ public final class ai2 implements ValueAnimator.AnimatorUpdateListener {
                 ei2Var.invalidateSelf();
                 return;
             case 1:
-                u3b u3bVar = (u3b) obj2;
-                u3bVar.b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u3bVar.invalidate();
+                v3b v3bVar = (v3b) obj2;
+                v3bVar.b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v3bVar.invalidate();
                 ((xu9) obj).invalidate();
                 return;
             default:

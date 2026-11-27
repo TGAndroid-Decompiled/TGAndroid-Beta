@@ -9,11 +9,11 @@ public final class he5 implements av3 {
     public boolean e;
     public long l;
     public final boolean[] f = new boolean[3];
-    public final xj7 g = new xj7(32);
-    public final xj7 h = new xj7(33);
-    public final xj7 i = new xj7(34);
-    public final xj7 j = new xj7(39);
-    public final xj7 k = new xj7(40);
+    public final yj7 g = new yj7(32);
+    public final yj7 h = new yj7(33);
+    public final yj7 i = new yj7(34);
+    public final yj7 j = new yj7(39);
+    public final yj7 k = new yj7(40);
     public long m = -9223372036854775807L;
     public final ey7 n = new ey7();
 
@@ -39,29 +39,29 @@ public final class he5 implements av3 {
             ge5Var.i = true;
         }
         if (!this.e) {
-            xj7 xj7Var = this.g;
-            xj7Var.b(i2);
-            xj7 xj7Var2 = this.h;
-            xj7Var2.b(i2);
-            xj7 xj7Var3 = this.i;
-            xj7Var3.b(i2);
-            if (xj7Var.c && xj7Var2.c && xj7Var3.c) {
+            yj7 yj7Var = this.g;
+            yj7Var.b(i2);
+            yj7 yj7Var2 = this.h;
+            yj7Var2.b(i2);
+            yj7 yj7Var3 = this.i;
+            yj7Var3.b(i2);
+            if (yj7Var.c && yj7Var2.c && yj7Var3.c) {
                 String str = this.b;
-                int i3 = xj7Var.e;
-                byte[] bArr = new byte[xj7Var2.e + i3 + xj7Var3.e];
-                System.arraycopy(xj7Var.d, 0, bArr, 0, i3);
-                System.arraycopy(xj7Var2.d, 0, bArr, xj7Var.e, xj7Var2.e);
-                System.arraycopy(xj7Var3.d, 0, bArr, xj7Var.e + xj7Var2.e, xj7Var3.e);
+                int i3 = yj7Var.e;
+                byte[] bArr = new byte[yj7Var2.e + i3 + yj7Var3.e];
+                System.arraycopy(yj7Var.d, 0, bArr, 0, i3);
+                System.arraycopy(yj7Var2.d, 0, bArr, yj7Var.e, yj7Var2.e);
+                System.arraycopy(yj7Var3.d, 0, bArr, yj7Var.e + yj7Var2.e, yj7Var3.e);
                 String str2 = null;
-                ck7 i4 = rfd.i(xj7Var2.d, 3, xj7Var2.e, null);
-                zj7 zj7Var = i4.b;
-                if (zj7Var != null) {
-                    str2 = rk2.a(zj7Var.a, zj7Var.c, zj7Var.d, zj7Var.f, zj7Var.b, zj7Var.e);
+                dk7 i4 = rfd.i(yj7Var2.d, 3, yj7Var2.e, null);
+                ak7 ak7Var = i4.b;
+                if (ak7Var != null) {
+                    str2 = rk2.a(ak7Var.a, ak7Var.c, ak7Var.d, ak7Var.f, ak7Var.b, ak7Var.e);
                 }
                 jo4 jo4Var = new jo4();
                 jo4Var.a = str;
-                jo4Var.r = dg7.n("video/mp2t");
-                jo4Var.s = dg7.n("video/hevc");
+                jo4Var.r = eg7.n("video/mp2t");
+                jo4Var.s = eg7.n("video/hevc");
                 jo4Var.k = str2;
                 jo4Var.z = i4.e;
                 jo4Var.A = i4.f;
@@ -83,17 +83,17 @@ public final class he5 implements av3 {
                 this.e = true;
             }
         }
-        xj7 xj7Var4 = this.j;
-        boolean b = xj7Var4.b(i2);
+        yj7 yj7Var4 = this.j;
+        boolean b = yj7Var4.b(i2);
         ey7 ey7Var = this.n;
         if (b) {
-            ey7Var.L(rfd.m(xj7Var4.e, xj7Var4.d), xj7Var4.d);
+            ey7Var.L(rfd.m(yj7Var4.e, yj7Var4.d), yj7Var4.d);
             ey7Var.O(5);
             loVar.a(j2, ey7Var);
         }
-        xj7 xj7Var5 = this.k;
-        if (xj7Var5.b(i2)) {
-            ey7Var.L(rfd.m(xj7Var5.e, xj7Var5.d), xj7Var5.d);
+        yj7 yj7Var5 = this.k;
+        if (yj7Var5.b(i2)) {
+            ey7Var.L(rfd.m(yj7Var5.e, yj7Var5.d), yj7Var5.d);
             ey7Var.O(5);
             loVar.a(j2, ey7Var);
         }

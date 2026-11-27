@@ -319,7 +319,7 @@ public class MusicPlayerService extends Service implements fn7 {
         Drawable drawable = getResources().getDrawable(2131232464);
         drawable.setBounds(0, 0, this.d.getWidth(), this.d.getHeight());
         drawable.draw(new Canvas(this.d));
-        w.p0(new nj7(this, (byte) 0), null);
+        w.p0(new oj7(this, (byte) 0), null);
         w.n0(true);
         g();
         rx6 rx6Var = w;
@@ -369,7 +369,7 @@ public class MusicPlayerService extends Service implements fn7 {
         }
         r47 r47Var = MediaController.z().v0;
         if (r47Var == null) {
-            hl.c3(new fe7(this, (byte) 3));
+            hl.c3(new ge7(this, (byte) 3));
             return 1;
         }
         if (s) {

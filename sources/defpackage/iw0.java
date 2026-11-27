@@ -55,7 +55,7 @@ public final class iw0 implements ps3 {
                 lm7 lm7Var = km7Var.d;
                 km7 km7Var2 = lm7Var.U;
                 if (!lm7Var.h) {
-                    lm7Var.A0();
+                    lm7Var.y0();
                     if (!km7Var2.b()) {
                         Iterator it = lm7Var.V.values().iterator();
                         while (it.hasNext()) {

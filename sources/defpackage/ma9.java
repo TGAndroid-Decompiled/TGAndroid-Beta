@@ -16,14 +16,14 @@ public final class ma9 implements Runnable {
         na9 na9Var = this.b;
         switch (b) {
             case 0:
-                ki7 ki7Var = na9Var.x;
+                li7 li7Var = na9Var.x;
                 ma9 ma9Var = na9Var.s;
                 if (ma9Var != null) {
                     na9Var.cancelRunnable(ma9Var);
                     na9Var.s = null;
                 }
-                na9Var.cancelRunnable(ki7Var);
-                na9Var.postRunnable(ki7Var);
+                na9Var.cancelRunnable(li7Var);
+                na9Var.postRunnable(li7Var);
                 return;
             case 1:
                 na9Var.finish();

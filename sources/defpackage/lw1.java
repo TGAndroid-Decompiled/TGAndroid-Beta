@@ -32,11 +32,11 @@ public final class lw1 implements DialogInterface.OnDismissListener {
                 }
                 return;
             default:
-                rbb rbbVar = (rbb) fn7Var;
-                rbbVar.A2 = false;
-                rbbVar.Y0.x(7, true);
+                sbb sbbVar = (sbb) fn7Var;
+                sbbVar.A2 = false;
+                sbbVar.Y0.x(7, true);
                 if (z2) {
-                    rbbVar.o(true);
+                    sbbVar.o(true);
                     return;
                 }
                 return;

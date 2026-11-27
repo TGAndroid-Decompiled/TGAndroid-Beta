@@ -210,7 +210,7 @@ public final class i08 implements RequestDelegate {
             }
             i08Var = this;
             if (tL_error.text.equals("PHONE_VERIFICATION_NEEDED")) {
-                hl.c3(new fd7(i08Var.a, tL_error, str, (byte) 18));
+                hl.c3(new gd7(i08Var.a, tL_error, str, (byte) 18));
                 return;
             }
         } else {
@@ -221,7 +221,7 @@ public final class i08 implements RequestDelegate {
                 savesecurevalue.value = tL_inputSecureValue;
                 savesecurevalue.secure_secret_id = b18Var.c1;
                 i = ((e) b18Var).currentAccount;
-                ConnectionsManager.getInstance(i).sendRequest(savesecurevalue, new ol7(i08Var, (TLRPC.TL_secureValue) tLObject, (byte) 2));
+                ConnectionsManager.getInstance(i).sendRequest(savesecurevalue, new pl7(i08Var, (TLRPC.TL_secureValue) tLObject, (byte) 2));
                 return;
             }
         }

@@ -37,7 +37,7 @@ public final class j38 extends View implements snb {
         this.n = new Paint(1);
         this.s = -1;
         uc7 s1 = uc7.s1(i);
-        hr hrVar = s1.k4;
+        hr hrVar = s1.l4;
         TLRPC.Chat M0 = s1.M0(Long.valueOf(-j));
         this.a = i;
         if (j < 0) {
@@ -66,14 +66,14 @@ public final class j38 extends View implements snb {
             i2 = 2131752511;
         }
         String M02 = ob6.M0(i2, null);
-        if (z && !z2 && uc7.s1(i).X3.getInt("boostingappearance", 0) < 3) {
-            lc7 lc7Var = s1.E3;
+        if (z && !z2 && uc7.s1(i).Y3.getInt("boostingappearance", 0) < 3) {
+            lc7 lc7Var = s1.F3;
             int i4 = Integer.MAX_VALUE;
             if (lc7Var != null) {
                 int min = Math.min(Integer.MAX_VALUE, lc7Var.e(false));
-                int max = Math.max(0, s1.E3.e(false));
-                int min2 = Math.min(min, s1.E3.f());
-                int max2 = Math.max(max, s1.E3.f());
+                int max = Math.max(0, s1.F3.e(false));
+                int min2 = Math.min(min, s1.F3.f());
+                int max2 = Math.max(max, s1.F3.f());
                 i4 = min2;
                 i3 = max2;
             } else {
@@ -86,12 +86,12 @@ public final class j38 extends View implements snb {
             ds2 ds2Var5 = hrVar.e2;
             int min3 = Math.min(i4, ds2Var.f());
             int min4 = Math.min(i3, hrVar.d2.f());
-            lc7 lc7Var2 = s1.F3;
+            lc7 lc7Var2 = s1.G3;
             if (lc7Var2 != null) {
                 int min5 = Math.min(min3, lc7Var2.e(false));
-                int max3 = Math.max(min4, s1.F3.e(false));
-                min3 = Math.min(min5, s1.F3.f());
-                min4 = Math.max(max3, s1.F3.f());
+                int max3 = Math.max(min4, s1.G3.e(false));
+                min3 = Math.min(min5, s1.G3.f());
+                min4 = Math.max(max3, s1.G3.f());
             }
             int min6 = Math.min(min3, ds2Var5.f());
             int max4 = Math.max(min4, ds2Var5.f());
@@ -337,7 +337,7 @@ public final class j38 extends View implements snb {
             this.s = i7;
             v0 = aob.v0(i7, vnbVar);
         } else {
-            lc7 lc7Var = uc7.s1(yac.t0).E3;
+            lc7 lc7Var = uc7.s1(yac.t0).F3;
             if (lc7Var != null) {
                 kc7Var = lc7Var.d(f);
             }

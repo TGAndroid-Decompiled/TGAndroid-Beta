@@ -75,7 +75,7 @@ public final class ba7 implements Runnable {
         }
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(M0);
-        uc7Var.getMessagesStorage().j1(null, arrayList2, true, true);
+        uc7Var.getMessagesStorage().n1(null, arrayList2, true, true);
         uc7Var.getNotificationCenter().k(2, 8192);
         runnable.run();
     }
@@ -124,13 +124,13 @@ public final class ba7 implements Runnable {
 
     private final void d() {
         long j = this.c;
-        ((jf7) this.b).getMessagesController().J((TLRPC.TL_dialog) this.d, (TLRPC.InputPeer) this.e, j);
+        ((kf7) this.b).getMessagesController().J((TLRPC.TL_dialog) this.d, (TLRPC.InputPeer) this.e, j);
     }
 
     private final void e() {
         long j;
         boolean z;
-        jf7 jf7Var = (jf7) this.b;
+        kf7 kf7Var = (kf7) this.b;
         TLRPC.TL_messageReactions tL_messageReactions = (TLRPC.TL_messageReactions) this.d;
         TLRPC.TL_messageReactions tL_messageReactions2 = (TLRPC.TL_messageReactions) this.e;
         zh6 zh6Var = new zh6();
@@ -158,7 +158,7 @@ public final class ba7 implements Runnable {
             long j2 = zh6Var.j(i3);
             w49 w49Var = (w49) zh6Var.n(i3);
             if (!zh6Var2.d(j2)) {
-                if (!jf7Var.getMessagesController().G5(j, w49Var, false) && !z2) {
+                if (!kf7Var.getMessagesController().G5(j, w49Var, false) && !z2) {
                     z2 = false;
                 } else {
                     z2 = true;
@@ -170,7 +170,7 @@ public final class ba7 implements Runnable {
             long j3 = zh6Var2.j(i4);
             w49 w49Var2 = (w49) zh6Var2.n(i4);
             if (!zh6Var.d(j3)) {
-                if (!jf7Var.getMessagesController().G5(j, w49Var2, true) && !z2) {
+                if (!kf7Var.getMessagesController().G5(j, w49Var2, true) && !z2) {
                     z = false;
                 } else {
                     z = true;
@@ -180,21 +180,21 @@ public final class ba7 implements Runnable {
         }
         if (z2) {
             if (j != 0) {
-                jf7Var.getMessagesController().E5(0L);
+                kf7Var.getMessagesController().E5(0L);
             }
-            jf7Var.getMessagesController().E5(j);
+            kf7Var.getMessagesController().E5(j);
         }
     }
 
     private final void f() {
-        ((TLRPC.User[]) this.d)[0] = ((jf7) this.b).g0(this.c);
+        ((TLRPC.User[]) this.d)[0] = ((kf7) this.b).i0(this.c);
         ((CountDownLatch) this.e).countDown();
     }
 
     private final void g() {
-        jf7 jf7Var = (jf7) this.b;
-        jf7Var.getFileLoader().g((ArrayList) this.d);
-        jf7Var.getMessagesController().t3((ArrayList) this.e, this.c);
+        kf7 kf7Var = (kf7) this.b;
+        kf7Var.getFileLoader().g((ArrayList) this.d);
+        kf7Var.getMessagesController().t3((ArrayList) this.e, this.c);
     }
 
     private final void h() {
@@ -206,12 +206,12 @@ public final class ba7 implements Runnable {
     }
 
     private final void j() {
-        ((TLRPC.Chat[]) this.d)[0] = ((jf7) this.b).N(this.c);
+        ((TLRPC.Chat[]) this.d)[0] = ((kf7) this.b).P(this.c);
         ((CountDownLatch) this.e).countDown();
     }
 
     private final void k() {
-        jf7 jf7Var = (jf7) this.b;
+        kf7 kf7Var = (kf7) this.b;
         long j = this.c;
         ArrayList arrayList = (ArrayList) this.d;
         CountDownLatch countDownLatch = (CountDownLatch) this.e;
@@ -219,17 +219,17 @@ public final class ba7 implements Runnable {
             try {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
-                jf7Var.T(String.valueOf(j), arrayList3, arrayList2);
+                kf7Var.V(String.valueOf(j), arrayList3, arrayList2);
                 if (!arrayList3.isEmpty() && !arrayList2.isEmpty()) {
                     ArrayList arrayList4 = new ArrayList();
-                    jf7Var.k0(arrayList2, arrayList4, false);
+                    kf7Var.m0(arrayList2, arrayList4, false);
                     if (!arrayList4.isEmpty()) {
                         arrayList.add((TLObject) arrayList3.get(0));
                         arrayList.add((TLObject) arrayList4.get(0));
                     }
                 }
             } catch (Exception e) {
-                jf7Var.n(e, true);
+                kf7Var.p(e, true);
             }
         } finally {
             countDownLatch.countDown();
@@ -249,7 +249,7 @@ public final class ba7 implements Runnable {
         r4c r4cVar = new r4c(photoViewer, str, no6Var, j);
         if (photoViewer.E2) {
             Bitmap createBitmap = Bitmap.createBitmap(photoViewer.D2.getWidth(), photoViewer.D2.getHeight(), Bitmap.Config.ARGB_8888);
-            hl.z0(photoViewer.D2, createBitmap, new h68(r4cVar, createBitmap, (byte) 4));
+            hl.z0(photoViewer.D2, createBitmap, new a58(r4cVar, createBitmap, (byte) 5));
             return;
         }
         TextureView textureView = photoViewer.C2;

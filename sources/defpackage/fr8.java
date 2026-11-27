@@ -3,7 +3,7 @@ package defpackage;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.ui.ProfileActivity;
-public final class fr8 implements ibb {
+public final class fr8 implements jbb {
     public final ProfileActivity a;
 
     public fr8(ProfileActivity profileActivity) {
@@ -11,7 +11,7 @@ public final class fr8 implements ibb {
     }
 
     @Override
-    public final mbb b(long j) {
+    public final nbb b(long j) {
         float f;
         ProfileActivity profileActivity = this.a;
         if (j == profileActivity.a()) {
@@ -26,17 +26,17 @@ public final class fr8 implements ibb {
                 } else {
                     f = f2;
                 }
-                kbb kbbVar = new kbb(iq8Var, (byte) 0);
+                lbb lbbVar = new lbb(iq8Var, (byte) 0);
                 int[] iArr = new int[2];
                 float[] fArr = new float[2];
                 iq8Var.getRootView().getLocationOnScreen(iArr);
                 hl.p1(iq8Var, (ViewGroup) iq8Var.getRootView(), fArr);
                 float f3 = (iq8Var.getImageReceiver().L0 * scaleX) + iArr[0] + fArr[0];
                 float f4 = (iq8Var.getImageReceiver().M0 * scaleX) + iArr[1] + fArr[1];
-                kbbVar.c.set(f3, f4, f3 + f2, f2 + f4);
-                kbbVar.e = iq8Var.getImageReceiver();
-                kbbVar.b = f;
-                return kbbVar;
+                lbbVar.c.set(f3, f4, f3 + f2, f2 + f4);
+                lbbVar.e = iq8Var.getImageReceiver();
+                lbbVar.b = f;
+                return lbbVar;
             }
             return null;
         }

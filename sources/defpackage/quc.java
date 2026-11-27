@@ -362,7 +362,7 @@ public final class quc {
             }
         }
         this.g.run();
-        hl.d3(new vlc(this, viewGroup, (byte) 24), 650L);
+        hl.d3(new slc(this, viewGroup, (byte) 25), 650L);
     }
 
     public final void c(float f, float f2, float f3) {

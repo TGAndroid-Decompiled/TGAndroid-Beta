@@ -22,7 +22,7 @@ public final class a6b implements pcc {
                 c8bVar.c0 = (TLRPC.Document) obj;
                 TLRPC.TL_inputFileStoryDocument tL_inputFileStoryDocument = new TLRPC.TL_inputFileStoryDocument();
                 TLRPC.Document document = c8bVar.c0;
-                int i = uc7.r5;
+                int i = uc7.s5;
                 TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                 tL_inputDocument.id = document.id;
                 tL_inputDocument.access_hash = document.access_hash;

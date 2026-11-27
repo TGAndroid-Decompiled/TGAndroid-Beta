@@ -746,7 +746,7 @@ public final class r7a extends rf0 implements fn7 {
                         ((iq5) kj4Var5.b).n();
                     }
                     if (i25 != 0) {
-                        hl.c3(new me7(i25, k5Var6, (byte) 16));
+                        hl.c3(new oe7(i25, k5Var6, (byte) 16));
                     }
                 }
             });
@@ -827,7 +827,7 @@ public final class r7a extends rf0 implements fn7 {
     }
 
     public static void Z(k5 k5Var, CharSequence charSequence, long j, long j2, boolean z, int i, int i2) {
-        jf7.Y(k5Var.a).a.c(new m5a(charSequence, k5Var, j2, j, z, i, i2, (byte) 1));
+        kf7.a0(k5Var.a).a.c(new m5a(charSequence, k5Var, j2, j, z, i, i2, (byte) 1));
     }
 
     public static void a0(int i, int i2, long j, long j2, long j3, long j4, k5 k5Var, ou1 ou1Var, r47 r47Var, r47 r47Var2, r47 r47Var3, b77 b77Var, c5a c5aVar, oec oecVar, CharSequence charSequence, String str, String str2, ArrayList arrayList, TLRPC.Photo photo, TL_stories.StoryItem storyItem, boolean z, boolean z2, boolean z3) {
@@ -2411,8 +2411,8 @@ public final class r7a extends rf0 implements fn7 {
         int size = sparseArray.size();
         sparseArray.remove(i);
         if (size != 0 && sparseArray.size() == 0) {
-            jf7 messagesStorage = getMessagesStorage();
-            messagesStorage.a.c(new be7(messagesStorage, (byte) 22));
+            kf7 messagesStorage = getMessagesStorage();
+            messagesStorage.a.c(new hd7(messagesStorage, (byte) 25));
         }
     }
 
@@ -2709,7 +2709,7 @@ public final class r7a extends rf0 implements fn7 {
                                         r47Var4.k.params.put("final", "1");
                                         TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
                                         tL_messages_messages.messages.add(r47Var4.k);
-                                        getMessagesStorage().e1(-2, 0, i3, d7aVar.a, 0L, tL_messages_messages, false);
+                                        getMessagesStorage().i1(-2, 0, i3, d7aVar.a, 0L, tL_messages_messages, false);
                                     }
                                     if (!arrayList3.contains(d7aVar)) {
                                         arrayList3.add(d7aVar);
@@ -2868,7 +2868,7 @@ public final class r7a extends rf0 implements fn7 {
                 if (z2) {
                     TLRPC.EncryptedChat a1 = getMessagesController().a1(Integer.valueOf((int) (r47.B0(message) & 4294967295L)));
                     if (a1 == null) {
-                        getMessagesStorage().K0(r47Var.r1 ? 1 : 0, r47Var.k);
+                        getMessagesStorage().N0(r47Var.r1 ? 1 : 0, r47Var.k);
                         r47Var.k.send_state = 2;
                         getNotificationCenter().k(jn7.L, Integer.valueOf(r47Var.e1()));
                         c0(r47Var.e1());
@@ -2989,7 +2989,7 @@ public final class r7a extends rf0 implements fn7 {
                         getNotificationCenter().k(i2, new Object[0]);
                         ArrayList arrayList = new ArrayList();
                         arrayList.add(message5);
-                        getMessagesStorage().g1(arrayList, false, true, false, 0, false, 0, 0L);
+                        getMessagesStorage().k1(arrayList, false, true, false, 0, false, 0, 0L);
                         M(tL_messages_sendScreenshotNotification, r47Var3, null, null, null, null, false);
                     }
                 }
@@ -3107,13 +3107,13 @@ public final class r7a extends rf0 implements fn7 {
                 TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
                 tL_messageService.id = i5;
                 tL_messageService.dialog_id = B0;
-                getMessagesStorage().K0(0, tL_messageService);
+                getMessagesStorage().N0(0, tL_messageService);
                 r47Var.k.send_state = 2;
                 r47Var.M1 = true;
                 getNotificationCenter().k(jn7.L, Integer.valueOf(i5));
             } else {
-                jf7 messagesStorage = getMessagesStorage();
-                messagesStorage.a.c(new kd7(messagesStorage, j, B0, Integer.valueOf(i5), i5, r47Var.k.date));
+                kf7 messagesStorage = getMessagesStorage();
+                messagesStorage.a.c(new pd7(messagesStorage, j, B0, Integer.valueOf(i5), i5, r47Var.k.date));
                 r47Var.k.send_state = 0;
                 r47Var.M1 = true;
                 getNotificationCenter().k(jn7.I, Integer.valueOf(i5));
@@ -3127,7 +3127,7 @@ public final class r7a extends rf0 implements fn7 {
         message.send_state = 0;
         Integer num = (Integer) getMessagesController().Q.get(Long.valueOf(B0));
         if (num == null) {
-            num = Integer.valueOf(getMessagesStorage().S(B0, true));
+            num = Integer.valueOf(getMessagesStorage().U(B0, true));
             getMessagesController().Q.put(Long.valueOf(B0), num);
         }
         if (num.intValue() >= message.id) {
@@ -3169,7 +3169,7 @@ public final class r7a extends rf0 implements fn7 {
         }
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(r47Var.k);
-        getMessagesStorage().g1(arrayList2, false, true, false, 0, false, r47Var.r1 ? 1 : 0, 0L);
+        getMessagesStorage().k1(arrayList2, false, true, false, 0, false, r47Var.r1 ? 1 : 0, 0L);
         getNotificationCenter().k(jn7.m0, Long.valueOf(r47.B0(r47Var.k)), qd4.t(r47Var));
     }
 
@@ -3205,7 +3205,7 @@ public final class r7a extends rf0 implements fn7 {
             TLObject[] tLObjectArr = new TLObject[1];
             l6a l6aVar = new l6a(this, str, list, z2, r47Var, keyboardButtonProto, zu1Var, twoStepVerificationActivity, tLObjectArr, tL_inputCheckPasswordSRP, z);
             if (z2) {
-                getMessagesStorage().L(str, l6aVar);
+                getMessagesStorage().N(str, l6aVar);
                 return;
             }
             TL_keyboard.TL_inlineButtonTypeUrlAuth tL_inlineButtonTypeUrlAuth = (TL_keyboard.TL_inlineButtonTypeUrlAuth) ehb.a(keyboardButtonProto, TL_keyboard.TL_inlineButtonTypeUrlAuth.class);
@@ -3344,11 +3344,11 @@ public final class r7a extends rf0 implements fn7 {
             boolean z = inputPeer instanceof TLRPC.TL_inputPeerChannel;
             int i = this.currentAccount;
             if (z) {
-                tL_messages_sendMedia.silent = uc7.s1(i).W3.getBoolean("silent_" + (-inputPeer.channel_id), false);
+                tL_messages_sendMedia.silent = uc7.s1(i).X3.getBoolean("silent_" + (-inputPeer.channel_id), false);
             } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                tL_messages_sendMedia.silent = uc7.s1(i).W3.getBoolean("silent_" + (-inputPeer.chat_id), false);
+                tL_messages_sendMedia.silent = uc7.s1(i).X3.getBoolean("silent_" + (-inputPeer.chat_id), false);
             } else {
-                tL_messages_sendMedia.silent = uc7.s1(i).W3.getBoolean("silent_" + inputPeer.user_id, false);
+                tL_messages_sendMedia.silent = uc7.s1(i).X3.getBoolean("silent_" + inputPeer.user_id, false);
             }
             if (j != 0) {
                 D = j;
@@ -3387,10 +3387,10 @@ public final class r7a extends rf0 implements fn7 {
                     nativeByteBuffer2 = nativeByteBuffer;
                     cc4.g(e, true);
                     nativeByteBuffer = nativeByteBuffer2;
-                    j2 = getMessagesStorage().y(nativeByteBuffer);
+                    j2 = getMessagesStorage().A(nativeByteBuffer);
                     getConnectionsManager().sendRequest(tL_messages_sendMedia, new yu2(this, j2, (byte) 5));
                 }
-                j2 = getMessagesStorage().y(nativeByteBuffer);
+                j2 = getMessagesStorage().A(nativeByteBuffer);
             }
             getConnectionsManager().sendRequest(tL_messages_sendMedia, new yu2(this, j2, (byte) 5));
         }
@@ -3457,7 +3457,7 @@ public final class r7a extends rf0 implements fn7 {
                 tL_messages_sendReaction.flags |= 2;
                 tL_messages_sendReaction.big = true;
             }
-            getConnectionsManager().sendRequest(tL_messages_sendReaction, new ol7(this, yp1Var, (byte) 21));
+            getConnectionsManager().sendRequest(tL_messages_sendReaction, new pl7(this, yp1Var, (byte) 21));
         }
     }
 

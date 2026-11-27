@@ -43,7 +43,7 @@ import org.telegram.ui.e0;
 import org.webrtc.NativeLifecycleLock;
 import org.webrtc.PeerConnection;
 import org.webrtc.RtpSender;
-public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, ea9, r42, fd, bs9, b7c, gcb, on5, bnc, bf7, f01, OnSuccessListener {
+public final class o48 implements NativeLifecycleLock.NativeCallable, if7, oj3, ea9, r42, fd, bs9, b7c, gcb, on5, bnc, cf7, f01, OnSuccessListener {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -73,7 +73,7 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
     public final void a(String str) {
         j68 j68Var = (j68) this.b;
         o68 o68Var = j68Var.x;
-        o68Var.getStoriesController().q(o68Var.l1, str, new v58(j68Var, (TL_stories.StoryItem) this.c, (x53) this.d, (byte) 2));
+        o68Var.getStoriesController().q(o68Var.l1, str, new w58(j68Var, (TL_stories.StoryItem) this.c, (x53) this.d, (byte) 2));
     }
 
     @Override
@@ -278,9 +278,9 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                 ArrayList arrayList2 = (ArrayList) obj2;
                 zu1 zu1Var = (zu1) obj;
                 PhotoViewer photoViewer = ((gb8) obj3).b;
-                if (arrayList.size() <= 1 && ((if7) arrayList.get(0)).a != yac.h(photoViewer.U).e() && charSequence == null) {
-                    if7 if7Var = (if7) arrayList.get(0);
-                    long j3 = if7Var.a;
+                if (arrayList.size() <= 1 && ((jf7) arrayList.get(0)).a != yac.h(photoViewer.U).e() && charSequence == null) {
+                    jf7 jf7Var = (jf7) arrayList.get(0);
+                    long j3 = jf7Var.a;
                     Bundle l = bs2.l("scrollToTopOnResume", true);
                     if (wf3.B(j3)) {
                         l.putInt("enc_id", (int) (j3 & 4294967295L));
@@ -290,8 +290,8 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                         l.putLong("chat_id", -j3);
                     }
                     zu1 zu1Var2 = new zu1(l);
-                    if (if7Var.b != 0) {
-                        ro4.a(zu1Var2, if7Var);
+                    if (jf7Var.b != 0) {
+                        ro4.a(zu1Var2, jf7Var);
                     }
                     if (((LaunchActivity) photoViewer.E).u0(zu1Var2, true, false)) {
                         zu1Var2.cc(arrayList2);
@@ -300,7 +300,7 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                     }
                 } else {
                     for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                        long j4 = ((if7) arrayList.get(i3)).a;
+                        long j4 = ((jf7) arrayList.get(i3)).a;
                         if (charSequence != null) {
                             j = j4;
                             r7a.B(photoViewer.U).q0(p7a.b(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, 0, null, false));
@@ -315,7 +315,7 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                         UndoView undoView = zu1Var.N3;
                         if (undoView != null) {
                             if (arrayList.size() == 1) {
-                                undoView.m(((if7) arrayList.get(0)).a, Integer.valueOf(arrayList2.size()), 53);
+                                undoView.m(((jf7) arrayList.get(0)).a, Integer.valueOf(arrayList2.size()), 53);
                             } else {
                                 undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);
                             }
@@ -327,7 +327,7 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                 cr8 cr8Var = (cr8) obj3;
                 TLRPC.User user = (TLRPC.User) obj2;
                 uj3 uj3Var2 = (uj3) obj;
-                long j5 = ((if7) arrayList.get(0)).a;
+                long j5 = ((jf7) arrayList.get(0)).a;
                 ProfileActivity profileActivity = cr8Var.b;
                 TLRPC.Chat M0 = uc7.s1(ProfileActivity.s0(profileActivity)).M0(Long.valueOf(-j5));
                 if (M0 != null && (M0.creator || ((tL_chatAdminRights = M0.admin_rights) != null && tL_chatAdminRights.add_admins))) {
@@ -355,7 +355,7 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                 if (arrayList.isEmpty()) {
                     return false;
                 }
-                long j6 = ((if7) arrayList.get(0)).a;
+                long j6 = ((jf7) arrayList.get(0)).a;
                 Long l2 = (Long) af2.e(wuaVar.a).r.get(tL_starGiftUnique.slug);
                 if (l2 != null) {
                     j2 = l2.longValue();
@@ -363,7 +363,7 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                     j2 = 0;
                 }
                 if (j2 != 0 && j2 != j6) {
-                    jj.k0(wuaVar.getContext(), wuaVar.J0, wuaVar.a, tL_starGiftUnique, j2, new y09(wuaVar, j6, tL_starGiftUnique, uj3Var3, (byte) 4));
+                    jj.k0(wuaVar.getContext(), wuaVar.J0, wuaVar.a, tL_starGiftUnique, j2, new z09(wuaVar, j6, tL_starGiftUnique, uj3Var3, (byte) 4));
                     return true;
                 }
                 af2.e(wuaVar.a).q(j6, new dpb(null, tL_starGiftUnique.slug), null, true);
@@ -388,16 +388,16 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
         mn5 p = imageReceiver.p();
         if (z && p != null && (bitmap = p.c) != null) {
             Drawable drawable = ne2Var.b;
-            if (drawable instanceof hh7) {
-                hh7 hh7Var = (hh7) drawable;
+            if (drawable instanceof ih7) {
+                ih7 ih7Var = (ih7) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
                 if (wallPaperSettings != null && wallPaperSettings.intensity < 0) {
                     i = -100;
                 } else {
                     i = 100;
                 }
-                hh7Var.r(i, zqb.e(bitmap));
-                hh7Var.s(zqbVar.M);
+                ih7Var.r(i, zqb.e(bitmap));
+                ih7Var.s(zqbVar.M);
                 zqbVar.invalidate();
             }
         }
@@ -441,13 +441,13 @@ public final class o48 implements NativeLifecycleLock.NativeCallable, hf7, oj3, 
                 TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
                 resetauthorization.hash = tL_authorization.hash;
                 i2 = ((e) uaaVar.a).currentAccount;
-                ConnectionsManager.getInstance(i2).sendRequest(resetauthorization, new ol7(uaaVar, tL_authorization, (byte) 23));
+                ConnectionsManager.getInstance(i2).sendRequest(resetauthorization, new pl7(uaaVar, tL_authorization, (byte) 23));
                 ((e9a) obj3).d.dismiss();
                 return;
             case 13:
                 eja ejaVar = (eja) obj3;
                 ArrayList arrayList = (ArrayList) obj;
-                ((o5b) obj2).F(arrayList);
+                ((p5b) obj2).F(arrayList);
                 d31.b0(ejaVar.y1).Q(2131624052, 36, ob6.G(arrayList.size(), "BotPreviewsDeleted", new Object[0])).j();
                 ejaVar.E(false);
                 return;

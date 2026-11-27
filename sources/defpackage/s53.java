@@ -1,10 +1,10 @@
 package defpackage;
 public final class s53 {
-    public final h09 a;
+    public final i09 a;
     public final boolean b;
 
-    public s53(h09 h09Var, boolean z) {
-        this.a = h09Var;
+    public s53(i09 i09Var, boolean z) {
+        this.a = i09Var;
         this.b = z;
     }
 

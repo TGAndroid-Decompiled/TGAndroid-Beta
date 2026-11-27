@@ -32,7 +32,7 @@ public final class j2f {
         z3f.p();
         this.g = str;
         ri6.v();
-        this.e = ri6.G(new tg7(this, (byte) 5));
+        this.e = ri6.G(new ug7(this, (byte) 5));
         ri6.v();
         ljaVar.getClass();
         this.f = ri6.G(new z1f(ljaVar, (byte) 0));

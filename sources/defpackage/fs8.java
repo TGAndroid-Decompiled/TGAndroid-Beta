@@ -36,7 +36,7 @@ public class fs8 extends c79 {
     public final int f;
     public final Context h;
     public boolean x;
-    public hp8 y;
+    public ep8 y;
     public final ArrayList d = new ArrayList();
     public ArrayList n = new ArrayList();
     public ArrayList r = new ArrayList();
@@ -86,7 +86,7 @@ public class fs8 extends c79 {
         es8 es8Var22;
         es8 es8Var23;
         final int currentAccount = eVar.getCurrentAccount();
-        es8 es8Var24 = new es8(500, ob6.L0(2131751229), 0, new hp8(eVar, eVar.getResourceProvider(), (byte) 11));
+        es8 es8Var24 = new es8(500, ob6.L0(2131751229), 0, new ep8(eVar, eVar.getResourceProvider(), (byte) 12));
         es8 es8Var25 = new es8(501, ob6.L0(2131752518), 0, new Runnable() {
             @Override
             public final void run() {
@@ -3204,7 +3204,7 @@ public class fs8 extends c79 {
             }
         });
         es8Var54.h = "tg://settings/privacy/voice";
-        if (uc7.s1(currentAccount).k4.T0.f()) {
+        if (uc7.s1(currentAccount).l4.T0.f()) {
             es8Var3 = es8Var54;
             es8Var4 = new es8(121, ob6.L0(2131754164), "newChatsRow", ob6.L0(2131746500), 2131232040, new Runnable() {
                 @Override
@@ -11455,7 +11455,7 @@ public class fs8 extends c79 {
             }
         });
         es8Var142.h = "tg://settings/language/show-button";
-        if (uc7.s1(currentAccount).i4.r()) {
+        if (uc7.s1(currentAccount).j4.r()) {
             es8 es8Var143 = new es8(406, ob6.L0(2131751323), ob6.L0(2131748808), 2131232034, new Runnable() {
                 @Override
                 public final void run() {
@@ -12120,9 +12120,9 @@ public class fs8 extends c79 {
             return;
         }
         to3 to3Var = Utilities.g;
-        hp8 hp8Var = new hp8(this, str, (byte) 13);
-        this.y = hp8Var;
-        to3Var.d(hp8Var, 300L);
+        ep8 ep8Var = new ep8(this, str, (byte) 14);
+        this.y = ep8Var;
+        to3Var.d(ep8Var, 300L);
     }
 
     public final void J() {
@@ -12238,7 +12238,7 @@ public class fs8 extends c79 {
             ((p55) view).setText(ob6.M0(2131745210, null));
             return;
         }
-        eca ecaVar = (eca) view;
+        fca fcaVar = (fca) view;
         boolean z2 = false;
         if (this.x) {
             int size = this.r.size();
@@ -12258,7 +12258,7 @@ public class fs8 extends c79 {
                 if (i >= this.r.size() - 1) {
                     z = false;
                 }
-                ecaVar.b(charSequence, strArr, i2, z);
+                fcaVar.b(charSequence, strArr, i2, z);
                 return;
             }
             int k = bs2.k(1, i, arrayList);
@@ -12267,7 +12267,7 @@ public class fs8 extends c79 {
             if (k < this.r.size() - 1) {
                 z2 = true;
             }
-            ecaVar.a(charSequence2, strArr2, true, z2);
+            fcaVar.a(charSequence2, strArr2, true, z2);
             return;
         }
         ArrayList arrayList2 = this.w;
@@ -12283,7 +12283,7 @@ public class fs8 extends c79 {
                 if (i >= arrayList2.size() - 1) {
                     z = false;
                 }
-                ecaVar.a(str, strArr3, false, z);
+                fcaVar.a(str, strArr3, false, z);
                 return;
             } else if (obj instanceof hc7) {
                 hc7 hc7Var = (hc7) obj;
@@ -12292,7 +12292,7 @@ public class fs8 extends c79 {
                 if (i < arrayList2.size() - 1) {
                     z2 = true;
                 }
-                ecaVar.a(str2, strArr4, true, z2);
+                fcaVar.a(str2, strArr4, true, z2);
                 return;
             } else {
                 return;
@@ -12305,23 +12305,23 @@ public class fs8 extends c79 {
         if (k2 < arrayList2.size() - 1) {
             z2 = true;
         }
-        ecaVar.a(str3, strArr5, true, z2);
+        fcaVar.a(str3, strArr5, true, z2);
     }
 
     @Override
     public final f89 x(ViewGroup viewGroup, int i) {
-        View ecaVar;
+        View fcaVar;
         Context context = this.h;
         if (i != 0) {
             if (i != 1) {
-                ecaVar = new mf5(context, 16);
+                fcaVar = new mf5(context, 16);
             } else {
-                ecaVar = new p55(context, null);
+                fcaVar = new p55(context, null);
             }
         } else {
-            ecaVar = new eca(context);
+            fcaVar = new fca(context);
         }
-        ecaVar.setLayoutParams(new r79(-1, -2));
-        return new f89(ecaVar);
+        fcaVar.setLayoutParams(new r79(-1, -2));
+        return new f89(fcaVar);
     }
 }

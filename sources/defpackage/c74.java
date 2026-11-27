@@ -2334,11 +2334,11 @@ public final class c74 implements Handler.Callback, wt6, sec {
             boolean z6 = false;
             for (e74 e74Var : e74VarArr) {
                 if (e74Var != null) {
-                    uf7 uf7Var = e74Var.i(0).m;
-                    if (uf7Var == null) {
-                        ho5Var.c(new uf7(new sf7[0]));
+                    vf7 vf7Var = e74Var.i(0).m;
+                    if (vf7Var == null) {
+                        ho5Var.c(new vf7(new tf7[0]));
                     } else {
-                        ho5Var.c(uf7Var);
+                        ho5Var.c(vf7Var);
                         z6 = true;
                     }
                 }

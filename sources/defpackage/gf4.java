@@ -203,18 +203,18 @@ public final class gf4 extends AnimatorListenerAdapter {
                 }
                 return;
             case 11:
-                b58 b58Var = (b58) obj;
-                gu guVar = b58Var.c;
+                c58 c58Var = (c58) obj;
+                gu guVar = c58Var.c;
                 if (z3) {
                     f7 = 0.0f;
                 }
                 guVar.setAlpha(f7);
-                View view2 = b58Var.a;
+                View view2 = c58Var.a;
                 if (!z3) {
                     f8 = 0.5f;
                 }
                 view2.setAlpha(f8);
-                b58Var.invalidate();
+                c58Var.invalidate();
                 return;
             case 12:
                 qh6 qh6Var = (qh6) obj;
@@ -311,7 +311,7 @@ public final class gf4 extends AnimatorListenerAdapter {
                 return;
             case 16:
                 if (!z3) {
-                    ((mj7) obj).b.setVisibility(8);
+                    ((nj7) obj).b.setVisibility(8);
                     return;
                 }
                 return;

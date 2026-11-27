@@ -34,7 +34,7 @@ public abstract class vt4 extends c79 {
             this.d = true;
             F(true);
             uc7 s1 = uc7.s1(i);
-            String str = s1.p3;
+            String str = s1.q3;
             if (this.n == null) {
                 TLObject c2 = s1.c2(str);
                 if (c2 instanceof TLRPC.User) {

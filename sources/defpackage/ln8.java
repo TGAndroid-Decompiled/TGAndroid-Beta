@@ -38,7 +38,7 @@ public final class ln8 implements pcc {
                     tL_birthday = Y1.birthday;
                     Y1.flags2 |= 32;
                     Y1.birthday = tL_birthday2;
-                    privacyControlActivity2.getMessagesStorage().g2(Y1, false);
+                    privacyControlActivity2.getMessagesStorage().l2(Y1, false);
                 } else {
                     tL_birthday = null;
                 }

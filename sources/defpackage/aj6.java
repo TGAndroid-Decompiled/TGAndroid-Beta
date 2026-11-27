@@ -35,7 +35,7 @@ public final class aj6 implements Runnable {
                 fj6Var.p0();
                 return;
             case 4:
-                new rl7(fj6Var, fj6Var.getParentActivity()).show();
+                new sl7(fj6Var, fj6Var.getParentActivity()).show();
                 return;
             case 5:
                 fj6Var.presentFragment(new i91(bs2.l("needFinishFragment", false)));

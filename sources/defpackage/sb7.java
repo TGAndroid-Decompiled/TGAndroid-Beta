@@ -25,7 +25,7 @@ public final class sb7 extends b71 {
     @Override
     public final void g(int i, Object obj, Object obj2) {
         Integer num = (Integer) obj;
-        jf7.Y(i).a.c(new hl3(i, (TLRPC.TL_help_appConfig) obj2, (byte) 25));
+        kf7.a0(i).a.c(new hl3(i, (TLRPC.TL_help_appConfig) obj2, (byte) 25));
     }
 
     @Override

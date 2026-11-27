@@ -57,7 +57,7 @@ public final class kb7 implements RequestDelegate {
                     uc7Var.c4(tL_users_userFull.chats, false);
                     TLRPC.UserFull userFull2 = tL_users_userFull.full_user;
                     userFull2.user = uc7Var.X1(Long.valueOf(userFull2.id));
-                    uc7Var.getMessagesStorage().g2(userFull, false);
+                    uc7Var.getMessagesStorage().l2(userFull, false);
                     uc7Var.O1().p0(this.b, userFull.stories);
                     af2 e = af2.e(uc7Var.currentAccount);
                     TLRPC.UserFull userFull3 = tL_users_userFull.full_user;
@@ -73,14 +73,14 @@ public final class kb7 implements RequestDelegate {
             default:
                 ts8 ts8Var = (ts8) obj3;
                 ts8Var.getClass();
-                hl.c3(new he(ts8Var, tLObject, (jf7) obj2, this.b, this.c, (ArrayList) obj));
+                hl.c3(new he(ts8Var, tLObject, (kf7) obj2, this.b, this.c, (ArrayList) obj));
                 return;
         }
     }
 
-    public kb7(ts8 ts8Var, jf7 jf7Var, long j, int i, ArrayList arrayList) {
+    public kb7(ts8 ts8Var, kf7 kf7Var, long j, int i, ArrayList arrayList) {
         this.d = ts8Var;
-        this.e = jf7Var;
+        this.e = kf7Var;
         this.b = j;
         this.c = i;
         this.f = arrayList;

@@ -44,7 +44,7 @@ public final class b48 extends Drawable {
             int[] iArr = aob.r8;
             return new b48(aob.w0(null, iArr[i2], false), aob.w0(null, iArr[i2], false), aob.w0(null, iArr[i2], false));
         }
-        lc7 lc7Var = uc7.s1(i).E3;
+        lc7 lc7Var = uc7.s1(i).F3;
         if (lc7Var != null) {
             kc7Var = lc7Var.d(i2);
         }
@@ -73,7 +73,7 @@ public final class b48 extends Drawable {
 
     public static b48 c(int i, int i2) {
         kc7 d;
-        lc7 lc7Var = uc7.s1(i).F3;
+        lc7 lc7Var = uc7.s1(i).G3;
         if (lc7Var == null) {
             d = null;
         } else {

@@ -145,7 +145,7 @@ public final class w51 {
                 long j = -keyAt;
                 TLRPC.Chat M0 = uc7.s1(i2).M0(Long.valueOf(j));
                 if (M0 == null) {
-                    M0 = jf7.Y(i2).O(j);
+                    M0 = kf7.a0(i2).Q(j);
                 }
                 if (M0 == null) {
                     i = -1;

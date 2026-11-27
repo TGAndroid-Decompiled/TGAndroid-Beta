@@ -195,8 +195,8 @@ public class vh0 {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.vh0.b(android.app.Activity, fi0):gi0");
     }
 
-    public void c(k09 k09Var, tg0 tg0Var) {
-        if (f(new h9d(this, tg0Var, k09Var, (byte) 2), 30000L, new iqd(this, tg0Var, (byte) 15), r(), e()) == null) {
+    public void c(l09 l09Var, tg0 tg0Var) {
+        if (f(new h9d(this, tg0Var, l09Var, (byte) 2), 30000L, new iqd(this, tg0Var, (byte) 15), r(), e()) == null) {
             gi0 u = u();
             x(25, 7, u);
             jjd jjdVar = vjd.b;

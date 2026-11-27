@@ -48,7 +48,7 @@ public final class rk9 extends dk9 {
     public int t0;
     public VelocityTracker u0;
     public OverScroller v0;
-    public final ki7 w0;
+    public final li7 w0;
 
     public rk9(hl9 hl9Var, Rect rect, int i, TL_iv.pageBlockPreformatted pageblockpreformatted, rk9 rk9Var) {
         super(hl9Var, rect, i);
@@ -58,7 +58,7 @@ public final class rk9 extends dk9 {
         StaticLayout staticLayout;
         this.i0 = new Paint(1);
         this.j0 = new Path();
-        this.w0 = new ki7(this, (byte) 19);
+        this.w0 = new li7(this, (byte) 19);
         this.Z = this.c;
         this.q0 = pageblockpreformatted.language;
         String w = hl9.w(pageblockpreformatted.text);

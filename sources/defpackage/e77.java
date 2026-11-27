@@ -31,7 +31,7 @@ public final class e77 implements RequestDelegate {
                     uc7Var.Y3((TLRPC.Updates) tLObject, false);
                 }
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
@@ -40,7 +40,7 @@ public final class e77 implements RequestDelegate {
                     uc7Var.Y3((TLRPC.Updates) tLObject, false);
                 }
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
@@ -50,13 +50,13 @@ public final class e77 implements RequestDelegate {
                     uc7Var.W3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
                 }
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
             case 4:
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
@@ -66,7 +66,7 @@ public final class e77 implements RequestDelegate {
                     uc7Var.W3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
                 }
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
@@ -78,7 +78,7 @@ public final class e77 implements RequestDelegate {
                 return;
             case 7:
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 } else {
                     uc7Var.getClass();
@@ -86,7 +86,7 @@ public final class e77 implements RequestDelegate {
                 }
             case 8:
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 } else {
                     uc7Var.getClass();
@@ -94,19 +94,19 @@ public final class e77 implements RequestDelegate {
                 }
             case 9:
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
             case 10:
-                uc7Var.getMessagesStorage().n1(j);
+                uc7Var.getMessagesStorage().r1(j);
                 return;
             case 11:
                 if (tL_error == null) {
                     uc7Var.Y3((TLRPC.Updates) tLObject, false);
                 }
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
@@ -114,11 +114,11 @@ public final class e77 implements RequestDelegate {
                 if (tLObject != null) {
                     TLRPC.TL_chatOnlines tL_chatOnlines = (TLRPC.TL_chatOnlines) tLObject;
                     uc7 uc7Var2 = this.b;
-                    jf7 messagesStorage = uc7Var2.getMessagesStorage();
+                    kf7 messagesStorage = uc7Var2.getMessagesStorage();
                     int i = tL_chatOnlines.onlines;
                     to3 to3Var = messagesStorage.a;
                     long j2 = this.c;
-                    to3Var.c(new gd7(messagesStorage, i, j2, (byte) 7));
+                    to3Var.c(new id7(messagesStorage, i, j2, (byte) 7));
                     hl.c3(new cq6(uc7Var2, j2, tL_chatOnlines, (byte) 2));
                     return;
                 }
@@ -140,7 +140,7 @@ public final class e77 implements RequestDelegate {
                 return;
             case 15:
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                 }
                 if (tLObject != null) {
                     uc7Var.Y3((TLRPC.Updates) tLObject, false);

@@ -29,13 +29,13 @@ public final class na9 extends uo3 {
     public int r;
     public ma9 s;
     public final tl0 w;
-    public final ki7 x;
+    public final li7 x;
     public final ma9 y;
 
     public na9(pa9 pa9Var, SurfaceTexture surfaceTexture, tl0 tl0Var) {
         super("CanvasInternal", true);
         this.E = pa9Var;
-        this.x = new ki7(this, (byte) 16);
+        this.x = new li7(this, (byte) 16);
         this.y = new ma9(this, (byte) 0);
         this.w = tl0Var;
         this.a = surfaceTexture;
@@ -172,9 +172,9 @@ public final class na9 extends uo3 {
                                             GLES20.glDisable(2929);
                                             nx7 nx7Var = pa9Var.c;
                                             nx7Var.getClass();
-                                            Map map = qca.a;
+                                            Map map = rca.a;
                                             HashMap hashMap = new HashMap();
-                                            for (Map.Entry entry : qca.a.entrySet()) {
+                                            for (Map.Entry entry : rca.a.entrySet()) {
                                                 Map map2 = (Map) entry.getValue();
                                                 String str = (String) map2.get("fragment");
                                                 String[] strArr = (String[]) map2.get("attributes");
@@ -182,21 +182,21 @@ public final class na9 extends uo3 {
                                                 ?? obj = new Object();
                                                 obj.b = new HashMap();
                                                 obj.a = GLES20.glCreateProgram();
-                                                l09 b = pca.b(35633, (String) map2.get("vertex"));
+                                                m09 b = qca.b(35633, (String) map2.get("vertex"));
                                                 int i3 = b.b;
                                                 if (b.c == 0) {
                                                     if (f11.a) {
                                                         cc4.d("Vertex shader compilation failed");
                                                     }
-                                                    pca.c(i3, i2, obj.a);
+                                                    qca.c(i3, i2, obj.a);
                                                 } else {
-                                                    l09 b2 = pca.b(35632, str);
+                                                    m09 b2 = qca.b(35632, str);
                                                     int i4 = b2.b;
                                                     if (b2.c == 0) {
                                                         if (f11.a) {
                                                             cc4.d("Fragment shader compilation failed");
                                                         }
-                                                        pca.c(i3, i4, obj.a);
+                                                        qca.c(i3, i4, obj.a);
                                                     } else {
                                                         GLES20.glAttachShader(obj.a, i3);
                                                         GLES20.glAttachShader(obj.a, i4);
@@ -217,7 +217,7 @@ public final class na9 extends uo3 {
                                                             cc4.d(GLES20.glGetProgramInfoLog(i));
                                                         }
                                                         if (iArr3[i2] == 0) {
-                                                            pca.c(i3, i4, obj.a);
+                                                            qca.c(i3, i4, obj.a);
                                                         } else {
                                                             int length2 = strArr2.length;
                                                             for (int i6 = i2; i6 < length2; i6++) {

@@ -38,12 +38,12 @@ public final class j9b implements pcc {
             case 1:
                 w9b w9bVar2 = r9bVar.a0;
                 int i = w9b.X1;
-                w9bVar2.H0(new u9b(5, w9bVar2.a, (ArrayList) obj), new b68(w9bVar2, (byte) 1), false);
+                w9bVar2.H0(new u9b(5, w9bVar2.a, (ArrayList) obj), new c68(w9bVar2, (byte) 1), false);
                 return;
             case 2:
                 w9b w9bVar3 = r9bVar.a0;
                 HashSet hashSet2 = w9bVar3.u1;
-                hashSet2.add(Integer.valueOf(((v5b) obj).a));
+                hashSet2.add(Integer.valueOf(((w5b) obj).a));
                 r9bVar.h(true);
                 dab dabVar2 = w9bVar3.R1;
                 if (dabVar2 != null) {

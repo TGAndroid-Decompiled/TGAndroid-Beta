@@ -1,7 +1,7 @@
 package defpackage;
 public final class b83 extends ax2 {
     public o83 a;
-    public wj7 b;
+    public xj7 b;
     public Object c;
     public final o83 d;
     public int e;

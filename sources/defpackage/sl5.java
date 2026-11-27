@@ -1,7 +1,7 @@
 package defpackage;
 
 import java.util.Arrays;
-public final class sl5 implements sf7 {
+public final class sl5 implements tf7 {
     public final byte[] a;
     public final String b;
     public final String c;

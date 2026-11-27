@@ -20,7 +20,7 @@ public interface bg8 {
 
     void K(zf8 zf8Var);
 
-    void L(uf7 uf7Var);
+    void L(vf7 vf7Var);
 
     void M(int i, int i2);
 

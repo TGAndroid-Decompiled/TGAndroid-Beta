@@ -77,7 +77,7 @@ public final class b61 extends la {
                         skbVar = skbVar2;
                     }
                 } else {
-                    skbVar = new rca(viewGroup.getContext(), (uh9) null);
+                    skbVar = new sca(viewGroup.getContext(), (uh9) null);
                 }
             } else {
                 View vacVar = new vac(4, 0, null, viewGroup.getContext(), false, false);

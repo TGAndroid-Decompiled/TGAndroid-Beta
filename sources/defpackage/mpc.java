@@ -45,7 +45,7 @@ public final class mpc implements Runnable {
                 int i = this.b;
                 String str = ((TL_wallet.walletTransaction[]) this.d)[0].tx_hash;
                 if (!TextUtils.isEmpty(str)) {
-                    String str2 = uc7.s1(i).k4.O1.f;
+                    String str2 = uc7.s1(i).l4.O1.f;
                     if (TextUtils.isEmpty(str2)) {
                         str2 = "https://tonviewer.com/";
                     } else if (!str2.endsWith("/")) {

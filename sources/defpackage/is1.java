@@ -1,5 +1,5 @@
 package defpackage;
-public final class is1 implements df7 {
+public final class is1 implements ef7 {
     public final zu1 a;
 
     public is1(zu1 zu1Var) {

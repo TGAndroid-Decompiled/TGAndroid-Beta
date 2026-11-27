@@ -45,7 +45,7 @@ public final class n88 extends AnimatorListenerAdapter {
         boolean z4 = false;
         switch (this.a) {
             case 0:
-                o88 o88Var = (o88) ((ki7) this.b).b;
+                o88 o88Var = (o88) ((li7) this.b).b;
                 if (animator.equals(o88Var.d)) {
                     o88Var.d = null;
                     return;

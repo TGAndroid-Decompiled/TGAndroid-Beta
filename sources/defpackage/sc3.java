@@ -7,35 +7,35 @@ import org.json.JSONObject;
 public final class sc3 {
     public String a;
 
-    public static void a(pm3 pm3Var, bca bcaVar) {
-        String str = bcaVar.a;
+    public static void a(pm3 pm3Var, cca ccaVar) {
+        String str = ccaVar.a;
         if (str != null) {
             pm3Var.A("X-CRASHLYTICS-GOOGLE-APP-ID", str);
         }
         pm3Var.A("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
         pm3Var.A("X-CRASHLYTICS-API-CLIENT-VERSION", "20.1.1");
         pm3Var.A("Accept", "application/json");
-        pm3Var.A("X-CRASHLYTICS-DEVICE-MODEL", bcaVar.b);
-        String str2 = bcaVar.c;
+        pm3Var.A("X-CRASHLYTICS-DEVICE-MODEL", ccaVar.b);
+        String str2 = ccaVar.c;
         if (str2 != null) {
             pm3Var.A("X-CRASHLYTICS-OS-BUILD-VERSION", str2);
         }
-        String str3 = bcaVar.d;
+        String str3 = ccaVar.d;
         if (str3 != null) {
             pm3Var.A("X-CRASHLYTICS-OS-DISPLAY-VERSION", str3);
         }
-        String str4 = bcaVar.e.c().a;
+        String str4 = ccaVar.e.c().a;
         if (str4 != null) {
             pm3Var.A("X-CRASHLYTICS-INSTALLATION-ID", str4);
         }
     }
 
-    public static HashMap b(bca bcaVar) {
+    public static HashMap b(cca ccaVar) {
         HashMap hashMap = new HashMap();
-        hashMap.put("build_version", bcaVar.h);
-        hashMap.put("display_version", bcaVar.g);
-        hashMap.put("source", Integer.toString(bcaVar.i));
-        String str = bcaVar.f;
+        hashMap.put("build_version", ccaVar.h);
+        hashMap.put("display_version", ccaVar.g);
+        hashMap.put("source", Integer.toString(ccaVar.i));
+        String str = ccaVar.f;
         if (!TextUtils.isEmpty(str)) {
             hashMap.put("instance", str);
         }

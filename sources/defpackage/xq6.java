@@ -48,7 +48,7 @@ public final class xq6 implements Runnable {
                 if (i4 == 0) {
                     try {
                         if (arrayList.isEmpty() || z) {
-                            ls6Var.getMessagesStorage().E(i5, i6, j, j2);
+                            ls6Var.getMessagesStorage().G(i5, i6, j, j2);
                             j2 = j2;
                             i6 = i6;
                             i5 = i5;
@@ -110,11 +110,11 @@ public final class xq6 implements Runnable {
                         i = ((TLRPC.Message) arrayList.get(arrayList.size() - 1)).id;
                     }
                     if (i10 != 0) {
-                        ls6Var.getMessagesStorage().s(j, i, ((TLRPC.Message) arrayList.get(0)).id, i6, j2);
+                        ls6Var.getMessagesStorage().u(j, i, ((TLRPC.Message) arrayList.get(0)).id, i6, j2);
                     } else if (i5 != 0) {
-                        ls6Var.getMessagesStorage().s(j, i, i5, i6, j2);
+                        ls6Var.getMessagesStorage().u(j, i, i5, i6, j2);
                     } else {
-                        ls6Var.getMessagesStorage().s(j, i, Integer.MAX_VALUE, i6, j2);
+                        ls6Var.getMessagesStorage().u(j, i, Integer.MAX_VALUE, i6, j2);
                     }
                 }
                 ls6Var.getMessagesStorage().b.commitTransaction();
@@ -122,13 +122,13 @@ public final class xq6 implements Runnable {
             default:
                 int i11 = this.f;
                 boolean z2 = this.h;
-                ((jf7) rf0Var).B0(this.b, this.e, i11, this.c, this.d, (TLRPC.messages_Messages) obj, z2);
+                ((kf7) rf0Var).E0(this.b, this.e, i11, this.c, this.d, (TLRPC.messages_Messages) obj, z2);
                 return;
         }
     }
 
-    public xq6(jf7 jf7Var, int i, TLRPC.messages_Messages messages_messages, long j, long j2, int i2, int i3, boolean z) {
-        this.n = jf7Var;
+    public xq6(kf7 kf7Var, int i, TLRPC.messages_Messages messages_messages, long j, long j2, int i2, int i3, boolean z) {
+        this.n = kf7Var;
         this.b = i;
         this.r = messages_messages;
         this.c = j;

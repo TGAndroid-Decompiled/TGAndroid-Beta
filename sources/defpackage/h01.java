@@ -40,7 +40,7 @@ import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.ProfileActivity;
-public final class h01 implements RequestDelegateTimestamp, lcc, fd, oj3, ea9, s9, wb0, t69, gc7, hj, dz5, h69, n39, bf7, ResultCallback, zj5, c88, on5, u12 {
+public final class h01 implements RequestDelegateTimestamp, lcc, fd, oj3, ea9, s9, wb0, t69, gc7, hj, dz5, h69, n39, cf7, ResultCallback, zj5, c88, on5, u12 {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -139,7 +139,7 @@ public final class h01 implements RequestDelegateTimestamp, lcc, fd, oj3, ea9, s
                     HashMap hashMap = ChatAttachAlertPhotoLayout.t1;
                     boolean z2 = true;
                     if (hashMap.size() + 1 > chatAttachAlertPhotoLayout.h0()) {
-                        new d31(n12Var.o3, chatAttachAlertPhotoLayout.a).t(hl.S2(ob6.G(eVar.getMessagesController().k4.q0.f(), "BusinessRepliesToastLimit", new Object[0])), null).j();
+                        new d31(n12Var.o3, chatAttachAlertPhotoLayout.a).t(hl.S2(ob6.G(eVar.getMessagesController().l4.q0.f(), "BusinessRepliesToastLimit", new Object[0])), null).j();
                         return;
                     }
                     boolean containsKey = hashMap.containsKey(Integer.valueOf(photoEntry.C));
@@ -313,15 +313,15 @@ public final class h01 implements RequestDelegateTimestamp, lcc, fd, oj3, ea9, s
     @Override
     public final void onComplete(Object obj) {
         xu1 xu1Var = (xu1) this.b;
-        hh7 hh7Var = (hh7) this.c;
+        ih7 ih7Var = (ih7) this.c;
         Pair pair = (Pair) obj;
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = (Bitmap) pair.second;
             ez3 ez3Var = xu1Var.f;
             if (ez3Var != null && longValue == ez3Var.h(xu1Var.q ? 1 : 0) && bitmap != null) {
-                hh7Var.x = bitmap;
-                hh7Var.i();
+                ih7Var.x = bitmap;
+                ih7Var.i();
             }
         }
     }
@@ -343,7 +343,7 @@ public final class h01 implements RequestDelegateTimestamp, lcc, fd, oj3, ea9, s
             int i6 = 0;
             while (true) {
                 if (i6 < d61Var.d.size()) {
-                    if (((u51) d61Var.d.get(i6)).a == ((if7) arrayList.get(i4)).a) {
+                    if (((u51) d61Var.d.get(i6)).a == ((jf7) arrayList.get(i4)).a) {
                         u51Var = (u51) d61Var.d.get(i6);
                         break;
                     }
@@ -354,17 +354,17 @@ public final class h01 implements RequestDelegateTimestamp, lcc, fd, oj3, ea9, s
                 }
             }
             if (!z3) {
-                if (d61Var.getMessagesController().h4.c(d61Var.e) != 2) {
+                if (d61Var.getMessagesController().i4.c(d61Var.e) != 2) {
                     i5 = 2;
                 }
                 ArrayList arrayList3 = d61Var.d;
-                u51 u51Var2 = new u51(((if7) arrayList.get(i4)).a, i5);
+                u51 u51Var2 = new u51(((jf7) arrayList.get(i4)).a, i5);
                 arrayList3.add(u51Var2);
                 u51Var = u51Var2;
             }
             i4++;
         }
-        d61Var.getMessagesController().h4.h(d61Var.e, d61Var.d);
+        d61Var.getMessagesController().i4.h(d61Var.e, d61Var.d);
         d61Var.Y();
         if (u51Var != null) {
             int i7 = 0;

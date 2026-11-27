@@ -107,7 +107,7 @@ public final class r6d implements OnCompleteListener {
                             j = 0;
                             j2 = 0;
                         }
-                        s6d s6dVar = new s6d(new bg7(this.b, i5, i7, j, j2, null, null, s, i9), i2, i8, i3);
+                        s6d s6dVar = new s6d(new cg7(this.b, i5, i7, j, j2, null, null, s, i9), i2, i8, i3);
                         b99 b99Var = n05Var.y;
                         b99Var.sendMessage(b99Var.obtainMessage(18, s6dVar));
                     }

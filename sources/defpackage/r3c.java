@@ -604,7 +604,7 @@ public abstract class r3c extends nx0 implements fn7 {
             ConnectionsManager.getInstance(this.a).cancelRequest(this.l1.intValue(), true);
             this.l1 = null;
         }
-        if ("alternative".equalsIgnoreCase(uc7.s1(this.a).k4.R2.f)) {
+        if ("alternative".equalsIgnoreCase(uc7.s1(this.a).l4.R2.f)) {
             U0();
             return;
         }

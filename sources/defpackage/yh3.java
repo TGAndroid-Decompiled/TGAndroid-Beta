@@ -97,7 +97,7 @@ public final class yh3 extends gk3 {
         if (of3Var.getMessage() != null) {
             uj3 uj3Var = this.d0;
             i = ((e) uj3Var).currentAccount;
-            TLRPC.TL_forumTopic f = uj3Var.getMessagesController().g4.f(-of3Var.getDialogId(), r47.b2(i, of3Var.getMessage().k, true, false));
+            TLRPC.TL_forumTopic f = uj3Var.getMessagesController().h4.f(-of3Var.getDialogId(), r47.b2(i, of3Var.getMessage().k, true, false));
             if (f != null) {
                 if (uj3Var.n2) {
                     uj3Var.k3(of3Var.getDialogId(), f.id, false, null);

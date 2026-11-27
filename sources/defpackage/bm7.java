@@ -57,7 +57,7 @@ public final class bm7 extends yc8 {
                                         fd8Var.e = imageReceiver.p();
                                         fd8Var.h = fd8Var.a.z();
                                         fd8Var.f = r47.B0(r47Var.k);
-                                        fd8Var.j = lm7Var.p0();
+                                        fd8Var.j = lm7Var.o0();
                                         return fd8Var;
                                     }
                                 }
@@ -75,6 +75,6 @@ public final class bm7 extends yc8 {
 
     @Override
     public final void Y(zu1 zu1Var) {
-        this.c.D0(zu1Var, this.a, this.b);
+        this.c.B0(zu1Var, this.a, this.b);
     }
 }

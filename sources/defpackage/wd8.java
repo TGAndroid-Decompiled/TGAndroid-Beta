@@ -254,16 +254,16 @@ public final class wd8 extends AnimatorListenerAdapter {
                     ((WindowManager) obj2).removeViewImmediate(b8aVar.B);
                 } catch (Exception unused) {
                 }
-                en9 en9Var = b8aVar.C;
-                if (en9Var != null) {
-                    hl.r(en9Var);
+                dn9 dn9Var = b8aVar.C;
+                if (dn9Var != null) {
+                    hl.r(dn9Var);
                     return;
                 }
                 return;
             case 17:
-                u3b u3bVar = (u3b) obj;
-                u3bVar.b = 0.0f;
-                u3bVar.invalidate();
+                v3b v3bVar = (v3b) obj;
+                v3bVar.b = 0.0f;
+                v3bVar.invalidate();
                 ((xu9) obj2).invalidate();
                 return;
             case 18:

@@ -146,7 +146,7 @@ public final class cu2 extends e implements fn7, yn5 {
         if (Y1 != null) {
             Y1.personal_photo = null;
             Y1.flags &= -2097153;
-            getMessagesStorage().g2(Y1, true);
+            getMessagesStorage().l2(Y1, true);
         }
         TLRPC.Photo photo = this.U;
         if (photo != null) {
@@ -166,7 +166,7 @@ public final class cu2 extends e implements fn7, yn5 {
         }
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(user);
-        getMessagesStorage().j1(arrayList2, null, false, true);
+        getMessagesStorage().n1(arrayList2, null, false, true);
         j0();
         getNotificationCenter().k(jn7.c0, new Object[0]);
         getNotificationCenter().k(2, 2);
@@ -405,7 +405,7 @@ public final class cu2 extends e implements fn7, yn5 {
             }
         });
         this.c.setText(this.O);
-        zt3 zt3Var3 = new zt3(context, ob6.M0(2131754388, null), true, true, getMessagesController().k4.E.f(), this.r);
+        zt3 zt3Var3 = new zt3(context, ob6.M0(2131754388, null), true, true, getMessagesController().l4.E.f(), this.r);
         this.d = zt3Var3;
         yob.G(zt3Var3.d, aob.Xc, vnbVar);
         this.d.d.setImeOptions(6);
@@ -741,7 +741,7 @@ public final class cu2 extends e implements fn7, yn5 {
         dc7 dc7Var;
         if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i3 = uc7.r5;
+            int i3 = uc7.s5;
             if ((intValue & 2) != 0 || (intValue & 4) != 0) {
                 i0();
             }
@@ -841,7 +841,7 @@ public final class cu2 extends e implements fn7, yn5 {
                 arrayList2.add(r47Var);
                 new ArrayList().add(tL_messageService);
                 uc7.s1(this.currentAccount).z5(0, this.I, arrayList2);
-                getMessagesController().m4.put(tL_messageService.local_id, zn5Var);
+                getMessagesController().n4.put(tL_messageService.local_id, zn5Var);
             }
         } else {
             TLRPC.User X1 = getMessagesController().X1(Long.valueOf(this.I));
@@ -865,10 +865,10 @@ public final class cu2 extends e implements fn7, yn5 {
                 }
                 ArrayList arrayList3 = new ArrayList();
                 arrayList3.add(X1);
-                getMessagesStorage().j1(arrayList3, null, false, true);
+                getMessagesStorage().n1(arrayList3, null, false, true);
                 getNotificationCenter().k(jn7.c0, new Object[0]);
                 jn7 notificationCenter = getNotificationCenter();
-                int i2 = uc7.r5;
+                int i2 = uc7.s5;
                 notificationCenter.k(2, 2);
             }
             g0(this.R, photoSize2.location, inputFile, inputFile2, videoSize, d, this.T);
@@ -895,7 +895,7 @@ public final class cu2 extends e implements fn7, yn5 {
                 if (Y1 != null) {
                     Y1.personal_photo = tL_photos_photo.photo;
                     Y1.flags |= 2097152;
-                    getMessagesStorage().g2(Y1, true);
+                    getMessagesStorage().l2(Y1, true);
                 }
                 if (X1 != null) {
                     TLRPC.PhotoSize w = xb4.w(arrayList, 100, false, null, false);
@@ -923,7 +923,7 @@ public final class cu2 extends e implements fn7, yn5 {
                     u98.a(tL_photos_photo.photo, X1, true);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(X1);
-                    getMessagesStorage().j1(arrayList2, null, false, true);
+                    getMessagesStorage().n1(arrayList2, null, false, true);
                     getMessagesController().U0(this.I);
                     getNotificationCenter().k(jn7.c0, new Object[0]);
                     getNotificationCenter().k(2, 2);
@@ -1102,7 +1102,7 @@ public final class cu2 extends e implements fn7, yn5 {
         this.O = getArguments().getString("last_name_card");
         this.J = getArguments().getBoolean("addContact", false);
         this.K = getArguments().getBoolean("focus_notes", false);
-        SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).W3;
+        SharedPreferences sharedPreferences = uc7.s1(this.currentAccount).X3;
         this.L = sharedPreferences.getBoolean("dialog_bar_exception" + this.I, false);
         if (this.I != 0) {
             user = getMessagesController().X1(Long.valueOf(this.I));

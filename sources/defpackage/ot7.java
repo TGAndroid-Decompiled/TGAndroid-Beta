@@ -179,7 +179,7 @@ public final class ot7 extends nx0 {
         yob.X(editTextBoldCursor, i2, this.J0);
         TextView textView = this.s1;
         di0.h();
-        textView.setText(di0.f("USD", 2, (long) ((j / 1.0E9d) * uc7.s1(this.a).k4.k.i * 100.0d), false));
+        textView.setText(di0.f("USD", 2, (long) ((j / 1.0E9d) * uc7.s1(this.a).l4.k.i * 100.0d), false));
         pj pjVar = pj.b;
         String str = this.o1;
         p66 p66Var = this.t1;

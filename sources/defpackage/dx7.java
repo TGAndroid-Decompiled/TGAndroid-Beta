@@ -45,7 +45,7 @@ import org.telegram.ui.ActionBar.a;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.LaunchActivity;
-public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
+public abstract class dx7 extends xma implements qv7, f44, lv7, vma, obb {
     public final ow7 A0;
     public ArrayList A1;
     public final zw7 B0;
@@ -79,7 +79,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
     public final int P0;
     public final o00 P1;
     public BigInteger Q0;
-    public final gbb Q1;
+    public final hbb Q1;
     public TextView R0;
     public boolean R1;
     public TextView S0;
@@ -146,7 +146,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
     public int v0;
     public Runnable v1;
     public boolean w0;
-    public final qbb w1;
+    public final rbb w1;
     public final boolean x0;
     public AnimatorSet x1;
     public final yw7 y0;
@@ -154,15 +154,15 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
     public final tb z0;
     public c8b z1;
 
-    public dx7(Context context, boolean z, File file, boolean z2, boolean z3, qbb qbbVar, Activity activity, final int i, Bitmap bitmap, Bitmap bitmap2, int i2, ArrayList arrayList, c8b c8bVar, int i3, int i4, fo6 fo6Var, tl0 tl0Var, x53 x53Var, o00 o00Var, gbb gbbVar) {
+    public dx7(Context context, boolean z, File file, boolean z2, boolean z3, rbb rbbVar, Activity activity, final int i, Bitmap bitmap, Bitmap bitmap2, int i2, ArrayList arrayList, c8b c8bVar, int i3, int i4, fo6 fo6Var, tl0 tl0Var, x53 x53Var, o00 o00Var, hbb hbbVar) {
         super(context, activity);
         nx7 nx7Var;
         tl0 tl0Var2;
         int i5;
         this.I0 = 0;
         this.J0 = -1;
-        final vab vabVar = (vab) this;
-        xh4 xh4Var = new xh4(vabVar, (byte) 19);
+        final wab wabVar = (wab) this;
+        xh4 xh4Var = new xh4(wabVar, (byte) 19);
         this.O0 = xh4Var;
         Paint paint = new Paint(1);
         this.b1 = paint;
@@ -175,12 +175,12 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         igb igbVar = new igb(1.0f, 0.016773745f, -1);
         this.k1 = igbVar;
         this.o1 = new Paint(1);
-        kj4 kj4Var = new kj4(vabVar, (byte) 22);
+        kj4 kj4Var = new kj4(wabVar, (byte) 22);
         this.W1 = kj4Var;
         this.X1 = new float[2];
         this.a2 = false;
         this.c2 = new int[2];
-        new ki7(vabVar, (byte) 3);
+        new li7(wabVar, (byte) 3);
         setDelegate(this);
         this.O1 = tl0Var;
         this.P1 = o00Var;
@@ -188,10 +188,10 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         this.F1 = file;
         this.G1 = z2;
         this.H1 = z3;
-        this.w1 = qbbVar;
+        this.w1 = rbbVar;
         this.B1 = i3;
         this.C1 = i4;
-        this.Q1 = gbbVar;
+        this.Q1 = hbbVar;
         this.p1 = i;
         if (z2 && !z3 && c8bVar != null && c8bVar.L != null && !c8bVar.v()) {
             this.V1 = c8bVar;
@@ -199,7 +199,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             gc1 gc1Var = (file2 != null && file2.exists() && DictationAsr.x(i) && qn3.h()) ? new gc1(file2, kj4Var) : null;
             this.U1 = gc1Var;
             if (gc1Var != null) {
-                gc1Var.d = new ew7(vabVar, (byte) 0);
+                gc1Var.d = new ew7(wabVar, (byte) 0);
             }
         }
         uk5 uk5Var = new uk5(x53Var);
@@ -216,7 +216,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         this.P0 = i2;
         a9c a9cVar = new a9c();
         this.n0 = a9cVar;
-        a9cVar.a = new bm6(vabVar, (byte) 25);
+        a9cVar.a = new bm6(wabVar, (byte) 25);
         View view = new View(context);
         this.H0 = view;
         view.setVisibility(8);
@@ -230,16 +230,16 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             nx7Var = nx7Var2;
             tl0Var2 = null;
         }
-        yw7 yw7Var = new yw7(vabVar, context, nx7Var, bitmap, bitmap2, tl0Var2);
+        yw7 yw7Var = new yw7(wabVar, context, nx7Var, bitmap, bitmap2, tl0Var2);
         this.y0 = yw7Var;
-        yw7Var.setDelegate(new aj3(vabVar, (byte) 23));
+        yw7Var.setDelegate(new aj3(wabVar, (byte) 23));
         yw7Var.setUndoStore(a9cVar);
         yw7Var.setQueue(uo3Var);
         yw7Var.setVisibility(4);
-        tb tbVar = new tb((byte) 23, context, vabVar);
+        tb tbVar = new tb((byte) 23, context, wabVar);
         this.z0 = tbVar;
         tbVar.setVisibility(4);
-        zw7 zw7Var = new zw7(vabVar, context, new v34(vabVar, (byte) 20));
+        zw7 zw7Var = new zw7(wabVar, context, new v34(wabVar, (byte) 20));
         this.B0 = zw7Var;
         this.z1 = c8bVar;
         this.A1 = arrayList;
@@ -247,7 +247,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             G0();
         }
         zw7Var.setVisibility(4);
-        this.A0 = new ow7(vabVar, context, (byte) 1);
+        this.A0 = new ow7(wabVar, context, (byte) 1);
         FrameLayout frameLayout = new FrameLayout(context);
         this.C0 = frameLayout;
         frameLayout.setPadding(hl.L(4.0f), hl.L(12.0f), hl.L(4.0f), hl.L(12.0f));
@@ -263,20 +263,20 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             @Override
             public final void onClick(View view2) {
                 byte b = r2;
-                vab vabVar2 = vabVar;
+                wab wabVar2 = wabVar;
                 switch (b) {
                     case 0:
-                        if (vabVar2.l1) {
-                            vabVar2.H0(false);
+                        if (wabVar2.l1) {
+                            wabVar2.H0(false);
                             return;
-                        } else if (vabVar2.e2) {
-                            vabVar2.s0(true);
+                        } else if (wabVar2.e2) {
+                            wabVar2.s0(true);
                             return;
-                        } else if (vabVar2.u0) {
-                            vabVar2.C0(null, true);
+                        } else if (wabVar2.u0) {
+                            wabVar2.C0(null, true);
                             return;
                         } else {
-                            Runnable runnable = vabVar2.v1;
+                            Runnable runnable = wabVar2.v1;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -284,23 +284,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             return;
                         }
                     case 1:
-                        yw7 yw7Var2 = vabVar2.y0;
+                        yw7 yw7Var2 = wabVar2.y0;
                         if (yw7Var2 != null && (yw7Var2.getCurrentBrush() instanceof u01)) {
                             yw7Var2.b();
-                            vabVar2.U0.setSelectedIndex(1);
-                            vabVar2.s((v01) v01.a.get(0));
+                            wabVar2.U0.setSelectedIndex(1);
+                            wabVar2.s((v01) v01.a.get(0));
                             return;
                         }
-                        vabVar2.n0.c();
+                        wabVar2.n0.c();
                         return;
                     case 2:
-                        yw7 yw7Var3 = vabVar2.y0;
-                        a9c a9cVar2 = vabVar2.n0;
+                        yw7 yw7Var3 = wabVar2.y0;
+                        a9c a9cVar2 = wabVar2.n0;
                         if (a9cVar2.a()) {
                             if (yw7Var3 != null && (yw7Var3.getCurrentBrush() instanceof u01)) {
                                 yw7Var3.b();
-                                vabVar2.U0.setSelectedIndex(1);
-                                vabVar2.s((v01) v01.a.get(0));
+                                wabVar2.U0.setSelectedIndex(1);
+                                wabVar2.s((v01) v01.a.get(0));
                             }
                             if (yw7Var3 != null) {
                                 yw7Var3.a();
@@ -308,23 +308,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             a9cVar2.c.clear();
                             a9cVar2.b.clear();
                             hl.c3(new azb(a9cVar2, (byte) 7));
-                            vabVar2.B0.removeAllViews();
+                            wabVar2.B0.removeAllViews();
                             return;
                         }
                         return;
                     case 3:
-                        h44 h44Var = vabVar2.t0;
+                        h44 h44Var = wabVar2.t0;
                         if (h44Var instanceof rlb) {
                             hl.t1(((rlb) h44Var).getFocusedView());
                         }
-                        if (vabVar2.e2) {
-                            vabVar2.s0(false);
+                        if (wabVar2.e2) {
+                            wabVar2.s0(false);
                         }
-                        vabVar2.B0(vabVar2.t0);
-                        vabVar2.C0(null, true);
+                        wabVar2.B0(wabVar2.t0);
+                        wabVar2.C0(null, true);
                         return;
                     default:
-                        vabVar2.C0(null, true);
+                        wabVar2.C0(null, true);
                         return;
                 }
             }
@@ -359,20 +359,20 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             @Override
             public final void onClick(View view2) {
                 byte b = r2;
-                vab vabVar2 = vabVar;
+                wab wabVar2 = wabVar;
                 switch (b) {
                     case 0:
-                        if (vabVar2.l1) {
-                            vabVar2.H0(false);
+                        if (wabVar2.l1) {
+                            wabVar2.H0(false);
                             return;
-                        } else if (vabVar2.e2) {
-                            vabVar2.s0(true);
+                        } else if (wabVar2.e2) {
+                            wabVar2.s0(true);
                             return;
-                        } else if (vabVar2.u0) {
-                            vabVar2.C0(null, true);
+                        } else if (wabVar2.u0) {
+                            wabVar2.C0(null, true);
                             return;
                         } else {
-                            Runnable runnable = vabVar2.v1;
+                            Runnable runnable = wabVar2.v1;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -380,23 +380,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             return;
                         }
                     case 1:
-                        yw7 yw7Var2 = vabVar2.y0;
+                        yw7 yw7Var2 = wabVar2.y0;
                         if (yw7Var2 != null && (yw7Var2.getCurrentBrush() instanceof u01)) {
                             yw7Var2.b();
-                            vabVar2.U0.setSelectedIndex(1);
-                            vabVar2.s((v01) v01.a.get(0));
+                            wabVar2.U0.setSelectedIndex(1);
+                            wabVar2.s((v01) v01.a.get(0));
                             return;
                         }
-                        vabVar2.n0.c();
+                        wabVar2.n0.c();
                         return;
                     case 2:
-                        yw7 yw7Var3 = vabVar2.y0;
-                        a9c a9cVar2 = vabVar2.n0;
+                        yw7 yw7Var3 = wabVar2.y0;
+                        a9c a9cVar2 = wabVar2.n0;
                         if (a9cVar2.a()) {
                             if (yw7Var3 != null && (yw7Var3.getCurrentBrush() instanceof u01)) {
                                 yw7Var3.b();
-                                vabVar2.U0.setSelectedIndex(1);
-                                vabVar2.s((v01) v01.a.get(0));
+                                wabVar2.U0.setSelectedIndex(1);
+                                wabVar2.s((v01) v01.a.get(0));
                             }
                             if (yw7Var3 != null) {
                                 yw7Var3.a();
@@ -404,23 +404,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             a9cVar2.c.clear();
                             a9cVar2.b.clear();
                             hl.c3(new azb(a9cVar2, (byte) 7));
-                            vabVar2.B0.removeAllViews();
+                            wabVar2.B0.removeAllViews();
                             return;
                         }
                         return;
                     case 3:
-                        h44 h44Var = vabVar2.t0;
+                        h44 h44Var = wabVar2.t0;
                         if (h44Var instanceof rlb) {
                             hl.t1(((rlb) h44Var).getFocusedView());
                         }
-                        if (vabVar2.e2) {
-                            vabVar2.s0(false);
+                        if (wabVar2.e2) {
+                            wabVar2.s0(false);
                         }
-                        vabVar2.B0(vabVar2.t0);
-                        vabVar2.C0(null, true);
+                        wabVar2.B0(wabVar2.t0);
+                        wabVar2.C0(null, true);
                         return;
                     default:
-                        vabVar2.C0(null, true);
+                        wabVar2.C0(null, true);
                         return;
                 }
             }
@@ -439,20 +439,20 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             @Override
             public final void onClick(View view2) {
                 byte b = r2;
-                vab vabVar2 = vabVar;
+                wab wabVar2 = wabVar;
                 switch (b) {
                     case 0:
-                        if (vabVar2.l1) {
-                            vabVar2.H0(false);
+                        if (wabVar2.l1) {
+                            wabVar2.H0(false);
                             return;
-                        } else if (vabVar2.e2) {
-                            vabVar2.s0(true);
+                        } else if (wabVar2.e2) {
+                            wabVar2.s0(true);
                             return;
-                        } else if (vabVar2.u0) {
-                            vabVar2.C0(null, true);
+                        } else if (wabVar2.u0) {
+                            wabVar2.C0(null, true);
                             return;
                         } else {
-                            Runnable runnable = vabVar2.v1;
+                            Runnable runnable = wabVar2.v1;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -460,23 +460,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             return;
                         }
                     case 1:
-                        yw7 yw7Var2 = vabVar2.y0;
+                        yw7 yw7Var2 = wabVar2.y0;
                         if (yw7Var2 != null && (yw7Var2.getCurrentBrush() instanceof u01)) {
                             yw7Var2.b();
-                            vabVar2.U0.setSelectedIndex(1);
-                            vabVar2.s((v01) v01.a.get(0));
+                            wabVar2.U0.setSelectedIndex(1);
+                            wabVar2.s((v01) v01.a.get(0));
                             return;
                         }
-                        vabVar2.n0.c();
+                        wabVar2.n0.c();
                         return;
                     case 2:
-                        yw7 yw7Var3 = vabVar2.y0;
-                        a9c a9cVar2 = vabVar2.n0;
+                        yw7 yw7Var3 = wabVar2.y0;
+                        a9c a9cVar2 = wabVar2.n0;
                         if (a9cVar2.a()) {
                             if (yw7Var3 != null && (yw7Var3.getCurrentBrush() instanceof u01)) {
                                 yw7Var3.b();
-                                vabVar2.U0.setSelectedIndex(1);
-                                vabVar2.s((v01) v01.a.get(0));
+                                wabVar2.U0.setSelectedIndex(1);
+                                wabVar2.s((v01) v01.a.get(0));
                             }
                             if (yw7Var3 != null) {
                                 yw7Var3.a();
@@ -484,23 +484,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             a9cVar2.c.clear();
                             a9cVar2.b.clear();
                             hl.c3(new azb(a9cVar2, (byte) 7));
-                            vabVar2.B0.removeAllViews();
+                            wabVar2.B0.removeAllViews();
                             return;
                         }
                         return;
                     case 3:
-                        h44 h44Var = vabVar2.t0;
+                        h44 h44Var = wabVar2.t0;
                         if (h44Var instanceof rlb) {
                             hl.t1(((rlb) h44Var).getFocusedView());
                         }
-                        if (vabVar2.e2) {
-                            vabVar2.s0(false);
+                        if (wabVar2.e2) {
+                            wabVar2.s0(false);
                         }
-                        vabVar2.B0(vabVar2.t0);
-                        vabVar2.C0(null, true);
+                        wabVar2.B0(wabVar2.t0);
+                        wabVar2.C0(null, true);
                         return;
                     default:
-                        vabVar2.C0(null, true);
+                        wabVar2.C0(null, true);
                         return;
                 }
             }
@@ -520,20 +520,20 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             @Override
             public final void onClick(View view2) {
                 byte b = r2;
-                vab vabVar2 = vabVar;
+                wab wabVar2 = wabVar;
                 switch (b) {
                     case 0:
-                        if (vabVar2.l1) {
-                            vabVar2.H0(false);
+                        if (wabVar2.l1) {
+                            wabVar2.H0(false);
                             return;
-                        } else if (vabVar2.e2) {
-                            vabVar2.s0(true);
+                        } else if (wabVar2.e2) {
+                            wabVar2.s0(true);
                             return;
-                        } else if (vabVar2.u0) {
-                            vabVar2.C0(null, true);
+                        } else if (wabVar2.u0) {
+                            wabVar2.C0(null, true);
                             return;
                         } else {
-                            Runnable runnable = vabVar2.v1;
+                            Runnable runnable = wabVar2.v1;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -541,23 +541,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             return;
                         }
                     case 1:
-                        yw7 yw7Var2 = vabVar2.y0;
+                        yw7 yw7Var2 = wabVar2.y0;
                         if (yw7Var2 != null && (yw7Var2.getCurrentBrush() instanceof u01)) {
                             yw7Var2.b();
-                            vabVar2.U0.setSelectedIndex(1);
-                            vabVar2.s((v01) v01.a.get(0));
+                            wabVar2.U0.setSelectedIndex(1);
+                            wabVar2.s((v01) v01.a.get(0));
                             return;
                         }
-                        vabVar2.n0.c();
+                        wabVar2.n0.c();
                         return;
                     case 2:
-                        yw7 yw7Var3 = vabVar2.y0;
-                        a9c a9cVar2 = vabVar2.n0;
+                        yw7 yw7Var3 = wabVar2.y0;
+                        a9c a9cVar2 = wabVar2.n0;
                         if (a9cVar2.a()) {
                             if (yw7Var3 != null && (yw7Var3.getCurrentBrush() instanceof u01)) {
                                 yw7Var3.b();
-                                vabVar2.U0.setSelectedIndex(1);
-                                vabVar2.s((v01) v01.a.get(0));
+                                wabVar2.U0.setSelectedIndex(1);
+                                wabVar2.s((v01) v01.a.get(0));
                             }
                             if (yw7Var3 != null) {
                                 yw7Var3.a();
@@ -565,23 +565,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             a9cVar2.c.clear();
                             a9cVar2.b.clear();
                             hl.c3(new azb(a9cVar2, (byte) 7));
-                            vabVar2.B0.removeAllViews();
+                            wabVar2.B0.removeAllViews();
                             return;
                         }
                         return;
                     case 3:
-                        h44 h44Var = vabVar2.t0;
+                        h44 h44Var = wabVar2.t0;
                         if (h44Var instanceof rlb) {
                             hl.t1(((rlb) h44Var).getFocusedView());
                         }
-                        if (vabVar2.e2) {
-                            vabVar2.s0(false);
+                        if (wabVar2.e2) {
+                            wabVar2.s0(false);
                         }
-                        vabVar2.B0(vabVar2.t0);
-                        vabVar2.C0(null, true);
+                        wabVar2.B0(wabVar2.t0);
+                        wabVar2.C0(null, true);
                         return;
                     default:
-                        vabVar2.C0(null, true);
+                        wabVar2.C0(null, true);
                         return;
                 }
             }
@@ -589,7 +589,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         l2.setAlpha(0.0f);
         l2.setVisibility(8);
         frameLayout.addView(l2, tre.d(-2, 32.0f, 5, 0.0f, 0.0f, 4.0f, 0.0f));
-        ax7 ax7Var = new ax7(vabVar, context, e);
+        ax7 ax7Var = new ax7(wabVar, context, e);
         this.D0 = ax7Var;
         ax7Var.setPadding(hl.L(8.0f), hl.L(8.0f), hl.L(8.0f), 0);
         ax7Var.setBackground(new GradientDrawable(orientation, new int[]{0, Integer.MIN_VALUE}));
@@ -610,38 +610,38 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             public final void run() {
                 byte b = r3;
                 int i6 = i;
-                vab vabVar2 = vabVar;
+                wab wabVar2 = wabVar;
                 switch (b) {
                     case 0:
-                        igb igbVar2 = vabVar2.k1;
-                        vabVar2.E0(igbVar2);
+                        igb igbVar2 = wabVar2.k1;
+                        wabVar2.E0(igbVar2);
                         a78.e(i6).j(igbVar2.c);
                         return;
                     default:
-                        vabVar2.V0.setTypeface(a78.e(i6).j);
+                        wabVar2.V0.setTypeface(a78.e(i6).j);
                         return;
                 }
             }
         });
         nv7Var.setAlignment(a78.e(i).g);
         ax7Var.addView(nv7Var, tre.c(48.0f, -1));
-        ow7 ow7Var = new ow7(vabVar, context, (byte) 0);
+        ow7 ow7Var = new ow7(wabVar, context, (byte) 0);
         this.E0 = ow7Var;
         addView(ow7Var, tre.c(-1.0f, -1));
         zv7 zv7Var = new zv7(context);
         this.W0 = zv7Var;
         zv7Var.setVisibility(8);
-        zv7Var.setOnItemClickListener(new zg4(vabVar, (byte) 15));
+        zv7Var.setOnItemClickListener(new zg4(wabVar, (byte) 15));
         nv7Var.setTypefaceListView(zv7Var);
         ow7Var.addView(zv7Var, tre.d(-2, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(352321535);
         paint2.setColor(aob.v0(aob.G8, uk5Var));
-        pw7 pw7Var = new pw7(vabVar, context);
+        pw7 pw7Var = new pw7(wabVar, context);
         this.g1 = pw7Var;
         pw7Var.setVisibility(8);
         pw7Var.setColorPalette(a78.e(i));
-        pw7Var.setColorListener(new hw(vabVar, (byte) 11));
+        pw7Var.setColorListener(new hw(wabVar, (byte) 11));
         ax7Var.addView(pw7Var, tre.d(-1, 84.0f, 48, 56.0f, 0.0f, 56.0f, 6.0f));
         setupTabsLayout(context);
         dv7 dv7Var = new dv7(context);
@@ -653,20 +653,20 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             @Override
             public final void onClick(View view2) {
                 byte b = r2;
-                vab vabVar2 = vabVar;
+                wab wabVar2 = wabVar;
                 switch (b) {
                     case 0:
-                        if (vabVar2.l1) {
-                            vabVar2.H0(false);
+                        if (wabVar2.l1) {
+                            wabVar2.H0(false);
                             return;
-                        } else if (vabVar2.e2) {
-                            vabVar2.s0(true);
+                        } else if (wabVar2.e2) {
+                            wabVar2.s0(true);
                             return;
-                        } else if (vabVar2.u0) {
-                            vabVar2.C0(null, true);
+                        } else if (wabVar2.u0) {
+                            wabVar2.C0(null, true);
                             return;
                         } else {
-                            Runnable runnable = vabVar2.v1;
+                            Runnable runnable = wabVar2.v1;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -674,23 +674,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             return;
                         }
                     case 1:
-                        yw7 yw7Var2 = vabVar2.y0;
+                        yw7 yw7Var2 = wabVar2.y0;
                         if (yw7Var2 != null && (yw7Var2.getCurrentBrush() instanceof u01)) {
                             yw7Var2.b();
-                            vabVar2.U0.setSelectedIndex(1);
-                            vabVar2.s((v01) v01.a.get(0));
+                            wabVar2.U0.setSelectedIndex(1);
+                            wabVar2.s((v01) v01.a.get(0));
                             return;
                         }
-                        vabVar2.n0.c();
+                        wabVar2.n0.c();
                         return;
                     case 2:
-                        yw7 yw7Var3 = vabVar2.y0;
-                        a9c a9cVar2 = vabVar2.n0;
+                        yw7 yw7Var3 = wabVar2.y0;
+                        a9c a9cVar2 = wabVar2.n0;
                         if (a9cVar2.a()) {
                             if (yw7Var3 != null && (yw7Var3.getCurrentBrush() instanceof u01)) {
                                 yw7Var3.b();
-                                vabVar2.U0.setSelectedIndex(1);
-                                vabVar2.s((v01) v01.a.get(0));
+                                wabVar2.U0.setSelectedIndex(1);
+                                wabVar2.s((v01) v01.a.get(0));
                             }
                             if (yw7Var3 != null) {
                                 yw7Var3.a();
@@ -698,23 +698,23 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             a9cVar2.c.clear();
                             a9cVar2.b.clear();
                             hl.c3(new azb(a9cVar2, (byte) 7));
-                            vabVar2.B0.removeAllViews();
+                            wabVar2.B0.removeAllViews();
                             return;
                         }
                         return;
                     case 3:
-                        h44 h44Var = vabVar2.t0;
+                        h44 h44Var = wabVar2.t0;
                         if (h44Var instanceof rlb) {
                             hl.t1(((rlb) h44Var).getFocusedView());
                         }
-                        if (vabVar2.e2) {
-                            vabVar2.s0(false);
+                        if (wabVar2.e2) {
+                            wabVar2.s0(false);
                         }
-                        vabVar2.B0(vabVar2.t0);
-                        vabVar2.C0(null, true);
+                        wabVar2.B0(wabVar2.t0);
+                        wabVar2.C0(null, true);
                         return;
                     default:
-                        vabVar2.C0(null, true);
+                        wabVar2.C0(null, true);
                         return;
                 }
             }
@@ -723,7 +723,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         this.l0 = iv7Var;
         iv7Var.setPadding(hl.L(8.0f), hl.L(8.0f), hl.L(8.0f), hl.L(8.0f));
         iv7Var.setBackground(aob.f0(1090519039, 1, -1));
-        iv7Var.setOnClickListener(new lw4(vabVar, context, e, (byte) 12));
+        iv7Var.setOnClickListener(new lw4(wabVar, context, e, (byte) 12));
         ax7Var.addView(iv7Var, tre.d(32, 32.0f, 85, 0.0f, 0.0f, 12.0f, 4.0f));
         gx7 gx7Var = new gx7(context);
         this.N0 = gx7Var;
@@ -736,15 +736,15 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             public final void run() {
                 byte b = r3;
                 int i6 = i;
-                vab vabVar2 = vabVar;
+                wab wabVar2 = wabVar;
                 switch (b) {
                     case 0:
-                        igb igbVar2 = vabVar2.k1;
-                        vabVar2.E0(igbVar2);
+                        igb igbVar2 = wabVar2.k1;
+                        wabVar2.E0(igbVar2);
                         a78.e(i6).j(igbVar2.c);
                         return;
                     default:
-                        vabVar2.V0.setTypeface(a78.e(i6).j);
+                        wabVar2.V0.setTypeface(a78.e(i6).j);
                         return;
                 }
             }
@@ -765,7 +765,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         } else {
             i5 = 1;
         }
-        this.y1 = new qw7(vabVar, qbbVar, new v35(vabVar, qbbVar, (byte) 15));
+        this.y1 = new qw7(wabVar, rbbVar, new v35(wabVar, rbbVar, (byte) 15));
         zw3.C1 = i5;
     }
 
@@ -835,8 +835,8 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             zw7 zw7Var = this.B0;
             if (i < zw7Var.getChildCount()) {
                 View childAt = zw7Var.getChildAt(i);
-                if (childAt instanceof v3b) {
-                    ImageReceiver imageReceiver = ((v3b) childAt).z0;
+                if (childAt instanceof w3b) {
+                    ImageReceiver imageReceiver = ((w3b) childAt).z0;
                     b29 y = imageReceiver.y();
                     lm m = imageReceiver.m();
                     boolean z2 = !z;
@@ -1102,20 +1102,20 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         igbVar.c = f;
         D0(igbVar, null, false);
         if (!this.b2 && (h44Var instanceof pp9)) {
-            rbb rbbVar = ((vab) this).o2;
-            gbb gbbVar = rbbVar.Y0;
-            if (gbbVar != null) {
-                gbbVar.s(null, null, true);
-            }
-            vab vabVar = rbbVar.w1;
-            if (vabVar != null) {
-                vabVar.n0();
-            }
-            hbb hbbVar = rbbVar.d1;
+            sbb sbbVar = ((wab) this).o2;
+            hbb hbbVar = sbbVar.Y0;
             if (hbbVar != null) {
-                hbbVar.setHasRoundVideo(false);
+                hbbVar.s(null, null, true);
             }
-            c8b c8bVar = rbbVar.L1;
+            wab wabVar = sbbVar.w1;
+            if (wabVar != null) {
+                wabVar.n0();
+            }
+            ibb ibbVar = sbbVar.d1;
+            if (ibbVar != null) {
+                ibbVar.setHasRoundVideo(false);
+            }
+            c8b c8bVar = sbbVar.L1;
             if (c8bVar != null) {
                 File file = c8bVar.o0;
                 if (file != null) {
@@ -1123,15 +1123,15 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                         file.delete();
                     } catch (Exception unused) {
                     }
-                    c8bVar = rbbVar.L1;
+                    c8bVar = sbbVar.L1;
                     c8bVar.o0 = null;
                 }
                 if (c8bVar.p0 != null) {
                     try {
-                        new File(rbbVar.L1.p0).delete();
+                        new File(sbbVar.L1.p0).delete();
                     } catch (Exception unused2) {
                     }
-                    rbbVar.L1.p0 = null;
+                    sbbVar.L1.p0 = null;
                 }
             }
         }
@@ -1255,7 +1255,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                     hl.t1(((rlb) this.t0).getFocusedView());
                     s0(false);
                 }
-            } else if ((h44Var3 instanceof pp9) && (ksbVar2 = ((vab) this).o2.a1) != null) {
+            } else if ((h44Var3 instanceof pp9) && (ksbVar2 = ((wab) this).o2.a1) != null) {
                 ksbVar2.l(false);
             }
             z2 = true;
@@ -1268,7 +1268,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             B0(h44Var4);
         }
         h44 h44Var5 = this.t0;
-        if (h44Var4 != h44Var5 && (h44Var5 instanceof pp9) && (ksbVar = ((vab) this).o2.a1) != null) {
+        if (h44Var4 != h44Var5 && (h44Var5 instanceof pp9) && (ksbVar = ((wab) this).o2.a1) != null) {
             ksbVar.l(true);
         }
         h44 h44Var6 = this.t0;
@@ -1550,18 +1550,18 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                                         }
                                     } else if (b == 5 && c8bVar.o0 != null) {
                                         pp9 j0 = j0(c8bVar.p0, false);
-                                        rbb rbbVar = ((vab) this).o2;
-                                        gbb gbbVar = rbbVar.Y0;
-                                        if (gbbVar != null) {
-                                            gbbVar.x = j0;
-                                            kfc kfcVar = gbbVar.y;
+                                        sbb sbbVar = ((wab) this).o2;
+                                        hbb hbbVar = sbbVar.Y0;
+                                        if (hbbVar != null) {
+                                            hbbVar.x = j0;
+                                            kfc kfcVar = hbbVar.y;
                                             if (kfcVar != null) {
                                                 kfcVar.z0(j0.w0);
                                             }
                                         }
-                                        hbb hbbVar = rbbVar.d1;
-                                        if (hbbVar != null) {
-                                            hbbVar.setHasRoundVideo(true);
+                                        ibb ibbVar = sbbVar.d1;
+                                        if (ibbVar != null) {
+                                            ibbVar.setHasRoundVideo(true);
                                         }
                                         h44Var = j0;
                                         if ((mecVar.b & 2) != 0) {
@@ -1710,9 +1710,9 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                 z = false;
             }
             o24 o24Var2 = this.d2;
-            qbb qbbVar = this.w1;
+            rbb rbbVar = this.w1;
             if (o24Var2 != null && o24Var2.d1 != yac.t0) {
-                qbbVar.removeView(o24Var2);
+                rbbVar.removeView(o24Var2);
                 o24Var2 = null;
                 this.d2 = null;
             }
@@ -1726,7 +1726,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                     this.d2.setForseMultiwindowLayout(true);
                 }
                 this.d2.setDelegate(new xw7(this));
-                qbbVar.addView(this.d2);
+                rbbVar.addView(this.d2);
             }
             this.d2.setVisibility(0);
             this.e2 = true;
@@ -1752,7 +1752,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             if (point.x <= point.y) {
                 i2 = this.j2;
             }
-            int paddingUnderContainer = qbbVar.getPaddingUnderContainer() + i2;
+            int paddingUnderContainer = rbbVar.getPaddingUnderContainer() + i2;
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) o24Var4.getLayoutParams();
             layoutParams.height = paddingUnderContainer;
             o24Var4.setLayoutParams(layoutParams);
@@ -2257,7 +2257,7 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         view.setScaleX(scaleX * 0.5f);
         view.setScaleY(0.5f * scaleY);
         view.setAlpha(0.0f);
-        view.animate().scaleX(scaleX).scaleY(scaleY).alpha(1.0f).setInterpolator(new OvershootInterpolator(3.0f)).setDuration(240L).withEndAction(new pl7(this, view, (byte) 12)).start();
+        view.animate().scaleX(scaleX).scaleY(scaleY).alpha(1.0f).setInterpolator(new OvershootInterpolator(3.0f)).setDuration(240L).withEndAction(new ql7(this, view, (byte) 13)).start();
     }
 
     @Override
@@ -2344,8 +2344,8 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
                             continue;
                         }
                         i++;
-                    } else if (childAt instanceof v3b) {
-                        TLRPC.Document sticker = ((v3b) childAt).getSticker();
+                    } else if (childAt instanceof w3b) {
+                        TLRPC.Document sticker = ((w3b) childAt).getSticker();
                         xb4.G(i2);
                         if (c8b.u(sticker, xb4.J(sticker, null, true, true).getAbsolutePath())) {
                             break;
@@ -2606,8 +2606,8 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         ArrayList arrayList = null;
         for (int i = 0; i < childCount; i++) {
             View childAt = zw7Var.getChildAt(i);
-            if (childAt instanceof v3b) {
-                TLRPC.Document sticker = ((v3b) childAt).getSticker();
+            if (childAt instanceof w3b) {
+                TLRPC.Document sticker = ((w3b) childAt).getSticker();
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
@@ -2850,17 +2850,17 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         vy5 vy5Var = new vy5(b0(), f2, f);
         Context context = getContext();
         float floor = (float) Math.floor(getPaintingSize().a * 0.5d);
-        ?? v3bVar = new v3b(context, vy5Var.a, vy5Var.c, vy5Var.b, new qma(floor, floor), document, obj);
+        ?? w3bVar = new w3b(context, vy5Var.a, vy5Var.c, vy5Var.b, new qma(floor, floor), document, obj);
         boolean B4 = r47.B4(document);
-        ImageReceiver imageReceiver = v3bVar.z0;
+        ImageReceiver imageReceiver = w3bVar.z0;
         if (B4) {
             imageReceiver.p1 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
         }
         imageReceiver.m0(12);
-        v3bVar.setDelegate(this);
-        this.B0.addView(v3bVar);
+        w3bVar.setDelegate(this);
+        this.B0.addView(w3bVar);
         c0();
-        return v3bVar;
+        return w3bVar;
     }
 
     public final rlb l0(boolean z) {
@@ -3150,8 +3150,8 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
             zw7 zw7Var = this.B0;
             if (i < zw7Var.getChildCount()) {
                 View childAt = zw7Var.getChildAt(i);
-                if (childAt instanceof v3b) {
-                    ImageReceiver imageReceiver = ((v3b) childAt).z0;
+                if (childAt instanceof w3b) {
+                    ImageReceiver imageReceiver = ((w3b) childAt).z0;
                     b29 y = imageReceiver.y();
                     imageReceiver.m();
                     if (y != null) {
@@ -3295,9 +3295,9 @@ public abstract class dx7 extends xma implements qv7, f44, lv7, vma, nbb {
         postDelayed(new pg6(this, (byte) 13), 350L);
         tw7 tw7Var = new tw7(this, getContext(), this.q1, i);
         this.Y1 = tw7Var;
-        qbb qbbVar = this.w1;
-        Objects.requireNonNull(qbbVar);
-        tw7Var.w1 = new yt4(qbbVar, (byte) 26);
+        rbb rbbVar = this.w1;
+        Objects.requireNonNull(rbbVar);
+        tw7Var.w1 = new yt4(rbbVar, (byte) 26);
         boolean[] zArr = {true};
         tw7Var.setOnDismissListener(new gy5(this, zArr, i, (byte) 1));
         tw7Var.y1 = new jw7(this);

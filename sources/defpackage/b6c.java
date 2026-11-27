@@ -503,12 +503,12 @@ public final class b6c implements Runnable {
                 return;
             case 18:
                 kcc kccVar = (kcc) this.b;
-                jl7[] jl7VarArr = (jl7[]) this.c;
+                kl7[] kl7VarArr = (kl7[]) this.c;
                 TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = (TL_wallet.walletTransactionPeerUser) this.d;
                 if (kccVar == null) {
-                    jl7 jl7Var = jl7VarArr[0];
-                    if (jl7Var != null) {
-                        jl7Var.dismiss();
+                    kl7 kl7Var = kl7VarArr[0];
+                    if (kl7Var != null) {
+                        kl7Var.dismiss();
                     }
                     e S = LaunchActivity.S();
                     if (S != null) {
@@ -519,18 +519,18 @@ public final class b6c implements Runnable {
                 }
                 return;
             case 19:
-                jl7[] jl7VarArr2 = (jl7[]) this.b;
-                jl7VarArr2[0].setOnDismissListener(new gf((TLRPC.User) this.c, (TL_wallet.walletTransactionPeerUser) this.d, (byte) 18));
-                jl7VarArr2[0].dismiss();
+                kl7[] kl7VarArr2 = (kl7[]) this.b;
+                kl7VarArr2[0].setOnDismissListener(new gf((TLRPC.User) this.c, (TL_wallet.walletTransactionPeerUser) this.d, (byte) 18));
+                kl7VarArr2[0].dismiss();
                 return;
             case 20:
                 kcc kccVar2 = (kcc) this.b;
-                jl7[] jl7VarArr3 = (jl7[]) this.c;
+                kl7[] kl7VarArr3 = (kl7[]) this.c;
                 TL_wallet.WalletTransactionPeer walletTransactionPeer = (TL_wallet.WalletTransactionPeer) this.d;
                 if (kccVar2 == null) {
-                    jl7 jl7Var2 = jl7VarArr3[0];
-                    if (jl7Var2 != null) {
-                        jl7Var2.dismiss();
+                    kl7 kl7Var2 = kl7VarArr3[0];
+                    if (kl7Var2 != null) {
+                        kl7Var2.dismiss();
                     }
                     e S2 = LaunchActivity.S();
                     if (S2 != null) {

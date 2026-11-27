@@ -112,11 +112,11 @@ public final class va7 implements Runnable {
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(X1);
             i9 = 0;
-            uj3Var.getMessagesStorage().j1(arrayList2, null, false, true);
+            uj3Var.getMessagesStorage().n1(arrayList2, null, false, true);
             TLRPC.UserFull Y1 = uj3Var.getMessagesController().Y1(uj3Var.getUserConfig().e());
             if (Y1 != null) {
                 Y1.profile_photo = tL_photos_photo.photo;
-                uj3Var.getMessagesStorage().g2(Y1, false);
+                uj3Var.getMessagesStorage().l2(Y1, false);
             }
             fileLocation = null;
         } else {
@@ -126,7 +126,7 @@ public final class va7 implements Runnable {
         uj3Var.j4 = fileLocation;
         jn7 notificationCenter = uj3Var.getNotificationCenter();
         Object[] objArr = new Object[1];
-        objArr[i9] = Integer.valueOf(uc7.r5);
+        objArr[i9] = Integer.valueOf(uc7.s5);
         notificationCenter.k(2, objArr);
         uj3Var.getNotificationCenter().k(jn7.j0, new Object[i9]);
         uj3Var.getUserConfig().u(true);
@@ -369,7 +369,7 @@ public final class va7 implements Runnable {
 
     private final void k() {
         int i;
-        rbb rbbVar = (rbb) this.c;
+        sbb sbbVar = (sbb) this.c;
         Bitmap bitmap = (Bitmap) this.d;
         File file = (File) this.e;
         c8b c8bVar = (c8b) this.f;
@@ -384,7 +384,7 @@ public final class va7 implements Runnable {
         } catch (Exception e) {
             cc4.g(e, true);
         }
-        hl.c3(new pwa(rbbVar, c8bVar, file, (byte) 15));
+        hl.c3(new pwa(sbbVar, c8bVar, file, (byte) 15));
     }
 
     private final void l() {

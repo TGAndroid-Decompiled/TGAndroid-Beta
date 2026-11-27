@@ -126,12 +126,12 @@ public final class ny3 extends View {
                         my3 my3Var = (my3) arrayList.get(i);
                         if (!my3Var.d) {
                             if (Math.abs(motionEvent.getX() - my3Var.b) < hl.L(34.0f) / 2.0f) {
-                                f09 f09Var = ((rz8) this.a.b).d;
-                                ArrayList arrayList2 = f09Var.J;
+                                g09 g09Var = ((rz8) this.a.b).d;
+                                ArrayList arrayList2 = g09Var.J;
                                 if (i2 >= 0 && i2 < arrayList2.size()) {
                                     arrayList2.remove(i2);
-                                    f09Var.c();
-                                    f09Var.i0();
+                                    g09Var.c();
+                                    g09Var.i0();
                                 }
                                 invalidate();
                                 return true;

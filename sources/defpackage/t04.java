@@ -22,7 +22,7 @@ public final class t04 extends xy3 {
     public final void e() {
         o24 o24Var = this.g0;
         ArrayList arrayList = o24Var.o1;
-        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && uc7.s1(o24Var.d1).Y3.getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.id) {
+        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && uc7.s1(o24Var.d1).Z3.getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.id) {
             yac.h(yac.t0);
         }
     }

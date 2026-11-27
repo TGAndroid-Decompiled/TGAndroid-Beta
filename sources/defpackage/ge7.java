@@ -1,15 +1,11 @@
 package defpackage;
 public final class ge7 implements Runnable {
     public final byte a;
-    public final jf7 b;
-    public final long c;
-    public final boolean d;
+    public final Object b;
 
-    public ge7(jf7 jf7Var, long j, boolean z, byte b) {
+    public ge7(Object obj, byte b) {
         this.a = b;
-        this.b = jf7Var;
-        this.c = j;
-        this.d = z;
+        this.b = obj;
     }
 
     @Override

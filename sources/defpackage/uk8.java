@@ -50,7 +50,7 @@ public final class uk8 implements Runnable {
                 dm8Var.A1(null, false);
                 return;
             case 3:
-                ((gbb) obj).r();
+                ((hbb) obj).r();
                 return;
             case 4:
                 qo8 qo8Var = (qo8) obj;
@@ -122,7 +122,7 @@ public final class uk8 implements Runnable {
                     return;
                 }
             case 16:
-                ((q5b) obj).e();
+                ((r5b) obj).e();
                 return;
             case 17:
                 int i2 = ProfileStoriesView.t0;
@@ -219,7 +219,7 @@ public final class uk8 implements Runnable {
                 u59Var.R = System.currentTimeMillis();
                 u59Var.S = 0L;
                 u59Var.s0 = true;
-                ((rab) u59Var.a).a.K0.a(0L, true);
+                ((sab) u59Var.a).a.K0.a(0L, true);
                 u59Var.invalidate();
                 return;
             default:

@@ -7,8 +7,8 @@ public final class jma extends yfb implements is4 {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        f9c f9cVar = f9c.a;
-        ((jma) create((nm4) obj, (zw2) obj2)).invokeSuspend(f9cVar);
-        return f9cVar;
+        g9c g9cVar = g9c.a;
+        ((jma) create((nm4) obj, (zw2) obj2)).invokeSuspend(g9cVar);
+        return g9cVar;
     }
 }

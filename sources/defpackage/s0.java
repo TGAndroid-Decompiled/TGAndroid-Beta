@@ -110,12 +110,12 @@ public final class s0 extends ny0 {
                 }
             }
         });
-        zt3 zt3Var = new zt3(context, ob6.M0(2131754962, null), false, false, uc7.s1(this.a).k4.b0.f(), vnbVar);
+        zt3 zt3Var = new zt3(context, ob6.M0(2131754962, null), false, false, uc7.s1(this.a).l4.b0.f(), vnbVar);
         this.V1 = zt3Var;
         zt3Var.d.addTextChangedListener(new o0(this, (byte) 0));
-        zt3 zt3Var2 = new zt3(context, ob6.M0(2131754969, null), true, false, uc7.s1(this.a).k4.c0.f(), vnbVar);
+        zt3 zt3Var2 = new zt3(context, ob6.M0(2131754969, null), true, false, uc7.s1(this.a).l4.c0.f(), vnbVar);
         this.W1 = zt3Var2;
-        zt3Var2.setShowLimitWhenNear(Math.max(100, uc7.s1(this.a).k4.c0.f() / 2));
+        zt3Var2.setShowLimitWhenNear(Math.max(100, uc7.s1(this.a).l4.c0.f() / 2));
         zt3Var2.d.addTextChangedListener(new o0(this, (byte) 1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setPadding(hl.L(12.0f), hl.L(8.0f), hl.L(12.0f), hl.L(8.0f));

@@ -36,7 +36,7 @@ public final class fp2 implements co2 {
         this.d = i;
         this.e = j;
         this.f = uc7.s1(i).M0(Long.valueOf(j));
-        this.o = uc7.s1(i).X3.getLong(qu6.n(j, "community_requests_last_view_time_"), 0L);
+        this.o = uc7.s1(i).Y3.getLong(qu6.n(j, "community_requests_last_view_time_"), 0L);
     }
 
     public final void a() {
@@ -110,7 +110,7 @@ public final class fp2 implements co2 {
         int i = this.d;
         long currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
         this.o = currentTime;
-        uc7.s1(i).X3.edit().putLong("community_requests_last_view_time_" + this.e, currentTime).apply();
+        uc7.s1(i).Y3.edit().putLong("community_requests_last_view_time_" + this.e, currentTime).apply();
         a();
     }
 

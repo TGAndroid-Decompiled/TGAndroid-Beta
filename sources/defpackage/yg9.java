@@ -845,7 +845,7 @@ public final class yg9 extends e implements fn7 {
         ?? obj = new Object();
         this.I0 = obj;
         this.P.r.add(obj);
-        pi9 pi9Var = new pi9(context, this.currentAccount, getResourceProvider(), new i09(this, (byte) 5));
+        pi9 pi9Var = new pi9(context, this.currentAccount, getResourceProvider(), new j09(this, (byte) 5));
         this.Q = pi9Var;
         pi9Var.setFileRefParentObject(this.r);
         this.P.addView(this.Q, tre.e(-1, -1, 119));
@@ -1687,7 +1687,7 @@ public final class yg9 extends e implements fn7 {
             n0();
             return;
         }
-        new ue9(this.currentAccount, getResourceProvider(), new ii7(this, (byte) 29), getParentActivity()).show();
+        new ue9(this.currentAccount, getResourceProvider(), new ji7(this, (byte) 29), getParentActivity()).show();
     }
 
     public final void l0(r47 r47Var, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, r47 r47Var2, r47 r47Var3, ou1 ou1Var, boolean z, int i, int i2, c5a c5aVar, long j2) {
@@ -1851,7 +1851,7 @@ public final class yg9 extends e implements fn7 {
                         pi9Var.getClass();
                         return;
                     } else if (pi9Var.getContext() != null) {
-                        Utilities.e.c(new z09(pi9Var, data, (byte) 18));
+                        Utilities.e.c(new yz8(pi9Var, data, (byte) 19));
                         return;
                     } else {
                         return;

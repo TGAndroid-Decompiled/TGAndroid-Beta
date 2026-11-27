@@ -159,15 +159,15 @@ public final class r implements qcc {
                     return Boolean.TRUE;
                 } else if (num.intValue() == 2) {
                     tw7Var.dismiss();
-                    rbb rbbVar = ((vab) dx7Var).o2;
-                    rbbVar.d1.M.b(true);
-                    rbbVar.u();
-                    rbbVar.r(true);
-                    rbbVar.c(true);
+                    sbb sbbVar = ((wab) dx7Var).o2;
+                    sbbVar.d1.M.b(true);
+                    sbbVar.u();
+                    sbbVar.r(true);
+                    sbbVar.c(true);
                     return Boolean.TRUE;
                 } else if (num.intValue() == 1) {
                     zArr[0] = false;
-                    r1a r1aVar = new r1a(dx7Var.getContext(), false, null, new ii7(dx7Var, (byte) 8), new x53());
+                    r1a r1aVar = new r1a(dx7Var.getContext(), false, null, new ji7(dx7Var, (byte) 8), new x53());
                     r1aVar.n(new iw7(dx7Var, (byte) 3));
                     r1aVar.show();
                     return Boolean.TRUE;

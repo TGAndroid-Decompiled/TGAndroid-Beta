@@ -450,7 +450,7 @@ public class ChatAttachAlertPhotoLayout extends f12 implements fn7 {
         r3dVar.setDelegate(new v42(this, (byte) 3));
         ?? view = new View(context);
         view.b = new DecelerateInterpolator();
-        view.x = new ki7(view, (byte) 29);
+        view.x = new li7(view, (byte) 29);
         view.a = view.getResources().getDrawable(2131230928);
         Paint paint2 = new Paint(1);
         view.c = paint2;
@@ -1830,7 +1830,7 @@ public class ChatAttachAlertPhotoLayout extends f12 implements fn7 {
         n12 n12Var = this.b;
         org.telegram.ui.ActionBar.e eVar = n12Var.Z1;
         if ((eVar instanceof zu1) && ((zu1) eVar).g4 == 5) {
-            return eVar.getMessagesController().k4.q0.f() - ((zu1) n12Var.Z1).M6.size();
+            return eVar.getMessagesController().l4.q0.f() - ((zu1) n12Var.Z1).M6.size();
         }
         return Integer.MAX_VALUE;
     }

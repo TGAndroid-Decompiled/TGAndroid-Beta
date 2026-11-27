@@ -33,14 +33,14 @@ public final class wj8 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
-        rj7 rj7Var = (rj7) obj;
+        g9c g9cVar = g9c.a;
+        sj7 sj7Var = (sj7) obj;
         zw2 zw2Var = (zw2) obj2;
         switch (b) {
             case 0:
-                return ((wj8) create(rj7Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((wj8) create(sj7Var, zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((wj8) create(rj7Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((wj8) create(sj7Var, zw2Var)).invokeSuspend(g9cVar);
         }
     }
 
@@ -62,34 +62,34 @@ public final class wj8 extends yfb implements is4 {
                 } else {
                     ixe.b(obj);
                     this.b = true;
-                    obj = is4Var.invoke((rj7) this.c, this);
+                    obj = is4Var.invoke((sj7) this.c, this);
                     if (obj == vx2Var) {
                         return vx2Var;
                     }
                 }
-                rj7 rj7Var = (rj7) obj;
-                rj7Var.getClass();
-                ((AtomicBoolean) rj7Var.b.b).set(true);
-                return rj7Var;
+                sj7 sj7Var = (sj7) obj;
+                sj7Var.getClass();
+                ((AtomicBoolean) sj7Var.b.b).set(true);
+                return sj7Var;
             default:
                 boolean z2 = this.b;
                 if (z2) {
                     if (z2) {
-                        rj7 rj7Var2 = (rj7) this.c;
+                        sj7 sj7Var2 = (sj7) this.c;
                         ixe.b(obj);
-                        return rj7Var2;
+                        return sj7Var2;
                     }
                     grb.i("call to 'resume' before 'invoke' with coroutine");
                     return null;
                 }
                 ixe.b(obj);
-                rj7 rj7Var3 = new rj7(new LinkedHashMap(((rj7) this.c).a()), false);
-                this.c = rj7Var3;
+                sj7 sj7Var3 = new sj7(new LinkedHashMap(((sj7) this.c).a()), false);
+                this.c = sj7Var3;
                 this.b = true;
-                if (is4Var.invoke(rj7Var3, this) == vx2Var) {
+                if (is4Var.invoke(sj7Var3, this) == vx2Var) {
                     return vx2Var;
                 }
-                return rj7Var3;
+                return sj7Var3;
         }
     }
 }

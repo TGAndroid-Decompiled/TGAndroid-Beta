@@ -64,7 +64,7 @@ public final class ln6 implements RequestDelegate {
                                 if (uc7.V1(update) == 2) {
                                     long S1 = uc7.S1(update);
                                     int i4 = longSparseIntArray.get(S1);
-                                    if (i4 == 0 && (i4 = uc7Var.getMessagesStorage().M(S1)) != 0) {
+                                    if (i4 == 0 && (i4 = uc7Var.getMessagesStorage().O(S1)) != 0) {
                                         longSparseIntArray.put(S1, i4);
                                     }
                                     if (i4 != 0 && uc7.T1(update) <= i4) {

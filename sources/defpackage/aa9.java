@@ -1,13 +1,13 @@
 package defpackage;
-public final class aa9 implements aca {
+public final class aa9 implements bca {
     public static final int g;
     public static final u89 h;
     public final srb a;
     public final ri4 b;
     public final tr c;
     public final ca9 d;
-    public final xba e;
-    public final wj7 f;
+    public final yba e;
+    public final xj7 f;
 
     static {
         int i = bs3.d;
@@ -15,18 +15,18 @@ public final class aa9 implements aca {
         h = new u89("com/google/firebase/sessions//");
     }
 
-    public aa9(srb srbVar, ri4 ri4Var, tr trVar, ca9 ca9Var, xba xbaVar) {
+    public aa9(srb srbVar, ri4 ri4Var, tr trVar, ca9 ca9Var, yba ybaVar) {
         srbVar.getClass();
         ri4Var.getClass();
         trVar.getClass();
         ca9Var.getClass();
-        xbaVar.getClass();
+        ybaVar.getClass();
         this.a = srbVar;
         this.b = ri4Var;
         this.c = trVar;
         this.d = ca9Var;
-        this.e = xbaVar;
-        this.f = new wj7();
+        this.e = ybaVar;
+        this.f = new xj7();
     }
 
     public static String e(String str) {

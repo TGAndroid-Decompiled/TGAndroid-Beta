@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-public final class ze1 implements df7 {
+public final class ze1 implements ef7 {
     public final byte a;
     public final Object b;
 

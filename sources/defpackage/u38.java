@@ -22,7 +22,7 @@ public final class u38 extends sqb {
                     super.draw(canvas);
                     return;
                 } else {
-                    yhc.a(canvas, this, new ii7(this, (byte) 11));
+                    yhc.a(canvas, this, new ji7(this, (byte) 11));
                     return;
                 }
             default:

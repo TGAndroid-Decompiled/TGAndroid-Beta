@@ -71,7 +71,7 @@ public final class rv2 extends pg0 {
             String str = ko4Var.s;
             int i = ko4Var.V;
             int i2 = ko4Var.W;
-            if (dg7.k(str) && ((i > 1 || i2 > 1) && i != -1 && i2 != -1)) {
+            if (eg7.k(str) && ((i > 1 || i2 > 1) && i != -1 && i2 != -1)) {
                 x1c V = lh2Var.V(4);
                 int i3 = i * i2;
                 long j6 = (this.n - this.h) / i3;

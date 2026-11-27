@@ -1,9 +1,15 @@
 package defpackage;
-public final class th7 implements sf7 {
-    public final int a;
 
-    public th7(int i) {
-        this.a = i;
+import j$.util.Objects;
+public final class th7 implements tf7 {
+    public final float a;
+    public final sh7 b;
+    public final sh7 c;
+
+    public th7(float f, sh7 sh7Var, sh7 sh7Var2) {
+        this.a = f;
+        this.b = sh7Var;
+        this.c = sh7Var2;
     }
 
     @Override
@@ -17,21 +23,36 @@ public final class th7 implements sf7 {
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        if (!(obj instanceof th7)) {
+            return false;
         }
-        if ((obj instanceof th7) && this.a == ((th7) obj).a) {
-            return true;
+        th7 th7Var = (th7) obj;
+        if (Float.compare(this.a, th7Var.a) != 0 || !Objects.equals(this.b, th7Var.b) || !Objects.equals(this.c, th7Var.c)) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        return this.a;
+        int i;
+        int floatToIntBits = Float.floatToIntBits(this.a) * 31;
+        int i2 = 0;
+        sh7 sh7Var = this.b;
+        if (sh7Var != null) {
+            i = sh7Var.hashCode();
+        } else {
+            i = 0;
+        }
+        int i3 = (floatToIntBits + i) * 31;
+        sh7 sh7Var2 = this.c;
+        if (sh7Var2 != null) {
+            i2 = sh7Var2.hashCode();
+        }
+        return i3 + i2;
     }
 
     public final String toString() {
-        return "Mp4AlternateGroup: " + this.a;
+        return "ReplayGain Xing/Info: peak=" + this.a + ", field 1=" + this.b + ", field 2=" + this.c;
     }
 
     @Override

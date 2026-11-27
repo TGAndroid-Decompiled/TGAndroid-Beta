@@ -109,9 +109,9 @@ public final class on9 {
     public final pk1 j1;
     public final pq8 k;
     public boolean k0;
-    public final dn9 k1;
+    public final en9 k1;
     public boolean l0;
-    public final dn9 l1;
+    public final en9 l1;
     public HandlerThread m;
     public boolean m0;
     public final wr5 m1;
@@ -153,8 +153,8 @@ public final class on9 {
     public on9(Context context, uq5 uq5Var, hp9 hp9Var, int i, dp9 dp9Var, ep9 ep9Var, boolean z, sn9 sn9Var, pq8 pq8Var) {
         pk1 pk1Var = new pk1(this, (byte) 5);
         this.j1 = pk1Var;
-        this.k1 = new dn9(this, (byte) 7);
-        this.l1 = new dn9(this, (byte) 8);
+        this.k1 = new en9(this, (byte) 7);
+        this.l1 = new en9(this, (byte) 8);
         this.m1 = new wr5(this, (byte) 2);
         this.n1 = new in9(this, (byte) 0);
         this.o1 = new in9(this, (byte) 1);
@@ -690,7 +690,7 @@ public final class on9 {
         this.n = null;
         this.m = null;
         if (handler != null && handlerThread != null) {
-            handler.post(new en9(this, handlerThread, (byte) 0));
+            handler.post(new dn9(this, handlerThread, (byte) 1));
         }
     }
 
@@ -855,7 +855,7 @@ public final class on9 {
         this.c.setSurfaceTextureListener(this.m1);
         Handler handler = this.n;
         if (this.U && handler != null && this.c.isAvailable()) {
-            handler.post(new dn9(this, (byte) 1));
+            handler.post(new en9(this, (byte) 1));
         }
     }
 
@@ -867,7 +867,7 @@ public final class on9 {
         this.Y = true;
         this.Z = false;
         this.j.b("camera segment stop requested");
-        handler.post(new dn9(this, (byte) 0));
+        handler.post(new en9(this, (byte) 0));
         return true;
     }
 
@@ -919,7 +919,7 @@ public final class on9 {
             this.P = false;
             this.M = 0.0f;
             pq8 pq8Var = this.k;
-            ((jp9) pq8Var.b).i.post(new en9(pq8Var, cp9Var, (byte) 3));
+            ((jp9) pq8Var.b).i.post(new dn9(pq8Var, cp9Var, (byte) 4));
             this.F0 = SystemClock.elapsedRealtimeNanos();
             sn9 sn9Var = this.j;
             sn9Var.b("camera device switch started: from=" + this.F + ", to=" + cp9Var);
@@ -1016,7 +1016,7 @@ public final class on9 {
             this.X = false;
             N();
             this.j.b("camera switch path: DUAL_ACTIVE, activeId=" + this.y.getId() + ", standbyId=" + this.o0.getId() + ", input=" + (this.n0 ? 1 : 0) + ", elapsedMs=" + x(this.F0));
-            this.c.post(new dn9(this, (byte) 4));
+            this.c.post(new en9(this, (byte) 4));
             pq8 pq8Var = this.k;
             ((jp9) pq8Var.b).i.post(new yn6((Object) pq8Var, (Object) new ln9(this.F, this.H, this.I, this.q, this.N, E()), true, (byte) 20));
             return true;
@@ -1037,10 +1037,10 @@ public final class on9 {
         if (this.Z) {
             this.c.setTransform(new Matrix());
             if (w() != this.B0) {
-                dn9 dn9Var = new dn9(this, (byte) 3);
+                en9 en9Var = new en9(this, (byte) 3);
                 Handler handler = this.n;
                 if (handler != null) {
-                    handler.post(dn9Var);
+                    handler.post(en9Var);
                 }
             }
         }
@@ -1275,14 +1275,14 @@ public final class on9 {
         Objects.requireNonNull(pq8Var3);
         xn9 xn9Var = new xn9(size, surface3, surface4, z2, s2, i2, C, z3, sn9Var2, rn9Var2, new gn9(pq8Var3, (byte) 2));
         this.v = xn9Var;
-        xn9Var.u0 = new dn9(this, (byte) 5);
+        xn9Var.u0 = new en9(this, (byte) 5);
         int w = w();
         this.B0 = w;
         xn9 xn9Var2 = this.v;
         xn9Var2.s0 = w;
         Handler handler = xn9Var2.u;
         if (xn9Var2.r0 && handler != null) {
-            handler.post(new me7(xn9Var2, w, (byte) 15));
+            handler.post(new oe7(xn9Var2, w, (byte) 15));
         }
         xn9 xn9Var3 = this.v;
         if (!xn9Var3.r0) {
@@ -1321,7 +1321,7 @@ public final class on9 {
             sn9Var3.b(sb.toString());
             Handler handler2 = new Handler(xn9Var3.t.getLooper());
             xn9Var3.u = handler2;
-            handler2.post(new en9(xn9Var3, countDownLatch, (byte) 1));
+            handler2.post(new dn9(xn9Var3, countDownLatch, (byte) 2));
             try {
                 countDownLatch.await();
                 if (xn9Var3.x0 != null) {
@@ -1624,7 +1624,7 @@ public final class on9 {
             sn9Var.b(l.toString());
             Handler handler = this.n;
             if (this.U && handler != null) {
-                handler.post(new dn9(this, (byte) 2));
+                handler.post(new en9(this, (byte) 2));
             }
         } catch (Exception e) {
             M(e);

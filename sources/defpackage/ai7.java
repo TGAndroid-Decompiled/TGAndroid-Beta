@@ -1,13 +1,18 @@
 package defpackage;
-public final class ai7 implements sf7 {
-    public final long a;
-    public final long b;
-    public final long c;
+public final class ai7 implements tf7 {
+    public final float a;
+    public final float b;
 
-    public ai7(long j, long j2, long j3) {
-        this.a = j;
-        this.b = j2;
-        this.c = j3;
+    public ai7(float f, float f2) {
+        boolean z;
+        if (f >= -90.0f && f <= 90.0f && f2 >= -180.0f && f2 <= 180.0f) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.e("Invalid latitude or longitude", z);
+        this.a = f;
+        this.b = f2;
     }
 
     @Override
@@ -24,23 +29,21 @@ public final class ai7 implements sf7 {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof ai7)) {
-            return false;
-        }
-        ai7 ai7Var = (ai7) obj;
-        if (this.a == ai7Var.a && this.b == ai7Var.b && this.c == ai7Var.c) {
-            return true;
+        if (obj != null && ai7.class == obj.getClass()) {
+            ai7 ai7Var = (ai7) obj;
+            if (this.a == ai7Var.a && this.b == ai7Var.b) {
+                return true;
+            }
         }
         return false;
     }
 
     public final int hashCode() {
-        int b = tse.b(this.b);
-        return tse.b(this.c) + ((b + ((tse.b(this.a) + 527) * 31)) * 31);
+        return Float.valueOf(this.b).hashCode() + ((Float.valueOf(this.a).hashCode() + 527) * 31);
     }
 
     public final String toString() {
-        return "Mp4Timestamp: creation time=" + this.a + ", modification time=" + this.b + ", timescale=" + this.c;
+        return "xyz: latitude=" + this.a + ", longitude=" + this.b;
     }
 
     @Override

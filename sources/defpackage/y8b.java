@@ -163,7 +163,7 @@ public abstract class y8b extends FrameLayout implements qk4 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((oab) this).E.G()) {
+        if (((pab) this).E.G()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);

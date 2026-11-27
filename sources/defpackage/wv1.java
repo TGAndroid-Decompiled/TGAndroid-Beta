@@ -13,8 +13,8 @@ public final class wv1 implements pcc {
     public final Object d;
     public final Object e;
 
-    public wv1(q58 q58Var, boolean z, w49 w49Var, View view) {
-        this.c = q58Var;
+    public wv1(r58 r58Var, boolean z, w49 w49Var, View view) {
+        this.c = r58Var;
         this.b = z;
         this.d = w49Var;
         this.e = view;
@@ -43,11 +43,11 @@ public final class wv1 implements pcc {
                 yx4Var.show();
                 return;
             case 1:
-                q58 q58Var = (q58) obj4;
+                r58 r58Var = (r58) obj4;
                 w49 w49Var = (w49) obj3;
                 View view = (View) obj2;
                 Long l = (Long) obj;
-                o68 o68Var = q58Var.a;
+                o68 o68Var = r58Var.a;
                 if (z && w49Var.f != null) {
                     try {
                         o68Var.performHapticFeedback(0);
@@ -95,7 +95,7 @@ public final class wv1 implements pcc {
                     document = e;
                 }
                 if (l.longValue() <= 0) {
-                    v21 r = new d31(o68Var.M0, o68Var.l0).r(document, ob6.M0(2131746116, null), ob6.M0(2131743204, null), new x38(q58Var, (byte) 1));
+                    v21 r = new d31(o68Var.M0, o68Var.l0).r(document, ob6.M0(2131746116, null), ob6.M0(2131743204, null), new x38(r58Var, (byte) 1));
                     r.j = 5000;
                     r.j();
                 }
@@ -108,13 +108,13 @@ public final class wv1 implements pcc {
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj3;
                 x53 x53Var = (x53) obj2;
                 o68 o68Var2 = ((j68) obj4).x;
-                t58 t58Var = o68Var2.M0;
+                u58 u58Var = o68Var2.M0;
                 if (((Boolean) obj).booleanValue()) {
                     storyItem.pinned = z;
                     i = 2131623980;
                     int i5 = 2131623990;
                     if (o68Var2.m1) {
-                        d31 d31Var2 = new d31(t58Var, x53Var);
+                        d31 d31Var2 = new d31(u58Var, x53Var);
                         if (z) {
                             M0 = ob6.M0(2131744236, null);
                         } else {
@@ -124,14 +124,14 @@ public final class wv1 implements pcc {
                         d31Var2.Q(i5, 36, M0).j();
                         return;
                     } else if (z) {
-                        new d31(t58Var, x53Var).I(2131623990, ob6.M0(2131744238, null), ob6.M0(2131744237, null)).j();
+                        new d31(u58Var, x53Var).I(2131623990, ob6.M0(2131744238, null), ob6.M0(2131744237, null)).j();
                         return;
                     } else {
-                        d31Var = new d31(t58Var, x53Var);
+                        d31Var = new d31(u58Var, x53Var);
                         i2 = 2131744108;
                     }
                 } else {
-                    d31Var = new d31(t58Var, x53Var);
+                    d31Var = new d31(u58Var, x53Var);
                     i = 2131624012;
                     i2 = 2131743534;
                 }

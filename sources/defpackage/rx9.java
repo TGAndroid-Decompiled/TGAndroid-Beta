@@ -21,7 +21,7 @@ public final class rx9 implements RequestDelegate {
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        jf7 messagesStorage;
+        kf7 messagesStorage;
         byte[] bArr;
         byte b = this.a;
         TLRPC.EncryptedChat encryptedChat = this.c;
@@ -40,27 +40,27 @@ public final class rx9 implements RequestDelegate {
                             wx9Var.f(encryptedChat.id, false);
                             return;
                         }
-                        jf7 messagesStorage2 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage2 = wx9Var.getMessagesStorage();
                         byte[] bArr3 = messages_dhconfig.p;
-                        messagesStorage2.G();
+                        messagesStorage2.I();
                         messagesStorage2.y = bArr3;
-                        jf7 messagesStorage3 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage3 = wx9Var.getMessagesStorage();
                         int i2 = messages_dhconfig.g;
-                        messagesStorage3.G();
+                        messagesStorage3.I();
                         messagesStorage3.E = i2;
-                        jf7 messagesStorage4 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage4 = wx9Var.getMessagesStorage();
                         int i3 = messages_dhconfig.version;
-                        messagesStorage4.G();
+                        messagesStorage4.I();
                         messagesStorage4.x = i3;
-                        jf7 messagesStorage5 = wx9Var.getMessagesStorage();
-                        jf7 messagesStorage6 = wx9Var.getMessagesStorage();
-                        messagesStorage6.G();
+                        kf7 messagesStorage5 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage6 = wx9Var.getMessagesStorage();
+                        messagesStorage6.I();
                         int i4 = messagesStorage6.x;
-                        jf7 messagesStorage7 = wx9Var.getMessagesStorage();
-                        messagesStorage7.G();
+                        kf7 messagesStorage7 = wx9Var.getMessagesStorage();
+                        messagesStorage7.I();
                         int i5 = messagesStorage7.E;
-                        jf7 messagesStorage8 = wx9Var.getMessagesStorage();
-                        messagesStorage8.G();
+                        kf7 messagesStorage8 = wx9Var.getMessagesStorage();
+                        messagesStorage8.I();
                         messagesStorage5.a.c(new aq1(messagesStorage5, i4, i5, messagesStorage8.y, (byte) 10));
                     }
                     byte[] bArr4 = new byte[256];
@@ -70,10 +70,10 @@ public final class rx9 implements RequestDelegate {
                     encryptedChat.a_or_b = bArr4;
                     encryptedChat.seq_in = -1;
                     encryptedChat.seq_out = 0;
-                    jf7 messagesStorage9 = wx9Var.getMessagesStorage();
-                    messagesStorage9.G();
+                    kf7 messagesStorage9 = wx9Var.getMessagesStorage();
+                    messagesStorage9.I();
                     BigInteger bigInteger = new BigInteger(1, messagesStorage9.y);
-                    wx9Var.getMessagesStorage().G();
+                    wx9Var.getMessagesStorage().I();
                     BigInteger modPow = BigInteger.valueOf(messagesStorage.E).modPow(new BigInteger(1, bArr4), bigInteger);
                     BigInteger bigInteger2 = new BigInteger(1, encryptedChat.g_a);
                     if (!Utilities.w(bigInteger2, bigInteger)) {
@@ -143,7 +143,7 @@ public final class rx9 implements RequestDelegate {
                     encryptedChat2.key_create_date = encryptedChat.key_create_date;
                     encryptedChat2.key_use_count_in = encryptedChat.key_use_count_in;
                     encryptedChat2.key_use_count_out = encryptedChat.key_use_count_out;
-                    wx9Var.getMessagesStorage().S1(encryptedChat2);
+                    wx9Var.getMessagesStorage().X1(encryptedChat2);
                     wx9Var.getMessagesController().f4(encryptedChat2, false);
                     hl.c3(new px9(wx9Var, encryptedChat2, (byte) 1));
                     return;

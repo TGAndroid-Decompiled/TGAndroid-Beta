@@ -20,8 +20,8 @@ public final class mf1 extends uf1 {
 
     @Override
     public final void T(Drawable drawable) {
-        if (drawable instanceof hh7) {
-            ((hh7) drawable).o();
+        if (drawable instanceof ih7) {
+            ((ih7) drawable).o();
         }
         bvc bvcVar = this.h0;
         mz4 c = bvcVar.c(drawable);

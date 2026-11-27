@@ -24,16 +24,16 @@ public final class kn3 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.kn3.run():void");
     }
 
-    public kn3(jf7 jf7Var, long j, List list, boolean z, int i) {
-        this.e = jf7Var;
+    public kn3(kf7 kf7Var, long j, List list, boolean z, int i) {
+        this.e = kf7Var;
         this.c = j;
         this.f = list;
         this.d = z;
         this.b = i;
     }
 
-    public kn3(jf7 jf7Var, boolean z, String str, long j, int i, String str2) {
-        this.e = jf7Var;
+    public kn3(kf7 kf7Var, boolean z, String str, long j, int i, String str2) {
+        this.e = kf7Var;
         this.d = z;
         this.f = str;
         this.c = j;

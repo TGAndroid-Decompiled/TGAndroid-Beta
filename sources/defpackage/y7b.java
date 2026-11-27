@@ -6,23 +6,23 @@ import org.telegram.messenger.MediaController;
 public final class y7b implements Runnable {
     public final byte a;
     public final c8b b;
-    public final ii7 c;
+    public final ji7 c;
 
-    public y7b(c8b c8bVar, ii7 ii7Var, byte b) {
+    public y7b(c8b c8bVar, ji7 ji7Var, byte b) {
         this.a = b;
         this.b = c8bVar;
-        this.c = ii7Var;
+        this.c = ji7Var;
     }
 
     @Override
     public final void run() {
         y7b y7bVar;
         byte b = this.a;
-        ii7 ii7Var = this.c;
+        ji7 ji7Var = this.c;
         c8b c8bVar = this.b;
         switch (b) {
             case 0:
-                ii7Var.a(c8bVar.d1);
+                ji7Var.a(c8bVar.d1);
                 return;
             default:
                 c8bVar.getClass();
@@ -50,17 +50,17 @@ public final class y7b implements Runnable {
                             trackFormat.getInteger("color-range");
                         }
                         c8bVar.d1 = c8bVar.d1;
-                        y7bVar = new y7b(c8bVar, ii7Var, (byte) 0);
+                        y7bVar = new y7b(c8bVar, ji7Var, (byte) 0);
                     } catch (Exception e) {
                         cc4.g(e, true);
                         c8bVar.d1 = c8bVar.d1;
-                        y7bVar = new y7b(c8bVar, ii7Var, (byte) 0);
+                        y7bVar = new y7b(c8bVar, ji7Var, (byte) 0);
                     }
                     hl.c3(y7bVar);
                     return;
                 } catch (Throwable th) {
                     c8bVar.d1 = c8bVar.d1;
-                    hl.c3(new y7b(c8bVar, ii7Var, (byte) 0));
+                    hl.c3(new y7b(c8bVar, ji7Var, (byte) 0));
                     throw th;
                 }
         }

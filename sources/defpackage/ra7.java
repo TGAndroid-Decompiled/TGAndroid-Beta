@@ -96,11 +96,11 @@ public final class ra7 implements Runnable {
                 if (s < 100) {
                     if (i7 >= wx9Var.getConnectionsManager().getCurrentTime() - 604800) {
                         secureRandom = secureRandom2;
-                        jf7 messagesStorage = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage = wx9Var.getMessagesStorage();
                         messagesStorage.a.c(new yn6((Object) messagesStorage, (Object) encryptedChat, false, (byte) 4));
                         message.seq_in = tL_decryptedMessageLayer.in_seq_no;
                         message.seq_out = tL_decryptedMessageLayer.out_seq_no;
-                        jf7 messagesStorage2 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage2 = wx9Var.getMessagesStorage();
                         messagesStorage2.a.c(new hl2(messagesStorage2, message.id, message.seq_in, message.seq_out, (byte) 1));
                     }
                 }
@@ -108,11 +108,11 @@ public final class ra7 implements Runnable {
                 if (encryptedChat.exchange_id == 0 && encryptedChat.future_key_fingerprint == 0) {
                     wx9Var.o(encryptedChat);
                 }
-                jf7 messagesStorage3 = wx9Var.getMessagesStorage();
+                kf7 messagesStorage3 = wx9Var.getMessagesStorage();
                 messagesStorage3.a.c(new yn6((Object) messagesStorage3, (Object) encryptedChat, false, (byte) 4));
                 message.seq_in = tL_decryptedMessageLayer.in_seq_no;
                 message.seq_out = tL_decryptedMessageLayer.out_seq_no;
-                jf7 messagesStorage22 = wx9Var.getMessagesStorage();
+                kf7 messagesStorage22 = wx9Var.getMessagesStorage();
                 messagesStorage22.a.c(new hl2(messagesStorage22, message.id, message.seq_in, message.seq_out, (byte) 1));
             } else {
                 secureRandom = secureRandom2;

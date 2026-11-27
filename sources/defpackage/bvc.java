@@ -47,15 +47,15 @@ public final class bvc {
             oz4Var.a(((ColorDrawable) drawable).getColor());
             return oz4Var;
         }
-        boolean z2 = drawable instanceof hh7;
+        boolean z2 = drawable instanceof ih7;
         nz4 nz4Var = this.b;
         if (z2) {
-            hh7 hh7Var = (hh7) drawable;
-            if (hh7Var.q < 0) {
+            ih7 ih7Var = (ih7) drawable;
+            if (ih7Var.q < 0) {
                 oz4Var.a(-16777216);
                 return oz4Var;
             }
-            nz4Var.a(hh7Var.k);
+            nz4Var.a(ih7Var.k);
             return nz4Var;
         }
         boolean z3 = drawable instanceof BitmapDrawable;

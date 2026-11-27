@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.tgnet.TLRPC;
-public final class a92 implements fd, ef7, qc6, bf7 {
+public final class a92 implements fd, ff7, qc6, cf7 {
     public final byte a;
     public final g92 b;
 

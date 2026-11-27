@@ -13,7 +13,7 @@ public final class wp7 {
     }
 
     public final SharedPreferences b() {
-        return uc7.s1(this.a).W3;
+        return uc7.s1(this.a).X3;
     }
 
     public final int c(int i, long j, long j2, String str) {

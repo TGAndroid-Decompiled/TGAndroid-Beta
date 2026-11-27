@@ -390,7 +390,7 @@ public final class of1 implements rb2 {
             bundle.putInt("message_id", messageObject.L1());
             zu1 zu1Var = new zu1(bundle);
             if (xc2.c0(wf1Var.f)) {
-                ro4.a(zu1Var, if7.a(r47.B0(messageObject.k), r47.b2(wf1.l0(wf1Var), messageObject.k, true, false)));
+                ro4.a(zu1Var, jf7.a(r47.B0(messageObject.k), r47.b2(wf1.l0(wf1Var), messageObject.k, true, false)));
             }
             wf1Var.presentFragment(zu1Var);
         } else if (i == 0) {

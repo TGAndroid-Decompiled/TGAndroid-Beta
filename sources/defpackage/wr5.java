@@ -52,7 +52,7 @@ public final class wr5 implements TextureView.SurfaceTextureListener {
                 sn9Var.b("preview surface available: view=" + i + "x" + i2);
                 Handler handler = on9Var.n;
                 if (on9Var.U && handler != null && on9Var.c.isAvailable()) {
-                    handler.post(new dn9(on9Var, (byte) 1));
+                    handler.post(new en9(on9Var, (byte) 1));
                     return;
                 }
                 return;

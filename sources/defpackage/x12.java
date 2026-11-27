@@ -1011,7 +1011,7 @@ public final class x12 extends f12 implements fn7, s84 {
                 connectionsManager.cancelRequest(i2, true);
                 this.e0 = -1;
             }
-            String str = s1.k4.Q.f;
+            String str = s1.l4.Q.f;
             if (!TextUtils.isEmpty(str)) {
                 TLRPC.User user = this.i0;
                 if (user == null) {

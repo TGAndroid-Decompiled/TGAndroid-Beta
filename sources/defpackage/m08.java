@@ -11,7 +11,7 @@ public final class m08 extends d6 {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.m08.b(int):void");
     }
 
-    public final boolean c(defpackage.fe7 r34, defpackage.um4 r35) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.m08.c(fe7, um4):boolean");
+    public final boolean c(defpackage.ge7 r34, defpackage.um4 r35) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m08.c(ge7, um4):boolean");
     }
 }

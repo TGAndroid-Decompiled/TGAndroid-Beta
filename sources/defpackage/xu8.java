@@ -119,7 +119,7 @@ public final class xu8 extends c79 {
                 qmb qmbVar = (qmb) view;
                 String p = ip7.p(j2, j, false);
                 i2 = ((e) zu8Var).currentAccount;
-                SharedPreferences sharedPreferences = uc7.s1(i2).W3;
+                SharedPreferences sharedPreferences = uc7.s1(i2).X3;
                 if (i == zu8Var.Y) {
                     qmbVar.b(ob6.M0(2131745831, null), false);
                     yob.X(qmbVar.getTextView(), aob.q7, vnbVar);
@@ -279,7 +279,7 @@ public final class xu8 extends c79 {
                 ykb ykbVar = (ykb) view;
                 String p2 = ip7.p(j2, j, false);
                 i3 = ((e) zu8Var).currentAccount;
-                SharedPreferences sharedPreferences2 = uc7.s1(i3).W3;
+                SharedPreferences sharedPreferences2 = uc7.s1(i3).X3;
                 if (sharedPreferences2.contains("color_" + p2)) {
                     i4 = qu6.g("color_", p2, sharedPreferences2, -16776961);
                 } else if (wf3.y(j2)) {
@@ -302,7 +302,7 @@ public final class xu8 extends c79 {
             case 4:
                 i29 i29Var = (i29) view;
                 i5 = ((e) zu8Var).currentAccount;
-                SharedPreferences sharedPreferences3 = uc7.s1(i5).W3;
+                SharedPreferences sharedPreferences3 = uc7.s1(i5).X3;
                 int g6 = qu6.g("popup_", ip7.p(j2, j, false), sharedPreferences3, 0);
                 if (g6 == 0) {
                     if (wf3.y(j2)) {
@@ -347,7 +347,7 @@ public final class xu8 extends c79 {
                 uacVar.a(null, M0);
                 return;
             case 6:
-                rca rcaVar = (rca) view;
+                sca scaVar = (sca) view;
                 if (i > 0) {
                     z = true;
                 } else {
@@ -356,15 +356,15 @@ public final class xu8 extends c79 {
                 if (i >= zu8Var.a0 - 1) {
                     z2 = false;
                 }
-                if (rcaVar.c != z || rcaVar.d != z2) {
-                    rcaVar.c = z;
-                    rcaVar.d = z2;
-                    int i11 = rcaVar.b;
+                if (scaVar.c != z || scaVar.d != z2) {
+                    scaVar.c = z;
+                    scaVar.d = z2;
+                    int i11 = scaVar.b;
                     if (i11 == 0) {
-                        rcaVar.setBackground(null);
+                        scaVar.setBackground(null);
                         return;
                     } else {
-                        rcaVar.setBackgroundColor(i11);
+                        scaVar.setBackgroundColor(i11);
                         return;
                     }
                 }
@@ -372,7 +372,7 @@ public final class xu8 extends c79 {
             case 7:
                 wkb wkbVar = (wkb) view;
                 i8 = ((e) zu8Var).currentAccount;
-                SharedPreferences sharedPreferences4 = uc7.s1(i8).W3;
+                SharedPreferences sharedPreferences4 = uc7.s1(i8).X3;
                 if (i == zu8Var.F) {
                     wkbVar.f(ob6.M0(2131747651, null), zu8Var.r, true);
                     return;
@@ -425,7 +425,7 @@ public final class xu8 extends c79 {
                 yob.h(aob.d6, vnbVar, mf5Var);
                 break;
             case 6:
-                mf5Var = new rca(context, (uh9) null);
+                mf5Var = new sca(context, (uh9) null);
                 break;
             default:
                 mf5Var = new wkb(context, vnbVar);

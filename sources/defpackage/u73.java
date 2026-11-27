@@ -25,12 +25,12 @@ public final class u73 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         switch (b) {
             case 0:
-                return ((u73) create((nm4) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((u73) create((nm4) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             default:
-                return ((u73) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((u73) create((ux2) obj, (zw2) obj2)).invokeSuspend(g9cVar);
         }
     }
 
@@ -56,7 +56,7 @@ public final class u73 extends yfb implements is4 {
                         return vx2Var;
                     }
                 }
-                return f9c.a;
+                return g9c.a;
             default:
                 boolean z2 = this.b;
                 if (z2) {
@@ -75,9 +75,9 @@ public final class u73 extends yfb implements is4 {
                         return vx2Var;
                     }
                 }
-                rj7 rj7Var = (rj7) obj;
-                if (rj7Var != null) {
-                    return rj7Var.a();
+                sj7 sj7Var = (sj7) obj;
+                if (sj7Var != null) {
+                    return sj7Var.a();
                 }
                 return y24.a;
         }

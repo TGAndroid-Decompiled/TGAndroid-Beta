@@ -626,7 +626,7 @@ public final class h42 extends f12 implements fn7 {
         c C = c.C(this.n);
         C.h.f();
         double h = C.h.h();
-        double d = uc7.s1(this.n).k4.k.i;
+        double d = uc7.s1(this.n).l4.k.i;
         if (h > 0.0d && d > 0.0d && !Double.isNaN(h) && !Double.isInfinite(h) && !Double.isNaN(d) && !Double.isInfinite(d)) {
             return BigDecimal.valueOf(h).multiply(BigDecimal.valueOf(d));
         }
@@ -1032,7 +1032,7 @@ public final class h42 extends f12 implements fn7 {
             long gramNanoAmount = getGramNanoAmount();
             long z2 = C.z();
             if (WalletEngine2.isValidAddress(this.H) && gramNanoAmount > 0) {
-                long f = uc7.s1(this.n).k4.x0.f();
+                long f = uc7.s1(this.n).l4.x0.f();
                 byte[] bArr = null;
                 if (gramNanoAmount < f) {
                     if (this.v0) {
@@ -1055,7 +1055,7 @@ public final class h42 extends f12 implements fn7 {
                 } else {
                     uc7 s1 = uc7.s1(this.n);
                     long M1 = s1.M1(this.r.id);
-                    if (s1.k4.w0.f && M1 > 0 && (gramNanoAmount / 1.0E9d) * s1.k4.k.i < (M1 / 1000.0d) * s1.k4.A3.i) {
+                    if (s1.l4.w0.f && M1 > 0 && (gramNanoAmount / 1.0E9d) * s1.l4.k.i < (M1 / 1000.0d) * s1.l4.A3.i) {
                         z = true;
                     } else {
                         z = false;
@@ -1351,7 +1351,7 @@ public final class h42 extends f12 implements fn7 {
         c C = c.C(i);
         long z4 = C.z();
         long gramNanoAmount = getGramNanoAmount();
-        long f = uc7.s1(i).k4.x0.f();
+        long f = uc7.s1(i).l4.x0.f();
         int i2 = (gramNanoAmount > 0L ? 1 : (gramNanoAmount == 0L ? 0 : -1));
         EditTextBoldCursor editTextBoldCursor = this.T;
         if (i2 > 0 && gramNanoAmount < f) {
@@ -1431,7 +1431,7 @@ public final class h42 extends f12 implements fn7 {
         int i = this.n;
         c C = c.C(i);
         this.a0.setText(ob6.V(null, null, 2131742836, c.p("Grams", c.t(C.z(), true), 2131749261)));
-        long f2 = uc7.s1(i).k4.x0.f();
+        long f2 = uc7.s1(i).l4.x0.f();
         if (!C.L() && C.z() >= f2) {
             z = true;
         } else {

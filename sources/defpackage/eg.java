@@ -116,7 +116,7 @@ public final class eg implements fq7, ci0, jcc, fd, OnFailureListener, is6 {
             I.X(new nt8(cgaVar));
             I.k(2131231832, ob6.M0(2131750197, null), new ft8(cgaVar, (byte) 2), h);
             I.k(2131232368, ob6.M0(2131750193, null), new st(cgaVar, i3, q, tL_starGiftCollection, context, vnbVar, eVar), !TextUtils.isEmpty(q));
-            I.k(2131232121, ob6.M0(2131750195, null), new hp8(cgaVar, tL_starGiftCollection, (byte) 15), h);
+            I.k(2131232121, ob6.M0(2131750195, null), new ep8(cgaVar, tL_starGiftCollection, (byte) 16), h);
             I.k(2131232797, ob6.M0(2131750194, null), new ft8(cgaVar, (byte) 1), h);
             I.l(2131232113, new l65(cgaVar, i, tL_starGiftCollection, (byte) 28), ob6.M0(2131750196, null), h, true);
             cgaVar.J = I;
@@ -144,7 +144,7 @@ public final class eg implements fq7, ci0, jcc, fd, OnFailureListener, is6 {
         i61 i61Var = (i61) this.e;
         k3bVar.y = false;
         cc4.g(exc, true);
-        if ((exc instanceof kg7) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && k3bVar.isAttachedToWindow()) {
+        if ((exc instanceof lg7) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && k3bVar.isAttachedToWindow()) {
             hl.d3(new efa(k3bVar, bitmap, i, ea8Var, (byte) 5), 2000L);
         } else {
             i61Var.a(new ArrayList());

@@ -18,14 +18,14 @@ public final class mb7 implements pcc {
         switch (b) {
             case 0:
                 TLRPC.messages_AvailableEffects messages_availableeffects = (TLRPC.messages_AvailableEffects) obj;
-                if (uc7Var.W4 != messages_availableeffects) {
-                    uc7Var.W4 = messages_availableeffects;
+                if (uc7Var.X4 != messages_availableeffects) {
+                    uc7Var.X4 = messages_availableeffects;
                     if (messages_availableeffects != null) {
-                        wl.g(uc7Var.currentAccount).f(uc7Var.W4.documents);
+                        wl.g(uc7Var.currentAccount).f(uc7Var.X4.documents);
                     }
                     uc7Var.getNotificationCenter().k(220, new Object[0]);
                 }
-                uc7Var.V4 = false;
+                uc7Var.W4 = false;
                 return;
             case 1:
                 hl.c3(new mn6(uc7Var, (TLRPC.TL_help_appConfig) obj, (byte) 29));

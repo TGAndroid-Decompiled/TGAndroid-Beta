@@ -582,7 +582,7 @@ public final class b1b extends c79 {
             ij6Var2.a(aob.v6, aob.u6);
             ij6Var = ij6Var2;
         } else {
-            ij6Var = new rca(viewGroup.getContext(), 0, 0);
+            ij6Var = new sca(viewGroup.getContext(), 0, 0);
         }
         return qu6.h(ij6Var, ij6Var, -1, -2);
     }

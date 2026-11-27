@@ -18,7 +18,7 @@ public final class p6b extends ImageReceiver {
         Runnable runnable = this.K1[0];
         if (runnable != null) {
             hl.r(runnable);
-            ((z3b) this.L1.d).run();
+            ((n3b) this.L1.d).run();
         }
         hl.c3(new uoa(this, (byte) 25));
         return h0;

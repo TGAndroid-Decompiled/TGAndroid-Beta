@@ -264,7 +264,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
     public int M9;
     public dm Ma;
     public float Mb;
-    public ui7 Mc;
+    public vi7 Mc;
     public boolean N;
     public float N0;
     public TLRPC.Document N1;
@@ -516,7 +516,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
     public final Path ed;
     public boolean f;
     public byb f0;
-    public r3b f1;
+    public s3b f1;
     public int f2;
     public int f3;
     public TLRPC.PhotoSize f4;
@@ -1068,7 +1068,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                 } else if (r47Var.j2) {
                     return ob6.T(r47Var2.k.date) + ", " + ob6.D0().o0().format(r47Var2.k.date * 1000);
                 } else if (z) {
-                    if (uc7.s1(r47Var.K1).k4.f0.f) {
+                    if (uc7.s1(r47Var.K1).l4.f0.f) {
                         if (i == 0 && r47Var.Y2()) {
                             i = ConnectionsManager.getInstance(r47Var.K1).getCurrentTime();
                         }
@@ -4197,7 +4197,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
     }
 
     public final void J0(Canvas canvas, float f) {
-        ui7 ui7Var;
+        vi7 vi7Var;
         r47 r47Var = this.Q5;
         if (r47Var != null && !r47Var.q4()) {
             float f2 = this.u0;
@@ -4208,7 +4208,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                 f2 = (f2 * f4) + ((1.0f - f4) * f3);
             }
             float f5 = f2;
-            if (dc2Var.L1 != 1.0f && dc2Var.H0 && ((ui7Var = this.Mc) == null || !ui7Var.h)) {
+            if (dc2Var.L1 != 1.0f && dc2Var.H0 && ((vi7Var = this.Mc) == null || !vi7Var.h)) {
                 canvas.save();
                 t37 t37Var = this.L6;
                 if (t37Var != null) {
@@ -5272,7 +5272,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
         x49 x49Var = this.O;
         if (z) {
             if (!this.Q5.O3()) {
-                gi7 gi7Var = aob.E3;
+                hi7 hi7Var = aob.E3;
                 if (I3()) {
                     v0 = aob.v0(aob.kd, this.cc);
                 } else {
@@ -5283,7 +5283,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                     }
                     v0 = aob.v0(i, this.cc);
                 }
-                gi7Var.a(v0);
+                hi7Var.a(v0);
                 if (I3()) {
                     f7 = (getPhotoBottom() + this.w0) - hl.L(9.0f);
                 } else {
@@ -5307,14 +5307,14 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                 if (!this.Q5.r1) {
                     i2 = hl.L(11.0f);
                 }
-                jf0.w(gi7Var, f4 + i2, f7 - hl.L(12.0f));
-                gi7Var.setAlpha((int) (f10 * 255.0f));
+                jf0.w(hi7Var, f4 + i2, f7 - hl.L(12.0f));
+                hi7Var.setAlpha((int) (f10 * 255.0f));
                 if (z4) {
                     canvas.save();
-                    canvas.scale(f9, f9, gi7Var.getBounds().centerX(), gi7Var.getBounds().centerY());
+                    canvas.scale(f9, f9, hi7Var.getBounds().centerX(), hi7Var.getBounds().centerY());
                 }
-                gi7Var.draw(canvas);
-                gi7Var.setAlpha(255);
+                hi7Var.draw(canvas);
+                hi7Var.setAlpha(255);
                 invalidate();
                 if (z4) {
                     canvas.restore();
@@ -5953,7 +5953,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
             TLRPC.Document F0 = r47Var.F0();
             int i2 = this.a6;
             uo3 uo3Var = ve8.a;
-            if (!uc7.s1(i2).k4.D0.f && F0 != null) {
+            if (!uc7.s1(i2).l4.D0.f && F0 != null) {
                 if ("application/vnd.apple.pkpass".equalsIgnoreCase(F0.mime_type) || ((B = xb4.B(F0)) != null && B.toLowerCase(Locale.ROOT).endsWith(".pkpass"))) {
                     long j = F0.size;
                     if (j > 0 && j <= 2097152 && !ve8.c.containsKey(Long.valueOf(F0.id))) {
@@ -8327,7 +8327,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
         TLRPC.Document F0 = r47Var.F0();
         if (F0 != null) {
             final long j = F0.id;
-            if (!uc7.s1(i).k4.D0.f && ve8.b.get(Long.valueOf(j)) == null && !ve8.c.containsKey(Long.valueOf(j))) {
+            if (!uc7.s1(i).l4.D0.f && ve8.b.get(Long.valueOf(j)) == null && !ve8.c.containsKey(Long.valueOf(j))) {
                 HashMap hashMap = ve8.d;
                 ArrayList arrayList = (ArrayList) hashMap.get(Long.valueOf(j));
                 if (arrayList != null) {
@@ -8540,8 +8540,8 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                         canvas.clipRect(hl.L(4.0f) + bounds.left, hl.L(4.0f) + bounds.top, bounds.right - hl.L(4.0f), bounds.bottom - hl.L(4.0f));
                     }
                 }
-                ui7 ui7Var = this.Mc;
-                if (ui7Var != null && ui7Var.h) {
+                vi7 vi7Var = this.Mc;
+                if (vi7Var != null && vi7Var.h) {
                     r47 r47Var2 = this.Q5;
                     f1(this.o0, f, canvas, r47Var2.B2, r47Var2.x2, true, 1.0f, true, false, false, false);
                     canvas2 = canvas;
@@ -10293,12 +10293,12 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                     if (j > 0) {
                         long j8 = j + 100;
                         y99Var.a(ib2Var2);
-                        h68 h68Var = new h68(y99Var, ib2Var2, (byte) 16);
-                        y99Var.a.put(ib2Var2, h68Var);
+                        a58 a58Var = new a58(y99Var, ib2Var2, (byte) 17);
+                        y99Var.a.put(ib2Var2, a58Var);
                         if (j8 > 0) {
-                            hl.d3(h68Var, j8);
+                            hl.d3(a58Var, j8);
                         } else {
-                            hl.c3(h68Var);
+                            hl.c3(a58Var);
                         }
                     }
                 }
@@ -10949,10 +10949,10 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                 ((lj1) arrayList4.get(i5)).a();
             }
         }
-        r3b r3bVar = wb2Var.f1;
-        if (r3bVar != null) {
-            for (int i6 = 0; i6 < r3bVar.b; i6++) {
-                r3bVar.c[i6].b(wb2Var);
+        s3b s3bVar = wb2Var.f1;
+        if (s3bVar != null) {
+            for (int i6 = 0; i6 < s3bVar.b; i6++) {
+                s3bVar.c[i6].b(wb2Var);
             }
         }
     }
@@ -11064,9 +11064,9 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
             }
             this.G3 = false;
         }
-        r3b r3bVar = this.f1;
-        if (r3bVar != null) {
-            r3bVar.a(this);
+        s3b s3bVar = this.f1;
+        if (s3bVar != null) {
+            s3bVar.a(this);
         }
         lq3.q(this.a6).v(this);
         if (getDelegate() != null && getDelegate().l2() != null) {
@@ -11436,7 +11436,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                                                 if (a29Var2.V0 != null) {
                                                     int i4 = a29Var2.V0.a[1];
                                                 }
-                                                hl.c3(new me7(a29Var2, i3, (byte) 12));
+                                                hl.c3(new oe7(a29Var2, i3, (byte) 12));
                                                 return;
                                             default:
                                                 final a29 a29Var3 = a29Var;
@@ -11476,7 +11476,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                         lq3.q(this.a6).v(this);
                     }
                     if (D0 >= 0 && D0 < o0.documents.size()) {
-                        if (!z && this.Q5.N3() && (ec7Var = (ec7) uc7.s1(this.a6).A3.get(C0)) != null && ec7Var.b == D0) {
+                        if (!z && this.Q5.N3() && (ec7Var = (ec7) uc7.s1(this.a6).B3.get(C0)) != null && ec7Var.b == D0) {
                             a29Var.N(ec7Var.a, this.Bb);
                         }
                         TLRPC.Document document2 = o0.documents.get(Math.max(D0, 0));
@@ -11538,7 +11538,7 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
                                                 if (a29Var2.V0 != null) {
                                                     int i4 = a29Var2.V0.a[1];
                                                 }
-                                                hl.c3(new me7(a29Var2, i3, (byte) 12));
+                                                hl.c3(new oe7(a29Var2, i3, (byte) 12));
                                                 return;
                                             default:
                                                 final a29 a29Var3 = a29Var;
@@ -11769,9 +11769,9 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
 
     public final void q3(Drawable drawable, int i, int i2, int i3, int i4) {
         if (drawable != null) {
-            ui7 ui7Var = this.Mc;
+            vi7 vi7Var = this.Mc;
             dc2 dc2Var = this.ub;
-            if (ui7Var != null && ui7Var.h) {
+            if (vi7Var != null && vi7Var.h) {
                 this.Uc = 0.0f;
             } else {
                 float f = i2 + i4 + dc2Var.j0;
@@ -13459,44 +13459,44 @@ public class wb2 extends jf0 implements qy9, on5, jq3, hmb, fn7, s84, pk5, eu5 {
         float L4 = (r47Var2 == null || !r47Var2.M2()) ? 0.0f : hl.L(-6.0f);
         float f11 = 22.0f;
         if (z3) {
-            gi7 gi7Var = aob.E3;
+            hi7 hi7Var = aob.E3;
             if (I3()) {
                 if (this.Q5.O5()) {
                     f5 = 1.0f;
                     v0 = aob.v0(aob.Zc, this.cc);
                     int i2 = this.d7;
                     f8 = z5 ? 24.0f : 22.0f;
-                    gi7Var.getClass();
+                    hi7Var.getClass();
                     f7 = 4.0f;
-                    jf0.w(gi7Var, ((i2 - hl.L(f8)) - hl.L(12.0f)) + L4, (L3 - hl.L(12.0f)) + f2);
-                    gi7Var.setAlpha((int) (this.k4 * 255.0f * f10));
+                    jf0.w(hi7Var, ((i2 - hl.L(f8)) - hl.L(12.0f)) + L4, (L3 - hl.L(12.0f)) + f2);
+                    hi7Var.setAlpha((int) (this.k4 * 255.0f * f10));
                 } else {
                     f5 = 1.0f;
                     f7 = 4.0f;
                     v0 = aob.v0(aob.kd, this.cc);
                     int i3 = this.d7;
                     f8 = z5 ? 24.0f : 22.0f;
-                    gi7Var.getClass();
-                    jf0.w(gi7Var, ((i3 - hl.L(f8)) - hl.L(12.0f)) + L4, (L3 - hl.L(12.0f)) + f2);
-                    gi7Var.setAlpha((int) (f10 * 255.0f));
+                    hi7Var.getClass();
+                    jf0.w(hi7Var, ((i3 - hl.L(f8)) - hl.L(12.0f)) + L4, (L3 - hl.L(12.0f)) + f2);
+                    hi7Var.setAlpha((int) (f10 * 255.0f));
                 }
                 f6 = 18.5f;
             } else {
                 f5 = 1.0f;
                 f7 = 4.0f;
                 v0 = aob.v0(aob.Eb, this.cc);
-                gi7Var.getClass();
+                hi7Var.getClass();
                 f6 = 18.5f;
-                jf0.w(gi7Var, (this.d7 - hl.L(18.5f)) - hl.L(12.0f), ((f3 - hl.L(8.5f)) - hl.L(12.0f)) + f2);
-                gi7Var.setAlpha((int) (f10 * 255.0f));
+                jf0.w(hi7Var, (this.d7 - hl.L(18.5f)) - hl.L(12.0f), ((f3 - hl.L(8.5f)) - hl.L(12.0f)) + f2);
+                hi7Var.setAlpha((int) (f10 * 255.0f));
             }
-            gi7Var.a(v0);
+            hi7Var.a(v0);
             if (z8) {
                 canvas.save();
-                canvas.scale(f9, f9, gi7Var.getBounds().centerX(), gi7Var.getBounds().centerY());
+                canvas.scale(f9, f9, hi7Var.getBounds().centerX(), hi7Var.getBounds().centerY());
             }
-            gi7Var.draw(canvas);
-            gi7Var.setAlpha(255);
+            hi7Var.draw(canvas);
+            hi7Var.setAlpha(255);
             if (z8) {
                 canvas.restore();
             }

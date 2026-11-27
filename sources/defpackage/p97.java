@@ -19,11 +19,11 @@ public final class p97 implements RequestDelegate {
     public final Object h;
     public final Object i;
 
-    public p97(uc7 uc7Var, Context context, id idVar, ef7 ef7Var, long j, ea2 ea2Var, e eVar, TLRPC.TL_messages_migrateChat tL_messages_migrateChat) {
+    public p97(uc7 uc7Var, Context context, id idVar, ff7 ff7Var, long j, ea2 ea2Var, e eVar, TLRPC.TL_messages_migrateChat tL_messages_migrateChat) {
         this.d = uc7Var;
         this.c = context;
         this.e = idVar;
-        this.f = ef7Var;
+        this.f = ff7Var;
         this.b = j;
         this.g = ea2Var;
         this.h = eVar;
@@ -43,7 +43,7 @@ public final class p97 implements RequestDelegate {
             case 0:
                 uc7 uc7Var = (uc7) obj6;
                 id idVar = (id) obj5;
-                ef7 ef7Var = (ef7) obj4;
+                ff7 ff7Var = (ff7) obj4;
                 ea2 ea2Var = (ea2) obj3;
                 e eVar = (e) obj2;
                 TLRPC.TL_messages_migrateChat tL_messages_migrateChat = (TLRPC.TL_messages_migrateChat) obj;
@@ -54,13 +54,13 @@ public final class p97 implements RequestDelegate {
                     }
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                     uc7Var.Y3(updates, false);
-                    hl.c3(new cq6(ef7Var, updates, this.b, (byte) 6));
+                    hl.c3(new cq6(ff7Var, updates, this.b, (byte) 6));
                     return;
                 }
                 if (ea2Var != null) {
                     ea2Var.run();
                 }
-                hl.c3(new ra7(uc7Var, ef7Var, context, idVar, tL_error, eVar, tL_messages_migrateChat, (byte) 0));
+                hl.c3(new ra7(uc7Var, ff7Var, context, idVar, tL_error, eVar, tL_messages_migrateChat, (byte) 0));
                 return;
             default:
                 final jxa jxaVar = (jxa) obj6;

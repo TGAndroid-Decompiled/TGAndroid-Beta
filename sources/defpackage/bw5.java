@@ -41,7 +41,7 @@ public final class bw5 extends nx0 {
     public TLRPC.InputPeer y1;
     public boolean z1;
 
-    public static void E0(Activity activity, long j, k5 k5Var, bf7 bf7Var) {
+    public static void E0(Activity activity, long j, k5 k5Var, cf7 cf7Var) {
         int i = F1;
         int i2 = k5Var.a;
         boolean z = true;
@@ -49,13 +49,13 @@ public final class bw5 extends nx0 {
             if (C1.size() != 1) {
                 z = false;
             }
-            bf7Var.A(z);
+            cf7Var.A(z);
             return;
         }
         id idVar = new id(3, null, activity);
         TL_phone.getGroupCallJoinAs getgroupcalljoinas = new TL_phone.getGroupCallJoinAs();
         getgroupcalljoinas.peer = uc7.s1(i2).j1(j);
-        idVar.setOnCancelListener(new tv5(k5Var, ConnectionsManager.getInstance(i2).sendRequest(getgroupcalljoinas, new ft0(idVar, j, k5Var, bf7Var)), (byte) 1));
+        idVar.setOnCancelListener(new tv5(k5Var, ConnectionsManager.getInstance(i2).sendRequest(getgroupcalljoinas, new ft0(idVar, j, k5Var, cf7Var)), (byte) 1));
         try {
             idVar.q(500L);
         } catch (Exception unused) {

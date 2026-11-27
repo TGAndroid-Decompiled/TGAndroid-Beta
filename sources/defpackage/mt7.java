@@ -42,7 +42,7 @@ public final class mt7 implements pcc {
                     final vnb vnbVar = ot7Var.J0;
                     c51 c51Var = ot7Var.v1;
                     Objects.requireNonNull(c51Var);
-                    final ii7 ii7Var = new ii7(c51Var, (byte) 7);
+                    final ji7 ji7Var = new ji7(c51Var, (byte) 7);
                     final d31 d31Var = new d31(ot7Var.c, ot7Var.J0);
                     final lt7 lt7Var = new lt7(ot7Var, (byte) 1);
                     final lt7 lt7Var2 = new lt7(ot7Var, (byte) 2);
@@ -54,7 +54,7 @@ public final class mt7 implements pcc {
                     sendstargiftonchainoffer.duration = i;
                     sendstargiftonchainoffer.random_id = longValue;
                     it7.i(tL_starGiftUnique);
-                    ii7Var.a(Boolean.TRUE);
+                    ji7Var.a(Boolean.TRUE);
                     ConnectionsManager.getInstance(i2).sendRequestTyped(sendstargiftonchainoffer, new ic((byte) 0), new icc() {
                         @Override
                         public final void a(Object obj2, Object obj3) {
@@ -63,7 +63,7 @@ public final class mt7 implements pcc {
                             ms7 ms7Var;
                             TL_stars.TL_payments_starGiftOnchainOfferTx tL_payments_starGiftOnchainOfferTx = (TL_stars.TL_payments_starGiftOnchainOfferTx) obj2;
                             TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
-                            ii7.this.a(Boolean.FALSE);
+                            ji7.this.a(Boolean.FALSE);
                             int i3 = i2;
                             TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
                             Context context2 = context;
@@ -136,14 +136,14 @@ public final class mt7 implements pcc {
                                 ms7Var3.p2 = 2131749575;
                                 ms7Var3.f1(p);
                                 ms7Var3.s2 = new l65(lt7Var2, p, i5, (byte) 18);
-                                ms7Var3.d1(new fe7(lt7Var, (byte) 13), new ii7(tL_starGiftUnique2, (byte) 6), new ns7(context2, i3, vnbVar2, ms7Var3, (byte) 1));
+                                ms7Var3.d1(new ge7(lt7Var, (byte) 13), new ji7(tL_starGiftUnique2, (byte) 6), new ns7(context2, i3, vnbVar2, ms7Var3, (byte) 1));
                                 ms7Var3.show();
                                 return;
                             }
                             if (tL_error != null && "STARGIFT_ONCHAIN_OFFER_INTENT_CONFLICT".equals(tL_error.text)) {
                                 String str2 = tL_starGiftUnique2.slug;
-                                jf7 Y = jf7.Y(i3);
-                                Y.a.c(new t87(Y, str2, (byte) 23));
+                                kf7 a02 = kf7.a0(i3);
+                                a02.a.c(new t87(a02, str2, (byte) 23));
                             }
                             it7.u(context2, i3, vnbVar2, d31Var2, tL_error, null);
                         }

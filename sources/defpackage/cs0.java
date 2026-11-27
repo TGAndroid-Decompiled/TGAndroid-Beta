@@ -20,7 +20,7 @@ public final class cs0 implements DialogInterface.OnCancelListener {
         Object obj = this.b;
         switch (b) {
             case 0:
-                ((ze7) obj).run();
+                ((bf7) obj).run();
                 return;
             case 1:
                 ((HttpGetFileTask) obj).cancel(true);
@@ -80,7 +80,7 @@ public final class cs0 implements DialogInterface.OnCancelListener {
                 ((jo6) obj).f = true;
                 return;
             default:
-                ((vlc) obj).run();
+                ((slc) obj).run();
                 return;
         }
     }

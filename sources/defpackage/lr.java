@@ -81,7 +81,7 @@ public final class lr extends p79 {
             case 5:
                 o24 o24Var = (o24) obj;
                 b14 b14Var = o24Var.Q;
-                if (view instanceof t3b) {
+                if (view instanceof u3b) {
                     rect.left = hl.L(5.0f);
                     rect.right = hl.L(5.0f);
                     if (RecyclerView.S(view) + 1 > o24Var.S.F && !yac.h(o24Var.d1).p() && !o24Var.V0) {
@@ -112,9 +112,9 @@ public final class lr extends p79 {
                 return;
             case 7:
                 super.d(rect, view, recyclerView, c89Var);
-                pi7 pi7Var = (pi7) obj;
-                if (RecyclerView.S(view) == pi7Var.X1.size()) {
-                    rect.bottom = pi7Var.g2;
+                qi7 qi7Var = (qi7) obj;
+                if (RecyclerView.S(view) == qi7Var.X1.size()) {
+                    rect.bottom = qi7Var.g2;
                     return;
                 }
                 return;

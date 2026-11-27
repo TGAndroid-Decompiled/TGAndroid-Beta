@@ -102,7 +102,7 @@ public final class op6 implements RequestDelegate {
                         ls6Var2.getMessagesController().M0(Long.valueOf(this.c));
                         in5.S(messages_messages.messages);
                         ls6Var2.m(messages_messages.messages, messages_messages.users, messages_messages.chats, false, false);
-                        ls6Var2.getMessagesStorage().j1(messages_messages.users, messages_messages.chats, true, true);
+                        ls6Var2.getMessagesStorage().n1(messages_messages.users, messages_messages.chats, true, true);
                         ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
                         if (!arrayList.isEmpty()) {
                             ls6Var2.getMessagesStorage().a.c(new cq6(ls6Var2, arrayList, j7, (byte) 1));
@@ -111,7 +111,7 @@ public final class op6 implements RequestDelegate {
                         return;
                     }
                 }
-                ls6Var2.getMessagesStorage().Z1(j7, tL_channels_getMessages.id, false, -1, 0, false, null);
+                ls6Var2.getMessagesStorage().e2(j7, tL_channels_getMessages.id, false, -1, 0, false, null);
                 return;
             case 2:
                 wua wuaVar = (wua) obj2;

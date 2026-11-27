@@ -522,7 +522,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void i0(Context context, k5 k5Var, ArrayList arrayList, df7 df7Var) {
+    public static void i0(Context context, k5 k5Var, ArrayList arrayList, ef7 ef7Var) {
         x53 x53Var;
         if (arrayList.isEmpty()) {
             return;
@@ -531,7 +531,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         obj.d = new HashMap();
         obj.a = k5Var;
         obj.c = arrayList;
-        obj.s = df7Var;
+        obj.s = ef7Var;
         obj.w = ((r47) arrayList.get(0)).I3();
         int i = k5Var.a;
         jn7.f(i).a(obj, jn7.Y1);
@@ -639,7 +639,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (im0Var.c) {
             im0Var.a();
             return im0Var.d;
-        } else if (!uc7.s1(i).k4.s0.f) {
+        } else if (!uc7.s1(i).l4.s0.f) {
             return true;
         } else {
             return false;

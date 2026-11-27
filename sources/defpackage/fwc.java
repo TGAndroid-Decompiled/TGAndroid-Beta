@@ -26,8 +26,8 @@ public final class fwc implements ewc {
             int max = Math.max(i5, i7 / 10);
             this.e = max;
             jo4 jo4Var = new jo4();
-            jo4Var.r = dg7.n("audio/wav");
-            jo4Var.s = dg7.n(str);
+            jo4Var.r = eg7.n("audio/wav");
+            jo4Var.s = eg7.n(str);
             jo4Var.i = i8;
             jo4Var.j = i8;
             jo4Var.t = max;

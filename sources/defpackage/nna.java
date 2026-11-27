@@ -1,7 +1,7 @@
 package defpackage;
 
 import java.util.ArrayList;
-public final class nna implements sf7 {
+public final class nna implements tf7 {
     public final ArrayList a;
 
     public nna(ArrayList arrayList) {

@@ -1,69 +1,86 @@
 package defpackage;
 
-import java.util.concurrent.Delayed;
-import java.util.concurrent.Executor;
+import java.util.List;
+import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.TimeUnit;
-public final class bh7 extends zme implements ScheduledFuture, x76, Future {
-    public final u2 b;
-    public final ScheduledFuture c;
+public class bh7 extends AbstractExecutorService implements AutoCloseable, ExecutorService {
+    public final ExecutorService a;
 
-    public bh7(u2 u2Var, ScheduledFuture scheduledFuture) {
-        this.b = u2Var;
-        this.c = scheduledFuture;
+    public bh7(ExecutorService executorService) {
+        executorService.getClass();
+        this.a = executorService;
+    }
+
+    public final x76 a(Callable callable) {
+        return (x76) super.submit(callable);
     }
 
     @Override
-    public final void b(Runnable runnable, Executor executor) {
-        this.b.b(runnable, executor);
+    public final boolean awaitTermination(long j, TimeUnit timeUnit) {
+        return this.a.awaitTermination(j, timeUnit);
     }
 
     @Override
-    public final boolean cancel(boolean z) {
-        boolean e = e(z);
-        if (e) {
-            this.c.cancel(z);
-        }
-        return e;
+    public void close() {
+        a3.f(this);
     }
 
     @Override
-    public final int compareTo(Delayed delayed) {
-        return this.c.compareTo(delayed);
+    public final void execute(Runnable runnable) {
+        this.a.execute(runnable);
     }
 
     @Override
-    public final Object d() {
-        return this.b;
-    }
-
-    public final boolean e(boolean z) {
-        return this.b.cancel(z);
+    public final boolean isShutdown() {
+        return this.a.isShutdown();
     }
 
     @Override
-    public final Object get() {
-        return this.b.get();
+    public final boolean isTerminated() {
+        return this.a.isTerminated();
     }
 
     @Override
-    public final long getDelay(TimeUnit timeUnit) {
-        return this.c.getDelay(timeUnit);
+    public final RunnableFuture newTaskFor(Runnable runnable, Object obj) {
+        return new i6c(Executors.callable(runnable, obj));
     }
 
     @Override
-    public final boolean isCancelled() {
-        return this.b.isCancelled();
+    public final void shutdown() {
+        this.a.shutdown();
     }
 
     @Override
-    public final boolean isDone() {
-        return this.b.isDone();
+    public final List shutdownNow() {
+        return this.a.shutdownNow();
     }
 
     @Override
-    public final Object get(long j, TimeUnit timeUnit) {
-        return this.b.get(j, timeUnit);
+    public final Future submit(Runnable runnable) {
+        return (x76) super.submit(runnable);
+    }
+
+    public final String toString() {
+        return super.toString() + "[" + this.a + "]";
+    }
+
+    @Override
+    public final Future submit(Runnable runnable, Object obj) {
+        return (x76) super.submit(runnable, obj);
+    }
+
+    @Override
+    public final Future submit(Callable callable) {
+        return (x76) super.submit(callable);
+    }
+
+    @Override
+    public final RunnableFuture newTaskFor(Callable callable) {
+        return new i6c(callable);
     }
 }

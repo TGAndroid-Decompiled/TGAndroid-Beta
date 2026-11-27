@@ -415,9 +415,9 @@ public class rb0 extends Drawable {
         vnb vnbVar = this.z;
         if (i >= 14) {
             uc7 s1 = uc7.s1(yac.t0);
-            lc7 lc7Var = s1.E3;
+            lc7 lc7Var = s1.F3;
             if (lc7Var != null && lc7Var.d(i) != null) {
-                int f = s1.E3.d(i).f();
+                int f = s1.F3.d(i).f();
                 if (this.f != null) {
                     int[] iArr2 = iArr[e(f)];
                     this.f.d(iArr2[0], iArr2[1], iArr2[2], iArr2[3]);

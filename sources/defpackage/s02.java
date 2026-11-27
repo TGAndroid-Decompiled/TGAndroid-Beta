@@ -45,7 +45,7 @@ public final class s02 implements uu0 {
         int i = this.e.G3;
         ls6 d0 = ls6.d0(i);
         long j = this.d;
-        if (!d0.l(j) && !uc7.s1(i).S3.contains(Long.valueOf(j))) {
+        if (!d0.l(j) && !uc7.s1(i).T3.contains(Long.valueOf(j))) {
             return false;
         }
         return true;

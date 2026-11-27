@@ -139,7 +139,7 @@ public final class ckb extends dx6 {
                     ArrayList arrayList2 = (ArrayList) dkbVar.k.f(parseLong);
                     if (parseInt >= 0 && parseInt < arrayList.size()) {
                         dkbVar.d = parseLong;
-                        uc7.s1(dkbVar.c).W3.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
+                        uc7.s1(dkbVar.c).X3.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
                         MediaController.z().q0(arrayList, (r47) arrayList.get(parseInt), 0L, false, null, 0L);
                         rx6Var.t0(arrayList2);
                         if (wf3.D(parseLong)) {

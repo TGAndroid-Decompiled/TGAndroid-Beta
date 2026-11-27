@@ -36,7 +36,7 @@ public final class qoc implements ggd {
                 kafVar.V(kafVar.R(), 1);
                 this.a = true;
             } catch (RemoteException e) {
-                throw new kg7("Failed to init thin image labeler.", e);
+                throw new lg7("Failed to init thin image labeler.", e);
             }
         }
         int i = jq5Var.b;
@@ -77,7 +77,7 @@ public final class qoc implements ggd {
             }
             return arrayList;
         } catch (RemoteException e2) {
-            throw new kg7("Failed to run thin image labeler.", e2);
+            throw new lg7("Failed to run thin image labeler.", e2);
         }
     }
 
@@ -88,7 +88,7 @@ public final class qoc implements ggd {
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(true);
-        ((xgb) this.e).a.postDelayed(new vlc(this, atomicBoolean, (byte) 7), 1000L);
+        ((xgb) this.e).a.postDelayed(new slc(this, atomicBoolean, (byte) 8), 1000L);
         xgbVar.e(new ba1(this, atomicBoolean, z, z2, (byte) 5));
     }
 
@@ -123,13 +123,13 @@ public final class qoc implements ggd {
             }
             this.e = ((maf) v3dVar).Z(new br7(context), new zaf(((lm5) this.d).a, -1));
         } catch (RemoteException e) {
-            throw new kg7("Failed to create thin image labeler.", e);
+            throw new lg7("Failed to create thin image labeler.", e);
         } catch (ss3 unused) {
             if (!this.b) {
                 zt7.a(context);
                 this.b = true;
             }
-            throw new kg7("Waiting for the label optional module to be downloaded. Please wait.", 14);
+            throw new lg7("Waiting for the label optional module to be downloaded. Please wait.", 14);
         }
     }
 

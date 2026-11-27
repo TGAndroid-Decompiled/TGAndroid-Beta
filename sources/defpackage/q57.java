@@ -56,7 +56,7 @@ public final class q57 extends View implements snb {
         int i = aob.Ee;
         vnb vnbVar = this.c;
         int v0 = aob.v0(i, vnbVar);
-        if ((vnbVar instanceof xu1) && (((xu1) vnbVar).l() instanceof hh7) && (iArr = ((hh7) ((xu1) vnbVar).l()).a) != null) {
+        if ((vnbVar instanceof xu1) && (((xu1) vnbVar).l() instanceof ih7) && (iArr = ((ih7) ((xu1) vnbVar).l()).a) != null) {
             v0 = hl.w0(hl.w0(iArr[0], iArr[1]), hl.w0(iArr[2], iArr[3]));
         }
         this.e = aob.b(-1606201797, v0);

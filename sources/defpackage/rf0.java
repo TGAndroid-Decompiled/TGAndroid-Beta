@@ -15,7 +15,7 @@ public abstract class rf0 {
     }
 
     public final hr getAppGlobalConfig() {
-        return getMessagesController().k4;
+        return getMessagesController().l4;
     }
 
     public final a78 getColorPalette() {
@@ -58,8 +58,8 @@ public abstract class rf0 {
         return uc7.s1(this.parentAccountInstance.a);
     }
 
-    public final jf7 getMessagesStorage() {
-        return jf7.Y(this.parentAccountInstance.a);
+    public final kf7 getMessagesStorage() {
+        return kf7.a0(this.parentAccountInstance.a);
     }
 
     public final jn7 getNotificationCenter() {

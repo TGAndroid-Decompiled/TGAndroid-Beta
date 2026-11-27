@@ -767,9 +767,9 @@ public final class wf1 extends e implements fn7 {
             TLRPC.Chat chat = this.f;
             if (chat != null && (N0 = getMessagesController().N0(chat.id)) != null && N0.antispam) {
                 TLRPC.ChannelParticipant channelParticipant = new TLRPC.ChannelParticipant();
-                channelParticipant.user_id = getMessagesController().L3;
+                channelParticipant.user_id = getMessagesController().M3;
                 channelParticipant.peer = getMessagesController().y1(channelParticipant.user_id);
-                long j = getMessagesController().L3;
+                long j = getMessagesController().M3;
                 if (getMessagesController().X1(Long.valueOf(j)) == null) {
                     TLRPC.TL_users_getUsers tL_users_getUsers = new TLRPC.TL_users_getUsers();
                     TLRPC.TL_inputUser tL_inputUser = new TLRPC.TL_inputUser();

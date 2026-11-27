@@ -141,8 +141,8 @@ public final class x05 {
         um4 um4Var = this.a;
         um4Var.getClass();
         try {
-            i09 i09Var = (i09) um4Var.c;
-            if (i09Var == null) {
+            j09 j09Var = (j09) um4Var.c;
+            if (j09Var == null) {
                 qae qaeVar = (qae) um4Var.b;
                 Parcel Q = qaeVar.Q(qaeVar.R(), 25);
                 IBinder readStrongBinder = Q.readStrongBinder();
@@ -157,11 +157,11 @@ public final class x05 {
                     }
                 }
                 Q.recycle();
-                i09Var = new i09(v3dVar, (byte) 21);
-                um4Var.c = i09Var;
+                j09Var = new j09(v3dVar, (byte) 21);
+                um4Var.c = j09Var;
             }
             aj3 aj3Var = new aj3((byte) 10, false);
-            aj3Var.b = i09Var;
+            aj3Var.b = j09Var;
             return aj3Var;
         } catch (RemoteException e) {
             p3d.i(e);

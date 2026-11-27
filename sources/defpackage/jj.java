@@ -70,7 +70,7 @@ public abstract class jj {
         return idVar;
     }
 
-    public static id B(Activity activity, boolean z, TLRPC.User user, df7 df7Var, vnb vnbVar) {
+    public static id B(Activity activity, boolean z, TLRPC.User user, ef7 ef7Var, vnb vnbVar) {
         int i;
         int i2;
         int w0;
@@ -141,7 +141,7 @@ public abstract class jj {
             }
         }
         alertDialog$Builder.n(m);
-        alertDialog$Builder.j(ob6.M0(2131745187, null), new o(iArr, df7Var, (byte) 7));
+        alertDialog$Builder.j(ob6.M0(2131745187, null), new o(iArr, ef7Var, (byte) 7));
         alertDialog$Builder.h(ob6.M0(2131752570, null), null);
         return idVar;
     }
@@ -284,7 +284,7 @@ public abstract class jj {
         boolean z;
         final long j3 = j;
         final int i4 = i;
-        final SharedPreferences sharedPreferences = uc7.s1(yac.t0).W3;
+        final SharedPreferences sharedPreferences = uc7.s1(yac.t0).X3;
         final int[] iArr = new int[1];
         if (j3 != 0) {
             i3 = 0;
@@ -369,7 +369,7 @@ public abstract class jj {
                     int[] iArr2 = iArr;
                     int i10 = 0;
                     iArr2[0] = intValue;
-                    SharedPreferences.Editor edit = uc7.s1(yac.t0).W3.edit();
+                    SharedPreferences.Editor edit = uc7.s1(yac.t0).X3.edit();
                     long j4 = j3;
                     if (j4 != 0) {
                         int i11 = iArr2[0];
@@ -926,7 +926,7 @@ public abstract class jj {
         return null;
     }
 
-    public static void O(Context context, e eVar, String str, String str2, String str3, String str4, int i, String str5, vnb vnbVar, hf7 hf7Var) {
+    public static void O(Context context, e eVar, String str, String str2, String str3, String str4, int i, String str5, vnb vnbVar, if7 if7Var) {
         View view;
         Activity W = hl.W(context);
         if (W != null) {
@@ -955,7 +955,7 @@ public abstract class jj {
         if (str4 != null) {
             editTextBoldCursor.setText(str4);
         }
-        editTextBoldCursor.setOnEditorActionListener(new af(editTextBoldCursor, i, hf7Var, idVarArr, view, (byte) 0));
+        editTextBoldCursor.setOnEditorActionListener(new af(editTextBoldCursor, i, if7Var, idVarArr, view, (byte) 0));
         editTextBoldCursor.addTextChangedListener(new gi(i, editTextBoldCursor));
         ShapeDrawable b0 = aob.b0(hl.L(22.0f), aob.p1(0.06f, aob.v0(i2, vnbVar)));
         uob K = yob.K(0.06f, i2);
@@ -966,7 +966,7 @@ public abstract class jj {
         alertDialog$Builder.b();
         alertDialog$Builder.n(j);
         idVar.a = Math.min(hl.L(320.0f), (hl.q.x * 85) / 100);
-        alertDialog$Builder.j(str5, new bf((Object) editTextBoldCursor, i, hf7Var, (byte) 0));
+        alertDialog$Builder.j(str5, new bf((Object) editTextBoldCursor, i, if7Var, (byte) 0));
         alertDialog$Builder.g(ob6.M0(2131752570, null), new e((byte) 19));
         idVarArr[0] = idVar;
         if (eVar != null) {
@@ -980,8 +980,8 @@ public abstract class jj {
         editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
     }
 
-    public static void P(Context context, e eVar, vnb vnbVar, hf7 hf7Var) {
-        O(context, eVar, ob6.M0(2131744456, null), ob6.M0(2131744463, null), ob6.M0(2131744437, null), null, 12, ob6.M0(2131751718, null), vnbVar, hf7Var);
+    public static void P(Context context, e eVar, vnb vnbVar, if7 if7Var) {
+        O(context, eVar, ob6.M0(2131744456, null), ob6.M0(2131744463, null), ob6.M0(2131744437, null), null, 12, ob6.M0(2131751718, null), vnbVar, if7Var);
     }
 
     public static z8d Q(Context context, long j, final hj hjVar, vnb vnbVar, int i) {
@@ -1050,10 +1050,10 @@ public abstract class jj {
         final Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(currentTimeMillis);
         int i8 = calendar.get(1);
-        os2 os2Var = uc7.s1(yac.t0).k4.i;
+        os2 os2Var = uc7.s1(yac.t0).l4.i;
         TimeUnit timeUnit = TimeUnit.SECONDS;
         final long g = os2Var.g(timeUnit) << 1;
-        final long g2 = uc7.s1(yac.t0).k4.j.g(timeUnit) - 86400;
+        final long g2 = uc7.s1(yac.t0).l4.j.g(timeUnit) - 86400;
         final xb xbVar = new xb(context, (byte) 8);
         linearLayout.addView(hq7Var, tre.l(0.5f, 0, 270));
         hq7Var.setMinValue(0);
@@ -1462,7 +1462,7 @@ public abstract class jj {
         String[] strArr;
         boolean z;
         final String str2 = str;
-        SharedPreferences sharedPreferences = uc7.s1(yac.t0).W3;
+        SharedPreferences sharedPreferences = uc7.s1(yac.t0).X3;
         boolean z2 = true;
         final int[] iArr = new int[1];
         if (j != 0) {
@@ -1509,7 +1509,7 @@ public abstract class jj {
                     int intValue = ((Integer) view.getTag()).intValue();
                     int[] iArr2 = iArr;
                     iArr2[0] = intValue;
-                    SharedPreferences.Editor edit = uc7.s1(yac.t0).W3.edit();
+                    SharedPreferences.Editor edit = uc7.s1(yac.t0).X3.edit();
                     long j3 = j;
                     int i4 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                     String str4 = str2;
@@ -1647,7 +1647,7 @@ public abstract class jj {
             if (i6 > 0) {
                 i5++;
             }
-            if (i6 > 0 && z && uc7.s1(i).X3.getLong(ik8.n(longValue, "ask_paid_message_", "_price"), j3) < M1) {
+            if (i6 > 0 && z && uc7.s1(i).Y3.getLong(ik8.n(longValue, "ask_paid_message_", "_price"), j3) < M1) {
                 z = false;
             }
             i3 = i5;
@@ -1709,7 +1709,7 @@ public abstract class jj {
         if (M1 <= 0 && j > 0) {
             M1 = wf3.j(uc7.s1(i).P2(j));
         }
-        if (M1 > 0 && M1 > uc7.s1(i).X3.getLong(ik8.n(j, "ask_paid_message_", "_price"), 0L)) {
+        if (M1 > 0 && M1 > uc7.s1(i).Y3.getLong(ik8.n(j, "ask_paid_message_", "_price"), 0L)) {
             return true;
         }
         return false;
@@ -2520,8 +2520,8 @@ public abstract class jj {
         return z2;
     }
 
-    public static void g0(org.telegram.ui.ActionBar.e r29, long r30, final org.telegram.tgnet.TLRPC.User r32, final org.telegram.tgnet.TLRPC.Chat r33, final org.telegram.tgnet.TLRPC.EncryptedChat r34, final boolean r35, org.telegram.tgnet.TLRPC.ChatFull r36, final defpackage.df7 r37, defpackage.vnb r38) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jj.g0(org.telegram.ui.ActionBar.e, long, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$EncryptedChat, boolean, org.telegram.tgnet.TLRPC$ChatFull, df7, vnb):void");
+    public static void g0(org.telegram.ui.ActionBar.e r29, long r30, final org.telegram.tgnet.TLRPC.User r32, final org.telegram.tgnet.TLRPC.Chat r33, final org.telegram.tgnet.TLRPC.EncryptedChat r34, final boolean r35, org.telegram.tgnet.TLRPC.ChatFull r36, final defpackage.ef7 r37, defpackage.vnb r38) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jj.g0(org.telegram.ui.ActionBar.e, long, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$EncryptedChat, boolean, org.telegram.tgnet.TLRPC$ChatFull, ef7, vnb):void");
     }
 
     public static boolean h(Context context, int i, long j, boolean z) {
@@ -2530,7 +2530,7 @@ public abstract class jj {
             if (!z) {
                 TLRPC.ChatFull N0 = uc7.s1(i).N0(M0.id);
                 if (N0 == null) {
-                    N0 = jf7.Y(i).C0(M0.id, xc2.T(M0), new CountDownLatch(1), false, false, 0);
+                    N0 = kf7.a0(i).F0(M0.id, xc2.T(M0), new CountDownLatch(1), false, false, 0);
                 }
                 if (N0 != null && N0.slowmode_next_send_date >= ConnectionsManager.getInstance(i).getCurrentTime()) {
                     z = true;
@@ -3257,7 +3257,7 @@ public abstract class jj {
         o0(eVar, str, z, true, z2, false, null, null, null);
     }
 
-    public static z8d o(Activity activity, df7 df7Var, vnb vnbVar) {
+    public static z8d o(Activity activity, ef7 ef7Var, vnb vnbVar) {
         if (activity == null) {
             return null;
         }
@@ -3332,7 +3332,7 @@ public abstract class jj {
         xbVar.setBackground(i0);
         yob.j(xbVar, i0, M, M2, vnbVar);
         aiVar.addView(xbVar, tre.t(-1, 48, 83, 16, 15, 16, 16));
-        xbVar.setOnClickListener(new xf(hq7Var, hq7Var2, hq7Var3, calendar, df7Var, z8dVar, (byte) 2));
+        xbVar.setOnClickListener(new xf(hq7Var, hq7Var2, hq7Var3, calendar, ef7Var, z8dVar, (byte) 2));
         ((nx0) z8dVar.b).O = aiVar;
         return z8dVar;
     }
@@ -3487,8 +3487,8 @@ public abstract class jj {
         }
     }
 
-    public static void q(org.telegram.ui.ActionBar.e r32, int r33, org.telegram.tgnet.TLRPC.User r34, org.telegram.tgnet.TLRPC.Chat r35, boolean r36, defpackage.bf7 r37, defpackage.vnb r38) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jj.q(org.telegram.ui.ActionBar.e, int, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, bf7, vnb):void");
+    public static void q(org.telegram.ui.ActionBar.e r32, int r33, org.telegram.tgnet.TLRPC.User r34, org.telegram.tgnet.TLRPC.Chat r35, boolean r36, defpackage.cf7 r37, defpackage.vnb r38) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jj.q(org.telegram.ui.ActionBar.e, int, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, cf7, vnb):void");
     }
 
     public static void q0(int i, vnb vnbVar, e eVar) {
@@ -3547,14 +3547,14 @@ public abstract class jj {
         }
     }
 
-    public static void r(e eVar, boolean z, TLRPC.Chat chat, TLRPC.User user, boolean z2, boolean z3, boolean z4, boolean z5, bf7 bf7Var) {
+    public static void r(e eVar, boolean z, TLRPC.Chat chat, TLRPC.User user, boolean z2, boolean z3, boolean z4, boolean z5, cf7 cf7Var) {
         vnb vnbVar;
         if (eVar != null) {
             vnbVar = eVar.getResourceProvider();
         } else {
             vnbVar = null;
         }
-        s(eVar, z, false, chat, user, z2, z3, z4, z5, bf7Var, vnbVar);
+        s(eVar, z, false, chat, user, z2, z3, z4, z5, cf7Var, vnbVar);
     }
 
     public static id r0(e eVar, String str, String str2, vnb vnbVar) {
@@ -3569,8 +3569,8 @@ public abstract class jj {
         return null;
     }
 
-    public static void s(final org.telegram.ui.ActionBar.e r44, final boolean r45, final boolean r46, final org.telegram.tgnet.TLRPC.Chat r47, final org.telegram.tgnet.TLRPC.User r48, final boolean r49, final boolean r50, boolean r51, final boolean r52, final defpackage.bf7 r53, final defpackage.vnb r54) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jj.s(org.telegram.ui.ActionBar.e, boolean, boolean, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$User, boolean, boolean, boolean, boolean, bf7, vnb):void");
+    public static void s(final org.telegram.ui.ActionBar.e r44, final boolean r45, final boolean r46, final org.telegram.tgnet.TLRPC.Chat r47, final org.telegram.tgnet.TLRPC.User r48, final boolean r49, final boolean r50, boolean r51, final boolean r52, final defpackage.cf7 r53, final defpackage.vnb r54) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jj.s(org.telegram.ui.ActionBar.e, boolean, boolean, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$User, boolean, boolean, boolean, boolean, cf7, vnb):void");
     }
 
     public static id s0(e eVar, String str, CharSequence charSequence, String str2, boolean z, Runnable runnable) {
@@ -3586,7 +3586,7 @@ public abstract class jj {
     public static id t(Activity activity, final long j, final long j2, final int i, final Runnable runnable, vnb vnbVar) {
         int i2;
         boolean z;
-        SharedPreferences sharedPreferences = uc7.s1(yac.t0).W3;
+        SharedPreferences sharedPreferences = uc7.s1(yac.t0).X3;
         final String p = ip7.p(j, j2, false);
         int i3 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
         if (i3 != 0) {
@@ -3635,7 +3635,7 @@ public abstract class jj {
         alertDialog$Builder.j(ob6.M0(2131745278, null), new fd() {
             @Override
             public final void w(id idVar2, int i6) {
-                SharedPreferences.Editor edit = uc7.s1(yac.t0).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(yac.t0).X3.edit();
                 long j3 = j;
                 int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 int[] iArr2 = iArr;
@@ -3708,7 +3708,7 @@ public abstract class jj {
         return alertDialog$Builder.o();
     }
 
-    public static AlertDialog$Builder v(Activity activity, final df7 df7Var) {
+    public static AlertDialog$Builder v(Activity activity, final ef7 ef7Var) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
         int i = aob.L5;
         alertDialog$Builder.l(2131624118, 72, aob.w0(null, i, false), null);
@@ -3718,13 +3718,13 @@ public abstract class jj {
             @Override
             public final void w(id idVar, int i2) {
                 byte b = r2;
-                df7 df7Var2 = df7Var;
+                ef7 ef7Var2 = ef7Var;
                 switch (b) {
                     case 0:
-                        df7Var2.a(1);
+                        ef7Var2.a(1);
                         return;
                     default:
-                        df7Var2.a(0);
+                        ef7Var2.a(0);
                         return;
                 }
             }
@@ -3733,13 +3733,13 @@ public abstract class jj {
             @Override
             public final void w(id idVar, int i2) {
                 byte b = r2;
-                df7 df7Var2 = df7Var;
+                ef7 ef7Var2 = ef7Var;
                 switch (b) {
                     case 0:
-                        df7Var2.a(1);
+                        ef7Var2.a(1);
                         return;
                     default:
-                        df7Var2.a(0);
+                        ef7Var2.a(0);
                         return;
                 }
             }

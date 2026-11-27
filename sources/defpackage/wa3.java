@@ -280,7 +280,7 @@ public final class wa3 implements pr3 {
         int v = d64Var.v();
         hr3 hr3Var = ko4Var.x;
         if (hr3Var == null) {
-            int h = dg7.h(ko4Var.t);
+            int h = eg7.h(ko4Var.t);
             int i = 0;
             while (true) {
                 int[] iArr = this.f;

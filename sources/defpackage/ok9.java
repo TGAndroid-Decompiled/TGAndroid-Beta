@@ -31,13 +31,13 @@ public final class ok9 extends dk9 {
     public int l0;
     public VelocityTracker m0;
     public OverScroller n0;
-    public final ki7 o0;
+    public final li7 o0;
 
     public ok9(hl9 hl9Var, Rect rect, int i, TL_iv.pageBlockMath pageblockmath) {
         super(hl9Var, rect, i);
         qz5 qz5Var;
         this.j0 = new Paint(3);
-        this.o0 = new ki7(this, (byte) 18);
+        this.o0 = new li7(this, (byte) 18);
         this.X = pageblockmath;
         int i2 = this.c;
         this.b0 = i2;

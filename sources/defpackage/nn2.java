@@ -2,7 +2,7 @@ package defpackage;
 
 import android.view.View;
 import java.io.Serializable;
-public final class nn2 implements ncc, hf7 {
+public final class nn2 implements ncc, if7 {
     public final qn2 a;
 
     @Override

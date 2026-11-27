@@ -29,7 +29,7 @@ public final class v77 implements RequestDelegate {
                     uc7Var.V3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, j2);
                 }
                 if (j != 0) {
-                    uc7Var.getMessagesStorage().n1(j);
+                    uc7Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
@@ -43,11 +43,11 @@ public final class v77 implements RequestDelegate {
                         tL_messages_dialogs.messages.addAll(tL_messages_peerDialogs.messages);
                         tL_messages_dialogs.users.addAll(tL_messages_peerDialogs.users);
                         tL_messages_dialogs.chats.addAll(tL_messages_peerDialogs.chats);
-                        uc7Var2.T3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, uc7Var2.E4, false, false, false);
+                        uc7Var2.T3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, uc7Var2.F4, false, false, false);
                     }
                 }
                 if (j2 != 0) {
-                    uc7Var2.getMessagesStorage().n1(j2);
+                    uc7Var2.getMessagesStorage().r1(j2);
                 }
                 uc7Var2.T0.e(j);
                 return;

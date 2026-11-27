@@ -55,13 +55,13 @@ public final class hz6 implements ot2, pz6, NativeLifecycleLock.NativePointerCal
 
     @Override
     public final Object apply(Object obj) {
-        of7 of7Var = (of7) obj;
-        of7Var.getClass();
+        pf7 pf7Var = (pf7) obj;
+        pf7Var.getClass();
         rw8 rw8Var = jw8.a;
         rw8Var.getClass();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            rw8Var.b(of7Var, byteArrayOutputStream);
+            rw8Var.b(pf7Var, byteArrayOutputStream);
         } catch (IOException unused) {
         }
         return byteArrayOutputStream.toByteArray();

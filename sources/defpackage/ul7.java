@@ -1,39 +1,16 @@
 package defpackage;
+public abstract class ul7 {
+    public static final tl7 a;
+    public static final tl7 b;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class ul7 extends wp5 {
-    public static final Pattern e = Pattern.compile(" *$");
-
-    @Override
-    public final yi6 b() {
-        int i;
-        this.d++;
-        yi6 yi6Var = (yi6) this.b.d;
-        if (yi6Var instanceof qkb) {
-            qkb qkbVar = (qkb) yi6Var;
-            if (qkbVar.g.endsWith(" ")) {
-                String str = qkbVar.g;
-                Matcher matcher = e.matcher(str);
-                if (matcher.find()) {
-                    i = matcher.end() - matcher.start();
-                } else {
-                    i = 0;
-                }
-                if (i > 0) {
-                    qkbVar.g = bs2.n(i, 0, str);
-                }
-                if (i >= 2) {
-                    return new p24((byte) 1);
-                }
-                return new p24((byte) 2);
-            }
+    static {
+        ow8 ow8Var = ow8.c;
+        tl7 tl7Var = null;
+        try {
+            tl7Var = (tl7) Class.forName("androidx.datastore.preferences.protobuf.NewInstanceSchemaFull").getDeclaredConstructor(null).newInstance(null);
+        } catch (Exception unused) {
         }
-        return new p24((byte) 2);
-    }
-
-    @Override
-    public final char c() {
-        return '\n';
+        a = tl7Var;
+        b = new Object();
     }
 }

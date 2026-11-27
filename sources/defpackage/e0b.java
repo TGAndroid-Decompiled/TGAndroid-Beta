@@ -25,7 +25,7 @@ public final class e0b extends nx0 implements fn7 {
     public final ArrayList G1;
     public final ie0 H1;
     public int I1;
-    public b58 J1;
+    public c58 J1;
     public int K1;
     public z86 L1;
     public final wm2[] M1;
@@ -93,7 +93,7 @@ public final class e0b extends nx0 implements fn7 {
         u49 u49Var;
         View view;
         x49 x49Var;
-        b58 b58Var;
+        c58 c58Var;
         View view2;
         x49 x49Var2;
         u49 u49Var2;
@@ -186,8 +186,8 @@ public final class e0b extends nx0 implements fn7 {
         }
         u49 u49Var3 = u49Var;
         h96[] h96VarArr = new h96[1];
-        if (this.n1 && (b58Var = this.J1) != null) {
-            h96VarArr[0] = b58Var.c(this.K1);
+        if (this.n1 && (c58Var = this.J1) != null) {
+            h96VarArr[0] = c58Var.c(this.K1);
         }
         final RectF rectF2 = new RectF();
         final ra7 ra7Var = new ra7(this, h96VarArr, iArr, rectF2, view, x49Var, u49Var3, (byte) 21);

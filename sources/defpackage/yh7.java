@@ -1,165 +1,36 @@
 package defpackage;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-public final class yh7 implements e84 {
-    public boolean A;
-    public boolean B;
-    public int C;
-    public int D;
-    public long E;
-    public g84 F;
-    public xh7[] G;
-    public long[][] H;
-    public int I;
-    public final peb a;
-    public final int b;
-    public final boolean c;
-    public final ey7 d;
-    public final ey7 e;
-    public final ey7 f;
-    public final ey7 g;
-    public final ArrayDeque h;
-    public final gz9 i;
-    public final ArrayList j;
-    public final ArrayList k;
-    public final ArrayList l;
-    public j99 m;
-    public byte n;
-    public int o;
-    public long p;
-    public int q;
-    public ey7 r;
-    public int s;
-    public int t;
-    public int u;
-    public int v;
-    public boolean w;
-    public boolean x;
-    public boolean y;
-    public long z;
+import j$.util.Objects;
+public final class yh7 {
+    public final p1c a;
+    public final y1c b;
+    public final x1c c;
+    public final g6c d;
+    public final boolean e;
+    public final boolean f;
+    public int g;
+    public ko4 h;
 
-    public yh7(peb pebVar, int i) {
+    public yh7(p1c p1cVar, y1c y1cVar, x1c x1cVar) {
         boolean z;
-        byte b;
-        this.a = pebVar;
-        this.b = i;
-        if ((i & 256) != 0) {
+        g6c g6cVar;
+        this.a = p1cVar;
+        this.b = y1cVar;
+        this.c = x1cVar;
+        int i = p1cVar.b;
+        ko4 ko4Var = p1cVar.g;
+        if (i == 2) {
             z = true;
         } else {
             z = false;
         }
-        this.c = z;
-        no5 no5Var = po5.b;
-        this.m = j99.e;
-        if ((i & 4) != 0) {
-            b = 3;
+        this.e = z;
+        this.f = Objects.equals(ko4Var.t, "application/x-itut-t35");
+        if ("audio/true-hd".equals(ko4Var.t)) {
+            g6cVar = new g6c();
         } else {
-            b = 0;
+            g6cVar = null;
         }
-        this.n = b;
-        this.i = new gz9();
-        this.j = new ArrayList();
-        this.g = new ey7(16);
-        this.h = new ArrayDeque();
-        this.d = new ey7(rfd.a);
-        this.e = new ey7(6);
-        this.f = new ey7();
-        this.s = -1;
-        this.F = g84.v;
-        this.G = new xh7[0];
-        this.k = new ArrayList();
-        this.l = new ArrayList();
-    }
-
-    @Override
-    public final int b(defpackage.f84 r44, defpackage.v11 r45) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yh7.b(f84, v11):int");
-    }
-
-    @Override
-    public final boolean c(f84 f84Var) {
-        j99 j99Var;
-        una a = qhd.a(f84Var, false);
-        if (a != null) {
-            j99Var = po5.u(a);
-        } else {
-            no5 no5Var = po5.b;
-            j99Var = j99.e;
-        }
-        this.m = j99Var;
-        if (a != null) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void d(long j, long j2) {
-        xh7[] xh7VarArr;
-        this.h.clear();
-        this.q = 0;
-        this.s = -1;
-        this.t = 0;
-        this.u = 0;
-        this.v = 0;
-        this.w = false;
-        this.B = false;
-        this.C = 0;
-        this.D = 0;
-        this.k.clear();
-        this.l.clear();
-        if (j == 0) {
-            if (this.n != 3) {
-                this.n = (byte) 0;
-                this.q = 0;
-                return;
-            }
-            gz9 gz9Var = this.i;
-            gz9Var.a.clear();
-            gz9Var.b = (byte) 0;
-            this.j.clear();
-            return;
-        }
-        for (xh7 xh7Var : this.G) {
-            y1c y1cVar = xh7Var.b;
-            int a = y1cVar.a(j2);
-            if (a == -1) {
-                a = y1cVar.b(j2);
-            }
-            xh7Var.g = a;
-            g6c g6cVar = xh7Var.d;
-            if (g6cVar != null) {
-                g6cVar.b = false;
-                g6cVar.c = 0;
-            }
-        }
-    }
-
-    @Override
-    public final List e() {
-        return this.m;
-    }
-
-    @Override
-    public final void f(g84 g84Var) {
-        if ((this.b & 16) == 0) {
-            g84Var = new vh4(g84Var, this.a);
-        }
-        this.F = g84Var;
-    }
-
-    public final void g(long r48) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yh7.g(long):void");
-    }
-
-    @Override
-    public final e84 a() {
-        return this;
-    }
-
-    @Override
-    public final void release() {
+        this.d = g6cVar;
     }
 }

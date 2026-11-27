@@ -27,8 +27,8 @@ public final class km0 extends la {
     public km0(vnb vnbVar) {
         this.d = vnbVar;
         te2 te2Var = new te2(this, (byte) 5);
-        jf7 Y = jf7.Y(yac.t0);
-        Y.a.c(new a30(Y, te2Var, (byte) 8));
+        kf7 a0 = kf7.a0(yac.t0);
+        a0.a.c(new a30(a0, te2Var, (byte) 8));
     }
 
     @Override
@@ -368,9 +368,9 @@ public final class km0 extends la {
                 break;
             case 4:
                 int i2 = aob.a7;
-                View rcaVar = new rca(context, aob.v0(i2, vnbVar), 0);
-                yob.h(i2, vnbVar, rcaVar);
-                xyaVar = rcaVar;
+                View scaVar = new sca(context, aob.v0(i2, vnbVar), 0);
+                yob.h(i2, vnbVar, scaVar);
+                xyaVar = scaVar;
                 break;
             case 5:
                 xyaVar = new dna(context, vnbVar);

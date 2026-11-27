@@ -127,7 +127,7 @@ public final class wd3 implements Runnable {
                         j = j2;
                     } else {
                         uc7 messagesController2 = uj3Var4.getMessagesController();
-                        jf7 messagesStorage = messagesController2.getMessagesStorage();
+                        kf7 messagesStorage = messagesController2.getMessagesStorage();
                         j = j2;
                         messagesStorage.a.c(new ue2(messagesStorage, j, new y97(messagesController2, j2), (byte) 5));
                     }
@@ -148,7 +148,7 @@ public final class wd3 implements Runnable {
                 if (tLObject instanceof TL_bots.popularAppBots) {
                     TL_bots.popularAppBots popularappbots = (TL_bots.popularAppBots) tLObject;
                     uc7.s1(i5).j4(popularappbots.users, false);
-                    jf7.Y(i5).j1(popularappbots.users, null, false, true);
+                    kf7.a0(i5).n1(popularappbots.users, null, false, true);
                     arrayList3.addAll(popularappbots.users);
                     String str = popularappbots.next_offset;
                     mk3Var.g = str;
@@ -170,8 +170,8 @@ public final class wd3 implements Runnable {
                         ArrayList arrayList4 = new ArrayList();
                         for (int i6 = 0; i6 < arrayList3.size(); i6 = dze.c(i6, 1, ((TLRPC.User) arrayList3.get(i6)).id, arrayList4)) {
                         }
-                        jf7 Y = jf7.Y(i5);
-                        Y.a.c(new da7(mk3Var, Y, arrayList4, currentTimeMillis, str3, (byte) 5));
+                        kf7 a0 = kf7.a0(i5);
+                        a0.a.c(new da7(mk3Var, a0, arrayList4, currentTimeMillis, str3, (byte) 5));
                     }
                     mk3Var.c = false;
                     ik3Var.run();
@@ -221,7 +221,7 @@ public final class wd3 implements Runnable {
                 gx9Var2.getClass();
                 try {
                     sb.insert(0, "DELETE FROM search_recent WHERE ");
-                    jf7.Y(gx9Var2.t0).b.executeFast(sb.toString()).stepThis().dispose();
+                    kf7.a0(gx9Var2.t0).b.executeFast(sb.toString()).stepThis().dispose();
                     return;
                 } catch (Exception e2) {
                     cc4.g(e2, true);
@@ -354,7 +354,7 @@ public final class wd3 implements Runnable {
                     int i13 = zw3.C1;
                     uc7.s1(zw3Var.a).j4(tL_contacts_resolvedPeer.users, false);
                     uc7.s1(zw3Var.a).c4(tL_contacts_resolvedPeer.chats, false);
-                    jf7.Y(zw3Var.a).j1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
+                    kf7.a0(zw3Var.a).n1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                 }
                 fw3Var.n = true;
                 fw3Var.F();

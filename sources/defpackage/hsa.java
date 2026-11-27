@@ -64,7 +64,7 @@ public final class hsa implements pcc {
         final TLRPC.Document document = tL_starGiftUnique.getDocument();
         final int i2 = wuaVar.a;
         c C = c.C(i2);
-        v58 v58Var = new v58(wuaVar, l01Var, this.g, (byte) 8);
+        w58 w58Var = new w58(wuaVar, l01Var, this.g, (byte) 8);
         int i3 = (j > e ? 1 : (j == e ? 0 : -1));
         final boolean z = this.h;
         final String str = this.i;
@@ -128,7 +128,7 @@ public final class hsa implements pcc {
             if (pccVar != null) {
                 rx1Var = new rx1(C, pccVar, (byte) 27);
             }
-            C.o0(user, str3, 0L, null, null, this.f, null, v58Var, rx1Var, i4, null, null);
+            C.o0(user, str3, 0L, null, null, this.f, null, w58Var, rx1Var, i4, null, null);
         } catch (Exception e2) {
             c.n("depositNFT: invalid payload", e2);
             if (e2.getMessage() == null) {
@@ -136,7 +136,7 @@ public final class hsa implements pcc {
             } else {
                 message = e2.getMessage();
             }
-            v58Var.a(message);
+            w58Var.a(message);
         }
     }
 }

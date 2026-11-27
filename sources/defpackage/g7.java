@@ -66,7 +66,7 @@ public final class g7 extends LinearLayout {
                 float d = ((mm) this.b).d(k1cVar.y);
                 if (d > 0.0f) {
                     if (k1cVar.c == null) {
-                        k1cVar.c = new sca(this);
+                        k1cVar.c = new tca(this);
                     }
                     canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
                     k1cVar.c.a(canvas, d);

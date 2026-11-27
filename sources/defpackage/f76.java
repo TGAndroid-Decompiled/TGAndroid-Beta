@@ -76,7 +76,7 @@ public final class f76 implements pc0 {
                                 jo4 jo4Var = new jo4();
                                 jo4Var.z = o3;
                                 jo4Var.A = o4;
-                                jo4Var.s = dg7.n(str2);
+                                jo4Var.s = eg7.n(str2);
                                 rcbVar = new rcb(new ko4(jo4Var));
                                 break;
                             }
@@ -115,7 +115,7 @@ public final class f76 implements pc0 {
                                         i2 = 0;
                                     }
                                     jo4 jo4Var2 = new jo4();
-                                    jo4Var2.s = dg7.n(str);
+                                    jo4Var2.s = eg7.n(str);
                                     jo4Var2.M = t2;
                                     jo4Var2.O = o6;
                                     if (str.equals("audio/raw") && F != 0) {

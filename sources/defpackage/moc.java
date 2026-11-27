@@ -10,7 +10,7 @@ public abstract class moc {
     public static final lo5 d = lo5.c(2, 1, 6, 5, 3, 4);
     public static final lo5 e = lo5.c(2, 1, 7, 5, 6, 3, 4);
 
-    public static uf7 a(List list) {
+    public static vf7 a(List list) {
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < list.size(); i++) {
             String str = (String) list.get(i);
@@ -31,6 +31,6 @@ public abstract class moc {
         if (arrayList.isEmpty()) {
             return null;
         }
-        return new uf7(arrayList);
+        return new vf7(arrayList);
     }
 }

@@ -103,14 +103,14 @@ public final class l63 implements View.OnClickListener {
                 return;
             default:
                 boolean[] zArr3 = (boolean[]) obj6;
-                jl7[] jl7VarArr = (jl7[]) obj5;
+                kl7[] kl7VarArr = (kl7[]) obj5;
                 vnb vnbVar2 = (vnb) obj4;
                 tpa tpaVar = (tpa) obj3;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj2;
                 String str = (String) obj;
                 if (!zArr3[0]) {
                     zArr3[0] = true;
-                    nu0 nu0Var = new nu0(zArr3, jl7VarArr, vnbVar2, tpaVar, (byte) 16);
+                    nu0 nu0Var = new nu0(zArr3, kl7VarArr, vnbVar2, tpaVar, (byte) 16);
                     if (wallettransaction.comment_encrypted_preparing) {
                         nu0Var.a(wallettransaction.comment, null);
                         return;
@@ -145,9 +145,9 @@ public final class l63 implements View.OnClickListener {
         this.n = animatorSetArr;
     }
 
-    public l63(boolean[] zArr, jl7[] jl7VarArr, vnb vnbVar, tpa tpaVar, TL_wallet.walletTransaction wallettransaction, int i, String str) {
+    public l63(boolean[] zArr, kl7[] kl7VarArr, vnb vnbVar, tpa tpaVar, TL_wallet.walletTransaction wallettransaction, int i, String str) {
         this.c = zArr;
-        this.d = jl7VarArr;
+        this.d = kl7VarArr;
         this.e = vnbVar;
         this.f = tpaVar;
         this.h = wallettransaction;

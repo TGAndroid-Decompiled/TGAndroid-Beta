@@ -1322,7 +1322,7 @@ public final class k3b extends FrameLayout implements fn7 {
                 if (eq3Var != null) {
                     eq3Var.setProgress(1.0f);
                 }
-                hl.d3(new me7(this, i, (byte) 19), 450L);
+                hl.d3(new oe7(this, i, (byte) 19), 450L);
                 rx1 rx1Var2 = i3bVar.n;
                 if (rx1Var2 != null) {
                     rx1Var2.a(Boolean.TRUE);
@@ -2269,7 +2269,7 @@ public final class k3b extends FrameLayout implements fn7 {
     public final void l(Bitmap bitmap, int i, int i2, int i3, ea8 ea8Var) {
         int i4;
         int i5;
-        ri7 ri7Var;
+        si7 si7Var;
         if (i2 <= 0) {
             i4 = hl.q.x;
         } else {
@@ -2312,10 +2312,10 @@ public final class k3b extends FrameLayout implements fn7 {
             if (this.d0 == null) {
                 lm5 lm5Var = lm5.b;
                 xve.i(lm5Var, "options cannot be null");
-                synchronized (ri7.class) {
-                    ri7Var = (ri7) jg7.c().a(ri7.class);
+                synchronized (si7.class) {
+                    si7Var = (si7) kg7.c().a(si7.class);
                 }
-                vw8 vw8Var = (vw8) ri7Var.a.get(lm5.class);
+                vw8 vw8Var = (vw8) si7Var.a.get(lm5.class);
                 xve.h(vw8Var);
                 asd asdVar = (asd) vw8Var.get();
                 asdVar.getClass();

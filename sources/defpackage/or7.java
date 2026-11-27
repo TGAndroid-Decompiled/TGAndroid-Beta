@@ -20,7 +20,7 @@ public final class or7 extends az5 implements ur4 {
     public final Object invoke(Object obj) {
         Object obj2;
         byte b = this.b;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         vr7 vr7Var = this.c;
         Object obj3 = null;
         switch (b) {
@@ -46,7 +46,7 @@ public final class or7 extends az5 implements ur4 {
                     kq4Var.x();
                     kq4Var.y(new jq4(kq4Var), false);
                 }
-                return f9cVar;
+                return g9cVar;
             default:
                 hd0 hd0Var = (hd0) obj;
                 hd0Var.getClass();
@@ -100,7 +100,7 @@ public final class or7 extends az5 implements ur4 {
                         }
                     }
                 }
-                return f9cVar;
+                return g9cVar;
         }
     }
 }

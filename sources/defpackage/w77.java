@@ -34,14 +34,14 @@ public final class w77 implements Runnable {
             case 0:
                 uc7 uc7Var = this.b;
                 boolean[] zArr = (boolean[]) this.f;
-                jf7 jf7Var = (jf7) this.h;
+                kf7 kf7Var = (kf7) this.h;
                 long j = this.c;
                 ?? r8 = (Runnable[]) this.n;
                 long j2 = this.e;
                 int i2 = this.d;
                 jc7 jc7Var = (jc7) this.r;
                 if (!zArr[0]) {
-                    hl.c3(new qe(uc7Var, zArr, jf7Var.N(j), r8, j2, i2, jc7Var, (byte) 3));
+                    hl.c3(new qe(uc7Var, zArr, kf7Var.P(j), r8, j2, i2, jc7Var, (byte) 3));
                     return;
                 }
                 return;
@@ -62,9 +62,9 @@ public final class w77 implements Runnable {
                         int i4 = i + 1;
                         TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
                         ArrayList arrayList2 = arrayList;
-                        long[] X1 = uc7Var2.getMessagesStorage().X1(tL_updateMessageID.random_id, -j3, null, tL_updateMessageID.id, 0, -1, 0);
-                        if (X1 != null) {
-                            sparseArray.put(tL_updateMessageID.id, X1);
+                        long[] c2 = uc7Var2.getMessagesStorage().c2(tL_updateMessageID.random_id, -j3, null, tL_updateMessageID.id, 0, -1, 0);
+                        if (c2 != null) {
+                            sparseArray.put(tL_updateMessageID.id, c2);
                         }
                         i = i4;
                         arrayList = arrayList2;
@@ -78,10 +78,10 @@ public final class w77 implements Runnable {
         }
     }
 
-    public w77(uc7 uc7Var, boolean[] zArr, jf7 jf7Var, long j, Runnable[] runnableArr, long j2, int i, jc7 jc7Var) {
+    public w77(uc7 uc7Var, boolean[] zArr, kf7 kf7Var, long j, Runnable[] runnableArr, long j2, int i, jc7 jc7Var) {
         this.b = uc7Var;
         this.f = zArr;
-        this.h = jf7Var;
+        this.h = kf7Var;
         this.c = j;
         this.n = runnableArr;
         this.e = j2;

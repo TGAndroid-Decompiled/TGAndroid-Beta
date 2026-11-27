@@ -15,7 +15,7 @@ public final class l3 extends d3 implements ListIterator {
         m3 m3Var = this.e;
         boolean isEmpty = m3Var.isEmpty();
         c().add(obj);
-        ((fj7) m3Var.h).f++;
+        ((gj7) m3Var.h).f++;
         if (isEmpty) {
             m3Var.h();
         }

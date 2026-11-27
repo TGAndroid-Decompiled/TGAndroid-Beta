@@ -60,19 +60,19 @@ public final class gn6 implements Runnable {
                 }
                 return;
             default:
-                jf7 jf7Var = (jf7) this.e;
+                kf7 kf7Var = (kf7) this.e;
                 int i3 = this.b;
                 long j2 = this.c;
                 int i4 = this.d;
                 try {
-                    SQLiteDatabase sQLiteDatabase = jf7Var.b;
+                    SQLiteDatabase sQLiteDatabase = kf7Var.b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("UPDATE OR REPLACE widget_state SET mid = " + i3 + " WHERE uid = " + j2 + " AND mid = " + i4).stepThis().dispose();
-                    SQLiteDatabase sQLiteDatabase2 = jf7Var.b;
+                    SQLiteDatabase sQLiteDatabase2 = kf7Var.b;
                     sQLiteDatabase2.executeFast("UPDATE OR REPLACE widget_heights SET mid = " + i3 + " WHERE uid = " + j2 + " AND mid = " + i4).stepThis().dispose();
                     return;
                 } catch (Exception e2) {
-                    jf7Var.n(e2, true);
+                    kf7Var.p(e2, true);
                     return;
                 }
         }

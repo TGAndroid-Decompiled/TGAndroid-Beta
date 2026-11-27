@@ -8,7 +8,7 @@ public final class ed4 implements tj2 {
     public final nr5 c;
     public final ad4 d;
     public final AtomicBoolean e;
-    public final wj7 f;
+    public final xj7 f;
 
     public ed4(File file, s8a s8aVar, nr5 nr5Var, ad4 ad4Var) {
         s8aVar.getClass();
@@ -18,7 +18,7 @@ public final class ed4 implements tj2 {
         this.c = nr5Var;
         this.d = ad4Var;
         this.e = new AtomicBoolean(false);
-        this.f = new wj7();
+        this.f = new xj7();
     }
 
     public final java.lang.Object a(defpackage.x73 r8, defpackage.ax2 r9) {

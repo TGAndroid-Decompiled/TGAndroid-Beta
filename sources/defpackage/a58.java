@@ -1,44 +1,17 @@
 package defpackage;
-
-import org.telegram.tgnet.tl.TL_stories;
-public final class a58 implements pcc {
+public final class a58 implements Runnable {
     public final byte a;
-    public final o68 b;
+    public final Object b;
+    public final Object c;
 
-    public a58(o68 o68Var, byte b) {
+    public a58(Object obj, Object obj2, byte b) {
         this.a = b;
-        this.b = o68Var;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        o68 o68Var = this.b;
-        switch (b) {
-            case 0:
-                o68Var.getClass();
-                o68Var.u3 = ((Long) obj).longValue();
-                g58 g58Var = o68Var.L1;
-                if (g58Var != null) {
-                    g58Var.P(true);
-                    o68Var.L1.K2();
-                }
-                o68Var.h0(true);
-                return;
-            default:
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus == null) {
-                    lcb lcbVar = o68Var.t0;
-                    if (lcbVar != null) {
-                        lcbVar.k1 = false;
-                        lcbVar.U();
-                        return;
-                    }
-                    return;
-                }
-                o68Var.s3 = tL_premium_boostsStatus;
-                uc7.s1(o68Var.m2).G0().b(o68Var.l1, tL_premium_boostsStatus, new v35(o68Var, tL_premium_boostsStatus, (byte) 18));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.a58.run():void");
     }
 }

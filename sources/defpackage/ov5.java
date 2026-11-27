@@ -20,7 +20,7 @@ public final class ov5 extends fe9 implements is4 {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((ov5) create((g8a) obj, (zw2) obj2)).invokeSuspend(f9c.a);
+        return ((ov5) create((g8a) obj, (zw2) obj2)).invokeSuspend(g9c.a);
     }
 
     @Override

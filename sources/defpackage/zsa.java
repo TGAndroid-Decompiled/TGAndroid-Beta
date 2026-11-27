@@ -64,13 +64,13 @@ public final class zsa extends kea {
 
     @Override
     public final void N0(View view) {
-        kbb kbbVar;
+        lbb lbbVar;
         LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity != null) {
             if (view instanceof nea) {
-                kbbVar = mbb.b((nea) view);
+                lbbVar = nbb.b((nea) view);
             } else {
-                kbbVar = null;
+                lbbVar = null;
             }
             ArrayList arrayList = new ArrayList();
             wua wuaVar = this.U2;
@@ -93,9 +93,9 @@ public final class zsa extends kea {
             } else {
                 return;
             }
-            rbb C = rbb.C(launchActivity, wuaVar.a);
+            sbb C = sbb.C(launchActivity, wuaVar.a);
             C.S = new yt1(wuaVar, C, view, (byte) 1);
-            C.T(kbbVar, c8b.x(arrayList));
+            C.T(lbbVar, c8b.x(arrayList));
         }
     }
 }

@@ -2129,7 +2129,6 @@ public final class R {
         public static final int news_compact = 0x7f0806c4;
         public static final int news_expanded = 0x7f0806c5;
         public static final int news_menu_arrow = 0x7f0806c6;
-        public static final int news_menu_plus = 0x7f0806c7;
         public static final int news_muted = 0x7f0806c8;
         public static final int news_plus = 0x7f0806c9;
         public static final int news_removed = 0x7f0806cb;

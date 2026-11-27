@@ -25,7 +25,7 @@ import org.telegram.ui.Components.AnimatedArrowDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.m;
-public final class o implements fd, RequestTimeDelegate, es, s69, wic, z28, bf7, b7c, lz0, pz0, RequestDelegateTimestamp {
+public final class o implements fd, RequestTimeDelegate, es, s69, wic, z28, cf7, b7c, lz0, pz0, RequestDelegateTimestamp {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -322,7 +322,7 @@ public final class o implements fd, RequestTimeDelegate, es, s69, wic, z28, bf7,
                 ((y0) obj2).a(((EditText) obj).getText().toString());
                 return;
             case 5:
-                SharedPreferences.Editor edit = uc7.s1(yac.t0).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(yac.t0).X3.edit();
                 edit.remove("color_" + ((String) obj2));
                 edit.commit();
                 ((Runnable) obj).run();
@@ -332,7 +332,7 @@ public final class o implements fd, RequestTimeDelegate, es, s69, wic, z28, bf7,
                 ((pt2) obj).accept(Boolean.FALSE);
                 return;
             case 7:
-                df7 df7Var = (df7) obj;
+                ef7 ef7Var = (ef7) obj;
                 int i4 = ((int[]) obj2)[0];
                 if (i4 == 0) {
                     i2 = 900;
@@ -343,7 +343,7 @@ public final class o implements fd, RequestTimeDelegate, es, s69, wic, z28, bf7,
                         i2 = Integer.MAX_VALUE;
                     }
                 }
-                df7Var.a(i2);
+                ef7Var.a(i2);
                 return;
             case 8:
                 ni niVar = (ni) obj2;
@@ -378,13 +378,13 @@ public final class o implements fd, RequestTimeDelegate, es, s69, wic, z28, bf7,
                 }
                 if (i5 != encryptedChat.ttl) {
                     wx9.i(yac.t0).z(encryptedChat, null);
-                    jf7 Y = jf7.Y(yac.t0);
-                    Y.a.c(new id7(Y, encryptedChat, (byte) 0));
+                    kf7 a0 = kf7.a0(yac.t0);
+                    a0.a.c(new kd7(a0, encryptedChat, (byte) 0));
                     return;
                 }
                 return;
             case 10:
-                ((bf7) obj2).A(((boolean[]) obj)[0]);
+                ((cf7) obj2).A(((boolean[]) obj)[0]);
                 return;
             case 11:
                 ((SharedPreferences) obj2).edit().putBoolean("proxycheckstatusip", true).apply();

@@ -30,7 +30,7 @@ public final class kp7 implements oj3, fd, yu8 {
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.a;
         notificationsCustomSettingsActivity.getClass();
         int i3 = 0;
-        long j = ((if7) arrayList.get(0)).a;
+        long j = ((jf7) arrayList.get(0)).a;
         if (notificationsCustomSettingsActivity.s == 3) {
             ArrayList arrayList2 = notificationsCustomSettingsActivity.w;
             if (arrayList2 != null) {
@@ -93,7 +93,7 @@ public final class kp7 implements oj3, fd, yu8 {
             } else {
                 edit.remove("notify2_" + vp7Var.d).remove("custom_" + vp7Var.d);
             }
-            notificationsCustomSettingsActivity.getMessagesStorage().B1(vp7Var.d, 0L);
+            notificationsCustomSettingsActivity.getMessagesStorage().G1(vp7Var.d, 0L);
             TLRPC.Dialog dialog = (TLRPC.Dialog) notificationsCustomSettingsActivity.getMessagesController().R.f(vp7Var.d);
             if (dialog != null) {
                 dialog.notify_settings = new TLRPC.TL_peerNotifySettings();

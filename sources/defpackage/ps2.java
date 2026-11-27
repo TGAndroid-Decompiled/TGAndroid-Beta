@@ -23,7 +23,7 @@ public final class ps2 extends z01 {
     @Override
     public final Object a(zw2 zw2Var, Object obj) {
         if (!(G(obj, true) instanceof nj1)) {
-            return f9c.a;
+            return g9c.a;
         }
         throw n();
     }

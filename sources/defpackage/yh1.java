@@ -237,7 +237,7 @@ public final class yh1 implements Runnable {
                 ((ProfileActivity) yn5Var).C2(this.c, this.d, this.e, this.h, this.n, this.b, this.f);
                 return;
             default:
-                ((tba) yn5Var).e0(this.c, this.d, this.e, this.h, this.n, this.b, this.f);
+                ((uba) yn5Var).e0(this.c, this.d, this.e, this.h, this.n, this.b, this.f);
                 return;
         }
     }

@@ -1,42 +1,57 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class o3b extends a8c {
-    public static final int b = 0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class o3b extends AnimatorListenerAdapter {
+    public final byte a;
+    public final boolean b;
+    public final q3b c;
 
-    static {
-        a8c.h(new a8c());
+    public o3b(q3b q3bVar, boolean z, byte b) {
+        this.a = b;
+        this.c = q3bVar;
+        this.b = z;
     }
 
     @Override
-    public final void a(d79 d79Var, View view, b8c b8cVar) {
-        boolean z;
-        p3b p3bVar = (p3b) view;
-        boolean z2 = false;
-        if (b8cVar != null && b8cVar.e) {
-            z = true;
-        } else {
-            z = false;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        q3b q3bVar = this.c;
+        boolean z = this.b;
+        switch (b) {
+            case 0:
+                if (!z) {
+                    q3bVar.h.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!z) {
+                    q3bVar.y.setVisibility(4);
+                    return;
+                }
+                return;
         }
-        p3bVar.b(z, true);
-        if ((d79Var instanceof q9c) && ((q9c) d79Var).k3) {
-            z2 = true;
-        }
-        p3bVar.c(z2);
     }
 
     @Override
-    public final void b(android.view.View r4, defpackage.b8c r5, boolean r6, defpackage.l9c r7, defpackage.q9c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o3b.b(android.view.View, b8c, boolean, l9c, q9c):void");
-    }
-
-    @Override
-    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
-        p3b p3bVar = new p3b(context, 1);
-        if (d79Var instanceof q9c) {
-            p3bVar.setOnReorderButtonTouchListener(new g8((q9c) d79Var, p3bVar, (byte) 7));
+    public final void onAnimationStart(Animator animator) {
+        byte b = this.a;
+        q3b q3bVar = this.c;
+        boolean z = this.b;
+        switch (b) {
+            case 0:
+                if (z) {
+                    q3bVar.h.setVisibility(0);
+                    return;
+                }
+                return;
+            default:
+                if (z) {
+                    q3bVar.y.setVisibility(0);
+                    return;
+                }
+                return;
         }
-        return p3bVar;
     }
 }

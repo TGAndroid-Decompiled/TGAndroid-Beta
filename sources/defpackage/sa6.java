@@ -1,5 +1,5 @@
 package defpackage;
-public final class sa6 extends qj7 {
+public final class sa6 extends rj7 {
     public final m8d l;
     public i36 m;
     public n31 n;

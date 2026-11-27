@@ -41,8 +41,8 @@ public final class re2 implements Runnable {
         this.f = pccVar;
     }
 
-    public re2(jf7 jf7Var, boolean z, long j, Integer[] numArr, CountDownLatch countDownLatch) {
-        this.e = jf7Var;
+    public re2(kf7 kf7Var, boolean z, long j, Integer[] numArr, CountDownLatch countDownLatch) {
+        this.e = kf7Var;
         this.d = z;
         this.c = j;
         this.f = numArr;

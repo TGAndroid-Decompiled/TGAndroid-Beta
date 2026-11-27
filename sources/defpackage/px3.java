@@ -13,7 +13,7 @@ public final class px3 {
     }
 
     public final int a(int i) {
-        xf7 b = b();
+        yf7 b = b();
         int a = b.a(16);
         if (a != 0) {
             ByteBuffer byteBuffer = b.b;
@@ -23,35 +23,35 @@ public final class px3 {
         return 0;
     }
 
-    public final xf7 b() {
+    public final yf7 b() {
         ThreadLocal threadLocal = d;
-        xf7 xf7Var = (xf7) threadLocal.get();
-        xf7 xf7Var2 = xf7Var;
-        if (xf7Var == null) {
+        yf7 yf7Var = (yf7) threadLocal.get();
+        yf7 yf7Var2 = yf7Var;
+        if (yf7Var == null) {
             ?? zhbVar = new zhb();
             threadLocal.set(zhbVar);
-            xf7Var2 = zhbVar;
+            yf7Var2 = zhbVar;
         }
-        yf7 yf7Var = (yf7) this.b.a;
-        int a = yf7Var.a(6);
+        zf7 zf7Var = (zf7) this.b.a;
+        int a = zf7Var.a(6);
         if (a != 0) {
-            int i = a + yf7Var.a;
-            int i2 = yf7Var.b.getInt(i) + i + 4 + (this.a << 2);
-            int i3 = yf7Var.b.getInt(i2) + i2;
-            ByteBuffer byteBuffer = yf7Var.b;
-            xf7Var2.b = byteBuffer;
+            int i = a + zf7Var.a;
+            int i2 = zf7Var.b.getInt(i) + i + 4 + (this.a << 2);
+            int i3 = zf7Var.b.getInt(i2) + i2;
+            ByteBuffer byteBuffer = zf7Var.b;
+            yf7Var2.b = byteBuffer;
             if (byteBuffer != null) {
-                xf7Var2.a = i3;
+                yf7Var2.a = i3;
                 int i4 = i3 - byteBuffer.getInt(i3);
-                xf7Var2.c = i4;
-                xf7Var2.d = xf7Var2.b.getShort(i4);
-                return xf7Var2;
+                yf7Var2.c = i4;
+                yf7Var2.d = yf7Var2.b.getShort(i4);
+                return yf7Var2;
             }
-            xf7Var2.a = 0;
-            xf7Var2.c = 0;
-            xf7Var2.d = 0;
+            yf7Var2.a = 0;
+            yf7Var2.c = 0;
+            yf7Var2.d = 0;
         }
-        return xf7Var2;
+        return yf7Var2;
     }
 
     public final String toString() {
@@ -60,7 +60,7 @@ public final class px3 {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
         sb.append(", id:");
-        xf7 b = b();
+        yf7 b = b();
         int a = b.a(4);
         if (a != 0) {
             i = b.b.getInt(a + b.a);
@@ -69,7 +69,7 @@ public final class px3 {
         }
         sb.append(Integer.toHexString(i));
         sb.append(", codepoints:");
-        xf7 b2 = b();
+        yf7 b2 = b();
         int a2 = b2.a(16);
         if (a2 != 0) {
             int i3 = a2 + b2.a;

@@ -77,7 +77,7 @@ public final class an1 implements vh8, oj3 {
         LaunchActivity launchActivity = (LaunchActivity) this.c;
         String str = (String) this.d;
         String str2 = LaunchActivity.C1;
-        long j = ((if7) arrayList.get(0)).a;
+        long j = ((jf7) arrayList.get(0)).a;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
         bundle.putBoolean("hasUrl", this.a);

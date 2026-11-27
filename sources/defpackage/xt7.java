@@ -11,8 +11,8 @@ public final class xt7 extends e {
     public final int c;
     public final int d;
     public final int e;
-    public fe7 f;
-    public pl7 h;
+    public ge7 f;
+    public ql7 h;
     public q9c n;
     public boolean r;
 
@@ -73,9 +73,9 @@ public final class xt7 extends e {
 
     @Override
     public final void onBecomeFullyHidden() {
-        pl7 pl7Var = this.h;
-        if (pl7Var != null) {
-            pl7Var.run();
+        ql7 ql7Var = this.h;
+        if (ql7Var != null) {
+            ql7Var.run();
         }
         super.onBecomeFullyHidden();
     }
@@ -87,9 +87,9 @@ public final class xt7 extends e {
             ArrayList arrayList = this.b;
             if (!arrayList.isEmpty()) {
                 arrayList.clear();
-                fe7 fe7Var = this.f;
-                if (fe7Var != null) {
-                    fe7Var.run();
+                ge7 ge7Var = this.f;
+                if (ge7Var != null) {
+                    ge7Var.run();
                 }
             }
         }

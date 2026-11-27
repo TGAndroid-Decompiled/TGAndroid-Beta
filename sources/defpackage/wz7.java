@@ -19,18 +19,18 @@ public final class wz7 implements RequestDelegate {
         switch (b) {
             case 0:
                 b18Var.getClass();
-                hl.c3(new fd7(b18Var, tL_error, tLObject, (byte) 17));
+                hl.c3(new gd7(b18Var, tL_error, tLObject, (byte) 17));
                 return;
             case 1:
                 b18Var.getClass();
-                hl.c3(new pl7(b18Var, tL_error, (byte) 21));
+                hl.c3(new ql7(b18Var, tL_error, (byte) 22));
                 return;
             case 2:
                 b18Var.getClass();
                 hl.c3(new sz7(b18Var, (byte) 5));
                 return;
             default:
-                hl.c3(new pl7(b18Var, tLObject, (byte) 20));
+                hl.c3(new ql7(b18Var, tLObject, (byte) 21));
                 return;
         }
     }

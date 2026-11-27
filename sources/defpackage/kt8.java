@@ -44,8 +44,8 @@ public final class kt8 implements View.OnClickListener {
                     ejaVar.U0(this.c, ejaVar.m1, eVar);
                     return;
                 }
-                eVar.getMessagesController().X3.edit().putBoolean("story_keep", true).apply();
-                rbb.C(eVar.getParentActivity(), eVar.getCurrentAccount()).Q(null);
+                eVar.getMessagesController().Y3.edit().putBoolean("story_keep", true).apply();
+                sbb.C(eVar.getParentActivity(), eVar.getCurrentAccount()).Q(null);
                 return;
         }
     }

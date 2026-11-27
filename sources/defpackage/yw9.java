@@ -31,7 +31,7 @@ import org.telegram.ui.Wallet.c;
 import org.telegram.ui.d0;
 import org.telegram.ui.e0;
 import org.telegram.utils.twidget.w;
-public final class yw9 implements fd, is6, QuickAckDelegate, bf7, s69, ot2, t69, vh8, yu8, u69, sgb, OnSuccessListener, m0d {
+public final class yw9 implements fd, is6, QuickAckDelegate, cf7, s69, ot2, t69, vh8, yu8, u69, sgb, OnSuccessListener, m0d {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -244,8 +244,8 @@ public final class yw9 implements fd, is6, QuickAckDelegate, bf7, s69, ot2, t69,
                                             id idVar3 = new id(3, w9bVar.J0, r9bVar.getContext());
                                             r9bVar.H = idVar3;
                                             idVar3.q(50L);
-                                            jf7 Y = jf7.Y(w9bVar.a);
-                                            Y.a.c(new y09(r9bVar, M02, Y, j));
+                                            kf7 a0 = kf7.a0(w9bVar.a);
+                                            a0.a.c(new z09(r9bVar, M02, a0, j));
                                         }
                                         if (!TextUtils.isEmpty(r9bVar.J)) {
                                             l9bVar.setText("");
@@ -582,7 +582,7 @@ public final class yw9 implements fd, is6, QuickAckDelegate, bf7, s69, ot2, t69,
                 ConnectionsManager.getInstance(yac.t0).sendRequest(tL_stickers_deleteStickerSet, new xe2((byte) 9));
                 return;
             case 9:
-                ((ThemeActivity) obj2).y0((bcb) obj);
+                ((ThemeActivity) obj2).y0((hab) obj);
                 return;
             case 12:
                 d0 d0Var = (d0) obj2;
@@ -660,7 +660,7 @@ public final class yw9 implements fd, is6, QuickAckDelegate, bf7, s69, ot2, t69,
                 ((gtc) obj2).presentFragment(atcVar);
                 return;
             case 25:
-                ((vlc) obj2).run();
+                ((slc) obj2).run();
                 ((nx0) obj).dismiss();
                 return;
             case 26:

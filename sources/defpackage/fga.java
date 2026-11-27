@@ -5,8 +5,8 @@ import android.graphics.Rect;
 public final class fga extends gv8 {
     public final eja x;
 
-    public fga(eja ejaVar, Context context, q5b q5bVar, ega egaVar) {
-        super(context, q5bVar, egaVar);
+    public fga(eja ejaVar, Context context, r5b r5bVar, ega egaVar) {
+        super(context, r5bVar, egaVar);
         this.x = ejaVar;
     }
 

@@ -59,7 +59,7 @@ public final class ir1 extends vic {
                 }
                 return false;
             case 4:
-                return !((lm7) this.a0).u0(false);
+                return !((lm7) this.a0).t0(false);
             default:
                 return super.f(motionEvent);
         }
@@ -71,7 +71,7 @@ public final class ir1 extends vic {
             case 1:
                 return false;
             case 4:
-                return !((lm7) this.a0).u0(true);
+                return !((lm7) this.a0).t0(true);
             case 7:
                 return false;
             default:
@@ -125,7 +125,7 @@ public final class ir1 extends vic {
             case 4:
                 lm7 lm7Var = (lm7) this.a0;
                 if (lm7Var.M && TextUtils.isEmpty(lm7Var.Q)) {
-                    lm7Var.j0();
+                    lm7Var.i0();
                     return;
                 }
                 return;
@@ -169,7 +169,7 @@ public final class ir1 extends vic {
                 zw3.C1 = ir1Var2.getCurrentPosition();
                 return;
             case 3:
-                ((sk7) obj).b.invalidate();
+                ((tk7) obj).b.invalidate();
                 return;
             case 4:
                 lm7 lm7Var = (lm7) obj;
@@ -192,7 +192,7 @@ public final class ir1 extends vic {
                         cm7Var2.j(abs, i);
                     }
                 }
-                lm7Var.P0();
+                lm7Var.N0();
                 return;
             case 5:
                 h48 h48Var = (h48) obj;

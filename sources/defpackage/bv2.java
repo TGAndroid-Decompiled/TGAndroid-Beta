@@ -81,7 +81,7 @@ public final class bv2 implements Runnable {
                     if (f11.a) {
                         cc4.b("migrated contacts " + hashMap.size() + " of " + sparseArray.size());
                     }
-                    lv2Var.getMessagesStorage().W0(hashMap, true, false);
+                    lv2Var.getMessagesStorage().a1(hashMap, true, false);
                     return;
                 }
                 return;

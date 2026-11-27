@@ -340,7 +340,7 @@ public abstract class b27 extends FrameLayout implements fn7 {
     }
 
     public boolean h() {
-        return this instanceof i58;
+        return this instanceof j58;
     }
 
     public final void o(boolean z) {

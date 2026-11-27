@@ -1,5 +1,5 @@
 package defpackage;
-public final class qg3 implements df7 {
+public final class qg3 implements ef7 {
     public final byte a;
     public final uj3 b;
 

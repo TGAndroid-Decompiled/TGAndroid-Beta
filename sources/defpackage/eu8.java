@@ -107,7 +107,7 @@ public abstract class eu8 extends FrameLayout implements fn7 {
 
     public final boolean b() {
         zwa zwaVar = this.e;
-        if (zwaVar.h() && zwaVar.d().size() < uc7.s1(this.b).k4.z.f()) {
+        if (zwaVar.h() && zwaVar.d().size() < uc7.s1(this.b).l4.z.f()) {
             return true;
         }
         return false;

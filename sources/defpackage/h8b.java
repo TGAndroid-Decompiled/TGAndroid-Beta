@@ -505,10 +505,10 @@ public final class h8b extends FrameLayout {
         Object obj = this.b;
         switch (b) {
             case 1:
-                rbb rbbVar = (rbb) obj;
-                if (getTranslationY() != f && rbbVar.d1 != null) {
+                sbb sbbVar = (sbb) obj;
+                if (getTranslationY() != f && sbbVar.d1 != null) {
                     super.setTranslationY(f);
-                    rbbVar.d1.y();
+                    sbbVar.d1.y();
                     return;
                 }
                 return;

@@ -1,7 +1,7 @@
 package defpackage;
 
 import j$.util.Objects;
-public final class rl5 implements sf7 {
+public final class rl5 implements tf7 {
     public final int a;
     public final String b;
     public final String c;

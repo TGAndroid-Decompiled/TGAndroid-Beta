@@ -80,10 +80,10 @@ public final class z38 extends FrameLayout implements snb {
         } else {
             if (a48Var.n0) {
                 i2 = ((e) h48Var).currentAccount;
-                lc7Var = uc7.s1(i2).E3;
+                lc7Var = uc7.s1(i2).F3;
             } else {
                 i = ((e) h48Var).currentAccount;
-                lc7Var = uc7.s1(i).F3;
+                lc7Var = uc7.s1(i).G3;
             }
             if (lc7Var != null && (d = lc7Var.d(a48Var.h)) != null) {
                 return d.f();

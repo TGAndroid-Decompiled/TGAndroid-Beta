@@ -1,125 +1,70 @@
 package defpackage;
 
 import android.graphics.RectF;
-import android.os.Bundle;
-import android.view.View;
-import java.util.HashSet;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.ProfileActivity;
-public final class fp8 implements View.OnClickListener {
+public final class fp8 implements Runnable {
     public final byte a;
     public final ProfileActivity b;
+    public final TLRPC.TL_error c;
+    public final TLObject d;
+    public final TLRPC.TL_channels_getParticipants e;
 
-    public fp8(ProfileActivity profileActivity, byte b) {
+    public fp8(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, byte b) {
         this.a = b;
         this.b = profileActivity;
+        this.c = tL_error;
+        this.d = tLObject;
+        this.e = tL_channels_getParticipants;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        ProfileActivity profileActivity = this.b;
-        switch (b) {
+    public final void run() {
+        switch (this.a) {
             case 0:
                 RectF rectF = ProfileActivity.Z6;
-                profileActivity.finishPreviewFragment();
-                return;
-            case 1:
-                RectF rectF2 = ProfileActivity.Z6;
-                profileActivity.F3();
-                return;
-            case 2:
-                RectF rectF3 = ProfileActivity.Z6;
-                TLRPC.UserFull userFull = profileActivity.w2;
-                if (userFull != null && userFull.wallet_card != null && profileActivity.getParentActivity() != null) {
-                    profileActivity.showDialog(new sv8(profileActivity, profileActivity.d0, profileActivity.getMessagesController().X1(Long.valueOf(profileActivity.e1)), profileActivity.w2.wallet_card));
-                    return;
-                }
-                return;
-            case 3:
-                RectF rectF4 = ProfileActivity.Z6;
-                profileActivity.t2();
-                return;
-            case 4:
-                RectF rectF5 = ProfileActivity.Z6;
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f1);
-                bundle.putLong("user_id", profileActivity.e1);
-                profileActivity.presentFragment(new rz8(bundle));
-                return;
-            case 5:
-                RectF rectF6 = ProfileActivity.Z6;
-                profileActivity.J2();
-                return;
-            case 6:
-                RectF rectF7 = ProfileActivity.Z6;
-                profileActivity.E3();
-                return;
-            case 7:
-                RectF rectF8 = ProfileActivity.Z6;
-                profileActivity.E3();
-                return;
-            case 8:
-                RectF rectF9 = ProfileActivity.Z6;
-                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
-                    int i = 0;
-                    while (i < profileActivity.getParentLayout().getFragmentStack().size()) {
-                        e eVar = (e) profileActivity.getParentLayout().getFragmentStack().get(i);
-                        if (eVar instanceof uj3) {
-                            uj3 uj3Var = (uj3) eVar;
-                            li3 li3Var = uj3Var.H3;
-                            if (li3Var != null) {
-                                e fragment = li3Var.getFragment();
-                                if ((fragment instanceof tzb) && (-((tzb) fragment).a) == profileActivity.a()) {
-                                    uj3Var.H3.a();
-                                }
+                ProfileActivity profileActivity = this.b;
+                if (this.c == null) {
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
+                    profileActivity.getMessagesController().j4(tL_channels_channelParticipants.users, false);
+                    profileActivity.getMessagesController().c4(tL_channels_channelParticipants.chats, false);
+                    if (tL_channels_channelParticipants.users.size() < 200) {
+                        profileActivity.D1 = true;
+                    }
+                    if (this.e.offset == 0) {
+                        profileActivity.C1.b();
+                        profileActivity.v2.participants = new TLRPC.TL_chatParticipants();
+                        profileActivity.getMessagesStorage().n1(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
+                        kf7 messagesStorage = profileActivity.getMessagesStorage();
+                        messagesStorage.a.c(new te7(messagesStorage, profileActivity.f1, tL_channels_channelParticipants.participants, (byte) 6));
+                    }
+                    for (int i = 0; i < tL_channels_channelParticipants.participants.size(); i++) {
+                        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i);
+                        tL_chatChannelParticipant.channelParticipant = channelParticipant;
+                        tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+                        long B1 = r47.B1(channelParticipant.peer);
+                        tL_chatChannelParticipant.user_id = B1;
+                        tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
+                        if (profileActivity.C1.h(B1) < 0) {
+                            TLRPC.ChatFull chatFull = profileActivity.v2;
+                            if (chatFull.participants == null) {
+                                chatFull.participants = new TLRPC.TL_chatParticipants();
                             }
-                        } else if (eVar instanceof zu1) {
-                            if (((zu1) eVar).a() == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).c0(eVar, false);
-                                i--;
-                            }
-                        } else if (eVar instanceof tzb) {
-                            if ((-((tzb) eVar).a) == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).c0(eVar, false);
-                                i--;
-                            }
-                        } else if ((eVar instanceof ProfileActivity) && eVar != profileActivity) {
-                            ProfileActivity profileActivity2 = (ProfileActivity) eVar;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.q1) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).c0(eVar, false);
-                                i--;
-                            }
+                            profileActivity.v2.participants.participants.add(tL_chatChannelParticipant);
+                            profileActivity.C1.k(tL_chatChannelParticipant.user_id, tL_chatChannelParticipant);
                         }
-                        i++;
                     }
                 }
-                profileActivity.J1 = (byte) 0;
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f1);
-                HashSet hashSet = tzb.s1;
-                profileActivity.presentFragment(tzb.F0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
-                return;
-            case 9:
-                RectF rectF10 = ProfileActivity.Z6;
-                profileActivity.A2();
-                return;
-            case 10:
-                RectF rectF11 = ProfileActivity.Z6;
-                profileActivity.D3();
-                return;
-            case 11:
-                RectF rectF12 = ProfileActivity.Z6;
-                if (profileActivity.s.getTag() == null) {
-                    profileActivity.Y2();
-                    return;
-                }
+                profileActivity.B1 = false;
+                profileActivity.j3();
+                profileActivity.Z3(true, false);
                 return;
             default:
-                RectF rectF13 = ProfileActivity.Z6;
-                profileActivity.X2(view);
+                RectF rectF2 = ProfileActivity.Z6;
+                ProfileActivity profileActivity2 = this.b;
+                profileActivity2.getNotificationCenter().d(new fp8(profileActivity2, this.c, this.d, this.e, (byte) 0));
                 return;
         }
     }

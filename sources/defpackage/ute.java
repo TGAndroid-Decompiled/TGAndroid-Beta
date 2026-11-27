@@ -12,12 +12,12 @@ public abstract class ute {
             Object obj = arrayList.get(i);
             i++;
             String str2 = ((y1c) obj).a.g.t;
-            if (dg7.m(str2)) {
+            if (eg7.m(str2)) {
                 return "video/mp4";
             }
-            if (dg7.i(str2)) {
+            if (eg7.i(str2)) {
                 z = true;
-            } else if (dg7.k(str2)) {
+            } else if (eg7.k(str2)) {
                 if (Objects.equals(str2, "image/heic")) {
                     str = "image/heif";
                 } else if (Objects.equals(str2, "image/avif")) {

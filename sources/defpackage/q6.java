@@ -49,19 +49,19 @@ public final class q6 implements Runnable {
                 return;
             default:
                 try {
-                    ((nk7) this.d).a.bind(new InetSocketAddress(61578));
+                    ((ok7) this.d).a.bind(new InetSocketAddress(61578));
                     this.b = true;
                     do {
                         try {
-                            Socket accept = ((nk7) this.d).a.accept();
+                            Socket accept = ((ok7) this.d).a.accept();
                             accept.setSoTimeout(5000);
                             InputStream inputStream = accept.getInputStream();
-                            nk7 nk7Var = (nk7) this.d;
-                            nk7Var.c.u(new gk7(nk7Var, inputStream, accept));
+                            ok7 ok7Var = (ok7) this.d;
+                            ok7Var.c.u(new hk7(ok7Var, inputStream, accept));
                         } catch (IOException e) {
-                            nk7.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
+                            ok7.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
                         }
-                    } while (!((nk7) this.d).a.isClosed());
+                    } while (!((ok7) this.d).a.isClosed());
                     return;
                 } catch (IOException e2) {
                     this.c = e2;
@@ -70,9 +70,9 @@ public final class q6 implements Runnable {
         }
     }
 
-    public q6(nk7 nk7Var) {
+    public q6(ok7 ok7Var) {
         this.a = (byte) 2;
-        this.d = nk7Var;
+        this.d = ok7Var;
         this.b = false;
     }
 }

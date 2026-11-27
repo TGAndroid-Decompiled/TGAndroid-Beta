@@ -5,12 +5,12 @@ import android.graphics.RectF;
 public final class jx7 implements Runnable {
     public final byte a;
     public final nx7 b;
-    public final tca c;
+    public final uca c;
 
-    public jx7(nx7 nx7Var, tca tcaVar, byte b) {
+    public jx7(nx7 nx7Var, uca ucaVar, byte b) {
         this.a = b;
         this.b = nx7Var;
-        this.c = tcaVar;
+        this.c = ucaVar;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class jx7 implements Runnable {
         boolean z2;
         float f;
         byte b = this.a;
-        tca tcaVar = this.c;
+        uca ucaVar = this.c;
         nx7 nx7Var = this.b;
         switch (b) {
             case 0:
-                nx7Var.c = tcaVar;
+                nx7Var.c = ucaVar;
                 RectF rectF = nx7Var.h;
                 if (rectF == null) {
                     rectF = new RectF();
@@ -37,17 +37,17 @@ public final class jx7 implements Runnable {
                 }
                 return;
             default:
-                if (tcaVar != null && nx7Var.q == 0) {
+                if (ucaVar != null && nx7Var.q == 0) {
                     nx7Var.q = ymb.b(nx7Var.g);
                 }
                 boolean z3 = nx7Var.H;
-                if (tcaVar != null) {
+                if (ucaVar != null) {
                     z = true;
                 } else {
                     z = false;
                 }
                 if (z3 != z) {
-                    if (tcaVar != null) {
+                    if (ucaVar != null) {
                         z2 = true;
                     } else {
                         z2 = false;
@@ -70,7 +70,7 @@ public final class jx7 implements Runnable {
                     nx7Var.K.addListener(new mx7(nx7Var, (byte) 0));
                     nx7Var.K.setInterpolator(k43.h);
                     nx7Var.K.start();
-                    nx7Var.d = tcaVar;
+                    nx7Var.d = ucaVar;
                     xh4 xh4Var2 = nx7Var.a;
                     if (xh4Var2 != null) {
                         xh4Var2.v();
@@ -80,8 +80,8 @@ public final class jx7 implements Runnable {
                         return;
                     }
                     return;
-                } else if (tcaVar != nx7Var.d) {
-                    nx7Var.d = tcaVar;
+                } else if (ucaVar != nx7Var.d) {
+                    nx7Var.d = ucaVar;
                     xh4 xh4Var3 = nx7Var.a;
                     if (xh4Var3 != null) {
                         xh4Var3.v();

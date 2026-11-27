@@ -14,11 +14,11 @@ public final class tu1 implements ResultCallback, fd {
     public final Object d;
     public final Object e;
 
-    public tu1(xu1 xu1Var, ez3 ez3Var, boolean z, hh7 hh7Var, int i) {
+    public tu1(xu1 xu1Var, ez3 ez3Var, boolean z, ih7 ih7Var, int i) {
         this.c = xu1Var;
         this.d = ez3Var;
         this.b = z;
-        this.e = hh7Var;
+        this.e = ih7Var;
         this.a = i;
     }
 
@@ -26,7 +26,7 @@ public final class tu1 implements ResultCallback, fd {
     public final void onComplete(Object obj) {
         xu1 xu1Var = (xu1) this.c;
         ez3 ez3Var = (ez3) this.d;
-        hh7 hh7Var = (hh7) this.e;
+        ih7 ih7Var = (ih7) this.e;
         Pair pair = (Pair) obj;
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
@@ -39,16 +39,16 @@ public final class tu1 implements ResultCallback, fd {
                 }
                 int i = ez3Var.j(this.b ? 1 : 0).settings.intensity;
                 List list = ((avc) pair.second).b;
-                hh7Var.R = list;
+                ih7Var.R = list;
                 long j = xu1Var.G.ob;
                 if (list != null) {
-                    hh7Var.S = new Random(j).nextInt(hh7Var.R.size());
+                    ih7Var.S = new Random(j).nextInt(ih7Var.R.size());
                 }
-                hh7Var.r(i, bitmap);
-                hh7Var.s(this.a);
+                ih7Var.r(i, bitmap);
+                ih7Var.s(this.a);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 xu1Var.i = ofFloat;
-                ofFloat.addUpdateListener(new su1(hh7Var, (byte) 2));
+                ofFloat.addUpdateListener(new su1(ih7Var, (byte) 2));
                 xu1Var.i.setDuration(250L);
                 xu1Var.i.start();
             }

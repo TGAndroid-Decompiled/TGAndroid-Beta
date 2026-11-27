@@ -131,7 +131,7 @@ public class rc5 extends e implements fn7, s84, View.OnClickListener, i1d {
         this.I = bundle.getLong("channelId");
         if (!z && !z2 && !z4) {
             if (z3) {
-                this.L = getMessagesController().k4.E3.f() - 1;
+                this.L = getMessagesController().l4.E3.f() - 1;
             } else {
                 if (i3 == 0) {
                     i = getMessagesController().Q2;
@@ -401,7 +401,7 @@ public class rc5 extends e implements fn7, s84, View.OnClickListener, i1d {
             if (this.n != null) {
                 int intValue = ((Integer) objArr[0]).intValue();
                 int childCount = this.n.getChildCount();
-                int i3 = uc7.r5;
+                int i3 = uc7.s5;
                 if ((intValue & 2) != 0 || (intValue & 1) != 0 || (intValue & 4) != 0) {
                     for (int i4 = 0; i4 < childCount; i4++) {
                         View childAt = this.n.getChildAt(i4);

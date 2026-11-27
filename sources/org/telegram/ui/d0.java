@@ -568,7 +568,7 @@ public final class d0 extends c79 {
                 qobVar = new ilb(context);
                 break;
             case 3:
-                qobVar = new rca(context, (uh9) null);
+                qobVar = new sca(context, (uh9) null);
                 break;
             case 4:
                 frameLayout = new FrameLayout(context);

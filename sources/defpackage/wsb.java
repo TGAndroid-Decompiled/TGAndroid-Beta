@@ -149,7 +149,7 @@ public final class wsb {
         if (!this.b && !this.c) {
             this.b = true;
             int i = this.a;
-            SharedPreferences sharedPreferences = uc7.s1(i).X3;
+            SharedPreferences sharedPreferences = uc7.s1(i).Y3;
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = sharedPreferences.getString("timezones", null);
             int i2 = 0;

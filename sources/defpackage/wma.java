@@ -243,8 +243,8 @@ public class wma extends FrameLayout implements snb {
             this.M = nf9Var;
             addView(nf9Var, 0, tre.c(-1.0f, -1));
         }
-        if (drawable instanceof hh7) {
-            ((hh7) drawable).p(this.M);
+        if (drawable instanceof ih7) {
+            ((ih7) drawable).p(this.M);
         }
         if (this.N) {
             Drawable drawable2 = this.b;
@@ -258,14 +258,14 @@ public class wma extends FrameLayout implements snb {
         }
         if (this.N) {
             Drawable drawable3 = this.b;
-            if (drawable3 instanceof hh7) {
-                ((hh7) drawable3).l();
+            if (drawable3 instanceof ih7) {
+                ((ih7) drawable3).l();
             }
         }
         if (this.N) {
             Drawable drawable4 = this.b;
-            if (drawable4 instanceof hh7) {
-                ((hh7) drawable4).k();
+            if (drawable4 instanceof ih7) {
+                ((ih7) drawable4).k();
             }
         }
         T(this.b);
@@ -312,7 +312,7 @@ public class wma extends FrameLayout implements snb {
 
     public int getBackgroundTranslationY() {
         Drawable drawable = this.b;
-        if (drawable instanceof hh7) {
+        if (drawable instanceof ih7) {
             return this.F;
         }
         if (drawable instanceof g82) {
@@ -374,16 +374,16 @@ public class wma extends FrameLayout implements snb {
             ((g82) drawable).f(this.M);
         }
         Drawable drawable2 = this.b;
-        if (drawable2 instanceof hh7) {
-            ((hh7) drawable2).k();
+        if (drawable2 instanceof ih7) {
+            ((ih7) drawable2).k();
         }
         Drawable drawable3 = this.d;
         if (drawable3 instanceof g82) {
             ((g82) drawable3).f(this.M);
         }
         Drawable drawable4 = this.d;
-        if (drawable4 instanceof hh7) {
-            ((hh7) drawable4).k();
+        if (drawable4 instanceof ih7) {
+            ((ih7) drawable4).k();
         }
     }
 
@@ -416,12 +416,12 @@ public class wma extends FrameLayout implements snb {
                     ((g82) drawable2).g(this.M);
                 }
                 Drawable drawable3 = this.b;
-                if (drawable3 instanceof hh7) {
-                    ((hh7) drawable3).l();
+                if (drawable3 instanceof ih7) {
+                    ((ih7) drawable3).l();
                 }
                 Drawable drawable4 = this.d;
-                if (drawable4 instanceof hh7) {
-                    ((hh7) drawable4).l();
+                if (drawable4 instanceof ih7) {
+                    ((ih7) drawable4).l();
                     return;
                 }
                 return;

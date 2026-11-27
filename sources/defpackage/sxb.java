@@ -114,9 +114,9 @@ public final class sxb extends d6 {
             if (wxbVar.d != null) {
                 tL_forumTopic3.hidden = !vkbVar2.d.h;
             }
-            qyb qybVar = wxbVar.getMessagesController().g4;
+            qyb qybVar = wxbVar.getMessagesController().h4;
             long j5 = wxbVar.a;
-            qybVar.getMessagesStorage().c2(j5, wxbVar.x, 35);
+            qybVar.getMessagesStorage().h2(j5, wxbVar.x, 35);
             qybVar.y(-j5, true);
             wxbVar.finishFragment();
         }

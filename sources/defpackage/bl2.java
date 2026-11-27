@@ -249,7 +249,7 @@ public final class bl2 extends Drawable {
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
-        this.g = new mm(new fe7(this, (byte) 1), 320L, k43.h, 0);
+        this.g = new mm(new ge7(this, (byte) 1), 320L, k43.h, 0);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(-1);

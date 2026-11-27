@@ -57,7 +57,7 @@ public final class hr4 implements e84 {
 
     static {
         jo4 jo4Var = new jo4();
-        jo4Var.s = dg7.n("application/x-emsg");
+        jo4Var.s = eg7.n("application/x-emsg");
         Q = new ko4(jo4Var);
     }
 
@@ -102,12 +102,12 @@ public final class hr4 implements e84 {
         int size = arrayList.size();
         ArrayList arrayList2 = null;
         for (int i = 0; i < size; i++) {
-            vh7 vh7Var = (vh7) arrayList.get(i);
-            if (vh7Var.b == 1886614376) {
+            wh7 wh7Var = (wh7) arrayList.get(i);
+            if (wh7Var.b == 1886614376) {
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
                 }
-                byte[] bArr = vh7Var.e.a;
+                byte[] bArr = wh7Var.e.a;
                 sx8 b = lwe.b(bArr);
                 if (b == null) {
                     uuid = null;

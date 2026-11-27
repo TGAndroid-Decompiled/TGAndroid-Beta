@@ -23,7 +23,7 @@ public final class g1c extends FrameLayout implements snb {
     public int M;
     public final int a;
     public final vnb b;
-    public sca c;
+    public tca c;
     public final p66 d;
     public final hn e;
     public final vl4 f;
@@ -216,7 +216,7 @@ public final class g1c extends FrameLayout implements snb {
             float d = this.r.d(this.n);
             if (d > 0.0f) {
                 if (this.c == null) {
-                    this.c = new sca(this);
+                    this.c = new tca(this);
                 }
                 canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
                 this.c.a(canvas, d);

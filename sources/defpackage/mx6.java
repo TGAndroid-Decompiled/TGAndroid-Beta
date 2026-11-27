@@ -306,7 +306,7 @@ public final class mx6 implements Parcelable.Creator {
                     }
                 }
                 aye.m(parcel, z17);
-                return new vg7(i9, z);
+                return new wg7(i9, z);
         }
     }
 
@@ -322,7 +322,7 @@ public final class mx6 implements Parcelable.Creator {
             case 3:
                 return new MediaSessionCompat$Token[i];
             case 4:
-                return new yk7[i];
+                return new zk7[i];
             case 5:
                 return new ParcelImpl[i];
             case 6:
@@ -372,7 +372,7 @@ public final class mx6 implements Parcelable.Creator {
             case 28:
                 return new fj2[i];
             default:
-                return new vg7[i];
+                return new wg7[i];
         }
     }
 }

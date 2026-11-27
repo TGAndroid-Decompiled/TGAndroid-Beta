@@ -219,10 +219,10 @@ public final class d6c extends FrameLayout implements fn7 {
         int childCount = s5cVar.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = s5cVar.getChildAt(i);
-            if (childAt instanceof t3b) {
-                t3b t3bVar = (t3b) childAt;
-                t3bVar.d();
-                t3bVar.e();
+            if (childAt instanceof u3b) {
+                u3b u3bVar = (u3b) childAt;
+                u3bVar.d();
+                u3bVar.e();
             }
         }
     }

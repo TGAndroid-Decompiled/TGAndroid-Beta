@@ -188,12 +188,12 @@ public class tf3 extends gp4 implements DialogInterface.OnCancelListener, Dialog
     public final void y(Context context) {
         Object obj;
         super.y(context);
-        qj7 qj7Var = this.f0;
-        qj7Var.getClass();
-        qj7.a("observeForever");
+        rj7 rj7Var = this.f0;
+        rj7Var.getClass();
+        rj7.a("observeForever");
         ri6 ri6Var = this.v0;
-        r96 r96Var = new r96(qj7Var, ri6Var);
-        os9 os9Var = qj7Var.b;
+        r96 r96Var = new r96(rj7Var, ri6Var);
+        os9 os9Var = rj7Var.b;
         ls9 h = os9Var.h(ri6Var);
         if (h != null) {
             obj = h.b;

@@ -7,7 +7,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ov1 implements oi7, oj3 {
+public final class ov1 implements pi7, oj3 {
     public final ChatActivityEnterView a;
     public final r47 b;
     public final TL_keyboard.TL_buttonTypeRequestPeer c;
@@ -64,7 +64,7 @@ public final class ov1 implements oi7, oj3 {
             while (i4 < size) {
                 Object obj = arrayList.get(i4);
                 i4++;
-                hashSet.add(Long.valueOf(((if7) obj).a));
+                hashSet.add(Long.valueOf(((jf7) obj).a));
             }
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {

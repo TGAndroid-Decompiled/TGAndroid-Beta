@@ -34,7 +34,7 @@ public final class fqb extends de0 {
         pqb pqbVar = this.L;
         if (z) {
             Drawable drawable = this.H;
-            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof hh7)) {
+            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof ih7)) {
                 if (drawable instanceof BitmapDrawable) {
                     if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
                         canvas.save();

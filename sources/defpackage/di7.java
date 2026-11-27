@@ -1,80 +1,81 @@
 package defpackage;
-public final class di7 implements av3 {
-    public String e;
-    public x1c f;
-    public boolean i;
-    public int k;
-    public int l;
-    public int n;
-    public int o;
-    public int s;
-    public boolean u;
-    public byte d = 0;
-    public final ey7 a = new ey7(2, new byte[15]);
-    public final zd1 b = new zd1();
-    public final ey7 c = new ey7();
-    public final qz0 p = new qz0();
-    public int q = -2147483647;
-    public int r = -1;
-    public long t = -1;
-    public boolean j = true;
-    public boolean m = true;
-    public double g = -9.223372036854776E18d;
-    public double h = -9.223372036854776E18d;
+public final class di7 {
+    public int a;
+    public String b;
+    public int c;
+    public int d;
+    public byte e;
+    public int f;
+    public int g;
 
-    @Override
-    public final void b(defpackage.ey7 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.di7.b(ey7):void");
-    }
-
-    @Override
-    public final void d() {
-        this.d = (byte) 0;
-        this.l = 0;
-        this.a.K(2);
-        this.n = 0;
-        this.o = 0;
-        this.q = -2147483647;
-        this.r = -1;
-        this.s = 0;
-        this.t = -1L;
-        this.u = false;
-        this.i = false;
-        this.m = true;
-        this.j = true;
-        this.g = -9.223372036854776E18d;
-        this.h = -9.223372036854776E18d;
-    }
-
-    @Override
-    public final void g(int i, long j) {
-        this.k = i;
-        if (!this.j && (this.o != 0 || !this.m)) {
-            this.i = true;
+    public final boolean a(int i) {
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        if ((i & (-2097152)) != -2097152 || (i2 = (i >>> 19) & 3) == 1 || (i3 = (i >>> 17) & 3) == 0 || (i4 = (i >>> 12) & 15) == 0 || i4 == 15 || (i5 = (i >>> 10) & 3) == 3) {
+            return false;
         }
-        if (j != -9223372036854775807L) {
-            if (this.i) {
-                this.h = j;
+        this.a = i2;
+        this.b = nfd.a[3 - i3];
+        int i8 = nfd.b[i5];
+        this.d = i8;
+        byte b = 2;
+        if (i2 == 2) {
+            i8 /= 2;
+            this.d = i8;
+        } else if (i2 == 0) {
+            i8 /= 4;
+            this.d = i8;
+        }
+        int i9 = (i >>> 9) & 1;
+        int i10 = 1152;
+        if (i3 != 1) {
+            if (i3 != 2) {
+                if (i3 == 3) {
+                    i10 = 384;
+                } else {
+                    iy8.d();
+                    return false;
+                }
+            }
+        } else if (i2 != 3) {
+            i10 = 576;
+        }
+        this.g = i10;
+        if (i3 == 3) {
+            if (i2 == 3) {
+                i7 = nfd.c[i4 - 1];
             } else {
-                this.g = j;
+                i7 = nfd.d[i4 - 1];
+            }
+            this.f = i7;
+            this.c = qu6.y(i7, 12, i8, i9) << 2;
+        } else {
+            int i11 = 144;
+            if (i2 == 3) {
+                if (i3 == 2) {
+                    i6 = nfd.e[i4 - 1];
+                } else {
+                    i6 = nfd.f[i4 - 1];
+                }
+                this.f = i6;
+                this.c = qu6.y(i6, 144, i8, i9);
+            } else {
+                int i12 = nfd.g[i4 - 1];
+                this.f = i12;
+                if (i3 == 1) {
+                    i11 = 72;
+                }
+                this.c = qu6.y(i11, i12, i8, i9);
             }
         }
-    }
-
-    @Override
-    public final void h(g84 g84Var, l6c l6cVar) {
-        l6cVar.a();
-        l6cVar.b();
-        this.e = l6cVar.e;
-        l6cVar.b();
-        this.f = g84Var.e0(l6cVar.d, 1);
-    }
-
-    @Override
-    public final void e() {
-    }
-
-    @Override
-    public final void f() {
+        if (((i >> 6) & 3) == 3) {
+            b = 1;
+        }
+        this.e = b;
+        return true;
     }
 }

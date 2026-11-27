@@ -39,7 +39,7 @@ public final class bn0 extends nic {
 
     @Override
     public final void b(View view, int i, int i2) {
-        o5b o5bVar;
+        p5b p5bVar;
         mx4 mx4Var;
         e eVar;
         byte b = this.a;
@@ -51,12 +51,12 @@ public final class bn0 extends nic {
                 gr0 gr0Var = (gr0) view;
                 bga bgaVar = (bga) obj;
                 if (i == 0) {
-                    o5bVar = bgaVar.e;
+                    p5bVar = bgaVar.e;
                 } else {
-                    o5bVar = (o5b) bgaVar.f.get(i - 1);
+                    p5bVar = (p5b) bgaVar.f.get(i - 1);
                 }
-                o5bVar.H(null);
-                gr0Var.setList(o5bVar);
+                p5bVar.H(null);
+                gr0Var.setList(p5bVar);
                 gr0Var.setVisibleHeight(bgaVar.w);
                 return;
             case 2:
@@ -71,7 +71,7 @@ public final class bn0 extends nic {
                 jm7[] jm7VarArr = lm7Var.b;
                 jm7VarArr[i].f.g3.O(false);
                 if (!jm7VarArr[i].l) {
-                    lm7Var.y0(i, false);
+                    lm7Var.w0(i, false);
                     return;
                 }
                 return;
@@ -204,11 +204,11 @@ public final class bn0 extends nic {
                 lm7 lm7Var = (lm7) obj;
                 jm7 jm7Var = lm7Var.b[i];
                 Context context2 = (Context) obj2;
-                jm7Var.f = lm7Var.m0(context2, i);
+                jm7Var.f = lm7Var.l0(context2, i);
                 jm7Var.g = null;
                 im7 im7Var = jm7Var.f;
                 vnbVar = ((e) lm7Var).resourceProvider;
-                w94 w94Var = new w94(context2, im7Var, vnbVar, new me7(this, i, (byte) 1));
+                w94 w94Var = new w94(context2, im7Var, vnbVar, new oe7(this, i, (byte) 1));
                 jm7Var.h = w94Var;
                 ll0 ll0Var = lm7Var.getBaseSimpleGlass().c;
                 vnbVar2 = ((e) lm7Var).resourceProvider;
@@ -404,7 +404,7 @@ public final class bn0 extends nic {
                 if (i == 0) {
                     return 0;
                 }
-                return ((o5b) ((bga) this.c).f.get(i - 1)).E.hashCode();
+                return ((p5b) ((bga) this.c).f.get(i - 1)).E.hashCode();
             default:
                 return i;
         }
@@ -420,7 +420,7 @@ public final class bn0 extends nic {
                 if (i == 0) {
                     return ob6.M0(2131746437, null);
                 }
-                return r3c.L0(((o5b) ((bga) this.c).f.get(i - 1)).E);
+                return r3c.L0(((p5b) ((bga) this.c).f.get(i - 1)).E);
             case 2:
                 if (i != 1) {
                     if (i != 2) {

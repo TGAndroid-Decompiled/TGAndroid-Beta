@@ -2,7 +2,7 @@ package defpackage;
 
 import j$.util.Objects;
 import java.util.Arrays;
-public final class f54 implements sf7 {
+public final class f54 implements tf7 {
     public static final ko4 g;
     public static final ko4 h;
     public final String a;
@@ -14,10 +14,10 @@ public final class f54 implements sf7 {
 
     static {
         jo4 jo4Var = new jo4();
-        jo4Var.s = dg7.n("application/id3");
+        jo4Var.s = eg7.n("application/id3");
         g = new ko4(jo4Var);
         jo4 jo4Var2 = new jo4();
-        jo4Var2.s = dg7.n("application/x-scte35");
+        jo4Var2.s = eg7.n("application/x-scte35");
         h = new ko4(jo4Var2);
     }
 

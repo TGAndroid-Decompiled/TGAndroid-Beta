@@ -69,7 +69,7 @@ public final class mc0 {
                     arrayList.add(bArr4);
                 }
                 if (A2 > 0) {
-                    fk7 k = rfd.k(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
+                    gk7 k = rfd.k(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
                     int i13 = k.e;
                     int i14 = k.f;
                     int i15 = k.p;

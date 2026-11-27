@@ -192,7 +192,7 @@ public class h66 extends View {
                 this.b0 = 0.0f;
                 this.d0 = 0.0f;
                 int f14 = lbc.f(yac.h(this.a).f());
-                lc7 lc7Var = uc7.s1(this.a).E3;
+                lc7 lc7Var = uc7.s1(this.a).F3;
                 String str3 = null;
                 if (lc7Var != null && f14 >= 7) {
                     kc7Var = lc7Var.d(f14);

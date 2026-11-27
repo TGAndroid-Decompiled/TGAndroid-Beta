@@ -37,7 +37,7 @@ public final class o08 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i).sendRequest(getpassword, new o08(r08Var2, (byte) 3), 8);
                                     return;
                                 }
-                                Utilities.e.c(new fd7(r08Var2, r08Var2.b, r08Var2.d, (byte) 19));
+                                Utilities.e.c(new gd7(r08Var2, r08Var2.b, r08Var2.d, (byte) 19));
                                 return;
                             default:
                                 r08 r08Var3 = r08Var;
@@ -77,7 +77,7 @@ public final class o08 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i).sendRequest(getpassword, new o08(r08Var2, (byte) 3), 8);
                                     return;
                                 }
-                                Utilities.e.c(new fd7(r08Var2, r08Var2.b, r08Var2.d, (byte) 19));
+                                Utilities.e.c(new gd7(r08Var2, r08Var2.b, r08Var2.d, (byte) 19));
                                 return;
                             default:
                                 r08 r08Var3 = r08Var;

@@ -603,7 +603,7 @@ public final class mj1 {
         if (!z) {
             int size = arrayList2.size();
             if (!yac.h(this.b).p() && L0.c > 0) {
-                size = Math.min(size - 1, uc7.s1(this.b).k4.Y1.f());
+                size = Math.min(size - 1, uc7.s1(this.b).l4.Y1.f());
             }
             int min = Math.min(size, 10);
             for (int i9 = 0; i9 < min; i9++) {

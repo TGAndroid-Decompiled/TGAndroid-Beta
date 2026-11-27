@@ -39,12 +39,12 @@ public final class f22 implements ps3 {
                 }
                 return;
             default:
-                rbb rbbVar = (rbb) obj;
+                sbb sbbVar = (sbb) obj;
                 if (!z) {
-                    rbbVar.N0.setTranslationY(f3);
-                    rbbVar.N0.L = false;
-                    rbbVar.p2 = null;
-                    rbbVar.q2 = null;
+                    sbbVar.N0.setTranslationY(f3);
+                    sbbVar.N0.L = false;
+                    sbbVar.p2 = null;
+                    sbbVar.q2 = null;
                     return;
                 }
                 return;

@@ -227,16 +227,16 @@ public final class nh6 implements TextWatcher {
                 a77Var.o1.c(editTextBoldCursor.isFocused(), !TextUtils.isEmpty(editTextBoldCursor.getText()));
                 return;
             case 2:
-                rl7 rl7Var = (rl7) this.b;
-                HashMap hashMap2 = rl7Var.v1;
-                ArrayList arrayList2 = rl7Var.u1;
-                if (!rl7Var.x1) {
-                    rl7Var.x1 = true;
-                    String h2 = f78.h(rl7Var.H1.getText().toString(), false);
-                    rl7Var.H1.setText(h2);
+                sl7 sl7Var = (sl7) this.b;
+                HashMap hashMap2 = sl7Var.v1;
+                ArrayList arrayList2 = sl7Var.u1;
+                if (!sl7Var.x1) {
+                    sl7Var.x1 = true;
+                    String h2 = f78.h(sl7Var.H1.getText().toString(), false);
+                    sl7Var.H1.setText(h2);
                     if (h2.length() == 0) {
-                        rl7Var.G0(null);
-                        rl7Var.J1.setHintText((String) null);
+                        sl7Var.G0(null);
+                        sl7Var.J1.setHintText((String) null);
                     } else {
                         if (h2.length() > 4) {
                             int i9 = 4;
@@ -267,8 +267,8 @@ public final class nh6 implements TextWatcher {
                                         gy2Var3 = (gy2) list3.get(0);
                                     }
                                     if (gy2Var3 != null) {
-                                        rl7Var.H1.setText(substring2);
-                                        str2 = h2.substring(i9) + rl7Var.J1.getText().toString();
+                                        sl7Var.H1.setText(substring2);
+                                        str2 = h2.substring(i9) + sl7Var.J1.getText().toString();
                                         h2 = substring2;
                                         r7 = true;
                                     } else {
@@ -280,10 +280,10 @@ public final class nh6 implements TextWatcher {
                                 }
                             }
                             if (r7 == false) {
-                                str2 = h2.substring(1) + rl7Var.J1.getText().toString();
-                                ql7 ql7Var = rl7Var.H1;
+                                str2 = h2.substring(1) + sl7Var.J1.getText().toString();
+                                rl7 rl7Var = sl7Var.H1;
                                 h2 = h2.substring(0, 1);
-                                ql7Var.setText(h2);
+                                rl7Var.setText(h2);
                             }
                         } else {
                             r7 = false;
@@ -305,10 +305,10 @@ public final class nh6 implements TextWatcher {
                             }
                         }
                         if (i11 == 1 && gy2Var10 != null && str2 == null) {
-                            str2 = h2.substring(gy2Var10.c.length()) + rl7Var.J1.getText().toString();
-                            ql7 ql7Var2 = rl7Var.H1;
+                            str2 = h2.substring(gy2Var10.c.length()) + sl7Var.J1.getText().toString();
+                            rl7 rl7Var2 = sl7Var.H1;
                             String str8 = gy2Var10.c;
-                            ql7Var2.setText(str8);
+                            rl7Var2.setText(str8);
                             h2 = str8;
                         }
                         List list4 = (List) hashMap2.get(h2);
@@ -335,32 +335,32 @@ public final class nh6 implements TextWatcher {
                             gy2Var2 = (gy2) list4.get(0);
                         }
                         if (gy2Var2 != null) {
-                            rl7Var.z1 = true;
-                            rl7Var.H0(h2, gy2Var2);
+                            sl7Var.z1 = true;
+                            sl7Var.H0(h2, gy2Var2);
                         } else {
-                            rl7Var.G0(null);
-                            rl7Var.J1.setHintText((String) null);
+                            sl7Var.G0(null);
+                            sl7Var.J1.setHintText((String) null);
                         }
                         if (r7 == false) {
-                            ql7 ql7Var3 = rl7Var.H1;
-                            ql7Var3.setSelection(ql7Var3.getText().length());
+                            rl7 rl7Var3 = sl7Var.H1;
+                            rl7Var3.setSelection(rl7Var3.getText().length());
                         }
                         if (str2 != null && str2.length() != 0) {
-                            rl7Var.J1.requestFocus();
-                            rl7Var.J1.setText(str2);
-                            ql7 ql7Var4 = rl7Var.J1;
-                            ql7Var4.setSelection(ql7Var4.length());
+                            sl7Var.J1.requestFocus();
+                            sl7Var.J1.setText(str2);
+                            rl7 rl7Var4 = sl7Var.J1;
+                            rl7Var4.setSelection(rl7Var4.length());
                         }
                     }
-                    rl7Var.x1 = false;
-                    rl7Var.M0();
+                    sl7Var.x1 = false;
+                    sl7Var.M0();
                     return;
                 }
                 return;
             case 3:
                 lm7 lm7Var = (lm7) this.b;
                 if (lm7Var.M) {
-                    lm7Var.H0(editable.toString().trim());
+                    lm7Var.F0(editable.toString().trim());
                     return;
                 }
                 return;
@@ -509,7 +509,7 @@ public final class nh6 implements TextWatcher {
                         ((r1a) this.b).a1();
                         r1a r1aVar4 = (r1a) this.b;
                         String str14 = r1aVar4.l2;
-                        if (str14 != null && str14.length() > 3 && !TextUtils.isEmpty(uc7.s1(((r1a) this.b).a).k4.Q.f)) {
+                        if (str14 != null && str14.length() > 3 && !TextUtils.isEmpty(uc7.s1(((r1a) this.b).a).l4.Q.f)) {
                             z9 = true;
                         }
                         r1aVar4.w2 = z9;
@@ -847,9 +847,9 @@ public final class nh6 implements TextWatcher {
                 String obj9 = editable.toString();
                 o oVar = xtVar.C0;
                 String lowerCase3 = obj9.toLowerCase();
-                ze7 ze7Var = oVar.X0;
-                if (ze7Var != null) {
-                    hl.r(ze7Var);
+                bf7 bf7Var = oVar.X0;
+                if (bf7Var != null) {
+                    hl.r(bf7Var);
                     oVar.X0 = null;
                 }
                 if (TextUtils.isEmpty(lowerCase3)) {
@@ -886,9 +886,9 @@ public final class nh6 implements TextWatcher {
                     }
                     return;
                 }
-                ze7 ze7Var2 = new ze7(oVar, lowerCase3, i16, (byte) 3);
-                oVar.X0 = ze7Var2;
-                hl.d3(ze7Var2, 400L);
+                bf7 bf7Var2 = new bf7(oVar, lowerCase3, i16, (byte) 3);
+                oVar.X0 = bf7Var2;
+                hl.d3(bf7Var2, 400L);
                 return;
         }
     }
@@ -908,18 +908,18 @@ public final class nh6 implements TextWatcher {
                 LinkedList linkedList = fz7Var.W;
                 LinkedList linkedList2 = fz7Var.V;
                 Drawable drawable = fz7Var.a;
-                if (drawable instanceof hh7) {
-                    hh7 hh7Var = (hh7) drawable;
-                    hh7Var.C = null;
-                    hh7Var.x();
-                    float f = hh7Var.h;
+                if (drawable instanceof ih7) {
+                    ih7 ih7Var = (ih7) drawable;
+                    ih7Var.C = null;
+                    ih7Var.x();
+                    float f = ih7Var.h;
                     int i4 = 0;
                     boolean z2 = true;
                     if (i2 == 0 && i3 == 1) {
-                        hh7Var.v(true);
+                        ih7Var.v(true);
                         z = true;
                     } else if (i2 == 1 && i3 == 0) {
-                        hh7Var.w();
+                        ih7Var.w();
                         z = false;
                     } else {
                         z = false;
@@ -927,10 +927,10 @@ public final class nh6 implements TextWatcher {
                     }
                     if (z2) {
                         if (f >= 1.0f) {
-                            fz7Var.a(hh7Var);
+                            fz7Var.a(ih7Var);
                             return;
                         }
-                        linkedList2.offer(new yn6(this, z, hh7Var, (byte) 7));
+                        linkedList2.offer(new yn6(this, z, ih7Var, (byte) 7));
                         linkedList.offer(Boolean.valueOf(z));
                         ArrayList arrayList = new ArrayList();
                         ArrayList arrayList2 = new ArrayList();

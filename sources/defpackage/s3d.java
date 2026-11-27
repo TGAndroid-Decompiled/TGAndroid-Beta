@@ -205,7 +205,7 @@ public abstract class s3d {
                         return ko4Var;
                     }
                     jo4 a3 = ko4Var.a();
-                    a3.s = dg7.n(str);
+                    a3.s = eg7.n(str);
                     return new ko4(a3);
                 }
             }

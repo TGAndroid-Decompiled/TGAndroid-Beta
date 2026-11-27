@@ -245,7 +245,7 @@ public final class gb5 extends vu7 {
                 boolean z2 = zn8Var.E;
                 if (z2 && i == 0) {
                     ?? frameLayout = new FrameLayout(zn8Var.getContext());
-                    frameLayout.setBackground(new hh7(-14602694, -13935795, -14395293, -14203560, true, false));
+                    frameLayout.setBackground(new ih7(-14602694, -13935795, -14395293, -14203560, true, false));
                     ImageView imageView2 = new ImageView(zn8Var.getContext());
                     imageView2.setScaleType(ImageView.ScaleType.CENTER);
                     imageView2.setImageResource(2131232695);

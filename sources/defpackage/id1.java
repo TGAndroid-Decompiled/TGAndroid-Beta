@@ -212,7 +212,7 @@ public final class id1 {
                     ?? h05Var = new h05(applicationContext, qa4.u, wn.g, g05.c);
                     try {
                         n = new id1(applicationContext, castOptions, d.getAdditionalSessionProviders(applicationContext), new hhd(applicationContext, lw6.d(applicationContext), castOptions, h05Var), h05Var);
-                    } catch (zg7 e) {
+                    } catch (ah7 e) {
                         throw new RuntimeException(e);
                     }
                 }

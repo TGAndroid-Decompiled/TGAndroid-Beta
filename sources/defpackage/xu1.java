@@ -393,7 +393,7 @@ public final class xu1 implements vnb, o57 {
 
     public final void r(ez3 ez3Var, TLRPC.WallPaper wallPaper, boolean z) {
         Drawable drawable;
-        hh7 hh7Var;
+        ih7 ih7Var;
         int i;
         int indexOfKey;
         int i2;
@@ -422,13 +422,13 @@ public final class xu1 implements vnb, o57 {
         } else {
             drawable = null;
         }
-        if (drawable instanceof hh7) {
-            hh7Var = (hh7) drawable;
+        if (drawable instanceof ih7) {
+            ih7Var = (ih7) drawable;
         } else {
-            hh7Var = null;
+            ih7Var = null;
         }
-        if (hh7Var != null) {
-            i = hh7Var.i;
+        if (ih7Var != null) {
+            i = ih7Var.i;
         } else {
             i = 0;
         }
@@ -442,8 +442,8 @@ public final class xu1 implements vnb, o57 {
             this.b.clear();
             this.a.clear();
             Drawable s0 = aob.s0();
-            if (s0 instanceof hh7) {
-                ((hh7) s0).t(i);
+            if (s0 instanceof ih7) {
+                ((ih7) s0).t(i);
             }
             this.h = null;
             if (aob.I.o() == this.q) {
@@ -557,29 +557,29 @@ public final class xu1 implements vnb, o57 {
                 int h2 = h(aob.Fe);
                 int h3 = h(aob.Ge);
                 int h4 = h(aob.He);
-                hh7 hh7Var2 = new hh7();
-                hh7Var2.r(ez3Var2.j(this.q ? 1 : 0).settings.intensity, hh7Var2.u);
+                ih7 ih7Var2 = new ih7();
+                ih7Var2.r(ez3Var2.j(this.q ? 1 : 0).settings.intensity, ih7Var2.u);
                 TLRPC.Document e = ez3Var2.e();
-                if (hh7Var2.y == null) {
+                if (ih7Var2.y == null) {
                     ImageReceiver imageReceiver = new ImageReceiver(null);
-                    hh7Var2.y = imageReceiver;
+                    ih7Var2.y = imageReceiver;
                     imageReceiver.setAlpha(0.5f);
-                    WeakReference weakReference = hh7Var2.c;
+                    WeakReference weakReference = ih7Var2.c;
                     if (weakReference != null) {
-                        hh7Var2.y.p0((View) weakReference.get());
+                        ih7Var2.y.p0((View) weakReference.get());
                     }
-                    if (hh7Var2.T) {
-                        hh7Var2.y.I();
+                    if (ih7Var2.T) {
+                        ih7Var2.y.I();
                     }
                 }
-                hh7Var2.y.d0(jn5.b(e), "80_80", null, null, null, 0);
-                hh7Var2.y.N(1);
-                hh7Var2.y.M(1);
-                hh7Var2.n(true, h, h2, h3, h4);
-                hh7Var2.t(i);
-                int f = hh7Var2.f();
+                ih7Var2.y.d0(jn5.b(e), "80_80", null, null, null, 0);
+                ih7Var2.y.N(1);
+                ih7Var2.y.M(1);
+                ih7Var2.n(true, h, h2, h3, h4);
+                ih7Var2.t(i);
+                int f = ih7Var2.f();
                 boolean z4 = this.q;
-                h01 h01Var = new h01(this, hh7Var2, (byte) 19);
+                h01 h01Var = new h01(this, ih7Var2, (byte) 19);
                 dz3 dz3Var2 = (dz3) ez3Var2.f.get(z4 ? 1 : 0);
                 if (dz3Var2 != null && dz3Var2.c != null) {
                     long h5 = ez3Var2.h(z4 ? 1 : 0);
@@ -620,8 +620,8 @@ public final class xu1 implements vnb, o57 {
                     z2 = z4 ? 1 : 0;
                 }
                 ez3Var2 = ez3Var;
-                ez3Var2.n(this.q ? 1 : 0, new tu1(this, ez3Var2, z2, hh7Var2, f));
-                drawable2 = hh7Var2;
+                ez3Var2.n(this.q ? 1 : 0, new tu1(this, ez3Var2, z2, ih7Var2, f));
+                drawable2 = ih7Var2;
             }
             this.h = drawable2;
         }
@@ -631,20 +631,20 @@ public final class xu1 implements vnb, o57 {
         }
         if (z) {
             this.r = new AnimatorSet();
-            if (hh7Var != null) {
+            if (ih7Var != null) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-                ofFloat.addUpdateListener(new su1(hh7Var, (byte) 0));
-                ofFloat.addListener(new vu1(hh7Var));
+                ofFloat.addUpdateListener(new su1(ih7Var, (byte) 0));
+                ofFloat.addListener(new vu1(ih7Var));
                 ofFloat.setDuration(200L);
                 this.r.playTogether(ofFloat);
             }
             Drawable drawable4 = this.h;
-            if (drawable4 instanceof hh7) {
-                hh7 hh7Var3 = (hh7) drawable4;
-                hh7Var3.q(0.0f);
+            if (drawable4 instanceof ih7) {
+                ih7 ih7Var3 = (ih7) drawable4;
+                ih7Var3.q(0.0f);
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat2.addUpdateListener(new su1(hh7Var3, (byte) 1));
-                ofFloat2.addListener(new wu1(hh7Var3));
+                ofFloat2.addUpdateListener(new su1(ih7Var3, (byte) 1));
+                ofFloat2.addListener(new wu1(ih7Var3));
                 ofFloat2.setDuration(250L);
                 this.r.playTogether(ofFloat2);
             }

@@ -85,7 +85,7 @@ public final class c59 extends xyc {
         vh4 vh4Var = rycVar.d;
         int i = 0;
         try {
-            SecureRandom secureRandom = hg7.a;
+            SecureRandom secureRandom = ig7.a;
             String str = null;
             if (bArr != null) {
                 try {
@@ -197,14 +197,14 @@ public final class c59 extends xyc {
                 if (i3 != 2) {
                     switch (i3) {
                         case 8:
-                            l09 l09Var = this.a.b;
+                            m09 m09Var = this.a.b;
                             this.c = vycVar;
-                            synchronized (l09Var) {
-                                int i4 = l09Var.b;
+                            synchronized (m09Var) {
+                                int i4 = m09Var.b;
                                 if (i4 != 4 && i4 != 5) {
-                                    l09Var.b = 4;
-                                    if (l09Var.c == 1) {
-                                        l09Var.c = 2;
+                                    m09Var.b = 4;
+                                    if (m09Var.c == 1) {
+                                        m09Var.c = 2;
                                     }
                                     this.a.g(vycVar);
                                 } else {

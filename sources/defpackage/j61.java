@@ -26,8 +26,6 @@ public final class j61 implements Runnable {
     @Override
     public final void run() {
         String str;
-        String str2;
-        int i;
         TLRPC.GroupCallParticipant groupCallParticipant = null;
         switch (this.a) {
             case 0:
@@ -44,89 +42,90 @@ public final class j61 implements Runnable {
                 try {
                     try {
                         k35Var.f = null;
-                        try {
-                        } catch (Throwable th) {
-                            th = th;
+                    } catch (Exception e) {
+                        k35Var.m(e);
+                        if (e instanceof i35) {
+                            str = e.getMessage();
+                        } else {
+                            str = "STORAGE_BROKEN";
                         }
-                    } catch (Throwable th2) {
+                        groupCallParticipant = str;
                         for (c35 c35Var : linkedHashMap.values()) {
                             c35Var.close();
                         }
-                        k35Var.e(arrayList);
-                        throw th2;
                     }
-                } catch (Exception e) {
-                    k35Var.m(e);
-                    if (e instanceof i35) {
-                        str = e.getMessage();
-                    } else {
-                        str = "STORAGE_BROKEN";
-                    }
-                    groupCallParticipant = str;
-                    for (c35 c35Var2 : linkedHashMap.values()) {
-                        c35Var2.close();
-                    }
-                }
-                synchronized (k35.g) {
                     try {
-                        k35Var.c(j);
-                        j35 s = k35Var.s();
-                        if (s.b != z || ((LinkedHashMap) s.e).isEmpty()) {
-                            if (z && !k35.i(k35Var.a)) {
-                                throw new Exception("AUTH_UNAVAILABLE");
-                            }
-                            if (!((LinkedHashMap) s.e).isEmpty()) {
-                                k35Var.b(j, false);
-                                for (String str3 : ((LinkedHashMap) s.e).keySet()) {
-                                    linkedHashMap.put(str3, k35Var.h(s, str3, j));
-                                }
-                            }
-                            s.b = z;
-                            ((LinkedHashMap) s.e).clear();
-                            for (Map.Entry entry : linkedHashMap.entrySet()) {
-                                ((LinkedHashMap) s.e).put((String) entry.getKey(), k35Var.j(s, (String) entry.getKey(), (c35) entry.getValue(), arrayList, j));
-                            }
-                            s.c = false;
-                            synchronized (k35.g) {
+                        synchronized (k35.g) {
+                            try {
                                 k35Var.c(j);
-                                k35Var.w(s, linkedHashMap);
-                                k35Var.d(s);
+                                j35 s = k35Var.s();
+                                if (s.b != z || ((LinkedHashMap) s.e).isEmpty()) {
+                                    if (z && !k35.i(k35Var.a)) {
+                                        throw new Exception("AUTH_UNAVAILABLE");
+                                    }
+                                    if (!((LinkedHashMap) s.e).isEmpty()) {
+                                        k35Var.b(j, false);
+                                        for (String str2 : ((LinkedHashMap) s.e).keySet()) {
+                                            linkedHashMap.put(str2, k35Var.h(s, str2, j));
+                                        }
+                                    }
+                                    s.b = z;
+                                    ((LinkedHashMap) s.e).clear();
+                                    for (Map.Entry entry : linkedHashMap.entrySet()) {
+                                        ((LinkedHashMap) s.e).put((String) entry.getKey(), k35Var.j(s, (String) entry.getKey(), (c35) entry.getValue(), arrayList, j));
+                                    }
+                                    s.c = false;
+                                    synchronized (k35.g) {
+                                        k35Var.c(j);
+                                        k35Var.w(s, linkedHashMap);
+                                        k35Var.d(s);
+                                    }
+                                }
+                                for (c35 c35Var2 : linkedHashMap.values()) {
+                                    c35Var2.close();
+                                }
+                                k35Var.e(arrayList);
+                                hl.c3(new ba7(k35Var, zj3Var, j, groupCallParticipant, (byte) 9));
+                                return;
+                            } catch (Throwable th) {
+                                th = th;
+                                throw th;
                             }
                         }
-                        for (c35 c35Var3 : linkedHashMap.values()) {
-                            c35Var3.close();
-                        }
-                        k35Var.e(arrayList);
-                        hl.c3(new ba7(k35Var, zj3Var, j, groupCallParticipant, (byte) 9));
-                        return;
-                    } catch (Throwable th3) {
-                        th = th3;
-                        throw th;
+                    } catch (Throwable th2) {
+                        th = th2;
                     }
+                } catch (Throwable th3) {
+                    for (c35 c35Var3 : linkedHashMap.values()) {
+                        c35Var3.close();
+                    }
+                    k35Var.e(arrayList);
+                    throw th3;
                 }
+                break;
             case 2:
                 t86 t86Var = (t86) this.d;
                 long j2 = this.b;
-                String str4 = (String) this.e;
+                String str3 = (String) this.e;
                 boolean z2 = this.c;
                 if (t86Var.x.d) {
                     p75 p75Var = t86Var.x.a;
-                    int i2 = t86Var.a;
+                    int i = t86Var.a;
                     j95 j95Var = p75Var.a;
-                    if (i2 == 0) {
+                    if (i == 0) {
                         TLRPC.Peer peer = j95Var.u2;
                         if (peer != null) {
-                            j95Var.k3.a(j95Var.n1.a, r47.B1(peer), j2, str4, z2);
+                            j95Var.k3.a(j95Var.n1.a, r47.B1(peer), j2, str3, z2);
                             return;
                         }
                         return;
                     }
                     vc2 vc2Var = j95Var.T2;
                     if (vc2Var != null) {
-                        groupCallParticipant = (TLRPC.GroupCallParticipant) vc2Var.p.get(i2);
+                        groupCallParticipant = (TLRPC.GroupCallParticipant) vc2Var.p.get(i);
                     }
                     if (groupCallParticipant != null) {
-                        j95Var.k3.a(j95Var.n1.a, r47.B1(groupCallParticipant.peer), j2, str4, z2);
+                        j95Var.k3.a(j95Var.n1.a, r47.B1(groupCallParticipant.peer), j2, str3, z2);
                         return;
                     }
                     return;
@@ -177,7 +176,7 @@ public final class j61 implements Runnable {
                     } else if (!uc7Var.getUserConfig().p()) {
                         boolean z6 = f11.a;
                     }
-                    uc7Var.N4.put(Long.valueOf(j5), wb7Var);
+                    uc7Var.O4.put(Long.valueOf(j5), wb7Var);
                     uc7Var.getNotificationCenter().k(204, Long.valueOf(j5));
                     return;
                 } else if (tLObject2 instanceof TLRPC.Users) {
@@ -191,7 +190,7 @@ public final class j61 implements Runnable {
                     } else if (!uc7Var.getUserConfig().p()) {
                         boolean z7 = f11.a;
                     }
-                    uc7Var.N4.put(Long.valueOf(j5), wb7Var2);
+                    uc7Var.O4.put(Long.valueOf(j5), wb7Var2);
                     uc7Var.getNotificationCenter().k(204, Long.valueOf(j5));
                     return;
                 } else {
@@ -221,48 +220,14 @@ public final class j61 implements Runnable {
                 uc7Var3.getNotificationCenter().k(3, new Object[0]);
                 return;
             case 8:
-                ((jf7) this.d).getMessagesController().L4(null, (unb) this.e, this.c, this.b);
+                ((kf7) this.d).getMessagesController().L4(null, (unb) this.e, this.c, this.b);
                 return;
             case 9:
-                lm7 lm7Var = (lm7) this.d;
                 long j8 = this.b;
-                TLRPC.Chat chat = (TLRPC.Chat) this.e;
-                boolean z10 = this.c;
-                TLRPC.Chat M0 = lm7Var.getMessagesController().M0(Long.valueOf(j8));
-                if (M0 != null) {
-                    str2 = M0.title;
-                } else {
-                    str2 = chat.title;
-                }
-                d31 b0 = d31.b0(lm7Var);
-                if (z10) {
-                    i = 2131752496;
-                } else {
-                    i = 2131752498;
-                }
-                c00.v(ob6.a0(null, null, i, str2), b0, 2131623990, 36);
-                return;
-            case 10:
-                lm7 lm7Var2 = (lm7) this.d;
-                long j9 = this.b;
-                boolean z11 = this.c;
-                j61 j61Var = (j61) this.e;
-                TLRPC.Chat M02 = lm7Var2.getMessagesController().M0(Long.valueOf(j9));
-                if (z11 && M02 != null && !M02.in_news) {
-                    TLRPC.TL_channels_editChannelNews tL_channels_editChannelNews = new TLRPC.TL_channels_editChannelNews();
-                    tL_channels_editChannelNews.channel = lm7Var2.getMessagesController().h1(j9);
-                    tL_channels_editChannelNews.news = true;
-                    lm7Var2.getConnectionsManager().sendRequest(tL_channels_editChannelNews, new rs0((Object) lm7Var2, j9, true, (Object) tL_channels_editChannelNews, (Runnable) j61Var, (byte) 4));
-                    return;
-                }
-                j61Var.run();
-                return;
-            case 11:
-                long j10 = this.b;
                 ArrayList arrayList6 = (ArrayList) this.e;
-                boolean z12 = this.c;
+                boolean z10 = this.c;
                 RectF rectF = ProfileActivity.Z6;
-                ((ProfileActivity) this.d).getMessagesController().O1().r0(j10, arrayList6, z12, null);
+                ((ProfileActivity) this.d).getMessagesController().O1().r0(j8, arrayList6, z10, null);
                 return;
             default:
                 ((VideoPlayerHolderBase) this.d).lambda$seekTo$12(this.b, this.c, (Runnable) this.e);

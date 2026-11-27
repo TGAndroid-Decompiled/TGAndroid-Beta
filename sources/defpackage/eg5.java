@@ -5,7 +5,7 @@ public abstract class eg5 {
     }
 
     public static int b(int i, int i2, int i3) {
-        int[] iArr = uc7.s1(i).T3;
+        int[] iArr = uc7.s1(i).U3;
         for (int i4 = 0; i4 < iArr.length / 7; i4++) {
             int i5 = i4 * 7;
             if (i2 >= iArr[i5]) {

@@ -41,7 +41,7 @@ public abstract class zy0 {
         }
         ey7Var.O(1);
         d(ey7Var);
-        String e = dg7.e(ey7Var.A());
+        String e = eg7.e(ey7Var.A());
         if (!"audio/mpeg".equals(e) && !"audio/vnd.dts".equals(e) && !"audio/vnd.dts.hd".equals(e)) {
             ey7Var.O(4);
             long C = ey7Var.C();
@@ -78,11 +78,11 @@ public abstract class zy0 {
         return (i >> 24) & 255;
     }
 
-    public static defpackage.uf7 f(defpackage.uh7 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zy0.f(uh7):uf7");
+    public static defpackage.vf7 f(defpackage.vh7 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zy0.f(vh7):vf7");
     }
 
-    public static ai7 g(ey7 ey7Var) {
+    public static bi7 g(ey7 ey7Var) {
         long u;
         long u2;
         ey7Var.N(8);
@@ -93,7 +93,7 @@ public abstract class zy0 {
             u = ey7Var.u();
             u2 = ey7Var.u();
         }
-        return new ai7(u, u2, ey7Var.C());
+        return new bi7(u, u2, ey7Var.C());
     }
 
     public static Pair h(ey7 ey7Var, int i, int i2) {
@@ -219,11 +219,11 @@ public abstract class zy0 {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.zy0.i(ey7, xy0, java.lang.String, hr3, boolean):vy0");
     }
 
-    public static java.util.ArrayList j(defpackage.uh7 r58, defpackage.du4 r59, long r60, defpackage.hr3 r62, boolean r63, boolean r64, defpackage.es4 r65, boolean r66) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zy0.j(uh7, du4, long, hr3, boolean, boolean, es4, boolean):java.util.ArrayList");
+    public static java.util.ArrayList j(defpackage.vh7 r58, defpackage.du4 r59, long r60, defpackage.hr3 r62, boolean r63, boolean r64, defpackage.es4 r65, boolean r66) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zy0.j(vh7, du4, long, hr3, boolean, boolean, es4, boolean):java.util.ArrayList");
     }
 
-    public static defpackage.uf7 k(defpackage.vh7 r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zy0.k(vh7, boolean):uf7");
+    public static defpackage.vf7 k(defpackage.wh7 r24, boolean r25) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zy0.k(wh7, boolean):vf7");
     }
 }

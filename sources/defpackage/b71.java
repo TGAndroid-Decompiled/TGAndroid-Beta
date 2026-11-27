@@ -84,7 +84,7 @@ public abstract class b71 {
         }
         if ((this instanceof ub7) && l == null) {
             int hashCode = pair.hashCode();
-            SharedPreferences sharedPreferences = ((ub7) this).e.X3;
+            SharedPreferences sharedPreferences = ((ub7) this).e.Y3;
             l = Long.valueOf(sharedPreferences.getLong("effects_last_" + hashCode, 0L));
         }
         if (l != null && System.currentTimeMillis() - l.longValue() < this.a) {

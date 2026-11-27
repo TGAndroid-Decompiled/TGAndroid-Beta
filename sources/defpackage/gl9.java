@@ -447,7 +447,7 @@ public final class gl9 implements kmb, rib {
         float f = hl9Var.V;
         if (f > 0.0f) {
             r47 r47Var = hl9Var.b;
-            if (!hl9Var.O && (r47Var == null || !uc7.s1(hl9Var.a).i4.z(r47Var))) {
+            if (!hl9Var.O && (r47Var == null || !uc7.s1(hl9Var.a).j4.z(r47Var))) {
                 z = false;
             } else {
                 z = true;
@@ -654,7 +654,7 @@ public final class gl9 implements kmb, rib {
             i3 = aob.Xc;
         }
         textPaint.linkColor = aob.v0(i3, hl9Var.D);
-        ui7.b(canvas, this.b, i, f, new bf(this, this.T, v0, (byte) 14));
+        vi7.b(canvas, this.b, i, f, new bf(this, this.T, v0, (byte) 14));
         canvas.restore();
     }
 

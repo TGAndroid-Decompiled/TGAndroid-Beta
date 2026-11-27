@@ -114,7 +114,7 @@ public final class o extends xi5 implements fn7 {
     public boolean W;
     public e26 W0;
     public boolean X;
-    public ze7 X0;
+    public bf7 X0;
     public int Y;
     public int Y0;
     public int Z;
@@ -1561,7 +1561,7 @@ public final class o extends xi5 implements fn7 {
         tL_messages_getWebPage.hash = 0;
         this.H0 = ConnectionsManager.getInstance(this.Y).sendRequest(tL_messages_getWebPage, new rt(this, i, wtVar, str2, qtVar, tL_messages_getWebPage));
         if (wtVar != null) {
-            wtVar.b = new ze7(this, i, wtVar, (byte) 5);
+            wtVar.b = new bf7(this, i, wtVar, (byte) 5);
             wtVar.d();
         }
     }
@@ -1951,7 +1951,7 @@ public final class o extends xi5 implements fn7 {
             amb ambVar = new amb();
             this.Q0 = ambVar;
             ambVar.Q(this.v0[0].b);
-            if (uc7.s1(this.Y).i4.r()) {
+            if (uc7.s1(this.Y).j4.r()) {
                 this.Q0.k0 = new xs(this);
             }
             amb ambVar2 = this.Q0;

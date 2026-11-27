@@ -184,7 +184,7 @@ public final class ye3 {
     public ye3(Context context, a05 a05Var) {
         this.f = new ArrayList();
         this.g = new ak(this, (byte) 11);
-        this.h = new ki7(this, (byte) 15);
+        this.h = new li7(this, (byte) 15);
         this.b = context;
         this.c = a05Var;
         this.d = new Handler();

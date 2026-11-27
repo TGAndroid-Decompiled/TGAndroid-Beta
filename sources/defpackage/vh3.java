@@ -13,7 +13,7 @@ public final class vh3 implements wc5, u69 {
     @Override
     public final void a(xc5 xc5Var, long j) {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(if7.a(-j, 0L));
+        arrayList.add(jf7.a(-j, 0L));
         uj3 uj3Var = this.a;
         oj3 oj3Var = uj3Var.E2;
         if (uj3Var.D2) {

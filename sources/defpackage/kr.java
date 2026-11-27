@@ -276,7 +276,7 @@ public final class kr extends j79 {
                                         v47Var3.f = f[1];
                                     } else {
                                         v47Var3.e = 0;
-                                        v47Var3.f = Math.min(uc7.s1(s57Var.x).k4.V1.f(), ou1.d(messageObject));
+                                        v47Var3.f = Math.min(uc7.s1(s57Var.x).l4.V1.f(), ou1.d(messageObject));
                                     }
                                 }
                             }

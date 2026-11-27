@@ -270,7 +270,7 @@ public final class wr8 extends c79 {
                 mf5Var = new uo7(context, 18, 70, false, profileActivity.A0);
                 break;
             case 7:
-                mf5Var = new rca(context, (uh9) null);
+                mf5Var = new sca(context, (uh9) null);
                 break;
             case 8:
                 if (profileActivity.z4 == -1) {

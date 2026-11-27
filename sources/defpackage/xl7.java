@@ -1,31 +1,30 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_feed;
-public final class xl7 implements Runnable {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class xl7 implements RequestDelegate {
     public final byte a;
     public final lm7 b;
-    public final jm7 c;
 
-    public xl7(lm7 lm7Var, jm7 jm7Var, byte b) {
+    public xl7(lm7 lm7Var, byte b) {
         this.a = b;
         this.b = lm7Var;
-        this.c = jm7Var;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        jm7 jm7Var = this.c;
         lm7 lm7Var = this.b;
         switch (b) {
             case 0:
-                lm7Var.z0(jm7Var);
+                hl.c3(new ql7(lm7Var, tLObject, (byte) 2));
                 return;
             default:
-                jm7Var.t = null;
-                TL_feed.TL_feed_readFeed tL_feed_readFeed = new TL_feed.TL_feed_readFeed();
-                tL_feed_readFeed.max_position = jm7Var.s;
-                lm7Var.getConnectionsManager().sendRequest(tL_feed_readFeed, new wl7(lm7Var, (byte) 1));
+                if (tLObject instanceof TLRPC.Updates) {
+                    lm7Var.getMessagesController().Y3((TLRPC.Updates) tLObject, false);
+                    return;
+                }
                 return;
         }
     }

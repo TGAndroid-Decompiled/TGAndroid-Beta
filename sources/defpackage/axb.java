@@ -77,7 +77,7 @@ public final class axb extends e {
                 }
                 for (int i = 0; i < this.a.getChildCount(); i++) {
                     View childAt = this.a.getChildAt(i);
-                    if ((childAt instanceof rca) && (childAt.getBackground() instanceof zm2)) {
+                    if ((childAt instanceof sca) && (childAt.getBackground() instanceof zm2)) {
                         aob.z1(childAt.getBackground(), aob.w0(null, aob.a7, false), false);
                         Drawable drawable = ((zm2) childAt.getBackground()).b;
                         if (drawable != null) {

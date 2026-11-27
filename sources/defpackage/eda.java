@@ -1,95 +1,31 @@
 package defpackage;
 
 import android.view.View;
-import android.widget.Toast;
-import org.telegram.ui.PhotoViewer;
-public final class eda implements View.OnClickListener {
+public final class eda implements qs3 {
     public final byte a;
-    public final kea b;
+    public final int[] b;
+    public final fn7 c;
+    public final View d;
 
-    public eda(kea keaVar, byte b) {
+    public eda(fn7 fn7Var, View view, int[] iArr, byte b) {
         this.a = b;
-        this.b = keaVar;
+        this.c = fn7Var;
+        this.d = view;
+        this.b = iArr;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void a(vpa vpaVar, float f, float f2) {
         byte b = this.a;
-        kea keaVar = this.b;
+        int[] iArr = this.b;
+        View view = this.d;
+        fn7 fn7Var = this.c;
         switch (b) {
             case 0:
-                keaVar.Q0(true);
-                return;
-            case 1:
-                og2 og2Var = keaVar.Z1;
-                og2Var.a(!og2Var.a.q, true);
-                keaVar.W0();
-                return;
-            case 2:
-                n8 n8Var = keaVar.E2;
-                if (n8Var != null && n8Var.isShowing()) {
-                    keaVar.E2.d(true);
-                }
-                keaVar.Q0(false);
-                return;
-            case 3:
-                n8 n8Var2 = keaVar.E2;
-                if (n8Var2 != null && n8Var2.isShowing()) {
-                    keaVar.E2.d(true);
-                }
-                keaVar.Q0(true);
-                return;
-            case 4:
-                String[] strArr = keaVar.j2;
-                if (keaVar.P1.m() == 0) {
-                    if (keaVar.i2 || strArr[0] != null) {
-                        keaVar.dismiss();
-                        PhotoViewer.q0().A(true, false);
-                        if (strArr[0] == null && keaVar.g2) {
-                            keaVar.h2 = true;
-                            Toast.makeText(keaVar.getContext(), ob6.M0(2131748533, null), 0).show();
-                            return;
-                        }
-                        keaVar.getContext();
-                        keaVar.G0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                String[] strArr2 = keaVar.j2;
-                if (keaVar.P1.m() == 0) {
-                    if (keaVar.i2 || strArr2[0] != null) {
-                        keaVar.dismiss();
-                        if (strArr2[0] == null && keaVar.g2) {
-                            keaVar.h2 = true;
-                            Toast.makeText(keaVar.getContext(), ob6.M0(2131748533, null), 0).show();
-                            return;
-                        }
-                        keaVar.getContext();
-                        keaVar.G0();
-                        return;
-                    }
-                    return;
-                }
+                ((kea) fn7Var).L0((nea) view, iArr, f / 1000.0f);
                 return;
             default:
-                String[] strArr3 = keaVar.j2;
-                if (keaVar.P1.m() == 0) {
-                    if (keaVar.i2 || strArr3[0] != null) {
-                        keaVar.dismiss();
-                        if (strArr3[0] == null && keaVar.g2) {
-                            keaVar.h2 = true;
-                            Toast.makeText(keaVar.getContext(), ob6.M0(2131748533, null), 0).show();
-                            return;
-                        }
-                        keaVar.getContext();
-                        keaVar.G0();
-                        return;
-                    }
-                    return;
-                }
+                ((tda) fn7Var).d.L0(view, iArr, f / 1000.0f);
                 return;
         }
     }

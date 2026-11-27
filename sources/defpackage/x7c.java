@@ -33,7 +33,7 @@ public final class x7c extends ReplacementSpan {
         paint.getFontMetricsInt(fontMetricsInt2);
         float abs = Math.abs(fontMetricsInt2.descent - fontMetricsInt2.ascent) * 1.0f;
         px3 px3Var = this.b;
-        xf7 b = px3Var.b();
+        yf7 b = px3Var.b();
         int a = b.a(14);
         short s2 = 0;
         if (a != 0) {
@@ -42,12 +42,12 @@ public final class x7c extends ReplacementSpan {
             s = 0;
         }
         this.c = abs / s;
-        xf7 b2 = px3Var.b();
+        yf7 b2 = px3Var.b();
         int a2 = b2.a(14);
         if (a2 != 0) {
             b2.b.getShort(a2 + b2.a);
         }
-        xf7 b3 = px3Var.b();
+        yf7 b3 = px3Var.b();
         int a3 = b3.a(12);
         if (a3 != 0) {
             s2 = b3.b.getShort(a3 + b3.a);

@@ -59,7 +59,7 @@ public class sv9 {
                 z = true;
             }
             if (z) {
-                jf7.Y(this.m).a.c(new en9(this, this.q, (byte) 11));
+                kf7.a0(this.m).a.c(new dn9(this, this.q, (byte) 12));
             }
         }
     }
@@ -73,7 +73,7 @@ public class sv9 {
     public final void c() {
         this.q = new ArrayList();
         this.r = new HashMap();
-        jf7.Y(this.m).a.c(new pv9(this, (byte) 1));
+        kf7.a0(this.m).a.c(new pv9(this, (byte) 1));
     }
 
     public boolean d(TLObject tLObject) {

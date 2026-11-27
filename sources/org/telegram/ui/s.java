@@ -59,7 +59,7 @@ public final class s extends AnimatorListenerAdapter {
         } else if (b == 4) {
             photoViewer.P1 = true;
             photoViewer.f0.invalidate();
-            photoViewer.f0.post(new h68(this, photoViewer.O1, (byte) 9));
+            photoViewer.f0.post(new a58(this, photoViewer.O1, (byte) 10));
             photoViewer.O1 = null;
             photoViewer.u5.m(false, true);
             photoViewer.v5.m(false, true);

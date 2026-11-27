@@ -6,8 +6,8 @@ public abstract class k34 {
     public static final int[] a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, -1, -1, 37, 38, -1, -1, -1, -1, 39, 40, -1, 41, 42, 43, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 44, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, -1, -1, -1, -1, -1};
     public static final Charset b = StandardCharsets.ISO_8859_1;
 
-    public static void a(java.lang.String r8, defpackage.pg7 r9, defpackage.qj0 r10, java.nio.charset.Charset r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.k34.a(java.lang.String, pg7, qj0, java.nio.charset.Charset):void");
+    public static void a(java.lang.String r8, defpackage.qg7 r9, defpackage.qj0 r10, java.nio.charset.Charset r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.k34.a(java.lang.String, qg7, qj0, java.nio.charset.Charset):void");
     }
 
     public static defpackage.d2c b(java.lang.String r27, defpackage.r44 r28, java.util.AbstractMap r29) {

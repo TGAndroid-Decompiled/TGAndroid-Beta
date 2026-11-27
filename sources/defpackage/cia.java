@@ -59,7 +59,7 @@ public final class cia extends FrameLayout implements snb {
             i3 = 2131748080;
         }
         SpannableStringBuilder N2 = hl.N2(ob6.M0(i3, null), -1, 2, new ux9(ux9Var, (byte) 24), null);
-        SpannableString spannableString2 = new SpannableString(String.valueOf(uc7.s1(i).k4.Z1.f()));
+        SpannableString spannableString2 = new SpannableString(String.valueOf(uc7.s1(i).l4.Z1.f()));
         spannableString2.setSpan(new y7c(hl.o()), 0, spannableString2.length(), 33);
         p66Var.setText(hl.G2(N2, spannableString2, "%s"));
         addView(p66Var, tre.d(-1, -2.0f, 49, 24.0f, 96.0f, 24.0f, 12.0f));

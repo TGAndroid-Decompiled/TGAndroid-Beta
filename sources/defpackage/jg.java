@@ -131,7 +131,7 @@ public final class jg implements pcc {
                         if (N0 == null) {
                             TLRPC.TL_channels_getFullChannel tL_channels_getFullChannel = new TLRPC.TL_channels_getFullChannel();
                             tL_channels_getFullChannel.channel = uc7.s1(wuaVar.a).h1(-l.longValue());
-                            ConnectionsManager.getInstance(wuaVar.a).sendRequest(tL_channels_getFullChannel, new ol7(wuaVar, jr9Var, (byte) 29));
+                            ConnectionsManager.getInstance(wuaVar.a).sendRequest(tL_channels_getFullChannel, new pl7(wuaVar, jr9Var, (byte) 29));
                             return;
                         } else if (!N0.stargifts_available) {
                             alertDialog$Builder2 = new AlertDialog$Builder(0, wuaVar.J0, wuaVar.getContext());

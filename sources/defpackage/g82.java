@@ -21,7 +21,7 @@ public final class g82 extends Drawable {
     public int c = 255;
     public final float d;
     public final nl e;
-    public final hh7 f;
+    public final ih7 f;
     public final TLRPC.WallPaper g;
     public boolean h;
     public boolean i;
@@ -42,10 +42,10 @@ public final class g82 extends Drawable {
             this.d = wallPaperSettings2.intensity / 100.0f;
         }
         if ((z3 || wallPaper.document == null) && (wallPaperSettings = wallPaper.settings) != null && wallPaperSettings.background_color != 0) {
-            hh7 hh7Var = new hh7();
-            this.f = hh7Var;
+            ih7 ih7Var = new ih7();
+            this.f = ih7Var;
             TLRPC.WallPaperSettings wallPaperSettings3 = wallPaper.settings;
-            hh7Var.n(true, wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
+            ih7Var.n(true, wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
             if (wallPaper.document != null) {
                 ez3.o(yac.t0, wallPaper.id, new rx1(this, wallPaper, (byte) 7), wallPaper);
                 return;
@@ -128,9 +128,9 @@ public final class g82 extends Drawable {
                             i = vm2.o(i4, 255);
                         }
                         int i5 = i;
-                        hh7 hh7Var = new hh7();
-                        hh7Var.n(true, o, o2, o3, i5);
-                        a = new BitmapDrawable(hh7Var.k);
+                        ih7 ih7Var = new ih7();
+                        ih7Var.n(true, o, o2, o3, i5);
+                        a = new BitmapDrawable(ih7Var.k);
                     }
                 }
             } else {
@@ -165,9 +165,9 @@ public final class g82 extends Drawable {
 
     public final Drawable c(boolean z) {
         Drawable drawable;
-        hh7 hh7Var = this.f;
-        if (hh7Var != null) {
-            return hh7Var;
+        ih7 ih7Var = this.f;
+        if (ih7Var != null) {
+            return ih7Var;
         }
         nl nlVar = this.e;
         if (z && (drawable = nlVar.n0) != null) {
@@ -185,11 +185,11 @@ public final class g82 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        hh7 hh7Var = this.f;
-        if (hh7Var != null) {
-            hh7Var.setBounds(getBounds());
-            hh7Var.setAlpha(this.c);
-            hh7Var.draw(canvas);
+        ih7 ih7Var = this.f;
+        if (ih7Var != null) {
+            ih7Var.setBounds(getBounds());
+            ih7Var.setAlpha(this.c);
+            ih7Var.draw(canvas);
             return;
         }
         nl nlVar = this.e;
@@ -225,9 +225,9 @@ public final class g82 extends Drawable {
             this.i = false;
             nlVar.K();
         }
-        hh7 hh7Var = this.f;
-        if (hh7Var != null) {
-            hh7Var.k();
+        ih7 ih7Var = this.f;
+        if (ih7Var != null) {
+            ih7Var.k();
         }
     }
 
@@ -243,9 +243,9 @@ public final class g82 extends Drawable {
             this.i = false;
             nlVar.K();
         }
-        hh7 hh7Var = this.f;
-        if (hh7Var != null) {
-            hh7Var.l();
+        ih7 ih7Var = this.f;
+        if (ih7Var != null) {
+            ih7Var.l();
         }
     }
 

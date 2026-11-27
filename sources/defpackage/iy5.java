@@ -59,7 +59,7 @@ public final class iy5 implements Runnable {
                                 }
                                 return;
                             default:
-                                ((v3b) h44Var2).r(true);
+                                ((w3b) h44Var2).r(true);
                                 n8 n8Var2 = wy5Var2.B1;
                                 if (n8Var2 != null && n8Var2.isShowing()) {
                                     wy5Var2.B1.d(true);
@@ -83,7 +83,7 @@ public final class iy5 implements Runnable {
                     textView2.setOnClickListener(new xx5(wy5Var, (byte) 2));
                     linearLayout.addView(textView2, tre.o(-2, 48));
                 }
-                if (h44Var instanceof v3b) {
+                if (h44Var instanceof w3b) {
                     TextView textView3 = new TextView(wy5Var.getContext());
                     yob.X(textView3, i, yx5Var);
                     textView3.setBackgroundDrawable(aob.L0(false));
@@ -109,7 +109,7 @@ public final class iy5 implements Runnable {
                                     }
                                     return;
                                 default:
-                                    ((v3b) h44Var2).r(true);
+                                    ((w3b) h44Var2).r(true);
                                     n8 n8Var2 = wy5Var2.B1;
                                     if (n8Var2 != null && n8Var2.isShowing()) {
                                         wy5Var2.B1.d(true);

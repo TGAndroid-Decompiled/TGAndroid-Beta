@@ -358,8 +358,8 @@ public abstract class x7 extends FrameLayout implements snb {
                 v0 = ((ColorDrawable) r0).getColor();
             } else {
                 Pair pair = null;
-                if (r0 instanceof hh7) {
-                    bitmap = ((hh7) r0).k;
+                if (r0 instanceof ih7) {
+                    bitmap = ((ih7) r0).k;
                 } else if (r0 instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) r0).getBitmap();
                 } else {

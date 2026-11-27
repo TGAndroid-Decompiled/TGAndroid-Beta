@@ -146,7 +146,7 @@ public final class yy2 {
         ((dc4) lh2Var.c).a();
         lh2Var.c = lh2.f;
         if (str != null) {
-            lh2Var.c = new p09(((gd4) lh2Var.b).b(str, "userlog"));
+            lh2Var.c = new q09(((gd4) lh2Var.b).b(str, "userlog"));
         }
         this.l.b(str);
         faa faaVar = this.m;
@@ -512,7 +512,7 @@ public final class yy2 {
             synchronized (p63Var.c) {
                 task2 = p63Var.d.getTask();
             }
-            Task onSuccessTask = task2.onSuccessTask(new rg7((byte) 16));
+            Task onSuccessTask = task2.onSuccessTask(new sg7((byte) 16));
             saeVar.f("Waiting for send/deleteUnsentReports to be called.");
             c = ur5.c(onSuccessTask, this.p.getTask());
         }

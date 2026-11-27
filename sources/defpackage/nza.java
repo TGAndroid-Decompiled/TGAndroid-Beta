@@ -817,7 +817,7 @@ public final class nza extends m15 implements fn7 {
             String M0 = ob6.M0(2131753608, null);
             String M02 = ob6.M0(2131753607, null);
             i2 = 1;
-            cq6 cq6Var = new cq6(nx0VarArr, j, boost, (byte) 27);
+            cq6 cq6Var = new cq6(nx0VarArr, j, boost, (byte) 28);
             nx0VarArr = nx0VarArr;
             hjbVar.i(M0, M02, cq6Var);
         } else {
@@ -866,7 +866,7 @@ public final class nza extends m15 implements fn7 {
         oj resellAmount;
         pj pjVar = pj.a;
         if (tL_starGiftUnique == null) {
-            resellAmount = oj.h(uc7.s1(i).k4.o.f(), pjVar);
+            resellAmount = oj.h(uc7.s1(i).l4.o.f(), pjVar);
         } else if (tL_starGiftUnique.resale_ton_only) {
             resellAmount = tL_starGiftUnique.getResellAmount(pj.b);
         } else {
@@ -1099,7 +1099,7 @@ public final class nza extends m15 implements fn7 {
         arrayList.add(b8c.k(this.j0));
         c51 c51Var = this.s0;
         if (c51Var != null) {
-            if (getMessagesController().k4.E2.f) {
+            if (getMessagesController().l4.E2.f) {
                 i = 0;
             } else {
                 i = 8;
@@ -1107,7 +1107,7 @@ public final class nza extends m15 implements fn7 {
             c51Var.setVisibility(i);
         }
         arrayList.add(b8c.C(null));
-        if (getMessagesController().k4.K2.f) {
+        if (getMessagesController().l4.K2.f) {
             arrayList.add(yb.i(-4, getThemedColor(aob.lk), g92.a0(ob6.M0(2131743421, null)), ob6.M0(2131743422, null)));
             arrayList.add(b8c.C(null));
         }

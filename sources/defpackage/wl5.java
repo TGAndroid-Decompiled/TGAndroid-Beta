@@ -1,5 +1,5 @@
 package defpackage;
-public abstract class wl5 implements sf7 {
+public abstract class wl5 implements tf7 {
     public final String a;
 
     public wl5(String str) {

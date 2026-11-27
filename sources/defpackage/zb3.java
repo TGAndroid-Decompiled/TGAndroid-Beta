@@ -540,9 +540,9 @@ public class zb3 extends cma {
     }
 
     @Override
-    public boolean q(f89 f89Var, f89 f89Var2, l09 l09Var, int i, int i2, int i3, int i4) {
+    public boolean q(f89 f89Var, f89 f89Var2, m09 m09Var, int i, int i2, int i3, int i4) {
         if (f89Var == f89Var2) {
-            return r(f89Var, l09Var, i, i2, i3, i4);
+            return r(f89Var, m09Var, i, i2, i3, i4);
         }
         View view = f89Var.a;
         float translationX = view.getTranslationX();
@@ -567,7 +567,7 @@ public class zb3 extends cma {
     }
 
     @Override
-    public boolean r(f89 f89Var, l09 l09Var, int i, int i2, int i3, int i4) {
+    public boolean r(f89 f89Var, m09 m09Var, int i, int i2, int i3, int i4) {
         View view = f89Var.a;
         int translationX = i + ((int) view.getTranslationX());
         int translationY = i2 + ((int) f89Var.a.getTranslationY());
@@ -591,7 +591,7 @@ public class zb3 extends cma {
     }
 
     @Override
-    public void s(f89 f89Var, l09 l09Var) {
+    public void s(f89 f89Var, m09 m09Var) {
         R(f89Var);
         this.p.add(f89Var);
         F();

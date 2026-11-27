@@ -31,13 +31,13 @@ public final class x63 extends yfb implements ur4 {
     @Override
     public final Object invoke(Object obj) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         zw2 zw2Var = (zw2) obj;
         switch (b) {
             case 0:
-                return ((x63) create(zw2Var)).invokeSuspend(f9cVar);
+                return ((x63) create(zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((x63) create(zw2Var)).invokeSuspend(f9cVar);
+                return ((x63) create(zw2Var)).invokeSuspend(g9cVar);
         }
     }
 
@@ -49,11 +49,11 @@ public final class x63 extends yfb implements ur4 {
         switch (b) {
             case 0:
                 boolean z = this.b;
-                f9c f9cVar = f9c.a;
+                g9c g9cVar = g9c.a;
                 if (z) {
                     if (z) {
                         ixe.b(obj);
-                        return f9cVar;
+                        return g9cVar;
                     }
                     grb.i("call to 'resume' before 'invoke' with coroutine");
                     return null;
@@ -86,10 +86,10 @@ public final class x63 extends yfb implements ur4 {
                     if (linkedHashSet != null) {
                         linkedHashSet.clear();
                     }
-                    if (f9cVar == vx2Var) {
+                    if (g9cVar == vx2Var) {
                         return vx2Var;
                     }
-                    return f9cVar;
+                    return g9cVar;
                 }
                 su3.e("Unable to delete migrated keys from SharedPreferences.");
                 return null;

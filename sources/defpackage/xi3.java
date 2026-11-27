@@ -43,7 +43,7 @@ public final class xi3 implements hj, qq4 {
         if (uj3Var.E2 != null && !arrayList.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                arrayList2.add(if7.a(((Long) uj3Var.K2.get(i3)).longValue(), 0L));
+                arrayList2.add(jf7.a(((Long) uj3Var.K2.get(i3)).longValue(), 0L));
             }
             uj3Var.E2.q(uj3Var, arrayList2, uj3Var.D1.getFieldText(), false, z, i, i2, null);
         }

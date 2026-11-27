@@ -53,7 +53,7 @@ public abstract class rv4 extends c79 {
     }
 
     @Override
-    public final void t(defpackage.f89 r23, int r24) {
+    public final void t(defpackage.f89 r22, int r23) {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.rv4.t(f89, int):void");
     }
 

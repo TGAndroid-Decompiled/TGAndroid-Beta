@@ -39,7 +39,7 @@ public final class azb implements Runnable {
         }
         if (map != null) {
             gd4 gd4Var = (gd4) vh4Var.d;
-            ((qf7) gd4Var.b).h((String) gd4Var.a, map, vh4Var.a);
+            ((rf7) gd4Var.b).h((String) gd4Var.a, map, vh4Var.a);
         }
     }
 
@@ -68,7 +68,7 @@ public final class azb implements Runnable {
             case 4:
                 a5c a5cVar = (a5c) this.b;
                 uc7 uc7Var = a5cVar.n;
-                String string = uc7Var.X3.getString("translating_dialog_languages2", null);
+                String string = uc7Var.Y3.getString("translating_dialog_languages2", null);
                 if (string != null) {
                     for (String str2 : string.split(";")) {
                         String[] split = str2.split("=");
@@ -103,7 +103,7 @@ public final class azb implements Runnable {
                             }
                         }
                     }
-                    Set<String> stringSet = uc7Var.X3.getStringSet("hidden_translation_at", null);
+                    Set<String> stringSet = uc7Var.Y3.getStringSet("hidden_translation_at", null);
                     if (stringSet != null) {
                         for (String str5 : stringSet) {
                             try {
@@ -153,7 +153,7 @@ public final class azb implements Runnable {
                     }
                 }
                 if (z2) {
-                    ((qf7) gd4Var.b).i((String) gd4Var.a, str);
+                    ((rf7) gd4Var.b).i((String) gd4Var.a, str);
                     return;
                 }
                 return;
@@ -319,7 +319,7 @@ public final class azb implements Runnable {
                 }
                 return;
             case 28:
-                ((VoIPPendingCall) this.b).lambda$new$1();
+                VoIPPendingCall.a((VoIPPendingCall) this.b);
                 return;
             default:
                 ((VoIPPermissionActivity) this.b).finish();

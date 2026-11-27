@@ -107,8 +107,8 @@ public final class mb implements av3 {
                                     h1 j = jn2.j(new zd1(2, bArr2), false);
                                     jo4 jo4Var = new jo4();
                                     jo4Var.a = this.g;
-                                    jo4Var.r = dg7.n(this.f);
-                                    jo4Var.s = dg7.n("audio/mp4a-latm");
+                                    jo4Var.r = eg7.n(this.f);
+                                    jo4Var.s = eg7.n("audio/mp4a-latm");
                                     jo4Var.k = j.c;
                                     jo4Var.M = j.b;
                                     jo4Var.O = j.a;
@@ -357,8 +357,8 @@ public final class mb implements av3 {
             jo4 jo4Var = new jo4();
             l6cVar.b();
             jo4Var.a = l6cVar.e;
-            jo4Var.r = dg7.n(this.f);
-            jo4Var.s = dg7.n("application/id3");
+            jo4Var.r = eg7.n(this.f);
+            jo4Var.s = eg7.n("application/id3");
             xnb.v(jo4Var, e02);
             return;
         }

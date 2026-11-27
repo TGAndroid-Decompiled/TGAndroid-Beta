@@ -241,13 +241,13 @@ public final class m3d extends xyc {
             this.e = vycVar;
         }
         if (i4 == 8) {
-            l09 l09Var = this.a.b;
-            synchronized (l09Var) {
-                int i5 = l09Var.b;
+            m09 m09Var = this.a.b;
+            synchronized (m09Var) {
+                int i5 = m09Var.b;
                 if (i5 != 4 && i5 != 5) {
-                    l09Var.b = 4;
-                    if (l09Var.c == 1) {
-                        l09Var.c = 3;
+                    m09Var.b = 4;
+                    if (m09Var.c == 1) {
+                        m09Var.c = 3;
                     }
                 } else {
                     z = false;

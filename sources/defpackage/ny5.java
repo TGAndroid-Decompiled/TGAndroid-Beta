@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.PointF;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class ny5 extends v3b {
+public final class ny5 extends w3b {
     public final wy5 A0;
 
     public ny5(wy5 wy5Var, Context context, PointF pointF, float f, float f2, qma qmaVar, TLRPC.Document document, Object obj) {

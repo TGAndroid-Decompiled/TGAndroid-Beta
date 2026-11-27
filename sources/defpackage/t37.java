@@ -20,7 +20,7 @@ import android.graphics.drawable.NinePatchDrawable;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 public class t37 extends Drawable {
-    public static final hh7[] T = new hh7[3];
+    public static final ih7[] T = new ih7[3];
     public NinePatchDrawable F;
     public int G;
     public boolean I;
@@ -79,7 +79,7 @@ public class t37 extends Drawable {
         if (this.a instanceof BitmapShader) {
             boolean z = this.L;
             Matrix matrix = this.k;
-            hh7[] hh7VarArr = T;
+            ih7[] ih7VarArr = T;
             char c = 0;
             byte b = this.l;
             char c2 = 2;
@@ -87,7 +87,7 @@ public class t37 extends Drawable {
                 if (b == 2) {
                     c = 1;
                 }
-                float min = 1.0f / Math.min(bitmap.getWidth() / hh7VarArr[c].getBounds().width(), this.N.getHeight() / hh7VarArr[c].getBounds().height());
+                float min = 1.0f / Math.min(bitmap.getWidth() / ih7VarArr[c].getBounds().width(), this.N.getHeight() / ih7VarArr[c].getBounds().height());
                 matrix.postScale(min, min);
                 return;
             }
@@ -97,8 +97,8 @@ public class t37 extends Drawable {
                 }
                 c2 = c;
             }
-            Bitmap bitmap2 = hh7VarArr[c2].k;
-            float min2 = 1.0f / Math.min(bitmap2.getWidth() / hh7VarArr[c2].getBounds().width(), bitmap2.getHeight() / hh7VarArr[c2].getBounds().height());
+            Bitmap bitmap2 = ih7VarArr[c2].k;
+            float min2 = 1.0f / Math.min(bitmap2.getWidth() / ih7VarArr[c2].getBounds().width(), bitmap2.getHeight() / ih7VarArr[c2].getBounds().height());
             matrix.postScale(min2, min2);
         }
     }
@@ -586,19 +586,19 @@ public class t37 extends Drawable {
         return aob.lm.get(i);
     }
 
-    public final hh7 j() {
+    public final ih7 j() {
         char c;
         boolean z = this.v;
-        hh7[] hh7VarArr = T;
+        ih7[] ih7VarArr = T;
         if (z) {
-            return hh7VarArr[2];
+            return ih7VarArr[2];
         }
         if (this.l == 2) {
             c = 1;
         } else {
             c = 0;
         }
-        return hh7VarArr[c];
+        return ih7VarArr[c];
     }
 
     public final Drawable k() {

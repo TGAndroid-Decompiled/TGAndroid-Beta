@@ -15,7 +15,7 @@ public class NotificationBadge$NewHtcHomeBadger implements xm7 {
         if (!zm7.a(intent) && !zm7.a(intent2)) {
             return;
         }
-        hl.c3(new pl7(intent, intent2, (byte) 2));
+        hl.c3(new ql7(intent, intent2, (byte) 3));
     }
 
     @Override

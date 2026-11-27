@@ -28,14 +28,14 @@ public final class lb2 implements Runnable {
             TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
             tL_messages_messages.messages.add(r47Var.k);
             if (!d7aVar.I && !d7aVar.J) {
-                jf7 Y = jf7.Y(k5Var.a);
+                kf7 a0 = kf7.a0(k5Var.a);
                 long j = d7aVar.a;
                 if (this.b != 0) {
                     i = 1;
                 } else {
                     i = 0;
                 }
-                Y.e1(-2, 0, i, j, 0L, tL_messages_messages, false);
+                a0.i1(-2, 0, i, j, 0L, tL_messages_messages, false);
             }
             B.s0(d7aVar, true);
         }

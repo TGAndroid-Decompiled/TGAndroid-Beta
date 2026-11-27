@@ -186,7 +186,7 @@ public class ny9 extends ScrollView implements yi5 {
                 Object obj = arrayList.get(i);
                 i++;
                 View view3 = (View) obj;
-                if (!Objects.equals(view3.getTag(), -33024) && !(view3 instanceof ilb) && !(view3 instanceof rca) && !(view3 instanceof fh4)) {
+                if (!Objects.equals(view3.getTag(), -33024) && !(view3 instanceof ilb) && !(view3 instanceof sca) && !(view3 instanceof fh4)) {
                     if (view != null && Math.abs(view2.getAlpha() - view3.getAlpha()) > 0.1f) {
                         b(view, view2);
                         view = null;

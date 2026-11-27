@@ -87,14 +87,14 @@ public final class ed9 implements bxa {
     }
 
     public final boolean f() {
-        if (!this.y && !this.w && !l() && uc7.s1(this.a).k4.s.f && uc7.s1(this.a).k4.v0.f) {
+        if (!this.y && !this.w && !l() && uc7.s1(this.a).l4.s.f && uc7.s1(this.a).l4.v0.f) {
             return true;
         }
         return false;
     }
 
     public final boolean g() {
-        return !"hidden".equals(hr.a(uc7.s1(this.a).k4.u));
+        return !"hidden".equals(hr.a(uc7.s1(this.a).l4.u));
     }
 
     @Override
@@ -103,7 +103,7 @@ public final class ed9 implements bxa {
     }
 
     public final boolean h() {
-        hr hrVar = uc7.s1(this.a).k4;
+        hr hrVar = uc7.s1(this.a).l4;
         if (hrVar.v0.f && !"hidden".equals(hr.a(hrVar.v))) {
             return true;
         }
@@ -125,7 +125,7 @@ public final class ed9 implements bxa {
 
     public final void j() {
         boolean z;
-        hr hrVar = uc7.s1(this.a).k4;
+        hr hrVar = uc7.s1(this.a).l4;
         this.s = "default".equals(hr.a(hrVar.u));
         if ("default".equals(hr.a(hrVar.v)) && h()) {
             z = true;

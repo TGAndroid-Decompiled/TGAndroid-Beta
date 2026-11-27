@@ -432,7 +432,7 @@ public final class av0 extends WebViewClient {
             }
             if (nv0Var.R != null && m01.g(parse, false, null)) {
                 if (z || !"1".equals(parse.getQueryParameter("embed")) || !"t.me".equals(parse.getAuthority())) {
-                    if (uc7.s1(nv0Var.R.N).J3 != null && uc7.s1(nv0Var.R.N).J3.contains(parse.getScheme())) {
+                    if (uc7.s1(nv0Var.R.N).K3 != null && uc7.s1(nv0Var.R.N).K3.contains(parse.getScheme())) {
                         rv0 rv0Var = nv0Var.R;
                         if (nv0Var.f != null) {
                             uu0 uu0Var4 = rv0Var.c;

@@ -690,7 +690,7 @@ public final class zn5 implements fn7 {
                 this.w = uh9.l(sb, this.h.location.local_id, ".jpg");
                 if (this.L) {
                     if (r47Var != null && r47Var.r0 != null) {
-                        if (this.J && !uc7.s1(this.d).k4.L0.f) {
+                        if (this.J && !uc7.s1(this.d).l4.L0.f) {
                             yn5 yn5Var = this.b;
                             if (yn5Var != null) {
                                 yn5Var.O(z, true);

@@ -19,10 +19,10 @@ import java.util.List;
 import org.telegram.tgnet.TLRPC;
 public final class sbc extends ny0 implements fn7 {
     public final byte S1;
-    public final ni7 T1;
-    public final mi7 U1;
+    public final oi7 T1;
+    public final ni7 U1;
     public final nf9 V1;
-    public final li7 W1;
+    public final mi7 W1;
     public final og2 X1;
     public final dr0 Y1;
     public final ArrayList Z1;
@@ -76,27 +76,27 @@ public final class sbc extends ny0 implements fn7 {
         if (n2aVar != null) {
             n2aVar.y = true;
         }
-        li7 li7Var = new li7(getContext(), w53Var, (byte) 1);
-        this.W1 = li7Var;
-        li7Var.setOnCloseClickListener(new mbc(this, (byte) 10));
-        li7Var.setText(K0());
-        li7Var.setCloseImageVisible(false);
-        li7Var.f.c(false, 0.0f);
+        mi7 mi7Var = new mi7(getContext(), w53Var, (byte) 1);
+        this.W1 = mi7Var;
+        mi7Var.setOnCloseClickListener(new mbc(this, (byte) 10));
+        mi7Var.setText(K0());
+        mi7Var.setCloseImageVisible(false);
+        mi7Var.f.c(false, 0.0f);
         this.o2 = new tg2(this, (byte) 4);
-        mi7 mi7Var = new mi7(this, getContext(), w53Var, (byte) 1);
-        this.U1 = mi7Var;
-        yob.h(i2, w53Var, mi7Var);
-        mi7Var.setOnSearchTextChange(new nbc(this, (byte) 1));
+        ni7 ni7Var = new ni7(this, getContext(), w53Var, (byte) 1);
+        this.U1 = ni7Var;
+        yob.h(i2, w53Var, ni7Var);
+        ni7Var.setOnSearchTextChange(new nbc(this, (byte) 1));
         hashSet.isEmpty();
-        mi7Var.b.r(ob6.M0(2131745564, null), false);
+        ni7Var.b.r(ob6.M0(2131745564, null), false);
         nf9 nf9Var = new nf9((byte) 15, getContext(), this);
         this.V1 = nf9Var;
         ViewGroup viewGroup = this.b;
         int i3 = this.u0;
-        viewGroup.addView(li7Var, 0, tre.f(-2.0f, -1, 55, i3, 0, i3, 0));
+        viewGroup.addView(mi7Var, 0, tre.f(-2.0f, -1, 55, i3, 0, i3, 0));
         ViewGroup viewGroup2 = this.b;
         int i4 = this.u0;
-        viewGroup2.addView(mi7Var, tre.f(-2.0f, -1, 55, i4, 0, i4, 0));
+        viewGroup2.addView(ni7Var, tre.f(-2.0f, -1, 55, i4, 0, i4, 0));
         ViewGroup viewGroup3 = this.b;
         int i5 = this.u0;
         viewGroup3.addView(nf9Var, tre.f(1.0f, -1, 55, i5, 0, i5, 0));
@@ -191,11 +191,11 @@ public final class sbc extends ny0 implements fn7 {
             }
         });
         dr0Var.addView(linearLayout, tre.t(-2, -2, 17, 0, 0, 0, 8));
-        ni7 ni7Var = new ni7(this, getContext(), w53Var, (byte) 1);
-        this.T1 = ni7Var;
+        oi7 oi7Var = new oi7(this, getContext(), w53Var, (byte) 1);
+        this.T1 = oi7Var;
         dr0Var.setAlpha(0.0f);
         dr0Var.setVisibility(8);
-        ni7Var.setOnClickListener(new View.OnClickListener(this) {
+        oi7Var.setOnClickListener(new View.OnClickListener(this) {
             public final sbc b;
 
             {
@@ -258,7 +258,7 @@ public final class sbc extends ny0 implements fn7 {
                 }
             }
         });
-        dr0Var.addView(ni7Var, tre.r(-1, 48, 87));
+        dr0Var.addView(oi7Var, tre.r(-1, 48, 87));
         ViewGroup viewGroup4 = this.b;
         int i7 = this.u0;
         viewGroup4.addView(dr0Var, tre.f(-2.0f, -1, 87, i7, 0, i7, 0));
@@ -282,10 +282,10 @@ public final class sbc extends ny0 implements fn7 {
         zb3Var.m = false;
         this.n1.setItemAnimator(zb3Var);
         this.n1.i(new lr(this, (byte) 10));
-        mi7Var.setText("");
-        mi7Var.d.b(false);
-        mi7Var.b(false, hashSet, new mbc(this, (byte) 11), null);
-        li7Var.setText(K0());
+        ni7Var.setText("");
+        ni7Var.d.b(false);
+        ni7Var.b(false, hashSet, new mbc(this, (byte) 11), null);
+        mi7Var.setText(K0());
         jy0 jy0Var = this.o1;
         if (jy0Var != null) {
             jy0Var.setTitle(K0());
@@ -333,15 +333,15 @@ public final class sbc extends ny0 implements fn7 {
     @Override
     public final void N0(Canvas canvas, int i) {
         float max = Math.max(i, hl.m - hl.L(8.0f)) + hl.L(8.0f);
-        li7 li7Var = this.W1;
-        li7Var.setTranslationY(max);
-        float translationY = li7Var.getTranslationY() + li7Var.getMeasuredHeight();
-        mi7 mi7Var = this.U1;
-        mi7Var.setTranslationY(translationY);
-        float translationY2 = mi7Var.getTranslationY() + mi7Var.getMeasuredHeight();
+        mi7 mi7Var = this.W1;
+        mi7Var.setTranslationY(max);
+        float translationY = mi7Var.getTranslationY() + mi7Var.getMeasuredHeight();
+        ni7 ni7Var = this.U1;
+        ni7Var.setTranslationY(translationY);
+        float translationY2 = ni7Var.getTranslationY() + ni7Var.getMeasuredHeight();
         nf9 nf9Var = this.V1;
         nf9Var.setTranslationY(translationY2);
-        int measuredHeight = mi7Var.getMeasuredHeight() + li7Var.getMeasuredHeight();
+        int measuredHeight = ni7Var.getMeasuredHeight() + mi7Var.getMeasuredHeight();
         this.n1.setTranslationY((nf9Var.getMeasuredHeight() + measuredHeight) - hl.L(8.0f));
     }
 
@@ -461,7 +461,7 @@ public final class sbc extends ny0 implements fn7 {
 
     public final int c1() {
         if (this.S1 == 4) {
-            return Math.max(0, (uc7.s1(this.a).k4.E3.f() - this.s2.size()) - 1);
+            return Math.max(0, (uc7.s1(this.a).l4.E3.f() - this.s2.size()) - 1);
         }
         return 10;
     }
@@ -514,9 +514,9 @@ public final class sbc extends ny0 implements fn7 {
     }
 
     public final void f1(boolean z) {
-        ni7 ni7Var = this.T1;
+        oi7 oi7Var = this.T1;
         boolean z2 = false;
-        ni7Var.setShowZero(false);
+        oi7Var.setShowZero(false);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         byte b = this.S1;
         HashSet hashSet = this.b2;
@@ -533,12 +533,12 @@ public final class sbc extends ny0 implements fn7 {
         } else {
             spannableStringBuilder.append((CharSequence) ob6.M0(2131749450, "GiftPremiumProceedBtn"));
         }
-        ni7Var.c(hashSet.size(), true);
-        ni7Var.i(spannableStringBuilder, z, false);
+        oi7Var.c(hashSet.size(), true);
+        oi7Var.i(spannableStringBuilder, z, false);
         if (hashSet.size() > 0) {
             z2 = true;
         }
-        ni7Var.setEnabled(z2);
+        oi7Var.setEnabled(z2);
     }
 
     public final void g1(boolean r26, boolean r27) {

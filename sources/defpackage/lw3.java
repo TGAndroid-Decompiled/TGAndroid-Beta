@@ -237,8 +237,8 @@ public final class lw3 implements Runnable {
                     if (arrayList6.isEmpty()) {
                         r4cVar.a(new ArrayList());
                     } else {
-                        jf7 Y = jf7.Y(q84Var.a);
-                        Y.a.c(new cv2(Y, arrayList6, r4cVar, (byte) 24));
+                        kf7 a0 = kf7.a0(q84Var.a);
+                        a0.a.c(new cv2(a0, arrayList6, r4cVar, (byte) 24));
                     }
                     i13 = 0;
                 }

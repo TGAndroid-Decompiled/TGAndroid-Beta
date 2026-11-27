@@ -66,7 +66,7 @@ public final class cg implements View.OnClickListener {
                 return;
             case 4:
                 ((zu1) this.d).Z9((r47) this.e, false, false);
-                m01.t(((no0) this.c).getContext(), Uri.parse((String) this.b), true, false, false, null, null, false, uc7.s1(yac.t0).k4.I2.f, false, false);
+                m01.t(((no0) this.c).getContext(), Uri.parse((String) this.b), true, false, false, null, null, false, uc7.s1(yac.t0).l4.I2.f, false, false);
                 return;
             case 5:
                 String[] strArr = (String[]) this.c;
@@ -300,7 +300,7 @@ public final class cg implements View.OnClickListener {
                 alertDialog$Builder.a.S = ob6.M0(2131742789, null);
                 alertDialog$Builder.a.U = ob6.M0(2131742790, null);
                 alertDialog$Builder.g(ob6.M0(2131752570, null), null);
-                alertDialog$Builder.j(ob6.M0(2131751563, null), new yw9((vlc) this.e, (nx0) this.b, (byte) 25));
+                alertDialog$Builder.j(ob6.M0(2131751563, null), new yw9((slc) this.e, (nx0) this.b, (byte) 25));
                 alertDialog$Builder.c(-1);
                 alertDialog$Builder.o();
                 return;
@@ -347,7 +347,7 @@ public final class cg implements View.OnClickListener {
                         yob.G(p66Var, aob.Xc, vnbVar2);
                         p66Var.setTextSize(1, 16.0f);
                         p66Var.setPadding(hl.L(4.0f), 0, hl.L(4.0f), 0);
-                        p66Var.setText(hl.N2(ob6.a0(null, null, 2131742850, lbc.r(ktcVar.r)), -1, 0, new vlc(idVarArr, runnable, (byte) 23), null));
+                        p66Var.setText(hl.N2(ob6.a0(null, null, 2131742850, lbc.r(ktcVar.r)), -1, 0, new slc(idVarArr, runnable, (byte) 24), null));
                         linearLayout.addView(p66Var, tre.t(-1, -2, 55, 0, 14, 0, 0));
                     } else {
                         f2 = 4.0f;
@@ -384,11 +384,11 @@ public final class cg implements View.OnClickListener {
             default:
                 c51 c51Var3 = (c51) this.c;
                 ku9 ku9Var = (ku9) this.d;
-                jl7 jl7Var = (jl7) this.e;
+                kl7 kl7Var = (kl7) this.e;
                 vnb vnbVar4 = (vnb) this.b;
                 if (!c51Var3.R) {
                     c51Var3.setLoading(true);
-                    ku9Var.a(new v58(c51Var3, jl7Var, vnbVar4, (byte) 17));
+                    ku9Var.a(new w58(c51Var3, kl7Var, vnbVar4, (byte) 17));
                     return;
                 }
                 return;

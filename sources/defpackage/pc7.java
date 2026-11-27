@@ -121,7 +121,7 @@ public final class pc7 {
             Y1.flags2 = i2 | 2097152;
             Y1.saved_music = a;
         }
-        jf7.Y(i).g2(Y1, false);
+        kf7.a0(i).l2(Y1, false);
         yac.h(i).u(true);
         jn7.f(i).k(jn7.Y3, Long.valueOf(j));
     }

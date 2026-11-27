@@ -215,7 +215,7 @@ public class q67 extends Dialog implements fn7 {
             this.e0.setScaleY(0.4f);
             this.e0.setScaleX(0.4f);
             this.e0.setAlpha(0.0f);
-            TLRPC.messages_AvailableEffects messages_availableeffects = uc7.s1(i).W4;
+            TLRPC.messages_AvailableEffects messages_availableeffects = uc7.s1(i).X4;
             if (messages_availableeffects != null && !messages_availableeffects.effects.isEmpty()) {
                 u();
             } else {
@@ -330,7 +330,7 @@ public class q67 extends Dialog implements fn7 {
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
         TLRPC.messages_AvailableEffects messages_availableeffects;
-        if (i == jn7.w3 && (messages_availableeffects = uc7.s1(this.c).W4) != null && !messages_availableeffects.effects.isEmpty()) {
+        if (i == jn7.w3 && (messages_availableeffects = uc7.s1(this.c).X4) != null && !messages_availableeffects.effects.isEmpty()) {
             u();
         }
     }

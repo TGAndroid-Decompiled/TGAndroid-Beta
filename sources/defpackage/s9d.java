@@ -15,8 +15,8 @@ public final class s9d implements tq2, OnSuccessListener, OnFailureListener {
     public final Object b0(am2 am2Var) {
         switch (this.a) {
             case 0:
-                jg7 jg7Var = (jg7) am2Var.a(jg7.class);
-                return new rg7((byte) 0);
+                kg7 kg7Var = (kg7) am2Var.a(kg7.class);
+                return new sg7((byte) 0);
             default:
                 return new y99(am2Var.N(x99.class));
         }

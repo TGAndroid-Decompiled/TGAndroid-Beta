@@ -229,7 +229,7 @@ public final class tg1 extends FrameLayout {
             }
             this.y.add(new sg1(1, ob6.M0(2131748668, null)));
             this.y.add(new sg1(3, this.d.boost_url));
-            if (uc7.s1(this.b).k4.W1.f && xc2.N(this.J)) {
+            if (uc7.s1(this.b).l4.W1.f && xc2.N(this.J)) {
                 ArrayList arrayList9 = this.y;
                 if (xc2.V(this.J)) {
                     i = 2131753262;

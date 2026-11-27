@@ -5,12 +5,12 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 public final class yq3 implements Runnable {
     public final byte a;
-    public final jf7 b;
+    public final kf7 b;
     public final zq3 c;
 
-    public yq3(jf7 jf7Var, zq3 zq3Var, byte b) {
+    public yq3(kf7 kf7Var, zq3 zq3Var, byte b) {
         this.a = b;
-        this.b = jf7Var;
+        this.b = kf7Var;
         this.c = zq3Var;
     }
 
@@ -22,12 +22,12 @@ public final class yq3 implements Runnable {
         int i = 0;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         zq3 zq3Var = this.c;
-        jf7 jf7Var = this.b;
+        kf7 kf7Var = this.b;
         switch (b) {
             case 0:
                 try {
                     try {
-                        sQLiteDatabase2 = jf7Var.b;
+                        sQLiteDatabase2 = kf7Var.b;
                     } catch (Exception e) {
                         cc4.g(e, true);
                         if (sQLitePreparedStatement == null) {
@@ -66,7 +66,7 @@ public final class yq3 implements Runnable {
             default:
                 try {
                     try {
-                        sQLiteDatabase = jf7Var.b;
+                        sQLiteDatabase = kf7Var.b;
                     } catch (Exception e2) {
                         cc4.g(e2, true);
                         if (sQLitePreparedStatement == null) {

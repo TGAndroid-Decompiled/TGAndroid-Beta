@@ -229,7 +229,7 @@ public final class jc3 implements uz6 {
                     rg0VarArr[i] = d;
                     for (int i2 = i; i2 < po5Var3.size(); i2++) {
                         jo4 jo4Var = new jo4();
-                        jo4Var.s = dg7.n(((et6) po5Var3.get(i2)).b);
+                        jo4Var.s = eg7.n(((et6) po5Var3.get(i2)).b);
                         jo4Var.d = ((et6) po5Var3.get(i2)).c;
                         jo4Var.e = ((et6) po5Var3.get(i2)).d;
                         jo4Var.f = ((et6) po5Var3.get(i2)).e;
@@ -243,7 +243,7 @@ public final class jc3 implements uz6 {
                         z6f z6fVar = new z6f((byte) 17);
                         if (this.c.j(ko4Var)) {
                             jo4 a4 = ko4Var.a();
-                            a4.s = dg7.n("application/x-media3-cues");
+                            a4.s = eg7.n("application/x-media3-cues");
                             a4.k = ko4Var.t;
                             a4.T = this.c.y(ko4Var);
                             ko4Var = new ko4(a4);

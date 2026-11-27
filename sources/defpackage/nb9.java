@@ -117,7 +117,7 @@ public final class nb9 extends nx0 {
                         View view = viewPages[0];
                         if (view instanceof mb9) {
                             ((mb9) view).a(0);
-                            nb9Var.b.post(new z09(viewPages, tL_reportResultAddComment, (byte) 10));
+                            nb9Var.b.post(new yz8(viewPages, tL_reportResultAddComment, (byte) 11));
                         }
                         View view2 = viewPages[1];
                         if (view2 instanceof mb9) {
@@ -190,7 +190,7 @@ public final class nb9 extends nx0 {
         View view = viewPages[0];
         if (view instanceof mb9) {
             ((mb9) view).a(0);
-            this.b.post(new z09(viewPages, tL_channels_sponsoredMessageReportResultChooseOption, (byte) 9));
+            this.b.post(new yz8(viewPages, tL_channels_sponsoredMessageReportResultChooseOption, (byte) 10));
         }
         View view2 = viewPages[1];
         if (view2 instanceof mb9) {
@@ -203,7 +203,7 @@ public final class nb9 extends nx0 {
         View view = viewPages[0];
         if (view instanceof mb9) {
             ((mb9) view).a(0);
-            this.b.post(new z09(viewPages, tL_reportResultChooseOption, (byte) 8));
+            this.b.post(new yz8(viewPages, tL_reportResultChooseOption, (byte) 9));
         }
         View view2 = viewPages[1];
         if (view2 instanceof mb9) {

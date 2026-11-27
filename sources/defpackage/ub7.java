@@ -32,12 +32,12 @@ public final class ub7 extends b71 {
     @Override
     public final void g(int i, Object obj, Object obj2) {
         Integer num = (Integer) obj;
-        jf7.Y(i).a.c(new hl3(i, (TLRPC.messages_AvailableEffects) obj2, (byte) 26));
+        kf7.a0(i).a.c(new hl3(i, (TLRPC.messages_AvailableEffects) obj2, (byte) 26));
     }
 
     @Override
     public final void h(int i, long j) {
-        SharedPreferences.Editor edit = this.e.X3.edit();
+        SharedPreferences.Editor edit = this.e.Y3.edit();
         edit.putLong("effects_last_" + i, j).apply();
     }
 }

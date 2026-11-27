@@ -13,7 +13,7 @@ public final class fk4 extends ucb {
             gk4 gk4Var2 = new gk4(17, bArr);
             this.n = gk4Var2;
             jo4 a = gk4Var2.c(Arrays.copyOfRange(bArr, 9, ey7Var.c), null).a();
-            a.r = dg7.n("audio/ogg");
+            a.r = eg7.n("audio/ogg");
             k7bVar.b = new ko4(a);
             return true;
         }

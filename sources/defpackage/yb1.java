@@ -13,15 +13,15 @@ public final class yb1 extends Drawable {
     public boolean f;
     public boolean g;
     public final b29 h;
-    public final hbb i;
-    public final hbb j;
+    public final ibb i;
+    public final ibb j;
 
-    public yb1(hbb hbbVar, hbb hbbVar2) {
-        this.j = hbbVar;
+    public yb1(ibb ibbVar, ibb ibbVar2) {
+        this.j = ibbVar;
         Paint paint = new Paint(1);
         this.a = paint;
         this.c = 1.0f;
-        this.i = hbbVar2;
+        this.i = ibbVar2;
         b29 b29Var = new b29(2131623976, hl.L(28.0f), hl.L(28.0f), false, null);
         this.h = b29Var;
         b29Var.p0 = true;

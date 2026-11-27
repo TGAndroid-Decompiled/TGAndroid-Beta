@@ -12,7 +12,7 @@ public final class b4b implements ncc, occ {
         StickersActivity stickersActivity = this.a;
         boolean z = false;
         if (stickersActivity.x.isEmpty() && (b8cVar.H instanceof TLRPC.TL_messages_stickerSet)) {
-            stickersActivity.q0((p3b) view);
+            stickersActivity.q0((q3b) view);
             z = true;
         }
         return Boolean.valueOf(z);

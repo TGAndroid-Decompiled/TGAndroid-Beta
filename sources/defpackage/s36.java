@@ -98,30 +98,40 @@ public final class s36 extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
+        float globalXOffset;
         Paint e;
+        float globalXOffset2;
         int measuredHeight = getMeasuredHeight() - hl.L(8.0f);
         LimitPreviewView limitPreviewView = this.E;
         Paint paint = limitPreviewView.L;
         if (limitPreviewView.K) {
             measuredHeight = getMeasuredHeight();
-            bl8.d().f(LimitPreviewView.a(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
+            bl8 d = bl8.d();
+            int measuredWidth = limitPreviewView.getMeasuredWidth();
+            int measuredHeight2 = limitPreviewView.getMeasuredHeight();
+            globalXOffset2 = limitPreviewView.getGlobalXOffset();
+            d.f(globalXOffset2 - getX(), -getTop(), measuredWidth, measuredHeight2);
             RectF rectF = hl.P;
             rectF.set(0.0f, hl.L(3.0f), getMeasuredWidth(), measuredHeight - hl.L(3.0f));
             float f = measuredHeight / 2.0f;
-            bl8 d = bl8.d();
-            Paint paint2 = d.c;
+            bl8 d2 = bl8.d();
+            Paint paint2 = d2.c;
             if (paint2 == null) {
                 paint2 = new Paint(1);
-                d.c = paint2;
+                d2.c = paint2;
             }
             paint2.setColor(aob.w0(null, aob.Fi, false));
-            canvas.drawRoundRect(rectF, f, f, d.c);
+            canvas.drawRoundRect(rectF, f, f, d2.c);
         } else {
             if (this.w) {
                 this.w = false;
                 b();
             }
-            bl8.d().f(LimitPreviewView.a(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
+            bl8 d3 = bl8.d();
+            int measuredWidth2 = limitPreviewView.getMeasuredWidth();
+            int measuredHeight3 = limitPreviewView.getMeasuredHeight();
+            globalXOffset = limitPreviewView.getGlobalXOffset();
+            d3.f(globalXOffset - getX(), -getTop(), measuredWidth2, measuredHeight3);
             RectF rectF2 = hl.P;
             float f2 = measuredHeight;
             rectF2.set(0.0f, 0.0f, getMeasuredWidth(), f2);
@@ -162,12 +172,12 @@ public final class s36 extends View {
         if (limitPreviewView.e()) {
             canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.x, 31);
         }
-        float measuredWidth = (getMeasuredWidth() - this.e) / 2.0f;
+        float measuredWidth3 = (getMeasuredWidth() - this.e) / 2.0f;
         float height = (i - this.d.getHeight()) / 2.0f;
         if (!this.r) {
             if (this.d != null) {
                 canvas.save();
-                canvas.translate(measuredWidth, height);
+                canvas.translate(measuredWidth3, height);
                 this.d.draw(canvas);
                 canvas.restore();
             }
@@ -176,7 +186,7 @@ public final class s36 extends View {
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - hl.L(8.0f));
             if (this.n != null) {
                 canvas.save();
-                canvas.translate(measuredWidth, height);
+                canvas.translate(measuredWidth3, height);
                 this.n.draw(canvas);
                 canvas.restore();
             }
@@ -191,7 +201,7 @@ public final class s36 extends View {
                 boolean z2 = r36Var.a;
                 ArrayList arrayList2 = r36Var.b;
                 if (z2) {
-                    canvas.translate(r36Var.e + measuredWidth, ((i * r36Var.c) + height) - ((1 - arrayList2.size()) * i));
+                    canvas.translate(r36Var.e + measuredWidth3, ((i * r36Var.c) + height) - ((1 - arrayList2.size()) * i));
                     for (int i3 = 0; i3 < arrayList2.size(); i3++) {
                         canvas.translate(0.0f, -i);
                         ((StaticLayout) arrayList2.get(i3)).draw(canvas);
@@ -200,7 +210,7 @@ public final class s36 extends View {
                     boolean z3 = r36Var.d;
                     float f4 = r36Var.e;
                     float f5 = r36Var.c;
-                    float f6 = f4 + measuredWidth;
+                    float f6 = f4 + measuredWidth3;
                     if (z3) {
                         canvas.translate(f6, (height - ((i * 10) * f5)) + ((10 - arrayList2.size()) * i));
                         for (int i4 = 0; i4 < arrayList2.size(); i4++) {

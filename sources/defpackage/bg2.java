@@ -338,7 +338,7 @@ public final class bg2 extends e implements fn7 {
             if (i2 <= 0) {
                 j = 10;
             }
-            long k = Utilities.k(j, getMessagesController().k4.P1.f(), 1L);
+            long k = Utilities.k(j, getMessagesController().l4.P1.f(), 1L);
             this.A1 = k;
             this.z1 = k;
         }
@@ -678,7 +678,7 @@ public final class bg2 extends e implements fn7 {
                         if (i4 <= 0) {
                             j = 10;
                         }
-                        long k = Utilities.k(j, getMessagesController().k4.P1.f(), 1L);
+                        long k = Utilities.k(j, getMessagesController().l4.P1.f(), 1L);
                         this.A1 = k;
                         this.z1 = k;
                     }

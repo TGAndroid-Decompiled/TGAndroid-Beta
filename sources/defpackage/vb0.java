@@ -149,7 +149,7 @@ public final class vb0 extends FrameLayout {
                     ColorFilter colorFilter = d.getColorFilter();
                     d.setColorFilter((ColorMatrixColorFilter) this.f);
                     fqb fqbVar = pqbVar.z0;
-                    if (fqbVar != null && (fqbVar.getBackground() instanceof hh7) && pqbVar.n1 < 0.0f) {
+                    if (fqbVar != null && (fqbVar.getBackground() instanceof ih7) && pqbVar.n1 < 0.0f) {
                         f = 0.33f;
                     }
                     int alpha = d.getAlpha();

@@ -1,24 +1,21 @@
 package defpackage;
-public final class gh7 implements Runnable {
-    public final byte a;
-    public final hh7 b;
 
-    public gh7(hh7 hh7Var, byte b) {
-        this.a = b;
-        this.b = hh7Var;
-    }
+import java.util.Arrays;
+public final class gh7 {
+    public float a;
+    public float[] b;
+    public int[] c;
+    public boolean d;
+    public int[] e;
+    public float f;
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        hh7 hh7Var = this.b;
-        switch (b) {
-            case 0:
-                hh7Var.x();
-                return;
-            default:
-                hh7Var.m(true);
-                return;
+    public final String toString() {
+        String str;
+        if (this.d) {
+            str = "columns ";
+        } else {
+            str = "rows ";
         }
+        return str + Arrays.toString(this.e) + " aspect=" + this.a + " cost=" + this.f + " order=" + Arrays.toString(this.c);
     }
 }

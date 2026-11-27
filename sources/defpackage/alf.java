@@ -173,7 +173,7 @@ public final class alf {
                         rx6Var.r0(new MediaMetadataCompat(bundle));
                     }
                 }
-                rx6Var.p0(new nj7(this, (byte) 1), null);
+                rx6Var.p0(new oj7(this, (byte) 1), null);
                 rx6Var.n0(true);
                 this.c.T(rx6Var);
             }

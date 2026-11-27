@@ -62,7 +62,7 @@ public abstract class old {
         for (int i = 0; i < size; i++) {
             arrayList2.add(null);
             arrayList4.add(null);
-            if (((j09) arrayList.get(i)).b.equals("first_party")) {
+            if (((k09) arrayList.get(i)).b.equals("first_party")) {
                 p3d.h("Serialized DocId is required for constructing ExtraParams to query ProductDetails for all first party products.");
                 return null;
             }

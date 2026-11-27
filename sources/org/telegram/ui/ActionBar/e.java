@@ -110,7 +110,7 @@ public abstract class e {
         lcb lastStoryViewer = getLastStoryViewer();
         if (lastStoryViewer != null) {
             lastStoryViewer.w0 = ag0Var;
-            ag0Var.n(new x58(lastStoryViewer, (byte) 3));
+            ag0Var.n(new y58(lastStoryViewer, (byte) 3));
         }
         this.sheetsStack.add(ag0Var);
         updateSheetsVisibility();
@@ -543,8 +543,8 @@ public abstract class e {
         return uc7.s1(getAccountInstance().a);
     }
 
-    public jf7 getMessagesStorage() {
-        return jf7.Y(getAccountInstance().a);
+    public kf7 getMessagesStorage() {
+        return kf7.a0(getAccountInstance().a);
     }
 
     public int getNavigationBarColor() {
@@ -940,7 +940,7 @@ public abstract class e {
     public void onFragmentDestroy() {
         boolean z;
         getConnectionsManager().cancelRequestsForGuid(this.classGuid);
-        getMessagesStorage().j(this.classGuid);
+        getMessagesStorage().k(this.classGuid);
         this.isFinished = true;
         a aVar = this.actionBar;
         if (aVar != null) {

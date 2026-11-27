@@ -125,7 +125,7 @@ public final class rg1 extends la {
                         tg1Var4.f.f();
                         tg1 tg1Var5 = this.f;
                         tg1Var5.f.a(0, ob6.G(tg1Var5.P, "BoostingBoostsCount", new Object[0]), null);
-                        if (uc7.s1(this.f.b).k4.W1.f && (i2 = (tg1Var = this.f).O) > 0 && i2 != tg1Var.P) {
+                        if (uc7.s1(this.f.b).l4.W1.f && (i2 = (tg1Var = this.f).O) > 0 && i2 != tg1Var.P) {
                             tg1Var.f.a(1, ob6.G(i2, "BoostingGiftsCount", new Object[0]), null);
                         }
                         tg1 tg1Var6 = this.f;
@@ -166,9 +166,9 @@ public final class rg1 extends la {
             case 2:
                 Context context = viewGroup.getContext();
                 int i3 = aob.a7;
-                View rcaVar = new rca(context, aob.w0(null, i3, false), 0);
-                yob.h(i3, null, rcaVar);
-                ttVar = rcaVar;
+                View scaVar = new sca(context, aob.w0(null, i3, false), 0);
+                yob.h(i3, null, scaVar);
+                ttVar = scaVar;
                 break;
             case 3:
                 i56 i56Var = new i56(tg1Var.getContext(), tg1Var.c, null, false, false);

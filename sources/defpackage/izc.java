@@ -10,6 +10,6 @@ public final class izc {
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        hl.c3(new cxc(this, str, (byte) 8));
+        hl.c3(new zwc(this, str, (byte) 9));
     }
 }

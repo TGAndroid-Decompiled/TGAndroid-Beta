@@ -488,24 +488,24 @@ public final class iqd implements Runnable {
                 try {
                     taskCompletionSource.setResult(callable.call());
                     return;
-                } catch (kg7 e10) {
+                } catch (lg7 e10) {
                     taskCompletionSource.setException(e10);
                     return;
                 } catch (Exception e11) {
-                    taskCompletionSource.setException(new kg7("Internal error has occurred when executing ML Kit tasks", e11));
+                    taskCompletionSource.setException(new lg7("Internal error has occurred when executing ML Kit tasks", e11));
                     return;
                 }
             case 19:
-                sg7 sg7Var = (sg7) this.b;
+                tg7 tg7Var = (tg7) this.b;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.c;
-                int decrementAndGet = sg7Var.b.decrementAndGet();
+                int decrementAndGet = tg7Var.b.decrementAndGet();
                 if (decrementAndGet < 0) {
                     z8 = false;
                 }
                 xve.k(z8);
                 if (decrementAndGet == 0) {
-                    sg7Var.c();
-                    sg7Var.c.set(false);
+                    tg7Var.c();
+                    tg7Var.c.set(false);
                 }
                 vgf.a.clear();
                 rif.a.clear();

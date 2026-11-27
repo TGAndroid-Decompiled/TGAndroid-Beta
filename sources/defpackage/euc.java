@@ -240,7 +240,7 @@ public final class euc extends n9c implements fn7 {
             c C = c.C(this.currentAccount);
             long z4 = C.z();
             long k0 = k0();
-            long f = uc7.s1(this.currentAccount).k4.x0.f();
+            long f = uc7.s1(this.currentAccount).l4.x0.f();
             int i = (k0 > 0L ? 1 : (k0 == 0L ? 0 : -1));
             if (i > 0 && k0 < f) {
                 if (this.l0) {
@@ -998,7 +998,7 @@ public final class euc extends n9c implements fn7 {
         c C = c.C(this.currentAccount);
         C.h.f();
         double h = C.h.h();
-        double d = uc7.s1(this.currentAccount).k4.k.i;
+        double d = uc7.s1(this.currentAccount).l4.k.i;
         if (h > 0.0d && d > 0.0d && !Double.isNaN(h) && !Double.isInfinite(h) && !Double.isNaN(d) && !Double.isInfinite(d)) {
             return BigDecimal.valueOf(h).multiply(BigDecimal.valueOf(d));
         }
@@ -1476,7 +1476,7 @@ public final class euc extends n9c implements fn7 {
             long k0 = k0();
             long z = C.z();
             if (!this.r && WalletEngine2.isValidRecipientAddress(this.h) && k0 > 0) {
-                long f = uc7.s1(this.currentAccount).k4.x0.f();
+                long f = uc7.s1(this.currentAccount).l4.x0.f();
                 byte[] bArr = null;
                 if (k0 < f) {
                     if (this.l0) {

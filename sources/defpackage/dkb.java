@@ -36,7 +36,7 @@ public final class dkb {
         this.a = context;
         int i = yac.t0;
         this.c = i;
-        this.d = hl.a1(uc7.s1(i).W3, "auto_lastSelectedDialog", 0L);
+        this.d = hl.a1(uc7.s1(i).X3, "auto_lastSelectedDialog", 0L);
         rx6 rx6Var = new rx6(context, "TelegramMediaSession", (ComponentName) null, (PendingIntent) null);
         this.b = rx6Var;
         ex6 ex6Var = (ex6) rx6Var.b;
@@ -99,8 +99,8 @@ public final class dkb {
             }
             this.f = true;
             int i = this.c;
-            jf7 Y = jf7.Y(i);
-            Y.a.c(new a39(this, Y, i, (byte) 23));
+            kf7 a0 = kf7.a0(i);
+            a0.a.c(new a39(this, a0, i, (byte) 23));
             return;
         }
         if (str != null && str.startsWith("__CHAT_")) {
@@ -136,8 +136,8 @@ public final class dkb {
         arrayList2.add(runnable);
         zh6Var.k(j, arrayList2);
         int i = this.c;
-        jf7 Y = jf7.Y(i);
-        Y.a.c(new r77(this, Y, j, i, (byte) 19));
+        kf7 a0 = kf7.a0(i);
+        a0.a.c(new r77(this, a0, j, i, (byte) 19));
     }
 
     public final void f() {

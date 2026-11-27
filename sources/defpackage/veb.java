@@ -183,7 +183,7 @@ public final class veb implements pw2 {
             obj = f.emoji_status;
         }
         uc7.s1(zebVar.a).v5(emojiStatus, null);
-        bcb bcbVar = new bcb(this, obj, (byte) 1);
+        hab habVar = new hab(this, obj, (byte) 2);
         xeb xebVar = zebVar.c;
         if (xebVar == null) {
             parentFragment = null;
@@ -196,12 +196,12 @@ public final class veb implements pw2 {
                 n21Var.b.setText(ob6.M0(2131746014, null));
                 n21Var.a.setImageResource(2131232367);
                 t21 t21Var = new t21(vnbVar, zebVar.getContext(), true);
-                t21Var.b = bcbVar;
+                t21Var.b = habVar;
                 n21Var.setButton(t21Var);
                 v21.g(parentFragment, n21Var, 1500).j();
                 return;
             }
-            d31.b0(parentFragment).r(document, ob6.M0(2131745273, null), ob6.M0(2131743540, null), bcbVar).j();
+            d31.b0(parentFragment).r(document, ob6.M0(2131745273, null), ob6.M0(2131743540, null), habVar).j();
         }
     }
 

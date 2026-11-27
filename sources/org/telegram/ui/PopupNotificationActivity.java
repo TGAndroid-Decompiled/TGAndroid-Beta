@@ -201,7 +201,7 @@ public class PopupNotificationActivity extends Activity implements fn7 {
         } else if (i == 2) {
             if (this.R != null && i2 == this.M) {
                 int intValue = ((Integer) objArr[0]).intValue();
-                int i7 = uc7.r5;
+                int i7 = uc7.s5;
                 if ((intValue & 1) != 0 || (intValue & 4) != 0 || (intValue & 16) != 0 || (intValue & 32) != 0) {
                     r();
                 }

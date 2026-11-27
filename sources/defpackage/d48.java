@@ -176,9 +176,9 @@ public final class d48 extends View implements snb {
         uc7 s1 = uc7.s1(this.d);
         byte b = this.c;
         if (b == 1) {
-            lc7Var = s1.E3;
-        } else {
             lc7Var = s1.F3;
+        } else {
+            lc7Var = s1.G3;
         }
         if (lc7Var == null) {
             size = 0;
@@ -295,9 +295,9 @@ public final class d48 extends View implements snb {
         uc7 s1 = uc7.s1(this.d);
         byte b = this.c;
         if (b == 1) {
-            lc7Var = s1.E3;
-        } else {
             lc7Var = s1.F3;
+        } else {
+            lc7Var = s1.G3;
         }
         int i2 = 0;
         while (true) {

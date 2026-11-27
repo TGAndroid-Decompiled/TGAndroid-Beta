@@ -5,7 +5,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.LaunchActivity;
-public final class he3 implements scc, s69, ef7 {
+public final class he3 implements scc, s69, ff7 {
     public final byte a;
     public final me3 b;
 

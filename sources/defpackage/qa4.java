@@ -41,7 +41,7 @@ public final class qa4 extends h05 implements k59 {
         }
         fo b = fo.b(Arrays.asList(yt7VarArr), false);
         if (b.a.isEmpty()) {
-            return Tasks.forResult(new vg7(0, true));
+            return Tasks.forResult(new wg7(0, true));
         }
         wjb b2 = xjb.b();
         b2.c = new a94[]{nid.a};

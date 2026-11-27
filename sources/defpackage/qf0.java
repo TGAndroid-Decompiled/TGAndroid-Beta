@@ -66,20 +66,20 @@ public abstract class qf0 implements zw2, wx2, Serializable {
             if (i >= 0) {
                 i3 = g93Var.l()[i];
             }
-            yg7 yg7Var = mfd.b;
-            yg7 yg7Var2 = mfd.a;
-            if (yg7Var == null) {
+            zg7 zg7Var = mfd.b;
+            zg7 zg7Var2 = mfd.a;
+            if (zg7Var == null) {
                 try {
-                    yg7 yg7Var3 = new yg7(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    mfd.b = yg7Var3;
-                    yg7Var = yg7Var3;
+                    zg7 zg7Var3 = new zg7(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
+                    mfd.b = zg7Var3;
+                    zg7Var = zg7Var3;
                 } catch (Exception unused2) {
-                    mfd.b = yg7Var2;
-                    yg7Var = yg7Var2;
+                    mfd.b = zg7Var2;
+                    zg7Var = zg7Var2;
                 }
             }
-            if (yg7Var != yg7Var2 && (method = yg7Var.a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = yg7Var.b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = yg7Var.c;
+            if (zg7Var != zg7Var2 && (method = zg7Var.a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = zg7Var.b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
+                Method method3 = zg7Var.c;
                 if (method3 != null) {
                     obj = method3.invoke(invoke2, null);
                 } else {
@@ -101,7 +101,7 @@ public abstract class qf0 implements zw2, wx2, Serializable {
 
     public Object invokeSuspend(Object obj) {
         ixe.b(obj);
-        return f9c.a;
+        return g9c.a;
     }
 
     @Override

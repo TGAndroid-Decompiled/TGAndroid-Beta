@@ -201,11 +201,11 @@ public final class rw extends AnimatorListenerAdapter {
             case 9:
                 rz8 rz8Var = (rz8) obj2;
                 rz8Var.k0();
-                f09 f09Var = rz8Var.d;
+                g09 g09Var = rz8Var.d;
                 if (!this.b) {
                     f2 = 0.0f;
                 }
-                f09Var.setReveal(f2);
+                g09Var.setReveal(f2);
                 ((Runnable) obj).run();
                 return;
             case 10:
@@ -280,7 +280,7 @@ public final class rw extends AnimatorListenerAdapter {
                 }
                 return;
             case 14:
-                ((rbb) obj2).m0();
+                ((sbb) obj2).m0();
                 if (!this.b) {
                     ((View) obj).setVisibility(8);
                     return;

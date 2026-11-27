@@ -184,7 +184,7 @@ public final class v97 implements RequestDelegate {
                                         TLRPC.Message message = r47Var2.k;
                                         message.translatedToLanguage = str6;
                                         message.translatedText = null;
-                                        a5cVar2.getMessagesStorage().U1(v11Var2.a, r47Var2.k);
+                                        a5cVar2.getMessagesStorage().Z1(v11Var2.a, r47Var2.k);
                                         a5cVar2.M.remove(v11Var2);
                                         hl.d3(na8Var2, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                         return;
@@ -192,7 +192,7 @@ public final class v97 implements RequestDelegate {
                                         TLRPC.Message message2 = r47Var2.k;
                                         message2.translatedToLanguage = str6;
                                         message2.translatedText = null;
-                                        a5cVar2.getMessagesStorage().U1(v11Var2.a, r47Var2.k);
+                                        a5cVar2.getMessagesStorage().Z1(v11Var2.a, r47Var2.k);
                                         a5cVar2.M.remove(v11Var2);
                                         hl.d3(na8Var2, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                         return;
@@ -221,7 +221,7 @@ public final class v97 implements RequestDelegate {
                                 TLRPC.Message message = r47Var2.k;
                                 message.translatedToLanguage = str6;
                                 message.translatedText = null;
-                                a5cVar2.getMessagesStorage().U1(v11Var2.a, r47Var2.k);
+                                a5cVar2.getMessagesStorage().Z1(v11Var2.a, r47Var2.k);
                                 a5cVar2.M.remove(v11Var2);
                                 hl.d3(na8Var2, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                 return;
@@ -229,7 +229,7 @@ public final class v97 implements RequestDelegate {
                                 TLRPC.Message message2 = r47Var2.k;
                                 message2.translatedToLanguage = str6;
                                 message2.translatedText = null;
-                                a5cVar2.getMessagesStorage().U1(v11Var2.a, r47Var2.k);
+                                a5cVar2.getMessagesStorage().Z1(v11Var2.a, r47Var2.k);
                                 a5cVar2.M.remove(v11Var2);
                                 hl.d3(na8Var2, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                 return;

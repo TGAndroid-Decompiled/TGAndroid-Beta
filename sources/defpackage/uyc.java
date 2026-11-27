@@ -33,7 +33,7 @@ public final class uyc {
                     if (s >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = hg7.a;
+                        SecureRandom secureRandom = ig7.a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();

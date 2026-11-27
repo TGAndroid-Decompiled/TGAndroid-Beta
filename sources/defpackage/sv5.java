@@ -586,14 +586,14 @@ public abstract class sv5 implements ev5, ah2 {
     @Override
     public final Object join(zw2 zw2Var) {
         Object v;
-        f9c f9cVar;
+        g9c g9cVar;
         do {
             v = v();
             boolean z = v instanceof hp5;
-            f9cVar = f9c.a;
+            g9cVar = g9c.a;
             if (!z) {
                 gqe.a(zw2Var.getContext());
-                return f9cVar;
+                return g9cVar;
             }
         } while (K(v) < 0);
         va1 va1Var = new va1(1, xpe.a(zw2Var));
@@ -602,12 +602,12 @@ public abstract class sv5 implements ev5, ah2 {
         Object q = va1Var.q();
         vx2 vx2Var = vx2.a;
         if (q != vx2Var) {
-            q = f9cVar;
+            q = g9cVar;
         }
         if (q == vx2Var) {
             return q;
         }
-        return f9cVar;
+        return g9cVar;
     }
 
     public final boolean k(Throwable th) {

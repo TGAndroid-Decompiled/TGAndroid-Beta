@@ -18,11 +18,11 @@ public final class h5b implements pcc {
         c6b c6bVar = this.b;
         switch (b) {
             case 0:
-                u5b u5bVar = (u5b) obj;
+                v5b v5bVar = (v5b) obj;
                 HashMap hashMap = c6bVar.H;
-                byte b2 = u5bVar.e;
-                int i = u5bVar.f;
-                long j = u5bVar.d;
+                byte b2 = v5bVar.e;
+                int i = v5bVar.f;
+                long j = v5bVar.d;
                 if (b2 == 0 && i > 0) {
                     HashMap hashMap2 = (HashMap) hashMap.get(Long.valueOf(j));
                     if (hashMap2 != null) {

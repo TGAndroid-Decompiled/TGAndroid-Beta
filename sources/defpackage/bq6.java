@@ -89,9 +89,9 @@ public final class bq6 implements RequestDelegate {
                                 Object[] objArr = new Object[1];
                                 objArr[c] = arrayList2;
                                 notificationCenter.k(106, objArr);
-                                jf7 messagesStorage = ls6Var2.getMessagesStorage();
+                                kf7 messagesStorage = ls6Var2.getMessagesStorage();
                                 messagesStorage.getClass();
-                                Utilities.d.c(new q41(messagesStorage, arrayList2, (byte) 17));
+                                Utilities.d.c(new q41(messagesStorage, arrayList2, (byte) 16));
                                 return;
                             default:
                                 ls6 ls6Var3 = ls6Var;
@@ -180,9 +180,9 @@ public final class bq6 implements RequestDelegate {
                                 Object[] objArr = new Object[1];
                                 objArr[c] = arrayList2;
                                 notificationCenter.k(106, objArr);
-                                jf7 messagesStorage = ls6Var2.getMessagesStorage();
+                                kf7 messagesStorage = ls6Var2.getMessagesStorage();
                                 messagesStorage.getClass();
-                                Utilities.d.c(new q41(messagesStorage, arrayList2, (byte) 17));
+                                Utilities.d.c(new q41(messagesStorage, arrayList2, (byte) 16));
                                 return;
                             default:
                                 ls6 ls6Var3 = ls6Var;

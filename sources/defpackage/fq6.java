@@ -62,7 +62,7 @@ public final class fq6 implements RequestDelegate {
                         } else {
                             in5.S(arrayList);
                             ls6Var.n(messages_messages.messages, zh6Var, messages_messages.users, messages_messages.chats, j, false);
-                            ls6Var.getMessagesStorage().j1(messages_messages.users, messages_messages.chats, true, true);
+                            ls6Var.getMessagesStorage().n1(messages_messages.users, messages_messages.chats, true, true);
                             ls6Var.W1(zh6Var, messages_messages.messages, z);
                         }
                     }
@@ -101,7 +101,7 @@ public final class fq6 implements RequestDelegate {
                             }
                         }
                         if (z) {
-                            o6bVar.b.a.c(new z3b(o6bVar, arrayList2, (byte) 11));
+                            o6bVar.b.a.c(new n3b(o6bVar, arrayList2, (byte) 12));
                         }
                     }
                     c = 0;

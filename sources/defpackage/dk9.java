@@ -21,14 +21,14 @@ import java.util.Arrays;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.CheckBoxBase;
-public abstract class dk9 implements si7 {
+public abstract class dk9 implements ti7 {
     public boolean E;
     public int F;
     public int G;
     public TLObject H;
     public boolean J;
     public v41 K;
-    public ui7 L;
+    public vi7 L;
     public jk9 M;
     public float N;
     public int O;
@@ -533,23 +533,23 @@ public abstract class dk9 implements si7 {
 
     public void s(Canvas canvas) {
         int i;
-        ui7 ui7Var = this.L;
-        if (ui7Var != null && ui7Var.h && ui7Var.d(this) >= 0) {
-            if (ui7Var.i(this)) {
+        vi7 vi7Var = this.L;
+        if (vi7Var != null && vi7Var.h && vi7Var.d(this) >= 0) {
+            if (vi7Var.i(this)) {
                 float f = 0.0f;
-                if (ui7Var.g(this)) {
-                    if (ui7Var.g(this)) {
-                        i = ui7Var.e;
+                if (vi7Var.g(this)) {
+                    if (vi7Var.g(this)) {
+                        i = vi7Var.e;
                     } else {
                         i = -1;
                     }
-                    if (ui7Var.g(this)) {
-                        f = ui7Var.f;
+                    if (vi7Var.g(this)) {
+                        f = vi7Var.f;
                     }
                     q(canvas, i, f);
                     return;
                 }
-                float c = ui7Var.c(this);
+                float c = vi7Var.c(this);
                 if (c <= 0.0f) {
                     return;
                 }

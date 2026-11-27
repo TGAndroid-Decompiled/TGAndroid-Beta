@@ -1,5 +1,5 @@
 package defpackage;
-public abstract class cpa implements sf7 {
+public abstract class cpa implements tf7 {
     @Override
     public final ko4 a() {
         return null;

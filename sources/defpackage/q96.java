@@ -1,11 +1,11 @@
 package defpackage;
 public final class q96 extends r96 implements f36 {
     public final i36 e;
-    public final qj7 f;
+    public final rj7 f;
 
-    public q96(qj7 qj7Var, i36 i36Var, cr7 cr7Var) {
-        super(qj7Var, cr7Var);
-        this.f = qj7Var;
+    public q96(rj7 rj7Var, i36 i36Var, cr7 cr7Var) {
+        super(rj7Var, cr7Var);
+        this.f = rj7Var;
         this.e = i36Var;
     }
 

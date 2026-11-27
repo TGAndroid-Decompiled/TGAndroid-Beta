@@ -118,9 +118,9 @@ public class ThemesHorizontalListCell$InnerThemeView extends FrameLayout {
             if (znbVar2.O != 0) {
                 int m2 = this.b.m();
                 znb znbVar3 = this.b;
-                hh7 hh7Var = new hh7(m2, znbVar3.N, znbVar3.O, znbVar3.P, true, false);
-                hh7Var.u(hl.L(6.0f));
-                this.P = hh7Var;
+                ih7 ih7Var = new ih7(m2, znbVar3.N, znbVar3.O, znbVar3.P, true, false);
+                ih7Var.u(hl.L(6.0f));
+                this.P = ih7Var;
                 dArr = hl.Z2(Color.red(this.b.m()), Color.green(this.b.m()), Color.blue(this.b.m()));
             } else {
                 GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{this.b.m(), this.b.N});
@@ -151,7 +151,7 @@ public class ThemesHorizontalListCell$InnerThemeView extends FrameLayout {
             this.S = false;
         }
         if (this.b.m() == 0 && this.b.U && this.P == null) {
-            hh7 R = aob.R(100, 200);
+            ih7 R = aob.R(100, 200);
             this.P = R;
             R.u(hl.L(6.0f));
         }

@@ -8,8 +8,8 @@ public final class j0a extends xy3 {
     public final int g0;
     public final n1a h0;
 
-    public j0a(n1a n1aVar, Context context, vnb vnbVar, boolean z, boolean z2, int i, en9 en9Var, int i2, int i3) {
-        super(context, vnbVar, z, z2, false, true, i, en9Var, i2, false);
+    public j0a(n1a n1aVar, Context context, vnb vnbVar, boolean z, boolean z2, int i, dn9 dn9Var, int i2, int i3) {
+        super(context, vnbVar, z, z2, false, true, i, dn9Var, i2, false);
         this.h0 = n1aVar;
         this.g0 = i3;
     }

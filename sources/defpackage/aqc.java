@@ -4,13 +4,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 public final class aqc implements TextWatcher {
     public final String[] a;
-    public final vlc b;
+    public final slc b;
     public final Runnable[] c;
     public final a84 d;
 
-    public aqc(String[] strArr, vlc vlcVar, Runnable[] runnableArr, a84 a84Var) {
+    public aqc(String[] strArr, slc slcVar, Runnable[] runnableArr, a84 a84Var) {
         this.a = strArr;
-        this.b = vlcVar;
+        this.b = slcVar;
         this.c = runnableArr;
         this.d = a84Var;
     }

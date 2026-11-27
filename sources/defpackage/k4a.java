@@ -35,8 +35,8 @@ public class k4a {
         this.a = new ua1(this, (byte) 2);
     }
 
-    public final void a(defpackage.vj7 r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.k4a.a(vj7):void");
+    public final void a(defpackage.wj7 r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.k4a.a(wj7):void");
     }
 
     public final void b() {

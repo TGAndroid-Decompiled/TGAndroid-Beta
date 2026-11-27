@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.tgnet.TLRPC;
-public final class wt1 implements df7 {
+public final class wt1 implements ef7 {
     public final byte a;
     public final Object b;
     public final Object c;

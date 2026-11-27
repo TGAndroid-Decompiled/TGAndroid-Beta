@@ -11,7 +11,7 @@ import java.util.HashSet;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class b5a extends FrameLayout implements snb {
-    public final ki7 E;
+    public final li7 E;
     public final mm F;
     public final mm G;
     public final mm H;
@@ -77,9 +77,9 @@ public final class b5a extends FrameLayout implements snb {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (this.r != null) {
-            ki7 ki7Var = this.E;
-            hl.r(ki7Var);
-            hl.d3(ki7Var, 1000L);
+            li7 li7Var = this.E;
+            hl.r(li7Var);
+            hl.d3(li7Var, 1000L);
         }
     }
 

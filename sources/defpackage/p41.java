@@ -47,7 +47,7 @@ public final class p41 implements RequestDelegate {
                                     arrayList.addAll(businesschatlinks.links);
                                     uc7.s1(i2).j4(businesschatlinks.users, false);
                                     uc7.s1(i2).c4(businesschatlinks.chats, false);
-                                    jf7.Y(i2).j1(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    kf7.a0(i2).n1(businesschatlinks.users, businesschatlinks.chats, true, true);
                                     jn7.f(i2).k(126, new Object[0]);
                                     r41Var2.f();
                                 } else {
@@ -88,7 +88,7 @@ public final class p41 implements RequestDelegate {
                                     arrayList.addAll(businesschatlinks.links);
                                     uc7.s1(i2).j4(businesschatlinks.users, false);
                                     uc7.s1(i2).c4(businesschatlinks.chats, false);
-                                    jf7.Y(i2).j1(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    kf7.a0(i2).n1(businesschatlinks.users, businesschatlinks.chats, true, true);
                                     jn7.f(i2).k(126, new Object[0]);
                                     r41Var2.f();
                                 } else {

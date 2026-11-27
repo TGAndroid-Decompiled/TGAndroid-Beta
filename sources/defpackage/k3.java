@@ -4,11 +4,11 @@ import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public class k3 extends f3 implements SortedSet {
-    public final fj7 d;
+    public final gj7 d;
 
-    public k3(fj7 fj7Var, SortedMap sortedMap) {
-        super(fj7Var, sortedMap);
-        this.d = fj7Var;
+    public k3(gj7 gj7Var, SortedMap sortedMap) {
+        super(gj7Var, sortedMap);
+        this.d = gj7Var;
     }
 
     @Override

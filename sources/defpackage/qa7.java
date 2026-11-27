@@ -36,13 +36,13 @@ public final class qa7 implements RequestDelegate {
                 if (tL_error == null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Integer.valueOf(this.b));
-                    jf7 messagesStorage = uc7Var.getMessagesStorage();
+                    kf7 messagesStorage = uc7Var.getMessagesStorage();
                     if (chat != null) {
                         j = -chat.id;
                     } else {
                         j = user.id;
                     }
-                    messagesStorage.Z1(j, arrayList, !this.c, -1, 0, false, null);
+                    messagesStorage.e2(j, arrayList, !this.c, -1, 0, false, null);
                     uc7Var.Y3((TLRPC.Updates) tLObject, false);
                     return;
                 }

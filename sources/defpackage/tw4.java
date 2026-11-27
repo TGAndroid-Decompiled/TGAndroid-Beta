@@ -33,9 +33,9 @@ public final class tw4 implements Runnable {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants2 = (TLRPC.TL_channels_channelParticipants) tLObject;
             uc7Var.j4(tL_channels_channelParticipants2.users, false);
             uc7Var.c4(tL_channels_channelParticipants2.chats, false);
-            uc7Var.getMessagesStorage().j1(tL_channels_channelParticipants2.users, tL_channels_channelParticipants2.chats, true, true);
-            jf7 messagesStorage = uc7Var.getMessagesStorage();
-            messagesStorage.a.c(new se7(messagesStorage, l.longValue(), tL_channels_channelParticipants2.participants, (byte) 7));
+            uc7Var.getMessagesStorage().n1(tL_channels_channelParticipants2.users, tL_channels_channelParticipants2.chats, true, true);
+            kf7 messagesStorage = uc7Var.getMessagesStorage();
+            messagesStorage.a.c(new te7(messagesStorage, l.longValue(), tL_channels_channelParticipants2.participants, (byte) 6));
             uc7Var.o1.add(l);
         }
         uc7Var.n1.remove(l);
@@ -51,29 +51,29 @@ public final class tw4 implements Runnable {
 
     private final void b() {
         long j;
-        jf7 jf7Var = (jf7) this.b;
+        kf7 kf7Var = (kf7) this.b;
         zh6 zh6Var = (zh6) this.f;
-        jf7Var.getMessagesController().j4((ArrayList) this.c, true);
-        jf7Var.getMessagesController().c4((ArrayList) this.d, true);
-        jf7Var.getMessagesController().g4((ArrayList) this.e);
+        kf7Var.getMessagesController().j4((ArrayList) this.c, true);
+        kf7Var.getMessagesController().c4((ArrayList) this.d, true);
+        kf7Var.getMessagesController().g4((ArrayList) this.e);
         for (int i = 0; i < zh6Var.m(); i++) {
             long j2 = zh6Var.j(i);
-            ff7 ff7Var = (ff7) zh6Var.n(i);
-            if (!jf7Var.getMessagesController().v2(j2) && !jf7Var.r0(8, j2) && !jf7Var.getMessagesController().C2(j2)) {
+            gf7 gf7Var = (gf7) zh6Var.n(i);
+            if (!kf7Var.getMessagesController().v2(j2) && !kf7Var.u0(8, j2) && !kf7Var.getMessagesController().C2(j2)) {
                 j = j2;
             } else {
-                uc7 messagesController = jf7Var.getMessagesController();
+                uc7 messagesController = kf7Var.getMessagesController();
                 j = j2;
-                jf7 messagesStorage = messagesController.getMessagesStorage();
+                kf7 messagesStorage = messagesController.getMessagesStorage();
                 messagesStorage.a.c(new ue2(messagesStorage, j, new y97(messagesController, j), (byte) 5));
             }
-            int i2 = ff7Var.a;
-            jf7Var.getMessagesController().r3(j, i2, i2, ff7Var.b, false, 0L, ff7Var.c, true, 0);
+            int i2 = gf7Var.a;
+            kf7Var.getMessagesController().r3(j, i2, i2, gf7Var.b, false, 0L, gf7Var.c, true, 0);
         }
     }
 
     private final void c() {
-        ((jf7) this.b).R1(null, (LongSparseIntArray) this.c, (LongSparseIntArray) this.d, (zh6) this.e, (LongSparseIntArray) this.f);
+        ((kf7) this.b).W1(null, (LongSparseIntArray) this.c, (LongSparseIntArray) this.d, (zh6) this.e, (LongSparseIntArray) this.f);
     }
 
     @Override

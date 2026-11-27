@@ -72,8 +72,8 @@ public final class zv8 implements oa6 {
                 this.d.X(z63Var, this.b, this.c.a.getResponseHeaders(), j, j2, this.e);
                 if (this.E.K != null && (e84Var = (e84) this.d.c) != null) {
                     e84 a = e84Var.a();
-                    if (a instanceof qh7) {
-                        ((qh7) a).t = true;
+                    if (a instanceof rh7) {
+                        ((rh7) a).t = true;
                     }
                 }
                 if (this.r) {

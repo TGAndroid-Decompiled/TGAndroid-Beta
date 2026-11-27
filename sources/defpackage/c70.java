@@ -11,9 +11,9 @@ public final class c70 implements Runnable {
     public final int e;
     public final Object f;
 
-    public c70(int i, int i2, long j, jf7 jf7Var, ArrayList arrayList) {
+    public c70(int i, int i2, long j, kf7 kf7Var, ArrayList arrayList) {
         this.a = (byte) 5;
-        this.b = jf7Var;
+        this.b = kf7Var;
         this.d = j;
         this.f = arrayList;
         this.c = i;
@@ -52,9 +52,9 @@ public final class c70 implements Runnable {
         this.d = j;
     }
 
-    public c70(jf7 jf7Var, int i, TLRPC.TL_forumTopic tL_forumTopic, long j, int i2) {
+    public c70(kf7 kf7Var, int i, TLRPC.TL_forumTopic tL_forumTopic, long j, int i2) {
         this.a = (byte) 4;
-        this.b = jf7Var;
+        this.b = kf7Var;
         this.c = i;
         this.f = tL_forumTopic;
         this.d = j;

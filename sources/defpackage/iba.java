@@ -1,26 +1,26 @@
 package defpackage;
 public final class iba implements Runnable {
     public final byte a;
-    public final tba b;
+    public final uba b;
 
-    public iba(tba tbaVar, byte b) {
+    public iba(uba ubaVar, byte b) {
         this.a = b;
-        this.b = tbaVar;
+        this.b = ubaVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        tba tbaVar = this.b;
+        uba ubaVar = this.b;
         switch (b) {
             case 0:
-                tbaVar.b0();
+                ubaVar.b0();
                 return;
             case 1:
-                m01.u(tbaVar.getParentActivity(), ob6.M0(2131752119, null));
+                m01.u(ubaVar.getParentActivity(), ob6.M0(2131752119, null));
                 return;
             default:
-                tbaVar.c.g3.O(true);
+                ubaVar.c.g3.O(true);
                 return;
         }
     }

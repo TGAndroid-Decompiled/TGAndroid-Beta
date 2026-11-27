@@ -29,14 +29,14 @@ public final class yu5 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         ux2 ux2Var = (ux2) obj;
         zw2 zw2Var = (zw2) obj2;
         switch (b) {
             case 0:
-                return ((yu5) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((yu5) create(ux2Var, zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((yu5) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((yu5) create(ux2Var, zw2Var)).invokeSuspend(g9cVar);
         }
     }
 
@@ -66,10 +66,10 @@ public final class yu5 extends yfb implements is4 {
                         return vx2Var;
                     }
                 }
-                rj7 rj7Var = (rj7) obj;
-                if (rj7Var != null) {
+                sj7 sj7Var = (sj7) obj;
+                if (sj7Var != null) {
                     zj8Var.getClass();
-                    Object obj2 = rj7Var.a.get(zj8Var);
+                    Object obj2 = sj7Var.a.get(zj8Var);
                     if (obj2 instanceof byte[]) {
                         byte[] bArr = (byte[]) obj2;
                         obj2 = Arrays.copyOf(bArr, bArr.length);

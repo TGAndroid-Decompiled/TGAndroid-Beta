@@ -167,7 +167,7 @@ public class ConnectionsManager extends rf0 {
                 if (ConnectionsManager.native_isTestBackend(this.currentAccount) != 0) {
                     str = "tapv3.stel.com";
                 } else {
-                    str = uc7.s1(k5.a(this.currentAccount).a).q3;
+                    str = uc7.s1(k5.a(this.currentAccount).a).r3;
                 }
                 int nextInt = Utilities.b.nextInt(116) + 13;
                 StringBuilder sb = new StringBuilder(nextInt);
@@ -309,7 +309,7 @@ public class ConnectionsManager extends rf0 {
                 if (ConnectionsManager.native_isTestBackend(this.currentAccount) != 0) {
                     str = "tapv3.stel.com";
                 } else {
-                    str = uc7.s1(k5.a(this.currentAccount).a).q3;
+                    str = uc7.s1(k5.a(this.currentAccount).a).r3;
                 }
                 int nextInt = Utilities.b.nextInt(116) + 13;
                 StringBuilder sb = new StringBuilder(nextInt);
@@ -1132,7 +1132,7 @@ public class ConnectionsManager extends rf0 {
         long j5 = 1000;
         long j6 = 0;
         if (s1.getUserConfig().o()) {
-            if (!s1.Z3 && s1.getConnectionsManager().getPauseTime() == 0 && org.telegram.messenger.a.w && !org.telegram.messenger.a.F) {
+            if (!s1.a4 && s1.getConnectionsManager().getPauseTime() == 0 && org.telegram.messenger.a.w && !org.telegram.messenger.a.F) {
                 if (org.telegram.messenger.a.H != 0 && Math.abs(org.telegram.messenger.a.H - System.currentTimeMillis()) > 1000 && s1.E2 != 1 && (s1.C2 == 0 || Math.abs(System.currentTimeMillis() - s1.C2) >= 55000 || s1.F2)) {
                     s1.E2 = (byte) 1;
                     if (s1.D2 != 0) {
@@ -1353,13 +1353,13 @@ public class ConnectionsManager extends rf0 {
                 hl.c3(new l87(s1, (byte) 28));
             }
         }
-        if (aob.o == i3 && Math.abs(j2 - uc7.p5) >= 60) {
+        if (aob.o == i3 && Math.abs(j2 - uc7.q5) >= 60) {
             hl.c3(s1.A2);
-            uc7.p5 = j2;
-        }
-        if (s1.getUserConfig().k0 != null && Math.abs(j2 - uc7.q5) >= 60) {
-            hl.c3(s1.B2);
             uc7.q5 = j2;
+        }
+        if (s1.getUserConfig().k0 != null && Math.abs(j2 - uc7.r5) >= 60) {
+            hl.c3(s1.B2);
+            uc7.r5 = j2;
         }
         if (s1.d2 != j11 && Math.abs(SystemClock.elapsedRealtime() - s1.d2) >= 10800000) {
             PushListenerController.sendRegistrationToServer(xea.e, xea.f);
@@ -2064,7 +2064,7 @@ public class ConnectionsManager extends rf0 {
         if (f1.contains("pushConnection")) {
             return f1.getBoolean("pushConnection", true);
         }
-        return uc7.s1(yac.t0).X3.getBoolean("backgroundConnection", false);
+        return uc7.s1(yac.t0).Y3.getBoolean("backgroundConnection", false);
     }
 
     public boolean isTestBackend() {

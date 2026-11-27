@@ -1,15 +1,13 @@
 package defpackage;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
-import java.util.HashMap;
-import java.util.Locale;
+import android.util.Pair;
+import java.util.Map;
 import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLiteException;
+import org.telegram.SQLite.SQLitePreparedStatement;
 public final class t87 implements Runnable {
     public final byte a;
     public final Object b;
@@ -22,20 +20,34 @@ public final class t87 implements Runnable {
     }
 
     private final void a() {
-        jf7 jf7Var = (jf7) this.b;
-        HashMap hashMap = (HashMap) this.c;
-        for (if7 if7Var : hashMap.keySet()) {
-            Integer num = (Integer) hashMap.get(if7Var);
-            num.getClass();
-            try {
-                SQLiteDatabase sQLiteDatabase = jf7Var.b;
-                Locale locale = Locale.US;
-                long j = if7Var.a;
-                long j2 = if7Var.b;
-                sQLiteDatabase.executeFast("UPDATE topics SET read_outbox = max((SELECT read_outbox FROM topics WHERE did = " + j + " AND topic_id = " + j2 + "), " + num + ") WHERE did = " + j + " AND topic_id = " + j2).stepThis().dispose();
-            } catch (SQLiteException e) {
-                jf7Var.n(e, true);
+        kf7 kf7Var = (kf7) this.b;
+        hp7 hp7Var = (hp7) this.c;
+        long j = hp7Var.a;
+        try {
+            SQLiteDatabase sQLiteDatabase = kf7Var.b;
+            sQLiteDatabase.executeFast("DELETE FROM story_pushes WHERE uid = " + j).stepThis().dispose();
+            SQLitePreparedStatement executeFast = kf7Var.b.executeFast("REPLACE INTO story_pushes VALUES(?, ?, ?, ?, ?, ?)");
+            for (Map.Entry entry : hp7Var.c.entrySet()) {
+                int intValue = ((Integer) entry.getKey()).intValue();
+                long longValue = ((Long) ((Pair) entry.getValue()).first).longValue();
+                long longValue2 = ((Long) ((Pair) entry.getValue()).second).longValue();
+                executeFast.requery();
+                executeFast.bindLong(1, j);
+                executeFast.bindInteger(2, intValue);
+                executeFast.bindLong(3, longValue);
+                String str = hp7Var.b;
+                if (str == null) {
+                    str = "";
+                    hp7Var.b = "";
+                }
+                executeFast.bindString(4, str);
+                executeFast.bindInteger(5, hp7Var.d ? 1 : 0);
+                executeFast.bindLong(6, longValue2);
+                executeFast.step();
             }
+            executeFast.dispose();
+        } catch (Exception e) {
+            kf7Var.p(e, true);
         }
     }
 
@@ -109,13 +121,6 @@ public final class t87 implements Runnable {
         } else {
             yv2Var.i(i);
         }
-    }
-
-    private final void c() {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.setData(Uri.parse("sms:+" + ((String) this.c)));
-        intent.putExtra("sms_body", ob6.a0(null, null, 2131748870, "https://telegram.org/dl"));
-        ((rl7) this.b).getContext().startActivity(intent);
     }
 
     @Override

@@ -7,15 +7,15 @@ public final class k17 implements Runnable {
     public final String a;
     public final String b;
     public final uc7 c;
-    public final jf7 d;
+    public final kf7 d;
     public final r17 e;
 
-    public k17(r17 r17Var, String str, String str2, uc7 uc7Var, jf7 jf7Var) {
+    public k17(r17 r17Var, String str, String str2, uc7 uc7Var, kf7 kf7Var) {
         this.e = r17Var;
         this.a = str;
         this.b = str2;
         this.c = uc7Var;
-        this.d = jf7Var;
+        this.d = kf7Var;
     }
 
     @Override

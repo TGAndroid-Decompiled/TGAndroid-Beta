@@ -2,7 +2,7 @@ package defpackage;
 public final class de5 {
     public boolean a;
     public boolean b;
-    public fk7 c;
+    public gk7 c;
     public int d;
     public int e;
     public int f;

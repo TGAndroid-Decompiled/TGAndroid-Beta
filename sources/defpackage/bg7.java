@@ -1,50 +1,26 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class bg7 extends c4 {
-    public static final Parcelable.Creator<bg7> CREATOR = new s5d((byte) 13);
-    public final int a;
-    public final int b;
-    public final int c;
-    public final long d;
-    public final long e;
-    public final String f;
-    public final String h;
-    public final int n;
-    public final int r;
+import android.util.SparseArray;
+public final class bg7 {
+    public final SparseArray a;
+    public px3 b;
 
-    public bg7(int i, int i2, int i3, long j, long j2, String str, String str2, int i4, int i5) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = j;
-        this.e = j2;
-        this.f = str;
-        this.h = str2;
-        this.n = i4;
-        this.r = i5;
+    public bg7(int i) {
+        this.a = new SparseArray(i);
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = bye.r(parcel, 20293);
-        bye.q(parcel, 1, 4);
-        parcel.writeInt(this.a);
-        bye.q(parcel, 2, 4);
-        parcel.writeInt(this.b);
-        bye.q(parcel, 3, 4);
-        parcel.writeInt(this.c);
-        bye.q(parcel, 4, 8);
-        parcel.writeLong(this.d);
-        bye.q(parcel, 5, 8);
-        parcel.writeLong(this.e);
-        bye.l(parcel, 6, this.f);
-        bye.l(parcel, 7, this.h);
-        bye.q(parcel, 8, 4);
-        parcel.writeInt(this.n);
-        bye.q(parcel, 9, 4);
-        parcel.writeInt(this.r);
-        bye.s(parcel, r);
+    public final void a(px3 px3Var, int i, int i2) {
+        int a = px3Var.a(i);
+        SparseArray sparseArray = this.a;
+        bg7 bg7Var = (bg7) sparseArray.get(a);
+        if (bg7Var == null) {
+            bg7Var = new bg7(1);
+            sparseArray.put(px3Var.a(i), bg7Var);
+        }
+        if (i2 > i) {
+            bg7Var.a(px3Var, i + 1, i2);
+        } else {
+            bg7Var.b = px3Var;
+        }
     }
 }

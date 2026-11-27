@@ -164,7 +164,7 @@ public final class l0 implements r69 {
                             tL_messages_getPollVotes.option = ti8Var.d;
                             tL_messages_getPollVotes.flags = i3 | 3;
                             tL_messages_getPollVotes.offset = ti8Var.c;
-                            ConnectionsManager.getInstance(ui8Var.a).sendRequest(tL_messages_getPollVotes, new ol7(ui8Var, ti8Var, (byte) 8));
+                            ConnectionsManager.getInstance(ui8Var.a).sendRequest(tL_messages_getPollVotes, new pl7(ui8Var, ti8Var, (byte) 8));
                         }
                     }
                 } else if (view instanceof PollVotesAlert$UserCell) {
@@ -245,15 +245,15 @@ public final class l0 implements r69 {
                     i2 = size;
                 }
                 if (i3 >= 0 && arrayList.size() > 1) {
-                    z3aVar.H = new w5b(z3aVar.w, arrayList);
+                    z3aVar.H = new x5b(z3aVar.w, arrayList);
                     z3aVar.I = i2;
                     y3a y3aVar2 = z3aVar.F;
                     lcb createOverlayStoryViewer = eVar.createOverlayStoryViewer();
                     Context context = z3aVar.getContext();
-                    w5b w5bVar = z3aVar.H;
+                    x5b x5bVar = z3aVar.H;
                     l6b a = l6b.a(i3aVar);
                     a.e = new ye9(y3aVar2, (byte) 26);
-                    createOverlayStoryViewer.G(context, i3, w5bVar, a);
+                    createOverlayStoryViewer.G(context, i3, x5bVar, a);
                     return;
                 }
                 z3aVar.H = null;
@@ -326,7 +326,7 @@ public final class l0 implements r69 {
                     }
                     return;
                 }
-                a5c a5cVar = uc7.s1(b4cVar.a).i4;
+                a5c a5cVar = uc7.s1(b4cVar.a).j4;
                 a5cVar.K(0L, !a5cVar.A(0L));
                 b4cVar.dismiss();
             }

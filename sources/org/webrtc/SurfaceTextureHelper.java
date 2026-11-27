@@ -259,7 +259,7 @@ public class SurfaceTextureHelper {
     }
 
     public void setFrameRotation(int i) {
-        this.handler.post(new me7(this, i, (byte) 22));
+        this.handler.post(new oe7(this, i, (byte) 22));
     }
 
     public void setTextureSize(int i, int i2) {

@@ -67,8 +67,8 @@ public final class b17 extends AnimatorListenerAdapter {
                     }
                     for (int i3 = 0; i3 < oobVar.getChildCount(); i3++) {
                         View childAt = oobVar.getChildAt(i3);
-                        if (childAt instanceof u3b) {
-                            ((u3b) childAt).setExpanded(false);
+                        if (childAt instanceof v3b) {
+                            ((v3b) childAt).setExpanded(false);
                         }
                         childAt.getLayoutParams().width = hl.L(33.0f);
                     }

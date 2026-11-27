@@ -588,7 +588,7 @@ public final class vc2 {
             }
             getgroupparticipants.offset = str;
             if (this.a) {
-                i = uc7.s1(this.C.a).k4.E3.f();
+                i = uc7.s1(this.C.a).l4.E3.f();
             } else {
                 i = 20;
             }

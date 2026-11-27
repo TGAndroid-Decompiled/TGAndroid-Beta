@@ -1,26 +1,26 @@
 package defpackage;
 public final class ue implements Runnable {
     public final byte a;
-    public final bf7 b;
+    public final cf7 b;
 
-    public ue(bf7 bf7Var, byte b) {
+    public ue(cf7 cf7Var, byte b) {
         this.a = b;
-        this.b = bf7Var;
+        this.b = cf7Var;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        bf7 bf7Var = this.b;
+        cf7 cf7Var = this.b;
         switch (b) {
             case 0:
-                bf7Var.A(false);
+                cf7Var.A(false);
                 return;
             case 1:
-                bf7Var.A(false);
+                cf7Var.A(false);
                 return;
             default:
-                bf7Var.A(true);
+                cf7Var.A(true);
                 return;
         }
     }

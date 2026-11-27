@@ -1,6 +1,4 @@
 package defpackage;
-public final class ff7 {
-    public int a;
-    public int b;
-    public int c;
+public interface ff7 {
+    void run(long j);
 }

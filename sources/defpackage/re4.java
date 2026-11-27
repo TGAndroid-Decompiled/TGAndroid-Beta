@@ -144,7 +144,7 @@ public final class re4 implements Runnable {
                     }
                 }
                 filtersSetupActivity.getMessagesController().s4(ac7Var);
-                jf7 messagesStorage = filtersSetupActivity.getMessagesStorage();
+                kf7 messagesStorage = filtersSetupActivity.getMessagesStorage();
                 messagesStorage.a.c(new t87(messagesStorage, ac7Var, (byte) 20));
                 return;
             case 5:
@@ -254,7 +254,7 @@ public final class re4 implements Runnable {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
                     uc7Var.j4(tL_contacts_resolvedPeer.users, false);
                     uc7Var.c4(tL_contacts_resolvedPeer.chats, false);
-                    jf7.Y(vt4Var.x.a).j1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
+                    kf7.a0(vt4Var.x.a).n1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                     vt4Var.E();
                     return;
                 }

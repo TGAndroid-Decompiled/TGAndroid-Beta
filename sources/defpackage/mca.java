@@ -1,27 +1,27 @@
 package defpackage;
-public final class mca implements Runnable {
-    public final byte a;
-    public final nca b;
 
-    public mca(nca ncaVar, byte b) {
-        this.a = b;
-        this.b = ncaVar;
+import android.app.Activity;
+import android.content.Context;
+import org.telegram.messenger.a;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+public final class mca extends e {
+    @Override
+    public final Context getContext() {
+        return hl.W(LaunchActivity.H1);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        nca ncaVar = this.b;
-        switch (b) {
-            case 0:
-                if (ncaVar.x) {
-                    ncaVar.d();
-                    return;
-                }
-                return;
-            default:
-                ncaVar.invalidateSelf();
-                return;
+    public final int getCurrentAccount() {
+        return this.currentAccount;
+    }
+
+    @Override
+    public final Activity getParentActivity() {
+        Activity W = hl.W(a.b);
+        if (W == null) {
+            return LaunchActivity.H1;
         }
+        return W;
     }
 }

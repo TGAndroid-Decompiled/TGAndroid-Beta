@@ -175,11 +175,11 @@ public final class so7 extends nx0 implements fn7 {
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i3 = uc7.r5;
+            int i3 = uc7.s5;
             if ((intValue & 256) >= 0) {
                 int i4 = 0;
                 for (int i5 = 0; i5 < 4; i5++) {
-                    i4 += jf7.Y(i5).L;
+                    i4 += kf7.a0(i5).L;
                 }
                 if (this.l1.a(i4)) {
                     e29 e29Var = this.m1;

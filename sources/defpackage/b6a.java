@@ -29,10 +29,10 @@ public final class b6a implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.b6a.run():void");
     }
 
-    public b6a(rbb rbbVar, vab vabVar, int i, int i2, c8b c8bVar, boolean z, boolean z2, Runnable runnable, byte b) {
+    public b6a(sbb sbbVar, wab wabVar, int i, int i2, c8b c8bVar, boolean z, boolean z2, Runnable runnable, byte b) {
         this.a = b;
-        this.f = rbbVar;
-        this.h = vabVar;
+        this.f = sbbVar;
+        this.h = wabVar;
         this.b = i;
         this.c = i2;
         this.n = c8bVar;

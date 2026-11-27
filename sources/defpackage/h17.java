@@ -15,13 +15,13 @@ public final class h17 implements RequestDelegate {
     public final Object g;
     public final Object h;
 
-    public h17(r17 r17Var, String str, boolean z, TLRPC.User user, String str2, jf7 jf7Var, String str3) {
+    public h17(r17 r17Var, String str, boolean z, TLRPC.User user, String str2, kf7 kf7Var, String str3) {
         this.c = r17Var;
         this.d = str;
         this.b = z;
         this.g = user;
         this.e = str2;
-        this.h = jf7Var;
+        this.h = kf7Var;
         this.f = str3;
     }
 
@@ -39,7 +39,7 @@ public final class h17 implements RequestDelegate {
         fn7 fn7Var = this.c;
         switch (b) {
             case 0:
-                hl.c3(new oq6((r17) fn7Var, (String) serializable2, this.b, tLObject, (TLRPC.User) obj3, (String) obj4, (jf7) obj2, (String) serializable, (byte) 4));
+                hl.c3(new oq6((r17) fn7Var, (String) serializable2, this.b, tLObject, (TLRPC.User) obj3, (String) obj4, (kf7) obj2, (String) serializable, (byte) 4));
                 return;
             default:
                 r7a r7aVar = (r7a) fn7Var;

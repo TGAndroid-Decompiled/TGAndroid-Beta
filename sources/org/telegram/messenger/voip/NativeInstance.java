@@ -183,7 +183,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        hl.c3(new cq6(this, j, iArr, (byte) 20));
+        hl.c3(new cq6(this, j, iArr, (byte) 21));
     }
 
     public static void onRecordedSamples(byte[] bArr, int i, int i2) {

@@ -4,7 +4,7 @@ import android.os.Handler;
 public final class fg8 implements x1c {
     public final ys9 a;
     public final ym4 b = new ym4((byte) 1, false);
-    public final wf7 c = new wf7();
+    public final xf7 c = new xf7();
     public long d = -9223372036854775807L;
     public final gg8 e;
 
@@ -19,16 +19,16 @@ public final class fg8 implements x1c {
         long j3;
         this.a.a(j, i, i2, i3, w1cVar);
         while (this.a.A(false)) {
-            wf7 wf7Var = this.c;
-            wf7Var.clear();
-            if (this.a.F(this.b, wf7Var, 0, false) == -4) {
-                wf7Var.d();
+            xf7 xf7Var = this.c;
+            xf7Var.clear();
+            if (this.a.F(this.b, xf7Var, 0, false) == -4) {
+                xf7Var.d();
             } else {
-                wf7Var = null;
+                xf7Var = null;
             }
-            if (wf7Var != null) {
-                long j4 = wf7Var.e;
-                uf7 a = this.e.c.a(wf7Var);
+            if (xf7Var != null) {
+                long j4 = xf7Var.e;
+                vf7 a = this.e.c.a(xf7Var);
                 if (a != null) {
                     f54 f54Var = (f54) a.a[0];
                     String str = f54Var.a;

@@ -25,7 +25,7 @@ public final class i1a extends AnimatorListenerAdapter {
         Object obj = this.c;
         switch (b) {
             case 1:
-                ((tba) obj).n = null;
+                ((uba) obj).n = null;
                 return;
             case 2:
                 ((eja) obj).R1 = null;
@@ -98,12 +98,12 @@ public final class i1a extends AnimatorListenerAdapter {
                 j1aVar.O = null;
                 return;
             case 1:
-                tba tbaVar = (tba) obj;
-                if (tbaVar.n != null && (vb5Var = tbaVar.r) != null) {
+                uba ubaVar = (uba) obj;
+                if (ubaVar.n != null && (vb5Var = ubaVar.r) != null) {
                     if (!z) {
                         vb5Var.setVisibility(4);
                     }
-                    tbaVar.n = null;
+                    ubaVar.n = null;
                     return;
                 }
                 return;
@@ -138,11 +138,11 @@ public final class i1a extends AnimatorListenerAdapter {
                 p9bVar.c = null;
                 return;
             case 5:
-                rbb rbbVar = (rbb) obj;
+                sbb sbbVar = (sbb) obj;
                 if (!z) {
-                    rbbVar.W0.setVisibility(8);
+                    sbbVar.W0.setVisibility(8);
                 }
-                rbbVar.g2 = null;
+                sbbVar.g2 = null;
                 return;
             case 6:
                 lcb lcbVar = (lcb) obj;
@@ -198,7 +198,7 @@ public final class i1a extends AnimatorListenerAdapter {
                     }
                     imageView2.setImageResource(i3);
                     l1cVar.e0 = null;
-                    uc7.s1(l1cVar.e).X3.edit().putBoolean(qu6.n(j, "topicssidetabs"), l1cVar.U).putBoolean(qu6.n(j, "topicssidetabsb"), l1cVar.T).apply();
+                    uc7.s1(l1cVar.e).Y3.edit().putBoolean(qu6.n(j, "topicssidetabs"), l1cVar.U).putBoolean(qu6.n(j, "topicssidetabsb"), l1cVar.T).apply();
                     Boolean bool = l1cVar.d0;
                     if (bool != null && z != bool.booleanValue()) {
                         boolean booleanValue = l1cVar.d0.booleanValue();

@@ -52,7 +52,7 @@ public abstract class qd8 extends FrameLayout {
     }
 
     public final boolean c() {
-        if (this.y && "inapp".equals(uc7.s1(this.a).k4.Q0.f)) {
+        if (this.y && "inapp".equals(uc7.s1(this.a).l4.Q0.f)) {
             return true;
         }
         return false;

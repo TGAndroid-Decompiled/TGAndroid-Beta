@@ -1,7 +1,7 @@
 package defpackage;
 
 import android.text.PrecomputedText;
-public final class w9c extends rg7 {
+public final class w9c extends sg7 {
     @Override
     public final boolean c(CharSequence charSequence) {
         if (!(charSequence instanceof PrecomputedText)) {

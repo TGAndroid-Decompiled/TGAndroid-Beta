@@ -89,7 +89,7 @@ public final class ko4 {
     public final int j;
     public final int k;
     public final String l;
-    public final uf7 m;
+    public final vf7 m;
     public final String n;
     public boolean o;
     public long p;
@@ -624,7 +624,7 @@ public final class ko4 {
         if (this == ko4Var) {
             return this;
         }
-        int h = dg7.h(this.t);
+        int h = eg7.h(this.t);
         String str3 = ko4Var.a;
         float f2 = ko4Var.g;
         int i2 = ko4Var.V;
@@ -661,10 +661,10 @@ public final class ko4 {
         if (str6 == null) {
             str6 = ko4Var.n;
         }
-        uf7 uf7Var = ko4Var.m;
-        uf7 uf7Var2 = this.m;
-        if (uf7Var2 != null) {
-            uf7Var = uf7Var2.b(uf7Var);
+        vf7 vf7Var = ko4Var.m;
+        vf7 vf7Var2 = this.m;
+        if (vf7Var2 != null) {
+            vf7Var = vf7Var2.b(vf7Var);
         }
         float f3 = this.F;
         if (f3 == -1.0f) {
@@ -757,7 +757,7 @@ public final class ko4 {
         a.i = i4;
         a.j = i5;
         a.k = str5;
-        a.l = uf7Var;
+        a.l = vf7Var;
         a.m = str6;
         a.w = hr3Var;
         a.a(f4);
@@ -821,11 +821,11 @@ public final class ko4 {
                 hashCode4 = str4.hashCode();
             }
             int i4 = (floatToIntBits + hashCode4) * 31;
-            uf7 uf7Var = this.m;
-            if (uf7Var == null) {
+            vf7 vf7Var = this.m;
+            if (vf7Var == null) {
                 hashCode5 = 0;
             } else {
-                hashCode5 = uf7Var.hashCode();
+                hashCode5 = vf7Var.hashCode();
             }
             int i5 = (i4 + hashCode5) * 961;
             String str5 = this.n;

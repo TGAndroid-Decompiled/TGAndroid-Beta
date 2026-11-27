@@ -129,7 +129,7 @@ public class WalletEngine2 implements AutoCloseable {
                                                 try {
                                                     this.pending.put(Long.valueOf(j), eVar);
                                                     try {
-                                                        eVar.b = getConnectionsManager().sendRequestTyped(performapirequest, new ic((byte) 1), new l8b(eVar, (byte) 12), uc7.s1(this.currentAccount).r3, 0);
+                                                        eVar.b = getConnectionsManager().sendRequestTyped(performapirequest, new ic((byte) 1), new l8b(eVar, (byte) 12), uc7.s1(this.currentAccount).s3, 0);
                                                     } catch (Throwable th) {
                                                         th = th;
                                                         hashMap = hashMap2;
@@ -1018,7 +1018,7 @@ public class WalletEngine2 implements AutoCloseable {
             cc4.g(e, true);
             wallettransaction = null;
         }
-        hl.c3(new vlc(pccVar, wallettransaction, (byte) 18));
+        hl.c3(new slc(pccVar, wallettransaction, (byte) 19));
     }
 
     public static Thread lambda$new$0(Runnable runnable) {

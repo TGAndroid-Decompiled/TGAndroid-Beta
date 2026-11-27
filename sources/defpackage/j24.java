@@ -309,7 +309,7 @@ public final class j24 extends c79 {
                 view = new t24(context);
                 break;
             case 2:
-                view = new t3b(this.h, false, false, o24Var.a2, o24Var.j2);
+                view = new u3b(this.h, false, false, o24Var.a2, o24Var.j2);
                 break;
             case 3:
                 h94 h94Var = new h94(17, o24Var.a2, this.h, false, true);

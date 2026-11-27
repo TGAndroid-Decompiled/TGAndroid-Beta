@@ -20,15 +20,15 @@ public final class ke5 implements ep3 {
                 return;
             default:
                 String str = (String) this.b;
-                cj7 cj7Var = (cj7) this.c;
-                synchronized (dj7.b) {
-                    LinkedHashMap linkedHashMap = dj7.c;
-                    dj7 dj7Var = (dj7) linkedHashMap.get(str);
-                    if (dj7Var != null) {
-                        dj7Var.a.remove(cj7Var);
-                        if (dj7Var.a.isEmpty()) {
+                dj7 dj7Var = (dj7) this.c;
+                synchronized (ej7.b) {
+                    LinkedHashMap linkedHashMap = ej7.c;
+                    ej7 ej7Var = (ej7) linkedHashMap.get(str);
+                    if (ej7Var != null) {
+                        ej7Var.a.remove(dj7Var);
+                        if (ej7Var.a.isEmpty()) {
                             linkedHashMap.remove(str);
-                            dj7Var.stopWatching();
+                            ej7Var.stopWatching();
                         }
                     }
                 }

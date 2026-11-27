@@ -249,8 +249,8 @@ public final class ju1 implements rb2 {
         message.summarizedOpen = !message.summarizedOpen;
         messageObject.f6(true);
         zu1 zu1Var = this.a;
-        zu1Var.getMessagesStorage().U1(r47.B0(messageObject.k), messageObject.k);
-        zu1Var.getMessagesController().i4.g(messageObject, true, false);
+        zu1Var.getMessagesStorage().Z1(r47.B0(messageObject.k), messageObject.k);
+        zu1Var.getMessagesController().j4.g(messageObject, true, false);
         f(wb2Var, true, false, true);
     }
 
@@ -313,7 +313,7 @@ public final class ju1 implements rb2 {
                     r7a r7aVar = r7a.this;
                     final boolean z2 = z;
                     if (tL_error == null) {
-                        final jf7 messagesStorage = r7aVar.getMessagesStorage();
+                        final kf7 messagesStorage = r7aVar.getMessagesStorage();
                         r47 r47Var = messageObject;
                         final long B0 = r47.B0(r47Var.k);
                         final int e1 = r47Var.e1();
@@ -325,7 +325,7 @@ public final class ju1 implements rb2 {
                         to3Var.c(new Runnable() {
                             @Override
                             public final void run() {
-                                throw new UnsupportedOperationException("Method not decompiled: defpackage.pe7.run():void");
+                                throw new UnsupportedOperationException("Method not decompiled: defpackage.qe7.run():void");
                             }
                         });
                         r7aVar.getMessagesController().Y3((TLRPC.Updates) tLObject, false);
@@ -742,7 +742,7 @@ public final class ju1 implements rb2 {
                         arrayList5.add(l);
                     }
                 }
-                i19 i19Var = new i19(j19Var2, wb2Var, arrayList5, new z09(j19Var2, b, (byte) 3));
+                i19 i19Var = new i19(j19Var2, wb2Var, arrayList5, new yz8(j19Var2, b, (byte) 4));
                 i19Var.setBounds(0, 0, j19Var2.getMeasuredWidth(), j19Var2.getMeasuredHeight());
                 i19Var.setCallback(j19Var2);
                 if (!hashMap.containsKey(b)) {
@@ -803,7 +803,7 @@ public final class ju1 implements rb2 {
     public final void U(wb2 wb2Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
         dq1 dq1Var;
         int i;
-        me7 me7Var;
+        oe7 oe7Var;
         r47 messageObject = wb2Var.getMessageObject();
         if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
             zu1 zu1Var = this.a;
@@ -843,12 +843,12 @@ public final class ju1 implements rb2 {
                     tL_payments_getPaymentForm.flags |= 1;
                 }
                 tL_payments_getPaymentForm.invoice = tL_inputInvoiceMessage;
-                me7Var = new me7(v, ConnectionsManager.getInstance(v.a).sendRequest(tL_payments_getPaymentForm, new au0(v, messageObject, tL_inputInvoiceMessage, go1Var, (byte) 22)), (byte) 18);
+                oe7Var = new oe7(v, ConnectionsManager.getInstance(v.a).sendRequest(tL_payments_getPaymentForm, new au0(v, messageObject, tL_inputInvoiceMessage, go1Var, (byte) 22)), (byte) 18);
             } else {
-                me7Var = null;
+                oe7Var = null;
             }
-            if (me7Var != null) {
-                dq1Var.b = me7Var;
+            if (oe7Var != null) {
+                dq1Var.b = oe7Var;
                 dq1Var.d();
                 return;
             }
@@ -1104,8 +1104,8 @@ public final class ju1 implements rb2 {
                     zu1Var.O3.performHapticFeedback(3, 2);
                 }
             } else if (i == 1) {
-                String x = ob6.x(zu1Var.getMessagesController().H3, true);
-                if (zu1Var.getMessagesController().H3 > 0) {
+                String x = ob6.x(zu1Var.getMessagesController().I3, true);
+                if (zu1Var.getMessagesController().I3 > 0) {
                     i3 = ((e) zu1Var).currentAccount;
                     S2 = hl.S2(ob6.G(u2c.g(i3), "TranscriptionTrialLeftUntil", x));
                 } else {
@@ -1115,12 +1115,12 @@ public final class ju1 implements rb2 {
                 d31.b0(zu1Var).G(2131624295, 6, S2).k(true);
                 zu1Var.fragmentView.performHapticFeedback(3, 2);
             } else if (i == 2 || i == 3) {
-                String x2 = ob6.x(zu1Var.getMessagesController().H3, true);
+                String x2 = ob6.x(zu1Var.getMessagesController().I3, true);
                 d31 b0 = d31.b0(zu1Var);
-                SpannableStringBuilder append = new SpannableStringBuilder().append((CharSequence) hl.S2(ob6.G(zu1Var.getMessagesController().G3, "TranscriptionTrialEnd", new Object[0]))).append((CharSequence) " ");
+                SpannableStringBuilder append = new SpannableStringBuilder().append((CharSequence) hl.S2(ob6.G(zu1Var.getMessagesController().H3, "TranscriptionTrialEnd", new Object[0]))).append((CharSequence) " ");
                 if (i == 2) {
                     N2 = hl.N2(ob6.M0(2131743623, null), -1, 0, new st1(this, (byte) 2), null);
-                } else if (zu1Var.getMessagesController().H3 <= 0) {
+                } else if (zu1Var.getMessagesController().I3 <= 0) {
                     N2 = "";
                 } else {
                     N2 = hl.N2(ob6.a0(null, null, 2131743622, x2), -1, 0, new st1(this, (byte) 3), null);
@@ -1297,7 +1297,7 @@ public final class ju1 implements rb2 {
                 id idVar = new id(3, null, zu1Var.getParentActivity());
                 TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
                 getgroupcall.call = tL_inputGroupCallInviteMessage;
-                getgroupcall.limit = zu1Var.getMessagesController().k4.E3.f();
+                getgroupcall.limit = zu1Var.getMessagesController().l4.E3.f();
                 idVar.setOnCancelListener(new gt0(this, zu1Var.getConnectionsManager().sendRequest(getgroupcall, new in0(this, idVar, hashSet, tL_inputGroupCallInviteMessage, messageObject, (byte) 5)), (byte) 2));
                 idVar.q(600L);
                 return;
@@ -2039,7 +2039,7 @@ public final class ju1 implements rb2 {
                         ky9Var2.x = kfcVar3;
                         kfcVar3.K = new ve9(ky9Var2, (byte) 6);
                         if (ky9Var2.W != null) {
-                            kfcVar3.L = new i09(ky9Var2, (byte) 10);
+                            kfcVar3.L = new j09(ky9Var2, (byte) 10);
                         }
                         if (ky9Var2.T) {
                             kfcVar3.z0(ky9Var2.Q);
@@ -2210,7 +2210,7 @@ public final class ju1 implements rb2 {
             zu1Var.presentFragment(new em6(bundle, zu1Var.p1.getSharedMediaPreloader()));
             return;
         }
-        d31.b0(zu1Var).Q(2131624211, 36, hl.N2(ob6.H(',', "UnlockSimilarChannelsPremium", zu1Var.getMessagesController().k4.Z1.f()), -1, 0, new st1(this, (byte) 4), null)).j();
+        d31.b0(zu1Var).Q(2131624211, 36, hl.N2(ob6.H(',', "UnlockSimilarChannelsPremium", zu1Var.getMessagesController().l4.Z1.f()), -1, 0, new st1(this, (byte) 4), null)).j();
     }
 
     @Override
@@ -2920,7 +2920,7 @@ public final class ju1 implements rb2 {
                     Activity parentActivity2 = this.a.getParentActivity();
                     Uri parse = Uri.parse(messageObject.T0);
                     zu1 zu1Var6 = this.a;
-                    m01.t(parentActivity2, parse, true, false, false, zu1Var6.pc, null, false, zu1Var6.getMessagesController().k4.I2.f, false, false);
+                    m01.t(parentActivity2, parse, true, false, false, zu1Var6.pc, null, false, zu1Var6.getMessagesController().l4.I2.f, false, false);
                     return;
                 }
                 return;
@@ -3313,7 +3313,7 @@ public final class ju1 implements rb2 {
             int f = lbc.f(user);
             if (f >= 7) {
                 i2 = ((e) zu1Var).currentAccount;
-                lc7 lc7Var = uc7.s1(i2).E3;
+                lc7 lc7Var = uc7.s1(i2).F3;
                 if (lc7Var != null) {
                     kc7Var = lc7Var.d(f);
                 } else {

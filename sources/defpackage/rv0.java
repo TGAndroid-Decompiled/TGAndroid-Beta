@@ -206,7 +206,7 @@ public abstract class rv0 extends FrameLayout implements fn7, snb {
             sb.append(split[i].replaceAll("\\-", "-h"));
         }
         sb.append(".");
-        sb.append(uc7.s1(yac.t0).k4.B2.f);
+        sb.append(uc7.s1(yac.t0).l4.B2.f);
         return sb.toString();
     }
 
@@ -274,7 +274,7 @@ public abstract class rv0 extends FrameLayout implements fn7, snb {
         }
         String J0 = hl.J0(str, false);
         if (J0 != null) {
-            if (J0.endsWith("." + uc7.s1(yac.t0).k4.B2.f) && (str2 = (String) T0.get(J0)) != null) {
+            if (J0.endsWith("." + uc7.s1(yac.t0).l4.B2.f) && (str2 = (String) T0.get(J0)) != null) {
                 return m01.x(Uri.parse(str), "tonsite", null, str2, null);
             }
             return str;
@@ -685,7 +685,7 @@ public abstract class rv0 extends FrameLayout implements fn7, snb {
                 if (nv0Var3.T == null) {
                     boolean z = zyc.a;
                     if (czc.d.b()) {
-                        nv0Var3.T = new i09((ScriptHandlerBoundaryInterface) py0.a(ScriptHandlerBoundaryInterface.class, zyc.c(nv0Var3).a.addDocumentStartJavaScript("window.TelegramWebviewProxy={postEvent:function(eventType,eventData){window.TelegramWebviewProxyMessage.postMessage(JSON.stringify({eventType:eventType,eventData:eventData}));}};", (String[]) singleton.toArray(new String[0]))), (byte) 9);
+                        nv0Var3.T = new j09((ScriptHandlerBoundaryInterface) py0.a(ScriptHandlerBoundaryInterface.class, zyc.c(nv0Var3).a.addDocumentStartJavaScript("window.TelegramWebviewProxy={postEvent:function(eventType,eventData){window.TelegramWebviewProxyMessage.postMessage(JSON.stringify({eventType:eventType,eventData:eventData}));}};", (String[]) singleton.toArray(new String[0]))), (byte) 9);
                         return;
                     }
                     qyc.c("This method is not supported by the current version of the framework and the current WebView APK");

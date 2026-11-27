@@ -1,10 +1,10 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.app.Activity;
 import android.view.View;
-public final class q58 implements h49 {
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stories;
+public final class q58 implements yq5 {
     public final o68 a;
 
     public q58(o68 o68Var) {
@@ -12,49 +12,54 @@ public final class q58 implements h49 {
     }
 
     @Override
-    public final void e(View view, w49 w49Var, boolean z, boolean z2) {
+    public final void G(no6 no6Var, oec oecVar, boolean z, int i, boolean z2, long j) {
+        k5 accountInstance;
+        k5 accountInstance2;
+        boolean z3;
+        k5 accountInstance3;
         o68 o68Var = this.a;
-        if (!z) {
-            o68Var.d0(new lb7(this, view, w49Var, z, z2));
-        } else {
-            jj.X(o68Var.m2, o68Var.l1, 1, new wv1(this, z, w49Var, view));
+        TL_stories.StoryItem storyItem = o68Var.y1.a;
+        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            storyItem.dialogId = o68Var.l1;
+            if (no6Var.b) {
+                accountInstance3 = o68Var.getAccountInstance();
+                String str = no6Var.I;
+                long j2 = o68Var.l1;
+                ArrayList arrayList = no6Var.n;
+                r7a.a0(no6Var.x, i, j2, 0L, j, 0L, accountInstance3, null, null, null, null, null, null, oecVar, no6Var.a, str, null, arrayList, null, storyItem, z, false, no6Var.M);
+            } else if (no6Var.h != null) {
+                accountInstance2 = o68Var.getAccountInstance();
+                r7a.Y(accountInstance2, no6Var.h, no6Var.c, null, o68Var.l1, null, null, null, no6Var.n, no6Var.r, null, no6Var.x, null, oecVar, z, i, false, no6Var.a, null, 0L, j, 0L, null);
+            } else if (no6Var.I != null) {
+                accountInstance = o68Var.getAccountInstance();
+                r7a.Y(accountInstance, no6Var.I, no6Var.c, null, o68Var.l1, null, null, null, no6Var.n, no6Var.r, null, no6Var.x, null, oecVar, z, i, false, no6Var.a, null, 0L, j, 0L, null);
+            }
+            if (j <= 0) {
+                z3 = true;
+            } else {
+                z3 = false;
+            }
+            o68Var.a0(z3);
         }
     }
 
     @Override
-    public final boolean j() {
-        return true;
+    public final int getClassGuid() {
+        return this.a.j2;
     }
 
     @Override
-    public final boolean k() {
-        return this.a.G0();
+    public final View getFragmentView() {
+        return this.a;
     }
 
     @Override
-    public final void m(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
-        o68 o68Var = this.a;
-        Paint paint = o68Var.X1;
-        fp fpVar = o68Var.z1;
-        float f4 = -f2;
-        float f5 = -f3;
-        fpVar.i(f4, f5, o68Var.getMeasuredWidth() + f4, o68Var.getMeasuredHeight() + f5);
-        if (f > 0.0f) {
-            canvas.drawRoundRect(rectF, f, f, (Paint) fpVar.a);
-            canvas.drawRoundRect(rectF, f, f, paint);
-            return;
-        }
-        canvas.drawRect(rectF, (Paint) fpVar.a);
-        canvas.drawRect(rectF, paint);
+    public final Activity getParentActivity() {
+        return hl.W(this.a.getContext());
     }
 
     @Override
-    public final void n() {
-        ((ccb) this.a.A1).b(false);
-    }
-
-    @Override
-    public final boolean p() {
+    public final boolean y() {
         return false;
     }
 }

@@ -24,7 +24,7 @@ import org.telegram.ui.PasscodeActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.StickersActivity;
-public final class bf implements fd, ot2, ncc, ti7, lcc, is6, sgb, NativeInstance.PayloadCallback {
+public final class bf implements fd, ot2, ncc, ui7, lcc, is6, sgb, NativeInstance.PayloadCallback {
     public final byte a;
     public final int b;
     public final Object c;
@@ -159,40 +159,40 @@ public final class bf implements fd, ot2, ncc, ti7, lcc, is6, sgb, NativeInstanc
                     String f3 = ea4.f((r47) arrayList.get(i5));
                     r47 message = v94Var.getMessage();
                     if (f3 != null) {
-                        ha4Var = lm7Var.n0(i2, message, "open_media", f3);
+                        ha4Var = lm7Var.m0(i2, message, "open_media", f3);
                     } else {
                         ha4Var = null;
                     }
                     PhotoViewer.q0().T1(null, lm7Var, null);
                     if (PhotoViewer.q0().n1(arrayList, i5, r47.B0(((r47) arrayList.get(0)).k), 0L, 0L, new bm7(i2, message, lm7Var)) && ha4Var != null) {
-                        lm7Var.h0(ha4Var, true, null);
+                        lm7Var.g0(ha4Var, true, null);
                         return;
                     }
                     return;
                 }
                 return;
             } else if (v94Var != null && v94Var.R > 0.5f && v94Var.L && v94Var.a0 > v94Var.b0 && v94Var.S < 1.0f) {
-                String B0 = lm7.B0(i2, r47Var);
+                String z0 = lm7.z0(i2, r47Var);
                 HashMap hashMap = lm7Var.W;
-                km7 km7Var = (km7) hashMap.get(B0);
+                km7 km7Var = (km7) hashMap.get(z0);
                 if (km7Var == null || km7Var.b < 1.0f) {
-                    lm7Var.F0(lm7Var.n0(i2, r47Var, "expand", null));
+                    lm7Var.D0(lm7Var.m0(i2, r47Var, "expand", null));
                 }
                 if (km7Var == null) {
                     km7Var = new km7(lm7Var, 0.0f, 0.0f);
-                    hashMap.put(B0, km7Var);
+                    hashMap.put(z0, km7Var);
                 }
                 km7Var.a(1.0f);
                 return;
             } else {
                 Bundle bundle = new Bundle();
-                long B02 = r47.B0(r47Var.k);
-                if (B02 < 0) {
+                long B0 = r47.B0(r47Var.k);
+                if (B0 < 0) {
                     str = "chat_id";
                 } else {
                     str = "user_id";
                 }
-                bundle.putLong(str, Math.abs(B02));
+                bundle.putLong(str, Math.abs(B0));
                 bundle.putInt("message_id", r47Var.e1());
                 bundle.putBoolean("from_news", true);
                 bundle.putBoolean("for_news", true);
@@ -200,7 +200,7 @@ public final class bf implements fd, ot2, ncc, ti7, lcc, is6, sgb, NativeInstanc
                     zu1 zu1Var = new zu1(bundle);
                     zu1Var.tb = r47Var;
                     lm7Var.a0.b();
-                    lm7Var.D0(zu1Var, i2, r47Var);
+                    lm7Var.B0(zu1Var, i2, r47Var);
                     lm7Var.presentFragment(zu1Var);
                     return;
                 }
@@ -209,9 +209,9 @@ public final class bf implements fd, ot2, ncc, ti7, lcc, is6, sgb, NativeInstanc
         }
         int i6 = b8cVar.d;
         if (i6 == -1) {
-            lm7Var.y0(i2, jm7Var.q);
+            lm7Var.w0(i2, jm7Var.q);
         } else if (i6 == -2) {
-            lm7Var.x0();
+            lm7Var.u0();
         }
     }
 
@@ -230,10 +230,10 @@ public final class bf implements fd, ot2, ncc, ti7, lcc, is6, sgb, NativeInstanc
         switch (b) {
             case 0:
                 ij ijVar = (ij) obj2;
-                hf7 hf7Var = (hf7) obj;
+                if7 if7Var = (if7) obj;
                 String trim = ijVar.getText().toString().trim();
                 if (trim.length() <= i3 && !trim.isEmpty()) {
-                    hf7Var.a(trim);
+                    if7Var.a(trim);
                     idVar.dismiss();
                     return;
                 }

@@ -78,7 +78,7 @@ public final class oj6 implements RequestDelegate {
                                             if (i < 0) {
                                                 chatFull2.invitesCount = 0;
                                             }
-                                            ck6Var2.getMessagesStorage().t1(ck6Var2.d.invitesCount, ck6Var2.n);
+                                            ck6Var2.getMessagesStorage().x1(ck6Var2.d.invitesCount, ck6Var2.n);
                                         }
                                     }
                                     if (ck6Var2.getParentActivity() != null) {
@@ -151,7 +151,7 @@ public final class oj6 implements RequestDelegate {
                                             if (i < 0) {
                                                 chatFull2.invitesCount = 0;
                                             }
-                                            ck6Var22.getMessagesStorage().t1(ck6Var22.d.invitesCount, ck6Var22.n);
+                                            ck6Var22.getMessagesStorage().x1(ck6Var22.d.invitesCount, ck6Var22.n);
                                         }
                                     }
                                     if (ck6Var22.getParentActivity() != null) {

@@ -47,7 +47,7 @@ public final class r41 {
             int indexOf = arrayList.indexOf(c);
             arrayList.remove(c);
             jn7.f(this.a).k(jn7.J1, new Object[0]);
-            d31.b0(n41Var).U(ob6.M0(2131752696, null), true, new ze7(this, indexOf, c, (byte) 8), new tu0(this, str, c, (byte) 8)).j();
+            d31.b0(n41Var).U(ob6.M0(2131752696, null), true, new bf7(this, indexOf, c, (byte) 8), new tu0(this, str, c, (byte) 8)).j();
         }
     }
 
@@ -103,8 +103,8 @@ public final class r41 {
                 this.c = true;
                 int i = this.a;
                 if (z) {
-                    jf7 Y = jf7.Y(i);
-                    Y.a.c(new ds6(this, Y, z2, (byte) 7));
+                    kf7 a0 = kf7.a0(i);
+                    a0.a.c(new ds6(this, a0, z2, (byte) 7));
                     return;
                 }
                 ConnectionsManager.getInstance(i).sendRequest(new TL_account.getBusinessChatLinks(), new p41(this, (byte) 0));
@@ -114,7 +114,7 @@ public final class r41 {
 
     public final void f() {
         ArrayList arrayList = new ArrayList(this.b);
-        jf7 Y = jf7.Y(this.a);
-        Y.a.c(new q41(Y, arrayList, (byte) 0));
+        kf7 a0 = kf7.a0(this.a);
+        a0.a.c(new q41(a0, arrayList, (byte) 0));
     }
 }

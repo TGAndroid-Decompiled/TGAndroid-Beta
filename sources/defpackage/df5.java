@@ -286,7 +286,7 @@ public final class df5 {
                                                 cf5Var2.h = message3.realId;
                                                 cf5Var2.i = message3.peer_id;
                                             }
-                                            jf7.Y(i9).j1(messages_messages2.users, messages_messages2.chats, true, true);
+                                            kf7.a0(i9).n1(messages_messages2.users, messages_messages2.chats, true, true);
                                             uc7.s1(i9).j4(messages_messages2.users, false);
                                             uc7.s1(i9).c4(messages_messages2.chats, false);
                                             if (messages_messages2.messages.size() < 21) {

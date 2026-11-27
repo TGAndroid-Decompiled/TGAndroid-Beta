@@ -27,10 +27,10 @@ public final class lx3 extends InputConnectionWrapper {
             tj tjVar = a.e;
             tjVar.getClass();
             Bundle bundle = editorInfo.extras;
-            yf7 yf7Var = (yf7) ((u8a) tjVar.c).a;
-            int a2 = yf7Var.a(4);
+            zf7 zf7Var = (zf7) ((u8a) tjVar.c).a;
+            int a2 = zf7Var.a(4);
             if (a2 != 0) {
-                i = yf7Var.b.getInt(a2 + yf7Var.a);
+                i = zf7Var.b.getInt(a2 + zf7Var.a);
             } else {
                 i = 0;
             }

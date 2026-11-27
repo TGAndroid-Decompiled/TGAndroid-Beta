@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class o6b {
     public int a;
-    public jf7 b;
+    public kf7 b;
 
     public static void a(int i, long j, r47 r47Var, TL_stories.StoryItem storyItem) {
         TLRPC.WebPage webPage;
@@ -254,31 +254,31 @@ public final class o6b {
     public final void i(int i, long j) {
         TL_stories.PeerStories peerStories;
         TL_stories.PeerStories peerStories2;
-        jf7 jf7Var = this.b;
+        kf7 kf7Var = this.b;
         int i2 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
         int i3 = this.a;
         if (i2 > 0) {
             TLRPC.UserFull Y1 = uc7.s1(i3).Y1(j);
             if (Y1 != null && (peerStories2 = Y1.stories) != null) {
                 peerStories2.max_read_id = i;
-                jf7Var.g2(Y1, false);
+                kf7Var.l2(Y1, false);
             }
         } else {
             TLRPC.ChatFull N0 = uc7.s1(i3).N0(-j);
             if (N0 != null && (peerStories = N0.stories) != null) {
                 peerStories.max_read_id = i;
-                jf7Var.K1(N0, false);
+                kf7Var.P1(N0, false);
             }
         }
-        jf7Var.a.c(new m6b(this, j, i, (byte) 1));
+        kf7Var.a.c(new m6b(this, j, i, (byte) 1));
     }
 
     public final void j(List list) {
         SQLitePreparedStatement sQLitePreparedStatement;
         SQLitePreparedStatement sQLitePreparedStatement2;
-        jf7 jf7Var = this.b;
+        kf7 kf7Var = this.b;
         try {
-            SQLiteDatabase sQLiteDatabase = jf7Var.b;
+            SQLiteDatabase sQLiteDatabase = kf7Var.b;
             if (!list.isEmpty()) {
                 SQLitePreparedStatement executeFast = sQLiteDatabase.executeFast("UPDATE messages_v2 SET replydata = ? WHERE mid = ? AND uid = ?");
                 SQLitePreparedStatement executeFast2 = sQLiteDatabase.executeFast("UPDATE messages_topics SET replydata = ? WHERE mid = ? AND uid = ?");
@@ -326,7 +326,7 @@ public final class o6b {
                 executeFast4.dispose();
             }
         } catch (Throwable th) {
-            jf7Var.n(th, true);
+            kf7Var.p(th, true);
         }
     }
 
@@ -334,7 +334,7 @@ public final class o6b {
         if (j == 0) {
             return;
         }
-        this.b.a.c(new z5b(this, j, storyItem, (byte) 1));
+        this.b.a.c(new j5b(this, j, storyItem, (byte) 2));
     }
 
     public final void l(long j, TL_stories.StoryItem storyItem) {

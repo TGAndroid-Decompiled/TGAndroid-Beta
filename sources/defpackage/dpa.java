@@ -10,7 +10,7 @@ public final class dpa extends yye {
     public usb c;
 
     @Override
-    public final uf7 b(wf7 wf7Var, ByteBuffer byteBuffer) {
+    public final vf7 b(xf7 xf7Var, ByteBuffer byteBuffer) {
         Object obj;
         boolean z;
         boolean z2;
@@ -23,10 +23,10 @@ public final class dpa extends yye {
         long j2;
         long j3;
         usb usbVar = this.c;
-        if (usbVar == null || wf7Var.r != usbVar.e()) {
-            usb usbVar2 = new usb(wf7Var.e);
+        if (usbVar == null || xf7Var.r != usbVar.e()) {
+            usb usbVar2 = new usb(xf7Var.e);
             this.c = usbVar2;
-            usbVar2.a(wf7Var.e - wf7Var.r);
+            usbVar2.a(xf7Var.e - xf7Var.r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
@@ -153,7 +153,7 @@ public final class dpa extends yye {
                             ey7Var.A();
                             ey7Var.A();
                         }
-                        arrayList2.add(new i09(arrayList3));
+                        arrayList2.add(new j09(arrayList3));
                     }
                     obj = new gpa(arrayList2);
                 }
@@ -167,8 +167,8 @@ public final class dpa extends yye {
             obj = new Object();
         }
         if (obj == null) {
-            return new uf7(new sf7[0]);
+            return new vf7(new tf7[0]);
         }
-        return new uf7(obj);
+        return new vf7(obj);
     }
 }

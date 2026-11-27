@@ -68,8 +68,8 @@ public abstract class zb1 extends qb1 {
         super(activity, frameLayout, wmaVar, frameLayout2, x53Var, tl0Var);
         this.W0 = true;
         this.X0 = 0;
-        hbb hbbVar = (hbb) this;
-        this.a1 = new yb1(hbbVar, hbbVar);
+        ibb ibbVar = (ibb) this;
+        this.a1 = new yb1(ibbVar, ibbVar);
         hn hnVar = new hn(false, true, true);
         this.b1 = hnVar;
         k43 k43Var = k43.f;
@@ -95,7 +95,7 @@ public abstract class zb1 extends qb1 {
         gk0Var2.b = hl.L(55.0f);
         gk0Var2.b();
         this.j1 = getContext().getResources().getDrawable(2131231519).mutate();
-        this.l1 = new mm(new vb1(hbbVar, (byte) 0), 200L, k43Var, 0);
+        this.l1 = new mm(new vb1(ibbVar, (byte) 0), 200L, k43Var, 0);
         this.m1 = new Path();
         this.n1 = new Path();
         this.o1 = new Paint(1);
@@ -104,7 +104,7 @@ public abstract class zb1 extends qb1 {
         Paint paint3 = new Paint(1);
         this.r1 = paint3;
         paint3.setStyle(Paint.Style.STROKE);
-        vb1 vb1Var = new vb1(hbbVar, (byte) 0);
+        vb1 vb1Var = new vb1(ibbVar, (byte) 0);
         k43 k43Var2 = k43.h;
         this.s1 = new mm(vb1Var, 350L, k43Var2);
         this.t1 = new RectF();
@@ -112,10 +112,10 @@ public abstract class zb1 extends qb1 {
         this.v1 = new RectF();
         this.w1 = new Path();
         this.G1 = new mm(this, 0L, 350L, k43Var2);
-        this.H1 = new mm(new vb1(hbbVar, (byte) 0), 420L, k43Var2, 0);
+        this.H1 = new mm(new vb1(ibbVar, (byte) 0), 420L, k43Var2, 0);
         this.I1 = new mm(this, 0L, 350L, k43Var2);
-        this.J1 = new mm(new vb1(hbbVar, (byte) 0), 350L, k43Var2, 0);
-        this.P1 = new vb1(hbbVar, (byte) 1);
+        this.J1 = new mm(new vb1(ibbVar, (byte) 0), 350L, k43Var2, 0);
+        this.P1 = new vb1(ibbVar, (byte) 1);
         ImageView imageView = new ImageView(activity);
         this.S0 = imageView;
         imageView.setImageResource(2131231520);
@@ -124,7 +124,7 @@ public abstract class zb1 extends qb1 {
         imageView.setScaleType(scaleType);
         imageView.setContentDescription(ob6.M0(2131754731, null));
         addView(imageView, tre.d(44, 44.0f, 85, 0.0f, 0.0f, 11.0f, 6.0f));
-        imageView.setOnClickListener(new r81(hbbVar, (byte) 5));
+        imageView.setOnClickListener(new r81(ibbVar, (byte) 5));
         ImageView imageView2 = new ImageView(activity);
         this.T0 = imageView2;
         pb1 pb1Var = new pb1(5);
@@ -135,7 +135,7 @@ public abstract class zb1 extends qb1 {
         imageView2.setContentDescription(ob6.M0(2131744244, null));
         A(86400, false);
         addView(imageView2, tre.d(44, 44.0f, 85, 0.0f, 0.0f, 51.0f, 6.0f));
-        imageView2.setOnClickListener(new c0(hbbVar, frameLayout, x53Var, (byte) 13));
+        imageView2.setOnClickListener(new c0(ibbVar, frameLayout, x53Var, (byte) 13));
     }
 
     public final void A(int i, boolean z) {
@@ -220,12 +220,12 @@ public abstract class zb1 extends qb1 {
 
     @Override
     public int getCaptionDefaultLimit() {
-        return uc7.s1(this.V).k4.q1.f();
+        return uc7.s1(this.V).l4.q1.f();
     }
 
     @Override
     public int getCaptionPremiumLimit() {
-        return uc7.s1(this.V).k4.r1.f();
+        return uc7.s1(this.V).l4.r1.f();
     }
 
     public int getTimelineHeight() {

@@ -7,25 +7,25 @@ import org.telegram.tgnet.TLRPC;
 public final class wlc implements RequestDelegate {
     public final byte a;
     public final VoIPService b;
-    public final jf7 c;
+    public final kf7 c;
 
-    public wlc(VoIPService voIPService, jf7 jf7Var, byte b) {
+    public wlc(VoIPService voIPService, kf7 kf7Var, byte b) {
         this.a = b;
         this.b = voIPService;
-        this.c = jf7Var;
+        this.c = kf7Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        jf7 jf7Var = this.c;
+        kf7 kf7Var = this.c;
         VoIPService voIPService = this.b;
         switch (b) {
             case 0:
-                voIPService.lambda$startOutgoingCall$11(jf7Var, tLObject, tL_error);
+                voIPService.lambda$startOutgoingCall$11(kf7Var, tLObject, tL_error);
                 return;
             default:
-                voIPService.lambda$acceptIncomingCall$100(jf7Var, tLObject, tL_error);
+                voIPService.lambda$acceptIncomingCall$100(kf7Var, tLObject, tL_error);
                 return;
         }
     }

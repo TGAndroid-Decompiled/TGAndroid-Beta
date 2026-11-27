@@ -12,6 +12,6 @@ public final class ay3 extends kea {
 
     @Override
     public final void M0(zh6 zh6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-        hl.d3(new ze7(this, zh6Var, i, (byte) 23), 100L);
+        hl.d3(new bf7(this, zh6Var, i, (byte) 23), 100L);
     }
 }

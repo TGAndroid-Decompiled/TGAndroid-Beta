@@ -28,8 +28,8 @@ public final class ya7 implements Runnable {
                         if (f11.a) {
                             cc4.b("checkLastDialogMessage for " + dialog.id + " current dialog not found");
                         }
-                        jf7 messagesStorage = uc7Var.getMessagesStorage();
-                        messagesStorage.a.c(new cq6(messagesStorage, dialog.id, new ya7(uc7Var, dialog, (byte) 2), (byte) 18));
+                        kf7 messagesStorage = uc7Var.getMessagesStorage();
+                        messagesStorage.a.c(new cq6(messagesStorage, dialog.id, new ya7(uc7Var, dialog, (byte) 2), (byte) 19));
                         return;
                     }
                     if (f11.a) {

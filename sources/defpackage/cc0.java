@@ -54,7 +54,7 @@ public final class cc0 implements pt2 {
                 }
                 return;
             case 3:
-                ((vab) obj3).v0((a78) obj2, (Integer) obj);
+                ((wab) obj3).v0((a78) obj2, (Integer) obj);
                 return;
             case 4:
                 iv4 iv4Var = (iv4) obj2;

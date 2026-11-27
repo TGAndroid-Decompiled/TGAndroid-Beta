@@ -8,8 +8,8 @@ public final class sj0 implements uy0 {
     public int c;
     public final Object d;
 
-    public sj0(vh7 vh7Var, ko4 ko4Var) {
-        ey7 ey7Var = vh7Var.e;
+    public sj0(wh7 wh7Var, ko4 ko4Var) {
+        ey7 ey7Var = wh7Var.e;
         this.d = ey7Var;
         ey7Var.N(12);
         int E = ey7Var.E();

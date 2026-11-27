@@ -25,7 +25,7 @@ public final class w31 implements Runnable {
                 int i = x31Var.a;
                 disablepeerconnectedbot.peer = uc7.s1(i).j1(x31Var.s);
                 ConnectionsManager.getInstance(i).sendRequest(disablepeerconnectedbot, null);
-                SharedPreferences.Editor edit = uc7.s1(i).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(i).X3.edit();
                 SharedPreferences.Editor remove = edit.remove("dialog_botid" + x31Var.s);
                 SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + x31Var.s);
                 remove2.remove("dialog_botflags" + x31Var.s).apply();

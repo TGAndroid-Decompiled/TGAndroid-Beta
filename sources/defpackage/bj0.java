@@ -241,12 +241,12 @@ public class bj0 extends gp4 {
         }
         this.m0.d(2);
         mj0 mj0Var = this.m0;
-        qj7 qj7Var = mj0Var.y;
-        if (qj7Var == null) {
-            qj7Var = new qj7();
-            mj0Var.y = qj7Var;
+        rj7 rj7Var = mj0Var.y;
+        if (rj7Var == null) {
+            rj7Var = new rj7();
+            mj0Var.y = rj7Var;
         }
-        mj0.f(qj7Var, charSequence);
+        mj0.f(rj7Var, charSequence);
     }
 
     public final void Y() {
@@ -492,46 +492,46 @@ public class bj0 extends gp4 {
         }
         mj0 mj0Var = (mj0) new pq8(k()).n(mj0.class);
         this.m0 = mj0Var;
-        qj7 qj7Var = mj0Var.p;
-        if (qj7Var == null) {
-            qj7Var = new qj7();
-            mj0Var.p = qj7Var;
+        rj7 rj7Var = mj0Var.p;
+        if (rj7Var == null) {
+            rj7Var = new rj7();
+            mj0Var.p = rj7Var;
         }
-        qj7Var.d(this, new ti0(this, (byte) 0));
+        rj7Var.d(this, new ti0(this, (byte) 0));
         mj0 mj0Var2 = this.m0;
-        qj7 qj7Var2 = mj0Var2.q;
-        if (qj7Var2 == null) {
-            qj7Var2 = new qj7();
-            mj0Var2.q = qj7Var2;
+        rj7 rj7Var2 = mj0Var2.q;
+        if (rj7Var2 == null) {
+            rj7Var2 = new rj7();
+            mj0Var2.q = rj7Var2;
         }
-        qj7Var2.d(this, new ui0(this, (byte) 0));
+        rj7Var2.d(this, new ui0(this, (byte) 0));
         mj0 mj0Var3 = this.m0;
-        qj7 qj7Var3 = mj0Var3.r;
-        if (qj7Var3 == null) {
-            qj7Var3 = new qj7();
-            mj0Var3.r = qj7Var3;
+        rj7 rj7Var3 = mj0Var3.r;
+        if (rj7Var3 == null) {
+            rj7Var3 = new rj7();
+            mj0Var3.r = rj7Var3;
         }
-        qj7Var3.d(this, new ri6(this, (byte) 9));
+        rj7Var3.d(this, new ri6(this, (byte) 9));
         mj0 mj0Var4 = this.m0;
-        qj7 qj7Var4 = mj0Var4.s;
-        if (qj7Var4 == null) {
-            qj7Var4 = new qj7();
-            mj0Var4.s = qj7Var4;
+        rj7 rj7Var4 = mj0Var4.s;
+        if (rj7Var4 == null) {
+            rj7Var4 = new rj7();
+            mj0Var4.s = rj7Var4;
         }
-        qj7Var4.d(this, new z8d(this, (byte) 10));
+        rj7Var4.d(this, new z8d(this, (byte) 10));
         mj0 mj0Var5 = this.m0;
-        qj7 qj7Var5 = mj0Var5.t;
-        if (qj7Var5 == null) {
-            qj7Var5 = new qj7();
-            mj0Var5.t = qj7Var5;
+        rj7 rj7Var5 = mj0Var5.t;
+        if (rj7Var5 == null) {
+            rj7Var5 = new rj7();
+            mj0Var5.t = rj7Var5;
         }
-        qj7Var5.d(this, new ti0(this, (byte) 1));
+        rj7Var5.d(this, new ti0(this, (byte) 1));
         mj0 mj0Var6 = this.m0;
-        qj7 qj7Var6 = mj0Var6.v;
-        if (qj7Var6 == null) {
-            qj7Var6 = new qj7();
-            mj0Var6.v = qj7Var6;
+        rj7 rj7Var6 = mj0Var6.v;
+        if (rj7Var6 == null) {
+            rj7Var6 = new rj7();
+            mj0Var6.v = rj7Var6;
         }
-        qj7Var6.d(this, new ui0(this, (byte) 1));
+        rj7Var6.d(this, new ui0(this, (byte) 1));
     }
 }

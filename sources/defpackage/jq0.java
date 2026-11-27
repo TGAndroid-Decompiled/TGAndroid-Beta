@@ -74,22 +74,22 @@ public final class jq0 implements pcc {
                 s42Var.b.a(true);
                 return;
             case 2:
-                mj7 mj7Var = (mj7) obj2;
+                nj7 nj7Var = (nj7) obj2;
                 View view = (View) obj;
-                wa waVar = mj7Var.b;
-                if (view instanceof lj7) {
+                wa waVar = nj7Var.b;
+                if (view instanceof mj7) {
                     waVar.getClass();
                     int S = RecyclerView.S(view);
                     b8c G = waVar.g3.G(S);
                     if (G != null) {
-                        lj7 lj7Var = (lj7) view;
-                        lj7Var.setPosition(mj7Var.b(S));
+                        mj7 mj7Var = (mj7) view;
+                        mj7Var.setPosition(nj7Var.b(S));
                         if (i3 == G.d) {
                             z = true;
                         } else {
                             z = false;
                         }
-                        lj7Var.b(z, true);
+                        mj7Var.b(z, true);
                         view.setPressed(false);
                         return;
                     }
@@ -135,9 +135,9 @@ public final class jq0 implements pcc {
                 }
                 return;
             case 4:
-                w09 w09Var = (w09) ((rn8) obj2).b;
-                w09Var.d0();
-                i = ((e) w09Var).currentAccount;
+                x09 x09Var = (x09) ((rn8) obj2).b;
+                x09Var.d0();
+                i = ((e) x09Var).currentAccount;
                 b19.f(i).k(i3, (String) obj);
                 return;
             case 5:

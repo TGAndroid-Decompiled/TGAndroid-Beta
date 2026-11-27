@@ -47,7 +47,7 @@ public final class t2a extends ny0 {
     public zm0 n2;
     public int o2;
     public cn0 p2;
-    public final ki7 q2;
+    public final li7 q2;
 
     public t2a(e eVar, long j) {
         super(eVar, false);
@@ -64,7 +64,7 @@ public final class t2a extends ny0 {
         this.f2 = new ArrayList();
         this.g2 = new LinkedHashMap();
         this.k2 = hl.L(134.0f);
-        this.q2 = new ki7(this, (byte) 25);
+        this.q2 = new li7(this, (byte) 25);
         this.u0 = 0;
         this.l2 = uc7.s1(this.a).M0(Long.valueOf(-j));
         ((ViewGroup) this.o1.getParent()).removeView(this.o1);

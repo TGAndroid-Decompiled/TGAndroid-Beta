@@ -20,7 +20,7 @@ public class jq {
     public Object d;
 
     public jq(int[] iArr) {
-        SecureRandom secureRandom = hg7.a;
+        SecureRandom secureRandom = ig7.a;
         int i = Integer.MAX_VALUE;
         for (int i2 : iArr) {
             if (i2 < i) {

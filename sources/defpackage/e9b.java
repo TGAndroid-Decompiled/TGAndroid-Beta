@@ -51,7 +51,7 @@ public final class e9b extends nx0 implements fn7 {
                 vnb vnbVar2 = vnbVar;
                 id idVar = new id(3, vnbVar2, context2);
                 idVar.q(200L);
-                uc7.s1(i).O1().j(wf3.m(inputPeer2), new v58(idVar, pccVar2, inputPeer2, (byte) 11), true, vnbVar2);
+                uc7.s1(i).O1().j(wf3.m(inputPeer2), new w58(idVar, pccVar2, inputPeer2, (byte) 11), true, vnbVar2);
                 e9bVar.dismiss();
             }
         });

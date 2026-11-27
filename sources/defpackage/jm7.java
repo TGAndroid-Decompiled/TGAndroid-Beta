@@ -21,7 +21,7 @@ public final class jm7 {
     public boolean q;
     public TL_feed.FeedPosition r;
     public TL_feed.FeedPosition s;
-    public xl7 t;
+    public yl7 t;
     public final ArrayList a = new ArrayList();
     public final HashSet b = new HashSet();
     public final IdentityHashMap c = new IdentityHashMap();

@@ -35,7 +35,7 @@ public final class k1 implements View.OnClickListener {
                 ((t1) obj).h();
                 return;
             case 1:
-                ((ze7) obj).run();
+                ((bf7) obj).run();
                 return;
             case 2:
                 ((p5) obj).dismiss();
@@ -228,7 +228,7 @@ public final class k1 implements View.OnClickListener {
                 } else {
                     x31Var.x = i6 & (-2);
                 }
-                uc7.s1(i5).W3.edit().putInt("dialog_botflags" + x31Var.s, x31Var.x).apply();
+                uc7.s1(i5).X3.edit().putInt("dialog_botflags" + x31Var.s, x31Var.x).apply();
                 TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
                 toggleconnectedbotpaused.peer = uc7.s1(i5).j1(x31Var.s);
                 toggleconnectedbotpaused.paused = x31Var.r;

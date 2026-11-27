@@ -187,7 +187,7 @@ public final class nz5 extends c79 {
         int i5;
         float f3;
         float f4;
-        rca rcaVar;
+        sca scaVar;
         mf5 mf5Var;
         byte b = this.c;
         Context context = this.d;
@@ -199,18 +199,18 @@ public final class nz5 extends c79 {
                         if (i != 3) {
                             if (i != 4 && i != 5) {
                                 if (i != 6) {
-                                    rcaVar = new rca(context, (uh9) null);
+                                    scaVar = new sca(context, (uh9) null);
                                 } else {
-                                    rcaVar = new ilb(context);
+                                    scaVar = new ilb(context);
                                 }
                             } else {
-                                rcaVar = new qmb(context);
+                                scaVar = new qmb(context);
                             }
                         } else {
-                            rcaVar = new mf5(context);
+                            scaVar = new mf5(context);
                         }
                     } else {
-                        rcaVar = new wkb(context);
+                        scaVar = new wkb(context);
                     }
                 } else {
                     ?? frameLayout = new FrameLayout(context);
@@ -290,13 +290,13 @@ public final class nz5 extends c79 {
                     frameLayout.addView(radioButton, tre.d(20, 20.0f, i6 | 16, 22.0f, 0.0f, 22.0f, 0.0f));
                     frameLayout.h = ob6.a0;
                     frameLayout.setClipChildren(false);
-                    rcaVar = frameLayout;
+                    scaVar = frameLayout;
                 }
-                return new f89(rcaVar);
+                return new f89(scaVar);
             default:
                 if (i != 0) {
                     if (i != 2) {
-                        mf5Var = new rca(context, (uh9) null);
+                        mf5Var = new sca(context, (uh9) null);
                     } else {
                         mf5 mf5Var2 = new mf5(context);
                         mf5Var2.setText(ob6.M0(2131752089, null));

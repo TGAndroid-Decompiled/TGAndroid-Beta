@@ -332,7 +332,7 @@ public final class jjb implements View.OnClickListener {
                 return;
             case 17:
                 ((wk1) this.b).run();
-                ((jl7[]) this.c)[0].dismiss();
+                ((kl7[]) this.c)[0].dismiss();
                 return;
             case 18:
                 sg2 sg2Var = (sg2) this.b;

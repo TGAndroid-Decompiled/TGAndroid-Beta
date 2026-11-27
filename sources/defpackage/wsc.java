@@ -282,7 +282,7 @@ public final class wsc extends View {
     public static boolean F(int i, String str) {
         if (!TextUtils.isEmpty(str)) {
             int lastIndexOf = str.lastIndexOf(45);
-            Set set = uc7.s1(i).k4.y0.f;
+            Set set = uc7.s1(i).l4.y0.f;
             if (set != null) {
                 if (lastIndexOf > 0) {
                     str = str.substring(0, lastIndexOf);
@@ -497,7 +497,7 @@ public final class wsc extends View {
             return;
         }
         Y1.wallet_card = cardVar;
-        jf7.Y(i).g2(Y1, false);
+        kf7.a0(i).l2(Y1, false);
     }
 
     public static float n(RectF rectF, RectF rectF2) {

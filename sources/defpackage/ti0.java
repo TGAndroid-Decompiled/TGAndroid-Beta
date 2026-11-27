@@ -19,12 +19,12 @@ public final class ti0 implements cr7 {
                 if (gj0Var != null) {
                     bj0Var.W(gj0Var);
                     mj0 mj0Var = bj0Var.m0;
-                    qj7 qj7Var = mj0Var.p;
-                    if (qj7Var == null) {
-                        qj7Var = new qj7();
-                        mj0Var.p = qj7Var;
+                    rj7 rj7Var = mj0Var.p;
+                    if (rj7Var == null) {
+                        rj7Var = new rj7();
+                        mj0Var.p = rj7Var;
                     }
-                    mj0.f(qj7Var, null);
+                    mj0.f(rj7Var, null);
                     return;
                 }
                 return;

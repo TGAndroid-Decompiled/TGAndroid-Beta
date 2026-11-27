@@ -76,7 +76,7 @@ public final class tt extends FrameLayout {
         fz7 fz7Var = (fz7) this.c;
         Drawable drawable = fz7Var.a;
         if (drawable != null) {
-            if (!(drawable instanceof hh7) && !(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable)) {
+            if (!(drawable instanceof ih7) && !(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable)) {
                 int max = Math.max(0, fz7Var.H);
                 float max2 = Math.max(getMeasuredWidth() / fz7Var.a.getIntrinsicWidth(), (getMeasuredHeight() + max) / fz7Var.a.getIntrinsicHeight());
                 int ceil = (int) Math.ceil(fz7Var.a.getIntrinsicWidth() * max2);
@@ -1272,7 +1272,7 @@ public final class tt extends FrameLayout {
         this.a = (byte) 18;
         this.c = am2Var;
         ?? obj = new Object();
-        obj.c = new i09((Object) obj, (byte) 24);
+        obj.c = new j09((Object) obj, (byte) 24);
         obj.h = new ArrayList();
         obj.d = this;
         obj.e = context;

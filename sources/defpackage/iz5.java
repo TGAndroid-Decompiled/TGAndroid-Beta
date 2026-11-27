@@ -22,7 +22,7 @@ public final class iz5 implements gz5 {
         this.d = new AtomicReference(taeVar);
         taeVar.getClass();
         this.f = mle.TYPE_THICK;
-        this.b = new q2f(jg7.c().b(), (byte) 0);
+        this.b = new q2f(kg7.c().b(), (byte) 0);
     }
 
     public static final dle e() {
@@ -145,7 +145,7 @@ public final class iz5 implements gz5 {
             if (q2fVar.b.get() != -1 && elapsedRealtime3 - q2fVar.b.get() <= 1800000) {
                 return;
             }
-            q2fVar.a.i(new ikb(0, Arrays.asList(new bg7(i2, s, 0, j2, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new zg2(q2fVar, elapsedRealtime3, (byte) 10));
+            q2fVar.a.i(new ikb(0, Arrays.asList(new cg7(i2, s, 0, j2, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new zg2(q2fVar, elapsedRealtime3, (byte) 10));
         }
     }
 }

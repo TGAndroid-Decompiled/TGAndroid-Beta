@@ -190,7 +190,7 @@ public final class c implements icc {
                 arrayList.add(b8c.b(ob6.M0(2131748160, null)));
                 arrayList.add(b8c.k(ij1Var.w0));
                 arrayList.add(b8c.B(-5, ij1Var.t0));
-                int f = uc7.s1(ij1Var.o0).k4.b2.f();
+                int f = uc7.s1(ij1Var.o0).l4.b2.f();
                 String M02 = ob6.M0(2131748119, null);
                 boolean z = false;
                 if (ij1Var.r0 < f) {
@@ -221,7 +221,7 @@ public final class c implements icc {
                 arrayList.add(b8c.B(-6, ij1Var.v0));
             }
         }
-        if (xc2.V(uc7.s1(ij1Var.o0).M0(Long.valueOf(-ij1Var.p0))) && uc7.s1(ij1Var.o0).k4.K2.f) {
+        if (xc2.V(uc7.s1(ij1Var.o0).M0(Long.valueOf(-ij1Var.p0))) && uc7.s1(ij1Var.o0).l4.K2.f) {
             arrayList.add(yb.i(4, aob.v0(aob.lk, ij1Var.n0), g92.a0(ob6.M0(2131752449, null)), ob6.M0(2131752450, null)));
             arrayList.add(b8c.B(-7, null));
         }

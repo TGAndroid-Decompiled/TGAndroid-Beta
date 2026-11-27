@@ -262,9 +262,9 @@ public final class d46 extends c79 {
                 break;
             case 2:
                 int i4 = aob.a7;
-                View rcaVar = new rca(context, aob.v0(i4, l46Var.J0), 0);
-                yob.h(i4, l46Var.J0, rcaVar);
-                j46Var = rcaVar;
+                View scaVar = new sca(context, aob.v0(i4, l46Var.J0), 0);
+                yob.h(i4, l46Var.J0, scaVar);
+                j46Var = scaVar;
                 break;
             case 3:
                 View mf5Var = new mf5(context);

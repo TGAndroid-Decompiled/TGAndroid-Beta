@@ -48,7 +48,7 @@ public final class lfc {
         }
         this.c = g;
         if (p7bVar2 != null) {
-            r7b r7bVar3 = new r7b(p7bVar2, 0L, 0L, new g9c(this, r9, (byte) 14));
+            r7b r7bVar3 = new r7b(p7bVar2, 0L, 0L, new c9c(this, r9, (byte) 15));
             this.b = r7bVar3;
             r7b[] r7bVarArr = {r7bVar3};
             if (r7bVar3.f != null && uc7.e1().getBoolean("asr_video_captions", false) && (pm3Var = (r7bVar = this.b).f) != null && (DictationAsr.B((nm3) pm3Var.b) || DictationAsr.z((nm3) r7bVar.f.b))) {
@@ -126,7 +126,7 @@ public final class lfc {
             } else {
                 t = bn3.t(pm3Var.t());
             }
-            gd4 gd4Var = new gd4(context, ad8Var3, vnbVar, t, new g9c(this, r7bVar2, (byte) 15));
+            gd4 gd4Var = new gd4(context, ad8Var3, vnbVar, t, new c9c(this, r7bVar2, (byte) 16));
             this.e = gd4Var;
             r7bVar2.h(0L, 0L, new ko9(this, gd4Var, r7bVar2));
             ox7 ox7Var5 = this.f;

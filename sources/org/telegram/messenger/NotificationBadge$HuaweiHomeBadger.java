@@ -10,7 +10,7 @@ public class NotificationBadge$HuaweiHomeBadger implements xm7 {
         bundle.putString("package", a.b.getPackageName());
         bundle.putString("class", zm7.d.getClassName());
         bundle.putInt("badgenumber", i);
-        hl.c3(new fe7(bundle, (byte) 9));
+        hl.c3(new ge7(bundle, (byte) 9));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.ui.ContactsActivity;
-public final class du2 implements df7 {
+public final class du2 implements ef7 {
     public final byte a;
     public final ContactsActivity b;
 

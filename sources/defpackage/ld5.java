@@ -125,7 +125,7 @@ public final class ld5 extends c79 {
                 return;
             }
         }
-        p3b p3bVar = (p3b) view;
+        q3b q3bVar = (q3b) view;
         if (i != nd5Var.K) {
             i2 = ((e) nd5Var).currentAccount;
             ArrayList t0 = ls6.d0(i2).t0(nd5Var.d0());
@@ -137,8 +137,8 @@ public final class ld5 extends c79 {
             } else {
                 z = false;
             }
-            p3bVar.d(tL_messages_stickerSet3, z, false);
-            p3bVar.setDeleteAction(null);
+            q3bVar.d(tL_messages_stickerSet3, z, false);
+            q3bVar.setDeleteAction(null);
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = nd5Var.r;
             if (tL_messages_stickerSet4 != null) {
                 j = tL_messages_stickerSet4.set.id;
@@ -150,37 +150,37 @@ public final class ld5 extends c79 {
             if (tL_messages_stickerSet2.set.id != j) {
                 z3 = false;
             }
-            p3bVar.b(z3, false);
+            q3bVar.b(z3, false);
             return;
         }
-        p3bVar.b(false, false);
-        p3bVar.d(nd5Var.r, false, false);
-        p3bVar.setDeleteAction(new sa5(this, (byte) 6));
+        q3bVar.b(false, false);
+        q3bVar.d(nd5Var.r, false, false);
+        q3bVar.setDeleteAction(new sa5(this, (byte) 6));
     }
 
     @Override
     public final f89 x(ViewGroup viewGroup, int i) {
-        View p3bVar;
+        View q3bVar;
         Context context = this.c;
         if (i != 0) {
             if (i != 1) {
                 if (i != 5) {
-                    p3bVar = new mf5(context);
-                    yob.h(aob.d6, null, p3bVar);
+                    q3bVar = new mf5(context);
+                    yob.h(aob.d6, null, q3bVar);
                 } else {
                     nd5 nd5Var = this.d;
                     kd5 kd5Var = new kd5(nd5Var, context);
                     nd5Var.P = kd5Var;
-                    p3bVar = kd5Var;
+                    q3bVar = kd5Var;
                 }
             } else {
-                p3bVar = new ilb(context);
+                q3bVar = new ilb(context);
             }
         } else {
-            p3bVar = new p3b(context, 3);
-            yob.h(aob.d6, null, p3bVar);
+            q3bVar = new q3b(context, 3);
+            yob.h(aob.d6, null, q3bVar);
         }
-        p3bVar.setLayoutParams(new r79(-1, -2));
-        return new f89(p3bVar);
+        q3bVar.setLayoutParams(new r79(-1, -2));
+        return new f89(q3bVar);
     }
 }

@@ -30,7 +30,7 @@ public final class m13 implements ur4 {
     public final Object invoke(Object obj) {
         Object obj2;
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         Object obj3 = this.d;
         Object obj4 = this.c;
         Object obj5 = this.e;
@@ -51,7 +51,7 @@ public final class m13 implements ur4 {
                         if (!d33.a(cancellationSignal)) {
                             executor.execute(new k13(h23Var, (byte) 1));
                         }
-                        return f9cVar;
+                        return g9cVar;
                     }
                 } else {
                     Intent intent = new Intent(context, HiddenActivity.class);
@@ -79,7 +79,7 @@ public final class m13 implements ur4 {
                         if (!d33.a(cancellationSignal)) {
                             executor.execute(new bv2(h23Var, (u13) a, (byte) 11));
                         }
-                        return f9cVar;
+                        return g9cVar;
                     }
                 }
                 if (pendingIntent == null) {
@@ -88,7 +88,7 @@ public final class m13 implements ur4 {
                         executor.execute(new k13(h23Var, (byte) 0));
                     }
                 }
-                return f9cVar;
+                return g9cVar;
             case 1:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) obj6;
                 wu4 wu4Var = (wu4) obj5;
@@ -110,32 +110,32 @@ public final class m13 implements ur4 {
                         }
                     }
                 }
-                return f9cVar;
+                return g9cVar;
             default:
                 String str = (String) obj5;
                 String str2 = (String) obj4;
                 zj8 zj8Var = (zj8) obj3;
-                rj7 rj7Var = (rj7) obj;
+                sj7 sj7Var = (sj7) obj;
                 ((uf5) obj6).getClass();
                 zj8 zj8Var2 = uf5.c;
                 zj8 zj8Var3 = uf5.d;
                 String str3 = "";
-                if (((String) eqe.a(rj7Var, zj8Var3, "")).equals(str)) {
-                    zj8 d = uf5.d(rj7Var, str);
+                if (((String) eqe.a(sj7Var, zj8Var3, "")).equals(str)) {
+                    zj8 d = uf5.d(sj7Var, str);
                     if (d != null && !d.a.equals(str2)) {
-                        uf5.f(rj7Var, str);
-                        HashSet hashSet = new HashSet((Collection) eqe.a(rj7Var, zj8Var, new HashSet()));
+                        uf5.f(sj7Var, str);
+                        HashSet hashSet = new HashSet((Collection) eqe.a(sj7Var, zj8Var, new HashSet()));
                         hashSet.add(str);
-                        rj7Var.d(zj8Var, hashSet);
+                        sj7Var.d(zj8Var, hashSet);
                     }
                     return null;
                 }
-                long longValue = ((Long) eqe.a(rj7Var, zj8Var2, 0L)).longValue();
+                long longValue = ((Long) eqe.a(sj7Var, zj8Var2, 0L)).longValue();
                 if (longValue + 1 == 30) {
-                    long longValue2 = ((Long) eqe.a(rj7Var, zj8Var2, 0L)).longValue();
+                    long longValue2 = ((Long) eqe.a(sj7Var, zj8Var2, 0L)).longValue();
                     Set hashSet2 = new HashSet();
                     String str4 = null;
-                    for (Map.Entry entry : rj7Var.a().entrySet()) {
+                    for (Map.Entry entry : sj7Var.a().entrySet()) {
                         if (entry.getValue() instanceof Set) {
                             Set<String> set = (Set) entry.getValue();
                             for (String str5 : set) {
@@ -151,17 +151,17 @@ public final class m13 implements ur4 {
                     HashSet hashSet3 = new HashSet(hashSet2);
                     hashSet3.remove(str4);
                     str3.getClass();
-                    rj7Var.d(new zj8(str3), hashSet3);
+                    sj7Var.d(new zj8(str3), hashSet3);
                     longValue = longValue2 - 1;
-                    rj7Var.d(zj8Var2, Long.valueOf(longValue));
+                    sj7Var.d(zj8Var2, Long.valueOf(longValue));
                 } else {
                     obj2 = null;
                 }
-                HashSet hashSet4 = new HashSet((Collection) eqe.a(rj7Var, zj8Var, new HashSet()));
+                HashSet hashSet4 = new HashSet((Collection) eqe.a(sj7Var, zj8Var, new HashSet()));
                 hashSet4.add(str);
-                rj7Var.d(zj8Var, hashSet4);
-                rj7Var.d(zj8Var2, Long.valueOf(longValue + 1));
-                rj7Var.d(zj8Var3, str);
+                sj7Var.d(zj8Var, hashSet4);
+                sj7Var.d(zj8Var2, Long.valueOf(longValue + 1));
+                sj7Var.d(zj8Var3, str);
                 return obj2;
         }
     }

@@ -350,7 +350,7 @@ public final class ve1 extends e {
         ArrayList arrayList = new ArrayList();
         arrayList.add(user);
         uc7.s1(this.currentAccount).j4(arrayList, false);
-        jf7.Y(this.currentAccount).j1(arrayList, null, false, true);
+        kf7.a0(this.currentAccount).n1(arrayList, null, false, true);
         yac.h(this.currentAccount).u(true);
         finishFragment();
     }
@@ -396,7 +396,7 @@ public final class ve1 extends e {
             TL_account.updateUsername updateusername = new TL_account.updateUsername();
             updateusername.username = this.r;
             jn7 f = jn7.f(this.currentAccount);
-            int i = uc7.r5;
+            int i = uc7.s5;
             f.k(2, 1);
             int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateusername, new fn0(this, idVar, updateusername, (byte) 10), 2);
             ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(sendRequest, this.classGuid);

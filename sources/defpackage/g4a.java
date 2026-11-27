@@ -221,29 +221,29 @@ public final class g4a extends FrameLayout {
             if (i3 == 0 && this.f != 1.0f) {
                 if (lcbVar.O0 != null) {
                     r47 r47Var = (r47) lcbVar.O0.i.get(Utilities.j(a4aVar.getClosestPosition(), lcbVar.O0.i.size() - 1, 0));
-                    long b = u5b.b(r47Var);
+                    long b = v5b.b(r47Var);
                     ImageReceiver imageReceiver = icbVar.c;
                     if (imageReceiver != null) {
                         imageReceiver.v0(true, true);
                         icbVar.c = null;
                     }
-                    acb acbVar = lcbVar.o0;
+                    bcb bcbVar = lcbVar.o0;
                     int i4 = r47Var.l.id;
-                    lcb lcbVar2 = acbVar.O0;
+                    lcb lcbVar2 = bcbVar.O0;
                     int i5 = 0;
                     while (true) {
-                        if (i5 >= acbVar.y0.size()) {
+                        if (i5 >= bcbVar.y0.size()) {
                             break;
-                        } else if (b == u5b.b(lcbVar2.O0.f(((Integer) ((ArrayList) acbVar.y0.get(i5)).get(0)).intValue()))) {
+                        } else if (b == v5b.b(lcbVar2.O0.f(((Integer) ((ArrayList) bcbVar.y0.get(i5)).get(0)).intValue()))) {
                             if (lcbVar2.R0) {
-                                i2 = (acbVar.y0.size() - 1) - i5;
+                                i2 = (bcbVar.y0.size() - 1) - i5;
                             } else {
                                 i2 = i5;
                             }
                             int i6 = 0;
                             while (true) {
-                                if (i6 < ((ArrayList) acbVar.y0.get(i5)).size()) {
-                                    if (((Integer) ((ArrayList) acbVar.y0.get(i5)).get(i6)).intValue() == i4) {
+                                if (i6 < ((ArrayList) bcbVar.y0.get(i5)).size()) {
+                                    if (((Integer) ((ArrayList) bcbVar.y0.get(i5)).get(i6)).intValue() == i4) {
                                         break;
                                     }
                                     i6++;
@@ -252,19 +252,19 @@ public final class g4a extends FrameLayout {
                                     break;
                                 }
                             }
-                            if (acbVar.getCurrentPeerView() != null && acbVar.getCurrentItem() == i2) {
-                                o68 currentPeerView = acbVar.getCurrentPeerView();
+                            if (bcbVar.getCurrentPeerView() != null && bcbVar.getCurrentItem() == i2) {
+                                o68 currentPeerView = bcbVar.getCurrentPeerView();
                                 if (currentPeerView.t1 != i6) {
                                     currentPeerView.t1 = i6;
                                     currentPeerView.c1(false);
                                 }
                             } else {
-                                acbVar.x(i2, false);
-                                o68 currentPeerView2 = acbVar.getCurrentPeerView();
+                                bcbVar.x(i2, false);
+                                o68 currentPeerView2 = bcbVar.getCurrentPeerView();
                                 if (currentPeerView2 != null) {
                                     w6b w6bVar = (w6b) currentPeerView2.getParent();
                                     w6bVar.a(true);
-                                    ArrayList arrayList = acbVar.y0;
+                                    ArrayList arrayList = bcbVar.y0;
                                     o68 o68Var = w6bVar.a;
                                     long j = w6bVar.b;
                                     if (arrayList != null) {
@@ -294,10 +294,10 @@ public final class g4a extends FrameLayout {
                 a4aVar.c(a4aVar.L, false, true);
             }
             if (w != null) {
-                t58 t58Var = w.M0;
-                a4aVar.a = t58Var.getTop();
-                a4aVar.b = t58Var.getMeasuredWidth();
-                a4aVar.c = t58Var.getMeasuredHeight();
+                u58 u58Var = w.M0;
+                a4aVar.a = u58Var.getTop();
+                a4aVar.b = u58Var.getMeasuredWidth();
+                a4aVar.c = u58Var.getMeasuredHeight();
             }
             a4aVar.setProgressToOpen(this.f);
             b4a b4aVar = this.F;

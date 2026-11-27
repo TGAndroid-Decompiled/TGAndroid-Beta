@@ -2266,12 +2266,12 @@ public final class s64 implements dg8 {
             lt6 a = this.o0.a();
             List list = nf8Var.j;
             for (int i12 = i4; i12 < list.size(); i12++) {
-                uf7 uf7Var = (uf7) list.get(i12);
+                vf7 vf7Var = (vf7) list.get(i12);
                 int i13 = i4;
                 while (true) {
-                    sf7[] sf7VarArr = uf7Var.a;
-                    if (i13 < sf7VarArr.length) {
-                        sf7VarArr[i13].b(a);
+                    tf7[] tf7VarArr = vf7Var.a;
+                    if (i13 < tf7VarArr.length) {
+                        tf7VarArr[i13].b(a);
                         i13++;
                     }
                 }

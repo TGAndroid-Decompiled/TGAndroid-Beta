@@ -330,7 +330,7 @@ public final class znb implements fn7 {
                 Canvas canvas = new Canvas(createBitmap);
                 int i = this.w;
                 if (i != 0) {
-                    U0 = hh7.g(this.r, this.s, i, this.x);
+                    U0 = ih7.g(this.r, this.s, i, this.x);
                 } else {
                     int i2 = this.s;
                     int i3 = this.r;
@@ -423,7 +423,7 @@ public final class znb implements fn7 {
             if (tL_theme != null && tL_theme.document != null) {
                 if (str.equals(this.h0)) {
                     this.h0 = null;
-                    Utilities.e.c(new bcb(this, (File) objArr[1], (byte) 3));
+                    Utilities.e.c(new hab(this, (File) objArr[1], (byte) 4));
                 } else if (str.equals(xb4.r(null, this.G.document))) {
                     s();
                     if (i == i3) {

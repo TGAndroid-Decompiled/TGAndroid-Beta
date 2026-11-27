@@ -119,13 +119,13 @@ public final class pq7 implements pcc {
                         }
                         l01 g = idVar3.g(i4, true, true);
                         g.d();
-                        fd7 fd7Var = new fd7(new boolean[1], g, idVar3, (byte) 15);
+                        gd7 gd7Var = new gd7(new boolean[1], g, idVar3, (byte) 15);
                         zArr[0] = true;
                         HashSet hashSet = vs7.b;
                         long j4 = j3;
                         hashSet.add(Long.valueOf(j4));
                         vs7.j(j4, 300000L);
-                        c.C(i5).p0(a35Var2, new dg1(j4, fd7Var, context2, i5, vnbVar2, d31Var), new p4c(fd7Var, j4, tL_messageActionStarGiftOnchainOffer, (byte) 5), new kt(j4, fd7Var, (byte) 22));
+                        c.C(i5).p0(a35Var2, new dg1(j4, gd7Var, context2, i5, vnbVar2, d31Var), new p4c(gd7Var, j4, tL_messageActionStarGiftOnchainOffer, (byte) 5), new kt(j4, gd7Var, (byte) 22));
                     }
                 });
                 alertDialog$Builder.o();

@@ -25,7 +25,7 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.RadioButton;
-public final class c98 extends FrameLayout implements tf4, nbb {
+public final class c98 extends FrameLayout implements tf4, obb {
     public final ImageView A0;
     public final ImageView B0;
     public final ImageView C0;

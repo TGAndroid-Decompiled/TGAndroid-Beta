@@ -189,7 +189,7 @@ public final class nf4 extends e {
         ac7Var.n = z;
         if (z2) {
             uc7 messagesController = eVar.getMessagesController();
-            HashSet hashSet = messagesController.n4;
+            HashSet hashSet = messagesController.o4;
             ArrayList arrayList4 = messagesController.G0;
             if (z3) {
                 int size = arrayList4.size();
@@ -230,7 +230,7 @@ public final class nf4 extends e {
         } else {
             eVar.getMessagesController().F3(ac7Var);
         }
-        jf7 messagesStorage = eVar.getMessagesStorage();
+        kf7 messagesStorage = eVar.getMessagesStorage();
         messagesStorage.a.c(new yn6(messagesStorage, ac7Var, z3, (byte) 5));
         if (z3) {
             TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
@@ -291,7 +291,7 @@ public final class nf4 extends e {
         tL_messages_updateDialogFilter.flags |= 1;
         TLRPC.TL_dialogFilter tL_dialogFilter = new TLRPC.TL_dialogFilter();
         tL_messages_updateDialogFilter.filter = tL_dialogFilter;
-        int i5 = uc7.r5;
+        int i5 = uc7.s5;
         tL_dialogFilter.contacts = (i & 1) != 0;
         tL_dialogFilter.non_contacts = (i & 2) != 0;
         tL_dialogFilter.groups = (i & 4) != 0;
@@ -618,7 +618,7 @@ public final class nf4 extends e {
         };
         arrayList4.add(b);
         int i3 = this.E;
-        int i4 = uc7.r5;
+        int i4 = uc7.s5;
         if ((i3 & 1) != 0) {
             arrayList4.add(ef4.c(1, ob6.M0(2131750756, null), "contacts", true));
         }
@@ -778,7 +778,7 @@ public final class nf4 extends e {
             };
             arrayList4.add(b3);
             int i8 = this.E;
-            int i9 = uc7.r5;
+            int i9 = uc7.s5;
             if ((i8 & 32) != 0) {
                 arrayList4.add(ef4.c(32, ob6.M0(2131750701, null), "muted", false));
             }
@@ -866,7 +866,7 @@ public final class nf4 extends e {
             }
             arrayList4.add(ef4.d(ob6.M0(2131750742, null)));
         }
-        if (getMessagesController().l4 || !getUserConfig().p()) {
+        if (getMessagesController().m4 || !getUserConfig().p()) {
             arrayList4.add(new ka(9, false));
             arrayList4.add(new ka(10, false));
             arrayList4.add(ef4.d(ob6.M0(2131750581, null)));
@@ -1177,7 +1177,7 @@ public final class nf4 extends e {
             z2 = false;
         }
         if (z2) {
-            if ((this.E & uc7.s5) == 0 && this.G.isEmpty()) {
+            if ((this.E & uc7.t5) == 0 && this.G.isEmpty()) {
                 z2 = false;
             } else {
                 z2 = true;
@@ -1220,7 +1220,7 @@ public final class nf4 extends e {
         if (this.s) {
             if (TextUtils.isEmpty(this.x) || !this.n) {
                 int i = this.E;
-                int i2 = uc7.s5;
+                int i2 = uc7.t5;
                 int i3 = i & i2;
                 String str = "";
                 if ((i3 & i2) == i2) {
@@ -1287,9 +1287,9 @@ public final class nf4 extends e {
             }
         }
         if (getUserConfig().p()) {
-            ds2Var = getMessagesController().k4.k1;
+            ds2Var = getMessagesController().l4.k1;
         } else {
-            ds2Var = getMessagesController().k4.j1;
+            ds2Var = getMessagesController().l4.j1;
         }
         if (arrayList.size() > ds2Var.f()) {
             showDialog(new l46(4, this.currentAccount, null, getParentActivity(), this));
@@ -1454,7 +1454,7 @@ public final class nf4 extends e {
                 if (arrayList.isEmpty()) {
                     ac7 ac7Var = this.r;
                     int i2 = ac7Var.g;
-                    int i3 = uc7.r5;
+                    int i3 = uc7.s5;
                     ac7Var.g = i2 & (-513);
                 }
                 C0();

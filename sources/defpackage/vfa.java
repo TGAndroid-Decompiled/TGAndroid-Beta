@@ -3,7 +3,7 @@ package defpackage;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.e;
-public final class vfa implements hf7, fd {
+public final class vfa implements if7, fd {
     public final eja a;
     public final TL_stories.StoryItem b;
 

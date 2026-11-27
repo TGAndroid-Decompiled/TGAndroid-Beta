@@ -243,7 +243,7 @@ public class kea extends nx0 implements fn7 {
             wpaVar.a(1.0f);
             vpaVar2.m = wpaVar;
             this.w2 = vpaVar2;
-            vpaVar2.b(new dda(this, neaVar, iArr, (byte) 0));
+            vpaVar2.b(new eda(this, neaVar, iArr, (byte) 0));
             this.w2.a(new iw0(this, (byte) 10));
             this.w2.h();
         }
@@ -511,7 +511,7 @@ public class kea extends nx0 implements fn7 {
                 } else {
                     TLRPC.User X1 = uc7.s1(this.a).X1(Long.valueOf(dialog.id));
                     TLRPC.Chat M05 = uc7.s1(this.a).M0(Long.valueOf(-dialog.id));
-                    if ((lbc.w(X1) && (((l = uc7.s1(this.a).g4.l(-X1.id)) != null && !l.isEmpty()) || !uc7.s1(this.a).g4.e(-X1.id))) || (wf3.y(dialog.id) && (xc2.c0(M05) || (xc2.p0(M05) && xc2.A(this.a, M05, 24))))) {
+                    if ((lbc.w(X1) && (((l = uc7.s1(this.a).h4.l(-X1.id)) != null && !l.isEmpty()) || !uc7.s1(this.a).h4.e(-X1.id))) || (wf3.y(dialog.id) && (xc2.c0(M05) || (xc2.p0(M05) && xc2.A(this.a, M05, 24))))) {
                         this.x2 = dialog;
                         this.D1.g1(0, this.k2 - d79Var.getPaddingTop());
                         AtomicReference atomicReference = new AtomicReference();
@@ -520,13 +520,13 @@ public class kea extends nx0 implements fn7 {
                         jn7 f = jn7.f(this.a);
                         int i = jn7.t5;
                         f.a(tdaVar, i);
-                        ArrayList l2 = uc7.s1(this.a).g4.l(-dialog.id);
+                        ArrayList l2 = uc7.s1(this.a).h4.l(-dialog.id);
                         int i2 = this.a;
                         if (l2 != null) {
                             tdaVar.didReceivedNotification(i, i2, Long.valueOf(-dialog.id));
                             return;
                         }
-                        uc7.s1(i2).g4.o(-dialog.id);
+                        uc7.s1(i2).h4.o(-dialog.id);
                         hl.d3((Runnable) atomicReference.get(), 300L);
                         return;
                     }
@@ -1171,7 +1171,7 @@ public class kea extends nx0 implements fn7 {
         if (M3) {
             K = new d31(frameLayout, vnbVar).Q(2131624211, 36, hl.S2(ob6.a0(null, null, 2131743415, str)));
         } else {
-            K = new d31(frameLayout, vnbVar).K(2131624211, hl.S2(ob6.a0(null, null, 2131743415, str)), ob6.M0(2131743414, null), new gda(this, (byte) 1));
+            K = new d31(frameLayout, vnbVar).K(2131624211, hl.S2(ob6.a0(null, null, 2131743415, str)), ob6.M0(2131743414, null), new hda(this, (byte) 1));
         }
         K.j();
     }

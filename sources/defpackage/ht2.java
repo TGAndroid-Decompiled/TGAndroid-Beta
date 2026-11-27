@@ -343,10 +343,10 @@ public final class ht2 implements ncc, nu3, qd3, tq2, Continuation, s69, OnSucce
             } else {
                 i4 = i2;
             }
-            oy8 oy8Var = new oy8(context, new bca(str13, p, replaceAll2, replaceAll3, yl5Var, str6, str16, str20, bs2.h(i4)), z3fVar, ve9Var, ri6Var, obj3, p63Var);
+            oy8 oy8Var = new oy8(context, new cca(str13, p, replaceAll2, replaceAll3, yl5Var, str6, str16, str20, bs2.h(i4)), z3fVar, ve9Var, ri6Var, obj3, p63Var);
             AtomicReference atomicReference = (AtomicReference) oy8Var.h;
             AtomicReference atomicReference2 = oy8Var.a;
-            if (((Context) oy8Var.b).getSharedPreferences("com.google.firebase.crashlytics", 0).getString("existing_instance_identifier", "").equals(((bca) oy8Var.c).f) && (b = oy8Var.b(i2)) != null) {
+            if (((Context) oy8Var.b).getSharedPreferences("com.google.firebase.crashlytics", 0).getString("existing_instance_identifier", "").equals(((cca) oy8Var.c).f) && (b = oy8Var.b(i2)) != null) {
                 atomicReference2.set(b);
                 ((TaskCompletionSource) atomicReference.get()).trySetResult(b);
                 onSuccessTask = Tasks.forResult(null);
@@ -760,7 +760,7 @@ public final class ht2 implements ncc, nu3, qd3, tq2, Continuation, s69, OnSucce
                                 case 0:
                                     uj3 uj3Var2 = ii3Var3.P0;
                                     i6 = ((e) uj3Var2).currentAccount;
-                                    SharedPreferences.Editor edit = uc7.s1(i6).W3.edit();
+                                    SharedPreferences.Editor edit = uc7.s1(i6).X3.edit();
                                     edit.putBoolean("stories_" + str4, false).apply();
                                     uj3Var2.getNotificationsController().c0(j, 0L, true);
                                     if (user != null) {
@@ -775,7 +775,7 @@ public final class ht2 implements ncc, nu3, qd3, tq2, Continuation, s69, OnSucce
                                 default:
                                     uj3 uj3Var3 = ii3Var3.P0;
                                     i7 = ((e) uj3Var3).currentAccount;
-                                    SharedPreferences.Editor edit2 = uc7.s1(i7).W3.edit();
+                                    SharedPreferences.Editor edit2 = uc7.s1(i7).X3.edit();
                                     edit2.putBoolean("stories_" + str4, true).apply();
                                     uj3Var3.getNotificationsController().c0(j, 0L, true);
                                     if (user != null) {
@@ -810,7 +810,7 @@ public final class ht2 implements ncc, nu3, qd3, tq2, Continuation, s69, OnSucce
                                 case 0:
                                     uj3 uj3Var2 = ii3Var3.P0;
                                     i6 = ((e) uj3Var2).currentAccount;
-                                    SharedPreferences.Editor edit = uc7.s1(i6).W3.edit();
+                                    SharedPreferences.Editor edit = uc7.s1(i6).X3.edit();
                                     edit.putBoolean("stories_" + str4, false).apply();
                                     uj3Var2.getNotificationsController().c0(j, 0L, true);
                                     if (user != null) {
@@ -825,7 +825,7 @@ public final class ht2 implements ncc, nu3, qd3, tq2, Continuation, s69, OnSucce
                                 default:
                                     uj3 uj3Var3 = ii3Var3.P0;
                                     i7 = ((e) uj3Var3).currentAccount;
-                                    SharedPreferences.Editor edit2 = uc7.s1(i7).W3.edit();
+                                    SharedPreferences.Editor edit2 = uc7.s1(i7).X3.edit();
                                     edit2.putBoolean("stories_" + str4, true).apply();
                                     uj3Var3.getNotificationsController().c0(j, 0L, true);
                                     if (user != null) {
@@ -1141,7 +1141,7 @@ public final class ht2 implements ncc, nu3, qd3, tq2, Continuation, s69, OnSucce
         } else {
             lq3.q(DataAutoDownloadActivity.j0(dataAutoDownloadActivity)).S = dataAutoDownloadActivity.e;
         }
-        SharedPreferences.Editor edit = uc7.s1(DataAutoDownloadActivity.k0(dataAutoDownloadActivity)).X3.edit();
+        SharedPreferences.Editor edit = uc7.s1(DataAutoDownloadActivity.k0(dataAutoDownloadActivity)).Y3.edit();
         edit.putInt(dataAutoDownloadActivity.L, dataAutoDownloadActivity.e);
         edit.commit();
         lq3.q(DataAutoDownloadActivity.l0(dataAutoDownloadActivity)).g();

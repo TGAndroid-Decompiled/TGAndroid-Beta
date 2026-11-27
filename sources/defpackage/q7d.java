@@ -13,25 +13,25 @@ public final class q7d extends q5d {
     }
 
     @Override
-    public final void T(Status status, vg7 vg7Var) {
+    public final void T(Status status, wg7 wg7Var) {
         switch (this.c) {
             case 0:
-                vze.b(status, vg7Var, this.d);
+                vze.b(status, wg7Var, this.d);
                 return;
             default:
-                super.T(status, vg7Var);
+                super.T(status, wg7Var);
                 return;
         }
     }
 
     @Override
-    public final void V(Status status, xg7 xg7Var) {
+    public final void V(Status status, yg7 yg7Var) {
         switch (this.c) {
             case 1:
-                vze.b(status, xg7Var, this.d);
+                vze.b(status, yg7Var, this.d);
                 return;
             default:
-                super.V(status, xg7Var);
+                super.V(status, yg7Var);
                 return;
         }
     }

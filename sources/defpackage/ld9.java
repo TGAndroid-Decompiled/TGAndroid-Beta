@@ -11,7 +11,7 @@ public final class ld9 implements fn7 {
         axa axaVar = new axa(i, 0L, false);
         this.b = axaVar;
         axaVar.p = j;
-        ed9 ed9Var = new ed9(i, j, new ii7(this, (byte) 28));
+        ed9 ed9Var = new ed9(i, j, new ji7(this, (byte) 28));
         ed9Var.y = true;
         this.c = ed9Var;
     }

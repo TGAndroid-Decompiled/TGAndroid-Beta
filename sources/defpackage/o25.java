@@ -61,7 +61,7 @@ public final class o25 implements icc {
                     v35 v35Var = new v35(b, gtVar, (byte) 4);
                     String str3 = w45Var.e;
                     TL_wallet.tonConnectSession tonconnectsession = w45Var.a;
-                    if ("sendTransaction".equals(str3) && uc7.s1(a55Var.a).X3.contains(a55.k(tonconnectsession.id, w45Var.b).concat(".transfer"))) {
+                    if ("sendTransaction".equals(str3) && uc7.s1(a55Var.a).Y3.contains(a55.k(tonconnectsession.id, w45Var.b).concat(".transfer"))) {
                         a55Var.B(w45Var, b, v35Var);
                         return;
                     }

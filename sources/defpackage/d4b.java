@@ -152,7 +152,7 @@ public final class d4b implements View.OnClickListener {
                         for (int i4 = 0; i4 < nd5Var.d.getChildCount(); i4++) {
                             View childAt = nd5Var.d.getChildAt(i4);
                             if (nd5Var.d.U(childAt).b() == nd5Var.F + i3) {
-                                ((p3b) childAt).b(false, true);
+                                ((q3b) childAt).b(false, true);
                             }
                         }
                     }
@@ -163,7 +163,7 @@ public final class d4b implements View.OnClickListener {
                         for (int i5 = 0; i5 < nd5Var.d.getChildCount(); i5++) {
                             View childAt2 = nd5Var.d.getChildAt(i5);
                             if (nd5Var.d.U(childAt2).b() == nd5Var.F + nd5Var.n) {
-                                ((p3b) childAt2).b(true, true);
+                                ((q3b) childAt2).b(true, true);
                             }
                         }
                     }

@@ -389,10 +389,10 @@ public final class kg2 extends d6 {
                 } else if (i == 1 && ru3Var.getParentActivity() != null) {
                     ArrayList arrayList5 = new ArrayList();
                     for (int i8 = 0; i8 < arrayList4.size(); i8++) {
-                        arrayList5.add(if7.a(((Long) arrayList4.get(i8)).longValue(), 0L));
+                        arrayList5.add(jf7.a(((Long) arrayList4.get(i8)).longValue(), 0L));
                     }
-                    jf7 messagesStorage = ru3Var.getMessagesStorage();
-                    messagesStorage.a.c(new de7(messagesStorage, i7, arrayList5, (byte) 1));
+                    kf7 messagesStorage = ru3Var.getMessagesStorage();
+                    messagesStorage.a.c(new ce7(messagesStorage, i7, arrayList5, (byte) 1));
                     SharedPreferences.Editor edit2 = ru3Var.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
                     String k = uh9.k(i7, "account");
                     i4 = ((e) ru3Var).currentAccount;

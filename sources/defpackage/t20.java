@@ -1209,7 +1209,7 @@ public final class t20 extends c79 {
         qmb qmbVar;
         y62 mf5Var;
         zma zmaVar;
-        View rcaVar;
+        View scaVar;
         FrameLayout frameLayout;
         dlb dlbVar;
         View mf5Var2;
@@ -1221,7 +1221,7 @@ public final class t20 extends c79 {
         View wkbVar;
         l88 l88Var;
         skb skbVar;
-        View rcaVar2;
+        View scaVar2;
         FrameLayout frameLayout2;
         View ua6Var;
         byte b = this.c;
@@ -1254,9 +1254,9 @@ public final class t20 extends c79 {
                         mf5Var = new mf5((Context) obj2, aob.L6, 21, 15, false, a72Var.a);
                         break;
                     case 1:
-                        View rcaVar3 = new rca(context2, (uh9) null);
+                        View scaVar3 = new sca(context2, (uh9) null);
                         new zm2(new ColorDrawable(aob.v0(aob.a7, vnbVar6)), aob.W0(context2, 2131231232, aob.b7)).x = true;
-                        mf5Var = rcaVar3;
+                        mf5Var = scaVar3;
                         break;
                     case 2:
                         mf5Var = new ilb(context2, vnbVar6);
@@ -1424,7 +1424,7 @@ public final class t20 extends c79 {
                             zmaVar = new mf5(context3);
                         }
                     } else {
-                        zmaVar = new rca(context3, (uh9) null);
+                        zmaVar = new sca(context3, (uh9) null);
                     }
                 } else {
                     wkb wkbVar2 = new wkb(context3);
@@ -1442,26 +1442,26 @@ public final class t20 extends c79 {
                             if (i != 3) {
                                 if (i != 4) {
                                     if (i != 5) {
-                                        rcaVar = new skb(context4);
+                                        scaVar = new skb(context4);
                                     } else {
-                                        rcaVar = new uo7(context4);
+                                        scaVar = new uo7(context4);
                                     }
                                 } else {
-                                    rcaVar = new ilb(context4);
+                                    scaVar = new ilb(context4);
                                 }
                             } else {
-                                rcaVar = new wkb(context4);
+                                scaVar = new wkb(context4);
                             }
                         } else {
-                            rcaVar = new mf5(context4, 22);
+                            scaVar = new mf5(context4, 22);
                         }
                     } else {
-                        rcaVar = new qmb(context4);
+                        scaVar = new qmb(context4);
                     }
                 } else {
-                    rcaVar = new rca(context4, (uh9) null);
+                    scaVar = new sca(context4, (uh9) null);
                 }
-                return qu6.h(rcaVar, rcaVar, -1, -2);
+                return qu6.h(scaVar, scaVar, -1, -2);
             case 4:
                 return new f89(new dg4((fg4) obj, (Context) obj2));
             case 5:
@@ -1507,7 +1507,7 @@ public final class t20 extends c79 {
                                 dlbVar = qmbVar3;
                             }
                         } else {
-                            dlbVar = new rca(context5, (uh9) null);
+                            dlbVar = new sca(context5, (uh9) null);
                         }
                     } else {
                         dlb dlbVar2 = new dlb(context5);
@@ -1543,7 +1543,7 @@ public final class t20 extends c79 {
                             mf5Var2 = new qmb(0, vnbVar4, context6);
                         }
                     } else {
-                        mf5Var2 = new rca(context6, (uh9) null);
+                        mf5Var2 = new sca(context6, (uh9) null);
                     }
                 } else {
                     mf5Var2 = new dlb(context6);
@@ -1590,7 +1590,7 @@ public final class t20 extends c79 {
                 if (i == 0) {
                     vnb vnbVar7 = ((c98) obj).J0;
                     ?? frameLayout5 = new FrameLayout(context9);
-                    frameLayout5.e = new ki7(frameLayout5, (byte) 7);
+                    frameLayout5.e = new li7(frameLayout5, (byte) 7);
                     TextView textView2 = new TextView(context9);
                     frameLayout5.a = textView2;
                     textView2.setGravity(5);
@@ -1715,31 +1715,31 @@ public final class t20 extends c79 {
                             if (i != 3) {
                                 if (i != 4) {
                                     if (i != 6) {
-                                        rcaVar2 = new hx8((ProxyListActivity) obj, context12);
-                                        yob.h(aob.d6, null, rcaVar2);
+                                        scaVar2 = new hx8((ProxyListActivity) obj, context12);
+                                        yob.h(aob.d6, null, scaVar2);
                                     } else {
-                                        rcaVar2 = new zma(context12, null);
-                                        yob.h(aob.d6, null, rcaVar2);
+                                        scaVar2 = new zma(context12, null);
+                                        yob.h(aob.d6, null, scaVar2);
                                     }
                                 } else {
-                                    rcaVar2 = new ilb(context12);
+                                    scaVar2 = new ilb(context12);
                                 }
                             } else {
-                                rcaVar2 = new wkb(context12);
-                                yob.h(aob.d6, null, rcaVar2);
+                                scaVar2 = new wkb(context12);
+                                yob.h(aob.d6, null, scaVar2);
                             }
                         } else {
-                            rcaVar2 = new mf5(context12);
-                            yob.h(aob.d6, null, rcaVar2);
+                            scaVar2 = new mf5(context12);
+                            yob.h(aob.d6, null, scaVar2);
                         }
                     } else {
-                        rcaVar2 = new qmb(context12);
-                        yob.h(aob.d6, null, rcaVar2);
+                        scaVar2 = new qmb(context12);
+                        yob.h(aob.d6, null, scaVar2);
                     }
                 } else {
-                    rcaVar2 = new rca(context12, (uh9) null);
+                    scaVar2 = new sca(context12, (uh9) null);
                 }
-                return qu6.h(rcaVar2, rcaVar2, -1, -2);
+                return qu6.h(scaVar2, scaVar2, -1, -2);
             case 15:
                 Context context13 = (Context) obj2;
                 dka dkaVar = (dka) obj;

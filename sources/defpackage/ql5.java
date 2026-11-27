@@ -12,7 +12,7 @@ public final class ql5 extends yye {
     public final CharsetDecoder b = StandardCharsets.ISO_8859_1.newDecoder();
 
     @Override
-    public final uf7 b(wf7 wf7Var, ByteBuffer byteBuffer) {
+    public final vf7 b(xf7 xf7Var, ByteBuffer byteBuffer) {
         String str;
         CharsetDecoder charsetDecoder = this.b;
         CharsetDecoder charsetDecoder2 = this.a;
@@ -41,7 +41,7 @@ public final class ql5 extends yye {
         byte[] bArr = new byte[byteBuffer.limit()];
         byteBuffer.get(bArr);
         if (str == null) {
-            return new uf7(new sl5(bArr, null, null));
+            return new vf7(new sl5(bArr, null, null));
         }
         Matcher matcher = c.matcher(str);
         String str3 = null;
@@ -60,6 +60,6 @@ public final class ql5 extends yye {
                 }
             }
         }
-        return new uf7(new sl5(bArr, str2, str3));
+        return new vf7(new sl5(bArr, str2, str3));
     }
 }

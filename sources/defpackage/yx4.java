@@ -177,7 +177,7 @@ public final class yx4 extends ny0 implements fn7 {
         }
         z2 = false;
         float f5 = 300.0f;
-        if (!uc7.s1(this.S1).k4.F2.f && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.V1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && (axaVar2 = this.h2) != null && !axaVar2.l.isEmpty()))) {
+        if (!uc7.s1(this.S1).l4.F2.f && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.V1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && (axaVar2 = this.h2) != null && !axaVar2.l.isEmpty()))) {
             if (!z) {
                 arrayList.add(b8c.k(this.Z1));
             } else {

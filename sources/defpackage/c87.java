@@ -31,7 +31,7 @@ public final class c87 implements Runnable {
         switch (b) {
             case 0:
                 uc7Var.l2 = false;
-                SharedPreferences.Editor edit = uc7Var.W3.edit();
+                SharedPreferences.Editor edit = uc7Var.X3.edit();
                 edit.putBoolean("EnableContactJoined", tLObject instanceof TLRPC.TL_boolFalse);
                 edit.commit();
                 uc7Var.getUserConfig().U = true;
@@ -39,33 +39,33 @@ public final class c87 implements Runnable {
                 return;
             case 1:
                 if (tLObject instanceof TL_account.contentSettings) {
-                    uc7Var.b5 = (TL_account.contentSettings) tLObject;
-                    uc7Var.a5 = System.currentTimeMillis();
+                    uc7Var.c5 = (TL_account.contentSettings) tLObject;
+                    uc7Var.b5 = System.currentTimeMillis();
                 }
-                uc7Var.Y4 = false;
-                TL_account.contentSettings contentsettings = uc7Var.b5;
-                if (contentsettings != null && (set = uc7Var.K3) != null) {
+                uc7Var.Z4 = false;
+                TL_account.contentSettings contentsettings = uc7Var.c5;
+                if (contentsettings != null && (set = uc7Var.L3) != null) {
                     if (contentsettings.sensitive_enabled) {
                         set.add("sensitive");
                     } else {
                         set.remove("sensitive");
                     }
-                    SharedPreferences sharedPreferences = uc7Var.X3;
+                    SharedPreferences sharedPreferences = uc7Var.Y3;
                     if (sharedPreferences != null) {
-                        sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", uc7Var.K3).apply();
+                        sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", uc7Var.L3).apply();
                     }
                 }
-                ArrayList arrayList = uc7Var.Z4;
+                ArrayList arrayList = uc7Var.a5;
                 if (arrayList != null) {
                     int size = arrayList.size();
                     int i = 0;
                     while (i < size) {
                         Object obj = arrayList.get(i);
                         i++;
-                        ((pcc) obj).a(uc7Var.b5);
+                        ((pcc) obj).a(uc7Var.c5);
                     }
-                    uc7Var.Z4.clear();
-                    uc7Var.Z4 = null;
+                    uc7Var.a5.clear();
+                    uc7Var.a5 = null;
                 }
                 uc7Var.getNotificationCenter().k(247, new Object[0]);
                 return;
@@ -82,7 +82,7 @@ public final class c87 implements Runnable {
                 uc7Var.k2--;
                 if (tLObject instanceof TL_account.TL_reactionsNotifySettings) {
                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject;
-                    SharedPreferences.Editor edit2 = uc7Var.W3.edit();
+                    SharedPreferences.Editor edit2 = uc7Var.X3.edit();
                     if (tL_reactionsNotifySettings.messages_notify_from != null) {
                         z = true;
                     } else {
@@ -134,7 +134,7 @@ public final class c87 implements Runnable {
                                     }
                                 }
                                 long j3 = j;
-                                uc7Var2.getMessagesStorage().C1(j3, true);
+                                uc7Var2.getMessagesStorage().H1(j3, true);
                                 TLRPC.Dialog dialog = (TLRPC.Dialog) uc7Var2.R.f(j3);
                                 if (dialog != null && !dialog.unread_mark) {
                                     dialog.unread_mark = true;
@@ -159,7 +159,7 @@ public final class c87 implements Runnable {
             case 5:
                 if (tLObject instanceof TL_account.TL_reactionsNotifySettings) {
                     TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject;
-                    SharedPreferences.Editor edit3 = uc7Var.W3.edit();
+                    SharedPreferences.Editor edit3 = uc7Var.X3.edit();
                     if (tL_reactionsNotifySettings2.messages_notify_from != null) {
                         z3 = true;
                     } else {

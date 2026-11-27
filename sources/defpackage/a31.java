@@ -62,7 +62,7 @@ public final class a31 extends ClickableSpan {
             case 9:
                 return;
             case 10:
-                ((hbb) obj).S1.S();
+                ((ibb) obj).S1.S();
                 return;
             default:
                 euc eucVar = (euc) obj;

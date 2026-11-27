@@ -85,7 +85,7 @@ public final class z {
 
     public static boolean a() {
         for (int i = 0; i < 4; i++) {
-            if (yac.h(i).o() && uc7.s1(i).k4.A0.f) {
+            if (yac.h(i).o() && uc7.s1(i).l4.A0.f) {
                 return true;
             }
         }
@@ -252,7 +252,7 @@ public final class z {
                                 if (j != 0) {
                                     w0d.a.execute(new pqa(this, j, (byte) 9));
                                 }
-                                this.a.post(new cxc(this, e, (byte) 17));
+                                this.a.post(new zwc(this, e, (byte) 18));
                                 throw e;
                             }
                         }

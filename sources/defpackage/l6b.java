@@ -267,7 +267,7 @@ public final class l6b implements hcb {
     }
 
     @Override
-    public final void x(long j, int i, x58 x58Var) {
+    public final void x(long j, int i, y58 y58Var) {
         ArrayList arrayList;
         int i2 = 0;
         d79 d79Var = this.a;
@@ -275,10 +275,10 @@ public final class l6b implements hcb {
             if (d79Var.getParent() instanceof pg3) {
                 pg3 pg3Var = (pg3) d79Var.getParent();
                 if (pg3Var.k(j)) {
-                    pg3Var.c0.add(x58Var);
+                    pg3Var.c0.add(y58Var);
                     return;
                 } else {
-                    x58Var.run();
+                    y58Var.run();
                     return;
                 }
             } else if (d79Var.getParent() instanceof z3a) {
@@ -311,12 +311,12 @@ public final class l6b implements hcb {
                         int M0 = td4Var.M0();
                         if (i2 < K0 || i2 > M0) {
                             td4Var.g1(i2, hl.L(60.0f));
-                            d79Var.post(x58Var);
+                            d79Var.post(y58Var);
                             return;
                         }
                     }
                 }
-                x58Var.run();
+                y58Var.run();
                 return;
             }
         }
@@ -327,7 +327,7 @@ public final class l6b implements hcb {
             Collections.sort(arrayList2, O1.J);
             jn7.f(O1.a).k(jn7.y5, new Object[0]);
         }
-        x58Var.run();
+        y58Var.run();
     }
 
     public l6b(mr8 mr8Var) {

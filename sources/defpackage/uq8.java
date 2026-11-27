@@ -16,6 +16,6 @@ public final class uq8 extends kea {
         if (!z) {
             return;
         }
-        hl.d3(new hp8(this, zh6Var, i, (byte) 9), 250L);
+        hl.d3(new ep8(this, zh6Var, i, (byte) 10), 250L);
     }
 }

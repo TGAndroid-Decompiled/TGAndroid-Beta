@@ -6,11 +6,11 @@ import java.util.NavigableSet;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public final class h3 extends k3 implements NavigableSet {
-    public final fj7 e;
+    public final gj7 e;
 
-    public h3(fj7 fj7Var, NavigableMap navigableMap) {
-        super(fj7Var, navigableMap);
-        this.e = fj7Var;
+    public h3(gj7 gj7Var, NavigableMap navigableMap) {
+        super(gj7Var, navigableMap);
+        this.e = gj7Var;
     }
 
     @Override

@@ -21,7 +21,7 @@ import org.telegram.ui.DataSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.webrtc.DataChannel;
 import org.webrtc.NativeLifecycleLock;
-public final class q72 implements lf9, ef7, fd, b7c, m8, tm8, tq2, OnFailureListener, n0a, NativeLifecycleLock.NativeRunnable, NativeLifecycleLock.NativeCallable, s69, c86, b86, h84, t69 {
+public final class q72 implements lf9, ff7, fd, b7c, m8, tm8, tq2, OnFailureListener, n0a, NativeLifecycleLock.NativeRunnable, NativeLifecycleLock.NativeCallable, s69, c86, b86, h84, t69 {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -393,7 +393,7 @@ public final class q72 implements lf9, ef7, fd, b7c, m8, tm8, tq2, OnFailureList
                 uj3 uj3Var = ((lj3) obj2).b;
                 uj3Var.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, null);
                 uj3Var.getMessagesController().s4(ac7Var);
-                jf7 messagesStorage = uj3Var.getMessagesStorage();
+                kf7 messagesStorage = uj3Var.getMessagesStorage();
                 messagesStorage.a.c(new t87(messagesStorage, ac7Var, (byte) 20));
                 return;
             default:

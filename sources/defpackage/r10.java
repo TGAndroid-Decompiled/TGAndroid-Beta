@@ -323,10 +323,10 @@ public final class r10 extends o7 {
                 }
                 return;
             case 22:
-                tba tbaVar = (tba) obj;
-                tbaVar.a.a(false, true);
-                tbaVar.n0(false, true);
-                tbaVar.c.g3.O(false);
+                uba ubaVar = (uba) obj;
+                ubaVar.a.a(false, true);
+                ubaVar.n0(false, true);
+                ubaVar.c.g3.O(false);
                 return;
             case 23:
                 vsb vsbVar = (vsb) obj;
@@ -773,7 +773,7 @@ public final class r10 extends o7 {
                     return;
                 }
             case 22:
-                ((tba) obj).f.I(editTextBoldCursor.getText().toString());
+                ((uba) obj).f.I(editTextBoldCursor.getText().toString());
                 return;
             case 23:
                 vsb vsbVar = (vsb) obj;

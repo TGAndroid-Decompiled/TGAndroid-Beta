@@ -197,7 +197,7 @@ public final class u34 implements OnCompleteListener, s69, fd, oj3, cka, tq2, t6
                 rv4Var.getClass();
                 long j = 0;
                 while (i3 < arrayList.size()) {
-                    j = ((if7) arrayList.get(i3)).a;
+                    j = ((jf7) arrayList.get(i3)).a;
                     rv4Var.e.getSendMessagesHelper().q0(p7a.b(str, j, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     i3++;
                 }
@@ -210,7 +210,7 @@ public final class u34 implements OnCompleteListener, s69, fd, oj3, cka, tq2, t6
                 u51 u51Var = null;
                 while (i3 < arrayList.size()) {
                     ArrayList arrayList2 = ox5Var.g0;
-                    u51 u51Var2 = new u51(((if7) arrayList.get(i3)).a, 3);
+                    u51 u51Var2 = new u51(((jf7) arrayList.get(i3)).a, 3);
                     arrayList2.add(u51Var2);
                     i3++;
                     u51Var = u51Var2;

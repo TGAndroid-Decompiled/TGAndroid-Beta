@@ -783,7 +783,7 @@ public final class er9 extends Dialog implements fn7, VoIPService.StateListener 
             TL_phone.exportGroupCallInvite exportgroupcallinvite = new TL_phone.exportGroupCallInvite();
             vc2 vc2Var = this.c;
             exportgroupcallinvite.call = vc2Var.h(vc2Var.a);
-            ConnectionsManager.getInstance(i2).sendRequest(exportgroupcallinvite, new ol7(this, o, (byte) 18));
+            ConnectionsManager.getInstance(i2).sendRequest(exportgroupcallinvite, new pl7(this, o, (byte) 18));
         } else if (!TextUtils.isEmpty(K)) {
             i(qu6.o(s1.N2, "/", K, new StringBuilder()), true);
         } else {
@@ -794,7 +794,7 @@ public final class er9 extends Dialog implements fn7, VoIPService.StateListener 
             }
             TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
             tL_messages_exportChatInvite.peer = uc7.l1(this.d);
-            ConnectionsManager.getInstance(i2).sendRequest(tL_messages_exportChatInvite, new ol7(this, N0, (byte) 19));
+            ConnectionsManager.getInstance(i2).sendRequest(tL_messages_exportChatInvite, new pl7(this, N0, (byte) 19));
         }
     }
 

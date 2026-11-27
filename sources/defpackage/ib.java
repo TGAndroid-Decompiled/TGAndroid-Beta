@@ -500,7 +500,7 @@ public final class ib implements View.OnClickListener {
                         return;
                     } else if (sparseArrayArr[0] != null) {
                         if (ejaVar.l0() && bgaVar != null && bgaVar.getCurrentList() != null) {
-                            o5b currentList = bgaVar.getCurrentList();
+                            p5b currentList = bgaVar.getCurrentList();
                             ArrayList arrayList8 = new ArrayList();
                             for (int i10 = 0; i10 < sparseArrayArr[0].size(); i10++) {
                                 TL_stories.StoryItem storyItem = ((r47) sparseArrayArr[0].valueAt(i10)).l;
@@ -651,7 +651,7 @@ public final class ib implements View.OnClickListener {
                         zu1Var.d8 = r47Var.e1();
                         long j3 = ejaVar.G;
                         if (j3 != 0) {
-                            ro4.a(zu1Var, if7.a(B0, j3));
+                            ro4.a(zu1Var, jf7.a(B0, j3));
                             bundle2.putInt("message_id", r47Var.e1());
                         }
                         eVar.presentFragment(zu1Var, false);

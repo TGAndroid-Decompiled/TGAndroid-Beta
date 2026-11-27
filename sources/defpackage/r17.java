@@ -400,7 +400,7 @@ public final class r17 extends c79 implements fn7 {
                 }
             }
             if (this.x0.bot_inline_geo) {
-                SharedPreferences sharedPreferences = uc7.s1(this.f).W3;
+                SharedPreferences sharedPreferences = uc7.s1(this.f).X3;
                 if (!sharedPreferences.getBoolean("inlinegeo_" + this.x0.id, false) && (zu1Var = this.H0) != null && zu1Var.getParentActivity() != null) {
                     TLRPC.User user2 = this.x0;
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.H0.getParentActivity());
@@ -500,9 +500,9 @@ public final class r17 extends c79 implements fn7 {
                 }
             }
             uc7 s1 = uc7.s1(this.f);
-            jf7 Y = jf7.Y(this.f);
+            kf7 a0 = kf7.a0(this.f);
             this.s0 = str2;
-            k17 k17Var2 = new k17(this, str2, str, s1, Y);
+            k17 k17Var2 = new k17(this, str2, str, s1, a0);
             this.z0 = k17Var2;
             hl.d3(k17Var2, 400L);
         }
@@ -534,15 +534,15 @@ public final class r17 extends c79 implements fn7 {
                     }
                     sb.append(obj);
                     String sb2 = sb.toString();
-                    jf7 Y = jf7.Y(this.f);
-                    h17 h17Var = new h17(this, str, z, user, str2, Y, sb2);
+                    kf7 a0 = kf7.a0(this.f);
+                    h17 h17Var = new h17(this, str, z, user, str2, a0, sb2);
                     long j = user.id;
                     if (j != this.T) {
                         this.U = null;
                         this.T = j;
                     }
                     if (z) {
-                        Y.L(sb2, h17Var);
+                        a0.N(sb2, h17Var);
                         return;
                     }
                     TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
@@ -884,10 +884,10 @@ public final class r17 extends c79 implements fn7 {
                 }
             }
         } else if (i3 == 5) {
-            v09 v09Var = (v09) view;
+            w09 w09Var = (w09) view;
             ArrayList arrayList = this.N;
             if (arrayList != null && i2 >= 0 && i2 < arrayList.size()) {
-                v09Var.a((a19) this.N.get(i2), this.M, false);
+                w09Var.a((a19) this.N.get(i2), this.M, false);
             }
         } else {
             ArrayList arrayList2 = this.S;
@@ -1076,7 +1076,7 @@ public final class r17 extends c79 implements fn7 {
                                 vw2Var = new p17(vnbVar, context, z);
                             }
                         } else {
-                            textView = new v09(vnbVar, context, false);
+                            textView = new w09(vnbVar, context, false);
                         }
                     } else {
                         TextView textView2 = new TextView(context);

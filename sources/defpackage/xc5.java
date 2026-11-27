@@ -119,7 +119,7 @@ public final class xc5 extends e implements fn7, yn5 {
     }
 
     public final void c0(ArrayList arrayList, ArrayList arrayList2, CountDownLatch countDownLatch) {
-        arrayList.addAll(jf7.Y(this.currentAccount).i0(arrayList2));
+        arrayList.addAll(kf7.a0(this.currentAccount).k0(arrayList2));
         countDownLatch.countDown();
     }
 
@@ -176,7 +176,7 @@ public final class xc5 extends e implements fn7, yn5 {
         if (i == 2) {
             if (this.b != null) {
                 int intValue = ((Integer) objArr[0]).intValue();
-                int i3 = uc7.r5;
+                int i3 = uc7.s5;
                 if ((intValue & 2) != 0 || (intValue & 1) != 0 || (intValue & 4) != 0) {
                     int childCount = this.b.getChildCount();
                     for (int i4 = 0; i4 < childCount; i4++) {
@@ -314,7 +314,7 @@ public final class xc5 extends e implements fn7, yn5 {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             ArrayList arrayList2 = new ArrayList();
             xc5Var = this;
-            jf7.Y(this.currentAccount).a.c(new g65(xc5Var, arrayList2, arrayList, countDownLatch, (byte) 4));
+            kf7.a0(this.currentAccount).a.c(new g65(xc5Var, arrayList2, arrayList, countDownLatch, (byte) 4));
             try {
                 countDownLatch.await();
             } catch (Exception e) {

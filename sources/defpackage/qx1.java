@@ -14,7 +14,7 @@ public final class qx1 extends ap0 {
         Paint paint = new Paint(1);
         this.d = paint;
         this.f = true;
-        this.b = new l09((byte) 3);
+        this.b = new m09((byte) 3);
         gu guVar = new gu((byte) 1, context, this);
         this.c = guVar;
         guVar.setOverScrollMode(2);

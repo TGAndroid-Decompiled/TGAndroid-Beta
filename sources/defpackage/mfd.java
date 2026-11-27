@@ -1,5 +1,5 @@
 package defpackage;
 public abstract class mfd {
-    public static final yg7 a = new yg7(null, null, null);
-    public static yg7 b;
+    public static final zg7 a = new zg7(null, null, null);
+    public static zg7 b;
 }

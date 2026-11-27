@@ -568,7 +568,7 @@ public class ys9 implements x1c {
                         boolean z4 = this.G;
                         str = q.t;
                         String str2 = q.l;
-                        if (dg7.h(str) != 1 && dg7.a(str, str2)) {
+                        if (eg7.h(str) != 1 && eg7.a(str, str2)) {
                             z2 = true;
                         } else {
                             z2 = false;
@@ -582,7 +582,7 @@ public class ys9 implements x1c {
                 boolean z42 = this.G;
                 str = q.t;
                 String str22 = q.l;
-                if (dg7.h(str) != 1) {
+                if (eg7.h(str) != 1) {
                 }
                 z2 = false;
                 this.G = z42 & z2;

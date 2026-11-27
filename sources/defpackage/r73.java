@@ -1,12 +1,12 @@
 package defpackage;
 public final class r73 {
-    public final uj7 a;
+    public final vj7 a;
     public final m89 b;
     public final p89 c;
     public final o83 d;
 
-    public r73(uj7 uj7Var, m89 m89Var, p89 p89Var, o83 o83Var) {
-        this.a = uj7Var;
+    public r73(vj7 vj7Var, m89 m89Var, p89 p89Var, o83 o83Var) {
+        this.a = vj7Var;
         this.b = m89Var;
         this.c = p89Var;
         this.d = o83Var;

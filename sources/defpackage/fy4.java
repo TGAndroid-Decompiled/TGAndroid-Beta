@@ -282,7 +282,7 @@ public final class fy4 {
                             if (f11 < 7) {
                                 v0 = aob.v0(aob.r8[f11], vnbVar);
                             } else {
-                                lc7 lc7Var = uc7.s1(yac.t0).E3;
+                                lc7 lc7Var = uc7.s1(yac.t0).F3;
                                 if (lc7Var == null) {
                                     kc7Var = ln5Var;
                                 } else {

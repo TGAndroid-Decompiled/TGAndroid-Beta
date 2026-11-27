@@ -42,9 +42,9 @@ public final class ic4 {
 
     public final void c() {
         if (!this.h) {
-            if (!ok7.a) {
+            if (!pk7.a) {
                 int i = 0;
-                while (!ok7.a) {
+                while (!pk7.a) {
                     try {
                         Thread.sleep(1000L);
                     } catch (InterruptedException e) {

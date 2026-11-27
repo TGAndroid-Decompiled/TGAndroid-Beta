@@ -38,8 +38,8 @@ public final class qn8 implements RequestDelegate {
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         r47 r47Var = null;
-        r2 = null;
-        r2 = null;
+        r1 = null;
+        r1 = null;
         ok1 ok1Var = null;
         r47Var = null;
         boolean z = true;
@@ -144,7 +144,7 @@ public final class qn8 implements RequestDelegate {
                     return;
                 } else if (tL_error != null) {
                     if (tL_error.text.startsWith("STARGIFT_RESELL_TOO_EARLY_")) {
-                        hl.c3(new cq6(wuaVar2, l01Var, Long.parseLong(tL_error.text.substring(26)), (byte) 26));
+                        hl.c3(new cq6(wuaVar2, l01Var, Long.parseLong(tL_error.text.substring(26)), (byte) 27));
                         return;
                     } else {
                         hl.c3(new jr9(wuaVar2, l01Var, tL_error, (byte) 23));
@@ -209,7 +209,7 @@ public final class qn8 implements RequestDelegate {
                     Utilities.e.c(new kta(twoStepVerificationActivity, bArr, tLObject, bArr2, (byte) 18));
                     return;
                 } else {
-                    hl.c3(new bcb(twoStepVerificationActivity, tL_error, (byte) 25));
+                    hl.c3(new hab(twoStepVerificationActivity, tL_error, (byte) 26));
                     return;
                 }
             case 27:

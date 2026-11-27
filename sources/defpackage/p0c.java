@@ -34,7 +34,7 @@ public final class p0c implements Callable {
             case 0:
                 Context context = (Context) this.b;
                 ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = (ScheduledThreadPoolExecutor) this.c;
-                tf7 tf7Var = (tf7) this.d;
+                uf7 uf7Var = (uf7) this.d;
                 ji4 ji4Var = (ji4) this.e;
                 FirebaseMessaging firebaseMessaging = (FirebaseMessaging) this.f;
                 ri4 ri4Var = (ri4) this.g;
@@ -52,7 +52,7 @@ public final class p0c implements Callable {
                         o0cVar = o0cVar2;
                     }
                 }
-                return new q0c(tf7Var, o0cVar, new ko9(ji4Var, firebaseMessaging, ri4Var), context, scheduledThreadPoolExecutor);
+                return new q0c(uf7Var, o0cVar, new ko9(ji4Var, firebaseMessaging, ri4Var), context, scheduledThreadPoolExecutor);
             default:
                 lambda$emulateSendNFT$23 = ((WalletEngine2) this.b).lambda$emulateSendNFT$23((AtomicBoolean) this.c, (String) this.d, (String) this.e, (String) this.f, (icc) this.g);
                 return lambda$emulateSendNFT$23;

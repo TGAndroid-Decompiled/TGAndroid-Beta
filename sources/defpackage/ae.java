@@ -63,8 +63,8 @@ public final class ae implements View.OnClickListener {
                     if (ij1Var.B0 > currentTime) {
                         ij1Var.P0 = d31.b0(w1bVar).Q(2131624287, 36, hl.S2(ob6.a0(null, null, 2131752933, at0.x0(ij1Var.B0 - currentTime)))).j();
                         return;
-                    } else if (ij1Var.N0 < uc7.s1(i3).k4.y2.f()) {
-                        d31.b0(w1bVar).M(ij1Var.getContext().getResources().getDrawable(2131232775).mutate(), hl.N2(ob6.G((int) uc7.s1(i3).k4.y2.f(), "BotStarsWithdrawMinLimit", new Object[0]), -1, 0, new oi1(ij1Var, i3, (byte) 1), null)).j();
+                    } else if (ij1Var.N0 < uc7.s1(i3).l4.y2.f()) {
+                        d31.b0(w1bVar).M(ij1Var.getContext().getResources().getDrawable(2131232775).mutate(), hl.N2(ob6.G((int) uc7.s1(i3).l4.y2.f(), "BotStarsWithdrawMinLimit", new Object[0]), -1, 0, new oi1(ij1Var, i3, (byte) 1), null)).j();
                         return;
                     } else {
                         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
@@ -101,7 +101,7 @@ public final class ae implements View.OnClickListener {
                 vnb vnbVar = (vnb) obj;
                 fu5 G = fu5.G(h42Var, vnbVar, h42Var.y);
                 G.W = true;
-                G.b(2131232049, ob6.M0(2131742788, null), new ze7(h42Var, i3, vnbVar, (byte) 15), false);
+                G.b(2131232049, ob6.M0(2131742788, null), new bf7(h42Var, i3, vnbVar, (byte) 15), false);
                 G.b(2131231782, ob6.M0(2131742856, null), new a42(h42Var, (byte) 0), false);
                 G.s = (short) 0;
                 G.b0(0.0f, -hl.L(48.0f));
@@ -150,7 +150,7 @@ public final class ae implements View.OnClickListener {
                 zh5Var.n = i3;
                 zh5Var.b.e(false, view.getLeft());
                 zh5Var.c.e(false, view.getRight());
-                ((df7) obj).a(i3);
+                ((ef7) obj).a(i3);
                 zh5Var.invalidate();
                 return;
             case 9:
@@ -275,7 +275,7 @@ public final class ae implements View.OnClickListener {
                 TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
                 togglechatstargiftnotifications.peer = uc7.s1(i3).j1(cgaVar.c);
                 togglechatstargiftnotifications.enabled = z7;
-                ConnectionsManager.getInstance(i3).sendRequest(togglechatstargiftnotifications, new ol7(cgaVar, eVar2, (byte) 16));
+                ConnectionsManager.getInstance(i3).sendRequest(togglechatstargiftnotifications, new pl7(cgaVar, eVar2, (byte) 16));
                 return;
             case 14:
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj2;
@@ -331,7 +331,7 @@ public final class ae implements View.OnClickListener {
                     ejaVar.y();
                 }
                 eVar3.getNotificationCenter().k(204, Long.valueOf(-ejaVar.m1));
-                eVar3.getMessagesController().k(chat.id, eVar3.getUserConfig().f(), null, eVar3, false, new ida(qhaVar, chat, (byte) 4), null);
+                eVar3.getMessagesController().k(chat.id, eVar3.getUserConfig().f(), null, eVar3, false, new kba(qhaVar, chat, (byte) 5), null);
                 return;
             case 17:
                 m01.u((Context) obj2, "https://" + uc7.s1(i3).N2 + "/nft/" + ((TL_stars.TL_starGiftUnique) obj).slug);

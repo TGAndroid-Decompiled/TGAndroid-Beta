@@ -22,12 +22,12 @@ public final class bi4 extends FingerprintManager.AuthenticationCallback {
         WeakReference weakReference = ((w40) this.a.b).c.a;
         if (weakReference.get() != null && ((mj0) weakReference.get()).l) {
             mj0 mj0Var = (mj0) weakReference.get();
-            qj7 qj7Var = mj0Var.s;
-            if (qj7Var == null) {
-                qj7Var = new qj7();
-                mj0Var.s = qj7Var;
+            rj7 rj7Var = mj0Var.s;
+            if (rj7Var == null) {
+                rj7Var = new rj7();
+                mj0Var.s = rj7Var;
             }
-            mj0.f(qj7Var, Boolean.TRUE);
+            mj0.f(rj7Var, Boolean.TRUE);
         }
     }
 
@@ -36,12 +36,12 @@ public final class bi4 extends FingerprintManager.AuthenticationCallback {
         WeakReference weakReference = ((w40) this.a.b).c.a;
         if (weakReference.get() != null) {
             mj0 mj0Var = (mj0) weakReference.get();
-            qj7 qj7Var = mj0Var.r;
-            if (qj7Var == null) {
-                qj7Var = new qj7();
-                mj0Var.r = qj7Var;
+            rj7 rj7Var = mj0Var.r;
+            if (rj7Var == null) {
+                rj7Var = new rj7();
+                mj0Var.r = rj7Var;
             }
-            mj0.f(qj7Var, charSequence);
+            mj0.f(rj7Var, charSequence);
         }
     }
 

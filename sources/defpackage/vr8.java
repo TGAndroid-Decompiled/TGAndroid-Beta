@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.ui.ProfileActivity;
-public final class vr8 extends gca {
+public final class vr8 extends hca {
     public final wr8 h;
 
     public vr8(wr8 wr8Var, Context context, vnb vnbVar) {
@@ -95,7 +95,7 @@ public final class vr8 extends gca {
                         vr8 vr8Var = this.b;
                         switch (b) {
                             case 0:
-                                hl.c3(new me7(vr8Var, vr8Var.e, (byte) 9));
+                                hl.c3(new oe7(vr8Var, vr8Var.e, (byte) 9));
                                 return;
                             default:
                                 int i8 = vr8Var.e;
@@ -125,7 +125,7 @@ public final class vr8 extends gca {
                         vr8 vr8Var = this.b;
                         switch (b) {
                             case 0:
-                                hl.c3(new me7(vr8Var, vr8Var.e, (byte) 9));
+                                hl.c3(new oe7(vr8Var, vr8Var.e, (byte) 9));
                                 return;
                             default:
                                 int i8 = vr8Var.e;

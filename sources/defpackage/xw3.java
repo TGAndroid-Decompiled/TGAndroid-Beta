@@ -76,7 +76,7 @@ public final class xw3 extends View {
             sb.append(a);
             CharSequence m = pv3.m(sb.toString(), textPaint.getFontMetricsInt(), false, null, 0);
             SpannableStringBuilder spannableStringBuilder = m;
-            if (uc7.s1(zw3Var.a).k4.D2.f) {
+            if (uc7.s1(zw3Var.a).l4.D2.f) {
                 spannableStringBuilder = m;
                 spannableStringBuilder = m;
                 if (jve.d("android.permission.ACCESS_COARSE_LOCATION") && vwcVar == null) {

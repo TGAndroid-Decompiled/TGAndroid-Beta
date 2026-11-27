@@ -81,7 +81,7 @@ public final class jc2 implements Runnable {
                 }
                 zh6Var.k(j5, tL_messages_chatFull.full_chat);
                 long j7 = -j5;
-                uc7Var.i4.M(j7);
+                uc7Var.j4.M(j7);
                 TLRPC.PeerNotifySettings peerNotifySettings = tL_messages_chatFull.full_chat.notify_settings;
                 wp7 wp7Var = uc7Var.getNotificationsController().h0;
                 wp7Var.getClass();
@@ -138,15 +138,15 @@ public final class jc2 implements Runnable {
                     boolean z2 = tL_messages_chatFull.full_chat.view_forum_as_messages;
                     if (z != z2) {
                         dialog.view_forum_as_messages = z2;
-                        jf7 messagesStorage = uc7Var.getMessagesStorage();
-                        messagesStorage.a.c(new ge7(messagesStorage, j6, tL_messages_chatFull.full_chat.view_forum_as_messages, (byte) 1));
+                        kf7 messagesStorage = uc7Var.getMessagesStorage();
+                        messagesStorage.a.c(new he7(messagesStorage, j6, tL_messages_chatFull.full_chat.view_forum_as_messages, (byte) 1));
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                ((jf7) this.e).getMessagesController().Y(null, null, null, this.b, true, 0, false, this.c, (TLMethod) this.f, this.d);
+                ((kf7) this.e).getMessagesController().Y(null, null, null, this.b, true, 0, false, this.c, (TLMethod) this.f, this.d);
                 return;
         }
     }

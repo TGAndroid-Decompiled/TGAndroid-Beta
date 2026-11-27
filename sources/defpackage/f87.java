@@ -58,16 +58,16 @@ public final class f87 implements icc {
                 TLRPC.EmojiGameInfo emojiGameInfo = (TLRPC.EmojiGameInfo) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
                 if (emojiGameInfo != null) {
-                    uc7Var.l5 = emojiGameInfo;
+                    uc7Var.m5 = emojiGameInfo;
                 }
-                ArrayList arrayList = uc7Var.k5;
+                ArrayList arrayList = uc7Var.l5;
                 int size = arrayList.size();
                 while (i < size) {
                     Object obj3 = arrayList.get(i);
                     i++;
-                    ((pcc) obj3).a(Boolean.valueOf(uc7Var.l5 instanceof TLRPC.TL_emojiGameDiceInfo));
+                    ((pcc) obj3).a(Boolean.valueOf(uc7Var.m5 instanceof TLRPC.TL_emojiGameDiceInfo));
                 }
-                uc7Var.k5 = null;
+                uc7Var.l5 = null;
                 return;
             default:
                 TLRPC.Updates updates3 = (TLRPC.Updates) obj;

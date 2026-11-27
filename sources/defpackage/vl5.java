@@ -151,7 +151,7 @@ public final class vl5 extends yye {
         byte[] bArr = new byte[i2];
         ey7Var.k(0, i2, bArr);
         int v = v(0, bArr);
-        String n = dg7.n(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
+        String n = eg7.n(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
         int i3 = v + 1;
         int u = u(i3, A, bArr);
         String l = l(bArr, i3, u, s);
@@ -167,7 +167,7 @@ public final class vl5 extends yye {
         return new ou4(n, copyOfRange, l, l2);
     }
 
-    public static mg7 j(int i, ey7 ey7Var) {
+    public static ng7 j(int i, ey7 ey7Var) {
         int H = ey7Var.H();
         int D = ey7Var.D();
         int D2 = ey7Var.D();
@@ -184,7 +184,7 @@ public final class vl5 extends yye {
             iArr[i3] = f;
             iArr2[i3] = f2;
         }
-        return new mg7(H, D, D2, iArr, iArr2);
+        return new ng7(H, D, D2, iArr, iArr2);
     }
 
     public static ym8 k(int i, ey7 ey7Var) {
@@ -344,11 +344,11 @@ public final class vl5 extends yye {
     }
 
     @Override
-    public final uf7 b(wf7 wf7Var, ByteBuffer byteBuffer) {
+    public final vf7 b(xf7 xf7Var, ByteBuffer byteBuffer) {
         return c(byteBuffer.limit(), byteBuffer.array());
     }
 
-    public final defpackage.uf7 c(int r13, byte[] r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vl5.c(int, byte[]):uf7");
+    public final defpackage.vf7 c(int r13, byte[] r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vl5.c(int, byte[]):vf7");
     }
 }

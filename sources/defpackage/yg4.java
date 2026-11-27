@@ -242,7 +242,7 @@ public final class yg4 extends FrameLayout implements snb, fn7, s84 {
             if (user2 != null) {
                 if (chat2 != null) {
                     CharSequence charSequence2 = chat2.title;
-                    if (xc2.c0(chat2) && (f2 = uc7.s1(yac.t0).g4.f(chat2.id, r47.b2(r47Var.K1, r47Var.k, true, false))) != null) {
+                    if (xc2.c0(chat2) && (f2 = uc7.s1(yac.t0).h4.f(chat2.id, r47.b2(r47Var.K1, r47Var.k, true, false))) != null) {
                         charSequence2 = ro4.k(f2, null, null);
                     }
                     if (textPaint == null) {
@@ -271,7 +271,7 @@ public final class yg4 extends FrameLayout implements snb, fn7, s84 {
                 }
             } else if (chat != null) {
                 CharSequence charSequence3 = chat.title;
-                if (xc2.c0(chat) && (f = uc7.s1(yac.t0).g4.f(chat.id, r47.b2(r47Var.K1, r47Var.k, true, false))) != null) {
+                if (xc2.c0(chat) && (f = uc7.s1(yac.t0).h4.f(chat.id, r47.b2(r47Var.K1, r47Var.k, true, false))) != null) {
                     charSequence3 = ro4.k(f, null, null);
                 }
                 if (textPaint == null) {
@@ -665,7 +665,7 @@ public final class yg4 extends FrameLayout implements snb, fn7, s84 {
                             j6 = j11;
                             i3 = i8;
                             i6 = 1;
-                            jf7.Y(i8).J0(0, str5, arrayList7, new ArrayList(), new ArrayList(), null, z7 ? 1 : 0);
+                            kf7.a0(i8).M0(0, str5, arrayList7, new ArrayList(), new ArrayList(), null, z7 ? 1 : 0);
                             i4 = z7 ? 1 : 0;
                             arrayList6 = arrayList7;
                         } else {

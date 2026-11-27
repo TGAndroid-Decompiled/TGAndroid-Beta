@@ -66,7 +66,7 @@ public final class h62 implements r69 {
                             rsb a = rsb.a(i6);
                             int i7 = aob.F8;
                             yob.x(a72Var, a, i7, vnbVar, PorterDuff.Mode.SRC_IN);
-                            G.a(0, a, ob6.G(i6 / 3600, "Hours", new Object[0]), null, i7, aob.E8, new ze7(a72Var, i6, view, (byte) 16));
+                            G.a(0, a, ob6.G(i6 / 3600, "Hours", new Object[0]), null, i7, aob.E8, new bf7(a72Var, i6, view, (byte) 16));
                             i5++;
                         } else {
                             G.b(2131232111, ob6.M0(2131746858, null), new ao1(a72Var, context, view, vnbVar, (byte) 6), false);

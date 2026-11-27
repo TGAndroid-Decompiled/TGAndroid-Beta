@@ -59,9 +59,9 @@ public class o5c extends nx0 {
         z4bVar.getClass();
         h94.a(arrayList, u00Var);
         int i = aob.Lf;
-        arrayList.add(new apb(s5cVar, 4, new Class[]{t3b.class}, new String[]{"textView"}, (Drawable[]) null, (zob) null, i));
-        arrayList.add(new apb(s5cVar, 4, new Class[]{t3b.class}, new String[]{"urlTextView"}, (Drawable[]) null, (zob) null, i));
-        arrayList.add(new apb(s5cVar, 8, new Class[]{t3b.class}, new String[]{"buttonView"}, (Drawable[]) null, (zob) null, aob.Nf));
+        arrayList.add(new apb(s5cVar, 4, new Class[]{u3b.class}, new String[]{"textView"}, (Drawable[]) null, (zob) null, i));
+        arrayList.add(new apb(s5cVar, 4, new Class[]{u3b.class}, new String[]{"urlTextView"}, (Drawable[]) null, (zob) null, i));
+        arrayList.add(new apb(s5cVar, 8, new Class[]{u3b.class}, new String[]{"buttonView"}, (Drawable[]) null, (zob) null, aob.Nf));
         arrayList.add(new apb((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, u00Var, aob.Mf));
         arrayList.add(new apb((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, u00Var, i));
         ImageView imageView = z4bVar.M;

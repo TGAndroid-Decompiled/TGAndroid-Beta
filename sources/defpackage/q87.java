@@ -45,9 +45,9 @@ public final class q87 implements Runnable {
                         }
                     }
                     new ArrayList(0);
-                    ip7.l0.c(new pl7(notificationsController, zh6Var, (byte) 7));
+                    ip7.l0.c(new ql7(notificationsController, zh6Var, (byte) 8));
                 }
-                qyb qybVar = uc7Var.g4;
+                qyb qybVar = uc7Var.h4;
                 qybVar.getClass();
                 HashSet hashSet = new HashSet();
                 for (int i3 = 0; i3 < zh6Var.m(); i3++) {

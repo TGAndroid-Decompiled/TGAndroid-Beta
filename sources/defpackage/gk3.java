@@ -469,13 +469,13 @@ public class gk3 extends c79 implements kf3 {
                 }
                 break;
             case 8:
-                View rcaVar = new rca(context, (uh9) null);
+                View scaVar = new sca(context, (uh9) null);
                 Drawable W0 = aob.W0(context, 2131231232, aob.b7);
                 zm2 zm2Var = new zm2(new ColorDrawable(aob.w0(null, aob.a7, false)), W0);
                 zm2Var.x = true;
-                rcaVar.setBackgroundDrawable(zm2Var);
-                E(rcaVar, W0);
-                of3Var = rcaVar;
+                scaVar.setBackgroundDrawable(zm2Var);
+                E(scaVar, W0);
+                of3Var = scaVar;
                 break;
             case 9:
             case 12:

@@ -176,7 +176,7 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.e {
         kq3 kq3Var;
         kq3 kq3Var2;
         String str;
-        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).Y3.edit();
         for (int i = 0; i < 3; i++) {
             int i2 = this.currentAccount;
             if (i == 0) {

@@ -1,7 +1,7 @@
 package defpackage;
 
 import org.telegram.tgnet.TLRPC;
-public final class nq1 implements bf7 {
+public final class nq1 implements cf7 {
     public final boolean a;
     public final oq1 b;
 
@@ -17,8 +17,8 @@ public final class nq1 implements bf7 {
             TLRPC.User user = zu1Var.f;
             boolean z2 = this.a;
             if (user != null || z2) {
-                jf7 messagesStorage = zu1Var.getMessagesStorage();
-                messagesStorage.a.c(new ke7(messagesStorage, zu1Var.l6, new mq1((byte) 1, this, z2), (byte) 0));
+                kf7 messagesStorage = zu1Var.getMessagesStorage();
+                messagesStorage.a.c(new le7(messagesStorage, zu1Var.l6, new mq1((byte) 1, this, z2), (byte) 0));
                 return;
             }
         }

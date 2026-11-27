@@ -92,7 +92,7 @@ public final class mj9 extends ze9 implements snb, zlb, jf9 {
         this.n = vnbVar;
         setWillNotDraw(false);
         f(0, hl.L(6.0f), 0, hl.L(4.0f));
-        if9 if9Var = new if9(context, vnbVar, new i09(this, (byte) 6));
+        if9 if9Var = new if9(context, vnbVar, new j09(this, (byte) 6));
         this.w = if9Var;
         addView(if9Var.a, tre.e(-2, -2, 51));
         setClipChildren(false);

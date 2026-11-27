@@ -58,7 +58,7 @@ public final class j26 {
         }
     }
 
-    public j26(String str, i09 i09Var, ur4 ur4Var, ux2 ux2Var) {
+    public j26(String str, j09 j09Var, ur4 ur4Var, ux2 ux2Var) {
         this.a = str;
         this.b = new Object();
     }

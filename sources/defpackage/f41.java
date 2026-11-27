@@ -121,8 +121,8 @@ public final class f41 extends n12 {
                 if (f41Var5 != null) {
                     f41Var5.w0(false);
                 }
-                g58 g58Var = o68Var.L1;
-                if (g58Var != null && g58Var.getEditField() != null) {
+                h58 h58Var = o68Var.L1;
+                if (h58Var != null && h58Var.getEditField() != null) {
                     o68Var.L1.getEditField().requestFocus();
                     return;
                 }

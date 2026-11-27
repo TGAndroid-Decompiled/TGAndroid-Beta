@@ -40,7 +40,7 @@ public final class xg8 extends FrameLayout implements ViewTreeObserver.OnPreDraw
         this.I = new fm0(0, jz7Var, k43Var, 380L, false);
         this.J = new fm0(0, new jz7(this, (byte) 8), k43Var, 380L, false);
         this.d = zu1Var;
-        this.y = zu1Var.getMessagesController().k4.T.f();
+        this.y = zu1Var.getMessagesController().l4.T.f();
         qy qyVar = new qy(this, activity, vnbVar, (byte) 1);
         this.a = qyVar;
         qyVar.setAllowTextEntitiesIntersection(true);

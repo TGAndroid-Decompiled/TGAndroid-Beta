@@ -82257,7 +82257,7 @@ public class TLRPC {
         public Document getDocument() {
             if (!this.alt_documents.isEmpty()) {
                 uc7 s1 = uc7.s1(yac.t0);
-                if (!s1.getUserConfig().p() || !s1.Q3) {
+                if (!s1.getUserConfig().p() || !s1.R3) {
                     return this.alt_documents.get(0);
                 }
             }

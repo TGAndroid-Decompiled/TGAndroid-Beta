@@ -2,9 +2,9 @@ package defpackage;
 
 import java.util.concurrent.atomic.AtomicInteger;
 public final class kma implements nr5 {
-    public final wj7 a = new wj7();
+    public final xj7 a = new xj7();
     public final z8d b = new z8d((byte) 7);
-    public final k09 c = new k09(new yfb(2, null), (byte) 6);
+    public final l09 c = new l09(new yfb(2, null), (byte) 6);
 
     public kma(String str) {
     }

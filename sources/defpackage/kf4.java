@@ -293,7 +293,7 @@ public final class kf4 extends la {
                 vacVar = ot3Var;
                 break;
             case 3:
-                vacVar = new rca(context, (uh9) null);
+                vacVar = new sca(context, (uh9) null);
                 break;
             case 4:
                 ?? frameLayout = new FrameLayout(context);

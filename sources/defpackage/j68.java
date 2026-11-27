@@ -40,7 +40,7 @@ public final class j68 extends g9 {
     @Override
     public final void k() {
         if (!this.c && !this.w[0]) {
-            hl.c3(new z58(this, (byte) 3));
+            hl.c3(new a68(this, (byte) 3));
         }
         o68 o68Var = this.x;
         o68Var.d1 = null;
@@ -255,8 +255,8 @@ public final class j68 extends g9 {
             o68Var.n3.setLayoutParams(layoutParams3);
             int b = actionBarPopupWindow$ActionBarPopupWindowLayout.b((ActionBarPopupWindow$ActionBarPopupWindowLayout) o68Var.m3.b);
             b8 b8Var2 = o68Var.n3;
-            b8Var2.Q = new c68(actionBarPopupWindow$ActionBarPopupWindowLayout, b, (byte) 0);
-            b8Var2.setOnClickListener(new d68(this, (byte) 2));
+            b8Var2.Q = new d68(actionBarPopupWindow$ActionBarPopupWindowLayout, b, (byte) 0);
+            b8Var2.setOnClickListener(new e68(this, (byte) 2));
             actionBarPopupWindow$ActionBarPopupWindowLayout.c = true;
             if (z) {
                 k8 k8Var = new k8(aob.H8, x53Var, o68Var.getContext());
@@ -276,7 +276,7 @@ public final class j68 extends g9 {
         if (o68Var.n1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (M0 = uc7.s1(o68Var.m2).M0(Long.valueOf(-o68Var.l1))) != null) {
             TLRPC.ChatFull N0 = uc7.s1(o68Var.m2).N0(M0.id);
             if (N0 == null) {
-                N0 = jf7.Y(o68Var.m2).C0(M0.id, true, new CountDownLatch(1), false, false, 0);
+                N0 = kf7.a0(o68Var.m2).F0(M0.id, true, new CountDownLatch(1), false, false, 0);
             }
             if (N0 != null && N0.can_view_stats) {
                 s7.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232383, ob6.M0(2131743194, null), false, this.d).setOnClickListener(new cg(this, storyItem, this.e, M0, (byte) 13));

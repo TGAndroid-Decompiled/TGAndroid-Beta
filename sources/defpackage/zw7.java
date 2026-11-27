@@ -11,11 +11,11 @@ public final class zw7 extends a44 {
     public float s;
     public int w;
     public int x;
-    public final vab y;
+    public final wab y;
 
-    public zw7(vab vabVar, Context context, v34 v34Var) {
+    public zw7(wab wabVar, Context context, v34 v34Var) {
         super(context, v34Var);
-        this.y = vabVar;
+        this.y = wabVar;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);
@@ -44,11 +44,11 @@ public final class zw7 extends a44 {
         super.onDraw(canvas);
         long min = Math.min(16L, System.currentTimeMillis() - this.n);
         this.n = System.currentTimeMillis();
-        vab vabVar = this.y;
-        h44 h44Var = vabVar.t0;
+        wab wabVar = this.y;
+        h44 h44Var = wabVar.t0;
         if (h44Var != null && !h44Var.r && h44Var.n) {
             i = h44Var.getStickyX();
-            i2 = vabVar.t0.getStickyY();
+            i2 = wabVar.t0.getStickyY();
         } else {
             i = 0;
             i2 = 0;
@@ -124,14 +124,14 @@ public final class zw7 extends a44 {
     @Override
     public final void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        vab vabVar = this.y;
-        zw7 zw7Var = vabVar.B0;
-        if (vabVar.B1 <= 0) {
-            vabVar.B1 = zw7Var.getMeasuredWidth();
+        wab wabVar = this.y;
+        zw7 zw7Var = wabVar.B0;
+        if (wabVar.B1 <= 0) {
+            wabVar.B1 = zw7Var.getMeasuredWidth();
         }
-        if (vabVar.C1 <= 0) {
-            vabVar.C1 = zw7Var.getMeasuredHeight();
+        if (wabVar.C1 <= 0) {
+            wabVar.C1 = zw7Var.getMeasuredHeight();
         }
-        vabVar.G0();
+        wabVar.G0();
     }
 }

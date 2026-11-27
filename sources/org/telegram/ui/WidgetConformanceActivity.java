@@ -35,8 +35,8 @@ public final class WidgetConformanceActivity extends Activity {
         }
         for (int i = 0; i < 4; i++) {
             if (yac.h(i).o()) {
-                jf7 Y = jf7.Y(i);
-                Y.a.c(new be7(Y, (byte) 1));
+                kf7 a0 = kf7.a0(i);
+                a0.a.c(new hd7(a0, (byte) 4));
             }
         }
         Log.i("WidgetConformance", "widget heights cleared");

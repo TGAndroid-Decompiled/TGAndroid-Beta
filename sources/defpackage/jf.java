@@ -44,7 +44,7 @@ public final class jf implements View.OnClickListener {
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) obj2;
                 lp7 lp7Var = (lp7) obj;
                 iArr[0] = ((Integer) view.getTag()).intValue();
-                SharedPreferences.Editor edit = uc7.s1(yac.t0).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(yac.t0).X3.edit();
                 if (i == 1) {
                     edit.putInt("popupAll", iArr[0]);
                 } else if (i == 0) {

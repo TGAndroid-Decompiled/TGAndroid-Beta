@@ -10,7 +10,7 @@ public abstract class j6f {
         synchronized (SharedPreferences.class) {
             sharedPreferences = a;
             if (sharedPreferences == null) {
-                sharedPreferences = (SharedPreferences) v5f.a(new tg7(context, (byte) 4));
+                sharedPreferences = (SharedPreferences) v5f.a(new ug7(context, (byte) 4));
                 a = sharedPreferences;
             }
         }

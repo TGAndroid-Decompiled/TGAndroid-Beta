@@ -132,7 +132,7 @@ public final class uqc extends n9c implements fn7 {
     public static void I0(Context context, int i, TL_wallet.walletTransaction wallettransaction, kcc kccVar, icc iccVar, byte[] bArr, wk1 wk1Var, vnb vnbVar) {
         TL_wallet.nftItem nftitem;
         String str;
-        jl7[] jl7VarArr;
+        kl7[] kl7VarArr;
         View[] viewArr;
         icc iccVar2;
         LinearLayout j0;
@@ -159,7 +159,7 @@ public final class uqc extends n9c implements fn7 {
             }
         }
         boolean z = true;
-        jl7[] jl7VarArr2 = new jl7[1];
+        kl7[] kl7VarArr2 = new kl7[1];
         View[] viewArr2 = new View[1];
         b G = c.C(i).G();
         ArrayList arrayList = new ArrayList(G.c);
@@ -181,30 +181,30 @@ public final class uqc extends n9c implements fn7 {
             viewArr = viewArr2;
             ?? vpcVar = new vpc(context, vnbVar, arrayList, G, i, rect, viewArr);
             vpcVar.setPosition(i2);
-            jl7VarArr = jl7VarArr2;
-            vpcVar.setAdapter(new wpc(arrayList, context, vnbVar, rect, i, jl7VarArr2));
+            kl7VarArr = kl7VarArr2;
+            vpcVar.setAdapter(new wpc(arrayList, context, vnbVar, rect, i, kl7VarArr2));
             iccVar2 = iccVar;
             j0 = vpcVar;
         } else {
-            jl7VarArr = jl7VarArr2;
+            kl7VarArr = kl7VarArr2;
             viewArr = viewArr2;
             iccVar2 = iccVar;
-            j0 = j0(context, i, wallettransaction, kccVar, iccVar, bArr, wk1Var, vnbVar, jl7VarArr, false);
+            j0 = j0(context, i, wallettransaction, kccVar, iccVar, bArr, wk1Var, vnbVar, kl7VarArr, false);
         }
-        jl7[] jl7VarArr3 = jl7VarArr;
+        kl7[] kl7VarArr3 = kl7VarArr;
         xpc xpcVar = new xpc(context, j0, vnbVar, j0, viewArr, context);
-        jl7VarArr3[0] = xpcVar;
+        kl7VarArr3[0] = xpcVar;
         if ((j0 instanceof vic) && iccVar2 != null) {
-            xpcVar.n(new vlc(iccVar2, wallettransaction, (byte) 9));
+            xpcVar.n(new slc(iccVar2, wallettransaction, (byte) 10));
         }
-        jl7 jl7Var = jl7VarArr3[0];
+        kl7 kl7Var = kl7VarArr3[0];
         if (kccVar == null) {
             z = false;
         }
-        jl7Var.w0(z);
-        jl7 jl7Var2 = jl7VarArr3[0];
-        jl7Var2.T0 = false;
-        jl7Var2.show();
+        kl7Var.w0(z);
+        kl7 kl7Var2 = kl7VarArr3[0];
+        kl7Var2.T0 = false;
+        kl7Var2.show();
     }
 
     public static void K0(Context context, vnb vnbVar) {
@@ -423,8 +423,8 @@ public final class uqc extends n9c implements fn7 {
         return null;
     }
 
-    public static android.widget.LinearLayout j0(final android.content.Context r39, int r40, org.telegram.tgnet.tl.TL_wallet.walletTransaction r41, defpackage.kcc r42, defpackage.icc r43, byte[] r44, defpackage.wk1 r45, defpackage.vnb r46, defpackage.jl7[] r47, boolean r48) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.uqc.j0(android.content.Context, int, org.telegram.tgnet.tl.TL_wallet$walletTransaction, kcc, icc, byte[], wk1, vnb, jl7[], boolean):android.widget.LinearLayout");
+    public static android.widget.LinearLayout j0(final android.content.Context r39, int r40, org.telegram.tgnet.tl.TL_wallet.walletTransaction r41, defpackage.kcc r42, defpackage.icc r43, byte[] r44, defpackage.wk1 r45, defpackage.vnb r46, defpackage.kl7[] r47, boolean r48) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.uqc.j0(android.content.Context, int, org.telegram.tgnet.tl.TL_wallet$walletTransaction, kcc, icc, byte[], wk1, vnb, kl7[], boolean):android.widget.LinearLayout");
     }
 
     public static String m0(String str) {
@@ -639,7 +639,7 @@ public final class uqc extends n9c implements fn7 {
             } catch (Exception e) {
                 cc4.g(e, true);
             }
-            s43.a(linkedHashSet, uc7.s1(s43Var.a).k4.Z.f);
+            s43.a(linkedHashSet, uc7.s1(s43Var.a).l4.Z.f);
             s43.c(linkedHashSet, ob6.D0().y);
             s43.c(linkedHashSet, ob6.D0().z);
             Iterator it = linkedHashSet.iterator();

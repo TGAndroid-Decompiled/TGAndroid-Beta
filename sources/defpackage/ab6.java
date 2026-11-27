@@ -2,7 +2,7 @@ package defpackage;
 
 import android.content.Context;
 import android.os.Bundle;
-public final class ab6 implements aca {
+public final class ab6 implements bca {
     public final Bundle a;
 
     public ab6(Context context) {
@@ -13,7 +13,7 @@ public final class ab6 implements aca {
 
     @Override
     public final Object a(zw2 zw2Var) {
-        return f9c.a;
+        return g9c.a;
     }
 
     @Override

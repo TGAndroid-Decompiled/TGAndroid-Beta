@@ -26,7 +26,7 @@ public final class s73 extends yfb implements ur4 {
 
     @Override
     public final Object invoke(Object obj) {
-        return ((s73) create((zw2) obj)).invokeSuspend(f9c.a);
+        return ((s73) create((zw2) obj)).invokeSuspend(g9c.a);
     }
 
     @Override

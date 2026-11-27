@@ -23,8 +23,8 @@ public final class fq2 {
         this.g = DesugarCollections.unmodifiableSet(set3);
     }
 
-    public static eq2 a(h09 h09Var) {
-        return new eq2(h09Var, new h09[0]);
+    public static eq2 a(i09 i09Var) {
+        return new eq2(i09Var, new i09[0]);
     }
 
     public static eq2 b(Class cls) {
@@ -35,10 +35,10 @@ public final class fq2 {
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
         HashSet hashSet3 = new HashSet();
-        hashSet.add(h09.a(cls));
+        hashSet.add(i09.a(cls));
         for (Class cls2 : clsArr) {
             bwe.a(cls2, "Null interface");
-            hashSet.add(h09.a(cls2));
+            hashSet.add(i09.a(cls2));
         }
         return new fq2(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new dq2(obj, (byte) 0), hashSet3);
     }

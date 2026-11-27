@@ -71,7 +71,7 @@ public final class hl9 {
     public final ArrayList o;
     public final ArrayList p;
     public CharSequence q;
-    public ui7 r;
+    public vi7 r;
     public boolean s;
     public float t;
     public boolean u;
@@ -380,8 +380,8 @@ public final class hl9 {
     }
 
     public final boolean E() {
-        ui7 ui7Var = this.r;
-        if (ui7Var != null && ui7Var.h) {
+        vi7 vi7Var = this.r;
+        if (vi7Var != null && vi7Var.h) {
             return false;
         }
         return true;
@@ -704,13 +704,13 @@ public final class hl9 {
         }
     }
 
-    public final void V(ui7 ui7Var) {
-        this.r = ui7Var;
+    public final void V(vi7 vi7Var) {
+        this.r = vi7Var;
         int i = 0;
         while (true) {
             ArrayList arrayList = this.g;
             if (i < arrayList.size()) {
-                ((dk9) arrayList.get(i)).L = ui7Var;
+                ((dk9) arrayList.get(i)).L = vi7Var;
                 arrayList.get(i);
                 ((dk9) arrayList.get(i)).getClass();
                 i++;
@@ -1190,7 +1190,7 @@ public final class hl9 {
             f18 = 1.0f;
         }
         r47 r47Var = this.b;
-        if (!this.O && (r47Var == null || !uc7.s1(this.a).i4.z(r47Var))) {
+        if (!this.O && (r47Var == null || !uc7.s1(this.a).j4.z(r47Var))) {
             z2 = false;
         } else {
             z2 = true;
@@ -2240,7 +2240,7 @@ public final class hl9 {
             ((dk9) arrayList.get(i)).o(arrayList2);
         }
         for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-            ((si7) arrayList2.get(i2)).getClass();
+            ((ti7) arrayList2.get(i2)).getClass();
         }
         return arrayList2;
     }

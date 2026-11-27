@@ -350,7 +350,7 @@ public final class tq0 {
         edit.apply();
     }
 
-    public final void k(boolean z, final hp8 hp8Var) {
+    public final void k(boolean z, final ep8 ep8Var) {
         this.d = true;
         if (z && !a()) {
             Activity e = e();
@@ -382,12 +382,12 @@ public final class tq0 {
                     @Override
                     public final void w(id idVar2, int i3) {
                         byte b = r3;
-                        hp8 hp8Var2 = hp8Var;
+                        ep8 ep8Var2 = ep8Var;
                         tq0 tq0Var = this.b;
                         switch (b) {
                             case 0:
                                 if (!tq0Var.a()) {
-                                    jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, hp8Var2, (byte) 5));
+                                    jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, ep8Var2, (byte) 5));
                                     return;
                                 }
                                 tq0Var.d = true;
@@ -406,8 +406,8 @@ public final class tq0 {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                if (hp8Var2 != null) {
-                                    hp8Var2.run();
+                                if (ep8Var2 != null) {
+                                    ep8Var2.run();
                                     return;
                                 }
                                 return;
@@ -427,12 +427,12 @@ public final class tq0 {
                 @Override
                 public final void w(id idVar2, int i3) {
                     byte b = r3;
-                    hp8 hp8Var2 = hp8Var;
+                    ep8 ep8Var2 = ep8Var;
                     tq0 tq0Var = this.b;
                     switch (b) {
                         case 0:
                             if (!tq0Var.a()) {
-                                jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, hp8Var2, (byte) 5));
+                                jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, ep8Var2, (byte) 5));
                                 return;
                             }
                             tq0Var.d = true;
@@ -451,8 +451,8 @@ public final class tq0 {
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            if (hp8Var2 != null) {
-                                hp8Var2.run();
+                            if (ep8Var2 != null) {
+                                ep8Var2.run();
                                 return;
                             }
                             return;
@@ -466,8 +466,8 @@ public final class tq0 {
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (hp8Var != null) {
-                hp8Var.run();
+            if (ep8Var != null) {
+                ep8Var.run();
             }
         }
         j();

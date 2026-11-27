@@ -81,7 +81,7 @@ public final class szb extends iu5 {
                     arrayList2.add(Integer.valueOf(tL_forumTopic.id));
                 }
             }
-            tzbVar.getMessagesController().g4.w(arrayList2, tzbVar.a);
+            tzbVar.getMessagesController().h4.w(arrayList2, tzbVar.a);
             return;
         }
         tzbVar.O.K0(false);
@@ -95,7 +95,7 @@ public final class szb extends iu5 {
             TLRPC.TL_forumTopic tL_forumTopic = qzbVar.O;
             tzb tzbVar = this.f;
             if (tL_forumTopic != null) {
-                qyb qybVar = tzbVar.getMessagesController().g4;
+                qyb qybVar = tzbVar.getMessagesController().h4;
                 long j = tzbVar.a;
                 TLRPC.TL_forumTopic tL_forumTopic2 = qzbVar.O;
                 qybVar.A(tL_forumTopic2.id, j, tL_forumTopic2.hidden);

@@ -51,7 +51,7 @@ public final class voa extends FrameLayout {
     public final String[] g0;
     public final nm3 h;
     public final View h0;
-    public ida i0;
+    public kba i0;
     public final og2 n;
     public final TextPaint r;
     public final Paint s;
@@ -538,12 +538,12 @@ public final class voa extends FrameLayout {
 
     @Override
     public final boolean performAccessibilityAction(int i, Bundle bundle) {
-        ida idaVar;
+        kba kbaVar;
         if (i == 2131296268 && this.c0) {
             b();
             return true;
-        } else if (i == 2131296269 && this.h0 != null && (idaVar = this.i0) != null) {
-            idaVar.run();
+        } else if (i == 2131296269 && this.h0 != null && (kbaVar = this.i0) != null) {
+            kbaVar.run();
             return true;
         } else {
             return super.performAccessibilityAction(i, bundle);

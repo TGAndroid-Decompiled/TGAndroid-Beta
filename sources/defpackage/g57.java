@@ -17,7 +17,7 @@ public final class g57 extends bmb {
         g57 g57Var = m57Var.e;
         int i3 = g57Var.v - g57Var.u;
         s57 s57Var = m57Var.d0;
-        if (i3 > uc7.s1(s57Var.x).k4.V1.f()) {
+        if (i3 > uc7.s1(s57Var.x).l4.V1.f()) {
             m57Var.f();
             return;
         }

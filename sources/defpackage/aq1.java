@@ -195,7 +195,7 @@ public final class aq1 implements Runnable {
                             } else {
                                 i3 = 3;
                             }
-                            w3.l(j2, i3, null, new ze7(sj3Var, dialog, i9, (byte) 19));
+                            w3.l(j2, i3, null, new bf7(sj3Var, dialog, i9, (byte) 19));
                         }
                     }
                     if (uj3Var.Y2 != 0 && uj3Var.T1.isEmpty()) {
@@ -225,8 +225,8 @@ public final class aq1 implements Runnable {
                 uc7 uc7Var = (uc7) obj2;
                 uc7Var.i1.clear();
                 uc7Var.p1.clear();
-                jf7 messagesStorage = uc7Var.getMessagesStorage();
-                messagesStorage.G();
+                kf7 messagesStorage = uc7Var.getMessagesStorage();
+                messagesStorage.I();
                 uc7Var.A4(true, messagesStorage.w, ((TLRPC.updates_Difference) obj).pts, this.b, this.c);
                 uc7Var.O1().p();
                 return;
@@ -263,10 +263,10 @@ public final class aq1 implements Runnable {
                 dc7Var2.d(i7, i8, tL_photos_photos);
                 return;
             case 10:
-                jf7 jf7Var = (jf7) obj2;
+                kf7 kf7Var = (kf7) obj2;
                 byte[] bArr = (byte[]) obj;
                 try {
-                    SQLitePreparedStatement executeFast = jf7Var.b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
+                    SQLitePreparedStatement executeFast = kf7Var.b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
                     executeFast.bindInteger(1, i7);
                     executeFast.bindInteger(2, i8);
                     if (bArr != null) {
@@ -284,7 +284,7 @@ public final class aq1 implements Runnable {
                     nativeByteBuffer.reuse();
                     return;
                 } catch (Exception e) {
-                    jf7Var.n(e, true);
+                    kf7Var.p(e, true);
                     return;
                 }
             default:

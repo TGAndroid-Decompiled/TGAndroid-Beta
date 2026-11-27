@@ -66,13 +66,13 @@ public final class gg implements RequestDelegate {
                     uc7Var.o2 = 0;
                     TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
                     if (tL_messages_peerDialogs != null && !tL_messages_peerDialogs.dialogs.isEmpty()) {
-                        uc7Var.getMessagesStorage().j1(tL_help_promoData.users, tL_help_promoData.chats, true, true);
+                        uc7Var.getMessagesStorage().n1(tL_help_promoData.users, tL_help_promoData.chats, true, true);
                         TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
                         tL_messages_dialogs.chats = tL_messages_peerDialogs.chats;
                         tL_messages_dialogs.users = tL_messages_peerDialogs.users;
                         tL_messages_dialogs.dialogs = tL_messages_peerDialogs.dialogs;
                         tL_messages_dialogs.messages = tL_messages_peerDialogs.messages;
-                        uc7Var.getMessagesStorage().a1(tL_messages_dialogs, 2);
+                        uc7Var.getMessagesStorage().e1(tL_messages_dialogs, 2);
                         hl.c3(new ba7(uc7Var, tL_help_promoData, tL_messages_peerDialogs, this.c, (byte) 1));
                     } else {
                         hl.c3(new l87(uc7Var, (byte) 29));

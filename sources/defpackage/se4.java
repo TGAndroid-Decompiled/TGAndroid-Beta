@@ -180,7 +180,7 @@ public final class se4 implements Runnable {
                                             }
                                         }
                                     }
-                                    uc7.s1(i).X3.edit().putStringSet("gram_earnings_wallet_withdraws", new HashSet(e2)).apply();
+                                    uc7.s1(i).Y3.edit().putStringSet("gram_earnings_wallet_withdraws", new HashSet(e2)).apply();
                                 }
                             }
                             jxa v = jxa.v(i, true);
@@ -265,9 +265,9 @@ public final class se4 implements Runnable {
                 return;
             case 19:
                 n55 n55Var = (n55) obj2;
-                sk7 sk7Var = (sk7) obj;
+                tk7 tk7Var = (tk7) obj;
                 if (!n55Var.e) {
-                    sk7Var.d0 = true;
+                    tk7Var.d0 = true;
                     Runnable runnable = n55Var.g;
                     if (runnable != null) {
                         runnable.run();

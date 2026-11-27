@@ -95,9 +95,9 @@ public final class ws5 extends c79 {
                 break;
             case 2:
                 int i2 = aob.a7;
-                View rcaVar = new rca(context, aob.w0(null, i2, false), 0);
-                yob.h(i2, null, rcaVar);
-                ss5Var = rcaVar;
+                View scaVar = new sca(context, aob.w0(null, i2, false), 0);
+                yob.h(i2, null, scaVar);
+                ss5Var = scaVar;
                 break;
             case 3:
                 ss5 ss5Var2 = new ss5(this, context, bt5Var.O1, bt5Var, bt5Var.b2);
@@ -122,7 +122,7 @@ public final class ws5 extends c79 {
                 ss5Var = tk4Var;
                 break;
             case 7:
-                ss5Var = new rca(context, (uh9) null);
+                ss5Var = new sca(context, (uh9) null);
                 break;
             case 8:
                 ?? frameLayout = new FrameLayout(context);

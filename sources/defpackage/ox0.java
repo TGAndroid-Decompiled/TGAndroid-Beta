@@ -778,7 +778,7 @@ public final class ox0 extends c79 {
                             yob.h(aob.d6, vnbVar2, mf5Var2);
                             mf5Var = mf5Var2;
                         } else {
-                            mf5Var = new rca(context2, (uh9) null);
+                            mf5Var = new sca(context2, (uh9) null);
                         }
                     } else {
                         f23 f23Var = new f23(70, vnbVar2, context2);
@@ -936,9 +936,9 @@ public final class ox0 extends c79 {
                         }
                     } else {
                         int i20 = aob.a7;
-                        rca rcaVar = new rca(context3, aob.v0(i20, kl8Var.J0), 0);
-                        yob.h(i20, kl8Var.J0, rcaVar);
-                        jl8Var = rcaVar;
+                        sca scaVar = new sca(context3, aob.v0(i20, kl8Var.J0), 0);
+                        yob.h(i20, kl8Var.J0, scaVar);
+                        jl8Var = scaVar;
                     }
                 } else {
                     oob oobVar = new oob((byte) 10, context3, this);

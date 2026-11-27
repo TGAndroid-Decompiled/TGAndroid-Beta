@@ -52,7 +52,7 @@ public final class ib3 implements cjc {
         if (this.a && ((uif) this.c).j(ko4Var)) {
             jo4 a = ko4Var.a();
             String str2 = ko4Var.l;
-            a.s = dg7.n("application/x-media3-cues");
+            a.s = eg7.n("application/x-media3-cues");
             a.T = ((uif) this.c).y(ko4Var);
             StringBuilder sb = new StringBuilder();
             sb.append(ko4Var.t);

@@ -1,42 +1,32 @@
 package defpackage;
+
+import org.telegram.tgnet.TLRPC;
 public final class ie7 implements Runnable {
     public final byte a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final Object f;
+    public final kf7 b;
+    public final TLRPC.TL_chatFull c;
 
-    public ie7(Object obj, int i, int i2, int i3, int i4, byte b) {
+    public ie7(kf7 kf7Var, TLRPC.TL_chatFull tL_chatFull, byte b) {
         this.a = b;
-        this.f = obj;
-        this.b = i;
-        this.c = i2;
-        this.d = i3;
-        this.e = i4;
+        this.b = kf7Var;
+        this.c = tL_chatFull;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        int i = this.e;
-        int i2 = this.d;
-        int i3 = this.c;
-        int i4 = this.b;
-        Object obj = this.f;
+        TLRPC.TL_chatFull tL_chatFull = this.c;
+        kf7 kf7Var = this.b;
         switch (b) {
             case 0:
-                ((jf7) obj).y1(i4, i3, i2, i);
+                jn7 notificationCenter = kf7Var.getNotificationCenter();
+                Boolean bool = Boolean.FALSE;
+                notificationCenter.k(31, tL_chatFull, 0, bool, bool);
                 return;
             default:
-                bnb bnbVar = (bnb) obj;
-                bnbVar.J = null;
-                bnbVar.h = i4;
-                bnbVar.n = i3;
-                bnbVar.e = i2;
-                bnbVar.f = i;
-                bnbVar.g();
-                bnbVar.requestLayout();
+                jn7 notificationCenter2 = kf7Var.getNotificationCenter();
+                Boolean bool2 = Boolean.FALSE;
+                notificationCenter2.k(31, tL_chatFull, 0, bool2, bool2);
                 return;
         }
     }

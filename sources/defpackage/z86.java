@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.ConnectionsManager;
 public final class z86 implements s69, jcc {
-    public final b58 a;
+    public final c58 a;
 
-    public z86(b58 b58Var) {
-        this.a = b58Var;
+    public z86(c58 c58Var) {
+        this.a = c58Var;
     }
 
     @Override
@@ -22,11 +22,11 @@ public final class z86 implements s69, jcc {
         int i2;
         int i3;
         int i4;
-        b58 b58Var = this.a;
-        gu guVar = b58Var.c;
-        ArrayList arrayList = b58Var.r;
+        c58 c58Var = this.a;
+        gu guVar = c58Var.c;
+        ArrayList arrayList = c58Var.r;
         n96 n96Var = ((l96) view).f;
-        int i5 = b58Var.O;
+        int i5 = c58Var.O;
         int currentTime = ConnectionsManager.getInstance(i5).getCurrentTime();
         HashSet hashSet = new HashSet();
         int i6 = 0;
@@ -43,7 +43,7 @@ public final class z86 implements s69, jcc {
             }
             i7++;
         }
-        w96 w96Var = b58Var.Q;
+        w96 w96Var = c58Var.Q;
         if (w96Var != null) {
             j = w96Var.m();
         }
@@ -54,7 +54,7 @@ public final class z86 implements s69, jcc {
             if (i8 < arrayList.size()) {
                 m96 m96Var2 = (m96) arrayList.get(i8);
                 if (m96Var2.b || !m96Var2.e || m96Var2.g >= j) {
-                    if (!hashSet.contains(Integer.valueOf(m96Var2.a)) || (b58Var.x == n96Var.b && (i4 = b58Var.y) != 0 && m96Var2.a >= i4)) {
+                    if (!hashSet.contains(Integer.valueOf(m96Var2.a)) || (c58Var.x == n96Var.b && (i4 = c58Var.y) != 0 && m96Var2.a >= i4)) {
                         i9++;
                     }
                 }
@@ -87,13 +87,13 @@ public final class z86 implements s69, jcc {
         if (i2 < 0) {
             return;
         }
-        b58Var.x = n96Var.b;
-        b58Var.y = i2;
-        b58Var.E = true;
+        c58Var.x = n96Var.b;
+        c58Var.y = i2;
+        c58Var.E = true;
         o79 itemAnimator = guVar.getItemAnimator();
         guVar.setItemAnimator(null);
-        b58Var.d.h1(i9, guVar.getHeight() / 2, true);
-        b58Var.e.g(i9);
+        c58Var.d.h1(i9, guVar.getHeight() / 2, true);
+        c58Var.e.g(i9);
         guVar.setItemAnimator(itemAnimator);
     }
 

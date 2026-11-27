@@ -38,19 +38,19 @@ public final class vk8 implements dic {
                 return;
             default:
                 lcb lcbVar = (lcb) this.b;
-                acb acbVar = (acb) callback;
-                o68 currentPeerView = acbVar.getCurrentPeerView();
+                bcb bcbVar = (bcb) callback;
+                o68 currentPeerView = bcbVar.getCurrentPeerView();
                 if (currentPeerView != null) {
-                    k68 k68Var = acbVar.C0;
+                    k68 k68Var = bcbVar.C0;
                     ccb ccbVar = (ccb) k68Var;
                     ccbVar.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
-                    acbVar.F();
+                    bcbVar.F();
                     hcb hcbVar = lcbVar.u0;
                     if (hcbVar != null) {
                         if (i < 3) {
                             hcbVar.f(false);
                             return;
-                        } else if (i > acbVar.A0.b() - 4) {
+                        } else if (i > bcbVar.A0.b() - 4) {
                             lcbVar.u0.f(true);
                             return;
                         } else {
@@ -87,27 +87,27 @@ public final class vk8 implements dic {
                 d();
                 return;
             default:
-                acb acbVar = (acb) callback;
-                acbVar.J0 = i;
+                bcb bcbVar = (bcb) callback;
+                bcbVar.J0 = i;
                 if (i2 > 0) {
                     i4 = i + 1;
                 } else {
                     i4 = i - 1;
                 }
-                acbVar.K0 = i4;
-                acbVar.L0 = f;
-                long j = yac.h(acbVar.z0).n;
-                int i5 = acbVar.J0;
-                if (i5 >= 0 && (acbVar.y0 != null ? acbVar.x0 == j : !(i5 >= acbVar.B0.size() || ((Long) acbVar.B0.get(acbVar.J0)).longValue() != j))) {
-                    ((ccb) acbVar.C0).d(1.0f - acbVar.L0);
+                bcbVar.K0 = i4;
+                bcbVar.L0 = f;
+                long j = yac.h(bcbVar.z0).n;
+                int i5 = bcbVar.J0;
+                if (i5 >= 0 && (bcbVar.y0 != null ? bcbVar.x0 == j : !(i5 >= bcbVar.B0.size() || ((Long) bcbVar.B0.get(bcbVar.J0)).longValue() != j))) {
+                    ((ccb) bcbVar.C0).d(1.0f - bcbVar.L0);
                     return;
                 }
-                int i6 = acbVar.K0;
-                if (i6 >= 0 && (acbVar.y0 != null ? acbVar.x0 == j : !(i6 >= acbVar.B0.size() || ((Long) acbVar.B0.get(acbVar.K0)).longValue() != j))) {
-                    ((ccb) acbVar.C0).d(acbVar.L0);
+                int i6 = bcbVar.K0;
+                if (i6 >= 0 && (bcbVar.y0 != null ? bcbVar.x0 == j : !(i6 >= bcbVar.B0.size() || ((Long) bcbVar.B0.get(bcbVar.K0)).longValue() != j))) {
+                    ((ccb) bcbVar.C0).d(bcbVar.L0);
                     return;
                 }
-                ((ccb) acbVar.C0).d(0.0f);
+                ((ccb) bcbVar.C0).d(0.0f);
                 return;
         }
     }
@@ -118,15 +118,15 @@ public final class vk8 implements dic {
             case 0:
                 return;
             default:
-                acb acbVar = (acb) this.c;
-                ((ccb) acbVar.C0).d.U();
-                Runnable runnable = acbVar.H0;
+                bcb bcbVar = (bcb) this.c;
+                ((ccb) bcbVar.C0).d.U();
+                Runnable runnable = bcbVar.H0;
                 if (runnable != null && i == 0) {
                     runnable.run();
-                    acbVar.H0 = null;
+                    bcbVar.H0 = null;
                 }
-                acbVar.G0 = i;
-                lcb lcbVar = acbVar.S0;
+                bcbVar.G0 = i;
+                lcb lcbVar = bcbVar.S0;
                 if (lcbVar.o0.G0 == 1) {
                     hl.r(lcbVar.b1);
                     return;

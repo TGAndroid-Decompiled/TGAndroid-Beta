@@ -35,10 +35,10 @@ public final class vt8 implements ncc, occ {
         boolean z5;
         int i3;
         int i4;
+        String str3;
         String M0;
         int i5;
         sx4 sx4Var3;
-        LinearLayout linearLayout;
         boolean z6;
         TL_stars.SavedStarGift savedStarGift3;
         au8 au8Var3 = this.a;
@@ -63,12 +63,12 @@ public final class vt8 implements ncc, occ {
                         K.b(2131231243, ob6.M0(2131753749, null), new vn1(J, (byte) 2), false);
                         K.j();
                         ti3 ti3Var = new ti3(au8Var3.getContext(), (byte) 5);
-                        LinearLayout linearLayout2 = new LinearLayout(au8Var3.getContext());
-                        ti3Var.addView(linearLayout2);
-                        linearLayout2.setOrientation(1);
+                        LinearLayout linearLayout = new LinearLayout(au8Var3.getContext());
+                        ti3Var.addView(linearLayout);
+                        linearLayout.setOrientation(1);
                         boolean z8 = true;
                         K.q(ti3Var, tre.o(-1, -2));
-                        if (zwaVar.d().size() + 1 < uc7.s1(i6).k4.z.f()) {
+                        if (zwaVar.d().size() + 1 < uc7.s1(i6).l4.z.f()) {
                             b8 b8Var = new b8(0, au8Var3.c, au8Var3.getContext(), false, false);
                             b8Var.setPadding(hl.L(18.0f), 0, hl.L(18.0f), 0);
                             int i7 = aob.E8;
@@ -76,7 +76,7 @@ public final class vt8 implements ncc, occ {
                             b8Var.h(0.12f, i7);
                             b8Var.j(ob6.M0(2131750057, null), 2131231829, null);
                             b8Var.setOnClickListener(new lw4(au8Var3, J, savedStarGift4, (byte) 17));
-                            linearLayout2.addView(b8Var, tre.o(-1, -2));
+                            linearLayout.addView(b8Var, tre.o(-1, -2));
                         }
                         ArrayList d = zwaVar.d();
                         int size = d.size();
@@ -84,16 +84,15 @@ public final class vt8 implements ncc, occ {
                         while (i8 < size) {
                             int i9 = i8 + 1;
                             TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) d.get(i8);
-                            ?? r11 = zwaVar.e(tL_starGiftCollection.collection_id).l;
-                            int size2 = r11.size();
+                            ?? r9 = zwaVar.e(tL_starGiftCollection.collection_id).l;
+                            int size2 = r9.size();
                             int i10 = z7;
                             while (true) {
                                 if (i10 < size2) {
-                                    Object obj2 = r11.get(i10);
+                                    Object obj2 = r9.get(i10);
                                     int i11 = i10 + 1;
                                     sx4Var3 = sx4Var4;
                                     if (jxa.h((TL_stars.SavedStarGift) obj2, savedStarGift4)) {
-                                        linearLayout = linearLayout2;
                                         z6 = z8;
                                         break;
                                     }
@@ -101,7 +100,6 @@ public final class vt8 implements ncc, occ {
                                     i10 = i11;
                                 } else {
                                     sx4Var3 = sx4Var4;
-                                    linearLayout = linearLayout2;
                                     z6 = false;
                                     break;
                                 }
@@ -124,19 +122,20 @@ public final class vt8 implements ncc, occ {
                                 b8Var2.j(tL_starGiftCollection.title, 2131232161, null);
                             }
                             ArrayList arrayList = d;
-                            int i13 = size;
                             TL_stars.SavedStarGift savedStarGift5 = savedStarGift3;
-                            b8Var2.setOnClickListener(new e57(au8Var4, z6, tL_starGiftCollection, savedStarGift5, J, (byte) 1));
-                            linearLayout.addView(b8Var2, tre.o(-1, -2));
-                            linearLayout2 = linearLayout;
-                            au8Var3 = au8Var4;
+                            boolean z9 = z6;
+                            LinearLayout linearLayout2 = linearLayout;
+                            b8Var2.setOnClickListener(new e57(au8Var4, z9, tL_starGiftCollection, savedStarGift5, J, (byte) 1));
+                            linearLayout2.addView(b8Var2, tre.o(-1, -2));
                             savedStarGift4 = savedStarGift5;
                             d = arrayList;
-                            size = i13;
+                            size = size;
                             i8 = i9;
-                            sx4Var4 = sx4Var3;
                             z8 = true;
                             z7 = false;
+                            au8Var3 = au8Var4;
+                            linearLayout = linearLayout2;
+                            sx4Var4 = sx4Var3;
                         }
                         au8Var = au8Var3;
                         savedStarGift = savedStarGift4;
@@ -151,21 +150,22 @@ public final class vt8 implements ncc, occ {
                     if (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique) {
                         if (cgaVar.c() && !au8Var.d && (!savedStarGift.unsaved || !savedStarGift.pinned_to_top)) {
                             if (savedStarGift.pinned_to_top) {
-                                str = null;
+                                str3 = null;
                                 M0 = ob6.M0(2131749830, null);
                                 i5 = 2131232418;
                             } else {
-                                str = null;
+                                str3 = null;
                                 M0 = ob6.M0(2131750036, null);
                                 i5 = 2131232298;
                             }
-                            au8 au8Var5 = au8Var;
-                            int i14 = i5;
-                            au8Var2 = au8Var5;
-                            savedStarGift2 = savedStarGift;
+                            int i13 = i5;
+                            TL_stars.SavedStarGift savedStarGift6 = savedStarGift;
+                            str = str3;
+                            savedStarGift2 = savedStarGift6;
+                            au8Var2 = au8Var;
                             sx4Var2 = sx4Var;
                             z2 = true;
-                            J.b(i14, M0, new vp8(au8Var2, savedStarGift2, sx4Var2, view, (byte) 4), false);
+                            J.b(i13, M0, new vp8(au8Var2, savedStarGift2, sx4Var2, view, (byte) 4), false);
                             J.k(2131232797, ob6.M0(2131749991, str), new qt8(au8Var2, (byte) 0), savedStarGift2.pinned_to_top);
                         } else {
                             au8Var2 = au8Var;
@@ -198,24 +198,24 @@ public final class vt8 implements ncc, occ {
                                 @Override
                                 public final void run() {
                                     byte b = r3;
-                                    TL_stars.SavedStarGift savedStarGift6 = savedStarGift2;
+                                    TL_stars.SavedStarGift savedStarGift7 = savedStarGift2;
                                     switch (b) {
                                         case 0:
-                                            au8 au8Var6 = au8Var2;
-                                            zt8 zt8Var = new zt8(au8Var6, au8Var6.getContext(), au8Var6.b, au8Var6.a.c, au8Var6.c, (byte) 0);
-                                            zt8Var.o2(savedStarGift6, null);
+                                            au8 au8Var5 = au8Var2;
+                                            zt8 zt8Var = new zt8(au8Var5, au8Var5.getContext(), au8Var5.b, au8Var5.a.c, au8Var5.c, (byte) 0);
+                                            zt8Var.o2(savedStarGift7, null);
                                             zt8Var.B2(false);
                                             return;
                                         case 1:
-                                            au8 au8Var7 = au8Var2;
-                                            zt8 zt8Var2 = new zt8(au8Var7, au8Var7.getContext(), au8Var7.b, au8Var7.a.c, au8Var7.c, (byte) 1);
-                                            zt8Var2.o2(savedStarGift6, null);
+                                            au8 au8Var6 = au8Var2;
+                                            zt8 zt8Var2 = new zt8(au8Var6, au8Var6.getContext(), au8Var6.b, au8Var6.a.c, au8Var6.c, (byte) 1);
+                                            zt8Var2.o2(savedStarGift7, null);
                                             zt8Var2.O1();
                                             return;
                                         default:
-                                            au8 au8Var8 = au8Var2;
-                                            zt8 zt8Var3 = new zt8(au8Var8, au8Var8.getContext(), au8Var8.b, au8Var8.a.c, au8Var8.c, (byte) 2);
-                                            zt8Var3.o2(savedStarGift6, null);
+                                            au8 au8Var7 = au8Var2;
+                                            zt8 zt8Var3 = new zt8(au8Var7, au8Var7.getContext(), au8Var7.b, au8Var7.a.c, au8Var7.c, (byte) 2);
+                                            zt8Var3.o2(savedStarGift7, null);
                                             zt8Var3.b2();
                                             return;
                                     }
@@ -227,7 +227,7 @@ public final class vt8 implements ncc, occ {
                         } else {
                             z4 = false;
                         }
-                        J.k(2131232209, ob6.M0(2131751727, str), new hp8(au8Var2, str2, (byte) 16), z4);
+                        J.k(2131232209, ob6.M0(2131751727, str), new ep8(au8Var2, str2, (byte) 17), z4);
                         if (str2 != null) {
                             z5 = z2 ? 1 : 0;
                         } else {
@@ -239,24 +239,24 @@ public final class vt8 implements ncc, occ {
                             @Override
                             public final void run() {
                                 byte b2 = b;
-                                TL_stars.SavedStarGift savedStarGift6 = savedStarGift2;
+                                TL_stars.SavedStarGift savedStarGift7 = savedStarGift2;
                                 switch (b2) {
                                     case 0:
-                                        au8 au8Var6 = au8Var2;
-                                        zt8 zt8Var = new zt8(au8Var6, au8Var6.getContext(), au8Var6.b, au8Var6.a.c, au8Var6.c, (byte) 0);
-                                        zt8Var.o2(savedStarGift6, null);
+                                        au8 au8Var5 = au8Var2;
+                                        zt8 zt8Var = new zt8(au8Var5, au8Var5.getContext(), au8Var5.b, au8Var5.a.c, au8Var5.c, (byte) 0);
+                                        zt8Var.o2(savedStarGift7, null);
                                         zt8Var.B2(false);
                                         return;
                                     case 1:
-                                        au8 au8Var7 = au8Var2;
-                                        zt8 zt8Var2 = new zt8(au8Var7, au8Var7.getContext(), au8Var7.b, au8Var7.a.c, au8Var7.c, (byte) 1);
-                                        zt8Var2.o2(savedStarGift6, null);
+                                        au8 au8Var6 = au8Var2;
+                                        zt8 zt8Var2 = new zt8(au8Var6, au8Var6.getContext(), au8Var6.b, au8Var6.a.c, au8Var6.c, (byte) 1);
+                                        zt8Var2.o2(savedStarGift7, null);
                                         zt8Var2.O1();
                                         return;
                                     default:
-                                        au8 au8Var8 = au8Var2;
-                                        zt8 zt8Var3 = new zt8(au8Var8, au8Var8.getContext(), au8Var8.b, au8Var8.a.c, au8Var8.c, (byte) 2);
-                                        zt8Var3.o2(savedStarGift6, null);
+                                        au8 au8Var7 = au8Var2;
+                                        zt8 zt8Var3 = new zt8(au8Var7, au8Var7.getContext(), au8Var7.b, au8Var7.a.c, au8Var7.c, (byte) 2);
+                                        zt8Var3.o2(savedStarGift7, null);
                                         zt8Var3.b2();
                                         return;
                                 }
@@ -298,24 +298,24 @@ public final class vt8 implements ncc, occ {
                             @Override
                             public final void run() {
                                 byte b2 = b;
-                                TL_stars.SavedStarGift savedStarGift6 = savedStarGift2;
+                                TL_stars.SavedStarGift savedStarGift7 = savedStarGift2;
                                 switch (b2) {
                                     case 0:
-                                        au8 au8Var6 = au8Var2;
-                                        zt8 zt8Var = new zt8(au8Var6, au8Var6.getContext(), au8Var6.b, au8Var6.a.c, au8Var6.c, (byte) 0);
-                                        zt8Var.o2(savedStarGift6, null);
+                                        au8 au8Var5 = au8Var2;
+                                        zt8 zt8Var = new zt8(au8Var5, au8Var5.getContext(), au8Var5.b, au8Var5.a.c, au8Var5.c, (byte) 0);
+                                        zt8Var.o2(savedStarGift7, null);
                                         zt8Var.B2(false);
                                         return;
                                     case 1:
-                                        au8 au8Var7 = au8Var2;
-                                        zt8 zt8Var2 = new zt8(au8Var7, au8Var7.getContext(), au8Var7.b, au8Var7.a.c, au8Var7.c, (byte) 1);
-                                        zt8Var2.o2(savedStarGift6, null);
+                                        au8 au8Var6 = au8Var2;
+                                        zt8 zt8Var2 = new zt8(au8Var6, au8Var6.getContext(), au8Var6.b, au8Var6.a.c, au8Var6.c, (byte) 1);
+                                        zt8Var2.o2(savedStarGift7, null);
                                         zt8Var2.O1();
                                         return;
                                     default:
-                                        au8 au8Var8 = au8Var2;
-                                        zt8 zt8Var3 = new zt8(au8Var8, au8Var8.getContext(), au8Var8.b, au8Var8.a.c, au8Var8.c, (byte) 2);
-                                        zt8Var3.o2(savedStarGift6, null);
+                                        au8 au8Var7 = au8Var2;
+                                        zt8 zt8Var3 = new zt8(au8Var7, au8Var7.getContext(), au8Var7.b, au8Var7.a.c, au8Var7.c, (byte) 2);
+                                        zt8Var3.o2(savedStarGift7, null);
                                         zt8Var3.b2();
                                         return;
                                 }
@@ -377,7 +377,7 @@ public final class vt8 implements ncc, occ {
                             ConnectionsManager.getInstance(i).sendRequest(savestargift, null, 64);
                         }
                         if (au8Var.e.q(savedStarGift, z2, true)) {
-                            d31.b0(cgaVar.a).Q(2131623982, 36, ob6.H(',', "GiftsPinLimit", uc7.s1(i).k4.R1.f())).j();
+                            d31.b0(cgaVar.a).Q(2131623982, 36, ob6.H(',', "GiftsPinLimit", uc7.s1(i).l4.R1.f())).j();
                         }
                         if (!z) {
                             au8Var.f.x0(0);

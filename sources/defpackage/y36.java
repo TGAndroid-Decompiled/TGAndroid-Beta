@@ -31,10 +31,10 @@ public final class y36 implements Runnable {
         this.d = arrayList;
     }
 
-    public y36(xca xcaVar, tca tcaVar, int i, ArrayList arrayList) {
+    public y36(yca ycaVar, uca ucaVar, int i, ArrayList arrayList) {
         this.a = (byte) 28;
-        this.c = xcaVar;
-        this.e = tcaVar;
+        this.c = ycaVar;
+        this.e = ucaVar;
         this.b = i;
         this.d = arrayList;
     }

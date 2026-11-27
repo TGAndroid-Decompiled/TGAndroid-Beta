@@ -94,8 +94,8 @@ public final class d30 {
             if (fa3Var == null) {
                 this.g = new fa3(context);
             }
-            if (((rg7) this.e) == null) {
-                this.e = rg7.b;
+            if (((sg7) this.e) == null) {
+                this.e = sg7.b;
             }
             lyc lycVar = new lyc(context);
             if (context != null) {
@@ -109,7 +109,7 @@ public final class d30 {
             }
             fa3 fa3Var2 = (fa3) this.g;
             lycVar.c = fa3Var2;
-            lycVar.d = (rg7) this.e;
+            lycVar.d = (sg7) this.e;
             if (fa3Var2 == null) {
                 lycVar.c = new fa3(context2);
             }
@@ -121,7 +121,7 @@ public final class d30 {
                 z = false;
             }
             yve.p(z);
-            if (((rg7) this.e) != null) {
+            if (((sg7) this.e) != null) {
                 z2 = false;
             }
             yve.p(z2);

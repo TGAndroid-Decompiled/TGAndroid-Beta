@@ -40,7 +40,7 @@ public class k38 extends View {
     public final void b(int i, int i2, boolean z) {
         lc7 lc7Var;
         kc7 kc7Var = null;
-        if (i2 >= 0 && i >= 0 && (lc7Var = uc7.s1(i).F3) != null) {
+        if (i2 >= 0 && i >= 0 && (lc7Var = uc7.s1(i).G3) != null) {
             kc7Var = lc7Var.d(i2);
         }
         c(kc7Var, z);

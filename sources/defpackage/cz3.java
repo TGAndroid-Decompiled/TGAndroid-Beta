@@ -34,7 +34,7 @@ public final class cz3 implements pcc {
                 t2b t2bVar = (t2b) obj2;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    jn7.f(yac.t0).d(new cq6(t2bVar, tL_messages_emojiGroups, this.b, (byte) 28));
+                    jn7.f(yac.t0).d(new cq6(t2bVar, tL_messages_emojiGroups, this.b, (byte) 29));
                     return;
                 }
                 return;
@@ -67,7 +67,7 @@ public final class cz3 implements pcc {
                 }
                 return;
             default:
-                hl.d3(new vlc((snc) obj2, (String) obj, (byte) 4), Math.max(0L, (j2 + 1200) - SystemClock.uptimeMillis()));
+                hl.d3(new slc((snc) obj2, (String) obj, (byte) 5), Math.max(0L, (j2 + 1200) - SystemClock.uptimeMillis()));
                 return;
         }
     }

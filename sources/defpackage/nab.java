@@ -1,14 +1,15 @@
 package defpackage;
+public final class nab implements Runnable {
+    public final byte a;
+    public final sbb b;
 
-import android.app.Activity;
-import android.graphics.Path;
-public final class nab extends mj7 {
-    public final Path O;
-    public final rbb P;
+    public nab(sbb sbbVar, byte b) {
+        this.a = b;
+        this.b = sbbVar;
+    }
 
-    public nab(rbb rbbVar, Activity activity, x53 x53Var, tl0 tl0Var) {
-        super(activity, x53Var, tl0Var);
-        this.P = rbbVar;
-        this.O = new Path();
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nab.run():void");
     }
 }

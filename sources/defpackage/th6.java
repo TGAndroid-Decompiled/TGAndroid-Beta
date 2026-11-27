@@ -57,7 +57,7 @@ public final class th6 extends e {
             int i4 = this.currentAccount;
             z56 z56Var = new z56(this, idVar, (byte) 25);
             c[] cVarArr = c.T;
-            if (!uc7.s1(i4).k4.v0.f) {
+            if (!uc7.s1(i4).l4.v0.f) {
                 z56Var.run();
             } else {
                 hl.c3(new hl3(i4, z56Var, (byte) 11));

@@ -3,7 +3,7 @@ package defpackage;
 import android.os.Bundle;
 import java.util.LinkedHashMap;
 public abstract class fhd {
-    public static final rg7 a = new rg7((byte) 25);
+    public static final sg7 a = new sg7((byte) 25);
     public static final sae b = new Object();
     public static final qf5 c = new qf5((byte) 25);
 

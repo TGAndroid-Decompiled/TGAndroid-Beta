@@ -89,7 +89,7 @@ public abstract class sr {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             jo4 jo4Var = new jo4();
-            jo4Var.s = dg7.n("video/avc");
+            jo4Var.s = eg7.n("video/avc");
             ko4 ko4Var = new ko4(jo4Var);
             if (ko4Var.t != null) {
                 j99 g = wm6.g(ko4Var, z, false);

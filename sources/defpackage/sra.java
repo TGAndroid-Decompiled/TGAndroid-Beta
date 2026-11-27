@@ -34,7 +34,7 @@ public final class sra implements pcc {
                 vnb vnbVar = wuaVar.J0;
                 c51 c51Var = wuaVar.f2;
                 Objects.requireNonNull(c51Var);
-                ii7 ii7Var = new ii7(c51Var, (byte) 7);
+                ji7 ji7Var = new ji7(c51Var, (byte) 7);
                 d31 j = wuaVar.j();
                 jra jraVar = new jra(wuaVar, (byte) 11);
                 HashMap hashMap = it7.a;
@@ -49,7 +49,7 @@ public final class sra implements pcc {
                     } else {
                         bool = null;
                     }
-                    it7.q(context, i, updatestargiftonchainprice, bool, vnbVar, ii7Var, j, new ws7(longValue, tL_starGiftUnique, context, i, vnbVar, i2, jraVar));
+                    it7.q(context, i, updatestargiftonchainprice, bool, vnbVar, ji7Var, j, new ws7(longValue, tL_starGiftUnique, context, i, vnbVar, i2, jraVar));
                     return;
                 }
                 return;
@@ -61,7 +61,7 @@ public final class sra implements pcc {
                 vnb vnbVar2 = wuaVar.J0;
                 c51 c51Var2 = wuaVar.f2;
                 Objects.requireNonNull(c51Var2);
-                ii7 ii7Var2 = new ii7(c51Var2, (byte) 7);
+                ji7 ji7Var2 = new ji7(c51Var2, (byte) 7);
                 d31 j2 = wuaVar.j();
                 jra jraVar2 = new jra(wuaVar, (byte) 9);
                 HashMap hashMap2 = it7.a;
@@ -70,7 +70,7 @@ public final class sra implements pcc {
                     TL_stars.updateStarGiftOnchainPrice updatestargiftonchainprice2 = new TL_stars.updateStarGiftOnchainPrice();
                     updatestargiftonchainprice2.slug = tL_starGiftUnique2.slug;
                     updatestargiftonchainprice2.amount = longValue2;
-                    it7.q(context2, i3, updatestargiftonchainprice2, Boolean.TRUE, vnbVar2, ii7Var2, j2, new ws7(tL_starGiftUnique2, longValue2, context2, i3, vnbVar2, it7.i(tL_starGiftUnique2), jraVar2));
+                    it7.q(context2, i3, updatestargiftonchainprice2, Boolean.TRUE, vnbVar2, ji7Var2, j2, new ws7(tL_starGiftUnique2, longValue2, context2, i3, vnbVar2, it7.i(tL_starGiftUnique2), jraVar2));
                     return;
                 }
                 return;

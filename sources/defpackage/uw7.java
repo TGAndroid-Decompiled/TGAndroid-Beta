@@ -47,7 +47,7 @@ public final class uw7 extends zu1 {
                 if (tL_geoPointAddress != null) {
                     tL_mediaAreaGeoPoint3.flags |= 1;
                 }
-                Utilities.e.c(new pl7(messageMedia, tL_mediaAreaGeoPoint3, (byte) 13));
+                Utilities.e.c(new ql7(messageMedia, tL_mediaAreaGeoPoint3, (byte) 14));
                 tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
             tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;

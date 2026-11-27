@@ -225,7 +225,7 @@ public final class c7 implements TextWatcher {
                 if (!TextUtils.isEmpty(((x12) this.b).E)) {
                     x12 x12Var4 = (x12) this.b;
                     String str6 = x12Var4.E;
-                    x12Var4.n0 = (str6 == null || str6.length() < 3 || TextUtils.isEmpty(uc7.s1(((x12) this.b).b.G3).k4.Q.f)) ? false : false;
+                    x12Var4.n0 = (str6 == null || str6.length() < 3 || TextUtils.isEmpty(uc7.s1(((x12) this.b).b.G3).l4.Q.f)) ? false : false;
                     x12 x12Var5 = (x12) this.b;
                     if (!TextUtils.equals(x12Var5.f0, x12Var5.E)) {
                         ((x12) this.b).N.clear();

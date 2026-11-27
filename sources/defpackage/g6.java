@@ -86,7 +86,7 @@ public final class g6 extends Drawable {
             case 6:
                 canvas.save();
                 canvas.translate(getBounds().left, getBounds().top);
-                ((gbb) obj).draw(canvas);
+                ((hbb) obj).draw(canvas);
                 canvas.restore();
                 return;
             case 7:
@@ -113,7 +113,7 @@ public final class g6 extends Drawable {
             default:
                 return super.getIntrinsicHeight();
             case 6:
-                return ((gbb) this.b).getHeight();
+                return ((hbb) this.b).getHeight();
             case 7:
                 return hl.L(30.0f);
         }
@@ -132,7 +132,7 @@ public final class g6 extends Drawable {
             default:
                 return super.getIntrinsicWidth();
             case 6:
-                return ((gbb) this.b).getWidth();
+                return ((hbb) this.b).getWidth();
             case 7:
                 return hl.L(30.0f);
         }

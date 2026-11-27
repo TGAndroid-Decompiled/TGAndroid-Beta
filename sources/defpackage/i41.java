@@ -28,7 +28,7 @@ public final class i41 implements DialogInterface.OnDismissListener {
                 view.requestFocus();
                 return;
             case 2:
-                w09.f = null;
+                x09.f = null;
                 if (view != null) {
                     view.requestFocus();
                     return;

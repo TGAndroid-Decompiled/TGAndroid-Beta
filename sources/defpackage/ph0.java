@@ -90,7 +90,7 @@ public final class ph0 {
             }
             this.h = true;
             this.g = false;
-            new oi5(new y0(this, runnable, (byte) 3)).execute("null");
+            new oi5(new y0(this, runnable, (byte) 3)).execute("https://telegram.org/dl/android/apk-public-beta.json");
         }
     }
 

@@ -15,7 +15,7 @@ public final class ot1 extends bmb {
         m47 T6;
         zu1 zu1Var = this.w0;
         if (zu1Var != null) {
-            int min = Math.min(i2, zu1Var.getMessagesController().k4.V1.f() + i);
+            int min = Math.min(i2, zu1Var.getMessagesController().l4.V1.f() + i);
             if (r47Var.c1() != 0 && (T6 = this.w0.T6(r47Var.c1())) != null && !T6.i) {
                 r47Var = T6.h;
             }

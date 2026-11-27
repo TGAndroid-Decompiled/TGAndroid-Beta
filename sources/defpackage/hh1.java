@@ -35,13 +35,13 @@ public final class hh1 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 2:
-                rbb rbbVar = (rbb) fn7Var;
-                rbbVar.E2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                bbb bbbVar = rbbVar.D2;
-                if (bbbVar != null) {
-                    bbbVar.invalidate();
+                sbb sbbVar = (sbb) fn7Var;
+                sbbVar.E2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cbb cbbVar = sbbVar.D2;
+                if (cbbVar != null) {
+                    cbbVar.invalidate();
                 }
-                if (!this.b && rbbVar.E2 > 0.5f) {
+                if (!this.b && sbbVar.E2 > 0.5f) {
                     this.b = true;
                     return;
                 }

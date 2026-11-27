@@ -36,7 +36,7 @@ public abstract class o79 {
         return i2;
     }
 
-    public abstract boolean a(f89 f89Var, l09 l09Var, l09 l09Var2);
+    public abstract boolean a(f89 f89Var, m09 m09Var, m09 m09Var2);
 
     public boolean c(f89 f89Var, List list) {
         return f89Var.a instanceof tk3;
@@ -58,14 +58,14 @@ public abstract class o79 {
                 recyclerView.B0();
                 rx6 rx6Var = recyclerView.e;
                 zg2 zg2Var = (zg2) rx6Var.c;
-                i09 i09Var = (i09) rx6Var.b;
-                int indexOfChild = ((RecyclerView) i09Var.b).indexOfChild(view);
+                j09 j09Var = (j09) rx6Var.b;
+                int indexOfChild = ((RecyclerView) j09Var.b).indexOfChild(view);
                 if (indexOfChild == -1) {
                     rx6Var.A0(view);
                 } else if (zg2Var.w(indexOfChild)) {
                     zg2Var.y(indexOfChild);
                     rx6Var.A0(view);
-                    i09Var.N(indexOfChild);
+                    j09Var.N(indexOfChild);
                 } else {
                     z = false;
                 }
@@ -110,14 +110,14 @@ public abstract class o79 {
 
     public abstract boolean k();
 
-    public l09 l(c89 c89Var, f89 f89Var, int i, List list) {
-        l09 l09Var = new l09((byte) 4);
+    public m09 l(c89 c89Var, f89 f89Var, int i, List list) {
+        m09 m09Var = new m09((byte) 4);
         View view = f89Var.a;
-        l09Var.b = view.getLeft();
-        l09Var.c = view.getTop();
+        m09Var.b = view.getLeft();
+        m09Var.c = view.getTop();
         view.getRight();
         view.getBottom();
-        return l09Var;
+        return m09Var;
     }
 
     public abstract void m();

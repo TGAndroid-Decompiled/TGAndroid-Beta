@@ -302,8 +302,8 @@ public final class sr0 extends FrameLayout implements u0d, yi5 {
             if (h0dVar == null) {
                 h0d h0dVar2 = new h0d(sb2, i, j, tL_botProfileWidget);
                 concurrentHashMap2.put(sb2, h0dVar2);
-                jf7 Y = jf7.Y(h0dVar2.b);
-                Y.a.c(new cxc(Y, h0dVar2, (byte) 11));
+                kf7 a0 = kf7.a0(h0dVar2.b);
+                a0.a.c(new zwc(a0, h0dVar2, (byte) 12));
             } else {
                 h0dVar.s = tL_botProfileWidget.public_data_hash;
                 k0d.a(h0dVar, k0d.D(tL_botProfileWidget.chat_data), k0d.D(tL_botProfileWidget.public_data));

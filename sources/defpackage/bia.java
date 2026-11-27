@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e;
 public final class bia extends c79 {
     public final Context c;
-    public ida e;
+    public kba e;
     public int n;
     public final byte r;
     public int s;
@@ -110,9 +110,9 @@ public final class bia extends c79 {
     }
 
     public final void G(String str, boolean z) {
-        ida idaVar = this.e;
-        if (idaVar != null) {
-            hl.r(idaVar);
+        kba kbaVar = this.e;
+        if (kbaVar != null) {
+            hl.r(kbaVar);
             this.e = null;
         }
         if (!this.d.isEmpty() || !this.f.isEmpty()) {
@@ -146,9 +146,9 @@ public final class bia extends c79 {
                 }
                 i++;
             } else {
-                ida idaVar2 = new ida(this, str, (byte) 5);
-                this.e = idaVar2;
-                hl.d3(idaVar2, 300L);
+                kba kbaVar2 = new kba(this, str, (byte) 6);
+                this.e = kbaVar2;
+                hl.d3(kbaVar2, 300L);
                 return;
             }
         }

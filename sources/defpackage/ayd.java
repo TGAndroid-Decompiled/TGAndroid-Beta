@@ -2,11 +2,11 @@ package defpackage;
 
 import android.content.Context;
 public final class ayd extends e23 {
-    public final jg7 b;
+    public final kg7 b;
 
-    public ayd(jg7 jg7Var) {
+    public ayd(kg7 kg7Var) {
         super((byte) 4);
-        this.b = jg7Var;
+        this.b = kg7Var;
     }
 
     @Override

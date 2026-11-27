@@ -69,29 +69,29 @@ public final class s8b implements Runnable {
                 ((t9b) ((a3a) this.b).n).fullScroll(130);
                 return;
             case 3:
-                qbb qbbVar = (qbb) this.b;
-                qbbVar.h0.onTouchEvent(hl.R());
-                qbbVar.g0.E(hl.R());
+                rbb rbbVar = (rbb) this.b;
+                rbbVar.h0.onTouchEvent(hl.R());
+                rbbVar.g0.E(hl.R());
                 return;
             case 4:
-                rbb rbbVar = (rbb) ((zt4) this.b).m0;
-                rbbVar.t(true);
-                rbbVar.B0.setCameraThumb(rbbVar.y());
+                sbb sbbVar = (sbb) ((zt4) this.b).m0;
+                sbbVar.t(true);
+                sbbVar.B0.setCameraThumb(sbbVar.y());
                 return;
             case 5:
-                wab wabVar = (wab) this.b;
-                rbb rbbVar2 = wabVar.c0;
-                if (!rbbVar2.R1 && !rbbVar2.Q1 && rbbVar2.C0 != null && rbbVar2.g0 == 0 && rbbVar2.n1 != null) {
-                    if (wabVar.isFrontface()) {
+                xab xabVar = (xab) this.b;
+                sbb sbbVar2 = xabVar.c0;
+                if (!sbbVar2.R1 && !sbbVar2.Q1 && sbbVar2.C0 != null && sbbVar2.g0 == 0 && sbbVar2.n1 != null) {
+                    if (xabVar.isFrontface()) {
                         i = 2131744367;
                     } else {
                         i = 2131744366;
                     }
                     String M0 = ob6.M0(i, null);
-                    kg5 kg5Var = rbbVar2.n1;
+                    kg5 kg5Var = sbbVar2.n1;
                     kg5Var.h = kg5.a(M0, kg5Var.getTextPaint());
-                    rbbVar2.n1.t(M0);
-                    rbbVar2.n1.v();
+                    sbbVar2.n1.t(M0);
+                    sbbVar2.n1.v();
                     uc7.e1().edit().putInt("storysvddualhint", uc7.e1().getInt("storysvddualhint", 0) + 1).apply();
                     return;
                 }
@@ -100,14 +100,14 @@ public final class s8b implements Runnable {
                 ((de0) this.b).setVisibility(8);
                 return;
             case 7:
-                lcb lcbVar = ((tbb) this.b).b;
+                lcb lcbVar = ((ubb) this.b).b;
                 try {
-                    ybb ybbVar = lcbVar.s;
-                    if (ybbVar != null) {
+                    zbb zbbVar = lcbVar.s;
+                    if (zbbVar != null) {
                         if (lcbVar.b) {
-                            hl.B2(ybbVar);
+                            hl.B2(zbbVar);
                         } else {
-                            lcbVar.n.removeView(ybbVar);
+                            lcbVar.n.removeView(zbbVar);
                         }
                         lcbVar.s = null;
                         lcbVar.q();
@@ -118,7 +118,7 @@ public final class s8b implements Runnable {
                     return;
                 }
             case 8:
-                ((ybb) this.b).s0.O(true);
+                ((zbb) this.b).s0.O(true);
                 return;
             case 9:
                 zeb zebVar = (zeb) this.b;
@@ -295,7 +295,7 @@ public final class s8b implements Runnable {
                 rx6 rx6Var = dkbVar.b;
                 int i8 = yac.t0;
                 dkbVar.c = i8;
-                dkbVar.d = hl.a1(uc7.s1(i8).W3, "auto_lastSelectedDialog", 0L);
+                dkbVar.d = hl.a1(uc7.s1(i8).X3, "auto_lastSelectedDialog", 0L);
                 dkbVar.e = false;
                 dkbVar.f = false;
                 dkbVar.g.clear();
@@ -551,7 +551,7 @@ public final class s8b implements Runnable {
                     } catch (Exception e4) {
                         cc4.g(e4, true);
                     }
-                    hl.c3(new bcb(isbVar2, bitmap, (byte) 10));
+                    hl.c3(new hab(isbVar2, bitmap, (byte) 11));
                     return;
                 }
                 return;

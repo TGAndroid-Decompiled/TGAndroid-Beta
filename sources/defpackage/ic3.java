@@ -7,7 +7,7 @@ public final class ic3 implements e84 {
 
     public ic3() {
         this.a = (byte) 1;
-        this.b = new yh7(peb.B, 16);
+        this.b = new zh7(peb.B, 16);
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class ic3 implements e84 {
             case 0:
                 return this;
             default:
-                return (yh7) this.b;
+                return (zh7) this.b;
         }
     }
 
@@ -29,7 +29,7 @@ public final class ic3 implements e84 {
                 }
                 return 0;
             default:
-                return ((yh7) this.b).b(f84Var, v11Var);
+                return ((zh7) this.b).b(f84Var, v11Var);
         }
     }
 
@@ -39,7 +39,7 @@ public final class ic3 implements e84 {
             case 0:
                 return true;
             default:
-                return ((yh7) this.b).c(f84Var);
+                return ((zh7) this.b).c(f84Var);
         }
     }
 
@@ -49,7 +49,7 @@ public final class ic3 implements e84 {
             case 0:
                 return;
             default:
-                ((yh7) this.b).d(j, j2);
+                ((zh7) this.b).d(j, j2);
                 return;
         }
     }
@@ -61,7 +61,7 @@ public final class ic3 implements e84 {
                 no5 no5Var = po5.b;
                 return j99.e;
             default:
-                return ((yh7) this.b).m;
+                return ((zh7) this.b).m;
         }
     }
 
@@ -76,12 +76,12 @@ public final class ic3 implements e84 {
                 g84Var.D();
                 ko4 ko4Var = (ko4) obj;
                 jo4 a = ko4Var.a();
-                a.s = dg7.n("text/x-unknown");
+                a.s = eg7.n("text/x-unknown");
                 a.k = ko4Var.t;
                 xnb.v(a, e0);
                 return;
             default:
-                ((yh7) obj).f(new i09(g84Var, (byte) 8));
+                ((zh7) obj).f(new j09(g84Var, (byte) 8));
                 return;
         }
     }

@@ -75,7 +75,7 @@ public final class f59 extends c79 {
                 int indexOf = TextUtils.indexOf(S2, "%3$s");
                 S2.replace(indexOf, indexOf + 4, (CharSequence) N2);
                 p66Var.setText(S2, TextView.BufferType.EDITABLE);
-                p66Var.post(new me7(i59Var, indexOf, (byte) 13));
+                p66Var.post(new oe7(i59Var, indexOf, (byte) 13));
             } catch (Exception e) {
                 cc4.g(e, true);
             }
@@ -100,7 +100,7 @@ public final class f59 extends c79 {
                 }
             } else {
                 int i2 = aob.a7;
-                view = new rca(context, aob.w0(null, i2, false), 0);
+                view = new sca(context, aob.w0(null, i2, false), 0);
                 yob.h(i2, null, view);
             }
         } else {

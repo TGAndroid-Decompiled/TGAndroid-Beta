@@ -88,7 +88,7 @@ public final class d7a {
         if (b == 4) {
             for (int i2 = 0; i2 < this.x.size(); i2++) {
                 r47 r47Var = (r47) this.x.get(i2);
-                r7aVar.getMessagesStorage().K0(r47Var.r1 ? 1 : 0, r47Var.k);
+                r7aVar.getMessagesStorage().N0(r47Var.r1 ? 1 : 0, r47Var.k);
                 TLRPC.Message message = r47Var.k;
                 message.send_state = 2;
                 message.errorAllowedPriceStars = 0L;
@@ -99,9 +99,9 @@ public final class d7a {
             }
             r7aVar.a.remove("group_" + this.F);
         } else {
-            jf7 messagesStorage = r7aVar.getMessagesStorage();
+            kf7 messagesStorage = r7aVar.getMessagesStorage();
             r47 r47Var2 = this.m;
-            messagesStorage.K0(r47Var2.r1 ? 1 : 0, r47Var2.k);
+            messagesStorage.N0(r47Var2.r1 ? 1 : 0, r47Var2.k);
             TLRPC.Message message2 = this.m.k;
             message2.send_state = 2;
             message2.errorAllowedPriceStars = 0L;

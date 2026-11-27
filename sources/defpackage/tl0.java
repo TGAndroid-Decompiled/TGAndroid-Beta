@@ -19,7 +19,7 @@ public final class tl0 {
     public EGLContext g;
     public final Object h;
     public int i;
-    public ebb j;
+    public fbb j;
     public Object k;
     public Object l;
     public yl0 m;
@@ -117,8 +117,8 @@ public final class tl0 {
         this.o = this.n.c(bitmap, String.valueOf(i), 0, 0, z);
     }
 
-    public final void g(ebb ebbVar, Object obj) {
-        this.j = ebbVar;
+    public final void g(fbb fbbVar, Object obj) {
+        this.j = fbbVar;
         this.k = obj;
         this.i = -14737633;
         if (obj != null && Build.VERSION.SDK_INT >= 31) {

@@ -29,12 +29,12 @@ public final class pz8 extends dz8 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         rz8 rz8Var = this.N;
-        f09 f09Var = rz8Var.d;
-        if (f09Var != null && (f09Var.m1 > 0.5f || f09Var.l1 > 0.5f)) {
+        g09 g09Var = rz8Var.d;
+        if (g09Var != null && (g09Var.m1 > 0.5f || g09Var.l1 > 0.5f)) {
             if (motionEvent.getActionMasked() == 1) {
-                f09 f09Var2 = rz8Var.d;
-                f09Var2.m1 = 0.0f;
-                f09Var2.invalidate();
+                g09 g09Var2 = rz8Var.d;
+                g09Var2.m1 = 0.0f;
+                g09Var2.invalidate();
             }
             return true;
         }

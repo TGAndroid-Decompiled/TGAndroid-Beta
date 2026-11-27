@@ -4,7 +4,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.BasePendingResult;
 import java.util.Iterator;
 public abstract class fid extends BasePendingResult {
-    public k09 o;
+    public l09 o;
     public final boolean p;
     public final v99 q;
 
@@ -22,13 +22,13 @@ public abstract class fid extends BasePendingResult {
     public abstract void n();
 
     public final ydd o() {
-        k09 k09Var = this.o;
-        if (k09Var == null) {
-            k09 k09Var2 = new k09(this, (byte) 26);
-            this.o = k09Var2;
-            return k09Var2;
+        l09 l09Var = this.o;
+        if (l09Var == null) {
+            l09 l09Var2 = new l09(this, (byte) 26);
+            this.o = l09Var2;
+            return l09Var2;
         }
-        return k09Var;
+        return l09Var;
     }
 
     public final void p() {

@@ -84,26 +84,26 @@ public final class lz8 implements Consumer {
             iArr = iArr5;
         }
         if (rz8Var.h != null && !Float.isNaN(rz8Var.L)) {
-            f09 f09Var = rz8Var.d;
-            if (f09Var != null) {
-                if (f09Var.h1 < 0.5f) {
-                    f = (-Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - f09Var.d6)) / 150.0f)) - 1.0E-4f;
-                } else if (!f09Var.e6) {
+            g09 g09Var = rz8Var.d;
+            if (g09Var != null) {
+                if (g09Var.h1 < 0.5f) {
+                    f = (-Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - g09Var.d6)) / 150.0f)) - 1.0E-4f;
+                } else if (!g09Var.e6) {
                     f = 0.0f;
                 } else {
-                    f = Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - f09Var.c6)) / 470.0f);
+                    f = Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - g09Var.c6)) / 470.0f);
                 }
             } else {
                 f = 1.0f;
             }
-            f09 f09Var2 = rz8Var.d;
-            if (f09Var2 != null && f09Var2.h1 > 0.5f) {
+            g09 g09Var2 = rz8Var.d;
+            if (g09Var2 != null && g09Var2.h1 > 0.5f) {
                 z = true;
             } else {
                 z = false;
             }
-            if (f09Var2 != null) {
-                f2 = Utilities.l(f09Var2.g1);
+            if (g09Var2 != null) {
+                f2 = Utilities.l(g09Var2.g1);
             } else {
                 f2 = 1.0f;
             }
@@ -241,10 +241,10 @@ public final class lz8 implements Consumer {
             } else {
                 f9 = f;
             }
-            f09 f09Var3 = rz8Var.d;
+            g09 g09Var3 = rz8Var.d;
             float f25 = 90.0f;
-            if (f09Var3 != null) {
-                rz8Var.e0 = rz8Var.r - (f09Var3.H0() - hl.L(8.0f));
+            if (g09Var3 != null) {
+                rz8Var.e0 = rz8Var.r - (g09Var3.H0() - hl.L(8.0f));
                 float translationY = cz8Var.getTranslationY();
                 float f26 = rz8Var.e0;
                 if (translationY != f26) {
@@ -302,7 +302,7 @@ public final class lz8 implements Consumer {
                         float height2 = (childAt.getHeight() / 2.0f) + childAt.getTop();
                         if (f >= 0.0f) {
                             canvas2 = canvas4;
-                            f13 = (f09.S(Math.max(0.0f, Math.min(1.0f, ((f * 470.0f) - (Math.max(0.0f, ((f28 - height2) / f29) - 0.5f) * Math.min(45.0f, 250.0f / f31))) / 220.0f)), 1.2f) * 0.5f) + 0.5f;
+                            f13 = (g09.S(Math.max(0.0f, Math.min(1.0f, ((f * 470.0f) - (Math.max(0.0f, ((f28 - height2) / f29) - 0.5f) * Math.min(45.0f, 250.0f / f31))) / 220.0f)), 1.2f) * 0.5f) + 0.5f;
                         } else {
                             canvas2 = canvas4;
                             float max6 = Math.max(0.0f, Math.min(1.0f, (((-f) * 150.0f) - (Math.max(0.0f, ((height2 - max5) / f29) - 0.5f) * Math.min(25.0f, 60.0f / Math.max(1.0f, f31 - 1.0f)))) / f30));

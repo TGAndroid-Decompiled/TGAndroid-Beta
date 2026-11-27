@@ -41,7 +41,7 @@ public final class i19 extends Drawable implements Animator.AnimatorListener {
     public float Y;
     public float Z;
     public final j19 a;
-    public final z09 b;
+    public final yz8 b;
     public final LinearGradient f;
     public final f19[] x;
     public final Drawable y;
@@ -64,8 +64,8 @@ public final class i19 extends Drawable implements Animator.AnimatorListener {
     public final ObjectAnimator a0 = ObjectAnimator.ofFloat(this, f0, 1.0f).setDuration(560L);
     public final ObjectAnimator b0 = ObjectAnimator.ofFloat(this, g0, 1.0f).setDuration(240L);
 
-    public i19(j19 j19Var, wb2 wb2Var, ArrayList arrayList, z09 z09Var) {
-        this.b = z09Var;
+    public i19(j19 j19Var, wb2 wb2Var, ArrayList arrayList, yz8 yz8Var) {
+        this.b = yz8Var;
         this.a = j19Var;
         this.E = wb2Var;
         this.F = wb2Var.getMessageObject();
@@ -93,7 +93,7 @@ public final class i19 extends Drawable implements Animator.AnimatorListener {
                 this.a0.addListener(this);
                 this.b0.setInterpolator(linearInterpolator);
                 this.b0.addListener(this);
-                hl.j2(new ii7(this, (byte) 26), 15.0f);
+                hl.j2(new ji7(this, (byte) 26), 15.0f);
                 return;
             }
         }
@@ -223,13 +223,13 @@ public final class i19 extends Drawable implements Animator.AnimatorListener {
     @Override
     public final void onAnimationEnd(Animator animator) {
         ObjectAnimator objectAnimator = this.a0;
-        z09 z09Var = this.b;
+        yz8 yz8Var = this.b;
         if (animator == objectAnimator) {
             this.E.setHideSideButtonByQuickShare(false);
             this.N = true;
             invalidateSelf();
             if (this.O) {
-                z09Var.run();
+                yz8Var.run();
             }
         } else if (animator == this.b0) {
             this.O = true;
@@ -239,7 +239,7 @@ public final class i19 extends Drawable implements Animator.AnimatorListener {
                 c21Var.a.setVisibility(0);
             }
             if (this.N) {
-                z09Var.run();
+                yz8Var.run();
             }
         }
     }

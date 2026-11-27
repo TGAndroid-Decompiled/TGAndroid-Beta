@@ -138,9 +138,9 @@ public final class z18 implements View.OnClickListener {
                     JSONObject put = new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
                     JSONObject c0 = p.c0();
                     if (pVar.L0 != null && pVar.N0 == null) {
-                        c0.put("tokenizationSpecification", new pf7(pVar, (byte) 2));
+                        c0.put("tokenizationSpecification", new qf7(pVar, (byte) 2));
                     } else {
-                        c0.put("tokenizationSpecification", new pf7(pVar, (byte) 4));
+                        c0.put("tokenizationSpecification", new qf7(pVar, (byte) 4));
                     }
                     put.put("allowedPaymentMethods", new JSONArray().put(c0));
                     JSONObject jSONObject = new JSONObject();
@@ -166,7 +166,7 @@ public final class z18 implements View.OnClickListener {
                     qa4 qa4Var = pVar.e;
                     qa4Var.getClass();
                     wjb b2 = xjb.b();
-                    b2.a = new k09(obj, (byte) 25);
+                    b2.a = new l09(obj, (byte) 25);
                     b2.c = new a94[]{qod.a};
                     b2.b = true;
                     b2.d = (char) 23707;

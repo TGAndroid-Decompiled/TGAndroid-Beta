@@ -899,14 +899,14 @@ public final class ip7 extends rf0 implements fn7 {
         } else {
             z2 = false;
         }
-        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
         if (x && !z2) {
             edit.remove("notify2_" + p(j, j2, false));
         } else {
             edit.putInt("notify2_" + p(j, j2, false), 0);
         }
         if (i2 == 0) {
-            getMessagesStorage().B1(j, 0L);
+            getMessagesStorage().G1(j, 0L);
             TLRPC.Dialog dialog = (TLRPC.Dialog) getMessagesController().R.f(j);
             if (dialog != null) {
                 dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
@@ -920,7 +920,7 @@ public final class ip7 extends rf0 implements fn7 {
         boolean z;
         long j3 = 0;
         if (j != 0) {
-            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
             int i2 = (j2 > 0L ? 1 : (j2 == 0L ? 0 : -1));
             if (i2 != 0) {
                 z = true;
@@ -944,7 +944,7 @@ public final class ip7 extends rf0 implements fn7 {
             edit.apply();
             if (i2 == 0) {
                 n(this.currentAccount).N(j);
-                jf7.Y(this.currentAccount).B1(j, j3);
+                kf7.a0(this.currentAccount).G1(j, j3);
                 TLRPC.Dialog dialog = (TLRPC.Dialog) uc7.s1(this.currentAccount).R.f(j);
                 if (dialog != null) {
                     TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
@@ -972,7 +972,7 @@ public final class ip7 extends rf0 implements fn7 {
             i += hashMap.size();
             z |= hp7Var.d;
             TLRPC.User X1 = getMessagesController().X1(Long.valueOf(j));
-            if (X1 == null && (X1 = getMessagesStorage().h0(j)) != null) {
+            if (X1 == null && (X1 = getMessagesStorage().j0(j)) != null) {
                 getMessagesController().i4(X1, true, false);
             }
             File file = null;
@@ -1237,7 +1237,7 @@ public final class ip7 extends rf0 implements fn7 {
             } else {
                 edit.putInt("notify2_" + p(j, j2, false), 0);
             }
-            getMessagesStorage().B1(j, 0L);
+            getMessagesStorage().G1(j, 0L);
             if (dialog != null) {
                 dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
             }
@@ -1261,7 +1261,7 @@ public final class ip7 extends rf0 implements fn7 {
                 j3 = 1 | (((long) currentTime) << 32);
             }
             n(yac.t0).N(j);
-            jf7.Y(yac.t0).B1(j, j3);
+            kf7.a0(yac.t0).G1(j, j3);
             if (dialog != null) {
                 TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
                 dialog.notify_settings = tL_peerNotifySettings;
@@ -1275,8 +1275,8 @@ public final class ip7 extends rf0 implements fn7 {
     public final void U(int i, int i2) {
         getAccountInstance().d().edit().putInt(k(i), i2).commit();
         b0(i);
-        jf7 messagesStorage = getMessagesStorage();
-        messagesStorage.a.c(new be7(messagesStorage, (byte) 10));
+        kf7 messagesStorage = getMessagesStorage();
+        messagesStorage.a.c(new hd7(messagesStorage, (byte) 12));
         g(i);
     }
 
@@ -1297,7 +1297,7 @@ public final class ip7 extends rf0 implements fn7 {
     }
 
     public final void a0(long j, String str) {
-        l0.c(new cq6(this, str, j, (byte) 21));
+        l0.c(new cq6(this, str, j, (byte) 22));
     }
 
     public final void b(r47 r47Var) {
@@ -1493,7 +1493,7 @@ public final class ip7 extends rf0 implements fn7 {
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == jn7.Y1) {
-            l0.c(new pl7(this, (String) objArr[0], (byte) 5));
+            l0.c(new ql7(this, (String) objArr[0], (byte) 6));
         }
     }
 

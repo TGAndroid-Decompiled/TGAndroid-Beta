@@ -34,15 +34,15 @@ public final class i83 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         Boolean bool = (Boolean) obj;
         bool.booleanValue();
         zw2 zw2Var = (zw2) obj2;
         switch (b) {
             case 0:
-                return ((i83) create(bool, zw2Var)).invokeSuspend(f9cVar);
+                return ((i83) create(bool, zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((i83) create(bool, zw2Var)).invokeSuspend(f9cVar);
+                return ((i83) create(bool, zw2Var)).invokeSuspend(g9cVar);
         }
     }
 

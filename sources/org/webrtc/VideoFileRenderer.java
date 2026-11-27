@@ -144,12 +144,12 @@ public class VideoFileRenderer implements VideoSink {
     @Override
     public void onFrame(VideoFrame videoFrame) {
         videoFrame.retain();
-        this.renderThreadHandler.post(new g9c(this, videoFrame, (byte) 10));
+        this.renderThreadHandler.post(new c9c(this, videoFrame, (byte) 11));
     }
 
     public void release() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.renderThreadHandler.post(new g9c(this, countDownLatch, (byte) 11));
+        this.renderThreadHandler.post(new c9c(this, countDownLatch, (byte) 12));
         ThreadUtils.awaitUninterruptibly(countDownLatch);
         this.fileThreadHandler.post(new azb(this, (byte) 13));
         try {

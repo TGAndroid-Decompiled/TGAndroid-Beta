@@ -22,7 +22,7 @@ public final class v92 extends e implements fn7 {
     public i56 H;
     public skb I;
     public ilb J;
-    public rca K;
+    public sca K;
     public u92 L;
     public boolean M;
     public ArrayList N;
@@ -49,7 +49,7 @@ public final class v92 extends e implements fn7 {
     public mf5 e;
     public boolean e0;
     public mf5 f;
-    public rca f0;
+    public sca f0;
     public ArrayList g0;
     public p92 h;
     public ua6 h0;
@@ -259,9 +259,9 @@ public final class v92 extends e implements fn7 {
         }
         this.s.addView(this.w, tre.o(-1, -2));
         this.w.setOnClickListener(new l92(this, (byte) 2));
-        rca rcaVar = new rca(context, (uh9) null);
-        this.K = rcaVar;
-        this.n.addView(rcaVar, tre.o(-1, -2));
+        sca scaVar = new sca(context, (uh9) null);
+        this.K = scaVar;
+        this.n.addView(scaVar, tre.o(-1, -2));
         if (z2) {
             this.x.setVisibility(8);
             this.w.setVisibility(8);
@@ -340,9 +340,9 @@ public final class v92 extends e implements fn7 {
         this.y = linearLayout5;
         linearLayout5.setOrientation(1);
         this.n.addView(this.y, tre.o(-1, -2));
-        rca rcaVar2 = new rca(context, (uh9) null);
-        this.f0 = rcaVar2;
-        this.n.addView(rcaVar2, tre.o(-1, -2));
+        sca scaVar2 = new sca(context, (uh9) null);
+        this.f0 = scaVar2;
+        this.n.addView(scaVar2, tre.o(-1, -2));
         u1 u1Var = this.n;
         u92 u92Var = new u92(this, context);
         this.L = u92Var;
@@ -458,7 +458,7 @@ public final class v92 extends e implements fn7 {
             }
             if (!K.equals(str)) {
                 if (!xc2.T(this.Y)) {
-                    getMessagesController().R(getParentActivity(), this.a0, this, new ef7(this) {
+                    getMessagesController().R(getParentActivity(), this.a0, this, new ff7(this) {
                         public final v92 b;
 
                         {
@@ -545,7 +545,7 @@ public final class v92 extends e implements fn7 {
                 if (chat.noforwards != this.c0) {
                     if (!xc2.T(chat)) {
                         f0(true);
-                        getMessagesController().R(getParentActivity(), this.a0, this, new ef7(this) {
+                        getMessagesController().R(getParentActivity(), this.a0, this, new ff7(this) {
                             public final v92 b;
 
                             {
@@ -606,7 +606,7 @@ public final class v92 extends e implements fn7 {
                     if (!this.b0 && !xc2.T(this.Y)) {
                         r92 r92Var = this.V;
                         if (r92Var.f || r92Var.h) {
-                            getMessagesController().R(getParentActivity(), this.a0, this, new ef7(this) {
+                            getMessagesController().R(getParentActivity(), this.a0, this, new ff7(this) {
                                 public final v92 b;
 
                                 {
@@ -762,11 +762,11 @@ public final class v92 extends e implements fn7 {
             ilbVar2.setTag(Integer.valueOf(i10));
             yob.X(this.d.getTextView(), i10, null);
             boolean z2 = this.o0;
-            rca rcaVar = this.K;
+            sca scaVar = this.K;
             if (z2) {
-                rcaVar.setVisibility(8);
+                scaVar.setVisibility(8);
             } else {
-                rcaVar.setVisibility(0);
+                scaVar.setVisibility(0);
             }
             this.f0.setVisibility(8);
             this.y.setVisibility(8);

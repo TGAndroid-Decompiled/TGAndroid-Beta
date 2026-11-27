@@ -200,12 +200,12 @@ public final class rpb implements vnb {
         if (drawable == null) {
             drawable = drawable2;
         }
-        boolean z = drawable instanceof hh7;
+        boolean z = drawable instanceof ih7;
         TextPaint textPaint = this.g;
         TextPaint textPaint2 = this.f;
         if ((z || (drawable instanceof BitmapDrawable)) && xea.o() != 0 && i86.e(32)) {
             if (z) {
-                bitmap = ((hh7) drawable).k;
+                bitmap = ((ih7) drawable).k;
             } else if (drawable instanceof BitmapDrawable) {
                 bitmap = ((BitmapDrawable) drawable).getBitmap();
             } else {
@@ -240,7 +240,7 @@ public final class rpb implements vnb {
             ColorMatrix colorMatrix = new ColorMatrix();
             if (z) {
                 float f6 = -0.06f;
-                if (((hh7) drawable).q >= 0.0f) {
+                if (((ih7) drawable).q >= 0.0f) {
                     colorMatrix.setSaturation(1.6f);
                     if (a()) {
                         f5 = 0.97f;
@@ -281,7 +281,7 @@ public final class rpb implements vnb {
                 hl.h(colorMatrix, f3);
             }
             if (z) {
-                float f7 = ((hh7) drawable).q;
+                float f7 = ((ih7) drawable).q;
                 if (f != null) {
                     f7 = f.floatValue();
                 }

@@ -767,7 +767,7 @@ public final class uv5 implements View.OnClickListener {
                 } else {
                     j2 = j;
                 }
-                jj.X(r78Var.a, j2, i10, new ii7(r78Var, (byte) 14));
+                jj.X(r78Var.a, j2, i10, new ji7(r78Var, (byte) 14));
                 return;
             case 20:
                 PhotoViewer photoViewer = (PhotoViewer) this.b;
@@ -779,7 +779,7 @@ public final class uv5 implements View.OnClickListener {
                     if (eVar5 instanceof zu1) {
                         ((zu1) eVar5).Z9(photoViewer.S4, false, true);
                     }
-                    m01.t(photoViewer.F, Uri.parse(photoViewer.S4.T0), true, false, false, null, null, false, uc7.s1(photoViewer.U).k4.I2.f, false, false);
+                    m01.t(photoViewer.F, Uri.parse(photoViewer.S4.T0), true, false, false, null, null, false, uc7.s1(photoViewer.U).l4.I2.f, false, false);
                     return;
                 }
                 return;
@@ -787,7 +787,7 @@ public final class uv5 implements View.OnClickListener {
                 a(view);
                 return;
             case 22:
-                a72.f0((zu1) this.c, 41026, new ii7((xg8) this.b, (byte) 15), null);
+                a72.f0((zu1) this.c, 41026, new ji7((xg8) this.b, (byte) 15), null);
                 return;
             case 23:
                 ((fu5) this.b).L((fu5) this.c);

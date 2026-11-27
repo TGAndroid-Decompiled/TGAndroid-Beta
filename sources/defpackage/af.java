@@ -33,7 +33,7 @@ public final class af implements TextView.OnEditorActionListener {
         switch (b) {
             case 0:
                 ij ijVar = (ij) editTextBoldCursor;
-                hf7 hf7Var = (hf7) obj;
+                if7 if7Var = (if7) obj;
                 if (i != 6) {
                     return false;
                 }
@@ -41,7 +41,7 @@ public final class af implements TextView.OnEditorActionListener {
                 if (obj2.length() > i2) {
                     hl.z3(ijVar);
                 } else {
-                    hf7Var.a(obj2);
+                    if7Var.a(obj2);
                     id idVar = idVarArr[0];
                     if (idVar != null) {
                         idVar.dismiss();

@@ -395,9 +395,9 @@ public final class jz7 implements ncc, NativeLifecycleLock.NativePointerCallable
                 }
                 return;
             default:
-                w09 w09Var = (w09) ((rn8) obj).b;
-                b19 f = b19.f(w09.b0(w09Var));
-                ArrayList arrayList2 = w09Var.b;
+                x09 x09Var = (x09) ((rn8) obj).b;
+                b19 f = b19.f(x09.b0(x09Var));
+                ArrayList arrayList2 = x09Var.b;
                 int i4 = f.a;
                 int i5 = 0;
                 while (i5 < arrayList2.size()) {
@@ -421,7 +421,7 @@ public final class jz7 implements ncc, NativeLifecycleLock.NativePointerCallable
                             if (Y1 != null) {
                                 Y1.flags2 &= -5;
                                 Y1.business_greeting_message = null;
-                                jf7.Y(i4).g2(Y1, true);
+                                kf7.a0(i4).l2(Y1, true);
                             }
                         } else if ("away".equals(c.b)) {
                             ConnectionsManager.getInstance(i4).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
@@ -429,16 +429,16 @@ public final class jz7 implements ncc, NativeLifecycleLock.NativePointerCallable
                             if (Y12 != null) {
                                 Y12.flags2 &= -9;
                                 Y12.business_away_message = null;
-                                jf7.Y(i4).g2(Y12, true);
+                                kf7.a0(i4).l2(Y12, true);
                             }
                         }
                     }
                     f.l();
-                    jf7 Y = jf7.Y(i4);
-                    Y.a.c(new q41(Y, arrayList2, (byte) 24));
+                    kf7 a0 = kf7.a0(i4);
+                    a0.a.c(new q41(a0, arrayList2, (byte) 24));
                     jn7.f(i4).k(122, new Object[0]);
                 }
-                w09Var.d0();
+                x09Var.d0();
                 return;
         }
     }

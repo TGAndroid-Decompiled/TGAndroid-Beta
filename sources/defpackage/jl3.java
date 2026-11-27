@@ -62,7 +62,7 @@ public final class jl3 implements Runnable {
                     if (tL_error == null) {
                         tl3Var.c0 = str;
                         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
-                        jf7.Y(i5).j1(messages_messages.users, messages_messages.chats, true, true);
+                        kf7.a0(i5).n1(messages_messages.users, messages_messages.chats, true, true);
                         uc7.s1(i5).j4(messages_messages.users, false);
                         uc7.s1(i5).c4(messages_messages.chats, false);
                         if (tL_messages_search.add_offset == 0) {
@@ -122,7 +122,7 @@ public final class jl3 implements Runnable {
                     if (tL_error2 == null) {
                         tl3Var2.c0 = str2;
                         TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject2;
-                        jf7.Y(i8).j1(messages_messages2.users, messages_messages2.chats, true, true);
+                        kf7.a0(i8).n1(messages_messages2.users, messages_messages2.chats, true, true);
                         uc7.s1(i8).j4(messages_messages2.users, false);
                         uc7.s1(i8).c4(messages_messages2.chats, false);
                         if (tL_messages_searchGlobal.offset_id == 0) {

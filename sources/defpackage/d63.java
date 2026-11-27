@@ -36,14 +36,14 @@ public final class d63 implements xt6, h8a {
     public final rx6 r;
     public final u1c s;
     public final c63[] w;
-    public final rg7 x;
+    public final sg7 x;
     public final gg8 y;
     public boolean O = true;
     public wh2[] I = new wh2[0];
     public h54[] J = new h54[0];
     public final IdentityHashMap E = new IdentityHashMap();
 
-    public d63(int i, z53 z53Var, u8a u8aVar, int i2, qx6 qx6Var, v2c v2cVar, pr3 pr3Var, mr3 mr3Var, z6f z6fVar, lp lpVar, long j, ra6 ra6Var, rx6 rx6Var, rg7 rg7Var, wz4 wz4Var, ig8 ig8Var) {
+    public d63(int i, z53 z53Var, u8a u8aVar, int i2, qx6 qx6Var, v2c v2cVar, pr3 pr3Var, mr3 mr3Var, z6f z6fVar, lp lpVar, long j, ra6 ra6Var, rx6 rx6Var, sg7 sg7Var, wz4 wz4Var, ig8 ig8Var) {
         String k;
         int i3;
         int[][] iArr;
@@ -67,11 +67,11 @@ public final class d63 implements xt6, h8a {
         this.h = j;
         this.n = ra6Var;
         this.r = rx6Var;
-        this.x = rg7Var;
+        this.x = sg7Var;
         boolean z = true;
         this.y = new gg8(z53Var, wz4Var, rx6Var);
         int i4 = 0;
-        rg7Var.getClass();
+        sg7Var.getClass();
         no5 no5Var = po5.b;
         j99 j99Var = j99.e;
         this.K = new er2(j99Var, j99Var);
@@ -171,13 +171,13 @@ public final class d63 implements xt6, h8a {
                         ko4VarArr = ko4VarArr3;
                         if ("urn:scte:dash:cc:cea-608:2015".equals(te3Var.a)) {
                             jo4 jo4Var = new jo4();
-                            jo4Var.s = dg7.n("application/cea-608");
+                            jo4Var.s = eg7.n("application/cea-608");
                             jo4Var.a = qu6.p(new StringBuilder(), faVar2.a, ":cea608");
                             ko4VarArr2 = o(te3Var, T, new ko4(jo4Var));
                             break;
                         } else if ("urn:scte:dash:cc:cea-708:2015".equals(te3Var.a)) {
                             jo4 jo4Var2 = new jo4();
-                            jo4Var2.s = dg7.n("application/cea-708");
+                            jo4Var2.s = eg7.n("application/cea-708");
                             jo4Var2.a = qu6.p(new StringBuilder(), faVar2.a, ":cea708");
                             ko4VarArr2 = o(te3Var, U, new ko4(jo4Var2));
                             break;
@@ -258,7 +258,7 @@ public final class d63 implements xt6, h8a {
                 String o = qd4.o(k, ":emsg");
                 jo4 jo4Var3 = new jo4();
                 jo4Var3.a = o;
-                jo4Var3.s = dg7.n("application/x-emsg");
+                jo4Var3.s = eg7.n("application/x-emsg");
                 jo4Var3.m = k;
                 ko4[] ko4VarArr6 = new ko4[z3];
                 ko4VarArr6[0] = new ko4(jo4Var3);
@@ -300,7 +300,7 @@ public final class d63 implements xt6, h8a {
             i54 i54Var = (i54) list.get(i30);
             jo4 jo4Var4 = new jo4();
             jo4Var4.a = i54Var.a();
-            jo4Var4.s = dg7.n("application/x-emsg");
+            jo4Var4.s = eg7.n("application/x-emsg");
             t1cVarArr[i16] = new t1c(i54Var.a() + ":" + i30, new ko4(jo4Var4));
             c63VarArr[i16] = new c63(5, 2, new int[0], -1, -1, -1, -1, i30, null);
             i30++;
@@ -351,7 +351,7 @@ public final class d63 implements xt6, h8a {
             if (n31Var.b && ((uif) n31Var.c).j(ko4Var)) {
                 jo4 a = ko4Var.a();
                 String str2 = ko4Var.l;
-                a.s = dg7.n("application/x-media3-cues");
+                a.s = eg7.n("application/x-media3-cues");
                 a.T = ((uif) n31Var.c).y(ko4Var);
                 StringBuilder sb = new StringBuilder();
                 sb.append(ko4Var.t);

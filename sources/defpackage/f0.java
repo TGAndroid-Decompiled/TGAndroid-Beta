@@ -32,7 +32,7 @@ public final class f0 extends ny0 implements fn7 {
         this.T1 = Q1;
         Q1.b();
         this.S1 = aiComposeTone;
-        TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = new TL_aicompose.aiComposeToneExample[uc7.s1(this.a).k4.a0.f()];
+        TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = new TL_aicompose.aiComposeToneExample[uc7.s1(this.a).l4.a0.f()];
         this.d2 = aicomposetoneexampleArr;
         if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
             aicomposetoneexampleArr[0] = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).example_english;

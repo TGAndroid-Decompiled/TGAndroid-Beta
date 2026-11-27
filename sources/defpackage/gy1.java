@@ -80,10 +80,10 @@ public final class gy1 implements ValueAnimator.AnimatorUpdateListener {
                 gkcVar.invalidate();
                 return;
             case 6:
-                rbb rbbVar = (rbb) obj;
+                sbb sbbVar = (sbb) obj;
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rbbVar.r.setTranslationY(f2 * floatValue5);
-                rbbVar.r.b(f * floatValue5);
+                sbbVar.r.setTranslationY(f2 * floatValue5);
+                sbbVar.r.b(f * floatValue5);
                 return;
             case 7:
                 zoc zocVar = (zoc) obj;

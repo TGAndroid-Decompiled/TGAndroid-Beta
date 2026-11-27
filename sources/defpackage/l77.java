@@ -61,7 +61,7 @@ public final class l77 implements Runnable {
                     l.putInt("dialogsType", 11);
                 } else {
                     String uri2 = uri.toString();
-                    Iterator it = uc7.s1(i).k4.N3.f.iterator();
+                    Iterator it = uc7.s1(i).l4.N3.f.iterator();
                     while (true) {
                         if (it.hasNext()) {
                             if (uri2.contains((String) it.next())) {
@@ -75,7 +75,7 @@ public final class l77 implements Runnable {
                         }
                     }
                     if (!z) {
-                        Iterator it2 = uc7.s1(i).k4.M3.f.iterator();
+                        Iterator it2 = uc7.s1(i).l4.M3.f.iterator();
                         while (true) {
                             if (!it2.hasNext()) {
                                 break;
@@ -97,7 +97,7 @@ public final class l77 implements Runnable {
                 } else if (o.F() && o.u().W) {
                     o.u().l(false, true);
                 }
-                rbb.v();
+                sbb.v();
                 j95 j95Var = j95.s5;
                 if (j95Var != null) {
                     j95Var.dismiss();
@@ -479,7 +479,7 @@ public final class l77 implements Runnable {
             k3bVar.F = null;
             k3bVar.E = true;
             k3bVar.y = false;
-            hl.c3(new ida(k3bVar, arrayList, (byte) 28));
+            hl.c3(new kba(k3bVar, arrayList, (byte) 29));
         }
     }
 

@@ -257,18 +257,18 @@ public final class sb4 implements Runnable {
                 uc7Var.getNotificationCenter().k(2, 8192);
                 return;
             case 11:
-                jf7 jf7Var = (jf7) obj2;
-                jf7Var.b1((TLRPC.messages_Dialogs) obj, b2);
+                kf7 kf7Var = (kf7) obj2;
+                kf7Var.f1((TLRPC.messages_Dialogs) obj, b2);
                 try {
-                    jf7Var.a.c(new be7(jf7Var, (byte) 21));
+                    kf7Var.a.c(new hd7(kf7Var, (byte) 24));
                     return;
                 } catch (Exception e4) {
-                    jf7Var.n(e4, true);
+                    kf7Var.p(e4, true);
                     return;
                 }
             case 12:
                 ArrayList arrayList2 = (ArrayList) obj;
-                lq3 downloadController = ((jf7) obj2).getDownloadController();
+                lq3 downloadController = ((kf7) obj2).getDownloadController();
                 HashMap hashMap2 = downloadController.f;
                 if (!arrayList2.isEmpty()) {
                     if (b2 == 1) {

@@ -3,7 +3,7 @@ package defpackage;
 import java.util.List;
 public final class o83 implements o73 {
     public final bd4 a;
-    public final i09 b;
+    public final j09 b;
     public final ux2 c;
     public int f;
     public uqa g;
@@ -11,17 +11,17 @@ public final class o83 implements o73 {
     public final tgb j;
     public final tgb k;
     public final lyc l;
-    public final k09 d = new k09(new a83(this, null, (byte) 0), (byte) 6);
-    public final wj7 e = new wj7();
+    public final l09 d = new l09(new a83(this, null, (byte) 0), (byte) 6);
+    public final xj7 e = new xj7();
     public final ri6 h = new ri6((byte) 24);
 
-    public o83(bd4 bd4Var, List list, i09 i09Var, ux2 ux2Var) {
+    public o83(bd4 bd4Var, List list, j09 j09Var, ux2 ux2Var) {
         this.a = bd4Var;
-        this.b = i09Var;
+        this.b = j09Var;
         this.c = ux2Var;
         ?? obj = new Object();
         obj.d = this;
-        obj.a = new wj7();
+        obj.a = new xj7();
         obj.b = xwd.a();
         obj.c = sl2.k(list);
         this.i = obj;
@@ -32,7 +32,7 @@ public final class o83 implements o73 {
 
     @Override
     public final Object a(is4 is4Var, ax2 ax2Var) {
-        nac nacVar = (nac) ax2Var.getContext().get(rg7.d);
+        nac nacVar = (nac) ax2Var.getContext().get(sg7.d);
         if (nacVar != null) {
             nacVar.a(this);
         }

@@ -225,13 +225,13 @@ public final class m65 implements RequestDelegate {
                     } else {
                         uc7Var5.W3(i3, -1, i4);
                     }
-                    jf7 messagesStorage = uc7Var5.getMessagesStorage();
+                    kf7 messagesStorage = uc7Var5.getMessagesStorage();
                     if (chat != null) {
                         j = -chat.id;
                     } else {
                         j = user.id;
                     }
-                    messagesStorage.Z1(j, null, false, 0, 0, false, null);
+                    messagesStorage.e2(j, null, false, 0, 0, false, null);
                     return;
                 }
                 return;
@@ -261,18 +261,18 @@ public final class m65 implements RequestDelegate {
                     return;
                 }
             case 23:
-                hl.c3(new tw4((KeyEvent.Callback) ((rl7) obj3), (TLObject) ((TLRPC.TL_contacts_importedContacts) tLObject), (Object) ((TLRPC.TL_inputPhoneContact) obj2), tL_error, (TLObject) ((TLRPC.TL_contacts_importContacts) obj), (byte) 29));
+                hl.c3(new tw4((KeyEvent.Callback) ((sl7) obj3), (TLObject) ((TLRPC.TL_contacts_importedContacts) tLObject), (Object) ((TLRPC.TL_inputPhoneContact) obj2), tL_error, (TLObject) ((TLRPC.TL_contacts_importContacts) obj), (byte) 29));
                 return;
             case 24:
                 hl.c3(new cp7((x08) obj3, tL_error, (Bundle) obj2, tLObject, (TLRPC.TL_auth_resendCode) obj, (byte) 2));
                 return;
             case 25:
                 p pVar = (p) obj3;
-                pl7 pl7Var = (pl7) obj2;
+                ql7 ql7Var = (ql7) obj2;
                 TLObject tLObject2 = (TLObject) obj;
                 pVar.getClass();
                 if (tLObject instanceof TLRPC.TL_payments_validatedRequestedInfo) {
-                    hl.c3(new fd7(pVar, (TLRPC.TL_payments_validatedRequestedInfo) tLObject, pl7Var, (byte) 21));
+                    hl.c3(new gd7(pVar, (TLRPC.TL_payments_validatedRequestedInfo) tLObject, ql7Var, (byte) 21));
                     return;
                 } else {
                     hl.c3(new c28(pVar, tL_error, tLObject2, (byte) 2));

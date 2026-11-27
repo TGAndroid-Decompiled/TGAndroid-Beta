@@ -19,7 +19,7 @@ public final class GroupCallEngine {
         if (!TextUtils.isEmpty(debugOverride)) {
             return debugOverride;
         }
-        return uc7.s1(i).k4.I.f;
+        return uc7.s1(i).l4.I.f;
     }
 
     public static boolean isReference(int i) {

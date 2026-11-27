@@ -20,7 +20,7 @@ import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class xqb extends e implements fn7 {
     public String E;
-    public bcb F;
+    public hab F;
     public boolean G;
     public SpannableStringBuilder H;
     public final boolean I;
@@ -63,9 +63,9 @@ public final class xqb extends e implements fn7 {
     }
 
     public final boolean Y(String str, boolean z) {
-        bcb bcbVar = this.F;
-        if (bcbVar != null) {
-            hl.r(bcbVar);
+        hab habVar = this.F;
+        if (habVar != null) {
+            hl.r(habVar);
             this.F = null;
             this.E = null;
             if (this.y != 0) {
@@ -114,9 +114,9 @@ public final class xqb extends e implements fn7 {
                 }
                 e0(aob.F6, ob6.M0(2131745235, null));
                 this.E = str;
-                bcb bcbVar2 = new bcb(this, str, (byte) 8);
-                this.F = bcbVar2;
-                hl.d3(bcbVar2, 300L);
+                hab habVar2 = new hab(this, str, (byte) 9);
+                this.F = habVar2;
+                hl.d3(habVar2, 300L);
             }
             return true;
         } else if (z) {

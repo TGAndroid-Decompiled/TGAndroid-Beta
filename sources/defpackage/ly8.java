@@ -26,8 +26,8 @@ public final class ly8 implements Runnable {
         oy8 oy8Var = this.b;
         switch (b) {
             case 0:
-                if (oy8Var.a.get() != null && ((wab) oy8Var.f) != null && !((AtomicBoolean) oy8Var.b).get()) {
-                    TextureView textureView = ((wab) oy8Var.f).getTextureView();
+                if (oy8Var.a.get() != null && ((xab) oy8Var.f) != null && !((AtomicBoolean) oy8Var.b).get()) {
+                    TextureView textureView = ((xab) oy8Var.f).getTextureView();
                     if (textureView != null) {
                         int width = textureView.getWidth();
                         int height = textureView.getHeight();
@@ -106,7 +106,7 @@ public final class ly8 implements Runnable {
                             }
                         }
                         oy8Var.d = my8Var;
-                        hl.c3(new hp8(oy8Var, my8Var, (byte) 19));
+                        hl.c3(new ep8(oy8Var, my8Var, (byte) 20));
                     }
                     if (!((AtomicBoolean) oy8Var.b).get()) {
                         Utilities.e.a((ly8) oy8Var.h);

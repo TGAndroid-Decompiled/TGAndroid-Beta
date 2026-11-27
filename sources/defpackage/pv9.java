@@ -20,7 +20,7 @@ public final class pv9 implements Runnable {
         switch (b) {
             case 0:
                 try {
-                    SQLiteCursor queryFinalized = jf7.Y(sv9Var.m).b.queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = kf7.a0(sv9Var.m).b.queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     HashMap hashMap = new HashMap();
                     while (queryFinalized.next()) {
@@ -40,7 +40,7 @@ public final class pv9 implements Runnable {
                 }
             default:
                 try {
-                    jf7.Y(sv9Var.m).b.executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+                    kf7.a0(sv9Var.m).b.executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
                     return;
                 } catch (Exception e2) {
                     cc4.g(e2, true);

@@ -160,7 +160,7 @@ public final class xf2 extends c79 {
                 zmaVar = new ij6(context);
                 break;
             case 3:
-                zmaVar = new rca(context, (uh9) null);
+                zmaVar = new sca(context, (uh9) null);
                 break;
             case 4:
                 ilb ilbVar = new ilb(context);

@@ -46,7 +46,7 @@ public final class hl1 implements Runnable {
             case 5:
                 zu1 zu1Var3 = this.b;
                 String str3 = this.c;
-                String str4 = zu1Var3.getMessagesController().k4.O1.f;
+                String str4 = zu1Var3.getMessagesController().l4.O1.f;
                 if (TextUtils.isEmpty(str4)) {
                     str4 = "https://tonviewer.com/";
                 } else if (!str4.endsWith("/")) {

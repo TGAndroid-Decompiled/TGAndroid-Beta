@@ -9,13 +9,13 @@ public final class b3 implements Iterator {
     public Object b = null;
     public Collection c = null;
     public Iterator d = pu5.a;
-    public final fj7 e;
+    public final gj7 e;
     public final byte f;
 
-    public b3(fj7 fj7Var, byte b) {
+    public b3(gj7 gj7Var, byte b) {
         this.f = b;
-        this.e = fj7Var;
-        this.a = fj7Var.e.entrySet().iterator();
+        this.e = gj7Var;
+        this.a = gj7Var.e.entrySet().iterator();
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class b3 implements Iterator {
         if (collection.isEmpty()) {
             this.a.remove();
         }
-        fj7 fj7Var = this.e;
-        fj7Var.f--;
+        gj7 gj7Var = this.e;
+        gj7Var.f--;
     }
 }

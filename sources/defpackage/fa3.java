@@ -50,7 +50,7 @@ public final class fa3 {
             }
             String str = ko4Var.t;
             str.getClass();
-            int c = dg7.c(str, ko4Var.l);
+            int c = eg7.c(str, ko4Var.l);
             if (c != 0 && i2 >= gcc.s(c)) {
                 int i3 = ko4Var.O;
                 if (i3 == -1) {

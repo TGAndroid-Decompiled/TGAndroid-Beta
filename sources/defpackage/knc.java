@@ -1950,7 +1950,7 @@ public final class knc extends View {
                                 wmaVar3.addView(m7Var2, childCount, new FrameLayout.LayoutParams(1, 1, 51));
                                 sncVar6.Y = m7Var2;
                                 m7Var2.requestFocus();
-                                hl.d3(new vlc(sncVar6, m7Var2, (byte) 3), 50L);
+                                hl.d3(new slc(sncVar6, m7Var2, (byte) 4), 50L);
                                 StringBuilder sb = new StringBuilder("field: editing in place (");
                                 sb.append(sncVar6.n.length());
                                 sb.append(" chars, recording ");

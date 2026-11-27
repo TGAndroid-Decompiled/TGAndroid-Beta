@@ -85,7 +85,7 @@ public final class j72 implements icc {
                 boolean[] zArr2 = (boolean[]) obj5;
                 c cVar = (c) obj4;
                 TextView textView = (TextView) obj3;
-                sk7 sk7Var = (sk7) callback;
+                tk7 tk7Var = (tk7) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
                 if (!zArr[0] && !w45Var.m && !w45Var.n) {
@@ -110,14 +110,14 @@ public final class j72 implements icc {
                         str = ob6.M0(2131742617, null);
                         a55.m("preview", str);
                     }
-                    d31.d0(str, sk7Var.F, vnbVar);
+                    d31.d0(str, tk7Var.F, vnbVar);
                     return;
                 }
                 return;
         }
     }
 
-    public j72(boolean[] zArr, w45 w45Var, boolean[] zArr2, c51 c51Var, boolean z, c cVar, TextView textView, sk7 sk7Var, vnb vnbVar) {
+    public j72(boolean[] zArr, w45 w45Var, boolean[] zArr2, c51 c51Var, boolean z, c cVar, TextView textView, tk7 tk7Var, vnb vnbVar) {
         this.b = zArr;
         this.f = w45Var;
         this.g = zArr2;
@@ -125,7 +125,7 @@ public final class j72 implements icc {
         this.d = z;
         this.h = cVar;
         this.i = textView;
-        this.j = sk7Var;
+        this.j = tk7Var;
         this.e = vnbVar;
     }
 }

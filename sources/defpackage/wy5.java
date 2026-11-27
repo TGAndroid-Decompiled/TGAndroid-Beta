@@ -1623,8 +1623,8 @@ public abstract class wy5 extends xma implements qv7, f44, lv7, vma, fn7 {
         ArrayList arrayList = null;
         for (int i = 0; i < childCount; i++) {
             View childAt = ry5Var.getChildAt(i);
-            if (childAt instanceof v3b) {
-                TLRPC.Document sticker = ((v3b) childAt).getSticker();
+            if (childAt instanceof w3b) {
+                TLRPC.Document sticker = ((w3b) childAt).getSticker();
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
@@ -1879,29 +1879,29 @@ public abstract class wy5 extends xma implements qv7, f44, lv7, vma, fn7 {
     }
 
     public final void n0() {
-        v3b v3bVar;
+        w3b w3bVar;
         h44 h44Var = this.C0;
         if (h44Var != null) {
             PointF D0 = D0(h44Var);
             h44 h44Var2 = this.C0;
-            boolean z = h44Var2 instanceof v3b;
+            boolean z = h44Var2 instanceof w3b;
             ry5 ry5Var = this.J0;
             if (z) {
-                v3b v3bVar2 = new v3b(getContext(), (v3b) this.C0, D0);
-                v3bVar2.setDelegate(this);
-                ry5Var.addView(v3bVar2);
-                v3bVar = v3bVar2;
+                w3b w3bVar2 = new w3b(getContext(), (w3b) this.C0, D0);
+                w3bVar2.setDelegate(this);
+                ry5Var.addView(w3bVar2);
+                w3bVar = w3bVar2;
             } else if (h44Var2 instanceof rlb) {
                 rlb rlbVar = new rlb(getContext(), (rlb) this.C0, D0);
                 rlbVar.setDelegate(this);
                 rlbVar.setMaxWidth((int) (getPaintingSize().a - 20.0f));
                 ry5Var.addView(rlbVar, tre.c(-2.0f, -2));
-                v3bVar = rlbVar;
+                w3bVar = rlbVar;
             } else {
-                v3bVar = null;
+                w3bVar = null;
             }
-            r0(v3bVar);
-            t0(v3bVar, true);
+            r0(w3bVar);
+            t0(w3bVar, true);
         }
         n8 n8Var = this.B1;
         if (n8Var != null && n8Var.isShowing()) {

@@ -188,8 +188,8 @@ public final class woa extends n9c {
                         } else {
                             z = false;
                         }
-                        jf7 Y = jf7.Y(i3);
-                        Y.a.c(new t87(Y, new sa((byte) 6, this, z), (byte) 15));
+                        kf7 a0 = kf7.a0(i3);
+                        a0.a.c(new t87(a0, new sa((byte) 6, this, z), (byte) 15));
                     }
                 }
                 return;
@@ -280,7 +280,7 @@ public final class woa extends n9c {
             Context context2 = context;
             voa voaVar = new voa(context2, str2, str, z, z2);
             voaVarArr[i] = voaVar;
-            voaVar.i0 = new ida(this, voaVar, (byte) 7);
+            voaVar.i0 = new kba(this, voaVar, (byte) 8);
             voaVar.setOnClickListener(new jy8(this, voaVar, (byte) 12));
             i++;
             context = context2;

@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.ArrayList;
 public final class e37 implements o43 {
-    public static final kr2 b = new kr2(new d51(new p31((byte) 14), pk7.b), new d51(new p31((byte) 15), pk7.c));
+    public static final kr2 b = new kr2(new d51(new p31((byte) 14), qk7.b), new d51(new p31((byte) 15), qk7.c));
     public final ArrayList a = new ArrayList();
 
     @Override

@@ -71,7 +71,7 @@ public final class c8b {
     public TLRPC.Document c0;
     public boolean c1;
     public long d;
-    public v58 d0;
+    public w58 d0;
     public b8b d1;
     public long e;
     public int f;

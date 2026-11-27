@@ -9,7 +9,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class ss0 implements Runnable {
-    public final byte a = 5;
+    public final byte a = 4;
     public final boolean b;
     public final long c;
     public final Object d;
@@ -102,9 +102,6 @@ public final class ss0 implements Runnable {
                 w07Var.run(tLObject, tL_error);
                 return;
             case 3:
-                ((lm7) this.d).w0((TLRPC.TL_error) this.e, (TLObject) this.n, (TLRPC.TL_channels_editChannelNews) this.f, this.c, this.b, (j61) this.h);
-                return;
-            case 4:
                 jxa jxaVar = (jxa) this.d;
                 icc iccVar = (icc) this.e;
                 TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) this.f;
@@ -197,16 +194,6 @@ public final class ss0 implements Runnable {
         this.b = z;
         this.c = j;
         this.h = w07Var;
-    }
-
-    public ss0(lm7 lm7Var, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_editChannelNews tL_channels_editChannelNews, long j, boolean z, j61 j61Var) {
-        this.d = lm7Var;
-        this.e = tL_error;
-        this.n = tLObject;
-        this.f = tL_channels_editChannelNews;
-        this.c = j;
-        this.b = z;
-        this.h = j61Var;
     }
 
     public ss0(jxa jxaVar, icc iccVar, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z) {

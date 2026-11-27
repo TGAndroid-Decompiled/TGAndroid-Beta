@@ -24,7 +24,7 @@ public final class qs1 implements jt1 {
             v21 v21Var = null;
             if (z2) {
                 i = ((e) zu1Var).currentAccount;
-                SharedPreferences sharedPreferences = uc7.s1(i).W3;
+                SharedPreferences sharedPreferences = uc7.s1(i).X3;
                 if (zu1Var.V4.isEmpty()) {
                     SharedPreferences.Editor edit = sharedPreferences.edit();
                     edit.remove("pin_" + zu1Var.l6).commit();

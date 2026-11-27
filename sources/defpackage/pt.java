@@ -32,7 +32,7 @@ import org.webrtc.NativeLifecycleLock;
 import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.SSLCertificateVerifier;
-public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, NativeLifecycleLock.NativeCallable, NativeLifecycleLock.NativePointerCallable, ef7, jcc, ci0 {
+public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, NativeLifecycleLock.NativeCallable, NativeLifecycleLock.NativePointerCallable, ff7, jcc, ci0 {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -276,7 +276,7 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
                             v03Var = new v03("Conditional create failed, failure: " + exc2, (byte) 2);
                         }
                         this.b.execute(new bv2(this.c, v03Var, (byte) 13));
-                        return f9c.a;
+                        return g9c.a;
                     }
                 };
                 CredentialProviderPlayServicesImpl.Companion.getClass();
@@ -310,9 +310,9 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
                 r47 r47Var = (r47) obj;
                 if (arrayList.size() <= 1) {
                     j = 0;
-                    if (((if7) arrayList.get(0)).a != yac.h(j20Var.a).e() && charSequence == null && arrayList2 != null) {
-                        if7 if7Var = (if7) arrayList.get(0);
-                        long j3 = if7Var.a;
+                    if (((jf7) arrayList.get(0)).a != yac.h(j20Var.a).e() && charSequence == null && arrayList2 != null) {
+                        jf7 jf7Var = (jf7) arrayList.get(0);
+                        long j3 = jf7Var.a;
                         Bundle l = bs2.l("scrollToTopOnResume", true);
                         if (wf3.B(j3)) {
                             l.putInt("enc_id", (int) (j3 & 4294967295L));
@@ -322,12 +322,12 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
                             l.putLong("chat_id", -j3);
                         }
                         zu1 zu1Var = new zu1(l);
-                        if (if7Var.b != 0) {
-                            ro4.a(zu1Var, if7Var);
+                        if (jf7Var.b != 0) {
+                            ro4.a(zu1Var, jf7Var);
                         }
                         if (j20Var.z2.u0(zu1Var, true, false)) {
                             zu1Var.cc(arrayList2);
-                            if (if7Var.b != 0) {
+                            if (jf7Var.b != 0) {
                                 uj3Var.removeSelfFromStack();
                             }
                         } else {
@@ -340,7 +340,7 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
                 }
                 int i3 = 0;
                 while (i3 < arrayList.size()) {
-                    long j4 = ((if7) arrayList.get(i3)).a;
+                    long j4 = ((jf7) arrayList.get(i3)).a;
                     if (charSequence != null) {
                         j2 = j4;
                         r7a.B(j20Var.a).q0(p7a.b(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
@@ -362,12 +362,12 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
                 e Q = LaunchActivity.Q();
                 if (Q != null) {
                     d31 b0 = d31.b0(Q);
-                    if (arrayList.size() == 1 && ((if7) arrayList.get(0)).a == yac.h(j20Var.a).e()) {
+                    if (arrayList.size() == 1 && ((jf7) arrayList.get(0)).a == yac.h(j20Var.a).e()) {
                         H = ob6.M0(2131750459, null);
-                    } else if (arrayList.size() == 1 && ((if7) arrayList.get(0)).a > j) {
-                        H = ob6.a0(null, null, 2131750458, wf3.s(((if7) arrayList.get(0)).a));
-                    } else if (arrayList.size() == 1 && ((if7) arrayList.get(0)).a < j) {
-                        H = ob6.a0(null, null, 2131750463, wf3.s(((if7) arrayList.get(0)).a));
+                    } else if (arrayList.size() == 1 && ((jf7) arrayList.get(0)).a > j) {
+                        H = ob6.a0(null, null, 2131750458, wf3.s(((jf7) arrayList.get(0)).a));
+                    } else if (arrayList.size() == 1 && ((jf7) arrayList.get(0)).a < j) {
+                        H = ob6.a0(null, null, 2131750463, wf3.s(((jf7) arrayList.get(0)).a));
                     } else {
                         H = ob6.H(',', "FwdMessageToManyChats", arrayList.size());
                     }
@@ -379,7 +379,7 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
                 String str = (String) obj2;
                 mu7 mu7Var = (mu7) obj;
                 xw0 xw0Var = ((sw0) obj4).d;
-                long j5 = ((if7) arrayList.get(0)).a;
+                long j5 = ((jf7) arrayList.get(0)).a;
                 Bundle l2 = bs2.l("scrollToTopOnResume", true);
                 if (wf3.B(j5)) {
                     l2.putInt("enc_id", (int) (j5 & 4294967295L));
@@ -415,7 +415,7 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
                 String str2 = (String) obj2;
                 mu7 mu7Var2 = (mu7) obj;
                 n12 n12Var = ((s02) obj4).e;
-                long j6 = ((if7) arrayList.get(0)).a;
+                long j6 = ((jf7) arrayList.get(0)).a;
                 Bundle l3 = bs2.l("scrollToTopOnResume", true);
                 if (wf3.B(j6)) {
                     l3.putInt("enc_id", (int) (j6 & 4294967295L));
@@ -495,28 +495,28 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
             case 13:
                 String str2 = (String) obj2;
                 String str3 = LaunchActivity.C1;
-                rl7 rl7Var = new rl7((e) obj, (LaunchActivity) obj4);
-                rl7Var.I0((String) obj3, false);
+                sl7 sl7Var = new sl7((e) obj, (LaunchActivity) obj4);
+                sl7Var.I0((String) obj3, false);
                 if (str2 != null) {
                     String[] split = str2.split(" ", 2);
                     String str4 = split[0];
                     if (split.length > 1) {
                         str = split[1];
                     }
-                    ju7 ju7Var = rl7Var.m1;
+                    ju7 ju7Var = sl7Var.m1;
                     if (ju7Var != null) {
                         ju7Var.getEditText().setText(str4);
                     } else {
-                        rl7Var.D1 = str4;
+                        sl7Var.D1 = str4;
                     }
-                    ju7 ju7Var2 = rl7Var.n1;
+                    ju7 ju7Var2 = sl7Var.n1;
                     if (ju7Var2 != null) {
                         ju7Var2.getEditText().setText(str);
                     } else {
-                        rl7Var.E1 = str;
+                        sl7Var.E1 = str;
                     }
                 }
-                rl7Var.show();
+                sl7Var.show();
                 return;
             case 14:
                 ((qh6) obj4).w1((String) obj3, (String) obj2, (String) obj);

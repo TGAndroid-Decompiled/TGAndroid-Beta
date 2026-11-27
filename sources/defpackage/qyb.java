@@ -47,7 +47,7 @@ public final class qyb extends rf0 {
                 f.closed = true;
             }
             D(j2, f, 44);
-            getMessagesStorage().c2(j2, f, 44);
+            getMessagesStorage().h2(j2, f, 44);
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_editForumTopic, null);
     }
@@ -142,7 +142,7 @@ public final class qyb extends rf0 {
                         if (tL_forumTopic.pinned != z2 || (z2 && tL_forumTopic.pinnedOrder != indexOf)) {
                             tL_forumTopic.pinned = z2;
                             tL_forumTopic.pinnedOrder = indexOf;
-                            getMessagesStorage().c2(j, tL_forumTopic, 4);
+                            getMessagesStorage().h2(j, tL_forumTopic, 4);
                             z4 = true;
                         }
                     }
@@ -165,8 +165,8 @@ public final class qyb extends rf0 {
         tL_messages_deleteTopicHistory.peer = getMessagesController().j1(j2);
         tL_messages_deleteTopicHistory.top_msg_id = i;
         if (i2 == 0) {
-            jf7 messagesStorage = getMessagesStorage();
-            messagesStorage.a.c(new xd7(messagesStorage, j2, i, (byte) 2));
+            kf7 messagesStorage = getMessagesStorage();
+            messagesStorage.a.c(new yd7(messagesStorage, j2, i, (byte) 2));
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_deleteTopicHistory, new lyb(this, j, i));
     }
@@ -308,7 +308,7 @@ public final class qyb extends rf0 {
     }
 
     public final void m(final long j, final long j2, final o30 o30Var) {
-        jf7 messagesStorage = getMessagesStorage();
+        kf7 messagesStorage = getMessagesStorage();
         messagesStorage.a.c(new ue2(messagesStorage, -j, new Consumer() {
             @Override
             public final void accept(Object obj) {
@@ -350,7 +350,7 @@ public final class qyb extends rf0 {
         zh6Var3.k(tL_forumTopic.id, tL_forumTopic);
         arrayList.add(tL_forumTopic);
         if (z) {
-            getMessagesStorage().z1(getConnectionsManager().getCurrentTime(), j, Collections.singletonList(tL_forumTopic), false);
+            getMessagesStorage().D1(getConnectionsManager().getCurrentTime(), j, Collections.singletonList(tL_forumTopic), false);
         }
         y(j2, true);
     }
@@ -382,13 +382,13 @@ public final class qyb extends rf0 {
             return;
         }
         D(j, tL_forumTopic, i);
-        getMessagesStorage().c2(j, tL_forumTopic, i);
+        getMessagesStorage().h2(j, tL_forumTopic, i);
     }
 
     public final void s(long j, long j2) {
         ArrayList arrayList = new ArrayList(1);
-        arrayList.add(if7.a(-j, j2));
-        hl.c3(new bcb(this, arrayList, (byte) 13));
+        arrayList.add(jf7.a(-j, j2));
+        hl.c3(new hab(this, arrayList, (byte) 14));
     }
 
     public final void t(long j, int i, boolean z, e eVar) {
@@ -434,7 +434,7 @@ public final class qyb extends rf0 {
             tL_messages_getForumTopicsByID2.peer = getMessagesController().j1(j2);
             tL_messages_getForumTopicsByID = tL_messages_getForumTopicsByID2;
         }
-        getConnectionsManager().sendRequest(tL_messages_getForumTopicsByID, new rs0(this, B2, j, hashSet, o30Var, (byte) 6));
+        getConnectionsManager().sendRequest(tL_messages_getForumTopicsByID, new rs0(this, B2, j, hashSet, o30Var, (byte) 5));
     }
 
     public final void w(ArrayList arrayList, long j) {
@@ -477,7 +477,7 @@ public final class qyb extends rf0 {
         zh6 zh6Var = (zh6) this.b.f(j);
         if (zh6Var != null && (tL_forumTopic = (TLRPC.TL_forumTopic) zh6Var.f(i)) != null) {
             tL_forumTopic.closed = z;
-            getMessagesStorage().c2(j2, tL_forumTopic, 8);
+            getMessagesStorage().h2(j2, tL_forumTopic, 8);
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_editForumTopic, new Object());
     }

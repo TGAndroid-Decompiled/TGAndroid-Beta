@@ -41,7 +41,7 @@ public final class md1 extends v8a {
         if (f != null) {
             try {
                 ycdVar = mbd.b(context).Z(ld1Var, f, kadVar);
-            } catch (RemoteException | zg7 e) {
+            } catch (ah7 | RemoteException e) {
                 mbd.a.a(e, "Unable to call %s on %s.", "newCastSessionImpl", hcd.class.getSimpleName());
             }
         }

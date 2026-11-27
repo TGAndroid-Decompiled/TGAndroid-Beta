@@ -22,7 +22,7 @@ public final class zb2 {
     public int n;
     public int o = 45;
     public LinearGradient p;
-    public hh7 q;
+    public ih7 q;
     public int r;
     public va6 s;
     public Path t;

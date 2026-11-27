@@ -5,7 +5,7 @@ import java.util.concurrent.Executor;
 public abstract class are {
     public static iz5 a() {
         String a;
-        hz5 hz5Var = (hz5) jg7.c().a(hz5.class);
+        hz5 hz5Var = (hz5) kg7.c().a(hz5.class);
         tae taeVar = hz5Var.b;
         taeVar.getClass();
         j2f j2fVar = hz5Var.a;

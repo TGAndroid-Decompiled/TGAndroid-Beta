@@ -49,7 +49,7 @@ public final class vi3 extends UndoView {
             }
             if (i2 >= 0) {
                 uj3Var.f0[0].d.f();
-                hl.c3(new ze7(this, i2, (TLRPC.Dialog) uj3Var.T1.remove(i2), (byte) 18));
+                hl.c3(new bf7(this, i2, (TLRPC.Dialog) uj3Var.T1.remove(i2), (byte) 18));
             } else {
                 uj3Var.U4(false, true);
             }

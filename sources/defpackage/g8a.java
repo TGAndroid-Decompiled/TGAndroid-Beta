@@ -41,7 +41,7 @@ public final class g8a implements Iterator, zw2 {
             zw2 zw2Var = this.c;
             zw2Var.getClass();
             this.c = null;
-            zw2Var.resumeWith(f9c.a);
+            zw2Var.resumeWith(g9c.a);
         }
         if (b != 1) {
             if (b == 2 || b == 3) {

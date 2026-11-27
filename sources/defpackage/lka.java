@@ -7,8 +7,8 @@ public final class lka implements Callable {
     public final Object b;
     public final Object c;
 
-    public lka(og7 og7Var, jq5 jq5Var) {
-        this.b = og7Var;
+    public lka(pg7 pg7Var, jq5 jq5Var) {
+        this.b = pg7Var;
         this.c = jq5Var;
     }
 
@@ -26,7 +26,7 @@ public final class lka implements Callable {
                 int i2 = v6f.a;
                 z6f.O3();
                 int i3 = a4f.a;
-                return ((og7) obj2).b.e((jq5) obj);
+                return ((pg7) obj2).b.e((jq5) obj);
         }
     }
 

@@ -157,7 +157,7 @@ public final class akb extends ef0 {
                             }
                             if (System.currentTimeMillis() - lm9Var.b >= 64) {
                                 lm9Var.b = System.currentTimeMillis();
-                                handler.postDelayed(new g9c(lm9Var, fArr6, (byte) 13), 130L);
+                                handler.postDelayed(new c9c(lm9Var, fArr6, (byte) 14), 130L);
                             }
                         }
                     }

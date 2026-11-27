@@ -1,34 +1,43 @@
 package defpackage;
-public enum pg7 {
-    TERMINATOR(new int[]{0, 0, 0}, 0),
-    NUMERIC(new int[]{10, 12, 14}, 1),
-    ALPHANUMERIC(new int[]{9, 11, 13}, 2),
-    STRUCTURED_APPEND(new int[]{0, 0, 0}, 3),
-    BYTE(new int[]{8, 16, 16}, 4),
-    ECI(new int[]{0, 0, 0}, 7),
-    KANJI(new int[]{8, 10, 12}, 8),
-    FNC1_FIRST_POSITION(new int[]{0, 0, 0}, 5),
-    FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 9),
-    HANZI(new int[]{8, 10, 12}, 13);
-    
-    public final int[] a;
-    public final byte b;
 
-    pg7(int[] iArr, int i) {
-        this.a = iArr;
-        this.b = i;
+import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.io.Closeable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicBoolean;
+public abstract class pg7 implements Closeable, h36 {
+    public static final j5 e = new j5("MobileVisionBase", "", (byte) 2);
+    public final AtomicBoolean a = new AtomicBoolean(false);
+    public final qi6 b;
+    public final CancellationTokenSource c;
+    public final Executor d;
+
+    public pg7(qi6 qi6Var, Executor executor) {
+        this.b = qi6Var;
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        this.c = cancellationTokenSource;
+        this.d = executor;
+        qi6Var.b.incrementAndGet();
+        qi6Var.a(executor, fgd.a, cancellationTokenSource.getToken()).addOnFailureListener(z6f.f);
     }
 
-    public final int a(xdc xdcVar) {
-        char c;
-        byte b = xdcVar.a;
-        if (b <= 9) {
-            c = 0;
-        } else if (b <= 26) {
-            c = 1;
+    public final synchronized Task c(jq5 jq5Var) {
+        if (this.a.get()) {
+            return Tasks.forException(new lg7("This detector is already closed!", 14));
+        } else if (jq5Var.b >= 32 && jq5Var.c >= 32) {
+            return this.b.a(this.d, new lka(this, jq5Var), this.c.getToken());
         } else {
-            c = 2;
+            return Tasks.forException(new lg7("InputImage width and height should be at least 32!", 3));
         }
-        return this.a[c];
+    }
+
+    @Override
+    @es7(y26.ON_DESTROY)
+    public synchronized void close() {
+        if (!this.a.getAndSet(true)) {
+            this.c.cancel();
+            this.b.d(this.d);
+        }
     }
 }

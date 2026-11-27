@@ -1,70 +1,115 @@
 package defpackage;
 
-import java.util.Arrays;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.util.Log;
 import java.util.List;
 public final class uf7 {
-    public final sf7[] a;
-    public final long b;
+    public byte a;
+    public int b;
+    public String c;
+    public Object d;
+    public Object e;
 
-    public uf7(List list) {
-        this((sf7[]) list.toArray(new sf7[0]));
+    public static String b(ji4 ji4Var) {
+        ji4Var.a();
+        yi4 yi4Var = ji4Var.c;
+        String str = yi4Var.e;
+        if (str != null) {
+            return str;
+        }
+        ji4Var.a();
+        String str2 = yi4Var.b;
+        if (!str2.startsWith("1:")) {
+            return str2;
+        }
+        String[] split = str2.split(":");
+        if (split.length < 2) {
+            return null;
+        }
+        String str3 = split[1];
+        if (str3.isEmpty()) {
+            return null;
+        }
+        return str3;
     }
 
-    public final uf7 a(sf7... sf7VarArr) {
-        if (sf7VarArr.length == 0) {
-            return this;
+    public final synchronized String a() {
+        if (this.c == null) {
+            f();
         }
-        String str = gcc.a;
-        sf7[] sf7VarArr2 = this.a;
-        Object[] copyOf = Arrays.copyOf(sf7VarArr2, sf7VarArr2.length + sf7VarArr.length);
-        System.arraycopy(sf7VarArr, 0, copyOf, sf7VarArr2.length, sf7VarArr.length);
-        return new uf7(this.b, (sf7[]) copyOf);
+        return this.c;
     }
 
-    public final uf7 b(uf7 uf7Var) {
-        if (uf7Var == null) {
-            return this;
+    public final synchronized int c() {
+        PackageInfo d;
+        if (this.b == 0 && (d = d("com.google.android.gms")) != null) {
+            this.b = d.versionCode;
         }
-        return a(uf7Var.a);
+        return this.b;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final PackageInfo d(String str) {
+        try {
+            return ((Context) this.d).getPackageManager().getPackageInfo(str, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w("FirebaseMessaging", "Failed to find package " + e);
+            return null;
         }
-        if (obj != null && uf7.class == obj.getClass()) {
-            uf7 uf7Var = (uf7) obj;
-            if (Arrays.equals(this.a, uf7Var.a) && this.b == uf7Var.b) {
-                return true;
+    }
+
+    public final boolean e() {
+        byte b;
+        synchronized (this) {
+            b = this.a;
+            if (b == 0) {
+                PackageManager packageManager = ((Context) this.d).getPackageManager();
+                if (packageManager.checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+                    Log.e("FirebaseMessaging", "Google Play services missing or without correct permission.");
+                    b = 0;
+                } else {
+                    if (!rve.a()) {
+                        Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
+                        intent.setPackage("com.google.android.gms");
+                        List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
+                        if (queryIntentServices != null && queryIntentServices.size() > 0) {
+                            this.a = (byte) 1;
+                            b = 1;
+                        }
+                    }
+                    Intent intent2 = new Intent("com.google.iid.TOKEN_REQUEST");
+                    intent2.setPackage("com.google.android.gms");
+                    List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
+                    if (queryBroadcastReceivers != null && queryBroadcastReceivers.size() > 0) {
+                        this.a = (byte) 2;
+                        b = 2;
+                    } else {
+                        Log.w("FirebaseMessaging", "Failed to resolve IID implementation package, falling back");
+                        if (rve.a()) {
+                            this.a = (byte) 2;
+                            b = 2;
+                        } else {
+                            this.a = (byte) 1;
+                            b = 1;
+                        }
+                    }
+                }
             }
+        }
+        if (b != 0) {
+            return true;
         }
         return false;
     }
 
-    public final int hashCode() {
-        return tse.b(this.b) + (Arrays.hashCode(this.a) * 31);
-    }
-
-    public final String toString() {
-        String n;
-        StringBuilder sb = new StringBuilder("entries=");
-        sb.append(Arrays.toString(this.a));
-        long j = this.b;
-        if (j == -9223372036854775807L) {
-            n = "";
-        } else {
-            n = qu6.n(j, ", presentationTimeUs=");
+    public final synchronized void f() {
+        PackageInfo d = d(((Context) this.d).getPackageName());
+        if (d != null) {
+            this.c = Integer.toString(d.versionCode);
+            this.e = d.versionName;
         }
-        sb.append(n);
-        return sb.toString();
-    }
-
-    public uf7(long j, sf7... sf7VarArr) {
-        this.b = j;
-        this.a = sf7VarArr;
-    }
-
-    public uf7(sf7... sf7VarArr) {
-        this(-9223372036854775807L, sf7VarArr);
     }
 }

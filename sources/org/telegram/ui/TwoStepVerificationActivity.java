@@ -294,7 +294,7 @@ public class TwoStepVerificationActivity extends org.telegram.ui.ActionBar.e imp
         passwordinputsettings.new_algo = new TLRPC.TL_passwordKdfAlgoUnknown();
         updatepasswordsettings.new_settings.email = "";
         t0(false);
-        Utilities.e.c(new bcb(this, updatepasswordsettings, (byte) 26));
+        Utilities.e.c(new hab(this, updatepasswordsettings, (byte) 27));
     }
 
     @Override
@@ -749,7 +749,7 @@ public class TwoStepVerificationActivity extends org.telegram.ui.ActionBar.e imp
                 a7cVar.f();
             }
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new k5b(this, z2, z, runnable), 10);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new l5b(this, z2, z, runnable), 10);
     }
 
     public final void s0() {
@@ -872,7 +872,7 @@ public class TwoStepVerificationActivity extends org.telegram.ui.ActionBar.e imp
             }
             byte[] g1 = hl.g1(obj);
             t0(false);
-            Utilities.e.c(new bcb(this, g1, (byte) 24));
+            Utilities.e.c(new hab(this, g1, (byte) 25));
         }
     }
 

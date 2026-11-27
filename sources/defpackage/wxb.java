@@ -319,7 +319,7 @@ public final class wxb extends e {
         long j = this.arguments.getLong("topic_id", 0L);
         this.c = j;
         if (j != 0) {
-            TLRPC.TL_forumTopic f = getMessagesController().g4.f(-this.a, this.c);
+            TLRPC.TL_forumTopic f = getMessagesController().h4.f(-this.a, this.c);
             this.x = f;
             if (f == null) {
                 return false;

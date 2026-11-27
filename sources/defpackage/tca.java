@@ -1,44 +1,33 @@
 package defpackage;
 
-import android.graphics.RectF;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.Utilities;
 public final class tca {
-    public final u01 a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public float g;
-    public float h;
-    public float i;
-    public float j;
-    public float k;
-    public boolean l;
+    public final vc a;
+    public final long b;
+    public final float c;
+    public final float d;
+    public final float e;
 
-    public tca(u01 u01Var) {
-        this.a = u01Var;
+    public tca(View view) {
+        vc vcVar = new vc(view, (byte) 6);
+        this.b = System.currentTimeMillis();
+        this.a = vcVar;
+        o3d o3dVar = Utilities.c;
+        this.c = hl.R1(5.0f, 9.0f, Utilities.l(o3dVar.nextFloat()));
+        this.d = hl.R1(2.5f, 5.0f, Utilities.l(o3dVar.nextFloat()));
+        this.e = hl.R1(2.5f, 5.2f, Utilities.l(o3dVar.nextFloat()));
     }
 
-    public final void a(RectF rectF) {
-        u01 u01Var = this.a;
-        if (u01Var.n() == 4) {
-            float f = this.b;
-            float f2 = this.k;
-            float f3 = this.c;
-            rectF.set(f - f2, f3 - f2, f + f2, f3 + f2);
-            rectF.union(this.d, this.e);
-            rectF.union(this.i, this.j);
-        } else {
-            float max = Math.max(Math.abs(this.d), Math.abs(this.e));
-            float f4 = this.b;
-            float f5 = max * 1.42f;
-            float f6 = this.c;
-            rectF.set(f4 - f5, f6 - f5, f4 + f5, f6 + f5);
-            if (u01Var.n() == 3) {
-                rectF.union(this.i, this.j);
-            }
+    public final void a(Canvas canvas, float f) {
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * hl.L(0.5f) * f, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * hl.L(0.5f) * f);
+        canvas.translate(-0.0f, -0.0f);
+        if (f > 0.0f) {
+            this.a.run();
         }
-        float f7 = (-this.f) - 3.0f;
-        rectF.inset(f7, f7);
     }
 }

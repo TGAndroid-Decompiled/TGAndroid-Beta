@@ -1,15 +1,27 @@
 package defpackage;
-public final class ii7 implements pcc {
+public final class ii7 implements Runnable {
     public final byte a;
-    public final Object b;
+    public final qi7 b;
 
-    public ii7(Object obj, byte b) {
+    public ii7(qi7 qi7Var, byte b) {
         this.a = b;
-        this.b = obj;
+        this.b = qi7Var;
     }
 
     @Override
-    public final void a(java.lang.Object r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ii7.a(java.lang.Object):void");
+    public final void run() {
+        byte b = this.a;
+        qi7 qi7Var = this.b;
+        switch (b) {
+            case 0:
+                qi7Var.dismiss();
+                return;
+            case 1:
+                qi7Var.c1(true, false);
+                return;
+            default:
+                qi7Var.c1(true, false);
+                return;
+        }
     }
 }

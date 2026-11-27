@@ -19,16 +19,16 @@ public final class p23 implements sr4 {
         String[] names;
         String str;
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         Object obj2 = this.c;
         Object obj3 = this.b;
         switch (b) {
             case 0:
                 ((ur4) obj3).invoke(((p89) obj2).a);
-                return f9cVar;
+                return g9cVar;
             case 1:
                 ((ur4) obj3).invoke(((p89) obj2).a);
-                return f9cVar;
+                return g9cVar;
             default:
                 o8a o8aVar = (o8a) obj3;
                 LinkedHashMap linkedHashMap = new LinkedHashMap();

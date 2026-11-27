@@ -32,8 +32,8 @@ public final class lt7 implements Runnable {
                 int i = ot7Var.a;
                 String str = ot7Var.l1.slug;
                 HashMap hashMap = vs7.a;
-                jf7 Y = jf7.Y(i);
-                Y.a.c(new t87(Y, str, (byte) 23));
+                kf7 a0 = kf7.a0(i);
+                a0.a.c(new t87(a0, str, (byte) 23));
                 return;
         }
     }

@@ -113,7 +113,7 @@ public final class nn8 extends FrameLayout {
             this.c = s0;
         }
         Drawable drawable = this.c;
-        if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof hh7)) {
+        if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof ih7)) {
             if (drawable instanceof BitmapDrawable) {
                 if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
                     canvas.save();

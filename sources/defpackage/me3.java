@@ -267,7 +267,7 @@ public final class me3 extends ny0 {
     @Override
     public final void dismiss() {
         boolean z;
-        SharedPreferences.Editor edit = uc7.s1(this.a).X3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.a).Y3.edit();
         edit.putBoolean("delete_report", this.d2.a());
         edit.putBoolean("delete_deleteAll", this.e2.a());
         if (!this.b2 && this.g2.a()) {

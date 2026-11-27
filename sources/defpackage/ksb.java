@@ -134,7 +134,7 @@ public final class ksb extends View {
     public final Path z0;
     public int z1;
 
-    public ksb(Context context, ViewGroup viewGroup, ebb ebbVar, vnb vnbVar, tl0 tl0Var) {
+    public ksb(Context context, ViewGroup viewGroup, fbb fbbVar, vnb vnbVar, tl0 tl0Var) {
         super(context);
         this.n = 0;
         this.r = new ArrayList();
@@ -233,7 +233,7 @@ public final class ksb extends View {
         this.m0 = new xl0(tl0Var, this, 0, false);
         this.n0 = new xl0(tl0Var, this, 3, false);
         this.o0 = new xl0(tl0Var, this, 4, false);
-        this.Z0 = new uwa(this, viewGroup, vnbVar, tl0Var, ebbVar, (byte) 6);
+        this.Z0 = new uwa(this, viewGroup, vnbVar, tl0Var, fbbVar, (byte) 6);
     }
 
     private float getAudioHeight() {
@@ -440,7 +440,7 @@ public final class ksb extends View {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.ksb.dispatchDraw(android.graphics.Canvas):void");
     }
 
-    public final void e(ViewGroup viewGroup, vnb vnbVar, tl0 tl0Var, ebb ebbVar) {
+    public final void e(ViewGroup viewGroup, vnb vnbVar, tl0 tl0Var, fbb fbbVar) {
         int i;
         int i2 = this.k1;
         try {
@@ -504,7 +504,7 @@ public final class ksb extends View {
                 G.a0 = true;
                 G.b0((-(this.w1 - min2)) + hl.L(18.0f), this.G0.top);
                 G.a0();
-                G.S(tl0Var, -ebbVar.getX(), -ebbVar.getY());
+                G.S(tl0Var, -fbbVar.getX(), -fbbVar.getY());
                 performHapticFeedback(0, 1);
             } else if (i2 == 1 && this.F) {
                 ena enaVar2 = new ena(getContext(), 0);
@@ -566,7 +566,7 @@ public final class ksb extends View {
                 G2.a0 = true;
                 G2.b0((-(this.w1 - min4)) + hl.L(18.0f), this.y0.top);
                 G2.a0();
-                G2.S(tl0Var, -ebbVar.getX(), -ebbVar.getY());
+                G2.S(tl0Var, -fbbVar.getX(), -fbbVar.getY());
                 performHapticFeedback(0, 1);
             } else if (i2 == 0 && this.h != null) {
                 ena enaVar3 = new ena(getContext(), 0);
@@ -621,7 +621,7 @@ public final class ksb extends View {
                 G3.a0 = true;
                 G3.b0(hl.L(18.0f), this.u0.top);
                 G3.a0();
-                G3.S(tl0Var, -ebbVar.getX(), -ebbVar.getY());
+                G3.S(tl0Var, -fbbVar.getX(), -fbbVar.getY());
                 performHapticFeedback(0, 1);
             } else if (i2 == 3 && (i = this.l1) >= 0) {
                 ArrayList arrayList = this.s;
@@ -638,7 +638,7 @@ public final class ksb extends View {
                     G4.a0 = true;
                     G4.b0(hl.L(18.0f), fsbVar.j.top);
                     G4.a0();
-                    G4.S(tl0Var, -ebbVar.getX(), -ebbVar.getY());
+                    G4.S(tl0Var, -fbbVar.getX(), -fbbVar.getY());
                     performHapticFeedback(0, 1);
                 }
             }

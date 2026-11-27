@@ -146,9 +146,9 @@ public final class g8 implements View.OnTouchListener {
                 }
             case 7:
                 q9c q9cVar = (q9c) obj2;
-                p3b p3bVar = (p3b) obj;
+                q3b q3bVar = (q3b) obj;
                 if (motionEvent.getAction() == 0 && (lu5Var = q9cVar.h3) != null) {
-                    lu5Var.s(q9cVar.U(p3bVar));
+                    lu5Var.s(q9cVar.U(q3bVar));
                 }
                 return false;
             default:

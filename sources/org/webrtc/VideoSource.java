@@ -111,7 +111,7 @@ public class VideoSource extends MediaSource {
     }
 
     public void lambda$setVideoProcessor$3(VideoFrame videoFrame) {
-        runWithReference(new g9c(this, videoFrame, (byte) 23));
+        runWithReference(new c9c(this, videoFrame, (byte) 24));
     }
 
     public void adaptOutputFormat(int i, int i2, int i3, int i4, int i5) {

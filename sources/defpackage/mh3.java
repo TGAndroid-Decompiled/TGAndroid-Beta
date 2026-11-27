@@ -79,7 +79,7 @@ public final class mh3 implements View.OnClickListener {
                 o24 o24Var = y04Var.G;
                 ArrayList arrayList = o24Var.o1;
                 if (arrayList != null && !arrayList.isEmpty() && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null) {
-                    uc7.s1(o24Var.d1).Y3.edit().putLong("emoji_featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.id).commit();
+                    uc7.s1(o24Var.d1).Z3.edit().putLong("emoji_featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.id).commit();
                     y04 y04Var2 = o24Var.S;
                     if (y04Var2 != null) {
                         y04Var2.q(1, 3);

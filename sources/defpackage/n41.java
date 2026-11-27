@@ -134,7 +134,7 @@ public final class n41 extends n9c implements fn7 {
         arrayList.add(b8cVar);
         l9cVar.V();
         r41 d = r41.d(this.currentAccount);
-        if (d.b.size() < uc7.s1(d.a).k4.u2.f()) {
+        if (d.b.size() < uc7.s1(d.a).l4.u2.f()) {
             b8c c = b8c.c(1, 2131231844, ob6.M0(2131752690, null));
             c.r = true;
             arrayList.add(c);

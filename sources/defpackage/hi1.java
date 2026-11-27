@@ -35,14 +35,14 @@ public final class hi1 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         ux2 ux2Var = (ux2) obj;
         zw2 zw2Var = (zw2) obj2;
         switch (b) {
             case 0:
-                return ((hi1) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((hi1) create(ux2Var, zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((hi1) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((hi1) create(ux2Var, zw2Var)).invokeSuspend(g9cVar);
         }
     }
 
@@ -55,7 +55,7 @@ public final class hi1 extends yfb implements is4 {
         switch (b) {
             case 0:
                 boolean z = this.b;
-                f9c f9cVar = f9c.a;
+                g9c g9cVar = g9c.a;
                 if (z) {
                     if (z) {
                         ixe.b(obj);
@@ -80,13 +80,13 @@ public final class hi1 extends yfb implements is4 {
                     this.b = true;
                     Object a = tle.a(nm4Var, so8Var, true, this);
                     if (a != vx2Var) {
-                        a = f9cVar;
+                        a = g9cVar;
                     }
                     if (a == vx2Var) {
                         return vx2Var;
                     }
                 }
-                return f9cVar;
+                return g9cVar;
             default:
                 o83 o83Var = (o83) obj3;
                 boolean z2 = this.b;

@@ -21,6 +21,6 @@ public final class kdd implements tq2, us3 {
 
     @Override
     public final Object b0(am2 am2Var) {
-        return new q54(am2Var.d(lg7.class));
+        return new q54(am2Var.d(mg7.class));
     }
 }

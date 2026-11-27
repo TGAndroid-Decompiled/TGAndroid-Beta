@@ -2751,7 +2751,7 @@ public final class ob6 {
 
     public final boolean c1(String str) {
         int i;
-        int f = uc7.s1(yac.t0).k4.B1.f();
+        int f = uc7.s1(yac.t0).l4.B1.f();
         if (f > 0) {
             SharedPreferences e1 = uc7.e1();
             if (!e1.getBoolean("lngpack_patched_" + str, false) && (i = this.Z) < f) {

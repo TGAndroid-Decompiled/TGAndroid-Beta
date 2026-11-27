@@ -137,8 +137,8 @@ public class bnb extends TextureView implements TextureView.SurfaceTextureListen
             if (d1Var == null) {
                 anbVar.c("Already released");
             } else {
-                d1Var.postAtFrontOfQueue(new g9c(anbVar, countDownLatch, (byte) 24));
-                anbVar.d.post(new g9c(anbVar, anbVar.d.getLooper(), (byte) 25));
+                d1Var.postAtFrontOfQueue(new c9c(anbVar, countDownLatch, (byte) 25));
+                anbVar.d.post(new c9c(anbVar, anbVar.d.getLooper(), (byte) 26));
                 anbVar.d = null;
                 ThreadUtils.awaitUninterruptibly(countDownLatch);
                 synchronized (anbVar.y) {

@@ -52,7 +52,7 @@ public abstract class tl3 extends c79 {
     public long o0;
     public View p0;
     public wd3 q0;
-    public ze7 r;
+    public bf7 r;
     public ArrayList r0;
     public final uj3 s0;
     public final int t0;
@@ -105,7 +105,7 @@ public abstract class tl3 extends c79 {
         this.i0 = i2;
         this.m0 = yac.h(i3).e();
         if (i2 != 15) {
-            jf7.Y(i3).a.c(new bt(i3, i2, new ll3(this), (byte) 6));
+            kf7.a0(i3).a.c(new bt(i3, i2, new ll3(this), (byte) 6));
         }
         ls6.d0(i3).O0(true);
     }
@@ -174,9 +174,9 @@ public abstract class tl3 extends c79 {
         boolean z2 = this.O;
         int i = this.t0;
         if (!z2) {
-            jf7.Y(i).a.c(new gw0(i, (byte) 4));
+            kf7.a0(i).a.c(new gw0(i, (byte) 4));
         } else {
-            jf7.Y(i).a.c(new wd3((gx9) this, sb, (byte) 11));
+            kf7.a0(i).a.c(new wd3((gx9) this, sb, (byte) 11));
         }
     }
 
@@ -606,7 +606,7 @@ public abstract class tl3 extends c79 {
         G(str);
         f();
         int i = this.t0;
-        jf7.Y(i).a.c(new am0(i, j, (byte) 2));
+        kf7.a0(i).a.c(new am0(i, j, (byte) 2));
     }
 
     public final boolean R() {
@@ -772,7 +772,7 @@ public abstract class tl3 extends c79 {
         dj3 dj3Var = this.V;
         if (dj3Var != null && dj3Var.a() != 0) {
             if (!TextUtils.isEmpty(str)) {
-                ArrayList l = uc7.s1(this.t0).g4.l(-this.V.a());
+                ArrayList l = uc7.s1(this.t0).h4.l(-this.V.a());
                 String trim = str.trim();
                 for (int i = 0; i < l.size(); i++) {
                     if (l.get(i) != null && ((TLRPC.TL_forumTopic) l.get(i)).title.toLowerCase().contains(trim)) {

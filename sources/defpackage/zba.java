@@ -1,7 +1,6 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.a;
-public abstract class zba {
-    public static final SharedPreferences a = a.b.getSharedPreferences("mainconfig", 0);
+import org.json.JSONObject;
+public interface zba {
+    hba v0(z3f z3fVar, JSONObject jSONObject);
 }

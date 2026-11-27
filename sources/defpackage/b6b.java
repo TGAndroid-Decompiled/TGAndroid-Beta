@@ -121,27 +121,27 @@ public final class b6b implements fn7 {
             hashMap.remove(Integer.valueOf(c8bVar.f));
         }
         if (this.M != null) {
-            u5b z3 = c6bVar.z(4, -1, this.K, false);
+            v5b z3 = c6bVar.z(4, -1, this.K, false);
             if (c8bVar != null && c8bVar.g) {
-                if (z3 instanceof o5b) {
-                    ((o5b) z3).G(c8bVar.L0, this.M);
+                if (z3 instanceof p5b) {
+                    ((p5b) z3).G(c8bVar.L0, this.M);
                 }
                 String str = c8bVar.K0;
                 TLRPC.InputMedia inputMedia = c8bVar.L0;
                 TL_bots.botPreviewMedia botpreviewmedia = this.M;
                 LongSparseArray longSparseArray5 = kr0.G;
                 if (longSparseArray5 != null && (longSparseArray4 = (LongSparseArray) longSparseArray5.get(i)) != null) {
-                    o5b o5bVar = (o5b) longSparseArray4.get(j);
-                    int i2 = o5bVar.c;
-                    ArrayList arrayList3 = o5bVar.G;
+                    p5b p5bVar = (p5b) longSparseArray4.get(j);
+                    int i2 = p5bVar.c;
+                    ArrayList arrayList3 = p5bVar.G;
                     if (i2 == i) {
-                        if (TextUtils.equals(o5bVar.E, str)) {
-                            o5bVar.G(inputMedia, botpreviewmedia);
+                        if (TextUtils.equals(p5bVar.E, str)) {
+                            p5bVar.G(inputMedia, botpreviewmedia);
                         } else if (!TextUtils.isEmpty(str) && !arrayList3.contains(str)) {
                             arrayList3.add(str);
-                            r5b r5bVar = o5bVar.q;
-                            hl.r(r5bVar);
-                            hl.c3(r5bVar);
+                            s5b s5bVar = p5bVar.q;
+                            hl.r(s5bVar);
+                            hl.c3(s5bVar);
                         }
                     }
                 }
@@ -149,31 +149,31 @@ public final class b6b implements fn7 {
                 if (longSparseArray6 != null && (longSparseArray3 = (LongSparseArray) longSparseArray6.get(i)) != null && (kr0Var2 = (kr0) longSparseArray3.get(j)) != null) {
                     ArrayList arrayList4 = kr0Var2.f;
                     for (int i3 = 0; i3 < arrayList4.size(); i3++) {
-                        o5b o5bVar2 = (o5b) arrayList4.get(i3);
-                        if (o5bVar2.c == i && TextUtils.equals(o5bVar2.E, str)) {
-                            o5bVar2.G(inputMedia, botpreviewmedia);
+                        p5b p5bVar2 = (p5b) arrayList4.get(i3);
+                        if (p5bVar2.c == i && TextUtils.equals(p5bVar2.E, str)) {
+                            p5bVar2.G(inputMedia, botpreviewmedia);
                         }
                     }
                 }
             } else {
-                if (z3 instanceof o5b) {
-                    ((o5b) z3).I(this.M);
+                if (z3 instanceof p5b) {
+                    ((p5b) z3).I(this.M);
                 }
                 String str2 = c8bVar.K0;
                 TL_bots.botPreviewMedia botpreviewmedia2 = this.M;
                 LongSparseArray longSparseArray7 = kr0.G;
                 if (longSparseArray7 != null && (longSparseArray2 = (LongSparseArray) longSparseArray7.get(i)) != null) {
-                    o5b o5bVar3 = (o5b) longSparseArray2.get(j);
-                    int i4 = o5bVar3.c;
-                    ArrayList arrayList5 = o5bVar3.G;
+                    p5b p5bVar3 = (p5b) longSparseArray2.get(j);
+                    int i4 = p5bVar3.c;
+                    ArrayList arrayList5 = p5bVar3.G;
                     if (i4 == i) {
-                        if (TextUtils.equals(o5bVar3.E, str2)) {
-                            o5bVar3.I(botpreviewmedia2);
+                        if (TextUtils.equals(p5bVar3.E, str2)) {
+                            p5bVar3.I(botpreviewmedia2);
                         } else if (!TextUtils.isEmpty(str2) && !arrayList5.contains(str2)) {
                             arrayList5.add(str2);
-                            r5b r5bVar2 = o5bVar3.q;
-                            hl.r(r5bVar2);
-                            hl.c3(r5bVar2);
+                            s5b s5bVar2 = p5bVar3.q;
+                            hl.r(s5bVar2);
+                            hl.c3(s5bVar2);
                         }
                     }
                 }
@@ -181,9 +181,9 @@ public final class b6b implements fn7 {
                 if (longSparseArray8 != null && (longSparseArray = (LongSparseArray) longSparseArray8.get(i)) != null && (kr0Var = (kr0) longSparseArray.get(j)) != null) {
                     ArrayList arrayList6 = kr0Var.f;
                     for (int i5 = 0; i5 < arrayList6.size(); i5++) {
-                        o5b o5bVar4 = (o5b) arrayList6.get(i5);
-                        if (o5bVar4.c == i && TextUtils.equals(o5bVar4.E, str2)) {
-                            o5bVar4.I(botpreviewmedia2);
+                        p5b p5bVar4 = (p5b) arrayList6.get(i5);
+                        if (p5bVar4.c == i && TextUtils.equals(p5bVar4.E, str2)) {
+                            p5bVar4.I(botpreviewmedia2);
                         }
                     }
                 }
@@ -208,7 +208,7 @@ public final class b6b implements fn7 {
         if (c8bVar.b0) {
             TLRPC.TL_inputFileStoryDocument tL_inputFileStoryDocument = new TLRPC.TL_inputFileStoryDocument();
             TLRPC.Document document = this.c.c0;
-            int i = uc7.r5;
+            int i = uc7.s5;
             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
             tL_inputDocument.id = document.id;
             tL_inputDocument.access_hash = document.access_hash;
@@ -245,7 +245,7 @@ public final class b6b implements fn7 {
         } else {
             File w = c8b.w(this.N.a, "jpg");
             this.e = w.getAbsolutePath();
-            Utilities.i.c(new z3b(this, w, (byte) 9));
+            Utilities.i.c(new n3b(this, w, (byte) 10));
         }
         Intent intent = new Intent(a.b, StoryUploadingService.class);
         intent.putExtra("path", this.e);

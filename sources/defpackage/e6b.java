@@ -4,14 +4,14 @@ import android.view.ViewTreeObserver;
 import android.widget.TextView;
 public final class e6b implements ViewTreeObserver.OnGlobalLayoutListener {
     public final TextView a;
-    public final ybb b;
+    public final zbb b;
     public final TextView c;
     public final g6b d;
 
-    public e6b(g6b g6bVar, TextView textView, ybb ybbVar, TextView textView2) {
+    public e6b(g6b g6bVar, TextView textView, zbb zbbVar, TextView textView2) {
         this.d = g6bVar;
         this.a = textView;
-        this.b = ybbVar;
+        this.b = zbbVar;
         this.c = textView2;
     }
 

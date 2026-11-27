@@ -64,7 +64,7 @@ public final class bq0 extends rf0 {
         }
         TLRPC.User X1 = getMessagesController().X1(Long.valueOf(j2));
         if (!z) {
-            if (!vye.b(this.currentAccount, j2) && !getMessagesController().S3.contains(Long.valueOf(j2))) {
+            if (!vye.b(this.currentAccount, j2) && !getMessagesController().T3.contains(Long.valueOf(j2))) {
                 jj.n(Q, X1, new zp0(this, j, j2, j3), new kc((byte) 10));
                 return;
             } else {

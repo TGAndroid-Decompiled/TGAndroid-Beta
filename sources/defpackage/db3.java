@@ -43,14 +43,14 @@ public final class db3 implements h84 {
                 arrayList.add(new vl6(this.b, 0));
                 return;
             case 7:
-                arrayList.add(new qh7(1));
+                arrayList.add(new rh7(1));
                 return;
             case 8:
                 uif uifVar = this.b;
                 int g = 512 | hr4.g(3);
                 no5 no5Var = po5.b;
                 arrayList.add(new hr4(uifVar, g, null, j99.e, null));
-                arrayList.add(new yh7(this.b, 160));
+                arrayList.add(new zh7(this.b, 160));
                 return;
             case 9:
                 arrayList.add(new Object());

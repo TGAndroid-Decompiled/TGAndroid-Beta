@@ -19,9 +19,9 @@ public final class o87 implements Runnable {
         uc7 uc7Var = this.b;
         switch (b) {
             case 0:
-                l87 l87Var = uc7Var.m5;
+                l87 l87Var = uc7Var.n5;
                 if (tL_webBrowserSettings != null) {
-                    uc7Var.n5 = tL_webBrowserSettings;
+                    uc7Var.o5 = tL_webBrowserSettings;
                     uc7Var.getNotificationCenter().k(350, new Object[0]);
                 }
                 hl.r(l87Var);
@@ -29,7 +29,7 @@ public final class o87 implements Runnable {
                 return;
             default:
                 if (tL_webBrowserSettings != null) {
-                    uc7Var.n5 = tL_webBrowserSettings;
+                    uc7Var.o5 = tL_webBrowserSettings;
                     uc7Var.getNotificationCenter().k(350, new Object[0]);
                     return;
                 }

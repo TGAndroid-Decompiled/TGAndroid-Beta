@@ -31,17 +31,17 @@ public final class fv8 extends nic {
             }
         }
         int f = f(uicVar.getCurrentPosition());
-        q5b q5bVar = fgaVar.c;
-        q5bVar.getClass();
+        r5b r5bVar = fgaVar.c;
+        r5bVar.getClass();
         HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = q5bVar.h;
+        ArrayList arrayList3 = r5bVar.h;
         int size2 = arrayList3.size();
         int i3 = 0;
         while (i3 < size2) {
             Object obj2 = arrayList3.get(i3);
             i3++;
-            v5b v5bVar = (v5b) obj2;
-            hashMap.put(Integer.valueOf(v5bVar.a), v5bVar);
+            w5b w5bVar = (w5b) obj2;
+            hashMap.put(Integer.valueOf(w5bVar.a), w5bVar);
         }
         ArrayList arrayList4 = new ArrayList();
         int size3 = arrayList2.size();
@@ -50,9 +50,9 @@ public final class fv8 extends nic {
             i++;
             Integer num2 = (Integer) obj3;
             num2.getClass();
-            v5b v5bVar2 = (v5b) hashMap.get(num2);
-            if (v5bVar2 != null) {
-                arrayList4.add(v5bVar2);
+            w5b w5bVar2 = (w5b) hashMap.get(num2);
+            if (w5bVar2 != null) {
+                arrayList4.add(w5bVar2);
             }
         }
         arrayList3.clear();
@@ -97,7 +97,7 @@ public final class fv8 extends nic {
         if (this.a && i == e() - 1) {
             return -1;
         }
-        return ((v5b) this.b.c.h.get(i - 1)).a;
+        return ((w5b) this.b.c.h.get(i - 1)).a;
     }
 
     @Override
@@ -113,7 +113,7 @@ public final class fv8 extends nic {
             spannableStringBuilder.setSpan(wm2Var, 0, 1, 33);
             return spannableStringBuilder;
         }
-        return ((v5b) this.b.c.h.get(i - 1)).b;
+        return ((w5b) this.b.c.h.get(i - 1)).b;
     }
 
     @Override

@@ -118,7 +118,7 @@ public final class fg5 extends FrameLayout implements snb {
 
     public final void b(int i) {
         int i2;
-        int i3 = uc7.r5;
+        int i3 = uc7.s5;
         int i4 = i & 4;
         int i5 = this.h;
         if (i4 != 0 && this.e != null) {

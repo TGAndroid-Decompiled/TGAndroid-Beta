@@ -31,7 +31,7 @@ public final class lva extends View {
     public final mm s;
     public final hn w;
     public boolean x;
-    public final ida y;
+    public final kba y;
 
     public lva(zu1 zu1Var) {
         super(zu1Var.getParentActivity());
@@ -55,7 +55,7 @@ public final class lva extends View {
         hnVar.u(-1);
         hnVar.b = 17;
         this.I = new kva(this, (byte) 0);
-        this.y = new ida(this, zu1Var, (byte) 21);
+        this.y = new kba(this, zu1Var, (byte) 22);
     }
 
     private r47 getMessageObject() {
@@ -92,7 +92,7 @@ public final class lva extends View {
                         str = M0.title;
                     }
                 }
-                new dza(zu1Var.getParentActivity(), zu1Var.getResourceProvider(), B, 5, str, new y09(this, v, messageObject, B, (byte) 6), 0L).show();
+                new dza(zu1Var.getParentActivity(), zu1Var.getResourceProvider(), B, 5, str, new z09(this, v, messageObject, B, (byte) 6), 0L).show();
             }
         }
     }
@@ -209,7 +209,7 @@ public final class lva extends View {
             return false;
         }
         int action = motionEvent.getAction();
-        ida idaVar = this.y;
+        kba kbaVar = this.y;
         if (action == 0) {
             if (this.h.contains(motionEvent.getX(), motionEvent.getY())) {
                 this.x = true;
@@ -217,8 +217,8 @@ public final class lva extends View {
                 if (l != null) {
                     l.X.c(true);
                 }
-                hl.r(idaVar);
-                hl.d3(idaVar, ViewConfiguration.getLongPressTimeout());
+                hl.r(kbaVar);
+                hl.d3(kbaVar, ViewConfiguration.getLongPressTimeout());
             }
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             u49 l2 = reactionsLayoutInBubble.l("stars");
@@ -229,7 +229,7 @@ public final class lva extends View {
                 l2.X.c(false);
             }
             this.x = false;
-            hl.r(idaVar);
+            hl.r(kbaVar);
         }
         return this.x;
     }

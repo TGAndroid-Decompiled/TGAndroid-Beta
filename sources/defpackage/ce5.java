@@ -5,7 +5,7 @@ public final class ce5 implements av3 {
     public final ey7 b;
     public final boolean[] c = new boolean[4];
     public final ae5 d;
-    public final xj7 e;
+    public final yj7 e;
     public be5 f;
     public long g;
     public String h;
@@ -19,7 +19,7 @@ public final class ce5 implements av3 {
         obj.e = new byte[128];
         this.d = obj;
         this.k = -9223372036854775807L;
-        this.e = new xj7(178);
+        this.e = new yj7(178);
         this.b = new ey7();
     }
 
@@ -42,9 +42,9 @@ public final class ce5 implements av3 {
             be5Var.d = false;
             be5Var.e = -1;
         }
-        xj7 xj7Var = this.e;
-        if (xj7Var != null) {
-            xj7Var.c();
+        yj7 yj7Var = this.e;
+        if (yj7Var != null) {
+            yj7Var.c();
         }
         this.g = 0L;
         this.k = -9223372036854775807L;

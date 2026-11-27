@@ -676,7 +676,7 @@ public final class d2c implements ly9 {
             case 2:
                 StringBuilder sb = new StringBuilder(200);
                 sb.append("<<\n mode: ");
-                sb.append((pg7) this.c);
+                sb.append((qg7) this.c);
                 sb.append("\n ecLevel: ");
                 sb.append((r44) this.d);
                 sb.append("\n version: ");

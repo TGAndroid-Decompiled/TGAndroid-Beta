@@ -153,7 +153,7 @@ public class d3 implements Iterator {
                 }
                 yve.o("no calls to next() since the last call to remove()", z);
                 it.remove();
-                ((fj7) ((e3) obj).e).f -= ((Collection) this.c).size();
+                ((gj7) ((e3) obj).e).f -= ((Collection) this.c).size();
                 ((Collection) this.c).clear();
                 this.c = null;
                 return;
@@ -171,7 +171,7 @@ public class d3 implements Iterator {
             case 2:
                 it.remove();
                 m3 m3Var = (m3) obj;
-                ((fj7) m3Var.f).f--;
+                ((gj7) m3Var.f).f--;
                 m3Var.j();
                 return;
             case 3:

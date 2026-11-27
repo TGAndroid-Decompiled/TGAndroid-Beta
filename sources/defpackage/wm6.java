@@ -172,7 +172,7 @@ public abstract class wm6 {
         if (Build.VERSION.SDK_INT >= 29) {
             return mediaCodecInfo.isSoftwareOnly();
         }
-        if (!dg7.i(str)) {
+        if (!eg7.i(str)) {
             String c = jrd.c(mediaCodecInfo.getName());
             if (!c.startsWith("arc.")) {
                 if (!c.startsWith("omx.google.") && !c.startsWith("omx.ffmpeg.")) {

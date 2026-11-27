@@ -516,7 +516,7 @@ public class frc extends FrameLayout implements fn7 {
         spannableStringBuilder.append((CharSequence) ob6.M0(2131749287, null));
         spannableStringBuilder.setSpan(new zk(this, (byte) 4), length, spannableStringBuilder.length(), 33);
         this.O.setText(spannableStringBuilder);
-        long round = Math.round((j / 1.0E9d) * uc7.s1(i).k4.k.i * 100.0d);
+        long round = Math.round((j / 1.0E9d) * uc7.s1(i).l4.k.i * 100.0d);
         crc crcVar = this.P;
         di0.h();
         if (round % 100 == 0) {

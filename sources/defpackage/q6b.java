@@ -24,7 +24,7 @@ public class q6b {
     public boolean N;
     public float O;
     public float P;
-    public z3b Q;
+    public n3b Q;
     public View R;
     public int c;
     public TL_stories.StoryItem d;
@@ -108,13 +108,13 @@ public class q6b {
                     this.O = motionEvent.getX();
                     this.P = motionEvent.getY();
                     if (this.I) {
-                        z3b z3bVar = this.Q;
-                        if (z3bVar != null) {
-                            hl.r(z3bVar);
+                        n3b n3bVar = this.Q;
+                        if (n3bVar != null) {
+                            hl.r(n3bVar);
                         }
-                        z3b z3bVar2 = new z3b(this, view, (byte) 18);
-                        this.Q = z3bVar2;
-                        hl.d3(z3bVar2, ViewConfiguration.getLongPressTimeout());
+                        n3b n3bVar2 = new n3b(this, view, (byte) 19);
+                        this.Q = n3bVar2;
+                        hl.d3(n3bVar2, ViewConfiguration.getLongPressTimeout());
                     }
                 }
                 return this.N;
@@ -127,9 +127,9 @@ public class q6b {
                     v41Var2.a = view;
                     v41Var2.c(false);
                 }
-                z3b z3bVar3 = this.Q;
-                if (z3bVar3 != null) {
-                    hl.r(z3bVar3);
+                n3b n3bVar3 = this.Q;
+                if (n3bVar3 != null) {
+                    hl.r(n3bVar3);
                 }
                 view.getParent().requestDisallowInterceptTouchEvent(false);
                 this.N = false;
@@ -168,9 +168,9 @@ public class q6b {
                 ((ViewGroup) parent).requestDisallowInterceptTouchEvent(false);
             }
             this.N = false;
-            z3b z3bVar4 = this.Q;
-            if (z3bVar4 != null) {
-                hl.r(z3bVar4);
+            n3b n3bVar4 = this.Q;
+            if (n3bVar4 != null) {
+                hl.r(n3bVar4);
             }
         }
         return this.N;

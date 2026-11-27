@@ -467,7 +467,7 @@ public final class fu2 implements fd, Continuation, OnFailureListener, sgb, id3,
         String str = (String) this.c;
         n20 n20Var = (n20) this.d;
         String str2 = (String) obj;
-        i09 c = FirebaseMessaging.c(firebaseMessaging.b);
+        j09 c = FirebaseMessaging.c(firebaseMessaging.b);
         ji4 ji4Var = firebaseMessaging.a;
         ji4Var.a();
         if ("[DEFAULT]".equals(ji4Var.b)) {
@@ -587,7 +587,7 @@ public final class fu2 implements fd, Continuation, OnFailureListener, sgb, id3,
                 TLRPC.User user3 = (TLRPC.User) obj2;
                 ((boolean[]) obj)[0] = true;
                 if (user3 != null) {
-                    uc7.s1(r17Var.f).W3.edit().putBoolean("inlinegeo_" + user3.id, true).commit();
+                    uc7.s1(r17Var.f).X3.edit().putBoolean("inlinegeo_" + user3.id, true).commit();
                     r17Var.G();
                     return;
                 }

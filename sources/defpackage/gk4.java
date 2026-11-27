@@ -14,7 +14,7 @@ public final class gk4 {
     public final int i;
     public final long j;
     public final lh2 k;
-    public final uf7 l;
+    public final vf7 l;
 
     public gk4(int i, byte[] bArr) {
         zd1 zd1Var = new zd1(bArr.length, bArr);
@@ -94,29 +94,29 @@ public final class gk4 {
         return (j * 1000000) / this.e;
     }
 
-    public final ko4 c(byte[] bArr, uf7 uf7Var) {
+    public final ko4 c(byte[] bArr, vf7 vf7Var) {
         bArr[4] = Byte.MIN_VALUE;
         int i = this.d;
         if (i <= 0) {
             i = -1;
         }
-        uf7 uf7Var2 = this.l;
-        if (uf7Var2 != null) {
-            uf7Var = uf7Var2.b(uf7Var);
+        vf7 vf7Var2 = this.l;
+        if (vf7Var2 != null) {
+            vf7Var = vf7Var2.b(vf7Var);
         }
         jo4 jo4Var = new jo4();
-        jo4Var.s = dg7.n("audio/flac");
+        jo4Var.s = eg7.n("audio/flac");
         jo4Var.t = i;
         jo4Var.M = this.g;
         jo4Var.O = this.e;
         String str = gcc.a;
         jo4Var.P = gcc.F(this.h, ByteOrder.LITTLE_ENDIAN);
         jo4Var.v = Collections.singletonList(bArr);
-        jo4Var.l = uf7Var;
+        jo4Var.l = vf7Var;
         return new ko4(jo4Var);
     }
 
-    public gk4(int i, int i2, int i3, int i4, int i5, int i6, int i7, long j, lh2 lh2Var, uf7 uf7Var) {
+    public gk4(int i, int i2, int i3, int i4, int i5, int i6, int i7, long j, lh2 lh2Var, vf7 vf7Var) {
         this.a = i;
         this.b = i2;
         this.c = i3;
@@ -128,6 +128,6 @@ public final class gk4 {
         this.i = a(i7);
         this.j = j;
         this.k = lh2Var;
-        this.l = uf7Var;
+        this.l = vf7Var;
     }
 }

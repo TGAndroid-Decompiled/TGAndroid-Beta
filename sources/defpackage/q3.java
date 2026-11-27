@@ -24,7 +24,7 @@ public final class q3 extends AbstractCollection {
                 ((r3) obj).b();
                 return;
             case 1:
-                ((fj7) obj).b();
+                ((gj7) obj).b();
                 return;
             case 2:
                 ((lp2) obj).clear();
@@ -65,7 +65,7 @@ public final class q3 extends AbstractCollection {
                 }
                 return true;
             case 1:
-                return ((fj7) obj2).c(obj);
+                return ((gj7) obj2).c(obj);
             case 2:
             case 4:
             case 5:
@@ -104,7 +104,7 @@ public final class q3 extends AbstractCollection {
             case 0:
                 return ((r3) obj).h();
             case 1:
-                return new b3((fj7) obj, (byte) 0);
+                return new b3((gj7) obj, (byte) 0);
             case 2:
                 lp2 lp2Var = (lp2) obj;
                 Map d = lp2Var.d();
@@ -314,7 +314,7 @@ public final class q3 extends AbstractCollection {
             case 0:
                 return ((r3) obj).l();
             case 1:
-                return ((fj7) obj).f;
+                return ((gj7) obj).f;
             case 2:
                 return ((lp2) obj).size();
             case 3:

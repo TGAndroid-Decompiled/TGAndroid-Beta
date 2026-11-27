@@ -137,8 +137,8 @@ public final class xr3 implements av3 {
                             int i17 = i15 + i4;
                             jo4 jo4Var = new jo4();
                             jo4Var.a = str;
-                            jo4Var.r = dg7.n("video/mp2t");
-                            jo4Var.s = dg7.n("audio/vnd.dts");
+                            jo4Var.r = eg7.n("video/mp2t");
+                            jo4Var.s = eg7.n("audio/vnd.dts");
                             jo4Var.i = i3;
                             jo4Var.M = i17;
                             jo4Var.O = i16;
@@ -540,8 +540,8 @@ public final class xr3 implements av3 {
                     a = ko4Var3.a();
                 }
                 a.a = this.e;
-                a.r = dg7.n("video/mp2t");
-                a.s = dg7.n(str);
+                a.r = eg7.n("video/mp2t");
+                a.s = eg7.n(str);
                 a.M = i2;
                 a.O = i;
                 a.d = this.c;

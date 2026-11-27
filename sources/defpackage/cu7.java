@@ -37,8 +37,8 @@ public final class cu7 extends ucb {
             ArrayList a = zue.a(copyOf);
             if (((ko4) k7bVar.b) == null) {
                 jo4 jo4Var = new jo4();
-                jo4Var.r = dg7.n("audio/ogg");
-                jo4Var.s = dg7.n("audio/opus");
+                jo4Var.r = eg7.n("audio/ogg");
+                jo4Var.s = eg7.n("audio/opus");
                 jo4Var.M = i;
                 jo4Var.O = 48000;
                 jo4Var.v = a;
@@ -53,7 +53,7 @@ public final class cu7 extends ucb {
                 if (!this.n) {
                     this.n = true;
                     ey7Var.O(8);
-                    uf7 a2 = moc.a(po5.r((String[]) s2f.b(ey7Var, false, false).b));
+                    vf7 a2 = moc.a(po5.r((String[]) s2f.b(ey7Var, false, false).b));
                     if (a2 != null) {
                         jo4 a3 = ((ko4) k7bVar.b).a();
                         a3.l = a2.b(((ko4) k7bVar.b).m);

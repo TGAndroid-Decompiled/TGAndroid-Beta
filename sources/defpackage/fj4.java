@@ -29,16 +29,16 @@ public final class fj4 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         ux2 ux2Var = (ux2) obj;
         zw2 zw2Var = (zw2) obj2;
         switch (b) {
             case 0:
-                return ((fj4) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((fj4) create(ux2Var, zw2Var)).invokeSuspend(g9cVar);
             case 1:
-                return ((fj4) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((fj4) create(ux2Var, zw2Var)).invokeSuspend(g9cVar);
             default:
-                return ((fj4) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+                return ((fj4) create(ux2Var, zw2Var)).invokeSuspend(g9cVar);
         }
     }
 

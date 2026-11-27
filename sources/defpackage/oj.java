@@ -42,11 +42,11 @@ public final class oj {
     public static oj k(double d, pj pjVar) {
         pj pjVar2 = pj.b;
         if (pjVar == pjVar2) {
-            return new oj((long) ((d / uc7.s1(yac.t0).k4.k.i) * 1.0E9d), pjVar2).o(2);
+            return new oj((long) ((d / uc7.s1(yac.t0).l4.k.i) * 1.0E9d), pjVar2).o(2);
         }
         pj pjVar3 = pj.a;
         if (pjVar == pjVar3) {
-            return new oj((long) (((d * 100000.0d) / uc7.s1(yac.t0).k4.z3.i) * 1.0E9d), pjVar3).o(0);
+            return new oj((long) (((d * 100000.0d) / uc7.s1(yac.t0).l4.z3.i) * 1.0E9d), pjVar3).o(0);
         }
         return h(0L, pjVar);
     }
@@ -129,10 +129,10 @@ public final class oj {
     public final double f() {
         pj pjVar = this.a;
         if (pjVar == pj.a) {
-            return ((c() / 1000.0d) * uc7.s1(yac.t0).k4.z3.i) / 100.0d;
+            return ((c() / 1000.0d) * uc7.s1(yac.t0).l4.z3.i) / 100.0d;
         }
         if (pjVar == pj.b) {
-            return c() * uc7.s1(yac.t0).k4.k.i;
+            return c() * uc7.s1(yac.t0).l4.k.i;
         }
         return 0.0d;
     }

@@ -1,220 +1,103 @@
 package defpackage;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
+import java.util.List;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.tgnet.tl.TL_update;
-public final class x5b implements RequestDelegate {
-    public final byte a;
-    public final b6b b;
+public final class x5b extends v5b {
+    public final ArrayList C;
 
-    public x5b(b6b b6bVar, byte b) {
-        this.a = b;
-        this.b = b6bVar;
+    public x5b(int i, ArrayList arrayList) {
+        super(i, 0L, 3, -1, null);
+        this.C = new ArrayList();
+        F(arrayList);
+    }
+
+    public final void F(ArrayList arrayList) {
+        int i;
+        ArrayList arrayList2 = this.i;
+        arrayList2.size();
+        int i2 = 0;
+        int i3 = 0;
+        while (true) {
+            int size = arrayList.size();
+            i = this.c;
+            if (i2 >= size) {
+                break;
+            }
+            TL_stories.StoryItem storyItem = (TL_stories.StoryItem) arrayList.get(i2);
+            if (storyItem != null) {
+                storyItem.messageId = arrayList2.size();
+                r47 r47Var = new r47(i, storyItem);
+                r47Var.r0(false);
+                ArrayList arrayList3 = new ArrayList();
+                arrayList3.add(Integer.valueOf(arrayList2.size()));
+                this.C.add(arrayList3);
+                arrayList2.add(r47Var);
+                i3++;
+            }
+            i2++;
+        }
+        if (i3 > 0) {
+            jn7.f(i).k(jn7.A5, this);
+        }
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        v58 v58Var;
-        int i;
-        boolean z;
-        int i2;
-        int i3;
-        boolean z2;
-        boolean z3;
-        int i4;
-        int i5;
-        ArrayList arrayList;
-        int i6;
-        switch (this.a) {
-            case 0:
-                b6b b6bVar = this.b;
-                long j = b6bVar.K;
-                String str = b6bVar.f;
-                boolean z4 = b6bVar.b;
-                c8b c8bVar = b6bVar.c;
-                int i7 = b6bVar.N.a;
-                u9b u9bVar = null;
-                if (tLObject instanceof TLRPC.Updates) {
-                    b6bVar.J = false;
-                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    if (c8bVar.b0) {
-                        uc7.s1(i7).Y3(updates, false);
-                        hl.c3(new y5b(b6bVar, (byte) 1));
-                        return;
-                    }
-                    int i8 = 0;
-                    int i9 = 0;
-                    TL_stories.StoryItem storyItem = null;
-                    while (i8 < updates.updates.size()) {
-                        if (updates.updates.get(i8) instanceof TL_stories.TL_updateStory) {
-                            TL_stories.StoryItem storyItem2 = ((TL_stories.TL_updateStory) updates.updates.get(i8)).story;
-                            storyItem2.attachPath = b6bVar.e;
-                            storyItem2.firstFramePath = str;
-                            storyItem2.justUploaded = !z4;
-                            int i10 = storyItem2.id;
-                            if (storyItem == null) {
-                                storyItem = storyItem2;
-                            } else {
-                                storyItem.media = storyItem2.media;
-                            }
-                            i9 = i10;
-                        }
-                        if (updates.updates.get(i8) instanceof TL_update.TL_updateStoryID) {
-                            TL_update.TL_updateStoryID tL_updateStoryID = (TL_update.TL_updateStoryID) updates.updates.get(i8);
-                            if (storyItem == null) {
-                                storyItem = new TL_stories.TL_storyItem();
-                                int currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
-                                storyItem.date = currentTime;
-                                int i11 = c8bVar.I0;
-                                if (i11 == Integer.MAX_VALUE) {
-                                    i11 = 86400;
-                                }
-                                storyItem.expire_date = currentTime + i11;
-                                storyItem.parsedPrivacy = u9bVar;
-                                ArrayList arrayList2 = c8bVar.F0;
-                                ArrayList<TLRPC.PrivacyRule> arrayList3 = new ArrayList<>();
-                                int i12 = 0;
-                                while (i12 < arrayList2.size()) {
-                                    TLRPC.InputPrivacyRule inputPrivacyRule = (TLRPC.InputPrivacyRule) arrayList2.get(i12);
-                                    int i13 = i8;
-                                    if (inputPrivacyRule != null) {
-                                        if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowAll) {
-                                            arrayList3.add(new TLRPC.TL_privacyValueAllowAll());
-                                        } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowCloseFriends) {
-                                            arrayList3.add(new TLRPC.TL_privacyValueAllowCloseFriends());
-                                        } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowContacts) {
-                                            arrayList3.add(new TLRPC.TL_privacyValueAllowContacts());
-                                        } else {
-                                            if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) {
-                                                TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers = (TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule;
-                                                TLRPC.TL_privacyValueDisallowUsers tL_privacyValueDisallowUsers = new TLRPC.TL_privacyValueDisallowUsers();
-                                                z3 = z4;
-                                                i4 = i9;
-                                                int i14 = 0;
-                                                while (i14 < tL_inputPrivacyValueDisallowUsers.users.size()) {
-                                                    i14 = dze.c(i14, 1, tL_inputPrivacyValueDisallowUsers.users.get(i14).user_id, tL_privacyValueDisallowUsers.users);
-                                                    i7 = i7;
-                                                    arrayList2 = arrayList2;
-                                                    i12 = i12;
-                                                }
-                                                i5 = i7;
-                                                arrayList = arrayList2;
-                                                i6 = i12;
-                                                arrayList3.add(tL_privacyValueDisallowUsers);
-                                            } else {
-                                                z3 = z4;
-                                                i4 = i9;
-                                                i5 = i7;
-                                                arrayList = arrayList2;
-                                                i6 = i12;
-                                                if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowUsers) {
-                                                    TLRPC.TL_inputPrivacyValueAllowUsers tL_inputPrivacyValueAllowUsers = (TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule;
-                                                    TLRPC.TL_privacyValueAllowUsers tL_privacyValueAllowUsers = new TLRPC.TL_privacyValueAllowUsers();
-                                                    for (int i15 = 0; i15 < tL_inputPrivacyValueAllowUsers.users.size(); i15 = dze.c(i15, 1, tL_inputPrivacyValueAllowUsers.users.get(i15).user_id, tL_privacyValueAllowUsers.users)) {
-                                                    }
-                                                    arrayList3.add(tL_privacyValueAllowUsers);
-                                                }
-                                            }
-                                            i12 = i6 + 1;
-                                            i8 = i13;
-                                            z4 = z3;
-                                            i9 = i4;
-                                            i7 = i5;
-                                            arrayList2 = arrayList;
-                                        }
-                                    }
-                                    z3 = z4;
-                                    i4 = i9;
-                                    i5 = i7;
-                                    arrayList = arrayList2;
-                                    i6 = i12;
-                                    i12 = i6 + 1;
-                                    i8 = i13;
-                                    z4 = z3;
-                                    i9 = i4;
-                                    i7 = i5;
-                                    arrayList2 = arrayList;
-                                }
-                                i = i8;
-                                z = z4;
-                                i2 = i9;
-                                i3 = i7;
-                                storyItem.privacy = arrayList3;
-                                if (c8bVar.I0 == Integer.MAX_VALUE) {
-                                    z2 = true;
-                                } else {
-                                    z2 = false;
-                                }
-                                storyItem.pinned = z2;
-                                storyItem.dialogId = yac.h(i3).n;
-                                storyItem.attachPath = b6bVar.e;
-                                storyItem.firstFramePath = str;
-                                storyItem.id = tL_updateStoryID.id;
-                                storyItem.justUploaded = !z;
-                                i8 = i + 1;
-                                z4 = z;
-                                i9 = i2;
-                                i7 = i3;
-                                u9bVar = null;
-                            }
-                        }
-                        i = i8;
-                        z = z4;
-                        i2 = i9;
-                        i3 = i7;
-                        i8 = i + 1;
-                        z4 = z;
-                        i9 = i2;
-                        i7 = i3;
-                        u9bVar = null;
-                    }
-                    boolean z5 = z4;
-                    int i16 = i7;
-                    if (b6bVar.w) {
-                        TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
-                        tL_stories_deleteStories.peer = uc7.s1(i16).j1(j);
-                        tL_stories_deleteStories.id.add(Integer.valueOf(i9));
-                        ConnectionsManager.getInstance(i16).sendRequest(tL_stories_deleteStories, new x5b(b6bVar, (byte) 1));
-                    } else {
-                        if ((i9 == 0 || z5) && storyItem != null) {
-                            TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
-                            tL_updateStory.peer = uc7.s1(i16).y1(j);
-                            tL_updateStory.story = storyItem;
-                            hl.c3(new z3b(b6bVar, tL_updateStory, (byte) 7));
-                        }
-                        TLRPC.MessageMedia messageMedia = storyItem.media;
-                        if (messageMedia != null && storyItem.attachPath != null) {
-                            if (messageMedia.document != null) {
-                                xb4.G(i16).e0(storyItem.attachPath, storyItem.media.document);
-                            } else {
-                                TLRPC.Photo photo = messageMedia.photo;
-                                if (photo != null) {
-                                    xb4.G(i16).e0(storyItem.attachPath, xb4.w(photo.sizes, Integer.MAX_VALUE, false, null, false));
-                                }
-                            }
-                        }
-                        hl.c3(new z5b(b6bVar, j, storyItem, (byte) 0));
-                        uc7.s1(i16).X3(updates.updates, updates.users, updates.chats, false, updates.date);
-                    }
-                } else if (tLObject instanceof TL_bots.botPreviewMedia) {
-                    b6bVar.M = (TL_bots.botPreviewMedia) tLObject;
-                } else if (tL_error != null && xc4.r(tL_error.text) && c8bVar.c0 != null && (v58Var = c8bVar.d0) != null) {
-                    v58Var.a(new a6b(b6bVar, (byte) 0));
-                    c8bVar.d0 = null;
-                    return;
-                } else if (tL_error != null && !z4) {
-                    hl.c3(new z3b(b6bVar, tL_error, (byte) 8));
-                }
-                hl.c3(new y5b(b6bVar, (byte) 1));
-                return;
-            default:
-                hl.c3(new f5b(this.b.N, (byte) 2));
-                return;
+    public final r47 f(int i) {
+        if (i >= 0) {
+            ArrayList arrayList = this.i;
+            if (i < arrayList.size()) {
+                return (r47) arrayList.get(i);
+            }
+            return null;
         }
+        return null;
+    }
+
+    @Override
+    public final int g() {
+        return this.i.size();
+    }
+
+    @Override
+    public final ArrayList h() {
+        return new ArrayList(this.C);
+    }
+
+    @Override
+    public final int i() {
+        return this.i.size();
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final boolean q(int i, List list, boolean z) {
+        return false;
+    }
+
+    @Override
+    public final boolean r(int i) {
+        return false;
+    }
+
+    @Override
+    public final void j() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void x() {
     }
 }

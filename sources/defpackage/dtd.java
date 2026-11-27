@@ -50,10 +50,10 @@ public abstract class dtd {
             o = aob.I.o();
         }
         boolean f = xea.f();
-        if (f && !o && uc7.s1(i).k4.M.f) {
+        if (f && !o && uc7.s1(i).l4.M.f) {
             f = false;
         }
-        if (f && o && uc7.s1(i).k4.N.f) {
+        if (f && o && uc7.s1(i).l4.N.f) {
             return false;
         }
         return f;

@@ -474,7 +474,7 @@ public final class iv3 extends nx0 {
             if (hycVar.getTextureImageView() != null) {
                 hycVar.getTextureImageView().setVisibility(4);
             }
-            if (e != null && "disabled".equals(uc7.s1(this.a).k4.Q0.f)) {
+            if (e != null && "disabled".equals(uc7.s1(this.a).l4.Q0.f)) {
                 imageView.setVisibility(8);
             }
         }

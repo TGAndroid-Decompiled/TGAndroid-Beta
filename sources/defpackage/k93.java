@@ -234,8 +234,8 @@ public final class k93 extends n9c {
                 z = true;
                 break;
             case 5:
-                jf7 messagesStorage = getMessagesStorage();
-                messagesStorage.a.c(new ad7(messagesStorage, -1, (byte) 2));
+                kf7 messagesStorage = getMessagesStorage();
+                messagesStorage.a.c(new bd7(messagesStorage, -1, (byte) 2));
                 z = true;
                 break;
             case 6:
@@ -261,13 +261,13 @@ public final class k93 extends n9c {
                 z = true;
                 break;
             case 8:
-                jf7 messagesStorage2 = getMessagesStorage();
-                messagesStorage2.a.c(new be7(messagesStorage2, (byte) 11));
+                kf7 messagesStorage2 = getMessagesStorage();
+                messagesStorage2.a.c(new hd7(messagesStorage2, (byte) 13));
                 af2 e2 = af2.e(this.currentAccount);
                 e2.c = 0L;
                 e2.d = 0L;
                 e2.f().edit().clear().apply();
-                getMessagesController().X3.edit().remove("peerColors").remove("profilePeerColors").apply();
+                getMessagesController().Y3.edit().remove("peerColors").remove("profilePeerColors").apply();
                 DictationLid.b();
                 z = true;
                 break;
@@ -293,7 +293,7 @@ public final class k93 extends n9c {
                 z = true;
                 break;
             case 13:
-                Set set = getMessagesController().u3;
+                Set set = getMessagesController().v3;
                 set.add("VALIDATE_PHONE_NUMBER");
                 set.add("VALIDATE_PASSWORD");
                 getNotificationCenter().k(jn7.s1, new Object[0]);
@@ -586,7 +586,7 @@ public final class k93 extends n9c {
                 uo0.a();
                 tq0.b();
                 mp0.a();
-                oca.c();
+                pca.c();
                 z = true;
                 break;
             case 30:
@@ -661,7 +661,7 @@ public final class k93 extends n9c {
                 im0 im0Var = phd.a;
                 synchronized (im0Var) {
                     if (!im0Var.b) {
-                        SharedPreferences sharedPreferences = zba.a;
+                        SharedPreferences sharedPreferences = aca.a;
                         im0Var.c = sharedPreferences.contains("experimental_settings_allowed");
                         im0Var.d = sharedPreferences.getBoolean("experimental_settings_allowed", true);
                         im0Var.b = true;
@@ -670,15 +670,15 @@ public final class k93 extends n9c {
                     im0Var.d = z3;
                     im0Var.c = true;
                     im0Var.b = true;
-                    zba.a.edit().putBoolean("experimental_settings_allowed", z3).apply();
+                    aca.a.edit().putBoolean("experimental_settings_allowed", z3).apply();
                 }
                 z = true;
                 break;
             case 43:
                 while (i3 < 4) {
                     if (yac.h(i3).o()) {
-                        jf7 Y = jf7.Y(i3);
-                        Y.a.c(new be7(Y, (byte) 1));
+                        kf7 a0 = kf7.a0(i3);
+                        a0.a.c(new hd7(a0, (byte) 4));
                     }
                     i3++;
                 }
@@ -696,7 +696,7 @@ public final class k93 extends n9c {
                 ioe.a();
                 DictationLid.b();
                 vye.a(this.currentAccount);
-                uc7.s1(this.currentAccount).Y3.edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
+                uc7.s1(this.currentAccount).Z3.edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
                 uc7.f1().edit().remove("disable_sharing_learn").remove("askedAboutFSILockscreen").apply();
                 xea.I = 0;
                 xea.N = 0;
@@ -715,7 +715,7 @@ public final class k93 extends n9c {
                 getNotificationCenter().k(jn7.s1, new Object[0]);
                 ee9.Z();
                 a78.e(this.currentAccount).a();
-                SharedPreferences sharedPreferences2 = getMessagesController().X3;
+                SharedPreferences sharedPreferences2 = getMessagesController().Y3;
                 SharedPreferences.Editor edit10 = sharedPreferences2.edit();
                 edit10.remove("boostingappearance").remove("bizbothint").remove("movecaptionhint");
                 for (String str9 : sharedPreferences2.getAll().keySet()) {
@@ -724,8 +724,8 @@ public final class k93 extends n9c {
                     }
                 }
                 edit10.apply();
-                SharedPreferences.Editor edit11 = uc7.s1(this.currentAccount).W3.edit();
-                for (String str10 : uc7.s1(this.currentAccount).W3.getAll().keySet()) {
+                SharedPreferences.Editor edit11 = uc7.s1(this.currentAccount).X3.edit();
+                for (String str10 : uc7.s1(this.currentAccount).X3.getAll().keySet()) {
                     if (str10.startsWith("dialog_bar_botver")) {
                         edit11.remove(str10);
                     }
@@ -773,6 +773,11 @@ public final class k93 extends n9c {
                 }
                 GroupCallEngine.setDebugOverride(strArr2[(i3 + 1) % 3]);
                 this.a.g3.O(true);
+                z = true;
+                break;
+            case 49:
+                hl.c3(new hd7(kf7.a0(this.currentAccount), (byte) 1));
+                d31.b0(this).Q(2131624068, 36, "Go back to the chat list: the hint stays for 15 seconds").j();
                 z = true;
                 break;
         }

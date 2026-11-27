@@ -3827,7 +3827,7 @@ public abstract class hl {
                         i2 = iArr2[0];
                     }
                 }
-            } else if (drawable instanceof hh7) {
+            } else if (drawable instanceof ih7) {
                 iArr[2] = 754974720;
                 iArr[0] = 754974720;
                 iArr[3] = 1023410176;

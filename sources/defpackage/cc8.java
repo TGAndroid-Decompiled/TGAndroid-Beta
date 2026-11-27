@@ -16,6 +16,6 @@ public final class cc8 implements sec {
         if (!photoViewer.I4 || (kfcVar = photoViewer.G2) == null) {
             return;
         }
-        hl.c3(new h68(this, kfcVar, (byte) 8));
+        hl.c3(new a58(this, kfcVar, (byte) 9));
     }
 }

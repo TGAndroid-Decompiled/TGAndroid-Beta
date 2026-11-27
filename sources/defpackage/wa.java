@@ -48,7 +48,7 @@ public final class wa extends q9c {
     public final void L1() {
         switch (this.n3) {
             case 2:
-                hl.d0(((nab) this.o3).b, new ii7(this, (byte) 2));
+                hl.d0(((oab) this.o3).b, new ji7(this, (byte) 2));
                 return;
             default:
                 return;
@@ -105,9 +105,9 @@ public final class wa extends q9c {
         }
     }
 
-    public wa(nab nabVar, Activity activity, int i, hj7 hj7Var, bm6 bm6Var, x53 x53Var) {
-        super(activity, i, 0, false, hj7Var, bm6Var, null, x53Var, -1, 0);
-        this.o3 = nabVar;
+    public wa(oab oabVar, Activity activity, int i, ij7 ij7Var, bm6 bm6Var, x53 x53Var) {
+        super(activity, i, 0, false, ij7Var, bm6Var, null, x53Var, -1, 0);
+        this.o3 = oabVar;
     }
 
     public wa(fb fbVar, Activity activity, int i, c cVar, ua uaVar, uk5 uk5Var) {

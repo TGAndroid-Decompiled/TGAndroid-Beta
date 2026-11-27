@@ -31,9 +31,9 @@ public abstract class q79 {
 
     public q79() {
         xh4 xh4Var = new xh4(this, (byte) 28);
-        i09 i09Var = new i09(this, (byte) 2);
+        j09 j09Var = new j09(this, (byte) 2);
         this.c = new ym4(xh4Var);
-        this.d = new ym4(i09Var);
+        this.d = new ym4(j09Var);
         this.f = false;
         this.g = true;
         this.h = true;
@@ -277,7 +277,7 @@ public abstract class q79 {
             rx6 rx6Var = this.a;
             if (parent == recyclerView) {
                 zg2 zg2Var = (zg2) rx6Var.c;
-                int indexOfChild = ((RecyclerView) ((i09) rx6Var.b).b).indexOfChild(view);
+                int indexOfChild = ((RecyclerView) ((j09) rx6Var.b).b).indexOfChild(view);
                 if (indexOfChild == -1 || zg2Var.w(indexOfChild)) {
                     i2 = -1;
                 } else {
@@ -435,13 +435,13 @@ public abstract class q79 {
         if (q(i) != null) {
             rx6 rx6Var = this.a;
             int P = rx6Var.P(i);
-            i09 i09Var = (i09) rx6Var.b;
-            View childAt = ((RecyclerView) i09Var.b).getChildAt(P);
+            j09 j09Var = (j09) rx6Var.b;
+            View childAt = ((RecyclerView) j09Var.b).getChildAt(P);
             if (childAt != null) {
                 if (((zg2) rx6Var.c).y(P)) {
                     rx6Var.A0(childAt);
                 }
-                i09Var.N(P);
+                j09Var.N(P);
             }
         }
     }

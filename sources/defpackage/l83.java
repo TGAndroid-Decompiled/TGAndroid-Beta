@@ -23,11 +23,11 @@ public final class l83 extends az5 implements ur4 {
                 if (o83Var.j.b != qf5.d) {
                     ((ed4) o83Var.j.getValue()).close();
                 }
-                return f9c.a;
+                return g9c.a;
             default:
                 File file = (File) obj;
                 file.getClass();
-                return new aj7(((xw2) this.c).a, file);
+                return new bj7(((xw2) this.c).a, file);
         }
     }
 }

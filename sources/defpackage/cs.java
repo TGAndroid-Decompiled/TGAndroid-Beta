@@ -71,7 +71,7 @@ public final class cs extends la {
                 } else if (b == 7) {
                     ds dsVar = this.d;
                     boolean z3 = dsVar.d.archive_and_mute_new_noncontact_peers;
-                    if (!dsVar.getUserConfig().p() && !this.d.getMessagesController().k4.T0.f) {
+                    if (!dsVar.getUserConfig().p() && !this.d.getMessagesController().l4.T0.f) {
                         i3 = 2131232529;
                     }
                     wkbVar.setCheckBoxIcon(i3);

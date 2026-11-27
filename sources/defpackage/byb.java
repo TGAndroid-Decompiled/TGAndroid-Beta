@@ -223,7 +223,7 @@ public final class byb {
                 imageReceiver.q0(0);
                 long Y1 = r47Var.Y1();
                 this.t = Y1;
-                TLRPC.TL_forumTopic f = uc7.s1(i).g4.f(-r47.B0(r47Var.k), Y1);
+                TLRPC.TL_forumTopic f = uc7.s1(i).h4.f(-r47.B0(r47Var.k), Y1);
                 if (f == null) {
                     this.e = null;
                     return false;

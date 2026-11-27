@@ -28,7 +28,7 @@ public final class lob extends FrameLayout implements snb {
         this.a = uy9Var;
         uy9Var.setReportChanges(true);
         uy9Var.setSeparatorsCount(18);
-        uy9Var.setDelegate(new k09(this, (byte) 15));
+        uy9Var.setDelegate(new l09(this, (byte) 15));
         uy9Var.setImportantForAccessibility(2);
         addView(uy9Var, tre.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
     }

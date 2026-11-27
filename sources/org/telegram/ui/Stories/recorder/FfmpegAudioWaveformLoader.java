@@ -7,7 +7,7 @@ public class FfmpegAudioWaveformLoader {
 
     public FfmpegAudioWaveformLoader(String str, int i, icc iccVar) {
         this.onChunkReceived = iccVar;
-        Utilities.h.c(new ze7(this, str, i, (byte) 25));
+        Utilities.h.c(new bf7(this, str, i, (byte) 25));
     }
 
     public static void b(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader, String str, int i) {
@@ -29,7 +29,7 @@ public class FfmpegAudioWaveformLoader {
     }
 
     private void receiveChunk(short[] sArr, int i) {
-        hl.c3(new ze7(this, sArr, i, (byte) 26));
+        hl.c3(new bf7(this, sArr, i, (byte) 26));
     }
 
     public void destroy() {

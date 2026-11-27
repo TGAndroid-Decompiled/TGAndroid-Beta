@@ -25,10 +25,10 @@ public final class mre extends qi6 {
     public boolean i;
     public bkf j;
 
-    public mre(jg7 jg7Var, deb debVar, ijf ijfVar, zhc zhcVar) {
-        xve.i(jg7Var, "MlKitContext can not be null");
+    public mre(kg7 kg7Var, deb debVar, ijf ijfVar, zhc zhcVar) {
+        xve.i(kg7Var, "MlKitContext can not be null");
         xve.i(debVar, "SubjectSegmenterOptions can not be null");
-        this.d = jg7Var.b();
+        this.d = kg7Var.b();
         this.e = debVar;
         this.f = ijfVar;
         this.g = zhcVar;
@@ -40,7 +40,7 @@ public final class mre extends qi6 {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         boolean z = false;
         try {
-            z = ((vg7) Tasks.await(new h05(this.d, qa4.p, wn.g, g05.c).f(new u9f(k, (byte) 1)).addOnFailureListener(new Object()))).a;
+            z = ((wg7) Tasks.await(new h05(this.d, qa4.p, wn.g, g05.c).f(new u9f(k, (byte) 1)).addOnFailureListener(new Object()))).a;
         } catch (InterruptedException | ExecutionException e) {
             Log.e("OptionalModuleUtils", "Failed to complete the task of features availability check", e);
         }
@@ -50,7 +50,7 @@ public final class mre extends qi6 {
                 this.i = true;
             }
             f(daf.OPTIONAL_MODULE_NOT_AVAILABLE, elapsedRealtime);
-            throw new kg7("Waiting for the subject segmentation optional module to be downloaded. Please wait.", 14);
+            throw new lg7("Waiting for the subject segmentation optional module to be downloaded. Please wait.", 14);
         }
         try {
             bkf bkfVar = this.j;
@@ -81,11 +81,11 @@ public final class mre extends qi6 {
                 f(daf.NO_ERROR, elapsedRealtime);
             } catch (RemoteException e2) {
                 f(daf.OPTIONAL_MODULE_INIT_ERROR, elapsedRealtime);
-                throw new kg7("Failed to init module subject segmenter", e2);
+                throw new lg7("Failed to init module subject segmenter", e2);
             }
         } catch (Exception e3) {
             f(daf.OPTIONAL_MODULE_CREATE_ERROR, elapsedRealtime);
-            throw new kg7("Failed to load subject segmentation module", e3);
+            throw new lg7("Failed to load subject segmentation module", e3);
         }
     }
 
@@ -157,7 +157,7 @@ public final class mre extends qi6 {
                 bebVar = new beb(arrayList);
             } catch (RemoteException e) {
                 g(daf.OPTIONAL_MODULE_INFERENCE_ERROR, elapsedRealtime, this.h, jq5Var, null);
-                throw new kg7("Failed to run thin subject segmenter.", e);
+                throw new lg7("Failed to run thin subject segmenter.", e);
             }
         }
         return bebVar;
@@ -186,7 +186,7 @@ public final class mre extends qi6 {
             if (((AtomicLong) zhcVar.c).get() != -1 && elapsedRealtime2 - ((AtomicLong) zhcVar.c).get() <= 1800000) {
                 return;
             }
-            ((qa4) zhcVar.b).i(new ikb(0, Arrays.asList(new bg7(24336, s, 0, j2, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new zg2(zhcVar, elapsedRealtime2, (byte) 12));
+            ((qa4) zhcVar.b).i(new ikb(0, Arrays.asList(new cg7(24336, s, 0, j2, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new zg2(zhcVar, elapsedRealtime2, (byte) 12));
         }
     }
 }

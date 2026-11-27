@@ -184,7 +184,7 @@ public final class b49 implements ValueAnimator.AnimatorUpdateListener {
                 c8aVar.invalidate();
                 return;
             case 25:
-                ((tba) obj).k0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((uba) obj).k0(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 26:
                 pda pdaVar = (pda) obj;

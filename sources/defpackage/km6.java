@@ -457,7 +457,7 @@ public class km6 extends qm6 implements hm6 {
                 i3 = integer;
             }
             jo4 jo4Var = new jo4();
-            jo4Var.s = dg7.n("audio/raw");
+            jo4Var.s = eg7.n("audio/raw");
             jo4Var.P = i;
             jo4Var.Q = ko4Var.R;
             jo4Var.R = ko4Var.S;

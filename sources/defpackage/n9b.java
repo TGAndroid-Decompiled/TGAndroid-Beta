@@ -14,7 +14,7 @@ public final class n9b extends la {
     public d79 h;
     public final r9b n;
 
-    public n9b(r9b r9bVar, Context context, vnb vnbVar, l9b l9bVar, b68 b68Var) {
+    public n9b(r9b r9bVar, Context context, vnb vnbVar, l9b l9bVar, c68 c68Var) {
         this.n = r9bVar;
         this.d = context;
         this.e = vnbVar;
@@ -175,7 +175,7 @@ public final class n9b extends la {
                     ((mf5) view).setText(h9bVar2.e);
                 } else if (i5 == 10) {
                     int i8 = w9b.X1;
-                    int f2 = (int) uc7.s1(w9bVar.a).k4.P1.f();
+                    int f2 = (int) uc7.s1(w9bVar.a).l4.P1.f();
                     int[] a = bna.a(new int[]{0, 1, 10, 50, 100, 200, 250, 400, 500, 1000, 2500, 5000, 7500, 9000, 10000}, f2);
                     int j = Utilities.j(w9bVar.B1, f2, 0);
                     bya byaVar = new bya((byte) 3);

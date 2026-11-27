@@ -59,22 +59,22 @@ public final class rt implements RequestDelegate {
                 vnb vnbVar = (vnb) obj4;
                 byte[] bArr = (byte[]) obj3;
                 e eVar = (e) obj2;
-                en9 en9Var = (en9) obj;
+                dn9 dn9Var = (dn9) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        hl.c3(new z87((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject, context, vnbVar, bArr, eVar, en9Var, (byte) 22));
+                        hl.c3(new z87((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject, context, vnbVar, bArr, eVar, dn9Var, (byte) 22));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        hl.d3(new fb9(eVar, context, vnbVar, en9Var, (byte) 0), 200L);
+                        hl.d3(new fb9(eVar, context, vnbVar, dn9Var, (byte) 0), 200L);
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        hl.d3(new a39(eVar, i, en9Var, (byte) 1), 200L);
+                        hl.d3(new a39(eVar, i, dn9Var, (byte) 1), 200L);
                         return;
                     } else {
                         return;
                     }
                 } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    hl.d3(new fb9(eVar, context, vnbVar, en9Var, (byte) 1), 200L);
+                    hl.d3(new fb9(eVar, context, vnbVar, dn9Var, (byte) 1), 200L);
                     return;
                 } else {
                     return;
@@ -118,12 +118,12 @@ public final class rt implements RequestDelegate {
         this.e = str;
     }
 
-    public rt(Context context, vnb vnbVar, byte[] bArr, e eVar, en9 en9Var, int i) {
+    public rt(Context context, vnb vnbVar, byte[] bArr, e eVar, dn9 dn9Var, int i) {
         this.c = context;
         this.d = vnbVar;
         this.e = bArr;
         this.f = eVar;
-        this.g = en9Var;
+        this.g = dn9Var;
         this.b = i;
     }
 

@@ -59,7 +59,7 @@ public final class pra implements pcc {
         int i = wuaVar.a;
         HashMap hashMap = it7.a;
         if (!TextUtils.isEmpty(tL_starGiftUnique.slug) && !tL_starGiftUnique.resale_ton_only && !it7.n(tL_starGiftUnique) && !tL_starGiftUnique.onchain_sale && !tL_starGiftUnique.fixed_sale && j >= 0) {
-            hr hrVar = uc7.s1(i).k4;
+            hr hrVar = uc7.s1(i).l4;
             if (hrVar.x.f && hrVar.v0.f && tL_starGiftUnique.getResellAmount(pj.a).a() > 0) {
                 buaVar.k = new us0(wuaVar, tL_starGiftUnique, j, tL_textWithEntities, z, hw4Var, (byte) 7);
             }

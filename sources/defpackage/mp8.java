@@ -255,7 +255,7 @@ public final class mp8 implements RequestDelegate {
             case 4:
                 RectF rectF5 = ProfileActivity.Z6;
                 if (tLObject != null) {
-                    hl.c3(new hp8(profileActivity, tLObject, (byte) 6));
+                    hl.c3(new ep8(profileActivity, tLObject, (byte) 7));
                     return;
                 }
                 return;

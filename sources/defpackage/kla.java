@@ -95,10 +95,10 @@ public final class kla implements View.OnClickListener {
                 hl.d3((ux9) obj, 100L);
                 return;
             case 11:
-                p3b p3bVar = (p3b) obj;
-                TextView textView = p3bVar.F;
-                TextView textView2 = p3bVar.E;
-                ok8 ok8Var = p3bVar.G;
+                q3b q3bVar = (q3b) obj;
+                TextView textView = q3bVar.F;
+                TextView textView2 = q3bVar.E;
+                ok8 ok8Var = q3bVar.G;
                 if (ok8Var.getVisibility() == 0 && ok8Var.w.isEnabled()) {
                     ok8Var.performClick();
                     return;
@@ -141,8 +141,8 @@ public final class kla implements View.OnClickListener {
                 }
                 return;
             case 16:
-                tbb tbbVar = (tbb) obj;
-                tbbVar.b.u1.animate().alpha(0.0f).setDuration(150L).setListener(new ecb(tbbVar, (byte) 0)).start();
+                ubb ubbVar = (ubb) obj;
+                ubbVar.b.u1.animate().alpha(0.0f).setDuration(150L).setListener(new ecb(ubbVar, (byte) 0)).start();
                 return;
             case 17:
                 ((shb) obj).dismiss();
@@ -206,10 +206,10 @@ public final class kla implements View.OnClickListener {
                 zu1 zu1Var = ((as1) obj).E;
                 if (!zu1Var.getUserConfig().p() && ((chat = zu1Var.e) == null || !chat.autotranslation)) {
                     i = ((e) zu1Var).currentAccount;
-                    uc7.s1(i).W3.edit().putInt("dialog_show_translate_count" + zu1Var.a(), 14).commit();
+                    uc7.s1(i).X3.edit().putInt("dialog_show_translate_count" + zu1Var.a(), 14).commit();
                     zu1Var.showDialog(new xk8((e) zu1Var, 13, false));
                 } else {
-                    zu1Var.getMessagesController().i4.K(zu1Var.a(), !a5cVar.A(a));
+                    zu1Var.getMessagesController().j4.K(zu1Var.a(), !a5cVar.A(a));
                 }
                 zu1Var.zd(true);
                 return;

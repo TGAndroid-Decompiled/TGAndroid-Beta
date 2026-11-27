@@ -110,9 +110,9 @@ public final class c3 extends fba {
                 }
                 Map.Entry entry = (Map.Entry) obj;
                 Objects.requireNonNull(entry);
-                fj7 fj7Var = (fj7) ((e3) this.c).e;
+                gj7 gj7Var = (gj7) ((e3) this.c).e;
                 Object key = entry.getKey();
-                Map map = fj7Var.e;
+                Map map = gj7Var.e;
                 map.getClass();
                 try {
                     obj2 = map.remove(key);
@@ -123,7 +123,7 @@ public final class c3 extends fba {
                 if (collection != null) {
                     int size = collection.size();
                     collection.clear();
-                    fj7Var.f -= size;
+                    gj7Var.f -= size;
                 }
                 return true;
             default:

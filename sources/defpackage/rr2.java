@@ -54,7 +54,7 @@ public final class rr2 implements RequestDelegate {
                             N0.flags |= 1073741824;
                         }
                         N0.available_reactions = tL_messages_setChatAvailableReactions.available_reactions;
-                        uc7Var.getMessagesStorage().K1(N0, false);
+                        uc7Var.getMessagesStorage().P1(N0, false);
                     }
                     hl.c3(new cq6(uc7Var, l82Var, j, (byte) 5));
                     return;

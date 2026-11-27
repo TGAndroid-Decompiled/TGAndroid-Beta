@@ -30,7 +30,7 @@ public final class tw implements ag0, dy0 {
     public boolean n;
     public boolean r;
     public boolean s;
-    public x58 w;
+    public y58 w;
     public float x;
     public float y;
 
@@ -240,7 +240,7 @@ public final class tw implements ag0, dy0 {
 
     @Override
     public final void n(Runnable runnable) {
-        this.w = (x58) runnable;
+        this.w = (y58) runnable;
     }
 
     public final void o() {
@@ -390,9 +390,9 @@ public final class tw implements ag0, dy0 {
         if (this.e == null) {
             hl.B2(this.c);
         }
-        x58 x58Var = this.w;
-        if (x58Var != null) {
-            x58Var.run();
+        y58 y58Var = this.w;
+        if (y58Var != null) {
+            y58Var.run();
             this.w = null;
         }
         o.d1.remove(oVar);

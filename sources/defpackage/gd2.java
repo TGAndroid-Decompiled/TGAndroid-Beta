@@ -2,7 +2,7 @@ package defpackage;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.TwoStepVerificationActivity;
-public final class gd2 implements fd, gc7, ef7 {
+public final class gd2 implements fd, gc7, ff7 {
     public final byte a;
     public final pd2 b;
 

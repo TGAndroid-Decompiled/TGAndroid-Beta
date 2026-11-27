@@ -345,7 +345,7 @@ public final class us0 implements Runnable {
                         }
                     }
                 }
-                String str5 = a5cVar.getMessagesController().k4.S2.f;
+                String str5 = a5cVar.getMessagesController().l4.S2.f;
                 if (!"alternative".equals(str5) && !"system".equals(str5)) {
                     TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
                     int i4 = tL_messages_translateText.flags;
@@ -358,7 +358,7 @@ public final class us0 implements Runnable {
                         tL_messages_translateText.id = w4cVar.b;
                     }
                     tL_messages_translateText.to_lang = a5c.D(w4cVar.e);
-                    int sendRequest = a5cVar.getConnectionsManager().sendRequest(tL_messages_translateText, new rs0(a5cVar, w4cVar, z12, j13, hashSet2, (byte) 7));
+                    int sendRequest = a5cVar.getConnectionsManager().sendRequest(tL_messages_translateText, new rs0(a5cVar, w4cVar, z12, j13, hashSet2, (byte) 6));
                     synchronized (a5cVar) {
                         w4cVar.h = sendRequest;
                     }

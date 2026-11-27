@@ -15,7 +15,7 @@ public final class g37 implements xt6, wt6 {
     public xt6[] n;
     public er2 r;
 
-    public g37(rg7 rg7Var, long[] jArr, xt6... xt6VarArr) {
+    public g37(sg7 sg7Var, long[] jArr, xt6... xt6VarArr) {
         this.a = xt6VarArr;
         no5 no5Var = po5.b;
         j99 j99Var = j99.e;

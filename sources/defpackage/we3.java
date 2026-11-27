@@ -42,11 +42,11 @@ public final class we3 {
         this.b = null;
     }
 
-    public final j09 a() {
+    public final k09 a() {
         if (!"first_party".equals(this.b)) {
             if (this.a != null) {
                 if (this.b != null) {
-                    return new j09(this);
+                    return new k09(this);
                 }
                 lq5.j("Product type must be provided.");
                 return null;

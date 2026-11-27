@@ -17,7 +17,7 @@ import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.LaunchActivity;
-public final class i02 implements hj, fd, bm3, on5, qc6, pz6, bs9, hf7, lc5, bf7, f73 {
+public final class i02 implements hj, fd, bm3, on5, qc6, pz6, bs9, if7, lc5, cf7, f73 {
     public final byte a;
     public final long b;
     public final Object c;
@@ -187,7 +187,7 @@ public final class i02 implements hj, fd, bm3, on5, qc6, pz6, bs9, hf7, lc5, bf7
                     gx9Var.w0.remove(sl3Var);
                     gx9Var.v0.remove(sl3Var);
                     gx9Var.f();
-                    jf7.Y(gx9Var.t0).a.c(new kt(gx9Var, j, (byte) 15));
+                    kf7.a0(gx9Var.t0).a.c(new kt(gx9Var, j, (byte) 15));
                     return;
                 }
                 return;

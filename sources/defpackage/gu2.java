@@ -81,7 +81,7 @@ public final class gu2 implements t69, nr7, fd {
             }
             contactsController.d(false);
             jn7 notificationCenter = contactsController.getNotificationCenter();
-            int i4 = uc7.r5;
+            int i4 = uc7.s5;
             notificationCenter.k(2, 1);
             contactsController.getNotificationCenter().k(jn7.N, new Object[0]);
             n21 n21Var = new n21(parentActivity, contactsActivity.getResourceProvider());

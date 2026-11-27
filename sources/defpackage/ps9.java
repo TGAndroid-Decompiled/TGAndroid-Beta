@@ -33,7 +33,7 @@ public final class ps9 implements Runnable {
                 runnable.run();
                 return;
             case 3:
-                Deque deque = (Deque) lg7.b.get();
+                Deque deque = (Deque) mg7.b.get();
                 xve.h(deque);
                 deque.add(runnable);
                 if (deque.size() <= 1) {
@@ -46,7 +46,7 @@ public final class ps9 implements Runnable {
                 }
                 return;
             default:
-                lg7.b.set(new ArrayDeque());
+                mg7.b.set(new ArrayDeque());
                 runnable.run();
                 return;
         }

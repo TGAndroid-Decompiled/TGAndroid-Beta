@@ -64,8 +64,8 @@ public final class ffa implements View.OnClickListener {
                 return;
             case 3:
                 e eVar = ejaVar.y1;
-                eVar.getMessagesController().X3.edit().putBoolean("story_keep", true).apply();
-                rbb.C(eVar.getParentActivity(), eVar.getCurrentAccount()).Q(null);
+                eVar.getMessagesController().Y3.edit().putBoolean("story_keep", true).apply();
+                sbb.C(eVar.getParentActivity(), eVar.getCurrentAccount()).Q(null);
                 return;
             default:
                 int closestTab = ejaVar.getClosestTab();

@@ -35,17 +35,17 @@ public final class wy implements Runnable {
         SQLitePreparedStatement executeFast;
         boolean z;
         boolean z2;
-        jf7 jf7Var = (jf7) this.d;
+        kf7 kf7Var = (kf7) this.d;
         ArrayList arrayList = (ArrayList) this.e;
         ArrayList arrayList2 = (ArrayList) this.f;
         int i = this.c;
         long j = this.b;
-        zh6 zh6Var = jf7Var.K;
+        zh6 zh6Var = kf7Var.K;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                jf7Var.b.beginTransaction();
-                executeFast = jf7Var.b.executeFast("UPDATE dialogs SET folder_id = ?, pinned = ? WHERE did = ?");
+                kf7Var.b.beginTransaction();
+                executeFast = kf7Var.b.executeFast("UPDATE dialogs SET folder_id = ?, pinned = ? WHERE did = ?");
             } catch (Exception e) {
                 e = e;
             }
@@ -99,20 +99,20 @@ public final class wy implements Runnable {
                 z2 = z;
             }
             executeFast.dispose();
-            jf7Var.b.commitTransaction();
+            kf7Var.b.commitTransaction();
             if (!z2) {
-                jf7Var.k(1);
+                kf7Var.m(1);
             }
-            jf7Var.q1(false);
-            SQLiteDatabase sQLiteDatabase = jf7Var.b;
+            kf7Var.u1(false);
+            SQLiteDatabase sQLiteDatabase = kf7Var.b;
             if (sQLiteDatabase != null) {
                 sQLiteDatabase.commitTransaction();
             }
         } catch (Exception e2) {
             e = e2;
             sQLitePreparedStatement = executeFast;
-            jf7Var.n(e, true);
-            SQLiteDatabase sQLiteDatabase2 = jf7Var.b;
+            kf7Var.p(e, true);
+            SQLiteDatabase sQLiteDatabase2 = kf7Var.b;
             if (sQLiteDatabase2 != null) {
                 sQLiteDatabase2.commitTransaction();
             }
@@ -122,7 +122,7 @@ public final class wy implements Runnable {
         } catch (Throwable th2) {
             th = th2;
             sQLitePreparedStatement = executeFast;
-            SQLiteDatabase sQLiteDatabase3 = jf7Var.b;
+            SQLiteDatabase sQLiteDatabase3 = kf7Var.b;
             if (sQLiteDatabase3 != null) {
                 sQLiteDatabase3.commitTransaction();
             }

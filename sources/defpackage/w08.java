@@ -17,6 +17,6 @@ public final class w08 extends TimerTask {
         double currentTimeMillis = System.currentTimeMillis();
         x08Var.E = (int) (x08Var.E - (currentTimeMillis - x08Var.G));
         x08Var.G = currentTimeMillis;
-        hl.c3(new fe7(this, (byte) 25));
+        hl.c3(new ge7(this, (byte) 25));
     }
 }

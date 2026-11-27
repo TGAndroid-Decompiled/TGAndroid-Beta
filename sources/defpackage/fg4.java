@@ -800,7 +800,7 @@ public abstract class fg4 extends FrameLayout {
         this.J.f();
         invalidate();
         if (!this.n && this.E) {
-            jf7.Y(yac.t0).v1();
+            kf7.a0(yac.t0).z1();
             TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
             ArrayList T0 = uc7.s1(yac.t0).T0();
             int size = T0.size();

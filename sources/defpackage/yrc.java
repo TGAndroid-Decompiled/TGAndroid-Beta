@@ -328,7 +328,7 @@ public final class yrc extends FrameLayout {
                     ys4 ys4Var = this.f;
                     ys4Var.d = 0.0f;
                     ys4Var.i = 0.0f;
-                    m(new me7(this, i, (byte) 29));
+                    m(new oe7(this, i, (byte) 29));
                 }
                 setRendererPaused(!z);
                 return;

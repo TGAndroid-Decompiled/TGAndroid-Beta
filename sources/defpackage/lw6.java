@@ -122,7 +122,7 @@ public final class lw6 {
                 c2.a(ku6Var2, true);
                 c2.k();
                 ye3 ye3Var = c2.c;
-                ((Handler) ye3Var.d).post((ki7) ye3Var.h);
+                ((Handler) ye3Var.d).post((li7) ye3Var.h);
             }
             if (nw6Var2 != null && nw6Var2.d) {
                 z = true;
@@ -149,7 +149,7 @@ public final class lw6 {
             }
             c2.r = null;
             ye3 ye3Var2 = c2.c;
-            ((Handler) ye3Var2.d).post((ki7) ye3Var2.h);
+            ((Handler) ye3Var2.d).post((li7) ye3Var2.h);
         }
         xz4Var.b(769, nw6Var);
     }

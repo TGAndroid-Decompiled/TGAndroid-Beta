@@ -85,7 +85,7 @@ public final class kta implements Runnable {
         String str = (String) this.d;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.e;
         if (((TLObject) this.c) instanceof TLRPC.TL_boolTrue) {
-            o7cVar.k0(new bcb(o7cVar, str, (byte) 27));
+            o7cVar.k0(new hab(o7cVar, str, (byte) 28));
         } else if (tL_error != null && !tL_error.text.startsWith("CODE_INVALID")) {
             if (tL_error.text.startsWith("FLOOD_WAIT")) {
                 int intValue = Utilities.z(tL_error.text).intValue();
@@ -141,25 +141,25 @@ public final class kta implements Runnable {
         String str = (String) this.c;
         Map map = (Map) this.d;
         List list = (List) this.e;
-        qf7 qf7Var = (qf7) gd4Var.b;
+        rf7 rf7Var = (rf7) gd4Var.b;
         AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) gd4Var.g;
         if (((String) atomicMarkableReference.getReference()) != null) {
-            qf7Var.i(str, (String) atomicMarkableReference.getReference());
+            rf7Var.i(str, (String) atomicMarkableReference.getReference());
         }
         if (!map.isEmpty()) {
-            qf7Var.h(str, map, false);
+            rf7Var.h(str, map, false);
         }
         if (!list.isEmpty()) {
-            File b = qf7Var.a.b(str, "rollouts-state");
+            File b = rf7Var.a.b(str, "rollouts-state");
             if (list.isEmpty()) {
-                qf7.g(b, "Rollout state is empty for session: " + str);
+                rf7.g(b, "Rollout state is empty for session: " + str);
                 return;
             }
             BufferedWriter bufferedWriter2 = null;
             try {
                 try {
-                    e = qf7.e(list);
-                    bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b), qf7.b));
+                    e = rf7.e(list);
+                    bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b), rf7.b));
                 } catch (Throwable th) {
                     th = th;
                 }
@@ -174,7 +174,7 @@ public final class kta implements Runnable {
                 e = e3;
                 bufferedWriter2 = bufferedWriter;
                 Log.w("FirebaseCrashlytics", "Error serializing rollouts state.", e);
-                qf7.f(b);
+                rf7.f(b);
                 jn2.b(bufferedWriter2, "Failed to close rollouts state file.");
             } catch (Throwable th2) {
                 th = th2;
@@ -218,7 +218,7 @@ public final class kta implements Runnable {
             TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
             uc7.s1(i).j4(tL_contacts_resolvedPeer.users, false);
             uc7.s1(i).c4(tL_contacts_resolvedPeer.chats, false);
-            jf7.Y(i).j1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
+            kf7.a0(i).n1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
             long B1 = r47.B1(tL_contacts_resolvedPeer.peer);
             kbcVar.b.put(str, new jbc(B1));
             while (i2 < arrayList.size()) {

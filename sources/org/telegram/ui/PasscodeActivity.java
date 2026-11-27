@@ -182,7 +182,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.e implements fn7
                 ok2Var.postDelayed(new ny7(ok2Var, (byte) 0), i * 75);
                 i++;
             } else {
-                bf6Var.postDelayed(new pl7(this, runnable, (byte) 15), (ok2VarArr.length * 75) + 350);
+                bf6Var.postDelayed(new ql7(this, runnable, (byte) 16), (ok2VarArr.length * 75) + 350);
                 return;
             }
         }
@@ -697,7 +697,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.e implements fn7
         this.autoLockRow = i2;
         this.Q = i2 + 2;
         this.I = i2 + 1;
-        if (getMessagesController().k4.v0.f) {
+        if (getMessagesController().l4.v0.f) {
             int i3 = this.Q;
             this.J = i3;
             this.Q = i3 + 2;

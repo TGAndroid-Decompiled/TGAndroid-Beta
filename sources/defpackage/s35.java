@@ -45,7 +45,7 @@ public final class s35 {
         try {
             hl.c3(new gp6(this, rycVar, i, new JSONObject(str), (byte) 26));
         } catch (JSONException unused) {
-            hl.c3(new ze7(this, rycVar, i, (byte) 29));
+            hl.c3(new bf7(this, rycVar, i, (byte) 29));
         }
     }
 }

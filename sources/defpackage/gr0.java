@@ -28,7 +28,7 @@ public final class gr0 extends FrameLayout {
     public int U;
     public int V;
     public final Rect W;
-    public o5b a;
+    public p5b a;
     public final bga a0;
     public boolean b;
     public float c;
@@ -101,7 +101,7 @@ public final class gr0 extends FrameLayout {
         z2bVar.e(true, false);
         z2bVar.b.setVisibility(8);
         z2bVar.d.setText(ob6.M0(2131746425, null));
-        z2bVar.e.setText(ob6.G(uc7.s1(bgaVar.b).k4.A2.f(), "ProfileBotPreviewEmptyText", new Object[0]));
+        z2bVar.e.setText(ob6.G(uc7.s1(bgaVar.b).l4.A2.f(), "ProfileBotPreviewEmptyText", new Object[0]));
         String M0 = ob6.M0(2131746429, null);
         c51 c51Var = z2bVar.f;
         c51Var.i(M0, false, true);
@@ -258,21 +258,21 @@ public final class gr0 extends FrameLayout {
         yq0Var.setPadding(yq0Var.getPaddingLeft(), yq0Var.f3, yq0Var.getPaddingRight(), this.K.getMeasuredHeight() + hl.L(42.0f));
     }
 
-    public void setList(o5b o5bVar) {
-        if (this.a != o5bVar) {
+    public void setList(p5b p5bVar) {
+        if (this.a != p5bVar) {
             this.I = false;
             this.J = false;
             this.d = this.a0.E;
         }
-        this.a = o5bVar;
+        this.a = p5bVar;
         br0 br0Var = this.w;
-        br0Var.e = o5bVar;
+        br0Var.e = p5bVar;
         if (br0Var != br0Var.s.x) {
             br0Var.M();
         }
         br0Var.f();
         fr0 fr0Var = this.x;
-        fr0Var.e = o5bVar;
+        fr0Var.e = p5bVar;
         if (fr0Var != fr0Var.s.x) {
             fr0Var.M();
         }

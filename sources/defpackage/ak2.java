@@ -125,10 +125,10 @@ public final class ak2 implements TextWatcher {
                 }
                 return;
             case 2:
-                rl7 rl7Var = (rl7) obj;
-                if (!rl7Var.y1) {
-                    int selectionStart2 = rl7Var.J1.getSelectionStart();
-                    String obj4 = rl7Var.J1.getText().toString();
+                sl7 sl7Var = (sl7) obj;
+                if (!sl7Var.y1) {
+                    int selectionStart2 = sl7Var.J1.getSelectionStart();
+                    String obj4 = sl7Var.J1.getText().toString();
                     if (this.b == 3) {
                         obj4 = obj4.substring(0, this.c).concat(obj4.substring(this.c + 1));
                         selectionStart2--;
@@ -143,8 +143,8 @@ public final class ak2 implements TextWatcher {
                         }
                         i18 = i19;
                     }
-                    rl7Var.y1 = true;
-                    String hintText2 = rl7Var.J1.getHintText();
+                    sl7Var.y1 = true;
+                    String hintText2 = sl7Var.J1.getHintText();
                     if (hintText2 != null) {
                         int i20 = 0;
                         while (true) {
@@ -169,12 +169,12 @@ public final class ak2 implements TextWatcher {
                     }
                     editable.replace(0, editable.length(), sb2);
                     if (selectionStart2 >= 0) {
-                        ql7 ql7Var = rl7Var.J1;
-                        ql7Var.setSelection(Math.min(selectionStart2, ql7Var.length()));
+                        rl7 rl7Var = sl7Var.J1;
+                        rl7Var.setSelection(Math.min(selectionStart2, rl7Var.length()));
                     }
-                    rl7Var.J1.invalidate();
-                    rl7Var.y1 = false;
-                    rl7Var.M0();
+                    sl7Var.J1.invalidate();
+                    sl7Var.y1 = false;
+                    sl7Var.M0();
                     return;
                 }
                 return;

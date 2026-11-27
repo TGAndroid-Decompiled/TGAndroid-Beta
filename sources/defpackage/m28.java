@@ -53,7 +53,7 @@ public final class m28 extends WebViewClient {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, pVar.Z0, pVar.getParentActivity());
                     id idVar = alertDialog$Builder.a;
                     idVar.S = ob6.M0(2131752069, null);
-                    idVar.U = hl.N2(ob6.M0(2131752070, null), -1, 0, new fe7(this, (byte) 26), null);
+                    idVar.U = hl.N2(ob6.M0(2131752070, null), -1, 0, new ge7(this, (byte) 26), null);
                     alertDialog$Builder.j(ob6.M0(2131747558, null), null);
                     alertDialog$Builder.o();
                     return true;
@@ -69,7 +69,7 @@ public final class m28 extends WebViewClient {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, pVar.Z0, pVar.getParentActivity());
                     id idVar2 = alertDialog$Builder2.a;
                     idVar2.S = ob6.M0(2131752069, null);
-                    idVar2.U = hl.N2(ob6.M0(2131752070, null), -1, 0, new fe7(this, (byte) 28), null);
+                    idVar2.U = hl.N2(ob6.M0(2131752070, null), -1, 0, new ge7(this, (byte) 28), null);
                     alertDialog$Builder2.j(ob6.M0(2131747558, null), null);
                     alertDialog$Builder2.o();
                     return true;

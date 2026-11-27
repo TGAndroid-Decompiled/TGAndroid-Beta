@@ -103,7 +103,7 @@ public class lp implements oi0, ws4, aea {
     @Override
     public final boolean E() {
         lm7 lm7Var = (lm7) this.d;
-        lm7Var.F0(lm7Var.n0(this.b, (r47) this.c, "forward", "copy_link"));
+        lm7Var.D0(lm7Var.m0(this.b, (r47) this.c, "forward", "copy_link"));
         return false;
     }
 
@@ -345,7 +345,7 @@ public class lp implements oi0, ws4, aea {
                         sb.append(o8aVar.g(i3));
                     }
                 }
-            } else if (obj != rg7.c) {
+            } else if (obj != sg7.c) {
                 sb.append("['");
                 sb.append(obj);
                 sb.append("']");

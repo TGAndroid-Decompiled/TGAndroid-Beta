@@ -300,19 +300,19 @@ public final class xc4 extends rf0 {
         TLRPC.Message message;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        if (obj instanceof n5b) {
-            n5b n5bVar = (n5b) obj;
-            if (n5bVar.a == null) {
+        if (obj instanceof o5b) {
+            o5b o5bVar = (o5b) obj;
+            if (o5bVar.a == null) {
                 cc4.b("failed request reference can't find list in botpreview");
                 return null;
             }
-            TLRPC.MessageMedia messageMedia = n5bVar.media;
+            TLRPC.MessageMedia messageMedia = o5bVar.media;
             if (messageMedia.document != null) {
-                return "botstory_doc_" + n5bVar.media.document.id;
+                return "botstory_doc_" + o5bVar.media.document.id;
             } else if (messageMedia.photo != null) {
-                return "botstory_photo_" + n5bVar.media.photo.id;
+                return "botstory_photo_" + o5bVar.media.photo.id;
             } else {
-                return "botstory_" + n5bVar.id;
+                return "botstory_" + o5bVar.id;
             }
         }
         long j = 0;
@@ -392,20 +392,20 @@ public final class xc4 extends rf0 {
         if (z2 && (((TL_ephemeral.TL_sendMessage) obj2).media instanceof TLRPC.TL_inputMediaPoll) && (obj instanceof ArrayList)) {
             return null;
         }
-        if (obj2 instanceof n5b) {
-            n5b n5bVar = (n5b) obj2;
-            TLRPC.MessageMedia messageMedia = n5bVar.media;
+        if (obj2 instanceof o5b) {
+            o5b o5bVar = (o5b) obj2;
+            TLRPC.MessageMedia messageMedia = o5bVar.media;
             if (messageMedia.document != null) {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation = new TLRPC.TL_inputDocumentFileLocation();
-                tL_inputDocumentFileLocation.id = n5bVar.media.document.id;
-                return new Pair(tL_inputDocumentFileLocation, "botstory_doc_" + n5bVar.media.document.id);
+                tL_inputDocumentFileLocation.id = o5bVar.media.document.id;
+                return new Pair(tL_inputDocumentFileLocation, "botstory_doc_" + o5bVar.media.document.id);
             } else if (messageMedia.photo != null) {
                 TLRPC.TL_inputPhotoFileLocation tL_inputPhotoFileLocation = new TLRPC.TL_inputPhotoFileLocation();
-                tL_inputPhotoFileLocation.id = n5bVar.media.photo.id;
-                return new Pair(tL_inputPhotoFileLocation, "botstory_photo_" + n5bVar.media.photo.id);
+                tL_inputPhotoFileLocation.id = o5bVar.media.photo.id;
+                return new Pair(tL_inputPhotoFileLocation, "botstory_photo_" + o5bVar.media.photo.id);
             } else {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation2 = new TLRPC.TL_inputDocumentFileLocation();
-                return new Pair(tL_inputDocumentFileLocation2, "botstory_" + n5bVar.id);
+                return new Pair(tL_inputDocumentFileLocation2, "botstory_" + o5bVar.id);
             }
         } else if (obj2 instanceof TL_stories.TL_storyItem) {
             TL_stories.TL_storyItem tL_storyItem = (TL_stories.TL_storyItem) obj2;

@@ -31,8 +31,8 @@ public final class kwa implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.kwa.run():void");
     }
 
-    public kwa(rbb rbbVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z, long j, boolean z2, TLRPC.TL_error tL_error, s8b s8bVar) {
-        this.e = rbbVar;
+    public kwa(sbb sbbVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z, long j, boolean z2, TLRPC.TL_error tL_error, s8b s8bVar) {
+        this.e = sbbVar;
         this.f = tLObject;
         this.h = tL_startLive;
         this.b = z;

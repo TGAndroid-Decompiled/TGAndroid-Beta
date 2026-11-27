@@ -114,20 +114,20 @@ public class UserInfoActivity extends n9c implements fn7 {
         bp1.o(2131751298, null, arrayList);
         if (f != null) {
             this.numberRow = arrayList.size();
-            arrayList.add(pba.i(7, -11154873, -14175180, 2131232716, xnb.k(new StringBuilder("+"), f.phone, f78.f()), ob6.M0(2131743913, null), null));
+            arrayList.add(qba.i(7, -11154873, -14175180, 2131232716, xnb.k(new StringBuilder("+"), f.phone, f78.f()), ob6.M0(2131743913, null), null));
         }
         this.usernameRow = arrayList.size();
         if (lbc.p(f) != null) {
-            arrayList.add(pba.i(8, -1007845, -1996271, 2131231100, "@" + lbc.p(f), ob6.M0(2131743329, null), null));
+            arrayList.add(qba.i(8, -1007845, -1996271, 2131231100, "@" + lbc.p(f), ob6.M0(2131743329, null), null));
         } else {
-            arrayList.add(pba.i(8, -1007845, -1996271, 2131231100, ob6.M0(2131754356, null), null, null));
+            arrayList.add(qba.i(8, -1007845, -1996271, 2131231100, ob6.M0(2131754356, null), null, null));
         }
         this.birthdayRow = arrayList.size();
         TL_account.TL_birthday tL_birthday = this.K;
         if (tL_birthday != null) {
-            arrayList.add(pba.i(9, -14899731, -15431455, 2131231084, c0(tL_birthday), ob6.M0(2131751768, null), null));
+            arrayList.add(qba.i(9, -14899731, -15431455, 2131231084, c0(tL_birthday), ob6.M0(2131751768, null), null));
         } else {
-            arrayList.add(pba.i(9, -14899731, -15431455, 2131231084, ob6.M0(2131754457, null), null, null));
+            arrayList.add(qba.i(9, -14899731, -15431455, 2131231084, ob6.M0(2131754457, null), null, null));
         }
         if (!getContactsController().t(11) && (v = getContactsController().v(11)) != null && this.s == null) {
             String M0 = ob6.M0(2131751206, null);
@@ -152,15 +152,15 @@ public class UserInfoActivity extends n9c implements fn7 {
         arrayList.add(b8c.C(this.s));
         this.channelRow = arrayList.size();
         if (this.L == null) {
-            arrayList.add(pba.i(3, -1007845, -1996271, 2131232152, ob6.M0(2131751196, null), null, ob6.M0(2131751201, null)));
+            arrayList.add(qba.i(3, -1007845, -1996271, 2131232152, ob6.M0(2131751196, null), null, ob6.M0(2131751201, null)));
         } else {
-            arrayList.add(pba.i(3, -1007845, -1996271, 2131232152, ob6.M0(2131751196, null), this.L.title, null));
+            arrayList.add(qba.i(3, -1007845, -1996271, 2131232152, ob6.M0(2131751196, null), this.L.title, null));
         }
         if (this.M) {
-            arrayList.add(pba.i(4, -881871, -1940716, 2131231150, ob6.M0(2131751192, null), null, null));
+            arrayList.add(qba.i(4, -881871, -1940716, 2131231150, ob6.M0(2131751192, null), null, null));
         }
         if (this.N) {
-            arrayList.add(pba.i(5, -765355, -2148011, 2131231131, ob6.M0(2131751190, null), null, null));
+            arrayList.add(qba.i(5, -765355, -2148011, 2131231131, ob6.M0(2131751190, null), null, null));
         }
         ArrayList arrayList4 = this.w;
         if (arrayList4 != null && !arrayList4.isEmpty()) {
@@ -182,10 +182,10 @@ public class UserInfoActivity extends n9c implements fn7 {
                 arrayList3 = arrayList6;
             }
             arrayList2 = arrayList3;
-            arrayList.add(pba.i(6, -3903756, -6335009, 2131232584, ob6.M0(2131751195, null), sb, null));
+            arrayList.add(qba.i(6, -3903756, -6335009, 2131232584, ob6.M0(2131751195, null), sb, null));
         } else {
             arrayList2 = arrayList3;
-            arrayList.add(pba.i(6, -3903756, -6335009, 2131232584, skb.b(ob6.M0(2131751195, null)), null, null));
+            arrayList.add(qba.i(6, -3903756, -6335009, 2131232584, skb.b(ob6.M0(2131751195, null)), null, null));
         }
         arrayList.add(b8c.B(-3, ob6.M0(2131751194, null)));
         if (yac.c() < 4) {
@@ -212,8 +212,8 @@ public class UserInfoActivity extends n9c implements fn7 {
             }
             for (int i6 = 0; i6 < arrayList2.size(); i6++) {
                 int intValue = ((Integer) arrayList2.get(i6)).intValue();
-                int i7 = nba.b;
-                b8c K2 = b8c.K(nba.class);
+                int i7 = oba.b;
+                b8c K2 = b8c.K(oba.class);
                 K2.d = i6;
                 K2.A = intValue;
                 arrayList.add(K2);
@@ -281,7 +281,7 @@ public class UserInfoActivity extends n9c implements fn7 {
             } else if (!yac.n()) {
                 showDialog(new l46(7, this.currentAccount, null, getParentActivity(), this));
             }
-        } else if (b8cVar.H(nba.class)) {
+        } else if (b8cVar.H(oba.class)) {
             int i3 = b8cVar.A;
             LaunchActivity launchActivity = LaunchActivity.H1;
             if (launchActivity != null) {
@@ -370,7 +370,7 @@ public class UserInfoActivity extends n9c implements fn7 {
         String M0 = ob6.M0(2131751219, null);
         uc7 messagesController = getMessagesController();
         boolean p = messagesController.getUserConfig().p();
-        hr hrVar = messagesController.k4;
+        hr hrVar = messagesController.l4;
         if (p) {
             ds2Var = hrVar.t1;
         } else {
@@ -493,7 +493,7 @@ public class UserInfoActivity extends n9c implements fn7 {
                     userFull.flags = i & (-33);
                 }
                 userFull.birthday = tL_birthday;
-                getMessagesStorage().g2(userFull, false);
+                getMessagesStorage().l2(userFull, false);
             }
         } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
             this.x.b(false);
@@ -608,11 +608,11 @@ public class UserInfoActivity extends n9c implements fn7 {
                     this = userInfoActivity;
                 }
                 UserInfoActivity userInfoActivity2 = this;
-                userInfoActivity2.getMessagesStorage().g2(Y1, false);
+                userInfoActivity2.getMessagesStorage().l2(Y1, false);
                 userInfoActivity2.getUserConfig().u(true);
                 jn7.f(userInfoActivity2.currentAccount).k(jn7.j0, new Object[0]);
                 jn7 f2 = jn7.f(userInfoActivity2.currentAccount);
-                int i7 = uc7.r5;
+                int i7 = uc7.s5;
                 f2.k(2, 1);
             }
         }

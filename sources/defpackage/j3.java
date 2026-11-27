@@ -5,11 +5,11 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 public class j3 extends e3 implements SortedMap {
     public SortedSet f;
-    public final fj7 h;
+    public final gj7 h;
 
-    public j3(fj7 fj7Var, SortedMap sortedMap) {
-        super(fj7Var, sortedMap, (byte) 0);
-        this.h = fj7Var;
+    public j3(gj7 gj7Var, SortedMap sortedMap) {
+        super(gj7Var, sortedMap, (byte) 0);
+        this.h = gj7Var;
     }
 
     public SortedSet c() {

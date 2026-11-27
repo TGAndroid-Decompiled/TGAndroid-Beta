@@ -37,9 +37,9 @@ public final class r77 implements Runnable {
     public final int d;
     public final Object e;
 
-    public r77(jf7 jf7Var, int i, long j, TLObject tLObject, byte b) {
+    public r77(kf7 kf7Var, int i, long j, TLObject tLObject, byte b) {
         this.a = b;
-        this.b = jf7Var;
+        this.b = kf7Var;
         this.d = i;
         this.c = j;
         this.e = tLObject;
@@ -50,8 +50,8 @@ public final class r77 implements Runnable {
     }
 
     private final void b() {
-        TLRPC.Chat O;
-        TLRPC.User h0;
+        TLRPC.Chat Q;
+        TLRPC.User j0;
         r7a r7aVar = (r7a) this.b;
         byte[] bArr = (byte[]) this.e;
         StringBuilder sb = new StringBuilder();
@@ -73,13 +73,13 @@ public final class r77 implements Runnable {
         }
         list.add(sb2);
         if (wf3.D(j)) {
-            if (r7aVar.getMessagesController().X1(Long.valueOf(j)) == null && (h0 = r7aVar.getMessagesStorage().h0(j)) != null) {
-                r7aVar.getMessagesController().i4(h0, true, false);
+            if (r7aVar.getMessagesController().X1(Long.valueOf(j)) == null && (j0 = r7aVar.getMessagesStorage().j0(j)) != null) {
+                r7aVar.getMessagesController().i4(j0, true, false);
             }
         } else {
             long j2 = -j;
-            if (r7aVar.getMessagesController().M0(Long.valueOf(j2)) == null && (O = r7aVar.getMessagesStorage().O(j2)) != null) {
-                r7aVar.getMessagesController().a4(O, true);
+            if (r7aVar.getMessagesController().M0(Long.valueOf(j2)) == null && (Q = r7aVar.getMessagesStorage().Q(j2)) != null) {
+                r7aVar.getMessagesController().a4(Q, true);
             }
         }
         TLRPC.TL_messages_getBotCallbackAnswer tL_messages_getBotCallbackAnswer = new TLRPC.TL_messages_getBotCallbackAnswer();
@@ -96,15 +96,15 @@ public final class r77 implements Runnable {
 
     private final void c() {
         dkb dkbVar = (dkb) this.b;
-        jf7 jf7Var = (jf7) this.e;
+        kf7 kf7Var = (kf7) this.e;
         long j = this.c;
         int i = this.d;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         try {
-            SQLiteDatabase sQLiteDatabase = jf7Var.b;
+            SQLiteDatabase sQLiteDatabase = kf7Var.b;
             Locale locale = Locale.US;
-            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j + " AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j + " AND +mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
             while (queryFinalized.next()) {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 if (byteBufferValue != null) {
@@ -443,7 +443,7 @@ public final class r77 implements Runnable {
                     if (tLObject != null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                         uc7.s1(i4).j4(tL_contacts_resolvedPeer.users, false);
-                        jf7.Y(i4).j1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
+                        kf7.a0(i4).n1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                         if (!tL_contacts_resolvedPeer.users.isEmpty()) {
                             oVar.N(j7, tL_contacts_resolvedPeer.users.get(0));
                             return;
@@ -550,7 +550,7 @@ public final class r77 implements Runnable {
             case 9:
                 uc7 uc7Var = (uc7) obj6;
                 TLRPC.TL_help_promoData tL_help_promoData = (TLRPC.TL_help_promoData) obj5;
-                uc7Var.A4 = uc7Var.getConnectionsManager().getCurrentTime();
+                uc7Var.B4 = uc7Var.getConnectionsManager().getCurrentTime();
                 TLRPC.Dialog dialog = uc7Var.q2;
                 long j21 = this.c;
                 if (dialog != null && j21 != dialog.id) {
@@ -628,22 +628,22 @@ public final class r77 implements Runnable {
                 uc7Var.o2 = uc7Var.getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new gg(uc7Var, this.d, tL_help_promoData, j21, (byte) 5));
                 return;
             case 10:
-                ((jf7) obj6).getMessagesController().g4.D(j7, (TLRPC.TL_forumTopic) obj5, i4);
+                ((kf7) obj6).getMessagesController().h4.D(j7, (TLRPC.TL_forumTopic) obj5, i4);
                 return;
             case 11:
-                jf7 jf7Var = (jf7) obj6;
+                kf7 kf7Var = (kf7) obj6;
                 TLRPC.Message message = (TLRPC.Message) obj5;
                 try {
                     try {
-                        jf7Var.b.beginTransaction();
-                        TLRPC.TL_message c0 = jf7Var.c0(i4, j7);
-                        c0.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
-                        c0.voiceTranscriptionRated = message.voiceTranscriptionRated;
-                        c0.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
-                        c0.voiceTranscriptionForce = message.voiceTranscriptionForce;
-                        c0.voiceTranscriptionId = message.voiceTranscriptionId;
+                        kf7Var.b.beginTransaction();
+                        TLRPC.TL_message e0 = kf7Var.e0(i4, j7);
+                        e0.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+                        e0.voiceTranscriptionRated = message.voiceTranscriptionRated;
+                        e0.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+                        e0.voiceTranscriptionForce = message.voiceTranscriptionForce;
+                        e0.voiceTranscriptionId = message.voiceTranscriptionId;
                         while (true) {
-                            SQLiteDatabase sQLiteDatabase2 = jf7Var.b;
+                            SQLiteDatabase sQLiteDatabase2 = kf7Var.b;
                             if (i5 < 2) {
                                 if (i5 == 0) {
                                     executeFast = sQLiteDatabase2.executeFast("UPDATE messages_v2 SET custom_params = ? WHERE mid = ? AND uid = ?");
@@ -652,7 +652,7 @@ public final class r77 implements Runnable {
                                 }
                                 try {
                                     executeFast.requery();
-                                    NativeByteBuffer c = s37.c(c0);
+                                    NativeByteBuffer c = s37.c(e0);
                                     if (c != null) {
                                         executeFast.bindByteBuffer(1, c);
                                     } else {
@@ -669,8 +669,8 @@ public final class r77 implements Runnable {
                                 } catch (Exception e2) {
                                     e = e2;
                                     sQLitePreparedStatement2 = executeFast;
-                                    jf7Var.n(e, true);
-                                    SQLiteDatabase sQLiteDatabase3 = jf7Var.b;
+                                    kf7Var.p(e, true);
+                                    SQLiteDatabase sQLiteDatabase3 = kf7Var.b;
                                     if (sQLiteDatabase3 != null) {
                                         sQLiteDatabase3.commitTransaction();
                                     }
@@ -682,7 +682,7 @@ public final class r77 implements Runnable {
                                 } catch (Throwable th) {
                                     th = th;
                                     sQLitePreparedStatement4 = executeFast;
-                                    SQLiteDatabase sQLiteDatabase4 = jf7Var.b;
+                                    SQLiteDatabase sQLiteDatabase4 = kf7Var.b;
                                     if (sQLiteDatabase4 != null) {
                                         sQLiteDatabase4.commitTransaction();
                                     }
@@ -693,7 +693,7 @@ public final class r77 implements Runnable {
                                 }
                             } else {
                                 sQLiteDatabase2.commitTransaction();
-                                SQLiteDatabase sQLiteDatabase5 = jf7Var.b;
+                                SQLiteDatabase sQLiteDatabase5 = kf7Var.b;
                                 if (sQLiteDatabase5 != null) {
                                     sQLiteDatabase5.commitTransaction();
                                     return;
@@ -708,11 +708,11 @@ public final class r77 implements Runnable {
                     e = e3;
                 }
             case 12:
-                jf7 jf7Var2 = (jf7) obj6;
+                kf7 kf7Var2 = (kf7) obj6;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) obj5;
                 try {
                     try {
-                        SQLiteDatabase sQLiteDatabase6 = jf7Var2.b;
+                        SQLiteDatabase sQLiteDatabase6 = kf7Var2.b;
                         Locale locale = Locale.US;
                         queryFinalized = sQLiteDatabase6.queryFinalized("SELECT data FROM chats WHERE uid = " + j7, new Object[0]);
                     } catch (Throwable th3) {
@@ -754,7 +754,7 @@ public final class r77 implements Runnable {
                         chat.default_banned_rights = tL_chatBannedRights;
                         chat.flags |= 262144;
                         chat.version = i4;
-                        sQLitePreparedStatement = jf7Var2.b.executeFast("UPDATE chats SET data = ? WHERE uid = ?");
+                        sQLitePreparedStatement = kf7Var2.b.executeFast("UPDATE chats SET data = ? WHERE uid = ?");
                         try {
                             NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(chat.getObjectSize());
                             chat.serializeToStream(nativeByteBuffer2);
@@ -765,7 +765,7 @@ public final class r77 implements Runnable {
                             sQLitePreparedStatement.dispose();
                         } catch (Exception e6) {
                             e = e6;
-                            jf7Var2.n(e, true);
+                            kf7Var2.p(e, true);
                             if (sQLiteCursor != null) {
                                 sQLiteCursor.dispose();
                             }
@@ -783,12 +783,12 @@ public final class r77 implements Runnable {
                 a();
                 return;
             case 14:
-                jf7 jf7Var3 = (jf7) obj6;
+                kf7 kf7Var3 = (kf7) obj6;
                 String str = (String) obj5;
                 try {
                     try {
                         isEmpty = str.isEmpty();
-                        sQLiteDatabase = jf7Var3.b;
+                        sQLiteDatabase = kf7Var3.b;
                     } catch (Throwable th6) {
                         if (0 != 0) {
                             sQLitePreparedStatement2.dispose();
@@ -796,7 +796,7 @@ public final class r77 implements Runnable {
                         throw th6;
                     }
                 } catch (Exception e7) {
-                    jf7Var3.n(e7, true);
+                    kf7Var3.p(e7, true);
                     if (0 == 0) {
                         return;
                     }
@@ -850,7 +850,7 @@ public final class r77 implements Runnable {
                 a5c a5cVar = (a5c) obj6;
                 r47 r47Var3 = (r47) obj5;
                 r47Var3.k.originalLanguage = "und";
-                a5cVar.getMessagesStorage().U1(j7, r47Var3.k);
+                a5cVar.getMessagesStorage().Z1(j7, r47Var3.k);
                 a5cVar.w.remove(Integer.valueOf(i4));
                 return;
             default:

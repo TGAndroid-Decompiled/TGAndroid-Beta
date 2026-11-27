@@ -1,44 +1,62 @@
 package defpackage;
 
 import android.content.Context;
-public final class ni7 extends c51 {
-    public final byte m0;
-    public final ny0 n0;
+public final class ni7 extends b3a {
+    public final byte L;
+    public boolean M;
+    public final ny0 N;
 
     public ni7(ny0 ny0Var, Context context, vnb vnbVar, byte b) {
-        super(vnbVar, context, true);
-        this.m0 = b;
-        this.n0 = ny0Var;
+        super(context, vnbVar);
+        this.L = b;
+        this.N = ny0Var;
     }
 
     @Override
-    public final float b(float f, float f2) {
-        byte b = this.m0;
-        boolean z = true;
-        ny0 ny0Var = this.n0;
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        byte b = this.L;
+        ny0 ny0Var = this.N;
         switch (b) {
             case 0:
-                pi7 pi7Var = (pi7) ny0Var;
-                if (pi7Var.i2 != 0.0f) {
-                    z = false;
+                super.onLayout(z, i, i2, i3, i4);
+                qi7 qi7Var = (qi7) ny0Var;
+                qi7Var.g2 = hl.L(64.0f) + getMeasuredHeight();
+                qi7Var.f2.G();
+                boolean z2 = this.M;
+                boolean z3 = qi7Var.d;
+                if (z2 != z3) {
+                    this.M = z3;
+                    if (z3) {
+                        d79 d79Var = qi7Var.n1;
+                        z46 z46Var = new z46(qi7Var.getContext(), 2, 0.6f);
+                        z46Var.a = 1;
+                        z46Var.p = hl.L(36.0f);
+                        d79Var.getLayoutManager().v0(z46Var);
+                        return;
+                    }
+                    return;
                 }
-                pi7Var.i2 = f;
-                if (z) {
-                    pi7Var.j2 = new tg2(pi7Var, (byte) 2);
-                    pi7Var.a1(false);
-                }
-                return f;
+                return;
             default:
+                super.onLayout(z, i, i2, i3, i4);
                 sbc sbcVar = (sbc) ny0Var;
-                if (sbcVar.n2 != 0.0f) {
-                    z = false;
+                sbcVar.k2 = hl.L(64.0f) + getMeasuredHeight();
+                sbcVar.j2.G();
+                boolean z4 = this.M;
+                boolean z5 = sbcVar.d;
+                if (z4 != z5) {
+                    this.M = z5;
+                    if (z5) {
+                        d79 d79Var2 = sbcVar.n1;
+                        z46 z46Var2 = new z46(sbcVar.getContext(), 2, 0.6f);
+                        z46Var2.a = 1;
+                        z46Var2.p = hl.L(36.0f);
+                        d79Var2.getLayoutManager().v0(z46Var2);
+                        return;
+                    }
+                    return;
                 }
-                sbcVar.n2 = f;
-                if (z) {
-                    sbcVar.o2 = new tg2(sbcVar, (byte) 4);
-                    sbcVar.f1(false);
-                }
-                return f;
+                return;
         }
     }
 }

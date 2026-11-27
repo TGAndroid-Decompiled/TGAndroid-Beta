@@ -35,13 +35,13 @@ public final class m77 implements Runnable {
                 return;
             default:
                 uc7 uc7Var2 = this.b;
-                jf7 messagesStorage = uc7Var2.getMessagesStorage();
+                kf7 messagesStorage = uc7Var2.getMessagesStorage();
                 m44 m44Var2 = this.c;
                 ArrayList arrayList = m44Var2.a;
                 m77 m77Var = new m77(uc7Var2, m44Var2, this.d, this.e, (byte) 1);
                 messagesStorage.getClass();
                 if (!arrayList.isEmpty()) {
-                    messagesStorage.H(new es6(messagesStorage, arrayList, m77Var, (byte) 3));
+                    messagesStorage.J(new es6(messagesStorage, arrayList, m77Var, (byte) 3));
                     return;
                 }
                 return;

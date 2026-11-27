@@ -26,7 +26,7 @@ public final class pt7 extends nx0 {
     public pt7(int i, vnb vnbVar, pcc pccVar, Context context) {
         super(1, vnbVar, context, true);
         this.a = i;
-        hr hrVar = uc7.s1(i).k4;
+        hr hrVar = uc7.s1(i).l4;
         this.l1 = Math.max(hrVar.q.f(), 10000000L);
         long f = hrVar.r.f();
         this.m1 = f;
@@ -129,7 +129,7 @@ public final class pt7 extends nx0 {
         yob.X(editTextBoldCursor, i2, this.J0);
         TextView textView = this.o1;
         di0.h();
-        textView.setText(di0.f("USD", 2, (long) ((j / 1.0E9d) * uc7.s1(this.a).k4.k.i * 100.0d), false));
+        textView.setText(di0.f("USD", 2, (long) ((j / 1.0E9d) * uc7.s1(this.a).l4.k.i * 100.0d), false));
         int i7 = this.t1;
         int i8 = i7 & 2;
         TextView textView2 = this.p1;
@@ -176,6 +176,6 @@ public final class pt7 extends nx0 {
     @Override
     public final void show() {
         super.show();
-        hl.d3(new fe7(this, (byte) 14), 50L);
+        hl.d3(new ge7(this, (byte) 14), 50L);
     }
 }

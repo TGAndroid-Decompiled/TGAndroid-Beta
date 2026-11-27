@@ -2,7 +2,7 @@ package defpackage;
 
 import android.text.Layout;
 import android.view.View;
-public final class vk9 implements si7 {
+public final class vk9 implements ti7 {
     public final sib a;
 
     public vk9(sib sibVar) {

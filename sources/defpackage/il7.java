@@ -1,15 +1,26 @@
 package defpackage;
 
-import java.lang.ref.WeakReference;
-import java.util.concurrent.Executor;
-public final class il7 {
-    public final WeakReference a;
-    public final Executor b;
-    public final yv2 c;
+import android.telephony.TelephonyCallback;
+import android.telephony.TelephonyDisplayInfo;
+public final class il7 extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
+    public final yv2 a;
 
-    public il7(yv2 yv2Var, ka3 ka3Var, Executor executor) {
-        this.c = yv2Var;
-        this.a = new WeakReference(ka3Var);
-        this.b = executor;
+    public il7(yv2 yv2Var) {
+        this.a = yv2Var;
+    }
+
+    public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
+        boolean z;
+        int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
+        int i = 5;
+        if (overrideNetworkType != 3 && overrideNetworkType != 4 && overrideNetworkType != 5) {
+            z = false;
+        } else {
+            z = true;
+        }
+        if (z) {
+            i = 10;
+        }
+        this.a.i(i);
     }
 }

@@ -1,10 +1,7 @@
 package defpackage;
-public interface aca {
-    Object a(zw2 zw2Var);
 
-    Boolean b();
-
-    bs3 c();
-
-    Double d();
+import android.content.SharedPreferences;
+import org.telegram.messenger.a;
+public abstract class aca {
+    public static final SharedPreferences a = a.b.getSharedPreferences("mainconfig", 0);
 }

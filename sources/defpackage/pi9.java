@@ -92,7 +92,7 @@ public final class pi9 extends q9c {
     public final di9 v3;
     public final zh9 v4;
     public final lmb w3;
-    public final k09 w4;
+    public final l09 w4;
     public int x3;
     public final ArrayList x4;
     public int y3;
@@ -126,8 +126,8 @@ public final class pi9 extends q9c {
         this.t4 = -1;
         this.u4 = new oh9(this);
         this.v4 = new zh9(this);
-        k09 k09Var = new k09(this, (byte) 4);
-        this.w4 = k09Var;
+        l09 l09Var = new l09(this, (byte) 4);
+        this.w4 = l09Var;
         this.x4 = new ArrayList();
         this.z4 = -1;
         pi9[] pi9VarArr = {this};
@@ -149,7 +149,7 @@ public final class pi9 extends q9c {
         hl.B2(m);
         di9Var.D = new fi9(this, ni9Var);
         j(new bj1(this, ni9Var, (byte) 11));
-        this.R3 = new ch9(k09Var);
+        this.R3 = new ch9(l09Var);
     }
 
     public static boolean A3(TL_iv.PageBlock pageBlock) {
@@ -1367,7 +1367,7 @@ public final class pi9 extends q9c {
     }
 
     public final boolean J3() {
-        hr hrVar = uc7.s1(this.n3).k4;
+        hr hrVar = uc7.s1(this.n3).l4;
         int i = 0;
         int i2 = 0;
         while (true) {
@@ -4458,7 +4458,7 @@ public final class pi9 extends q9c {
     }
 
     public final boolean m3(int i) {
-        if (((mk0) this.t3.get(i)).c + 1 <= uc7.s1(this.n3).k4.i0.f() - 6) {
+        if (((mk0) this.t3.get(i)).c + 1 <= uc7.s1(this.n3).l4.i0.f() - 6) {
             return true;
         }
         return false;

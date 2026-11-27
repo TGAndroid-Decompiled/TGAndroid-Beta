@@ -107,7 +107,7 @@ public abstract class src extends TextureView implements TextureView.SurfaceText
             rrcVar.c = false;
             prcVar.e.remove(rrcVar);
             prcVar.f = (rrc[]) prcVar.e.toArray(new rrc[0]);
-            prcVar.b.post(new vlc(prcVar, rrcVar, (byte) 17));
+            prcVar.b.post(new slc(prcVar, rrcVar, (byte) 18));
             return true;
         }
         return true;

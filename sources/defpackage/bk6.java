@@ -123,7 +123,7 @@ public final class bk6 extends c79 {
                 i56Var = new f23(64, vnbVar, context);
                 break;
             case 4:
-                i56Var = new rca(context, (uh9) null);
+                i56Var = new sca(context, (uh9) null);
                 break;
             case 5:
                 i56Var = new zj6(ck6Var, context);
@@ -136,7 +136,7 @@ public final class bk6 extends c79 {
                 i56Var = tk4Var;
                 break;
             case 7:
-                i56Var = new rca(context, (uh9) null);
+                i56Var = new sca(context, (uh9) null);
                 break;
             case 8:
                 qmb qmbVar = new qmb(context);

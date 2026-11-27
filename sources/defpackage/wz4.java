@@ -155,7 +155,7 @@ public final class wz4 implements d27, y27, ty9, x66, tka, l71, heb, hqb, li1, q
     public final boolean B(f27 f27Var, MenuItem menuItem) {
         f9 f9Var = ((ActionMenuView) this.a).Q;
         if (f9Var != null) {
-            Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((i09) f9Var).b).a0.c).iterator();
+            Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((j09) f9Var).b).a0.c).iterator();
             while (it.hasNext()) {
                 if (((dq4) it.next()).a.p()) {
                     return true;
@@ -403,9 +403,9 @@ public final class wz4 implements d27, y27, ty9, x66, tka, l71, heb, hqb, li1, q
 
     @Override
     public final void Q1(f27 f27Var) {
-        k09 k09Var = ((ActionMenuView) this.a).L;
-        if (k09Var != null) {
-            k09Var.Q1(f27Var);
+        l09 l09Var = ((ActionMenuView) this.a).L;
+        if (l09Var != null) {
+            l09Var.Q1(f27Var);
         }
     }
 
@@ -655,7 +655,7 @@ public final class wz4 implements d27, y27, ty9, x66, tka, l71, heb, hqb, li1, q
         if (k == vx2.a) {
             return k;
         }
-        return f9c.a;
+        return g9c.a;
     }
 
     @Override

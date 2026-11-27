@@ -36,7 +36,7 @@ public final class uw1 implements View.OnClickListener {
         }
         c43Var.a(chatActivityEnterView.V2, true);
         imageView.setImageDrawable(chatActivityEnterView.f0);
-        SharedPreferences.Editor edit = uc7.s1(chatActivityEnterView.R).W3.edit();
+        SharedPreferences.Editor edit = uc7.s1(chatActivityEnterView.R).X3.edit();
         edit.putBoolean("silent_" + chatActivityEnterView.F3, chatActivityEnterView.V2).commit();
         ip7.n(chatActivityEnterView.R).c0(chatActivityEnterView.F3, zu1Var.c(), true);
         zu1Var.i6();

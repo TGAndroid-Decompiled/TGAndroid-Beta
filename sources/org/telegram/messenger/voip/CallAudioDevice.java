@@ -106,7 +106,7 @@ public final class CallAudioDevice {
         if (!TextUtils.isEmpty(debugOverride)) {
             return debugOverride;
         }
-        String str = uc7.s1(i).k4.H.f;
+        String str = uc7.s1(i).l4.H.f;
         if (TextUtils.isEmpty(str)) {
             return "java";
         }

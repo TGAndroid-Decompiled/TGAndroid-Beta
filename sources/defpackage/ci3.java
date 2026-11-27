@@ -4,7 +4,7 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class ci3 implements xy1, ibb {
+public final class ci3 implements xy1, jbb {
     public final uj3 a;
 
     public ci3(uj3 uj3Var) {
@@ -65,7 +65,7 @@ public final class ci3 implements xy1, ibb {
     }
 
     @Override
-    public final mbb b(long j) {
+    public final nbb b(long j) {
         og3 og3Var;
         ii3 ii3Var = this.a.F0;
         if (ii3Var != null) {
@@ -73,7 +73,7 @@ public final class ci3 implements xy1, ibb {
         } else {
             og3Var = null;
         }
-        return mbb.c(og3Var);
+        return nbb.c(og3Var);
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class ci3 implements xy1, ibb {
         if (uj3Var.E2 != null && !arrayList.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                arrayList2.add(if7.a(((Long) uj3Var.K2.get(i3)).longValue(), 0L));
+                arrayList2.add(jf7.a(((Long) uj3Var.K2.get(i3)).longValue(), 0L));
             }
             uj3Var.E2.q(uj3Var, arrayList2, charSequence, false, z, i, i2, null);
         }

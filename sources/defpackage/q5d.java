@@ -19,13 +19,13 @@ public abstract class q5d extends u3d implements IInterface {
         }
     }
 
-    public void T(Status status, vg7 vg7Var) {
+    public void T(Status status, wg7 wg7Var) {
         throw new UnsupportedOperationException();
     }
 
     public abstract void U(t7d t7dVar);
 
-    public void V(Status status, xg7 xg7Var) {
+    public void V(Status status, yg7 yg7Var) {
         throw new UnsupportedOperationException();
     }
 
@@ -43,18 +43,18 @@ public abstract class q5d extends u3d implements IInterface {
                             }
                         } else {
                             Status status2 = (Status) v6d.a(parcel, Status.CREATOR);
-                            wg7 wg7Var = (wg7) v6d.a(parcel, wg7.CREATOR);
+                            xg7 xg7Var = (xg7) v6d.a(parcel, xg7.CREATOR);
                             v6d.d(parcel);
                             p3d.a();
                         }
                         return false;
                     }
                     v6d.d(parcel);
-                    V((Status) v6d.a(parcel, Status.CREATOR), (xg7) v6d.a(parcel, xg7.CREATOR));
+                    V((Status) v6d.a(parcel, Status.CREATOR), (yg7) v6d.a(parcel, yg7.CREATOR));
                     return true;
                 }
                 v6d.d(parcel);
-                T((Status) v6d.a(parcel, Status.CREATOR), (vg7) v6d.a(parcel, vg7.CREATOR));
+                T((Status) v6d.a(parcel, Status.CREATOR), (wg7) v6d.a(parcel, wg7.CREATOR));
                 return true;
             default:
                 switch (i) {

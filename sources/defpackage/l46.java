@@ -177,64 +177,64 @@ public class l46 extends ny0 implements fn7 {
         obj.e = 0;
         obj.f = 0;
         if (i == 0) {
-            obj.e = uc7.s1(i2).k4.l1.f();
-            obj.f = uc7.s1(i2).k4.m1.f();
+            obj.e = uc7.s1(i2).l4.l1.f();
+            obj.f = uc7.s1(i2).l4.m1.f();
             obj.a = 2131232206;
             obj.b = ob6.a0("LimitReachedPinDialogs", null, 2131748708, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedPinDialogsPremium", null, 2131748706, Integer.valueOf(obj.f));
             obj.d = ob6.a0("LimitReachedPinDialogsLocked", null, 2131748707, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 33) {
-            obj.e = uc7.s1(i2).k4.p2.f();
-            obj.f = uc7.s1(i2).k4.q2.f();
+            obj.e = uc7.s1(i2).l4.p2.f();
+            obj.f = uc7.s1(i2).l4.q2.f();
             obj.a = 2131232206;
             obj.b = ob6.a0(null, null, 2131748705, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0(null, null, 2131748703, Integer.valueOf(obj.f));
             obj.d = ob6.a0(null, null, 2131748704, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 2) {
-            obj.e = uc7.s1(i2).k4.p3.f();
-            obj.f = uc7.s1(i2).k4.n1.f();
+            obj.e = uc7.s1(i2).l4.p3.f();
+            obj.f = uc7.s1(i2).l4.n1.f();
             obj.a = 2131232205;
             obj.b = ob6.a0("LimitReachedPublicLinks", null, 2131748701, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedPublicLinksPremium", null, 2131748699, Integer.valueOf(obj.f));
             obj.d = ob6.a0("LimitReachedPublicLinksLocked", null, 2131748700, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 12) {
-            obj.e = uc7.s1(i2).k4.C1.f();
-            obj.f = uc7.s1(i2).k4.B3.f();
+            obj.e = uc7.s1(i2).l4.C1.f();
+            obj.f = uc7.s1(i2).l4.B3.f();
             obj.a = 2131232205;
             obj.b = ob6.a0("LimitReachedFolderLinks", null, 2131748714, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedFolderLinksPremium", null, 2131748712, Integer.valueOf(obj.f));
             obj.d = ob6.a0("LimitReachedFolderLinksLocked", null, 2131748713, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 13) {
-            obj.e = uc7.s1(i2).k4.L1.f();
-            obj.f = uc7.s1(i2).k4.C3.f();
+            obj.e = uc7.s1(i2).l4.L1.f();
+            obj.f = uc7.s1(i2).l4.C3.f();
             obj.a = 2131232203;
             obj.b = ob6.a0("LimitReachedSharedFolders", null, 2131748697, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedSharedFoldersPremium", null, 2131748695, Integer.valueOf(obj.f));
             obj.d = ob6.a0("LimitReachedSharedFoldersLocked", null, 2131748696, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 3) {
-            obj.e = uc7.s1(i2).k4.h1.f();
-            obj.f = uc7.s1(i2).k4.i1.f();
+            obj.e = uc7.s1(i2).l4.h1.f();
+            obj.f = uc7.s1(i2).l4.i1.f();
             obj.a = 2131232203;
             obj.b = ob6.a0("LimitReachedFolders", null, 2131748711, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedFoldersPremium", null, 2131748709, Integer.valueOf(obj.f));
             obj.d = ob6.a0("LimitReachedFoldersLocked", null, 2131748710, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 4) {
-            obj.e = uc7.s1(i2).k4.j1.f();
-            obj.f = uc7.s1(i2).k4.k1.f();
+            obj.e = uc7.s1(i2).l4.j1.f();
+            obj.f = uc7.s1(i2).l4.k1.f();
             obj.a = 2131232202;
             obj.b = ob6.a0("LimitReachedChatInFolders", null, 2131748729, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedChatInFoldersPremium", null, 2131748727, Integer.valueOf(obj.f));
             obj.d = ob6.a0("LimitReachedChatInFoldersLocked", null, 2131748728, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 5) {
-            obj.e = uc7.s1(i2).k4.t3.f();
-            obj.f = uc7.s1(i2).k4.u3.f();
+            obj.e = uc7.s1(i2).l4.t3.f();
+            obj.f = uc7.s1(i2).l4.u3.f();
             obj.a = 2131232204;
             obj.b = ob6.a0("LimitReachedCommunities", null, 2131748726, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedCommunitiesPremium", null, 2131748724, Integer.valueOf(obj.f));
@@ -265,24 +265,24 @@ public class l46 extends ny0 implements fn7 {
             obj.d = "";
             return obj;
         } else if (i == 14) {
-            obj.e = uc7.s1(i2).k4.D1.f();
-            obj.f = uc7.s1(i2).k4.E1.f();
+            obj.e = uc7.s1(i2).l4.D1.f();
+            obj.f = uc7.s1(i2).l4.E1.f();
             obj.a = 2131232207;
             obj.b = ob6.H(',', "LimitReachedStoriesCount2First", obj.e) + "\n" + ob6.H(',', "LimitReachedStoriesCount2Second", obj.f);
             obj.c = ob6.H(',', "LimitReachedStoriesCount2Premium", obj.f);
             obj.d = ob6.H(',', "LimitReachedStoriesCount2Premium", obj.e);
             return obj;
         } else if (i == 15) {
-            obj.e = uc7.s1(i2).k4.H1.f();
-            obj.f = uc7.s1(i2).k4.I1.f();
+            obj.e = uc7.s1(i2).l4.H1.f();
+            obj.f = uc7.s1(i2).l4.I1.f();
             obj.a = 2131232207;
             obj.b = ob6.a0("LimitReachedStoriesWeekly", null, 2131748683, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedStoriesWeeklyPremium", null, 2131748682, Integer.valueOf(obj.f));
             obj.d = ob6.a0("LimitReachedStoriesWeeklyPremium", null, 2131748682, Integer.valueOf(obj.e));
             return obj;
         } else if (i == 16) {
-            obj.e = uc7.s1(i2).k4.J1.f();
-            obj.f = uc7.s1(i2).k4.K1.f();
+            obj.e = uc7.s1(i2).l4.J1.f();
+            obj.f = uc7.s1(i2).l4.K1.f();
             obj.a = 2131232207;
             obj.b = ob6.a0("LimitReachedStoriesMonthly", null, 2131748685, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedStoriesMonthlyPremium", null, 2131748684, Integer.valueOf(obj.f));
@@ -291,8 +291,8 @@ public class l46 extends ny0 implements fn7 {
         } else if (i != 18 && i != 32 && i != 20 && i != 24 && i != 27 && i != 28 && i != 25 && i != 30 && i != 35 && i != 29 && i != 22 && i != 23 && i != 19 && i != 21 && i != 26) {
             return obj;
         } else {
-            obj.e = uc7.s1(i2).k4.J1.f();
-            obj.f = uc7.s1(i2).k4.K1.f();
+            obj.e = uc7.s1(i2).l4.J1.f();
+            obj.f = uc7.s1(i2).l4.K1.f();
             obj.a = 2131231129;
             obj.b = ob6.a0("LimitReachedStoriesMonthly", null, 2131748685, Integer.valueOf(obj.e), Integer.valueOf(obj.f));
             obj.c = ob6.a0("LimitReachedStoriesMonthlyPremium", null, 2131748684, Integer.valueOf(obj.f));
@@ -708,12 +708,12 @@ public class l46 extends ny0 implements fn7 {
                     ym0.f(eVar4, chat, true);
                 }
             } else {
-                rbb rbbVar = rbb.G2;
+                sbb sbbVar = sbb.G2;
                 if (booleanValue) {
-                    if (rbbVar != null && rbbVar.d) {
+                    if (sbbVar != null && sbbVar.d) {
                         zu1 ha = zu1.ha(-chat.id);
                         LaunchActivity.Q().presentFragment(ha, false, false);
-                        rbb.v();
+                        sbb.v();
                         dismiss();
                         ym0.f(ha, chat, true);
                         return;
@@ -727,10 +727,10 @@ public class l46 extends ny0 implements fn7 {
                     if (eVar4 instanceof zu1) {
                         ym0.f(eVar4, chat, true);
                     }
-                } else if (rbbVar != null && rbbVar.d) {
+                } else if (sbbVar != null && sbbVar.d) {
                     zu1 ha2 = zu1.ha(-chat.id);
                     LaunchActivity.Q().presentFragment(ha2, false, false);
-                    rbb.v();
+                    sbb.v();
                     dismiss();
                     ym0.f(ha2, chat, false);
                 } else {
@@ -945,7 +945,7 @@ public class l46 extends ny0 implements fn7 {
         j46Var.addView(j46Var.b, indexOfChild, tre.t(-2, -2, 1, 24, -2, 24, 17));
         this.Y1.a.setText(e1());
         TextView textView4 = this.Y1.b;
-        hr hrVar = uc7.s1(this.a).k4;
+        hr hrVar = uc7.s1(this.a).l4;
         boolean j1 = j1();
         int i9 = this.c2;
         String str = null;
@@ -1272,15 +1272,15 @@ public class l46 extends ny0 implements fn7 {
             i = 1;
         }
         uc7 s1 = uc7.s1(this.a);
-        hr hrVar = s1.k4;
-        lc7 lc7Var = s1.E3;
+        hr hrVar = s1.l4;
+        lc7 lc7Var = s1.F3;
         if (lc7Var != null) {
             i2 = lc7Var.e(j1());
         } else {
             i2 = 0;
         }
         int max2 = Math.max(10, i2);
-        lc7 lc7Var2 = s1.F3;
+        lc7 lc7Var2 = s1.G3;
         if (lc7Var2 != null) {
             i3 = lc7Var2.e(j1());
         } else {
@@ -1297,7 +1297,7 @@ public class l46 extends ny0 implements fn7 {
             boolean j1 = j1();
             ArrayList arrayList2 = new ArrayList();
             uc7 s12 = uc7.s1(this.a);
-            hr hrVar2 = s12.k4;
+            hr hrVar2 = s12.l4;
             if (!j1 && i >= hrVar2.c2.f()) {
                 arrayList2.add(f46.a(2131231823, 2131753653));
             }
@@ -1309,13 +1309,13 @@ public class l46 extends ny0 implements fn7 {
                 b2.f = true;
                 arrayList2.add(b2);
             }
-            lc7 lc7Var3 = s12.E3;
+            lc7 lc7Var3 = s12.F3;
             if (lc7Var3 != null) {
                 i4 = lc7Var3.a(i, false);
             } else {
                 i4 = 0;
             }
-            lc7 lc7Var4 = s12.F3;
+            lc7 lc7Var4 = s12.G3;
             if (lc7Var4 != null) {
                 i5 = lc7Var4.a(i, j1);
             } else {

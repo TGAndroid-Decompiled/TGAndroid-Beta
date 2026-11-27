@@ -87,7 +87,7 @@ public final class i10 implements qs3 {
             case 8:
                 km7 km7Var = (km7) obj;
                 km7Var.a = f;
-                km7Var.d.A0();
+                km7Var.d.y0();
                 return;
             case 9:
                 dx7 dx7Var = (dx7) obj;
@@ -100,7 +100,7 @@ public final class i10 implements qs3 {
                 dx7Var.V0.getTypefaceCell().setAlpha(1.0f - dx7Var.d1);
                 return;
             case 10:
-                ((hh7) obj).x();
+                ((ih7) obj).x();
                 return;
             case 11:
                 w28 w28Var = (w28) obj;

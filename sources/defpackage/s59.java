@@ -24,17 +24,17 @@ public final class s59 implements Runnable {
                 u59Var.K.c(false);
                 u59Var.L.c(false);
                 u59Var.M.c(false);
-                ((rab) u59Var.a).e(true);
+                ((sab) u59Var.a).e(true);
                 return;
             case 1:
                 u59Var.R = System.currentTimeMillis();
                 u59Var.S = 0L;
                 u59Var.s0 = true;
-                ((rab) u59Var.a).a.K0.a(0L, true);
+                ((sab) u59Var.a).a.K0.a(0L, true);
                 return;
             case 2:
                 if (!u59Var.s0 && !u59Var.b()) {
-                    if (!((rab) u59Var.a).a.Y()) {
+                    if (!((sab) u59Var.a).a.Y()) {
                         u59Var.x0 = false;
                         u59Var.K.c(false);
                         u59Var.L.c(false);
@@ -43,15 +43,15 @@ public final class s59 implements Runnable {
                     }
                     u59Var.A0 = true;
                     u59Var.B0 = true;
-                    ((rab) u59Var.a).f(new s59(u59Var, (byte) 4), true);
+                    ((sab) u59Var.a).f(new s59(u59Var, (byte) 4), true);
                     return;
                 }
                 return;
             case 3:
                 if (!u59Var.s0 && !u59Var.b()) {
-                    wab wabVar = ((rab) u59Var.a).a.C0;
-                    if (wabVar != null) {
-                        wabVar.toggleDual();
+                    xab xabVar = ((sab) u59Var.a).a.C0;
+                    if (xabVar != null) {
+                        xabVar.toggleDual();
                     }
                     u59Var.d(360.0f);
                     u59Var.x0 = false;
@@ -66,7 +66,7 @@ public final class s59 implements Runnable {
                 u59Var.s0 = true;
                 t59 t59Var = u59Var.a;
                 u59Var.S = 0L;
-                ((rab) t59Var).a.K0.a(0L, true);
+                ((sab) t59Var).a.K0.a(0L, true);
                 return;
         }
     }

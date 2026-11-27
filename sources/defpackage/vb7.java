@@ -12,7 +12,7 @@ public final class vb7 extends b71 {
     @Override
     public final void e(int i, Object obj, icc iccVar) {
         Void r3 = (Void) obj;
-        jf7.Y(i).a.c(new hl3(i, iccVar, (byte) 27));
+        kf7.a0(i).a.c(new hl3(i, iccVar, (byte) 27));
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class vb7 extends b71 {
     @Override
     public final void g(int i, Object obj, Object obj2) {
         Void r3 = (Void) obj;
-        jf7.Y(i).a.c(new hl3(i, (TL_account.TL_webBrowserSettings) obj2, (byte) 28));
+        kf7.a0(i).a.c(new hl3(i, (TL_account.TL_webBrowserSettings) obj2, (byte) 28));
     }
 
     @Override

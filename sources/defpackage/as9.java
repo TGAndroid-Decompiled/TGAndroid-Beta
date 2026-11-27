@@ -8,7 +8,7 @@ public abstract class as9 {
     static {
         try {
             Class<?>[] clsArr = {String.class};
-            SecureRandom secureRandom = hg7.a;
+            SecureRandom secureRandom = ig7.a;
             try {
                 Class.forName("javax.net.ssl.SNIHostName").getConstructor(clsArr);
             } catch (Exception unused) {

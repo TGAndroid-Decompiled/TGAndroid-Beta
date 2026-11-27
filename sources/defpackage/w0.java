@@ -113,19 +113,19 @@ public final class w0 implements View.OnClickListener {
                 ((em6) obj).S.f1(i3 + 8);
                 return;
             case 12:
-                nab nabVar = (nab) obj;
-                boolean contains = nabVar.e.contains(Integer.valueOf(i3));
-                ArrayList arrayList = nabVar.e;
+                oab oabVar = (oab) obj;
+                boolean contains = oabVar.e.contains(Integer.valueOf(i3));
+                ArrayList arrayList = oabVar.e;
                 if (contains) {
                     if (arrayList.size() > 1) {
-                        nabVar.e.remove(Integer.valueOf(i3));
+                        oabVar.e.remove(Integer.valueOf(i3));
                     } else {
                         return;
                     }
                 } else {
                     arrayList.add(Integer.valueOf(i3));
                 }
-                hl.d0(nabVar.b, new ii7(nabVar, (byte) 1));
+                hl.d0(oabVar.b, new ji7(oabVar, (byte) 1));
                 return;
             case 13:
                 yu7 yu7Var = (yu7) obj;
@@ -205,8 +205,8 @@ public final class w0 implements View.OnClickListener {
                             profileActivity.showDialog(new xk8((e) profileActivity, 14, true));
                             return;
                         } else {
-                            profileActivity.getMessagesController().X3.edit().putBoolean("story_keep", true).apply();
-                            rbb C = rbb.C(profileActivity.getParentActivity(), profileActivity.getCurrentAccount());
+                            profileActivity.getMessagesController().Y3.edit().putBoolean("story_keep", true).apply();
+                            sbb C = sbb.C(profileActivity.getParentActivity(), profileActivity.getCurrentAccount());
                             C.y = new fr8(profileActivity);
                             C.Q(null);
                             return;
@@ -283,14 +283,14 @@ public final class w0 implements View.OnClickListener {
                     profileActivity.getMessagesController().O1().q0(e, arrayList3, false);
                     boolean[] zArr3 = {false};
                     boolean z5 = z2;
-                    profileActivity.D5 = new j61(profileActivity, e, arrayList3, z2, (byte) 11);
+                    profileActivity.D5 = new j61(profileActivity, e, arrayList3, z2, (byte) 9);
                     da7 da7Var = new da7(profileActivity, zArr3, arrayList3, zArr2, e, (byte) 13);
                     if (z5) {
                         j = d31.b0(profileActivity).L(2131623990, ob6.G(i, "StorySavedTitle", new Object[0]), ob6.M0(2131744138, null), ob6.M0(2131743540, null), da7Var).j();
                     } else {
                         j = d31.b0(profileActivity).J(2131623980, ob6.G(i, "StoryArchived", new Object[0]), ob6.M0(2131743540, null), 5000, false, da7Var).j();
                     }
-                    j.w = new hp8(profileActivity, zArr3, (byte) 7);
+                    j.w = new ep8(profileActivity, zArr3, (byte) 8);
                     return;
                 }
                 return;

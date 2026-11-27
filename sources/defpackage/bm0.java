@@ -58,8 +58,8 @@ public final class bm0 implements pcc {
                 return;
             case 6:
                 View view4 = (View) obj;
-                if (view4 instanceof v09) {
-                    ((v09) view4).c.invalidate();
+                if (view4 instanceof w09) {
+                    ((w09) view4).c.invalidate();
                     return;
                 }
                 return;
@@ -116,8 +116,8 @@ public final class bm0 implements pcc {
                     f17Var.b.invalidate();
                     f17Var.c.invalidate();
                     return;
-                } else if (view8 instanceof v09) {
-                    ((v09) view8).c.invalidate();
+                } else if (view8 instanceof w09) {
+                    ((w09) view8).c.invalidate();
                     return;
                 } else {
                     view8.invalidate();
@@ -153,8 +153,8 @@ public final class bm0 implements pcc {
                 return;
             case 23:
                 View view9 = (View) obj;
-                if (view9 instanceof v09) {
-                    ((v09) view9).d.a(false, true);
+                if (view9 instanceof w09) {
+                    ((w09) view9).d.a(false, true);
                     return;
                 }
                 return;
@@ -172,7 +172,7 @@ public final class bm0 implements pcc {
                 ee9.s = false;
                 for (int i2 = 0; i2 < 4; i2++) {
                     try {
-                        uc7.s1(i2).i4.f();
+                        uc7.s1(i2).j4.f();
                     } catch (Exception unused) {
                     }
                 }

@@ -72,15 +72,15 @@ public final class ff implements fd, oj3, tm8, jrb, ResultCallback {
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.c) {
             Drawable drawable = ne2Var.b;
-            if (drawable instanceof hh7) {
-                hh7 hh7Var = (hh7) drawable;
+            if (drawable instanceof ih7) {
+                ih7 ih7Var = (ih7) drawable;
                 if (this.b >= 0) {
                     i = 100;
                 } else {
                     i = -100;
                 }
-                hh7Var.r(i, zqb.e((Bitmap) pair.second));
-                hh7Var.s(zqbVar.M);
+                ih7Var.r(i, zqb.e((Bitmap) pair.second));
+                ih7Var.s(zqbVar.M);
             }
             zqbVar.invalidate();
         }
@@ -101,7 +101,7 @@ public final class ff implements fd, oj3, tm8, jrb, ResultCallback {
         if (arrayList.isEmpty()) {
             return false;
         }
-        final long j = ((if7) arrayList.get(0)).a;
+        final long j = ((jf7) arrayList.get(0)).a;
         Activity parentActivity = uj3Var2.getParentActivity();
         final int i4 = this.b;
         final qt0 qt0Var = new qt0(tzbVar, uj3Var2, j, i4);
@@ -201,7 +201,7 @@ public final class ff implements fd, oj3, tm8, jrb, ResultCallback {
         jn7.i(textView2);
         textView2.setText(pv3.m(hl.S2(ob6.a0(null, null, 2131752903, str2)), textView2.getPaint().getFontMetricsInt(), false, null, 0));
         m.addView(textView2, tre.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
-        final int f = uc7.s1(i4).k4.N2.f();
+        final int f = uc7.s1(i4).l4.N2.f();
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(activity);
         final lu7 lu7Var = new lu7(activity, null);
         lu7Var.setForceForceUseCenter(true);

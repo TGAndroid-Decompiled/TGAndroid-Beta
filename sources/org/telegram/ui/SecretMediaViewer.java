@@ -624,7 +624,7 @@ public class SecretMediaViewer implements fn7, GestureDetector.OnGestureListener
             }
             this.J0.setInterpolator(new DecelerateInterpolator());
             photoBackgroundDrawable.b = 0;
-            photoBackgroundDrawable.a = new en9(this, M, (byte) 15);
+            photoBackgroundDrawable.a = new dn9(this, M, (byte) 16);
             this.J0.start();
         }
     }
@@ -1060,7 +1060,7 @@ public class SecretMediaViewer implements fn7, GestureDetector.OnGestureListener
     }
 
     public class PhotoBackgroundDrawable extends ColorDrawable {
-        public en9 a;
+        public dn9 a;
         public int b;
 
         public PhotoBackgroundDrawable() {
@@ -1069,11 +1069,11 @@ public class SecretMediaViewer implements fn7, GestureDetector.OnGestureListener
 
         @Override
         public final void draw(Canvas canvas) {
-            en9 en9Var;
+            dn9 dn9Var;
             super.draw(canvas);
             if (getAlpha() != 0) {
-                if (this.b == 2 && (en9Var = this.a) != null) {
-                    en9Var.run();
+                if (this.b == 2 && (dn9Var = this.a) != null) {
+                    dn9Var.run();
                     this.a = null;
                 } else {
                     invalidateSelf();

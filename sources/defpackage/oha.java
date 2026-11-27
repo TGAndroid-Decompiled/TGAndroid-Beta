@@ -20,8 +20,8 @@ public final class oha extends bja {
         }
         if (P != null) {
             vga vgaVar = P.w;
-            u5b u5bVar = this.s;
-            if (u5bVar != null && (u5bVar.k() || (ejaVar.d0() && this.s.g() > 0))) {
+            v5b v5bVar = this.s;
+            if (v5bVar != null && (v5bVar.k() || (ejaVar.d0() && this.s.g() > 0))) {
                 z = true;
             } else {
                 z = false;

@@ -37,7 +37,7 @@ public final class f implements icc {
     public final void a(Object obj, Object obj2) {
         boolean z;
         int i;
-        ViewGroup k0;
+        ViewGroup j0;
         ArrayList arrayList;
         byte b = this.a;
         TLRPC.WebPage webPage = null;
@@ -174,7 +174,7 @@ public final class f implements icc {
                     }
                     uc7.s1(i3).Y3(updates, false);
                 } else if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
-                    hl.c3(new ze7(i3, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult, chat, (byte) 4));
+                    hl.c3(new bf7(i3, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult, chat, (byte) 4));
                     z = true;
                 } else {
                     z = false;
@@ -184,9 +184,9 @@ public final class f implements icc {
                 }
                 hl.c3(new c1(fuVar, (byte) 19));
                 hl.d3(new zd(i3, chat, (byte) 2), 1000L);
-                jf7 Y = jf7.Y(i3);
+                kf7 a0 = kf7.a0(i3);
                 long j = chat.id;
-                Y.O1(-j, j, new ArrayList(), null);
+                a0.T1(-j, j, new ArrayList(), null);
                 return;
             case 3:
                 bs0 bs0Var = (bs0) obj4;
@@ -309,10 +309,10 @@ public final class f implements icc {
                             arrayList3.add(K);
                         } else if (!arrayList4.isEmpty()) {
                             HashSet hashSet = lm7Var.d;
-                            ii7 ii7Var = new ii7(lm7Var, (byte) 4);
+                            ji7 ji7Var = new ji7(lm7Var, (byte) 4);
                             int i9 = n94.b;
                             b8c K2 = b8c.K(n94.class);
-                            K2.H = new o94(arrayList4, hashSet, ii7Var);
+                            K2.H = new o94(arrayList4, hashSet, ji7Var);
                             arrayList3.add(K2);
                         } else if (lm7Var.r) {
                             arrayList3.add(b8c.e(-2, ob6.M0(2131745779, null)));
@@ -323,9 +323,9 @@ public final class f implements icc {
                             ViewGroup viewGroup = jm7Var.i;
                             if (viewGroup == null) {
                                 if (i2 == 2) {
-                                    viewGroup = lm7Var.l0(context);
+                                    viewGroup = lm7Var.k0(context);
                                 } else {
-                                    viewGroup = lm7Var.k0(context, jm7Var.j);
+                                    viewGroup = lm7Var.j0(context, jm7Var.j);
                                 }
                                 jm7Var.i = viewGroup;
                             }
@@ -337,11 +337,11 @@ public final class f implements icc {
                         } else if (!jm7Var.k && jm7Var.l && (arrayList3.isEmpty() || (jm7Var.m && i2 != 2))) {
                             if (jm7Var.i == null) {
                                 if (i2 == 2) {
-                                    k0 = lm7Var.l0(context);
+                                    j0 = lm7Var.k0(context);
                                 } else {
-                                    k0 = lm7Var.k0(context, jm7Var.j);
+                                    j0 = lm7Var.j0(context, jm7Var.j);
                                 }
-                                jm7Var.i = k0;
+                                jm7Var.i = j0;
                             }
                             if (arrayList3.isEmpty()) {
                                 ViewGroup viewGroup2 = jm7Var.i;

@@ -42,8 +42,8 @@ public final class s20 implements DialogInterface.OnClickListener {
             case 1:
                 uj3 uj3Var = (uj3) obj;
                 if (i == 0) {
-                    jf7 messagesStorage = uj3Var.getMessagesStorage();
-                    messagesStorage.a.c(new ad7(messagesStorage, 1, (byte) 2));
+                    kf7 messagesStorage = uj3Var.getMessagesStorage();
+                    messagesStorage.a.c(new bd7(messagesStorage, 1, (byte) 2));
                     return;
                 } else if (i != 1 || uj3Var.f0 == null) {
                     return;

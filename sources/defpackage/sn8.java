@@ -613,7 +613,7 @@ public final class sn8 extends c79 {
                                                                 i36 = 2131751743;
                                                             }
                                                             String M06 = ob6.M0(i36, null);
-                                                            if (this.d.getMessagesController().k4.v2.f && !this.d.getMessagesController().k4.S1.f) {
+                                                            if (this.d.getMessagesController().l4.v2.f && !this.d.getMessagesController().l4.S1.f) {
                                                                 z0 = ob6.M0(2131746539, null);
                                                             } else {
                                                                 z0 = this.d.z0(ob6.M0(2131746539, null));
@@ -842,7 +842,7 @@ public final class sn8 extends c79 {
                             qmbVar = new skb(context);
                         }
                     } else {
-                        qmbVar = new rca(context, (uh9) null);
+                        qmbVar = new sca(context, (uh9) null);
                     }
                 } else {
                     qmbVar = new mf5(context);

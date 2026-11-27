@@ -504,12 +504,12 @@ public final class d26 extends FrameLayout {
                 drawable.draw(canvas);
                 return;
             case 28:
-                v3b v3bVar = (v3b) obj;
-                ImageReceiver imageReceiver = v3bVar.z0;
-                qma qmaVar2 = v3bVar.x0;
-                if (v3bVar.y0 != null) {
+                w3b w3bVar = (w3b) obj;
+                ImageReceiver imageReceiver = w3bVar.z0;
+                qma qmaVar2 = w3bVar.x0;
+                if (w3bVar.y0 != null) {
                     canvas.save();
-                    float d3 = v3bVar.w0.d(v3bVar.v0);
+                    float d3 = w3bVar.w0.d(w3bVar.v0);
                     canvas.scale(1.0f - (d3 * 2.0f), 1.0f, qmaVar2.a / 2.0f, 0.0f);
                     canvas.skew(0.0f, qd4.z(1.0f, d3, 4.0f * d3, 0.25f));
                     imageReceiver.i0(0.0f, 0.0f, (int) qmaVar2.a, (int) qmaVar2.b);
@@ -733,7 +733,7 @@ public final class d26 extends FrameLayout {
     @Override
     public final void onMeasure(int i, int i2) {
         cna[] cnaVarArr;
-        int p0;
+        int o0;
         float f;
         float top;
         int measuredHeight;
@@ -758,18 +758,18 @@ public final class d26 extends FrameLayout {
                 return;
             case 5:
                 lm7 lm7Var = (lm7) obj;
-                int p02 = lm7Var.p0();
+                int o02 = lm7Var.o0();
                 int i4 = 0;
                 while (true) {
                     jm7[] jm7VarArr = lm7Var.b;
                     if (i4 < jm7VarArr.length) {
                         jm7 jm7Var = jm7VarArr[i4];
                         if (i4 == 2) {
-                            p0 = lm7Var.r0();
+                            o0 = lm7Var.q0();
                         } else {
-                            p0 = lm7Var.p0() - hl.L(9.0f);
+                            o0 = lm7Var.o0() - hl.L(9.0f);
                         }
-                        int L2 = hl.L(48.0f) + p0;
+                        int L2 = hl.L(48.0f) + o0;
                         im7 im7Var = jm7Var.f;
                         if (im7Var != null && im7Var.getPaddingTop() != L2) {
                             im7 im7Var2 = jm7Var.f;
@@ -781,10 +781,10 @@ public final class d26 extends FrameLayout {
                         }
                         i4++;
                     } else {
-                        lm7Var.P0();
+                        lm7Var.N0();
                         dm7 dm7Var = lm7Var.K;
-                        if (dm7Var != null && dm7Var.getLayoutParams().height != hl.L(8.0f) + p02) {
-                            lm7Var.K.getLayoutParams().height = hl.L(8.0f) + p02;
+                        if (dm7Var != null && dm7Var.getLayoutParams().height != hl.L(8.0f) + o02) {
+                            lm7Var.K.getLayoutParams().height = hl.L(8.0f) + o02;
                             lm7Var.K.requestLayout();
                         }
                         super.onMeasure(i, i2);
@@ -995,7 +995,7 @@ public final class d26 extends FrameLayout {
                 return;
             case 23:
                 super.setScaleX(f);
-                ((tba) obj).o0();
+                ((uba) obj).o0();
                 return;
             default:
                 super.setScaleX(f);
@@ -1027,10 +1027,10 @@ public final class d26 extends FrameLayout {
         }
     }
 
-    public d26(v3b v3bVar, Context context) {
+    public d26(w3b w3bVar, Context context) {
         super(context);
         this.a = (byte) 28;
-        this.b = v3bVar;
+        this.b = w3bVar;
         setWillNotDraw(false);
     }
 

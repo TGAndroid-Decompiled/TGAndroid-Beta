@@ -6,9 +6,9 @@ public final class q50 implements zq7 {
 
     @Override
     public final void a(Object obj, Object obj2) {
-        gl7 gl7Var = (gl7) obj;
+        hl7 hl7Var = (hl7) obj;
         ar7 ar7Var = (ar7) obj2;
-        ar7Var.a(b, ((fa0) gl7Var).a);
-        ar7Var.a(c, ((fa0) gl7Var).b);
+        ar7Var.a(b, ((fa0) hl7Var).a);
+        ar7Var.a(c, ((fa0) hl7Var).b);
     }
 }

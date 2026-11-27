@@ -169,36 +169,36 @@ public final class rn8 extends d6 {
                     return;
                 }
             case 7:
-                w09 w09Var = (w09) obj;
-                ArrayList arrayList = w09Var.b;
+                x09 x09Var = (x09) obj;
+                ArrayList arrayList = x09Var.b;
                 if (i == -1) {
                     if (arrayList.isEmpty()) {
-                        w09Var.finishFragment();
+                        x09Var.finishFragment();
                         return;
                     } else {
-                        w09Var.d0();
+                        x09Var.d0();
                         return;
                     }
                 } else if (i == 1) {
                     if (arrayList.size() == 1) {
                         int intValue2 = ((Integer) arrayList.get(0)).intValue();
-                        a19 c = b19.f(w09.Y(w09Var)).c(intValue2);
+                        a19 c = b19.f(x09.Y(x09Var)).c(intValue2);
                         if (c != null) {
-                            w09.g0(w09Var.getParentActivity(), w09.Z(w09Var), null, c, w09.a0(w09Var), new jq0(this, intValue2, (byte) 4));
+                            x09.g0(x09Var.getParentActivity(), x09.Z(x09Var), null, c, x09.a0(x09Var), new jq0(this, intValue2, (byte) 4));
                             return;
                         }
                         return;
                     }
                     return;
                 } else if (i == 2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, w09Var.getResourceProvider(), w09Var.getParentActivity());
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, x09Var.getResourceProvider(), x09Var.getParentActivity());
                     String G = ob6.G(arrayList.size(), "BusinessRepliesDeleteTitle", new Object[0]);
                     id idVar = alertDialog$Builder.a;
                     idVar.S = G;
                     idVar.U = ob6.G(arrayList.size(), "BusinessRepliesDeleteMessage", new Object[0]);
                     alertDialog$Builder.j(ob6.M0(2131746048, null), new jz7(this, (byte) 23));
                     alertDialog$Builder.g(ob6.M0(2131752570, null), null);
-                    w09Var.showDialog(idVar);
+                    x09Var.showDialog(idVar);
                     return;
                 } else {
                     return;
@@ -246,19 +246,19 @@ public final class rn8 extends d6 {
                 }
                 return;
             case 15:
-                tba tbaVar = (tba) obj;
+                uba ubaVar = (uba) obj;
                 if (i == -1) {
-                    if (tbaVar.O) {
+                    if (ubaVar.O) {
                         Bundle bundle2 = new Bundle();
-                        bundle2.putLong("user_id", tbaVar.getUserConfig().e());
+                        bundle2.putLong("user_id", ubaVar.getUserConfig().e());
                         bundle2.putBoolean("immediate", true);
-                        tbaVar.presentFragment(new rz8(bundle2));
+                        ubaVar.presentFragment(new rz8(bundle2));
                         return;
                     }
-                    tbaVar.finishFragment();
+                    ubaVar.finishFragment();
                     return;
                 } else if (i == 2) {
-                    tbaVar.j0(new e(null));
+                    ubaVar.j0(new e(null));
                     return;
                 } else {
                     return;

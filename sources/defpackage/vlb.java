@@ -60,7 +60,7 @@ public final class vlb extends vg0 implements Handler.Callback {
             ve9 ve9Var = this.N;
             ve9Var.getClass();
             if (!((uif) ve9Var.b).j(ko4Var) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
-                if (dg7.l(str)) {
+                if (eg7.l(str)) {
                     return qu6.a(1, 0, 0, 0);
                 }
                 return qu6.a(0, 0, 0, 0);

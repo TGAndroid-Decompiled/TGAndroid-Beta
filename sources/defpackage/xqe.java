@@ -12,9 +12,9 @@ public abstract class xqe {
         if (z) {
             try {
                 Context context = a.b;
-                synchronized (jg7.b) {
+                synchronized (kg7.b) {
                     try {
-                        jg7.d(context, TaskExecutors.MAIN_THREAD);
+                        kg7.d(context, TaskExecutors.MAIN_THREAD);
                     } finally {
                     }
                 }

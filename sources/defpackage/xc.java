@@ -103,9 +103,9 @@ public final class xc implements View.OnAttachStateChangeListener {
             case 17:
                 return;
             case 18:
-                oba obaVar = (oba) this.b;
-                obaVar.h.a();
-                obaVar.n.a();
+                pba pbaVar = (pba) this.b;
+                pbaVar.h.a();
+                pbaVar.n.a();
                 return;
             case 19:
                 return;
@@ -241,9 +241,9 @@ public final class xc implements View.OnAttachStateChangeListener {
                 view.removeOnAttachStateChangeListener(this);
                 return;
             case 18:
-                oba obaVar = (oba) this.b;
-                obaVar.h.b();
-                obaVar.n.b();
+                pba pbaVar = (pba) this.b;
+                pbaVar.h.b();
+                pbaVar.n.b();
                 return;
             case 19:
                 vqa vqaVar = (vqa) this.b;

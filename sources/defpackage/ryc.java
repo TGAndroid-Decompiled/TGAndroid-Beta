@@ -6,7 +6,7 @@ import java.net.URI;
 import java.util.ArrayList;
 public final class ryc {
     public final xna a;
-    public final l09 b;
+    public final m09 b;
     public final u8a c;
     public final vh4 d;
     public final ee8 e;
@@ -30,10 +30,10 @@ public final class ryc {
     public ryc(boolean z, String str, String str2, String str3, xna xnaVar) {
         String str4;
         this.a = xnaVar;
-        l09 l09Var = new l09((byte) 6);
-        l09Var.c = 1;
-        l09Var.b = 1;
-        this.b = l09Var;
+        m09 m09Var = new m09((byte) 6);
+        m09Var.c = 1;
+        m09Var.b = 1;
+        this.b = m09Var;
         ?? obj = new Object();
         obj.a = str;
         obj.b = str2;
@@ -83,9 +83,9 @@ public final class ryc {
     public final void b() {
         xna xnaVar;
         synchronized (this.b) {
-            l09 l09Var = this.b;
-            if (l09Var.b == 1) {
-                l09Var.b = 2;
+            m09 m09Var = this.b;
+            if (m09Var.b == 1) {
+                m09Var.b = 2;
             } else {
                 throw new syc(1, "The current state of the WebSocket is not CREATED.");
             }
@@ -149,10 +149,10 @@ public final class ryc {
                 if (F != 2) {
                     return;
                 }
-                l09 l09Var = this.b;
-                l09Var.b = 4;
-                if (l09Var.c == 1) {
-                    l09Var.c = 3;
+                m09 m09Var = this.b;
+                m09Var.b = 4;
+                if (m09Var.c == 1) {
+                    m09Var.c = 3;
                 }
                 g(vyc.a(1000, null));
                 this.d.e();

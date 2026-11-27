@@ -65,7 +65,7 @@ public final class wr6 implements Runnable {
                     hl.c3(new cs6(ls6Var, z, arrayList, b2));
                     return;
                 } catch (Throwable th) {
-                    ls6Var.getMessagesStorage().n(th, true);
+                    ls6Var.getMessagesStorage().p(th, true);
                     return;
                 }
             case 1:

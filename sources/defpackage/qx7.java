@@ -20,12 +20,12 @@ public final class qx7 extends FrameLayout {
     public boolean f;
     public px7 h;
     public boolean n;
-    public final ki7 r;
+    public final li7 r;
 
     public qx7(Context context) {
         super(context);
         this.e = true;
-        this.r = new ki7(this, (byte) 4);
+        this.r = new li7(this, (byte) 4);
     }
 
     public final void a() {
@@ -125,10 +125,10 @@ public final class qx7 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ki7 ki7Var = this.r;
-        removeCallbacks(ki7Var);
+        li7 li7Var = this.r;
+        removeCallbacks(li7Var);
         if (this.n) {
-            postOnAnimation(ki7Var);
+            postOnAnimation(li7Var);
         }
     }
 

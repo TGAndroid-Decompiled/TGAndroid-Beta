@@ -17,6 +17,6 @@ public final class wp9 implements f01, NativeInstance.BroadcastStateCallback {
 
     @Override
     public final void onRejoinRequested() {
-        hl.c3(new en9(this.a, this.b, (byte) 4));
+        hl.c3(new dn9(this.a, this.b, (byte) 5));
     }
 }

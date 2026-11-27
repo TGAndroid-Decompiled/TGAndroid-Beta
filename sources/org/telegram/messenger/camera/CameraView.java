@@ -1164,7 +1164,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     }
 
     public void createCamera(SurfaceTexture surfaceTexture, int i) {
-        hl.c3(new ze7(this, i, surfaceTexture, (byte) 10));
+        hl.c3(new bf7(this, i, surfaceTexture, (byte) 10));
     }
 
     private void enableDualInternal() {
@@ -1234,7 +1234,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.cameraSession[i] = CameraSessionWrapper.of(cameraSession);
             cameraGLThread.setCurrentSession(this.cameraSession[i], i);
             requestLayout();
-            CameraController.getInstance().open(cameraSession, surfaceTexture, new gp6(this, i, cameraSession, cameraGLThread, (byte) 10), new ze7(this, cameraGLThread, i, (byte) 11));
+            CameraController.getInstance().open(cameraSession, surfaceTexture, new gp6(this, i, cameraSession, cameraGLThread, (byte) 10), new bf7(this, cameraGLThread, i, (byte) 11));
         }
     }
 

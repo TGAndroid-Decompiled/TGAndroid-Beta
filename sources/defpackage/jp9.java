@@ -65,7 +65,7 @@ public final class jp9 {
     public float v = 1.0f;
     public long M = 1;
     public final uo9 X = new uo9(this, (byte) 1);
-    public final ki7 Y = new ki7(this, (byte) 21);
+    public final li7 Y = new li7(this, (byte) 21);
 
     public jp9(ap9 ap9Var) {
         Context context;
@@ -570,10 +570,10 @@ public final class jp9 {
         }
         this.z = z;
         Handler handler = this.i;
-        ki7 ki7Var = this.Y;
-        handler.removeCallbacks(ki7Var);
+        li7 li7Var = this.Y;
+        handler.removeCallbacks(li7Var);
         if (z) {
-            handler.post(ki7Var);
+            handler.post(li7Var);
         }
         this.d.getClass();
         o();

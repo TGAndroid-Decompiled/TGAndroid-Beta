@@ -74,7 +74,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.e {
         int i = this.currentAccount;
         vnb vnbVar = this.resourceProvider;
         boolean z = true;
-        if (this.b.size() + 1 > getMessagesController().k4.F.f()) {
+        if (this.b.size() + 1 > getMessagesController().l4.F.f()) {
             z = false;
         }
         e0(i, vnbVar, parentActivity, z);

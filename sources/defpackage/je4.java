@@ -186,7 +186,7 @@ public final class je4 extends e {
     public final int c0() {
         ds2 ds2Var;
         boolean p = getUserConfig().p();
-        hr hrVar = getMessagesController().k4;
+        hr hrVar = getMessagesController().l4;
         if (p) {
             ds2Var = hrVar.k1;
         } else {

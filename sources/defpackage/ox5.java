@@ -27,7 +27,7 @@ public final class ox5 extends ActionBarPopupWindow$ActionBarPopupWindowLayout i
         ArrayList arrayList = new ArrayList();
         this.b0 = arrayList;
         this.h0 = eVar;
-        this.e0 = eVar.getMessagesController().h4;
+        this.e0 = eVar.getMessagesController().i4;
         setFitItems(true);
         b8 c = s7.c(false, false, this, 2131232066, ob6.G(1, "Days", new Object[0]), false, null);
         b8 c2 = s7.c(false, false, this, 2131232069, ob6.G(2, "Days", new Object[0]), false, null);

@@ -4,101 +4,79 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.HashSet;
-public final class qba extends LinearLayout implements snb {
-    public final vnb a;
-    public final n57 b;
-    public final FrameLayout c;
-    public final ImageView d;
-    public final TextView e;
-    public final TextView f;
-    public final TextView h;
-    public boolean n;
-    public boolean r;
+public final class qba extends a8c {
+    static {
+        a8c.h(new a8c());
+    }
 
-    public qba(Context context, vnb vnbVar) {
-        super(context);
-        this.n = true;
-        this.a = vnbVar;
-        setOrientation(0);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.c = frameLayout;
-        n57 n57Var = new n57((byte) 1);
-        this.b = n57Var;
-        frameLayout.setBackground(n57Var);
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        frameLayout.addView(imageView, tre.e(24, 24, 17));
-        LinearLayout j = uh9.j(context, 1);
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView m = ik8.m(j, textView, tre.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f = m;
-        m.setTextSize(1, 13.0f);
-        TextView m2 = ik8.m(j, m, tre.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2), context);
-        this.h = m2;
-        m2.setTextSize(1, 16.0f);
-        if (ob6.a0) {
-            addView(m2, tre.t(-2, -2, 16, 20, 0, 0, 0));
-            addView(j, tre.q(0, -2, 1.0f, 23, 20, 0, 18, 0));
-            addView(frameLayout, tre.t(28, 28, 21, 0, 0, 18, 0));
-        } else {
-            addView(frameLayout, tre.t(28, 28, 19, 18, 0, 0, 0));
-            addView(j, tre.q(0, -2, 1.0f, 23, 18, 0, 20, 0));
-            addView(m2, tre.t(-2, -2, 16, 0, 0, 20, 0));
-        }
-        updateColors();
+    public static b8c i(int i, int i2, int i3, int i4, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        b8c K = b8c.K(qba.class);
+        K.d = i;
+        K.k = i4;
+        K.m = charSequence;
+        K.n = charSequence2;
+        K.o = charSequence3;
+        K.C = (i3 << 32) | (i2 & 4294967295L);
+        return K;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(aob.G6));
-        hashSet.add(Integer.valueOf(aob.y6));
-        hashSet.add(Integer.valueOf(aob.n6));
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        if (this.r) {
-            f = 60.0f;
-        } else {
-            f = 50.0f;
-        }
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(hl.L(f), 1073741824));
-    }
-
-    public void setValue(CharSequence charSequence) {
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        boolean z2;
         int i;
-        if (!TextUtils.isEmpty(charSequence)) {
+        float f;
+        long j = b8cVar.C;
+        int i2 = (int) j;
+        int i3 = (int) (j >>> 32);
+        rba rbaVar = (rba) view;
+        int i4 = b8cVar.k;
+        CharSequence charSequence = b8cVar.m;
+        CharSequence charSequence2 = b8cVar.n;
+        CharSequence charSequence3 = b8cVar.o;
+        TextView textView = rbaVar.e;
+        TextView textView2 = rbaVar.f;
+        int i5 = 0;
+        if (i2 == 0 && i3 == 0) {
+            z2 = false;
+        } else {
+            z2 = true;
+        }
+        rbaVar.n = z2;
+        FrameLayout frameLayout = rbaVar.c;
+        if (i4 != 0) {
             i = 0;
         } else {
             i = 8;
         }
-        TextView textView = this.h;
-        textView.setVisibility(i);
+        frameLayout.setVisibility(i);
+        float f2 = 0.0f;
+        if (i4 == 0) {
+            f = hl.L(2.0f);
+        } else {
+            f = 0.0f;
+        }
+        textView.setTranslationX(f);
+        if (i4 == 0) {
+            f2 = hl.L(2.0f);
+        }
+        textView2.setTranslationX(f2);
+        rbaVar.b.b(i2, i3);
+        rbaVar.d.setImageResource(i4);
         textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        rbaVar.r = !isEmpty;
+        if (isEmpty) {
+            i5 = 8;
+        }
+        textView2.setVisibility(i5);
+        textView2.setText(charSequence2);
+        rbaVar.setValue(charSequence3);
+        rbaVar.updateColors();
     }
 
     @Override
-    public final void updateColors() {
-        boolean z;
-        int i = aob.G6;
-        vnb vnbVar = this.a;
-        this.e.setTextColor(aob.v0(i, vnbVar));
-        this.f.setTextColor(aob.v0(aob.y6, vnbVar));
-        this.h.setTextColor(aob.v0(aob.n6, vnbVar));
-        if (this.n && (vnbVar == null ? aob.I.o() : vnbVar.a())) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.b.b = z;
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new rba(context, vnbVar);
     }
 }

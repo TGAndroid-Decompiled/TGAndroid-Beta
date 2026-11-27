@@ -105,7 +105,7 @@ public final class x67 extends c79 {
                 }
             } else {
                 z67Var.getResourceProvider();
-                view = new rca(context, (uh9) null);
+                view = new sca(context, (uh9) null);
             }
         } else {
             lj6 lj6Var = new lj6(this.c, 6, 2, false, z67Var.getResourceProvider());

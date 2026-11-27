@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.a;
 import org.telegram.tgnet.tl.TL_iv;
 public final class wk9 extends dk9 implements yib {
-    public final ki7 A0;
+    public final li7 A0;
     public final TL_iv.pageBlockTable X;
     public final zib Y;
     public final ArrayList Z;
@@ -58,7 +58,7 @@ public final class wk9 extends dk9 implements yib {
         int max;
         this.Z = new ArrayList();
         this.d0 = new ArrayList();
-        this.A0 = new ki7(this, (byte) 20);
+        this.A0 = new li7(this, (byte) 20);
         Rect rect2 = this.b;
         rect2.top = hl.L(10.0f) + rect2.top;
         this.X = pageblocktable;
@@ -681,11 +681,11 @@ public final class wk9 extends dk9 implements yib {
         int i5;
         int i6;
         float f2;
-        ui7 ui7Var = this.L;
-        if (ui7Var != null && ui7Var.h) {
+        vi7 vi7Var = this.L;
+        if (vi7Var != null && vi7Var.h) {
             ArrayList arrayList = this.d0;
-            if (!arrayList.isEmpty() && ui7Var.d((si7) arrayList.get(0)) >= 0) {
-                float c = ui7Var.c((si7) arrayList.get(0));
+            if (!arrayList.isEmpty() && vi7Var.d((ti7) arrayList.get(0)) >= 0) {
+                float c = vi7Var.c((ti7) arrayList.get(0));
                 float f3 = 0.0f;
                 if (c <= 0.0f) {
                     return;
@@ -724,23 +724,23 @@ public final class wk9 extends dk9 implements yib {
                     int i10 = i9;
                     if (vk9Var == null) {
                         d.a(canvas, this.W, true);
-                    } else if (!ui7Var.i(vk9Var)) {
+                    } else if (!vi7Var.i(vk9Var)) {
                         d.a(canvas, this.W, false);
                     } else {
-                        if (ui7Var.g(vk9Var)) {
+                        if (vi7Var.g(vk9Var)) {
                             d.a(canvas, this.W, false);
                             if (d.b instanceof gl9) {
                                 canvas.save();
                                 f = f3;
                                 canvas.translate(d.b(), d.c());
                                 gl9 gl9Var2 = (gl9) d.b;
-                                if (ui7Var.g(vk9Var)) {
-                                    i6 = ui7Var.e;
+                                if (vi7Var.g(vk9Var)) {
+                                    i6 = vi7Var.e;
                                 } else {
                                     i6 = -1;
                                 }
-                                if (ui7Var.g(vk9Var)) {
-                                    f2 = ui7Var.f;
+                                if (vi7Var.g(vk9Var)) {
+                                    f2 = vi7Var.f;
                                 } else {
                                     f2 = f;
                                 }
@@ -751,7 +751,7 @@ public final class wk9 extends dk9 implements yib {
                             }
                         } else {
                             f = f3;
-                            float c2 = ui7Var.c(vk9Var);
+                            float c2 = vi7Var.c(vk9Var);
                             if (c2 >= 1.0f) {
                                 d.a(canvas, this.W, true);
                             } else {

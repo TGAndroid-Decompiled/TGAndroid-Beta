@@ -120,7 +120,7 @@ public final class t10 implements r11 {
             case 13:
                 return;
             case 14:
-                if (v21Var.a == 2 && (k68Var = ((t58) this.b).y.A1) != null) {
+                if (v21Var.a == 2 && (k68Var = ((u58) this.b).y.A1) != null) {
                     lcb lcbVar = ((ccb) k68Var).d;
                     lcbVar.Y0 = false;
                     lcbVar.U();
@@ -243,12 +243,12 @@ public final class t10 implements r11 {
             case 13:
                 lm7 lm7Var = (lm7) obj;
                 int i5 = lm7Var.G;
-                if (lm7Var.s0()) {
+                if (lm7Var.r0()) {
                     i4 = 60;
                 }
                 return hl.L(i4 + 72) + i5;
             case 14:
-                if (((t58) obj).y.h2) {
+                if (((u58) obj).y.h2) {
                     return 0;
                 }
                 return hl.L(64.0f);
@@ -322,7 +322,7 @@ public final class t10 implements r11 {
                 }
                 return frameLayout2.getHeight();
             case 21:
-                i3 = ((rbb) obj).d1.getEditTextHeight();
+                i3 = ((sbb) obj).d1.getEditTextHeight();
                 i2 = hl.L(12.0f);
                 break;
             default:
@@ -441,7 +441,7 @@ public final class t10 implements r11 {
             case 13:
                 return;
             case 14:
-                if (v21Var.a == 2 && (k68Var = ((t58) obj).y.A1) != null) {
+                if (v21Var.a == 2 && (k68Var = ((u58) obj).y.A1) != null) {
                     lcb lcbVar = ((ccb) k68Var).d;
                     lcbVar.Y0 = true;
                     lcbVar.U();

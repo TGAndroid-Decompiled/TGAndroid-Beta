@@ -84,7 +84,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e i
     public final void A0() {
         getMessagesController().getClass();
         this.b = false;
-        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
         edit.clear();
         edit.commit();
         this.e.clear();
@@ -93,8 +93,8 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e i
         if (getParentActivity() != null) {
             Toast.makeText(getParentActivity(), ob6.M0(2131745821, "ResetNotificationsText"), 0).show();
         }
-        jf7 messagesStorage = getMessagesStorage();
-        messagesStorage.a.c(new be7(messagesStorage, (byte) 10));
+        kf7 messagesStorage = getMessagesStorage();
+        messagesStorage.a.c(new hd7(messagesStorage, (byte) 12));
     }
 
     public final void B0() {
@@ -122,7 +122,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e i
                 i3 = 0;
             }
         }
-        uc7.s1(this.currentAccount).W3.edit().putInt("repeat_messages", i3).commit();
+        uc7.s1(this.currentAccount).X3.edit().putInt("repeat_messages", i3).commit();
         this.Y = true;
         this.c.g(i);
     }
@@ -154,7 +154,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e i
 
     public final void F0(av2 av2Var) {
         ls6.d0(this.currentAccount).O0(true);
-        jf7.Y(this.currentAccount).a.c(new fd7(this, new ArrayList(ls6.d0(this.currentAccount).j1), av2Var, (byte) 13));
+        kf7.a0(this.currentAccount).a.c(new gd7(this, new ArrayList(ls6.d0(this.currentAccount).j1), av2Var, (byte) 13));
     }
 
     @Override
@@ -255,7 +255,7 @@ public class NotificationsSettingsActivity extends org.telegram.ui.ActionBar.e i
             } else {
                 str = null;
             }
-            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+            SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
             if (i == this.J) {
                 if (str != null && uri != null) {
                     edit.putString("CallsRingtone", str);

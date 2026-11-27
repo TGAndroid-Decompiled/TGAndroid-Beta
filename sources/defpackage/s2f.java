@@ -11,7 +11,7 @@ public abstract class s2f {
         return i2;
     }
 
-    public static i09 b(ey7 ey7Var, boolean z, boolean z2) {
+    public static j09 b(ey7 ey7Var, boolean z, boolean z2) {
         if (z) {
             c(3, ey7Var, false);
         }
@@ -24,7 +24,7 @@ public abstract class s2f {
         if (z2 && (ey7Var.A() & 1) == 0) {
             throw hy7.a("framing bit expected to be set", null);
         }
-        return new i09(strArr, (byte) 22);
+        return new j09(strArr, (byte) 22);
     }
 
     public static boolean c(int i, ey7 ey7Var, boolean z) {

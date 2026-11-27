@@ -1,6 +1,6 @@
 package defpackage;
 public final class ima extends ax2 {
-    public wj7 a;
+    public xj7 a;
     public boolean b;
     public Object c;
     public final kma d;

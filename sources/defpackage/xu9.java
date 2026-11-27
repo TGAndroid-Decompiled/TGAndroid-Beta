@@ -156,31 +156,31 @@ public abstract class xu9 extends HorizontalScrollView {
         return frameLayout;
     }
 
-    public final u3b c(int i, Drawable drawable) {
+    public final v3b c(int i, Drawable drawable) {
         String k = uh9.k(i, "tab");
         int i2 = this.y;
         this.y = i2 + 1;
-        u3b u3bVar = (u3b) this.n.get(k);
+        v3b v3bVar = (v3b) this.n.get(k);
         boolean z = true;
-        if (u3bVar != null) {
-            g(k, u3bVar, i2);
+        if (v3bVar != null) {
+            g(k, v3bVar, i2);
         } else {
-            u3bVar = new u3b(getContext(), 1);
-            u3bVar.f.setImageDrawable(drawable);
-            u3bVar.setFocusable(true);
-            u3bVar.setOnClickListener(new su9(this, (byte) 1));
-            u3bVar.setExpanded(this.g0);
-            u3bVar.a(this.j0);
-            this.e.addView(u3bVar, i2);
+            v3bVar = new v3b(getContext(), 1);
+            v3bVar.f.setImageDrawable(drawable);
+            v3bVar.setFocusable(true);
+            v3bVar.setOnClickListener(new su9(this, (byte) 1));
+            v3bVar.setExpanded(this.g0);
+            v3bVar.a(this.j0);
+            this.e.addView(v3bVar, i2);
         }
-        u3bVar.d = false;
-        u3bVar.setTag(2131296463, Integer.valueOf(i2));
+        v3bVar.d = false;
+        v3bVar.setTag(2131296463, Integer.valueOf(i2));
         if (i2 != this.E) {
             z = false;
         }
-        u3bVar.setSelected(z);
-        this.h.put(k, u3bVar);
-        return u3bVar;
+        v3bVar.setSelected(z);
+        this.h.put(k, v3bVar);
+        return v3bVar;
     }
 
     @Override
@@ -214,9 +214,9 @@ public abstract class xu9 extends HorizontalScrollView {
             oob oobVar = this.e;
             if (i < oobVar.getChildCount()) {
                 View childAt = oobVar.getChildAt(i);
-                if (childAt instanceof u3b) {
-                    u3b u3bVar = (u3b) childAt;
-                    if (u3bVar.a == 0 && !u3bVar.d) {
+                if (childAt instanceof v3b) {
+                    v3b v3bVar = (v3b) childAt;
+                    if (v3bVar.a == 0 && !v3bVar.d) {
                         return true;
                     }
                     return false;
@@ -265,10 +265,10 @@ public abstract class xu9 extends HorizontalScrollView {
             if (this.V != ceil && e(ceil)) {
                 for (int i2 = 0; i2 < oobVar.getChildCount(); i2++) {
                     if (i2 != this.V) {
-                        u3b u3bVar = (u3b) oobVar.getChildAt(i2);
-                        u3bVar.E = u3bVar.getLeft();
-                        u3bVar.F = true;
-                        u3bVar.invalidate();
+                        v3b v3bVar = (v3b) oobVar.getChildAt(i2);
+                        v3bVar.E = v3bVar.getLeft();
+                        v3bVar.F = true;
+                        v3bVar.invalidate();
                     }
                 }
                 this.W += (ceil - this.V) * getTabSize();
@@ -424,8 +424,8 @@ public abstract class xu9 extends HorizontalScrollView {
                 this.h0 = true;
                 for (int i = 0; i < oobVar.getChildCount(); i++) {
                     View childAt = oobVar.getChildAt(i);
-                    if (childAt instanceof u3b) {
-                        ((u3b) childAt).setExpanded(true);
+                    if (childAt instanceof v3b) {
+                        ((v3b) childAt).setExpanded(true);
                     }
                     childAt.getLayoutParams().width = hl.L(64.0f);
                 }

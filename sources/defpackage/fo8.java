@@ -38,8 +38,8 @@ public abstract class fo8 extends FrameLayout implements VoIPService.StateListen
     public final boolean P;
     public final fp Q;
     public final fp R;
-    public final hh7 S;
-    public final hh7 T;
+    public final ih7 S;
+    public final ih7 T;
     public final GestureDetector U;
     public ValueAnimator V;
     public boolean a;
@@ -70,8 +70,8 @@ public abstract class fo8 extends FrameLayout implements VoIPService.StateListen
         this.O = new Matrix();
         this.Q = new fp(80, 80);
         this.R = new fp(80, 80);
-        this.S = new hh7(-10497967, -16730994, -5649306, -10833593, false, true);
-        this.T = new hh7(-16735258, -14061833, -15151390, -12602625, false, true);
+        this.S = new ih7(-10497967, -16730994, -5649306, -10833593, false, true);
+        this.T = new ih7(-16735258, -14061833, -15151390, -12602625, false, true);
         this.J = f;
         this.K = f2;
         this.e = new rmc[3];
@@ -146,7 +146,7 @@ public abstract class fo8 extends FrameLayout implements VoIPService.StateListen
         }
         d26 d26Var2 = this.b;
         FrameLayout frameLayout = new FrameLayout(getContext());
-        frameLayout.setBackground(new hh7(-14602694, -13935795, -14395293, -14203560, true, false));
+        frameLayout.setBackground(new ih7(-14602694, -13935795, -14395293, -14203560, true, false));
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131232695);

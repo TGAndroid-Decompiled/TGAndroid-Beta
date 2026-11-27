@@ -165,7 +165,7 @@ public final class gu extends d79 {
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 24:
-                if (((b58) obj).g0) {
+                if (((c58) obj).g0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -217,7 +217,7 @@ public final class gu extends d79 {
                 return;
             case 24:
                 super.invalidate();
-                ((b58) obj).invalidate();
+                ((c58) obj).invalidate();
                 return;
             case 27:
                 super.invalidate();

@@ -227,7 +227,7 @@ public final class e66 {
                                             u(new rc5(new Bundle()), false);
                                             return true;
                                         } else if ("contact".equalsIgnoreCase(str5)) {
-                                            new rl7(LaunchActivity.S(), launchActivity).show();
+                                            new sl7(LaunchActivity.S(), launchActivity).show();
                                             return true;
                                         } else if ("channel".equalsIgnoreCase(str5)) {
                                             SharedPreferences e1 = uc7.e1();
@@ -244,7 +244,7 @@ public final class e66 {
                                         if ("live".equalsIgnoreCase(str5)) {
                                             r1 = -1;
                                         }
-                                        rbb C = rbb.C(launchActivity, this.b);
+                                        sbb C = sbb.C(launchActivity, this.b);
                                         if (C.P1 == r1) {
                                             z = true;
                                         } else {
@@ -270,7 +270,7 @@ public final class e66 {
                                         return z;
                                     } else if ("contacts".equalsIgnoreCase(str6)) {
                                         if ("new".equalsIgnoreCase(str5)) {
-                                            new rl7(LaunchActivity.S(), launchActivity).show();
+                                            new sl7(LaunchActivity.S(), launchActivity).show();
                                             return true;
                                         }
                                         Bundle bundle = new Bundle();
@@ -294,7 +294,7 @@ public final class e66 {
                     }
                 } else {
                     if ("ton".equalsIgnoreCase(scheme)) {
-                        if (uc7.s1(this.b).k4.v0.f && (pathSegments = (s = s(uri2)).getPathSegments()) != null) {
+                        if (uc7.s1(this.b).l4.v0.f && (pathSegments = (s = s(uri2)).getPathSegments()) != null) {
                             ArrayList arrayList3 = new ArrayList(pathSegments);
                             String authority3 = s.getAuthority();
                             if (!TextUtils.isEmpty(authority3)) {
@@ -504,7 +504,7 @@ public final class e66 {
     public final boolean l(Uri uri) {
         Uri uri2;
         long j;
-        if (!uc7.s1(this.b).k4.v0.f) {
+        if (!uc7.s1(this.b).l4.v0.f) {
             return false;
         }
         String queryParameter = uri.getQueryParameter("startapp");

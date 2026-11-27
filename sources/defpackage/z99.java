@@ -1,6 +1,6 @@
 package defpackage;
 public final class z99 extends ax2 {
-    public wj7 a;
+    public xj7 a;
     public Object b;
     public final aa9 c;
     public int d;

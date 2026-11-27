@@ -26,12 +26,12 @@ public final class mbc implements Runnable {
                 sbcVar.h1(true, false);
                 return;
             case 3:
-                mi7 mi7Var = sbcVar.U1;
-                mi7Var.b.r(ob6.M0(2131745564, null), true);
+                ni7 ni7Var = sbcVar.U1;
+                ni7Var.b.r(ob6.M0(2131745564, null), true);
                 return;
             case 4:
-                mi7 mi7Var2 = sbcVar.U1;
-                mi7Var2.b.r(ob6.M0(2131749439, null), true);
+                ni7 ni7Var2 = sbcVar.U1;
+                ni7Var2.b.r(ob6.M0(2131749439, null), true);
                 return;
             case 5:
                 sbcVar.Z0();

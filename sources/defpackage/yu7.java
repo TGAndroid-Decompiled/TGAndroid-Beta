@@ -244,7 +244,7 @@ public final class yu7 extends HorizontalScrollView implements snb {
     @Override
     public final void onSizeChanged(int i, int i2, int i3, int i4) {
         if (!this.x) {
-            post(new fe7(this, (byte) 16));
+            post(new ge7(this, (byte) 16));
         }
     }
 

@@ -337,8 +337,8 @@ public final class nt1 extends wma {
         boolean z2;
         zu1 zu1Var = this.x0;
         bvc bvcVar = zu1Var.Y;
-        if (drawable instanceof hh7) {
-            ((hh7) drawable).o();
+        if (drawable instanceof ih7) {
+            ((ih7) drawable).o();
         }
         mz4 c = bvcVar.c(drawable);
         float B = hl.B(bvcVar.b(c));

@@ -50,7 +50,7 @@ public final class yt2 extends d6 {
             }
             contactsController.getConnectionsManager().sendRequest(tL_contacts_addContact, new ql(contactsController, X1, (byte) 27), 6);
             i2 = ((e) cu2Var).currentAccount;
-            uc7.s1(i2).W3.edit().putInt("dialog_bar_vis3" + cu2Var.I, 3).commit();
+            uc7.s1(i2).X3.edit().putInt("dialog_bar_vis3" + cu2Var.I, 3).commit();
             cu2Var.getNotificationCenter().k(2, 1);
             cu2Var.getNotificationCenter().k(jn7.Q0, Long.valueOf(cu2Var.I));
             if (Y1 != null) {
@@ -62,7 +62,7 @@ public final class yt2 extends d6 {
                     Y1.note = null;
                 }
                 i3 = ((e) cu2Var).currentAccount;
-                jf7.Y(i3).g2(Y1, true);
+                kf7.a0(i3).l2(Y1, true);
                 cu2Var.getNotificationCenter().k(jn7.E0, Long.valueOf(Y1.id), Y1);
             }
             cu2Var.finishFragment();

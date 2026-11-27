@@ -35,7 +35,7 @@ public final class fz1 extends HashMap {
             case 1:
                 String str = (String) obj;
                 String str2 = (String) obj2;
-                HashMap hashMap = ((lk7) this.b).f;
+                HashMap hashMap = ((mk7) this.b).f;
                 if (str == null) {
                     lowerCase = str;
                 } else {

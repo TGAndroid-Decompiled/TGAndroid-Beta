@@ -24,7 +24,7 @@ public final class qx9 implements Runnable {
                 return;
             default:
                 wx9Var.getMessagesController().f4(tL_encryptedChatDiscarded, false);
-                wx9Var.getMessagesStorage().S1(tL_encryptedChatDiscarded);
+                wx9Var.getMessagesStorage().X1(tL_encryptedChatDiscarded);
                 wx9Var.getNotificationCenter().k(36, tL_encryptedChatDiscarded);
                 return;
         }

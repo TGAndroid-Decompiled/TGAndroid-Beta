@@ -50,7 +50,7 @@ public final class l extends FrameLayout implements snb {
     public final float[] N;
     public final jl0[] N0;
     public final float[] O;
-    public final rg7 O0;
+    public final sg7 O0;
     public final mm P;
     public int P0;
     public final RectF Q;
@@ -165,7 +165,7 @@ public final class l extends FrameLayout implements snb {
         this.L0 = new Matrix();
         this.M0 = new RectF();
         this.N0 = new jl0[3];
-        this.O0 = new rg7((byte) 15);
+        this.O0 = new sg7((byte) 15);
         k kVar = new k(this, this);
         this.H = kVar;
         ihc.l(this, kVar);

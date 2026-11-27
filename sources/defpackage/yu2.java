@@ -62,12 +62,12 @@ public final class yu2 implements RequestDelegate {
                 }
                 return;
             case 3:
-                hl.c3(new cq6((nt9) obj, tLObject, this.b, (byte) 23));
+                hl.c3(new cq6((nt9) obj, tLObject, this.b, (byte) 24));
                 return;
             case 4:
                 wx9 wx9Var = (wx9) obj;
                 if (j != 0) {
-                    wx9Var.getMessagesStorage().n1(j);
+                    wx9Var.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
@@ -77,17 +77,17 @@ public final class yu2 implements RequestDelegate {
                     r7aVar.getMessagesController().Y3((TLRPC.Updates) tLObject, false);
                 }
                 if (j != 0) {
-                    r7aVar.getMessagesStorage().n1(j);
+                    r7aVar.getMessagesStorage().r1(j);
                     return;
                 }
                 return;
             case 6:
-                hl.c3(new cq6((c6b) obj, this.b, tLObject, (byte) 29));
+                hl.c3(new j5b((c6b) obj, this.b, tLObject, (byte) 0));
                 return;
             default:
                 qyb qybVar = (qyb) obj;
                 qybVar.getClass();
-                hl.c3(new z5b(qybVar, this.b, tLObject, (byte) 6));
+                hl.c3(new j5b(qybVar, this.b, tLObject, (byte) 7));
                 return;
         }
     }

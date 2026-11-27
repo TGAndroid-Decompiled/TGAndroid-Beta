@@ -84,7 +84,7 @@ public final class r9b extends FrameLayout implements View.OnClickListener, fn7 
         this.f = d79Var;
         d79Var.setClipToPadding(false);
         d79Var.setTranslateSelector(true);
-        n9b n9bVar = new n9b(this, context, w9bVar.J0, l9bVar, new b68(w9bVar, (byte) 2));
+        n9b n9bVar = new n9b(this, context, w9bVar.J0, l9bVar, new c68(w9bVar, (byte) 2));
         this.n = n9bVar;
         d79Var.setAdapter(n9bVar);
         n9bVar.h = d79Var;

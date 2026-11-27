@@ -64,8 +64,8 @@ public final class wx9 extends rf0 {
             id idVar = new id(3, null, activity);
             TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
             tL_messages_getDhConfig.random_length = 256;
-            jf7 messagesStorage = getMessagesStorage();
-            messagesStorage.G();
+            kf7 messagesStorage = getMessagesStorage();
+            messagesStorage.I();
             tL_messages_getDhConfig.version = messagesStorage.x;
             idVar.setOnCancelListener(new gt0(this, getConnectionsManager().sendRequest(tL_messages_getDhConfig, new au0(this, activity, idVar, user, (byte) 17), 2), (byte) 8));
             try {
@@ -88,14 +88,14 @@ public final class wx9 extends rf0 {
                 System.arraycopy(encryptedChat.key_hash, 0, bArr2, 0, 16);
                 System.arraycopy(o, 0, bArr2, 16, 20);
                 encryptedChat.key_hash = bArr2;
-                getMessagesStorage().S1(encryptedChat);
+                getMessagesStorage().X1(encryptedChat);
             } catch (Throwable th) {
                 cc4.g(th, true);
             }
         }
         encryptedChat.layer = (encryptedChat.layer & 65535) | (i << 16);
-        jf7 messagesStorage = getMessagesStorage();
-        messagesStorage.a.c(new id7(messagesStorage, encryptedChat, (byte) 2));
+        kf7 messagesStorage = getMessagesStorage();
+        messagesStorage.a.c(new kd7(messagesStorage, encryptedChat, (byte) 2));
         if (W0 < 151) {
             w(encryptedChat, null);
         }
@@ -138,7 +138,7 @@ public final class wx9 extends rf0 {
                 sparseArray.remove(encryptedChat3.id);
             }
             if (z) {
-                jf7 messagesStorage = wx9Var2.getMessagesStorage();
+                kf7 messagesStorage = wx9Var2.getMessagesStorage();
                 messagesStorage.a.c(new yn6((Object) messagesStorage, (Object) encryptedChat3, true, (byte) 4));
             }
         }
@@ -209,7 +209,7 @@ public final class wx9 extends rf0 {
         getUserConfig().u(false);
         ArrayList arrayList = new ArrayList();
         arrayList.add(tL_messageService);
-        getMessagesStorage().g1(arrayList, false, true, true, 0, false, 0, 0L);
+        getMessagesStorage().k1(arrayList, false, true, true, 0, false, 0, 0L);
         return tL_messageService;
     }
 
@@ -230,13 +230,13 @@ public final class wx9 extends rf0 {
             } catch (Exception e3) {
                 e = e3;
                 cc4.g(e, true);
-                j = getMessagesStorage().y(nativeByteBuffer);
+                j = getMessagesStorage().A(nativeByteBuffer);
                 TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption = new TLRPC.TL_messages_discardEncryption();
                 tL_messages_discardEncryption.chat_id = i;
                 tL_messages_discardEncryption.delete_history = z;
                 getConnectionsManager().sendRequest(tL_messages_discardEncryption, new yu2(this, j, (byte) 4));
             }
-            j = getMessagesStorage().y(nativeByteBuffer);
+            j = getMessagesStorage().A(nativeByteBuffer);
         }
         TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption2 = new TLRPC.TL_messages_discardEncryption();
         tL_messages_discardEncryption2.chat_id = i;
@@ -274,10 +274,10 @@ public final class wx9 extends rf0 {
         if (!arrayList.isEmpty()) {
             hl.c3(new tx9(this, new ArrayList(arrayList), (byte) 1));
             ArrayList arrayList2 = new ArrayList(arrayList);
-            jf7 messagesStorage = getMessagesStorage();
+            kf7 messagesStorage = getMessagesStorage();
             messagesStorage.getClass();
             if (!arrayList2.isEmpty()) {
-                messagesStorage.a.c(new q41(messagesStorage, arrayList2, (byte) 2));
+                messagesStorage.a.c(new q41(messagesStorage, arrayList2, (byte) 3));
             }
             arrayList.clear();
         }
@@ -290,12 +290,12 @@ public final class wx9 extends rf0 {
     public final void o(TLRPC.EncryptedChat encryptedChat) {
         byte[] bArr = new byte[256];
         Utilities.b.nextBytes(bArr);
-        jf7 messagesStorage = getMessagesStorage();
-        messagesStorage.G();
+        kf7 messagesStorage = getMessagesStorage();
+        messagesStorage.I();
         BigInteger valueOf = BigInteger.valueOf(messagesStorage.E);
         BigInteger bigInteger = new BigInteger(1, bArr);
-        jf7 messagesStorage2 = getMessagesStorage();
-        messagesStorage2.G();
+        kf7 messagesStorage2 = getMessagesStorage();
+        messagesStorage2.I();
         byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage2.y)).toByteArray();
         if (byteArray.length > 256) {
             byte[] bArr2 = new byte[256];
@@ -306,7 +306,7 @@ public final class wx9 extends rf0 {
         encryptedChat.exchange_id = r7a.D();
         encryptedChat.a_or_b = bArr;
         encryptedChat.g_a = byteArray;
-        getMessagesStorage().S1(encryptedChat);
+        getMessagesStorage().X1(encryptedChat);
         x(encryptedChat, null);
     }
 

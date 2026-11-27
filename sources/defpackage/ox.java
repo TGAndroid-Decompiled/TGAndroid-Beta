@@ -11,7 +11,7 @@ public final class ox implements Runnable {
     public volatile int b = 1;
     public final AtomicBoolean c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final ug7 a = new ug7(this, new tg7(this, (byte) 0));
+    public final vg7 a = new vg7(this, new ug7(this, (byte) 0));
 
     public ox(m8d m8dVar) {
         this.e = m8dVar;

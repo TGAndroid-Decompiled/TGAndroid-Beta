@@ -5,7 +5,7 @@ import org.telegram.tgnet.TLRPC;
 public final class r2b extends b71 {
     @Override
     public final void e(int i, Object obj, icc iccVar) {
-        jf7.Y(i).a.c(new a39(i, (Integer) obj, (f) iccVar, (byte) 16));
+        kf7.a0(i).a.c(new a39(i, (Integer) obj, (f) iccVar, (byte) 16));
     }
 
     @Override
@@ -34,6 +34,6 @@ public final class r2b extends b71 {
 
     @Override
     public final void g(int i, Object obj, Object obj2) {
-        jf7.Y(i).a.c(new a39(i, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, (byte) 17));
+        kf7.a0(i).a.c(new a39(i, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, (byte) 17));
     }
 }

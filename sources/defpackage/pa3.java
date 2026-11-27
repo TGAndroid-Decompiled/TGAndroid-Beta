@@ -49,7 +49,7 @@ public final class pa3 {
             xg0 xg0Var = G == null ? (xg0) ub9Var2.b.get(i5) : G;
             ko4 ko4Var2 = ub9Var2.a;
             String str = ko4Var2.s;
-            if (dg7.l(str)) {
+            if (eg7.l(str)) {
                 if (!n31Var.b) {
                     o31Var = null;
                     ub9Var = ub9Var2;

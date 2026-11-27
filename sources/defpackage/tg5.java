@@ -369,7 +369,7 @@ public final class tg5 implements Runnable {
                     TL_account.resolvedBusinessChatLinks resolvedbusinesschatlinks = (TL_account.resolvedBusinessChatLinks) tLObject2;
                     uc7.s1(launchActivity6.P).j4(resolvedbusinesschatlinks.users, false);
                     uc7.s1(launchActivity6.P).c4(resolvedbusinesschatlinks.chats, false);
-                    jf7.Y(launchActivity6.P).j1(resolvedbusinesschatlinks.users, resolvedbusinesschatlinks.chats, true, true);
+                    kf7.a0(launchActivity6.P).n1(resolvedbusinesschatlinks.users, resolvedbusinesschatlinks.chats, true, true);
                     Bundle bundle3 = new Bundle();
                     TLRPC.Peer peer = resolvedbusinesschatlinks.peer;
                     if (peer instanceof TLRPC.TL_peerUser) {

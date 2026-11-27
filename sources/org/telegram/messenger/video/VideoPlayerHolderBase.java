@@ -549,7 +549,7 @@ public class VideoPlayerHolderBase {
     }
 
     public void seekTo(long j, boolean z, Runnable runnable) {
-        this.dispatchQueue.postRunnable(new j61(this, j, z, runnable, (byte) 12));
+        this.dispatchQueue.postRunnable(new j61(this, j, z, runnable, (byte) 10));
     }
 
     public void setAudioEnabled(boolean z, boolean z2) {

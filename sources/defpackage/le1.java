@@ -103,9 +103,9 @@ public final class le1 implements Runnable {
                 return;
             default:
                 r7a r7aVar = (r7a) obj3;
-                jf7 messagesStorage = r7aVar.getMessagesStorage();
+                kf7 messagesStorage = r7aVar.getMessagesStorage();
                 boolean z4 = this.b;
-                messagesStorage.g1((ArrayList) serializable, true, false, false, 0, false, !z4 ? 1 : 0, 0L);
+                messagesStorage.k1((ArrayList) serializable, true, false, false, 0, false, !z4 ? 1 : 0, 0L);
                 hl.c3(new vo9(r7aVar, this.c, (TLRPC.Message) tLObject, (ArrayList) obj2, z4, (ArrayList) obj, this.d));
                 return;
         }

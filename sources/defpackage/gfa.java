@@ -55,7 +55,7 @@ public final class gfa implements Runnable {
                 return;
             case 3:
                 e eVar = ejaVar.y1;
-                rbb C = rbb.C(eVar.getParentActivity(), eVar.getCurrentAccount());
+                sbb C = sbb.C(eVar.getParentActivity(), eVar.getCurrentAccount());
                 long j2 = ejaVar.m1;
                 String currentLang = ejaVar.a0.getCurrentLang();
                 C.w0 = j2;

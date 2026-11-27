@@ -275,7 +275,7 @@ public final class ov4 extends rf0 {
     }
 
     public final void o() {
-        SharedPreferences sharedPreferences = getMessagesController().X3;
+        SharedPreferences sharedPreferences = getMessagesController().Y3;
         if (sharedPreferences != null) {
             sharedPreferences.edit().putLong("lastGiftAuctionTimeUpdate", System.currentTimeMillis()).apply();
         }

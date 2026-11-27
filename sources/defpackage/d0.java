@@ -61,7 +61,7 @@ public final class d0 implements icc {
                     }
                     l9cVar.U();
                     if (z) {
-                        long f = uqcVar.getMessagesController().k4.x0.f();
+                        long f = uqcVar.getMessagesController().l4.x0.f();
                         if (f > 0) {
                             arrayList.add(b8c.C(ob6.V(null, null, 2131742748, c.w(f, false))));
                             return;

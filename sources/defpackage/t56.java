@@ -27,9 +27,9 @@ public final class t56 extends zt3 {
         }
         try {
             long parseLong = Long.parseLong(editable.toString());
-            if (parseLong > this.G.getMessagesController().k4.H2.f()) {
+            if (parseLong > this.G.getMessagesController().l4.H2.f()) {
                 this.F = true;
-                parseLong = this.G.getMessagesController().k4.H2.f();
+                parseLong = this.G.getMessagesController().l4.H2.f();
                 setText(Long.toString(parseLong));
                 this.F = false;
             }
@@ -42,7 +42,7 @@ public final class t56 extends zt3 {
             }
             di0 h = di0.h();
             i2 = ((e) this.G).currentAccount;
-            textView.setText(ob6.a0(null, null, i, h.e((long) ((parseLong / 1000.0d) * uc7.s1(i2).k4.A3.i), "USD")));
+            textView.setText(ob6.a0(null, null, i, h.e((long) ((parseLong / 1000.0d) * uc7.s1(i2).l4.A3.i), "USD")));
         } catch (Exception e) {
             cc4.g(e, true);
         }

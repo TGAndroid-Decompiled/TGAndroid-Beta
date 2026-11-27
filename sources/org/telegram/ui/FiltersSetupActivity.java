@@ -55,7 +55,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e implements
 
     public final void b0(wk5 wk5Var) {
         int size = getMessagesController().T0().size();
-        if ((size - 1 >= getMessagesController().k4.h1.f() && !getUserConfig().p()) || size >= getMessagesController().k4.i1.f()) {
+        if ((size - 1 >= getMessagesController().l4.h1.f() && !getUserConfig().p()) || size >= getMessagesController().l4.i1.f()) {
             showDialog(new l46(3, this.currentAccount, null, getParentActivity(), this));
         } else if (wk5Var != null) {
             ((ActionBarLayout) wk5Var).S(new nf4(null, null));
@@ -131,14 +131,14 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e implements
                         return;
                     }
                     TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags = new TLRPC.TL_messages_toggleDialogFilterTags();
-                    tL_messages_toggleDialogFilterTags.enabled = !getMessagesController().l4;
+                    tL_messages_toggleDialogFilterTags.enabled = !getMessagesController().m4;
                     uc7 messagesController = getMessagesController();
                     boolean z = tL_messages_toggleDialogFilterTags.enabled;
-                    SharedPreferences.Editor edit = messagesController.X3.edit();
-                    messagesController.l4 = z;
+                    SharedPreferences.Editor edit = messagesController.Y3.edit();
+                    messagesController.m4 = z;
                     edit.putBoolean("folderTags", z).apply();
                     getConnectionsManager().sendRequest(tL_messages_toggleDialogFilterTags, new mw3(this, tL_messages_toggleDialogFilterTags, (byte) 4));
-                    ((wkb) view).setChecked(getMessagesController().l4);
+                    ((wkb) view).setChecked(getMessagesController().m4);
                     ih4 ih4Var = this.b;
                     int i3 = this.s;
                     ih4Var.l(i3, this.w - i3);
@@ -177,7 +177,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e implements
         }
         this.e = false;
         getNotificationCenter().k(jn7.O2, new Object[0]);
-        getMessagesStorage().v1();
+        getMessagesStorage().z1();
         TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
         ArrayList T0 = getMessagesController().T0();
         int size = T0.size();
@@ -237,7 +237,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e implements
                 ?? kaVar5 = new ka(2, false);
                 kaVar5.d = (ac7) T0.get(i3);
                 arrayList3.add(kaVar5);
-                if (uc7.s1(this.currentAccount).l4 && ((ac7) T0.get(i3)).m >= 0) {
+                if (uc7.s1(this.currentAccount).m4 && ((ac7) T0.get(i3)).m >= 0) {
                     this.y = true;
                 }
             }
@@ -248,7 +248,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e implements
                 ArrayList arrayList5 = guVar3.L2;
                 int i4 = this.s;
                 int i5 = size2 - 1;
-                if (T0.size() >= getMessagesController().k4.i1.f()) {
+                if (T0.size() >= getMessagesController().l4.i1.f()) {
                     i = 0;
                 }
                 arrayList5.add(Long.valueOf(hl.u2(i4, i5 + i)));
@@ -257,7 +257,7 @@ public class FiltersSetupActivity extends org.telegram.ui.ActionBar.e implements
             this.w = -1;
             this.s = -1;
         }
-        if (T0.size() < getMessagesController().k4.i1.f()) {
+        if (T0.size() < getMessagesController().l4.i1.f()) {
             String M04 = ob6.M0(2131751681, null);
             ?? kaVar6 = new ka(4, false);
             kaVar6.c = M04;

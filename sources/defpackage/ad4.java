@@ -20,10 +20,10 @@ public final class ad4 extends az5 implements sr4 {
                 synchronized (obj) {
                     bd4.d.remove(file.getAbsolutePath());
                 }
-                return f9c.a;
+                return g9c.a;
             case 1:
                 ((ke5) this.c).dispose();
-                return f9c.a;
+                return g9c.a;
             case 2:
                 File file2 = (File) ((yj8) this.c).invoke();
                 String name = file2.getName();

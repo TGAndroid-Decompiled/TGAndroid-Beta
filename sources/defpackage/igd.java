@@ -60,9 +60,9 @@ public final class igd extends b99 {
                 hg0Var.s(ws2Var3);
             } else if (i4 == 6) {
                 hg0Var.A(5, null);
-                i09 i09Var = hg0Var.t;
-                if (i09Var != null) {
-                    ((k05) i09Var.b).onConnectionSuspended(message.arg2);
+                j09 j09Var = hg0Var.t;
+                if (j09Var != null) {
+                    ((k05) j09Var.b).onConnectionSuspended(message.arg2);
                 }
                 hg0Var.t(message.arg2);
                 hg0Var.y(5, 1, null);

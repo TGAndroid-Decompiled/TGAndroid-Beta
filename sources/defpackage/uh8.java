@@ -258,7 +258,7 @@ public final class uh8 extends c79 {
                     th8Var = new ilb(context);
                 }
             } else {
-                th8Var = new rca(context, (uh9) null);
+                th8Var = new sca(context, (uh9) null);
             }
         } else {
             View mf5Var = new mf5(this.c, aob.L6, 21, 15, false, null);

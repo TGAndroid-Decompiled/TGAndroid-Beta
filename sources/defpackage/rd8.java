@@ -2,7 +2,7 @@ package defpackage;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-public final class rd8 implements sf7 {
+public final class rd8 implements tf7 {
     public final int a;
     public final String b;
     public final String c;
@@ -25,7 +25,7 @@ public final class rd8 implements sf7 {
 
     public static rd8 d(ey7 ey7Var) {
         int m = ey7Var.m();
-        String n = dg7.n(ey7Var.y(ey7Var.m(), StandardCharsets.US_ASCII));
+        String n = eg7.n(ey7Var.y(ey7Var.m(), StandardCharsets.US_ASCII));
         String y = ey7Var.y(ey7Var.m(), StandardCharsets.UTF_8);
         int m2 = ey7Var.m();
         int m3 = ey7Var.m();

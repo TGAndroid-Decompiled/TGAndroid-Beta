@@ -127,15 +127,15 @@ public final class xwb extends c79 {
                     bd5Var = mf5Var;
                 }
             } else {
-                View rcaVar = new rca(viewGroup.getContext(), (uh9) null);
+                View scaVar = new sca(viewGroup.getContext(), (uh9) null);
                 Drawable W0 = aob.W0(viewGroup.getContext(), 2131231232, aob.b7);
                 int i2 = aob.a7;
                 ColorDrawable colorDrawable = new ColorDrawable(aob.w0(null, i2, false));
                 zm2 zm2Var = new zm2(colorDrawable, W0);
                 zm2Var.x = true;
-                rcaVar.setBackground(zm2Var);
-                yob.x(rcaVar, colorDrawable, i2, null, PorterDuff.Mode.SRC_IN);
-                bd5Var = rcaVar;
+                scaVar.setBackground(zm2Var);
+                yob.x(scaVar, colorDrawable, i2, null, PorterDuff.Mode.SRC_IN);
+                bd5Var = scaVar;
             }
         } else {
             Context context = viewGroup.getContext();

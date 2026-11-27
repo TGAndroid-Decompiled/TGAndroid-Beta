@@ -103,7 +103,7 @@ public class VideoCapturerDevice {
             }
             videoCapturerDevice.currentWidth = i2;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new g9c(videoCapturerDevice, screenCaptureSize, (byte) 9));
+            videoCapturerDevice.handler.post(new c9c(videoCapturerDevice, screenCaptureSize, (byte) 10));
         }
     }
 
@@ -194,7 +194,7 @@ public class VideoCapturerDevice {
     }
 
     private void init(long j, String str) {
-        hl.c3(new z5b(this, j, str, (byte) 10));
+        hl.c3(new j5b(this, j, str, (byte) 11));
     }
 
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
@@ -251,7 +251,7 @@ public class VideoCapturerDevice {
                     this.currentWidth = screenCaptureSize.x;
                     this.currentHeight = screenCaptureSize.y;
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("ScreenCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new z5b(this, j, screenCaptureSize, (byte) 11));
+                    this.handler.post(new j5b(this, j, screenCaptureSize, (byte) 12));
                     return;
                 }
                 return;
@@ -281,7 +281,7 @@ public class VideoCapturerDevice {
             if (this.videoCapturer == null) {
                 this.videoCapturer = camera1Enumerator.createCapturer(str2, new AnonymousClass2());
                 this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-                this.handler.post(new y09(this, camera1Enumerator, str2, j, (byte) 18));
+                this.handler.post(new z09(this, camera1Enumerator, str2, j, (byte) 18));
                 return;
             }
             cc4.b("VideoCapturerDevice init(" + j + "): videoCapturer.switchCamera CAMERA");

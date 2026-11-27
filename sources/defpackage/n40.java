@@ -14,7 +14,7 @@ import java.util.List;
 public final class n40 implements t00 {
     public static final mfb k = nze.a(new m40((byte) 0));
     public final Context a;
-    public final rg7 b;
+    public final sg7 b;
     public final fa3 c;
     public final ri6 d;
     public e86 e;
@@ -31,7 +31,7 @@ public final class n40 implements t00 {
         fa3 fa3Var = (fa3) lycVar.c;
         fa3Var.getClass();
         this.c = fa3Var;
-        this.b = (rg7) lycVar.d;
+        this.b = (sg7) lycVar.d;
         this.g = (sz) lycVar.e;
         if (context == null) {
             ri6Var = null;

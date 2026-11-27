@@ -26,10 +26,10 @@ public final class p77 implements Runnable {
         uc7 uc7Var = this.b;
         switch (b) {
             case 0:
-                jf7 messagesStorage = uc7Var.getMessagesStorage();
+                kf7 messagesStorage = uc7Var.getMessagesStorage();
                 long j4 = this.d;
                 ArrayList arrayList2 = this.c;
-                uc7Var.getMessagesStorage().O1(j4, -j4, arrayList2, messagesStorage.M0(j4, arrayList2, false, true, 0, 0));
+                uc7Var.getMessagesStorage().T1(j4, -j4, arrayList2, messagesStorage.P0(j4, arrayList2, false, true, 0, 0));
                 return;
             case 1:
                 uc7Var.getNotificationCenter().k(7, arrayList, Long.valueOf(j3), Boolean.FALSE);
@@ -82,14 +82,14 @@ public final class p77 implements Runnable {
                             j = tL_forumTopic.id;
                         }
                         messagesController.r3(j5, i6, 0, i, false, j, 0, true, 0);
-                        jf7 messagesStorage2 = uc7Var.getMessagesStorage();
+                        kf7 messagesStorage2 = uc7Var.getMessagesStorage();
                         long j6 = -j5;
                         if (uc7Var.B2(j5)) {
                             j2 = wf3.n(tL_forumTopic.from_id);
                         } else {
                             j2 = tL_forumTopic.id;
                         }
-                        messagesStorage2.a2(tL_forumTopic.top_message, 0, j6, j2);
+                        messagesStorage2.f2(tL_forumTopic.top_message, 0, j6, j2);
                     }
                 }
                 uc7Var.getMessagesStorage().a.c(new pa7(uc7Var, (byte) 2));

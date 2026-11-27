@@ -81,7 +81,7 @@ public final class yg implements View.OnClickListener {
                 }
                 fu5 G = fu5.G(nx0Var.c, vnbVar, frameLayout2);
                 for (int i4 = 0; i4 < iArr.length; i4++) {
-                    G.b(0, strArr[i4], new ze7(iArr2, iArr[i4], o97Var, (byte) 2), false);
+                    G.b(0, strArr[i4], new bf7(iArr2, iArr[i4], o97Var, (byte) 2), false);
                 }
                 G.i = (byte) 1;
                 G.a0();

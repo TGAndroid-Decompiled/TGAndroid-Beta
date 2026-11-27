@@ -36,7 +36,7 @@ public abstract class xkc {
     public static boolean a(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
         TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
         if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed)) {
-            for (String str : uc7.s1(yac.t0).W3.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
+            for (String str : uc7.s1(yac.t0).X3.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
                 String[] split = str.split(" ");
                 if (split.length >= 2) {
                     String str2 = split[0];
@@ -62,7 +62,7 @@ public abstract class xkc {
             if (SystemClock.elapsedRealtime() - a >= (chat != null ? 200 : 2000)) {
                 if (z5 && chat != null && !z4 && (N02 = uc7.s1(k5Var.a).N0(chat.id)) != null && (peer = N02.groupcall_default_join_as) != null) {
                     final TLRPC.InputPeer j1 = uc7.s1(k5Var.a).j1(r47.B1(peer));
-                    bw5.E0(activity, -chat.id, k5Var, new bf7() {
+                    bw5.E0(activity, -chat.id, k5Var, new cf7() {
                         @Override
                         public final void A(boolean z8) {
                             String str2 = str;
@@ -746,7 +746,7 @@ public abstract class xkc {
     }
 
     public static void k(Activity activity, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
-        for (String str : uc7.s1(yac.t0).W3.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
+        for (String str : uc7.s1(yac.t0).X3.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
             String[] split = str.split(" ");
             if (split.length >= 2) {
                 String str2 = split[0];

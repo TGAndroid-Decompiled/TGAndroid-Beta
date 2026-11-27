@@ -29,13 +29,13 @@ public final class oi1 implements Runnable {
                 oi1 oi1Var = ij1Var.f1;
                 xs0 xs0Var = ij1Var.O0;
                 v21.e();
-                if (ij1Var.D0.amount < uc7.s1(i).k4.y2.f()) {
+                if (ij1Var.D0.amount < uc7.s1(i).l4.y2.f()) {
                     ij1Var.M0 = true;
                     f = ij1Var.D0.amount;
                     ij1Var.N0 = f;
                 } else {
                     ij1Var.M0 = false;
-                    f = uc7.s1(i).k4.y2.f();
+                    f = uc7.s1(i).l4.y2.f();
                     ij1Var.N0 = f;
                 }
                 ij1Var.L0 = true;

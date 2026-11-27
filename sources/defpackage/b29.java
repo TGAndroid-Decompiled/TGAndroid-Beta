@@ -105,7 +105,7 @@ public class b29 extends BitmapDrawable implements Animatable, ck0 {
     public final File s0;
     public final boolean t0;
     public Runnable u0;
-    public final tf7 v0;
+    public final uf7 v0;
     public final HashMap w;
     public final Runnable w0;
     public final HashMap x;
@@ -406,19 +406,19 @@ public class b29 extends BitmapDrawable implements Animatable, ck0 {
     public final void b() {
         String str;
         File file;
-        tf7 tf7Var = this.v0;
-        File file2 = (File) tf7Var.e;
+        uf7 uf7Var = this.v0;
+        File file2 = (File) uf7Var.e;
         int[] iArr = null;
         if (file2 != null) {
             str = file2.toString();
         } else {
             str = null;
         }
-        String str2 = tf7Var.c;
+        String str2 = uf7Var.c;
         if (this.d0) {
             iArr = this.e;
         }
-        RLottieNative a = RLottieNative.a(str, str2, iArr, (int[]) tf7Var.d, tf7Var.a, this.x);
+        RLottieNative a = RLottieNative.a(str, str2, iArr, (int[]) uf7Var.d, uf7Var.a, this.x);
         this.K0 = a;
         this.D0 = 0;
         if (a == null && (file = this.s0) != null) {
@@ -864,23 +864,23 @@ public class b29 extends BitmapDrawable implements Animatable, ck0 {
                     if (iArr != null) {
                         this.v0.d = (int[]) iArr.clone();
                     }
-                    tf7 tf7Var = this.v0;
-                    File file = (File) tf7Var.e;
+                    uf7 uf7Var = this.v0;
+                    File file = (File) uf7Var.e;
                     if (file != null) {
                         String absolutePath = file.getAbsolutePath();
-                        tf7 tf7Var2 = this.v0;
-                        b = RLottieNative.a(absolutePath, tf7Var2.c, this.e, (int[]) tf7Var2.d, tf7Var2.a, this.x);
+                        uf7 uf7Var2 = this.v0;
+                        b = RLottieNative.a(absolutePath, uf7Var2.c, this.e, (int[]) uf7Var2.d, uf7Var2.a, this.x);
                     } else {
-                        int i2 = tf7Var.b;
-                        if (i2 != 0 && tf7Var.c == null) {
+                        int i2 = uf7Var.b;
+                        if (i2 != 0 && uf7Var.c == null) {
                             String v2 = hl.v2(null, i2);
                             if (!TextUtils.isEmpty(v2)) {
-                                tf7 tf7Var3 = this.v0;
-                                tf7Var3.c = v2;
-                                b = RLottieNative.b(v2, this.e, (int[]) tf7Var3.d, this.x);
+                                uf7 uf7Var3 = this.v0;
+                                uf7Var3.c = v2;
+                                b = RLottieNative.b(v2, this.e, (int[]) uf7Var3.d, this.x);
                             }
                         } else {
-                            b = RLottieNative.b(tf7Var.c, this.e, (int[]) tf7Var.d, this.x);
+                            b = RLottieNative.b(uf7Var.c, this.e, (int[]) uf7Var.d, this.x);
                         }
                     }
                     if (b != null) {
@@ -923,8 +923,8 @@ public class b29 extends BitmapDrawable implements Animatable, ck0 {
             if (this.F0) {
                 if (this.n0 == null) {
                     String file2 = ((File) this.v0.e).toString();
-                    tf7 tf7Var4 = this.v0;
-                    this.n0 = RLottieNative.a(file2, tf7Var4.c, null, (int[]) tf7Var4.d, tf7Var4.a, this.x);
+                    uf7 uf7Var4 = this.v0;
+                    this.n0 = RLottieNative.a(file2, uf7Var4.c, null, (int[]) uf7Var4.d, uf7Var4.a, this.x);
                 }
                 if (this.n0 != null) {
                     c = this.n0.c(this.b0, bitmap, z);
@@ -1091,9 +1091,9 @@ public class b29 extends BitmapDrawable implements Animatable, ck0 {
                 this.v0 = null;
                 return;
             }
-            tf7 tf7Var = this.v0;
-            tf7Var.c = v2;
-            this.n0 = RLottieNative.b(v2, this.e, (int[]) tf7Var.d, this.x);
+            uf7 uf7Var = this.v0;
+            uf7Var.c = v2;
+            this.n0 = RLottieNative.b(v2, this.e, (int[]) uf7Var.d, this.x);
         }
         if (z2) {
             setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));

@@ -312,7 +312,7 @@ public final class ykf implements wa9, OnSuccessListener {
         if (z) {
             int i2 = lpVar.b;
             if (((int[]) lpVar.d)[i2] == -2) {
-                ((Object[]) lpVar.c)[i2] = rg7.c;
+                ((Object[]) lpVar.c)[i2] = sg7.c;
             }
         }
         Object l = l(hx5Var);
@@ -341,7 +341,7 @@ public final class ykf implements wa9, OnSuccessListener {
         hx5Var.getClass();
         try {
             return hx5Var.c(this);
-        } catch (ig7 e2) {
+        } catch (jg7 e2) {
             String message = e2.getMessage();
             message.getClass();
             if (ddb.f(0, 2, message, "at path") >= 0) {
@@ -349,7 +349,7 @@ public final class ykf implements wa9, OnSuccessListener {
             }
             String message2 = e2.getMessage();
             String m = ((lp) ((d2c) this.d).c).m();
-            throw new ig7(e2.a, message2 + " at path: " + m, e2);
+            throw new jg7(e2.a, message2 + " at path: " + m, e2);
         }
     }
 

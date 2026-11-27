@@ -181,7 +181,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
         this.x0 = this.arguments.getBoolean("reply_to", false);
         this.z0 = this.arguments.getString("voicechat", null);
         this.A0 = this.arguments.getBoolean("videochat", false);
-        this.s = getMessagesController().g4;
+        this.s = getMessagesController().h4;
         this.W0 = !qu6.v("topics_end_reached_", j, getUserConfig().j(), false);
         oz4 oz4Var = new oz4();
         this.l1 = oz4Var;
@@ -202,7 +202,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
         this.m1 = new ll0(oz4Var, oz4Var, oz4Var);
     }
 
-    public static e F0(uc7 uc7Var, jf7 jf7Var, Bundle bundle) {
+    public static e F0(uc7 uc7Var, kf7 kf7Var, Bundle bundle) {
         long j = bundle.getLong("chat_id");
         if (j != 0) {
             TLRPC.Dialog S0 = uc7Var.S0(-j);
@@ -211,7 +211,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
             }
             TLRPC.ChatFull N0 = uc7Var.N0(j);
             if (N0 == null) {
-                N0 = jf7Var.C0(j, true, new CountDownLatch(1), false, false, 0);
+                N0 = kf7Var.F0(j, true, new CountDownLatch(1), false, false, 0);
             }
             if (N0 != null && N0.view_forum_as_messages) {
                 return new zu1(bundle);
@@ -221,7 +221,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
     }
 
     public static e G0(LaunchActivity launchActivity, Bundle bundle) {
-        return F0(uc7.s1(launchActivity.P), jf7.Y(launchActivity.P), bundle);
+        return F0(uc7.s1(launchActivity.P), kf7.a0(launchActivity.P), bundle);
     }
 
     public static void M0(defpackage.zu1 r6) {
@@ -407,8 +407,8 @@ public class tzb extends e implements fn7, kz1, ej6 {
                         if (eVar instanceof uj3) {
                             uj3 uj3Var2 = (uj3) eVar;
                             if (uj3Var2.J3()) {
-                                if7 if7Var = uj3Var2.r2;
-                                if (if7Var.a == j3 && if7Var.b == j) {
+                                jf7 jf7Var = uj3Var2.r2;
+                                if (jf7Var.a == j3 && jf7Var.b == j) {
                                     return;
                                 }
                             } else {
@@ -454,7 +454,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
         }
-        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).W3.edit();
+        SharedPreferences.Editor edit = uc7.s1(this.currentAccount).X3.edit();
         edit.putLong("dialog_join_requested_time_" + (-this.a), System.currentTimeMillis()).commit();
         Activity parentActivity = getParentActivity();
         boolean V = xc2.V(e());
@@ -732,7 +732,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
         } else {
             j = tL_forumTopic2.id;
         }
-        ro4.a(zu1Var, if7.a(j3, j));
+        ro4.a(zu1Var, jf7.a(j3, j));
         presentFragmentAsPreviewWithMenu(zu1Var, r3[0]);
     }
 
@@ -853,7 +853,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
                 return;
             }
             String M0 = ob6.M0(2131750435, null);
-            TLRPC.TL_forumTopic f = getMessagesController().g4.f(this.a, 1L);
+            TLRPC.TL_forumTopic f = getMessagesController().h4.f(this.a, 1L);
             if (f != null) {
                 M0 = f.title;
             }
@@ -1364,7 +1364,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
         int i4 = aob.d6;
         yob.h(i4, getResourceProvider(), ozbVar2);
         this.actionBar.setDrawBlurBackground(this.d);
-        getMessagesStorage().C0(this.a, true, null, true, false, 0);
+        getMessagesStorage().F0(this.a, true, null, true, false, 0);
         xj3 xj3Var = new xj3(context);
         this.V0 = xj3Var;
         xj3Var.setPadding(hl.L(11.0f), hl.L(21.0f), hl.L(11.0f), hl.L(21.0f));
@@ -1464,9 +1464,9 @@ public class tzb extends e implements fn7, kz1, ej6 {
                 if (eVar instanceof uj3) {
                     uj3 uj3Var4 = (uj3) eVar;
                     if (uj3Var4.J3()) {
-                        if7 if7Var = uj3Var4.r2;
-                        if (if7Var.a == j) {
-                            this.R0 = if7Var.b;
+                        jf7 jf7Var = uj3Var4.r2;
+                        if (jf7Var.a == j) {
+                            this.R0 = jf7Var.b;
                             break;
                         }
                     } else {
@@ -1524,12 +1524,12 @@ public class tzb extends e implements fn7, kz1, ej6 {
             }
         } else if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i4 = uc7.r5;
+            int i4 = uc7.s5;
             if (intValue == 8192) {
                 S0(false);
             }
             if ((intValue & 512) > 0) {
-                getMessagesController().g4.y(j, false);
+                getMessagesController().h4.y(j, false);
                 boolean canScrollVertically = this.O.canScrollVertically(-1);
                 Z0(true, false);
                 if (!canScrollVertically) {
@@ -1735,7 +1735,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
     @Override
     public final void onPause() {
         super.onPause();
-        LongSparseIntArray longSparseIntArray = getMessagesController().g4.r;
+        LongSparseIntArray longSparseIntArray = getMessagesController().h4.r;
         long j = this.a;
         int i = 0;
         int i2 = longSparseIntArray.get(j, 0) - 1;
@@ -1749,7 +1749,7 @@ public class tzb extends e implements fn7, kz1, ej6 {
     @Override
     public final void onResume() {
         super.onResume();
-        qyb qybVar = getMessagesController().g4;
+        qyb qybVar = getMessagesController().h4;
         LongSparseIntArray longSparseIntArray = qybVar.r;
         long j = this.a;
         longSparseIntArray.put(j, longSparseIntArray.get(j, 0) + 1);

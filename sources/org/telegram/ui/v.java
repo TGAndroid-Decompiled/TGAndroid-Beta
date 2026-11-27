@@ -229,7 +229,7 @@ public final class v implements ViewTreeObserver.OnPreDrawListener {
             photoViewer.f0.setLayerType(2, null);
             photoViewer.H1(false);
             photoViewer.n4 = System.currentTimeMillis();
-            hl.c3(new h68(this, animatorSet, (byte) 10));
+            hl.c3(new a58(this, animatorSet, (byte) 11));
         } else {
             cp7Var.run();
             photoViewer.o4 = null;
@@ -242,7 +242,7 @@ public final class v implements ViewTreeObserver.OnPreDrawListener {
                 photoViewer.D1.setAlpha(1.0f);
             }
         }
-        backgroundDrawable.d = new h68(this, fd8Var, (byte) 11);
+        backgroundDrawable.d = new a58(this, fd8Var, (byte) 12);
         zu1 zu1Var = photoViewer.k4;
         if (zu1Var != null && zu1Var.getFragmentView() != null) {
             zu1 zu1Var2 = photoViewer.k4;

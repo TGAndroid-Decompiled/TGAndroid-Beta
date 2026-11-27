@@ -102,7 +102,7 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
     }
 
     public static boolean c0(int i, long j) {
-        SharedPreferences sharedPreferences = uc7.s1(i).W3;
+        SharedPreferences sharedPreferences = uc7.s1(i).X3;
         if (sharedPreferences.contains("stories_" + j)) {
             return qu6.v("stories_", j, sharedPreferences, true);
         }
@@ -381,7 +381,7 @@ public class NotificationsCustomSettingsActivity extends org.telegram.ui.ActionB
         } else {
             arrayList = null;
         }
-        getMessagesStorage().a.c(new pl7(this, arrayList, (byte) 8));
+        getMessagesStorage().a.c(new ql7(this, arrayList, (byte) 9));
     }
 
     public final void o0(vp7 vp7Var, View view, boolean z) {

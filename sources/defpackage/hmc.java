@@ -113,7 +113,7 @@ public class hmc extends FrameLayout {
         }
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.r = frameLayout;
-        frameLayout.setBackground(new hh7(-14602694, -13935795, -14395293, -14203560, true, false));
+        frameLayout.setBackground(new ih7(-14602694, -13935795, -14395293, -14203560, true, false));
         addView(frameLayout, tre.c(-1.0f, -1));
         frameLayout.setVisibility(8);
         ImageView imageView2 = new ImageView(getContext());

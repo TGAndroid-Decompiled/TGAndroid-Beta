@@ -36,7 +36,7 @@ public final class jk4 {
                 throw null;
                 break;
             } catch (Exception e) {
-                nk7.d.log(Level.WARNING, "could not delete file ", (Throwable) e);
+                ok7.d.log(Level.WARNING, "could not delete file ", (Throwable) e);
             }
         }
         arrayList.clear();

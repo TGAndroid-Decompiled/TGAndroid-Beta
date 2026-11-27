@@ -232,7 +232,7 @@ public class pqb extends e implements jq3, fn7 {
         this.I1 = "640_360";
         this.J1 = 1920;
         this.M1 = true;
-        this.U1 = new ru4(getParentActivity(), new i09(this, (byte) 19));
+        this.U1 = new ru4(getParentActivity(), new j09(this, (byte) 19));
         this.V1 = false;
         this.W1 = false;
         this.b = i;
@@ -473,9 +473,9 @@ public class pqb extends e implements jq3, fn7 {
 
     public final int T0() {
         if (xc2.U(this.currentAccount, -this.L1)) {
-            return getMessagesController().k4.o2.f();
+            return getMessagesController().l4.o2.f();
         }
-        return getMessagesController().k4.g2.f();
+        return getMessagesController().l4.g2.f();
     }
 
     public final ArrayList U0() {
@@ -712,7 +712,7 @@ public class pqb extends e implements jq3, fn7 {
             if (nqbVar != null) {
                 nqbVar.f();
             }
-            jf7.Y(this.currentAccount).m1(1, tL_wallPapers.wallpapers);
+            kf7.a0(this.currentAccount).q1(1, tL_wallPapers.wallpapers);
         }
         if (this.Y0 == null && ynbVar != null && !TextUtils.isEmpty(ynbVar.o)) {
             TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
@@ -1124,7 +1124,7 @@ public class pqb extends e implements jq3, fn7 {
     }
 
     public final void f1(int i, int i2, boolean z) {
-        hh7 hh7Var;
+        ih7 ih7Var;
         if (i2 == 0) {
             this.b1 = i;
         } else if (i2 == 1) {
@@ -1154,19 +1154,19 @@ public class pqb extends e implements jq3, fn7 {
                 this.V0.setTwoSided(true);
             }
             Drawable background = this.z0.getBackground();
-            if (background instanceof hh7) {
-                hh7Var = (hh7) background;
+            if (background instanceof ih7) {
+                ih7Var = (ih7) background;
             } else {
-                hh7Var = new hh7();
-                hh7Var.p(this.z0);
+                ih7Var = new ih7();
+                ih7Var.p(this.z0);
                 if (this.F1) {
-                    hh7Var.m(false);
+                    ih7Var.m(false);
                 }
             }
-            hh7 hh7Var2 = hh7Var;
-            hh7Var2.n(true, this.b1, this.d1, this.e1, this.f1);
-            this.z0.setBackground(hh7Var2);
-            this.l1 = hh7Var2.f();
+            ih7 ih7Var2 = ih7Var;
+            ih7Var2.n(true, this.b1, this.d1, this.e1, this.f1);
+            this.z0.setBackground(ih7Var2);
+            this.l1 = ih7Var2.f();
             this.m1 = 754974720;
         } else if (this.d1 != 0) {
             this.z0.setBackground(new GradientDrawable(yd0.c(this.j1), new int[]{this.b1, this.d1}));
@@ -1182,8 +1182,8 @@ public class pqb extends e implements jq3, fn7 {
         int i4 = aob.cd;
         boolean d1 = aob.d1(i4);
         rpb rpbVar = this.a;
-        if (d1 && !(this.z0.getBackground() instanceof hh7)) {
-            if (aob.s0() instanceof hh7) {
+        if (d1 && !(this.z0.getBackground() instanceof ih7)) {
+            if (aob.s0() instanceof ih7) {
                 getThemedColor(i4);
                 rpbVar.k(this.z0.getBackground(), this.z0.getBackground(), Float.valueOf(this.n1));
             }
@@ -1203,13 +1203,13 @@ public class pqb extends e implements jq3, fn7 {
             fqbVar.getImageReceiver().p1 = new PorterDuffColorFilter(this.l1, this.u1);
             this.z0.getImageReceiver().setAlpha(Math.abs(this.n1));
             this.z0.invalidate();
-            if (aob.I.o() && (this.z0.getBackground() instanceof hh7)) {
+            if (aob.I.o() && (this.z0.getBackground() instanceof ih7)) {
                 bz0 bz0Var = this.V0;
                 if (bz0Var != null) {
                     bz0Var.setTwoSided(true);
                 }
                 if (this.n1 < 0.0f) {
-                    this.z0.getImageReceiver().W(((hh7) this.z0.getBackground()).k);
+                    this.z0.getImageReceiver().W(((ih7) this.z0.getBackground()).k);
                 }
             } else {
                 this.z0.getImageReceiver().W(null);
@@ -1332,7 +1332,7 @@ public class pqb extends e implements jq3, fn7 {
                     this.C0.setExtraTranslationY(hl.L(6.0f));
                     this.m0.addView(this.C0, tre.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
                 }
-                hl.d3(new bcb(this, e1, (byte) 6), 500L);
+                hl.d3(new hab(this, e1, (byte) 7), 500L);
             }
         }
     }
@@ -1923,7 +1923,7 @@ public class pqb extends e implements jq3, fn7 {
             this.v1 = lq3.q(this.currentAccount).k();
             if (this.W0 == null) {
                 this.W0 = new ArrayList();
-                jf7.Y(this.currentAccount).m0();
+                kf7.a0(this.currentAccount).o0();
             }
         }
         return super.onFragmentCreate();
@@ -2031,8 +2031,8 @@ public class pqb extends e implements jq3, fn7 {
             if (Build.VERSION.SDK_INT >= 29) {
                 this.z0.getImageReceiver().P(null);
             }
-            if (this.z0.getBackground() instanceof hh7) {
-                this.z0.getImageReceiver().W(((hh7) this.z0.getBackground()).k);
+            if (this.z0.getBackground() instanceof ih7) {
+                this.z0.getImageReceiver().W(((ih7) this.z0.getBackground()).k);
             }
         }
         this.a.k(this.z0.getBackground(), this.z0.getBackground(), Float.valueOf(this.n1));
@@ -2184,7 +2184,7 @@ public class pqb extends e implements jq3, fn7 {
         this.I1 = "640_360";
         this.J1 = 1920;
         this.M1 = true;
-        this.U1 = new ru4(getParentActivity(), new i09(this, (byte) 19));
+        this.U1 = new ru4(getParentActivity(), new j09(this, (byte) 19));
         this.V1 = false;
         this.W1 = false;
         this.b = (byte) 2;

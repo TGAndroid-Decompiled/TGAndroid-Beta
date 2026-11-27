@@ -40,14 +40,14 @@ public final class u48 implements Runnable {
                         kg5Var2.V = false;
                         kg5Var2.t(ob6.M0(2131746126, null));
                         o68Var.r0.setPadding(hl.L(8.0f), 0, hl.L(8.0f), hl.L(1.0f));
-                        t58 t58Var = o68Var.M0;
+                        u58 u58Var = o68Var.M0;
                         kg5 kg5Var3 = o68Var.r0;
                         if (o68Var.h2) {
                             f = 0.0f;
                         } else {
                             f = 56.0f;
                         }
-                        t58Var.addView(kg5Var3, tre.d(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, f));
+                        u58Var.addView(kg5Var3, tre.d(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, f));
                     }
                     o68Var.r0.v();
                     xea.G(true);
@@ -65,9 +65,9 @@ public final class u48 implements Runnable {
                 return;
             case 7:
                 o68Var.u3 = 0L;
-                g58 g58Var = o68Var.L1;
-                if (g58Var != null) {
-                    g58Var.P(true);
+                h58 h58Var = o68Var.L1;
+                if (h58Var != null) {
+                    h58Var.P(true);
                     o68Var.L1.K2();
                     o68Var.h0(true);
                     return;
@@ -76,15 +76,15 @@ public final class u48 implements Runnable {
             case 8:
                 Activity W = hl.W(o68Var.getContext());
                 if (W != null) {
-                    pl7 pl7Var = new pl7(o68Var, W, (byte) 29);
+                    a58 a58Var = new a58(o68Var, W, (byte) 0);
                     lcb lcbVar = ((ccb) o68Var.A1).d;
                     kcb kcbVar = lcbVar.A0;
                     if (kcbVar != null) {
-                        z = kcbVar.release(pl7Var);
+                        z = kcbVar.release(a58Var);
                         lcbVar.A0 = null;
                     }
                     if (!z) {
-                        hl.d3(pl7Var, 80L);
+                        hl.d3(a58Var, 80L);
                         return;
                     }
                     return;

@@ -30,7 +30,7 @@ public final class pj0 {
         Exception exc;
         oj0 oj0Var;
         this.a = i;
-        SharedPreferences sharedPreferences = uc7.s1(i).X3;
+        SharedPreferences sharedPreferences = uc7.s1(i).Y3;
         this.b = sharedPreferences.getLong("bday_check", 0L);
         oj0 oj0Var2 = null;
         String string = sharedPreferences.getString("bday_contacts", null);
@@ -69,7 +69,7 @@ public final class pj0 {
                 }
                 pj0Var = this;
                 try {
-                    jf7.Y(i).a.c(new gp6(pj0Var, i, arrayList, oj0Var, (byte) 6));
+                    kf7.a0(i).a.c(new gp6(pj0Var, i, arrayList, oj0Var, (byte) 6));
                 } catch (Exception e4) {
                     e = e4;
                     exc = e;

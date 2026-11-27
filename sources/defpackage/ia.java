@@ -15,7 +15,7 @@ public final class ia {
     public Object g;
     public Object h;
 
-    public ia(k09 k09Var) {
+    public ia(l09 l09Var) {
         this.a = (byte) 0;
         this.c = new ed(30, (byte) 12);
         this.d = new ArrayList();
@@ -23,7 +23,7 @@ public final class ia {
         this.b = 0;
         boolean z = f11.a;
         this.f = new ArrayList();
-        this.g = k09Var;
+        this.g = l09Var;
         this.h = new kj4(this, (byte) 21);
     }
 
@@ -60,14 +60,14 @@ public final class ia {
         ArrayList arrayList = (ArrayList) this.e;
         int size = arrayList.size();
         for (int i2 = 0; i2 < size; i2++) {
-            ((k09) this.g).o2((ha) arrayList.get(i2));
+            ((l09) this.g).o2((ha) arrayList.get(i2));
         }
         l(arrayList);
         this.b = 0;
     }
 
     public final void c() {
-        k09 k09Var = (k09) this.g;
+        l09 l09Var = (l09) this.g;
         b();
         ArrayList arrayList = (ArrayList) this.d;
         int size = arrayList.size();
@@ -78,25 +78,25 @@ public final class ia {
                 if (b != 2) {
                     if (b != 4) {
                         if (b == 8) {
-                            k09Var.o2(haVar);
-                            k09Var.r2(haVar.b, haVar.d);
+                            l09Var.o2(haVar);
+                            l09Var.r2(haVar.b, haVar.d);
                         }
                     } else {
-                        k09Var.o2(haVar);
-                        k09Var.p2(haVar.b, haVar.d, haVar.c);
+                        l09Var.o2(haVar);
+                        l09Var.p2(haVar.b, haVar.d, haVar.c);
                     }
                 } else {
-                    k09Var.o2(haVar);
+                    l09Var.o2(haVar);
                     int i3 = haVar.b;
                     int i4 = haVar.d;
-                    RecyclerView recyclerView = (RecyclerView) k09Var.b;
+                    RecyclerView recyclerView = (RecyclerView) l09Var.b;
                     recyclerView.h0(i3, i4, true);
                     recyclerView.y0 = true;
                     recyclerView.v0.c += i4;
                 }
             } else {
-                k09Var.o2(haVar);
-                k09Var.q2(haVar.b, haVar.d);
+                l09Var.o2(haVar);
+                l09Var.q2(haVar.b, haVar.d);
             }
         }
         l(arrayList);
@@ -155,12 +155,12 @@ public final class ia {
     }
 
     public final void e(ha haVar, int i2) {
-        k09 k09Var = (k09) this.g;
-        k09Var.o2(haVar);
+        l09 l09Var = (l09) this.g;
+        l09Var.o2(haVar);
         byte b = haVar.a;
         if (b != 2) {
             if (b == 4) {
-                k09Var.p2(i2, haVar.d, haVar.c);
+                l09Var.p2(i2, haVar.d, haVar.c);
                 return;
             } else {
                 lq5.j("only remove and update ops can be dispatched in first pass");
@@ -168,7 +168,7 @@ public final class ia {
             }
         }
         int i3 = haVar.d;
-        RecyclerView recyclerView = (RecyclerView) k09Var.b;
+        RecyclerView recyclerView = (RecyclerView) l09Var.b;
         recyclerView.h0(i2, i3, true);
         recyclerView.y0 = true;
         recyclerView.v0.c += i3;
@@ -261,31 +261,31 @@ public final class ia {
     }
 
     public final void j(ha haVar) {
-        k09 k09Var = (k09) this.g;
+        l09 l09Var = (l09) this.g;
         ((ArrayList) this.e).add(haVar);
         byte b = haVar.a;
         if (b != 1) {
             if (b != 2) {
                 if (b != 4) {
                     if (b == 8) {
-                        k09Var.r2(haVar.b, haVar.d);
+                        l09Var.r2(haVar.b, haVar.d);
                         return;
                     } else {
                         lq5.q(haVar, "Unknown update op type for ");
                         return;
                     }
                 }
-                k09Var.p2(haVar.b, haVar.d, haVar.c);
+                l09Var.p2(haVar.b, haVar.d, haVar.c);
                 return;
             }
             int i2 = haVar.b;
             int i3 = haVar.d;
-            RecyclerView recyclerView = (RecyclerView) k09Var.b;
+            RecyclerView recyclerView = (RecyclerView) l09Var.b;
             recyclerView.h0(i2, i3, false);
             recyclerView.y0 = true;
             return;
         }
-        k09Var.q2(haVar.b, haVar.d);
+        l09Var.q2(haVar.b, haVar.d);
     }
 
     public final void k() {

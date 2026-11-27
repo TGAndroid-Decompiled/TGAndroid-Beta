@@ -67,7 +67,7 @@ public final class wyc extends BufferedOutputStream {
             write(bArr);
         }
         byte[] bArr4 = new byte[4];
-        hg7.a.nextBytes(bArr4);
+        ig7.a.nextBytes(bArr4);
         write(bArr4);
         byte[] bArr5 = vycVar.g;
         if (bArr5 == null) {

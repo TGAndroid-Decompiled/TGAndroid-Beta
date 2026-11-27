@@ -2109,7 +2109,6 @@
     <public type="drawable" name="news_compact" id="0x7f0806c4" />
     <public type="drawable" name="news_expanded" id="0x7f0806c5" />
     <public type="drawable" name="news_menu_arrow" id="0x7f0806c6" />
-    <public type="drawable" name="news_menu_plus" id="0x7f0806c7" />
     <public type="drawable" name="news_muted" id="0x7f0806c8" />
     <public type="drawable" name="news_plus" id="0x7f0806c9" />
     <public type="drawable" name="news_removed" id="0x7f0806cb" />

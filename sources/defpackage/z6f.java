@@ -589,7 +589,7 @@ public final class z6f implements tq2, OnFailureListener, y2c, y27, y11, jx9, j3
     public final Object b0(am2 am2Var) {
         switch (this.a) {
             case 1:
-                Object h2 = am2Var.h(new h09(m36.class, Executor.class));
+                Object h2 = am2Var.h(new i09(m36.class, Executor.class));
                 h2.getClass();
                 return new p54((Executor) h2);
             default:
@@ -1033,7 +1033,7 @@ public final class z6f implements tq2, OnFailureListener, y2c, y27, y11, jx9, j3
 
     @Override
     public final void onFailure(Exception exc) {
-        j5 j5Var = og7.e;
+        j5 j5Var = pg7.e;
         if (Log.isLoggable(j5Var.b, 6)) {
             String str = j5Var.c;
             String str2 = "Error preloading model resource";

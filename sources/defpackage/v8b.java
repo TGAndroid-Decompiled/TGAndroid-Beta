@@ -28,7 +28,7 @@ public abstract class v8b extends FrameLayout implements View.OnClickListener {
     public final FrameLayout d;
     public final Matrix e;
     public final float[] f;
-    public final t58 h;
+    public final u58 h;
     public final x53 n;
     public ArrayList r;
     public final Rect s;
@@ -36,7 +36,7 @@ public abstract class v8b extends FrameLayout implements View.OnClickListener {
     public final Paint x;
     public final mm y;
 
-    public v8b(Context context, t58 t58Var, x53 x53Var) {
+    public v8b(Context context, u58 u58Var, x53 x53Var) {
         super(context);
         this.a = null;
         this.b = null;
@@ -51,10 +51,10 @@ public abstract class v8b extends FrameLayout implements View.OnClickListener {
         paint.setColor(-1);
         this.F = new Path();
         this.H = false;
-        this.h = t58Var;
+        this.h = u58Var;
         this.n = x53Var;
-        this.y = new mm(t58Var, 0L, 120L, new LinearInterpolator());
-        this.E = new mm(t58Var, 0L, 360L, k43.h);
+        this.y = new mm(u58Var, 0L, 120L, new LinearInterpolator());
+        this.E = new mm(u58Var, 0L, 360L, k43.h);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
@@ -220,7 +220,7 @@ public abstract class v8b extends FrameLayout implements View.OnClickListener {
             if ((z2 || d2 > 0.0f) && this.a != null) {
                 Bitmap bitmap = this.G;
                 if (bitmap == null) {
-                    bitmap = ((r58) this).J.getPlayingBitmap();
+                    bitmap = ((s58) this).J.getPlayingBitmap();
                     this.G = bitmap;
                 }
                 if (bitmap != null) {

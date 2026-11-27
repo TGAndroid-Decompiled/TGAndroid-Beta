@@ -49,13 +49,13 @@ public final class pk1 implements View.OnLayoutChangeListener {
                 ((on9) obj).a0();
                 return;
             case 6:
-                ((tba) obj).o0();
+                ((uba) obj).o0();
                 return;
             case 7:
-                u3b u3bVar = (u3b) obj;
-                c19 c19Var = u3bVar.h;
+                v3b v3bVar = (v3b) obj;
+                c19 c19Var = v3bVar.h;
                 if (c19Var != null && c19Var.getLayout() != null) {
-                    u3bVar.G = c19Var.getLayout().getLineWidth(0);
+                    v3bVar.G = c19Var.getLayout().getLineWidth(0);
                     return;
                 }
                 return;

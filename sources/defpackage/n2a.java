@@ -27,8 +27,8 @@ public final class n2a extends la {
         this.x = z;
         this.d = vnbVar;
         sh9 sh9Var = new sh9(this, (byte) 4);
-        jf7 Y = jf7.Y(yac.t0);
-        Y.a.c(new a30(Y, sh9Var, (byte) 8));
+        kf7 a0 = kf7.a0(yac.t0);
+        a0.a.c(new a30(a0, sh9Var, (byte) 8));
     }
 
     @Override

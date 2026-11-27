@@ -266,7 +266,7 @@ public final class xo2 extends nx0 implements fn7, s84, kf3 {
         } else if (i == 2) {
             Integer num = (Integer) objArr[0];
             int intValue = num.intValue();
-            int i4 = uc7.r5;
+            int i4 = uc7.s5;
             if ((intValue & 8192) != 0 || (num.intValue() & 2) != 0 || (num.intValue() & 8) != 0 || (num.intValue() & 16) != 0) {
                 TLRPC.Chat M0 = uc7.s1(this.a).M0(Long.valueOf(j));
                 this.p1 = M0;
@@ -293,7 +293,7 @@ public final class xo2 extends nx0 implements fn7, s84, kf3 {
     @Override
     public final void o(of3 of3Var) {
         TLRPC.TL_forumTopic f;
-        if (of3Var.getMessage() != null && (f = uc7.s1(this.a).g4.f(-of3Var.getDialogId(), r47.b2(this.a, of3Var.getMessage().k, true, false))) != null) {
+        if (of3Var.getMessage() != null && (f = uc7.s1(this.a).h4.f(-of3Var.getDialogId(), r47.b2(this.a, of3Var.getMessage().k, true, false))) != null) {
             ro4.n(this.t1, -of3Var.getDialogId(), f, 0);
         }
     }

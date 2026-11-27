@@ -34,7 +34,7 @@ public final class sa5 implements View.OnClickListener {
     @Override
     public final void onClick(View view) {
         float f;
-        b58 b58Var;
+        c58 c58Var;
         byte b = this.a;
         boolean z = true;
         Object obj = this.b;
@@ -157,7 +157,7 @@ public final class sa5 implements View.OnClickListener {
                 v56Var.showDialog(idVar);
                 return;
             case 19:
-                ((b58) obj).p(!b58Var.g0, true);
+                ((c58) obj).p(!c58Var.g0, true);
                 return;
             case 20:
                 ((vc6) obj).J();

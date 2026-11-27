@@ -23,7 +23,7 @@ import org.telegram.tgnet.tl.TL_stories;
 public final class c6b {
     public static final Comparator X = Comparator$CC.comparingInt(new nm((byte) 20));
     public TL_stories.TL_storiesStealthMode B;
-    public final me7 K;
+    public final oe7 K;
     public int N;
     public boolean R;
     public xx S;
@@ -83,9 +83,9 @@ public final class c6b {
         this.a = i;
         ?? obj = new Object();
         obj.a = i;
-        obj.b = jf7.Y(i);
+        obj.b = kf7.a0(i);
         this.k = obj;
-        SharedPreferences sharedPreferences = uc7.s1(i).X3;
+        SharedPreferences sharedPreferences = uc7.s1(i).Y3;
         this.l = sharedPreferences;
         this.o = sharedPreferences.getString("last_stories_state", "");
         this.y = sharedPreferences.getString("last_stories_state_hidden", "");
@@ -105,8 +105,8 @@ public final class c6b {
         }
         this.B = tL_storiesStealthMode;
         o6b o6bVar = this.k;
-        o6bVar.b.a.c(new z3b(o6bVar, new h5b(this, (byte) 1), (byte) 12));
-        this.K = new me7(this, i, (byte) 20);
+        o6bVar.b.a.c(new n3b(o6bVar, new h5b(this, (byte) 1), (byte) 13));
+        this.K = new oe7(this, i, (byte) 20);
         this.w = new ar3(i);
     }
 
@@ -205,15 +205,15 @@ public final class c6b {
         return str;
     }
 
-    public final q5b A(long j, boolean z) {
+    public final r5b A(long j, boolean z) {
         zh6 zh6Var = this.F;
-        q5b q5bVar = (q5b) zh6Var.f(j);
-        if (q5bVar == null && z) {
-            q5b q5bVar2 = new q5b(this.a, j, this);
-            zh6Var.k(j, q5bVar2);
-            return q5bVar2;
+        r5b r5bVar = (r5b) zh6Var.f(j);
+        if (r5bVar == null && z) {
+            r5b r5bVar2 = new r5b(this.a, j, this);
+            zh6Var.k(j, r5bVar2);
+            return r5bVar2;
         }
-        return q5bVar;
+        return r5bVar;
     }
 
     public final int C(boolean z) {
@@ -374,7 +374,7 @@ public final class c6b {
 
     public final boolean N(TLRPC.User user) {
         if (user != null) {
-            if (user.contact || user.id == uc7.s1(this.a).k4.k3.f()) {
+            if (user.contact || user.id == uc7.s1(this.a).l4.k3.f()) {
                 return true;
             }
             return false;
@@ -451,7 +451,7 @@ public final class c6b {
                 z3 = false;
             }
             tL_stories_getAllStories.include_hidden = z;
-            ConnectionsManager.getInstance(this.a).sendRequest(tL_stories_getAllStories, new k5b(this, z, tL_stories_getAllStories, z3));
+            ConnectionsManager.getInstance(this.a).sendRequest(tL_stories_getAllStories, new l5b(this, z, tL_stories_getAllStories, z3));
         }
     }
 
@@ -509,7 +509,7 @@ public final class c6b {
             this.n = true;
             h5b h5bVar = new h5b(this, (byte) 2);
             o6b o6bVar = this.k;
-            o6bVar.b.a.c(new z3b(o6bVar, h5bVar, (byte) 14));
+            o6bVar.b.a.c(new n3b(o6bVar, h5bVar, (byte) 15));
         } else {
             S(false);
             S(true);
@@ -624,7 +624,7 @@ public final class c6b {
     }
 
     public final void a(int i, long j, ArrayList arrayList) {
-        q5b A = A(j, true);
+        r5b A = A(j, true);
         A.getClass();
         c6b c6bVar = A.j;
         TL_stories.TL_updateAlbum tL_updateAlbum = new TL_stories.TL_updateAlbum();
@@ -655,7 +655,7 @@ public final class c6b {
             }
         }
         ConnectionsManager.getInstance(i2).sendRequest(tL_updateAlbum, null);
-        u5b z = c6bVar.z(0, i, A.b, false);
+        v5b z = c6bVar.z(0, i, A.b, false);
         if (z != null) {
             z.D(arrayList, true);
         }
@@ -665,7 +665,7 @@ public final class c6b {
         while (i5 < size3) {
             Object obj3 = arrayList4.get(i5);
             i5++;
-            u5b z2 = c6bVar.z(0, ((v5b) obj3).a, A.b, false);
+            v5b z2 = c6bVar.z(0, ((w5b) obj3).a, A.b, false);
             if (z2 != null) {
                 z2.E(i, tL_updateAlbum.add_stories, false);
             }
@@ -767,9 +767,9 @@ public final class c6b {
             o6b o6bVar = this.k;
             o6bVar.b.a.c(new my6(o6bVar, arrayList5, z3, z, kcVar, (byte) 6));
         }
-        me7 me7Var = this.K;
-        hl.r(me7Var);
-        me7Var.run();
+        oe7 oe7Var = this.K;
+        hl.r(oe7Var);
+        oe7Var.run();
     }
 
     public final void b(int i, long j, TL_stories.StoryItem storyItem) {
@@ -793,13 +793,13 @@ public final class c6b {
         if (i > 0) {
             user = uc7.s1(this.a).X1(Long.valueOf(n));
             if (user != null && (N(user) || user.self)) {
-                o6bVar.b.a.c(new z3b(o6bVar, tL_updateStory, (byte) 10));
+                o6bVar.b.a.c(new n3b(o6bVar, tL_updateStory, (byte) 11));
             }
         } else {
-            o6bVar.b.a.c(new z3b(o6bVar, tL_updateStory, (byte) 10));
+            o6bVar.b.a.c(new n3b(o6bVar, tL_updateStory, (byte) 11));
             user = null;
         }
-        hl.c3(new y09(this, n, tL_updateStory, user, (byte) 10));
+        hl.c3(new z09(this, n, tL_updateStory, user, (byte) 10));
     }
 
     public final void c(long j, b6b b6bVar, zh6 zh6Var, boolean z) {
@@ -880,7 +880,7 @@ public final class c6b {
     }
 
     public final void e0(int i, long j, ArrayList arrayList) {
-        q5b A = A(j, true);
+        r5b A = A(j, true);
         A.getClass();
         c6b c6bVar = A.j;
         TL_stories.TL_updateAlbum tL_updateAlbum = new TL_stories.TL_updateAlbum();
@@ -911,7 +911,7 @@ public final class c6b {
             }
         }
         ConnectionsManager.getInstance(i2).sendRequest(tL_updateAlbum, null);
-        u5b z = c6bVar.z(0, i, A.b, false);
+        v5b z = c6bVar.z(0, i, A.b, false);
         if (z != null) {
             z.A(arrayList);
         }
@@ -920,7 +920,7 @@ public final class c6b {
         while (i3 < size3) {
             Object obj3 = arrayList3.get(i3);
             i3++;
-            u5b z2 = c6bVar.z(0, ((v5b) obj3).a, A.b, false);
+            v5b z2 = c6bVar.z(0, ((w5b) obj3).a, A.b, false);
             if (z2 != null) {
                 z2.E(i, tL_updateAlbum.delete_stories, true);
             }
@@ -1019,7 +1019,7 @@ public final class c6b {
         tL_stories_getStoriesByID.id.add(Integer.valueOf(i));
         int i3 = this.a;
         tL_stories_getStoriesByID.peer = uc7.s1(i3).j1(j);
-        ConnectionsManager.getInstance(i3).sendRequest(tL_stories_getStoriesByID, new m5b(this, j2, pccVar));
+        ConnectionsManager.getInstance(i3).sendRequest(tL_stories_getStoriesByID, new n5b(this, j2, pccVar));
     }
 
     public final boolean g(long j) {
@@ -1057,7 +1057,7 @@ public final class c6b {
         this.B = tL_storiesStealthMode;
         int i = this.a;
         jn7.f(i).k(jn7.G5, new Object[0]);
-        SharedPreferences.Editor edit = uc7.s1(i).X3.edit();
+        SharedPreferences.Editor edit = uc7.s1(i).Y3.edit();
         if (tL_storiesStealthMode == null) {
             edit.remove("stories_stealth_mode").apply();
             return;
@@ -1121,7 +1121,7 @@ public final class c6b {
         TL_stories.TL_stories_canSendStory tL_stories_canSendStory = new TL_stories.TL_stories_canSendStory();
         int i = this.a;
         tL_stories_canSendStory.peer = uc7.s1(i).j1(j);
-        ConnectionsManager.getInstance(i).sendRequest(tL_stories_canSendStory, new rs0(this, z, j, pccVar, vnbVar, (byte) 5), 1024);
+        ConnectionsManager.getInstance(i).sendRequest(tL_stories_canSendStory, new rs0(this, z, j, pccVar, vnbVar, (byte) 4), 1024);
     }
 
     public final void k(ArrayList arrayList) {
@@ -1207,9 +1207,9 @@ public final class c6b {
                     i2++;
                 } else {
                     arrayList2.add(0, peerStories);
-                    me7 me7Var = this.K;
-                    hl.r(me7Var);
-                    me7Var.run();
+                    oe7 oe7Var = this.K;
+                    hl.r(oe7Var);
+                    oe7Var.run();
                     break;
                 }
             }
@@ -1221,12 +1221,12 @@ public final class c6b {
             if (j >= 0) {
                 TLRPC.User X1 = uc7.s1(i3).X1(Long.valueOf(j));
                 X1.stories_hidden = z;
-                jf7.Y(i3).j1(Collections.singletonList(X1), null, false, true);
+                kf7.a0(i3).n1(Collections.singletonList(X1), null, false, true);
                 uc7.s1(i3).i4(X1, false, false);
             } else {
                 TLRPC.Chat M0 = uc7.s1(i3).M0(Long.valueOf(-j));
                 M0.stories_hidden = z;
-                jf7.Y(i3).j1(null, Collections.singletonList(M0), false, true);
+                kf7.a0(i3).n1(null, Collections.singletonList(M0), false, true);
                 uc7.s1(i3).a4(M0, false);
             }
             TL_stories.TL_stories_togglePeerStoriesHidden tL_stories_togglePeerStoriesHidden = new TL_stories.TL_stories_togglePeerStoriesHidden();
@@ -1282,9 +1282,9 @@ public final class c6b {
         ArrayList<TL_stories.StoryItem> arrayList;
         int i = this.a;
         if (yac.h(i).p()) {
-            f = uc7.s1(i).k4.E1.f();
+            f = uc7.s1(i).l4.E1.f();
         } else {
-            f = uc7.s1(i).k4.D1.f();
+            f = uc7.s1(i).l4.D1.f();
         }
         ArrayList arrayList2 = (ArrayList) this.c.f(yac.h(i).e());
         if (arrayList2 == null) {
@@ -1316,8 +1316,8 @@ public final class c6b {
         o.append(j0(list));
         o.append("}");
         cc4.b(o.toString());
-        u5b z = z(0, -1, j, false);
-        u5b z2 = z(1, -1, j, false);
+        v5b z = z(0, -1, j, false);
+        v5b z2 = z(1, -1, j, false);
         if (z != null) {
             z.A(list);
         }
@@ -1325,13 +1325,13 @@ public final class c6b {
             z2.A(list);
         }
         int i = 0;
-        q5b A = A(j, false);
+        r5b A = A(j, false);
         if (A != null && (arrayList = A.h) != null) {
             int size = arrayList.size();
             while (i < size) {
                 Object obj = arrayList.get(i);
                 i++;
-                u5b z3 = z(0, ((v5b) obj).a, j, false);
+                v5b z3 = z(0, ((w5b) obj).a, j, false);
                 if (z3 != null) {
                     z3.A(list);
                 }
@@ -1475,7 +1475,7 @@ public final class c6b {
     }
 
     public final void q(long j, String str, pcc pccVar) {
-        q5b A = A(j, true);
+        r5b A = A(j, true);
         int i = A.a;
         if (A.i) {
             return;
@@ -1495,8 +1495,8 @@ public final class c6b {
         o.append(j0(list));
         o.append("}");
         cc4.b(o.toString());
-        u5b z2 = z(0, -1, j, false);
-        u5b z3 = z(1, -1, j, false);
+        v5b z2 = z(0, -1, j, false);
+        v5b z3 = z(1, -1, j, false);
         if (z2 != null) {
             z2.D(list, z);
         }
@@ -1510,15 +1510,15 @@ public final class c6b {
         while (i2 < size) {
             Object obj = arrayList2.get(i2);
             i2++;
-            ((p5b) obj).D(list, z);
+            ((q5b) obj).D(list, z);
         }
-        q5b A = A(j, false);
+        r5b A = A(j, false);
         if (A != null && (arrayList = A.h) != null) {
             int size2 = arrayList.size();
             while (i < size2) {
                 Object obj2 = arrayList.get(i);
                 i++;
-                u5b z4 = z(0, ((v5b) obj2).a, j, false);
+                v5b z4 = z(0, ((w5b) obj2).a, j, false);
                 if (z4 != null) {
                     z4.D(list, z);
                 }
@@ -1579,7 +1579,7 @@ public final class c6b {
         n0(j, arrayList);
         ArrayList<Integer> arrayList2 = tL_stories_deleteStories.id;
         o6b o6bVar = this.k;
-        o6bVar.b.a.c(new z5b(o6bVar, arrayList2, j, (byte) 2));
+        o6bVar.b.a.c(new j5b(o6bVar, arrayList2, j, (byte) 3));
         jn7.f(i).k(jn7.y5, new Object[0]);
     }
 
@@ -1691,8 +1691,8 @@ public final class c6b {
     }
 
     public final String v(int i, long j) {
-        v5b b;
-        q5b A = A(j, false);
+        w5b b;
+        r5b A = A(j, false);
         if (A != null && (b = A.b(i)) != null) {
             return b.b;
         }
@@ -1739,7 +1739,7 @@ public final class c6b {
         return N0.stories;
     }
 
-    public final u5b z(int i, int i2, long j, boolean z) {
+    public final v5b z(int i, int i2, long j, boolean z) {
         if (i == 0 && i2 > 0) {
             Long valueOf = Long.valueOf(j);
             HashMap hashMap = this.H;
@@ -1749,33 +1749,33 @@ public final class c6b {
                 hashMap.put(Long.valueOf(j), hashMap2);
             }
             HashMap hashMap3 = hashMap2;
-            u5b u5bVar = (u5b) hashMap3.get(Integer.valueOf(i2));
-            if (u5bVar == null && z) {
-                u5b u5bVar2 = new u5b(this.a, j, i, i2, new h5b(this, (byte) 0));
-                hashMap3.put(Integer.valueOf(i2), u5bVar2);
-                return u5bVar2;
+            v5b v5bVar = (v5b) hashMap3.get(Integer.valueOf(i2));
+            if (v5bVar == null && z) {
+                v5b v5bVar2 = new v5b(this.a, j, i, i2, new h5b(this, (byte) 0));
+                hashMap3.put(Integer.valueOf(i2), v5bVar2);
+                return v5bVar2;
             }
-            return u5bVar;
+            return v5bVar;
         }
         HashMap[] hashMapArr = this.G;
         if (hashMapArr[i] == null) {
             hashMapArr[i] = new HashMap();
         }
-        u5b u5bVar3 = (u5b) hashMapArr[i].get(Long.valueOf(j));
-        if (u5bVar3 == null && z) {
+        v5b v5bVar3 = (v5b) hashMapArr[i].get(Long.valueOf(j));
+        if (v5bVar3 == null && z) {
             if (i == 4) {
                 HashMap hashMap4 = hashMapArr[i];
                 Long valueOf2 = Long.valueOf(j);
-                o5b o5bVar = new o5b(this.a, j, null, new h5b(this, (byte) 0));
-                hashMap4.put(valueOf2, o5bVar);
-                return o5bVar;
+                p5b p5bVar = new p5b(this.a, j, null, new h5b(this, (byte) 0));
+                hashMap4.put(valueOf2, p5bVar);
+                return p5bVar;
             }
             HashMap hashMap5 = hashMapArr[i];
             Long valueOf3 = Long.valueOf(j);
-            u5b u5bVar4 = new u5b(this.a, j, i, i2, new h5b(this, (byte) 0));
-            hashMap5.put(valueOf3, u5bVar4);
-            return u5bVar4;
+            v5b v5bVar4 = new v5b(this.a, j, i, i2, new h5b(this, (byte) 0));
+            hashMap5.put(valueOf3, v5bVar4);
+            return v5bVar4;
         }
-        return u5bVar3;
+        return v5bVar3;
     }
 }

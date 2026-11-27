@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e;
 public final class ccb implements k68 {
-    public final u5b a;
+    public final v5b a;
     public final ArrayList b;
     public final Context c;
     public final lcb d;
 
-    public ccb(lcb lcbVar, u5b u5bVar, ArrayList arrayList, Context context) {
+    public ccb(lcb lcbVar, v5b v5bVar, ArrayList arrayList, Context context) {
         this.d = lcbVar;
-        this.a = u5bVar;
+        this.a = v5bVar;
         this.b = arrayList;
         this.c = context;
     }
@@ -285,8 +285,8 @@ public final class ccb implements k68 {
     public final void j() {
         int indexOf;
         lcb lcbVar = this.d;
-        u5b u5bVar = this.a;
-        if (u5bVar != null) {
+        v5b v5bVar = this.a;
+        if (v5bVar != null) {
             if (lcbVar.o0.y0 == null) {
                 return;
             }
@@ -302,7 +302,7 @@ public final class ccb implements k68 {
                     lcbVar.o(false);
                     return;
                 }
-                lcbVar.o0.H0 = new pwa(this, u5bVar, arrayList, (byte) 17);
+                lcbVar.o0.H0 = new pwa(this, v5bVar, arrayList, (byte) 17);
                 return;
             }
             lcbVar.o(false);

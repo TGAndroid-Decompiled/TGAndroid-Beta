@@ -30,7 +30,7 @@ public final class yad implements Continuation, z76, tq2, fme {
     public final Object b0(am2 am2Var) {
         switch (this.a) {
             case 2:
-                jg7 jg7Var = (jg7) am2Var.a(jg7.class);
+                kg7 kg7Var = (kg7) am2Var.a(kg7.class);
                 synchronized (pif.class) {
                     pif.a(new Object());
                 }

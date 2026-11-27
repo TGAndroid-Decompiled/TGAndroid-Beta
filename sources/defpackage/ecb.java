@@ -4,21 +4,21 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class ecb extends AnimatorListenerAdapter {
     public final byte a;
-    public final tbb b;
+    public final ubb b;
 
-    public ecb(tbb tbbVar, byte b) {
+    public ecb(ubb ubbVar, byte b) {
         this.a = b;
-        this.b = tbbVar;
+        this.b = ubbVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         byte b = this.a;
-        tbb tbbVar = this.b;
+        ubb ubbVar = this.b;
         switch (b) {
             case 0:
                 super.onAnimationEnd(animator);
-                lcb lcbVar = tbbVar.b;
+                lcb lcbVar = ubbVar.b;
                 g6b g6bVar = lcbVar.u1;
                 if (g6bVar != null) {
                     g6bVar.b();
@@ -29,7 +29,7 @@ public final class ecb extends AnimatorListenerAdapter {
                 return;
             default:
                 super.onAnimationEnd(animator);
-                g6b g6bVar2 = tbbVar.b.u1;
+                g6b g6bVar2 = ubbVar.b.u1;
                 if (g6bVar2 != null) {
                     g6bVar2.a(true);
                     return;

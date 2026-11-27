@@ -23,7 +23,7 @@ public final class w9a extends yfb implements is4 {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((w9a) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9c.a);
+        return ((w9a) create((ux2) obj, (zw2) obj2)).invokeSuspend(g9c.a);
     }
 
     @Override

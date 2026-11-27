@@ -43,7 +43,7 @@ public final class vb4 {
             lq3 downloadController = xb4Var.getDownloadController();
             r47 r47Var = (r47) obj;
             downloadController.getClass();
-            hl.c3(new ze7(downloadController, r47Var, i2, (byte) 22));
+            hl.c3(new bf7(downloadController, r47Var, i2, (byte) 22));
             downloadController.getMessagesStorage().a.c(new gq3(downloadController, r47Var, (byte) 0));
         } else if (i2 == -1) {
             LaunchActivity.F(2);

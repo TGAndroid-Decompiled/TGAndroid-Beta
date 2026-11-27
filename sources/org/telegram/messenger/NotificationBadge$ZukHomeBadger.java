@@ -8,7 +8,7 @@ public class NotificationBadge$ZukHomeBadger implements xm7 {
 
     @Override
     public final void a(int i) {
-        hl.c3(new pl7(this, qu6.j(i, "app_badge_count"), (byte) 3));
+        hl.c3(new ql7(this, qu6.j(i, "app_badge_count"), (byte) 4));
     }
 
     @Override

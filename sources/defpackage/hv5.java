@@ -3,6 +3,6 @@ public final class hv5 extends us4 implements ur4 {
     @Override
     public final Object invoke(Object obj) {
         ((iv5) this.receiver).l((Throwable) obj);
-        return f9c.a;
+        return g9c.a;
     }
 }

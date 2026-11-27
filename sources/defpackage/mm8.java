@@ -166,12 +166,12 @@ public abstract class mm8 extends FrameLayout {
         int i7 = g.get(i6, aob.w0(null, i6, false));
         int i8 = aob.He;
         int i9 = g.get(i8, aob.w0(null, i8, false));
-        final hh7 hh7Var = new hh7();
-        hh7Var.g = false;
-        hh7Var.r(ez3Var.j(z ? 1 : 0).settings.intensity, hh7Var.u);
-        hh7Var.n(true, i3, i5, i7, i9);
-        hh7Var.t(0);
-        final int f = hh7Var.f();
+        final ih7 ih7Var = new ih7();
+        ih7Var.g = false;
+        ih7Var.r(ez3Var.j(z ? 1 : 0).settings.intensity, ih7Var.u);
+        ih7Var.n(true, i3, i5, i7, i9);
+        ih7Var.t(0);
+        final int f = ih7Var.f();
         ez3Var.n(z ? 1 : 0, new ResultCallback() {
             @Override
             public final void onComplete(Object obj) {
@@ -182,10 +182,10 @@ public abstract class mm8 extends FrameLayout {
                     ez3 ez3Var2 = ez3.this;
                     if (longValue == ez3Var2.h(z ? 1 : 0) && bitmap != null) {
                         int i10 = ez3Var2.j(z ? 1 : 0).settings.intensity;
-                        hh7 hh7Var2 = hh7Var;
-                        hh7Var2.r(i10, bitmap);
-                        hh7Var2.s(f);
-                        hh7Var2.q(1.0f);
+                        ih7 ih7Var2 = ih7Var;
+                        ih7Var2.r(i10, bitmap);
+                        ih7Var2.s(f);
+                        ih7Var2.q(1.0f);
                     }
                 }
             }
@@ -198,7 +198,7 @@ public abstract class mm8 extends FrameLayout {
             public final void onError(Throwable th) {
             }
         });
-        return hh7Var;
+        return ih7Var;
     }
 
     private void setupCollage(c8b c8bVar) {
@@ -215,7 +215,7 @@ public abstract class mm8 extends FrameLayout {
     }
 
     private void setupImage(c8b c8bVar) {
-        Utilities.g.c(new h68(this, c8bVar, (byte) 19));
+        Utilities.g.c(new a58(this, c8bVar, (byte) 20));
     }
 
     public abstract void a();
@@ -315,7 +315,7 @@ public abstract class mm8 extends FrameLayout {
                 canvas.clipPath(path);
             }
             Drawable drawable = this.T;
-            if (!(drawable instanceof hh7) || ((hh7) drawable).u != null) {
+            if (!(drawable instanceof ih7) || ((ih7) drawable).u != null) {
                 f = this.Q.e(false, 1.0f);
             }
             Drawable drawable2 = this.S;
@@ -569,7 +569,7 @@ public abstract class mm8 extends FrameLayout {
         if (c8bVar.K) {
             setupImage(c8bVar);
             if (c8bVar.A0 == 0 && c8bVar.B0 == 0) {
-                c8bVar.y(new uk8((gbb) this, (byte) 3));
+                c8bVar.y(new uk8((hbb) this, (byte) 3));
             } else {
                 r();
             }
@@ -604,10 +604,10 @@ public abstract class mm8 extends FrameLayout {
         y(true);
     }
 
-    public final void n(c8b c8bVar, z3b z3bVar, long j) {
+    public final void n(c8b c8bVar, n3b n3bVar, long j) {
         this.d = c8bVar;
         if (c8bVar == null) {
-            t(null, z3bVar, j);
+            t(null, n3bVar, j);
             setupImage(null);
             setupCollage(null);
             u(null);
@@ -618,12 +618,12 @@ public abstract class mm8 extends FrameLayout {
         }
         if (c8bVar.v()) {
             setupImage(null);
-            t(null, z3bVar, j);
+            t(null, n3bVar, j);
             setupCollage(c8bVar);
         } else if (c8bVar.K) {
             setupImage(c8bVar);
             setupCollage(null);
-            t(c8bVar, z3bVar, j);
+            t(c8bVar, n3bVar, j);
             if (c8bVar.A0 == 0 && c8bVar.B0 == 0) {
                 c8bVar.y(new lm8(this, (byte) 0));
             } else {
@@ -631,7 +631,7 @@ public abstract class mm8 extends FrameLayout {
             }
         } else {
             setupCollage(null);
-            t(null, z3bVar, 0L);
+            t(null, n3bVar, 0L);
             setupImage(c8bVar);
             r();
         }
@@ -913,14 +913,14 @@ public abstract class mm8 extends FrameLayout {
                 z2 = true;
                 w(true);
             }
-            rbb rbbVar = ((gbb) this).D0;
-            vab vabVar = rbbVar.w1;
-            if (vabVar != null) {
-                c8b c8bVar2 = rbbVar.L1;
+            sbb sbbVar = ((hbb) this).D0;
+            wab wabVar = sbbVar.w1;
+            if (wabVar != null) {
+                c8b c8bVar2 = sbbVar.L1;
                 if (c8bVar2 != null && c8bVar2.y != null) {
                     z3 = z2;
                 }
-                vabVar.setHasAudio(z3);
+                wabVar.setHasAudio(z3);
             }
         }
     }
@@ -1060,7 +1060,7 @@ public abstract class mm8 extends FrameLayout {
         }
     }
 
-    public final void t(c8b c8bVar, z3b z3bVar, long j) {
+    public final void t(c8b c8bVar, n3b n3bVar, long j) {
         tl0 tl0Var;
         long j2;
         boolean z;
@@ -1076,7 +1076,7 @@ public abstract class mm8 extends FrameLayout {
             kfc kfcVar2 = new kfc();
             this.e = kfcVar2;
             kfcVar2.E = true;
-            kfcVar2.K = new pm3((ViewGroup) this, (Object) c8bVar, (Object) new Runnable[]{z3bVar}, (byte) 24);
+            kfcVar2.K = new pm3((ViewGroup) this, (Object) c8bVar, (Object) new Runnable[]{n3bVar}, (byte) 24);
             kec kecVar = this.n;
             if (kecVar != null) {
                 kecVar.clearAnimation();
@@ -1117,22 +1117,22 @@ public abstract class mm8 extends FrameLayout {
                 o00Var.a(this.n);
             } else {
                 kec kecVar4 = this.n;
-                if (z3bVar != null) {
+                if (n3bVar != null) {
                     f = 1.0f;
                 }
                 kecVar4.setAlpha(f);
                 addView(this.n, tre.e(-2, -2, 51));
             }
-            ii7 ii7Var = new ii7(this, (byte) 18);
+            ji7 ji7Var = new ji7(this, (byte) 18);
             b8b b8bVar = c8bVar.d1;
             if (b8bVar != null) {
-                ii7Var.a(b8bVar);
+                ji7Var.a(b8bVar);
             } else if (c8bVar.K && Build.VERSION.SDK_INT >= 24) {
-                Utilities.e.c(new y7b(c8bVar, ii7Var, (byte) 1));
+                Utilities.e.c(new y7b(c8bVar, ji7Var, (byte) 1));
             } else {
                 ?? obj = new Object();
                 c8bVar.d1 = obj;
-                ii7Var.a(obj);
+                ji7Var.a(obj);
             }
             File file = c8bVar.Z0;
             if (file == null) {
@@ -1193,8 +1193,8 @@ public abstract class mm8 extends FrameLayout {
             ksbVar3.o(false, null, 1L, 0.0f);
         }
         hl.r(this.L);
-        if (z3bVar != null) {
-            hl.c3(z3bVar);
+        if (n3bVar != null) {
+            hl.c3(n3bVar);
         }
     }
 
@@ -1373,9 +1373,9 @@ public abstract class mm8 extends FrameLayout {
                 if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                     if (motionEvent.getPointerCount() <= 1) {
                         this.r0 = false;
-                        rbb rbbVar = ((gbb) this).D0;
-                        rbbVar.p1.a(true, false, rbbVar.j0);
-                        rbbVar.p1.b(rbbVar.d1.getText());
+                        sbb sbbVar = ((hbb) this).D0;
+                        sbbVar.p1.a(true, false, sbbVar.j0);
+                        sbbVar.p1.b(sbbVar.d1.getText());
                     }
                     this.x0 = false;
                     this.s0 = false;

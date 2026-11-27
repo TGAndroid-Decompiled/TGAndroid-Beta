@@ -3,14 +3,14 @@ package defpackage;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-public final class e4a extends FrameLayout implements bl7 {
-    public final l09 a;
+public final class e4a extends FrameLayout implements cl7 {
+    public final m09 a;
     public final g4a b;
 
     public e4a(g4a g4aVar, Context context) {
         super(context);
         this.b = g4aVar;
-        this.a = new l09((byte) 3);
+        this.a = new m09((byte) 3);
     }
 
     @Override
@@ -34,9 +34,9 @@ public final class e4a extends FrameLayout implements bl7 {
             if (currentPeerView != null) {
                 currentPeerView.invalidate();
             }
-            zbb zbbVar = lcbVar.w;
-            if (zbbVar != null) {
-                zbbVar.invalidate();
+            acb acbVar = lcbVar.w;
+            if (acbVar != null) {
+                acbVar.invalidate();
             }
         }
     }
@@ -73,9 +73,9 @@ public final class e4a extends FrameLayout implements bl7 {
                 if (currentPeerView != null) {
                     currentPeerView.invalidate();
                 }
-                zbb zbbVar = lcbVar.w;
-                if (zbbVar != null) {
-                    zbbVar.invalidate();
+                acb acbVar = lcbVar.w;
+                if (acbVar != null) {
+                    acbVar.invalidate();
                 }
             }
         }

@@ -22,7 +22,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class di0 implements wh0 {
-    public static final j09 k;
+    public static final k09 k;
     public static wo8 l;
     public static di0 m;
     public static boolean n;
@@ -393,21 +393,21 @@ public final class di0 implements wh0 {
 
     public final void o(List list, ci0 ci0Var) {
         if (j()) {
-            i09 i09Var = new i09((byte) 0);
+            j09 j09Var = new j09((byte) 0);
             if (list != null && !list.isEmpty()) {
                 HashSet hashSet = new HashSet();
                 Iterator it = list.iterator();
                 while (it.hasNext()) {
-                    j09 j09Var = (j09) it.next();
-                    if (!"play_pass_subs".equals(j09Var.b)) {
-                        hashSet.add(j09Var.b);
+                    k09 k09Var = (k09) it.next();
+                    if (!"play_pass_subs".equals(k09Var.b)) {
+                        hashSet.add(k09Var.b);
                     }
                 }
                 if (hashSet.size() <= 1) {
                     vjd p = vjd.p(list);
-                    i09Var.b = p;
+                    j09Var.b = p;
                     if (p != null) {
-                        this.d.c(new k09(i09Var), new tg0(ci0Var, (byte) 1));
+                        this.d.c(new l09(j09Var), new tg0(ci0Var, (byte) 1));
                         return;
                     }
                     lq5.j("Product list must be set to a non empty list.");

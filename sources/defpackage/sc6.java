@@ -12,9 +12,9 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.e;
-public final class sc6 extends wma implements bl7 {
+public final class sc6 extends wma implements cl7 {
     public final byte g0 = 0;
-    public final l09 h0;
+    public final m09 h0;
     public boolean i0;
     public final e j0;
 
@@ -22,7 +22,7 @@ public final class sc6 extends wma implements bl7 {
         super(context, null);
         this.j0 = uc6Var;
         this.i0 = true;
-        this.h0 = new l09((byte) 3);
+        this.h0 = new m09((byte) 3);
     }
 
     public final void X() {
@@ -372,16 +372,16 @@ public final class sc6 extends wma implements bl7 {
     @Override
     public final void k(int i, View view) {
         byte b = this.g0;
-        l09 l09Var = this.h0;
+        m09 m09Var = this.h0;
         switch (b) {
             case 0:
-                l09Var.b = 0;
+                m09Var.b = 0;
                 return;
             default:
                 if (i == 1) {
-                    l09Var.c = 0;
+                    m09Var.c = 0;
                 } else {
-                    l09Var.b = 0;
+                    m09Var.b = 0;
                 }
                 qqc qqcVar = ((uqc) this.j0).t0;
                 if (qqcVar != null) {
@@ -545,12 +545,12 @@ public final class sc6 extends wma implements bl7 {
                 this.h0.b = i;
                 return;
             default:
-                l09 l09Var = this.h0;
+                m09 m09Var = this.h0;
                 if (i2 == 1) {
-                    l09Var.c = i;
+                    m09Var.c = i;
                     return;
                 } else {
-                    l09Var.b = i;
+                    m09Var.b = i;
                     return;
                 }
         }
@@ -564,7 +564,7 @@ public final class sc6 extends wma implements bl7 {
     public sc6(uqc uqcVar, Context context) {
         super(context, null);
         this.j0 = uqcVar;
-        this.h0 = new l09((byte) 3);
+        this.h0 = new m09((byte) 3);
     }
 
     private final void Z(View view) {

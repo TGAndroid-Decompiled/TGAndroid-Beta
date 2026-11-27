@@ -30,7 +30,7 @@ public final class x18 implements Runnable {
                 pVar.h0();
                 return;
             default:
-                pVar.getMessagesController().b4 = null;
+                pVar.getMessagesController().c4 = null;
                 if (pVar.g1 == 3 && !pVar.isFinishing()) {
                     pVar.g1 = 4;
                     z28 z28Var = pVar.a1;

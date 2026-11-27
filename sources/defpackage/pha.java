@@ -57,7 +57,7 @@ public final class pha extends iu5 {
     @Override
     public final boolean o(RecyclerView recyclerView, f89 f89Var, f89 f89Var2) {
         bja bjaVar;
-        u5b u5bVar;
+        v5b v5bVar;
         ArrayList arrayList;
         j79 adapter = recyclerView.getAdapter();
         if (adapter instanceof bja) {
@@ -71,8 +71,8 @@ public final class pha extends iu5 {
         int b = f89Var.b();
         int b2 = f89Var2.b();
         ArrayList arrayList2 = bjaVar.E;
-        if (!bjaVar.h && (u5bVar = bjaVar.s) != null && b >= 0 && b < u5bVar.i.size() && b2 >= 0 && b2 < bjaVar.s.i.size()) {
-            if (!(bjaVar.s instanceof o5b) && bjaVar.n <= 0) {
+        if (!bjaVar.h && (v5bVar = bjaVar.s) != null && b >= 0 && b < v5bVar.i.size() && b2 >= 0 && b2 < bjaVar.s.i.size()) {
+            if (!(bjaVar.s instanceof p5b) && bjaVar.n <= 0) {
                 arrayList = new ArrayList(bjaVar.s.g);
             } else {
                 arrayList = new ArrayList();
@@ -97,7 +97,7 @@ public final class pha extends iu5 {
 
     @Override
     public final void q(f89 f89Var, int i) {
-        u5b u5bVar;
+        v5b v5bVar;
         ArrayList arrayList;
         boolean z;
         jga jgaVar = this.e;
@@ -109,9 +109,9 @@ public final class pha extends iu5 {
             if (jgaVar2 != null && (jgaVar2.getAdapter() instanceof bja)) {
                 bja bjaVar = (bja) this.e.getAdapter();
                 ArrayList arrayList2 = bjaVar.E;
-                if (!bjaVar.h && (u5bVar = bjaVar.s) != null && bjaVar.F) {
-                    if (!(u5bVar instanceof o5b) && bjaVar.n <= 0) {
-                        arrayList = u5bVar.g;
+                if (!bjaVar.h && (v5bVar = bjaVar.s) != null && bjaVar.F) {
+                    if (!(v5bVar instanceof p5b) && bjaVar.n <= 0) {
+                        arrayList = v5bVar.g;
                     } else {
                         arrayList = new ArrayList();
                         for (int i2 = 0; i2 < bjaVar.s.i.size(); i2++) {

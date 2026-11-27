@@ -184,7 +184,7 @@ public final class lu3 implements h69, n7, ncc, fd, b86, dz7, on5, t93, WriteToS
                 ((bg8) obj).B(((n64) obj2).a.Q);
                 return;
             case 12:
-                ((bg8) obj).L((uf7) obj2);
+                ((bg8) obj).L((vf7) obj2);
                 return;
             default:
                 ((bg8) obj).G((j99) obj2);
@@ -463,7 +463,7 @@ public final class lu3 implements h69, n7, ncc, fd, b86, dz7, on5, t93, WriteToS
                 d0.getConnectionsManager().sendRequest(new TLRPC.TL_messages_clearRecentStickers(), new fp6(d0, (byte) 2));
                 return;
             case 23:
-                ((ze7) obj).run();
+                ((bf7) obj).run();
                 return;
             default:
                 ((by4) obj).F0();

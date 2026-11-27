@@ -42,7 +42,7 @@ public final class mdb extends AsyncTask {
                 return;
             }
             pVar.x0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) ko9Var.c, (String) ko9Var.b);
-            hl.c3(new fe7(aj3Var, (byte) 27));
+            hl.c3(new ge7(aj3Var, (byte) 27));
             return;
         }
         qdb qdbVar = ndbVar.b;

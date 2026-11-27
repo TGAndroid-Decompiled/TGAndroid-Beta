@@ -18,11 +18,11 @@ public abstract class cma extends o79 {
     }
 
     @Override
-    public boolean a(f89 f89Var, l09 l09Var, l09 l09Var2) {
+    public boolean a(f89 f89Var, m09 m09Var, m09 m09Var2) {
         int i;
         int i2;
-        if (l09Var != null && ((i = l09Var.b) != (i2 = l09Var2.b) || l09Var.c != l09Var2.c || this.n)) {
-            return r(f89Var, l09Var, i, l09Var.c, i2, l09Var2.c);
+        if (m09Var != null && ((i = m09Var.b) != (i2 = m09Var2.b) || m09Var.c != m09Var2.c || this.n)) {
+            return r(f89Var, m09Var, i, m09Var.c, i2, m09Var2.c);
         }
         p(f89Var);
         return true;
@@ -30,11 +30,11 @@ public abstract class cma extends o79 {
 
     public abstract void p(f89 f89Var);
 
-    public abstract boolean q(f89 f89Var, f89 f89Var2, l09 l09Var, int i, int i2, int i3, int i4);
+    public abstract boolean q(f89 f89Var, f89 f89Var2, m09 m09Var, int i, int i2, int i3, int i4);
 
-    public abstract boolean r(f89 f89Var, l09 l09Var, int i, int i2, int i3, int i4);
+    public abstract boolean r(f89 f89Var, m09 m09Var, int i, int i2, int i3, int i4);
 
-    public abstract void s(f89 f89Var, l09 l09Var);
+    public abstract void s(f89 f89Var, m09 m09Var);
 
     public boolean t(f89 f89Var) {
         if (this.m && !f89Var.h()) {

@@ -38,7 +38,7 @@ public final class dwc implements ewc {
             this.f = new ey7((t << 1) * i3 * g);
             int i6 = ((i4 * i2) << 3) / t;
             jo4 jo4Var = new jo4();
-            jo4Var.s = dg7.n("audio/raw");
+            jo4Var.s = eg7.n("audio/raw");
             jo4Var.i = i6;
             jo4Var.j = i6;
             jo4Var.t = (max << 1) * i3;

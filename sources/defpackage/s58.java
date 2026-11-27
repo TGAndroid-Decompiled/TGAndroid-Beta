@@ -1,46 +1,29 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-public final class s58 implements h49 {
-    public final o68 a;
+import android.content.Context;
+import android.graphics.Bitmap;
+public final class s58 extends v8b {
+    public final lcb I;
+    public final o68 J;
 
-    public s58(o68 o68Var) {
-        this.a = o68Var;
+    public s58(o68 o68Var, Context context, u58 u58Var, x53 x53Var, lcb lcbVar) {
+        super(context, u58Var, x53Var);
+        this.J = o68Var;
+        this.I = lcbVar;
     }
 
     @Override
-    public final void e(View view, w49 w49Var, boolean z, boolean z2) {
-        fd7 fd7Var = new fd7(this, w49Var, view, (byte) 24);
-        if (!z) {
-            this.a.d0(fd7Var);
-        } else {
-            fd7Var.run();
+    public final void b(boolean z) {
+        k68 k68Var = this.J.A1;
+        if (k68Var != null) {
+            lcb lcbVar = ((ccb) k68Var).d;
+            lcbVar.i1 = z;
+            lcbVar.U();
         }
     }
 
     @Override
-    public final boolean j() {
-        return true;
-    }
-
-    @Override
-    public final boolean k() {
-        ((ccb) this.a.A1).b(false);
-        return false;
-    }
-
-    @Override
-    public final boolean p() {
-        return false;
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void m(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
+    public final Bitmap getPlayingBitmap() {
+        return this.J.getPlayingBitmap();
     }
 }

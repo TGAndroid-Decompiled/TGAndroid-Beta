@@ -89,7 +89,7 @@ public final class b65 implements View.OnClickListener {
                 kcc kccVar = (kcc) obj5;
                 String[] strArr = (String[]) obj4;
                 boolean[] zArr = (boolean[]) obj3;
-                jl7[] jl7VarArr = (jl7[]) obj2;
+                kl7[] kl7VarArr = (kl7[]) obj2;
                 vnb vnbVar = (vnb) obj;
                 if (!c51Var.R) {
                     if (zpcVar != null && zpcVar.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
@@ -97,7 +97,7 @@ public final class b65 implements View.OnClickListener {
                         return;
                     }
                     c51Var.setLoading(true);
-                    kccVar.a(strArr[0], Boolean.valueOf(zArr[0]), new v58(c51Var, jl7VarArr, vnbVar, (byte) 13));
+                    kccVar.a(strArr[0], Boolean.valueOf(zArr[0]), new w58(c51Var, kl7VarArr, vnbVar, (byte) 13));
                     return;
                 }
                 return;

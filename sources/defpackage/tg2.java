@@ -53,7 +53,7 @@ public final class tg2 extends ReplacementSpan {
             case 1:
                 return ((q37) obj).y;
             case 2:
-                return (int) ((pi7) obj).i2;
+                return (int) ((qi7) obj).i2;
             case 3:
                 return ((mv3) obj).getSize(paint, charSequence, i, i2, fontMetricsInt);
             default:

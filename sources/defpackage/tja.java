@@ -15,7 +15,7 @@ public final class tja extends yfb implements ks4 {
         tja tjaVar = new tja(this.d, (zw2) obj3);
         tjaVar.b = (nm4) obj;
         tjaVar.c = (Throwable) obj2;
-        return tjaVar.invokeSuspend(f9c.a);
+        return tjaVar.invokeSuspend(g9c.a);
     }
 
     @Override
@@ -46,6 +46,6 @@ public final class tja extends yfb implements ks4 {
                 return vx2Var;
             }
         }
-        return f9c.a;
+        return g9c.a;
     }
 }

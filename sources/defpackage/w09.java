@@ -1,434 +1,254 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.text.InputFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.tgnet.ConnectionsManager;
+import android.widget.ImageView;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.e;
-import org.telegram.ui.LaunchActivity;
-public final class w09 extends e implements fn7 {
-    public static id f;
-    public q9c a;
-    public final ArrayList b;
-    public sla c;
-    public int d;
-    public boolean e;
+public final class w09 extends FrameLayout {
+    public final rb0 a;
+    public final ImageReceiver b;
+    public final tpa c;
+    public final og2 d;
+    public final ImageView e;
+    public final vnb f;
+    public boolean h;
+    public final int[] n;
+    public boolean r;
 
-    public w09() {
-        super(null);
-        this.b = new ArrayList();
-        this.e = true;
-    }
-
-    public static int Y(w09 w09Var) {
-        return w09Var.currentAccount;
-    }
-
-    public static int Z(w09 w09Var) {
-        return w09Var.currentAccount;
-    }
-
-    public static vnb a0(w09 w09Var) {
-        return w09Var.resourceProvider;
-    }
-
-    public static void g0(Activity activity, int i, String str, a19 a19Var, vnb vnbVar, pcc pccVar) {
-        View view;
-        boolean z;
-        AlertDialog$Builder alertDialog$Builder;
+    public w09(vnb vnbVar, Context context, boolean z) {
+        super(context);
+        int i;
+        float f;
         int i2;
+        this.a = new rb0((vnb) null);
+        this.b = new ImageReceiver(this);
+        this.n = new int[1];
+        this.f = vnbVar;
+        setWillNotDraw(false);
+        if (z) {
+            i = 42;
+        } else {
+            i = 16;
+        }
+        tpa tpaVar = new tpa(context);
+        this.c = tpaVar;
+        tpaVar.setLines(2);
+        tpaVar.setEllipsize(TextUtils.TruncateAt.END);
+        yob.X(tpaVar, aob.z6, vnbVar);
+        tpaVar.setTextSize(1, 14.0f);
+        boolean z2 = ob6.a0;
+        if (z2) {
+            f = i;
+        } else {
+            f = 64.0f;
+        }
+        addView(tpaVar, tre.d(-1, -2.0f, 7, f, 7.0f, z2 ? 64.0f : i, 0.0f));
+        if (z) {
+            ImageView imageView = new ImageView(context);
+            this.e = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            imageView.setImageResource(2131231631);
+            yob.s(imageView, aob.Li, null, PorterDuff.Mode.MULTIPLY);
+            imageView.setAlpha(0.0f);
+            if (ob6.a0) {
+                i2 = 3;
+            } else {
+                i2 = 5;
+            }
+            addView(imageView, tre.e(50, 50, i2 | 112));
+        } else {
+            this.e = null;
+        }
+        og2 og2Var = new og2(21, vnbVar, getContext());
+        this.d = og2Var;
+        og2Var.b(-1, aob.d6, aob.k7);
+        og2Var.setDrawUnchecked(false);
+        og2Var.setDrawBackgroundAsArc(3);
+        addView(og2Var, tre.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+    }
+
+    public final void a(a19 a19Var, String str, boolean z) {
+        boolean z2;
+        TLRPC.WebPage webPage;
+        TLRPC.Photo photo;
+        long j;
         String str2;
-        int i3;
-        ?? r10;
-        e Q = LaunchActivity.Q();
-        Activity W = hl.W(activity);
-        if (W != null) {
-            view = W.getCurrentFocus();
+        jn5 jn5Var;
+        int[] iArr;
+        int length;
+        String str3 = str;
+        if (a19Var != null) {
+            z2 = a19Var.g;
         } else {
-            view = null;
+            z2 = false;
         }
-        if (Q != null && (Q.getFragmentView() instanceof wma) && ((wma) Q.getFragmentView()).Q() > hl.L(20.0f)) {
-            z = true;
-        } else {
-            z = false;
+        this.h = z2;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (str3 != null && str3.length() > 0 && !str3.startsWith("/")) {
+            str3 = "/".concat(str3);
         }
-        id[] idVarArr = new id[1];
-        if (z) {
-            alertDialog$Builder = new AlertDialog$Builder(0, vnbVar, activity);
-        } else {
-            alertDialog$Builder = new AlertDialog$Builder(0, vnbVar, activity);
-        }
-        AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
-        if (a19Var == null && str == null) {
-            i2 = 2131752640;
-        } else {
-            i2 = 2131752654;
-        }
-        String M0 = ob6.M0(i2, null);
-        id idVar = alertDialog$Builder2.a;
-        idVar.S = M0;
-        final f42 f42Var = new f42(activity, vnbVar);
-        ls6.d0(i).O(hl.F0(), true);
-        f42Var.setTextSize(1, 18.0f);
-        if (a19Var == null) {
-            if (str == null) {
-                str2 = "";
+        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) a19Var.b);
+        spannableStringBuilder.setSpan(new y7c(hl.o()), 0, spannableStringBuilder.length(), 33);
+        int i = aob.G6;
+        vnb vnbVar = this.f;
+        spannableStringBuilder.setSpan(new ho4(i, vnbVar), 0, spannableStringBuilder.length(), 33);
+        if (str3 != null) {
+            ho4 ho4Var = new ho4(aob.o6, vnbVar);
+            if (str3.length() <= 0) {
+                length = 1;
             } else {
-                str2 = str;
+                length = str3.length();
             }
-        } else {
-            str2 = a19Var.b;
+            spannableStringBuilder.setSpan(ho4Var, 0, Math.min(length, spannableStringBuilder.length()), 33);
         }
-        f42Var.setText(str2);
-        int i4 = aob.j5;
-        yob.X(f42Var, i4, vnbVar);
-        yob.l(f42Var, 34, aob.Oi, vnbVar);
-        f42Var.setHintText(ob6.M0(2131752642, null));
-        f42Var.setSingleLine(true);
-        f42Var.setFocusable(true);
-        yob.F(f42Var, aob.k6, aob.l6, aob.p7, vnbVar);
-        f42Var.setImeOptions(6);
-        f42Var.setBackgroundDrawable(null);
-        f42Var.setPadding(0, 0, hl.L(42.0f), 0);
-        f42Var.setFilters(new InputFilter[]{new jc6((byte) 1)});
-        LinearLayout m = bs2.m(activity, 1);
-        FrameLayout frameLayout = new FrameLayout(activity);
-        TextView textView = new TextView(activity);
-        yob.X(textView, i4, vnbVar);
-        textView.setTextSize(1, 16.0f);
-        if (a19Var == null && str == null) {
-            i3 = 2131752641;
-        } else {
-            i3 = 2131752655;
+        r47 r47Var = a19Var.e;
+        tpa tpaVar = this.c;
+        if (r47Var != null) {
+            spannableStringBuilder.append((CharSequence) " ");
+            CharSequence charSequence = a19Var.e.z;
+            if (TextUtils.isEmpty(charSequence)) {
+                charSequence = a19Var.e.v;
+            }
+            CharSequence m = pv3.m(new SpannableStringBuilder(charSequence), tpaVar.getPaint().getFontMetricsInt(), false, null, 0);
+            TLRPC.Message message = a19Var.e.k;
+            if (message != null) {
+                r47.A5(m, message.entities, tpaVar.getPaint().getFontMetricsInt(), false);
+            }
+            spannableStringBuilder.append(m);
         }
-        textView.setText(ob6.M0(i3, null));
-        frameLayout.addView(textView, tre.e(-1, -2, 83));
-        TextView textView2 = new TextView(activity);
-        yob.X(textView2, aob.q7, vnbVar);
-        bs2.r(16.0f, 1, 2131752643, textView2, null);
-        textView2.setAlpha(0.0f);
-        frameLayout.addView(textView2, tre.e(-1, -2, 83));
-        ku0 ku0Var = new ku0(r1, new ValueAnimator[1], textView2, textView, (byte) 16);
-        Runnable[] runnableArr = {new uk8(ku0Var, (byte) 21)};
-        f42Var.addTextChangedListener(new ry(textView2, runnableArr, false, (byte) 10));
-        m.addView(frameLayout, tre.k(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
-        m.addView(f42Var, tre.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
-        alertDialog$Builder2.n(m);
-        idVar.a = hl.L(292.0f);
-        f42Var.setOnEditorActionListener(new t09(f42Var, i, a19Var, textView2, ku0Var, pccVar, idVarArr, view));
-        alertDialog$Builder2.j(ob6.M0(2131751319, null), new zz5(f42Var, ku0Var, i, a19Var, textView2, pccVar));
-        alertDialog$Builder2.g(ob6.M0(2131752570, null), new iy8((byte) 5));
-        if (z) {
-            f = idVar;
-            r10 = 0;
-            idVarArr[0] = idVar;
-            idVar.setOnDismissListener(new i41(view, (byte) 2));
-            f.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    byte b = r2;
-                    f42 f42Var2 = f42Var;
-                    switch (b) {
-                        case 0:
-                            f42Var2.requestFocus();
-                            hl.E3(f42Var2);
-                            return;
-                        default:
-                            f42Var2.requestFocus();
-                            hl.E3(f42Var2);
-                            return;
-                    }
+        if (a19Var.a() > 1) {
+            spannableStringBuilder.append((CharSequence) "  ");
+            int L = hl.q.x - hl.L(80.0f);
+            int i2 = t0.d;
+            SpannableString spannableString = new SpannableString("+");
+            t0 t0Var = new t0(a19Var.a() - 1);
+            this.n[0] = (int) (((pkb) t0Var.c).c + hl.L(10.0f));
+            spannableString.setSpan(t0Var, 0, spannableString.length(), 33);
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, tpaVar.getPaint(), (L * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
+            if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
+                spannableStringBuilder2.append((CharSequence) "  ");
+            }
+            spannableStringBuilder2.append((CharSequence) spannableString);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        tpaVar.setText(spannableStringBuilder);
+        int i3 = yac.t0;
+        TLRPC.MessageMedia m1 = r47.m1(a19Var.e);
+        long j2 = 0;
+        ImageReceiver imageReceiver = this.b;
+        if (m1 != null) {
+            TLRPC.Photo photo2 = m1.photo;
+            if (photo2 != null) {
+                TLRPC.PhotoSize w = xb4.w(photo2.sizes, hl.L(36.0f), true, null, true);
+                jn5 f = jn5.f(w, m1.photo);
+                r47 r47Var2 = a19Var.e;
+                BitmapDrawable bitmapDrawable = r47Var2.I1;
+                if (w != null) {
+                    j2 = w.size;
                 }
-            });
-            f.q(250L);
-        } else {
-            r10 = 0;
-            idVar.P = new ii7(f42Var, (byte) 25);
-            idVarArr[0] = idVar;
-            idVar.setOnDismissListener(new dl8(f42Var, (byte) 3));
-            idVarArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    byte b = r2;
-                    f42 f42Var2 = f42Var;
-                    switch (b) {
-                        case 0:
-                            f42Var2.requestFocus();
-                            hl.E3(f42Var2);
-                            return;
-                        default:
-                            f42Var2.requestFocus();
-                            hl.E3(f42Var2);
-                            return;
-                    }
+                imageReceiver.c0(f, "36_36", bitmapDrawable, j2, null, r47Var2, 0);
+                imageReceiver.q0(hl.L(4.0f));
+            } else if (m1.document != null && (r47.K4(a19Var.e.k) || a19Var.e.s4())) {
+                TLRPC.PhotoSize w2 = xb4.w(m1.document.thumbs, hl.L(36.0f), true, null, true);
+                TLRPC.Document document = m1.document;
+                if (w2 == null) {
+                    jn5 b = jn5.b(document);
+                    j = m1.document.size;
+                    jn5Var = b;
+                    str2 = "g";
+                } else {
+                    jn5 f2 = jn5.f(w2, document);
+                    j = w2.size;
+                    str2 = "36_36";
+                    jn5Var = f2;
                 }
-            });
-            idVarArr[0].show();
+                long j3 = j;
+                r47 r47Var3 = a19Var.e;
+                imageReceiver.c0(jn5Var, str2, r47Var3.I1, j3, null, r47Var3, 0);
+                imageReceiver.q0(hl.L(4.0f));
+            }
+            this.r = z;
+            invalidate();
         }
-        idVarArr[r10].k0 = r10;
-        f42Var.setSelection(f42Var.getText().length());
+        if (m1 != null && (webPage = m1.webpage) != null && (photo = webPage.photo) != null) {
+            TLRPC.PhotoSize w3 = xb4.w(photo.sizes, hl.L(36.0f), true, null, true);
+            jn5 f3 = jn5.f(w3, m1.webpage.photo);
+            BitmapDrawable bitmapDrawable2 = a19Var.e.I1;
+            if (w3 != null) {
+                j2 = w3.size;
+            }
+            imageReceiver.c0(f3, "36_36", bitmapDrawable2, j2, null, m1.webpage, 0);
+            imageReceiver.q0(hl.L(4.0f));
+        } else {
+            TLRPC.User f4 = yac.h(i3).f();
+            rb0 rb0Var = this.a;
+            rb0Var.q(f4);
+            imageReceiver.U(yac.h(i3).f(), rb0Var, null);
+            imageReceiver.q0(hl.L(36.0f));
+        }
+        this.r = z;
+        invalidate();
     }
 
     @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonDrawable(new gd0(false));
-        this.simpleActionBar.setTitle(ob6.M0(2131752664, null));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new rn8(this, (byte) 7));
-        rla r = this.simpleActionBar.r();
-        sla a = r.a(1, 2131232121);
-        this.c = a;
-        a.setContentDescription(ob6.M0(2131751300, null));
-        r.a(2, 2131232113).setContentDescription(ob6.M0(2131751563, null));
-        b84 b84Var = new b84(context, null, (byte) 2);
-        q9c q9cVar = new q9c(this, new icc(this) {
-            public final w09 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void a(Object obj, Object obj2) {
-                byte b = r2;
-                w09 w09Var = this.b;
-                switch (b) {
-                    case 0:
-                        w09Var.e0((ArrayList) obj, (l9c) obj2);
-                        return;
-                    default:
-                        w09Var.i0(((Integer) obj).intValue(), (ArrayList) obj2);
-                        return;
-                }
-            }
-        }, new r09(this), new r09(this));
-        this.a = q9cVar;
-        q9cVar.s1();
-        this.a.setSectionsDrawBackground(true);
-        q9c q9cVar2 = this.a;
-        q9cVar2.g3.r = false;
-        q9cVar2.F1(new icc(this) {
-            public final w09 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void a(Object obj, Object obj2) {
-                byte b = r2;
-                w09 w09Var = this.b;
-                switch (b) {
-                    case 0:
-                        w09Var.e0((ArrayList) obj, (l9c) obj2);
-                        return;
-                    default:
-                        w09Var.i0(((Integer) obj).intValue(), (ArrayList) obj2);
-                        return;
-                }
-            }
-        }, false);
-        b84Var.addView(this.a, tre.c(-1.0f, -1));
-        this.fragmentView = b84Var;
-        return b84Var;
-    }
-
-    public final void d0() {
-        this.b.clear();
-        hl.d0(this.a, new bm0((byte) 23));
-        this.simpleActionBar.y();
-        this.a.A1(false);
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        q9c q9cVar;
-        l9c l9cVar;
-        if (i == jn7.F1 && (q9cVar = this.a) != null && (l9cVar = q9cVar.g3) != null) {
-            l9cVar.O(true);
+    public final void onDraw(Canvas canvas) {
+        int L;
+        float f;
+        if (ob6.a0) {
+            L = getMeasuredWidth() - hl.L(51.0f);
+        } else {
+            L = hl.L(15.0f);
         }
-    }
-
-    public final void e0(ArrayList arrayList, l9c l9cVar) {
-        String M0 = ob6.M0(2131752664, null);
-        String M02 = ob6.M0(2131752651, null);
-        b8c b8cVar = new b8c(2);
-        b8cVar.m = M0;
-        b8cVar.p = M02;
-        b8cVar.n = "RestrictedEmoji";
-        b8cVar.o = "📝";
-        arrayList.add(b8cVar);
-        l9cVar.V();
-        b19 f2 = b19.f(this.currentAccount);
-        ArrayList arrayList2 = f2.b;
-        int i = 0;
-        int i2 = 0;
-        int i3 = 0;
-        for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-            if (i2 == 0 && !"hello".equalsIgnoreCase(((a19) arrayList2.get(i4)).b)) {
-                i2 = 0;
+        float f2 = L;
+        ImageReceiver imageReceiver = this.b;
+        imageReceiver.i0(f2, hl.L(7.0f), hl.L(36.0f), hl.L(36.0f));
+        imageReceiver.h(canvas, null);
+        super.onDraw(canvas);
+        if (this.r) {
+            Paint U0 = aob.U0("paintDivider", this.f);
+            if (U0 == null) {
+                U0 = aob.j0;
+            }
+            Paint paint = U0;
+            float f3 = 64.0f;
+            if (ob6.a0) {
+                f = 0.0f;
             } else {
-                i2 = 1;
+                f = 64.0f;
             }
-            if (i3 == 0 && !"away".equalsIgnoreCase(((a19) arrayList2.get(i4)).b)) {
-                i3 = 0;
-            } else {
-                i3 = 1;
+            float L2 = hl.L(f);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width = getWidth();
+            if (!ob6.a0) {
+                f3 = 0.0f;
             }
-            if (i2 != 0 && i3 != 0) {
-                break;
-            }
-        }
-        if (arrayList2.size() + (i2 ^ 1) + (i3 ^ 1) < uc7.s1(f2.a).k4.i2.f()) {
-            b8c c = b8c.c(1, 2131232427, ob6.M0(2131752663, null));
-            c.r = true;
-            arrayList.add(c);
-        }
-        this.d = l9cVar.M();
-        ArrayList arrayList3 = b19.f(this.currentAccount).b;
-        int size = arrayList3.size();
-        while (i < size) {
-            Object obj = arrayList3.get(i);
-            i++;
-            a19 a19Var = (a19) obj;
-            b8c b8cVar2 = new b8c(16);
-            b8cVar2.H = a19Var;
-            b8cVar2.L(this.b.contains(Integer.valueOf(a19Var.a)));
-            arrayList.add(b8cVar2);
-        }
-        l9cVar.L();
-        l9cVar.U();
-        arrayList.add(b8c.C(ob6.M0(2131752662, null)));
-    }
-
-    public final void f0(b8c b8cVar, View view) {
-        if (b8cVar.d == 1) {
-            g0(getParentActivity(), this.currentAccount, null, null, getResourceProvider(), new ii7(this, (byte) 24));
-        } else if (b8cVar.a == 16 && (b8cVar.H instanceof a19)) {
-            if (!this.b.isEmpty()) {
-                h0(b8cVar, view);
-                return;
-            }
-            a19 a19Var = (a19) b8cVar.H;
-            if (!a19Var.g) {
-                Bundle j = qu6.j(5, "chatMode");
-                j.putLong("user_id", getUserConfig().e());
-                j.putString("quick_reply", a19Var.b);
-                zu1 zu1Var = new zu1(j);
-                zu1Var.Mb(a19Var.a);
-                presentFragment(zu1Var);
-            }
+            canvas.drawRect(L2, measuredHeight, width - hl.L(f3), getMeasuredHeight(), paint);
         }
     }
 
     @Override
-    public final d79 getListViewForSimpleGlass() {
-        return this.a;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(50.0f) + (this.r ? 1 : 0), 1073741824));
     }
 
-    public final void h0(b8c b8cVar, View view) {
-        boolean z;
-        a19 a19Var = (a19) b8cVar.H;
-        v09 v09Var = (v09) view;
-        Integer valueOf = Integer.valueOf(a19Var.a);
-        ArrayList arrayList = this.b;
-        boolean contains = arrayList.contains(valueOf);
-        int i = a19Var.a;
-        if (contains) {
-            arrayList.remove(Integer.valueOf(i));
+    public void setReorder(boolean z) {
+        float f;
+        ViewPropertyAnimator animate = this.e.animate();
+        if (z && !this.h) {
+            f = 1.0f;
         } else {
-            arrayList.add(Integer.valueOf(i));
+            f = 0.0f;
         }
-        this.a.A1(!arrayList.isEmpty());
-        boolean contains2 = arrayList.contains(Integer.valueOf(a19Var.a));
-        b8cVar.e = contains2;
-        v09Var.d.a(contains2, true);
-        if (this.simpleActionBar.z() == arrayList.isEmpty()) {
-            boolean isEmpty = arrayList.isEmpty();
-            jla jlaVar = this.simpleActionBar;
-            if (isEmpty) {
-                jlaVar.y();
-            } else {
-                jlaVar.L();
-            }
-        }
-        this.simpleActionBar.H(Math.max(1, arrayList.size()), true);
-        boolean z2 = false;
-        if (arrayList.size() == 1) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z) {
-            a19 c = b19.f(this.currentAccount).c(((Integer) arrayList.get(0)).intValue());
-            if (c != null && !b19.g(c.b)) {
-                z2 = true;
-            }
-            z = z2;
-        }
-        if (this.e != z) {
-            this.e = z;
-            this.c.Y(z, true);
-        }
-    }
-
-    public final void i0(int i, ArrayList arrayList) {
-        if (i == this.d) {
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                if (((b8c) arrayList.get(i2)).H instanceof a19) {
-                    ((a19) ((b8c) arrayList.get(i2)).H).c = i2;
-                }
-            }
-            b19 f2 = b19.f(this.currentAccount);
-            ArrayList arrayList2 = f2.b;
-            ArrayList arrayList3 = new ArrayList();
-            for (int i3 = 0; i3 < arrayList2.size(); i3 = qd4.g(((a19) arrayList2.get(i3)).a, i3, 1, arrayList3)) {
-            }
-            Collections.sort(arrayList2, new qq7((byte) 12));
-            for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                if (((a19) arrayList2.get(i4)).a != ((Integer) arrayList3.get(i4)).intValue()) {
-                    TLRPC.TL_messages_reorderQuickReplies tL_messages_reorderQuickReplies = new TLRPC.TL_messages_reorderQuickReplies();
-                    for (int i5 = 0; i5 < arrayList2.size(); i5 = qd4.g(((a19) arrayList2.get(i5)).a, i5, 1, tL_messages_reorderQuickReplies.order)) {
-                    }
-                    ConnectionsManager.getInstance(f2.a).sendRequest(tL_messages_reorderQuickReplies, new xe2((byte) 5));
-                    f2.l();
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().b(this, jn7.F1);
-        b19.f(this.currentAccount).h();
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, jn7.F1);
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+        animate.alpha(f).start();
     }
 }

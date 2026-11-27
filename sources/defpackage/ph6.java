@@ -1221,7 +1221,7 @@ public final class ph6 extends cna implements AdapterView.OnItemSelectedListener
         if (qh6Var.G == 0 && !this.V && !this.a0) {
             i = ((e) qh6Var).currentAccount;
             uc7 s1 = uc7.s1(i);
-            if (!s1.C3) {
+            if (!s1.D3) {
                 if (!this.W) {
                     this.W = true;
                     i2 = ((e) qh6Var).currentAccount;
@@ -1234,7 +1234,7 @@ public final class ph6 extends cna implements AdapterView.OnItemSelectedListener
             }
             this.V = true;
             boolean z = f11.j;
-            if (z && s1.D3) {
+            if (z && s1.E3) {
                 zj3 zj3Var = new zj3(this, (byte) 25);
                 if (!z) {
                     zj3Var.a(Collections.EMPTY_LIST);

@@ -39,7 +39,7 @@ public final class ne8 extends TextureView implements TextureView.SurfaceTexture
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
         if (surfaceTexture == this.a) {
-            post(new h68(this, surfaceTexture, (byte) 12));
+            post(new a58(this, surfaceTexture, (byte) 13));
             return false;
         }
         TextureView.SurfaceTextureListener surfaceTextureListener = this.b;

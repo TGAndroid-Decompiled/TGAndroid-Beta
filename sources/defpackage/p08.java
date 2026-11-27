@@ -64,7 +64,7 @@ public final class p08 implements Runnable {
                     TL_account.Password password2 = (TL_account.Password) tLObject3;
                     r08Var3.e.K = password2;
                     TwoStepVerificationActivity.e0(password2);
-                    Utilities.e.c(new fd7(r08Var3, r08Var3.b, r08Var3.d, (byte) 19));
+                    Utilities.e.c(new gd7(r08Var3, r08Var3.b, r08Var3.d, (byte) 19));
                     return;
                 }
                 return;

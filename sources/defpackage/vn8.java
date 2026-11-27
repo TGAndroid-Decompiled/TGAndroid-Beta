@@ -46,7 +46,7 @@ public final class vn8 extends e implements fn7 {
         } else {
             z = false;
         }
-        I.k(0, ob6.M0(2131743566, null), new h68(this, l, (byte) 26), z);
+        I.k(0, ob6.M0(2131743566, null), new a58(this, l, (byte) 27), z);
         if (!z3) {
             z2 = true;
         } else {
@@ -201,7 +201,7 @@ public final class vn8 extends e implements fn7 {
         d79 d79Var;
         if (i == 2) {
             int intValue = ((Integer) objArr[0]).intValue();
-            int i3 = uc7.r5;
+            int i3 = uc7.s5;
             if (((intValue & 2) != 0 || (intValue & 1) != 0) && (d79Var = this.a) != null) {
                 int childCount = d79Var.getChildCount();
                 for (int i4 = 0; i4 < childCount; i4++) {

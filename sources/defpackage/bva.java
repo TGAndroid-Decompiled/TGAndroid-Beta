@@ -144,7 +144,7 @@ public final class bva implements Runnable {
                 z2bVar.c.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
                 return;
             case 4:
-                ((acb) this.b).M0 = false;
+                ((bcb) this.b).M0 = false;
                 return;
             case 5:
                 y6b y6bVar = (y6b) this.b;

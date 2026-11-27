@@ -34,7 +34,7 @@ public class oc3 {
         arrayList.add(new vlb(n64Var3, handler.getLooper()));
         Looper looper = handler.getLooper();
         for (int i = 0; i < 4; i++) {
-            arrayList.add(new zf7(n64Var4, looper));
+            arrayList.add(new ag7(n64Var4, looper));
         }
         arrayList.add(new ca1());
         arrayList.add(new tn5(new vj0(context, (byte) 0)));

@@ -53,12 +53,12 @@ public final class xm5 implements Runnable {
                     } else {
                         o = vm2.o(i3, 255);
                     }
-                    g = hh7.g(o4, o5, o6, o);
-                    hh7 hh7Var = new hh7();
-                    hh7Var.n(true, o4, o5, o6, o);
-                    hh7Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                    hh7Var.r(wallPaper.settings.intensity, bitmap);
-                    hh7Var.draw(canvas);
+                    g = ih7.g(o4, o5, o6, o);
+                    ih7 ih7Var = new ih7();
+                    ih7Var.n(true, o4, o5, o6, o);
+                    ih7Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                    ih7Var.r(wallPaper.settings.intensity, bitmap);
+                    ih7Var.draw(canvas);
                     z = false;
                 }
             }

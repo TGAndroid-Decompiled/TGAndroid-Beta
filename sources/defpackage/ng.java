@@ -175,9 +175,9 @@ public final class ng implements icc {
                 if (tL_error3 != null) {
                     cc4.d("QrShare: setShareTheme " + tL_error3.text);
                     if (!vz8Var.F) {
-                        f09 f09Var = vz8Var.b;
-                        f09Var.getClass();
-                        f09Var.d1(2131232441, ob6.M0(2131751070, null), null);
+                        g09 g09Var = vz8Var.b;
+                        g09Var.getClass();
+                        g09Var.d1(2131232441, ob6.M0(2131751070, null), null);
                         return;
                     }
                     return;

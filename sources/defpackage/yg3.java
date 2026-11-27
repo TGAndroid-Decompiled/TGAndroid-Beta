@@ -36,11 +36,11 @@ public final class yg3 implements r69 {
                     uj3.C3(zu1Var, r47Var);
                     uj3Var.presentFragment(zu1Var);
                     return;
-                } else if (obj instanceof p5b) {
-                    p5b p5bVar = (p5b) obj;
+                } else if (obj instanceof q5b) {
+                    q5b q5bVar = (q5b) obj;
                     Bundle j = qu6.j(3, "type");
-                    j.putString("hashtag", p5bVar.C);
-                    j.putInt("storiesCount", p5bVar.J);
+                    j.putString("hashtag", q5bVar.C);
+                    j.putInt("storiesCount", q5bVar.J);
                     uj3Var.presentFragment(new em6(j, null));
                     return;
                 } else {

@@ -989,7 +989,7 @@ public class of3 extends jf0 implements i6b, snb {
                 valueOf = Q(i, charSequence5, charSequence);
                 if (this.g1.i2[0] instanceof oo4) {
                     int i3 = this.G0;
-                    TLRPC.TL_forumTopic f = uc7.s1(i3).g4.f(-r47.B0(this.g1.k), r47.b2(i3, this.g1.k, true, false));
+                    TLRPC.TL_forumTopic f = uc7.s1(i3).h4.f(-r47.B0(this.g1.k), r47.b2(i3, this.g1.k, true, false));
                     if (f != null) {
                         ((oo4) this.g1.i2[0]).b(f.icon_color);
                     }

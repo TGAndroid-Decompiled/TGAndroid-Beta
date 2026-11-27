@@ -48,7 +48,7 @@ public final class xl9 extends ze9 implements snb, zlb {
         dg9Var.setPadding(hl.L(2.0f), hl.L(4.0f), hl.L(2.0f), 0);
         dg9Var.setHint(ob6.M0(2131753982, null));
         dg9Var.setCenterEmptyHint(true);
-        dg9Var.setListener(new i09(this, (byte) 7));
+        dg9Var.setListener(new j09(this, (byte) 7));
         dg9Var.setDelegate(new ye9(this, (byte) 8));
         addView(dg9Var);
         ti9 ti9Var = new ti9(this, context, (byte) 1);
@@ -615,7 +615,7 @@ public final class xl9 extends ze9 implements snb, zlb {
         if (ajbVar != null && (i3 = ajbVar.b) != 0 && ajbVar.c != 0) {
             TL_iv.pageTableCell pagetablecell = this.G.d[Math.max(0, Math.min(i, i3 - 1))][Math.max(0, Math.min(i2, this.G.c - 1))];
             if (pagetablecell != null) {
-                post(new z09(this, pagetablecell, (byte) 24));
+                post(new yz8(this, pagetablecell, (byte) 25));
             }
         }
     }

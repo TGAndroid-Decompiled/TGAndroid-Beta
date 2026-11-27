@@ -25,7 +25,7 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.TwoStepVerificationActivity;
-public final class ie implements n7, fq7, o69, nt2, fd, z28, u69, ez5, hj, m39, wb0, oj3, r42, ef7 {
+public final class ie implements n7, fq7, o69, nt2, fd, z28, u69, ez5, hj, m39, wb0, oj3, r42, ff7 {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -347,7 +347,7 @@ public final class ie implements n7, fq7, o69, nt2, fd, z28, u69, ez5, hj, m39, 
             uj3Var.finishFragment();
             return true;
         }
-        long j3 = ((if7) arrayList.get(0)).a;
+        long j3 = ((jf7) arrayList.get(0)).a;
         ls6 d0 = ls6.d0(chatActivityEnterView.R);
         d0.T1(j3, 0L, "@" + lbc.p(X1) + " " + tL_inlineButtonTypeSwitchInline.query, null, null, null, null, 0L, true, false, null);
         if (j3 != chatActivityEnterView.F3) {

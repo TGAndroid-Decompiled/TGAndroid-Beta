@@ -128,7 +128,7 @@ public final class at0 extends e implements fn7 {
             g.j(j, z2);
         }
         if (z) {
-            M0 = ob6.H(',', "SelfStarsWithdrawInfo", (int) getMessagesController().k4.y2.f());
+            M0 = ob6.H(',', "SelfStarsWithdrawInfo", (int) getMessagesController().l4.y2.f());
         } else {
             M0 = ob6.M0(2131752938, null);
         }
@@ -305,7 +305,7 @@ public final class at0 extends e implements fn7 {
         ub ubVar = new ub(context, true, getResourceProvider(), (byte) 3);
         ubVar.setRoundRadius(24);
         this.b0 = ubVar;
-        ubVar.setEnabled(uc7.s1(this.currentAccount).k4.b3.f);
+        ubVar.setEnabled(uc7.s1(this.currentAccount).l4.b3.f);
         this.b0.i(ob6.M0(2131752950, null), false, true);
         this.b0.setOnClickListener(new View.OnClickListener(this) {
             public final at0 b;
@@ -362,7 +362,7 @@ public final class at0 extends e implements fn7 {
         c51 c51Var2 = new c51(this.resourceProvider, context, true);
         c51Var2.setRoundRadius(24);
         this.i0 = c51Var2;
-        c51Var2.setEnabled(uc7.s1(this.currentAccount).k4.b3.f);
+        c51Var2.setEnabled(uc7.s1(this.currentAccount).l4.b3.f);
         c51 c51Var3 = this.i0;
         if (this.c) {
             i2 = 2131748129;
@@ -647,7 +647,7 @@ public final class at0 extends e implements fn7 {
             arrayList.add(b8c.j(1, this.R));
             arrayList.add(b8c.B(-3, this.K));
             if (!this.c) {
-                if (getMessagesController().k4.K2.f) {
+                if (getMessagesController().l4.K2.f) {
                     arrayList.add(yb.i(2, aob.v0(aob.lk, this.resourceProvider), g92.a0(ob6.M0(2131753138, null)), ob6.M0(2131753139, null)));
                     arrayList.add(b8c.B(-4, null));
                 }
@@ -761,7 +761,7 @@ public final class at0 extends e implements fn7 {
             arrayList.add(b8c.k(this.e0));
             SpannableStringBuilder spannableStringBuilder4 = this.n0;
             if (spannableStringBuilder4 == null) {
-                if (uc7.s1(this.currentAccount).k4.b3.f) {
+                if (uc7.s1(this.currentAccount).l4.b3.f) {
                     i2 = 2131753034;
                 } else {
                     i2 = 2131753032;
@@ -1028,12 +1028,12 @@ public final class at0 extends e implements fn7 {
         } else {
             j = h.status.available_balance.amount;
         }
-        if (j < getMessagesController().k4.y2.f()) {
+        if (j < getMessagesController().l4.y2.f()) {
             this.Y = true;
             this.Z = j;
         } else {
             this.Y = false;
-            j = getMessagesController().k4.y2.f();
+            j = getMessagesController().l4.y2.f();
             this.Z = j;
         }
         this.X = true;
@@ -1132,8 +1132,8 @@ public final class at0 extends e implements fn7 {
             int currentTime = getConnectionsManager().getCurrentTime();
             if (this.Q > currentTime) {
                 this.k0 = d31.b0(this).Q(2131624287, 36, hl.S2(ob6.a0(null, null, 2131752933, x0(this.Q - currentTime)))).j();
-            } else if (this.Z < getMessagesController().k4.y2.f()) {
-                d31.b0(this).M(getParentActivity().getResources().getDrawable(2131232775).mutate(), hl.N2(ob6.G((int) getMessagesController().k4.y2.f(), "BotStarsWithdrawMinLimit", new Object[0]), -1, 0, new ms0(this, (byte) 1), null)).j();
+            } else if (this.Z < getMessagesController().l4.y2.f()) {
+                d31.b0(this).M(getParentActivity().getResources().getDrawable(2131232775).mutate(), hl.N2(ob6.G((int) getMessagesController().l4.y2.f(), "BotStarsWithdrawMinLimit", new Object[0]), -1, 0, new ms0(this, (byte) 1), null)).j();
             } else {
                 long j = this.Z;
                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();

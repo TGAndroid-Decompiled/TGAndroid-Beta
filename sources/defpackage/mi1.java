@@ -26,7 +26,7 @@ public final class mi1 implements ska, fd, ncc {
         long j = ij1Var.p0;
         int i2 = ((b8c) obj).d;
         if (i2 == 1) {
-            if (ij1Var.r0 < uc7.s1(i).k4.b2.f()) {
+            if (ij1Var.r0 < uc7.s1(i).l4.b2.f()) {
                 if (ij1Var.q0 != null) {
                     w1b w1bVar = ij1Var.m0;
                     l46 l46Var = new l46(30, ij1Var.o0, ij1Var.n0, ij1Var.getContext(), w1bVar);

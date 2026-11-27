@@ -30,12 +30,12 @@ public final class ar6 implements Runnable {
                     zh6 zh6Var2 = new zh6();
                     for (int i = 0; i < arrayList.size(); i++) {
                         try {
-                            jf7.c((TLRPC.Message) arrayList.get(i), zh6Var, zh6Var2);
+                            kf7.c((TLRPC.Message) arrayList.get(i), zh6Var, zh6Var2);
                         } catch (Exception e) {
-                            ls6Var.getMessagesStorage().n(e, true);
+                            ls6Var.getMessagesStorage().p(e, true);
                         }
                     }
-                    ls6Var.getMessagesStorage().H0(zh6Var, zh6Var2, arrayList2, arrayList3, 0);
+                    ls6Var.getMessagesStorage().K0(zh6Var, zh6Var2, arrayList2, arrayList3, 0);
                     return;
                 } catch (Exception e2) {
                     cc4.g(e2, true);

@@ -1,34 +1,26 @@
 package defpackage;
-
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class c68 implements Runnable {
     public final byte a;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout b;
-    public final int c;
+    public final w9b b;
 
-    public c68(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i, byte b) {
+    public c68(w9b w9bVar, byte b) {
         this.a = b;
-        this.b = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.c = i;
+        this.b = w9bVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        int i = this.c;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.b;
+        w9b w9bVar = this.b;
         switch (b) {
             case 0:
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(i);
-                    return;
-                }
+                w9bVar.dismiss();
+                return;
+            case 1:
+                w9bVar.dismiss();
                 return;
             default:
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(i);
-                    return;
-                }
+                w9bVar.onBackPressed();
                 return;
         }
     }

@@ -52,19 +52,19 @@ public final class l5a implements Runnable {
                 } else if (message.quick_reply_shortcut_id == 0 && message.quick_reply_shortcut == null) {
                     i4 = z ? 1 : 0;
                 }
-                jf7 messagesStorage = r7aVar2.getMessagesStorage();
+                kf7 messagesStorage = r7aVar2.getMessagesStorage();
                 long j = message.random_id;
                 long B1 = r47.B1(message.peer_id);
                 int i7 = this.b;
-                messagesStorage.X1(j, B1, Integer.valueOf(i7), message.id, 0, z ? 1 : 0, message.quick_reply_shortcut_id);
+                messagesStorage.c2(j, B1, Integer.valueOf(i7), message.id, 0, z ? 1 : 0, message.quick_reply_shortcut_id);
                 int i8 = i4;
-                r7aVar2.getMessagesStorage().g1(arrayList, true, false, false, 0, false, i8, message.quick_reply_shortcut_id);
+                r7aVar2.getMessagesStorage().k1(arrayList, true, false, false, 0, false, i8, message.quick_reply_shortcut_id);
                 if (r47.e3(message)) {
                     long B12 = r47.B1(message.peer_id);
                     ArrayList arrayList2 = new ArrayList(1);
                     arrayList2.add(Integer.valueOf(message.id));
-                    r7aVar2.getMessagesStorage().M0(B12, arrayList2, false, false, i8, (int) r47.Z1(r7aVar2.currentAccount, message, 0));
-                    r7aVar2.getMessagesStorage().O1(B12, -B12, arrayList2, null);
+                    r7aVar2.getMessagesStorage().P0(B12, arrayList2, false, false, i8, (int) r47.Z1(r7aVar2.currentAccount, message, 0));
+                    r7aVar2.getMessagesStorage().T1(B12, -B12, arrayList2, null);
                     r7aVar = r7aVar2;
                     hl.c3(new p5a(r7aVar, B12, arrayList2, (byte) 0));
                 } else {
@@ -130,7 +130,7 @@ public final class l5a implements Runnable {
                 zu1 zu1Var = ((qs1) obj2).b;
                 if (this.d) {
                     i3 = ((e) zu1Var).currentAccount;
-                    uc7.s1(i3).W3.edit().remove("pin_" + zu1Var.l6).commit();
+                    uc7.s1(i3).X3.edit().remove("pin_" + zu1Var.l6).commit();
                     zu1Var.gd(0, true);
                 } else {
                     zu1Var.getNotificationCenter().k(57, Long.valueOf(zu1Var.l6), arrayList3, Boolean.TRUE, arrayList4, null, 0, Integer.valueOf(i6), Boolean.valueOf(zu1Var.g5));

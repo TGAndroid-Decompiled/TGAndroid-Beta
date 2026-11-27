@@ -883,7 +883,7 @@ public final class kt1 implements xy1 {
             }
             h04Var.f = -1L;
         }
-        if (!zu1Var.getMessagesController().M3() && zu1Var.getMessagesController().G3 <= 0 && zu1Var.getMessagesController().a4 < 2 && !zu1Var.getUserConfig().p() && !TextUtils.isEmpty(charSequence) && arrayList != null) {
+        if (!zu1Var.getMessagesController().M3() && zu1Var.getMessagesController().H3 <= 0 && zu1Var.getMessagesController().b4 < 2 && !zu1Var.getUserConfig().p() && !TextUtils.isEmpty(charSequence) && arrayList != null) {
             for (int i6 = 1; i6 < Math.min(5, arrayList.size()); i6++) {
                 r47 r47Var3 = (r47) arrayList.get(i6);
                 if (r47Var3 != null && !r47Var3.O3() && ((r47.Q4(r47Var3.k) || r47Var3.g4()) && r47Var3.k.media_unread)) {

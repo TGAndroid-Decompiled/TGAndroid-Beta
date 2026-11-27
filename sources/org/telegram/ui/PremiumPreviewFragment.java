@@ -204,12 +204,12 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.e implemen
                     return;
                 }
                 uc7 s1 = uc7.s1(i);
-                if (!TextUtils.isEmpty(s1.k4.M0.f)) {
+                if (!TextUtils.isEmpty(s1.l4.M0.f)) {
                     launchActivity.X0 = true;
-                    launchActivity.f0(new Intent("android.intent.action.VIEW", Uri.parse("https://t.me/" + s1.k4.M0.f + "?start=" + str)), null);
+                    launchActivity.f0(new Intent("android.intent.action.VIEW", Uri.parse("https://t.me/" + s1.l4.M0.f + "?start=" + str)), null);
                     return;
-                } else if (!TextUtils.isEmpty(s1.k4.O0.f)) {
-                    launchActivity.f0(new Intent("android.intent.action.VIEW", Uri.parse("https://t.me/$" + s1.k4.O0.f)), null);
+                } else if (!TextUtils.isEmpty(s1.l4.O0.f)) {
+                    launchActivity.f0(new Intent("android.intent.action.VIEW", Uri.parse("https://t.me/$" + s1.l4.O0.f)), null);
                     return;
                 } else {
                     return;
@@ -355,7 +355,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.e implemen
     public static void q0(int i, ArrayList arrayList) {
         uc7 s1 = uc7.s1(i);
         String M0 = ob6.M0(2131746727, null);
-        hr hrVar = s1.k4;
+        hr hrVar = s1.l4;
         arrayList.add(new sl8(0, 2131232311, M0, ob6.a0(null, null, 2131746726, Integer.valueOf(hrVar.u3.f()), Integer.valueOf(hrVar.i1.f()), Integer.valueOf(hrVar.m1.f()), Integer.valueOf(hrVar.n1.f()), 4)));
         arrayList.add(new sl8(14, 2131232159, ob6.M0(2131746703, null), ob6.a0(null, null, 2131746702, new Object[0])));
         arrayList.add(new sl8(1, 2131232320, ob6.M0(2131746693, null), ob6.M0(2131746692, null)));

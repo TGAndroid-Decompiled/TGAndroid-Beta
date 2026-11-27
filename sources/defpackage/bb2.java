@@ -276,10 +276,10 @@ public abstract class bb2 extends zb3 {
     }
 
     @Override
-    public final boolean a(f89 f89Var, l09 l09Var, l09 l09Var2) {
+    public final boolean a(f89 f89Var, m09 m09Var, m09 m09Var2) {
         ArrayList arrayList;
         int i;
-        boolean a = super.a(f89Var, l09Var, l09Var2);
+        boolean a = super.a(f89Var, m09Var, m09Var2);
         if (a && this.N) {
             int i2 = 0;
             boolean z = false;
@@ -427,19 +427,19 @@ public abstract class bb2 extends zb3 {
     }
 
     @Override
-    public final l09 l(c89 c89Var, f89 f89Var, int i, List list) {
-        l09 l = super.l(c89Var, f89Var, i, list);
+    public final m09 l(c89 c89Var, f89 f89Var, int i, List list) {
+        m09 l = super.l(c89Var, f89Var, i, list);
         View view = f89Var.a;
         if (view instanceof wb2) {
-            ?? l09Var = new l09((byte) 4);
-            l09Var.b = l.b;
-            l09Var.c = l.c;
+            ?? m09Var = new m09((byte) 4);
+            m09Var.b = l.b;
+            m09Var.c = l.c;
             dc2 transitionParams = ((wb2) view).getTransitionParams();
-            l09Var.e = transitionParams.b;
-            l09Var.f = transitionParams.c;
-            l09Var.g = transitionParams.d;
-            l09Var.h = transitionParams.e;
-            return l09Var;
+            m09Var.e = transitionParams.b;
+            m09Var.f = transitionParams.c;
+            m09Var.g = transitionParams.d;
+            m09Var.h = transitionParams.e;
+            return m09Var;
         }
         return l;
     }
@@ -464,10 +464,10 @@ public abstract class bb2 extends zb3 {
     }
 
     @Override
-    public final boolean q(f89 f89Var, f89 f89Var2, l09 l09Var, int i, int i2, int i3, int i4) {
+    public final boolean q(f89 f89Var, f89 f89Var2, m09 m09Var, int i, int i2, int i3, int i4) {
         float translationX;
         if (f89Var == f89Var2) {
-            return r(f89Var, l09Var, i, i2, i3, i4);
+            return r(f89Var, m09Var, i, i2, i3, i4);
         }
         View view = f89Var.a;
         if (view instanceof wb2) {
@@ -502,21 +502,21 @@ public abstract class bb2 extends zb3 {
     }
 
     @Override
-    public final boolean r(defpackage.f89 r23, defpackage.l09 r24, int r25, int r26, int r27, int r28) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bb2.r(f89, l09, int, int, int, int):boolean");
+    public final boolean r(defpackage.f89 r23, defpackage.m09 r24, int r25, int r26, int r27, int r28) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bb2.r(f89, m09, int, int, int, int):boolean");
     }
 
     @Override
-    public final void s(f89 f89Var, l09 l09Var) {
+    public final void s(f89 f89Var, m09 m09Var) {
         if (f11.a) {
             cc4.b("animate remove");
         }
-        super.s(f89Var, l09Var);
+        super.s(f89Var, m09Var);
         View view = f89Var.a;
-        if (l09Var != null) {
-            int i = l09Var.c;
+        if (m09Var != null) {
+            int i = m09Var.c;
             int top = view.getTop();
-            int left = view.getLeft() - l09Var.b;
+            int left = view.getLeft() - m09Var.b;
             int i2 = top - i;
             if (i2 != 0) {
                 view.setTranslationY(-i2);
@@ -526,8 +526,8 @@ public abstract class bb2 extends zb3 {
                 if (left != 0) {
                     wb2Var.setAnimationOffsetX(-left);
                 }
-                if (l09Var instanceof za2) {
-                    za2 za2Var = (za2) l09Var;
+                if (m09Var instanceof za2) {
+                    za2 za2Var = (za2) m09Var;
                     wb2Var.x3(za2Var.e, za2Var.f, za2Var.g, za2Var.h);
                 }
             } else if (left != 0) {

@@ -2597,7 +2597,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
         int i4 = 0;
         if (y) {
             TLRPC.Chat M0 = uc7.s1(this.S.a).M0(Long.valueOf(-this.F3));
-            this.V2 = uc7.s1(this.R).W3.getBoolean("silent_" + this.F3, false);
+            this.V2 = uc7.s1(this.R).X3.getBoolean("silent_" + this.F3, false);
             if (xc2.T(M0) && ((M0.creator || ((tL_chatAdminRights = M0.admin_rights) != null && tL_chatAdminRights.post_messages)) && !M0.megagroup)) {
                 z2 = true;
             } else {
@@ -2758,9 +2758,9 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
         vw1 vw1Var;
         zu1 zu1Var;
         if (this.M == null && (vw1Var = this.z2) != null && vw1Var.getRight() != 0 && (zu1Var = this.E3) != null && pj0.d(zu1Var.s8)) {
-            SharedPreferences sharedPreferences = uc7.s1(this.R).X3;
+            SharedPreferences sharedPreferences = uc7.s1(this.R).Y3;
             if (sharedPreferences.getBoolean(Calendar.getInstance().get(1) + "bdayhint_" + zu1Var.a(), true)) {
-                SharedPreferences.Editor edit = uc7.s1(this.R).X3.edit();
+                SharedPreferences.Editor edit = uc7.s1(this.R).Y3.edit();
                 edit.putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + zu1Var.a(), false).apply();
                 kg5 kg5Var = new kg5(getContext(), 3);
                 this.M = kg5Var;
@@ -3154,7 +3154,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
             boolean w = w();
             int i3 = this.R;
             if (w) {
-                int[] iArr = uc7.s1(i3).T3;
+                int[] iArr = uc7.s1(i3).U3;
                 if (iArr != null && iArr.length > 2) {
                     b = iArr[2];
                 } else {
@@ -3699,7 +3699,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
         if (U0()) {
             if (this.U2 == 1 && (tL_replyKeyboardMarkup = this.c3) != null && z && this.b3 != null) {
                 if (!tL_replyKeyboardMarkup.is_persistent) {
-                    uc7.s1(this.R).X3.edit().putInt("closed_botkeyboard_" + getTopicKeyString(), this.b3.e1()).apply();
+                    uc7.s1(this.R).Y3.edit().putInt("closed_botkeyboard_" + getTopicKeyString(), this.b3.e1()).apply();
                 }
             }
             if ((z && this.G2 != 0) || z2) {
@@ -3787,7 +3787,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
             tw1Var.j(gz1Var3, z2);
             if (gz1Var3 == gz1Var2 && this.V0 == null) {
                 ls6.d0(this.R).X0(true, true, false, 0);
-                ArrayList arrayList = uc7.s1(this.R).x3;
+                ArrayList arrayList = uc7.s1(this.R).y3;
                 int min = Math.min(10, arrayList.size());
                 for (int i = 0; i < min; i++) {
                     pv3.k((CharSequence) arrayList.get(i));
@@ -6315,7 +6315,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
     public final void f2() {
         zu1 zu1Var = this.E3;
         if (zu1Var != null && xc2.V(zu1Var.e)) {
-            d31.b0(zu1Var).f(uc7.s1(this.R).k4.p1.f(), new mv1(this, (byte) 14)).j();
+            d31.b0(zu1Var).f(uc7.s1(this.R).l4.p1.f(), new mv1(this, (byte) 14)).j();
         }
     }
 
@@ -6921,7 +6921,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
                     this.w2.setVisibility(0);
                     ViewGroup viewGroup2 = this.w2;
                     this.d4 = 1;
-                    uc7.s1(this.R).X3.edit().remove("closed_botkeyboard_" + getTopicKeyString()).apply();
+                    uc7.s1(this.R).Y3.edit().remove("closed_botkeyboard_" + getTopicKeyString()).apply();
                     i3 = i4;
                     viewGroup = viewGroup2;
                 } else {
@@ -7084,7 +7084,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
                     this.Y0 = false;
                 }
                 if (i2 == 1 && this.b3 != null) {
-                    uc7.s1(this.R).X3.edit().putInt("closed_botkeyboard_" + getTopicKeyString(), this.b3.e1()).apply();
+                    uc7.s1(this.R).Y3.edit().putInt("closed_botkeyboard_" + getTopicKeyString(), this.b3.e1()).apply();
                 }
                 t2(true);
                 r2d r2dVar4 = this.I7;
@@ -8274,7 +8274,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
 
     public final void s1() {
         mv1 mv1Var = new mv1(this, (byte) 3);
-        if (!vye.b(this.R, this.F3) && !uc7.s1(this.R).S3.contains(Long.valueOf(this.F3))) {
+        if (!vye.b(this.R, this.F3) && !uc7.s1(this.R).T3.contains(Long.valueOf(this.F3))) {
             jj.n(this.E3, uc7.s1(this.R).X1(Long.valueOf(this.F3)), new jj1(this, mv1Var, (byte) 24), new mv1(this, (byte) 4));
             return;
         }
@@ -8865,7 +8865,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
                 }
                 long j2 = j;
                 ky1 ky1Var = new ky1(this, r47Var2, j2, keyboardButtonProto, r47Var, uc7.s1(this.R).X1(Long.valueOf(j)));
-                if (!vye.b(this.R, j2) && !uc7.s1(this.R).S3.contains(Long.valueOf(j2))) {
+                if (!vye.b(this.R, j2) && !uc7.s1(this.R).T3.contains(Long.valueOf(j2))) {
                     jj.n(zu1Var, uc7.s1(this.R).X1(Long.valueOf(this.F3)), new ue2(this, ky1Var, j2, (byte) 16), null);
                     return true;
                 }
@@ -8956,14 +8956,14 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
                             Boolean bool2 = tL_requestPeerTypeUser.bot;
                             Boolean bool3 = tL_requestPeerTypeUser.premium;
                             ov1 ov1Var = new ov1(this, r47Var2, tL_buttonTypeRequestPeer);
-                            pi7 pi7Var = pi7.p2;
+                            qi7 qi7Var = qi7.p2;
                             org.telegram.ui.ActionBar.e Q = LaunchActivity.Q();
-                            if (Q == null || pi7.p2 != null) {
+                            if (Q == null || qi7.p2 != null) {
                                 return false;
                             }
-                            pi7 pi7Var2 = new pi7(Q, i, bool2, bool3, ov1Var);
-                            pi7Var2.show();
-                            pi7.p2 = pi7Var2;
+                            qi7 qi7Var2 = new qi7(Q, i, bool2, bool3, ov1Var);
+                            qi7Var2.show();
+                            qi7.p2 = qi7Var2;
                             return false;
                         } else {
                             Bundle j6 = qd4.j(15, "onlySelect", "dialogsType", true);
@@ -9261,7 +9261,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
                     } catch (Exception unused) {
                     }
                 }
-                if (!uc7.s1(this.R).M3() && uc7.s1(this.R).k4.p1.f() > this.e0) {
+                if (!uc7.s1(this.R).M3() && uc7.s1(this.R).l4.p1.f() > this.e0) {
                     f2();
                     return;
                 }
@@ -9760,7 +9760,7 @@ public class ChatActivityEnterView extends FrameLayout implements fn7, vma, p4b,
                                 this.F0.r(ob6.a0(null, null, 2131743580, str2), z);
                                 return;
                             }
-                            TLRPC.TL_forumTopic f = uc7.s1(this.R).g4.f(zu1Var.e.id, 1L);
+                            TLRPC.TL_forumTopic f = uc7.s1(this.R).h4.f(zu1Var.e.id, 1L);
                             if (f != null && (str = f.title) != null) {
                                 this.F0.r(ob6.a0(null, null, 2131743580, str), z);
                             } else {

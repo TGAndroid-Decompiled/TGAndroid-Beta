@@ -27,7 +27,7 @@ public final class p12 implements qcc {
         View view2;
         byte b = this.a;
         int i = 6;
-        boolean z = false;
+        boolean z = true;
         Object obj2 = this.b;
         switch (b) {
             case 0:
@@ -98,8 +98,8 @@ public final class p12 implements qcc {
                 if (i3 == -1) {
                     return Boolean.TRUE;
                 }
-                if (i3 == 1) {
-                    z = true;
+                if (i3 != 1) {
+                    z = false;
                 }
                 return Boolean.valueOf(z);
             case 8:
@@ -118,7 +118,7 @@ public final class p12 implements qcc {
                 }
                 return Boolean.valueOf(!l9c.K(q9cVar.U(view2).f));
             default:
-                return new vlc((xt) obj2, (Integer) obj, (byte) 29);
+                return new zwc((xt) obj2, (Integer) obj, (byte) 0);
         }
     }
 }

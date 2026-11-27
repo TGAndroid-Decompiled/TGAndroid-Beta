@@ -194,22 +194,22 @@ public final class zj3 implements pcc {
                 return;
             case 19:
                 bq5 bq5Var = (bq5) obj2;
-                tca tcaVar = (tca) obj;
+                uca ucaVar = (uca) obj;
                 pa9 pa9Var = bq5Var.a;
-                if (tcaVar != null) {
+                if (ucaVar != null) {
                     float currentWeight = pa9Var.getCurrentWeight();
-                    tcaVar.f = currentWeight;
+                    ucaVar.f = currentWeight;
                     double d = bq5Var.p;
                     if (d > 0.0d) {
-                        tcaVar.f = (float) ((d / bq5Var.q) * currentWeight);
+                        ucaVar.f = (float) ((d / bq5Var.q) * currentWeight);
                     }
-                    if (tcaVar.a.n() == 4) {
-                        tcaVar.k *= tcaVar.f;
+                    if (ucaVar.a.n() == 4) {
+                        ucaVar.k *= ucaVar.f;
                     }
                 }
                 nx7 painting = pa9Var.getPainting();
                 if (painting.L == null) {
-                    painting.f.f(new jx7(painting, tcaVar, (byte) 1));
+                    painting.f.f(new jx7(painting, ucaVar, (byte) 1));
                     return;
                 }
                 return;

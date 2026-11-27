@@ -13,7 +13,7 @@ public final class j03 extends us4 implements sr4 {
     public final Object invoke() {
         byte b = this.a;
         boolean z = false;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         switch (b) {
             case 0:
                 ((k03) this.receiver).getClass();
@@ -36,10 +36,10 @@ public final class j03 extends us4 implements sr4 {
                 return Boolean.valueOf(!Looper.getMainLooper().isCurrentThread());
             case 3:
                 ((vr7) this.receiver).c();
-                return f9cVar;
+                return g9cVar;
             default:
                 ((vr7) this.receiver).c();
-                return f9cVar;
+                return g9cVar;
         }
     }
 }

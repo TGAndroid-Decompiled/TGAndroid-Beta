@@ -17,7 +17,7 @@ public final class vyc {
         obj.e = 8;
         byte[] bArr = {3, (byte) (i & 255)};
         if (str != null && str.length() != 0) {
-            byte[] a = hg7.a(str);
+            byte[] a = ig7.a(str);
             byte[] bArr2 = new byte[a.length + 2];
             System.arraycopy(bArr, 0, bArr2, 0, 2);
             System.arraycopy(a, 0, bArr2, 2, a.length);
@@ -78,7 +78,7 @@ public final class vyc {
         r.append(str5);
         r.append(",Opcode=");
         int i = this.e;
-        SecureRandom secureRandom = hg7.a;
+        SecureRandom secureRandom = ig7.a;
         if (i != 0) {
             if (i != 1) {
                 if (i != 2) {

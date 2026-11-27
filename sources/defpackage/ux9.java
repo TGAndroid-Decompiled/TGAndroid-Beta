@@ -199,9 +199,9 @@ public final class ux9 implements Runnable {
                     ArrayList d = nt9.d(F1.j);
                     int i3 = F1.a;
                     if (yac.h(i3).p()) {
-                        f = uc7.s1(i3).k4.q2.f();
+                        f = uc7.s1(i3).l4.q2.f();
                     } else {
-                        f = uc7.s1(i3).k4.p2.f();
+                        f = uc7.s1(i3).l4.p2.f();
                     }
                     if (arrayList3.size() <= f && !nt9.j(d, arrayList3)) {
                         F1.o(arrayList3);

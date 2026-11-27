@@ -343,11 +343,11 @@ public final class qh6 extends e implements fn7 {
         yac.h(this.currentAccount).V = this.E;
         yac.h(this.currentAccount).v(tL_auth_authorization.user);
         yac.h(this.currentAccount).u(true);
-        jf7 Y = jf7.Y(this.currentAccount);
-        Y.a.c(new je7(Y, true, (byte) 1));
+        kf7 a0 = kf7.a0(this.currentAccount);
+        a0.a.c(new ke7(a0, true, (byte) 1));
         ArrayList arrayList = new ArrayList();
         arrayList.add(tL_auth_authorization.user);
-        jf7.Y(this.currentAccount).j1(arrayList, null, true, true);
+        kf7.a0(this.currentAccount).n1(arrayList, null, true, true);
         uc7.s1(this.currentAccount).i4(tL_auth_authorization.user, false, false);
         lv2 r = lv2.r(this.currentAccount);
         r.a = null;
@@ -940,7 +940,7 @@ public final class qh6 extends e implements fn7 {
             Q1(true, false);
         } else if (i == jn7.s1 && this.i0) {
             uc7 messagesController = getMessagesController();
-            if (!messagesController.u3.contains("SETUP_LOGIN_EMAIL") && !messagesController.u3.contains("SETUP_LOGIN_EMAIL_NOSKIP")) {
+            if (!messagesController.v3.contains("SETUP_LOGIN_EMAIL") && !messagesController.v3.contains("SETUP_LOGIN_EMAIL_NOSKIP")) {
                 finishFragment();
             }
         }
@@ -1280,7 +1280,7 @@ public final class qh6 extends e implements fn7 {
                 o6d o6dVar = h05Var.i;
                 g5e g5eVar = new g5e(o6dVar, bArr, str2);
                 o6dVar.b.d(0, g5eVar);
-                pgd.a(g5eVar, new i09(new Object(), (byte) 26)).addOnSuccessListener(new le6(this, string, auth_sentcode, bundle, z)).addOnFailureListener(new OnFailureListener(this) {
+                pgd.a(g5eVar, new j09(new Object(), (byte) 26)).addOnSuccessListener(new le6(this, string, auth_sentcode, bundle, z)).addOnFailureListener(new OnFailureListener(this) {
                     public final qh6 b;
 
                     {

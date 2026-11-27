@@ -215,10 +215,10 @@ public final class sp6 implements Runnable {
                     zu1Var.getMessagesController().U0(X1.id);
                     ArrayList arrayList6 = new ArrayList();
                     arrayList6.add(X1);
-                    zu1Var.getMessagesStorage().j1(arrayList6, null, false, true);
+                    zu1Var.getMessagesStorage().n1(arrayList6, null, false, true);
                     TLRPC.UserFull Y1 = zu1Var.getMessagesController().Y1(j);
                     Y1.profile_photo = tL_photos_photo.photo;
-                    zu1Var.getMessagesStorage().g2(Y1, false);
+                    zu1Var.getMessagesStorage().l2(Y1, false);
                     d31.b0(zu1Var).V(Collections.singletonList(X1), hl.S2(ob6.M0(2131754212, null)), hl.N2(ob6.M0(2131754213, null), -1, 0, new xn0(j, zu1Var), null), null).j();
                     return;
                 }
@@ -242,8 +242,8 @@ public final class sp6 implements Runnable {
                 long j3 = this.b;
                 qybVar.u(j3, arrayList7, (zh6) obj2, false, 2, -1);
                 long j4 = -j3;
-                qybVar.getMessagesStorage().z1(qybVar.getConnectionsManager().getCurrentTime(), j4, (List) qybVar.a.f(j3), true);
-                qybVar.getMessagesStorage().g1(tL_messages_savedDialogs.messages, false, true, false, 0, false, 0, 0L);
+                qybVar.getMessagesStorage().D1(qybVar.getConnectionsManager().getCurrentTime(), j4, (List) qybVar.a.f(j3), true);
+                qybVar.getMessagesStorage().k1(tL_messages_savedDialogs.messages, false, true, false, 0, false, 0, 0L);
                 int size = arrayList7.size();
                 while (i2 < size) {
                     Object obj7 = arrayList7.get(i2);
@@ -253,10 +253,10 @@ public final class sp6 implements Runnable {
                 Iterator it = hashSet.iterator();
                 while (it.hasNext()) {
                     long longValue2 = ((Long) it.next()).longValue();
-                    jf7 messagesStorage = qybVar.getMessagesStorage();
+                    kf7 messagesStorage = qybVar.getMessagesStorage();
                     long j5 = j4;
                     j4 = j5;
-                    messagesStorage.a.c(new xd7(messagesStorage, j5, longValue2, (byte) 2));
+                    messagesStorage.a.c(new yd7(messagesStorage, j5, longValue2, (byte) 2));
                     qybVar.s(j3, longValue2);
                 }
                 if (o30Var != null) {

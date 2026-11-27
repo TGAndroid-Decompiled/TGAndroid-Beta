@@ -55,14 +55,14 @@ public final class dg1 implements pcc {
                 ng1.K0(context, i2, connectedbotstarref2, j2, vnbVar);
                 return;
             case 1:
-                fd7 fd7Var = (fd7) obj5;
+                gd7 gd7Var = (gd7) obj5;
                 Context context2 = (Context) obj3;
                 vnb vnbVar2 = (vnb) obj2;
                 d31 d31Var = (d31) obj4;
                 String str = (String) obj;
                 if (str != null) {
                     vs7.g(j);
-                    fd7Var.run();
+                    gd7Var.run();
                     it7.t(context2, this.d, vnbVar2, d31Var, str, null);
                     return;
                 }
@@ -108,9 +108,9 @@ public final class dg1 implements pcc {
         }
     }
 
-    public dg1(long j, fd7 fd7Var, Context context, int i, vnb vnbVar, d31 d31Var) {
+    public dg1(long j, gd7 gd7Var, Context context, int i, vnb vnbVar, d31 d31Var) {
         this.b = j;
-        this.f = fd7Var;
+        this.f = gd7Var;
         this.c = context;
         this.d = i;
         this.e = vnbVar;

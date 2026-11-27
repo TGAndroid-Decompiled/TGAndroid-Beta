@@ -435,20 +435,20 @@ public final class lq3 extends rf0 implements fn7 {
                 }
             }
             if (!z) {
-                getMessagesStorage().q(0);
+                getMessagesStorage().s(0);
                 return;
             }
             if (!(z & true)) {
-                getMessagesStorage().q(1);
+                getMessagesStorage().s(1);
             }
             if (!(z & true)) {
-                getMessagesStorage().q(2);
+                getMessagesStorage().s(2);
             }
             if (!(z & true)) {
-                getMessagesStorage().q(4);
+                getMessagesStorage().s(4);
             }
             if (!(z & true)) {
-                getMessagesStorage().q(8);
+                getMessagesStorage().s(8);
             }
         }
     }
@@ -460,9 +460,9 @@ public final class lq3 extends rf0 implements fn7 {
             hashMap.remove(str);
             this.h.remove(new Pair(Long.valueOf(mq3Var.c), Integer.valueOf(mq3Var.b)));
             if (i == 0 || i == 2) {
-                jf7 messagesStorage = getMessagesStorage();
+                kf7 messagesStorage = getMessagesStorage();
                 long j = mq3Var.c;
-                messagesStorage.a.c(new gd7(messagesStorage, mq3Var.b, j, (byte) 6));
+                messagesStorage.a.c(new id7(messagesStorage, mq3Var.b, j, (byte) 6));
             }
             int i2 = mq3Var.b;
             if (i2 == 1) {
@@ -634,20 +634,20 @@ public final class lq3 extends rf0 implements fn7 {
     public final void t(int i) {
         int m = m();
         if ((m & 1) != 0 && (i & 1) != 0 && this.b.isEmpty()) {
-            jf7 messagesStorage = getMessagesStorage();
-            messagesStorage.a.c(new te7(messagesStorage, 1, (byte) 1));
+            kf7 messagesStorage = getMessagesStorage();
+            messagesStorage.a.c(new ue7(messagesStorage, 1, (byte) 1));
         }
         if ((m & 2) != 0 && (i & 2) != 0 && this.c.isEmpty()) {
-            jf7 messagesStorage2 = getMessagesStorage();
-            messagesStorage2.a.c(new te7(messagesStorage2, 2, (byte) 1));
+            kf7 messagesStorage2 = getMessagesStorage();
+            messagesStorage2.a.c(new ue7(messagesStorage2, 2, (byte) 1));
         }
         if ((m & 4) != 0 && (i & 4) != 0 && this.e.isEmpty()) {
-            jf7 messagesStorage3 = getMessagesStorage();
-            messagesStorage3.a.c(new te7(messagesStorage3, 4, (byte) 1));
+            kf7 messagesStorage3 = getMessagesStorage();
+            messagesStorage3.a.c(new ue7(messagesStorage3, 4, (byte) 1));
         }
         if ((m & 8) != 0 && (i & 8) != 0 && this.d.isEmpty()) {
-            jf7 messagesStorage4 = getMessagesStorage();
-            messagesStorage4.a.c(new te7(messagesStorage4, 8, (byte) 1));
+            kf7 messagesStorage4 = getMessagesStorage();
+            messagesStorage4.a.c(new ue7(messagesStorage4, 8, (byte) 1));
         }
     }
 

@@ -22,20 +22,20 @@ import org.telegram.ui.ActionBar.e;
 public abstract class ro4 {
     public static final int a = 0;
 
-    public static void a(zu1 zu1Var, if7 if7Var) {
+    public static void a(zu1 zu1Var, jf7 jf7Var) {
         TLRPC.TL_forumTopic f;
-        if (if7Var.b != 0 && (f = zu1Var.getMessagesController().g4.f(-if7Var.a, if7Var.b)) != null) {
-            if (if7Var.a > 0) {
-                if (lbc.w(zu1Var.getMessagesController().X1(Long.valueOf(if7Var.a)))) {
+        if (jf7Var.b != 0 && (f = zu1Var.getMessagesController().h4.f(-jf7Var.a, jf7Var.b)) != null) {
+            if (jf7Var.a > 0) {
+                if (lbc.w(zu1Var.getMessagesController().X1(Long.valueOf(jf7Var.a)))) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(new r47(zu1Var.getCurrentAccount(), f.topicStartMessage, false, false));
                     zu1Var.Ob(arrayList, null, f.id, f.read_inbox_max_id, f.read_outbox_max_id, f);
-                    zu1Var.getMessagesController().X4(-if7Var.a, if7Var.b);
+                    zu1Var.getMessagesController().X4(-jf7Var.a, jf7Var.b);
                     return;
                 }
                 return;
             }
-            TLRPC.Chat M0 = zu1Var.getMessagesController().M0(Long.valueOf(-if7Var.a));
+            TLRPC.Chat M0 = zu1Var.getMessagesController().M0(Long.valueOf(-jf7Var.a));
             if (M0 == null) {
                 return;
             }
@@ -56,7 +56,7 @@ public abstract class ro4 {
                 arrayList2.add(new r47(zu1Var.getCurrentAccount(), f.topicStartMessage, false, false));
                 zu1Var.Ob(arrayList2, M0, f.id, f.read_inbox_max_id, f.read_outbox_max_id, f);
             }
-            zu1Var.getMessagesController().X4(-if7Var.a, if7Var.b);
+            zu1Var.getMessagesController().X4(-jf7Var.a, jf7Var.b);
         }
     }
 
@@ -64,7 +64,7 @@ public abstract class ro4 {
         TLRPC.TL_forumTopic f;
         TLRPC.Message message = r47Var.k;
         int i = r47Var.K1;
-        if (r47.B0(message) <= 0 && (f = uc7.s1(i).g4.f(-r47.B0(r47Var.k), r47.b2(i, r47Var.k, true, false))) != null) {
+        if (r47.B0(message) <= 0 && (f = uc7.s1(i).h4.f(-r47.B0(r47Var.k), r47.b2(i, r47Var.k, true, false))) != null) {
             Drawable drawable = r47Var.i2[0];
             if (drawable instanceof oo4) {
                 ((oo4) drawable).b(f.icon_color);
@@ -209,7 +209,7 @@ public abstract class ro4 {
             bundle.putBoolean("historyPreloaded", false);
             zu1 zu1Var = new zu1(bundle);
             TLRPC.Message message = tL_forumTopic.topicStartMessage;
-            if (message == null && (f = eVar.getMessagesController().g4.f(j, tL_forumTopic.id)) != null) {
+            if (message == null && (f = eVar.getMessagesController().h4.f(j, tL_forumTopic.id)) != null) {
                 message = f.topicStartMessage;
                 tL_forumTopic2 = f;
             } else {

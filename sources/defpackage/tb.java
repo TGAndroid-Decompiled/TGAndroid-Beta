@@ -54,7 +54,7 @@ public final class tb extends View {
                 return;
             case 23:
                 super.dispatchDraw(canvas);
-                yw7 yw7Var = ((vab) this.b).y0;
+                yw7 yw7Var = ((wab) this.b).y0;
                 if (yw7Var != null) {
                     yw7Var.d(canvas);
                     return;
@@ -236,7 +236,7 @@ public final class tb extends View {
                 }
                 return;
             case 21:
-                canvas.drawColor(aob.v0(aob.e7, ((pi7) this.b).J0));
+                canvas.drawColor(aob.v0(aob.e7, ((qi7) this.b).J0));
                 return;
             case 24:
                 w78 w78Var = (w78) this.b;

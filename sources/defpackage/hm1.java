@@ -236,7 +236,7 @@ public final class hm1 implements Runnable {
                                         r47 r47Var2 = (r47) arrayList6.get(i12);
                                         if (r47Var2 != null) {
                                             int e13 = r47Var2.e1();
-                                            a5c a5cVar = zu1Var.getMessagesController().i4;
+                                            a5c a5cVar = zu1Var.getMessagesController().j4;
                                             if (e13 >= i7 - 7 && e13 <= i8 + 7) {
                                                 z2 = true;
                                             } else {
@@ -249,7 +249,7 @@ public final class hm1 implements Runnable {
                                 }
                             } else {
                                 int e14 = r47Var.e1();
-                                a5c a5cVar2 = zu1Var.getMessagesController().i4;
+                                a5c a5cVar2 = zu1Var.getMessagesController().j4;
                                 if (e14 >= i7 - 7 && e14 <= i8 + 7) {
                                     z = true;
                                 } else {
@@ -261,7 +261,7 @@ public final class hm1 implements Runnable {
                     }
                 }
                 if (zu1Var.Z4 > 0 && zu1Var.X4 != null) {
-                    zu1Var.getMessagesController().i4.g((r47) zu1Var.X4.get(Integer.valueOf(zu1Var.Z4)), true, false);
+                    zu1Var.getMessagesController().j4.g((r47) zu1Var.X4.get(Integer.valueOf(zu1Var.Z4)), true, false);
                 }
                 zu1Var.Ed();
                 return;

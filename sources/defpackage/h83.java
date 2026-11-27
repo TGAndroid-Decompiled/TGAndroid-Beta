@@ -16,7 +16,7 @@ public final class h83 extends yfb implements ur4 {
 
     @Override
     public final Object invoke(Object obj) {
-        return ((h83) create((zw2) obj)).invokeSuspend(f9c.a);
+        return ((h83) create((zw2) obj)).invokeSuspend(g9c.a);
     }
 
     @Override

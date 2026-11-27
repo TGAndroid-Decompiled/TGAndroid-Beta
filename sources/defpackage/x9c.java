@@ -14,15 +14,15 @@ public final class x9c implements Spannable {
     }
 
     public final void a() {
-        rg7 rg7Var;
+        sg7 sg7Var;
         Spannable spannable = this.b;
         if (!this.a) {
             if (Build.VERSION.SDK_INT < 28) {
-                rg7Var = new rg7((byte) 28);
+                sg7Var = new sg7((byte) 28);
             } else {
-                rg7Var = new rg7((byte) 28);
+                sg7Var = new sg7((byte) 28);
             }
-            if (rg7Var.c(spannable)) {
+            if (sg7Var.c(spannable)) {
                 this.b = new SpannableString(spannable);
             }
         }

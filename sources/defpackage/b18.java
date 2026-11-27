@@ -60,7 +60,7 @@ import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class b18 extends e implements fn7 {
-    public rca A0;
+    public sca A0;
     public String A1;
     public LinearLayout B0;
     public String B1;
@@ -76,7 +76,7 @@ public final class b18 extends e implements fn7 {
     public String F1;
     public TLRPC.TL_secureRequiredType G;
     public b34 G0;
-    public fe7 G1;
+    public ge7 G1;
     public ArrayList H;
     public ilb H0;
     public um4 H1;
@@ -156,10 +156,10 @@ public final class b18 extends e implements fn7 {
     public oy9 k1;
     public final ArrayList l0;
     public final ArrayList l1;
-    public rca m0;
+    public sca m0;
     public oy9 m1;
     public final String n;
-    public rca n0;
+    public sca n0;
     public oy9 n1;
     public ilb o0;
     public final HashMap o1;
@@ -1584,7 +1584,7 @@ public final class b18 extends e implements fn7 {
         }
     }
 
-    public final void R1(boolean z, String str, fe7 fe7Var, um4 um4Var, j08 j08Var) {
+    public final void R1(boolean z, String str, ge7 ge7Var, um4 um4Var, j08 j08Var) {
         boolean z2;
         boolean z3;
         boolean z4;
@@ -1619,7 +1619,7 @@ public final class b18 extends e implements fn7 {
                     }
                     this.F1 = str;
                     this.H1 = um4Var;
-                    this.G1 = fe7Var;
+                    this.G1 = ge7Var;
                     this.I1 = j08Var;
                     return;
                 }
@@ -2006,9 +2006,9 @@ public final class b18 extends e implements fn7 {
             b08Var.addView(this.Z[i4], tre.d(-1, 64.0f, 51, 21.0f, 0.0f, 21.0f, 0.0f));
             this.Z[i4].setOnEditorActionListener(new rz7(this, (byte) 4));
         }
-        rca rcaVar = new rca(context, (uh9) null);
-        this.m0 = rcaVar;
-        this.d0.addView(rcaVar, tre.o(-1, -2));
+        sca scaVar = new sca(context, (uh9) null);
+        this.m0 = scaVar;
+        this.d0.addView(scaVar, tre.o(-1, -2));
         if (this.w0 && this.G != null) {
             this.k0.setVisibility(8);
             this.m0.setVisibility(8);
@@ -2020,9 +2020,9 @@ public final class b18 extends e implements fn7 {
                 K0(tL_secureValue.files);
                 M0(tL_secureValue.translation);
             }
-            rca rcaVar2 = this.m0;
+            sca scaVar2 = this.m0;
             int i9 = aob.b7;
-            yob.Z(rcaVar2, context, 2131231232, i9);
+            yob.Z(scaVar2, context, 2131231232, i9);
             qmb qmbVar3 = new qmb(context);
             yob.X(qmbVar3.getTextView(), aob.p7, null);
             hf0 L03 = aob.L0(true);
@@ -2037,14 +2037,14 @@ public final class b18 extends e implements fn7 {
             }
             this.d0.addView(qmbVar3, tre.o(-1, -2));
             qmbVar3.setOnClickListener(new tz7(this, (byte) 9));
-            rca rcaVar3 = new rca(context, (uh9) null);
-            this.m0 = rcaVar3;
-            yob.Z(rcaVar3, context, 2131231233, i9);
+            sca scaVar3 = new sca(context, (uh9) null);
+            this.m0 = scaVar3;
+            yob.Z(scaVar3, context, 2131231233, i9);
             this.d0.addView(this.m0, tre.o(-1, -2));
         } else {
-            rca rcaVar4 = this.m0;
+            sca scaVar4 = this.m0;
             int i10 = aob.b7;
-            yob.Z(rcaVar4, context, 2131231233, i10);
+            yob.Z(scaVar4, context, 2131231233, i10);
             if (this.w0 && this.G != null) {
                 yob.Z(this.o0, context, 2131231233, i10);
             }
@@ -2540,9 +2540,9 @@ public final class b18 extends e implements fn7 {
                 i6 = -1;
                 vnbVar = null;
             } else {
-                rca rcaVar = new rca(context, (uh9) null);
-                this.n0 = rcaVar;
-                this.d0.addView(rcaVar, tre.o(-1, -2));
+                sca scaVar = new sca(context, (uh9) null);
+                this.n0 = scaVar;
+                this.d0.addView(scaVar, tre.o(-1, -2));
                 mf5 mf5Var5 = new mf5(context);
                 this.k0 = mf5Var5;
                 yob.h(aob.d6, null, mf5Var5);
@@ -2649,9 +2649,9 @@ public final class b18 extends e implements fn7 {
                     ilb ilbVar6 = this.r0;
                     int i17 = aob.b7;
                     yob.Z(ilbVar6, context, 2131231232, i17);
-                    rca rcaVar2 = new rca(context, (uh9) null);
-                    this.m0 = rcaVar2;
-                    yob.Z(rcaVar2, context, 2131231233, i17);
+                    sca scaVar2 = new sca(context, (uh9) null);
+                    this.m0 = scaVar2;
+                    yob.Z(scaVar2, context, 2131231233, i17);
                     this.d0.addView(this.m0, tre.o(-1, -2));
                 } else {
                     yob.Z(this.r0, context, 2131231233, aob.b7);

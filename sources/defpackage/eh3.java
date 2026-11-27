@@ -73,11 +73,11 @@ public final class eh3 implements Runnable {
                         z = savedStarGift.refunded;
                     }
                     wuaVar.p2(tL_starGiftUnique, z, null, null);
-                    hl.c3(new ida(wuaVar, tL_starGiftUnique, (byte) 17));
+                    hl.c3(new kba(wuaVar, tL_starGiftUnique, (byte) 18));
                     return;
                 } else if (tL_error != null) {
                     if ("BALANCE_TOO_LOW".equalsIgnoreCase(tL_error.text)) {
-                        new dza(wuaVar.getContext(), wuaVar.J0, this.b, 16, null, new ida(wuaVar, charSequence, (byte) 18), 0L).show();
+                        new dza(wuaVar.getContext(), wuaVar.J0, this.b, 16, null, new kba(wuaVar, charSequence, (byte) 19), 0L).show();
                         return;
                     }
                     wuaVar.j().g0(tL_error, false);
@@ -93,7 +93,7 @@ public final class eh3 implements Runnable {
                 TLRPC.Message message = r47Var.k;
                 message.translatedToLanguage = (String) obj5;
                 message.translatedText = r3c.M0((TLRPC.TL_textWithEntities) obj4, (TLRPC.TL_textWithEntities) obj3);
-                a5cVar.getMessagesStorage().U1(v11Var.a, r47Var.k);
+                a5cVar.getMessagesStorage().Z1(v11Var.a, r47Var.k);
                 a5cVar.M.remove(v11Var);
                 hl.d3((na8) obj, Math.max(0L, 400 - (System.currentTimeMillis() - this.b)));
                 return;

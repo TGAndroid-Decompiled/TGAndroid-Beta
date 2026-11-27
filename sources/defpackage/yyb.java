@@ -43,7 +43,7 @@ public final class yyb implements nc2 {
     @Override
     public final void m() {
         this.b.finishPreviewFragment();
-        hl.d3(new bcb(this, this.a, (byte) 14), 500L);
+        hl.d3(new hab(this, this.a, (byte) 15), 500L);
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class yyb implements nc2 {
         int i;
         tzb tzbVar = this.b;
         i = ((e) tzbVar).currentAccount;
-        SharedPreferences sharedPreferences = uc7.s1(i).W3;
+        SharedPreferences sharedPreferences = uc7.s1(i).X3;
         StringBuilder sb = new StringBuilder("sound_enabled_");
         long j = tzbVar.a;
         TLRPC.TL_forumTopic tL_forumTopic = this.a;

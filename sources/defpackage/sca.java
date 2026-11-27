@@ -1,33 +1,68 @@
 package defpackage;
 
-import android.graphics.Canvas;
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class sca {
-    public final vc a;
-    public final long b;
-    public final float c;
-    public final float d;
-    public final float e;
+public final class sca extends View {
+    public int a;
+    public final int b;
+    public boolean c;
+    public boolean d;
 
-    public sca(View view) {
-        vc vcVar = new vc(view, (byte) 6);
-        this.b = System.currentTimeMillis();
-        this.a = vcVar;
-        o3d o3dVar = Utilities.c;
-        this.c = hl.R1(5.0f, 9.0f, Utilities.l(o3dVar.nextFloat()));
-        this.d = hl.R1(2.5f, 5.0f, Utilities.l(o3dVar.nextFloat()));
-        this.e = hl.R1(2.5f, 5.2f, Utilities.l(o3dVar.nextFloat()));
+    public sca(Context context, uh9 uh9Var) {
+        super(context);
+        this.c = true;
+        this.d = true;
+        this.a = 12;
+        int i = this.b;
+        if (i == 0) {
+            setBackground(null);
+        } else {
+            setBackgroundColor(i);
+        }
     }
 
-    public final void a(Canvas canvas, float f) {
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * hl.L(0.5f) * f, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * hl.L(0.5f) * f);
-        canvas.translate(-0.0f, -0.0f);
-        if (f > 0.0f) {
-            this.a.run();
+    private int getBackgroundResId() {
+        boolean z = this.c;
+        boolean z2 = this.d;
+        if (z) {
+            if (z2) {
+                return 2131231232;
+            }
+            return 2131231233;
+        } else if (z2) {
+            return 2131231234;
+        } else {
+            return 2131232812;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(this.a), 1073741824));
+    }
+
+    public void setSize(int i) {
+        this.a = i;
+    }
+
+    public sca(Context context, Object obj) {
+        this(context, (uh9) null);
+    }
+
+    public sca(Context context) {
+        this(context, (uh9) null);
+    }
+
+    public sca(Context context, int i, int i2) {
+        super(context);
+        this.c = true;
+        this.d = true;
+        this.b = i;
+        this.a = 12;
+        if (i == 0) {
+            setBackground(null);
+        } else {
+            setBackgroundColor(i);
         }
     }
 }

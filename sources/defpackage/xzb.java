@@ -53,7 +53,7 @@ public final class xzb extends la {
             TextView textView = xxbVar.d;
             uc7 s1 = uc7.s1(yac.t0);
             if (s1.getMessagesController().p2(j2, tL_forumTopic.id, null)) {
-                int i2 = s1.W3.getInt("notifyuntil_" + ip7.p(j2, j, false), 0);
+                int i2 = s1.X3.getInt("notifyuntil_" + ip7.p(j2, j, false), 0);
                 if (i2 >= s1.getConnectionsManager().getCurrentTime()) {
                     M0 = ob6.a0("NotificationsMutedForHint", null, 2131747627, ob6.c0(i2));
                 } else {
@@ -86,7 +86,7 @@ public final class xzb extends la {
                     }
                     return qu6.h(view, view, -1, -2);
                 }
-                skbVar = new rca(viewGroup.getContext(), (uh9) null);
+                skbVar = new sca(viewGroup.getContext(), (uh9) null);
             } else {
                 Context context = viewGroup.getContext();
                 ?? frameLayout = new FrameLayout(context);

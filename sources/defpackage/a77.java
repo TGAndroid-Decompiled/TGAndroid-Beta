@@ -166,7 +166,7 @@ public final class a77 extends nx0 {
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');
             di0.h();
-            sb.append(di0.f("USD", 2, (long) (this.v1.c() * uc7.s1(this.a).k4.A3.i * 1.0E-5d * 100.0d), false));
+            sb.append(di0.f("USD", 2, (long) (this.v1.c() * uc7.s1(this.a).l4.A3.i * 1.0E-5d * 100.0d), false));
             this.s1.c(sb, z3, true);
         }
         if (z && z4) {

@@ -129,7 +129,7 @@ public final class ka5 extends FrameLayout implements qb5 {
         int L = hl.L(400.0f);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
         StaticLayout staticLayout = new StaticLayout(M02, textPaint, L, alignment, 1.0f, 0.0f, false);
-        StaticLayout staticLayout2 = new StaticLayout(ob6.a0("VoipVideoNotAvailable", null, 2131742878, ob6.G(uc7.s1(i).k4.U0.f(), "Participants", new Object[0])), textPaint, hl.L(400.0f), alignment, 1.0f, 0.0f, false);
+        StaticLayout staticLayout2 = new StaticLayout(ob6.a0("VoipVideoNotAvailable", null, 2131742878, ob6.G(uc7.s1(i).l4.U0.f(), "Participants", new Object[0])), textPaint, hl.L(400.0f), alignment, 1.0f, 0.0f, false);
         String M03 = ob6.M0(2131742874, null);
         ga5 ga5Var = new ga5(this, mb5Var.getContext(), vc2Var, mb5Var, textPaint, staticLayout2, textPaint2, M03, textPaint2.measureText(M03), staticLayout, j95Var, M0, textPaint.measureText(M0));
         this.a = ga5Var;
@@ -279,7 +279,7 @@ public final class ka5 extends FrameLayout implements qb5 {
                 boolean z2 = wc2Var2.a.self;
                 ImageReceiver imageReceiver = this.l0;
                 if (z2 && wc2Var2.b) {
-                    imageReceiver.g0(new hh7(-14602694, -13935795, -14395293, -14203560, true, false));
+                    imageReceiver.g0(new ih7(-14602694, -13935795, -14395293, -14203560, true, false));
                     return;
                 }
                 int i = (B1 > 0L ? 1 : (B1 == 0L ? 0 : -1));
@@ -442,7 +442,7 @@ public final class ka5 extends FrameLayout implements qb5 {
                 try {
                     d1 d1Var = anbVar.d;
                     if (d1Var != null) {
-                        d1Var.post(new g9c(anbVar, e05Var, (byte) 26));
+                        d1Var.post(new c9c(anbVar, e05Var, (byte) 27));
                     }
                 } catch (Exception e) {
                     cc4.g(e, true);

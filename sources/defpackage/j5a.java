@@ -25,12 +25,12 @@ public final class j5a implements Runnable {
             case 0:
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(Integer.valueOf(tL_updateNewChannelMessage.message.id));
-                r7aVar.getMessagesStorage().Z1(-j, arrayList, true, -1, 0, false, null);
+                r7aVar.getMessagesStorage().e2(-j, arrayList, true, -1, 0, false, null);
                 return;
             default:
                 ArrayList arrayList2 = new ArrayList();
                 arrayList2.add(Integer.valueOf(tL_updateNewChannelMessage.message.id));
-                r7aVar.getMessagesStorage().Z1(-j, arrayList2, true, -1, 0, false, null);
+                r7aVar.getMessagesStorage().e2(-j, arrayList2, true, -1, 0, false, null);
                 return;
         }
     }

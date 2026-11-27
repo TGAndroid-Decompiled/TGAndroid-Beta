@@ -9,10 +9,10 @@ public final class v6b extends vu7 {
     public final Context c;
     public final lcb d;
     public final x53 e;
-    public final acb f;
+    public final bcb f;
 
-    public v6b(acb acbVar, Context context, lcb lcbVar, x53 x53Var) {
-        this.f = acbVar;
+    public v6b(bcb bcbVar, Context context, lcb lcbVar, x53 x53Var) {
+        this.f = bcbVar;
         this.c = context;
         this.d = lcbVar;
         this.e = x53Var;
@@ -29,12 +29,12 @@ public final class v6b extends vu7 {
 
     @Override
     public final int b() {
-        acb acbVar = this.f;
-        ArrayList arrayList = acbVar.y0;
+        bcb bcbVar = this.f;
+        ArrayList arrayList = bcbVar.y0;
         if (arrayList != null) {
             return arrayList.size();
         }
-        return acbVar.B0.size();
+        return bcbVar.B0.size();
     }
 
     @Override
@@ -42,9 +42,9 @@ public final class v6b extends vu7 {
         o68 u6bVar;
         long B0;
         Context context = this.c;
-        acb acbVar = this.f;
-        w6b w6bVar = new w6b(acbVar, context);
-        ArrayList arrayList = acbVar.Q0;
+        bcb bcbVar = this.f;
+        w6b w6bVar = new w6b(bcbVar, context);
+        ArrayList arrayList = bcbVar.Q0;
         boolean isEmpty = arrayList.isEmpty();
         lcb lcbVar = this.d;
         if (!isEmpty) {
@@ -76,27 +76,27 @@ public final class v6b extends vu7 {
             u6bVar.S2 = false;
             u6bVar.f0();
         } else {
-            u6bVar = new u6b(this, this.c, lcbVar, acbVar.I0, this.e);
+            u6bVar = new u6b(this, this.c, lcbVar, bcbVar.I0, this.e);
         }
         w6bVar.a = u6bVar;
-        u6bVar.setAccount(acbVar.z0);
-        u6bVar.setDelegate(acbVar.C0);
+        u6bVar.setAccount(bcbVar.z0);
+        u6bVar.setDelegate(bcbVar.C0);
         u6bVar.setLongpressed(lcbVar.a1);
         w6bVar.setTag(Integer.valueOf(i));
-        ArrayList arrayList2 = acbVar.y0;
+        ArrayList arrayList2 = bcbVar.y0;
         if (arrayList2 != null) {
             if (lcbVar.R0) {
                 i = (arrayList2.size() - 1) - i;
             }
             ArrayList arrayList3 = (ArrayList) arrayList2.get(i);
             w6bVar.c = arrayList3;
-            u5b u5bVar = lcbVar.O0;
-            if (!(u5bVar instanceof p5b) && !(u5bVar instanceof w5b)) {
-                w6bVar.b = acbVar.x0;
+            v5b v5bVar = lcbVar.O0;
+            if (!(v5bVar instanceof q5b) && !(v5bVar instanceof x5b)) {
+                w6bVar.b = bcbVar.x0;
             } else {
-                r47 f = u5bVar.f(((Integer) arrayList3.get(0)).intValue());
+                r47 f = v5bVar.f(((Integer) arrayList3.get(0)).intValue());
                 if (f == null) {
-                    B0 = acbVar.x0;
+                    B0 = bcbVar.x0;
                 } else {
                     B0 = r47.B0(f.k);
                 }
@@ -104,7 +104,7 @@ public final class v6b extends vu7 {
             }
         } else {
             w6bVar.c = null;
-            w6bVar.b = ((Long) acbVar.B0.get(i)).longValue();
+            w6bVar.b = ((Long) bcbVar.B0.get(i)).longValue();
         }
         w6bVar.addView(u6bVar);
         u6bVar.requestLayout();

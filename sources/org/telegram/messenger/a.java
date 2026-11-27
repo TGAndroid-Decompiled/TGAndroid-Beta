@@ -261,7 +261,7 @@ public abstract class a extends Application {
     public static void v() {
         if (!f && b != null) {
             f = true;
-            ok7.c(b);
+            pk7.c(b);
             try {
                 ob6.D0();
             } catch (Exception e2) {
@@ -306,8 +306,8 @@ public abstract class a extends Application {
                 TLRPC.User f2 = yac.h(i).f();
                 if (f2 != null) {
                     uc7.s1(i).i4(f2, true, false);
-                    jf7 messagesStorage = r7a.B(i).getMessagesStorage();
-                    messagesStorage.a.c(new be7(messagesStorage, (byte) 22));
+                    kf7 messagesStorage = r7a.B(i).getMessagesStorage();
+                    messagesStorage.a.c(new hd7(messagesStorage, (byte) 25));
                     String i2 = ea4.i(i);
                     if (i2 != null) {
                         ea4.e.postRunnable(new qu2(i2, (byte) 1));
@@ -337,7 +337,7 @@ public abstract class a extends Application {
         if (f1.contains("pushService")) {
             z = f1.getBoolean("pushService", true);
         } else {
-            z = uc7.s1(yac.t0).X3.getBoolean("keepAliveService", false);
+            z = uc7.s1(yac.t0).Y3.getBoolean("keepAliveService", false);
         }
         if (z) {
             try {
@@ -437,7 +437,7 @@ public abstract class a extends Application {
         if (b == null) {
             b = getApplicationContext();
         }
-        ok7.c(b);
+        pk7.c(b);
         try {
             ConnectionsManager.native_setJava(false);
             new vr(this);
@@ -468,7 +468,7 @@ public abstract class a extends Application {
             jn7.e().a(ix8Var, jn7.E4);
             jn7.e().a(ix8Var, jn7.D4);
         } catch (UnsatisfiedLinkError unused2) {
-            throw new RuntimeException("can't load native libraries " + Build.CPU_ABI + " lookup folder " + ok7.a());
+            throw new RuntimeException("can't load native libraries " + Build.CPU_ABI + " lookup folder " + pk7.a());
         }
     }
 

@@ -12,9 +12,9 @@ public final class fd6 implements Runnable {
     public final Object e;
     public final Object f;
 
-    public fd6(jf7 jf7Var, String str, int i, Object[] objArr, CountDownLatch countDownLatch) {
+    public fd6(kf7 kf7Var, String str, int i, Object[] objArr, CountDownLatch countDownLatch) {
         this.a = (byte) 2;
-        this.c = jf7Var;
+        this.c = kf7Var;
         this.d = str;
         this.b = i;
         this.e = objArr;

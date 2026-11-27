@@ -68,7 +68,7 @@ public final class em6 extends e implements xia, el4, fn7 {
     public final List D() {
         String str;
         Activity parentActivity = getParentActivity();
-        uo3 uo3Var = xca.m;
+        uo3 uo3Var = yca.m;
         if (parentActivity.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false)) {
             str = "Disable";
         } else {
@@ -205,10 +205,10 @@ public final class em6 extends e implements xia, el4, fn7 {
 
                 @Override
                 public final void onClick(View view) {
-                    u5b u5bVar;
-                    u5b u5bVar2;
-                    u5b u5bVar3;
-                    u5b u5bVar4;
+                    v5b v5bVar;
+                    v5b v5bVar2;
+                    v5b v5bVar3;
+                    v5b v5bVar4;
                     boolean z;
                     int i3;
                     v21 j;
@@ -248,16 +248,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z4 = em6Var.E;
                             boolean z5 = em6Var.F;
                             oha ohaVar = dm6Var2.f0;
-                            if (ohaVar != null && (u5bVar2 = ohaVar.s) != null) {
-                                u5bVar2.n = z4;
-                                u5bVar2.o = z5;
-                                u5bVar2.d(true);
+                            if (ohaVar != null && (v5bVar2 = ohaVar.s) != null) {
+                                v5bVar2.n = z4;
+                                v5bVar2.o = z5;
+                                v5bVar2.d(true);
                             }
                             aga agaVar = dm6Var2.h0;
-                            if (agaVar != null && (u5bVar = agaVar.s) != null) {
-                                u5bVar.n = z4;
-                                u5bVar.o = z5;
-                                u5bVar.d(true);
+                            if (agaVar != null && (v5bVar = agaVar.s) != null) {
+                                v5bVar.n = z4;
+                                v5bVar.o = z5;
+                                v5bVar.d(true);
                                 return;
                             }
                             return;
@@ -279,16 +279,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z8 = em6Var.E;
                             boolean z9 = em6Var.F;
                             oha ohaVar2 = dm6Var3.f0;
-                            if (ohaVar2 != null && (u5bVar4 = ohaVar2.s) != null) {
-                                u5bVar4.n = z8;
-                                u5bVar4.o = z9;
-                                u5bVar4.d(true);
+                            if (ohaVar2 != null && (v5bVar4 = ohaVar2.s) != null) {
+                                v5bVar4.n = z8;
+                                v5bVar4.o = z9;
+                                v5bVar4.d(true);
                             }
                             aga agaVar2 = dm6Var3.h0;
-                            if (agaVar2 != null && (u5bVar3 = agaVar2.s) != null) {
-                                u5bVar3.n = z8;
-                                u5bVar3.o = z9;
-                                u5bVar3.d(true);
+                            if (agaVar2 != null && (v5bVar3 = agaVar2.s) != null) {
+                                v5bVar3.n = z8;
+                                v5bVar3.o = z9;
+                                v5bVar3.d(true);
                                 return;
                             }
                             return;
@@ -356,10 +356,10 @@ public final class em6 extends e implements xia, el4, fn7 {
 
                 @Override
                 public final void onClick(View view) {
-                    u5b u5bVar;
-                    u5b u5bVar2;
-                    u5b u5bVar3;
-                    u5b u5bVar4;
+                    v5b v5bVar;
+                    v5b v5bVar2;
+                    v5b v5bVar3;
+                    v5b v5bVar4;
                     boolean z;
                     int i3;
                     v21 j;
@@ -399,16 +399,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z4 = em6Var.E;
                             boolean z5 = em6Var.F;
                             oha ohaVar = dm6Var2.f0;
-                            if (ohaVar != null && (u5bVar2 = ohaVar.s) != null) {
-                                u5bVar2.n = z4;
-                                u5bVar2.o = z5;
-                                u5bVar2.d(true);
+                            if (ohaVar != null && (v5bVar2 = ohaVar.s) != null) {
+                                v5bVar2.n = z4;
+                                v5bVar2.o = z5;
+                                v5bVar2.d(true);
                             }
                             aga agaVar = dm6Var2.h0;
-                            if (agaVar != null && (u5bVar = agaVar.s) != null) {
-                                u5bVar.n = z4;
-                                u5bVar.o = z5;
-                                u5bVar.d(true);
+                            if (agaVar != null && (v5bVar = agaVar.s) != null) {
+                                v5bVar.n = z4;
+                                v5bVar.o = z5;
+                                v5bVar.d(true);
                                 return;
                             }
                             return;
@@ -430,16 +430,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z8 = em6Var.E;
                             boolean z9 = em6Var.F;
                             oha ohaVar2 = dm6Var3.f0;
-                            if (ohaVar2 != null && (u5bVar4 = ohaVar2.s) != null) {
-                                u5bVar4.n = z8;
-                                u5bVar4.o = z9;
-                                u5bVar4.d(true);
+                            if (ohaVar2 != null && (v5bVar4 = ohaVar2.s) != null) {
+                                v5bVar4.n = z8;
+                                v5bVar4.o = z9;
+                                v5bVar4.d(true);
                             }
                             aga agaVar2 = dm6Var3.h0;
-                            if (agaVar2 != null && (u5bVar3 = agaVar2.s) != null) {
-                                u5bVar3.n = z8;
-                                u5bVar3.o = z9;
-                                u5bVar3.d(true);
+                            if (agaVar2 != null && (v5bVar3 = agaVar2.s) != null) {
+                                v5bVar3.n = z8;
+                                v5bVar3.o = z9;
+                                v5bVar3.d(true);
                                 return;
                             }
                             return;
@@ -514,10 +514,10 @@ public final class em6 extends e implements xia, el4, fn7 {
 
                 @Override
                 public final void onClick(View view) {
-                    u5b u5bVar;
-                    u5b u5bVar2;
-                    u5b u5bVar3;
-                    u5b u5bVar4;
+                    v5b v5bVar;
+                    v5b v5bVar2;
+                    v5b v5bVar3;
+                    v5b v5bVar4;
                     boolean z;
                     int i3;
                     v21 j;
@@ -557,16 +557,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z4 = em6Var.E;
                             boolean z5 = em6Var.F;
                             oha ohaVar = dm6Var2.f0;
-                            if (ohaVar != null && (u5bVar2 = ohaVar.s) != null) {
-                                u5bVar2.n = z4;
-                                u5bVar2.o = z5;
-                                u5bVar2.d(true);
+                            if (ohaVar != null && (v5bVar2 = ohaVar.s) != null) {
+                                v5bVar2.n = z4;
+                                v5bVar2.o = z5;
+                                v5bVar2.d(true);
                             }
                             aga agaVar = dm6Var2.h0;
-                            if (agaVar != null && (u5bVar = agaVar.s) != null) {
-                                u5bVar.n = z4;
-                                u5bVar.o = z5;
-                                u5bVar.d(true);
+                            if (agaVar != null && (v5bVar = agaVar.s) != null) {
+                                v5bVar.n = z4;
+                                v5bVar.o = z5;
+                                v5bVar.d(true);
                                 return;
                             }
                             return;
@@ -588,16 +588,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z8 = em6Var.E;
                             boolean z9 = em6Var.F;
                             oha ohaVar2 = dm6Var3.f0;
-                            if (ohaVar2 != null && (u5bVar4 = ohaVar2.s) != null) {
-                                u5bVar4.n = z8;
-                                u5bVar4.o = z9;
-                                u5bVar4.d(true);
+                            if (ohaVar2 != null && (v5bVar4 = ohaVar2.s) != null) {
+                                v5bVar4.n = z8;
+                                v5bVar4.o = z9;
+                                v5bVar4.d(true);
                             }
                             aga agaVar2 = dm6Var3.h0;
-                            if (agaVar2 != null && (u5bVar3 = agaVar2.s) != null) {
-                                u5bVar3.n = z8;
-                                u5bVar3.o = z9;
-                                u5bVar3.d(true);
+                            if (agaVar2 != null && (v5bVar3 = agaVar2.s) != null) {
+                                v5bVar3.n = z8;
+                                v5bVar3.o = z9;
+                                v5bVar3.d(true);
                                 return;
                             }
                             return;
@@ -667,10 +667,10 @@ public final class em6 extends e implements xia, el4, fn7 {
 
                 @Override
                 public final void onClick(View view) {
-                    u5b u5bVar;
-                    u5b u5bVar2;
-                    u5b u5bVar3;
-                    u5b u5bVar4;
+                    v5b v5bVar;
+                    v5b v5bVar2;
+                    v5b v5bVar3;
+                    v5b v5bVar4;
                     boolean z;
                     int i3;
                     v21 j;
@@ -710,16 +710,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z4 = em6Var.E;
                             boolean z5 = em6Var.F;
                             oha ohaVar = dm6Var2.f0;
-                            if (ohaVar != null && (u5bVar2 = ohaVar.s) != null) {
-                                u5bVar2.n = z4;
-                                u5bVar2.o = z5;
-                                u5bVar2.d(true);
+                            if (ohaVar != null && (v5bVar2 = ohaVar.s) != null) {
+                                v5bVar2.n = z4;
+                                v5bVar2.o = z5;
+                                v5bVar2.d(true);
                             }
                             aga agaVar = dm6Var2.h0;
-                            if (agaVar != null && (u5bVar = agaVar.s) != null) {
-                                u5bVar.n = z4;
-                                u5bVar.o = z5;
-                                u5bVar.d(true);
+                            if (agaVar != null && (v5bVar = agaVar.s) != null) {
+                                v5bVar.n = z4;
+                                v5bVar.o = z5;
+                                v5bVar.d(true);
                                 return;
                             }
                             return;
@@ -741,16 +741,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z8 = em6Var.E;
                             boolean z9 = em6Var.F;
                             oha ohaVar2 = dm6Var3.f0;
-                            if (ohaVar2 != null && (u5bVar4 = ohaVar2.s) != null) {
-                                u5bVar4.n = z8;
-                                u5bVar4.o = z9;
-                                u5bVar4.d(true);
+                            if (ohaVar2 != null && (v5bVar4 = ohaVar2.s) != null) {
+                                v5bVar4.n = z8;
+                                v5bVar4.o = z9;
+                                v5bVar4.d(true);
                             }
                             aga agaVar2 = dm6Var3.h0;
-                            if (agaVar2 != null && (u5bVar3 = agaVar2.s) != null) {
-                                u5bVar3.n = z8;
-                                u5bVar3.o = z9;
-                                u5bVar3.d(true);
+                            if (agaVar2 != null && (v5bVar3 = agaVar2.s) != null) {
+                                v5bVar3.n = z8;
+                                v5bVar3.o = z9;
+                                v5bVar3.d(true);
                                 return;
                             }
                             return;
@@ -845,10 +845,10 @@ public final class em6 extends e implements xia, el4, fn7 {
 
                 @Override
                 public final void onClick(View view) {
-                    u5b u5bVar;
-                    u5b u5bVar2;
-                    u5b u5bVar3;
-                    u5b u5bVar4;
+                    v5b v5bVar;
+                    v5b v5bVar2;
+                    v5b v5bVar3;
+                    v5b v5bVar4;
                     boolean z;
                     int i32;
                     v21 j;
@@ -888,16 +888,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z4 = em6Var.E;
                             boolean z5 = em6Var.F;
                             oha ohaVar = dm6Var2.f0;
-                            if (ohaVar != null && (u5bVar2 = ohaVar.s) != null) {
-                                u5bVar2.n = z4;
-                                u5bVar2.o = z5;
-                                u5bVar2.d(true);
+                            if (ohaVar != null && (v5bVar2 = ohaVar.s) != null) {
+                                v5bVar2.n = z4;
+                                v5bVar2.o = z5;
+                                v5bVar2.d(true);
                             }
                             aga agaVar = dm6Var2.h0;
-                            if (agaVar != null && (u5bVar = agaVar.s) != null) {
-                                u5bVar.n = z4;
-                                u5bVar.o = z5;
-                                u5bVar.d(true);
+                            if (agaVar != null && (v5bVar = agaVar.s) != null) {
+                                v5bVar.n = z4;
+                                v5bVar.o = z5;
+                                v5bVar.d(true);
                                 return;
                             }
                             return;
@@ -919,16 +919,16 @@ public final class em6 extends e implements xia, el4, fn7 {
                             boolean z8 = em6Var.E;
                             boolean z9 = em6Var.F;
                             oha ohaVar2 = dm6Var3.f0;
-                            if (ohaVar2 != null && (u5bVar4 = ohaVar2.s) != null) {
-                                u5bVar4.n = z8;
-                                u5bVar4.o = z9;
-                                u5bVar4.d(true);
+                            if (ohaVar2 != null && (v5bVar4 = ohaVar2.s) != null) {
+                                v5bVar4.n = z8;
+                                v5bVar4.o = z9;
+                                v5bVar4.d(true);
                             }
                             aga agaVar2 = dm6Var3.h0;
-                            if (agaVar2 != null && (u5bVar3 = agaVar2.s) != null) {
-                                u5bVar3.n = z8;
-                                u5bVar3.o = z9;
-                                u5bVar3.d(true);
+                            if (agaVar2 != null && (v5bVar3 = agaVar2.s) != null) {
+                                v5bVar3.n = z8;
+                                v5bVar3.o = z9;
+                                v5bVar3.d(true);
                                 return;
                             }
                             return;

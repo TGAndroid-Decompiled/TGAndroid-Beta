@@ -470,7 +470,7 @@ public final class ed implements pw2, ifc, ka1, xj0, una {
                         list = null;
                     }
                     jo4 jo4Var = new jo4();
-                    jo4Var.s = dg7.n(str);
+                    jo4Var.s = eg7.n(str);
                     jo4Var.d = y;
                     jo4Var.S = i;
                     jo4Var.v = list;
@@ -723,7 +723,7 @@ public final class ed implements pw2, ifc, ka1, xj0, una {
     }
 
     @Override
-    public final void p0(ei7 ei7Var) {
+    public final void p0(fi7 fi7Var) {
     }
 
     @Override

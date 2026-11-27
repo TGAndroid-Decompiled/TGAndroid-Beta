@@ -1,22 +1,24 @@
 package defpackage;
 
-import android.os.Build;
-import java.lang.reflect.Method;
-public final class yg7 {
-    public Method a;
-    public Method b;
-    public Method c;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class yg7 extends c4 {
+    public static final Parcelable.Creator<yg7> CREATOR = new s5d((byte) 5);
+    public final int a;
+    public final boolean b;
 
-    public yg7(Method method, Method method2, Method method3) {
-        this.a = method;
-        this.b = method2;
-        this.c = method3;
+    public yg7(int i, boolean z) {
+        this.a = i;
+        this.b = z;
     }
 
-    public static void a() {
-        if (Build.VERSION.SDK_INT < 29) {
-            return;
-        }
-        throw new UnsupportedClassVersionError("This function can only be used for API Level < 29.");
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.b ? 1 : 0);
+        bye.s(parcel, r);
     }
 }

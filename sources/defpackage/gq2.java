@@ -20,7 +20,7 @@ public final class gq2 implements sr4 {
                 return null;
             case 1:
                 ((lj4) obj).a.await();
-                return f9c.a;
+                return g9c.a;
             default:
                 ((vcc) obj).getClass();
                 UUID randomUUID = UUID.randomUUID();

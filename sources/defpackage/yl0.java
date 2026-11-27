@@ -78,8 +78,8 @@ public final class yl0 {
                 f4 = 0.0f;
             }
             GLES20.glUniform1f(i5, f4);
-            pca.a(ul0Var.h, this.l);
-            pca.a(ul0Var.i, this.m);
+            qca.a(ul0Var.h, this.l);
+            qca.a(ul0Var.i, this.m);
             synchronized (this.k) {
                 GLES20.glUniformMatrix4fv(ul0Var.d, 1, false, this.j, 0);
             }
@@ -97,8 +97,8 @@ public final class yl0 {
                 GLES20.glUniform2f(ul0Var.f, this.a, this.b);
                 GLES20.glUniform2f(ul0Var.g, f2, f3);
                 GLES20.glUniform1i(ul0Var.j, 0);
-                pca.a(ul0Var.h, this.l);
-                pca.a(ul0Var.i, this.m);
+                qca.a(ul0Var.h, this.l);
+                qca.a(ul0Var.i, this.m);
                 GLES20.glUniform1f(ul0Var.k, 0.0f);
                 synchronized (this.k) {
                     GLES20.glUniformMatrix4fv(ul0Var.d, 1, false, this.j, 0);

@@ -43,7 +43,7 @@ public final class p4c implements pcc {
                 if (tL_textWithEntities == null) {
                     message.summarizedOpen = false;
                 }
-                a5cVar.getMessagesStorage().U1(j, r47Var.k);
+                a5cVar.getMessagesStorage().Z1(j, r47Var.k);
                 jn7.f(a5cVar.currentAccount).k(129, r47Var, Boolean.TRUE);
                 return;
             case 1:
@@ -88,7 +88,7 @@ public final class p4c implements pcc {
                 return;
             case 5:
                 TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer = (TLRPC.TL_messageActionStarGiftOnchainOffer) obj2;
-                ((fd7) obj3).run();
+                ((gd7) obj3).run();
                 if (!((Boolean) obj).booleanValue()) {
                     vs7.g(j);
                     vs7.s(2131749512, tL_messageActionStarGiftOnchainOffer.gift);
@@ -113,7 +113,7 @@ public final class p4c implements pcc {
                 wua wuaVar = (wua) obj3;
                 uc7 uc7Var = (uc7) obj2;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < uc7Var.k4.f2.f()) {
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < uc7Var.l4.f2.f()) {
                     xg1 G0 = uc7Var.G0();
                     long j2 = this.b;
                     G0.b(j2, tL_premium_boostsStatus, new r4c(wuaVar, tL_premium_boostsStatus, j2, uc7Var, (byte) 8));

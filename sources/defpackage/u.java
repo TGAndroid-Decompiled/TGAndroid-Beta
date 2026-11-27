@@ -89,7 +89,7 @@ public final class u implements r69 {
                         dsVar.c = true;
                         return;
                     } else if (b2 == 7) {
-                        if (!dsVar.getUserConfig().p() && !dsVar.getMessagesController().k4.T0.f && !dsVar.d.archive_and_mute_new_noncontact_peers) {
+                        if (!dsVar.getUserConfig().p() && !dsVar.getMessagesController().l4.T0.f && !dsVar.d.archive_and_mute_new_noncontact_peers) {
                             n21 n21Var = new n21(dsVar.getParentActivity(), dsVar.getResourceProvider());
                             n21Var.b.setText(hl.N2(ob6.M0(2131743521, null), aob.xj, 0, new c1(dsVar, (byte) 18), null));
                             n21Var.b.setSingleLine(false);
@@ -258,13 +258,13 @@ public final class u implements r69 {
                     lcb orCreateStoryViewer = eVar.getOrCreateStoryViewer();
                     Context context = gr0Var.getContext();
                     int e1 = messageObject.e1();
-                    o5b o5bVar = gr0Var.a;
+                    p5b p5bVar = gr0Var.a;
                     l6b a = l6b.a(gr0Var.f);
                     if ((eVar instanceof ProfileActivity) && ((ProfileActivity) eVar).s1) {
                         i6 = hl.L(68.0f);
                     }
                     a.s += i6;
-                    orCreateStoryViewer.G(context, e1, o5bVar, a);
+                    orCreateStoryViewer.G(context, e1, p5bVar, a);
                     return;
                 }
                 return;
@@ -643,7 +643,7 @@ public final class u implements r69 {
                                 yh3Var.s = longValue2;
                                 i19++;
                             } else {
-                                int i20 = uc7.r5;
+                                int i20 = uc7.s5;
                                 uj3Var.G5(512, true);
                             }
                         }
@@ -827,7 +827,7 @@ public final class u implements r69 {
                         }
                         if (!TextUtils.isEmpty(nf4Var.x) || !TextUtils.isEmpty(ac7Var.b)) {
                             int i23 = nf4Var.E;
-                            int i24 = uc7.r5;
+                            int i24 = uc7.s5;
                             if ((i23 & (-1537)) == 0 && nf4Var.H.isEmpty() && !nf4Var.G.isEmpty()) {
                                 nf4Var.y0(new oe4(nf4Var, (byte) 1), false);
                                 return;
@@ -842,7 +842,7 @@ public final class u implements r69 {
                             i3 = 2131750727;
                         } else {
                             int i25 = nf4Var.E;
-                            int i26 = uc7.r5;
+                            int i26 = uc7.s5;
                             if ((i25 & (-1537)) != 0) {
                                 if (!nf4Var.H.isEmpty()) {
                                     b0 = d31.b0(nf4Var);

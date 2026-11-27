@@ -198,9 +198,9 @@ public abstract class zz {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
             telephonyManager.getClass();
-            hl7 hl7Var = new hl7(yv2Var);
-            telephonyManager.registerTelephonyCallback((Executor) yv2Var.b, hl7Var);
-            telephonyManager.unregisterTelephonyCallback(hl7Var);
+            il7 il7Var = new il7(yv2Var);
+            telephonyManager.registerTelephonyCallback((Executor) yv2Var.b, il7Var);
+            telephonyManager.unregisterTelephonyCallback(il7Var);
         } catch (RuntimeException unused) {
             yv2Var.i(5);
         }

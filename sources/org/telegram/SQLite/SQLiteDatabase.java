@@ -96,11 +96,34 @@ public class SQLiteDatabase {
         return this.sqliteHandle;
     }
 
+    public void interrupt() {
+        if (this.isOpen) {
+            interrupt(this.sqliteHandle);
+        }
+    }
+
+    public native void interrupt(long j);
+
     public native long opendb(String str, String str2);
 
     public SQLiteCursor queryFinalized(String str, Object... objArr) {
         checkOpened();
         return new SQLitePreparedStatement(this, str).query(objArr);
+    }
+
+    public native void setInterruptOnBusy(long j, long j2);
+
+    public void setInterruptOnBusy(SQLiteDatabase sQLiteDatabase) {
+        long j;
+        if (this.isOpen) {
+            long j2 = this.sqliteHandle;
+            if (sQLiteDatabase != null) {
+                j = sQLiteDatabase.sqliteHandle;
+            } else {
+                j = 0;
+            }
+            setInterruptOnBusy(j2, j);
+        }
     }
 
     public boolean tableExists(String str) {
@@ -110,4 +133,13 @@ public class SQLiteDatabase {
         }
         return false;
     }
+
+    public int tryTransactionState() {
+        if (this.isOpen) {
+            return tryTransactionState(this.sqliteHandle);
+        }
+        return 0;
+    }
+
+    public native int tryTransactionState(long j);
 }

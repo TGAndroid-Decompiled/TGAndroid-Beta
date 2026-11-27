@@ -598,7 +598,7 @@ public abstract class it7 {
                 M0 = ob6.M0(f(bool, 2131749598, 2131749597, 2131749597), null);
                 break;
             case 4:
-                hr hrVar = uc7.s1(i).k4;
+                hr hrVar = uc7.s1(i).l4;
                 long f = hrVar.q.f();
                 long f2 = hrVar.r.f();
                 if (f > 0 && f2 > f) {
@@ -695,7 +695,7 @@ public abstract class it7 {
     }
 
     public static void v(TL_stars.StarGift starGift, String str) {
-        hl.c3(new pl7(starGift, str, (byte) 10));
+        hl.c3(new ql7(starGift, str, (byte) 11));
     }
 
     public static void w(android.content.Context r8, int r9, defpackage.vnb r10, defpackage.d31 r11, java.lang.Object r12, long r13) {

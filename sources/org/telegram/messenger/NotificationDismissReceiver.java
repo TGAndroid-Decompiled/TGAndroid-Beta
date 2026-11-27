@@ -20,10 +20,10 @@ public class NotificationDismissReceiver extends BroadcastReceiver {
                 ip7.l0.c(new vo7(ip7.n(intExtra), (byte) 6));
             } else if (longExtra == 0) {
                 cc4.b("set dismissDate of global to " + intExtra2);
-                uc7.s1(intExtra).W3.edit().putInt("dismissDate", intExtra2).commit();
+                uc7.s1(intExtra).X3.edit().putInt("dismissDate", intExtra2).commit();
             } else {
                 cc4.b("set dismissDate of " + longExtra + " to " + intExtra2);
-                SharedPreferences.Editor edit = uc7.s1(intExtra).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(intExtra).X3.edit();
                 StringBuilder sb = new StringBuilder("dismissDate");
                 sb.append(longExtra);
                 edit.putInt(sb.toString(), intExtra2).commit();

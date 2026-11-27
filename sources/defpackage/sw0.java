@@ -117,7 +117,7 @@ public final class sw0 implements uu0 {
     public final boolean h() {
         xw0 xw0Var = this.d;
         if (!xw0Var.o()) {
-            if (ls6.d0(xw0Var.I).l(xw0Var.J) || uc7.s1(xw0Var.I).S3.contains(Long.valueOf(xw0Var.J))) {
+            if (ls6.d0(xw0Var.I).l(xw0Var.J) || uc7.s1(xw0Var.I).T3.contains(Long.valueOf(xw0Var.J))) {
                 return true;
             }
             return false;

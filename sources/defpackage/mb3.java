@@ -198,7 +198,7 @@ public final class mb3 implements la6 {
             Uri parse = Uri.parse(str);
             jo4 jo4Var = new jo4();
             jo4Var.a = "0";
-            jo4Var.r = dg7.n("application/x-mpegURL");
+            jo4Var.r = eg7.n("application/x-mpegURL");
             List singletonList = Collections.singletonList(new ih5(parse, new ko4(jo4Var), null, null, null, null, null, null));
             List list = Collections.EMPTY_LIST;
             jh5Var = new jh5("", list, singletonList, list, list, list, list, null, null, false, Collections.EMPTY_MAP, list, null);

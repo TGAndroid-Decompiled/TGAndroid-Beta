@@ -26,8 +26,8 @@ public final class mk3 {
             int i = this.a;
             if (!z) {
                 lk3 lk3Var = new lk3(this, (byte) 0);
-                jf7 Y = jf7.Y(i);
-                Y.a.c(new cv2(this, Y, lk3Var, (byte) 7));
+                kf7 a0 = kf7.a0(i);
+                a0.a.c(new cv2(this, a0, lk3Var, (byte) 7));
                 return;
             }
             TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();

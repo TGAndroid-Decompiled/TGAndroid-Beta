@@ -69,10 +69,10 @@ public class r4 {
                         }
                     }
                     w94 w94Var = (w94) u34Var.b;
-                    me7 me7Var = (me7) u34Var.c;
+                    oe7 oe7Var = (oe7) u34Var.c;
                     if (!w94Var.y) {
                         w94Var.setRefreshing(true);
-                        me7Var.run();
+                        oe7Var.run();
                     }
                     z = true;
                 }

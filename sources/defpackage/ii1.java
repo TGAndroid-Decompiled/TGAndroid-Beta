@@ -58,26 +58,26 @@ public final class ii1 extends yfb implements is4 {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         switch (b) {
             case 0:
-                return ((ii1) create((so8) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((so8) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             case 1:
-                return ((ii1) create((nm4) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((nm4) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             case 2:
-                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             case 3:
-                return ((ii1) create((r73) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((r73) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             case 4:
-                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             case 5:
-                return ((ii1) create((k37) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((k37) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             case 6:
-                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             case 7:
-                return ((ii1) create((JSONObject) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create((JSONObject) obj, (zw2) obj2)).invokeSuspend(g9cVar);
             default:
-                return ((ii1) create(obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return ((ii1) create(obj, (zw2) obj2)).invokeSuspend(g9cVar);
         }
     }
 

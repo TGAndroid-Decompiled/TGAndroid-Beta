@@ -58,17 +58,17 @@ public final class qc9 extends FrameLayout implements fn7, hla {
     public final void b(fu5 fu5Var, pcc pccVar, Runnable runnable) {
         long j = this.s + this.w;
         jn0 jn0Var = new jn0(pccVar, (byte) 12);
-        z09 z09Var = new z09(this, pccVar, (byte) 14);
+        yz8 yz8Var = new yz8(this, pccVar);
         if (this.r > 0 && j > 0) {
             String M0 = ob6.M0(2131750248, null);
             String E = ob6.E(this.r, ' ');
             int i = aob.F8;
             int i2 = aob.E8;
             fu5Var.a(2131232734, null, M0, E, i, i2, jn0Var);
-            fu5Var.a(2131231833, null, ob6.M0(2131750249, null), oj.j(j, pj.b).o(2).d(), i, i2, z09Var);
+            fu5Var.a(2131231833, null, ob6.M0(2131750249, null), oj.j(j, pj.b).o(2).d(), i, i2, yz8Var);
             runnable.run();
         } else if (j > 0) {
-            z09Var.run();
+            yz8Var.run();
         } else {
             jn0Var.run();
         }

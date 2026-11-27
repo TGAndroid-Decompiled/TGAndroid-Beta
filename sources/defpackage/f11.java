@@ -26,7 +26,7 @@ public abstract class f11 {
             z = false;
         }
         b = z;
-        c = "13.4.0";
+        c = "13.4.1";
         d = (byte) 4;
         e = "014b35b6184100b085b0d0572f9b5103";
         f = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -86,7 +86,7 @@ public abstract class f11 {
                         Object obj2 = arrayList2.get(i3);
                         i3++;
                         uo8 uo8Var = (uo8) obj2;
-                        for (String str : uc7.s1(yac.t0).k4.I3.f) {
+                        for (String str : uc7.s1(yac.t0).l4.I3.f) {
                             if (Objects.equals(uo8Var.c, str)) {
                                 return true;
                             }

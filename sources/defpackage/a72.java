@@ -200,7 +200,7 @@ public final class a72 extends f12 implements snb, vma, fn7 {
         lg5Var.setAlpha(0.0f);
         lg5Var.setVisibility(4);
         addView(lg5Var, tre.d(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
-        this.T0 = uc7.s1(this.b.G3).k4.U.f();
+        this.T0 = uc7.s1(this.b.G3).l4.U.f();
         this.R = new xxc(this.b.G3);
         jn7.f(this.b.G3).b(this, jn7.w0);
         if (p) {
@@ -251,9 +251,9 @@ public final class a72 extends f12 implements snb, vma, fn7 {
 
     private int getAnswersMaxCount() {
         if (this.n) {
-            return getMessagesController().k4.F3.f();
+            return getMessagesController().l4.F3.f();
         }
-        return getMessagesController().k4.R.f();
+        return getMessagesController().l4.R.f();
     }
 
     private int getCurrentAccount() {
@@ -520,8 +520,8 @@ public final class a72 extends f12 implements snb, vma, fn7 {
             i = 0;
         }
         if (this.n) {
-            i2 = getMessagesController().k4.P2.f();
-            i3 = getMessagesController().k4.Q2.f();
+            i2 = getMessagesController().l4.P2.f();
+            i3 = getMessagesController().l4.Q2.f();
         } else {
             i2 = 255;
             i3 = 100;

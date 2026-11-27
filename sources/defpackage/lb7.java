@@ -29,9 +29,9 @@ public final class lb7 implements Runnable {
     public final Object d;
     public final Object e;
 
-    public lb7(q58 q58Var, View view, w49 w49Var, boolean z, boolean z2) {
+    public lb7(r58 r58Var, View view, w49 w49Var, boolean z, boolean z2) {
         this.a = (byte) 9;
-        this.c = q58Var;
+        this.c = r58Var;
         this.d = view;
         this.e = w49Var;
         this.b = z;
@@ -127,7 +127,7 @@ public final class lb7 implements Runnable {
                 }
                 return;
             case 2:
-                ((jf7) this.c).k1((List) this.d, (List) this.e, this.b);
+                ((kf7) this.c).o1((List) this.d, (List) this.e, this.b);
                 return;
             case 3:
                 ip7 ip7Var = (ip7) this.c;
@@ -321,7 +321,7 @@ public final class lb7 implements Runnable {
                         r08Var.b();
                         return;
                     } else {
-                        Utilities.e.c(new fd7(r08Var, r08Var.b, r08Var.d, (byte) 19));
+                        Utilities.e.c(new gd7(r08Var, r08Var.b, r08Var.d, (byte) 19));
                         return;
                     }
                 }
@@ -360,7 +360,7 @@ public final class lb7 implements Runnable {
                         hl.c3(new lb7(r08Var2, passwordsettings, z13, bArr2, (byte) 5));
                         return;
                     } else if (securePasswordKdfAlgo instanceof TLRPC.TL_securePasswordKdfAlgoUnknown) {
-                        hl.c3(new fe7(r08Var2, (byte) 23));
+                        hl.c3(new ge7(r08Var2, (byte) 23));
                         return;
                     } else {
                         bArr = new byte[0];
@@ -396,11 +396,11 @@ public final class lb7 implements Runnable {
                 }
                 return;
             case 9:
-                q58 q58Var = (q58) this.c;
+                r58 r58Var = (r58) this.c;
                 w49 w49Var = (w49) this.e;
                 boolean z15 = this.b;
-                o68 o68Var = q58Var.a;
-                jj.X(o68Var.m2, o68Var.l1, 1, new wv1(q58Var, z15, w49Var, (View) this.d));
+                o68 o68Var = r58Var.a;
+                jj.X(o68Var.m2, o68Var.l1, 1, new wv1(r58Var, z15, w49Var, (View) this.d));
                 return;
             case 10:
                 e eVar = (e) this.d;

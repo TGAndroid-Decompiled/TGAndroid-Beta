@@ -28,12 +28,12 @@ public final class wu8 extends d6 {
         if (i == -1) {
             if (!zu8Var.n && zu8Var.r) {
                 i8 = ((e) zu8Var).currentAccount;
-                SharedPreferences.Editor edit = uc7.s1(i8).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(i8).X3.edit();
                 edit.putInt("notify2_" + str, 0).apply();
             }
         } else if (i == 1) {
             i2 = ((e) zu8Var).currentAccount;
-            SharedPreferences sharedPreferences = uc7.s1(i2).W3;
+            SharedPreferences sharedPreferences = uc7.s1(i2).X3;
             SharedPreferences.Editor edit2 = sharedPreferences.edit();
             edit2.putBoolean("custom_" + str, true);
             i3 = ((e) zu8Var).currentAccount;
@@ -42,7 +42,7 @@ public final class wu8 extends d6 {
                 edit2.putInt("notify2_" + str, 0);
                 if (j == 0) {
                     i7 = ((e) zu8Var).currentAccount;
-                    jf7.Y(i7).B1(j2, 0L);
+                    kf7.a0(i7).G1(j2, 0L);
                     if (dialog != null) {
                         dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
                     }
@@ -53,7 +53,7 @@ public final class wu8 extends d6 {
                     i4 = ((e) zu8Var).currentAccount;
                     ip7.n(i4).N(j2);
                     i5 = ((e) zu8Var).currentAccount;
-                    jf7.Y(i5).B1(j2, 1L);
+                    kf7.a0(i5).G1(j2, 1L);
                     if (dialog != null) {
                         TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
                         dialog.notify_settings = tL_peerNotifySettings;

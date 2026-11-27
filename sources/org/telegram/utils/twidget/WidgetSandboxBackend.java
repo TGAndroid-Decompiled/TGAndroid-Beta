@@ -594,7 +594,7 @@ public final class WidgetSandboxBackend implements s0d, wzc {
                         if (i == 14) {
                             b = 7;
                         } else if (i == 11) {
-                            zVar.a.post(new cxc(zVar, text, (byte) 15));
+                            zVar.a.post(new zwc(zVar, text, (byte) 16));
                             return;
                         } else if (i == 18) {
                             JSONObject jSONObject3 = new JSONObject(text);
@@ -721,7 +721,7 @@ public final class WidgetSandboxBackend implements s0d, wzc {
                                     z3 = z2;
                                 }
                                 if (z3) {
-                                    zVar.a.post(new cxc(zVar, jSONObject6, (byte) 16));
+                                    zVar.a.post(new zwc(zVar, jSONObject6, (byte) 17));
                                     return;
                                 }
                                 return;

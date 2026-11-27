@@ -30,7 +30,7 @@ public final class j81 extends e implements fn7 {
     public int K;
     public int L;
     public kr M;
-    public k09 N;
+    public l09 N;
     public zu1 O;
     public kg5 P;
     public int Q;
@@ -55,7 +55,7 @@ public final class j81 extends e implements fn7 {
     public boolean e0;
     public final TextPaint f;
     public int f0;
-    public u5b g0;
+    public v5b g0;
     public TextView h;
     public z8d h0;
     public int i0;
@@ -475,7 +475,7 @@ public final class j81 extends e implements fn7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == jn7.A5 && this.g0 == ((u5b) objArr[0])) {
+        if (i == jn7.A5 && this.g0 == ((v5b) objArr[0])) {
             z0();
         }
     }
@@ -537,8 +537,8 @@ public final class j81 extends e implements fn7 {
         } else if (i == 3) {
             this.g0 = uc7.s1(this.currentAccount).O1().z(1, -1, this.y, true);
         }
-        u5b u5bVar = this.g0;
-        if (u5bVar != null) {
+        v5b v5bVar = this.g0;
+        if (v5bVar != null) {
             this.h0 = new z8d(this, (byte) 15);
         }
         if (this.y >= 0) {
@@ -546,7 +546,7 @@ public final class j81 extends e implements fn7 {
         } else {
             this.e0 = false;
         }
-        if (u5bVar != null) {
+        if (v5bVar != null) {
             jn7.f(this.currentAccount).b(this, jn7.A5);
         }
         return super.onFragmentCreate();

@@ -34,7 +34,7 @@ public final class q8f {
         faf.D0();
         this.g = "play-services-mlkit-image-labeling";
         ri6.v();
-        this.e = ri6.G(new tg7(this, (byte) 7));
+        this.e = ri6.G(new ug7(this, (byte) 7));
         ri6.v();
         ljaVar.getClass();
         this.f = ri6.G(new z1f(ljaVar, (byte) 2));

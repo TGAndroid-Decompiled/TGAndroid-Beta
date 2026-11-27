@@ -45,7 +45,7 @@ public final class m5a implements Runnable {
                     int ceil = (int) Math.ceil(G.length() / t1);
                     char c = 0;
                     int i4 = 1;
-                    if (j != 0 && (f = uc7.s1(i3).g4.f(-j2, j)) != null && (message = f.topicStartMessage) != null) {
+                    if (j != 0 && (f = uc7.s1(i3).h4.f(-j2, j)) != null && (message = f.topicStartMessage) != null) {
                         r47Var = new r47(i3, message, false, false);
                         r47Var.p = true;
                     } else {

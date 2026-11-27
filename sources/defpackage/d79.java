@@ -40,7 +40,7 @@ public class d79 extends RecyclerView implements yi5 {
     public hf0 C1;
     public boolean C2;
     public int D1;
-    public final ki7 D2;
+    public final li7 D2;
     public View E1;
     public final it3 E2;
     public final Rect F1;
@@ -176,7 +176,7 @@ public class d79 extends RecyclerView implements yi5 {
         this.q2 = new ww1();
         this.r2 = true;
         this.s2 = new tu7(this, (byte) 1);
-        this.D2 = new ki7(this, (byte) 12);
+        this.D2 = new li7(this, (byte) 12);
         this.T2 = true;
         this.V2 = b79.a;
         this.W2 = aob.a7;
@@ -1672,7 +1672,7 @@ public class d79 extends RecyclerView implements yi5 {
             return false;
         }
         boolean z = this.c2;
-        ki7 ki7Var = this.D2;
+        li7 li7Var = this.D2;
         if (z && motionEvent.getAction() != 0 && motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             if (this.j2 == Float.MAX_VALUE && this.k2 == Float.MAX_VALUE) {
                 this.j2 = motionEvent.getX();
@@ -1693,21 +1693,21 @@ public class d79 extends RecyclerView implements yi5 {
                     this.i2 = false;
                     if (!this.h2) {
                         this.h2 = true;
-                        hl.r(ki7Var);
-                        hl.c3(ki7Var);
+                        hl.r(li7Var);
+                        hl.c3(li7Var);
                         return true;
                     }
                 } else if (motionEvent.getY() < hl.L(56.0f) + this.l2[0] && (this.f2 <= this.e2 || !this.g2.a)) {
                     this.i2 = true;
                     if (!this.h2) {
                         this.h2 = true;
-                        hl.r(ki7Var);
-                        hl.c3(ki7Var);
+                        hl.r(li7Var);
+                        hl.c3(li7Var);
                         return true;
                     }
                 } else {
                     this.h2 = false;
-                    hl.r(ki7Var);
+                    hl.r(li7Var);
                 }
             }
             return true;
@@ -1718,7 +1718,7 @@ public class d79 extends RecyclerView implements yi5 {
         this.d2 = false;
         p1(this, false);
         this.h2 = false;
-        hl.r(ki7Var);
+        hl.r(li7Var);
         return super.onTouchEvent(motionEvent);
     }
 

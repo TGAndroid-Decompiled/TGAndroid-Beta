@@ -53,7 +53,7 @@ public final class dc7 {
                                     if (tL_error == null) {
                                         TLRPC.photos_Photos photos_photos = (TLRPC.photos_Photos) tLObject;
                                         dc7 dc7Var = this.b;
-                                        dc7Var.h.getMessagesStorage().j1(photos_photos.users, null, true, true);
+                                        dc7Var.h.getMessagesStorage().n1(photos_photos.users, null, true, true);
                                         hl.c3(new aq1(dc7Var, photos_photos, i, i2, (byte) 8));
                                         return;
                                     }
@@ -62,7 +62,7 @@ public final class dc7 {
                                     if (tL_error == null) {
                                         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                                         dc7 dc7Var2 = this.b;
-                                        dc7Var2.h.getMessagesStorage().j1(messages_messages.users, messages_messages.chats, true, true);
+                                        dc7Var2.h.getMessagesStorage().n1(messages_messages.users, messages_messages.chats, true, true);
                                         hl.c3(new aq1(dc7Var2, messages_messages, i, i2, (byte) 9));
                                         return;
                                     }
@@ -93,7 +93,7 @@ public final class dc7 {
                                 if (tL_error == null) {
                                     TLRPC.photos_Photos photos_photos = (TLRPC.photos_Photos) tLObject;
                                     dc7 dc7Var = this.b;
-                                    dc7Var.h.getMessagesStorage().j1(photos_photos.users, null, true, true);
+                                    dc7Var.h.getMessagesStorage().n1(photos_photos.users, null, true, true);
                                     hl.c3(new aq1(dc7Var, photos_photos, i, i2, (byte) 8));
                                     return;
                                 }
@@ -102,7 +102,7 @@ public final class dc7 {
                                 if (tL_error == null) {
                                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                                     dc7 dc7Var2 = this.b;
-                                    dc7Var2.h.getMessagesStorage().j1(messages_messages.users, messages_messages.chats, true, true);
+                                    dc7Var2.h.getMessagesStorage().n1(messages_messages.users, messages_messages.chats, true, true);
                                     hl.c3(new aq1(dc7Var2, messages_messages, i, i2, (byte) 9));
                                     return;
                                 }

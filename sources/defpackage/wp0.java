@@ -77,11 +77,11 @@ public final class wp0 extends rf0 {
 
     public final void f(int i, long j) {
         LongSparseArray longSparseArray = this.d;
-        List<df7> list = (List) longSparseArray.get(j);
+        List<ef7> list = (List) longSparseArray.get(j);
         if (list != null) {
             longSparseArray.remove(j);
-            for (df7 df7Var : list) {
-                df7Var.a(i);
+            for (ef7 ef7Var : list) {
+                ef7Var.a(i);
             }
         }
     }

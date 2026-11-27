@@ -19,7 +19,7 @@ public final class so8 extends c2 implements xe1, o4a {
 
     @Override
     public final void Q(Object obj) {
-        f9c f9cVar = (f9c) obj;
+        g9c g9cVar = (g9c) obj;
         this.e.c(null, false);
     }
 
@@ -75,7 +75,7 @@ public final class so8 extends c2 implements xe1, o4a {
 
     @Override
     public final Object d(Object obj) {
-        return this.e.d(f9c.a);
+        return this.e.d(g9c.a);
     }
 
     @Override

@@ -173,7 +173,7 @@ public final class fn0 implements RequestDelegate {
                 long[] jArr = (long[]) obj;
                 hl.r((ao1) obj2);
                 zu1Var2.v5.k.voiceTranscriptionRated = true;
-                jf7 messagesStorage = zu1Var2.getMessagesStorage();
+                kf7 messagesStorage = zu1Var2.getMessagesStorage();
                 messagesStorage.a.c(new r77(messagesStorage, zu1Var2.v5.e1(), r47.B0(zu1Var2.v5.k), zu1Var2.v5.k, (byte) 11));
                 gn1 gn1Var = new gn1(zu1Var2, (byte) 21);
                 long j = 0;

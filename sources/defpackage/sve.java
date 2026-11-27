@@ -12,6 +12,6 @@ public abstract class sve {
             }
             i3 >>>= 1;
         }
-        throw new ig7(o8aVar.a(), arrayList);
+        throw new jg7(o8aVar.a(), arrayList);
     }
 }

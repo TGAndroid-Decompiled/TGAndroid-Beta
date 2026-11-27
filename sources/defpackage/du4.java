@@ -28,7 +28,7 @@ public final class du4 {
         return false;
     }
 
-    public final void b(defpackage.uf7 r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.du4.b(uf7):void");
+    public final void b(defpackage.vf7 r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.du4.b(vf7):void");
     }
 }

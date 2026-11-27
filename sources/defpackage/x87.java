@@ -33,7 +33,7 @@ public final class x87 implements Runnable {
                 if (i == 0) {
                     TLRPC.Dialog dialog = (TLRPC.Dialog) uc7Var.R.f(j2);
                     if (dialog == null) {
-                        uc7Var.getMessagesStorage().N1(j2, i2, true, false);
+                        uc7Var.getMessagesStorage().S1(j2, i2, true, false);
                         return;
                     }
                     int i3 = dialog.unread_poll_votes_count + i2;
@@ -41,13 +41,13 @@ public final class x87 implements Runnable {
                     if (i3 < 0) {
                         dialog.unread_poll_votes_count = 0;
                     }
-                    uc7Var.getMessagesStorage().e2(dialog.unread_poll_votes_count, j2, 0L, false);
+                    uc7Var.getMessagesStorage().j2(dialog.unread_poll_votes_count, j2, 0L, false);
                     uc7Var.getNotificationCenter().k(306, Long.valueOf(j2), Long.valueOf(j), Integer.valueOf(dialog.unread_poll_votes_count), arrayList);
                     return;
                 }
-                int B = uc7Var.getMessagesController().g4.B(i2, j2, j, true);
+                int B = uc7Var.getMessagesController().h4.B(i2, j2, j, true);
                 if (B >= 0) {
-                    uc7Var.getMessagesStorage().e2(B, j2, j, true);
+                    uc7Var.getMessagesStorage().j2(B, j2, j, true);
                     uc7Var.getNotificationCenter().k(306, Long.valueOf(j2), Long.valueOf(j), Integer.valueOf(B), arrayList);
                     return;
                 }
@@ -60,7 +60,7 @@ public final class x87 implements Runnable {
                 if (i4 == 0) {
                     TLRPC.Dialog dialog2 = (TLRPC.Dialog) uc7Var.R.f(j4);
                     if (dialog2 == null) {
-                        uc7Var.getMessagesStorage().N1(j4, i5, true, true);
+                        uc7Var.getMessagesStorage().S1(j4, i5, true, true);
                         return;
                     }
                     int i6 = dialog2.unread_reactions_count + i5;
@@ -68,16 +68,16 @@ public final class x87 implements Runnable {
                     if (i6 < 0) {
                         dialog2.unread_reactions_count = 0;
                     }
-                    uc7Var.getMessagesStorage().f2(dialog2.unread_reactions_count, j4, 0L, false);
+                    uc7Var.getMessagesStorage().k2(dialog2.unread_reactions_count, j4, 0L, false);
                     if (uc7Var.v2(j4) || uc7Var.B2(j4) || j4 > 0) {
                         uc7Var.getNotificationCenter().k(305, Long.valueOf(j4), Long.valueOf(j3), Integer.valueOf(dialog2.unread_reactions_count), arrayList);
                         return;
                     }
                     return;
                 }
-                int C = uc7Var.getMessagesController().g4.C(i5, j4, j3, true);
+                int C = uc7Var.getMessagesController().h4.C(i5, j4, j3, true);
                 if (C >= 0) {
-                    uc7Var.getMessagesStorage().f2(C, j4, j3, true);
+                    uc7Var.getMessagesStorage().k2(C, j4, j3, true);
                     if (uc7Var.v2(j4) || uc7Var.B2(j4) || j4 > 0) {
                         uc7Var.getNotificationCenter().k(305, Long.valueOf(j4), Long.valueOf(j3), Integer.valueOf(C), arrayList);
                         return;
@@ -86,21 +86,21 @@ public final class x87 implements Runnable {
                 }
                 return;
             case 2:
-                qyb qybVar = uc7Var.getMessagesController().g4;
+                qyb qybVar = uc7Var.getMessagesController().h4;
                 int i7 = this.e;
                 long j5 = this.c;
                 long j6 = this.d;
                 qybVar.C(i7, j5, j6, false);
-                uc7Var.getMessagesStorage().f2(i7, j5, j6, false);
+                uc7Var.getMessagesStorage().k2(i7, j5, j6, false);
                 uc7Var.getNotificationCenter().k(305, Long.valueOf(j5), Long.valueOf(j6), Integer.valueOf(i7), arrayList);
                 return;
             case 3:
-                qyb qybVar2 = uc7Var.getMessagesController().g4;
+                qyb qybVar2 = uc7Var.getMessagesController().h4;
                 int i8 = this.e;
                 long j7 = this.c;
                 long j8 = this.d;
                 qybVar2.B(i8, j7, j8, false);
-                uc7Var.getMessagesStorage().e2(i8, j7, j8, false);
+                uc7Var.getMessagesStorage().j2(i8, j7, j8, false);
                 uc7Var.getNotificationCenter().k(306, Long.valueOf(j7), Long.valueOf(j8), Integer.valueOf(i8), arrayList);
                 return;
             case 4:
@@ -109,22 +109,22 @@ public final class x87 implements Runnable {
                 TLRPC.Dialog dialog3 = (TLRPC.Dialog) zh6Var.f(j9);
                 int i9 = this.e;
                 if (dialog3 == null) {
-                    uc7Var.getMessagesStorage().N1(j9, i9, false, false);
+                    uc7Var.getMessagesStorage().S1(j9, i9, false, false);
                     return;
                 }
                 dialog3.unread_poll_votes_count = i9;
-                jf7 messagesStorage = uc7Var.getMessagesStorage();
+                kf7 messagesStorage = uc7Var.getMessagesStorage();
                 long j10 = this.d;
-                messagesStorage.e2(i9, j9, j10, false);
+                messagesStorage.j2(i9, j9, j10, false);
                 uc7Var.getNotificationCenter().k(306, Long.valueOf(j9), Long.valueOf(j10), Integer.valueOf(i9), arrayList);
                 return;
             case 5:
-                qyb qybVar3 = uc7Var.getMessagesController().g4;
+                qyb qybVar3 = uc7Var.getMessagesController().h4;
                 int i10 = this.e;
                 long j11 = this.c;
                 long j12 = this.d;
                 qybVar3.C(i10, j11, j12, false);
-                uc7Var.getMessagesStorage().f2(i10, j11, j12, false);
+                uc7Var.getMessagesStorage().k2(i10, j11, j12, false);
                 uc7Var.getNotificationCenter().k(305, Long.valueOf(j11), Long.valueOf(j12), Integer.valueOf(i10), arrayList);
                 return;
             default:
@@ -133,13 +133,13 @@ public final class x87 implements Runnable {
                 TLRPC.Dialog dialog4 = (TLRPC.Dialog) zh6Var2.f(j13);
                 int i11 = this.e;
                 if (dialog4 == null) {
-                    uc7Var.getMessagesStorage().N1(j13, i11, false, true);
+                    uc7Var.getMessagesStorage().S1(j13, i11, false, true);
                     return;
                 }
                 dialog4.unread_reactions_count = i11;
-                jf7 messagesStorage2 = uc7Var.getMessagesStorage();
+                kf7 messagesStorage2 = uc7Var.getMessagesStorage();
                 long j14 = this.d;
-                messagesStorage2.f2(i11, j13, j14, false);
+                messagesStorage2.k2(i11, j13, j14, false);
                 uc7Var.getNotificationCenter().k(305, Long.valueOf(j13), Long.valueOf(j14), Integer.valueOf(i11), arrayList);
                 return;
         }

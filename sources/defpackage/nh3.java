@@ -53,36 +53,36 @@ public final class nh3 implements Runnable {
                 uj3Var.getMessagesController().H(uj3Var.Y2);
                 return;
             default:
-                rbb rbbVar = (rbb) fn7Var;
+                sbb sbbVar = (sbb) fn7Var;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
                 TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
                 boolean z2 = this.b;
                 long j2 = this.c;
                 if (!z2) {
-                    w96.N = w96.g(rbbVar.b, rbbVar.c, storyItem, j2, storyItem.id, z2, inputGroupCall, true, this.d);
+                    w96.N = w96.g(sbbVar.b, sbbVar.c, storyItem, j2, storyItem.id, z2, inputGroupCall, true, this.d);
                 }
-                mbb mbbVar = rbbVar.G;
-                if (mbbVar != null) {
-                    mbbVar.f(false);
+                nbb nbbVar = sbbVar.G;
+                if (nbbVar != null) {
+                    nbbVar.f(false);
                 }
-                rbbVar.G = null;
-                rbbVar.K = false;
-                RectF rectF = rbbVar.I;
+                sbbVar.G = null;
+                sbbVar.K = false;
+                RectF rectF = sbbVar.I;
                 Point point = hl.q;
                 rectF.set(0.0f, 0.0f, point.x, point.y);
-                rbbVar.H = hl.L(8.0f);
-                rbbVar.o(true);
+                sbbVar.H = hl.L(8.0f);
+                sbbVar.o(true);
                 e S = LaunchActivity.S();
                 storyItem.dialogId = j2;
                 storyItem.justUploaded = true;
-                S.getOrCreateStoryViewer().J(rbbVar.b, storyItem, null);
-                jn7.f(rbbVar.c).k(177, Long.valueOf(inputGroupCall.id));
+                S.getOrCreateStoryViewer().J(sbbVar.b, storyItem, null);
+                jn7.f(sbbVar.c).k(177, Long.valueOf(inputGroupCall.id));
                 return;
         }
     }
 
-    public nh3(rbb rbbVar, boolean z, TL_stories.StoryItem storyItem, long j, TLRPC.InputGroupCall inputGroupCall, boolean z2) {
-        this.e = rbbVar;
+    public nh3(sbb sbbVar, boolean z, TL_stories.StoryItem storyItem, long j, TLRPC.InputGroupCall inputGroupCall, boolean z2) {
+        this.e = sbbVar;
         this.b = z;
         this.f = storyItem;
         this.c = j;

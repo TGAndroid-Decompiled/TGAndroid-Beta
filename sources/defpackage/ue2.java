@@ -257,7 +257,7 @@ public final class ue2 implements Runnable {
     private final void l() {
         LaunchActivity launchActivity = (LaunchActivity) this.c;
         String str = LaunchActivity.C1;
-        hl.c3(new ls5(launchActivity, jf7.Y(launchActivity.P).g0(this.b), (j16) this.d, (byte) 10));
+        hl.c3(new ls5(launchActivity, kf7.a0(launchActivity.P).i0(this.b), (j16) this.d, (byte) 10));
     }
 
     private final void m() {
@@ -273,7 +273,7 @@ public final class ue2 implements Runnable {
                 }
                 i++;
             }
-            uc6Var.getMessagesStorage().j1(messages_messages.users, messages_messages.chats, true, true);
+            uc6Var.getMessagesStorage().n1(messages_messages.users, messages_messages.chats, true, true);
             uc6Var.getMessagesController().j4(messages_messages.users, false);
             uc6Var.getMessagesController().c4(messages_messages.chats, false);
             zh6 zh6Var = uc6Var.getLocationController().c;

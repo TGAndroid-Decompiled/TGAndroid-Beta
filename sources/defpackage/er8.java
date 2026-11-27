@@ -11,8 +11,8 @@ import java.util.Collections;
 import org.telegram.ui.ActionBar.a;
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.ProfileActivity;
-public final class er8 extends wma implements bl7 {
-    public final l09 g0;
+public final class er8 extends wma implements cl7 {
+    public final m09 g0;
     public final ProfileActivity h0;
     public boolean i0;
     public final Paint j0;
@@ -25,7 +25,7 @@ public final class er8 extends wma implements bl7 {
         super(context, null);
         this.n0 = profileActivity;
         this.h0 = profileActivity;
-        this.g0 = new l09((byte) 3);
+        this.g0 = new m09((byte) 3);
         this.j0 = new Paint();
         this.l0 = new ArrayList();
         this.m0 = new qq7((byte) 8);

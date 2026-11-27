@@ -36,7 +36,7 @@ public final class k1c extends FrameLayout implements snb {
     public final int a;
     public ValueAnimator a0;
     public final vnb b;
-    public sca c;
+    public tca c;
     public final g7 d;
     public final FrameLayout.LayoutParams e;
     public final hn f;

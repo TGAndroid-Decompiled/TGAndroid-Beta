@@ -26,12 +26,12 @@ public final class dr4 implements es4 {
                 }
                 return p1cVar;
             case 1:
-                yh7 yh7Var = (yh7) obj2;
+                zh7 zh7Var = (zh7) obj2;
                 p1c p1cVar2 = (p1c) obj;
                 if (p1cVar2 == null) {
                     return null;
                 }
-                if ((yh7Var.b & 1024) != 0 && rk2.e(p1cVar2.g)) {
+                if ((zh7Var.b & 1024) != 0 && rk2.e(p1cVar2.g)) {
                     return null;
                 }
                 return p1cVar2;

@@ -124,7 +124,7 @@ public final class atc extends e {
             if (this.r && !TextUtils.isEmpty(str) && !TextUtils.equals(str, cVar.x())) {
                 new k35(this.currentAccount, getParentActivity(), str).C();
             }
-            hl.d3(new vlc(this, eVar, (byte) 20), 300L);
+            hl.d3(new slc(this, eVar, (byte) 21), 300L);
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getResourceProvider(), getParentActivity());

@@ -1,9 +1,9 @@
 package defpackage;
 public enum mf7 implements lw8 {
-    UNKNOWN_OS(0),
-    ANDROID(1),
-    IOS(2),
-    WEB(3);
+    UNKNOWN(0),
+    DATA_MESSAGE(1),
+    TOPIC(2),
+    DISPLAY_NOTIFICATION(3);
     
     public final byte a;
 

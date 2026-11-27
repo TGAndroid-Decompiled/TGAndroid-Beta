@@ -12,7 +12,7 @@ public final class i37 extends cr2 {
     public final ArrayList l;
     public final asb[] m;
     public final ArrayList n;
-    public final rg7 o;
+    public final sg7 o;
     public int p;
     public long[][] q;
     public wk2 r;
@@ -24,9 +24,9 @@ public final class i37 extends cr2 {
     }
 
     public i37(rg0... rg0VarArr) {
-        rg7 rg7Var = new rg7((byte) 17);
+        sg7 sg7Var = new sg7((byte) 17);
         this.k = rg0VarArr;
-        this.o = rg7Var;
+        this.o = sg7Var;
         this.n = new ArrayList(Arrays.asList(rg0VarArr));
         this.p = -1;
         this.l = new ArrayList(rg0VarArr.length);
@@ -40,7 +40,7 @@ public final class i37 extends cr2 {
         lp2 c = lp2.c(8);
         ?? obj = new Object();
         awd.b(2, "expectedValuesPerKey");
-        new fj7(c).h = obj;
+        new gj7(c).h = obj;
     }
 
     @Override

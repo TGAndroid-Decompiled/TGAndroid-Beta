@@ -36,7 +36,7 @@ public final class au0 implements RequestDelegate {
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        jf7 messagesStorage;
+        kf7 messagesStorage;
         byte b = this.a;
         TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite = null;
         Object obj = this.d;
@@ -123,7 +123,7 @@ public final class au0 implements RequestDelegate {
                 hl.c3(new tw4((Object) qh6Var, tL_error, (Object) ((String) obj2), (Object) ((String) obj), (Object) ((String) obj3), (byte) 15));
                 return;
             case 9:
-                hl.c3(new z87((k17) obj4, (String) obj2, tL_error, tLObject, (uc7) obj3, (jf7) obj));
+                hl.c3(new z87((k17) obj4, (String) obj2, tL_error, tLObject, (uc7) obj3, (kf7) obj));
                 return;
             case 10:
                 uc7 uc7Var = (uc7) obj4;
@@ -162,10 +162,10 @@ public final class au0 implements RequestDelegate {
                 hl.c3(new z87((b18) obj4, tL_error, (String) obj2, (j08) obj3, tLObject, (TL_account.sendVerifyPhoneCode) obj));
                 return;
             case 13:
-                hl.c3(new cp7((m08) obj4, tL_error, (fe7) obj3, (um4) obj2, (TL_account.verifyEmail) obj, (byte) 1));
+                hl.c3(new cp7((m08) obj4, tL_error, (ge7) obj3, (um4) obj2, (TL_account.verifyEmail) obj, (byte) 1));
                 return;
             case 14:
-                hl.c3(new cp7((o68) obj4, (z3b) obj3, tL_error, (TL_stories.StoryItem) obj2, (u9b) obj, (byte) 4));
+                hl.c3(new cp7((o68) obj4, (n3b) obj3, tL_error, (TL_stories.StoryItem) obj2, (u9b) obj, (byte) 4));
                 return;
             case 15:
                 hl.c3(new cp7((PrivacyControlActivity) obj4, tL_error, (boolean[]) obj3, (TLRPC.GlobalPrivacySettings) obj2, (TL_account.setGlobalPrivacySettings) obj, (byte) 8));
@@ -188,38 +188,38 @@ public final class au0 implements RequestDelegate {
                             hl.c3(new gb7(activity, idVar2, (byte) 1));
                             return;
                         }
-                        jf7 messagesStorage2 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage2 = wx9Var.getMessagesStorage();
                         byte[] bArr2 = messages_dhconfig.p;
-                        messagesStorage2.G();
+                        messagesStorage2.I();
                         messagesStorage2.y = bArr2;
-                        jf7 messagesStorage3 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage3 = wx9Var.getMessagesStorage();
                         int i5 = messages_dhconfig.g;
-                        messagesStorage3.G();
+                        messagesStorage3.I();
                         messagesStorage3.E = i5;
-                        jf7 messagesStorage4 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage4 = wx9Var.getMessagesStorage();
                         int i6 = messages_dhconfig.version;
-                        messagesStorage4.G();
+                        messagesStorage4.I();
                         messagesStorage4.x = i6;
-                        jf7 messagesStorage5 = wx9Var.getMessagesStorage();
-                        jf7 messagesStorage6 = wx9Var.getMessagesStorage();
-                        messagesStorage6.G();
+                        kf7 messagesStorage5 = wx9Var.getMessagesStorage();
+                        kf7 messagesStorage6 = wx9Var.getMessagesStorage();
+                        messagesStorage6.I();
                         int i7 = messagesStorage6.x;
-                        jf7 messagesStorage7 = wx9Var.getMessagesStorage();
-                        messagesStorage7.G();
+                        kf7 messagesStorage7 = wx9Var.getMessagesStorage();
+                        messagesStorage7.I();
                         int i8 = messagesStorage7.E;
-                        jf7 messagesStorage8 = wx9Var.getMessagesStorage();
-                        messagesStorage8.G();
+                        kf7 messagesStorage8 = wx9Var.getMessagesStorage();
+                        messagesStorage8.I();
                         messagesStorage5.a.c(new aq1(messagesStorage5, i7, i8, messagesStorage8.y, (byte) 10));
                     }
                     byte[] bArr3 = new byte[256];
                     for (int i9 = 0; i9 < 256; i9++) {
                         bArr3[i9] = (byte) (((byte) (Utilities.b.nextDouble() * 256.0d)) ^ messages_dhconfig.random[i9]);
                     }
-                    wx9Var.getMessagesStorage().G();
+                    wx9Var.getMessagesStorage().I();
                     BigInteger valueOf = BigInteger.valueOf(messagesStorage.E);
                     BigInteger bigInteger = new BigInteger(1, bArr3);
-                    jf7 messagesStorage9 = wx9Var.getMessagesStorage();
-                    messagesStorage9.G();
+                    kf7 messagesStorage9 = wx9Var.getMessagesStorage();
+                    messagesStorage9.I();
                     byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage9.y)).toByteArray();
                     if (byteArray.length > 256) {
                         byte[] bArr4 = new byte[256];

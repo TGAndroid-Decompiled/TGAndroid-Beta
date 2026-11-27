@@ -91,7 +91,7 @@ public final class uu2 implements RequestDelegate {
                         }
                     }
                     boolean z4 = z;
-                    lv2Var.getMessagesStorage().j1(tL_contacts_importedContacts.users, null, z4, z4);
+                    lv2Var.getMessagesStorage().n1(tL_contacts_importedContacts.users, null, z4, z4);
                     ArrayList arrayList2 = new ArrayList();
                     int i5 = i;
                     while (i5 < tL_contacts_importedContacts.imported.size()) {
@@ -119,7 +119,7 @@ public final class uu2 implements RequestDelegate {
                 if (lv2Var.n0 == i2) {
                     if (!hashMap.isEmpty()) {
                         boolean z5 = i;
-                        lv2Var.getMessagesStorage().W0(hashMap, z5, z5);
+                        lv2Var.getMessagesStorage().a1(hashMap, z5, z5);
                     }
                     Utilities.d.c(new oq6(lv2Var, hashMap3, hashMap2, z2, hashMap4, arrayList, hashMap5, zArr));
                     return;

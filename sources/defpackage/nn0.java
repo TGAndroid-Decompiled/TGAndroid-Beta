@@ -185,7 +185,7 @@ public final class nn0 implements Runnable {
                 a55Var4.f.sendRequestTyped(tonconnectcreatesession, new ic((byte) 0), new a45(a55Var4, x56Var, (String) obj4, str8, (String) obj3, (String) obj2, (byte) 0));
                 return;
             case 7:
-                ip7 notificationsController = ((jf7) obj7).getNotificationsController();
+                ip7 notificationsController = ((kf7) obj7).getNotificationsController();
                 Collection values = ((HashMap) obj).values();
                 notificationsController.getMessagesController().j4((ArrayList) obj4, true);
                 notificationsController.getMessagesController().c4((ArrayList) obj3, true);

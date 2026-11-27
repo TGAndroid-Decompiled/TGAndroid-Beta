@@ -49,7 +49,7 @@ public final class mn0 implements RequestDelegate {
                 uc7 uc7Var = (uc7) obj6;
                 Activity activity = (Activity) obj5;
                 id idVar = (id) obj4;
-                bf7 bf7Var = (bf7) obj3;
+                cf7 cf7Var = (cf7) obj3;
                 e eVar = (e) obj2;
                 TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) obj;
                 uc7Var.getClass();
@@ -58,10 +58,10 @@ public final class mn0 implements RequestDelegate {
                         hl.c3(new gb7(activity, idVar, (byte) 0));
                     }
                     uc7Var.Y3((TLRPC.Updates) tLObject, false);
-                    hl.c3(new ue(bf7Var, (byte) 2));
+                    hl.c3(new ue(cf7Var, (byte) 2));
                     return;
                 }
-                hl.c3(new ra7(uc7Var, bf7Var, activity, idVar, tL_error, eVar, tL_channels_convertToGigagroup, (byte) 1));
+                hl.c3(new ra7(uc7Var, cf7Var, activity, idVar, tL_error, eVar, tL_channels_convertToGigagroup, (byte) 1));
                 return;
             case 3:
                 hl.c3(new nn0(tLObject, (wo8) obj6, (gi0) obj4, (icc) ((iv4) obj3), (Activity) obj2, (TLRPC.InputStorePaymentPurpose) ((TLRPC.TL_inputStorePaymentStarsGift) obj), (List) obj5, tL_error, (byte) 8));

@@ -308,7 +308,7 @@ public final class pb2 extends Drawable {
         this.d = paint;
         Paint paint2 = new Paint(1);
         this.b = paint2;
-        this.f = new mm(new fe7(this, (byte) 4), 200L, k43.g, 0);
+        this.f = new mm(new ge7(this, (byte) 4), 200L, k43.g, 0);
         this.e = c00.e(context, 2131231173);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);

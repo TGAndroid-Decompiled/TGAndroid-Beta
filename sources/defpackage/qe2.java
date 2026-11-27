@@ -17,15 +17,15 @@ public final class qe2 implements icc {
 
     private final void b(Object obj, Object obj2) {
         boolean z;
-        b58 b58Var = (b58) this.b;
+        c58 c58Var = (c58) this.b;
         TL_phone.getGroupCallStars getgroupcallstars = (TL_phone.getGroupCallStars) this.c;
         TL_phone.groupCallStars groupcallstars = (TL_phone.groupCallStars) obj;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        a96 a96Var = b58Var.W;
-        int i = b58Var.O;
+        a96 a96Var = c58Var.W;
+        int i = c58Var.O;
         boolean z2 = false;
-        b58Var.V = false;
-        TLRPC.InputGroupCall inputGroupCall = b58Var.P;
+        c58Var.V = false;
+        TLRPC.InputGroupCall inputGroupCall = c58Var.P;
         if (inputGroupCall != null && inputGroupCall.id == getgroupcallstars.call.id) {
             if (groupcallstars != null) {
                 uc7.s1(i).j4(groupcallstars.users, false);
@@ -44,18 +44,18 @@ public final class qe2 implements icc {
                 }
                 z = false;
                 long j = groupcallstars.total_stars;
-                if (j != b58Var.R || b58Var.T != z) {
+                if (j != c58Var.R || c58Var.T != z) {
                     z2 = true;
                 }
-                b58Var.R = j;
-                b58Var.U = groupcallstars.top_donors;
-                b58Var.T = z;
+                c58Var.R = j;
+                c58Var.U = groupcallstars.top_donors;
+                c58Var.T = z;
                 if (z2) {
-                    b58Var.i();
+                    c58Var.i();
                 }
-                b58Var.s();
+                c58Var.s();
             }
-            if (b58Var.isAttachedToWindow()) {
+            if (c58Var.isAttachedToWindow()) {
                 hl.r(a96Var);
                 hl.d3(a96Var, 5000L);
             }

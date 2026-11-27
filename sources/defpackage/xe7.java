@@ -1,25 +1,21 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class xe7 implements Runnable {
-    public final jf7 a;
-    public final String b;
-    public final long c;
-    public final TLRPC.Reaction d;
-    public final short e;
+    public final kf7 a;
+    public final int b;
+    public final ArrayList c;
+    public final boolean d;
+    public final int e;
     public final int f;
-    public final boolean h;
-    public final mcc n;
 
-    public xe7(jf7 jf7Var, String str, long j, TLRPC.Reaction reaction, int i, int i2, boolean z, mcc mccVar) {
-        this.a = jf7Var;
-        this.b = str;
-        this.c = j;
-        this.d = reaction;
-        this.e = i;
-        this.f = i2;
-        this.h = z;
-        this.n = mccVar;
+    public xe7(kf7 kf7Var, int i, ArrayList arrayList, int i2, int i3, int i4) {
+        this.a = kf7Var;
+        this.b = i;
+        this.c = arrayList;
+        this.d = i2;
+        this.e = i3;
+        this.f = i4;
     }
 
     @Override

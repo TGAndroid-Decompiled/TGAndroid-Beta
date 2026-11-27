@@ -13,17 +13,17 @@ public final class g23 implements ur4 {
     @Override
     public final Object invoke(Object obj) {
         byte b = this.a;
-        f9c f9cVar = f9c.a;
+        g9c g9cVar = g9c.a;
         Object obj2 = this.b;
         switch (b) {
             case 0:
                 Throwable th = (Throwable) obj;
                 ((CancellationSignal) obj2).cancel();
-                return f9cVar;
+                return g9cVar;
             default:
                 Throwable th2 = (Throwable) obj;
-                ((va1) obj2).resumeWith(f9cVar);
-                return f9cVar;
+                ((va1) obj2).resumeWith(g9cVar);
+                return g9cVar;
         }
     }
 }

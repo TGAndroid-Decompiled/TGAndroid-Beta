@@ -69,7 +69,7 @@ public final class gtc extends n9c implements fn7 {
         return j;
     }
 
-    public static void j0(Activity activity, ArrayList arrayList, vnb vnbVar, vlc vlcVar) {
+    public static void j0(Activity activity, ArrayList arrayList, vnb vnbVar, slc slcVar) {
         nx0 nx0Var;
         nx0 i = ik8.i(activity, false, 1, vnbVar);
         LinearLayout m = bs2.m(activity, 1);
@@ -116,7 +116,7 @@ public final class gtc extends n9c implements fn7 {
         m.addView(c51Var, tre.d(-1, 48.0f, 1, 14.0f, 14.0f, 14.0f, 14.0f));
         i.O = m;
         i.J();
-        if (vlcVar != null) {
+        if (slcVar != null) {
             int i2 = aob.q7;
             c51Var.setColor(aob.v0(i2, vnbVar));
             if (c51Var.getBackground() != null) {
@@ -127,7 +127,7 @@ public final class gtc extends n9c implements fn7 {
             }
             c51Var.setText(ob6.M0(2131742793, null));
             nx0Var = i;
-            c51Var.setOnClickListener(new cg(activity, vnbVar, vlcVar, nx0Var, (byte) 18));
+            c51Var.setOnClickListener(new cg(activity, vnbVar, slcVar, nx0Var, (byte) 18));
         } else {
             nx0Var = i;
             c51Var.setText(ob6.M0(2131742779, null));
@@ -271,7 +271,7 @@ public final class gtc extends n9c implements fn7 {
         Activity parentActivity = getParentActivity();
         vnb vnbVar = this.resourceProvider;
         boolean z = f11.a;
-        j0(parentActivity, f, vnbVar, new vlc(this, k35Var, (byte) 21));
+        j0(parentActivity, f, vnbVar, new slc(this, k35Var, (byte) 22));
     }
 
     public final void f0(pcc pccVar, c35 c35Var, String str) {

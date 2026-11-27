@@ -28,8 +28,8 @@ public final class ox9 implements Runnable {
                     wx9Var.getMessagesController().S.l(dialog.id);
                 }
                 wx9Var.getMessagesStorage().a.c(new ox9(wx9Var, j2, (byte) 1));
-                jf7 messagesStorage = wx9Var.getMessagesStorage();
-                messagesStorage.a.c(new gd7(messagesStorage, 1, j2, (byte) 0));
+                kf7 messagesStorage = wx9Var.getMessagesStorage();
+                messagesStorage.a.c(new id7(messagesStorage, 1, j2, (byte) 0));
                 wx9Var.getNotificationCenter().k(3, new Object[0]);
                 wx9Var.getNotificationCenter().k(42, Long.valueOf(j2), Boolean.FALSE, null);
                 return;

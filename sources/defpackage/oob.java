@@ -505,8 +505,8 @@ public final class oob extends LinearLayout {
                 return super.drawChild(canvas, view, j);
             case 15:
                 xu9 xu9Var = (xu9) this.b;
-                if (view instanceof u3b) {
-                    ((u3b) view).a(xu9Var.j0);
+                if (view instanceof v3b) {
+                    ((v3b) view).a(xu9Var.j0);
                 }
                 if (view == xu9Var.s) {
                     return true;

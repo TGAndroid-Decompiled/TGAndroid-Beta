@@ -2,7 +2,7 @@ package defpackage;
 
 import android.view.View;
 import java.io.Serializable;
-public final class un2 implements ncc, occ, nr7, bf7 {
+public final class un2 implements ncc, occ, nr7, cf7 {
     public final xn2 a;
 
     public un2(xn2 xn2Var) {

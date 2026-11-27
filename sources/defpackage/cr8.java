@@ -181,7 +181,7 @@ public final class cr8 extends d6 {
                     id idVar2 = alertDialog$Builder2.a;
                     idVar2.S = J0;
                     i10 = ((e) profileActivity).currentAccount;
-                    TLRPC.TL_forumTopic f = uc7.s1(i10).g4.f(profileActivity.f1, profileActivity.g1);
+                    TLRPC.TL_forumTopic f = uc7.s1(i10).h4.f(profileActivity.f1, profileActivity.g1);
                     if (f == null) {
                         str2 = "topic";
                     } else {

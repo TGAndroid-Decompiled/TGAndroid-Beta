@@ -1,13 +1,13 @@
 package defpackage;
 public final class bba {
-    public final aca a;
-    public final aca b;
+    public final bca a;
+    public final bca b;
 
-    public bba(aca acaVar, aca acaVar2) {
-        acaVar.getClass();
-        acaVar2.getClass();
-        this.a = acaVar;
-        this.b = acaVar2;
+    public bba(bca bcaVar, bca bcaVar2) {
+        bcaVar.getClass();
+        bcaVar2.getClass();
+        this.a = bcaVar;
+        this.b = bcaVar2;
     }
 
     public final double a() {

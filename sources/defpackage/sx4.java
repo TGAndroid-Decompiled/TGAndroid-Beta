@@ -43,7 +43,7 @@ public class sx4 extends FrameLayout implements snb {
     public final mm a0;
     public final vnb b;
     public pw4 b0;
-    public final sca c;
+    public final tca c;
     public TL_stars.StarGift c0;
     public final FrameLayout d;
     public boolean d0;
@@ -87,7 +87,7 @@ public class sx4 extends FrameLayout implements snb {
         this.a = i;
         this.b = vnbVar;
         iye.b(this, 0.04f, 1.5f);
-        this.c = new sca(this);
+        this.c = new tca(this);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
         px4 px4Var = new px4(frameLayout, vnbVar, true);
@@ -674,7 +674,7 @@ public class sx4 extends FrameLayout implements snb {
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
                 tx4Var.setVisibility(0);
                 TL_stars.StarGift starGift2 = this.f0.gift;
-                if (starGift2.resell_amount != null && (!it7.n(starGift2) || uc7.s1(this.a).k4.v0.f)) {
+                if (starGift2.resell_amount != null && (!it7.n(starGift2) || uc7.s1(this.a).l4.v0.f)) {
                     int v = aob.v(aob.v0(aob.d6, vnbVar), aob.p1(0.04f, aob.v0(aob.G6, vnbVar)));
                     setRibbonColorKey(aob.lk);
                     tx4Var.setStrokeColor(v);

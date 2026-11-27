@@ -4384,7 +4384,7 @@ public class n12 extends nx0 implements fn7, ix0, s84 {
                 this.F2.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
-            if (!uc7.s1(i).M3() && uc7.s1(i).k4.p1.f() > this.F1) {
+            if (!uc7.s1(i).M3() && uc7.s1(i).l4.p1.f() > this.F1) {
                 z1(eVar);
                 return;
             }
@@ -4699,7 +4699,7 @@ public class n12 extends nx0 implements fn7, ix0, s84 {
             zu1 zu1Var = (zu1) eVar;
             TLRPC.Chat chat = zu1Var.e;
             if (zu1Var.h() != null || ((xc2.T(chat) && chat.megagroup) || !xc2.T(chat))) {
-                SharedPreferences.Editor edit = uc7.s1(this.G3).W3.edit();
+                SharedPreferences.Editor edit = uc7.s1(this.G3).X3.edit();
                 edit.putBoolean("silent_" + zu1Var.a(), !z).commit();
             }
         }
@@ -5086,7 +5086,7 @@ public class n12 extends nx0 implements fn7, ix0, s84 {
 
     public final void z1(e eVar) {
         if ((eVar instanceof zu1) && xc2.V(((zu1) eVar).e)) {
-            new d31(this.o3, this.J0).f(uc7.s1(this.G3).k4.p1.f(), new dy1(this, eVar, (byte) 5)).j();
+            new d31(this.o3, this.J0).f(uc7.s1(this.G3).l4.p1.f(), new dy1(this, eVar, (byte) 5)).j();
         }
     }
 

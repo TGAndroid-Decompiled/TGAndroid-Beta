@@ -394,7 +394,7 @@ public final class in0 implements RequestDelegate {
                             System.arraycopy(encryptedChat2.key_hash, 0, bArr6, 0, 16);
                             System.arraycopy(o, 0, bArr6, 16, 20);
                             encryptedChat.key_hash = bArr6;
-                            wx9Var2.getMessagesStorage().S1(encryptedChat);
+                            wx9Var2.getMessagesStorage().X1(encryptedChat);
                         } catch (Throwable th) {
                             cc4.g(th, true);
                         }
@@ -403,8 +403,8 @@ public final class in0 implements RequestDelegate {
                     int i4 = encryptedChat.layer;
                     Typeface typeface2 = hl.a;
                     encryptedChat.layer = (i4 & (-65536)) | 151;
-                    jf7 messagesStorage = wx9Var2.getMessagesStorage();
-                    messagesStorage.a.c(new id7(messagesStorage, encryptedChat, (byte) 2));
+                    kf7 messagesStorage = wx9Var2.getMessagesStorage();
+                    messagesStorage.a.c(new kd7(messagesStorage, encryptedChat, (byte) 2));
                 }
                 if (tL_error == null) {
                     String str3 = message.attachPath;
@@ -439,7 +439,7 @@ public final class in0 implements RequestDelegate {
                                 in5.z().N(str4, photoSize.location.volume_id + "_" + photoSize.location.local_id, jn5.i(photoSize, message2.media.photo), true);
                                 ArrayList arrayList = new ArrayList();
                                 arrayList.add(message2);
-                                wx9Var2.getMessagesStorage().g1(arrayList, false, true, false, 0, false, 0, 0L);
+                                wx9Var2.getMessagesStorage().k1(arrayList, false, true, false, 0, false, 0, 0L);
                             } else if ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && (document = messageMedia.document) != null) {
                                 messageMedia.document = new TLRPC.TL_documentEncrypted();
                                 TLRPC.Document document3 = message2.media.document;
@@ -474,7 +474,7 @@ public final class in0 implements RequestDelegate {
                                 }
                                 ArrayList arrayList3 = new ArrayList();
                                 arrayList3.add(message2);
-                                wx9Var2.getMessagesStorage().g1(arrayList3, false, true, false, 0, false, 0, 0L);
+                                wx9Var2.getMessagesStorage().k1(arrayList3, false, true, false, 0, false, 0, 0L);
                             }
                             i = r47Var.o1();
                         }
@@ -482,8 +482,8 @@ public final class in0 implements RequestDelegate {
                     wx9Var2.getMessagesStorage().a.c(new y36(wx9Var2, message, messages_sentencryptedmessage, i, (byte) 26));
                     return;
                 }
-                wx9Var2.getMessagesStorage().K0(0, message);
-                hl.c3(new en9(wx9Var2, message, (byte) 14));
+                wx9Var2.getMessagesStorage().N0(0, message);
+                hl.c3(new dn9(wx9Var2, message, (byte) 15));
                 return;
             case 15:
                 hl.c3(new z87((b2a) obj5, tL_error, (TLRPC.TL_inputCheckPasswordSRP) obj4, (TLRPC.User) obj3, (TwoStepVerificationActivity) obj2, (TLRPC.TL_channels_editCreator) obj, (byte) 26));

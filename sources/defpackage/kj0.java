@@ -14,12 +14,12 @@ public final class kj0 extends v40 {
         if (weakReference.get() != null && !((mj0) weakReference.get()).m && ((mj0) weakReference.get()).l) {
             mj0 mj0Var = (mj0) weakReference.get();
             qi0 qi0Var = new qi0(i, charSequence);
-            qj7 qj7Var = mj0Var.q;
-            if (qj7Var == null) {
-                qj7Var = new qj7();
-                mj0Var.q = qj7Var;
+            rj7 rj7Var = mj0Var.q;
+            if (rj7Var == null) {
+                rj7Var = new rj7();
+                mj0Var.q = rj7Var;
             }
-            mj0.f(qj7Var, qi0Var);
+            mj0.f(rj7Var, qi0Var);
         }
     }
 
@@ -37,12 +37,12 @@ public final class kj0 extends v40 {
                 gj0Var = new gj0(hj0Var, i);
             }
             mj0 mj0Var = (mj0) weakReference.get();
-            qj7 qj7Var = mj0Var.p;
-            if (qj7Var == null) {
-                qj7Var = new qj7();
-                mj0Var.p = qj7Var;
+            rj7 rj7Var = mj0Var.p;
+            if (rj7Var == null) {
+                rj7Var = new rj7();
+                mj0Var.p = rj7Var;
             }
-            mj0.f(qj7Var, gj0Var);
+            mj0.f(rj7Var, gj0Var);
         }
     }
 }

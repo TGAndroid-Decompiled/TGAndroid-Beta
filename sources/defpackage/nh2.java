@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import org.telegram.messenger.a;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
-public final class nh2 extends nk7 {
+public final class nh2 extends ok7 {
     public static final ph2 l;
     public static final HashMap m;
     public final ExtendedDefaultDataSourceFactory e;
@@ -76,11 +76,11 @@ public final class nh2 extends nk7 {
     }
 
     @Override
-    public final lk7 d(jk7 jk7Var) {
+    public final mk7 d(kk7 kk7Var) {
         String str;
         int incrementAndGet = this.k.incrementAndGet();
         StringBuilder m2 = uh9.m(incrementAndGet, "Request ", " ");
-        switch (jk7Var.g) {
+        switch (kk7Var.g) {
             case 1:
                 str = "GET";
                 break;
@@ -135,11 +135,11 @@ public final class nh2 extends nk7 {
         }
         m2.append(str);
         m2.append(" ");
-        m2.append(jk7Var.f);
+        m2.append(kk7Var.f);
         m2.append(" ");
-        bs2.x(m2, (String) jk7Var.i.get("range"), "CAST_SERVER");
+        bs2.x(m2, (String) kk7Var.i.get("range"), "CAST_SERVER");
         try {
-            lk7 j = j(jk7Var);
+            mk7 j = j(kk7Var);
             fz1 fz1Var = j.e;
             fz1Var.put("Access-Control-Allow-Origin", "*");
             fz1Var.put("Access-Control-Max-Age", "3628800");
@@ -148,7 +148,7 @@ public final class nh2 extends nk7 {
             return j;
         } catch (Throwable unused) {
             Log.d("CAST_SERVER", "Error " + incrementAndGet);
-            lk7 b = nk7.b(29, "text/plain", "Error reading file");
+            mk7 b = ok7.b(29, "text/plain", "Error reading file");
             fz1 fz1Var2 = b.e;
             fz1Var2.put("Access-Control-Allow-Origin", "*");
             fz1Var2.put("Access-Control-Max-Age", "3628800");
@@ -164,23 +164,23 @@ public final class nh2 extends nk7 {
         if (isEmpty) {
             if (z) {
                 try {
-                    nk7.c(this.a);
+                    ok7.c(this.a);
                     ArrayList arrayList = new ArrayList((List) this.c.c);
                     int size = arrayList.size();
                     int i = 0;
                     while (i < size) {
                         Object obj = arrayList.get(i);
                         i++;
-                        gk7 gk7Var = (gk7) obj;
-                        nk7.c(gk7Var.a);
-                        nk7.c(gk7Var.b);
+                        hk7 hk7Var = (hk7) obj;
+                        ok7.c(hk7Var.a);
+                        ok7.c(hk7Var.b);
                     }
                     Thread thread = this.b;
                     if (thread != null) {
                         thread.join();
                     }
                 } catch (Exception e) {
-                    nk7.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
+                    ok7.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
                 }
                 this.j = false;
             }
@@ -194,8 +194,8 @@ public final class nh2 extends nk7 {
         }
     }
 
-    public final defpackage.lk7 j(defpackage.jk7 r40) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.nh2.j(jk7):lk7");
+    public final defpackage.mk7 j(defpackage.kk7 r40) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nh2.j(kk7):mk7");
     }
 
     public final void k(File file, String str) {

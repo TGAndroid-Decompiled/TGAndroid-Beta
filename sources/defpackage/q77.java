@@ -23,24 +23,24 @@ public final class q77 implements Runnable {
             case 0:
                 long j = this.d;
                 ArrayList arrayList = this.c;
-                uc7Var.getMessagesStorage().O1(j, -j, arrayList, uc7Var.getMessagesStorage().M0(j, arrayList, false, true, 5, (int) this.e));
+                uc7Var.getMessagesStorage().T1(j, -j, arrayList, uc7Var.getMessagesStorage().P0(j, arrayList, false, true, 5, (int) this.e));
                 return;
             case 1:
                 uc7 uc7Var2 = this.b;
                 ArrayList arrayList2 = this.c;
                 long j2 = this.d;
                 hl.c3(new p77(uc7Var2, arrayList2, j2, (byte) 1));
-                jf7 messagesStorage = uc7Var2.getMessagesStorage();
+                kf7 messagesStorage = uc7Var2.getMessagesStorage();
                 long j3 = this.e;
-                messagesStorage.D(arrayList2, j3);
-                uc7Var2.getMessagesStorage().O1(j3, j2, arrayList2, uc7Var2.getMessagesStorage().M0(j3, arrayList2, false, true, 0, 0));
+                messagesStorage.F(arrayList2, j3);
+                uc7Var2.getMessagesStorage().T1(j3, j2, arrayList2, uc7Var2.getMessagesStorage().P0(j3, arrayList2, false, true, 0, 0));
                 return;
             default:
-                qyb qybVar = uc7Var.getMessagesController().g4;
+                qyb qybVar = uc7Var.getMessagesController().h4;
                 long j4 = this.d;
                 long j5 = this.e;
                 qybVar.B(0, j4, j5, false);
-                uc7Var.getMessagesStorage().e2(0, j4, j5, false);
+                uc7Var.getMessagesStorage().j2(0, j4, j5, false);
                 uc7Var.getNotificationCenter().k(306, Long.valueOf(j4), Long.valueOf(j5), 0, this.c);
                 return;
         }

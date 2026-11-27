@@ -225,7 +225,7 @@ public final class yv3 extends FrameLayout {
                     if (zw3Var.w1 != null && xea.o() > 0 && !i86.f()) {
                         Point point = hl.q;
                         Bitmap createBitmap = Bitmap.createBitmap(point.x / 16, point.y / 16, Bitmap.Config.ARGB_8888);
-                        ((qbb) zw3Var.w1.b).X(16.0f, createBitmap);
+                        ((rbb) zw3Var.w1.b).X(16.0f, createBitmap);
                         Utilities.stackBlurBitmap(createBitmap, 8);
                         this.e = createBitmap;
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;

@@ -15,9 +15,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_fragment;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.PrivacySettingsActivity;
 import org.telegram.ui.ProfileActivity;
 public final class oy6 implements Runnable {
@@ -170,6 +172,10 @@ public final class oy6 implements Runnable {
     }
 
     private final void g() {
+        ((ij8) this.b).b0((TLRPC.TL_error) this.c, (TLObject) this.d, (TL_stars.updatePaidMessagesPrice) this.e);
+    }
+
+    private final void h() {
         mm8 mm8Var = (mm8) this.b;
         Bitmap[] bitmapArr = (Bitmap[]) this.c;
         c8b c8bVar = (c8b) this.d;
@@ -198,7 +204,11 @@ public final class oy6 implements Runnable {
         mm8Var.invalidate();
     }
 
-    private final void h() {
+    private final void i() {
+        ((PrivacyControlActivity) this.b).D0((TLRPC.TL_error) this.c, (TLObject) this.d, (boolean[]) this.e);
+    }
+
+    private final void j() {
         PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) this.b;
         id idVar = (id) this.c;
         TLObject tLObject = (TLObject) this.d;
@@ -216,7 +226,7 @@ public final class oy6 implements Runnable {
         }
     }
 
-    private final void i() {
+    private final void k() {
         ProfileActivity profileActivity = (ProfileActivity) this.b;
         String[] strArr = (String[]) this.c;
         String str = (String) this.d;
@@ -228,7 +238,7 @@ public final class oy6 implements Runnable {
         r3c.R0(profileActivity.getParentActivity(), profileActivity, strArr[0], str, str2, new p12(profileActivity, (byte) 6), null);
     }
 
-    private final void j() {
+    private final void l() {
         TLObject M0;
         ProfileActivity profileActivity = (ProfileActivity) this.b;
         TLObject tLObject = (TLObject) this.c;

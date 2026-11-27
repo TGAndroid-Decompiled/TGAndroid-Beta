@@ -6,8 +6,8 @@ public final class wy0 implements uy0 {
     public int d;
     public short e;
 
-    public wy0(vh7 vh7Var) {
-        ey7 ey7Var = vh7Var.e;
+    public wy0(wh7 wh7Var) {
+        ey7 ey7Var = wh7Var.e;
         this.a = ey7Var;
         ey7Var.N(12);
         this.c = ey7Var.E() & 255;

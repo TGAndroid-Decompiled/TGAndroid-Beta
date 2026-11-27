@@ -214,7 +214,7 @@ public final class hu0 implements pcc {
                 ((e) obj3).finishFragment();
                 if (oj3Var != null) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(if7.a(-l2.longValue(), 0L));
+                    arrayList.add(jf7.a(-l2.longValue(), 0L));
                     oj3Var.q(uj3Var, arrayList, null, false, uj3Var.L2, uj3Var.M2, uj3Var.N2, null);
                     return;
                 }
@@ -271,14 +271,14 @@ public final class hu0 implements pcc {
                 }
                 return;
             case 7:
-                sk7 sk7Var = (sk7) obj4;
+                tk7 tk7Var = (tk7) obj4;
                 vnb vnbVar = (vnb) obj2;
                 ao1 ao1Var = (ao1) obj3;
                 String str8 = (String) obj;
                 ((n55) obj6).d = false;
                 ((c51) obj5).setLoading(false);
                 if (str8 != null) {
-                    d31.d0(str8, sk7Var.F, vnbVar);
+                    d31.d0(str8, tk7Var.F, vnbVar);
                 }
                 ao1Var.run();
                 return;

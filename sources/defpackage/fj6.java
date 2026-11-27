@@ -106,7 +106,7 @@ public final class fj6 extends iic implements fn7, s84 {
                 bundle2.putBoolean("hasMainTabs", true);
                 return new i91(bundle2);
             }
-            return new tba(bs2.l("hasMainTabs", true));
+            return new uba(bs2.l("hasMainTabs", true));
         } else if (i == 0) {
             uj3 uj3Var = new uj3(bs2.l("hasMainTabs", true));
             this.M = uj3Var;
@@ -785,7 +785,7 @@ public final class fj6 extends iic implements fn7, s84 {
         if (this.I == null) {
             return;
         }
-        int i = jf7.Y(this.currentAccount).L;
+        int i = kf7.a0(this.currentAccount).L;
         if (i > 0) {
             this.N[0].e(ob6.E(i, ','), false, z);
             return;

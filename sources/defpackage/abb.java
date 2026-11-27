@@ -1,28 +1,32 @@
 package defpackage;
+public final class abb implements qk4 {
+    public final sbb a;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.style.ImageSpan;
-public final class abb extends ImageSpan {
-    public final Drawable a;
-
-    public abb(Drawable drawable, Drawable drawable2) {
-        super(drawable);
-        this.a = drawable2;
+    public abb(sbb sbbVar) {
+        this.a = sbbVar;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        canvas.save();
-        canvas.translate(0.0f, hl.L(1.0f) + ((i5 - i3) / 2));
-        this.a.setAlpha(paint.getAlpha());
-        super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
-        canvas.restore();
+    public final void setInvert(float f) {
+        boolean z;
+        sbb sbbVar = this.a;
+        rbb rbbVar = sbbVar.n;
+        int i = (f > 0.5f ? 1 : (f == 0.5f ? 0 : -1));
+        boolean z2 = false;
+        if (i > 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        hl.j3(rbbVar, z);
+        rbb rbbVar2 = sbbVar.n;
+        if (i > 0) {
+            z2 = true;
+        }
+        hl.m3(rbbVar2, z2);
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return (super.getSize(paint, charSequence, i, i2, fontMetricsInt) / 3) << 1;
+    public final void invalidate() {
     }
 }

@@ -1578,7 +1578,7 @@ public final class c {
         }
         performapirequest.payload = jSONObject.toString();
         int i = this.a;
-        ConnectionsManager.getInstance(i).sendRequestTyped(performapirequest, new ic((byte) 0), new qe2(this, str, pccVar), uc7.s1(i).r3, 0);
+        ConnectionsManager.getInstance(i).sendRequestTyped(performapirequest, new ic((byte) 0), new qe2(this, str, pccVar), uc7.s1(i).s3, 0);
     }
 
     public final void n0(TLRPC.User user, String str, long j, String str2, byte[] bArr, TL_wallet.nftItem nftitem, String str3, pcc pccVar, pcc pccVar2) {
@@ -1638,7 +1638,7 @@ public final class c {
             int i2 = j2.exp;
             double d = j2.rate;
             if (d > 0.0d && !Double.isNaN(d) && !Double.isInfinite(d)) {
-                double d2 = d * uc7.s1(this.a).k4.k.i;
+                double d2 = d * uc7.s1(this.a).l4.k.i;
                 int min = Math.min(i2, 20);
                 boolean z5 = false;
                 int max = Math.max(0, min);
@@ -1791,7 +1791,7 @@ public final class c {
                         performapirequest.query = sb.toString();
                         c cVar = this.b;
                         int i2 = cVar.a;
-                        ConnectionsManager.getInstance(i2).sendRequestTyped(performapirequest, new ic((byte) 0), new nu0(cVar, obj, str2, runnable, (byte) 2), uc7.s1(i2).r3, 0);
+                        ConnectionsManager.getInstance(i2).sendRequestTyped(performapirequest, new ic((byte) 0), new nu0(cVar, obj, str2, runnable, (byte) 2), uc7.s1(i2).s3, 0);
                         return;
                     default:
                         c cVar2 = this.b;
@@ -1822,7 +1822,7 @@ public final class c {
                         performapirequest.query = sb.toString();
                         c cVar = this.b;
                         int i2 = cVar.a;
-                        ConnectionsManager.getInstance(i2).sendRequestTyped(performapirequest, new ic((byte) 0), new nu0(cVar, obj, str2, runnable, (byte) 2), uc7.s1(i2).r3, 0);
+                        ConnectionsManager.getInstance(i2).sendRequestTyped(performapirequest, new ic((byte) 0), new nu0(cVar, obj, str2, runnable, (byte) 2), uc7.s1(i2).s3, 0);
                         return;
                     default:
                         c cVar2 = this.b;

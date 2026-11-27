@@ -75,7 +75,7 @@ public final class sv8 extends Dialog {
         this.b = js8Var;
         boolean z = user != null && user.id == yac.h(eVar.getCurrentAccount()).e();
         this.e = z;
-        boolean z2 = (user == null || z || !uc7.s1(eVar.getCurrentAccount()).k4.v0.f) ? false : true;
+        boolean z2 = (user == null || z || !uc7.s1(eVar.getCurrentAccount()).l4.v0.f) ? false : true;
         this.c = z2;
         this.d = (user == null || z || z2) ? false : true;
         int[] iArr = new int[2];

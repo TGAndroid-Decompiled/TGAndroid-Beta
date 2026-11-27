@@ -333,7 +333,7 @@ public final class dq9 extends w96 implements AudioManager.OnAudioFocusChangeLis
                 NativeInstance.SsrcGroup[] J = J(tL_groupCallParticipantVideo);
                 K(J);
                 nativeInstance3.addIncomingVideoOutput(2, str, J, this.Q, wf3.n(this.y.peer));
-                hl.c3(new en9(this, this.y.video.endpoint, (byte) 5));
+                hl.c3(new dn9(this, this.y.video.endpoint, (byte) 6));
                 return;
             }
             hl.c3(new xp9(this, (byte) 1));

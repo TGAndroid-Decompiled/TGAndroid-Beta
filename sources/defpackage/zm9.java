@@ -28,7 +28,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.LaunchActivity;
-public final class zm9 implements hj, y27, qv0, ty9, tka, bf7, i27, bv9, jt1, v78, li1, i89, ep2, h23, a43, v30, rv9, je8 {
+public final class zm9 implements hj, y27, qv0, ty9, tka, cf7, i27, bv9, jt1, v78, li1, i89, ep2, h23, a43, v30, rv9, je8 {
     public static zm9 c;
     public static final an9 d = new an9(0, 0, 0, false, false);
     public static final Object e = new Object();
@@ -148,7 +148,7 @@ public final class zm9 implements hj, y27, qv0, ty9, tka, bf7, i27, bv9, jt1, v7
     @Override
     public final boolean E() {
         iv3 iv3Var = (iv3) this.b;
-        if (iv3Var.N1 == iv3Var.l1 && iv3Var.x1 && "inapp".equals(uc7.s1(iv3Var.a).k4.Q0.f)) {
+        if (iv3Var.N1 == iv3Var.l1 && iv3Var.x1 && "inapp".equals(uc7.s1(iv3Var.a).l4.Q0.f)) {
             return false;
         }
         return true;

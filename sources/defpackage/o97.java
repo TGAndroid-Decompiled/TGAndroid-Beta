@@ -101,7 +101,7 @@ public final class o97 implements Runnable {
                                     }
                                     Integer num = (Integer) concurrentHashMap.get(Long.valueOf(message.dialog_id));
                                     if (num == null) {
-                                        num = Integer.valueOf(uc7Var2.getMessagesStorage().S(message.dialog_id, message.out));
+                                        num = Integer.valueOf(uc7Var2.getMessagesStorage().U(message.dialog_id, message.out));
                                         concurrentHashMap.put(Long.valueOf(message.dialog_id), num);
                                     }
                                     if (num.intValue() < message.id) {
@@ -152,54 +152,54 @@ public final class o97 implements Runnable {
                 }
                 if (updates_difference instanceof TLRPC.TL_updates_difference) {
                     uc7Var.Y1 = false;
-                    uc7Var.getMessagesStorage().H1(updates_difference.state.seq);
-                    uc7Var.getMessagesStorage().E1(updates_difference.state.date);
-                    uc7Var.getMessagesStorage().F1(updates_difference.state.pts);
-                    uc7Var.getMessagesStorage().G1(updates_difference.state.qts);
+                    uc7Var.getMessagesStorage().M1(updates_difference.state.seq);
+                    uc7Var.getMessagesStorage().J1(updates_difference.state.date);
+                    uc7Var.getMessagesStorage().K1(updates_difference.state.pts);
+                    uc7Var.getMessagesStorage().L1(updates_difference.state.qts);
                     cc4.b("received difference: isUpdating = false");
                     uc7Var.getConnectionsManager().setIsUpdating(false);
                     for (int i3 = 0; i3 < 3; i3++) {
                         uc7Var.Z3(i3, 1);
                     }
                 } else if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
-                    uc7Var.getMessagesStorage().E1(updates_difference.intermediate_state.date);
-                    uc7Var.getMessagesStorage().F1(updates_difference.intermediate_state.pts);
-                    uc7Var.getMessagesStorage().G1(updates_difference.intermediate_state.qts);
+                    uc7Var.getMessagesStorage().J1(updates_difference.intermediate_state.date);
+                    uc7Var.getMessagesStorage().K1(updates_difference.intermediate_state.pts);
+                    uc7Var.getMessagesStorage().L1(updates_difference.intermediate_state.qts);
                 } else if (updates_difference instanceof TLRPC.TL_updates_differenceEmpty) {
                     uc7Var.Y1 = false;
-                    uc7Var.getMessagesStorage().H1(updates_difference.seq);
-                    uc7Var.getMessagesStorage().E1(updates_difference.date);
+                    uc7Var.getMessagesStorage().M1(updates_difference.seq);
+                    uc7Var.getMessagesStorage().J1(updates_difference.date);
                     uc7Var.getConnectionsManager().setIsUpdating(false);
                     cc4.b("received differenceEmpty: isUpdating = false");
                     for (int i4 = 0; i4 < 3; i4++) {
                         uc7Var.Z3(i4, 1);
                     }
                 }
-                jf7 messagesStorage = uc7Var.getMessagesStorage();
-                jf7 messagesStorage2 = uc7Var.getMessagesStorage();
-                messagesStorage2.G();
+                kf7 messagesStorage = uc7Var.getMessagesStorage();
+                kf7 messagesStorage2 = uc7Var.getMessagesStorage();
+                messagesStorage2.I();
                 int i5 = messagesStorage2.w;
-                jf7 messagesStorage3 = uc7Var.getMessagesStorage();
-                messagesStorage3.G();
+                kf7 messagesStorage3 = uc7Var.getMessagesStorage();
+                messagesStorage3.I();
                 int i6 = messagesStorage3.r;
-                jf7 messagesStorage4 = uc7Var.getMessagesStorage();
-                messagesStorage4.G();
+                kf7 messagesStorage4 = uc7Var.getMessagesStorage();
+                messagesStorage4.I();
                 int i7 = messagesStorage4.n;
-                jf7 messagesStorage5 = uc7Var.getMessagesStorage();
-                messagesStorage5.G();
-                messagesStorage.x1(i5, i6, i7, messagesStorage5.s);
+                kf7 messagesStorage5 = uc7Var.getMessagesStorage();
+                messagesStorage5.I();
+                messagesStorage.B1(i5, i6, i7, messagesStorage5.s);
                 if (f11.a) {
                     StringBuilder sb = new StringBuilder("received difference with date = ");
-                    jf7 messagesStorage6 = uc7Var.getMessagesStorage();
-                    messagesStorage6.G();
+                    kf7 messagesStorage6 = uc7Var.getMessagesStorage();
+                    messagesStorage6.I();
                     sb.append(messagesStorage6.n);
                     sb.append(" pts = ");
-                    jf7 messagesStorage7 = uc7Var.getMessagesStorage();
-                    messagesStorage7.G();
+                    kf7 messagesStorage7 = uc7Var.getMessagesStorage();
+                    messagesStorage7.I();
                     sb.append(messagesStorage7.r);
                     sb.append(" seq = ");
-                    jf7 messagesStorage8 = uc7Var.getMessagesStorage();
-                    messagesStorage8.G();
+                    kf7 messagesStorage8 = uc7Var.getMessagesStorage();
+                    messagesStorage8.I();
                     sb.append(messagesStorage8.w);
                     sb.append(" messages = ");
                     sb.append(updates_difference.new_messages.size());

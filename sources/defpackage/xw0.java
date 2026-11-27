@@ -200,7 +200,7 @@ public final class xw0 extends Dialog implements fn7, dy0 {
         this.o0 = yp0Var;
         yp0Var.setAlpha(0.0f);
         yp0Var.setVisibility(8);
-        if (!uc7.s1(this.I).k4.N1.f && xea.o() >= 2) {
+        if (!uc7.s1(this.I).l4.N1.f && xea.o() >= 2) {
             z = true;
         } else {
             z = false;
@@ -393,7 +393,7 @@ public final class xw0 extends Dialog implements fn7, dy0 {
         }
         this.f0 = z;
         int i = 0;
-        if (z3 && !uc7.s1(this.I).k4.N1.f && xea.o() >= 2) {
+        if (z3 && !uc7.s1(this.I).l4.N1.f && xea.o() >= 2) {
             z4 = true;
         } else {
             z4 = false;

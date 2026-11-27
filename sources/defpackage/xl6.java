@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-public final class xl6 implements sf7 {
+public final class xl6 implements tf7 {
     public final String a;
     public final byte[] b;
     public final int c;

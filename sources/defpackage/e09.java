@@ -1,11 +1,11 @@
 package defpackage;
-
-import android.graphics.Bitmap;
-import android.graphics.Paint;
 public final class e09 {
-    public ul a;
-    public long b;
-    public Bitmap c;
-    public Paint d;
+    public byte a;
+    public int b;
+    public int c;
+    public int d;
     public int e;
+    public int f;
+    public int g;
+    public int h;
 }

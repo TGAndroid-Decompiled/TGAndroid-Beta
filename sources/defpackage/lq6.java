@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.TLRPC;
 public final class lq6 implements Runnable {
     public final byte a;
@@ -23,15 +22,14 @@ public final class lq6 implements Runnable {
         byte b = this.a;
         ls6 ls6Var = this.b;
         long j = this.c;
-        int i2 = 0;
         switch (b) {
             case 0:
                 zh6 zh6Var = ls6Var.z1;
                 ArrayList arrayList = (ArrayList) zh6Var.f(j);
                 if (arrayList != null) {
-                    for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                        int i4 = ls6Var.currentAccount;
-                        if7 a = if7.a(j, r47.b2(i4, (TLRPC.Message) arrayList.get(i3), xc2.b0(i4, j), false));
+                    for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                        int i3 = ls6Var.currentAccount;
+                        jf7 a = jf7.a(j, r47.b2(i3, (TLRPC.Message) arrayList.get(i2), xc2.b0(i3, j), false));
                         ls6Var.A1.remove(a);
                         ls6Var.getNotificationCenter().k(70, null, a);
                     }
@@ -51,21 +49,20 @@ public final class lq6 implements Runnable {
                 return;
             case 2:
                 final long j2 = this.c;
+                int i4 = 0;
                 final ls6 ls6Var3 = this.b;
                 ls6Var3.getClass();
                 double d = 0.0d;
                 try {
-                    SQLiteDatabase sQLiteDatabase = ls6Var3.getMessagesStorage().b;
-                    Locale locale = Locale.US;
-                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT MAX(mid), MAX(date) FROM messages_v2 WHERE uid = " + j2 + " AND out = 1", new Object[0]);
+                    SQLiteCursor queryFinalized = ls6Var3.getMessagesStorage().b.queryFinalized(String.format(Locale.US, "SELECT (SELECT mid FROM messages_v2 WHERE uid = %1$d AND out = 1 ORDER BY mid DESC LIMIT 1), (SELECT MAX(+date) FROM messages_v2 WHERE uid = %1$d AND out = 1)", Long.valueOf(j2)), new Object[0]);
                     if (queryFinalized.next()) {
-                        i2 = queryFinalized.intValue(0);
+                        i4 = queryFinalized.intValue(0);
                         i = queryFinalized.intValue(1);
                     } else {
                         i = 0;
                     }
                     queryFinalized.dispose();
-                    if (i2 > 0 && ls6Var3.getUserConfig().E != 0) {
+                    if (i4 > 0 && ls6Var3.getUserConfig().E != 0) {
                         d = i - ls6Var3.getUserConfig().E;
                     }
                 } catch (Exception e) {

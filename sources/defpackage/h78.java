@@ -1,5 +1,5 @@
 package defpackage;
-public final class h78 implements xk7, hj {
+public final class h78 implements yk7, hj {
     public final r78 a;
 
     public h78(r78 r78Var) {

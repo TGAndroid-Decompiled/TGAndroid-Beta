@@ -10,8 +10,8 @@ public class RefererReceiver extends BroadcastReceiver {
             uc7 s1 = uc7.s1(yac.t0);
             String string = intent.getExtras().getString("referrer");
             if (string != null) {
-                s1.t3 = string;
-                s1.X3.edit().putString("installReferer", string).commit();
+                s1.u3 = string;
+                s1.Y3.edit().putString("installReferer", string).commit();
             }
         } catch (Exception unused) {
         }

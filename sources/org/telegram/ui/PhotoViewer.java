@@ -631,7 +631,7 @@ public class PhotoViewer implements fn7, qu4, pu4, s84 {
         public final RectF a;
         public final RectF b;
         public final Paint c;
-        public h68 d;
+        public a58 d;
         public boolean e;
 
         public BackgroundDrawable() {
@@ -687,7 +687,7 @@ public class PhotoViewer implements fn7, qu4, pu4, s84 {
 
         @Override
         public final void draw(Canvas canvas) {
-            h68 h68Var;
+            a58 a58Var;
             fd8 fd8Var;
             Drawable[] drawableArr = PhotoViewer.d9;
             PhotoViewer photoViewer = PhotoViewer.this;
@@ -731,8 +731,8 @@ public class PhotoViewer implements fn7, qu4, pu4, s84 {
             } else {
                 super.draw(canvas);
             }
-            if (getAlpha() != 0 && (h68Var = this.d) != null) {
-                hl.c3(h68Var);
+            if (getAlpha() != 0 && (a58Var = this.d) != null) {
+                hl.c3(a58Var);
                 this.d = null;
             }
         }
@@ -1892,7 +1892,7 @@ public class PhotoViewer implements fn7, qu4, pu4, s84 {
             if (!z2 && (zu1Var = this.k4) != null) {
                 TLRPC.Chat chat2 = zu1Var.e;
                 if (zu1Var.h() != null || ((xc2.T(chat2) && chat2.megagroup) || !xc2.T(chat2))) {
-                    uc7.s1(this.U).W3.edit().putBoolean("silent_" + this.k4.a(), !z).commit();
+                    uc7.s1(this.U).X3.edit().putBoolean("silent_" + this.k4.a(), !z).commit();
                 }
             }
             oec k0 = k0();
@@ -5466,7 +5466,7 @@ public class PhotoViewer implements fn7, qu4, pu4, s84 {
     public final boolean c2(FrameLayout frameLayout) {
         org.telegram.ui.ActionBar.e eVar = this.l4;
         if ((eVar instanceof zu1) && xc2.V(((zu1) eVar).e)) {
-            v21 f = new d31(frameLayout, this.w2).f(uc7.s1(this.U).k4.p1.f(), new na8(this, (byte) 3));
+            v21 f = new d31(frameLayout, this.w2).f(uc7.s1(this.U).l4.p1.f(), new na8(this, (byte) 3));
             f.w = new na8(this, (byte) 4);
             this.s7 = f.j();
             return true;
@@ -6442,7 +6442,7 @@ public class PhotoViewer implements fn7, qu4, pu4, s84 {
         tb8 tb8Var = new tb8(this, this.E, this.k4, arrayList, str, num, ad8Var, z);
         tb8Var.w0(false);
         tb8Var.getWindow().setSoftInputMode(48);
-        hl.d3(new h68(this, tb8Var, (byte) 3), 250L);
+        hl.d3(new a58(this, tb8Var, (byte) 4), 250L);
         tb8Var.show();
     }
 

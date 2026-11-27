@@ -98,11 +98,11 @@ public final class cc4 {
                 j = true;
                 File file = new File(a.h(), "malformed_database/");
                 file.mkdirs();
-                jf7 Y = jf7.Y(yac.t0);
+                kf7 a0 = kf7.a0(yac.t0);
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(Y.c);
-                arrayList.add(Y.d);
-                arrayList.add(Y.e);
+                arrayList.add(a0.c);
+                arrayList.add(a0.d);
+                arrayList.add(a0.e);
                 for (int i = 0; i < arrayList.size(); i++) {
                     try {
                         hl.E((File) arrayList.get(i), new File(file, ((File) arrayList.get(i)).getName()));

@@ -37,7 +37,7 @@ public final class ru3 extends e {
         this.y = i2;
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
-        getMessagesStorage().n0(i2, i, arrayList, arrayList2, arrayList3, true);
+        getMessagesStorage().p0(i2, i, arrayList, arrayList2, arrayList3, true);
         getMessagesController().j4(arrayList2, true);
         getMessagesController().c4(arrayList3, true);
         d0();

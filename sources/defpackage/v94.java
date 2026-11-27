@@ -1035,13 +1035,13 @@ public final class v94 extends FrameLayout implements eu5 {
         if (t94Var != null && (r47Var = this.J) != null) {
             im7 im7Var = (im7) t94Var;
             lm7 lm7Var = im7Var.z3;
-            km7 km7Var = (km7) lm7Var.V.get(lm7.B0(im7Var.n3, r47Var));
+            km7 km7Var = (km7) lm7Var.V.get(lm7.z0(im7Var.n3, r47Var));
             if (km7Var == null) {
                 km7Var = lm7Var.U;
             }
             float f2 = km7Var.a;
             im7 im7Var2 = (im7) this.I;
-            km7 km7Var2 = (km7) im7Var2.z3.W.get(lm7.B0(im7Var2.n3, this.J));
+            km7 km7Var2 = (km7) im7Var2.z3.W.get(lm7.z0(im7Var2.n3, this.J));
             if (km7Var2 != null) {
                 f = km7Var2.a;
             } else {

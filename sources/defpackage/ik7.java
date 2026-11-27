@@ -1,34 +1,37 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-public final class ik7 implements Iterable {
-    public final HashMap a = new HashMap();
-    public final ArrayList b = new ArrayList();
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class ik7 {
+    public static final Pattern c = Pattern.compile("[ |\t]*([^/^ ^;^,]+/[^ ^;^,]+)", 2);
+    public static final Pattern d = Pattern.compile("[ |\t]*(charset)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public static final Pattern e = Pattern.compile("[ |\t]*(boundary)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public final String a;
+    public final String b;
 
-    public ik7(HashMap hashMap) {
-        String str = (String) hashMap.get("cookie");
+    public ik7(String str) {
+        String str2;
+        String str3;
+        this.a = str;
+        str2 = "";
         if (str != null) {
-            for (String str2 : str.split(";")) {
-                String[] split = str2.trim().split("=");
-                if (split.length == 2) {
-                    this.a.put(split[0], split[1]);
-                }
+            Matcher matcher = c.matcher(str);
+            str2 = matcher.find() ? matcher.group(1) : "";
+            Matcher matcher2 = d.matcher(str);
+            if (matcher2.find()) {
+                str3 = matcher2.group(2);
+            } else {
+                str3 = null;
+            }
+            this.b = str3;
+        } else {
+            this.b = "UTF-8";
+        }
+        if ("multipart/form-data".equalsIgnoreCase(str2)) {
+            Matcher matcher3 = e.matcher(str);
+            if (matcher3.find()) {
+                matcher3.group(2);
             }
         }
-    }
-
-    public final void h() {
-        Iterator it = this.b.iterator();
-        if (!it.hasNext()) {
-            return;
-        }
-        throw qu6.l(it);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return this.a.keySet().iterator();
     }
 }

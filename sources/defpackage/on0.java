@@ -27,7 +27,7 @@ public abstract class on0 {
     }
 
     public static int b() {
-        return (int) uc7.s1(yac.t0).k4.E0.f();
+        return (int) uc7.s1(yac.t0).l4.E0.f();
     }
 
     public static ArrayList c(int i, List list) {
@@ -96,15 +96,15 @@ public abstract class on0 {
     }
 
     public static long g() {
-        return uc7.s1(yac.t0).k4.H0.f();
+        return uc7.s1(yac.t0).l4.H0.f();
     }
 
     public static int h() {
-        return (int) uc7.s1(yac.t0).k4.F0.f();
+        return (int) uc7.s1(yac.t0).l4.F0.f();
     }
 
     public static long i() {
-        return uc7.s1(yac.t0).k4.I0.f();
+        return uc7.s1(yac.t0).l4.I0.f();
     }
 
     public static boolean j() {
@@ -115,7 +115,7 @@ public abstract class on0 {
     }
 
     public static boolean k() {
-        if (uc7.s1(yac.t0).k4.E0.f() > 0) {
+        if (uc7.s1(yac.t0).l4.E0.f() > 0) {
             return true;
         }
         return false;

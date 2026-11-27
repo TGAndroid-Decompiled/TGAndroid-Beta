@@ -46,7 +46,7 @@ public abstract class z15 {
     }
 
     public static boolean c(int i) {
-        return uc7.s1(i).k4.v0.f;
+        return uc7.s1(i).l4.v0.f;
     }
 
     public static void d(y15 y15Var) {
@@ -70,7 +70,7 @@ public abstract class z15 {
     public static HashSet e(int i) {
         HashSet[] hashSetArr = c;
         if (hashSetArr[i] == null) {
-            hashSetArr[i] = new HashSet(uc7.s1(i).X3.getStringSet("gram_earnings_wallet_withdraws", Collections.EMPTY_SET));
+            hashSetArr[i] = new HashSet(uc7.s1(i).Y3.getStringSet("gram_earnings_wallet_withdraws", Collections.EMPTY_SET));
         }
         return hashSetArr[i];
     }

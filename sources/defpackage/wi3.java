@@ -73,7 +73,7 @@ public final class wi3 extends yc8 {
             uj3Var.O2 = z2;
             ArrayList arrayList3 = new ArrayList();
             for (int i5 = 0; i5 < arrayList2.size(); i5++) {
-                arrayList3.add(if7.a(((Long) arrayList2.get(i5)).longValue(), 0L));
+                arrayList3.add(jf7.a(((Long) arrayList2.get(i5)).longValue(), 0L));
             }
             PhotoViewer.q0().A(true, false);
             uj3Var.E2.q(uj3Var, arrayList3, uj3Var.D1.getFieldText(), false, z, i2, i3, null);

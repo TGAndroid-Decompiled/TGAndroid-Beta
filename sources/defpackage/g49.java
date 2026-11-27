@@ -431,10 +431,10 @@ public final class g49 extends FrameLayout {
             if (w49Var2.b) {
                 uc7 s1 = uc7.s1(i49Var.K);
                 long j = this.e.g;
-                if (s1.W4 != null) {
-                    for (int i2 = 0; i2 < s1.W4.documents.size(); i2++) {
-                        if (s1.W4.documents.get(i2).id == j) {
-                            document = s1.W4.documents.get(i2);
+                if (s1.X4 != null) {
+                    for (int i2 = 0; i2 < s1.X4.documents.size(); i2++) {
+                        if (s1.X4.documents.get(i2).id == j) {
+                            document = s1.X4.documents.get(i2);
                             break;
                         }
                     }

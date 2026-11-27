@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.Arrays;
 public abstract class lle {
-    public static uf7 a(cb3 cb3Var, boolean z, boolean z2) {
+    public static vf7 a(cb3 cb3Var, boolean z, boolean z2) {
         xi4 xi4Var;
         if (!z) {
             xi4Var = vl5.b;
@@ -11,7 +11,7 @@ public abstract class lle {
         } else {
             xi4Var = null;
         }
-        uf7 c0 = new aj3((byte) 12).c0(cb3Var, xi4Var, 0);
+        vf7 c0 = new aj3((byte) 12).c0(cb3Var, xi4Var, 0);
         if (c0 == null || c0.a.length == 0) {
             return null;
         }

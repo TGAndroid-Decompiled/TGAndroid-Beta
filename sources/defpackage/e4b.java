@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e;
-public final class e4b implements n7, hf7 {
+public final class e4b implements n7, if7 {
     public final s4b a;
 
     public e4b(s4b s4bVar) {

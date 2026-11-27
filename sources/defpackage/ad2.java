@@ -558,7 +558,7 @@ public final class ad2 implements fn7 {
         ImageReceiver imageReceiver = this.G;
         imageReceiver.f();
         int i = this.f0;
-        ArrayList l = uc7.s1(i).g4.l(-this.j0);
+        ArrayList l = uc7.s1(i).h4.l(-this.j0);
         if (l != null && l.size() > 1) {
             tL_forumTopic = null;
             for (int i2 = 0; i2 < l.size(); i2++) {

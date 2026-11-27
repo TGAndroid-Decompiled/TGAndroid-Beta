@@ -14,7 +14,7 @@ public abstract class yhc {
     public static Outline d;
     public static Rect e;
 
-    public static void a(Canvas canvas, u38 u38Var, ii7 ii7Var) {
+    public static void a(Canvas canvas, u38 u38Var, ji7 ji7Var) {
         Path path;
         Outline outline;
         Rect rect;
@@ -51,13 +51,13 @@ public abstract class yhc {
                 }
                 int save = canvas.save();
                 canvas.clipPath(path2);
-                ii7Var.a(canvas);
+                ji7Var.a(canvas);
                 canvas.restoreToCount(save);
                 return;
             }
-            ii7Var.a(canvas);
+            ji7Var.a(canvas);
             return;
         }
-        ii7Var.a(canvas);
+        ji7Var.a(canvas);
     }
 }

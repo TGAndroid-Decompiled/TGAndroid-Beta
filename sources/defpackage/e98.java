@@ -206,19 +206,19 @@ public final class e98 extends v79 {
                 return;
             case 20:
                 if (i == 0) {
-                    tba tbaVar = (tba) obj;
-                    if (tbaVar.F != null) {
-                        sla slaVar = tbaVar.d;
+                    uba ubaVar = (uba) obj;
+                    if (ubaVar.F != null) {
+                        sla slaVar = ubaVar.d;
                         if (slaVar == null || !slaVar.x()) {
-                            float f = tbaVar.Y;
+                            float f = ubaVar.Y;
                             if (f > 0.0f && f < 1.0f) {
                                 int i6 = (f > 0.5f ? 1 : (f == 0.5f ? 0 : -1));
-                                q9c q9cVar = tbaVar.c;
+                                q9c q9cVar = ubaVar.c;
                                 if (i6 >= 0) {
-                                    q9cVar.y0(0, (int) (-(tbaVar.a0 - tbaVar.Z)), k43.h);
+                                    q9cVar.y0(0, (int) (-(ubaVar.a0 - ubaVar.Z)), k43.h);
                                     return;
                                 } else {
-                                    q9cVar.y0(0, (int) Math.ceil(tbaVar.Z - tbaVar.b0), k43.h);
+                                    q9cVar.y0(0, (int) Math.ceil(ubaVar.Z - ubaVar.b0), k43.h);
                                     return;
                                 }
                             }

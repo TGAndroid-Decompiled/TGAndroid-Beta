@@ -299,10 +299,10 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
 
     public final void A0(View view) {
         if (((ArrayList) this.d).remove(view)) {
-            i09 i09Var = (i09) this.b;
+            j09 j09Var = (j09) this.b;
             f89 V = RecyclerView.V(view);
             if (V != null) {
-                RecyclerView recyclerView = (RecyclerView) i09Var.b;
+                RecyclerView recyclerView = (RecyclerView) j09Var.b;
                 int i = V.r;
                 if (recyclerView.e0()) {
                     V.s = i;
@@ -583,11 +583,11 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
     }
 
     public final View J(int i) {
-        return ((RecyclerView) ((i09) this.b).b).getChildAt(P(i));
+        return ((RecyclerView) ((j09) this.b).b).getChildAt(P(i));
     }
 
     public final int K() {
-        return ((RecyclerView) ((i09) this.b).b).getChildCount() - ((ArrayList) this.d).size();
+        return ((RecyclerView) ((j09) this.b).b).getChildCount() - ((ArrayList) this.d).size();
     }
 
     public final po5 L() {
@@ -616,7 +616,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
     public final int P(int i) {
         zg2 zg2Var = (zg2) this.c;
         if (i >= 0) {
-            int childCount = ((RecyclerView) ((i09) this.b).b).getChildCount();
+            int childCount = ((RecyclerView) ((j09) this.b).b).getChildCount();
             int i2 = i;
             while (i2 < childCount) {
                 int s2 = i - (i2 - zg2Var.s(i2));
@@ -643,11 +643,11 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
     }
 
     public final View S(int i) {
-        return ((RecyclerView) ((i09) this.b).b).getChildAt(i);
+        return ((RecyclerView) ((j09) this.b).b).getChildAt(i);
     }
 
     public final int T() {
-        return ((RecyclerView) ((i09) this.b).b).getChildCount();
+        return ((RecyclerView) ((j09) this.b).b).getChildCount();
     }
 
     public final boolean U() {
@@ -659,11 +659,11 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
 
     public final void W(View view) {
         ((ArrayList) this.d).add(view);
-        i09 i09Var = (i09) this.b;
+        j09 j09Var = (j09) this.b;
         f89 V = RecyclerView.V(view);
         if (V != null) {
             View view2 = V.a;
-            RecyclerView recyclerView = (RecyclerView) i09Var.b;
+            RecyclerView recyclerView = (RecyclerView) j09Var.b;
             int i = V.s;
             if (i != -1) {
                 V.r = i;
@@ -893,7 +893,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
         int size = arrayList.size();
         while (true) {
             size--;
-            recyclerView = (RecyclerView) ((i09) this.b).b;
+            recyclerView = (RecyclerView) ((j09) this.b).b;
             if (size < 0) {
                 break;
             }
@@ -1043,7 +1043,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
 
     public final void r(int i, View view, boolean z) {
         int P;
-        RecyclerView recyclerView = (RecyclerView) ((i09) this.b).b;
+        RecyclerView recyclerView = (RecyclerView) ((j09) this.b).b;
         if (i < 0) {
             P = recyclerView.getChildCount();
         } else {
@@ -1084,7 +1084,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
 
     public final void s(View view, int i, ViewGroup.LayoutParams layoutParams, boolean z) {
         int P;
-        RecyclerView recyclerView = (RecyclerView) ((i09) this.b).b;
+        RecyclerView recyclerView = (RecyclerView) ((j09) this.b).b;
         if (i < 0) {
             P = recyclerView.getChildCount();
         } else {
@@ -1243,7 +1243,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
         f89 V;
         int P = P(i);
         ((zg2) this.c).y(P);
-        RecyclerView recyclerView = (RecyclerView) ((i09) this.b).b;
+        RecyclerView recyclerView = (RecyclerView) ((j09) this.b).b;
         View childAt = recyclerView.getChildAt(P);
         if (childAt != null && (V = RecyclerView.V(childAt)) != null) {
             if (V.l() && !V.r()) {
@@ -1257,7 +1257,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
     @Override
     public final void z0(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
         int i4;
-        qbb qbbVar;
+        rbb rbbVar;
         String str = (String) this.c;
         kr0 kr0Var = (kr0) this.d;
         long j3 = kr0Var.d;
@@ -1273,7 +1273,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
                     l.J0 = j3;
                     l.K0 = str;
                     l.z();
-                    rbb C = rbb.C(kr0Var.a.getParentActivity(), kr0Var.b);
+                    sbb C = sbb.C(kr0Var.a.getParentActivity(), kr0Var.b);
                     RectF rectF = C.I;
                     WindowManager.LayoutParams layoutParams = C.h;
                     int i5 = C.c;
@@ -1287,7 +1287,7 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
                             C.v0 = false;
                             C.e = false;
                             C.C2 = false;
-                            if (windowManager != null && (qbbVar = C.n) != null && qbbVar.getParent() == null) {
+                            if (windowManager != null && (rbbVar = C.n) != null && rbbVar.getParent() == null) {
                                 hl.s3(windowManager, C.n, layoutParams);
                                 windowManager.addView(C.n, layoutParams);
                                 C.f0();
@@ -1302,14 +1302,14 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
                             rectF.set(0.0f, hl.L(100.0f), point.x, hl.L(100.0f) + point.y);
                             C.H = hl.L(8.0f);
                             C.r.c();
-                            ebb ebbVar = C.i0;
+                            fbb fbbVar = C.i0;
                             boolean z5 = C.K;
                             if (!z5 && z5) {
                                 i4 = -14737633;
                             } else {
                                 i4 = 0;
                             }
-                            ebbVar.setBackgroundColor(i4);
+                            fbbVar.setBackgroundColor(i4);
                             C.r.setTranslationX(0.0f);
                             C.r.setTranslationY(0.0f);
                             C.r.b(0.0f);
@@ -1417,9 +1417,9 @@ public class rx6 implements ra6, l12, m7b, h49, j98 {
         this.b = new Object();
     }
 
-    public rx6(i09 i09Var) {
+    public rx6(j09 j09Var) {
         this.a = (byte) 21;
-        this.b = i09Var;
+        this.b = j09Var;
         this.c = new zg2((byte) 0);
         this.d = new ArrayList();
     }

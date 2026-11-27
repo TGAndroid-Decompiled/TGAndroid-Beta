@@ -21,7 +21,7 @@ public class ShutterButton extends View {
     public long r;
     public long s;
     public boolean w;
-    public ki7 x;
+    public li7 x;
 
     private void setHighlighted(boolean z) {
         AnimatorSet animatorSet = new AnimatorSet();

@@ -25,9 +25,9 @@ public final class q38 implements Runnable {
     public final boolean b;
     public final Object c;
 
-    public q38(k09 k09Var, IOException iOException, boolean z) {
+    public q38(l09 l09Var, IOException iOException, boolean z) {
         this.a = (byte) 20;
-        this.c = k09Var;
+        this.c = l09Var;
         this.b = z;
     }
 
@@ -235,7 +235,7 @@ public final class q38 implements Runnable {
                 }
                 return;
             case 20:
-                v34 v34Var = (v34) ((ny8) ((k09) obj).b).f;
+                v34 v34Var = (v34) ((ny8) ((l09) obj).b).f;
                 v34Var.getClass();
                 ug5 ug5Var = (ug5) v34Var.b;
                 yve.p(ug5Var.k);
@@ -245,9 +245,9 @@ public final class q38 implements Runnable {
                 }
                 return;
             case 21:
-                vab vabVar = (vab) obj;
+                wab wabVar = (wab) obj;
                 if (!z2) {
-                    vabVar.o2.k1.setVisibility(8);
+                    wabVar.o2.k1.setVisibility(8);
                     return;
                 }
                 return;

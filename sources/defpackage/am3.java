@@ -75,9 +75,9 @@ public final class am3 implements icc {
                     return;
                 }
                 ks5 ks5Var = new ks5(wuaVar, new boolean[1], idVar, bx4Var, this.b, stargiftdepositpayload);
-                ida idaVar = new ida(r1, ks5Var, (byte) 10);
-                hl.d3(idaVar, 5000L);
-                Runnable[] runnableArr = {c.C(wuaVar.a).j(stargiftdepositpayload, new ia7(idaVar, ks5Var, (byte) 9))};
+                kba kbaVar = new kba(r1, ks5Var, (byte) 11);
+                hl.d3(kbaVar, 5000L);
+                Runnable[] runnableArr = {c.C(wuaVar.a).j(stargiftdepositpayload, new ia7(kbaVar, ks5Var, (byte) 9))};
                 return;
             default:
                 boolean[] zArr2 = (boolean[]) obj5;

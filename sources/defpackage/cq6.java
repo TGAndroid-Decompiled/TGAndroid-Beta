@@ -1,7 +1,6 @@
 package defpackage;
 
 import android.os.Bundle;
-import android.util.SparseArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -23,22 +22,10 @@ public final class cq6 implements Runnable {
     }
 
     private final void a() {
-        jf7 jf7Var = (jf7) this.b;
-        SparseArray sparseArray = (SparseArray) this.d;
-        jf7Var.getClass();
-        if (sparseArray.size() != 0) {
-            int min = Math.min(sparseArray.size(), 100);
-            for (int i = 0; i < min; i++) {
-                jf7Var.getNotificationCenter().k(jn7.o1, Long.valueOf(this.c), Integer.valueOf(sparseArray.keyAt(i)), (TLRPC.TL_messageReactions) sparseArray.valueAt(i));
-            }
-        }
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.cq6.a():void");
     }
 
     private final void b() {
-        ((ip7) this.b).E(this.c, (String) this.d);
-    }
-
-    private final void c() {
         ji8 ji8Var = (ji8) this.b;
         e eVar = (e) this.d;
         Bundle bundle = new Bundle();
@@ -52,7 +39,7 @@ public final class cq6 implements Runnable {
         ji8Var.b(false);
     }
 
-    private final void d() {
+    private final void c() {
         boolean z;
         nt9 nt9Var = (nt9) this.b;
         TLObject tLObject = (TLObject) this.d;
@@ -66,7 +53,7 @@ public final class cq6 implements Runnable {
             }
             uc7.s1(i).j4(messages_messages.users, false);
             uc7.s1(i).c4(messages_messages.chats, false);
-            jf7.Y(i).j1(messages_messages.users, messages_messages.chats, true, true);
+            kf7.a0(i).n1(messages_messages.users, messages_messages.chats, true, true);
             if (size > 0) {
                 z = true;
             } else {
@@ -96,26 +83,13 @@ public final class cq6 implements Runnable {
         }
     }
 
-    private final void e() {
-        ((eja) this.b).y1.presentFragment(zu1.ga(((r47) this.d).e1(), this.c));
-    }
-
-    private final void f() {
-        wua wuaVar = (wua) this.b;
-        Runnable runnable = (Runnable) this.d;
-        wuaVar.w2((int) this.c, wuaVar.getContext(), true);
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    private final void g() {
+    private final void d() {
         wua wuaVar = (wua) this.b;
         ((l01) this.d).c(false);
         wuaVar.w2((int) this.c, wuaVar.getContext(), true);
     }
 
-    private final void h() {
+    private final void e() {
         TL_stories.Boost boost = (TL_stories.Boost) this.d;
         nx0 nx0Var = ((nx0[]) this.b)[0];
         if (nx0Var != null) {
@@ -126,10 +100,6 @@ public final class cq6 implements Runnable {
             return;
         }
         S.presentFragment(zu1.ga(boost.giveaway_msg_id, this.c));
-    }
-
-    private final void i() {
-        ((t2b) this.b).D1((TLRPC.TL_messages_emojiGroups) this.d, this.c);
     }
 
     @Override

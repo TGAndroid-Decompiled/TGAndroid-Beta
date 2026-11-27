@@ -37,7 +37,7 @@ public final class u07 extends rf0 {
             N0.requests_pending = tL_updatePendingJoinRequests.requests_pending;
             N0.recent_requesters = tL_updatePendingJoinRequests.recent_requesters;
             N0.flags |= 131072;
-            getMessagesStorage().K1(N0, false);
+            getMessagesStorage().P1(N0, false);
             jn7 notificationCenter = getNotificationCenter();
             Boolean bool = Boolean.FALSE;
             notificationCenter.k(jn7.T, N0, 0, bool, bool);

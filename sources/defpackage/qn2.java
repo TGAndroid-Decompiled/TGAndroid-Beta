@@ -153,7 +153,7 @@ public final class qn2 extends e implements fn7 {
         this.b = this.arguments.getLong("dialog_id", 0L);
         this.c = getMessagesController().M0(Long.valueOf(-this.b));
         this.d = getMessagesController().X1(Long.valueOf(this.b));
-        this.n = getMessagesController().F4;
+        this.n = getMessagesController().G4;
         uc7 messagesController = getMessagesController();
         te2 te2Var = new te2(this, (byte) 26);
         int i = this.classGuid;

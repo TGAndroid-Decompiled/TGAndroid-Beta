@@ -140,7 +140,7 @@ public final class gd4 {
         this.f = new qh2((byte) 3);
         this.g = new AtomicMarkableReference(null, false);
         this.a = str;
-        this.b = new qf7(gd4Var);
+        this.b = new rf7(gd4Var);
         this.c = rx6Var;
     }
 

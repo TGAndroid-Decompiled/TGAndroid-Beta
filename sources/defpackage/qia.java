@@ -162,8 +162,8 @@ public final class qia extends c79 {
         this.F = i2;
         a39 a39Var = new a39(this, i2, tL_messages_search, (byte) 9);
         if (this.y != null) {
-            jf7 Y = jf7.Y(i);
-            Y.a.c(new xe7(Y, this.x, 0L, this.y.g(), 100, this.n.size(), false, new k25(this, a39Var, (byte) 2)));
+            kf7 a0 = kf7.a0(i);
+            a0.a.c(new ze7(a0, this.x, 0L, this.y.g(), 100, this.n.size(), false, new k25(this, a39Var, (byte) 2)));
             return;
         }
         a39Var.run();

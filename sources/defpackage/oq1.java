@@ -112,7 +112,7 @@ public final class oq1 extends d6 {
                 zu1Var.p1.e(false, true);
                 return;
             }
-            qyb qybVar = zu1Var.getMessagesController().g4;
+            qyb qybVar = zu1Var.getMessagesController().h4;
             qybVar.getClass();
             TLRPC.TL_channels_toggleViewForumAsMessages tL_channels_toggleViewForumAsMessages = new TLRPC.TL_channels_toggleViewForumAsMessages();
             tL_channels_toggleViewForumAsMessages.channel_id = qybVar.getMessagesController().h1(-zu1Var.l6);
@@ -308,7 +308,7 @@ public final class oq1 extends d6 {
                     a19 c = b19.f(i3).c(zu1Var.e7());
                     Activity parentActivity2 = zu1Var.getParentActivity();
                     i4 = ((e) zu1Var).currentAccount;
-                    w09.g0(parentActivity2, i4, zu1Var.f4, c, zu1Var.getResourceProvider(), new y0(this, c, (byte) 24));
+                    x09.g0(parentActivity2, i4, zu1Var.f4, c, zu1Var.getResourceProvider(), new y0(this, c, (byte) 24));
                 } else if (i == 14) {
                     b8 b8Var = new b8(0, zu1Var.getResourceProvider(), this.a, true, true);
                     b8Var.j(ob6.M0(2131753946, null), 2131231498, null);
@@ -327,8 +327,8 @@ public final class oq1 extends d6 {
                     }
                     zu1Var.Ca(str);
                 } else if (i == 62) {
-                    zu1Var.getMessagesController().i4.J(zu1Var.a(), false, true);
-                    if (!zu1Var.getMessagesController().i4.K(zu1Var.a(), true)) {
+                    zu1Var.getMessagesController().j4.J(zu1Var.a(), false, true);
+                    if (!zu1Var.getMessagesController().j4.K(zu1Var.a(), true)) {
                         zu1Var.zd(true);
                     }
                 } else if (i != 32 && i != 33) {
@@ -336,7 +336,7 @@ public final class oq1 extends d6 {
                         zu1Var.Zb();
                     } else if (i == 60) {
                         if (zu1Var.r4 != null) {
-                            qyb qybVar2 = zu1Var.getMessagesController().g4;
+                            qyb qybVar2 = zu1Var.getMessagesController().h4;
                             long j9 = zu1Var.e.id;
                             TLRPC.TL_forumTopic tL_forumTopic = zu1Var.r4;
                             int i19 = tL_forumTopic.id;

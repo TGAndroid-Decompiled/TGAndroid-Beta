@@ -71,7 +71,7 @@ public final class dg implements View.OnClickListener {
                                 g92Var2.getMessagesController().a4(g92Var2.x0, false);
                             }
                             Switch checkBox = g92Var2.N.getCheckBox();
-                            if (tL_premium_boostsStatus.level < g92Var2.getMessagesController().k4.c2.f()) {
+                            if (tL_premium_boostsStatus.level < g92Var2.getMessagesController().l4.c2.f()) {
                                 i = 2131232529;
                             } else {
                                 i = 0;
@@ -80,7 +80,7 @@ public final class dg implements View.OnClickListener {
                             boolean z2 = z;
                             boolean[] zArr2 = zArr;
                             id idVar2 = idVar;
-                            if (z2 && tL_premium_boostsStatus.level < g92Var2.getMessagesController().k4.c2.f()) {
+                            if (z2 && tL_premium_boostsStatus.level < g92Var2.getMessagesController().l4.c2.f()) {
                                 g92Var2.N.setChecked(false);
                                 zArr2[0] = false;
                                 xg1 G02 = g92Var2.getMessagesController().G0();

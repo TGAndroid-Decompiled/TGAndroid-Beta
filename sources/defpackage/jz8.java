@@ -94,7 +94,7 @@ public final class jz8 extends FrameLayout {
     public final Paint x0;
     public final Paint y;
     public final RectF y0;
-    public final ki7 z0;
+    public final li7 z0;
 
     public jz8(Activity activity, RectF rectF, RectF rectF2, iz8 iz8Var) {
         super(activity);
@@ -134,7 +134,7 @@ public final class jz8 extends FrameLayout {
         this.v0 = new Matrix();
         this.x0 = new Paint(2);
         this.y0 = new RectF();
-        this.z0 = new ki7(this, (byte) 11);
+        this.z0 = new li7(this, (byte) 11);
         this.a = iz8Var;
         rectF3.set(rectF);
         rectF4.set(rectF2);
@@ -578,7 +578,7 @@ public final class jz8 extends FrameLayout {
         jz8Var.R = new StaticLayout(ob6.M0(2131745589, null), jz8Var.L, c00.d(72.0f, i6, 1), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         RectF rectF2 = jz8Var.f;
         if (rectF2.isEmpty()) {
-            String[] strArr = f09.B9;
+            String[] strArr = g09.B9;
             int i7 = hl.m;
             int i8 = 0;
             View view = jz8Var;

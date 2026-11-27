@@ -21,21 +21,21 @@ public final class do8 extends TextView {
         Paint paint = new Paint();
         this.b = paint;
         this.c = new Paint[gkcVar.e.length];
-        hh7 hh7Var = gkcVar.S;
-        hh7Var.setBounds(0, 0, 80, 80);
-        hh7 hh7Var2 = gkcVar.T;
-        hh7Var2.setBounds(0, 0, 80, 80);
+        ih7 ih7Var = gkcVar.S;
+        ih7Var.setBounds(0, 0, 80, 80);
+        ih7 ih7Var2 = gkcVar.T;
+        ih7Var2.setBounds(0, 0, 80, 80);
         fp fpVar = gkcVar.Q;
         fpVar.i(0.0f, 0.0f, 80.0f, 80.0f);
         fp fpVar2 = gkcVar.R;
         fpVar2.i(0.0f, 0.0f, 80.0f, 80.0f);
-        hh7Var.setAlpha(255);
-        hh7Var2.setAlpha(255);
+        ih7Var.setAlpha(255);
+        ih7Var2.setAlpha(255);
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
         ((Canvas) fpVar.b).drawColor(0, mode);
         ((Canvas) fpVar2.b).drawColor(0, mode);
-        hh7Var.draw((Canvas) fpVar.b);
-        hh7Var2.draw((Canvas) fpVar2.b);
+        ih7Var.draw((Canvas) fpVar.b);
+        ih7Var2.draw((Canvas) fpVar2.b);
         paint.setColor(-1);
     }
 

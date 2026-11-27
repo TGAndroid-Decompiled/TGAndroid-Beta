@@ -1,37 +1,37 @@
 package defpackage;
 public final class vb1 implements Runnable {
     public final byte a;
-    public final hbb b;
+    public final ibb b;
 
-    public vb1(hbb hbbVar, byte b) {
+    public vb1(ibb ibbVar, byte b) {
         this.a = b;
-        this.b = hbbVar;
+        this.b = ibbVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        hbb hbbVar = this.b;
+        ibb ibbVar = this.b;
         switch (b) {
             case 0:
-                hbbVar.n();
+                ibbVar.n();
                 return;
             case 1:
-                hbbVar.K0 = false;
-                hbbVar.L0 = Integer.MIN_VALUE;
-                hbbVar.invalidate();
-                hbbVar.S0.setVisibility(0);
-                hbbVar.T0.setVisibility(0);
+                ibbVar.K0 = false;
+                ibbVar.L0 = Integer.MIN_VALUE;
+                ibbVar.invalidate();
+                ibbVar.S0.setVisibility(0);
+                ibbVar.T0.setVisibility(0);
                 return;
             default:
-                rbb rbbVar = hbbVar.S1;
-                gbb gbbVar = rbbVar.Y0;
-                if (gbbVar != null) {
-                    gbbVar.P = false;
-                    gbbVar.b();
-                    gbb gbbVar2 = rbbVar.Y0;
-                    gbbVar2.m(0L);
-                    ksb ksbVar = gbbVar2.G;
+                sbb sbbVar = ibbVar.S1;
+                hbb hbbVar = sbbVar.Y0;
+                if (hbbVar != null) {
+                    hbbVar.P = false;
+                    hbbVar.b();
+                    hbb hbbVar2 = sbbVar.Y0;
+                    hbbVar2.m(0L);
+                    ksb ksbVar = hbbVar2.G;
                     if (ksbVar != null) {
                         ksbVar.setProgress(0L);
                         return;

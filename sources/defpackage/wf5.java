@@ -5,7 +5,7 @@ public final class wf5 implements e84 {
     public g84 b;
     public cb3 c;
     public zg2 d;
-    public yh7 e;
+    public zh7 e;
     public int g;
     public long h;
     public int i;
@@ -32,25 +32,25 @@ public final class wf5 implements e84 {
                             this.c = cb3Var;
                             this.d = new zg2(cb3Var, this.j);
                         }
-                        yh7 yh7Var = this.e;
-                        yh7Var.getClass();
-                        int b2 = yh7Var.b(this.d, v11Var);
+                        zh7 zh7Var = this.e;
+                        zh7Var.getClass();
+                        int b2 = zh7Var.b(this.d, v11Var);
                         if (b2 == 1) {
                             v11Var.a += this.j;
                         }
                         return b2;
                     }
                     if (this.e == null) {
-                        this.e = new yh7(peb.B, 8);
+                        this.e = new zh7(peb.B, 8);
                     }
                     zg2 zg2Var = new zg2((cb3) f84Var, this.j);
                     this.d = zg2Var;
                     if (this.e.c(zg2Var)) {
-                        yh7 yh7Var2 = this.e;
+                        zh7 zh7Var2 = this.e;
                         long j = this.j;
                         g84 g84Var = this.b;
                         g84Var.getClass();
-                        yh7Var2.f(new zg2(j, g84Var, (byte) 8));
+                        zh7Var2.f(new zg2(j, g84Var, (byte) 8));
                         this.f = (byte) 3;
                     } else {
                         g84 g84Var2 = this.b;
@@ -92,13 +92,13 @@ public final class wf5 implements e84 {
                     long j3 = ((cb3) f84Var).d;
                     this.j = j3;
                     long j4 = this.i;
-                    nh7 nh7Var = new nh7(0L, j3 - j4, -9223372036854775807L, j3, j2 - j4);
+                    oh7 oh7Var = new oh7(0L, j3 - j4, -9223372036854775807L, j3, j2 - j4);
                     g84 g84Var4 = this.b;
                     g84Var4.getClass();
                     x1c e0 = g84Var4.e0(1024, 4);
                     jo4 jo4Var = new jo4();
-                    jo4Var.r = dg7.n("image/heic");
-                    jo4Var.l = new uf7(nh7Var);
+                    jo4Var.r = eg7.n("image/heic");
+                    jo4Var.l = new vf7(oh7Var);
                     xnb.v(jo4Var, e0);
                     this.f = (byte) 2;
                 } else {
@@ -123,9 +123,9 @@ public final class wf5 implements e84 {
                 this.e = null;
             }
         } else if (this.f == 3) {
-            yh7 yh7Var = this.e;
-            yh7Var.getClass();
-            yh7Var.d(j, j2);
+            zh7 zh7Var = this.e;
+            zh7Var.getClass();
+            zh7Var.d(j, j2);
         }
     }
 
@@ -142,9 +142,9 @@ public final class wf5 implements e84 {
 
     @Override
     public final void release() {
-        yh7 yh7Var = this.e;
-        if (yh7Var != null) {
-            yh7Var.getClass();
+        zh7 zh7Var = this.e;
+        if (zh7Var != null) {
+            zh7Var.getClass();
             this.e = null;
         }
     }

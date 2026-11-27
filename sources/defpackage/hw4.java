@@ -47,7 +47,7 @@ public final class hw4 extends nx0 {
         hl.S(getWindow());
         this.C1 = tL_starGiftUnique;
         this.D1 = j;
-        this.y1 = uc7.s1(this.a).k4.M1.f();
+        this.y1 = uc7.s1(this.a).l4.M1.f();
         ?? obj = new Object();
         this.n1 = obj;
         ll0 ll0Var = new ll0(obj, obj, obj);

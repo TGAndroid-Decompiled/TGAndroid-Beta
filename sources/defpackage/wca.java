@@ -1,8 +1,14 @@
 package defpackage;
-
-import java.util.ArrayList;
 public final class wca {
-    public int a;
-    public ArrayList b = new ArrayList();
-    public int c;
+    public double a;
+    public double b;
+
+    public wca(double d, double d2) {
+        this.a = d;
+        this.b = d2;
+    }
+
+    public final double a(double d, double d2) {
+        return Math.sqrt(Math.pow(d2 - this.b, 2.0d) + Math.pow(d - this.a, 2.0d));
+    }
 }

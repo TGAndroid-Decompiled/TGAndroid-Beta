@@ -216,7 +216,7 @@ public final class no6 extends go6 {
         zg2 zg2Var;
         String str = this.I;
         long currentTimeMillis = System.currentTimeMillis();
-        mh7 mh7Var = null;
+        nh7 nh7Var = null;
         try {
             ry0Var = ry0.b(new File(str));
         } catch (Exception e) {
@@ -243,21 +243,21 @@ public final class no6 extends go6 {
                     }
                     if (zg2Var != null) {
                         j99 j99Var = (j99) zg2Var.c;
-                        mh7 mh7Var2 = null;
+                        nh7 nh7Var2 = null;
                         for (int i = 0; i < j99Var.d; i++) {
-                            mh7 mh7Var3 = (mh7) j99Var.get(i);
-                            String str2 = mh7Var3.b;
+                            nh7 nh7Var3 = (nh7) j99Var.get(i);
+                            String str2 = nh7Var3.b;
                             if ("Primary".equalsIgnoreCase(str2)) {
-                                mh7Var = mh7Var3;
+                                nh7Var = nh7Var3;
                             } else if ("MotionPhoto".equalsIgnoreCase(str2)) {
-                                mh7Var2 = mh7Var3;
+                                nh7Var2 = nh7Var3;
                             }
                         }
-                        if (mh7Var != null && mh7Var2 != null && mh7Var2.c > 0) {
+                        if (nh7Var != null && nh7Var2 != null && nh7Var2.c > 0) {
                             try {
                                 this.b = true;
                                 this.W = true;
-                                this.m = new File(str).length() - mh7Var2.c;
+                                this.m = new File(str).length() - nh7Var2.c;
                                 this.P = zg2Var.b;
                             } catch (Exception e2) {
                                 cc4.g(e2, true);

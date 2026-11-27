@@ -59,30 +59,30 @@ public final class l8b implements icc {
                 arrayList.add(b8c.k(r8bVar.V1));
                 return;
             case 1:
-                rbb rbbVar = (rbb) obj3;
+                sbb sbbVar = (sbb) obj3;
                 Boolean bool = (Boolean) obj;
                 Float f3 = (Float) obj2;
-                if (rbbVar.Y0.getDuration() < 100) {
-                    duration = rbbVar.L1.h0;
+                if (sbbVar.Y0.getDuration() < 100) {
+                    duration = sbbVar.L1.h0;
                 } else {
-                    duration = rbbVar.Y0.getDuration();
+                    duration = sbbVar.Y0.getDuration();
                 }
                 float floatValue = ((f3.floatValue() / 0.96f) * 0.04f) + f3.floatValue();
-                c8b c8bVar = rbbVar.L1;
+                c8b c8bVar = sbbVar.L1;
                 float f4 = c8bVar.a0;
                 float f5 = c8bVar.Z;
                 float f6 = (f4 - f5) * floatValue;
                 float f7 = (float) duration;
                 long j = f6 * f7;
-                gbb gbbVar = rbbVar.Y0;
+                hbb hbbVar = sbbVar.Y0;
                 long j2 = (f5 * f7) + ((float) j);
-                rbbVar.N1 = j2;
-                gbbVar.m(j2);
-                vab vabVar = rbbVar.w1;
-                if (vabVar != null) {
-                    vabVar.setCoverTime(rbbVar.N1);
+                sbbVar.N1 = j2;
+                hbbVar.m(j2);
+                wab wabVar = sbbVar.w1;
+                if (wabVar != null) {
+                    wabVar.setCoverTime(sbbVar.N1);
                 }
-                c8b c8bVar2 = rbbVar.L1;
+                c8b c8bVar2 = sbbVar.L1;
                 if (c8bVar2 != null && c8bVar2.g) {
                     c8bVar2.j = true;
                     return;

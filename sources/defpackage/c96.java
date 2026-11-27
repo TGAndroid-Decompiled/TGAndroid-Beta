@@ -2,10 +2,10 @@ package defpackage;
 
 import android.view.View;
 public final class c96 extends zb3 {
-    public final b58 F;
+    public final c58 F;
 
-    public c96(b58 b58Var) {
-        this.F = b58Var;
+    public c96(c58 c58Var) {
+        this.F = c58Var;
     }
 
     @Override

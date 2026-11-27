@@ -11,7 +11,7 @@ import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.o;
-public final class cw implements kmb, si7, rib {
+public final class cw implements kmb, ti7, rib {
     public SpannableStringBuilder E;
     public int F = -1;
     public int G = -1;

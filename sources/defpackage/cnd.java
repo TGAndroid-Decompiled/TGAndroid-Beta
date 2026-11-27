@@ -29,8 +29,8 @@ public final class cnd extends vh0 {
         super.a(mt2Var, nt2Var);
     }
 
-    public static void H(cnd cndVar, k09 k09Var, tg0 tg0Var) {
-        super.c(k09Var, tg0Var);
+    public static void H(cnd cndVar, l09 l09Var, tg0 tg0Var) {
+        super.c(l09Var, tg0Var);
     }
 
     public final prd D(int i) {
@@ -138,8 +138,8 @@ public final class cnd extends vh0 {
     }
 
     @Override
-    public final void c(k09 k09Var, tg0 tg0Var) {
-        F(7, new yn4(tg0Var, (byte) 2), new uy1(this, k09Var, tg0Var, false, (byte) 7));
+    public final void c(l09 l09Var, tg0 tg0Var) {
+        F(7, new yn4(tg0Var, (byte) 2), new uy1(this, l09Var, tg0Var, false, (byte) 7));
     }
 
     @Override

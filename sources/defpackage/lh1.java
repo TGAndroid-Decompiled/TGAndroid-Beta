@@ -23,7 +23,7 @@ public final class lh1 extends c79 {
 
     @Override
     public final int b() {
-        lc7 lc7Var = uc7.s1(this.e).E3;
+        lc7 lc7Var = uc7.s1(this.e).F3;
         if (lc7Var == null) {
             return 0;
         }
@@ -43,7 +43,7 @@ public final class lh1 extends c79 {
         mh1Var.s = z;
         mh1Var.w.f(z, true);
         mh1Var.invalidate();
-        lc7 lc7Var = uc7.s1(this.e).E3;
+        lc7 lc7Var = uc7.s1(this.e).F3;
         if (lc7Var != null) {
             ArrayList arrayList = lc7Var.c;
             if (i >= 0 && i < arrayList.size()) {

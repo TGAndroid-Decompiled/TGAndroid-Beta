@@ -82,7 +82,7 @@ public final class wh8 extends e implements fn7, vma {
     public int x0;
     public int y;
     public int y0;
-    public final ki7 z0;
+    public final li7 z0;
 
     public wh8(zu1 zu1Var) {
         super(null);
@@ -92,9 +92,9 @@ public final class wh8 extends e implements fn7, vma {
         this.K = true;
         this.P = hl.L(3.0f);
         this.h0 = -1;
-        this.z0 = new ki7(this, (byte) 8);
+        this.z0 = new li7(this, (byte) 8);
         this.e0 = true;
-        int f = getMessagesController().k4.F3.f();
+        int f = getMessagesController().l4.F3.f();
         this.n = f;
         this.w = new CharSequence[f];
         this.x = new boolean[f];
@@ -690,9 +690,9 @@ public final class wh8 extends e implements fn7, vma {
         t0(i);
         if (!hl.D && !this.Z && !hl.E && !hl.O1()) {
             this.U = true;
-            ki7 ki7Var = this.z0;
-            hl.r(ki7Var);
-            hl.d3(ki7Var, 100L);
+            li7 li7Var = this.z0;
+            hl.r(li7Var);
+            hl.d3(li7Var, 100L);
         }
     }
 
@@ -773,7 +773,7 @@ public final class wh8 extends e implements fn7, vma {
             boolean z = this.e0;
             if (i == i9) {
                 if (z) {
-                    i5 = getMessagesController().k4.P2.f();
+                    i5 = getMessagesController().l4.P2.f();
                 } else {
                     i5 = 255;
                 }
@@ -798,7 +798,7 @@ public final class wh8 extends e implements fn7, vma {
                 if (i >= i10 && i < this.E + i10) {
                     int i11 = i - i10;
                     if (z) {
-                        i2 = getMessagesController().k4.Q2.f();
+                        i2 = getMessagesController().l4.Q2.f();
                     } else {
                         i2 = 100;
                     }

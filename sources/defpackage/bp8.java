@@ -10,7 +10,7 @@ import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ProfileActivity;
-public final class bp8 implements kk4, fd, nr7, zo8, t69, s84, iva, lc5, bf7 {
+public final class bp8 implements kk4, fd, nr7, zo8, t69, s84, iva, lc5, cf7 {
     public final byte a;
     public final ProfileActivity b;
 

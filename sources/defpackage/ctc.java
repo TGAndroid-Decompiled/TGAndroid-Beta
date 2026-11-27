@@ -43,7 +43,7 @@ public final class ctc implements icc {
                     arrayList.addAll(c35Var.f());
                 }
                 ntcVar.Z();
-                ntcVar.f = new vlc(gtcVar, cVar, (byte) 22);
+                ntcVar.f = new slc(gtcVar, cVar, (byte) 23);
                 gtcVar.presentFragment(ntcVar);
                 return;
             default:

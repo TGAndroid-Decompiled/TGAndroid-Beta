@@ -743,7 +743,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
         if (this.K2 == null) {
             int i = 0;
             if (this.q1 && !getMessagesController().M3()) {
-                ArrayList l = getMessagesController().g4.l(this.f1);
+                ArrayList l = getMessagesController().h4.l(this.f1);
                 if (l != null) {
                     TLRPC.TL_forumTopic tL_forumTopic = null;
                     while (tL_forumTopic == null) {
@@ -758,7 +758,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                         }
                     }
                     long j = tL_forumTopic.icon_emoji_id;
-                    if (j != 0 && (e = wl.e(this.currentAccount, j)) != null && (h = d31.b0(this).h(e, 1, new gp8(this, (byte) 3))) != null) {
+                    if (j != 0 && (e = wl.e(this.currentAccount, j)) != null && (h = d31.b0(this).h(e, 1, new hp8(this, (byte) 3))) != null) {
                         h.j();
                     }
                 }
@@ -901,11 +901,11 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
             getMessagesController().U0(X1.id);
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(X1);
-            getMessagesStorage().j1(arrayList2, null, false, true);
+            getMessagesStorage().n1(arrayList2, null, false, true);
             TLRPC.UserFull Y1 = getMessagesController().Y1(this.e1);
             if (Y1 != null) {
                 Y1.profile_photo = tL_photos_photo.photo;
-                getMessagesStorage().g2(Y1, false);
+                getMessagesStorage().l2(Y1, false);
             }
         }
         if (!hl.O1() && !this.o2 && this.f0.getImageReceiver().E() && !hl.A1()) {
@@ -924,7 +924,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
         jq8Var.setCreateThumbFromParent(false);
         e4(true);
         C3(false, true);
-        getNotificationCenter().k(2, Integer.valueOf(uc7.r5));
+        getNotificationCenter().k(2, Integer.valueOf(uc7.s5));
         getNotificationCenter().k(jn7.j0, new Object[0]);
         getUserConfig().u(true);
     }
@@ -1118,7 +1118,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                 tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
                 tL_photos_uploadProfilePhoto.flags |= 16;
             }
-            this.p6 = getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ol7(this, str, (byte) 14));
+            this.p6 = getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new pl7(this, str, (byte) 14));
         }
         this.actionBar.u().requestLayout();
     }
@@ -1176,7 +1176,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
             userFull.flags2 = i | 32;
         }
         userFull.birthday = tL_birthday;
-        getMessagesStorage().g2(userFull, false);
+        getMessagesStorage().l2(userFull, false);
         if (tL_error != null && (str = tL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
             if (getParentActivity() != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.resourceProvider, getParentActivity());
@@ -1269,7 +1269,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                 }
                 final byte b5 = b3;
                 int i6 = i3;
-                final ii7 ii7Var = new ii7(p66VarArr, (byte) 20);
+                final ji7 ji7Var = new ji7(p66VarArr, (byte) 20);
                 if (a() == yac.h(this.currentAccount).e()) {
                     b = 1;
                 } else {
@@ -1319,19 +1319,19 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                         @Override
                         public final void run() {
                             byte b7 = b5;
-                            ii7 ii7Var2 = ii7Var;
+                            ji7 ji7Var2 = ji7Var;
                             TLRPC.UserFull userFull2 = userFull;
                             LimitPreviewView limitPreviewView2 = limitPreviewView;
                             switch (b7) {
                                 case 0:
                                     RectF rectF = ProfileActivity.Z6;
                                     limitPreviewView2.d(userFull2.stars_rating, userFull2.stars_my_pending_rating);
-                                    ii7Var2.a(Boolean.TRUE);
+                                    ji7Var2.a(Boolean.TRUE);
                                     return;
                                 default:
                                     RectF rectF2 = ProfileActivity.Z6;
                                     limitPreviewView2.d(userFull2.stars_my_pending_rating, userFull2.stars_rating);
-                                    ii7Var2.a(Boolean.FALSE);
+                                    ji7Var2.a(Boolean.FALSE);
                                     return;
                             }
                         }
@@ -1341,19 +1341,19 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                         @Override
                         public final void onClick(View view) {
                             byte b7 = b2;
-                            ii7 ii7Var2 = ii7Var;
+                            ji7 ji7Var2 = ji7Var;
                             TLRPC.UserFull userFull2 = userFull;
                             LimitPreviewView limitPreviewView2 = limitPreviewView;
                             switch (b7) {
                                 case 0:
                                     RectF rectF = ProfileActivity.Z6;
                                     limitPreviewView2.d(userFull2.stars_rating, userFull2.stars_my_pending_rating);
-                                    ii7Var2.a(Boolean.TRUE);
+                                    ji7Var2.a(Boolean.TRUE);
                                     return;
                                 default:
                                     RectF rectF2 = ProfileActivity.Z6;
                                     limitPreviewView2.d(userFull2.stars_my_pending_rating, userFull2.stars_rating);
-                                    ii7Var2.a(Boolean.FALSE);
+                                    ji7Var2.a(Boolean.FALSE);
                                     return;
                             }
                         }
@@ -1373,19 +1373,19 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                     @Override
                     public final void run() {
                         byte b7 = b5;
-                        ii7 ii7Var2 = ii7Var;
+                        ji7 ji7Var2 = ji7Var;
                         TLRPC.UserFull userFull2 = userFull;
                         LimitPreviewView limitPreviewView2 = limitPreviewView;
                         switch (b7) {
                             case 0:
                                 RectF rectF = ProfileActivity.Z6;
                                 limitPreviewView2.d(userFull2.stars_rating, userFull2.stars_my_pending_rating);
-                                ii7Var2.a(Boolean.TRUE);
+                                ji7Var2.a(Boolean.TRUE);
                                 return;
                             default:
                                 RectF rectF2 = ProfileActivity.Z6;
                                 limitPreviewView2.d(userFull2.stars_my_pending_rating, userFull2.stars_rating);
-                                ii7Var2.a(Boolean.FALSE);
+                                ji7Var2.a(Boolean.FALSE);
                                 return;
                         }
                     }
@@ -1394,19 +1394,19 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                     @Override
                     public final void onClick(View view) {
                         byte b7 = b2;
-                        ii7 ii7Var2 = ii7Var;
+                        ji7 ji7Var2 = ji7Var;
                         TLRPC.UserFull userFull2 = userFull;
                         LimitPreviewView limitPreviewView2 = limitPreviewView;
                         switch (b7) {
                             case 0:
                                 RectF rectF = ProfileActivity.Z6;
                                 limitPreviewView2.d(userFull2.stars_rating, userFull2.stars_my_pending_rating);
-                                ii7Var2.a(Boolean.TRUE);
+                                ji7Var2.a(Boolean.TRUE);
                                 return;
                             default:
                                 RectF rectF2 = ProfileActivity.Z6;
                                 limitPreviewView2.d(userFull2.stars_my_pending_rating, userFull2.stars_rating);
-                                ii7Var2.a(Boolean.FALSE);
+                                ji7Var2.a(Boolean.FALSE);
                                 return;
                         }
                     }
@@ -1534,7 +1534,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
         }
-        uc7.s1(this.currentAccount).W3.edit().putLong("dialog_join_requested_time_" + this.i1, System.currentTimeMillis()).commit();
+        uc7.s1(this.currentAccount).X3.edit().putLong("dialog_join_requested_time_" + this.i1, System.currentTimeMillis()).commit();
         Activity parentActivity = getParentActivity();
         if (xc2.T(this.F2) && !this.F2.megagroup) {
             z2 = true;
@@ -2314,7 +2314,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
             this.W6 = drawable;
             Drawable drawable2 = getParentActivity().getDrawable(2131232174);
             drawable2.setColorFilter(new PorterDuffColorFilter(vm2.f(0.5f, -1, -16777216), PorterDuff.Mode.MULTIPLY));
-            this.V0.setIcon(new c58(drawable, drawable2, hl.L(1.0f), -hl.L(1.0f)));
+            this.V0.setIcon(new d58(drawable, drawable2, hl.L(1.0f), -hl.L(1.0f)));
         }
     }
 
@@ -3043,7 +3043,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
         }
         I.k(2131232108, ob6.M0(2131751732, null), new y56(this, (byte) 4), z);
         I.b(2131232121, ob6.M0(2131751300, null), new y56(this, (byte) 5), false);
-        I.b(2131232113, ob6.M0(2131746048, null), new me7(this, i, (byte) 8), true);
+        I.b(2131232113, ob6.M0(2131746048, null), new oe7(this, i, (byte) 8), true);
         I.a0();
     }
 
@@ -3212,7 +3212,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinessworkhours, new mp8(profileActivity2, (byte) 0));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                                 default:
                                                     RectF rectF3 = ProfileActivity.Z6;
@@ -3222,7 +3222,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinesslocation, new mp8(profileActivity2, (byte) 3));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                             }
                                         }
@@ -3253,7 +3253,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinessworkhours, new mp8(profileActivity2, (byte) 0));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                                 default:
                                                     RectF rectF3 = ProfileActivity.Z6;
@@ -3263,7 +3263,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinesslocation, new mp8(profileActivity2, (byte) 3));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                             }
                                         }
@@ -3313,7 +3313,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinessworkhours, new mp8(profileActivity2, (byte) 0));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                                 default:
                                                     RectF rectF3 = ProfileActivity.Z6;
@@ -3323,7 +3323,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinesslocation, new mp8(profileActivity2, (byte) 3));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                             }
                                         }
@@ -3354,7 +3354,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinessworkhours, new mp8(profileActivity2, (byte) 0));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                                 default:
                                                     RectF rectF3 = ProfileActivity.Z6;
@@ -3364,7 +3364,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                     profileActivity2.getConnectionsManager().sendRequest(updatebusinesslocation, new mp8(profileActivity2, (byte) 3));
                                                     profileActivity2.f4();
                                                     profileActivity2.d.s(i4);
-                                                    profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                    profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                     return;
                                             }
                                         }
@@ -3421,7 +3421,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         userFull3.flags2 &= -65;
                                                         profileActivity2.getConnectionsManager().sendRequest(updatepersonalchannel, new mp8(profileActivity2, (byte) 1));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                     default:
                                                         RectF rectF4 = ProfileActivity.Z6;
@@ -3431,7 +3431,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         profileActivity2.getMessagesController().j2();
                                                         profileActivity2.getConnectionsManager().sendRequest(updatebirthday, new mp8(profileActivity2, (byte) 2));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                 }
                                             }
@@ -3462,7 +3462,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         userFull3.flags2 &= -65;
                                                         profileActivity2.getConnectionsManager().sendRequest(updatepersonalchannel, new mp8(profileActivity2, (byte) 1));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                     default:
                                                         RectF rectF4 = ProfileActivity.Z6;
@@ -3472,7 +3472,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         profileActivity2.getMessagesController().j2();
                                                         profileActivity2.getConnectionsManager().sendRequest(updatebirthday, new mp8(profileActivity2, (byte) 2));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                 }
                                             }
@@ -3523,7 +3523,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         userFull3.flags2 &= -65;
                                                         profileActivity2.getConnectionsManager().sendRequest(updatepersonalchannel, new mp8(profileActivity2, (byte) 1));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                     default:
                                                         RectF rectF4 = ProfileActivity.Z6;
@@ -3533,7 +3533,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         profileActivity2.getMessagesController().j2();
                                                         profileActivity2.getConnectionsManager().sendRequest(updatebirthday, new mp8(profileActivity2, (byte) 2));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                 }
                                             }
@@ -3564,7 +3564,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         userFull3.flags2 &= -65;
                                                         profileActivity2.getConnectionsManager().sendRequest(updatepersonalchannel, new mp8(profileActivity2, (byte) 1));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                     default:
                                                         RectF rectF4 = ProfileActivity.Z6;
@@ -3574,7 +3574,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         profileActivity2.getMessagesController().j2();
                                                         profileActivity2.getConnectionsManager().sendRequest(updatebirthday, new mp8(profileActivity2, (byte) 2));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                 }
                                             }
@@ -3588,7 +3588,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                     } else if (i == this.R2) {
                         TLRPC.Chat M03 = getMessagesController().M0(Long.valueOf(userFull.personal_channel_id));
                         if (M03 != null && xc2.K(M03, false) != null) {
-                            I.b(2131232108, ob6.M0(2131746408, null), new hp8(this, M03, (byte) 1), false);
+                            I.b(2131232108, ob6.M0(2131746408, null), new ep8(this, M03, (byte) 2), false);
                         }
                         I.b(2131232121, ob6.M0(2131746411, null), new y56(this, (byte) 7), false);
                         I.b(2131232113, ob6.M0(2131746048, null), new Runnable(this) {
@@ -3631,7 +3631,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         userFull3.flags2 &= -65;
                                                         profileActivity2.getConnectionsManager().sendRequest(updatepersonalchannel, new mp8(profileActivity2, (byte) 1));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                     default:
                                                         RectF rectF4 = ProfileActivity.Z6;
@@ -3641,7 +3641,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         profileActivity2.getMessagesController().j2();
                                                         profileActivity2.getConnectionsManager().sendRequest(updatebirthday, new mp8(profileActivity2, (byte) 2));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                 }
                                             }
@@ -3672,7 +3672,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         userFull3.flags2 &= -65;
                                                         profileActivity2.getConnectionsManager().sendRequest(updatepersonalchannel, new mp8(profileActivity2, (byte) 1));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                     default:
                                                         RectF rectF4 = ProfileActivity.Z6;
@@ -3682,7 +3682,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                                                         profileActivity2.getMessagesController().j2();
                                                         profileActivity2.getConnectionsManager().sendRequest(updatebirthday, new mp8(profileActivity2, (byte) 2));
                                                         profileActivity2.Z3(false, false);
-                                                        profileActivity2.getMessagesStorage().g2(userFull3, false);
+                                                        profileActivity2.getMessagesStorage().l2(userFull3, false);
                                                         return;
                                                 }
                                             }
@@ -4458,7 +4458,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     RectF rectF = ProfileActivity.Z6;
-                    hl.d3(new ep8(ProfileActivity.this, tL_error, tLObject, tL_channels_getParticipants, (byte) 1), i);
+                    hl.d3(new fp8(ProfileActivity.this, tL_error, tLObject, tL_channels_getParticipants, (byte) 1), i);
                 }
             }), this.classGuid);
         }
@@ -4776,7 +4776,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
             boolean z4 = false;
             if (i == 2) {
                 int intValue = ((Integer) objArr[0]).intValue();
-                int i4 = uc7.r5;
+                int i4 = uc7.s5;
                 if ((intValue & 2) == 0 && (intValue & 1) == 0 && (intValue & 4) == 0 && (intValue & 524288) == 0) {
                     objArr3 = null;
                 } else {
@@ -4819,7 +4819,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
             } else if (i != jn7.N && i != jn7.b1) {
                 if (i == jn7.a0) {
                     if (this.j1) {
-                        hl.c3(new hp8(this, objArr, (byte) 5));
+                        hl.c3(new ep8(this, objArr, (byte) 6));
                     }
                 } else if (i == jn7.Y) {
                     TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) objArr[0];
@@ -5480,14 +5480,16 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                         }
                         I.k(2131232054, ob6.M0(i3, null), new uk8(cp8Var, (byte) 5), z10);
                         I.k(2131232281, ob6.M0(2131752521, null), new cp7(this, channelParticipant2, chatParticipant, X1, cp8Var, (byte) 10), z12);
-                        I.l(2131232333, new h68(this, chatParticipant, (byte) 29), ob6.M0(2131748809, null), z13, true);
+                        I.l(2131232333, new ep8(this, chatParticipant, (byte) 0), ob6.M0(2131748809, null), z13, true);
                         I.Y = 190;
                         I.a0();
                         return z5;
                     }
                     return z14;
                 }
-            } else if (chatParticipant.user_id != getUserConfig().e()) {
+            } else if (chatParticipant.user_id == getUserConfig().e()) {
+                return false;
+            } else {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", chatParticipant.user_id);
                 bundle.putBoolean("preload_messages", true);
@@ -5635,16 +5637,16 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
         arrayList.add(new apb(this.a, 262144, new Class[]{skb.class}, new String[]{"textView"}, (Drawable[]) null, (zob) null, aob.o6));
         arrayList.add(new apb(this.a, 262144, new Class[]{skb.class}, new String[]{"textView"}, (Drawable[]) null, (zob) null, aob.u6));
         arrayList.add(new apb(this.a, 262144, new Class[]{skb.class}, new String[]{"imageView"}, (Drawable[]) null, (zob) null, aob.v6));
-        arrayList.add(new apb(this.a, 0, new Class[]{gca.class}, new String[]{"detailTextView"}, (Drawable[]) null, (zob) null, aob.z6));
+        arrayList.add(new apb(this.a, 0, new Class[]{hca.class}, new String[]{"detailTextView"}, (Drawable[]) null, (zob) null, aob.z6));
         int i = aob.Ji;
-        arrayList.add(new apb(this.a, 0, new Class[]{gca.class}, new String[]{"yesButton"}, (Drawable[]) null, (zob) null, i));
+        arrayList.add(new apb(this.a, 0, new Class[]{hca.class}, new String[]{"yesButton"}, (Drawable[]) null, (zob) null, i));
         int i2 = aob.Fi;
-        arrayList.add(new apb(this.a, 131072, new Class[]{gca.class}, new String[]{"yesButton"}, (Drawable[]) null, (zob) null, i2));
+        arrayList.add(new apb(this.a, 131072, new Class[]{hca.class}, new String[]{"yesButton"}, (Drawable[]) null, (zob) null, i2));
         int i3 = aob.Hi;
-        arrayList.add(new apb(this.a, 196608, new Class[]{gca.class}, new String[]{"yesButton"}, (Drawable[]) null, (zob) null, i3));
-        arrayList.add(new apb(this.a, 0, new Class[]{gca.class}, new String[]{"noButton"}, (Drawable[]) null, (zob) null, i));
-        arrayList.add(new apb(this.a, 131072, new Class[]{gca.class}, new String[]{"noButton"}, (Drawable[]) null, (zob) null, i2));
-        arrayList.add(new apb(this.a, 196608, new Class[]{gca.class}, new String[]{"noButton"}, (Drawable[]) null, (zob) null, i3));
+        arrayList.add(new apb(this.a, 196608, new Class[]{hca.class}, new String[]{"yesButton"}, (Drawable[]) null, (zob) null, i3));
+        arrayList.add(new apb(this.a, 0, new Class[]{hca.class}, new String[]{"noButton"}, (Drawable[]) null, (zob) null, i));
+        arrayList.add(new apb(this.a, 131072, new Class[]{hca.class}, new String[]{"noButton"}, (Drawable[]) null, (zob) null, i2));
+        arrayList.add(new apb(this.a, 196608, new Class[]{hca.class}, new String[]{"noButton"}, (Drawable[]) null, (zob) null, i3));
         arrayList.add(new apb(this.a, 0, new Class[]{uo7.class}, new String[]{"checkBox"}, (Drawable[]) null, (zob) null, aob.M6));
         arrayList.add(new apb(this.a, 0, new Class[]{uo7.class}, new String[]{"checkBox"}, (Drawable[]) null, (zob) null, aob.N6));
         arrayList.add(new apb(this.a, 0, new Class[]{vac.class}, new String[]{"statusOnlineColor"}, (Drawable[]) null, u00Var, aob.n6));
@@ -6377,7 +6379,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
         if (tu8Var != null) {
             tu8Var.setColor(this.n6);
         }
-        hl.d0(this.a, new gp8(this, (byte) 2));
+        hl.d0(this.a, new hp8(this, (byte) 2));
         gr8 gr8Var = this.O;
         if (gr8Var != null && (bhaVar = gr8Var.L0) != null) {
             bhaVar.updateColors();
@@ -7065,7 +7067,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
 
     @Override
     public final boolean q(uj3 uj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, tzb tzbVar) {
-        long j = ((if7) arrayList.get(0)).a;
+        long j = ((jf7) arrayList.get(0)).a;
         Bundle l = bs2.l("scrollToTopOnResume", true);
         if (wf3.B(j)) {
             l.putInt("enc_id", (int) (4294967295L & j));
@@ -7555,7 +7557,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                 L2(false);
                 return;
             case 12:
-                getMessagesController().X3.edit().putBoolean("story_keep", true).apply();
+                getMessagesController().Y3.edit().putBoolean("story_keep", true).apply();
                 id idVar = new id(3, this.A0, getParentActivity());
                 idVar.q(200L);
                 uc7.s1(this.currentAccount).O1().j(a(), new v35(this, idVar, (byte) 21), true, this.A0);
@@ -7585,7 +7587,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                 presentFragment(new UserInfoActivity());
                 return;
             case 17:
-                presentFragment(new tba(null));
+                presentFragment(new uba(null));
                 return;
             default:
                 return;
@@ -7637,7 +7639,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
             return;
         }
         this.o5 = or8Var;
-        hl.d0(this.a, new gp8(this, (byte) 0));
+        hl.d0(this.a, new hp8(this, (byte) 0));
     }
 
     @Override
@@ -7703,7 +7705,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                 cu2Var.P = new wp8(this, X13);
                 presentFragment(cu2Var);
             } else if (i == this.X3) {
-                TextView textView = (TextView) jj.f0(getParentActivity(), ob6.M0(2131751473, null), ob6.M0(2131751557, null), ob6.M0(2131751556, null), ob6.M0(2131751563, null), new gp8(this, (byte) 1), this.A0, false).c(-1);
+                TextView textView = (TextView) jj.f0(getParentActivity(), ob6.M0(2131751473, null), ob6.M0(2131751557, null), ob6.M0(2131751556, null), ob6.M0(2131751563, null), new hp8(this, (byte) 1), this.A0, false).c(-1);
                 if (textView != null) {
                     yob.X(textView, aob.q7, null);
                 }
@@ -7899,7 +7901,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
             } else if (i == this.botPermissionLocation) {
                 tq0 tq0Var = this.t2;
                 if (tq0Var != null) {
-                    tq0Var.k(!tq0Var.f(), new hp8(this, view, (byte) 0));
+                    tq0Var.k(!tq0Var.f(), new ep8(this, view, (byte) 1));
                 }
             } else if (i == this.botPermissionBiometry) {
                 uo0 uo0Var = this.u2;
@@ -7923,7 +7925,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.e implements fn7,
                 if (userFull2 != null) {
                     userFull2.bot_can_manage_emoji_status = d;
                 }
-                int sendRequest = getConnectionsManager().sendRequest(toggleuseremojistatuspermission, new ol7(this, r0, (byte) 13));
+                int sendRequest = getConnectionsManager().sendRequest(toggleuseremojistatuspermission, new pl7(this, r0, (byte) 13));
                 this.r4 = sendRequest;
                 int[] iArr = {sendRequest};
             } else if (i == this.P3) {

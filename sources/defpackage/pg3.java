@@ -281,9 +281,9 @@ public abstract class pg3 extends FrameLayout implements fn7, s84 {
                     jg3Var.setVisibility(0);
                     jg3Var2.setVisibility(4);
                     this.T.g1(0, 0);
-                    me7 me7Var = uc7.s1(i3).O1().K;
-                    hl.r(me7Var);
-                    me7Var.run();
+                    oe7 oe7Var = uc7.s1(i3).O1().K;
+                    hl.r(oe7Var);
+                    oe7Var.run();
                     pv0 pv0Var = this.s0;
                     if (pv0Var != null) {
                         pv0Var.a();
@@ -527,7 +527,7 @@ public abstract class pg3 extends FrameLayout implements fn7, s84 {
             uc7.s1(i2).O1().j(j, new r4c(this, idVar, j, og3Var, (byte) 2), true, vnbVar2);
             return;
         }
-        rbb.C(uj3Var.getParentActivity(), i2).Q(mbb.c(og3Var));
+        sbb.C(uj3Var.getParentActivity(), i2).Q(nbb.c(og3Var));
     }
 
     public final boolean k(long j) {

@@ -71,13 +71,13 @@ public final class w81 extends wma {
         vy4 vy4Var;
         switch (this.g0) {
             case 8:
-                tba tbaVar = (tba) this.h0;
-                tbaVar.o0();
+                uba ubaVar = (uba) this.h0;
+                ubaVar.o0();
                 super.dispatchDraw(canvas);
-                vy4Var = ((e) tbaVar).glassEngine;
+                vy4Var = ((e) ubaVar).glassEngine;
                 vy4Var.g();
-                if (!tbaVar.O) {
-                    hl.O(canvas, this, tbaVar.getThemedColor(aob.d6), tbaVar.d0, 1.0f);
+                if (!ubaVar.O) {
+                    hl.O(canvas, this, ubaVar.getThemedColor(aob.d6), ubaVar.d0, 1.0f);
                     return;
                 }
                 return;
@@ -267,7 +267,7 @@ public final class w81 extends wma {
         switch (this.g0) {
             case 8:
                 try {
-                    ((tba) this.h0).p0();
+                    ((uba) this.h0).p0();
                     return;
                 } catch (Exception e) {
                     cc4.g(e, true);

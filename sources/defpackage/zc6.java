@@ -40,7 +40,7 @@ public final class zc6 implements Runnable {
                         if (byteBufferValue != null) {
                             r47 r47Var = new r47(id6Var2.currentAccount, TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false), false, false);
                             obj.h = r47Var;
-                            jf7.d(r47Var.k, arrayList4, arrayList5, null);
+                            kf7.d(r47Var.k, arrayList4, arrayList5, null);
                             byteBufferValue.reuse();
                         }
                         arrayList.add(obj);
@@ -56,9 +56,9 @@ public final class zc6 implements Runnable {
                     }
                     queryFinalized.dispose();
                     if (!arrayList5.isEmpty()) {
-                        id6Var2.getMessagesStorage().P(TextUtils.join(",", arrayList5), arrayList3);
+                        id6Var2.getMessagesStorage().R(TextUtils.join(",", arrayList5), arrayList3);
                     }
-                    id6Var2.getMessagesStorage().k0(arrayList4, arrayList2, false);
+                    id6Var2.getMessagesStorage().m0(arrayList4, arrayList2, false);
                 } catch (Exception e) {
                     cc4.g(e, true);
                 }

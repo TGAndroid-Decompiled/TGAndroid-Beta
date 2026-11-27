@@ -182,7 +182,7 @@ public final class tc6 extends e implements fn7 {
             Y1.business_location = null;
         }
         getConnectionsManager().sendRequest(updatebusinesslocation, new gc6(this, (byte) 0));
-        getMessagesStorage().g2(Y1, false);
+        getMessagesStorage().l2(Y1, false);
     }
 
     public final void b0() {

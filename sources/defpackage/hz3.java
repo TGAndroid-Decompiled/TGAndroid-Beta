@@ -35,7 +35,7 @@ public final class hz3 implements ry4, t69, vu9, s84 {
                     o24Var.i0.E0();
                     o24Var.q0.k(i, 0);
                     if (i != o24Var.s0 && i != o24Var.t0) {
-                        ArrayList arrayList = uc7.s1(i7).x3;
+                        ArrayList arrayList = uc7.s1(i7).y3;
                         o24Var.k0.H((String) arrayList.get(i - o24Var.u0));
                         int i8 = i - o24Var.u0;
                         if (i8 > 0) {
@@ -58,7 +58,7 @@ public final class hz3 implements ry4, t69, vu9, s84 {
                             u14Var.g1(i2, 0);
                         }
                         if (i == o24Var.t0) {
-                            ArrayList arrayList2 = uc7.s1(i7).x3;
+                            ArrayList arrayList2 = uc7.s1(i7).y3;
                             if (!arrayList2.isEmpty()) {
                                 w14Var.a((String) arrayList2.get(0), true);
                             }

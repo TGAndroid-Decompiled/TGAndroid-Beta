@@ -71,15 +71,15 @@ public final class ng2 implements RemoteViewsService.RemoteViewsFactory {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 zh6 zh6Var2 = new zh6();
-                jf7 Y = jf7.Y(i);
+                kf7 a0 = kf7.a0(i);
                 int i2 = this.c;
                 zh6 zh6Var3 = this.g;
                 CountDownLatch countDownLatch = new CountDownLatch(1);
-                Y.a.c(new re7(Y, i2, arrayList, 0, zh6Var3, zh6Var2, arrayList3, arrayList2, countDownLatch));
+                a0.a.c(new se7(a0, i2, arrayList, 0, zh6Var3, zh6Var2, arrayList3, arrayList2, countDownLatch));
                 try {
                     countDownLatch.await();
                 } catch (Exception e) {
-                    Y.n(e, true);
+                    a0.p(e, true);
                 }
                 uc7.s1(i).j4(arrayList2, true);
                 uc7.s1(i).c4(arrayList3, true);

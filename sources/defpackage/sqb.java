@@ -173,7 +173,7 @@ public class sqb extends LinearLayout {
                 }
                 if (i > 0) {
                     drawable.setAlpha(i);
-                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof hh7)) {
+                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof ih7)) {
                         if (drawable instanceof BitmapDrawable) {
                             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                             bitmapDrawable.setFilterBitmap(true);

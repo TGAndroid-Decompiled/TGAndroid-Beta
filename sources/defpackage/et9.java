@@ -67,7 +67,7 @@ public final class et9 implements s69, u69, oj3 {
     @Override
     public final boolean q(uj3 uj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, tzb tzbVar) {
         Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", ((if7) arrayList.get(0)).a);
+        bundle.putLong("dialog_id", ((jf7) arrayList.get(0)).a);
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.a;
         bundle.putInt("type", saveToGallerySettingsActivity.a);
         saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle), true);

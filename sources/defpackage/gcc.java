@@ -187,7 +187,7 @@ public abstract class gcc {
 
     public static ko4 G(int i2, int i3, int i4) {
         jo4 jo4Var = new jo4();
-        jo4Var.s = dg7.n("audio/raw");
+        jo4Var.s = eg7.n("audio/raw");
         jo4Var.M = i3;
         jo4Var.O = i4;
         jo4Var.P = i2;
@@ -802,9 +802,9 @@ public abstract class gcc {
 
     public static gba h0(x76 x76Var, nx nxVar) {
         ?? obj = new Object();
-        g9c g9cVar = new g9c(obj, x76Var, (byte) 4);
+        c9c c9cVar = new c9c(obj, x76Var, (byte) 5);
         mo3 mo3Var = mo3.a;
-        obj.b(g9cVar, mo3Var);
+        obj.b(c9cVar, mo3Var);
         x76Var.b(new b6c(x76Var, obj, nxVar, (byte) 2), mo3Var);
         return obj;
     }
@@ -1049,7 +1049,7 @@ public abstract class gcc {
     public static int v(int i2, String str) {
         int i3 = 0;
         for (String str2 : e0(str)) {
-            if (i2 == dg7.h(dg7.d(str2))) {
+            if (i2 == eg7.h(eg7.d(str2))) {
                 i3++;
             }
         }
@@ -1061,7 +1061,7 @@ public abstract class gcc {
         if (e0.length != 0) {
             StringBuilder sb = new StringBuilder();
             for (String str2 : e0) {
-                if (i2 == dg7.h(dg7.d(str2))) {
+                if (i2 == eg7.h(eg7.d(str2))) {
                     if (sb.length() > 0) {
                         sb.append(",");
                     }

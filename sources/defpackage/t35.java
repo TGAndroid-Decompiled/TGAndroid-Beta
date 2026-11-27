@@ -432,7 +432,7 @@ public final class t35 {
         obj.a = true;
         obj.e = 1;
         if (str != null && str.length() != 0) {
-            obj.c(hg7.a(str));
+            obj.c(ig7.a(str));
         } else {
             obj.g = null;
         }

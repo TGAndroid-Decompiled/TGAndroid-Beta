@@ -82,7 +82,7 @@ public final class e95 extends c79 {
                 this.G = i3 + 1;
                 this.J = i3;
             }
-            if (!arrayList.isEmpty() && j95Var.H0() && j95Var.T2.b.participants_count > uc7.s1(j95Var.n1.a).k4.U0.f()) {
+            if (!arrayList.isEmpty() && j95Var.H0() && j95Var.T2.b.participants_count > uc7.s1(j95Var.n1.a).l4.U0.f()) {
                 int i4 = this.G;
                 this.G = i4 + 1;
                 this.K = i4;
@@ -258,10 +258,10 @@ public final class e95 extends c79 {
                                 boolean W = xc2.W(j95Var.S2);
                                 k5 k5Var = j95Var.n1;
                                 if (W) {
-                                    textView.setText(ob6.a0(null, null, 2131743101, ob6.G(uc7.s1(k5Var.a).k4.U0.f(), "Participants", new Object[0])));
+                                    textView.setText(ob6.a0(null, null, 2131743101, ob6.G(uc7.s1(k5Var.a).l4.U0.f(), "Participants", new Object[0])));
                                     tbVar = textView;
                                 } else {
-                                    textView.setText(ob6.a0(null, null, 2131742877, ob6.G(uc7.s1(k5Var.a).k4.U0.f(), "Members", new Object[0])));
+                                    textView.setText(ob6.a0(null, null, 2131742877, ob6.G(uc7.s1(k5Var.a).l4.U0.f(), "Members", new Object[0])));
                                     tbVar = textView;
                                 }
                             }

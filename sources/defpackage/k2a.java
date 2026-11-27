@@ -5,7 +5,7 @@ import java.util.HashMap;
 public final class k2a extends ny0 implements fn7 {
     public final q74 S1;
     public final c51 T1;
-    public final u5b U1;
+    public final v5b U1;
     public final HashMap V1;
     public final int W1;
     public int X1;
@@ -37,13 +37,13 @@ public final class k2a extends ny0 implements fn7 {
         } else {
             abs = Math.abs(q74Var.M0() - K0) + 1;
         }
-        u5b u5bVar = this.U1;
-        if (u5bVar != null) {
+        v5b v5bVar = this.U1;
+        if (v5bVar != null) {
             int i = K0 + abs;
-            int i2 = u5bVar.i();
+            int i2 = v5bVar.i();
             int i3 = this.W1;
             if (i > i2 - i3) {
-                u5bVar.p(Math.min(100, Math.max(1, i3 / 2) * i3 * i3), false);
+                v5bVar.p(Math.min(100, Math.max(1, i3 / 2) * i3 * i3), false);
             }
         }
     }
@@ -78,7 +78,7 @@ public final class k2a extends ny0 implements fn7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == jn7.A5 && ((u5b) objArr[0]) == this.U1) {
+        if (i == jn7.A5 && ((v5b) objArr[0]) == this.U1) {
             this.Y1.O(false);
             Z0();
         }

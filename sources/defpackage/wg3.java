@@ -62,7 +62,7 @@ public final class wg3 implements View.OnClickListener {
                     uj3Var5.O2 = false;
                     ArrayList arrayList3 = new ArrayList();
                     while (i < arrayList2.size()) {
-                        arrayList3.add(if7.a(((Long) arrayList2.get(i)).longValue(), 0L));
+                        arrayList3.add(jf7.a(((Long) arrayList2.get(i)).longValue(), 0L));
                         i++;
                     }
                     uj3Var5.E2.q(uj3Var5, arrayList3, uj3Var5.D1.getFieldText(), false, uj3Var5.L2, uj3Var5.M2, uj3Var5.N2, null);
@@ -185,7 +185,7 @@ public final class wg3 implements View.OnClickListener {
                 return;
             case 26:
                 uj3 uj3Var14 = this.b;
-                m01.u(uj3Var14.getParentActivity(), uj3Var14.getMessagesController().k4.w2.f);
+                m01.u(uj3Var14.getParentActivity(), uj3Var14.getMessagesController().l4.w2.f);
                 return;
             case 27:
                 this.b.k4();

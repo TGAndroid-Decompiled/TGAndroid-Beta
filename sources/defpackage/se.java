@@ -85,14 +85,14 @@ public final class se implements Runnable {
                 vo3.l.add(arrayList);
                 return;
             case 6:
-                jn7.e().k(259, arrayList);
-                return;
-            case 7:
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(a.b);
                 while (i < arrayList.size()) {
                     appWidgetManager.notifyAppWidgetViewDataChanged(((Integer) arrayList.get(i)).intValue(), 2131296478);
                     i++;
                 }
+                return;
+            case 7:
+                jn7.e().k(259, arrayList);
                 return;
             case 8:
                 xv7.h = arrayList;

@@ -500,7 +500,7 @@ public final class jxa {
             TL_stars.TL_starGifts tL_starGifts = (TL_stars.TL_starGifts) starGifts;
             uc7.s1(i).j4(tL_starGifts.users, false);
             uc7.s1(i).c4(tL_starGifts.chats, false);
-            jf7.Y(i).j1(tL_starGifts.users, tL_starGifts.chats, true, true);
+            kf7.a0(i).n1(tL_starGifts.users, tL_starGifts.chats, true, true);
             arrayList.clear();
             arrayList.addAll(tL_starGifts.gifts);
             ArrayList arrayList2 = this.J;
@@ -517,14 +517,14 @@ public final class jxa {
             ArrayList<TL_stars.StarGift> arrayList4 = tL_starGifts.gifts;
             int i2 = this.F;
             long j = this.G;
-            jf7 Y = jf7.Y(i);
-            Y.a.c(new od7(Y, arrayList4, i2, j));
+            kf7 a0 = kf7.a0(i);
+            a0.a.c(new td7(a0, arrayList4, i2, j));
         } else if (starGifts instanceof TL_stars.TL_starGiftsNotModified) {
             int i3 = this.F;
             long currentTimeMillis = System.currentTimeMillis();
             this.G = currentTimeMillis;
-            jf7 Y2 = jf7.Y(i);
-            Y2.a.c(new od7(Y2, arrayList, i3, currentTimeMillis));
+            kf7 a02 = kf7.a0(i);
+            a02.a.c(new td7(a02, arrayList, i3, currentTimeMillis));
         }
     }
 
@@ -539,8 +539,8 @@ public final class jxa {
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
                     ArrayList arrayList3 = new ArrayList();
-                    jf7 Y = jf7.Y(i);
-                    Y.a.c(new cp7((Object) Y, (Object) arrayList3, (Object) arrayList2, (Object) arrayList, (Object) hjaVar, (byte) 28));
+                    kf7 a0 = kf7.a0(i);
+                    a0.a.c(new cp7((Object) a0, (Object) arrayList3, (Object) arrayList2, (Object) arrayList, (Object) hjaVar, (byte) 28));
                     return;
                 }
                 int i2 = this.F;
@@ -717,13 +717,13 @@ public final class jxa {
 
     public final void a0(long j, long j2, boolean z) {
         int i = this.a;
-        qyb qybVar = uc7.s1(i).g4;
+        qyb qybVar = uc7.s1(i).h4;
         TLRPC.TL_forumTopic f = qybVar.f(j, j2);
         if (f != null) {
             f.nopaid_messages_exception = z;
             zh6 zh6Var = qybVar.a;
             if (((ArrayList) zh6Var.f(j)) != null) {
-                qybVar.getMessagesStorage().z1(qybVar.getConnectionsManager().getCurrentTime(), -j, (List) zh6Var.f(j), true);
+                qybVar.getMessagesStorage().D1(qybVar.getConnectionsManager().getCurrentTime(), -j, (List) zh6Var.f(j), true);
             }
             jn7.f(i).k(jn7.Q3, Long.valueOf(j2));
         }
@@ -784,7 +784,7 @@ public final class jxa {
                 return;
             }
         }
-        if (uc7.s1(this.a).k4.t0.f && inputPeer != null) {
+        if (uc7.s1(this.a).l4.t0.f && inputPeer != null) {
             z = true;
         } else {
             z = false;
@@ -817,7 +817,7 @@ public final class jxa {
             ?? obj = new Object();
             obj.b = "inapp";
             obj.a = tL_starsTopupOption.store_product;
-            j09 a = obj.a();
+            k09 a = obj.a();
             cc4.b("StarsController.buy starts queryProductDetails");
             di0.h().o(Arrays.asList(a), new pt(iccVar, tL_inputStorePaymentStarsTopup2, tL_starsTopupOption, activity, (byte) 25));
         }
@@ -986,9 +986,9 @@ public final class jxa {
                                             iccVar5.a(Boolean.TRUE, null);
                                             nj0 b = pj0.a(jxaVar4.a).b();
                                             if (b != null && b.a(j8)) {
-                                                uc7.s1(jxaVar4.a).X3.edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j8, false).apply();
+                                                uc7.s1(jxaVar4.a).Y3.edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j8, false).apply();
                                             }
-                                            uc7.s1(jxaVar4.a).X3.edit().putBoolean("show_gift_for_" + j8, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j8, true).apply();
+                                            uc7.s1(jxaVar4.a).Y3.edit().putBoolean("show_gift_for_" + j8, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j8, true).apply();
                                             LaunchActivity launchActivity = LaunchActivity.H1;
                                             if (launchActivity != null && (y16Var = launchActivity.w0) != null) {
                                                 y16Var.c(true);
@@ -1142,10 +1142,10 @@ public final class jxa {
                         iccVar3.a(Boolean.TRUE, null);
                         nj0 b = pj0.a(jxaVar2.a).b();
                         if (b != null && b.a(j7)) {
-                            SharedPreferences.Editor edit = uc7.s1(jxaVar2.a).X3.edit();
+                            SharedPreferences.Editor edit = uc7.s1(jxaVar2.a).Y3.edit();
                             edit.putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j7, false).apply();
                         }
-                        SharedPreferences.Editor edit2 = uc7.s1(jxaVar2.a).X3.edit();
+                        SharedPreferences.Editor edit2 = uc7.s1(jxaVar2.a).Y3.edit();
                         SharedPreferences.Editor putBoolean = edit2.putBoolean("show_gift_for_" + j7, true);
                         putBoolean.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j7, true).apply();
                         LaunchActivity launchActivity = LaunchActivity.H1;
@@ -1160,7 +1160,7 @@ public final class jxa {
 
     public final void f0(LaunchActivity launchActivity, long j, String str) {
         if (!this.e) {
-            o(new y09(this, launchActivity, j, str, (byte) 8));
+            o(new z09(this, launchActivity, j, str, (byte) 8));
         } else {
             g0(launchActivity, j, str);
         }
@@ -1347,7 +1347,7 @@ public final class jxa {
                                             p4aVar5.a(Boolean.TRUE, null);
                                             nj0 b = pj0.a(jxaVar4.a).b();
                                             if (b != null && b.a(j8)) {
-                                                uc7.s1(jxaVar4.a).X3.edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j8, false).apply();
+                                                uc7.s1(jxaVar4.a).Y3.edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j8, false).apply();
                                             }
                                             if (starGift5 != null && starGift5.limited_per_user) {
                                                 int i2 = starGift5.per_user_remains - 1;
@@ -1411,10 +1411,10 @@ public final class jxa {
                                                 f.k(i3, valueOf, bool);
                                                 jn7.f(jxaVar4.a).k(jn7.t, Long.valueOf(j8), bool);
                                                 zu1 ha = zu1.ha(j8);
-                                                ha.whenFullyVisible(new y09(ha, starGift5, spannableStringBuilder, j7, (byte) 7));
+                                                ha.whenFullyVisible(new z09(ha, starGift5, spannableStringBuilder, j7, (byte) 7));
                                                 Q.presentFragment(ha);
                                             }
-                                            uc7.s1(jxaVar4.a).X3.edit().putBoolean("show_gift_for_" + j8, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j8, true).apply();
+                                            uc7.s1(jxaVar4.a).Y3.edit().putBoolean("show_gift_for_" + j8, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j8, true).apply();
                                             LaunchActivity launchActivity = LaunchActivity.H1;
                                             if (launchActivity != null && (y16Var = launchActivity.w0) != null) {
                                                 y16Var.c(true);
@@ -1456,7 +1456,7 @@ public final class jxa {
         ConnectionsManager.getInstance(i).sendRequest(togglenopaidmessagesexception, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                hl.c3(new qd7(jxa.this, tLObject, j2, j, z2));
+                hl.c3(new vd7(jxa.this, tLObject, j2, j, z2));
             }
         });
     }
@@ -1475,7 +1475,7 @@ public final class jxa {
                 int i = yac.t0;
                 boolean[] zArr = {false};
                 wwa wwaVar = new wwa(this, j, i, zArr, iccVar, context2, F, chatInvite, str);
-                ida idaVar = new ida(this, zArr, iccVar);
+                kba kbaVar = new kba(this, zArr, iccVar);
                 nx0 h = uh9.h(1, F, context2, false);
                 LinearLayout j2 = uh9.j(context2, 1);
                 j2.setPadding(hl.L(16.0f), 0, hl.L(16.0f), hl.L(8.0f));
@@ -1562,7 +1562,7 @@ public final class jxa {
                 j2.addView(p66Var, tre.t(-1, -2, 49, 14, 14, 14, 6));
                 h.O = j2;
                 c51Var.setOnClickListener(new lw4(wwaVar, h, c51Var, (byte) 22));
-                h.setOnDismissListener(new dl8(idaVar, (byte) 8));
+                h.setOnDismissListener(new dl8(kbaVar, (byte) 8));
                 h.L(i2);
                 e S2 = LaunchActivity.S();
                 if (!hl.O1() && S2 != null && !hl.s1(S2)) {
@@ -1664,7 +1664,7 @@ public final class jxa {
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_editMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                hl.c3(new af7(jxa.this, tLObject, runnable, tL_error, z, B0, e1, r47Var, j));
+                hl.c3(new zc7(jxa.this, tLObject, runnable, tL_error, z, B0, e1, r47Var, j));
             }
         });
     }

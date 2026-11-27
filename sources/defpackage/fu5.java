@@ -119,7 +119,7 @@ public final class fu5 {
         if (eVar.getContext() == null) {
             return;
         }
-        if ((((eVar instanceof ProfileActivity) && ((ProfileActivity) eVar).J0) || (((eVar instanceof uj3) && ((uj3) eVar).X) || (((eVar instanceof ContactsActivity) && ((ContactsActivity) eVar).H) || ((eVar instanceof tba) && ((tba) eVar).O)))) && (parentLayout = eVar.getParentLayout()) != null) {
+        if ((((eVar instanceof ProfileActivity) && ((ProfileActivity) eVar).J0) || (((eVar instanceof uj3) && ((uj3) eVar).X) || (((eVar instanceof ContactsActivity) && ((ContactsActivity) eVar).H) || ((eVar instanceof uba) && ((uba) eVar).O)))) && (parentLayout = eVar.getParentLayout()) != null) {
             e safeLastFragment = parentLayout.getSafeLastFragment();
             if (safeLastFragment instanceof fj6) {
                 eVar = safeLastFragment;
@@ -197,7 +197,7 @@ public final class fu5 {
         }
     }
 
-    public static void e(fu5 fu5Var, q5b q5bVar, final HashSet hashSet, boolean z, Runnable runnable, final pcc pccVar) {
+    public static void e(fu5 fu5Var, r5b r5bVar, final HashSet hashSet, boolean z, Runnable runnable, final pcc pccVar) {
         ArrayList<TLRPC.PhotoSize> arrayList;
         Context context = fu5Var.e;
         ti3 ti3Var = new ti3(context, (byte) 3);
@@ -217,14 +217,14 @@ public final class fu5 {
             b8Var.setOnClickListener(new el3(runnable, (byte) 3));
             linearLayout.addView(b8Var, tre.o(-1, -2));
         }
-        ArrayList arrayList2 = q5bVar.h;
+        ArrayList arrayList2 = r5bVar.h;
         int size = arrayList2.size();
         int i2 = 0;
         while (i2 < size) {
             Object obj = arrayList2.get(i2);
             i2++;
-            final v5b v5bVar = (v5b) obj;
-            final int i3 = v5bVar.a;
+            final w5b w5bVar = (w5b) obj;
+            final int i3 = w5bVar.a;
             final boolean contains = hashSet.contains(Integer.valueOf(i3));
             float f3 = f2;
             b8 b8Var2 = new b8(2, fu5Var.d, fu5Var.e, false, false);
@@ -233,11 +233,11 @@ public final class fu5 {
             int i4 = aob.E8;
             b8Var2.c(i4, aob.F8);
             b8Var2.h(f, i4);
-            TLRPC.Photo photo = v5bVar.c;
+            TLRPC.Photo photo = w5bVar.c;
             if (photo != null && (arrayList = photo.sizes) != null) {
-                b8Var2.k(v5bVar.b, jn5.f(xb4.w(v5bVar.c.sizes, hl.L(24.0f), false, xb4.w(arrayList, 50, false, null, false), true), v5bVar.c), "50_50", null, null);
+                b8Var2.k(w5bVar.b, jn5.f(xb4.w(w5bVar.c.sizes, hl.L(24.0f), false, xb4.w(arrayList, 50, false, null, false), true), w5bVar.c), "50_50", null, null);
             } else {
-                b8Var2.j(v5bVar.b, 2131232161, null);
+                b8Var2.j(w5bVar.b, 2131232161, null);
             }
             b8Var2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -250,7 +250,7 @@ public final class fu5 {
                     } else {
                         hashSet2.add(Integer.valueOf(i5));
                     }
-                    pccVar.a(v5bVar);
+                    pccVar.a(w5bVar);
                 }
             });
             linearLayout.addView(b8Var2, tre.o(-1, -2));

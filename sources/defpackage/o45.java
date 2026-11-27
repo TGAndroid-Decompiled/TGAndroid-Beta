@@ -16,11 +16,11 @@ public final class o45 implements pcc {
     public final Object f;
     public final Object g;
 
-    public o45(c51 c51Var, c51 c51Var2, sk7 sk7Var, vnb vnbVar, re4 re4Var, w45 w45Var) {
+    public o45(c51 c51Var, c51 c51Var2, tk7 tk7Var, vnb vnbVar, re4 re4Var, w45 w45Var) {
         this.a = (byte) 1;
         this.b = c51Var;
         this.c = c51Var2;
-        this.e = sk7Var;
+        this.e = tk7Var;
         this.d = vnbVar;
         this.f = re4Var;
         this.g = w45Var;
@@ -40,7 +40,7 @@ public final class o45 implements pcc {
         Object obj7 = this.b;
         switch (b) {
             case 0:
-                jl7 jl7Var = (jl7) obj4;
+                kl7 kl7Var = (kl7) obj4;
                 vnb vnbVar = (vnb) obj3;
                 oq6 oq6Var = (oq6) obj2;
                 String str = (String) obj;
@@ -48,15 +48,15 @@ public final class o45 implements pcc {
                 ((c51) obj6).setEnabled(true);
                 ((ImageView) obj5).setEnabled(true);
                 if (str == null) {
-                    jl7Var.dismiss();
+                    kl7Var.dismiss();
                     return;
                 }
-                d31.d0(str, jl7Var.F, vnbVar);
+                d31.d0(str, kl7Var.F, vnbVar);
                 oq6Var.run();
                 return;
             case 1:
                 c51 c51Var = (c51) obj6;
-                sk7 sk7Var = (sk7) obj5;
+                tk7 tk7Var = (tk7) obj5;
                 vnb vnbVar2 = (vnb) obj3;
                 re4 re4Var = (re4) obj4;
                 w45 w45Var = (w45) obj2;
@@ -64,10 +64,10 @@ public final class o45 implements pcc {
                 ((c51) obj7).setLoading(false);
                 c51Var.setLoading(false);
                 if (str2 == null) {
-                    sk7Var.dismiss();
+                    tk7Var.dismiss();
                     return;
                 }
-                d31.d0(str2, sk7Var.F, vnbVar2);
+                d31.d0(str2, tk7Var.F, vnbVar2);
                 re4Var.run();
                 if (w45Var.n || w45Var.o) {
                     z = false;

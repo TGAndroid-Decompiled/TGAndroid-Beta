@@ -31,12 +31,12 @@ public final class tda implements fn7 {
         if (longValue == (-dialog.id)) {
             ArrayList arrayList = ieaVar.f;
             AtomicReference atomicReference = this.b;
-            if ((arrayList == null && uc7.s1(keaVar.a).g4.l(-dialog.id) != null) || atomicReference.get() == null) {
+            if ((arrayList == null && uc7.s1(keaVar.a).h4.l(-dialog.id) != null) || atomicReference.get() == null) {
                 z = true;
             } else {
                 z = false;
             }
-            ieaVar.f = uc7.s1(keaVar.a).g4.l(-dialog.id);
+            ieaVar.f = uc7.s1(keaVar.a).h4.l(-dialog.id);
             ieaVar.d = lbc.w(uc7.s1(keaVar.a).X1(Long.valueOf(dialog.id)));
             ieaVar.e = lbc.x(uc7.s1(keaVar.a).X1(Long.valueOf(dialog.id)));
             if (z) {
@@ -79,7 +79,7 @@ public final class tda implements fn7 {
                 wpaVar.a(1.0f);
                 vpaVar2.m = wpaVar;
                 keaVar.w2 = vpaVar2;
-                vpaVar2.b(new dda(this, this.c, iArr, (byte) 1));
+                vpaVar2.b(new eda(this, this.c, iArr, (byte) 1));
                 keaVar.w2.a(new iw0(this, (byte) 11));
                 keaVar.w2.h();
                 if (atomicReference.get() != null) {

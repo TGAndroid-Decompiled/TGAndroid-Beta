@@ -63,7 +63,7 @@ public final class bt implements Runnable {
             case 3:
                 nc2 nc2Var = (nc2) obj;
                 if (i5 != 0) {
-                    SharedPreferences sharedPreferences = uc7.s1(i4).W3;
+                    SharedPreferences sharedPreferences = uc7.s1(i4).X3;
                     sharedPreferences.edit().putInt("last_selected_mute_until_time", i5).putInt("last_selected_mute_until_time2", sharedPreferences.getInt("last_selected_mute_until_time", 0)).apply();
                 }
                 nc2Var.q(i5);
@@ -71,7 +71,7 @@ public final class bt implements Runnable {
             case 4:
                 hc2 hc2Var = (hc2) obj;
                 if (i5 != 0) {
-                    SharedPreferences sharedPreferences2 = uc7.s1(i4).W3;
+                    SharedPreferences sharedPreferences2 = uc7.s1(i4).X3;
                     sharedPreferences2.edit().putInt("last_selected_mute_until_time", i5).putInt("last_selected_mute_until_time2", sharedPreferences2.getInt("last_selected_mute_until_time", 0)).apply();
                 }
                 hc2Var.a(Integer.valueOf(i5));
@@ -82,7 +82,7 @@ public final class bt implements Runnable {
             case 6:
                 rl3 rl3Var = (rl3) obj;
                 try {
-                    SQLiteCursor queryFinalized = jf7.Y(i5).b.queryFinalized("SELECT did, date FROM search_recent WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = kf7.a0(i5).b.queryFinalized("SELECT did, date FROM search_recent WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
                     ArrayList arrayList3 = new ArrayList();
@@ -133,7 +133,7 @@ public final class bt implements Runnable {
                     ArrayList arrayList5 = new ArrayList();
                     if (!arrayList3.isEmpty()) {
                         ArrayList arrayList6 = new ArrayList();
-                        jf7.Y(i5).T(TextUtils.join(",", arrayList3), arrayList6, arrayList);
+                        kf7.a0(i5).V(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                         for (int i7 = 0; i7 < arrayList6.size(); i7++) {
                             sl3 sl3Var = (sl3) zh6Var.f(wf3.E(((TLRPC.EncryptedChat) arrayList6.get(i7)).id));
                             if (sl3Var != null) {
@@ -143,7 +143,7 @@ public final class bt implements Runnable {
                     }
                     if (!arrayList2.isEmpty()) {
                         ArrayList arrayList7 = new ArrayList();
-                        jf7.Y(i5).P(TextUtils.join(",", arrayList2), arrayList7);
+                        kf7.a0(i5).R(TextUtils.join(",", arrayList2), arrayList7);
                         for (int i8 = 0; i8 < arrayList7.size(); i8++) {
                             TLRPC.Chat chat = (TLRPC.Chat) arrayList7.get(i8);
                             long j2 = -chat.id;
@@ -162,7 +162,7 @@ public final class bt implements Runnable {
                         }
                     }
                     if (!arrayList.isEmpty()) {
-                        jf7.Y(i5).k0(arrayList, arrayList5, false);
+                        kf7.a0(i5).m0(arrayList, arrayList5, false);
                         while (i3 < arrayList5.size()) {
                             TLRPC.User user = (TLRPC.User) arrayList5.get(i3);
                             sl3 sl3Var4 = (sl3) zh6Var.f(user.id);

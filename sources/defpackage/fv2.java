@@ -23,8 +23,8 @@ public final class fv2 implements Runnable {
                 Utilities.e.c(new fv2(lv2Var, this.c, this.d, (byte) 1));
                 if (!lv2Var.e) {
                     lv2Var.e = true;
-                    jf7 messagesStorage = lv2Var.getMessagesStorage();
-                    messagesStorage.a.c(new je7(messagesStorage, false, (byte) 0));
+                    kf7 messagesStorage = lv2Var.getMessagesStorage();
+                    messagesStorage.a.c(new ke7(messagesStorage, false, (byte) 0));
                     return;
                 }
                 return;

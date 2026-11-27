@@ -103,7 +103,7 @@ public final class ie0 extends LinearLayout implements fn7 {
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');
             di0.h();
-            sb.append(di0.f("USD", 2, (long) (j.c() * uc7.s1(this.a).k4.k.i * 100.0d), false));
+            sb.append(di0.f("USD", 2, (long) (j.c() * uc7.s1(this.a).l4.k.i * 100.0d), false));
             p66 p66Var2 = this.d;
             int i2 = aob.yj;
             int i3 = aob.wj;

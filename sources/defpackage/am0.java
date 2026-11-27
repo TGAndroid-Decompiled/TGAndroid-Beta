@@ -34,7 +34,7 @@ public final class am0 implements Runnable {
                 return;
             case 2:
                 try {
-                    SQLitePreparedStatement executeFast = jf7.Y(i).b.executeFast("REPLACE INTO search_recent VALUES(?, ?)");
+                    SQLitePreparedStatement executeFast = kf7.a0(i).b.executeFast("REPLACE INTO search_recent VALUES(?, ?)");
                     executeFast.requery();
                     executeFast.bindLong(1, j);
                     executeFast.bindInteger(2, (int) (System.currentTimeMillis() / 1000));

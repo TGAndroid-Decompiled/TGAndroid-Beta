@@ -90,7 +90,7 @@ public final class ow4 extends nx0 {
         if (j > j2 && uc7.s1(i).Y1(j) == null && (X1 = uc7.s1(i).X1(Long.valueOf(j))) != null) {
             uc7.s1(i).f3(X1, 0, false, null);
         }
-        hr hrVar = uc7.s1(i).k4;
+        hr hrVar = uc7.s1(i).l4;
         pj pjVar = pj.a;
         oj h = oj.h(tL_starGiftUnique.offer_min_stars, pjVar);
         boolean z2 = z;
@@ -621,9 +621,9 @@ public final class ow4 extends nx0 {
             pj pjVar6 = this.A1.a;
             int i10 = this.a;
             if (pjVar6 == pjVar2) {
-                d = uc7.s1(i10).k4.k.i;
+                d = uc7.s1(i10).l4.k.i;
             } else {
-                d = uc7.s1(i10).k4.A3.i * 1.0E-5d;
+                d = uc7.s1(i10).l4.A3.i * 1.0E-5d;
             }
             di0.h();
             sb.append(di0.f("USD", 2, (long) (this.A1.c() * d * 100.0d), r16));

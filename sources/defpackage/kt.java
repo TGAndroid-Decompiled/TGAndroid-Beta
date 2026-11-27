@@ -250,14 +250,14 @@ public final class kt implements Runnable {
                 uj3 uj3Var = (uj3) obj;
                 uj3Var.U4(true, true);
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(if7.a(j, 0L));
+                arrayList.add(jf7.a(j, 0L));
                 uj3Var.E2.q(uj3Var, arrayList, null, false, uj3Var.L2, uj3Var.M2, uj3Var.N2, null);
                 return;
             case 15:
                 gx9 gx9Var = (gx9) obj;
                 gx9Var.getClass();
                 try {
-                    jf7.Y(gx9Var.t0).b.executeFast("DELETE FROM search_recent WHERE did = " + j).stepThis().dispose();
+                    kf7.a0(gx9Var.t0).b.executeFast("DELETE FROM search_recent WHERE did = " + j).stepThis().dispose();
                     return;
                 } catch (Exception e) {
                     cc4.g(e, true);
@@ -314,20 +314,20 @@ public final class kt implements Runnable {
             case 22:
                 vs7.b.add(Long.valueOf(j));
                 vs7.j(j, 60000L);
-                ((fd7) obj).run();
+                ((gd7) obj).run();
                 v21 Q2 = vs7.h().Q(2131623990, 36, ob6.M0(2131749508, null));
                 Q2.u = true;
                 Q2.j();
                 return;
             case 23:
-                o68 o68Var = ((h58) obj).a;
+                o68 o68Var = ((i58) obj).a;
                 if (j <= 0) {
                     z3 = true;
                 }
                 o68Var.a0(z3);
                 return;
             case 24:
-                hl.d3((z58) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j)));
+                hl.d3((a68) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j)));
                 return;
             case 25:
                 qd8 qd8Var = (qd8) obj;

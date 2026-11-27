@@ -19,7 +19,7 @@ public abstract class hu4 implements Cloneable {
         if (ju4.f(b, true)) {
             return b;
         }
-        throw new e9c();
+        throw new f9c();
     }
 
     public final ju4 b() {

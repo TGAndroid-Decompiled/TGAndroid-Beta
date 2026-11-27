@@ -130,14 +130,14 @@ public final class md5 extends c79 {
         } else {
             arrayList = this.d;
         }
-        p3b p3bVar = (p3b) f89Var.a;
+        q3b q3bVar = (q3b) f89Var.a;
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList.get(i);
         if (i != arrayList.size() - 1) {
             z2 = true;
         } else {
             z2 = false;
         }
-        p3bVar.d(tL_messages_stickerSet, z2, !z);
+        q3bVar.d(tL_messages_stickerSet, z2, !z);
         String str3 = this.h;
         if (str3 != null) {
             str = str3.toLowerCase(Locale.ROOT);
@@ -153,7 +153,7 @@ public final class md5 extends c79 {
         if (indexOf != -1) {
             SpannableString spannableString = new SpannableString(stickerSet.title);
             spannableString.setSpan(new ho4(aob.q6, resourceProvider), indexOf, str.length() + indexOf, 0);
-            p3bVar.b.setText(spannableString);
+            q3bVar.b.setText(spannableString);
         }
         int indexOf2 = stickerSet.short_name.toLowerCase(locale).indexOf(str);
         if (indexOf2 != -1) {
@@ -165,7 +165,7 @@ public final class md5 extends c79 {
             int length = str2.length() + indexOf2;
             SpannableString spannableString2 = new SpannableString(str2 + stickerSet.short_name);
             spannableString2.setSpan(new ho4(aob.q6, resourceProvider), length, str.length() + length, 0);
-            p3bVar.c.setText(spannableString2);
+            q3bVar.c.setText(spannableString2);
         }
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = nd5Var.r;
         if (tL_messages_stickerSet2 != null) {
@@ -178,12 +178,12 @@ public final class md5 extends c79 {
         if (tL_messages_stickerSet.set.id != j) {
             z3 = false;
         }
-        p3bVar.b(z3, false);
+        q3bVar.b(z3, false);
     }
 
     @Override
     public final f89 x(ViewGroup viewGroup, int i) {
-        p3b p3bVar;
+        q3b q3bVar;
         int i2;
         if (i != 0) {
             int i3 = aob.B6;
@@ -195,13 +195,13 @@ public final class md5 extends c79 {
                 i2 = 2131752083;
             }
             mf5Var.setText(ob6.M0(i2, null));
-            p3bVar = mf5Var;
+            q3bVar = mf5Var;
         } else {
-            p3b p3bVar2 = new p3b(this.c, 3);
-            yob.h(aob.d6, null, p3bVar2);
-            p3bVar = p3bVar2;
+            q3b q3bVar2 = new q3b(this.c, 3);
+            yob.h(aob.d6, null, q3bVar2);
+            q3bVar = q3bVar2;
         }
-        p3bVar.setLayoutParams(new r79(-1, -2));
-        return new f89(p3bVar);
+        q3bVar.setLayoutParams(new r79(-1, -2));
+        return new f89(q3bVar);
     }
 }

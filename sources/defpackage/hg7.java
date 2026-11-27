@@ -1,48 +1,54 @@
 package defpackage;
+public final class hg7 {
+    public final qg7 a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final pm3 e;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
-public abstract class hg7 {
-    public static final SecureRandom a = new SecureRandom();
-
-    public static byte[] a(String str) {
-        if (str == null) {
-            return null;
-        }
-        try {
-            return str.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException unused) {
-            return null;
-        }
+    public hg7(pm3 pm3Var, qg7 qg7Var, int i, int i2, int i3) {
+        this.e = pm3Var;
+        this.a = qg7Var;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
     }
 
-    public static String b(InputStream inputStream) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        while (true) {
-            int read = inputStream.read();
-            if (read == -1) {
-                if (byteArrayOutputStream.size() == 0) {
-                    return null;
-                }
-            } else if (read == 10) {
-                break;
-            } else if (read != 13) {
-                byteArrayOutputStream.write(read);
-            } else {
-                int read2 = inputStream.read();
-                if (read2 == -1) {
-                    byteArrayOutputStream.write(read);
-                    break;
-                } else if (read2 == 10) {
-                    break;
+    public final int a() {
+        qg7 qg7Var = this.a;
+        qg7 qg7Var2 = qg7.BYTE;
+        int i = this.d;
+        if (qg7Var == qg7Var2) {
+            vh4 vh4Var = (vh4) this.e.c;
+            int i2 = this.b;
+            return ((String) vh4Var.b).substring(i2, i + i2).getBytes(((xs3) vh4Var.c).a[this.c].charset()).length;
+        }
+        return i;
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder();
+        qg7 qg7Var = this.a;
+        sb.append(qg7Var);
+        sb.append('(');
+        vh4 vh4Var = (vh4) this.e.c;
+        if (qg7Var == qg7.ECI) {
+            sb.append(((xs3) vh4Var.c).a[this.c].charset().displayName());
+        } else {
+            int i = this.d;
+            int i2 = this.b;
+            String substring = ((String) vh4Var.b).substring(i2, i + i2);
+            StringBuilder sb2 = new StringBuilder();
+            for (int i3 = 0; i3 < substring.length(); i3++) {
+                if (substring.charAt(i3) >= ' ' && substring.charAt(i3) <= '~') {
+                    sb2.append(substring.charAt(i3));
                 } else {
-                    byteArrayOutputStream.write(read);
-                    byteArrayOutputStream.write(read2);
+                    sb2.append('.');
                 }
             }
+            sb.append(sb2.toString());
         }
-        return byteArrayOutputStream.toString("UTF-8");
+        sb.append(')');
+        return sb.toString();
     }
 }

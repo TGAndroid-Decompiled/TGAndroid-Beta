@@ -15,7 +15,7 @@ public final class qy8 {
 
     public qy8(int i) {
         this.a = i;
-        String string = uc7.s1(i).X3.getString("qrBackdrops", null);
+        String string = uc7.s1(i).Y3.getString("qrBackdrops", null);
         if (!TextUtils.isEmpty(string)) {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.v(string));

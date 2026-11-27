@@ -53,15 +53,15 @@ public final class mk implements Callable {
             case 3:
                 oy8 oy8Var = (oy8) ((um4) obj).c;
                 sc3 sc3Var = (sc3) oy8Var.f;
-                bca bcaVar = (bca) oy8Var.c;
+                cca ccaVar = (cca) oy8Var.c;
                 String str2 = sc3Var.a;
                 rx6.w();
                 try {
-                    HashMap b2 = sc3.b(bcaVar);
+                    HashMap b2 = sc3.b(ccaVar);
                     pm3 pm3Var = new pm3(str2, b2);
                     pm3Var.A("User-Agent", "Crashlytics Android SDK/20.1.1");
                     pm3Var.A("X-CRASHLYTICS-DEVELOPER-TOKEN", "470fa2b4ae81cd56ecbcda9735803434cec591fa");
-                    sc3.a(pm3Var, bcaVar);
+                    sc3.a(pm3Var, ccaVar);
                     String concat = "Requesting settings from ".concat(str2);
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", concat, null);

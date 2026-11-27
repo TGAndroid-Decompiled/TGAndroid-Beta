@@ -190,7 +190,7 @@ public final class mn8 extends c79 {
                 break;
             case 5:
             default:
-                view = new rca(context, (uh9) null);
+                view = new sca(context, (uh9) null);
                 break;
             case 6:
                 skb skbVar = new skb(privacyControlActivity.getParentActivity());

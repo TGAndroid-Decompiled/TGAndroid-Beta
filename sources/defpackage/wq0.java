@@ -18,11 +18,11 @@ public final class wq0 implements View.OnClickListener {
         switch (b) {
             case 0:
                 bga bgaVar = gr0Var.a0;
-                o5b o5bVar = gr0Var.a;
-                if (o5bVar == null) {
+                p5b p5bVar = gr0Var.a;
+                if (p5bVar == null) {
                     str = "";
                 } else {
-                    str = o5bVar.E;
+                    str = p5bVar.E;
                 }
                 bgaVar.a(str);
                 return;

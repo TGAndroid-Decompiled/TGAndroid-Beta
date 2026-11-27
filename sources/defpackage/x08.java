@@ -331,7 +331,7 @@ public final class x08 extends cna implements fn7, snb {
         r();
         b18Var.B1();
         i = ((e) b18Var).currentAccount;
-        ConnectionsManager.getInstance(i).sendRequest(verifyphone, new ol7(this, verifyphone, (byte) 3), 2);
+        ConnectionsManager.getInstance(i).sendRequest(verifyphone, new pl7(this, verifyphone, (byte) 3), 2);
     }
 
     @Override

@@ -134,7 +134,7 @@ public final class fx0 extends TextView {
                 float e = frcVar.h0.e(false, frcVar.f0);
                 TextPaint paint2 = getPaint();
                 Objects.requireNonNull(paint2);
-                frcVar.c(e, new ec1(paint2, (byte) 2), new vlc(this, canvas, (byte) 13));
+                frcVar.c(e, new ec1(paint2, (byte) 2), new slc(this, canvas, (byte) 14));
                 return;
             default:
                 super.onDraw(canvas);

@@ -1,18 +1,18 @@
 package defpackage;
 public final class qe3 {
-    public final h09 a;
+    public final i09 a;
     public final byte b;
     public final byte c;
 
-    public qe3(h09 h09Var, int i, int i2) {
-        bwe.a(h09Var, "Null dependency anInterface.");
-        this.a = h09Var;
+    public qe3(i09 i09Var, int i, int i2) {
+        bwe.a(i09Var, "Null dependency anInterface.");
+        this.a = i09Var;
         this.b = i;
         this.c = i2;
     }
 
-    public static qe3 a(h09 h09Var) {
-        return new qe3(h09Var, 1, 0);
+    public static qe3 a(i09 i09Var) {
+        return new qe3(i09Var, 1, 0);
     }
 
     public static qe3 b(Class cls) {
@@ -69,6 +69,6 @@ public final class qe3 {
     }
 
     public qe3(int i, int i2, Class cls) {
-        this(h09.a(cls), i, i2);
+        this(i09.a(cls), i, i2);
     }
 }

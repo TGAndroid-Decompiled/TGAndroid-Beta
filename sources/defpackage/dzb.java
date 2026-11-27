@@ -46,7 +46,7 @@ public final class dzb extends d6 {
         int i5 = 0;
         switch (i) {
             case 1:
-                qyb qybVar3 = tzbVar.getMessagesController().g4;
+                qyb qybVar3 = tzbVar.getMessagesController().h4;
                 qybVar3.getClass();
                 TLRPC.TL_channels_toggleViewForumAsMessages tL_channels_toggleViewForumAsMessages = new TLRPC.TL_channels_toggleViewForumAsMessages();
                 tL_channels_toggleViewForumAsMessages.channel_id = qybVar3.getMessagesController().h1(j);
@@ -131,7 +131,7 @@ public final class dzb extends d6 {
                             i4 = 0;
                         }
                         messagesController.r3(j4, i7, 0, i4, false, f.id, 0, true, 0);
-                        tzbVar.getMessagesStorage().a2(f.top_message, 0, tzbVar.a, f.id);
+                        tzbVar.getMessagesStorage().f2(f.top_message, 0, tzbVar.a, f.id);
                     }
                 }
                 tzbVar.D0();
@@ -186,7 +186,7 @@ public final class dzb extends d6 {
                         tzbVar.F = true;
                         tzbVar.E = (byte) 2;
                     }
-                    tzbVar.getMessagesController().g4.A(1, j, tL_forumTopic2.hidden);
+                    tzbVar.getMessagesController().h4.A(1, j, tL_forumTopic2.hidden);
                     if (qzbVar != null) {
                         tzbVar.d1 = qzbVar;
                     }

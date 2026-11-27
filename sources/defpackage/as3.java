@@ -133,7 +133,7 @@ public abstract class as3 extends CameraView {
     public static void j0(boolean z) {
         int i;
         boolean f0 = f0(a.b, false);
-        if (uc7.s1(yac.t0).k4.s3.f) {
+        if (uc7.s1(yac.t0).l4.s3.f) {
             try {
                 TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                 TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
@@ -261,14 +261,14 @@ public abstract class as3 extends CameraView {
         int i;
         l0();
         if (this.I) {
-            wab wabVar = (wab) this;
+            xab xabVar = (xab) this;
             if (uc7.e1().getInt("storysvddualhint", 0) < 2) {
-                hl.d3(new s8b(wabVar, (byte) 5), 340L);
+                hl.d3(new s8b(xabVar, (byte) 5), 340L);
             }
-            rbb rbbVar = wabVar.c0;
-            rbbVar.G0.setValue(wabVar.isDual());
-            otb otbVar = rbbVar.G0;
-            if (wabVar.isDual()) {
+            sbb sbbVar = xabVar.c0;
+            sbbVar.G0.setValue(xabVar.isDual());
+            otb otbVar = sbbVar.G0;
+            if (xabVar.isDual()) {
                 i = 2131754882;
             } else {
                 i = 2131754883;

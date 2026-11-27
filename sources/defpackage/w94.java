@@ -18,7 +18,7 @@ public final class w94 extends FrameLayout implements snb {
     public final im7 c;
     public final FrameLayout d;
     public final ei2 e;
-    public final me7 f;
+    public final oe7 f;
     public final int h;
     public float n;
     public float r;
@@ -27,13 +27,13 @@ public final class w94 extends FrameLayout implements snb {
     public boolean x;
     public boolean y;
 
-    public w94(Context context, im7 im7Var, vnb vnbVar, me7 me7Var) {
+    public w94(Context context, im7 im7Var, vnb vnbVar, oe7 oe7Var) {
         super(context);
         int i;
         boolean z;
         this.E = -1;
         this.c = im7Var;
-        this.f = me7Var;
+        this.f = oe7Var;
         this.h = ViewConfiguration.get(context).getScaledTouchSlop();
         addView(im7Var, tre.c(-1.0f, -1));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -75,7 +75,7 @@ public final class w94 extends FrameLayout implements snb {
         frameLayout.addView(imageView, tre.e(32, 32, 17));
         frameLayout.setImportantForAccessibility(2);
         String M0 = ob6.M0(2131746067, null);
-        u34 u34Var = new u34(this, me7Var, (byte) 1);
+        u34 u34Var = new u34(this, oe7Var, (byte) 1);
         ArrayList f3 = ihc.f(im7Var);
         int i3 = 0;
         while (true) {

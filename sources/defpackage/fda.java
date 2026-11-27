@@ -1,10 +1,9 @@
 package defpackage;
 
-import android.os.Build;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowInsets;
-public final class fda implements ry4, nr7, l8, sy4 {
+import android.widget.Toast;
+import org.telegram.ui.PhotoViewer;
+public final class fda implements View.OnClickListener {
     public final byte a;
     public final kea b;
 
@@ -14,51 +13,81 @@ public final class fda implements ry4, nr7, l8, sy4 {
     }
 
     @Override
-    public final l2d S(View view, l2d l2dVar) {
-        WindowInsets g = l2dVar.g();
-        kea keaVar = this.b;
-        keaVar.q0(g);
-        mq5 f = l2dVar.a.f(519);
-        if (!keaVar.B2.equals(f)) {
-            keaVar.B2 = f;
-            keaVar.c.requestLayout();
-        }
-        return l2d.b;
-    }
-
-    @Override
-    public final int h() {
-        return aob.v0(aob.d6, this.b.J0);
-    }
-
-    @Override
-    public final void k(int i) {
-        kea keaVar = this.b;
-        tq3 tq3Var = keaVar.J2;
-        if (Build.VERSION.SDK_INT >= 31 && tq3Var != null) {
-            if (vsd.a(i, 4)) {
-                tq3Var.h(keaVar.X0.e());
-            }
-            tq3Var.e(keaVar.O2, keaVar.b.getWidth(), keaVar.b.getHeight());
-        }
-    }
-
-    @Override
-    public final void o(KeyEvent keyEvent) {
-        n8 n8Var;
-        n8 n8Var2;
+    public final void onClick(View view) {
         byte b = this.a;
         kea keaVar = this.b;
         switch (b) {
+            case 0:
+                keaVar.Q0(true);
+                return;
+            case 1:
+                og2 og2Var = keaVar.Z1;
+                og2Var.a(!og2Var.a.q, true);
+                keaVar.W0();
+                return;
             case 2:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n8Var = keaVar.E2) != null && n8Var.isShowing()) {
+                n8 n8Var = keaVar.E2;
+                if (n8Var != null && n8Var.isShowing()) {
                     keaVar.E2.d(true);
+                }
+                keaVar.Q0(false);
+                return;
+            case 3:
+                n8 n8Var2 = keaVar.E2;
+                if (n8Var2 != null && n8Var2.isShowing()) {
+                    keaVar.E2.d(true);
+                }
+                keaVar.Q0(true);
+                return;
+            case 4:
+                String[] strArr = keaVar.j2;
+                if (keaVar.P1.m() == 0) {
+                    if (keaVar.i2 || strArr[0] != null) {
+                        keaVar.dismiss();
+                        PhotoViewer.q0().A(true, false);
+                        if (strArr[0] == null && keaVar.g2) {
+                            keaVar.h2 = true;
+                            Toast.makeText(keaVar.getContext(), ob6.M0(2131748533, null), 0).show();
+                            return;
+                        }
+                        keaVar.getContext();
+                        keaVar.G0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                String[] strArr2 = keaVar.j2;
+                if (keaVar.P1.m() == 0) {
+                    if (keaVar.i2 || strArr2[0] != null) {
+                        keaVar.dismiss();
+                        if (strArr2[0] == null && keaVar.g2) {
+                            keaVar.h2 = true;
+                            Toast.makeText(keaVar.getContext(), ob6.M0(2131748533, null), 0).show();
+                            return;
+                        }
+                        keaVar.getContext();
+                        keaVar.G0();
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n8Var2 = keaVar.E2) != null && n8Var2.isShowing()) {
-                    keaVar.E2.d(true);
+                String[] strArr3 = keaVar.j2;
+                if (keaVar.P1.m() == 0) {
+                    if (keaVar.i2 || strArr3[0] != null) {
+                        keaVar.dismiss();
+                        if (strArr3[0] == null && keaVar.g2) {
+                            keaVar.h2 = true;
+                            Toast.makeText(keaVar.getContext(), ob6.M0(2131748533, null), 0).show();
+                            return;
+                        }
+                        keaVar.getContext();
+                        keaVar.G0();
+                        return;
+                    }
                     return;
                 }
                 return;

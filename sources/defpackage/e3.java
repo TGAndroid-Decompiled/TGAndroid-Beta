@@ -26,12 +26,12 @@ public class e3 extends AbstractMap {
     public final ko5 b(Map.Entry entry) {
         m3 m3Var;
         Object key = entry.getKey();
-        fj7 fj7Var = (fj7) this.e;
+        gj7 gj7Var = (gj7) this.e;
         List list = (List) ((Collection) entry.getValue());
         if (list instanceof RandomAccess) {
-            m3Var = new m3(fj7Var, key, list, (m3) null);
+            m3Var = new m3(gj7Var, key, list, (m3) null);
         } else {
-            m3Var = new m3(fj7Var, key, list, (m3) null);
+            m3Var = new m3(gj7Var, key, list, (m3) null);
         }
         return new ko5(key, m3Var);
     }
@@ -43,9 +43,9 @@ public class e3 extends AbstractMap {
         Map map = this.d;
         switch (b) {
             case 0:
-                fj7 fj7Var = (fj7) serializable;
-                if (map == fj7Var.e) {
-                    fj7Var.b();
+                gj7 gj7Var = (gj7) serializable;
+                if (map == gj7Var.e) {
+                    gj7Var.b();
                     return;
                 }
                 d3 d3Var = new d3(this);
@@ -196,12 +196,12 @@ public class e3 extends AbstractMap {
                 if (collection == null) {
                     return null;
                 }
-                fj7 fj7Var = (fj7) serializable;
+                gj7 gj7Var = (gj7) serializable;
                 List list = (List) collection;
                 if (list instanceof RandomAccess) {
-                    m3Var = new m3(fj7Var, obj, list, (m3) null);
+                    m3Var = new m3(gj7Var, obj, list, (m3) null);
                 } else {
-                    m3Var = new m3(fj7Var, obj, list, (m3) null);
+                    m3Var = new m3(gj7Var, obj, list, (m3) null);
                 }
                 return m3Var;
             case 1:
@@ -265,7 +265,7 @@ public class e3 extends AbstractMap {
         Serializable serializable = this.e;
         switch (b) {
             case 0:
-                return ((fj7) serializable).j();
+                return ((gj7) serializable).j();
             case 1:
                 lmf lmfVar = (lmf) serializable;
                 o4f o4fVar = lmfVar.a;
@@ -294,14 +294,14 @@ public class e3 extends AbstractMap {
         Map map = this.d;
         switch (b) {
             case 0:
-                fj7 fj7Var = (fj7) serializable;
+                gj7 gj7Var = (gj7) serializable;
                 Collection collection = (Collection) map.remove(obj);
                 if (collection == null) {
                     return null;
                 }
-                Collection m = fj7Var.m();
+                Collection m = gj7Var.m();
                 m.addAll(collection);
-                fj7Var.f -= collection.size();
+                gj7Var.f -= collection.size();
                 collection.clear();
                 return m;
             case 1:

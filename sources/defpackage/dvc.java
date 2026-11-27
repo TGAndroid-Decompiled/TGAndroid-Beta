@@ -92,17 +92,17 @@ public final class dvc extends FrameLayout implements snb {
                 TLRPC.WallPaperSettings wallPaperSettings = tL_wallPaper.settings;
                 if (wallPaperSettings.third_background_color != 0) {
                     TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
-                    hh7 hh7Var = new hh7(wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color, true, false);
+                    ih7 ih7Var = new ih7(wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color, true, false);
                     if (tL_wallPaper.settings.intensity < 0 && aob.I.o()) {
-                        de0Var2.getImageReceiver().W(hh7Var.k);
+                        de0Var2.getImageReceiver().W(ih7Var.k);
                     } else {
-                        de0Var2.setBackground(hh7Var);
+                        de0Var2.setBackground(ih7Var);
                         if (Build.VERSION.SDK_INT >= 29) {
                             de0Var2.getImageReceiver().P(BlendMode.SOFT_LIGHT);
                         }
                     }
                     TLRPC.WallPaperSettings wallPaperSettings3 = tL_wallPaper.settings;
-                    U02 = hh7.g(wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
+                    U02 = ih7.g(wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
                 } else {
                     de0Var2.setBackgroundColor(aob.Y0(wallPaperSettings.background_color));
                     U02 = hl.U0(tL_wallPaper.settings.background_color, false);
@@ -139,7 +139,7 @@ public final class dvc extends FrameLayout implements snb {
             if (yvcVar.g == null && !"d".equals(yvcVar.a)) {
                 de0Var2.setImageBitmap(null);
                 if (yvcVar.j) {
-                    de0Var2.setBackground(new hh7(yvcVar.b, yvcVar.c, yvcVar.d, yvcVar.e, true, false));
+                    de0Var2.setBackground(new ih7(yvcVar.b, yvcVar.c, yvcVar.d, yvcVar.e, true, false));
                     return;
                 } else if (i3 != 0) {
                     de0Var2.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{i4 | (-16777216), i3 | (-16777216)}));
@@ -150,18 +150,18 @@ public final class dvc extends FrameLayout implements snb {
                 }
             }
             if (i2 != 0) {
-                hh7 hh7Var2 = new hh7(yvcVar.b, yvcVar.c, yvcVar.d, yvcVar.e, true, false);
+                ih7 ih7Var2 = new ih7(yvcVar.b, yvcVar.c, yvcVar.d, yvcVar.e, true, false);
                 if (yvcVar.h >= 0.0f) {
-                    de0Var2.setBackground(new hh7(yvcVar.b, yvcVar.c, yvcVar.d, yvcVar.e, true, false));
+                    de0Var2.setBackground(new ih7(yvcVar.b, yvcVar.c, yvcVar.d, yvcVar.e, true, false));
                     if (Build.VERSION.SDK_INT >= 29) {
                         de0Var2.getImageReceiver().P(BlendMode.SOFT_LIGHT);
                     }
                 } else {
-                    de0Var2.getImageReceiver().W(hh7Var2.k);
+                    de0Var2.getImageReceiver().W(ih7Var2.k);
                 }
-                U0 = hh7.g(i4, i3, i2, yvcVar.e);
+                U0 = ih7.g(i4, i3, i2, yvcVar.e);
             } else {
-                de0Var2.setBackground(new hh7(yvcVar.b, yvcVar.c, 0, 0, true, false));
+                de0Var2.setBackground(new ih7(yvcVar.b, yvcVar.c, 0, 0, true, false));
                 U0 = hl.U0(i4, false);
             }
             int i5 = U0;

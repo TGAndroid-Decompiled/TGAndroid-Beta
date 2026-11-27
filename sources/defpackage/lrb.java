@@ -1,5 +1,5 @@
 package defpackage;
-public final class lrb implements sf7 {
+public final class lrb implements tf7 {
     public final long a;
 
     public lrb(long j) {

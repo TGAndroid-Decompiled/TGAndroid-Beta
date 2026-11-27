@@ -33,7 +33,7 @@ public final class r81 implements View.OnClickListener {
         Object obj = this.b;
         switch (b) {
             case 0:
-                ((ze7) obj).run();
+                ((bf7) obj).run();
                 return;
             case 1:
                 e29 e29Var = (e29) ((jo0) obj).e;
@@ -98,7 +98,7 @@ public final class r81 implements View.OnClickListener {
                 b1Var.show();
                 return;
             case 5:
-                ((hbb) obj).B();
+                ((ibb) obj).B();
                 return;
             case 6:
                 ((o97) obj).run();

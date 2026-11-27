@@ -16,7 +16,7 @@ public final class a3f implements vw8 {
             case 0:
                 return f5cVar.a("FIREBASE_ML_SDK", new n34("json"), z3f.y);
             case 1:
-                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), rg7.x);
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), sg7.x);
             case 2:
                 return f5cVar.a("FIREBASE_ML_SDK", new n34("json"), uif.y);
             case 3:
@@ -28,7 +28,7 @@ public final class a3f implements vw8 {
             case 6:
                 return f5cVar.a("FIREBASE_ML_SDK", new n34("json"), sae.y);
             default:
-                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), rg7.E);
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), sg7.E);
         }
     }
 }

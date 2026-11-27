@@ -14,9 +14,9 @@ public final class gg0 implements fg0 {
             xkaVar.j(null, xkaVar.E);
             return;
         }
-        k09 k09Var = xkaVar.u;
-        if (k09Var != null) {
-            ((l05) k09Var.b).onConnectionFailed(ws2Var);
+        l09 l09Var = xkaVar.u;
+        if (l09Var != null) {
+            ((l05) l09Var.b).onConnectionFailed(ws2Var);
         }
     }
 }

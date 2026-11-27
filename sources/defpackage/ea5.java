@@ -200,9 +200,9 @@ public final class ea5 implements Runnable {
                 return;
             case 26:
                 c66 c66Var = (c66) obj;
-                f09 f09Var = c66Var.d;
-                if (f09Var != null) {
-                    c66Var.h0(f09Var.getCurrentLink());
+                g09 g09Var = c66Var.d;
+                if (g09Var != null) {
+                    c66Var.h0(g09Var.getCurrentLink());
                     return;
                 }
                 return;

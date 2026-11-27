@@ -231,7 +231,7 @@ public final class zg2 implements j63, nc2, op9, f84, g84, OnFailureListener {
     @Override
     public final void p() {
         ProfileActivity profileActivity = (ProfileActivity) this.c;
-        SharedPreferences sharedPreferences = uc7.s1(ProfileActivity.V0(profileActivity)).W3;
+        SharedPreferences sharedPreferences = uc7.s1(ProfileActivity.V0(profileActivity)).X3;
         StringBuilder sb = new StringBuilder("sound_enabled_");
         long j = this.b;
         sb.append(ip7.p(j, profileActivity.g1, false));
@@ -314,12 +314,12 @@ public final class zg2 implements j63, nc2, op9, f84, g84, OnFailureListener {
         }
     }
 
-    public final void u(gk7 gk7Var) {
+    public final void u(hk7 hk7Var) {
         this.b++;
-        Thread thread = new Thread(gk7Var);
+        Thread thread = new Thread(hk7Var);
         thread.setDaemon(true);
         thread.setName("NanoHttpd Request Processor (#" + this.b + ")");
-        ((List) this.c).add(gk7Var);
+        ((List) this.c).add(hk7Var);
         thread.start();
     }
 

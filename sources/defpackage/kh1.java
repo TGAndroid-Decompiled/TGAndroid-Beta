@@ -24,9 +24,9 @@ public final class kh1 extends FrameLayout implements snb {
         } else {
             uc7 s1 = uc7.s1(i);
             if (z) {
-                lc7Var = s1.E3;
-            } else {
                 lc7Var = s1.F3;
+            } else {
+                lc7Var = s1.G3;
             }
             if (lc7Var != null) {
                 kc7Var = lc7Var.d(i2);

@@ -28,7 +28,7 @@ public final class k4c implements Runnable {
                     for (int i = 0; i < arrayList.size(); i++) {
                         r47 r47Var = (r47) arrayList.get(i);
                         if (r47Var != null && r47Var.k != null) {
-                            arrayList2.add(a5cVar.getMessagesStorage().c0(r47Var.e1(), r47.B0(r47Var.k)));
+                            arrayList2.add(a5cVar.getMessagesStorage().e0(r47Var.e1(), r47.B0(r47Var.k)));
                         } else {
                             arrayList2.add(null);
                         }

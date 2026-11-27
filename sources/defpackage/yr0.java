@@ -109,13 +109,13 @@ public final class yr0 implements View.OnClickListener {
                                 }
                                 Object obj4 = arrayList2.get(i6);
                                 i6++;
-                                if7 if7Var = (if7) obj4;
-                                long j2 = if7Var.a;
-                                long j3 = if7Var.b;
+                                jf7 jf7Var = (jf7) obj4;
+                                long j2 = jf7Var.a;
+                                long j3 = jf7Var.b;
                                 if (!wf3.B(j2)) {
                                     int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                                     int i8 = i3;
-                                    if (i7 != 0 && (f = uc7.s1(i8).g4.f(-j2, j3)) != null && (message = f.topicStartMessage) != null) {
+                                    if (i7 != 0 && (f = uc7.s1(i8).h4.f(-j2, j3)) != null && (message = f.topicStartMessage) != null) {
                                         r47Var = new r47(i8, message, false, false);
                                         r47Var.p = true;
                                     }

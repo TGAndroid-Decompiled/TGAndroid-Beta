@@ -47,7 +47,7 @@ public final class ou1 {
         TLRPC.Message message = r47Var.k;
         if (message != null) {
             if (message.message != null || (message != null && message.rich_message != null)) {
-                return b(0, Math.min(uc7.s1(r47Var.K1).k4.V1.f(), d(r47Var)), r47Var);
+                return b(0, Math.min(uc7.s1(r47Var.K1).l4.V1.f(), d(r47Var)), r47Var);
             }
             return null;
         }
@@ -124,7 +124,7 @@ public final class ou1 {
                     }
                 }
                 this.b = 0;
-                this.c = Math.min(uc7.s1(r47Var.K1).k4.V1.f(), d(r47Var));
+                this.c = Math.min(uc7.s1(r47Var.K1).l4.V1.f(), d(r47Var));
                 this.f = true;
                 return;
             }

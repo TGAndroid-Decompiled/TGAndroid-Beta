@@ -1,3 +1,3 @@
 package defpackage;
-public interface rj1 extends sf7 {
+public interface rj1 extends tf7 {
 }

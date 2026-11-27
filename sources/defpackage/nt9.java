@@ -27,7 +27,7 @@ public final class nt9 {
 
     public nt9(int i) {
         this.a = i;
-        this.b = uc7.s1(i).X3.getBoolean("savedMessagesUnsupported", true);
+        this.b = uc7.s1(i).Y3.getBoolean("savedMessagesUnsupported", true);
     }
 
     public static ArrayList d(ArrayList arrayList) {
@@ -101,11 +101,11 @@ public final class nt9 {
         int i = this.a;
         if (!z) {
             this.o = true;
-            jf7 Y = jf7.Y(i);
-            Y.a.c(new en9(this, Y, (byte) 9));
+            kf7 a0 = kf7.a0(i);
+            a0.a.c(new dn9(this, a0, (byte) 10));
         }
         this.b = true;
-        uc7.s1(i).X3.edit().remove("savedMessagesUnsupported").apply();
+        uc7.s1(i).Y3.edit().remove("savedMessagesUnsupported").apply();
     }
 
     public final void b() {
@@ -199,8 +199,8 @@ public final class nt9 {
                 if (!z2) {
                     this.k = true;
                     long e = yac.h(i).e();
-                    jf7 Y = jf7.Y(i);
-                    Y.a.c(new y09(this, Y, e, lt9Var, (byte) 2));
+                    kf7 a0 = kf7.a0(i);
+                    a0.a.c(new z09(this, a0, e, lt9Var, (byte) 2));
                 }
             } else if (!z) {
                 this.d = true;
@@ -241,7 +241,7 @@ public final class nt9 {
                     tL_messages_getSavedDialogs.hash = r3;
                     tL_messages_getSavedDialogs.hash = ls6.r(r3, mt9Var2.c());
                 }
-                ConnectionsManager.getInstance(i).sendRequest(tL_messages_getSavedDialogs, new ol7(this, arrayList2, (byte) 20));
+                ConnectionsManager.getInstance(i).sendRequest(tL_messages_getSavedDialogs, new pl7(this, arrayList2, (byte) 20));
             }
         }
     }
@@ -381,7 +381,7 @@ public final class nt9 {
         arrayList3.addAll(arrayList4);
         int i5 = this.a;
         jn7.f(i5).k(jn7.i3, new Object[0]);
-        if (!e() && uc7.s1(i5).P3) {
+        if (!e() && uc7.s1(i5).Q3) {
             uc7.s1(i5).b5(false);
         }
     }
@@ -403,9 +403,9 @@ public final class nt9 {
         }
         int i = this.a;
         if (yac.h(i).p()) {
-            f = uc7.s1(i).k4.q2.f();
+            f = uc7.s1(i).l4.q2.f();
         } else {
-            f = uc7.s1(i).k4.p2.f();
+            f = uc7.s1(i).l4.p2.f();
         }
         if (arrayList2.size() <= f && !j(d, arrayList2)) {
             if (z2) {

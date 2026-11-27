@@ -105,40 +105,40 @@ public final class efa implements Runnable {
                 k3bVar.l((Bitmap) obj2, this.c, k3bVar.U, k3bVar.V, (ea8) obj);
                 return;
             case 6:
-                u5b u5bVar = (u5b) obj3;
+                v5b v5bVar = (v5b) obj3;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) obj;
-                AbstractSet abstractSet = u5bVar.k;
-                int i5 = u5bVar.f;
-                AbstractSet abstractSet2 = u5bVar.l;
-                u5bVar.A = -1;
+                AbstractSet abstractSet = v5bVar.k;
+                int i5 = v5bVar.f;
+                AbstractSet abstractSet2 = v5bVar.l;
+                v5bVar.A = -1;
                 StringBuilder sb = new StringBuilder("StoriesList ");
-                byte b4 = u5bVar.e;
+                byte b4 = v5bVar.e;
                 sb.append((int) b4);
                 sb.append("{");
-                long j = u5bVar.d;
+                long j = v5bVar.d;
                 sb.append(j);
                 sb.append("} loaded {");
                 sb.append(c6b.k0(arrayList2));
                 uh9.s("}", sb);
-                ArrayList arrayList3 = u5bVar.g;
+                ArrayList arrayList3 = v5bVar.g;
                 arrayList3.clear();
                 arrayList3.addAll(tL_stories_stories.pinned_to_top);
-                int i6 = u5bVar.c;
+                int i6 = v5bVar.c;
                 uc7.s1(i6).j4(tL_stories_stories.users, false);
                 uc7.s1(i6).c4(tL_stories_stories.chats, false);
-                jf7.Y(i6).j1(tL_stories_stories.users, tL_stories_stories.chats, true, true);
-                u5bVar.u = false;
-                u5bVar.s = tL_stories_stories.count;
+                kf7.a0(i6).n1(tL_stories_stories.users, tL_stories_stories.chats, true, true);
+                v5bVar.u = false;
+                v5bVar.s = tL_stories_stories.count;
                 for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-                    u5bVar.t((r47) arrayList2.get(i7), false);
+                    v5bVar.t((r47) arrayList2.get(i7), false);
                 }
-                if (abstractSet2.size() >= u5bVar.s) {
+                if (abstractSet2.size() >= v5bVar.s) {
                     z = true;
                 } else {
                     z = false;
                 }
-                u5bVar.r = z;
+                v5bVar.r = z;
                 if (!z) {
                     if (i5 <= 0) {
                         if (i2 == -1) {
@@ -154,14 +154,14 @@ public final class efa implements Runnable {
                             }
                             i2 = -1;
                         }
-                        int n = u5bVar.n();
+                        int n = v5bVar.n();
                         Iterator it = abstractSet.iterator();
                         while (it.hasNext()) {
                             Integer num2 = (Integer) it.next();
                             int intValue2 = num2.intValue();
                             if (!abstractSet2.contains(num2) && intValue2 >= i2 && intValue2 <= n) {
                                 it.remove();
-                                u5bVar.u(intValue2, false);
+                                v5bVar.u(intValue2, false);
                             }
                         }
                     }
@@ -172,22 +172,22 @@ public final class efa implements Runnable {
                         int intValue3 = num3.intValue();
                         if (!abstractSet2.contains(num3)) {
                             it2.remove();
-                            u5bVar.u(intValue3, false);
+                            v5bVar.u(intValue3, false);
                         }
                     }
                 }
-                u5bVar.d(true);
-                if (u5bVar.r) {
-                    HashMap hashMap = u5b.B;
+                v5bVar.d(true);
+                if (v5bVar.r) {
+                    HashMap hashMap = v5b.B;
                     if (hashMap == null) {
                         hashMap = new HashMap();
-                        u5b.B = hashMap;
+                        v5b.B = hashMap;
                     }
                     hashMap.put(Integer.valueOf(Objects.hash(Integer.valueOf(i6), Integer.valueOf(b4), Long.valueOf(j), Integer.valueOf(i5))), Long.valueOf(System.currentTimeMillis()));
                 } else {
-                    u5bVar.w();
+                    v5bVar.w();
                 }
-                u5bVar.x();
+                v5bVar.x();
                 return;
             case 7:
                 zeb zebVar = (zeb) obj3;
@@ -283,10 +283,10 @@ public final class efa implements Runnable {
                 zqb zqbVar = (zqb) obj3;
                 Bitmap bitmap = (Bitmap) obj;
                 Drawable drawable = ((ne2) obj2).b;
-                if (drawable instanceof hh7) {
-                    hh7 hh7Var = (hh7) drawable;
-                    hh7Var.r(i2, zqb.e(bitmap));
-                    hh7Var.s(zqbVar.M);
+                if (drawable instanceof ih7) {
+                    ih7 ih7Var = (ih7) drawable;
+                    ih7Var.r(i2, zqb.e(bitmap));
+                    ih7Var.s(zqbVar.M);
                     zqbVar.invalidate();
                     return;
                 }

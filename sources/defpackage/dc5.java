@@ -39,7 +39,7 @@ public final class dc5 extends wh1 {
 
     @Override
     public final int D0() {
-        return getMessagesController().k4.g2.f();
+        return getMessagesController().l4.g2.f();
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class dc5 extends wh1 {
 
     @Override
     public final int J0() {
-        return getMessagesController().k4.k2.f();
+        return getMessagesController().l4.k2.f();
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class dc5 extends wh1 {
 
     @Override
     public final int L0() {
-        return getMessagesController().k4.l2.f();
+        return getMessagesController().l4.l2.f();
     }
 
     @Override
@@ -79,7 +79,7 @@ public final class dc5 extends wh1 {
 
     @Override
     public final int N0() {
-        return getMessagesController().k4.m2.f();
+        return getMessagesController().l4.m2.f();
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class dc5 extends wh1 {
 
     @Override
     public final int S0() {
-        return getMessagesController().k4.j2.f();
+        return getMessagesController().l4.j2.f();
     }
 
     @Override

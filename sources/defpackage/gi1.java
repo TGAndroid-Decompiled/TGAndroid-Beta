@@ -61,7 +61,7 @@ public final class gi1 extends e implements fn7, yn5 {
     public boolean c0;
     public iu3 d;
     public boolean d0;
-    public rca e;
+    public sca e;
     public TLRPC.TL_chatInviteExported e0;
     public mb0 f;
     public boolean f0;
@@ -585,9 +585,9 @@ public final class gi1 extends e implements fn7, yn5 {
             if (bool == null || !bool.booleanValue()) {
                 gi1Var.H.addView(gi1Var.T, tre.o(-1, -2));
             }
-            rca rcaVar = new rca(context, (uh9) null);
-            gi1Var.e = rcaVar;
-            gi1Var.M.addView(rcaVar, tre.o(-1, -2));
+            sca scaVar = new sca(context, (uh9) null);
+            gi1Var.e = scaVar;
+            gi1Var.M.addView(scaVar, tre.o(-1, -2));
             LinearLayout linearLayout5 = new LinearLayout(context);
             gi1Var.O = linearLayout5;
             linearLayout5.setOrientation(i4);

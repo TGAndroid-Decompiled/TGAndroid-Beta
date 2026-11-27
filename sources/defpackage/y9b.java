@@ -15,7 +15,7 @@ public abstract class y9b extends View {
         u9b u9bVar;
         if (c8bVar != null) {
             try {
-                String string = uc7.s1(i).X3.getString("story_privacy2", null);
+                String string = uc7.s1(i).Y3.getString("story_privacy2", null);
                 if (string == null) {
                     u9bVar = new u9b();
                 } else {
@@ -31,8 +31,8 @@ public abstract class y9b extends View {
                             hashSet.addAll(arrayList);
                         }
                         if (!hashSet.isEmpty()) {
-                            jf7 Y = jf7.Y(i);
-                            Y.a.c(new a39(Y, hashSet, i, (byte) 20));
+                            kf7 a0 = kf7.a0(i);
+                            a0.a.c(new a39(a0, hashSet, i, (byte) 20));
                         }
                     }
                 }
@@ -44,7 +44,7 @@ public abstract class y9b extends View {
             c8bVar.F0.clear();
             c8bVar.F0.addAll(c8bVar.E0.b);
             if (yac.h(i).p()) {
-                c8bVar.I0 = uc7.s1(i).X3.getInt("story_period", 86400);
+                c8bVar.I0 = uc7.s1(i).Y3.getInt("story_period", 86400);
             } else {
                 c8bVar.I0 = 86400;
             }

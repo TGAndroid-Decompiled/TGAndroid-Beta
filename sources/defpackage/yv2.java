@@ -99,9 +99,9 @@ public final class yv2 implements xv2, aw2 {
         CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) this.e;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
-            il7 il7Var = (il7) it.next();
-            if (il7Var.a.get() == null) {
-                copyOnWriteArrayList.remove(il7Var);
+            jl7 jl7Var = (jl7) it.next();
+            if (jl7Var.a.get() == null) {
+                copyOnWriteArrayList.remove(jl7Var);
             }
         }
         synchronized (this.f) {
@@ -112,8 +112,8 @@ public final class yv2 implements xv2, aw2 {
             this.c = i;
             Iterator it2 = ((CopyOnWriteArrayList) this.e).iterator();
             while (it2.hasNext()) {
-                il7 il7Var2 = (il7) it2.next();
-                il7Var2.b.execute(new fe7(il7Var2, (byte) 5));
+                jl7 jl7Var2 = (jl7) it2.next();
+                jl7Var2.b.execute(new ge7(jl7Var2, (byte) 5));
             }
         }
     }
@@ -190,7 +190,7 @@ public final class yv2 implements xv2, aw2 {
         this.e = new CopyOnWriteArrayList();
         this.f = new Object();
         this.c = (byte) 0;
-        a.execute(new t87(this, context, (byte) 26));
+        a.execute(new t87(this, context, (byte) 27));
     }
 
     public yv2() {

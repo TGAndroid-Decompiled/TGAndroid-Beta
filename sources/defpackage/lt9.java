@@ -32,8 +32,8 @@ public final class lt9 implements Runnable {
                 if (!nt9Var.o) {
                     nt9Var.o = true;
                     ArrayList arrayList = new ArrayList(nt9Var.j);
-                    jf7 Y = jf7.Y(nt9Var.a);
-                    Y.a.c(new jr9(nt9Var, Y, arrayList, (byte) 1));
+                    kf7 a0 = kf7.a0(nt9Var.a);
+                    a0.a.c(new jr9(nt9Var, a0, arrayList, (byte) 1));
                     return;
                 }
                 return;

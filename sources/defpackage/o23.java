@@ -98,7 +98,7 @@ public final class o23 extends q23 {
         ih0 ih0Var = new ih0(hh0Var, eh0Var, a.l, false, 0, gh0Var2, fh0Var2, z);
         wjb b = xjb.b();
         b.c = new a94[]{new a94("auth_api_credentials_begin_sign_in", 8L)};
-        b.a = new i09(a, ih0Var);
+        b.a = new j09(a, ih0Var);
         b.b = false;
         b.d = (char) 1553;
         a.e(0, b.a()).addOnSuccessListener(new ht2(new m23(cancellationSignal, this, (byte) 0), (byte) 8)).addOnFailureListener(new q72(this, cancellationSignal, (byte) 13));

@@ -15,7 +15,7 @@ public final class vzb implements yu8 {
         zzb zzbVar = this.b.a;
         TLRPC.TL_forumTopic tL_forumTopic = this.a;
         zzbVar.Y(tL_forumTopic.id);
-        hl.d3(new bcb(this, tL_forumTopic, (byte) 16), 300L);
+        hl.d3(new hab(this, tL_forumTopic, (byte) 17), 300L);
     }
 
     @Override

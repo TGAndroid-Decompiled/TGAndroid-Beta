@@ -6,7 +6,7 @@ public interface ka1 {
 
     void onDismiss();
 
-    void p0(ei7 ei7Var);
+    void p0(fi7 fi7Var);
 
     void q(String str);
 }

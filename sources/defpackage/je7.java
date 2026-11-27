@@ -1,17 +1,43 @@
 package defpackage;
 public final class je7 implements Runnable {
     public final byte a;
-    public final jf7 b;
-    public final boolean c;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final Object f;
 
-    public je7(jf7 jf7Var, boolean z, byte b) {
+    public je7(Object obj, int i, int i2, int i3, int i4, byte b) {
         this.a = b;
-        this.b = jf7Var;
-        this.c = z;
+        this.f = obj;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = i4;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.je7.run():void");
+        byte b = this.a;
+        int i = this.e;
+        int i2 = this.d;
+        int i3 = this.c;
+        int i4 = this.b;
+        Object obj = this.f;
+        switch (b) {
+            case 0:
+                ((kf7) obj).C1(i4, i3, i2, i);
+                return;
+            default:
+                bnb bnbVar = (bnb) obj;
+                bnbVar.J = null;
+                bnbVar.h = i4;
+                bnbVar.n = i3;
+                bnbVar.e = i2;
+                bnbVar.f = i;
+                bnbVar.g();
+                bnbVar.requestLayout();
+                return;
+        }
     }
 }

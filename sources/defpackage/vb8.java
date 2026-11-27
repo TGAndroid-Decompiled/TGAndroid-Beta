@@ -26,7 +26,7 @@ public final class vb8 extends AnimatorListenerAdapter {
             case 0:
                 photoViewer.B3 = false;
                 photoViewer.i4.run();
-                hl.d3(new h68(this, view, (byte) 7), 100L);
+                hl.d3(new a58(this, view, (byte) 8), 100L);
                 return;
             default:
                 photoViewer.B3 = false;

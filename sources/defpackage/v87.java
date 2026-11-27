@@ -45,7 +45,7 @@ public final class v87 implements Runnable {
                 if (X1 != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(X1);
-                    uc7Var.getMessagesStorage().j1(arrayList, null, false, true);
+                    uc7Var.getMessagesStorage().n1(arrayList, null, false, true);
                     if (tL_photos_photo.photo instanceof TLRPC.TL_photo) {
                         TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                         X1.photo = tL_userProfilePhoto;
@@ -62,13 +62,13 @@ public final class v87 implements Runnable {
                     TLRPC.UserFull Y1 = uc7Var.Y1(j);
                     if (Y1 != null) {
                         Y1.profile_photo = tL_photos_photo.photo;
-                        uc7Var.getMessagesStorage().g2(Y1, false);
+                        uc7Var.getMessagesStorage().l2(Y1, false);
                     }
                     uc7Var.getUserConfig().f().photo = X1.photo;
                     uc7Var.i4(X1, false, false);
                     uc7Var.getNotificationCenter().k(47, new Object[0]);
                     jn7 notificationCenter = uc7Var.getNotificationCenter();
-                    int i = uc7.r5;
+                    int i = uc7.s5;
                     notificationCenter.k(2, 1050111);
                     uc7Var.getNotificationCenter().k(2, 2);
                     uc7Var.getUserConfig().u(true);

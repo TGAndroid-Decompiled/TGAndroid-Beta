@@ -690,7 +690,7 @@ public final class ve9 implements qy9, hj, hf9, cg9, aea, nr7, ifc, n7a, dia, j6
     }
 
     public final hba c0(JSONObject jSONObject) {
-        yba rj2Var;
+        zba rj2Var;
         int i = jSONObject.getInt("settings_version");
         if (i != 3) {
             Log.e("FirebaseCrashlytics", "Could not determine SettingsJsonTransform for settings version " + i + ". Using default settings values.", null);

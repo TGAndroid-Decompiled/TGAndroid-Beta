@@ -9,15 +9,15 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 public final class q0c {
     public final Context a;
-    public final tf7 b;
+    public final uf7 b;
     public final ko9 c;
     public final ScheduledThreadPoolExecutor e;
     public final o0c g;
     public final qs d = new vla(0);
     public boolean f = false;
 
-    public q0c(tf7 tf7Var, o0c o0cVar, ko9 ko9Var, Context context, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
-        this.b = tf7Var;
+    public q0c(uf7 uf7Var, o0c o0cVar, ko9 ko9Var, Context context, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
+        this.b = uf7Var;
         this.g = o0cVar;
         this.c = ko9Var;
         this.a = context;

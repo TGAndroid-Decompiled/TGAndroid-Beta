@@ -248,11 +248,11 @@ public final class d6a implements Runnable {
                     ArrayList arrayList10 = arrayList9;
                     i = 2;
                     if (!arrayList10.isEmpty()) {
-                        r7aVar.getMessagesStorage().c1(arrayList10, i11);
+                        r7aVar.getMessagesStorage().g1(arrayList10, i11);
                     }
                     char c2 = 3;
                     if (zh6Var5 != null) {
-                        r7aVar.getMessagesStorage().X0(null, null, zh6Var5, i11);
+                        r7aVar.getMessagesStorage().b1(null, null, zh6Var5, i11);
                         jn7 notificationCenter = r7aVar.getNotificationCenter();
                         Object[] objArr = new Object[4];
                         i2 = 0;
@@ -318,7 +318,7 @@ public final class d6a implements Runnable {
                             if (!z8) {
                                 Integer num2 = (Integer) r7aVar.getMessagesController().Q.get(Long.valueOf(message.dialog_id));
                                 if (num2 == null) {
-                                    num2 = Integer.valueOf(r7aVar.getMessagesStorage().S(message.dialog_id, message.out));
+                                    num2 = Integer.valueOf(r7aVar.getMessagesStorage().U(message.dialog_id, message.out));
                                     r7aVar.getMessagesController().Q.put(Long.valueOf(message.dialog_id), num2);
                                 }
                                 if (num2.intValue() < message.id) {
@@ -405,7 +405,7 @@ public final class d6a implements Runnable {
                     while (i15 < arrayList6.size()) {
                         r47 r47Var3 = (r47) arrayList6.get(i15);
                         TLRPC.Message message8 = r47Var3.k;
-                        r7aVar.getMessagesStorage().K0(r4, message8);
+                        r7aVar.getMessagesStorage().N0(r4, message8);
                         int i16 = i;
                         message8.send_state = i16;
                         if (r4 == 0 && tL_error != null && (str = tL_error.text) != null && str.startsWith("ALLOW_PAYMENT_REQUIRED_")) {
@@ -413,7 +413,7 @@ public final class d6a implements Runnable {
                             message8.errorAllowedPriceStars = jxa.l(tLObject2);
                             message8.errorNewPriceStars = Long.parseLong(tL_error.text.substring(23));
                             jxa.v(r7aVar.currentAccount, false).e0(Arrays.asList(r47Var3));
-                            r7aVar.getMessagesStorage().U1(r47.B0(message8), message8);
+                            r7aVar.getMessagesStorage().Z1(r47.B0(message8), message8);
                         }
                         r7aVar.getNotificationCenter().k(23, Integer.valueOf(message8.id));
                         r7aVar.c0(message8.id);
@@ -439,8 +439,8 @@ public final class d6a implements Runnable {
                     message9.send_state = 0;
                     ArrayList arrayList15 = new ArrayList();
                     arrayList15.add(message9);
-                    r7aVar4.getMessagesStorage().g1(arrayList15, false, true, false, 0, false, 0, 0L);
-                    qyb qybVar = r7aVar4.getMessagesController().g4;
+                    r7aVar4.getMessagesStorage().k1(arrayList15, false, true, false, 0, false, 0, 0L);
+                    qyb qybVar = r7aVar4.getMessagesController().h4;
                     TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) qybVar.e.f(qyb.p(message9.id, -message9.dialog_id));
                     if (tL_forumTopic != null) {
                         tL_forumTopic.topMessage = message9;

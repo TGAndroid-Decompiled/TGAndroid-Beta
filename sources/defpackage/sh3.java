@@ -633,7 +633,7 @@ public final class sh3 extends cma {
     }
 
     @Override
-    public final boolean q(f89 f89Var, f89 f89Var2, l09 l09Var, int i, int i2, int i3, int i4) {
+    public final boolean q(f89 f89Var, f89 f89Var2, m09 m09Var, int i, int i2, int i3, int i4) {
         View view = f89Var.a;
         if (view instanceof of3) {
             E(f89Var);
@@ -656,7 +656,7 @@ public final class sh3 extends cma {
     }
 
     @Override
-    public final boolean r(f89 f89Var, l09 l09Var, int i, int i2, int i3, int i4) {
+    public final boolean r(f89 f89Var, m09 m09Var, int i, int i2, int i3, int i4) {
         View view = f89Var.a;
         int translationX = i + ((int) view.getTranslationX());
         View view2 = f89Var.a;
@@ -691,7 +691,7 @@ public final class sh3 extends cma {
     }
 
     @Override
-    public final void s(f89 f89Var, l09 l09Var) {
+    public final void s(f89 f89Var, m09 m09Var) {
         E(f89Var);
         this.o.add(f89Var);
         if (!this.A) {

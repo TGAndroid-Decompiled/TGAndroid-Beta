@@ -1,54 +1,38 @@
 package defpackage;
 
-import android.text.TextUtils;
-import org.json.JSONObject;
-public final class d9c {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final int d;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.ui.Components.UndoView;
+public final class d9c extends LinkMovementMethod {
+    public final UndoView a;
 
-    public d9c(String str) {
-        int i;
-        this.a = str;
-        JSONObject jSONObject = new JSONObject(str);
-        this.b = jSONObject.optString("productId");
-        String optString = jSONObject.optString("type");
-        this.c = optString;
-        if (jSONObject.has("statusCode")) {
-            i = jSONObject.optInt("statusCode");
-        } else {
-            i = 0;
-        }
-        this.d = i;
-        if (!TextUtils.isEmpty(optString)) {
-            jSONObject.optString("serializedDocid");
-        } else {
-            lq5.j("Product type cannot be empty.");
-            throw null;
-        }
+    public d9c(UndoView undoView) {
+        this.a = undoView;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof d9c)) {
+    @Override
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() == 0 && ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) == null || characterStyleArr.length == 0)) {
+                return false;
+            }
+            if (motionEvent.getAction() == 1) {
+                CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                    this.a.b(characterStyleArr2[0]);
+                }
+                Selection.removeSelection(spannable);
+                return true;
+            }
+            return super.onTouchEvent(textView, spannable, motionEvent);
+        } catch (Exception e) {
+            cc4.g(e, true);
             return false;
         }
-        return TextUtils.equals(this.a, ((d9c) obj).a);
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("UnfetchedProduct{productId='");
-        sb.append(this.b);
-        sb.append("', productType='");
-        sb.append(this.c);
-        sb.append("', statusCode=");
-        return uh9.l(sb, this.d, "}");
     }
 }

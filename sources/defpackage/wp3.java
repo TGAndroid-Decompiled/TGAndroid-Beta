@@ -29,7 +29,7 @@ public final class wp3 extends c79 {
         al8Var.q = 1.0f;
         uc7 s1 = uc7.s1(i);
         String M0 = ob6.M0(2131749133, null);
-        hr hrVar = s1.k4;
+        hr hrVar = s1.l4;
         arrayList.add(new xp3(hrVar.t3.f(), hrVar.u3.f(), M0, ob6.a0(null, null, 2131749134, Integer.valueOf(hrVar.u3.f()))));
         String M02 = ob6.M0(2131746975, null);
         ds2 ds2Var = hrVar.m1;

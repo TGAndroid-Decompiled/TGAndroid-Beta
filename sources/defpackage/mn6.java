@@ -192,7 +192,7 @@ public final class mn6 implements Runnable {
                 try {
                     ls6Var2.getMessagesStorage().b.executeFast("DELETE FROM chat_hints WHERE 1").stepThis().dispose();
                     ls6Var2.getMessagesStorage().b.beginTransaction();
-                    ls6Var2.getMessagesStorage().j1(tL_contacts_topPeers.users, tL_contacts_topPeers.chats, false, false);
+                    ls6Var2.getMessagesStorage().n1(tL_contacts_topPeers.users, tL_contacts_topPeers.chats, false, false);
                     SQLitePreparedStatement executeFast = ls6Var2.getMessagesStorage().b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
                     for (int i5 = 0; i5 < tL_contacts_topPeers.categories.size(); i5++) {
                         TLRPC.TL_topPeerCategoryPeers tL_topPeerCategoryPeers = tL_contacts_topPeers.categories.get(i5);
@@ -416,9 +416,9 @@ public final class mn6 implements Runnable {
             case 19:
                 uc7 uc7Var = (uc7) this.b;
                 TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) this.c;
-                long[] X12 = uc7Var.getMessagesStorage().X1(tL_updateMessageID.random_id, 0L, null, tL_updateMessageID.id, 0, -1, 0);
-                if (X12 != null) {
-                    hl.c3(new yg6(uc7Var, X12, tL_updateMessageID, (byte) 18));
+                long[] c2 = uc7Var.getMessagesStorage().c2(tL_updateMessageID.random_id, 0L, null, tL_updateMessageID.id, 0, -1, 0);
+                if (c2 != null) {
+                    hl.c3(new yg6(uc7Var, c2, tL_updateMessageID, (byte) 18));
                     return;
                 }
                 return;

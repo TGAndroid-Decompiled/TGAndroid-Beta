@@ -176,7 +176,7 @@ public final class mo2 implements ncc, nr7, occ {
                         if (xc2.c0(chat)) {
                             if (xc2.a(chat)) {
                                 zu1 zu1Var2 = new zu1(bundle);
-                                ro4.a(zu1Var2, if7.a(j, uc7.s1(xo2Var.a).X3.getLong(qu6.n(chat.id, "forumlasttopic"), 1L)));
+                                ro4.a(zu1Var2, jf7.a(j, uc7.s1(xo2Var.a).Y3.getLong(qu6.n(chat.id, "forumlasttopic"), 1L)));
                                 eVar.presentFragment(zu1Var2);
                             } else {
                                 eVar.presentFragment(new tzb(bundle));

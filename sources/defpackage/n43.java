@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.List;
 public final class n43 {
-    public static final d51 c = new d51(new p31((byte) 2), pk7.b);
+    public static final d51 c = new d51(new p31((byte) 2), qk7.b);
     public static final n43 d;
     public static final String e;
     public static final String f;

@@ -51,7 +51,7 @@ public final class fac extends Drawable {
         this.g = new RectF();
         v41 v41Var = new v41((View) null);
         this.h = v41Var;
-        this.i = new dj2(new k09(this, (byte) 18));
+        this.i = new dj2(new l09(this, (byte) 18));
         this.s = hl.L(62.33f);
         this.t = hl.L(12.0f);
         this.u = hl.L(30.0f);

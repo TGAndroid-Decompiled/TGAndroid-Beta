@@ -18,15 +18,15 @@ public abstract class xfe {
             i2++;
             fq2 fq2Var = (fq2) obj;
             r53 r53Var = new r53(fq2Var);
-            for (h09 h09Var : fq2Var.b) {
+            for (i09 i09Var : fq2Var.b) {
                 boolean z2 = fq2Var.e;
-                s53 s53Var = new s53(h09Var, z2);
+                s53 s53Var = new s53(i09Var, z2);
                 if (!hashMap.containsKey(s53Var)) {
                     hashMap.put(s53Var, new HashSet());
                 }
                 Set set = (Set) hashMap.get(s53Var);
                 if (!set.isEmpty() && !z2) {
-                    throw new IllegalArgumentException("Multiple components provide " + h09Var + ".");
+                    throw new IllegalArgumentException("Multiple components provide " + i09Var + ".");
                 }
                 set.add(r53Var);
             }
@@ -35,13 +35,13 @@ public abstract class xfe {
             for (r53 r53Var2 : set2) {
                 for (qe3 qe3Var : r53Var2.a.c) {
                     if (qe3Var.c == 0) {
-                        h09 h09Var2 = qe3Var.a;
+                        i09 i09Var2 = qe3Var.a;
                         if (qe3Var.b == 2) {
                             z = true;
                         } else {
                             z = false;
                         }
-                        Set<r53> set3 = (Set) hashMap.get(new s53(h09Var2, z));
+                        Set<r53> set3 = (Set) hashMap.get(new s53(i09Var2, z));
                         if (set3 != null) {
                             for (r53 r53Var3 : set3) {
                                 r53Var2.b.add(r53Var3);

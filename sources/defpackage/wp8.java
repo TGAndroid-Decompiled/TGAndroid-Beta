@@ -6,7 +6,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.ProfileActivity;
-public final class wp8 implements bf7, bu2 {
+public final class wp8 implements cf7, bu2 {
     public final ProfileActivity a;
     public final TLRPC.User b;
 

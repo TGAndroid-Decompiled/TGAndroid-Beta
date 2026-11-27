@@ -105,7 +105,7 @@ public final class usa implements icc {
                                     return;
                                 } else if (tL_error != null) {
                                     if (tL_error.text.startsWith("STARGIFT_RESELL_TOO_EARLY_")) {
-                                        hl.c3(new cq6(wuaVar2, Long.parseLong(tL_error.text.substring(26)), runnable2, (byte) 25));
+                                        hl.c3(new cq6(wuaVar2, Long.parseLong(tL_error.text.substring(26)), runnable2, (byte) 26));
                                         return;
                                     } else {
                                         hl.c3(new Runnable() {
@@ -362,7 +362,7 @@ public final class usa implements icc {
                                     return;
                                 } else if (tL_error != null) {
                                     if (tL_error.text.startsWith("STARGIFT_RESELL_TOO_EARLY_")) {
-                                        hl.c3(new cq6(wuaVar22, Long.parseLong(tL_error.text.substring(26)), runnable22, (byte) 25));
+                                        hl.c3(new cq6(wuaVar22, Long.parseLong(tL_error.text.substring(26)), runnable22, (byte) 26));
                                         return;
                                     } else {
                                         hl.c3(new Runnable() {

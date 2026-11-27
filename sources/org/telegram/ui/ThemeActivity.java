@@ -246,10 +246,10 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.e implements fn7 {
 
     public static void H0(final int i, final vnb vnbVar, final pcc pccVar, final Context context) {
         final uc7 s1 = uc7.s1(i);
-        final String str = s1.k4.X2.f;
-        String str2 = s1.k4.Y2.f;
-        final int f = s1.k4.N0.f();
-        if (!TextUtils.isEmpty(str) && s1.k4.l.f) {
+        final String str = s1.l4.X2.f;
+        String str2 = s1.l4.Y2.f;
+        final int f = s1.l4.N0.f();
+        if (!TextUtils.isEmpty(str) && s1.l4.l.f) {
             nx0 h = uh9.h(1, vnbVar, context, false);
             LinearLayout j = uh9.j(context, 1);
             j.setPadding(hl.L(12.0f), 0, hl.L(12.0f), 0);
@@ -598,7 +598,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.e implements fn7 {
             this.s.e(3, 2131232121, ob6.M0(2131751184, "EditThemeColors"));
             this.s.e(1, 2131232275, ob6.M0(2131751674, "CreateNewThemeMenu"));
             this.s.e(4, 2131232346, ob6.M0(2131743801, "ThemeResetToDefaults"));
-            if (getMessagesController().b5 == null) {
+            if (getMessagesController().c5 == null) {
                 getMessagesController().R0(new sh9(this, (byte) 20));
             }
         } else {
@@ -882,9 +882,9 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.e implements fn7 {
         presentFragment(new pqb(B0, false, 1, z, z2));
     }
 
-    public final void y0(bcb bcbVar) {
+    public final void y0(hab habVar) {
         Activity parentActivity = getParentActivity();
-        H0(this.currentAccount, getResourceProvider(), new ku9(this, bcbVar, (byte) 17), parentActivity);
+        H0(this.currentAccount, getResourceProvider(), new ku9(this, habVar, (byte) 17), parentActivity);
     }
 
     public final void z0(Context context, View view, final int i, float f) {
@@ -1265,11 +1265,11 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.e implements fn7 {
                 }
             } else if (i == this.sensitiveContentRow) {
                 if (!getMessagesController().g5()) {
-                    bcb bcbVar = new bcb(this, view, (byte) 5);
+                    hab habVar = new hab(this, view, (byte) 6);
                     AlertDialog$Builder alertDialog$Builder4 = new AlertDialog$Builder(0, this.resourceProvider, context);
                     alertDialog$Builder4.a.S = ob6.M0(2131751778, null);
                     alertDialog$Builder4.a.U = ob6.M0(2131751779, null);
-                    alertDialog$Builder4.j(ob6.M0(2131751782, null), new yw9(this, bcbVar, (byte) 9));
+                    alertDialog$Builder4.j(ob6.M0(2131751782, null), new yw9(this, habVar, (byte) 9));
                     alertDialog$Builder4.g(ob6.M0(2131752570, null), null);
                     showDialog(alertDialog$Builder4.a);
                     return;
@@ -1340,7 +1340,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.e implements fn7 {
                     if ((ob6.a0 && f <= hl.L(76.0f)) || (!ob6.a0 && f >= view.getMeasuredWidth() - hl.L(76.0f))) {
                         uo7 uo7Var2 = (uo7) view;
                         uc7 messagesController = getMessagesController();
-                        TL_account.TL_webBrowserSettings tL_webBrowserSettings = messagesController.n5;
+                        TL_account.TL_webBrowserSettings tL_webBrowserSettings = messagesController.o5;
                         if (tL_webBrowserSettings != null) {
                             messagesController.I5(!tL_webBrowserSettings.open_external_browser, tL_webBrowserSettings.display_close_button);
                         }

@@ -93,7 +93,7 @@ public final class t64 implements Runnable {
                         if (userFull != null) {
                             userFull.flags2 |= 1048576;
                             userFull.main_tab = Y;
-                            eVar.getMessagesStorage().g2(ejaVar.h1, true);
+                            eVar.getMessagesStorage().l2(ejaVar.h1, true);
                             tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         }
                     }
