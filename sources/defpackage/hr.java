@@ -370,7 +370,7 @@ public final class hr {
         this.G = b9.u(js2Var);
         hs2 f4 = bs2.f();
         f4.o("android_call_audio_device");
-        f4.d = "legacy";
+        f4.d = "java";
         this.H = f4.v(js2Var);
         hs2 f5 = bs2.f();
         f5.o("android_group_call_engine");

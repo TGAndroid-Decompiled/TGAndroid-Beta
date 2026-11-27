@@ -234,6 +234,10 @@ public class PeerConnectionFactory {
         PeerConnectionFactoryJni.get().stopAecDump(j);
     }
 
+    public static PeerConnection m(PeerConnection.Observer observer, PeerConnection.RTCConfiguration rTCConfiguration, MediaConstraints mediaConstraints, SSLCertificateVerifier sSLCertificateVerifier, long j) {
+        return lambda$createPeerConnectionInternal$0(observer, rTCConfiguration, mediaConstraints, sSLCertificateVerifier, j);
+    }
+
     private void onNetworkThreadReady() {
         this.networkThread = ThreadInfo.getCurrent();
         staticNetworkThread = this.networkThread;

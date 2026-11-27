@@ -319,7 +319,7 @@ public final class azb implements Runnable {
                 }
                 return;
             case 28:
-                VoIPPendingCall.a((VoIPPendingCall) this.b);
+                ((VoIPPendingCall) this.b).lambda$new$1();
                 return;
             default:
                 ((VoIPPermissionActivity) this.b).finish();

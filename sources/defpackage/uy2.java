@@ -76,4 +76,8 @@ public final class uy2 implements NativeLifecycleLock.NativeDisposer, y2c, b86 {
     public uy2(byte b) {
         this.a = b;
     }
+
+    public uy2(uj ujVar, String str, long j, long j2) {
+        this.a = (byte) 21;
+    }
 }

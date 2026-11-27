@@ -106,4 +106,8 @@ public final class aa3 implements b86 {
     public aa3(uj ujVar, Object obj, Object obj2, byte b) {
         this.a = b;
     }
+
+    public aa3(uj ujVar, String str, long j, long j2) {
+        this.a = (byte) 4;
+    }
 }

@@ -169,9 +169,7 @@ public final class pt implements fd, oj3, hj, OnFailureListener, id3, fq7, is6, 
 
     @Override
     public final Object call(long j) {
-        PeerConnection lambda$createPeerConnectionInternal$0;
-        lambda$createPeerConnectionInternal$0 = PeerConnectionFactory.lambda$createPeerConnectionInternal$0((PeerConnection.Observer) this.b, (PeerConnection.RTCConfiguration) this.c, (MediaConstraints) this.d, (SSLCertificateVerifier) this.e, j);
-        return lambda$createPeerConnectionInternal$0;
+        return PeerConnectionFactory.m((PeerConnection.Observer) this.b, (PeerConnection.RTCConfiguration) this.c, (MediaConstraints) this.d, (SSLCertificateVerifier) this.e, j);
     }
 
     @Override

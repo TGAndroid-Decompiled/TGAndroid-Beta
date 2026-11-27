@@ -108,7 +108,7 @@ public final class CallAudioDevice {
         }
         String str = uc7.s1(i).k4.H.f;
         if (TextUtils.isEmpty(str)) {
-            return "legacy";
+            return "java";
         }
         return str;
     }

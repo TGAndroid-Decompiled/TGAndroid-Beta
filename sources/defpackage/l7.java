@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.e;
 public final class l7 extends FrameLayout {
     public final byte a;
     public boolean b;
@@ -74,19 +75,24 @@ public final class l7 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j) {
+        wk5 wk5Var;
+        wk5 wk5Var2;
         int i;
         switch (this.a) {
             case 3:
                 boolean drawChild = super.drawChild(canvas, view, j);
                 pqb pqbVar = (pqb) this.c;
-                if (view == pqbVar.u0 && pqb.L0(pqbVar) != null) {
-                    wk5 M0 = pqb.M0(pqbVar);
-                    if (pqbVar.u0.getVisibility() == 0) {
-                        i = (int) (pqbVar.u0.getTranslationY() + pqbVar.u0.getMeasuredHeight());
-                    } else {
-                        i = 0;
+                if (view == pqbVar.u0) {
+                    wk5Var = ((e) pqbVar).parentLayout;
+                    if (wk5Var != null) {
+                        wk5Var2 = ((e) pqbVar).parentLayout;
+                        if (pqbVar.u0.getVisibility() == 0) {
+                            i = (int) (pqbVar.u0.getTranslationY() + pqbVar.u0.getMeasuredHeight());
+                        } else {
+                            i = 0;
+                        }
+                        ((ActionBarLayout) wk5Var2).o(canvas, i);
                     }
-                    ((ActionBarLayout) M0).o(canvas, i);
                 }
                 return drawChild;
             default:

@@ -115,10 +115,6 @@ public class VoIPGroupNotification {
         }
     }
 
-    public static void a(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
-        lambda$decline$3(i, tLObject, tL_error);
-    }
-
     public static void answer(Context context, int i, int i2) {
         Runnable runnable = missRunnable;
         if (runnable != null) {

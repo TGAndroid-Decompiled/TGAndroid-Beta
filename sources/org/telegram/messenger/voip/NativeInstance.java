@@ -60,6 +60,10 @@ public class NativeInstance {
 
     public static native long createVideoCapturer(VideoSink videoSink, int i);
 
+    public static void d(NativeInstance nativeInstance, int i, String str) {
+        nativeInstance.lambda$onEmitJoinPayload$3(i, str);
+    }
+
     public static native void destroyVideoCapturer(long j);
 
     public static native String[] getAllVersions();

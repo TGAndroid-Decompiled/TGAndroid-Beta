@@ -39,7 +39,7 @@ public final class fw0 implements RequestDelegate {
                 hl.c3(new b16(i, tLObject));
                 return;
             case 5:
-                VoIPGroupNotification.a(i, tLObject, tL_error);
+                VoIPGroupNotification.lambda$decline$3(i, tLObject, tL_error);
                 return;
             case 6:
                 if (tLObject instanceof TLRPC.TL_updates) {
